@@ -165,6 +165,7 @@
             this.cloneButton.TabIndex = 2;
             this.cloneButton.Text = "複製";
             this.cloneButton.UseVisualStyleBackColor = true;
+            this.cloneButton.Click += new System.EventHandler(this.OnCloneButtonClick);
             // 
             // deleteButton
             // 
@@ -175,6 +176,7 @@
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "削除";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.OnDeleteButtonClick);
             // 
             // topButton
             // 
@@ -261,6 +263,7 @@
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(160, 20);
             this.countryComboBox.TabIndex = 11;
+            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryComboBoxSelectedIndexChanged);
             // 
             // idLabel
             // 

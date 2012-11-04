@@ -49,15 +49,22 @@ namespace HoI2Editor.Forms
         private void NarrowMinisterList()
         {
             _narrowedMinisterList.Clear();
+            List<CountryTag> selectedTagList;
             if (countryListBox.SelectedItems.Count == 0)
             {
-                return;
+                selectedTagList = new List<CountryTag> {CountryTag.None};
             }
-            var selectedTagList =
-                (from string countryText in countryListBox.SelectedItems select Country.CountryTextMap[countryText]).
-                    ToList();
+            else
+            {
+                selectedTagList =
+                    (from string countryText in countryListBox.SelectedItems select Country.CountryTextMap[countryText])
+                        .
+                        ToList();
+            }
 
-            foreach (var minister in _masterMinisterList.Where(minister => selectedTagList.Contains(minister.CountryTag)))
+            foreach (
+                Minister minister in
+                    _masterMinisterList.Where(minister => selectedTagList.Contains(minister.CountryTag)))
             {
                 _narrowedMinisterList.Add(minister);
             }
@@ -71,7 +78,7 @@ namespace HoI2Editor.Forms
             ministerListView.BeginUpdate();
             ministerListView.Items.Clear();
 
-            foreach (var minister in _narrowedMinisterList)
+            foreach (Minister minister in _narrowedMinisterList)
             {
                 AddMinisterListViewItem(minister);
             }
@@ -96,31 +103,31 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
-            foreach (var countryText in Country.CountryTextTable)
+            foreach (string countryText in Country.CountryTextTable)
             {
                 countryComboBox.Items.Add(countryText);
             }
-            
+
             // 地位
-            foreach (var positionText in Minister.PositionTextTable)
+            foreach (string positionText in Minister.PositionTextTable)
             {
                 positionComboBox.Items.Add(!string.IsNullOrEmpty(positionText) ? Config.Text[positionText] : "");
             }
 
             // 特性
-            foreach (var personalityText in Minister.PersonalityTextTable)
+            foreach (string personalityText in Minister.PersonalityTextTable)
             {
                 personalityComboBox.Items.Add(!string.IsNullOrEmpty(personalityText) ? Config.Text[personalityText] : "");
             }
 
             // イデオロギー
-            foreach (var ideologyText in Minister.IdeologyTextTable)
+            foreach (string ideologyText in Minister.IdeologyTextTable)
             {
                 ideologyComboBox.Items.Add(!string.IsNullOrEmpty(ideologyText) ? Config.Text[ideologyText] : "");
             }
 
             // 忠誠度
-            foreach (var loyaltyText in Minister.LoyaltyTextTable)
+            foreach (string loyaltyText in Minister.LoyaltyTextTable)
             {
                 loyaltyComboBox.Items.Add(loyaltyText);
             }
@@ -131,7 +138,8 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryList()
         {
-            foreach (var countryText in Country.CountryTextTable.Where(countryText => !string.IsNullOrEmpty(countryText)))
+            foreach (
+                string countryText in Country.CountryTextTable.Where(countryText => !string.IsNullOrEmpty(countryText)))
             {
                 countryListBox.Items.Add(countryText);
             }
@@ -154,29 +162,29 @@ namespace HoI2Editor.Forms
         /// 閣僚リストビューの項目を追加する
         /// </summary>
         /// <param name="minister">追加する項目</param>
-        void AddMinisterListViewItem(Minister minister)
+        private void AddMinisterListViewItem(Minister minister)
         {
             var item = new ListViewItem
-            {
-                Text =
-                    minister.CountryTag != CountryTag.None
-                        ? Country.CountryTextTable[(int)minister.CountryTag]
-                        : "",
-                Tag = minister
-            };
+                           {
+                               Text =
+                                   minister.CountryTag != CountryTag.None
+                                       ? Country.CountryTextTable[(int) minister.CountryTag]
+                                       : "",
+                               Tag = minister
+                           };
             item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(minister.Name);
             item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
             //item.SubItems.Add(minister.EndYear.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add("");
             item.SubItems.Add(minister.Position != MinisterPosition.None
-                                  ? Config.Text[Minister.PositionTextTable[(int)minister.Position]]
+                                  ? Config.Text[Minister.PositionTextTable[(int) minister.Position]]
                                   : "");
             item.SubItems.Add(minister.Personality != MinisterPersonality.None
-                                  ? Config.Text[Minister.PersonalityTextTable[(int)minister.Personality]]
+                                  ? Config.Text[Minister.PersonalityTextTable[(int) minister.Personality]]
                                   : "");
             item.SubItems.Add(minister.Ideology != MinisterIdeology.None
-                                  ? Config.Text[Minister.IdeologyTextTable[(int)minister.Ideology]]
+                                  ? Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]]
                                   : "");
 
             ministerListView.Items.Add(item);
@@ -187,32 +195,41 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="index">挿入する位置</param>
         /// <param name="minister">挿入する項目</param>
-        void InsertMinisterListViewItem(int index, Minister minister)
+        private void InsertMinisterListViewItem(int index, Minister minister)
         {
             var item = new ListViewItem
-            {
-                Text =
-                    minister.CountryTag != CountryTag.None
-                        ? Country.CountryTextTable[(int)minister.CountryTag]
-                        : "",
-                Tag = minister
-            };
+                           {
+                               Text =
+                                   minister.CountryTag != CountryTag.None
+                                       ? Country.CountryTextTable[(int) minister.CountryTag]
+                                       : "",
+                               Tag = minister
+                           };
             item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(minister.Name);
             item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
             //item.SubItems.Add(minister.EndYear.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add("");
             item.SubItems.Add(minister.Position != MinisterPosition.None
-                                  ? Config.Text[Minister.PositionTextTable[(int)minister.Position]]
+                                  ? Config.Text[Minister.PositionTextTable[(int) minister.Position]]
                                   : "");
             item.SubItems.Add(minister.Personality != MinisterPersonality.None
                                   ? Config.Text[Minister.PersonalityTextTable[(int) minister.Personality]]
                                   : "");
             item.SubItems.Add(minister.Ideology != MinisterIdeology.None
-                                  ? Config.Text[Minister.IdeologyTextTable[(int)minister.Ideology]]
+                                  ? Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]]
                                   : "");
 
             ministerListView.Items.Insert(index, item);
+        }
+
+        /// <summary>
+        /// 閣僚リストビューの項目を削除する
+        /// </summary>
+        /// <param name="index"></param>
+        private void RemoveMinisterListViewItem(int index)
+        {
+            ministerListView.Items.RemoveAt(index);
         }
 
         /// <summary>
@@ -231,6 +248,13 @@ namespace HoI2Editor.Forms
             loyaltyComboBox.Enabled = true;
             pictureNameTextBox.Enabled = true;
             pictureNameReferButton.Enabled = true;
+
+            cloneButton.Enabled = true;
+            deleteButton.Enabled = true;
+            topButton.Enabled = true;
+            upButton.Enabled = true;
+            downButton.Enabled = true;
+            bottomButton.Enabled = true;
         }
 
         /// <summary>
@@ -257,6 +281,13 @@ namespace HoI2Editor.Forms
             loyaltyComboBox.Enabled = false;
             pictureNameTextBox.Enabled = false;
             pictureNameReferButton.Enabled = false;
+
+            cloneButton.Enabled = false;
+            deleteButton.Enabled = false;
+            topButton.Enabled = false;
+            upButton.Enabled = false;
+            downButton.Enabled = false;
+            bottomButton.Enabled = false;
         }
 
         /// <summary>
@@ -280,16 +311,17 @@ namespace HoI2Editor.Forms
             {
                 var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
                 var minister = new Minister
-                {
-                    CountryTag = selectedMinister != null ? selectedMinister.CountryTag : CountryTag.None,
-                    Id = 0,
-                    StartYear = 1930,
-                    EndYear = 1970,
-                    Position = MinisterPosition.None,
-                    Personality = MinisterPersonality.None,
-                    Ideology = MinisterIdeology.None,
-                    Loyalty = MinisterLoyalty.None
-                };
+                                   {
+                                       CountryTag =
+                                           selectedMinister != null ? selectedMinister.CountryTag : CountryTag.None,
+                                       Id = selectedMinister != null ? selectedMinister.Id + 1 : 0,
+                                       StartYear = 1930,
+                                       EndYear = 1970,
+                                       Position = MinisterPosition.None,
+                                       Personality = MinisterPersonality.None,
+                                       Ideology = MinisterIdeology.None,
+                                       Loyalty = MinisterLoyalty.None
+                                   };
                 int masterIndex = _masterMinisterList.IndexOf(selectedMinister);
                 _masterMinisterList.Insert(masterIndex + 1, minister);
                 int narrowedIndex = ministerListView.SelectedIndices[0] + 1;
@@ -306,22 +338,94 @@ namespace HoI2Editor.Forms
                     return;
                 }
                 var minister = new Minister
-                {
-                    CountryTag = (CountryTag)(countryListBox.SelectedIndex + 1),
-                    Id = 0,
-                    StartYear = 1930,
-                    EndYear = 1970,
-                    Position = MinisterPosition.None,
-                    Personality = MinisterPersonality.None,
-                    Ideology = MinisterIdeology.None,
-                    Loyalty = MinisterLoyalty.None
-                };
+                                   {
+                                       CountryTag = (CountryTag) (countryListBox.SelectedIndex + 1),
+                                       Id = 0,
+                                       StartYear = 1930,
+                                       EndYear = 1970,
+                                       Position = MinisterPosition.None,
+                                       Personality = MinisterPersonality.None,
+                                       Ideology = MinisterIdeology.None,
+                                       Loyalty = MinisterLoyalty.None
+                                   };
                 _masterMinisterList.Add(minister);
                 _narrowedMinisterList.Add(minister);
                 AddMinisterListViewItem(minister);
                 ministerListView.Items[0].Focused = true;
                 ministerListView.Items[0].Selected = true;
                 EnableEditableItems();
+            }
+        }
+
+        /// <summary>
+        /// 複製ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloneButtonClick(object sender, EventArgs e)
+        {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selectedMinister == null)
+            {
+                return;
+            }
+            var minister = new Minister
+                               {
+                                   CountryTag = selectedMinister.CountryTag,
+                                   Id = selectedMinister.Id + 1,
+                                   Name = selectedMinister.Name,
+                                   StartYear = selectedMinister.StartYear,
+                                   EndYear = selectedMinister.EndYear,
+                                   Position = selectedMinister.Position,
+                                   Personality = selectedMinister.Personality,
+                                   Ideology = selectedMinister.Ideology,
+                                   Loyalty = selectedMinister.Loyalty,
+                                   PictureName = selectedMinister.PictureName
+                               };
+            int masterIndex = _masterMinisterList.IndexOf(selectedMinister);
+            _masterMinisterList.Insert(masterIndex + 1, minister);
+            int narrowedIndex = ministerListView.SelectedIndices[0] + 1;
+            _narrowedMinisterList.Insert(narrowedIndex, minister);
+            InsertMinisterListViewItem(narrowedIndex, minister);
+            ministerListView.Items[narrowedIndex].Focused = true;
+            ministerListView.Items[narrowedIndex].Selected = true;
+            ministerListView.Items[narrowedIndex].EnsureVisible();
+        }
+
+        /// <summary>
+        /// 削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDeleteButtonClick(object sender, EventArgs e)
+        {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selectedMinister == null)
+            {
+                return;
+            }
+            int masterIndex = _masterMinisterList.IndexOf(selectedMinister);
+            _masterMinisterList.RemoveAt(masterIndex);
+            int narrowedIndex = ministerListView.SelectedIndices[0];
+            _narrowedMinisterList.RemoveAt(narrowedIndex);
+            RemoveMinisterListViewItem(narrowedIndex);
+            if (narrowedIndex < ministerListView.Items.Count)
+            {
+                ministerListView.Items[narrowedIndex].Focused = true;
+                ministerListView.Items[narrowedIndex].Selected = true;
+            }
+            else if (narrowedIndex - 1 >= 0)
+            {
+                ministerListView.Items[narrowedIndex - 1].Focused = true;
+                ministerListView.Items[narrowedIndex - 1].Selected = true;
             }
         }
 
@@ -335,6 +439,7 @@ namespace HoI2Editor.Forms
             countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
                                         ? Resources.KeySelectAll
                                         : Resources.KeyUnselectAll;
+            newButton.Enabled = countryListBox.SelectedItems.Count > 0;
 
             NarrowMinisterList();
             UpdateMinisterList();
@@ -374,6 +479,26 @@ namespace HoI2Editor.Forms
                                        : "";
             pictureNameTextBox.Text = minister.PictureName;
             ministerPictureBox.ImageLocation = Game.GetPictureFileName(minister.PictureName);
+        }
+
+        /// <summary>
+        /// 国タグ変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            var minister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (minister == null)
+            {
+                return;
+            }
+            minister.CountryTag = (CountryTag) countryComboBox.SelectedIndex;
+            ministerListView.SelectedItems[0].Text = Country.CountryTextTable[(int) minister.CountryTag];
         }
 
         /// <summary>
