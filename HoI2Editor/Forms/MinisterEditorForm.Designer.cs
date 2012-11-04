@@ -101,7 +101,7 @@
             this.ministerListView.TabIndex = 0;
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
-            this.ministerListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.OnMinisterListViewItemSelectionChanged);
+            this.ministerListView.SelectedIndexChanged += new System.EventHandler(this.OnMinisterListViewSelectedIndexChanged);
             // 
             // countryColumnHeader
             // 
@@ -263,7 +263,7 @@
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(160, 20);
             this.countryComboBox.TabIndex = 11;
-            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryComboBoxSelectedIndexChanged);
+            this.countryComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnCountryComboBoxSelectionChangeCommitted);
             // 
             // idLabel
             // 
@@ -388,7 +388,7 @@
             this.loyaltyComboBox.Name = "loyaltyComboBox";
             this.loyaltyComboBox.Size = new System.Drawing.Size(161, 20);
             this.loyaltyComboBox.TabIndex = 31;
-            this.loyaltyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLoyaltyComboBoxSelectedIndexChanged);
+            this.loyaltyComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnLoyaltyComboBoxSelectionChangeCommitted);
             // 
             // loyaltyLabel
             // 
@@ -409,7 +409,7 @@
             this.ideologyComboBox.Name = "ideologyComboBox";
             this.ideologyComboBox.Size = new System.Drawing.Size(160, 20);
             this.ideologyComboBox.TabIndex = 29;
-            this.ideologyComboBox.SelectedIndexChanged += new System.EventHandler(this.IdeologyComboBoxSelectedIndexChanged);
+            this.ideologyComboBox.SelectionChangeCommitted += new System.EventHandler(this.IdeologyComboBoxSelectionChangeCommitted);
             // 
             // ideologyLabel
             // 
@@ -430,7 +430,7 @@
             this.personalityComboBox.Name = "personalityComboBox";
             this.personalityComboBox.Size = new System.Drawing.Size(160, 20);
             this.personalityComboBox.TabIndex = 27;
-            this.personalityComboBox.SelectedIndexChanged += new System.EventHandler(this.OnPersonalityComboBoxSelectedIndexChanged);
+            this.personalityComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnPersonalityComboBoxSelectionChangeCommitted);
             // 
             // personalityLabel
             // 
@@ -451,7 +451,7 @@
             this.positionComboBox.Name = "positionComboBox";
             this.positionComboBox.Size = new System.Drawing.Size(160, 20);
             this.positionComboBox.TabIndex = 25;
-            this.positionComboBox.SelectedIndexChanged += new System.EventHandler(this.OnPositionComboBoxSelectedIndexChanged);
+            this.positionComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnPositionComboBoxSelectionChangeCommitted);
             // 
             // positionLabel
             // 

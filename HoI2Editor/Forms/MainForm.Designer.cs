@@ -83,6 +83,7 @@
             // 
             // modTextBox
             // 
+            this.modTextBox.Enabled = false;
             this.modTextBox.Location = new System.Drawing.Point(32, 131);
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.Size = new System.Drawing.Size(339, 19);
@@ -93,6 +94,7 @@
             this.gameTypeGroupBox.Controls.Add(this.dhRadioButton);
             this.gameTypeGroupBox.Controls.Add(this.aodRadioButton);
             this.gameTypeGroupBox.Controls.Add(this.hoi2RadioButton);
+            this.gameTypeGroupBox.Enabled = false;
             this.gameTypeGroupBox.Location = new System.Drawing.Point(12, 12);
             this.gameTypeGroupBox.Name = "gameTypeGroupBox";
             this.gameTypeGroupBox.Size = new System.Drawing.Size(204, 44);
@@ -107,13 +109,13 @@
             this.dhRadioButton.Name = "dhRadioButton";
             this.dhRadioButton.Size = new System.Drawing.Size(39, 16);
             this.dhRadioButton.TabIndex = 2;
-            this.dhRadioButton.TabStop = true;
             this.dhRadioButton.Text = "DH";
             this.dhRadioButton.UseVisualStyleBackColor = true;
             // 
             // aodRadioButton
             // 
             this.aodRadioButton.AutoSize = true;
+            this.aodRadioButton.Checked = true;
             this.aodRadioButton.Location = new System.Drawing.Point(98, 18);
             this.aodRadioButton.Name = "aodRadioButton";
             this.aodRadioButton.Size = new System.Drawing.Size(45, 16);
@@ -125,12 +127,10 @@
             // hoi2RadioButton
             // 
             this.hoi2RadioButton.AutoSize = true;
-            this.hoi2RadioButton.Checked = true;
             this.hoi2RadioButton.Location = new System.Drawing.Point(18, 18);
             this.hoi2RadioButton.Name = "hoi2RadioButton";
             this.hoi2RadioButton.Size = new System.Drawing.Size(74, 16);
             this.hoi2RadioButton.TabIndex = 0;
-            this.hoi2RadioButton.TabStop = true;
             this.hoi2RadioButton.Text = "HoI2 DDA";
             this.hoi2RadioButton.UseVisualStyleBackColor = true;
             // 

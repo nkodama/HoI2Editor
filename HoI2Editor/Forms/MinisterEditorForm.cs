@@ -427,6 +427,10 @@ namespace HoI2Editor.Forms
                 ministerListView.Items[narrowedIndex - 1].Focused = true;
                 ministerListView.Items[narrowedIndex - 1].Selected = true;
             }
+            else
+            {
+                DisableEditableItems();
+            }
         }
 
         /// <summary>
@@ -450,9 +454,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMinisterListViewItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void OnMinisterListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            var minister = e.Item.Tag as Minister;
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
                 return;
@@ -486,7 +494,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnCountryComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void OnCountryComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
             if (ministerListView.SelectedItems.Count == 0)
             {
@@ -567,7 +575,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnPositionComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void OnPositionComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
             if (ministerListView.SelectedItems.Count == 0)
             {
@@ -591,7 +599,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnPersonalityComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void OnPersonalityComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
             if (ministerListView.SelectedItems.Count == 0)
             {
@@ -615,7 +623,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void IdeologyComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void IdeologyComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
             if (ministerListView.SelectedItems.Count == 0)
             {
@@ -639,7 +647,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLoyaltyComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void OnLoyaltyComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
             if (ministerListView.SelectedItems.Count == 0)
             {
