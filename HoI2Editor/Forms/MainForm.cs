@@ -28,7 +28,6 @@ namespace HoI2Editor.Forms
 
             if (Game.IsValidFolderName())
             {
-                Config.LoadConfigFiles();
                 ministerButton.Enabled = true;
             }
         }
@@ -46,15 +45,7 @@ namespace HoI2Editor.Forms
                 Game.FolderName = dialog.SelectedPath;
                 gameFolderTextBox.Text = Game.FolderName;
 
-                if (Game.IsValidFolderName())
-                {
-                    Config.LoadConfigFiles();
-                    ministerButton.Enabled = true;
-                }
-                else
-                {
-                    ministerButton.Enabled = false;
-                }
+                ministerButton.Enabled = Game.IsValidFolderName();
             }
         }
 
@@ -69,12 +60,25 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// ゲームフォルダ文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGameFolderTextBoxTextChanged(object sender, EventArgs e)
+        {
+            Game.FolderName = gameFolderTextBox.Text;
+
+            ministerButton.Enabled = Game.IsValidFolderName();
+        }
+
+        /// <summary>
         /// 閣僚ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
+            Config.LoadConfigFiles();
             var form = new MinisterEditorForm();
             form.Show();
         }

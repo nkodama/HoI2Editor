@@ -271,7 +271,9 @@ namespace HoI2Editor.Models
                 "High",
                 "Medium",
                 "Low",
-                "Very Low"
+                "Very Low",
+                "Undying",
+                "NA"
             };
 
         /// <summary>
@@ -284,7 +286,9 @@ namespace HoI2Editor.Models
                 "高",
                 "中",
                 "低",
-                "最低"
+                "最低",
+                "不死",
+                "NA"
             };
 
         /// <summary>
@@ -865,6 +869,8 @@ namespace HoI2Editor.Models
         Medium,
         High,
         VeryHigh,
+        Undying,
+        Na,
     }
 
     /// <summary>

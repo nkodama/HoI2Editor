@@ -34,9 +34,9 @@
             this.modLabel = new System.Windows.Forms.Label();
             this.modTextBox = new System.Windows.Forms.TextBox();
             this.gameTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.hoi2RadioButton = new System.Windows.Forms.RadioButton();
-            this.aodRadioButton = new System.Windows.Forms.RadioButton();
             this.dhRadioButton = new System.Windows.Forms.RadioButton();
+            this.aodRadioButton = new System.Windows.Forms.RadioButton();
+            this.hoi2RadioButton = new System.Windows.Forms.RadioButton();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
             this.loadButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
@@ -70,6 +70,7 @@
             this.gameFolderTextBox.Name = "gameFolderTextBox";
             this.gameFolderTextBox.Size = new System.Drawing.Size(420, 19);
             this.gameFolderTextBox.TabIndex = 2;
+            this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
             // 
             // modLabel
             // 
@@ -99,17 +100,16 @@
             this.gameTypeGroupBox.TabStop = false;
             this.gameTypeGroupBox.Text = "ゲームの種類";
             // 
-            // hoi2RadioButton
+            // dhRadioButton
             // 
-            this.hoi2RadioButton.AutoSize = true;
-            this.hoi2RadioButton.Checked = true;
-            this.hoi2RadioButton.Location = new System.Drawing.Point(18, 18);
-            this.hoi2RadioButton.Name = "hoi2RadioButton";
-            this.hoi2RadioButton.Size = new System.Drawing.Size(74, 16);
-            this.hoi2RadioButton.TabIndex = 0;
-            this.hoi2RadioButton.TabStop = true;
-            this.hoi2RadioButton.Text = "HoI2 DDA";
-            this.hoi2RadioButton.UseVisualStyleBackColor = true;
+            this.dhRadioButton.AutoSize = true;
+            this.dhRadioButton.Location = new System.Drawing.Point(149, 18);
+            this.dhRadioButton.Name = "dhRadioButton";
+            this.dhRadioButton.Size = new System.Drawing.Size(39, 16);
+            this.dhRadioButton.TabIndex = 2;
+            this.dhRadioButton.TabStop = true;
+            this.dhRadioButton.Text = "DH";
+            this.dhRadioButton.UseVisualStyleBackColor = true;
             // 
             // aodRadioButton
             // 
@@ -122,16 +122,17 @@
             this.aodRadioButton.Text = "AoD";
             this.aodRadioButton.UseVisualStyleBackColor = true;
             // 
-            // dhRadioButton
+            // hoi2RadioButton
             // 
-            this.dhRadioButton.AutoSize = true;
-            this.dhRadioButton.Location = new System.Drawing.Point(149, 18);
-            this.dhRadioButton.Name = "dhRadioButton";
-            this.dhRadioButton.Size = new System.Drawing.Size(39, 16);
-            this.dhRadioButton.TabIndex = 2;
-            this.dhRadioButton.TabStop = true;
-            this.dhRadioButton.Text = "DH";
-            this.dhRadioButton.UseVisualStyleBackColor = true;
+            this.hoi2RadioButton.AutoSize = true;
+            this.hoi2RadioButton.Checked = true;
+            this.hoi2RadioButton.Location = new System.Drawing.Point(18, 18);
+            this.hoi2RadioButton.Name = "hoi2RadioButton";
+            this.hoi2RadioButton.Size = new System.Drawing.Size(74, 16);
+            this.hoi2RadioButton.TabIndex = 0;
+            this.hoi2RadioButton.TabStop = true;
+            this.hoi2RadioButton.Text = "HoI2 DDA";
+            this.hoi2RadioButton.UseVisualStyleBackColor = true;
             // 
             // editGroupBox
             // 
