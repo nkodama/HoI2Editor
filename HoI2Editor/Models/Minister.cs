@@ -21,16 +21,16 @@ namespace HoI2Editor.Models
         public static readonly string[] PositionNameTable =
             {
                 "",
-                "head of state",
-                "head of government",
-                "foreign minister",
-                "minister of armament",
-                "minister of security",
-                "head of military intelligence",
-                "chief of staff",
-                "chief of army",
-                "chief of navy",
-                "chief of air force"
+                "Head of State",
+                "Head of Government",
+                "Foreign Minister",
+                "Minister of Armament",
+                "Minister of Security",
+                "Head of Military Intelligence",
+                "Chief of Staff",
+                "Chief of Army",
+                "Chief of Navy",
+                "Chief of Air Force"
             };
 
         /// <summary>
@@ -56,86 +56,86 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] PersonalityNameTable =
             {
-                "undistinguished suit",
-                "autocratic charmer",
-                "barking buffoon",
-                "benevolent gentleman",
-                "die-hard reformer",
-                "insignificant layman",
-                "pig-headed isolationist",
-                "popular figurehead",
-                "powerhungry demagogue",
-                "resigned generalissimo",
-                "ruthless powermonger",
-                "stern imperialist",
-                "weary stiffneck",
-                "ambitious union boss",
-                "backroom backstabber",
-                "corporate suit",
-                "flamboyant tough guy",
-                "happy amateur",
-                "naive optimist",
-                "old admiral",
-                "old airmarshal",
-                "old general",
-                "political protege",
-                "silent workhorse",
-                "smiling oilman",
-                "apologetic clerk",
-                "biased intellectual",
-                "ideological crusader",
-                "iron fisted brute",
-                "general staffer",
-                "great compromiser",
-                "the cloak n dagger schemer",
-                "administrative genius",
-                "air superiority proponent",
-                "battle fleet proponent",
-                "resource industrialist",
-                "laissez faires capitalist",
-                "theoretical scientist",
-                "military entrepreneur",
-                "submarine proponent",
-                "tank proponent",
-                "infantry proponent",
-                "corrupt kleptocrat",
-                "air to ground proponent",
-                "air to sea proponent",
-                "strategic air proponent",
-                "back stabber",
-                "compassionate gentleman",
-                "crime fighter",
-                "crooked kleptocrat",
-                "efficient sociopath",
-                "man of the people",
-                "prince of terror",
-                "silent lawyer",
-                "dismal enigma",
-                "industrial specialist",
-                "logistics specialist",
-                "naval intelligence specialist",
-                "political specialist",
-                "technical specialist",
-                "school of defence",
-                "school of fire support",
-                "school of mass combat",
-                "school of manoeuvre",
-                "school of psychology",
-                "armoured spearhead doctrine",
-                "decisive battle doctrine",
-                "elastic defence doctrine",
-                "guns and butter doctrine",
-                "static defence doctrine",
-                "base control doctrine",
-                "decisive naval battle doctrine",
-                "indirect approach doctrine",
-                "open seas doctrine",
-                "power projection doctrine",
-                "air superiority doctrine",
-                "army aviation doctrine",
-                "carpet bombing doctrine",
-                "naval aviation doctrine",
-                "vertical envelopment doctrine"
+                "Undistinguished Suit",
+                "Autocratic Charmer",
+                "Barking Buffoon",
+                "Benevolent Gentleman",
+                "Die-hard Reformer",
+                "Insignificant Layman",
+                "Pig-headed Isolationist",
+                "Popular Figurehead",
+                "Powerhungry Demagogue",
+                "Resigned Generalissimo",
+                "Ruthless Powermonger",
+                "Stern Imperialist",
+                "Weary Stiffneck",
+                "Ambitious Union Boss",
+                "Backroom Backstabber",
+                "Corporate Suit",
+                "Flamboyant Tough Guy",
+                "Happy Amateur",
+                "Naive Optimist",
+                "Old Admiral",
+                "Old Air Marshal",
+                "Old General",
+                "Political Protege",
+                "Silent Workhorse",
+                "Smiling Oilman",
+                "Apologetic Clerk",
+                "Biased Intellectual",
+                "Ideological Crusader",
+                "Iron Fisted Brute",
+                "General Staffer",
+                "Great Compromiser",
+                "The Cloak N Dagger Schemer",
+                "Administrative Genius",
+                "Air Superiority Proponent",
+                "Battle Fleet Proponent",
+                "Resource Industrialist",
+                "Laissez Faires Capitalist",
+                "Theoretical Scientist",
+                "Military Entrepreneur",
+                "Submarine Proponent",
+                "Tank Proponent",
+                "Infantry Proponent",
+                "Corrupt Kleptocrat",
+                "Air to Ground Proponent",
+                "Air to Sea Proponent",
+                "Strategic Air Proponent",
+                "Back Stabber",
+                "Compassionate Gentleman",
+                "Crime Fighter",
+                "Crooked Kleptocrat",
+                "Efficient Sociopath",
+                "Man of the People",
+                "Prince of Terror",
+                "Silent Lawyer",
+                "Dismal Enigma",
+                "Industrial Specialist",
+                "Logistics Specialist",
+                "Naval Intelligence Specialist",
+                "Political Specialist",
+                "Technical Specialist",
+                "School of Defence",
+                "School of Fire Support",
+                "School of Mass Combat",
+                "School of Manoeuvre",
+                "School of Psychology",
+                "Armoured Spearhead Doctrine",
+                "Decisive Battle Doctrine",
+                "Elastic Defence Doctrine",
+                "Guns and Butter Doctrine",
+                "Static Defence Doctrine",
+                "Base Control Doctrine",
+                "Decisive Naval Battle Doctrine",
+                "Indirect Approach Doctrine",
+                "Open Seas Doctrine",
+                "Power Projection Doctrine",
+                "Air Superiority Doctrine",
+                "Army Aviation Doctrine",
+                "Carpet Bombing Doctrine",
+                "Naval Aviation Doctrine",
+                "Vertical Envelopment Doctrine"
             };
 
         /// <summary>
@@ -231,16 +231,16 @@ namespace HoI2Editor.Models
         public static readonly string[] IdeologyNameTable =
             {
                 "",
-                "ns",
-                "fa",
-                "pa",
-                "sc",
-                "ml",
-                "sl",
-                "sd",
-                "lwr",
-                "le",
-                "st"
+                "NS",
+                "FA",
+                "PA",
+                "SC",
+                "ML",
+                "SL",
+                "SD",
+                "LWR",
+                "LE",
+                "ST"
             };
 
         /// <summary>
@@ -267,11 +267,11 @@ namespace HoI2Editor.Models
         public static readonly string[] LoyaltyNameTable =
             {
                 "",
-                "very high",
-                "high",
-                "medium",
-                "low",
-                "very low"
+                "Very High",
+                "High",
+                "Medium",
+                "Low",
+                "Very Low"
             };
 
         /// <summary>
@@ -294,21 +294,9 @@ namespace HoI2Editor.Models
             new Dictionary<string, MinisterPosition>();
 
         /// <summary>
-        /// 閣僚地位文字列とIDの対応付け
-        /// </summary>
-        public static readonly Dictionary<string, MinisterPosition> PositionTextMap =
-            new Dictionary<string, MinisterPosition>();
-
-        /// <summary>
         /// 閣僚特性名とIDの対応付け
         /// </summary>
         public static readonly Dictionary<string, MinisterPersonality> PersonalityNameMap =
-            new Dictionary<string, MinisterPersonality>();
-
-        /// <summary>
-        /// 閣僚特性文字列とIDの対応付け
-        /// </summary>
-        public static readonly Dictionary<string, MinisterPersonality> PersonalityTextMap =
             new Dictionary<string, MinisterPersonality>();
 
         /// <summary>
@@ -318,21 +306,9 @@ namespace HoI2Editor.Models
             new Dictionary<string, MinisterIdeology>();
 
         /// <summary>
-        /// イデオロギー文字列とIDの対応付け
-        /// </summary>
-        public static readonly Dictionary<string, MinisterIdeology> IdeologyTextMap =
-            new Dictionary<string, MinisterIdeology>();
-
-        /// <summary>
         /// 忠誠度名とIDの対応付け
         /// </summary>
         public static readonly Dictionary<string, MinisterLoyalty> LoyaltyNameMap =
-            new Dictionary<string, MinisterLoyalty>();
-
-        /// <summary>
-        /// 忠誠度文字列とIDの対応付け
-        /// </summary>
-        public static readonly Dictionary<string, MinisterLoyalty> LoyaltyTextMap =
             new Dictionary<string, MinisterLoyalty>();
 
         /// <summary>
@@ -513,44 +489,50 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
+        /// 現在解析中のファイル名
+        /// </summary>
+        private static string _currentFileName = "";
+
+        /// <summary>
+        /// 現在解析中の行番号
+        /// </summary>
+        private static int _currentLineNo;
+
+        /// <summary>
         /// 静的コンストラクタ
         /// </summary>
         static Minister()
         {
-            foreach (MinisterPosition position in Enum.GetValues(typeof(MinisterPosition)))
+            foreach (MinisterPosition position in Enum.GetValues(typeof (MinisterPosition)))
             {
                 if (position == MinisterPosition.None)
                 {
                     continue;
                 }
-                PositionNameMap.Add(PositionNameTable[(int)position], position);
-                PositionTextMap.Add(Config.Text[PositionTextTable[(int)position]], position);
+                PositionNameMap.Add(PositionNameTable[(int) position].ToLower(), position);
             }
 
-            foreach (MinisterPersonality personality in Enum.GetValues(typeof(MinisterPersonality)))
+            foreach (MinisterPersonality personality in Enum.GetValues(typeof (MinisterPersonality)))
             {
-                PersonalityNameMap.Add(PersonalityNameTable[(int)personality], personality);
-                PersonalityTextMap.Add(Config.Text[PersonalityTextTable[(int)personality]], personality);
+                PersonalityNameMap.Add(PersonalityNameTable[(int) personality].ToLower(), personality);
             }
 
-            foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof(MinisterLoyalty)))
+            foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof (MinisterLoyalty)))
             {
                 if (loyalty == MinisterLoyalty.None)
                 {
                     continue;
                 }
-                LoyaltyNameMap.Add(LoyaltyNameTable[(int)loyalty], loyalty);
-                LoyaltyTextMap.Add(LoyaltyTextTable[(int)loyalty], loyalty);
+                LoyaltyNameMap.Add(LoyaltyNameTable[(int) loyalty].ToLower(), loyalty);
             }
 
-            foreach (MinisterIdeology ideology in Enum.GetValues(typeof(MinisterIdeology)))
+            foreach (MinisterIdeology ideology in Enum.GetValues(typeof (MinisterIdeology)))
             {
                 if (ideology == MinisterIdeology.None)
                 {
                     continue;
                 }
-                IdeologyNameMap.Add(IdeologyNameTable[(int)ideology], ideology);
-                IdeologyTextMap.Add(Config.Text[IdeologyTextTable[(int)ideology]], ideology);
+                IdeologyNameMap.Add(IdeologyNameTable[(int) ideology].ToLower(), ideology);
             }
         }
 
@@ -627,12 +609,17 @@ namespace HoI2Editor.Models
         /// <param name="ministers">閣僚リスト</param>
         private static void LoadMinisterFile(string fileName, List<Minister> ministers)
         {
+            _currentFileName = fileName;
+            _currentLineNo = 1;
+
             var reader = new StreamReader(fileName, Encoding.Default);
+            // 空ファイルを読み飛ばす
             if (reader.EndOfStream)
             {
                 return;
             }
 
+            // 国タグ読み込み
             string line = reader.ReadLine();
             if (string.IsNullOrEmpty(line))
             {
@@ -645,9 +632,12 @@ namespace HoI2Editor.Models
             }
             CountryTag countryTag = Country.CountryTextMap[token[0].ToUpper()];
 
+            _currentLineNo++;
+
             while (!reader.EndOfStream)
             {
                 ParseMinisterLine(reader.ReadLine(), ministers, countryTag);
+                _currentLineNo++;
             }
         }
 
@@ -659,39 +649,81 @@ namespace HoI2Editor.Models
         /// <param name="countryTag">国家タグ</param>
         private static void ParseMinisterLine(string line, List<Minister> ministers, CountryTag countryTag)
         {
+            // 空行を読み飛ばす
             if (string.IsNullOrEmpty(line))
             {
                 return;
             }
 
             string[] token = line.Split(CsvSeparator);
-            if (token.Length != 9)
+
+            // ID指定のない行は読み飛ばす
+            if (string.IsNullOrEmpty(token[0]))
             {
                 return;
             }
 
-            var minister = new Minister();
-            try
+            // トークン数が足りない行は読み飛ばす
+            if (token.Length != 9)
             {
-                minister.CountryTag = countryTag;
-                minister.Id = int.Parse(token[0]);
-                MinisterPosition position = PositionNameMap[token[1].ToLower()];
-                minister.Position = position;
-                minister.Name = token[2];
-                minister.StartYear = int.Parse(token[3]) + 1900;
-                minister.EndYear = 1970;
-                MinisterIdeology ideology = IdeologyNameMap[token[4].ToLower()];
-                minister.Ideology = ideology;
-                MinisterPersonality personality = PersonalityNameMap[token[5].ToLower()];
-                minister.Personality = personality;
-                MinisterLoyalty loyalty = LoyaltyNameMap[token[6].ToLower()];
-                minister.Loyalty = loyalty;
-                minister.PictureName = token[7];
-            }
-            catch (Exception)
-            {
+                Log.Write(string.Format("項目数の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
+                Log.Write(string.Format("  {0}\n\n", line));
                 return;
             }
+
+            var minister = new Minister();
+            int id;
+            if (!int.TryParse(token[0], out id))
+            {
+                Log.Write(string.Format("IDの異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
+                Log.Write(string.Format("  {0}\n\n", token[0]));
+                return;
+            }
+            minister.Id = id;
+            minister.Name = token[2];
+            int startYear;
+            if (!int.TryParse(token[3], out startYear))
+            {
+                Log.Write(string.Format("開始年の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[3]));
+                return;
+            }
+            minister.StartYear = startYear + 1900;
+            minister.EndYear = 1970;
+            string positionName = token[1].ToLower();
+            if (!PositionNameMap.ContainsKey(positionName))
+            {
+                Log.Write(string.Format("閣僚地位の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[1]));
+                return;
+            }
+            minister.Position = PositionNameMap[positionName];
+            string ideologyName = token[4].ToLower();
+            if (!IdeologyNameMap.ContainsKey(ideologyName))
+            {
+                Log.Write(string.Format("イデオロギーの異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[4]));
+                return;
+            }
+            minister.Ideology = IdeologyNameMap[ideologyName];
+            string personalityName = token[5].ToLower();
+            if (!PersonalityNameMap.ContainsKey(personalityName))
+            {
+                Log.Write(string.Format("閣僚特性の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[5]));
+                return;
+            }
+            minister.Personality = PersonalityNameMap[personalityName];
+            string loyaltyName = token[6].ToLower();
+            if (!LoyaltyNameMap.ContainsKey(loyaltyName))
+            {
+                Log.Write(string.Format("忠誠度の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[6]));
+                return;
+            }
+            minister.Loyalty = LoyaltyNameMap[loyaltyName];
+            minister.PictureName = token[7];
+            minister.CountryTag = countryTag;
             ministers.Add(minister);
         }
     }

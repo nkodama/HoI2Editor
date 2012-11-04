@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace HoI2Editor
 {
@@ -12,6 +8,14 @@ namespace HoI2Editor
     /// </summary>
     public static class Game
     {
+        /// <summary>
+        /// 静的コンストラクタ
+        /// </summary>
+        static Game()
+        {
+            FolderName = Environment.CurrentDirectory;
+        }
+
         /// <summary>
         /// ゲームの種類
         /// </summary>
@@ -30,19 +34,25 @@ namespace HoI2Editor
         /// <summary>
         /// 文字列フォルダ名
         /// </summary>
-        public static string ConfigFolderName { get { return Path.Combine(FolderName, "config"); } }
+        public static string ConfigFolderName
+        {
+            get { return Path.Combine(FolderName, "config"); }
+        }
 
         /// <summary>
         /// 閣僚フォルダ名
         /// </summary>
-        public static string MinisterFolderName { get { return Path.Combine(FolderName, "db\\ministers"); } }
+        public static string MinisterFolderName
+        {
+            get { return Path.Combine(FolderName, "db\\ministers"); }
+        }
 
         /// <summary>
-        /// 静的コンストラクタ
+        /// 画像フォルダ名
         /// </summary>
-        static Game()
+        public static string PictureFolderName
         {
-            FolderName = Environment.CurrentDirectory;
+            get { return Path.Combine(FolderName, "gfx\\interface\\pics"); }
         }
 
         /// <summary>

@@ -579,7 +579,7 @@
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.ministerListView);
             this.Name = "MinisterEditorForm";
-            this.Text = "閣僚エディタ";
+            this.Text = "Minister Editor";
             this.Load += new System.EventHandler(this.OnMinisterEditorFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();

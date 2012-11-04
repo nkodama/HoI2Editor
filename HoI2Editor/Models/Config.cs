@@ -38,7 +38,7 @@ namespace HoI2Editor.Models
             }
 
             // 対象フォルダ内のCSVファイルを順に解析する
-            foreach (var fileName in Directory.GetFiles(folderName, "*.csv"))
+            foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
             {
                 LoadConfigFile(fileName);
             }

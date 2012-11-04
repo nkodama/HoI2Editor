@@ -35,7 +35,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 閣僚ファイルを読み込む
         /// </summary>
-        void LoadMinisterFiles()
+        private void LoadMinisterFiles()
         {
             _masterMinisterList = Minister.LoadMinisterFiles();
 
@@ -46,7 +46,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 編集項目を初期化する
         /// </summary>
-        void InitEditableItems()
+        private void InitEditableItems()
         {
             // 地位
             foreach (string positionText in Minister.PositionTextTable)
@@ -102,7 +102,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 国家リストボックスを初期化する
         /// </summary>
-        void InitCountryList()
+        private void InitCountryList()
         {
             foreach (string countryText in Country.CountryTextTable)
             {
@@ -140,6 +140,7 @@ namespace HoI2Editor.Forms
             List<CountryTag> selectedTagList =
                 (from string countryText in countryListBox.SelectedItems select Country.CountryTextMap[countryText]).
                     ToList();
+
             foreach (Minister minister in _masterMinisterList)
             {
                 if (selectedTagList.Contains(minister.CountryTag))
@@ -163,7 +164,7 @@ namespace HoI2Editor.Forms
                 item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
                 item.SubItems.Add(minister.Name);
                 item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
-                //item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
+                //item.SubItems.Add(minister.EndYear.ToString(CultureInfo.InvariantCulture));
                 item.SubItems.Add("");
                 item.SubItems.Add(Config.Text[Minister.PositionTextTable[(int) minister.Position]]);
                 item.SubItems.Add(Config.Text[Minister.PersonalityTextTable[(int) minister.Personality]]);
@@ -189,13 +190,13 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 編集可能な項目を有効化する
         /// </summary>
-        void EnableEditableItems()
+        private void EnableEditableItems()
         {
             countryComboBox.Enabled = true;
             idNumericUpDown.Enabled = true;
             nameTextBox.Enabled = true;
             startYearNumericUpDown.Enabled = true;
-            endYearNumericUpDown.Enabled = true;
+            //endYearNumericUpDown.Enabled = true;
             positionComboBox.Enabled = true;
             personalityComboBox.Enabled = true;
             ideologyComboBox.Enabled = true;
@@ -207,7 +208,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 編集可能な項目を無効化する
         /// </summary>
-        void DisableEditableItems()
+        private void DisableEditableItems()
         {
             idNumericUpDown.Value = 1;
             nameTextBox.Text = "";
@@ -270,9 +271,8 @@ namespace HoI2Editor.Forms
                 ideologyComboBox.Text = Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]];
                 loyaltyComboBox.Text = Minister.LoyaltyTextTable[(int) minister.Loyalty];
                 pictureNameTextBox.Text = minister.PictureName;
-                ministerPictureBox.ImageLocation =
-                    Path.Combine("D:\\Games\\CYBERFRONT\\AoD_Original_107\\gfx\\interface\\pics",
-                                 Path.ChangeExtension(minister.PictureName, ".bmp"));
+                ministerPictureBox.ImageLocation = Path.Combine(Game.PictureFolderName,
+                                                                Path.ChangeExtension(minister.PictureName, ".bmp"));
             }
         }
 
@@ -353,8 +353,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            minister.Position = Minister.PositionTextMap[positionComboBox.Text];
-            ministerListView.SelectedItems[0].SubItems[5].Text = positionComboBox.Text;
+            minister.Position = (MinisterPosition) positionComboBox.SelectedIndex + 1;
+            ministerListView.SelectedItems[0].SubItems[5].Text =
+                Config.Text[Minister.PositionTextTable[(int) minister.Position]];
         }
 
         /// <summary>
@@ -373,8 +374,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            minister.Personality = Minister.PersonalityTextMap[personalityComboBox.Text];
-            ministerListView.SelectedItems[0].SubItems[6].Text = personalityComboBox.Text;
+            minister.Personality = (MinisterPersonality) personalityComboBox.SelectedIndex;
+            ministerListView.SelectedItems[0].SubItems[6].Text =
+                Config.Text[Minister.PersonalityTextTable[(int) minister.Personality]];
         }
 
         /// <summary>
@@ -393,8 +395,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            minister.Ideology = Minister.IdeologyTextMap[ideologyComboBox.Text];
-            ministerListView.SelectedItems[0].SubItems[7].Text = ideologyComboBox.Text;
+            minister.Ideology = (MinisterIdeology) ideologyComboBox.SelectedIndex + 1;
+            ministerListView.SelectedItems[0].SubItems[7].Text =
+                Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]];
         }
 
         /// <summary>
@@ -413,7 +416,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            minister.Loyalty = Minister.LoyaltyTextMap[loyaltyComboBox.Text];
+            minister.Loyalty = (MinisterLoyalty) loyaltyComboBox.SelectedIndex + 1;
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 
@@ -41,7 +40,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLoadButtonClick(object sender, EventArgs e)
         {
-            var dialog = new FolderBrowserDialog { SelectedPath = Game.FolderName };
+            var dialog = new FolderBrowserDialog {SelectedPath = gameFolderTextBox.Text, ShowNewFolderButton = false};
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Game.FolderName = dialog.SelectedPath;
