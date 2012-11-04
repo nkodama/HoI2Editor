@@ -247,6 +247,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
+                                        ? Resources.KeySelectAll
+                                        : Resources.KeyUnselectAll;
+
             NarrowMinisterList();
             UpdateMinisterList();
         }
@@ -466,6 +470,38 @@ namespace HoI2Editor.Forms
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
             }
+        }
+
+        /// <summary>
+        /// 国家リストボックスの全選択/全解除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryAllButtonClick(object sender, EventArgs e)
+        {
+            countryListBox.BeginUpdate();
+            // 選択イベントを処理すると時間がかかるので、一時的に無効化する
+            countryListBox.SelectedIndexChanged -= OnCountryListBoxSelectedIndexChanged;
+            if (countryListBox.SelectedItems.Count <= 1)
+            {
+                // スクロール位置を先頭に設定するため、逆順で選択する
+                for (int i = countryListBox.Items.Count - 1; i >= 0; i--)
+                {
+                    countryListBox.SetSelected(i, true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < countryListBox.Items.Count; i++)
+                {
+                    countryListBox.SetSelected(i, false);
+                }
+            }
+            // 選択イベントを元に戻す
+            countryListBox.SelectedIndexChanged += OnCountryListBoxSelectedIndexChanged;
+            // 閣僚リスト絞り込みのため、ダミーでイベント発行する
+            OnCountryListBoxSelectedIndexChanged(sender, e);
+            countryListBox.EndUpdate();
         }
     }
 }

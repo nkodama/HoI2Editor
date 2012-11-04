@@ -239,6 +239,7 @@
             this.countryAllButton.TabIndex = 9;
             this.countryAllButton.Text = "全選択";
             this.countryAllButton.UseVisualStyleBackColor = true;
+            this.countryAllButton.Click += new System.EventHandler(this.OnCountryAllButtonClick);
             // 
             // countryLabel
             // 

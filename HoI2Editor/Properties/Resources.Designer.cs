@@ -61,6 +61,24 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   全選択 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string KeySelectAll {
+            get {
+                return ResourceManager.GetString("KeySelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   全解除 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string KeyUnselectAll {
+            get {
+                return ResourceManager.GetString("KeyUnselectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string OpenBitmapFileDialogFilter {
