@@ -517,40 +517,40 @@ namespace HoI2Editor.Models
         /// </summary>
         static Minister()
         {
-            foreach (MinisterPosition position in Enum.GetValues(typeof (MinisterPosition)))
+            foreach (MinisterPosition position in Enum.GetValues(typeof(MinisterPosition)))
             {
                 if (position == MinisterPosition.None)
                 {
                     continue;
                 }
-                PositionNameMap.Add(PositionNameTable[(int) position], position);
-                PositionTextMap.Add(Config.Text[PositionTextTable[(int) position]], position);
+                PositionNameMap.Add(PositionNameTable[(int)position], position);
+                PositionTextMap.Add(Config.Text[PositionTextTable[(int)position]], position);
             }
 
-            foreach (MinisterPersonality personality in Enum.GetValues(typeof (MinisterPersonality)))
+            foreach (MinisterPersonality personality in Enum.GetValues(typeof(MinisterPersonality)))
             {
-                PersonalityNameMap.Add(PersonalityNameTable[(int) personality], personality);
-                PersonalityTextMap.Add(Config.Text[PersonalityTextTable[(int) personality]], personality);
+                PersonalityNameMap.Add(PersonalityNameTable[(int)personality], personality);
+                PersonalityTextMap.Add(Config.Text[PersonalityTextTable[(int)personality]], personality);
             }
 
-            foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof (MinisterLoyalty)))
+            foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof(MinisterLoyalty)))
             {
                 if (loyalty == MinisterLoyalty.None)
                 {
                     continue;
                 }
-                LoyaltyNameMap.Add(LoyaltyNameTable[(int) loyalty], loyalty);
-                LoyaltyTextMap.Add(LoyaltyTextTable[(int) loyalty], loyalty);
+                LoyaltyNameMap.Add(LoyaltyNameTable[(int)loyalty], loyalty);
+                LoyaltyTextMap.Add(LoyaltyTextTable[(int)loyalty], loyalty);
             }
 
-            foreach (MinisterIdeology ideology in Enum.GetValues(typeof (MinisterIdeology)))
+            foreach (MinisterIdeology ideology in Enum.GetValues(typeof(MinisterIdeology)))
             {
                 if (ideology == MinisterIdeology.None)
                 {
                     continue;
                 }
-                IdeologyNameMap.Add(IdeologyNameTable[(int) ideology], ideology);
-                IdeologyTextMap.Add(Config.Text[IdeologyTextTable[(int) ideology]], ideology);
+                IdeologyNameMap.Add(IdeologyNameTable[(int)ideology], ideology);
+                IdeologyTextMap.Add(Config.Text[IdeologyTextTable[(int)ideology]], ideology);
             }
         }
 
@@ -607,13 +607,12 @@ namespace HoI2Editor.Models
         /// <summary>
         /// 閣僚ファイル群を読み込む
         /// </summary>
-        /// <param name="folderName">対象フォルダ名</param>
         /// <returns>閣僚リスト</returns>
-        public static List<Minister> LoadMinisterFiles(string folderName)
+        public static List<Minister> LoadMinisterFiles()
         {
             var ministers = new List<Minister>();
 
-            foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+            foreach (string fileName in Directory.GetFiles(Game.MinisterFolderName, "*.csv"))
             {
                 LoadMinisterFile(fileName, ministers);
             }
@@ -644,7 +643,7 @@ namespace HoI2Editor.Models
             {
                 return;
             }
-            CountryTag countryTag = Country.CountryTextMap[token[0]];
+            CountryTag countryTag = Country.CountryTextMap[token[0].ToUpper()];
 
             while (!reader.EndOfStream)
             {

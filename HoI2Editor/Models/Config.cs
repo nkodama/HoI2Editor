@@ -19,11 +19,10 @@ namespace HoI2Editor.Models
         /// <summary>
         /// 文字列ファイル群を読み込む
         /// </summary>
-        /// <param name="folderName">対象フォルダ名</param>
-        public static void LoadConfigFiles(string folderName)
+        public static void LoadConfigFiles()
         {
             Text.Clear();
-            LoadConfigFilesRecursive(folderName);
+            LoadConfigFilesRecursive(Game.ConfigFolderName);
             ModifyDuplicatedStrings();
         }
 
@@ -33,8 +32,13 @@ namespace HoI2Editor.Models
         /// <param name="folderName">対象フォルダ名</param>
         private static void LoadConfigFilesRecursive(string folderName)
         {
+            if (!Directory.Exists(folderName))
+            {
+                return;
+            }
+
             // 対象フォルダ内のCSVファイルを順に解析する
-            foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+            foreach (var fileName in Directory.GetFiles(folderName, "*.csv"))
             {
                 LoadConfigFile(fileName);
             }
@@ -78,7 +82,9 @@ namespace HoI2Editor.Models
         private static void ModifyDuplicatedStrings()
         {
             // 決戦ドクトリン: 陸軍総司令官/海軍総司令官
-            if (Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"].Equals(Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"]))
+            if (Text.ContainsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE") &&
+                Text.ContainsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2") &&
+                Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"].Equals(Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"]))
             {
                 Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"] += "(陸軍)";
                 Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"] += "(海軍)";

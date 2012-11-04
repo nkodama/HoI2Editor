@@ -33,14 +33,22 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// フォーム読み込み時の処理
+        /// 閣僚ファイルを読み込む
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterEditorFormLoad(object sender, EventArgs e)
+        void LoadMinisterFiles()
         {
-            Config.LoadConfigFiles("D:\\Games\\CYBERFRONT\\AoD_Original_107\\config");
+            _masterMinisterList = Minister.LoadMinisterFiles();
 
+            NarrowMinisterList();
+            UpdateMinisterList();
+        }
+
+        /// <summary>
+        /// 編集項目を初期化する
+        /// </summary>
+        void InitEditableItems()
+        {
+            // 地位
             foreach (string positionText in Minister.PositionTextTable)
             {
                 if (string.IsNullOrEmpty(positionText))
@@ -50,6 +58,7 @@ namespace HoI2Editor.Forms
                 positionComboBox.Items.Add(Config.Text[positionText]);
             }
 
+            // 特性
             foreach (string personalityText in Minister.PersonalityTextTable)
             {
                 if (string.IsNullOrEmpty(personalityText))
@@ -59,6 +68,7 @@ namespace HoI2Editor.Forms
                 personalityComboBox.Items.Add(Config.Text[personalityText]);
             }
 
+            // イデオロギー
             foreach (string ideologyText in Minister.IdeologyTextTable)
             {
                 if (string.IsNullOrEmpty(ideologyText))
@@ -68,6 +78,7 @@ namespace HoI2Editor.Forms
                 ideologyComboBox.Items.Add(Config.Text[ideologyText]);
             }
 
+            // 忠誠度
             foreach (string loyaltyText in Minister.LoyaltyTextTable)
             {
                 if (string.IsNullOrEmpty(loyaltyText))
@@ -77,6 +88,22 @@ namespace HoI2Editor.Forms
                 loyaltyComboBox.Items.Add(loyaltyText);
             }
 
+            // 国タグ
+            foreach (string countryText in Country.CountryTextTable)
+            {
+                if (string.IsNullOrEmpty(countryText))
+                {
+                    continue;
+                }
+                countryComboBox.Items.Add(countryText);
+            }
+        }
+
+        /// <summary>
+        /// 国家リストボックスを初期化する
+        /// </summary>
+        void InitCountryList()
+        {
             foreach (string countryText in Country.CountryTextTable)
             {
                 if (string.IsNullOrEmpty(countryText))
@@ -84,9 +111,20 @@ namespace HoI2Editor.Forms
                     continue;
                 }
                 countryListBox.Items.Add(countryText);
-                countryComboBox.Items.Add(countryText);
             }
             countryListBox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterEditorFormLoad(object sender, EventArgs e)
+        {
+            InitEditableItems();
+            InitCountryList();
+            LoadMinisterFiles();
         }
 
         /// <summary>
@@ -138,30 +176,65 @@ namespace HoI2Editor.Forms
             {
                 ministerListView.Items[0].Focused = true;
                 ministerListView.Items[0].Selected = true;
+                EnableEditableItems();
+            }
+            else
+            {
+                DisableEditableItems();
             }
 
             ministerListView.EndUpdate();
         }
 
         /// <summary>
-        /// 開くボタン押下時の処理
+        /// 編集可能な項目を有効化する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnOpenButtonClick(object sender, EventArgs e)
+        void EnableEditableItems()
         {
-            _masterMinisterList = Minister.LoadMinisterFiles("D:\\Games\\CYBERFRONT\\AoD_Original_107\\db\\ministers");
-
-            NarrowMinisterList();
-            UpdateMinisterList();
+            countryComboBox.Enabled = true;
+            idNumericUpDown.Enabled = true;
+            nameTextBox.Enabled = true;
+            startYearNumericUpDown.Enabled = true;
+            endYearNumericUpDown.Enabled = true;
+            positionComboBox.Enabled = true;
+            personalityComboBox.Enabled = true;
+            ideologyComboBox.Enabled = true;
+            loyaltyComboBox.Enabled = true;
+            pictureNameTextBox.Enabled = true;
+            pictureNameReferButton.Enabled = true;
         }
 
         /// <summary>
-        /// 終了ボタン押下時の処理
+        /// 編集可能な項目を無効化する
+        /// </summary>
+        void DisableEditableItems()
+        {
+            idNumericUpDown.Value = 1;
+            nameTextBox.Text = "";
+            startYearNumericUpDown.Value = 1930;
+            endYearNumericUpDown.Value = 1970;
+            pictureNameTextBox.Text = "";
+            ministerPictureBox.ImageLocation = "";
+
+            countryComboBox.Enabled = false;
+            idNumericUpDown.Enabled = false;
+            nameTextBox.Enabled = false;
+            startYearNumericUpDown.Enabled = false;
+            endYearNumericUpDown.Enabled = false;
+            positionComboBox.Enabled = false;
+            personalityComboBox.Enabled = false;
+            ideologyComboBox.Enabled = false;
+            loyaltyComboBox.Enabled = false;
+            pictureNameTextBox.Enabled = false;
+            pictureNameReferButton.Enabled = false;
+        }
+
+        /// <summary>
+        /// 閉じるボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnExitButtonClick(object sender, EventArgs e)
+        private void OnCloseButtonClick(object sender, EventArgs e)
         {
             Close();
         }
@@ -210,6 +283,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -226,6 +303,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnNameTextBoxTextChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -242,6 +323,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -259,6 +344,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnPositionComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -275,6 +364,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnPersonalityComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -291,6 +384,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void IdeologyComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -307,6 +404,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLoyaltyComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -322,6 +423,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnPictureNameTextBoxTextChanged(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -340,6 +445,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnPictureNameReferButtonClick(object sender, EventArgs e)
         {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {

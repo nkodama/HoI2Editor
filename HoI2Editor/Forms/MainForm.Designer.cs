@@ -29,11 +29,25 @@
         private void InitializeComponent()
         {
             this.ministerButton = new System.Windows.Forms.Button();
+            this.gameFolderLabel = new System.Windows.Forms.Label();
+            this.gameFolderTextBox = new System.Windows.Forms.TextBox();
+            this.modLabel = new System.Windows.Forms.Label();
+            this.modTextBox = new System.Windows.Forms.TextBox();
+            this.gameTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.hoi2RadioButton = new System.Windows.Forms.RadioButton();
+            this.aodRadioButton = new System.Windows.Forms.RadioButton();
+            this.dhRadioButton = new System.Windows.Forms.RadioButton();
+            this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.loadButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.gameTypeGroupBox.SuspendLayout();
+            this.editGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // ministerButton
             // 
-            this.ministerButton.Location = new System.Drawing.Point(49, 56);
+            this.ministerButton.Enabled = false;
+            this.ministerButton.Location = new System.Drawing.Point(7, 18);
             this.ministerButton.Name = "ministerButton";
             this.ministerButton.Size = new System.Drawing.Size(75, 23);
             this.ministerButton.TabIndex = 0;
@@ -41,20 +55,150 @@
             this.ministerButton.UseVisualStyleBackColor = true;
             this.ministerButton.Click += new System.EventHandler(this.OnMinisterButtonClick);
             // 
+            // gameFolderLabel
+            // 
+            this.gameFolderLabel.AutoSize = true;
+            this.gameFolderLabel.Location = new System.Drawing.Point(12, 69);
+            this.gameFolderLabel.Name = "gameFolderLabel";
+            this.gameFolderLabel.Size = new System.Drawing.Size(82, 12);
+            this.gameFolderLabel.TabIndex = 1;
+            this.gameFolderLabel.Text = "ゲームフォルダ名";
+            // 
+            // gameFolderTextBox
+            // 
+            this.gameFolderTextBox.Location = new System.Drawing.Point(32, 84);
+            this.gameFolderTextBox.Name = "gameFolderTextBox";
+            this.gameFolderTextBox.Size = new System.Drawing.Size(420, 19);
+            this.gameFolderTextBox.TabIndex = 2;
+            // 
+            // modLabel
+            // 
+            this.modLabel.AutoSize = true;
+            this.modLabel.Location = new System.Drawing.Point(12, 116);
+            this.modLabel.Name = "modLabel";
+            this.modLabel.Size = new System.Drawing.Size(42, 12);
+            this.modLabel.TabIndex = 4;
+            this.modLabel.Text = "MOD名";
+            // 
+            // modTextBox
+            // 
+            this.modTextBox.Location = new System.Drawing.Point(32, 131);
+            this.modTextBox.Name = "modTextBox";
+            this.modTextBox.Size = new System.Drawing.Size(420, 19);
+            this.modTextBox.TabIndex = 5;
+            // 
+            // gameTypeGroupBox
+            // 
+            this.gameTypeGroupBox.Controls.Add(this.dhRadioButton);
+            this.gameTypeGroupBox.Controls.Add(this.aodRadioButton);
+            this.gameTypeGroupBox.Controls.Add(this.hoi2RadioButton);
+            this.gameTypeGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.gameTypeGroupBox.Name = "gameTypeGroupBox";
+            this.gameTypeGroupBox.Size = new System.Drawing.Size(204, 44);
+            this.gameTypeGroupBox.TabIndex = 6;
+            this.gameTypeGroupBox.TabStop = false;
+            this.gameTypeGroupBox.Text = "ゲームの種類";
+            // 
+            // hoi2RadioButton
+            // 
+            this.hoi2RadioButton.AutoSize = true;
+            this.hoi2RadioButton.Checked = true;
+            this.hoi2RadioButton.Location = new System.Drawing.Point(18, 18);
+            this.hoi2RadioButton.Name = "hoi2RadioButton";
+            this.hoi2RadioButton.Size = new System.Drawing.Size(74, 16);
+            this.hoi2RadioButton.TabIndex = 0;
+            this.hoi2RadioButton.TabStop = true;
+            this.hoi2RadioButton.Text = "HoI2 DDA";
+            this.hoi2RadioButton.UseVisualStyleBackColor = true;
+            // 
+            // aodRadioButton
+            // 
+            this.aodRadioButton.AutoSize = true;
+            this.aodRadioButton.Location = new System.Drawing.Point(98, 18);
+            this.aodRadioButton.Name = "aodRadioButton";
+            this.aodRadioButton.Size = new System.Drawing.Size(45, 16);
+            this.aodRadioButton.TabIndex = 1;
+            this.aodRadioButton.TabStop = true;
+            this.aodRadioButton.Text = "AoD";
+            this.aodRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // dhRadioButton
+            // 
+            this.dhRadioButton.AutoSize = true;
+            this.dhRadioButton.Location = new System.Drawing.Point(149, 18);
+            this.dhRadioButton.Name = "dhRadioButton";
+            this.dhRadioButton.Size = new System.Drawing.Size(39, 16);
+            this.dhRadioButton.TabIndex = 2;
+            this.dhRadioButton.TabStop = true;
+            this.dhRadioButton.Text = "DH";
+            this.dhRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // editGroupBox
+            // 
+            this.editGroupBox.Controls.Add(this.ministerButton);
+            this.editGroupBox.Location = new System.Drawing.Point(12, 160);
+            this.editGroupBox.Name = "editGroupBox";
+            this.editGroupBox.Size = new System.Drawing.Size(440, 109);
+            this.editGroupBox.TabIndex = 7;
+            this.editGroupBox.TabStop = false;
+            // 
+            // loadButton
+            // 
+            this.loadButton.Location = new System.Drawing.Point(296, 27);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(75, 23);
+            this.loadButton.TabIndex = 8;
+            this.loadButton.Text = "読み込み";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.OnLoadButtonClick);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(377, 27);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 9;
+            this.exitButton.Text = "終了";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.OnExitButtonClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 281);
-            this.Controls.Add(this.ministerButton);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.loadButton);
+            this.Controls.Add(this.editGroupBox);
+            this.Controls.Add(this.gameTypeGroupBox);
+            this.Controls.Add(this.modTextBox);
+            this.Controls.Add(this.modLabel);
+            this.Controls.Add(this.gameFolderTextBox);
+            this.Controls.Add(this.gameFolderLabel);
             this.Name = "MainForm";
             this.Text = "Aliternative HoI2 Editor";
+            this.Load += new System.EventHandler(this.OnMainFormLoad);
+            this.gameTypeGroupBox.ResumeLayout(false);
+            this.gameTypeGroupBox.PerformLayout();
+            this.editGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button ministerButton;
+        private System.Windows.Forms.Label gameFolderLabel;
+        private System.Windows.Forms.TextBox gameFolderTextBox;
+        private System.Windows.Forms.Label modLabel;
+        private System.Windows.Forms.TextBox modTextBox;
+        private System.Windows.Forms.GroupBox gameTypeGroupBox;
+        private System.Windows.Forms.RadioButton dhRadioButton;
+        private System.Windows.Forms.RadioButton aodRadioButton;
+        private System.Windows.Forms.RadioButton hoi2RadioButton;
+        private System.Windows.Forms.GroupBox editGroupBox;
+        private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button exitButton;
     }
 }

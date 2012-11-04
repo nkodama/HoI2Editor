@@ -68,10 +68,9 @@
             this.pictureNameTextBox = new System.Windows.Forms.TextBox();
             this.pictureNameReferButton = new System.Windows.Forms.Button();
             this.ministerPictureBox = new System.Windows.Forms.PictureBox();
-            this.openButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.exitButton = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
@@ -508,17 +507,6 @@
             this.ministerPictureBox.TabIndex = 35;
             this.ministerPictureBox.TabStop = false;
             // 
-            // openButton
-            // 
-            this.openButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.openButton.Location = new System.Drawing.Point(454, 526);
-            this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(75, 23);
-            this.openButton.TabIndex = 36;
-            this.openButton.Text = "開く";
-            this.openButton.UseVisualStyleBackColor = true;
-            this.openButton.Click += new System.EventHandler(this.OnOpenButtonClick);
-            // 
             // reloadButton
             // 
             this.reloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -539,26 +527,25 @@
             this.saveButton.Text = "保存";
             this.saveButton.UseVisualStyleBackColor = true;
             // 
-            // exitButton
+            // closeButton
             // 
-            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.exitButton.Location = new System.Drawing.Point(697, 526);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(75, 23);
-            this.exitButton.TabIndex = 39;
-            this.exitButton.Text = "終了";
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.OnExitButtonClick);
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.Location = new System.Drawing.Point(697, 526);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 39;
+            this.closeButton.Text = "閉じる";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.OnCloseButtonClick);
             // 
             // MinisterEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
-            this.Controls.Add(this.openButton);
             this.Controls.Add(this.ministerPictureBox);
             this.Controls.Add(this.pictureNameReferButton);
             this.Controls.Add(this.pictureNameTextBox);
@@ -592,7 +579,7 @@
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.ministerListView);
             this.Name = "MinisterEditorForm";
-            this.Text = "閣僚ビューア";
+            this.Text = "閣僚エディタ";
             this.Load += new System.EventHandler(this.OnMinisterEditorFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();
@@ -644,10 +631,9 @@
         private System.Windows.Forms.TextBox pictureNameTextBox;
         private System.Windows.Forms.Button pictureNameReferButton;
         private System.Windows.Forms.PictureBox ministerPictureBox;
-        private System.Windows.Forms.Button openButton;
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.ColumnHeader ideologyColumnHeader;
     }
 }
