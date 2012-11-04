@@ -436,9 +436,8 @@ namespace HoI2Editor.Forms
                 return;
             }
             minister.PictureName = pictureNameTextBox.Text;
-            ministerPictureBox.ImageLocation =
-                Path.Combine("D:\\Games\\CYBERFRONT\\AoD_Original_107\\gfx\\interface\\pics",
-                             Path.ChangeExtension(minister.PictureName, ".bmp"));
+            ministerPictureBox.ImageLocation = Path.Combine(Game.PictureFolderName,
+                                                            Path.ChangeExtension(minister.PictureName, ".bmp"));
         }
 
         /// <summary>
@@ -459,7 +458,7 @@ namespace HoI2Editor.Forms
             }
             var dialog = new OpenFileDialog
                              {
-                                 InitialDirectory = "D:\\Games\\CYBERFRONT\\AoD_Original_107\\gfx\\interface\\pics",
+                                 InitialDirectory = Game.PictureFolderName,
                                  FileName = minister.PictureName,
                                  Filter = Resources.OpenBitmapFileDialogFilter
                              };

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace HoI2Editor
+namespace HoI2Editor.Models
 {
     /// <summary>
     /// ゲーム関連データ
