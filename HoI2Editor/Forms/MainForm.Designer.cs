@@ -38,7 +38,7 @@
             this.aodRadioButton = new System.Windows.Forms.RadioButton();
             this.hoi2RadioButton = new System.Windows.Forms.RadioButton();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
-            this.loadButton = new System.Windows.Forms.Button();
+            this.gameFolderReferButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.gameTypeGroupBox.SuspendLayout();
             this.editGroupBox.SuspendLayout();
@@ -68,7 +68,7 @@
             // 
             this.gameFolderTextBox.Location = new System.Drawing.Point(32, 84);
             this.gameFolderTextBox.Name = "gameFolderTextBox";
-            this.gameFolderTextBox.Size = new System.Drawing.Size(420, 19);
+            this.gameFolderTextBox.Size = new System.Drawing.Size(339, 19);
             this.gameFolderTextBox.TabIndex = 2;
             this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
             // 
@@ -85,7 +85,7 @@
             // 
             this.modTextBox.Location = new System.Drawing.Point(32, 131);
             this.modTextBox.Name = "modTextBox";
-            this.modTextBox.Size = new System.Drawing.Size(420, 19);
+            this.modTextBox.Size = new System.Drawing.Size(339, 19);
             this.modTextBox.TabIndex = 5;
             // 
             // gameTypeGroupBox
@@ -143,15 +143,15 @@
             this.editGroupBox.TabIndex = 7;
             this.editGroupBox.TabStop = false;
             // 
-            // loadButton
+            // gameFolderReferButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(296, 27);
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(75, 23);
-            this.loadButton.TabIndex = 8;
-            this.loadButton.Text = "読み込み";
-            this.loadButton.UseVisualStyleBackColor = true;
-            this.loadButton.Click += new System.EventHandler(this.OnLoadButtonClick);
+            this.gameFolderReferButton.Location = new System.Drawing.Point(377, 82);
+            this.gameFolderReferButton.Name = "gameFolderReferButton";
+            this.gameFolderReferButton.Size = new System.Drawing.Size(75, 23);
+            this.gameFolderReferButton.TabIndex = 8;
+            this.gameFolderReferButton.Text = "参照";
+            this.gameFolderReferButton.UseVisualStyleBackColor = true;
+            this.gameFolderReferButton.Click += new System.EventHandler(this.OnLoadButtonClick);
             // 
             // exitButton
             // 
@@ -169,7 +169,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 281);
             this.Controls.Add(this.exitButton);
-            this.Controls.Add(this.loadButton);
+            this.Controls.Add(this.gameFolderReferButton);
             this.Controls.Add(this.editGroupBox);
             this.Controls.Add(this.gameTypeGroupBox);
             this.Controls.Add(this.modTextBox);
@@ -199,7 +199,7 @@
         private System.Windows.Forms.RadioButton aodRadioButton;
         private System.Windows.Forms.RadioButton hoi2RadioButton;
         private System.Windows.Forms.GroupBox editGroupBox;
-        private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button gameFolderReferButton;
         private System.Windows.Forms.Button exitButton;
     }
 }

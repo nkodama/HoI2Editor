@@ -117,4 +117,7 @@
   <data name="OpenBitmapFileDialogFilter">
     <value xml:space="preserve">ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.*</value>
   </data>
+  <data name="OpenGameFolderDialogDescription">
+    <value xml:space="preserve">ゲームフォルダを選択して下さい。</value>
+  </data>
 </root>

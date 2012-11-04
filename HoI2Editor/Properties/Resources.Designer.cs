@@ -68,5 +68,14 @@ namespace HoI2Editor.Properties {
                 return ResourceManager.GetString("OpenBitmapFileDialogFilter", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   ゲームフォルダを選択して下さい。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string OpenGameFolderDialogDescription {
+            get {
+                return ResourceManager.GetString("OpenGameFolderDialogDescription", resourceCulture);
+            }
+        }
     }
 }

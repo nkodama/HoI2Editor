@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using HoI2Editor.Models;
+using HoI2Editor.Properties;
 
 namespace HoI2Editor.Forms
 {
@@ -33,23 +34,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 読み込みボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnLoadButtonClick(object sender, EventArgs e)
-        {
-            var dialog = new FolderBrowserDialog {SelectedPath = gameFolderTextBox.Text, ShowNewFolderButton = false};
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                Game.FolderName = dialog.SelectedPath;
-                gameFolderTextBox.Text = Game.FolderName;
-
-                ministerButton.Enabled = Game.IsValidFolderName();
-            }
-        }
-
-        /// <summary>
         /// 終了ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -57,6 +41,28 @@ namespace HoI2Editor.Forms
         private void OnExitButtonClick(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        /// <summary>
+        /// ゲームフォルダ参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLoadButtonClick(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog
+                             {
+                                 SelectedPath = gameFolderTextBox.Text,
+                                 ShowNewFolderButton = false,
+                                 Description = Resources.OpenGameFolderDialogDescription
+                             };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Game.FolderName = dialog.SelectedPath;
+                gameFolderTextBox.Text = Game.FolderName;
+
+                ministerButton.Enabled = Game.IsValidFolderName();
+            }
         }
 
         /// <summary>
