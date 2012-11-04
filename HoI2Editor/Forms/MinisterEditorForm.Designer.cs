@@ -154,6 +154,7 @@
             this.newButton.TabIndex = 1;
             this.newButton.Text = "新規";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.OnNewButtonClick);
             // 
             // cloneButton
             // 
@@ -280,20 +281,10 @@
             0,
             0,
             0});
-            this.idNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.idNumericUpDown.Name = "idNumericUpDown";
             this.idNumericUpDown.Size = new System.Drawing.Size(159, 19);
             this.idNumericUpDown.TabIndex = 13;
             this.idNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.idNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.idNumericUpDown.ValueChanged += new System.EventHandler(this.OnIdNumericUpDownValueChanged);
             // 
             // nameLabel

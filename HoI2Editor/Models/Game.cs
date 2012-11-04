@@ -56,6 +56,18 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        /// 画像ファイル名を取得する
+        /// </summary>
+        /// <param name="pictureName">画像名</param>
+        /// <returns>画像ファイル名</returns>
+        public static string GetPictureFileName(string pictureName)
+        {
+            return !string.IsNullOrEmpty(pictureName)
+                       ? Path.Combine(PictureFolderName, Path.ChangeExtension(pictureName, ".bmp"))
+                       : "";
+        }
+
+        /// <summary>
         /// ゲームフォルダ名が有効かどうかを判定する
         /// </summary>
         /// <returns>ゲームフォルダ名が有効ならtrueを返す</returns>

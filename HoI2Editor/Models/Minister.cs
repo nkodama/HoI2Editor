@@ -56,6 +56,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] PersonalityNameTable =
             {
+                "",
                 "Undistinguished Suit",
                 "Autocratic Charmer",
                 "Barking Buffoon",
@@ -143,6 +144,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] PersonalityTextTable =
             {
+                "",
                 "NPERSONALITY_UNDISTINGUISHED_SUIT",
                 "NPERSONALITY_AUTOCRATIC_CHARMER",
                 "NPERSONALITY_BARKING_BUFFOON",
@@ -320,6 +322,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] HeadOfStatePersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.AutocraticCharmer,
                 MinisterPersonality.BarkingBuffoon,
                 MinisterPersonality.BenevolentGentleman,
@@ -340,6 +343,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] HeadOfGovernmentPersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.AmbitiousUnionBoss,
                 MinisterPersonality.BackroomBackstabber,
                 MinisterPersonality.CorporateSuit,
@@ -360,6 +364,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ForeignMinisterPersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.ApologeticClerk,
                 MinisterPersonality.BiasedIntellectual,
                 MinisterPersonality.IdeologyCrusader,
@@ -375,6 +380,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] MinisterOfArmamentPersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.AdministrativeGenius,
                 MinisterPersonality.AirSuperiorityProponent,
                 MinisterPersonality.BattleFleetProponent,
@@ -397,6 +403,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] MinisterOfSecurityPersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.BackStabber,
                 MinisterPersonality.CompassionateGentleman,
                 MinisterPersonality.CrimeFighter,
@@ -413,6 +420,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] HeadOfMilitaryIntelligencePersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.DismalEnigma,
                 MinisterPersonality.IndustrialSpecialist,
                 MinisterPersonality.LogisticsSpecialist,
@@ -427,6 +435,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfStaffPersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.SchoolOfDefence,
                 MinisterPersonality.SchoolOfFireSupport,
                 MinisterPersonality.SchoolOfMassCombat,
@@ -440,6 +449,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfArmyPersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.ArmouredSpearheadDoctrine,
                 MinisterPersonality.DecisiveBattleDoctrine,
                 MinisterPersonality.ElasticDefenceDoctrine,
@@ -453,6 +463,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfNavyPersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.BaseControlDoctrine,
                 MinisterPersonality.DecisiveNavalBattleDoctrine,
                 MinisterPersonality.IndirectApproachDoctrine,
@@ -466,6 +477,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfAirForcePersonalities =
             {
+                MinisterPersonality.None,
                 MinisterPersonality.AirSuperiorityDoctrine,
                 MinisterPersonality.ArmyAviationDoctrine,
                 MinisterPersonality.CarpetBombingDoctrine,
@@ -755,6 +767,8 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum MinisterPersonality
     {
+        None,
+
         // 汎用
         UndistinguishedSuit, // 平凡な政治家
 
