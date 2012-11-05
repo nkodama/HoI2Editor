@@ -187,6 +187,7 @@
             this.topButton.TabIndex = 4;
             this.topButton.Text = "先頭へ";
             this.topButton.UseVisualStyleBackColor = true;
+            this.topButton.Click += new System.EventHandler(this.OnTopButtonClick);
             // 
             // upButton
             // 
@@ -197,6 +198,7 @@
             this.upButton.TabIndex = 5;
             this.upButton.Text = "上へ";
             this.upButton.UseVisualStyleBackColor = true;
+            this.upButton.Click += new System.EventHandler(this.OnUpButtonClick);
             // 
             // downButton
             // 
@@ -207,6 +209,7 @@
             this.downButton.TabIndex = 6;
             this.downButton.Text = "下へ";
             this.downButton.UseVisualStyleBackColor = true;
+            this.downButton.Click += new System.EventHandler(this.OnDownButtonClick);
             // 
             // bottomButton
             // 
@@ -217,6 +220,7 @@
             this.bottomButton.TabIndex = 7;
             this.bottomButton.Text = "末尾へ";
             this.bottomButton.UseVisualStyleBackColor = true;
+            this.bottomButton.Click += new System.EventHandler(this.OnBottomButtonClick);
             // 
             // countryListBox
             // 

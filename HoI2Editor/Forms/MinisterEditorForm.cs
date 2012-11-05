@@ -434,6 +434,167 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// 先頭へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTopButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            int selectedIndex = ministerListView.SelectedIndices[0];
+            // 選択項目がリストの先頭ならば何もしない
+            if (ministerListView.SelectedIndices[0] == 0)
+            {
+                return;
+            }
+            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selectedMinister == null)
+            {
+                return;
+            }
+            var topMinister = ministerListView.Items[0].Tag as Minister;
+            if (topMinister == null)
+            {
+                return;
+            }
+            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
+            int masterTopIndex = _masterMinisterList.IndexOf(topMinister);
+            _masterMinisterList.Insert(masterTopIndex, selectedMinister);
+            _masterMinisterList.RemoveAt(masterSelectedIndex + 1);
+            _narrowedMinisterList.Insert(0, selectedMinister);
+            _narrowedMinisterList.RemoveAt(selectedIndex + 1);
+            InsertMinisterListViewItem(0, selectedMinister);
+            RemoveMinisterListViewItem(selectedIndex + 1);
+            ministerListView.Items[0].Focused = true;
+            ministerListView.Items[0].Selected = true;
+        }
+
+        /// <summary>
+        /// 上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            // 選択項目がリストの先頭ならば何もしない
+            if (ministerListView.SelectedIndices[0] == 0)
+            {
+                return;
+            }
+            int selectedIndex = ministerListView.SelectedIndices[0];
+            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selectedMinister == null)
+            {
+                return;
+            }
+            var upperMinister = ministerListView.Items[selectedIndex - 1].Tag as Minister;
+            if (upperMinister == null)
+            {
+                return;
+            }
+            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
+            int masterUpperIndex = _masterMinisterList.IndexOf(upperMinister);
+            _masterMinisterList.Insert(masterUpperIndex, selectedMinister);
+            _masterMinisterList.RemoveAt(masterSelectedIndex + 1);
+            _narrowedMinisterList.Insert(selectedIndex - 1, selectedMinister);
+            _narrowedMinisterList.RemoveAt(selectedIndex + 1);
+            InsertMinisterListViewItem(selectedIndex - 1, selectedMinister);
+            RemoveMinisterListViewItem(selectedIndex + 1);
+            ministerListView.Items[selectedIndex - 1].Focused = true;
+            ministerListView.Items[selectedIndex - 1].Selected = true;
+        }
+
+        /// <summary>
+        /// 下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDownButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            // 選択項目がリストの末尾ならば何もしない
+            if (ministerListView.SelectedIndices[0] == ministerListView.Items.Count - 1)
+            {
+                return;
+            }
+            int selectedIndex = ministerListView.SelectedIndices[0];
+            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selectedMinister == null)
+            {
+                return;
+            }
+            var lowerMinister = ministerListView.Items[selectedIndex + 1].Tag as Minister;
+            if (lowerMinister == null)
+            {
+                return;
+            }
+            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
+            int masterLowerIndex = _masterMinisterList.IndexOf(lowerMinister);
+            _masterMinisterList.Insert(masterSelectedIndex, lowerMinister);
+            _masterMinisterList.RemoveAt(masterLowerIndex + 1);
+            _narrowedMinisterList.Insert(selectedIndex, lowerMinister);
+            _narrowedMinisterList.RemoveAt(selectedIndex + 2);
+            InsertMinisterListViewItem(selectedIndex, lowerMinister);
+            RemoveMinisterListViewItem(selectedIndex + 2);
+            ministerListView.Items[selectedIndex + 1].Focused = true;
+            ministerListView.Items[selectedIndex + 1].Selected = true;
+        }
+
+        /// <summary>
+        /// 末尾へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBottomButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            int selectedIndex = ministerListView.SelectedIndices[0];
+            int bottomIndex = ministerListView.Items.Count - 1;
+            // 選択項目がリストの末尾ならば何もしない
+            if (ministerListView.SelectedIndices[0] == bottomIndex)
+            {
+                return;
+            }
+            var selectedMinister = ministerListView.Items[selectedIndex].Tag as Minister;
+            if (selectedMinister == null)
+            {
+                return;
+            }
+            var bottomMinister = ministerListView.Items[bottomIndex].Tag as Minister;
+            if (bottomMinister == null)
+            {
+                return;
+            }
+            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
+            int masterBottomIndex = _masterMinisterList.IndexOf(bottomMinister);
+            _masterMinisterList.Insert(masterBottomIndex + 1, selectedMinister);
+            _masterMinisterList.RemoveAt(masterSelectedIndex);
+            _narrowedMinisterList.Insert(bottomIndex + 1, selectedMinister);
+            _narrowedMinisterList.RemoveAt(selectedIndex);
+            InsertMinisterListViewItem(bottomIndex + 1, selectedMinister);
+            RemoveMinisterListViewItem(selectedIndex);
+            ministerListView.Items[bottomIndex].Focused = true;
+            ministerListView.Items[bottomIndex].Selected = true;
+        }
+
+        /// <summary>
         /// 国家リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
