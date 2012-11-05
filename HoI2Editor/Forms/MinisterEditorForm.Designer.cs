@@ -515,6 +515,7 @@
             this.reloadButton.TabIndex = 37;
             this.reloadButton.Text = "再読み込み";
             this.reloadButton.UseVisualStyleBackColor = true;
+            this.reloadButton.Click += new System.EventHandler(this.OnReloadButtonClick);
             // 
             // saveButton
             // 

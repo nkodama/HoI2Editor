@@ -684,7 +684,11 @@ namespace HoI2Editor.Models
             {
                 Log.Write(string.Format("項目数の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
                 Log.Write(string.Format("  {0}\n\n", line));
-                return;
+                // 末尾のxがない/余分な項目がある場合は解析を続ける
+                if (token.Length < 8)
+                {
+                    return;
+                }
             }
 
             var minister = new Minister();
@@ -707,37 +711,49 @@ namespace HoI2Editor.Models
             minister.StartYear = startYear + 1900;
             minister.EndYear = 1970;
             string positionName = token[1].ToLower();
-            if (!PositionNameMap.ContainsKey(positionName))
+            if (PositionNameMap.ContainsKey(positionName))
+            {
+                minister.Position = PositionNameMap[positionName];
+            }
+            else
             {
                 Log.Write(string.Format("閣僚地位の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[1]));
-                return;
+                minister.Position = MinisterPosition.None;
             }
-            minister.Position = PositionNameMap[positionName];
             string ideologyName = token[4].ToLower();
-            if (!IdeologyNameMap.ContainsKey(ideologyName))
+            if (IdeologyNameMap.ContainsKey(ideologyName))
+            {
+                minister.Ideology = IdeologyNameMap[ideologyName];
+            }
+            else
             {
                 Log.Write(string.Format("イデオロギーの異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[4]));
-                return;
+                minister.Ideology = MinisterIdeology.None;
             }
-            minister.Ideology = IdeologyNameMap[ideologyName];
             string personalityName = token[5].ToLower();
-            if (!PersonalityNameMap.ContainsKey(personalityName))
+            if (PersonalityNameMap.ContainsKey(personalityName))
+            {
+                minister.Personality = PersonalityNameMap[personalityName];
+            }
+            else
             {
                 Log.Write(string.Format("閣僚特性の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[5]));
-                return;
+                minister.Personality = MinisterPersonality.None;
             }
-            minister.Personality = PersonalityNameMap[personalityName];
             string loyaltyName = token[6].ToLower();
-            if (!LoyaltyNameMap.ContainsKey(loyaltyName))
+            if (LoyaltyNameMap.ContainsKey(loyaltyName))
+            {
+                minister.Loyalty = LoyaltyNameMap[loyaltyName];
+            }
+            else
             {
                 Log.Write(string.Format("忠誠度の異常: {0} L{1} \n", Path.GetFileName(_currentFileName), _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[6]));
-                return;
+                minister.Loyalty = MinisterLoyalty.None;
             }
-            minister.Loyalty = LoyaltyNameMap[loyaltyName];
             minister.PictureName = token[7];
             minister.CountryTag = countryTag;
             ministers.Add(minister);

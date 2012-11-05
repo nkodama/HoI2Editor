@@ -291,16 +291,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        /// <summary>
         /// 新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -900,6 +890,26 @@ namespace HoI2Editor.Forms
             // 閣僚リスト絞り込みのため、ダミーでイベント発行する
             OnCountryListBoxSelectedIndexChanged(sender, e);
             countryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        /// 再読み込みボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnReloadButtonClick(object sender, EventArgs e)
+        {
+            LoadMinisterFiles();
+        }
+
+        /// <summary>
+        /// 閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
