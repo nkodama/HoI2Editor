@@ -319,6 +319,29 @@ namespace HoI2Editor.Models
             new Dictionary<string, MinisterLoyalty>();
 
         /// <summary>
+        /// 閣僚特性のよくある綴り間違いと特性値の関連付け
+        /// </summary>
+        public static readonly Dictionary<string, MinisterPersonality> PersonalityTypoMap
+            = new Dictionary<string, MinisterPersonality>
+                  {
+                      { "barking buffon", MinisterPersonality.BarkingBuffoon },
+                      { "iron-fisted brute", MinisterPersonality.IronFistedBrute },
+                      { "the cloak-n-dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer },
+                      { "cloak-n-dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer },
+                      { "cloak n dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer },
+                      { "laissez-faires capitalist", MinisterPersonality.LaissezFairesCapitalist },
+                      { "laissez faire capitalist", MinisterPersonality.LaissezFairesCapitalist },
+                      { "laissez-faire capitalist", MinisterPersonality.LaissezFairesCapitalist },
+                      { "military entrepeneur", MinisterPersonality.MilitaryEnterpreneur },
+                      { "crooked plutocrat", MinisterPersonality.CrookedKleptocrat },
+                      { "school of defense", MinisterPersonality.SchoolOfDefence },
+                      { "school of maneouvre", MinisterPersonality.SchoolOfManeuvre },
+                      { "elastic defense doctrine", MinisterPersonality.ElasticDefenceDoctrine },
+                      { "static defense doctrine", MinisterPersonality.StaticDefenceDoctrine },
+                      { "vertical envelopement doctrine", MinisterPersonality.VerticalEnvelopmentDoctrine },
+                  };
+
+        /// <summary>
         /// 国家元首の特性
         /// </summary>
         private static readonly MinisterPersonality[] HeadOfStatePersonalities =
@@ -718,9 +741,9 @@ namespace HoI2Editor.Models
             }
             else
             {
+                minister.Position = MinisterPosition.None;
                 Log.Write(string.Format("閣僚地位の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[1]));
-                minister.Position = MinisterPosition.None;
             }
             string ideologyName = token[4].ToLower();
             if (IdeologyNameMap.ContainsKey(ideologyName))
@@ -729,9 +752,9 @@ namespace HoI2Editor.Models
             }
             else
             {
+                minister.Ideology = MinisterIdeology.None;
                 Log.Write(string.Format("イデオロギーの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[4]));
-                minister.Ideology = MinisterIdeology.None;
             }
             string personalityName = token[5].ToLower();
             if (PersonalityNameMap.ContainsKey(personalityName))
@@ -740,9 +763,18 @@ namespace HoI2Editor.Models
             }
             else
             {
-                Log.Write(string.Format("閣僚特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[5]));
-                minister.Personality = MinisterPersonality.None;
+                if (PersonalityTypoMap.ContainsKey(personalityName))
+                {
+                    minister.Personality = PersonalityTypoMap[personalityName];
+                    Log.Write(string.Format("閣僚特性の修正: {0} L{1} \n", _currentFileName, _currentLineNo));
+                    Log.Write(string.Format("  {0}: {1} => {2} -> {3}\n\n", minister.Id, minister.Name, token[5], PersonalityNameTable[(int) minister.Personality]));
+                }
+                else
+                {
+                    minister.Personality = MinisterPersonality.None;
+                    Log.Write(string.Format("閣僚特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
+                    Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[5]));
+                }
             }
             string loyaltyName = token[6].ToLower();
             if (LoyaltyNameMap.ContainsKey(loyaltyName))
@@ -751,9 +783,9 @@ namespace HoI2Editor.Models
             }
             else
             {
+                minister.Loyalty = MinisterLoyalty.None;
                 Log.Write(string.Format("忠誠度の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[6]));
-                minister.Loyalty = MinisterLoyalty.None;
             }
             minister.PictureName = token[7];
             minister.CountryTag = countryTag;
