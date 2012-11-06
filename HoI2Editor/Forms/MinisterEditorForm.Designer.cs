@@ -526,6 +526,7 @@
             this.saveButton.TabIndex = 38;
             this.saveButton.Text = "保存";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.OnSaveButtonClick);
             // 
             // closeButton
             // 

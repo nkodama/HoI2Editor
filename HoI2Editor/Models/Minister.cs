@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace HoI2Editor.Models
@@ -757,6 +758,47 @@ namespace HoI2Editor.Models
             minister.PictureName = token[7];
             minister.CountryTag = countryTag;
             ministers.Add(minister);
+        }
+
+        /// <summary>
+        /// 閣僚ファイル群を保存する
+        /// </summary>
+        /// <param name="ministers">閣僚リスト</param>
+        public static void SaveMinisterFiles(List<Minister> ministers)
+        {
+            foreach (CountryTag countryTag in Enum.GetValues(typeof (CountryTag)))
+            {
+                SaveMinisterFile(ministers, countryTag);
+            }
+        }
+
+        /// <summary>
+        /// 閣僚ファイルを保存する
+        /// </summary>
+        /// <param name="ministers">閣僚リスト</param>
+        /// <param name="countryTag">国タグ</param>
+        private static void SaveMinisterFile(IEnumerable<Minister> ministers, CountryTag countryTag)
+        {
+            if (countryTag == CountryTag.None)
+            {
+                return;
+            }
+
+            var writer = new StreamWriter(Game.GetMinisterFileName(countryTag), false, Encoding.Default);
+            writer.WriteLine("{0};Ruling Cabinet - Start;Name;Pool;Ideology;Personality;Loyalty;Picturename;x",
+                             Country.CountryTextTable[(int) countryTag]);
+            writer.WriteLine(";Replacements;;;;;;;x");
+            foreach (
+                Minister minister in
+                    ministers.Where(minister => minister.CountryTag == countryTag).Where(minister => minister != null))
+            {
+                writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};x", minister.Id,
+                                 PositionNameTable[(int) minister.Position], minister.Name, minister.StartYear - 1900,
+                                 IdeologyNameTable[(int) minister.Ideology],
+                                 PersonalityNameTable[(int) minister.Personality],
+                                 LoyaltyNameTable[(int) minister.Loyalty], minister.PictureName);
+            }
+            writer.Close();
         }
     }
 

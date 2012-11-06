@@ -903,6 +903,16 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// 保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            Minister.SaveMinisterFiles(_masterMinisterList);
+        }
+
+        /// <summary>
         /// 閉じるボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>

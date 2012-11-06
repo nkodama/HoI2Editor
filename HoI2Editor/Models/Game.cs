@@ -56,6 +56,19 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        /// 閣僚ファイル名を取得する
+        /// </summary>
+        /// <param name="countryTag">国タグ</param>
+        /// <returns></returns>
+        public static string GetMinisterFileName(CountryTag countryTag)
+        {
+            return countryTag != CountryTag.None
+                       ? string.Format("{0}\\ministers_{1}.csv", MinisterFolderName,
+                                       Country.CountryTextTable[(int) countryTag].ToLower())
+                       : "";
+        }
+
+        /// <summary>
         /// 画像ファイル名を取得する
         /// </summary>
         /// <param name="pictureName">画像名</param>
