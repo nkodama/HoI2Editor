@@ -66,11 +66,14 @@
             // 
             // gameFolderTextBox
             // 
+            this.gameFolderTextBox.AllowDrop = true;
             this.gameFolderTextBox.Location = new System.Drawing.Point(32, 84);
             this.gameFolderTextBox.Name = "gameFolderTextBox";
             this.gameFolderTextBox.Size = new System.Drawing.Size(339, 19);
             this.gameFolderTextBox.TabIndex = 2;
             this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
+            this.gameFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnGameFolderTextBoxDragDrop);
+            this.gameFolderTextBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnGameFolderTextBoxDragEnter);
             // 
             // modLabel
             // 

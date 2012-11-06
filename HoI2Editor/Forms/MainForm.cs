@@ -78,6 +78,27 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// ゲームフォルダ名テキストボックスにドラッグした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGameFolderTextBoxDragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.Copy : DragDropEffects.None;
+        }
+
+        /// <summary>
+        /// ゲームフォルダ名テキストボックスにドロップした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGameFolderTextBoxDragDrop(object sender, DragEventArgs e)
+        {
+            var fileNames = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            gameFolderTextBox.Text = fileNames[0];
+        }
+
+        /// <summary>
         /// 閣僚ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
