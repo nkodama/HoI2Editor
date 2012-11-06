@@ -1028,6 +1028,7 @@ namespace HoI2Editor.Forms
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
             Minister.SaveMinisterFiles(_masterMinisterList, _dirtyFlags);
+            ClearDirtyFlags();
         }
 
         /// <summary>
