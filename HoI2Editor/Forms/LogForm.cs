@@ -31,6 +31,18 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// コピーボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCopyButtonClick(object sender, EventArgs e)
+        {
+            logRichTextBox.SelectAll();
+            logRichTextBox.Copy();
+            logRichTextBox.DeselectAll();
+        }
+
+        /// <summary>
         /// クリアボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>

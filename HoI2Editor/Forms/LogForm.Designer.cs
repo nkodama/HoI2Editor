@@ -30,7 +30,7 @@
         {
             this.logRichTextBox = new System.Windows.Forms.RichTextBox();
             this.clearButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.copyButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -58,15 +58,16 @@
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.OnClearButtonClick);
             // 
-            // saveButton
+            // copyButton
             // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(296, 246);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 2;
-            this.saveButton.Text = "保存";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.copyButton.Location = new System.Drawing.Point(296, 246);
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(75, 23);
+            this.copyButton.TabIndex = 2;
+            this.copyButton.Text = "コピー";
+            this.copyButton.UseVisualStyleBackColor = true;
+            this.copyButton.Click += new System.EventHandler(this.OnCopyButtonClick);
             // 
             // closeButton
             // 
@@ -85,7 +86,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 281);
             this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.copyButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.logRichTextBox);
             this.Name = "LogForm";
@@ -98,7 +99,7 @@
 
         private System.Windows.Forms.RichTextBox logRichTextBox;
         private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button copyButton;
         private System.Windows.Forms.Button closeButton;
     }
 }
