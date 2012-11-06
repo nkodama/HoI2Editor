@@ -94,7 +94,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGameFolderTextBoxDragDrop(object sender, DragEventArgs e)
         {
-            var fileNames = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             gameFolderTextBox.Text = fileNames[0];
         }
 

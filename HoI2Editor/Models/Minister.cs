@@ -764,9 +764,13 @@ namespace HoI2Editor.Models
         /// 閣僚ファイル群を保存する
         /// </summary>
         /// <param name="ministers">閣僚リスト</param>
-        public static void SaveMinisterFiles(List<Minister> ministers)
+        /// <param name="dirtyFlags">編集フラグ </param>
+        public static void SaveMinisterFiles(List<Minister> ministers, bool[] dirtyFlags)
         {
-            foreach (CountryTag countryTag in Enum.GetValues(typeof (CountryTag)))
+            foreach (
+                CountryTag countryTag in
+                    Enum.GetValues(typeof (CountryTag)).Cast<CountryTag>().Where(
+                        countryTag => dirtyFlags[(int) countryTag]).Where(countryTag => countryTag != CountryTag.None))
             {
                 SaveMinisterFile(ministers, countryTag);
             }
