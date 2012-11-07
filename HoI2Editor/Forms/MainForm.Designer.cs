@@ -180,7 +180,7 @@
             this.Controls.Add(this.gameFolderTextBox);
             this.Controls.Add(this.gameFolderLabel);
             this.Name = "MainForm";
-            this.Text = "Aliternative HoI2 Editor";
+            this.Text = "Alternative HoI2 Editor";
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             this.gameTypeGroupBox.ResumeLayout(false);
             this.gameTypeGroupBox.PerformLayout();

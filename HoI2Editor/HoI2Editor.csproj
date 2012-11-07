@@ -67,6 +67,7 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Minister.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
