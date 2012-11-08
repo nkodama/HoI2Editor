@@ -53,7 +53,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 編集フラグをセットする
         /// </summary>
-        /// <param name="countryTag"></param>
+        /// <param name="countryTag">国タグ</param>
         private void SetDirtyFlag(CountryTag countryTag)
         {
             if (countryTag == CountryTag.None)
@@ -66,7 +66,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 編集フラグをクリアする
         /// </summary>
-        /// <param name="countryTag"></param>
+        /// <param name="countryTag">国タグ</param>
         private void ClearDirtyFlag(CountryTag countryTag)
         {
             if (countryTag == CountryTag.None)
@@ -270,7 +270,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         /// 閣僚リストビューの項目を削除する
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">削除する位置</param>
         private void RemoveMinisterListViewItem(int index)
         {
             ministerListView.Items.RemoveAt(index);

@@ -38,6 +38,7 @@
             this.aodRadioButton = new System.Windows.Forms.RadioButton();
             this.hoi2RadioButton = new System.Windows.Forms.RadioButton();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.teamButton = new System.Windows.Forms.Button();
             this.gameFolderReferButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.gameTypeGroupBox.SuspendLayout();
@@ -139,12 +140,24 @@
             // 
             // editGroupBox
             // 
+            this.editGroupBox.Controls.Add(this.teamButton);
             this.editGroupBox.Controls.Add(this.ministerButton);
             this.editGroupBox.Location = new System.Drawing.Point(12, 160);
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.Size = new System.Drawing.Size(440, 109);
             this.editGroupBox.TabIndex = 7;
             this.editGroupBox.TabStop = false;
+            // 
+            // teamButton
+            // 
+            this.teamButton.Enabled = false;
+            this.teamButton.Location = new System.Drawing.Point(88, 18);
+            this.teamButton.Name = "teamButton";
+            this.teamButton.Size = new System.Drawing.Size(75, 23);
+            this.teamButton.TabIndex = 1;
+            this.teamButton.Text = "研究機関";
+            this.teamButton.UseVisualStyleBackColor = true;
+            this.teamButton.Click += new System.EventHandler(this.OnTeamButtonClick);
             // 
             // gameFolderReferButton
             // 
@@ -204,5 +217,6 @@
         private System.Windows.Forms.GroupBox editGroupBox;
         private System.Windows.Forms.Button gameFolderReferButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button teamButton;
     }
 }

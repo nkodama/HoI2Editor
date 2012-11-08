@@ -74,7 +74,16 @@ namespace HoI2Editor.Forms
         {
             Game.FolderName = gameFolderTextBox.Text;
 
-            ministerButton.Enabled = Game.IsValidFolderName();
+            if (Game.IsValidFolderName())
+            {
+                ministerButton.Enabled = true;
+                teamButton.Enabled = true;
+            }
+            else
+            {
+                ministerButton.Enabled = false;
+                teamButton.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -107,6 +116,18 @@ namespace HoI2Editor.Forms
         {
             Config.LoadConfigFiles();
             var form = new MinisterEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
+        /// 研究機関押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamButtonClick(object sender, EventArgs e)
+        {
+            Config.LoadConfigFiles();
+            var form = new TeamEditorForm();
             form.Show();
         }
     }

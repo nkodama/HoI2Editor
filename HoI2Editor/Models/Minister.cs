@@ -324,21 +324,21 @@ namespace HoI2Editor.Models
         public static readonly Dictionary<string, MinisterPersonality> PersonalityTypoMap
             = new Dictionary<string, MinisterPersonality>
                   {
-                      { "barking buffon", MinisterPersonality.BarkingBuffoon },
-                      { "iron-fisted brute", MinisterPersonality.IronFistedBrute },
-                      { "the cloak-n-dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer },
-                      { "cloak-n-dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer },
-                      { "cloak n dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer },
-                      { "laissez-faires capitalist", MinisterPersonality.LaissezFairesCapitalist },
-                      { "laissez faire capitalist", MinisterPersonality.LaissezFairesCapitalist },
-                      { "laissez-faire capitalist", MinisterPersonality.LaissezFairesCapitalist },
-                      { "military entrepeneur", MinisterPersonality.MilitaryEnterpreneur },
-                      { "crooked plutocrat", MinisterPersonality.CrookedKleptocrat },
-                      { "school of defense", MinisterPersonality.SchoolOfDefence },
-                      { "school of maneouvre", MinisterPersonality.SchoolOfManeuvre },
-                      { "elastic defense doctrine", MinisterPersonality.ElasticDefenceDoctrine },
-                      { "static defense doctrine", MinisterPersonality.StaticDefenceDoctrine },
-                      { "vertical envelopement doctrine", MinisterPersonality.VerticalEnvelopmentDoctrine },
+                      {"barking buffon", MinisterPersonality.BarkingBuffoon},
+                      {"iron-fisted brute", MinisterPersonality.IronFistedBrute},
+                      {"the cloak-n-dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer},
+                      {"cloak-n-dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer},
+                      {"cloak n dagger schemer", MinisterPersonality.TheCloakNDaggerSchemer},
+                      {"laissez-faires capitalist", MinisterPersonality.LaissezFairesCapitalist},
+                      {"laissez faire capitalist", MinisterPersonality.LaissezFairesCapitalist},
+                      {"laissez-faire capitalist", MinisterPersonality.LaissezFairesCapitalist},
+                      {"military entrepeneur", MinisterPersonality.MilitaryEnterpreneur},
+                      {"crooked plutocrat", MinisterPersonality.CrookedKleptocrat},
+                      {"school of defense", MinisterPersonality.SchoolOfDefence},
+                      {"school of maneouvre", MinisterPersonality.SchoolOfManeuvre},
+                      {"elastic defense doctrine", MinisterPersonality.ElasticDefenceDoctrine},
+                      {"static defense doctrine", MinisterPersonality.StaticDefenceDoctrine},
+                      {"vertical envelopement doctrine", MinisterPersonality.VerticalEnvelopmentDoctrine},
                   };
 
         /// <summary>
@@ -726,13 +726,16 @@ namespace HoI2Editor.Models
             minister.Id = id;
             minister.Name = token[2];
             int startYear;
-            if (!int.TryParse(token[3], out startYear))
+            if (int.TryParse(token[3], out startYear))
+            {
+                minister.StartYear = startYear + 1900;
+            }
+            else
             {
                 Log.Write(string.Format("開始年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[3]));
-                return;
+                minister.StartYear = 1936;
             }
-            minister.StartYear = startYear + 1900;
             minister.EndYear = 1970;
             string positionName = token[1].ToLower();
             if (PositionNameMap.ContainsKey(positionName))
@@ -767,7 +770,8 @@ namespace HoI2Editor.Models
                 {
                     minister.Personality = PersonalityTypoMap[personalityName];
                     Log.Write(string.Format("閣僚特性の修正: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(string.Format("  {0}: {1} => {2} -> {3}\n\n", minister.Id, minister.Name, token[5], PersonalityNameTable[(int) minister.Personality]));
+                    Log.Write(string.Format("  {0}: {1} => {2} -> {3}\n\n", minister.Id, minister.Name, token[5],
+                                            PersonalityNameTable[(int) minister.Personality]));
                 }
                 else
                 {

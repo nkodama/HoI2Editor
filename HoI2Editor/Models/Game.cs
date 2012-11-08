@@ -48,6 +48,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        /// 研究機関フォルダ名
+        /// </summary>
+        public static string TeamFolderName
+        {
+            get { return Path.Combine(FolderName, "db\\tech\\teams"); }
+        }
+
+        /// <summary>
         /// 画像フォルダ名
         /// </summary>
         public static string PictureFolderName
@@ -59,11 +67,24 @@ namespace HoI2Editor.Models
         /// 閣僚ファイル名を取得する
         /// </summary>
         /// <param name="countryTag">国タグ</param>
-        /// <returns></returns>
+        /// <returns>閣僚ファイル名</returns>
         public static string GetMinisterFileName(CountryTag countryTag)
         {
             return countryTag != CountryTag.None
                        ? string.Format("{0}\\ministers_{1}.csv", MinisterFolderName,
+                                       Country.CountryTextTable[(int) countryTag].ToLower())
+                       : "";
+        }
+
+        /// <summary>
+        /// 研究機関ファイル名を取得する
+        /// </summary>
+        /// <param name="countryTag">国タグ</param>
+        /// <returns>研究機関ファイル名</returns>
+        public static string GetTeamFileName(CountryTag countryTag)
+        {
+            return countryTag != CountryTag.None
+                       ? string.Format("{0}\\teams_{1}.csv", TeamFolderName,
                                        Country.CountryTextTable[(int) countryTag].ToLower())
                        : "";
         }
