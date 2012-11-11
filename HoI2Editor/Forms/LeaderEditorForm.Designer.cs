@@ -119,7 +119,7 @@
             this.winterSpecialistNarrowCheckBox = new System.Windows.Forms.CheckBox();
             this.offensiveDoctrineNarrowCheckBox = new System.Windows.Forms.CheckBox();
             this.defensiveDoctrineNarrowCheckBox = new System.Windows.Forms.CheckBox();
-            this.logisticWizardNarrowCheckBox = new System.Windows.Forms.CheckBox();
+            this.logisticsWizardNarrowCheckBox = new System.Windows.Forms.CheckBox();
             this.branchComboBox = new System.Windows.Forms.ComboBox();
             this.branchLabel = new System.Windows.Forms.Label();
             this.experienceNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -845,7 +845,7 @@
             this.traitsNarrowGroupBox.Controls.Add(this.winterSpecialistNarrowCheckBox);
             this.traitsNarrowGroupBox.Controls.Add(this.offensiveDoctrineNarrowCheckBox);
             this.traitsNarrowGroupBox.Controls.Add(this.defensiveDoctrineNarrowCheckBox);
-            this.traitsNarrowGroupBox.Controls.Add(this.logisticWizardNarrowCheckBox);
+            this.traitsNarrowGroupBox.Controls.Add(this.logisticsWizardNarrowCheckBox);
             this.traitsNarrowGroupBox.Location = new System.Drawing.Point(117, 237);
             this.traitsNarrowGroupBox.Name = "traitsNarrowGroupBox";
             this.traitsNarrowGroupBox.Size = new System.Drawing.Size(878, 154);
@@ -1194,15 +1194,15 @@
             this.defensiveDoctrineNarrowCheckBox.Text = "防勢ドクトリン";
             this.defensiveDoctrineNarrowCheckBox.UseVisualStyleBackColor = true;
             // 
-            // logisticWizardNarrowCheckBox
+            // logisticsWizardNarrowCheckBox
             // 
-            this.logisticWizardNarrowCheckBox.AutoSize = true;
-            this.logisticWizardNarrowCheckBox.Location = new System.Drawing.Point(15, 18);
-            this.logisticWizardNarrowCheckBox.Name = "logisticWizardNarrowCheckBox";
-            this.logisticWizardNarrowCheckBox.Size = new System.Drawing.Size(72, 16);
-            this.logisticWizardNarrowCheckBox.TabIndex = 0;
-            this.logisticWizardNarrowCheckBox.Text = "兵站管理";
-            this.logisticWizardNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.logisticsWizardNarrowCheckBox.AutoSize = true;
+            this.logisticsWizardNarrowCheckBox.Location = new System.Drawing.Point(15, 18);
+            this.logisticsWizardNarrowCheckBox.Name = "logisticsWizardNarrowCheckBox";
+            this.logisticsWizardNarrowCheckBox.Size = new System.Drawing.Size(72, 16);
+            this.logisticsWizardNarrowCheckBox.TabIndex = 0;
+            this.logisticsWizardNarrowCheckBox.Text = "兵站管理";
+            this.logisticsWizardNarrowCheckBox.UseVisualStyleBackColor = true;
             // 
             // branchComboBox
             // 
@@ -1763,7 +1763,7 @@
         private System.Windows.Forms.CheckBox navyNarrowCheckBox;
         private System.Windows.Forms.CheckBox armyNarrowCheckBox;
         private System.Windows.Forms.GroupBox traitsNarrowGroupBox;
-        private System.Windows.Forms.CheckBox logisticWizardNarrowCheckBox;
+        private System.Windows.Forms.CheckBox logisticsWizardNarrowCheckBox;
         private System.Windows.Forms.CheckBox defensiveDoctrineNarrowCheckBox;
         private System.Windows.Forms.CheckBox offensiveDoctrineNarrowCheckBox;
         private System.Windows.Forms.CheckBox winterSpecialistNarrowCheckBox;

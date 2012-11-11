@@ -9,12 +9,12 @@ namespace HoI2Editor.Models
     /// <summary>
     /// 指揮官データ
     /// </summary>
-    class Leader
+    internal class Leader
     {
         /// <summary>
         /// CSVファイルの区切り文字
         /// </summary>
-        private static readonly char[] CsvSeparator = { ';' };
+        private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
         /// 指揮官特性値
@@ -95,12 +95,12 @@ namespace HoI2Editor.Models
         /// <summary>
         /// 兵科文字列
         /// </summary>
-        public static readonly string[] BranchTextTable = { "", "陸軍", "海軍", "空軍" };
+        public static readonly string[] BranchTextTable = {"", "陸軍", "海軍", "空軍"};
 
         /// <summary>
         /// 階級文字列
         /// </summary>
-        public static readonly string[] RankTextTable = { "", "少将", "中将", "大将", "元帥" };
+        public static readonly string[] RankTextTable = {"", "少将", "中将", "大将", "元帥"};
 
         /// <summary>
         /// 国タグと指揮官ファイル名の対応付け
@@ -116,6 +116,11 @@ namespace HoI2Editor.Models
         /// 現在解析中の行番号
         /// </summary>
         private static int _currentLineNo;
+
+        /// <summary>
+        /// 任官年
+        /// </summary>
+        private readonly int[] _rankYear = new int[4];
 
         /// <summary>
         /// 国タグ
@@ -146,11 +151,6 @@ namespace HoI2Editor.Models
         /// 最大スキル
         /// </summary>
         public int MaxSkill { get; set; }
-
-        /// <summary>
-        /// 任官年
-        /// </summary>
-        private readonly int[] _rankYear = new int[4];
 
         /// <summary>
         /// 任官年
@@ -243,7 +243,7 @@ namespace HoI2Editor.Models
             while (!reader.EndOfStream)
             {
                 Leader leader = ParseLeaderLine(reader.ReadLine(), leaders);
-                
+
                 if (currentCountryTag == CountryTag.None && leader != null)
                 {
                     currentCountryTag = leader.CountryTag;
@@ -436,7 +436,7 @@ namespace HoI2Editor.Models
         {
             foreach (
                 CountryTag countryTag in
-                    Enum.GetValues(typeof(CountryTag)).Cast<CountryTag>().Where(
+                    Enum.GetValues(typeof (CountryTag)).Cast<CountryTag>().Where(
                         countryTag => dirtyFlags[(int) countryTag]).Where(countryTag => countryTag != CountryTag.None))
             {
                 SaveLeaderFile(leaders, countryTag);

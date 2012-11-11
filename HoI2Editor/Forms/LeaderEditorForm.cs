@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -145,6 +141,138 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// 指揮官特性文字列を更新する
+        /// </summary>
+        private void InitTraitsText()
+        {
+            logisticsWizardCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.LogisticsWizard]];
+            defensiveDoctrineCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DefensiveDoctrine]];
+            offensiveDoctrineCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OffensiveDoctrine]];
+            winterSpecialistCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.WinterSpecialist]];
+            tricksterCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Trickster]];
+            engineerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Engineer]];
+            fortressBusterCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FortressBuster]];
+            panzerLeaderCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.PanzerLeader]];
+            commandoCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Commando]];
+            oldGuardCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OldGuard]];
+            seaWolfCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SeaWolf]];
+            blockadeRunnerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.BlockadeRunner]];
+            superiorTacticianCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SuperiorTactician]];
+            spotterCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Spotter]];
+            tankBusterCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.TankBuster]];
+            carpetBomberCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CarpetBomber]];
+            nightFlyerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.NightFlyer]];
+            fleetDestroyerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FleetDestroyer]];
+            desertFoxCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DesertFox]];
+            jungleRatCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.JungleRat]];
+            urbanWarfareSpecialistCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.UrbanWarfareSpecialist]];
+            rangerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ranger]];
+            mountaineerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Mountaineer]];
+            hillsFighterCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.HillsFighter]];
+            counterAttackerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CounterAttacker]];
+            assaulterCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Assaulter]];
+            encirclerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Encircler]];
+            ambusherCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ambusher]];
+            disciplinedCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Disciplined]];
+            elasticDefenceSpecialistCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.ElasticDefenceSpecialist]];
+            blitzerCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Blitzer]];
+
+            logisticsWizardNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.LogisticsWizard]];
+            defensiveDoctrineNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DefensiveDoctrine]];
+            offensiveDoctrineNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OffensiveDoctrine]];
+            winterSpecialistNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.WinterSpecialist]];
+            tricksterNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Trickster]];
+            engineerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Engineer]];
+            fortressBusterNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FortressBuster]];
+            panzerLeaderNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.PanzerLeader]];
+            commandoNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Commando]];
+            oldGuardNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OldGuard]];
+            seaWolfNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SeaWolf]];
+            blockadeRunnerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.BlockadeRunner]];
+            superiorTacticianNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SuperiorTactician]];
+            spotterNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Spotter]];
+            tankBusterNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.TankBuster]];
+            carpetBomberNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CarpetBomber]];
+            nightFlyerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.NightFlyer]];
+            fleetDestroyerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FleetDestroyer]];
+            desertFoxNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DesertFox]];
+            jungleRatNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.JungleRat]];
+            urbanWarfareSpecialistNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.UrbanWarfareSpecialist]];
+            rangerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ranger]];
+            mountaineerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Mountaineer]];
+            hillsFighterNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.HillsFighter]];
+            counterAttackerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CounterAttacker]];
+            assaulterNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Assaulter]];
+            encirclerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Encircler]];
+            ambusherNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ambusher]];
+            disciplinedNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Disciplined]];
+            elasticDefenceSpecialistNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.ElasticDefenceSpecialist]];
+            blitzerNarrowCheckBox.Text =
+                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Blitzer]];
+        }
+
+        /// <summary>
         /// 編集項目を初期化する
         /// </summary>
         private void InitEditableItems()
@@ -188,6 +316,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderEditorFormLoad(object sender, EventArgs e)
         {
+            InitTraitsText();
             InitEditableItems();
             InitCountryList();
             LoadLeaderFiles();
@@ -234,13 +363,13 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-            {
-                Text =
-                    leader.CountryTag != CountryTag.None
-                        ? Country.CountryTextTable[(int) leader.CountryTag]
-                        : "",
-                Tag = leader
-            };
+                           {
+                               Text =
+                                   leader.CountryTag != CountryTag.None
+                                       ? Country.CountryTextTable[(int) leader.CountryTag]
+                                       : "",
+                               Tag = leader
+                           };
             item.SubItems.Add(leader.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.Name);
             item.SubItems.Add(Leader.BranchTextTable[(int) leader.Branch]);
@@ -261,7 +390,7 @@ namespace HoI2Editor.Forms
         private string GetLeaderTraitsText(uint traits)
         {
             string s = "";
-            foreach (LeaderTraitsId id in Enum.GetValues(typeof(LeaderTraitsId)))
+            foreach (LeaderTraitsId id in Enum.GetValues(typeof (LeaderTraitsId)))
             {
                 if ((traits & Leader.TraitsValueTable[(int) id]) != 0)
                 {
@@ -408,14 +537,14 @@ namespace HoI2Editor.Forms
                     return;
                 }
                 leader = new Leader
-                               {
-                                   CountryTag = selectedLeader.CountryTag,
-                                   Id = selectedLeader.Id + 1,
-                                   Branch = LeaderBranch.None,
-                                   IdealRank = LeaderRank.None,
-                                   StartYear = 1930,
-                                   EndYear = 1990,
-                               };
+                             {
+                                 CountryTag = selectedLeader.CountryTag,
+                                 Id = selectedLeader.Id + 1,
+                                 Branch = LeaderBranch.None,
+                                 IdealRank = LeaderRank.None,
+                                 StartYear = 1930,
+                                 EndYear = 1990,
+                             };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
                 leader.RankYear[2] = 1990;
@@ -432,17 +561,17 @@ namespace HoI2Editor.Forms
             else
             {
                 leader = new Leader
-                               {
-                                   CountryTag =
-                                       countryListBox.SelectedItems.Count > 0
-                                           ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                           : CountryTag.None,
-                                   Id = 0,
-                                   Branch = LeaderBranch.None,
-                                   IdealRank = LeaderRank.None,
-                                   StartYear = 1930,
-                                   EndYear = 1990,
-                               };
+                             {
+                                 CountryTag =
+                                     countryListBox.SelectedItems.Count > 0
+                                         ? (CountryTag) (countryListBox.SelectedIndex + 1)
+                                         : CountryTag.None,
+                                 Id = 0,
+                                 Branch = LeaderBranch.None,
+                                 IdealRank = LeaderRank.None,
+                                 StartYear = 1930,
+                                 EndYear = 1990,
+                             };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
                 leader.RankYear[2] = 1990;
@@ -474,20 +603,20 @@ namespace HoI2Editor.Forms
                 return;
             }
             var leader = new Leader
-                               {
-                                   CountryTag = selectedLeader.CountryTag,
-                                   Id = selectedLeader.Id + 1,
-                                   Name = selectedLeader.Name,
-                                   Branch = selectedLeader.Branch,
-                                   IdealRank = selectedLeader.IdealRank,
-                                   Skill = selectedLeader.Skill,
-                                   MaxSkill = selectedLeader.MaxSkill,
-                                   Experience = selectedLeader.Experience,
-                                   Loyalty = selectedLeader.Loyalty,
-                                   StartYear = selectedLeader.StartYear,
-                                   EndYear = selectedLeader.EndYear,
-                                   PictureName = selectedLeader.PictureName
-                               };
+                             {
+                                 CountryTag = selectedLeader.CountryTag,
+                                 Id = selectedLeader.Id + 1,
+                                 Name = selectedLeader.Name,
+                                 Branch = selectedLeader.Branch,
+                                 IdealRank = selectedLeader.IdealRank,
+                                 Skill = selectedLeader.Skill,
+                                 MaxSkill = selectedLeader.MaxSkill,
+                                 Experience = selectedLeader.Experience,
+                                 Loyalty = selectedLeader.Loyalty,
+                                 StartYear = selectedLeader.StartYear,
+                                 EndYear = selectedLeader.EndYear,
+                                 PictureName = selectedLeader.PictureName
+                             };
             leader.RankYear[0] = selectedLeader.RankYear[0];
             leader.RankYear[1] = selectedLeader.RankYear[1];
             leader.RankYear[2] = selectedLeader.RankYear[2];
@@ -758,7 +887,7 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown4.Value = leader.RankYear[3];
             pictureNameTextBox.Text = leader.PictureName;
             leaderPictureBox.ImageLocation = Game.GetPictureFileName(leader.PictureName);
-            
+
             logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
             defensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.DefensiveDoctrine) != 0);
             offensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.OffensiveDoctrine) != 0);
@@ -1222,7 +1351,7 @@ namespace HoI2Editor.Forms
         /// 選択された指揮官特性を取得する
         /// </summary>
         /// <returns>指揮官特性</returns>
-        uint GetCheckedLeaderTraits()
+        private uint GetCheckedLeaderTraits()
         {
             uint traits = 0;
 
