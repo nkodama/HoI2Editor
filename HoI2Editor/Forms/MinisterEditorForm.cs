@@ -671,25 +671,15 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            countryComboBox.Text = minister.CountryTag != CountryTag.None
-                                       ? Country.CountryTextTable[(int) minister.CountryTag]
-                                       : "";
+            countryComboBox.SelectedIndex = (int) minister.CountryTag;
             idNumericUpDown.Value = minister.Id;
             nameTextBox.Text = minister.Name;
             startYearNumericUpDown.Value = minister.StartYear;
             endYearNumericUpDown.Value = minister.EndYear;
-            positionComboBox.Text = minister.Position != MinisterPosition.None
-                                        ? Config.Text[Minister.PositionTextTable[(int) minister.Position]]
-                                        : "";
-            personalityComboBox.Text = minister.Personality != MinisterPersonality.None
-                                           ? Config.Text[Minister.PersonalityTextTable[(int) minister.Personality]]
-                                           : "";
-            ideologyComboBox.Text = minister.Ideology != MinisterIdeology.None
-                                        ? Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]]
-                                        : "";
-            loyaltyComboBox.Text = minister.Loyalty != MinisterLoyalty.None
-                                       ? Minister.LoyaltyTextTable[(int) minister.Loyalty]
-                                       : "";
+            positionComboBox.SelectedIndex = (int) minister.Position;
+            personalityComboBox.SelectedIndex = (int) minister.Personality;
+            ideologyComboBox.SelectedIndex = (int) minister.Ideology;
+            loyaltyComboBox.SelectedIndex = (int) minister.Loyalty;
             pictureNameTextBox.Text = minister.PictureName;
             ministerPictureBox.ImageLocation = Game.GetPictureFileName(minister.PictureName);
         }

@@ -654,32 +654,18 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            countryComboBox.Text = team.CountryTag != CountryTag.None
-                                       ? Country.CountryTextTable[(int) team.CountryTag]
-                                       : "";
+            countryComboBox.SelectedIndex = (int) team.CountryTag;
             idNumericUpDown.Value = team.Id;
             nameTextBox.Text = team.Name;
             skillNumericUpDown.Value = team.Skill;
             startYearNumericUpDown.Value = team.StartYear;
             endYearNumericUpDown.Value = team.EndYear;
-            specialityComboBox1.Text = team.Specialities[0] != TechSpeciality.None
-                                           ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[0]]]
-                                           : "";
-            specialityComboBox2.Text = team.Specialities[1] != TechSpeciality.None
-                                           ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[1]]]
-                                           : "";
-            specialityComboBox3.Text = team.Specialities[2] != TechSpeciality.None
-                                           ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[2]]]
-                                           : "";
-            specialityComboBox4.Text = team.Specialities[3] != TechSpeciality.None
-                                           ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[3]]]
-                                           : "";
-            specialityComboBox5.Text = team.Specialities[4] != TechSpeciality.None
-                                           ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[4]]]
-                                           : "";
-            specialityComboBox6.Text = team.Specialities[5] != TechSpeciality.None
-                                           ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[5]]]
-                                           : "";
+            specialityComboBox1.SelectedIndex = (int) team.Specialities[0];
+            specialityComboBox2.SelectedIndex = (int) team.Specialities[1];
+            specialityComboBox3.SelectedIndex = (int) team.Specialities[2];
+            specialityComboBox4.SelectedIndex = (int) team.Specialities[3];
+            specialityComboBox5.SelectedIndex = (int) team.Specialities[4];
+            specialityComboBox6.SelectedIndex = (int) team.Specialities[5];
             pictureNameTextBox.Text = team.PictureName;
             teamPictureBox.ImageLocation = Game.GetPictureFileName(team.PictureName);
         }
