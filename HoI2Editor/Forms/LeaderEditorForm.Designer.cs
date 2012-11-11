@@ -784,6 +784,7 @@
             this.airforceNarrowCheckBox.TabIndex = 2;
             this.airforceNarrowCheckBox.Text = "空軍";
             this.airforceNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.airforceNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnBranchNarrowCheckBoxCheckedChanged);
             // 
             // navyNarrowCheckBox
             // 
@@ -796,6 +797,7 @@
             this.navyNarrowCheckBox.TabIndex = 1;
             this.navyNarrowCheckBox.Text = "海軍";
             this.navyNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.navyNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnBranchNarrowCheckBoxCheckedChanged);
             // 
             // armyNarrowCheckBox
             // 
@@ -808,6 +810,7 @@
             this.armyNarrowCheckBox.TabIndex = 0;
             this.armyNarrowCheckBox.Text = "陸軍";
             this.armyNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.armyNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnBranchNarrowCheckBoxCheckedChanged);
             // 
             // traitsNarrowGroupBox
             // 
@@ -861,6 +864,7 @@
             this.traitsNarrowInvertButton.TabIndex = 34;
             this.traitsNarrowInvertButton.Text = "選択反転";
             this.traitsNarrowInvertButton.UseVisualStyleBackColor = true;
+            this.traitsNarrowInvertButton.Click += new System.EventHandler(this.OnTraitsNarrowInvertButtonClick);
             // 
             // traitsAndNarrowRadioButton
             // 
@@ -871,6 +875,7 @@
             this.traitsAndNarrowRadioButton.TabIndex = 33;
             this.traitsAndNarrowRadioButton.Text = "AND";
             this.traitsAndNarrowRadioButton.UseVisualStyleBackColor = true;
+            this.traitsAndNarrowRadioButton.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowRadioButtonCheckedChanged);
             // 
             // traitsOrNarrowRadioButton
             // 
@@ -881,6 +886,7 @@
             this.traitsOrNarrowRadioButton.TabIndex = 32;
             this.traitsOrNarrowRadioButton.Text = "OR";
             this.traitsOrNarrowRadioButton.UseVisualStyleBackColor = true;
+            this.traitsOrNarrowRadioButton.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowRadioButtonCheckedChanged);
             // 
             // traitsNoneNarrowRadioButton
             // 
@@ -893,6 +899,7 @@
             this.traitsNoneNarrowRadioButton.TabStop = true;
             this.traitsNoneNarrowRadioButton.Text = "絞り込みなし";
             this.traitsNoneNarrowRadioButton.UseVisualStyleBackColor = true;
+            this.traitsNoneNarrowRadioButton.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowRadioButtonCheckedChanged);
             // 
             // blitzerNarrowCheckBox
             // 
@@ -903,6 +910,7 @@
             this.blitzerNarrowCheckBox.TabIndex = 30;
             this.blitzerNarrowCheckBox.Text = "電撃戦";
             this.blitzerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.blitzerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // elasticDefenceSpecialistNarrowCheckBox
             // 
@@ -913,6 +921,7 @@
             this.elasticDefenceSpecialistNarrowCheckBox.TabIndex = 29;
             this.elasticDefenceSpecialistNarrowCheckBox.Text = "戦術的退却";
             this.elasticDefenceSpecialistNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.elasticDefenceSpecialistNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // disciplinedNarrowCheckBox
             // 
@@ -923,6 +932,7 @@
             this.disciplinedNarrowCheckBox.TabIndex = 28;
             this.disciplinedNarrowCheckBox.Text = "規律";
             this.disciplinedNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.disciplinedNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // ambusherNarrowCheckBox
             // 
@@ -933,6 +943,7 @@
             this.ambusherNarrowCheckBox.TabIndex = 27;
             this.ambusherNarrowCheckBox.Text = "奇襲戦";
             this.ambusherNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.ambusherNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // encirclerNarrowCheckBox
             // 
@@ -943,6 +954,7 @@
             this.encirclerNarrowCheckBox.TabIndex = 26;
             this.encirclerNarrowCheckBox.Text = "包囲戦";
             this.encirclerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.encirclerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // assaulterNarrowCheckBox
             // 
@@ -953,6 +965,7 @@
             this.assaulterNarrowCheckBox.TabIndex = 25;
             this.assaulterNarrowCheckBox.Text = "突撃戦";
             this.assaulterNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.assaulterNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // counterAttackerNarrowCheckBox
             // 
@@ -963,6 +976,7 @@
             this.counterAttackerNarrowCheckBox.TabIndex = 24;
             this.counterAttackerNarrowCheckBox.Text = "反撃戦";
             this.counterAttackerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.counterAttackerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // hillsFighterNarrowCheckBox
             // 
@@ -973,6 +987,7 @@
             this.hillsFighterNarrowCheckBox.TabIndex = 23;
             this.hillsFighterNarrowCheckBox.Text = "高地戦";
             this.hillsFighterNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.hillsFighterNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // mountaineerNarrowCheckBox
             // 
@@ -983,6 +998,7 @@
             this.mountaineerNarrowCheckBox.TabIndex = 22;
             this.mountaineerNarrowCheckBox.Text = "山岳戦";
             this.mountaineerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.mountaineerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // rangerNarrowCheckBox
             // 
@@ -993,6 +1009,7 @@
             this.rangerNarrowCheckBox.TabIndex = 21;
             this.rangerNarrowCheckBox.Text = "レンジャー";
             this.rangerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.rangerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // urbanWarfareSpecialistNarrowCheckBox
             // 
@@ -1003,6 +1020,7 @@
             this.urbanWarfareSpecialistNarrowCheckBox.TabIndex = 20;
             this.urbanWarfareSpecialistNarrowCheckBox.Text = "市街戦";
             this.urbanWarfareSpecialistNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.urbanWarfareSpecialistNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // jungleRatNarrowCheckBox
             // 
@@ -1013,6 +1031,7 @@
             this.jungleRatNarrowCheckBox.TabIndex = 19;
             this.jungleRatNarrowCheckBox.Text = "密林のネズミ";
             this.jungleRatNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.jungleRatNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // desertFoxNarrowCheckBox
             // 
@@ -1023,6 +1042,7 @@
             this.desertFoxNarrowCheckBox.TabIndex = 18;
             this.desertFoxNarrowCheckBox.Text = "砂漠のキツネ";
             this.desertFoxNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.desertFoxNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // fleetDestroyerNarrowCheckBox
             // 
@@ -1033,6 +1053,7 @@
             this.fleetDestroyerNarrowCheckBox.TabIndex = 17;
             this.fleetDestroyerNarrowCheckBox.Text = "対艦攻撃";
             this.fleetDestroyerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.fleetDestroyerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // nightFlyerNarrowCheckBox
             // 
@@ -1043,6 +1064,7 @@
             this.nightFlyerNarrowCheckBox.TabIndex = 16;
             this.nightFlyerNarrowCheckBox.Text = "夜間航空作戦";
             this.nightFlyerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.nightFlyerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // carpetBomberNarrowCheckBox
             // 
@@ -1053,6 +1075,7 @@
             this.carpetBomberNarrowCheckBox.TabIndex = 15;
             this.carpetBomberNarrowCheckBox.Text = "絨毯爆撃";
             this.carpetBomberNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.carpetBomberNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // tankBusterNarrowCheckBox
             // 
@@ -1063,6 +1086,7 @@
             this.tankBusterNarrowCheckBox.TabIndex = 14;
             this.tankBusterNarrowCheckBox.Text = "対戦車攻撃";
             this.tankBusterNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.tankBusterNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // spotterNarrowCheckBox
             // 
@@ -1073,6 +1097,7 @@
             this.spotterNarrowCheckBox.TabIndex = 13;
             this.spotterNarrowCheckBox.Text = "索敵";
             this.spotterNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.spotterNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // superiorTacticianNarrowCheckBox
             // 
@@ -1083,6 +1108,7 @@
             this.superiorTacticianNarrowCheckBox.TabIndex = 12;
             this.superiorTacticianNarrowCheckBox.Text = "卓越した戦術家";
             this.superiorTacticianNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.superiorTacticianNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // blockadeRunnerNarrowCheckBox
             // 
@@ -1093,6 +1119,7 @@
             this.blockadeRunnerNarrowCheckBox.TabIndex = 11;
             this.blockadeRunnerNarrowCheckBox.Text = "封鎖線突破の達人";
             this.blockadeRunnerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.blockadeRunnerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // seaWolfNarrowCheckBox
             // 
@@ -1103,6 +1130,7 @@
             this.seaWolfNarrowCheckBox.TabIndex = 10;
             this.seaWolfNarrowCheckBox.Text = "海狼";
             this.seaWolfNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.seaWolfNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // oldGuardNarrowCheckBox
             // 
@@ -1113,6 +1141,7 @@
             this.oldGuardNarrowCheckBox.TabIndex = 9;
             this.oldGuardNarrowCheckBox.Text = "古典派";
             this.oldGuardNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.oldGuardNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // commandoNarrowCheckBox
             // 
@@ -1123,6 +1152,7 @@
             this.commandoNarrowCheckBox.TabIndex = 8;
             this.commandoNarrowCheckBox.Text = "特殊戦";
             this.commandoNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.commandoNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // panzerLeaderNarrowCheckBox
             // 
@@ -1133,6 +1163,7 @@
             this.panzerLeaderNarrowCheckBox.TabIndex = 7;
             this.panzerLeaderNarrowCheckBox.Text = "機甲戦";
             this.panzerLeaderNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.panzerLeaderNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // fortressBusterNarrowCheckBox
             // 
@@ -1143,6 +1174,7 @@
             this.fortressBusterNarrowCheckBox.TabIndex = 6;
             this.fortressBusterNarrowCheckBox.Text = "要塞攻撃";
             this.fortressBusterNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.fortressBusterNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // engineerNarrowCheckBox
             // 
@@ -1153,6 +1185,7 @@
             this.engineerNarrowCheckBox.TabIndex = 5;
             this.engineerNarrowCheckBox.Text = "工兵";
             this.engineerNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.engineerNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // tricksterNarrowCheckBox
             // 
@@ -1163,6 +1196,7 @@
             this.tricksterNarrowCheckBox.TabIndex = 4;
             this.tricksterNarrowCheckBox.Text = "伏撃";
             this.tricksterNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.tricksterNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // winterSpecialistNarrowCheckBox
             // 
@@ -1173,6 +1207,7 @@
             this.winterSpecialistNarrowCheckBox.TabIndex = 3;
             this.winterSpecialistNarrowCheckBox.Text = "冬期戦";
             this.winterSpecialistNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.winterSpecialistNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // offensiveDoctrineNarrowCheckBox
             // 
@@ -1183,6 +1218,7 @@
             this.offensiveDoctrineNarrowCheckBox.TabIndex = 2;
             this.offensiveDoctrineNarrowCheckBox.Text = "攻勢ドクトリン";
             this.offensiveDoctrineNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.offensiveDoctrineNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // defensiveDoctrineNarrowCheckBox
             // 
@@ -1193,6 +1229,7 @@
             this.defensiveDoctrineNarrowCheckBox.TabIndex = 1;
             this.defensiveDoctrineNarrowCheckBox.Text = "防勢ドクトリン";
             this.defensiveDoctrineNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.defensiveDoctrineNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // logisticsWizardNarrowCheckBox
             // 
@@ -1203,6 +1240,7 @@
             this.logisticsWizardNarrowCheckBox.TabIndex = 0;
             this.logisticsWizardNarrowCheckBox.Text = "兵站管理";
             this.logisticsWizardNarrowCheckBox.UseVisualStyleBackColor = true;
+            this.logisticsWizardNarrowCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsNarrowCheckBoxCheckedChanged);
             // 
             // branchComboBox
             // 

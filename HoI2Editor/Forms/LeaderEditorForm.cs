@@ -88,11 +88,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 指揮官リストを国タグで絞り込む
+        /// 指揮官リストを絞り込む
         /// </summary>
         private void NarrowLeaderList()
         {
             _narrowedLeaderList.Clear();
+            uint traitsMask = GetNarrowedLeaderTraits();
+
             List<CountryTag> selectedTagList;
             if (countryListBox.SelectedItems.Count == 0)
             {
@@ -105,10 +107,60 @@ namespace HoI2Editor.Forms
                         .ToList();
             }
 
-            foreach (
-                Leader leader in
-                    _masterLeaderList.Where(leader => selectedTagList.Contains(leader.CountryTag)))
+            foreach (Leader leader in _masterLeaderList)
             {
+                // 国タグによる絞り込み
+                if (!selectedTagList.Contains(leader.CountryTag))
+                {
+                    continue;
+                }
+
+                // 兵科による絞り込み
+                switch (leader.Branch)
+                {
+                    case LeaderBranch.None:
+                        if (!armyNarrowCheckBox.Checked || !navyNarrowCheckBox.Checked ||
+                            !airforceNarrowCheckBox.Checked)
+                        {
+                            continue;
+                        }
+                        break;
+                    case LeaderBranch.Army:
+                        if (!armyNarrowCheckBox.Checked)
+                        {
+                            continue;
+                        }
+                        break;
+                    case LeaderBranch.Navy:
+                        if (!navyNarrowCheckBox.Checked)
+                        {
+                            continue;
+                        }
+                        break;
+                    case LeaderBranch.Airforce:
+                        if (!airforceNarrowCheckBox.Checked)
+                        {
+                            continue;
+                        }
+                        break;
+                }
+
+                // 指揮官特性による絞り込み
+                if (traitsOrNarrowRadioButton.Checked)
+                {
+                    if ((leader.Traits & traitsMask) == 0)
+                    {
+                        continue;
+                    }
+                }
+                else if (traitsAndNarrowRadioButton.Checked)
+                {
+                    if ((leader.Traits & traitsMask) != traitsMask)
+                    {
+                        continue;
+                    }
+                }
+
                 _narrowedLeaderList.Add(leader);
             }
         }
@@ -836,6 +888,79 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// 兵科チェックボックスのチェック状態変化時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBranchNarrowCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            NarrowLeaderList();
+            UpdateLeaderList();
+        }
+
+        /// <summary>
+        /// 特性絞り込みチェックボックスのチェック状態変化時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTraitsNarrowCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            NarrowLeaderList();
+            UpdateLeaderList();
+        }
+
+        /// <summary>
+        /// 特性絞込み条件ラジオボタンのチェック状態変化時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTraitsNarrowRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            NarrowLeaderList();
+            UpdateLeaderList();
+        }
+
+        /// <summary>
+        /// 選択反転ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTraitsNarrowInvertButtonClick(object sender, EventArgs e)
+        {
+            logisticsWizardNarrowCheckBox.Checked = !logisticsWizardNarrowCheckBox.Checked;
+            defensiveDoctrineNarrowCheckBox.Checked = !defensiveDoctrineNarrowCheckBox.Checked;
+            offensiveDoctrineNarrowCheckBox.Checked = !offensiveDoctrineNarrowCheckBox.Checked;
+            winterSpecialistNarrowCheckBox.Checked = !winterSpecialistNarrowCheckBox.Checked;
+            tricksterNarrowCheckBox.Checked = !tricksterNarrowCheckBox.Checked;
+            engineerNarrowCheckBox.Checked = !engineerNarrowCheckBox.Checked;
+            fortressBusterNarrowCheckBox.Checked = !fortressBusterNarrowCheckBox.Checked;
+            panzerLeaderNarrowCheckBox.Checked = !panzerLeaderNarrowCheckBox.Checked;
+            commandoNarrowCheckBox.Checked = !commandoNarrowCheckBox.Checked;
+            oldGuardNarrowCheckBox.Checked = !oldGuardNarrowCheckBox.Checked;
+            seaWolfNarrowCheckBox.Checked = !seaWolfNarrowCheckBox.Checked;
+            blockadeRunnerNarrowCheckBox.Checked = !blockadeRunnerNarrowCheckBox.Checked;
+            superiorTacticianNarrowCheckBox.Checked = !superiorTacticianNarrowCheckBox.Checked;
+            spotterNarrowCheckBox.Checked = !spotterNarrowCheckBox.Checked;
+            tankBusterNarrowCheckBox.Checked = !tankBusterNarrowCheckBox.Checked;
+            carpetBomberNarrowCheckBox.Checked = !carpetBomberNarrowCheckBox.Checked;
+            nightFlyerNarrowCheckBox.Checked = !nightFlyerNarrowCheckBox.Checked;
+            fleetDestroyerNarrowCheckBox.Checked = !fleetDestroyerNarrowCheckBox.Checked;
+            desertFoxNarrowCheckBox.Checked = !desertFoxNarrowCheckBox.Checked;
+            jungleRatNarrowCheckBox.Checked = !jungleRatNarrowCheckBox.Checked;
+            urbanWarfareSpecialistNarrowCheckBox.Checked = !urbanWarfareSpecialistNarrowCheckBox.Checked;
+            rangerNarrowCheckBox.Checked = !rangerNarrowCheckBox.Checked;
+            mountaineerNarrowCheckBox.Checked = !mountaineerNarrowCheckBox.Checked;
+            hillsFighterNarrowCheckBox.Checked = !hillsFighterNarrowCheckBox.Checked;
+            counterAttackerNarrowCheckBox.Checked = !counterAttackerNarrowCheckBox.Checked;
+            assaulterNarrowCheckBox.Checked = !assaulterNarrowCheckBox.Checked;
+            encirclerNarrowCheckBox.Checked = !encirclerNarrowCheckBox.Checked;
+            ambusherNarrowCheckBox.Checked = !ambusherNarrowCheckBox.Checked;
+            disciplinedNarrowCheckBox.Checked = !disciplinedNarrowCheckBox.Checked;
+            elasticDefenceSpecialistNarrowCheckBox.Checked = !elasticDefenceSpecialistNarrowCheckBox.Checked;
+            blitzerNarrowCheckBox.Checked = !blitzerNarrowCheckBox.Checked;
+        }
+
+        /// <summary>
         /// 国家リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1507,6 +1632,173 @@ namespace HoI2Editor.Forms
             }
             // 電撃戦
             if (blitzerCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Blitzer;
+            }
+
+            return traits;
+        }
+
+        /// <summary>
+        /// 絞り込まれた指揮官特性を取得する
+        /// </summary>
+        /// <returns>指揮官特性</returns>
+        private uint GetNarrowedLeaderTraits()
+        {
+            uint traits = 0;
+
+            // 兵站管理
+            if (logisticsWizardNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.LogisticsWizard;
+            }
+            // 防勢ドクトリン
+            if (defensiveDoctrineNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.DefensiveDoctrine;
+            }
+            // 攻勢ドクトリン
+            if (offensiveDoctrineNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.OffensiveDoctrine;
+            }
+            // 冬期戦
+            if (winterSpecialistNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.WinterSpecialist;
+            }
+            // 伏撃
+            if (tricksterNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Trickster;
+            }
+            // 工兵
+            if (engineerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Engineer;
+            }
+            // 要塞攻撃
+            if (fortressBusterNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.FortressBuster;
+            }
+            // 機甲戦
+            if (panzerLeaderNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.PanzerLeader;
+            }
+            // 特殊戦
+            if (commandoNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Commando;
+            }
+            // 古典派
+            if (oldGuardNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.OldGuard;
+            }
+            // 海狼
+            if (seaWolfNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.SeaWolf;
+            }
+            // 封鎖線突破の達人
+            if (blockadeRunnerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.BlockadeRunner;
+            }
+            // 卓越した戦術家
+            if (superiorTacticianNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.SuperiorTactician;
+            }
+            // 索敵
+            if (spotterNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Spotter;
+            }
+            // 対戦車攻撃
+            if (tankBusterNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.TankBuster;
+            }
+            // 絨毯爆撃
+            if (carpetBomberNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.CarpetBomber;
+            }
+            // 夜間航空作戦
+            if (nightFlyerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.NightFlyer;
+            }
+            // 対艦攻撃
+            if (fleetDestroyerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.FleetDestroyer;
+            }
+            // 砂漠のキツネ
+            if (desertFoxNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.DesertFox;
+            }
+            // 密林のネズミ
+            if (jungleRatNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.JungleRat;
+            }
+            // 市街戦
+            if (urbanWarfareSpecialistNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.UrbanWarfareSpecialist;
+            }
+            // レンジャー
+            if (rangerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Ranger;
+            }
+            // 山岳戦
+            if (mountaineerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Mountaineer;
+            }
+            // 高地戦
+            if (hillsFighterNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.HillsFighter;
+            }
+            // 反撃戦
+            if (counterAttackerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.CounterAttacker;
+            }
+            // 突撃戦
+            if (assaulterNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Assaulter;
+            }
+            // 包囲戦
+            if (encirclerNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Encircler;
+            }
+            // 奇襲戦
+            if (ambusherNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Ambusher;
+            }
+            // 規律
+            if (disciplinedNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.Disciplined;
+            }
+            // 戦術的退却
+            if (elasticDefenceSpecialistNarrowCheckBox.Checked)
+            {
+                traits |= LeaderTraits.ElasticDefenceSpecialist;
+            }
+            // 電撃戦
+            if (blitzerNarrowCheckBox.Checked)
             {
                 traits |= LeaderTraits.Blitzer;
             }
