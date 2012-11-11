@@ -307,7 +307,7 @@ namespace HoI2Editor.Models
                 return null;
             }
             leader.CountryTag = Country.CountryTextMap[token[2].ToUpper()];
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 int rankYear;
                 if (int.TryParse(token[3 + i], out rankYear))
@@ -476,9 +476,10 @@ namespace HoI2Editor.Models
                 writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
                                  leader.Name, leader.Id, Country.CountryTextTable[(int) leader.CountryTag],
                                  leader.RankYear[0], leader.RankYear[1], leader.RankYear[2], leader.RankYear[3],
-                                 (int) leader.IdealRank, leader.MaxSkill, leader.Traits, leader.Skill, leader.Experience,
-                                 leader.Loyalty, (int) leader.Branch, leader.PictureName, leader.StartYear,
-                                 leader.EndYear);
+                                 leader.IdealRank != LeaderRank.None ? (int) (4 - leader.IdealRank) : 3, leader.MaxSkill,
+                                 leader.Traits, leader.Skill, leader.Experience, leader.Loyalty,
+                                 leader.Branch != LeaderBranch.None ? (int) (leader.Branch - 1) : 0, leader.PictureName,
+                                 leader.StartYear, leader.EndYear);
                 _currentLineNo++;
             }
 
