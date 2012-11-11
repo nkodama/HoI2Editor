@@ -40,6 +40,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        /// 指揮官フォルダ名
+        /// </summary>
+        public static string LeaderFolderName
+        {
+            get { return Path.Combine(FolderName, "db\\leaders"); }
+        }
+
+        /// <summary>
         /// 閣僚フォルダ名
         /// </summary>
         public static string MinisterFolderName
@@ -61,6 +69,16 @@ namespace HoI2Editor.Models
         public static string PictureFolderName
         {
             get { return Path.Combine(FolderName, "gfx\\interface\\pics"); }
+        }
+
+        /// <summary>
+        /// 指揮官ファイル名を取得する
+        /// </summary>
+        /// <param name="countryTag">国タグ</param>
+        /// <returns>指揮官ファイル名</returns>
+        public static string GetLeaderFileName(CountryTag countryTag)
+        {
+            return countryTag != CountryTag.None ? Path.Combine(LeaderFolderName, Leader.FileNameMap[countryTag]) : "";
         }
 
         /// <summary>

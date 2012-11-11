@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\LeaderEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LeaderEditorForm.Designer.cs">
+      <DependentUpon>LeaderEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,10 +77,14 @@
     <Compile Include="HoI2EditorApplication.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Leader.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Minister.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\LeaderEditorForm.resx">
+      <DependentUpon>LeaderEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -26,11 +26,6 @@ namespace HoI2Editor.Forms
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             gameFolderTextBox.Text = Game.FolderName;
-
-            if (Game.IsValidFolderName())
-            {
-                ministerButton.Enabled = true;
-            }
         }
 
         /// <summary>
@@ -76,11 +71,13 @@ namespace HoI2Editor.Forms
 
             if (Game.IsValidFolderName())
             {
+                leaderButton.Enabled = true;
                 ministerButton.Enabled = true;
                 teamButton.Enabled = true;
             }
             else
             {
+                leaderButton.Enabled = false;
                 ministerButton.Enabled = false;
                 teamButton.Enabled = false;
             }
@@ -108,6 +105,18 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// 指揮官ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderButtonClick(object sender, EventArgs e)
+        {
+            Config.LoadConfigFiles();
+            var form = new LeaderEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
         /// 閣僚ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -120,7 +129,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関押下時の処理
+        /// 研究機関ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

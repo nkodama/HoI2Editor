@@ -41,6 +41,7 @@
             this.teamButton = new System.Windows.Forms.Button();
             this.gameFolderReferButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
+            this.leaderButton = new System.Windows.Forms.Button();
             this.gameTypeGroupBox.SuspendLayout();
             this.editGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             // ministerButton
             // 
             this.ministerButton.Enabled = false;
-            this.ministerButton.Location = new System.Drawing.Point(7, 18);
+            this.ministerButton.Location = new System.Drawing.Point(88, 18);
             this.ministerButton.Name = "ministerButton";
             this.ministerButton.Size = new System.Drawing.Size(75, 23);
             this.ministerButton.TabIndex = 0;
@@ -98,7 +99,6 @@
             this.gameTypeGroupBox.Controls.Add(this.dhRadioButton);
             this.gameTypeGroupBox.Controls.Add(this.aodRadioButton);
             this.gameTypeGroupBox.Controls.Add(this.hoi2RadioButton);
-            this.gameTypeGroupBox.Enabled = false;
             this.gameTypeGroupBox.Location = new System.Drawing.Point(12, 12);
             this.gameTypeGroupBox.Name = "gameTypeGroupBox";
             this.gameTypeGroupBox.Size = new System.Drawing.Size(204, 44);
@@ -109,6 +109,7 @@
             // dhRadioButton
             // 
             this.dhRadioButton.AutoSize = true;
+            this.dhRadioButton.Enabled = false;
             this.dhRadioButton.Location = new System.Drawing.Point(149, 18);
             this.dhRadioButton.Name = "dhRadioButton";
             this.dhRadioButton.Size = new System.Drawing.Size(39, 16);
@@ -140,6 +141,7 @@
             // 
             // editGroupBox
             // 
+            this.editGroupBox.Controls.Add(this.leaderButton);
             this.editGroupBox.Controls.Add(this.teamButton);
             this.editGroupBox.Controls.Add(this.ministerButton);
             this.editGroupBox.Location = new System.Drawing.Point(12, 160);
@@ -147,11 +149,12 @@
             this.editGroupBox.Size = new System.Drawing.Size(440, 109);
             this.editGroupBox.TabIndex = 7;
             this.editGroupBox.TabStop = false;
+            this.editGroupBox.Text = "編集";
             // 
             // teamButton
             // 
             this.teamButton.Enabled = false;
-            this.teamButton.Location = new System.Drawing.Point(88, 18);
+            this.teamButton.Location = new System.Drawing.Point(169, 18);
             this.teamButton.Name = "teamButton";
             this.teamButton.Size = new System.Drawing.Size(75, 23);
             this.teamButton.TabIndex = 1;
@@ -178,6 +181,17 @@
             this.exitButton.Text = "終了";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.OnExitButtonClick);
+            // 
+            // leaderButton
+            // 
+            this.leaderButton.Enabled = false;
+            this.leaderButton.Location = new System.Drawing.Point(7, 18);
+            this.leaderButton.Name = "leaderButton";
+            this.leaderButton.Size = new System.Drawing.Size(75, 23);
+            this.leaderButton.TabIndex = 2;
+            this.leaderButton.Text = "指揮官";
+            this.leaderButton.UseVisualStyleBackColor = true;
+            this.leaderButton.Click += new System.EventHandler(this.OnLeaderButtonClick);
             // 
             // MainForm
             // 
@@ -218,5 +232,6 @@
         private System.Windows.Forms.Button gameFolderReferButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button teamButton;
+        private System.Windows.Forms.Button leaderButton;
     }
 }
