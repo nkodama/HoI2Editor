@@ -231,13 +231,13 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-            {
-                Text =
-                    team.CountryTag != CountryTag.None
-                        ? Country.CountryTextTable[(int) team.CountryTag]
-                        : "",
-                Tag = team
-            };
+                           {
+                               Text =
+                                   team.CountryTag != CountryTag.None
+                                       ? Country.CountryTextTable[(int) team.CountryTag]
+                                       : "",
+                               Tag = team
+                           };
             item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(team.Name);
             item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
