@@ -196,27 +196,7 @@ namespace HoI2Editor.Forms
         /// <param name="team">追加する項目</param>
         private void AddTeamListViewItem(Team team)
         {
-            var item = new ListViewItem
-                           {
-                               Text =
-                                   team.CountryTag != CountryTag.None
-                                       ? Country.CountryTextTable[(int) team.CountryTag]
-                                       : "",
-                               Tag = team
-                           };
-            item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.Name);
-            item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.StartYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.EndYear.ToString(CultureInfo.InvariantCulture));
-            for (int i = 0; i < 6; i++)
-            {
-                item.SubItems.Add(team.Specialities[i] != TechSpeciality.None
-                                      ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[i]]]
-                                      : "");
-            }
-
-            teamListView.Items.Add(item);
+            teamListView.Items.Add(CreateTeamListViewItem(team));
         }
 
         /// <summary>
@@ -226,14 +206,38 @@ namespace HoI2Editor.Forms
         /// <param name="team">挿入する項目</param>
         private void InsertTeamListViewItem(int index, Team team)
         {
+            teamListView.Items.Insert(index, CreateTeamListViewItem(team));
+        }
+
+        /// <summary>
+        /// 研究機関リストビューの項目を削除する
+        /// </summary>
+        /// <param name="index">削除する位置</param>
+        private void RemoveTeamListViewItem(int index)
+        {
+            teamListView.Items.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// 研究機関リストビューの項目を作成する
+        /// </summary>
+        /// <param name="team">研究機関データ</param>
+        /// <returns>研究機関リストビューの項目</returns>
+        private ListViewItem CreateTeamListViewItem(Team team)
+        {
+            if (team == null)
+            {
+                return null;
+            }
+
             var item = new ListViewItem
-                           {
-                               Text =
-                                   team.CountryTag != CountryTag.None
-                                       ? Country.CountryTextTable[(int) team.CountryTag]
-                                       : "",
-                               Tag = team
-                           };
+            {
+                Text =
+                    team.CountryTag != CountryTag.None
+                        ? Country.CountryTextTable[(int) team.CountryTag]
+                        : "",
+                Tag = team
+            };
             item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(team.Name);
             item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
@@ -246,16 +250,7 @@ namespace HoI2Editor.Forms
                                       : "");
             }
 
-            teamListView.Items.Insert(index, item);
-        }
-
-        /// <summary>
-        /// 閣僚リストビューの項目を削除する
-        /// </summary>
-        /// <param name="index">削除する位置</param>
-        private void RemoveTeamListViewItem(int index)
-        {
-            teamListView.Items.RemoveAt(index);
+            return item;
         }
 
         /// <summary>

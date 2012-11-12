@@ -208,30 +208,7 @@ namespace HoI2Editor.Forms
         /// <param name="minister">追加する項目</param>
         private void AddMinisterListViewItem(Minister minister)
         {
-            var item = new ListViewItem
-                           {
-                               Text =
-                                   minister.CountryTag != CountryTag.None
-                                       ? Country.CountryTextTable[(int) minister.CountryTag]
-                                       : "",
-                               Tag = minister
-                           };
-            item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(minister.Name);
-            item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
-            //item.SubItems.Add(minister.EndYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add("");
-            item.SubItems.Add(minister.Position != MinisterPosition.None
-                                  ? Config.Text[Minister.PositionTextTable[(int) minister.Position]]
-                                  : "");
-            item.SubItems.Add(minister.Personality != MinisterPersonality.None
-                                  ? Config.Text[Minister.PersonalityTextTable[(int) minister.Personality]]
-                                  : "");
-            item.SubItems.Add(minister.Ideology != MinisterIdeology.None
-                                  ? Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]]
-                                  : "");
-
-            ministerListView.Items.Add(item);
+            ministerListView.Items.Add(CreateMinisterListViewItem(minister));
         }
 
         /// <summary>
@@ -241,6 +218,30 @@ namespace HoI2Editor.Forms
         /// <param name="minister">挿入する項目</param>
         private void InsertMinisterListViewItem(int index, Minister minister)
         {
+            ministerListView.Items.Insert(index, CreateMinisterListViewItem(minister));
+        }
+
+        /// <summary>
+        /// 閣僚リストビューの項目を削除する
+        /// </summary>
+        /// <param name="index">削除する位置</param>
+        private void RemoveMinisterListViewItem(int index)
+        {
+            ministerListView.Items.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// 閣僚リストビューの項目を作成する
+        /// </summary>
+        /// <param name="minister">閣僚データ</param>
+        /// <returns>閣僚リストビューの項目</returns>
+        private ListViewItem CreateMinisterListViewItem(Minister minister)
+        {
+            if (minister == null)
+            {
+                return null;
+            }
+
             var item = new ListViewItem
                            {
                                Text =
@@ -264,16 +265,7 @@ namespace HoI2Editor.Forms
                                   ? Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]]
                                   : "");
 
-            ministerListView.Items.Insert(index, item);
-        }
-
-        /// <summary>
-        /// 閣僚リストビューの項目を削除する
-        /// </summary>
-        /// <param name="index">削除する位置</param>
-        private void RemoveMinisterListViewItem(int index)
-        {
-            ministerListView.Items.RemoveAt(index);
+            return item;
         }
 
         /// <summary>

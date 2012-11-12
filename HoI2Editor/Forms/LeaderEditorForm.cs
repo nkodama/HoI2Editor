@@ -667,7 +667,8 @@ namespace HoI2Editor.Forms
                                  Loyalty = selectedLeader.Loyalty,
                                  StartYear = selectedLeader.StartYear,
                                  EndYear = selectedLeader.EndYear,
-                                 PictureName = selectedLeader.PictureName
+                                 PictureName = selectedLeader.PictureName,
+                                 Traits = selectedLeader.Traits
                              };
             leader.RankYear[0] = selectedLeader.RankYear[0];
             leader.RankYear[1] = selectedLeader.RankYear[1];

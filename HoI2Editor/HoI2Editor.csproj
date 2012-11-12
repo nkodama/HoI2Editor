@@ -67,7 +67,9 @@
     <Compile Include="Forms\MinisterEditorForm.Designer.cs">
       <DependentUpon>MinisterEditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TeamEditorForm.cs" />
+    <Compile Include="Forms\TeamEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\TeamEditorForm.Designer.cs">
       <DependentUpon>TeamEditorForm.cs</DependentUpon>
     </Compile>
