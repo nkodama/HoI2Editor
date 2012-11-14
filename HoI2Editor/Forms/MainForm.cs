@@ -6,12 +6,12 @@ using HoI2Editor.Properties;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    /// メインフォーム
+    ///     メインフォーム
     /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
-        /// コンストラクタ
+        ///     コンストラクタ
         /// </summary>
         public MainForm()
         {
@@ -19,7 +19,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// フォーム読み込み時の処理
+        ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -29,7 +29,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 終了ボタン押下時の処理
+        ///     終了ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -39,7 +39,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ゲームフォルダ参照ボタン押下時の処理
+        ///     ゲームフォルダ参照ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,15 +53,12 @@ namespace HoI2Editor.Forms
                              };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Game.FolderName = dialog.SelectedPath;
-                gameFolderTextBox.Text = Game.FolderName;
-
-                ministerButton.Enabled = Game.IsValidFolderName();
+                gameFolderTextBox.Text = dialog.SelectedPath;
             }
         }
 
         /// <summary>
-        /// ゲームフォルダ文字列変更時の処理
+        ///     ゲームフォルダ名文字列変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -69,22 +66,23 @@ namespace HoI2Editor.Forms
         {
             Game.FolderName = gameFolderTextBox.Text;
 
-            if (Game.IsValidFolderName())
-            {
-                leaderButton.Enabled = true;
-                ministerButton.Enabled = true;
-                teamButton.Enabled = true;
-            }
-            else
-            {
-                leaderButton.Enabled = false;
-                ministerButton.Enabled = false;
-                teamButton.Enabled = false;
-            }
+            leaderButton.Enabled = Game.IsGameFolderActive;
+            ministerButton.Enabled = Game.IsGameFolderActive;
+            teamButton.Enabled = Game.IsGameFolderActive;
         }
 
         /// <summary>
-        /// ゲームフォルダ名テキストボックスにドラッグした時の処理
+        ///     MOD名文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModTextBoxTextChanged(object sender, EventArgs e)
+        {
+            Game.ModName = modTextBox.Text;
+        }
+
+        /// <summary>
+        ///     ゲームフォルダ名テキストボックスにドラッグした時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -94,7 +92,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ゲームフォルダ名テキストボックスにドロップした時の処理
+        ///     ゲームフォルダ名テキストボックスにドロップした時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -105,7 +103,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 指揮官ボタン押下時の処理
+        ///     指揮官ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -117,7 +115,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚ボタン押下時の処理
+        ///     閣僚ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -129,7 +127,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関ボタン押下時の処理
+        ///     研究機関ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

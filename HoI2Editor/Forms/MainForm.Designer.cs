@@ -38,10 +38,10 @@
             this.aodRadioButton = new System.Windows.Forms.RadioButton();
             this.hoi2RadioButton = new System.Windows.Forms.RadioButton();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.leaderButton = new System.Windows.Forms.Button();
             this.teamButton = new System.Windows.Forms.Button();
             this.gameFolderReferButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.leaderButton = new System.Windows.Forms.Button();
             this.gameTypeGroupBox.SuspendLayout();
             this.editGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -88,11 +88,11 @@
             // 
             // modTextBox
             // 
-            this.modTextBox.Enabled = false;
             this.modTextBox.Location = new System.Drawing.Point(32, 131);
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.Size = new System.Drawing.Size(339, 19);
             this.modTextBox.TabIndex = 5;
+            this.modTextBox.TextChanged += new System.EventHandler(this.OnModTextBoxTextChanged);
             // 
             // gameTypeGroupBox
             // 
@@ -151,6 +151,17 @@
             this.editGroupBox.TabStop = false;
             this.editGroupBox.Text = "編集";
             // 
+            // leaderButton
+            // 
+            this.leaderButton.Enabled = false;
+            this.leaderButton.Location = new System.Drawing.Point(7, 18);
+            this.leaderButton.Name = "leaderButton";
+            this.leaderButton.Size = new System.Drawing.Size(75, 23);
+            this.leaderButton.TabIndex = 2;
+            this.leaderButton.Text = "指揮官";
+            this.leaderButton.UseVisualStyleBackColor = true;
+            this.leaderButton.Click += new System.EventHandler(this.OnLeaderButtonClick);
+            // 
             // teamButton
             // 
             this.teamButton.Enabled = false;
@@ -181,17 +192,6 @@
             this.exitButton.Text = "終了";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.OnExitButtonClick);
-            // 
-            // leaderButton
-            // 
-            this.leaderButton.Enabled = false;
-            this.leaderButton.Location = new System.Drawing.Point(7, 18);
-            this.leaderButton.Name = "leaderButton";
-            this.leaderButton.Size = new System.Drawing.Size(75, 23);
-            this.leaderButton.TabIndex = 2;
-            this.leaderButton.Text = "指揮官";
-            this.leaderButton.UseVisualStyleBackColor = true;
-            this.leaderButton.Click += new System.EventHandler(this.OnLeaderButtonClick);
             // 
             // MainForm
             // 

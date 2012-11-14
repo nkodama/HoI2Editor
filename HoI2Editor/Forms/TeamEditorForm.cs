@@ -10,27 +10,27 @@ using HoI2Editor.Properties;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    /// 研究機関エディタのフォーム
+    ///     研究機関エディタのフォーム
     /// </summary>
     public partial class TeamEditorForm : Form
     {
         /// <summary>
-        /// 研究機関編集フラグ
+        ///     研究機関編集フラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
-        /// 絞り込み後の閣僚リスト
+        ///     絞り込み後の閣僚リスト
         /// </summary>
         private readonly List<Team> _narrowedTeamList = new List<Team>();
 
         /// <summary>
-        /// マスター閣僚リスト
+        ///     マスター閣僚リスト
         /// </summary>
         private List<Team> _masterTeamList = new List<Team>();
 
         /// <summary>
-        /// コンストラクタ
+        ///     コンストラクタ
         /// </summary>
         public TeamEditorForm()
         {
@@ -38,7 +38,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関ファイルを読み込む
+        ///     研究機関ファイルを読み込む
         /// </summary>
         private void LoadTeamFiles()
         {
@@ -51,7 +51,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集フラグをセットする
+        ///     編集フラグをセットする
         /// </summary>
         /// <param name="countryTag">国タグ</param>
         private void SetDirtyFlag(CountryTag countryTag)
@@ -64,7 +64,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集フラグをクリアする
+        ///     編集フラグをクリアする
         /// </summary>
         /// <param name="countryTag">国タグ</param>
         private void ClearDirtyFlag(CountryTag countryTag)
@@ -77,7 +77,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集フラグを全てクリアする
+        ///     編集フラグを全てクリアする
         /// </summary>
         private void ClearDirtyFlags()
         {
@@ -88,7 +88,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関リストを国タグで絞り込む
+        ///     研究機関リストを国タグで絞り込む
         /// </summary>
         private void NarrowTeamList()
         {
@@ -115,7 +115,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関リストの表示を更新する
+        ///     研究機関リストの表示を更新する
         /// </summary>
         private void UpdateTeamList()
         {
@@ -142,7 +142,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集項目を初期化する
+        ///     編集項目を初期化する
         /// </summary>
         private void InitEditableItems()
         {
@@ -166,7 +166,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 国家リストボックスを初期化する
+        ///     国家リストボックスを初期化する
         /// </summary>
         private void InitCountryList()
         {
@@ -179,7 +179,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// フォーム読み込み時の処理
+        ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -191,7 +191,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関リストビューの項目を追加する
+        ///     研究機関リストビューの項目を追加する
         /// </summary>
         /// <param name="team">追加する項目</param>
         private void AddTeamListViewItem(Team team)
@@ -200,7 +200,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関リストビューの項目を挿入する
+        ///     研究機関リストビューの項目を挿入する
         /// </summary>
         /// <param name="index">挿入する位置</param>
         /// <param name="team">挿入する項目</param>
@@ -210,7 +210,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関リストビューの項目を削除する
+        ///     研究機関リストビューの項目を削除する
         /// </summary>
         /// <param name="index">削除する位置</param>
         private void RemoveTeamListViewItem(int index)
@@ -219,7 +219,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関リストビューの項目を作成する
+        ///     研究機関リストビューの項目を作成する
         /// </summary>
         /// <param name="team">研究機関データ</param>
         /// <returns>研究機関リストビューの項目</returns>
@@ -254,7 +254,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集可能な項目を有効化する
+        ///     編集可能な項目を有効化する
         /// </summary>
         private void EnableEditableItems()
         {
@@ -282,7 +282,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集可能な項目を無効化する
+        ///     編集可能な項目を無効化する
         /// </summary>
         private void DisableEditableItems()
         {
@@ -319,7 +319,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 新規ボタン押下時の処理
+        ///     新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -374,7 +374,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 複製ボタン押下時の処理
+        ///     複製ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -414,7 +414,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 削除ボタン押下時の処理
+        ///     削除ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -452,7 +452,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 先頭へボタン押下時の処理
+        ///     先頭へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -493,7 +493,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 上へボタン押下時の処理
+        ///     上へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -534,7 +534,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 下へボタン押下時の処理
+        ///     下へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -575,7 +575,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 末尾へボタン押下時の処理
+        ///     末尾へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -617,7 +617,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 国家リストボックスの選択項目変更時の処理
+        ///     国家リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -633,7 +633,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究機関リストビューの選択項目変更時の処理
+        ///     研究機関リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -661,12 +661,36 @@ namespace HoI2Editor.Forms
             specialityComboBox4.SelectedIndex = (int) team.Specialities[3];
             specialityComboBox5.SelectedIndex = (int) team.Specialities[4];
             specialityComboBox6.SelectedIndex = (int) team.Specialities[5];
+
             pictureNameTextBox.Text = team.PictureName;
-            teamPictureBox.ImageLocation = Game.GetPictureFileName(team.PictureName);
+            if (!string.IsNullOrEmpty(team.PictureName))
+            {
+                if (Game.IsModActive)
+                {
+                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, "gfx\\interface\\pics"),
+                                                      Path.ChangeExtension(team.PictureName, ".bmp"));
+                    if (File.Exists(modFileName))
+                    {
+                        teamPictureBox.ImageLocation = modFileName;
+                    }
+                    else
+                    {
+                        teamPictureBox.ImageLocation =
+                            Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                         Path.ChangeExtension(team.PictureName, ".bmp"));
+                    }
+                }
+                else
+                {
+                    teamPictureBox.ImageLocation =
+                        Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                     Path.ChangeExtension(team.PictureName, ".bmp"));
+                }
+            }
         }
 
         /// <summary>
-        /// 国タグ変更時の処理
+        ///     国タグ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -694,7 +718,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ID変更時の処理
+        ///     ID変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -721,7 +745,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 名前文字列変更時の処理
+        ///     名前文字列変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -748,7 +772,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// スキル変更時の処理
+        ///     スキル変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -776,7 +800,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 開始年変更時の処理
+        ///     開始年変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -804,7 +828,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 終了年変更時の処理
+        ///     終了年変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -832,7 +856,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 特性1変更時の処理
+        ///     特性1変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -862,7 +886,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 特性2変更時の処理
+        ///     特性2変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -892,7 +916,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 特性3変更時の処理
+        ///     特性3変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -922,7 +946,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 特性4変更時の処理
+        ///     特性4変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -952,7 +976,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 特性5変更時の処理
+        ///     特性5変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -982,7 +1006,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 特性6変更時の処理
+        ///     特性6変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1012,7 +1036,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 画像ファイル名変更時の処理
+        ///     画像ファイル名変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1034,12 +1058,35 @@ namespace HoI2Editor.Forms
                 return;
             }
             team.PictureName = newPictureName;
-            teamPictureBox.ImageLocation = Game.GetPictureFileName(team.PictureName);
+            if (!string.IsNullOrEmpty(team.PictureName))
+            {
+                if (Game.IsModActive)
+                {
+                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, "gfx\\interface\\pics"),
+                                                      Path.ChangeExtension(team.PictureName, ".bmp"));
+                    if (File.Exists(modFileName))
+                    {
+                        teamPictureBox.ImageLocation = modFileName;
+                    }
+                    else
+                    {
+                        teamPictureBox.ImageLocation =
+                            Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                         Path.ChangeExtension(team.PictureName, ".bmp"));
+                    }
+                }
+                else
+                {
+                    teamPictureBox.ImageLocation =
+                        Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                     Path.ChangeExtension(team.PictureName, ".bmp"));
+                }
+            }
             SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
-        /// 画像ファイル名参照ボタン押下時の処理
+        ///     画像ファイル名参照ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1056,7 +1103,7 @@ namespace HoI2Editor.Forms
             }
             var dialog = new OpenFileDialog
                              {
-                                 InitialDirectory = Game.PictureFolderName,
+                                 InitialDirectory = Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
                                  FileName = team.PictureName,
                                  Filter = Resources.OpenBitmapFileDialogFilter
                              };
@@ -1067,7 +1114,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 国家リストボックスの全選択/全解除ボタン押下時の処理
+        ///     国家リストボックスの全選択/全解除ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1099,7 +1146,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 再読み込みボタン押下時の処理
+        ///     再読み込みボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1109,7 +1156,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 保存ボタン押下時の処理
+        ///     保存ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1120,7 +1167,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閉じるボタン押下時の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

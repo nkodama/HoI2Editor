@@ -7,17 +7,17 @@ using System.Text;
 namespace HoI2Editor.Models
 {
     /// <summary>
-    /// 指揮官データ
+    ///     指揮官データ
     /// </summary>
     internal class Leader
     {
         /// <summary>
-        /// CSVファイルの区切り文字
+        ///     CSVファイルの区切り文字
         /// </summary>
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
-        /// 指揮官特性値
+        ///     指揮官特性値
         /// </summary>
         public static readonly uint[] TraitsValueTable =
             {
@@ -55,7 +55,7 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        /// 指揮官特性文字列
+        ///     指揮官特性文字列
         /// </summary>
         public static readonly string[] TraitsTextTable =
             {
@@ -93,67 +93,67 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        /// 兵科文字列
+        ///     兵科文字列
         /// </summary>
         public static readonly string[] BranchTextTable = {"", "陸軍", "海軍", "空軍"};
 
         /// <summary>
-        /// 階級文字列
+        ///     階級文字列
         /// </summary>
         public static readonly string[] RankTextTable = {"", "少将", "中将", "大将", "元帥"};
 
         /// <summary>
-        /// 国タグと指揮官ファイル名の対応付け
+        ///     国タグと指揮官ファイル名の対応付け
         /// </summary>
         public static readonly Dictionary<CountryTag, string> FileNameMap = new Dictionary<CountryTag, string>();
 
         /// <summary>
-        /// 現在解析中のファイル名
+        ///     現在解析中のファイル名
         /// </summary>
         private static string _currentFileName = "";
 
         /// <summary>
-        /// 現在解析中の行番号
+        ///     現在解析中の行番号
         /// </summary>
         private static int _currentLineNo;
 
         /// <summary>
-        /// 任官年
+        ///     任官年
         /// </summary>
         private readonly int[] _rankYear = new int[4];
 
         /// <summary>
-        /// 国タグ
+        ///     国タグ
         /// </summary>
         public CountryTag CountryTag { get; set; }
 
         /// <summary>
-        /// 指揮官ID
+        ///     指揮官ID
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// 名前
+        ///     名前
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 画像ファイル名
+        ///     画像ファイル名
         /// </summary>
         public string PictureName { get; set; }
 
         /// <summary>
-        /// 初期スキル
+        ///     初期スキル
         /// </summary>
         public int Skill { get; set; }
 
         /// <summary>
-        /// 最大スキル
+        ///     最大スキル
         /// </summary>
         public int MaxSkill { get; set; }
 
         /// <summary>
-        /// 任官年
+        ///     任官年
         /// </summary>
         public int[] RankYear
         {
@@ -161,60 +161,86 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 開始年
+        ///     開始年
         /// </summary>
         public int StartYear { get; set; }
 
         /// <summary>
-        /// 終了年
+        ///     終了年
         /// </summary>
         public int EndYear { get; set; }
 
         /// <summary>
-        /// 理想階級
+        ///     理想階級
         /// </summary>
         public LeaderRank IdealRank { get; set; }
 
         /// <summary>
-        /// 指揮官特性
+        ///     指揮官特性
         /// </summary>
         public uint Traits { get; set; }
 
         /// <summary>
-        /// 経験値
+        ///     経験値
         /// </summary>
         public int Experience { get; set; }
 
         /// <summary>
-        /// 忠誠度
+        ///     忠誠度
         /// </summary>
         public int Loyalty { get; set; }
 
         /// <summary>
-        /// 兵科
+        ///     兵科
         /// </summary>
         public LeaderBranch Branch { get; set; }
 
         /// <summary>
-        /// 指揮官ファイル群を読み込む
+        ///     指揮官ファイル群を読み込む
         /// </summary>
         /// <returns>指揮官リスト</returns>
         public static List<Leader> LoadLeaderFiles()
         {
-            var leaders = new List<Leader>();
-
             FileNameMap.Clear();
+            var leaders = new List<Leader>();
+            var list = new List<string>();
+            string folderName;
 
-            foreach (string fileName in Directory.GetFiles(Game.LeaderFolderName, "*.csv"))
+            if (Game.IsModActive)
             {
-                LoadLeaderFile(fileName, leaders);
+                folderName = Path.Combine(Game.ModFolderName, "db\\leaders");
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        LoadLeaderFile(fileName, leaders);
+                        string name = Path.GetFileName(fileName);
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            list.Add(name.ToLower());
+                        }
+                    }
+                }
+            }
+
+            folderName = Path.Combine(Game.FolderName, "db\\leaders");
+            if (Directory.Exists(folderName))
+            {
+                foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                {
+                    string name = Path.GetFileName(fileName);
+                    if (!string.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
+                    {
+                        LoadLeaderFile(fileName, leaders);
+                    }
+                }
             }
 
             return leaders;
         }
 
         /// <summary>
-        /// 指揮官ファイルを読み込む
+        ///     指揮官ファイルを読み込む
         /// </summary>
         /// <param name="fileName">対象ファイル名</param>
         /// <param name="leaders">指揮官リスト</param>
@@ -257,7 +283,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 指揮官定義行を解釈する
+        ///     指揮官定義行を解釈する
         /// </summary>
         /// <param name="line">対象文字列</param>
         /// <param name="leaders">指揮官リスト</param>
@@ -428,7 +454,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 指揮官ファイル群を保存する
+        ///     指揮官ファイル群を保存する
         /// </summary>
         /// <param name="leaders">指揮官リスト</param>
         /// <param name="dirtyFlags">編集フラグ </param>
@@ -444,7 +470,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 指揮官ファイルを保存する
+        ///     指揮官ファイルを保存する
         /// </summary>
         /// <param name="leaders">指揮官リスト</param>
         /// <param name="countryTag">国タグ</param>
@@ -455,10 +481,18 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            _currentFileName = Path.GetFileName(Game.GetLeaderFileName(countryTag));
+            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, "db\\leaders");
+            // 指揮官フォルダが存在しなければ作成する
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+            string fileName = Path.Combine(folderName, Game.GetLeaderFileName(countryTag));
+
+            _currentFileName = fileName;
             _currentLineNo = 2;
 
-            var writer = new StreamWriter(Game.GetLeaderFileName(countryTag), false, Encoding.Default);
+            var writer = new StreamWriter(fileName, false, Encoding.Default);
             writer.WriteLine(
                 "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
 
@@ -466,13 +500,6 @@ namespace HoI2Editor.Models
                 Leader leader in
                     leaders.Where(leader => leader.CountryTag == countryTag).Where(leader => leader != null))
             {
-                // 不正な値が設定されている場合は警告をログに出力する
-                if (string.IsNullOrEmpty(leader.Name))
-                {
-                    Log.Write(string.Format("指揮官名の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(string.Format("  {0}: {1}\n\n", leader.Id, leader.Name));
-                }
-
                 writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
                                  leader.Name, leader.Id, Country.CountryTextTable[(int) leader.CountryTag],
                                  leader.RankYear[0], leader.RankYear[1], leader.RankYear[2], leader.RankYear[3],
@@ -488,172 +515,172 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// 指揮官特性値
+    ///     指揮官特性値
     /// </summary>
     public static class LeaderTraits
     {
         /// <summary>
-        /// 特性なし
+        ///     特性なし
         /// </summary>
         public const uint None = 0x00000000;
 
         /// <summary>
-        /// 兵站管理
+        ///     兵站管理
         /// </summary>
         public const uint LogisticsWizard = 0x00000001;
 
         /// <summary>
-        /// 防勢ドクトリン
+        ///     防勢ドクトリン
         /// </summary>
         public const uint DefensiveDoctrine = 0x00000002;
 
         /// <summary>
-        /// 攻勢ドクトリン
+        ///     攻勢ドクトリン
         /// </summary>
         public const uint OffensiveDoctrine = 0x00000004;
 
         /// <summary>
-        /// 冬期戦
+        ///     冬期戦
         /// </summary>
         public const uint WinterSpecialist = 0x00000008;
 
         /// <summary>
-        /// 伏撃
+        ///     伏撃
         /// </summary>
         public const uint Trickster = 0x00000010;
 
         /// <summary>
-        /// 工兵
+        ///     工兵
         /// </summary>
         public const uint Engineer = 0x00000020;
 
         /// <summary>
-        /// 要塞攻撃
+        ///     要塞攻撃
         /// </summary>
         public const uint FortressBuster = 0x00000040;
 
         /// <summary>
-        /// 機甲戦
+        ///     機甲戦
         /// </summary>
         public const uint PanzerLeader = 0x00000080;
 
         /// <summary>
-        /// 特殊戦
+        ///     特殊戦
         /// </summary>
         public const uint Commando = 0x00000100;
 
         /// <summary>
-        /// 古典派
+        ///     古典派
         /// </summary>
         public const uint OldGuard = 0x00000200;
 
         /// <summary>
-        /// 海狼
+        ///     海狼
         /// </summary>
         public const uint SeaWolf = 0x00000400;
 
         /// <summary>
-        /// 封鎖線突破の達人
+        ///     封鎖線突破の達人
         /// </summary>
         public const uint BlockadeRunner = 0x00000800;
 
         /// <summary>
-        /// 卓越した戦術家
+        ///     卓越した戦術家
         /// </summary>
         public const uint SuperiorTactician = 0x00001000;
 
         /// <summary>
-        /// 索敵
+        ///     索敵
         /// </summary>
         public const uint Spotter = 0x00002000;
 
         /// <summary>
-        /// 対戦車攻撃
+        ///     対戦車攻撃
         /// </summary>
         public const uint TankBuster = 0x00004000;
 
         /// <summary>
-        /// 絨毯爆撃
+        ///     絨毯爆撃
         /// </summary>
         public const uint CarpetBomber = 0x00008000;
 
         /// <summary>
-        /// 夜間航空作戦
+        ///     夜間航空作戦
         /// </summary>
         public const uint NightFlyer = 0x00010000;
 
         /// <summary>
-        /// 対艦攻撃
+        ///     対艦攻撃
         /// </summary>
         public const uint FleetDestroyer = 0x00020000;
 
         /// <summary>
-        /// 砂漠のキツネ
+        ///     砂漠のキツネ
         /// </summary>
         public const uint DesertFox = 0x00040000;
 
         /// <summary>
-        /// 密林のネズミ
+        ///     密林のネズミ
         /// </summary>
         public const uint JungleRat = 0x00080000;
 
         /// <summary>
-        /// 市街戦
+        ///     市街戦
         /// </summary>
         public const uint UrbanWarfareSpecialist = 0x00100000;
 
         /// <summary>
-        /// レンジャー
+        ///     レンジャー
         /// </summary>
         public const uint Ranger = 0x00200000;
 
         /// <summary>
-        /// 山岳戦
+        ///     山岳戦
         /// </summary>
         public const uint Mountaineer = 0x00400000;
 
         /// <summary>
-        /// 高地戦
+        ///     高地戦
         /// </summary>
         public const uint HillsFighter = 0x00800000;
 
         /// <summary>
-        /// 反撃戦
+        ///     反撃戦
         /// </summary>
         public const uint CounterAttacker = 0x01000000;
 
         /// <summary>
-        /// 突撃戦
+        ///     突撃戦
         /// </summary>
         public const uint Assaulter = 0x02000000;
 
         /// <summary>
-        /// 包囲戦
+        ///     包囲戦
         /// </summary>
         public const uint Encircler = 0x04000000;
 
         /// <summary>
-        /// 奇襲戦
+        ///     奇襲戦
         /// </summary>
         public const uint Ambusher = 0x08000000;
 
         /// <summary>
-        /// 規律
+        ///     規律
         /// </summary>
         public const uint Disciplined = 0x10000000;
 
         /// <summary>
-        /// 戦術的退却
+        ///     戦術的退却
         /// </summary>
         public const uint ElasticDefenceSpecialist = 0x20000000;
 
         /// <summary>
-        /// 電撃戦
+        ///     電撃戦
         /// </summary>
         public const uint Blitzer = 0x40000000;
 
         /// <summary>
-        /// 陸軍特性
+        ///     陸軍特性
         /// </summary>
         public const uint ArmyTraits =
             LogisticsWizard | DefensiveDoctrine | OffensiveDoctrine | WinterSpecialist | Trickster | Engineer |
@@ -662,19 +689,19 @@ namespace HoI2Editor.Models
             ElasticDefenceSpecialist | Blitzer;
 
         /// <summary>
-        /// 海軍特性
+        ///     海軍特性
         /// </summary>
         public const uint NavyTraits = OldGuard | SeaWolf | BlockadeRunner | SuperiorTactician | Spotter | NightFlyer;
 
         /// <summary>
-        /// 空軍特性
+        ///     空軍特性
         /// </summary>
         public const uint AirforceTraits =
             OldGuard | SuperiorTactician | Spotter | TankBuster | CarpetBomber | NightFlyer | FleetDestroyer;
     }
 
     /// <summary>
-    /// 指揮官特性ID
+    ///     指揮官特性ID
     /// </summary>
     public enum LeaderTraitsId
     {
@@ -712,7 +739,7 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// 兵科
+    ///     兵科
     /// </summary>
     public enum LeaderBranch
     {
@@ -723,7 +750,7 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// 指揮官階級
+    ///     指揮官階級
     /// </summary>
     public enum LeaderRank
     {

@@ -10,27 +10,27 @@ using HoI2Editor.Properties;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    /// 閣僚エディタのフォーム
+    ///     閣僚エディタのフォーム
     /// </summary>
     public partial class MinisterEditorForm : Form
     {
         /// <summary>
-        /// 閣僚編集フラグ
+        ///     閣僚編集フラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
-        /// 絞り込み後の閣僚リスト
+        ///     絞り込み後の閣僚リスト
         /// </summary>
         private readonly List<Minister> _narrowedMinisterList = new List<Minister>();
 
         /// <summary>
-        /// マスター閣僚リスト
+        ///     マスター閣僚リスト
         /// </summary>
         private List<Minister> _masterMinisterList = new List<Minister>();
 
         /// <summary>
-        /// コンストラクタ
+        ///     コンストラクタ
         /// </summary>
         public MinisterEditorForm()
         {
@@ -38,7 +38,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚ファイルを読み込む
+        ///     閣僚ファイルを読み込む
         /// </summary>
         private void LoadMinisterFiles()
         {
@@ -51,7 +51,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集フラグをセットする
+        ///     編集フラグをセットする
         /// </summary>
         /// <param name="countryTag">国タグ</param>
         private void SetDirtyFlag(CountryTag countryTag)
@@ -64,7 +64,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集フラグをクリアする
+        ///     編集フラグをクリアする
         /// </summary>
         /// <param name="countryTag">国タグ</param>
         private void ClearDirtyFlag(CountryTag countryTag)
@@ -77,7 +77,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集フラグを全てクリアする
+        ///     編集フラグを全てクリアする
         /// </summary>
         private void ClearDirtyFlags()
         {
@@ -88,7 +88,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストを国タグで絞り込む
+        ///     閣僚リストを国タグで絞り込む
         /// </summary>
         private void NarrowMinisterList()
         {
@@ -115,7 +115,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストの表示を更新する
+        ///     閣僚リストの表示を更新する
         /// </summary>
         private void UpdateMinisterList()
         {
@@ -142,7 +142,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集項目を初期化する
+        ///     編集項目を初期化する
         /// </summary>
         private void InitEditableItems()
         {
@@ -178,7 +178,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 国家リストボックスを初期化する
+        ///     国家リストボックスを初期化する
         /// </summary>
         private void InitCountryList()
         {
@@ -191,7 +191,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// フォーム読み込み時の処理
+        ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -203,7 +203,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストビューの項目を追加する
+        ///     閣僚リストビューの項目を追加する
         /// </summary>
         /// <param name="minister">追加する項目</param>
         private void AddMinisterListViewItem(Minister minister)
@@ -212,7 +212,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストビューの項目を挿入する
+        ///     閣僚リストビューの項目を挿入する
         /// </summary>
         /// <param name="index">挿入する位置</param>
         /// <param name="minister">挿入する項目</param>
@@ -222,7 +222,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストビューの項目を削除する
+        ///     閣僚リストビューの項目を削除する
         /// </summary>
         /// <param name="index">削除する位置</param>
         private void RemoveMinisterListViewItem(int index)
@@ -231,7 +231,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストビューの項目を作成する
+        ///     閣僚リストビューの項目を作成する
         /// </summary>
         /// <param name="minister">閣僚データ</param>
         /// <returns>閣僚リストビューの項目</returns>
@@ -269,7 +269,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集可能な項目を有効化する
+        ///     編集可能な項目を有効化する
         /// </summary>
         private void EnableEditableItems()
         {
@@ -294,7 +294,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集可能な項目を無効化する
+        ///     編集可能な項目を無効化する
         /// </summary>
         private void DisableEditableItems()
         {
@@ -327,7 +327,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 新規ボタン押下時の処理
+        ///     新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -388,7 +388,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 複製ボタン押下時の処理
+        ///     複製ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -428,7 +428,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 削除ボタン押下時の処理
+        ///     削除ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -466,7 +466,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 先頭へボタン押下時の処理
+        ///     先頭へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -507,7 +507,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 上へボタン押下時の処理
+        ///     上へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -548,7 +548,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 下へボタン押下時の処理
+        ///     下へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -589,7 +589,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 末尾へボタン押下時の処理
+        ///     末尾へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -631,7 +631,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 国家リストボックスの選択項目変更時の処理
+        ///     国家リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -647,7 +647,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストビューの選択項目変更時の処理
+        ///     閣僚リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -672,12 +672,36 @@ namespace HoI2Editor.Forms
             personalityComboBox.SelectedIndex = (int) minister.Personality;
             ideologyComboBox.SelectedIndex = (int) minister.Ideology;
             loyaltyComboBox.SelectedIndex = (int) minister.Loyalty;
+
             pictureNameTextBox.Text = minister.PictureName;
-            ministerPictureBox.ImageLocation = Game.GetPictureFileName(minister.PictureName);
+            if (!string.IsNullOrEmpty(minister.PictureName))
+            {
+                if (Game.IsModActive)
+                {
+                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, "gfx\\interface\\pics"),
+                                                      Path.ChangeExtension(minister.PictureName, ".bmp"));
+                    if (File.Exists(modFileName))
+                    {
+                        ministerPictureBox.ImageLocation = modFileName;
+                    }
+                    else
+                    {
+                        ministerPictureBox.ImageLocation =
+                            Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                         Path.ChangeExtension(minister.PictureName, ".bmp"));
+                    }
+                }
+                else
+                {
+                    ministerPictureBox.ImageLocation =
+                        Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                     Path.ChangeExtension(minister.PictureName, ".bmp"));
+                }
+            }
         }
 
         /// <summary>
-        /// 国タグ変更時の処理
+        ///     国タグ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -705,7 +729,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ID変更時の処理
+        ///     ID変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -732,7 +756,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 名前文字列変更時の処理
+        ///     名前文字列変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -759,7 +783,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 開始年変更時の処理
+        ///     開始年変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -787,7 +811,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚地位変更時の処理
+        ///     閣僚地位変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -818,7 +842,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚特性変更時の処理
+        ///     閣僚特性変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -849,7 +873,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// イデオロギー変更時の処理
+        ///     イデオロギー変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -871,16 +895,15 @@ namespace HoI2Editor.Forms
                 return;
             }
             minister.Ideology = newIdeology;
-            ministerListView.SelectedItems[0].SubItems[7].Text = minister.Ideology != MinisterIdeology.None
-                                                                     ? Config.Text[
-                                                                         Minister.IdeologyTextTable[
-                                                                             (int) minister.Ideology]]
-                                                                     : "";
+            ministerListView.SelectedItems[0].SubItems[7].Text =
+                minister.Ideology != MinisterIdeology.None
+                    ? Config.Text[Minister.IdeologyTextTable[(int) minister.Ideology]]
+                    : "";
             SetDirtyFlag(minister.CountryTag);
         }
 
         /// <summary>
-        /// 忠誠度変更時の処理
+        ///     忠誠度変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -906,7 +929,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 画像ファイル名変更時の処理
+        ///     画像ファイル名変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -928,12 +951,35 @@ namespace HoI2Editor.Forms
                 return;
             }
             minister.PictureName = newPictureName;
-            ministerPictureBox.ImageLocation = Game.GetPictureFileName(minister.PictureName);
+            if (!string.IsNullOrEmpty(minister.PictureName))
+            {
+                if (Game.IsModActive)
+                {
+                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, "gfx\\interface\\pics"),
+                                                      Path.ChangeExtension(minister.PictureName, ".bmp"));
+                    if (File.Exists(modFileName))
+                    {
+                        ministerPictureBox.ImageLocation = modFileName;
+                    }
+                    else
+                    {
+                        ministerPictureBox.ImageLocation =
+                            Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                         Path.ChangeExtension(minister.PictureName, ".bmp"));
+                    }
+                }
+                else
+                {
+                    ministerPictureBox.ImageLocation =
+                        Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                     Path.ChangeExtension(minister.PictureName, ".bmp"));
+                }
+            }
             SetDirtyFlag(minister.CountryTag);
         }
 
         /// <summary>
-        /// 画像ファイル名参照ボタン押下時の処理
+        ///     画像ファイル名参照ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -950,7 +996,7 @@ namespace HoI2Editor.Forms
             }
             var dialog = new OpenFileDialog
                              {
-                                 InitialDirectory = Game.PictureFolderName,
+                                 InitialDirectory = Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
                                  FileName = minister.PictureName,
                                  Filter = Resources.OpenBitmapFileDialogFilter
                              };
@@ -961,7 +1007,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 国家リストボックスの全選択/全解除ボタン押下時の処理
+        ///     国家リストボックスの全選択/全解除ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -993,7 +1039,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 再読み込みボタン押下時の処理
+        ///     再読み込みボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1003,7 +1049,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 保存ボタン押下時の処理
+        ///     保存ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1014,7 +1060,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閉じるボタン押下時の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

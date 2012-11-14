@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace HoI2Editor.Models
 {
     /// <summary>
-    /// 国家データ
+    ///     国家データ
     /// </summary>
     public class Country
     {
         /// <summary>
-        /// 国タグ文字列
+        ///     国タグ文字列
         /// </summary>
         public static string[] CountryTextTable =
             {
@@ -358,12 +358,12 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        /// 国タグ文字列とIDの対応付け
+        ///     国タグ文字列とIDの対応付け
         /// </summary>
         public static readonly Dictionary<string, CountryTag> CountryTextMap = new Dictionary<string, CountryTag>();
 
         /// <summary>
-        /// 静的コンストラクタ
+        ///     静的コンストラクタ
         /// </summary>
         static Country()
         {
@@ -375,7 +375,7 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// 国タグ
+    ///     国タグ
     /// </summary>
     public enum CountryTag
     {

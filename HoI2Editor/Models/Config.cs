@@ -7,51 +7,91 @@ namespace HoI2Editor.Models
     internal static class Config
     {
         /// <summary>
-        /// 文字列変換テーブル
+        ///     文字列変換テーブル
         /// </summary>
         public static readonly Dictionary<string, string> Text = new Dictionary<string, string>();
 
         /// <summary>
-        /// CSVファイルの区切り文字
+        ///     CSVファイルの区切り文字
         /// </summary>
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
-        /// 文字列ファイル群を読み込む
+        ///     文字列ファイル群を読み込む
         /// </summary>
         public static void LoadConfigFiles()
         {
             Text.Clear();
-            LoadConfigFilesRecursive(Game.ConfigFolderName);
+            var list = new List<string>();
+            string folderName;
+
+            if (Game.IsModActive)
+            {
+                folderName = Path.Combine(Game.ModFolderName, "config");
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        LoadConfigFile(fileName);
+                        string name = Path.GetFileName(fileName);
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            list.Add(name.ToLower());
+                        }
+                    }
+                }
+            }
+
+            folderName = Path.Combine(Game.FolderName, "config");
+            if (Directory.Exists(folderName))
+            {
+                foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                {
+                    string name = Path.GetFileName(fileName);
+                    if (!string.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
+                    {
+                        LoadConfigFile(fileName);
+                    }
+                }
+            }
+
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                list.Clear();
+
+                folderName = Path.Combine(Game.ModFolderName, "config\\Additional");
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        LoadConfigFile(fileName);
+                        string name = Path.GetFileName(fileName);
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            list.Add(name.ToLower());
+                        }
+                    }
+                }
+
+                folderName = Path.Combine(Game.FolderName, "config\\Additional");
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        string name = Path.GetFileName(fileName);
+                        if (!string.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
+                        {
+                            LoadConfigFile(fileName);
+                        }
+                    }
+                }
+            }
+
             ModifyDuplicatedStrings();
         }
 
         /// <summary>
-        /// 文字列ファイル群を再帰的に読み込む
-        /// </summary>
-        /// <param name="folderName">対象フォルダ名</param>
-        private static void LoadConfigFilesRecursive(string folderName)
-        {
-            if (!Directory.Exists(folderName))
-            {
-                return;
-            }
-
-            // 対象フォルダ内のCSVファイルを順に解析する
-            foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
-            {
-                LoadConfigFile(fileName);
-            }
-
-            // 参照フォルダ内のサブフォルダを順に解析する
-            foreach (string subFolderName in Directory.GetDirectories(folderName))
-            {
-                LoadConfigFilesRecursive(subFolderName);
-            }
-        }
-
-        /// <summary>
-        /// 文字列ファイルを読み込む
+        ///     文字列ファイルを読み込む
         /// </summary>
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadConfigFile(string fileName)
@@ -77,7 +117,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 重複する文字列を修正する
+        ///     重複する文字列を修正する
         /// </summary>
         private static void ModifyDuplicatedStrings()
         {

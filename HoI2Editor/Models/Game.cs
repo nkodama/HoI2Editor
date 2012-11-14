@@ -4,12 +4,22 @@ using System.IO;
 namespace HoI2Editor.Models
 {
     /// <summary>
-    /// ゲーム関連データ
+    ///     ゲーム関連データ
     /// </summary>
     public static class Game
     {
         /// <summary>
-        /// 静的コンストラクタ
+        ///     ゲームフォルダ名
+        /// </summary>
+        private static string _folderName;
+
+        /// <summary>
+        ///     MOD名
+        /// </summary>
+        private static string _modName;
+
+        /// <summary>
+        ///     静的コンストラクタ
         /// </summary>
         static Game()
         {
@@ -17,135 +27,95 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ゲームの種類
+        ///     ゲームの種類
         /// </summary>
         public static GameType Type { get; set; }
 
         /// <summary>
-        /// ゲームフォルダ名
+        ///     ゲームフォルダ名
         /// </summary>
-        public static string FolderName { get; set; }
-
-        /// <summary>
-        /// MOD名
-        /// </summary>
-        public static string ModName { get; set; }
-
-        /// <summary>
-        /// 文字列フォルダ名
-        /// </summary>
-        public static string ConfigFolderName
+        public static string FolderName
         {
-            get { return Path.Combine(FolderName, "config"); }
+            get { return _folderName; }
+            set
+            {
+                _folderName = value;
+                IsGameFolderActive = (!string.IsNullOrEmpty(_folderName) &&
+                                      Directory.Exists(Path.Combine(_folderName, "config")));
+            }
         }
 
         /// <summary>
-        /// 指揮官フォルダ名
+        ///     ゲームフォルダが有効かどうか
         /// </summary>
-        public static string LeaderFolderName
+        public static bool IsGameFolderActive { get; private set; }
+
+        /// <summary>
+        ///     MOD名
+        /// </summary>
+        public static string ModName
         {
-            get { return Path.Combine(FolderName, "db\\leaders"); }
+            get { return _modName; }
+            set
+            {
+                _modName = value;
+                IsModActive = !string.IsNullOrEmpty(_modName);
+                ModFolderName = Path.Combine(FolderName, ModName);
+            }
         }
 
         /// <summary>
-        /// 閣僚フォルダ名
+        ///     MODが有効かどうか
         /// </summary>
-        public static string MinisterFolderName
-        {
-            get { return Path.Combine(FolderName, "db\\ministers"); }
-        }
+        public static bool IsModActive { get; private set; }
 
         /// <summary>
-        /// 研究機関フォルダ名
+        ///     MODフォルダ名
         /// </summary>
-        public static string TeamFolderName
-        {
-            get { return Path.Combine(FolderName, "db\\tech\\teams"); }
-        }
+        public static string ModFolderName { get; private set; }
 
         /// <summary>
-        /// 画像フォルダ名
-        /// </summary>
-        public static string PictureFolderName
-        {
-            get { return Path.Combine(FolderName, "gfx\\interface\\pics"); }
-        }
-
-        /// <summary>
-        /// 指揮官ファイル名を取得する
+        ///     指揮官ファイル名を取得する
         /// </summary>
         /// <param name="countryTag">国タグ</param>
         /// <returns>指揮官ファイル名</returns>
         public static string GetLeaderFileName(CountryTag countryTag)
         {
-            return countryTag != CountryTag.None ? Path.Combine(LeaderFolderName, Leader.FileNameMap[countryTag]) : "";
+            return countryTag != CountryTag.None ? Leader.FileNameMap[countryTag] : "";
         }
 
         /// <summary>
-        /// 閣僚ファイル名を取得する
+        ///     閣僚ファイル名を取得する
         /// </summary>
         /// <param name="countryTag">国タグ</param>
         /// <returns>閣僚ファイル名</returns>
         public static string GetMinisterFileName(CountryTag countryTag)
         {
             return countryTag != CountryTag.None
-                       ? string.Format("{0}\\ministers_{1}.csv", MinisterFolderName,
-                                       Country.CountryTextTable[(int) countryTag].ToLower())
+                       ? string.Format("ministers_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower())
                        : "";
         }
 
         /// <summary>
-        /// 研究機関ファイル名を取得する
+        ///     研究機関ファイル名を取得する
         /// </summary>
         /// <param name="countryTag">国タグ</param>
         /// <returns>研究機関ファイル名</returns>
         public static string GetTeamFileName(CountryTag countryTag)
         {
             return countryTag != CountryTag.None
-                       ? string.Format("{0}\\teams_{1}.csv", TeamFolderName,
-                                       Country.CountryTextTable[(int) countryTag].ToLower())
+                       ? string.Format("teams_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower())
                        : "";
-        }
-
-        /// <summary>
-        /// 画像ファイル名を取得する
-        /// </summary>
-        /// <param name="pictureName">画像名</param>
-        /// <returns>画像ファイル名</returns>
-        public static string GetPictureFileName(string pictureName)
-        {
-            return !string.IsNullOrEmpty(pictureName)
-                       ? Path.Combine(PictureFolderName, Path.ChangeExtension(pictureName, ".bmp"))
-                       : "";
-        }
-
-        /// <summary>
-        /// ゲームフォルダ名が有効かどうかを判定する
-        /// </summary>
-        /// <returns>ゲームフォルダ名が有効ならtrueを返す</returns>
-        public static bool IsValidFolderName()
-        {
-            if (!Directory.Exists(ConfigFolderName))
-            {
-                return false;
-            }
-
-            if (!Directory.Exists(MinisterFolderName))
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 
     /// <summary>
-    /// ゲームの種類
+    ///     ゲームの種類
     /// </summary>
     public enum GameType
     {
         HeartsOfIron2, // Hearts of Iron 2 (Doomsday Armageddon)
         ArsenalOfDemocracy, // Arsenal of Democracy
         DarkestHour // Darkest Hour
-    };
+    }
 }

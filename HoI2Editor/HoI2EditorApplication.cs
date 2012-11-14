@@ -5,12 +5,12 @@ using HoI2Editor.Forms;
 namespace HoI2Editor
 {
     /// <summary>
-    /// アプリケーションクラス
+    ///     アプリケーションクラス
     /// </summary>
     internal class HoI2EditorApplication
     {
         /// <summary>
-        /// アプリケーションのエントリーポイント
+        ///     アプリケーションのエントリーポイント
         /// </summary>
         [STAThread]
         public static void Main()

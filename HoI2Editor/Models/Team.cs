@@ -7,22 +7,22 @@ using System.Text;
 namespace HoI2Editor.Models
 {
     /// <summary>
-    /// 研究機関データ
+    ///     研究機関データ
     /// </summary>
     internal class Team
     {
         /// <summary>
-        /// 研究特性
+        ///     研究特性
         /// </summary>
         public const int SpecialityLength = 32;
 
         /// <summary>
-        /// CSVファイルの区切り文字
+        ///     CSVファイルの区切り文字
         /// </summary>
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
-        /// 研究特性名
+        ///     研究特性名
         /// </summary>
         public static readonly string[] SpecialityNameTable =
             {
@@ -64,7 +64,7 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        /// 研究特性文字列
+        ///     研究特性文字列
         /// </summary>
         public static readonly string[] SpecialityTextTable =
             {
@@ -106,25 +106,28 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        /// 研究特性名とIDの対応付け
+        ///     研究特性名とIDの対応付け
         /// </summary>
         public static readonly Dictionary<string, TechSpeciality> SpecialityNameMap =
             new Dictionary<string, TechSpeciality>();
 
         /// <summary>
-        /// 現在解析中のファイル名
+        ///     現在解析中のファイル名
         /// </summary>
         private static string _currentFileName = "";
 
         /// <summary>
-        /// 現在解析中の行番号
+        ///     現在解析中の行番号
         /// </summary>
         private static int _currentLineNo;
 
+        /// <summary>
+        ///     研究特性
+        /// </summary>
         private readonly TechSpeciality[] _specialities = new TechSpeciality[SpecialityLength];
 
         /// <summary>
-        /// 静的コンストラクタ
+        ///     静的コンストラクタ
         /// </summary>
         static Team()
         {
@@ -139,63 +142,93 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 国タグ
+        ///     国タグ
         /// </summary>
         public CountryTag CountryTag { get; set; }
 
         /// <summary>
-        /// 研究機関ID
+        ///     研究機関ID
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// 名前
+        ///     名前
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 画像ファイル名
+        ///     画像ファイル名
         /// </summary>
         public string PictureName { get; set; }
 
         /// <summary>
-        /// スキル
+        ///     スキル
         /// </summary>
         public int Skill { get; set; }
 
         /// <summary>
-        /// 開始年
+        ///     開始年
         /// </summary>
         public int StartYear { get; set; }
 
         /// <summary>
-        /// 終了年
+        ///     終了年
         /// </summary>
         public int EndYear { get; set; }
 
+        /// <summary>
+        ///     研究特性
+        /// </summary>
         public TechSpeciality[] Specialities
         {
             get { return _specialities; }
         }
 
         /// <summary>
-        /// 研究機関ファイル群を読み込む
+        ///     研究機関ファイル群を読み込む
         /// </summary>
         /// <returns>研究機関リスト</returns>
         public static List<Team> LoadTeamFiles()
         {
             var teams = new List<Team>();
+            var list = new List<string>();
+            string folderName;
 
-            foreach (string fileName in Directory.GetFiles(Game.TeamFolderName, "*.csv"))
+            if (Game.IsModActive)
             {
-                LoadTeamFile(fileName, teams);
+                folderName = Path.Combine(Game.ModFolderName, "db\\tech\\teams");
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        LoadTeamFile(fileName, teams);
+                        string name = Path.GetFileName(fileName);
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            list.Add(name.ToLower());
+                        }
+                    }
+                }
+            }
+
+            folderName = Path.Combine(Game.FolderName, "db\\tech\\teams");
+            if (Directory.Exists(folderName))
+            {
+                foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                {
+                    string name = Path.GetFileName(fileName);
+                    if (!string.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
+                    {
+                        LoadTeamFile(fileName, teams);
+                    }
+                }
             }
 
             return teams;
         }
 
         /// <summary>
-        /// 研究機関ファイルを読み込む
+        ///     研究機関ファイルを読み込む
         /// </summary>
         /// <param name="fileName">対象ファイル名</param>
         /// <param name="teams">研究機関リスト</param>
@@ -239,7 +272,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 研究機関定義行を解釈する
+        ///     研究機関定義行を解釈する
         /// </summary>
         /// <param name="line">対象文字列</param>
         /// <param name="teams">研究機関リスト</param>
@@ -340,7 +373,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 研究機関ファイル群を保存する
+        ///     研究機関ファイル群を保存する
         /// </summary>
         /// <param name="teams">研究機関リスト</param>
         /// <param name="dirtyFlags">編集フラグ </param>
@@ -356,7 +389,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 研究機関ファイルを保存する
+        ///     研究機関ファイルを保存する
         /// </summary>
         /// <param name="teams">研究機関リスト</param>
         /// <param name="countryTag">国タグ</param>
@@ -367,10 +400,18 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            _currentFileName = Path.GetFileName(Game.GetTeamFileName(countryTag));
+            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, "db\\tech\\teams");
+            // 研究機関フォルダが存在しなければ作成する
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+            string fileName = Path.Combine(folderName, Game.GetTeamFileName(countryTag));
+
+            _currentFileName = fileName;
             _currentLineNo = 2;
 
-            var writer = new StreamWriter(Game.GetTeamFileName(countryTag), false, Encoding.Default);
+            var writer = new StreamWriter(fileName, false, Encoding.Default);
             writer.WriteLine(
                 "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
                 Country.CountryTextTable[(int) countryTag]);
@@ -379,13 +420,6 @@ namespace HoI2Editor.Models
                 Team team in
                     teams.Where(team => team.CountryTag == countryTag).Where(team => team != null))
             {
-                // 不正な値が設定されている場合は警告をログに出力する
-                if (string.IsNullOrEmpty(team.Name))
-                {
-                    Log.Write(string.Format("研究機関名の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(string.Format("  {0}: {1}\n\n", team.Id, team.Name));
-                }
-
                 writer.Write("{0};{1};{2};{3};{4};{5}", team.Id, team.Name, team.PictureName, team.Skill, team.StartYear,
                              team.EndYear);
                 for (int i = 0; i < SpecialityLength; i++)
@@ -401,7 +435,7 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// 研究特性
+    ///     研究特性
     /// </summary>
     public enum TechSpeciality
     {

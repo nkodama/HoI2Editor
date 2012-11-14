@@ -3,17 +3,17 @@
 namespace HoI2Editor.Models
 {
     /// <summary>
-    /// ログの管理
+    ///     ログの管理
     /// </summary>
     public static class Log
     {
         /// <summary>
-        /// ログ出力フォーム
+        ///     ログ出力フォーム
         /// </summary>
         private static readonly LogForm Form;
 
         /// <summary>
-        /// 静的コンストラクタ
+        ///     静的コンストラクタ
         /// </summary>
         static Log()
         {
@@ -21,7 +21,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ログを出力する
+        ///     ログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
         public static void Write(string s)
@@ -30,7 +30,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ログ出力フォームを表示する
+        ///     ログ出力フォームを表示する
         /// </summary>
         public static void Show()
         {
@@ -38,7 +38,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ログ出力フォームを非表示にする
+        ///     ログ出力フォームを非表示にする
         /// </summary>
         public static void Hide()
         {

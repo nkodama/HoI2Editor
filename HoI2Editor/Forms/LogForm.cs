@@ -4,12 +4,12 @@ using System.Windows.Forms;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    /// ログ出力フォーム
+    ///     ログ出力フォーム
     /// </summary>
     public partial class LogForm : Form
     {
         /// <summary>
-        /// コンストラクタ
+        ///     コンストラクタ
         /// </summary>
         public LogForm()
         {
@@ -17,7 +17,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ログを出力する
+        ///     ログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
         public void Write(string s)
@@ -31,7 +31,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// コピーボタン押下時の処理
+        ///     コピーボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -43,7 +43,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// クリアボタン押下時の処理
+        ///     クリアボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,7 +53,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閉じるボタン押下時の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
