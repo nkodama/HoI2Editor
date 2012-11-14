@@ -227,6 +227,7 @@
             this.countryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.countryListBox.ColumnWidth = 40;
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryListBox.FormattingEnabled = true;
             this.countryListBox.ItemHeight = 12;
             this.countryListBox.Location = new System.Drawing.Point(12, 252);
@@ -235,6 +236,7 @@
             this.countryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.countryListBox.Size = new System.Drawing.Size(237, 268);
             this.countryListBox.TabIndex = 8;
+            this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
             // countryAllButton

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -631,6 +632,44 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// 国家リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 選択項目がない場合はスキップ
+            if (e.Index != -1)
+            {
+                Brush brush;
+                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
+                {
+                    // 変更ありの項目は文字色を変更する
+                    brush = _dirtyFlags[e.Index + 1]
+                                ? new SolidBrush(Color.Red)
+                                : new SolidBrush(SystemColors.WindowText);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.HighlightText);
+                }
+                var listbox = sender as ListBox;
+                if (listbox != null)
+                {
+                    string s = listbox.Items[e.Index].ToString();
+                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                }
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     国家リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -726,6 +765,9 @@ namespace HoI2Editor.Forms
             minister.CountryTag = newCountryTag;
             ministerListView.SelectedItems[0].Text = Country.CountryTextTable[(int) minister.CountryTag];
             SetDirtyFlag(minister.CountryTag);
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
         }
 
         /// <summary>
