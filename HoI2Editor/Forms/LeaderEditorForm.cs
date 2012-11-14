@@ -327,8 +327,18 @@ namespace HoI2Editor.Forms
             // 国タグ
             foreach (string countryText in Country.CountryTextTable)
             {
-                countryComboBox.Items.Add(countryText);
+                countryComboBox.Items.Add(!string.IsNullOrEmpty(countryText)
+                                              ? Config.Text.ContainsKey(countryText)
+                                                    ? string.Format("{0} {1}", countryText, Config.Text[countryText])
+                                                    : countryText
+                                              : "");
             }
+            int maxSize = (from object item in countryComboBox.Items
+                           select
+                               TextRenderer.MeasureText(item.ToString(), countryComboBox.Font).Width +
+                               SystemInformation.VerticalScrollBarWidth).Concat(new[] {countryComboBox.DropDownWidth})
+                                                                        .Max();
+            countryComboBox.DropDownWidth = maxSize;
 
             // 兵科
             foreach (string branchText in Leader.BranchTextTable)
@@ -1027,9 +1037,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            countryComboBox.Text = leader.CountryTag != CountryTag.None
-                                       ? Country.CountryTextTable[(int) leader.CountryTag]
-                                       : "";
+            countryComboBox.SelectedIndex = (int) leader.CountryTag;
             idNumericUpDown.Value = leader.Id;
             nameTextBox.Text = leader.Name;
             branchComboBox.SelectedIndex = (int) leader.Branch;
