@@ -1032,6 +1032,39 @@ namespace HoI2Editor.Forms
                 }
             }
 
+            // 中途半端な状態での更新を防ぐため、更新イベントを抑止する
+            logisticsWizardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            defensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            offensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            winterSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            tricksterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            engineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            fortressBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            panzerLeaderCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            commandoCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            oldGuardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            seaWolfCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            blockadeRunnerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            superiorTacticianCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            spotterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            tankBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            carpetBomberCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            nightFlyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            fleetDestroyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            desertFoxCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            jungleRatCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            urbanWarfareSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            rangerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            mountaineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            hillsFighterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            counterAttackerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            assaulterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            encirclerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            ambusherCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            disciplinedCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            elasticDefenceSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+            blitzerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+
             logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
             defensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.DefensiveDoctrine) != 0);
             offensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.OffensiveDoctrine) != 0);
@@ -1063,6 +1096,39 @@ namespace HoI2Editor.Forms
             disciplinedCheckBox.Checked = ((leader.Traits & LeaderTraits.Disciplined) != 0);
             elasticDefenceSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0);
             blitzerCheckBox.Checked = ((leader.Traits & LeaderTraits.Blitzer) != 0);
+
+            // 更新イベントを再開する
+            logisticsWizardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            defensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            offensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            winterSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            tricksterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            engineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            fortressBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            panzerLeaderCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            commandoCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            oldGuardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            seaWolfCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            blockadeRunnerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            superiorTacticianCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            spotterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            tankBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            carpetBomberCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            nightFlyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            fleetDestroyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            desertFoxCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            jungleRatCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            urbanWarfareSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            rangerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            mountaineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            hillsFighterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            counterAttackerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            assaulterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            encirclerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            ambusherCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            disciplinedCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            elasticDefenceSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+            blitzerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
         }
 
         /// <summary>
