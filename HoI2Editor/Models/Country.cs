@@ -13,7 +13,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static string[] CountryTextTable =
             {
-                "",
                 "AFG",
                 "ALB",
                 "ALG",
@@ -379,7 +378,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum CountryTag
     {
-        None,
         // ReSharper disable InconsistentNaming
         AFG,
         ALB,

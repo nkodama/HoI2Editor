@@ -57,10 +57,6 @@ namespace HoI2Editor.Forms
         /// <param name="countryTag">国タグ</param>
         private void SetDirtyFlag(CountryTag countryTag)
         {
-            if (countryTag == CountryTag.None)
-            {
-                return;
-            }
             _dirtyFlags[(int) countryTag] = true;
         }
 
@@ -70,10 +66,6 @@ namespace HoI2Editor.Forms
         /// <param name="countryTag">国タグ</param>
         private void ClearDirtyFlag(CountryTag countryTag)
         {
-            if (countryTag == CountryTag.None)
-            {
-                return;
-            }
             _dirtyFlags[(int) countryTag] = false;
         }
 
@@ -94,22 +86,15 @@ namespace HoI2Editor.Forms
         private void NarrowTeamList()
         {
             _narrowedTeamList.Clear();
-            List<CountryTag> selectedTagList;
-            if (countryListBox.SelectedItems.Count == 0)
-            {
-                selectedTagList = new List<CountryTag> {CountryTag.None};
-            }
-            else
-            {
-                selectedTagList =
-                    (from string countryText in countryListBox.SelectedItems select Country.CountryTextMap[countryText])
-                        .
-                        ToList();
-            }
+            List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
+                                                   ? new List<CountryTag>()
+                                                   : (from string countryText in countryListBox.SelectedItems
+                                                      select Country.CountryTextMap[countryText]).ToList();
 
             foreach (
                 Team team in
-                    _masterTeamList.Where(team => selectedTagList.Contains(team.CountryTag)))
+                    _masterTeamList.Where(
+                        team => team.CountryTag != null && selectedTagList.Contains(team.CountryTag.Value)))
             {
                 _narrowedTeamList.Add(team);
             }
@@ -148,25 +133,24 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
-            foreach (string countryText in Country.CountryTextTable)
+            int maxSize = countryComboBox.DropDownWidth;
+            foreach (string s in Country.CountryTextTable.Select(
+                country =>
+                Config.Text.ContainsKey(country) ? string.Format("{0} {1}", country, Config.Text[country]) : country))
             {
-                countryComboBox.Items.Add(!string.IsNullOrEmpty(countryText)
-                                              ? Config.Text.ContainsKey(countryText)
-                                                    ? string.Format("{0} {1}", countryText, Config.Text[countryText])
-                                                    : countryText
-                                              : "");
+                countryComboBox.Items.Add(s);
+                maxSize = Math.Max(maxSize,
+                                   TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                                   SystemInformation.VerticalScrollBarWidth);
             }
-            int maxSize = (from object item in countryComboBox.Items
-                           select
-                               TextRenderer.MeasureText(item.ToString(), countryComboBox.Font).Width +
-                               SystemInformation.VerticalScrollBarWidth).Concat(new[] { countryComboBox.DropDownWidth })
-                                                                        .Max();
             countryComboBox.DropDownWidth = maxSize;
 
             // 特性
-            foreach (string specialityText in Team.SpecialityTextTable)
+            foreach (
+                string text in
+                    Team.SpecialityTextTable.Select(
+                        speciality => !string.IsNullOrEmpty(speciality) ? Config.Text[speciality] : ""))
             {
-                string text = !string.IsNullOrEmpty(specialityText) ? Config.Text[specialityText] : "";
                 specialityComboBox1.Items.Add(text);
                 specialityComboBox2.Items.Add(text);
                 specialityComboBox3.Items.Add(text);
@@ -244,7 +228,7 @@ namespace HoI2Editor.Forms
             var item = new ListViewItem
                            {
                                Text =
-                                   team.CountryTag != CountryTag.None
+                                   team.CountryTag != null
                                        ? Country.CountryTextTable[(int) team.CountryTag]
                                        : "",
                                Tag = team
@@ -344,6 +328,7 @@ namespace HoI2Editor.Forms
                 {
                     return;
                 }
+
                 team = new Team
                            {
                                CountryTag = selectedTeam.CountryTag,
@@ -352,11 +337,14 @@ namespace HoI2Editor.Forms
                                StartYear = 1930,
                                EndYear = 1970,
                            };
+
                 int masterIndex = _masterTeamList.IndexOf(selectedTeam);
                 _masterTeamList.Insert(masterIndex + 1, team);
+
                 int narrowedIndex = teamListView.SelectedIndices[0] + 1;
                 _narrowedTeamList.Insert(narrowedIndex, team);
                 InsertTeamListViewItem(narrowedIndex, team);
+
                 teamListView.Items[narrowedIndex].Focused = true;
                 teamListView.Items[narrowedIndex].Selected = true;
                 teamListView.Items[narrowedIndex].EnsureVisible();
@@ -367,21 +355,29 @@ namespace HoI2Editor.Forms
                            {
                                CountryTag =
                                    countryListBox.SelectedItems.Count > 0
-                                       ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                       : CountryTag.None,
+                                       ? (CountryTag?) (countryListBox.SelectedIndex)
+                                       : null,
                                Id = 0,
                                Skill = 1,
                                StartYear = 1930,
                                EndYear = 1970,
                            };
+
                 _masterTeamList.Add(team);
+
                 _narrowedTeamList.Add(team);
                 AddTeamListViewItem(team);
+
                 teamListView.Items[0].Focused = true;
                 teamListView.Items[0].Selected = true;
+
                 EnableEditableItems();
             }
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -400,6 +396,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var team = new Team
                            {
                                CountryTag = selectedTeam.CountryTag,
@@ -413,15 +410,22 @@ namespace HoI2Editor.Forms
             {
                 team.Specialities[i] = selectedTeam.Specialities[i];
             }
+
             int masterIndex = _masterTeamList.IndexOf(selectedTeam);
             _masterTeamList.Insert(masterIndex + 1, team);
+
             int narrowedIndex = teamListView.SelectedIndices[0] + 1;
             _narrowedTeamList.Insert(narrowedIndex, team);
             InsertTeamListViewItem(narrowedIndex, team);
+
             teamListView.Items[narrowedIndex].Focused = true;
             teamListView.Items[narrowedIndex].Selected = true;
             teamListView.Items[narrowedIndex].EnsureVisible();
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -440,11 +444,14 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             int masterIndex = _masterTeamList.IndexOf(selectedTeam);
             _masterTeamList.RemoveAt(masterIndex);
+
             int narrowedIndex = teamListView.SelectedIndices[0];
             _narrowedTeamList.RemoveAt(narrowedIndex);
             RemoveTeamListViewItem(narrowedIndex);
+
             if (narrowedIndex < teamListView.Items.Count)
             {
                 teamListView.Items[narrowedIndex].Focused = true;
@@ -459,7 +466,11 @@ namespace HoI2Editor.Forms
             {
                 DisableEditableItems();
             }
-            SetDirtyFlag(selectedTeam.CountryTag);
+
+            if (selectedTeam.CountryTag != null)
+            {
+                SetDirtyFlag(selectedTeam.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -480,6 +491,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var selectedTeam = teamListView.SelectedItems[0].Tag as Team;
             if (selectedTeam == null)
             {
@@ -490,17 +502,24 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             int masterSelectedIndex = _masterTeamList.IndexOf(selectedTeam);
             int masterTopIndex = _masterTeamList.IndexOf(topTeam);
             _masterTeamList.Insert(masterTopIndex, selectedTeam);
             _masterTeamList.RemoveAt(masterSelectedIndex + 1);
+
             _narrowedTeamList.Insert(0, selectedTeam);
             _narrowedTeamList.RemoveAt(selectedIndex + 1);
             InsertTeamListViewItem(0, selectedTeam);
             RemoveTeamListViewItem(selectedIndex + 1);
+
             teamListView.Items[0].Focused = true;
             teamListView.Items[0].Selected = true;
-            SetDirtyFlag(selectedTeam.CountryTag);
+
+            if (selectedTeam.CountryTag != null)
+            {
+                SetDirtyFlag(selectedTeam.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -520,6 +539,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             int selectedIndex = teamListView.SelectedIndices[0];
             var selectedTeam = teamListView.SelectedItems[0].Tag as Team;
             if (selectedTeam == null)
@@ -531,17 +551,24 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             int masterSelectedIndex = _masterTeamList.IndexOf(selectedTeam);
             int masterUpperIndex = _masterTeamList.IndexOf(upperTeam);
             _masterTeamList.Insert(masterUpperIndex, selectedTeam);
             _masterTeamList.RemoveAt(masterSelectedIndex + 1);
+
             _narrowedTeamList.Insert(selectedIndex - 1, selectedTeam);
             _narrowedTeamList.RemoveAt(selectedIndex + 1);
             InsertTeamListViewItem(selectedIndex - 1, selectedTeam);
             RemoveTeamListViewItem(selectedIndex + 1);
+
             teamListView.Items[selectedIndex - 1].Focused = true;
             teamListView.Items[selectedIndex - 1].Selected = true;
-            SetDirtyFlag(selectedTeam.CountryTag);
+
+            if (selectedTeam.CountryTag != null)
+            {
+                SetDirtyFlag(selectedTeam.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -561,6 +588,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             int selectedIndex = teamListView.SelectedIndices[0];
             var selectedTeam = teamListView.SelectedItems[0].Tag as Team;
             if (selectedTeam == null)
@@ -572,17 +600,24 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             int masterSelectedIndex = _masterTeamList.IndexOf(selectedTeam);
             int masterLowerIndex = _masterTeamList.IndexOf(lowerTeam);
             _masterTeamList.Insert(masterSelectedIndex, lowerTeam);
             _masterTeamList.RemoveAt(masterLowerIndex + 1);
+
             _narrowedTeamList.Insert(selectedIndex, lowerTeam);
             _narrowedTeamList.RemoveAt(selectedIndex + 2);
             InsertTeamListViewItem(selectedIndex, lowerTeam);
             RemoveTeamListViewItem(selectedIndex + 2);
+
             teamListView.Items[selectedIndex + 1].Focused = true;
             teamListView.Items[selectedIndex + 1].Selected = true;
-            SetDirtyFlag(selectedTeam.CountryTag);
+
+            if (selectedTeam.CountryTag != null)
+            {
+                SetDirtyFlag(selectedTeam.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -604,6 +639,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var selectedTeam = teamListView.Items[selectedIndex].Tag as Team;
             if (selectedTeam == null)
             {
@@ -614,21 +650,28 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             int masterSelectedIndex = _masterTeamList.IndexOf(selectedTeam);
             int masterBottomIndex = _masterTeamList.IndexOf(bottomTeam);
             _masterTeamList.Insert(masterBottomIndex + 1, selectedTeam);
             _masterTeamList.RemoveAt(masterSelectedIndex);
+
             _narrowedTeamList.Insert(bottomIndex + 1, selectedTeam);
             _narrowedTeamList.RemoveAt(selectedIndex);
             InsertTeamListViewItem(bottomIndex + 1, selectedTeam);
             RemoveTeamListViewItem(selectedIndex);
+
             teamListView.Items[bottomIndex].Focused = true;
             teamListView.Items[bottomIndex].Selected = true;
-            SetDirtyFlag(selectedTeam.CountryTag);
+
+            if (selectedTeam.CountryTag != null)
+            {
+                SetDirtyFlag(selectedTeam.CountryTag.Value);
+            }
         }
 
         /// <summary>
-        /// 国家リストボックスの項目描画処理
+        ///     国家リストボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -644,7 +687,7 @@ namespace HoI2Editor.Forms
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
                 {
                     // 変更ありの項目は文字色を変更する
-                    brush = _dirtyFlags[e.Index + 1]
+                    brush = _dirtyFlags[e.Index]
                                 ? new SolidBrush(Color.Red)
                                 : new SolidBrush(SystemColors.WindowText);
                 }
@@ -698,7 +741,23 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            countryComboBox.SelectedIndex = (int) team.CountryTag;
+            if (team.CountryTag != null)
+            {
+                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.RemoveAt(0);
+                }
+                countryComboBox.SelectedIndex = (int) team.CountryTag.Value;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.Insert(0, "");
+                }
+                countryComboBox.SelectedIndex = 0;
+            }
+
             idNumericUpDown.Value = team.Id;
             nameTextBox.Text = team.Name;
             skillNumericUpDown.Value = team.Skill;
@@ -716,7 +775,7 @@ namespace HoI2Editor.Forms
             {
                 if (Game.IsModActive)
                 {
-                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, "gfx\\interface\\pics"),
+                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
                                                       Path.ChangeExtension(team.PictureName, ".bmp"));
                     if (File.Exists(modFileName))
                     {
@@ -725,14 +784,14 @@ namespace HoI2Editor.Forms
                     else
                     {
                         teamPictureBox.ImageLocation =
-                            Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
                                          Path.ChangeExtension(team.PictureName, ".bmp"));
                     }
                 }
                 else
                 {
                     teamPictureBox.ImageLocation =
-                        Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
                                      Path.ChangeExtension(team.PictureName, ".bmp"));
                 }
             }
@@ -754,17 +813,32 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
-            var newCountryTag = (CountryTag) countryComboBox.SelectedIndex;
+            CountryTag? newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
+                                            ? (CountryTag?) countryComboBox.SelectedIndex
+                                            : (CountryTag?) (countryComboBox.SelectedIndex - 1);
             if (newCountryTag == team.CountryTag)
             {
                 return;
             }
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
             team.CountryTag = newCountryTag;
             teamListView.SelectedItems[0].Text = Country.CountryTextTable[(int) team.CountryTag];
-            SetDirtyFlag(team.CountryTag);
-            
+            if (team.CountryTag != null)
+            {
+                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.RemoveAt(0);
+                }
+                countryComboBox.SelectedIndex = (int) team.CountryTag.Value;
+                SetDirtyFlag(team.CountryTag.Value);
+            }
+
             // 国家リストボックスの項目色を変更するため描画更新する
             countryListBox.Refresh();
         }
@@ -785,6 +859,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newId = (int) idNumericUpDown.Value;
             if (newId == team.Id)
@@ -793,7 +868,11 @@ namespace HoI2Editor.Forms
             }
             team.Id = newId;
             teamListView.SelectedItems[0].SubItems[1].Text = team.Id.ToString(CultureInfo.InvariantCulture);
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -812,6 +891,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             string newName = nameTextBox.Text;
             if (newName.Equals(team.Name))
@@ -820,7 +900,11 @@ namespace HoI2Editor.Forms
             }
             team.Name = newName;
             teamListView.SelectedItems[0].SubItems[2].Text = team.Name;
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -839,6 +923,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newSkill = (int) skillNumericUpDown.Value;
             if (newSkill == team.Skill)
@@ -848,7 +933,11 @@ namespace HoI2Editor.Forms
             team.Skill = newSkill;
             teamListView.SelectedItems[0].SubItems[3].Text =
                 team.Skill.ToString(CultureInfo.InvariantCulture);
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -867,6 +956,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newStartYear = (int) startYearNumericUpDown.Value;
             if (newStartYear == team.StartYear)
@@ -876,7 +966,11 @@ namespace HoI2Editor.Forms
             team.StartYear = newStartYear;
             teamListView.SelectedItems[0].SubItems[4].Text =
                 team.StartYear.ToString(CultureInfo.InvariantCulture);
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -895,6 +989,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newEndYear = (int) endYearNumericUpDown.Value;
             if (newEndYear == team.EndYear)
@@ -904,7 +999,11 @@ namespace HoI2Editor.Forms
             team.EndYear = newEndYear;
             teamListView.SelectedItems[0].SubItems[5].Text =
                 team.EndYear.ToString(CultureInfo.InvariantCulture);
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -923,6 +1022,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newSpeciality = (TechSpeciality) specialityComboBox1.SelectedIndex;
             if (newSpeciality == team.Specialities[0])
@@ -934,7 +1034,11 @@ namespace HoI2Editor.Forms
                 team.Specialities[0] != TechSpeciality.None
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[0]]]
                     : "";
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -953,6 +1057,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newSpeciality = (TechSpeciality) specialityComboBox2.SelectedIndex;
             if (newSpeciality == team.Specialities[1])
@@ -964,7 +1069,11 @@ namespace HoI2Editor.Forms
                 team.Specialities[1] != TechSpeciality.None
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[1]]]
                     : "";
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -983,6 +1092,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newSpeciality = (TechSpeciality) specialityComboBox3.SelectedIndex;
             if (newSpeciality == team.Specialities[2])
@@ -994,7 +1104,11 @@ namespace HoI2Editor.Forms
                 team.Specialities[2] != TechSpeciality.None
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[2]]]
                     : "";
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -1013,6 +1127,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newSpeciality = (TechSpeciality) specialityComboBox4.SelectedIndex;
             if (newSpeciality == team.Specialities[3])
@@ -1024,7 +1139,11 @@ namespace HoI2Editor.Forms
                 team.Specialities[3] != TechSpeciality.None
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[3]]]
                     : "";
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -1043,6 +1162,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newSpeciality = (TechSpeciality) specialityComboBox5.SelectedIndex;
             if (newSpeciality == team.Specialities[4])
@@ -1054,7 +1174,11 @@ namespace HoI2Editor.Forms
                 team.Specialities[4] != TechSpeciality.None
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[4]]]
                     : "";
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -1073,6 +1197,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             var newSpeciality = (TechSpeciality) specialityComboBox6.SelectedIndex;
             if (newSpeciality == team.Specialities[5])
@@ -1084,7 +1209,11 @@ namespace HoI2Editor.Forms
                 team.Specialities[5] != TechSpeciality.None
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[5]]]
                     : "";
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -1103,18 +1232,20 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 値に変化がなければ何もせずに戻る
             string newPictureName = pictureNameTextBox.Text;
             if (newPictureName.Equals(team.PictureName))
             {
                 return;
             }
+
             team.PictureName = newPictureName;
             if (!string.IsNullOrEmpty(team.PictureName))
             {
                 if (Game.IsModActive)
                 {
-                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, "gfx\\interface\\pics"),
+                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
                                                       Path.ChangeExtension(team.PictureName, ".bmp"));
                     if (File.Exists(modFileName))
                     {
@@ -1123,18 +1254,22 @@ namespace HoI2Editor.Forms
                     else
                     {
                         teamPictureBox.ImageLocation =
-                            Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
                                          Path.ChangeExtension(team.PictureName, ".bmp"));
                     }
                 }
                 else
                 {
                     teamPictureBox.ImageLocation =
-                        Path.Combine(Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
                                      Path.ChangeExtension(team.PictureName, ".bmp"));
                 }
             }
-            SetDirtyFlag(team.CountryTag);
+
+            if (team.CountryTag != null)
+            {
+                SetDirtyFlag(team.CountryTag.Value);
+            }
         }
 
         /// <summary>
@@ -1153,9 +1288,10 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var dialog = new OpenFileDialog
                              {
-                                 InitialDirectory = Path.Combine(Game.FolderName, "gfx\\interface\\pics"),
+                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PicturePathName),
                                  FileName = team.PictureName,
                                  Filter = Resources.OpenBitmapFileDialogFilter
                              };
@@ -1173,8 +1309,10 @@ namespace HoI2Editor.Forms
         private void OnCountryAllButtonClick(object sender, EventArgs e)
         {
             countryListBox.BeginUpdate();
+
             // 選択イベントを処理すると時間がかかるので、一時的に無効化する
             countryListBox.SelectedIndexChanged -= OnCountryListBoxSelectedIndexChanged;
+
             if (countryListBox.SelectedItems.Count <= 1)
             {
                 // スクロール位置を先頭に設定するため、逆順で選択する
@@ -1190,10 +1328,13 @@ namespace HoI2Editor.Forms
                     countryListBox.SetSelected(i, false);
                 }
             }
+
             // 選択イベントを元に戻す
             countryListBox.SelectedIndexChanged += OnCountryListBoxSelectedIndexChanged;
+
             // 研究機関リスト絞り込みのため、ダミーでイベント発行する
             OnCountryListBoxSelectedIndexChanged(sender, e);
+
             countryListBox.EndUpdate();
         }
 

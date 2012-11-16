@@ -9,6 +9,26 @@ namespace HoI2Editor.Models
     public static class Game
     {
         /// <summary>
+        ///     指揮官フォルダ
+        /// </summary>
+        public const string LeaderPathName = "db\\leaders";
+
+        /// <summary>
+        ///     閣僚フォルダ
+        /// </summary>
+        public const string MinisterPathName = "db\\ministers";
+
+        /// <summary>
+        ///     研究機関フォルダ
+        /// </summary>
+        public const string TeamPathName = "db\\tech\\teams";
+
+        /// <summary>
+        ///     画像フォルダ
+        /// </summary>
+        public const string PicturePathName = "gfx\\interface\\pics";
+
+        /// <summary>
         ///     ゲームフォルダ名
         /// </summary>
         private static string _folderName;
@@ -81,7 +101,7 @@ namespace HoI2Editor.Models
         /// <returns>指揮官ファイル名</returns>
         public static string GetLeaderFileName(CountryTag countryTag)
         {
-            return countryTag != CountryTag.None ? Leader.FileNameMap[countryTag] : "";
+            return Leader.FileNameMap[countryTag];
         }
 
         /// <summary>
@@ -91,9 +111,7 @@ namespace HoI2Editor.Models
         /// <returns>閣僚ファイル名</returns>
         public static string GetMinisterFileName(CountryTag countryTag)
         {
-            return countryTag != CountryTag.None
-                       ? string.Format("ministers_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower())
-                       : "";
+            return string.Format("ministers_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower());
         }
 
         /// <summary>
@@ -103,9 +121,7 @@ namespace HoI2Editor.Models
         /// <returns>研究機関ファイル名</returns>
         public static string GetTeamFileName(CountryTag countryTag)
         {
-            return countryTag != CountryTag.None
-                       ? string.Format("teams_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower())
-                       : "";
+            return string.Format("teams_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower());
         }
     }
 

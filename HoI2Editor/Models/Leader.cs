@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -95,12 +96,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     兵科文字列
         /// </summary>
-        public static readonly string[] BranchTextTable = {"", "陸軍", "海軍", "空軍"};
+        public static readonly string[] BranchTextTable = {"陸軍", "海軍", "空軍"};
 
         /// <summary>
         ///     階級文字列
         /// </summary>
-        public static readonly string[] RankTextTable = {"", "少将", "中将", "大将", "元帥"};
+        public static readonly string[] RankTextTable = {"少将", "中将", "大将", "元帥"};
 
         /// <summary>
         ///     国タグと指揮官ファイル名の対応付け
@@ -125,7 +126,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag CountryTag { get; set; }
+        public CountryTag? CountryTag { get; set; }
 
         /// <summary>
         ///     指揮官ID
@@ -173,7 +174,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     理想階級
         /// </summary>
-        public LeaderRank IdealRank { get; set; }
+        public LeaderRank? IdealRank { get; set; }
 
         /// <summary>
         ///     指揮官特性
@@ -193,7 +194,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     兵科
         /// </summary>
-        public LeaderBranch Branch { get; set; }
+        public LeaderBranch? Branch { get; set; }
 
         /// <summary>
         ///     指揮官ファイル群を読み込む
@@ -208,7 +209,7 @@ namespace HoI2Editor.Models
 
             if (Game.IsModActive)
             {
-                folderName = Path.Combine(Game.ModFolderName, "db\\leaders");
+                folderName = Path.Combine(Game.ModFolderName, Game.LeaderPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -223,7 +224,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            folderName = Path.Combine(Game.FolderName, "db\\leaders");
+            folderName = Path.Combine(Game.FolderName, Game.LeaderPathName);
             if (Directory.Exists(folderName))
             {
                 foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -264,18 +265,18 @@ namespace HoI2Editor.Models
             }
 
             _currentLineNo++;
-            var currentCountryTag = CountryTag.None;
+            CountryTag? countryTag = null;
 
             while (!reader.EndOfStream)
             {
                 Leader leader = ParseLeaderLine(reader.ReadLine(), leaders);
 
-                if (currentCountryTag == CountryTag.None && leader != null)
+                if (countryTag == null && leader != null)
                 {
-                    currentCountryTag = leader.CountryTag;
-                    if (!FileNameMap.ContainsKey(currentCountryTag))
+                    countryTag = leader.CountryTag;
+                    if (countryTag != null && !FileNameMap.ContainsKey(countryTag.Value))
                     {
-                        FileNameMap.Add(currentCountryTag, Path.GetFileName(fileName));
+                        FileNameMap.Add(countryTag.Value, Path.GetFileName(fileName));
                     }
                 }
                 _currentLineNo++;
@@ -321,12 +322,12 @@ namespace HoI2Editor.Models
             if (!int.TryParse(token[1], out id))
             {
                 Log.Write(string.Format("IDの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n\n", token[1]));
+                Log.Write(string.Format("  {0}: {1}\n\n", token[1], token[0]));
                 return null;
             }
             leader.Id = id;
             leader.Name = token[0];
-            if (!Country.CountryTextMap.ContainsKey(token[2].ToUpper()))
+            if (string.IsNullOrEmpty(token[2]) || !Country.CountryTextMap.ContainsKey(token[2].ToUpper()))
             {
                 Log.Write(string.Format("国タグの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[2]));
@@ -343,7 +344,7 @@ namespace HoI2Editor.Models
                 else
                 {
                     leader.RankYear[i] = 1990;
-                    Log.Write(string.Format("{0}任官年の異常: {1} L{2} \n", RankTextTable[i + 1], _currentFileName,
+                    Log.Write(string.Format("{0}任官年の異常: {1} L{2} \n", RankTextTable[i], _currentFileName,
                                             _currentLineNo));
                     Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[3 + i]));
                 }
@@ -351,11 +352,11 @@ namespace HoI2Editor.Models
             int idealRank;
             if (int.TryParse(token[7], out idealRank) && 0 <= idealRank && idealRank <= 3)
             {
-                leader.IdealRank = (LeaderRank) (4 - idealRank);
+                leader.IdealRank = (LeaderRank) (3 - idealRank);
             }
             else
             {
-                leader.IdealRank = LeaderRank.None;
+                leader.IdealRank = null;
                 Log.Write(string.Format("理想階級の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[7]));
             }
@@ -366,7 +367,7 @@ namespace HoI2Editor.Models
             }
             else
             {
-                leader.MaxSkill = 1;
+                leader.MaxSkill = 0;
                 Log.Write(string.Format("最大スキルの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[8]));
             }
@@ -388,7 +389,7 @@ namespace HoI2Editor.Models
             }
             else
             {
-                leader.Skill = 1;
+                leader.Skill = 0;
                 Log.Write(string.Format("スキルの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[10]));
             }
@@ -399,7 +400,7 @@ namespace HoI2Editor.Models
             }
             else
             {
-                leader.Experience = 1;
+                leader.Experience = 0;
                 Log.Write(string.Format("経験値の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[11]));
             }
@@ -410,18 +411,18 @@ namespace HoI2Editor.Models
             }
             else
             {
-                leader.Loyalty = 1;
+                leader.Loyalty = 0;
                 Log.Write(string.Format("忠誠度の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[12]));
             }
             int branch;
             if (int.TryParse(token[13], out branch))
             {
-                leader.Branch = (LeaderBranch) (branch + 1);
+                leader.Branch = (LeaderBranch) branch;
             }
             else
             {
-                leader.Branch = LeaderBranch.None;
+                leader.Branch = null;
                 Log.Write(string.Format("兵科の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[13]));
             }
@@ -448,6 +449,7 @@ namespace HoI2Editor.Models
                 Log.Write(string.Format("終了年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[16]));
             }
+
             leaders.Add(leader);
 
             return leader;
@@ -462,8 +464,9 @@ namespace HoI2Editor.Models
         {
             foreach (
                 CountryTag countryTag in
-                    Enum.GetValues(typeof (CountryTag)).Cast<CountryTag>().Where(
-                        countryTag => dirtyFlags[(int) countryTag]).Where(countryTag => countryTag != CountryTag.None))
+                    Enum.GetValues(typeof (CountryTag))
+                        .Cast<CountryTag>()
+                        .Where(countryTag => dirtyFlags[(int) countryTag]))
             {
                 SaveLeaderFile(leaders, countryTag);
             }
@@ -476,12 +479,8 @@ namespace HoI2Editor.Models
         /// <param name="countryTag">国タグ</param>
         private static void SaveLeaderFile(IEnumerable<Leader> leaders, CountryTag countryTag)
         {
-            if (countryTag == CountryTag.None)
-            {
-                return;
-            }
-
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, "db\\leaders");
+            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                             Game.LeaderPathName);
             // 指揮官フォルダが存在しなければ作成する
             if (!Directory.Exists(folderName))
             {
@@ -496,17 +495,29 @@ namespace HoI2Editor.Models
             writer.WriteLine(
                 "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
 
-            foreach (
-                Leader leader in
-                    leaders.Where(leader => leader.CountryTag == countryTag).Where(leader => leader != null))
+            foreach (Leader leader in leaders.Where(leader => leader.CountryTag == countryTag))
             {
-                writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
-                                 leader.Name, leader.Id, Country.CountryTextTable[(int) leader.CountryTag],
-                                 leader.RankYear[0], leader.RankYear[1], leader.RankYear[2], leader.RankYear[3],
-                                 leader.IdealRank != LeaderRank.None ? (int) (4 - leader.IdealRank) : 3, leader.MaxSkill,
-                                 leader.Traits, leader.Skill, leader.Experience, leader.Loyalty,
-                                 leader.Branch != LeaderBranch.None ? (int) (leader.Branch - 1) : 0, leader.PictureName,
-                                 leader.StartYear, leader.EndYear);
+                writer.WriteLine(
+                    "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
+                    leader.Name,
+                    leader.Id,
+                    leader.CountryTag != null ? Country.CountryTextTable[(int) leader.CountryTag.Value] : "",
+                    leader.RankYear[0],
+                    leader.RankYear[1],
+                    leader.RankYear[2],
+                    leader.RankYear[3],
+                    leader.IdealRank != null
+                        ? (3 - (int) leader.IdealRank.Value).ToString(CultureInfo.InvariantCulture)
+                        : "",
+                    leader.MaxSkill,
+                    leader.Traits,
+                    leader.Skill,
+                    leader.Experience,
+                    leader.Loyalty,
+                    leader.Branch != null ? ((int) leader.Branch.Value).ToString(CultureInfo.InvariantCulture) : "",
+                    leader.PictureName,
+                    leader.StartYear,
+                    leader.EndYear);
                 _currentLineNo++;
             }
 
@@ -735,7 +746,7 @@ namespace HoI2Editor.Models
         Ambusher, // 奇襲戦
         Disciplined, // 規律
         ElasticDefenceSpecialist, // 戦術的退却
-        Blitzer // 電撃戦
+        Blitzer, // 電撃戦
     }
 
     /// <summary>
@@ -743,10 +754,9 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum LeaderBranch
     {
-        None,
         Army, // 陸軍
         Navy, //海軍
-        Airforce //空軍
+        Airforce, //空軍
     }
 
     /// <summary>
@@ -754,7 +764,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum LeaderRank
     {
-        None,
         MajorGeneral, // 少将
         LieutenantGeneral, // 中将
         General, // 大将

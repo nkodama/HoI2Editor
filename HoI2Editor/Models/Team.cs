@@ -131,12 +131,12 @@ namespace HoI2Editor.Models
         /// </summary>
         static Team()
         {
-            foreach (TechSpeciality speciality in Enum.GetValues(typeof (TechSpeciality)))
+            foreach (
+                TechSpeciality speciality in
+                    Enum.GetValues(typeof (TechSpeciality))
+                        .Cast<TechSpeciality>()
+                        .Where(speciality => speciality != TechSpeciality.None))
             {
-                if (speciality == TechSpeciality.None)
-                {
-                    continue;
-                }
                 SpecialityNameMap.Add(SpecialityNameTable[(int) speciality].ToLower(), speciality);
             }
         }
@@ -144,7 +144,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag CountryTag { get; set; }
+        public CountryTag? CountryTag { get; set; }
 
         /// <summary>
         ///     研究機関ID
@@ -196,7 +196,7 @@ namespace HoI2Editor.Models
 
             if (Game.IsModActive)
             {
-                folderName = Path.Combine(Game.ModFolderName, "db\\tech\\teams");
+                folderName = Path.Combine(Game.ModFolderName, Game.TeamPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -211,7 +211,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            folderName = Path.Combine(Game.FolderName, "db\\tech\\teams");
+            folderName = Path.Combine(Game.FolderName, Game.TeamPathName);
             if (Directory.Exists(folderName))
             {
                 foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -369,6 +369,7 @@ namespace HoI2Editor.Models
                 }
             }
             team.CountryTag = countryTag;
+
             teams.Add(team);
         }
 
@@ -381,8 +382,9 @@ namespace HoI2Editor.Models
         {
             foreach (
                 CountryTag countryTag in
-                    Enum.GetValues(typeof (CountryTag)).Cast<CountryTag>().Where(
-                        countryTag => dirtyFlags[(int) countryTag]).Where(countryTag => countryTag != CountryTag.None))
+                    Enum.GetValues(typeof (CountryTag))
+                        .Cast<CountryTag>()
+                        .Where(countryTag => dirtyFlags[(int) countryTag]))
             {
                 SaveTeamFile(teams, countryTag);
             }
@@ -395,12 +397,7 @@ namespace HoI2Editor.Models
         /// <param name="countryTag">国タグ</param>
         private static void SaveTeamFile(IEnumerable<Team> teams, CountryTag countryTag)
         {
-            if (countryTag == CountryTag.None)
-            {
-                return;
-            }
-
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, "db\\tech\\teams");
+            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, Game.TeamPathName);
             // 研究機関フォルダが存在しなければ作成する
             if (!Directory.Exists(folderName))
             {
@@ -420,11 +417,20 @@ namespace HoI2Editor.Models
                 Team team in
                     teams.Where(team => team.CountryTag == countryTag).Where(team => team != null))
             {
-                writer.Write("{0};{1};{2};{3};{4};{5}", team.Id, team.Name, team.PictureName, team.Skill, team.StartYear,
-                             team.EndYear);
+                writer.Write(
+                    "{0};{1};{2};{3};{4};{5}",
+                    team.Id,
+                    team.Name,
+                    team.PictureName,
+                    team.Skill,
+                    team.StartYear,
+                    team.EndYear);
                 for (int i = 0; i < SpecialityLength; i++)
                 {
-                    writer.Write(";{0}", SpecialityNameTable[(int) team.Specialities[i]]);
+                    writer.Write(";{0}",
+                                 team.Specialities[i] != TechSpeciality.None
+                                     ? SpecialityNameTable[(int) team.Specialities[i]]
+                                     : "");
                 }
                 writer.WriteLine(";x");
                 _currentLineNo++;

@@ -21,7 +21,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] PositionNameTable =
             {
-                "",
                 "Head of State",
                 "Head of Government",
                 "Foreign Minister",
@@ -39,7 +38,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] PositionTextTable =
             {
-                "",
                 "HOIG_HEAD_OF_STATE",
                 "HOIG_HEAD_OF_GOVERNMENT",
                 "HOIG_FOREIGN_MINISTER",
@@ -57,7 +55,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] PersonalityNameTable =
             {
-                "",
                 "Undistinguished Suit",
                 "Autocratic Charmer",
                 "Barking Buffoon",
@@ -145,7 +142,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] PersonalityTextTable =
             {
-                "",
                 "NPERSONALITY_UNDISTINGUISHED_SUIT",
                 "NPERSONALITY_AUTOCRATIC_CHARMER",
                 "NPERSONALITY_BARKING_BUFFOON",
@@ -233,7 +229,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] IdeologyNameTable =
             {
-                "",
                 "NS",
                 "FA",
                 "PA",
@@ -251,7 +246,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] IdeologyTextTable =
             {
-                "",
                 "CATEGORY_NATIONAL_SOCIALIST",
                 "CATEGORY_FASCIST",
                 "CATEGORY_PATERNAL_AUTOCRAT",
@@ -269,7 +263,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] LoyaltyNameTable =
             {
-                "",
                 "Very High",
                 "High",
                 "Medium",
@@ -284,7 +277,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] LoyaltyTextTable =
             {
-                "",
                 "最高",
                 "高",
                 "中",
@@ -346,7 +338,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] HeadOfStatePersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.AutocraticCharmer,
                 MinisterPersonality.BarkingBuffoon,
                 MinisterPersonality.BenevolentGentleman,
@@ -367,7 +358,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] HeadOfGovernmentPersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.AmbitiousUnionBoss,
                 MinisterPersonality.BackroomBackstabber,
                 MinisterPersonality.CorporateSuit,
@@ -388,7 +378,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ForeignMinisterPersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.ApologeticClerk,
                 MinisterPersonality.BiasedIntellectual,
                 MinisterPersonality.IdeologyCrusader,
@@ -404,7 +393,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] MinisterOfArmamentPersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.AdministrativeGenius,
                 MinisterPersonality.AirSuperiorityProponent,
                 MinisterPersonality.BattleFleetProponent,
@@ -427,7 +415,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] MinisterOfSecurityPersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.BackStabber,
                 MinisterPersonality.CompassionateGentleman,
                 MinisterPersonality.CrimeFighter,
@@ -444,7 +431,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] HeadOfMilitaryIntelligencePersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.DismalEnigma,
                 MinisterPersonality.IndustrialSpecialist,
                 MinisterPersonality.LogisticsSpecialist,
@@ -459,7 +445,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfStaffPersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.SchoolOfDefence,
                 MinisterPersonality.SchoolOfFireSupport,
                 MinisterPersonality.SchoolOfMassCombat,
@@ -473,7 +458,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfArmyPersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.ArmouredSpearheadDoctrine,
                 MinisterPersonality.DecisiveBattleDoctrine,
                 MinisterPersonality.ElasticDefenceDoctrine,
@@ -487,7 +471,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfNavyPersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.BaseControlDoctrine,
                 MinisterPersonality.DecisiveNavalBattleDoctrine,
                 MinisterPersonality.IndirectApproachDoctrine,
@@ -501,7 +484,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly MinisterPersonality[] ChiefOfAirForcePersonalities =
             {
-                MinisterPersonality.None,
                 MinisterPersonality.AirSuperiorityDoctrine,
                 MinisterPersonality.ArmyAviationDoctrine,
                 MinisterPersonality.CarpetBombingDoctrine,
@@ -515,7 +497,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public static MinisterPersonality[][] PositionPersonalityTable =
             {
-                null,
                 HeadOfStatePersonalities,
                 HeadOfGovernmentPersonalities,
                 ForeignMinisterPersonalities,
@@ -545,10 +526,6 @@ namespace HoI2Editor.Models
         {
             foreach (MinisterPosition position in Enum.GetValues(typeof (MinisterPosition)))
             {
-                if (position == MinisterPosition.None)
-                {
-                    continue;
-                }
                 PositionNameMap.Add(PositionNameTable[(int) position].ToLower(), position);
             }
 
@@ -559,19 +536,11 @@ namespace HoI2Editor.Models
 
             foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof (MinisterLoyalty)))
             {
-                if (loyalty == MinisterLoyalty.None)
-                {
-                    continue;
-                }
                 LoyaltyNameMap.Add(LoyaltyNameTable[(int) loyalty].ToLower(), loyalty);
             }
 
             foreach (MinisterIdeology ideology in Enum.GetValues(typeof (MinisterIdeology)))
             {
-                if (ideology == MinisterIdeology.None)
-                {
-                    continue;
-                }
                 IdeologyNameMap.Add(IdeologyNameTable[(int) ideology].ToLower(), ideology);
             }
         }
@@ -579,7 +548,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag CountryTag { get; set; }
+        public CountryTag? CountryTag { get; set; }
 
         /// <summary>
         ///     閣僚ID
@@ -599,22 +568,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ポスト
         /// </summary>
-        public MinisterPosition Position { get; set; }
+        public MinisterPosition? Position { get; set; }
 
         /// <summary>
         ///     閣僚特性
         /// </summary>
-        public MinisterPersonality Personality { get; set; }
+        public MinisterPersonality? Personality { get; set; }
 
         /// <summary>
         ///     閣僚忠誠度
         /// </summary>
-        public MinisterLoyalty Loyalty { get; set; }
+        public MinisterLoyalty? Loyalty { get; set; }
 
         /// <summary>
         ///     イデオロギー
         /// </summary>
-        public MinisterIdeology Ideology { get; set; }
+        public MinisterIdeology? Ideology { get; set; }
 
         /// <summary>
         ///     開始年
@@ -638,7 +607,7 @@ namespace HoI2Editor.Models
 
             if (Game.IsModActive)
             {
-                folderName = Path.Combine(Game.ModFolderName, "db\\ministers");
+                folderName = Path.Combine(Game.ModFolderName, Game.MinisterPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -653,7 +622,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            folderName = Path.Combine(Game.FolderName, "db\\ministers");
+            folderName = Path.Combine(Game.FolderName, Game.MinisterPathName);
             if (Directory.Exists(folderName))
             {
                 foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -747,7 +716,7 @@ namespace HoI2Editor.Models
             if (!int.TryParse(token[0], out id))
             {
                 Log.Write(string.Format("IDの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n\n", token[0]));
+                Log.Write(string.Format("  {0}: {1}\n\n", token[0], token[2]));
                 return;
             }
             minister.Id = id;
@@ -759,9 +728,9 @@ namespace HoI2Editor.Models
             }
             else
             {
+                minister.StartYear = 1936;
                 Log.Write(string.Format("開始年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[3]));
-                minister.StartYear = 1936;
             }
             minister.EndYear = 1970;
             string positionName = token[1].ToLower();
@@ -771,7 +740,7 @@ namespace HoI2Editor.Models
             }
             else
             {
-                minister.Position = MinisterPosition.None;
+                minister.Position = null;
                 Log.Write(string.Format("閣僚地位の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[1]));
             }
@@ -782,7 +751,7 @@ namespace HoI2Editor.Models
             }
             else
             {
-                minister.Ideology = MinisterIdeology.None;
+                minister.Ideology = null;
                 Log.Write(string.Format("イデオロギーの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[4]));
             }
@@ -802,7 +771,7 @@ namespace HoI2Editor.Models
                 }
                 else
                 {
-                    minister.Personality = MinisterPersonality.None;
+                    minister.Personality = null;
                     Log.Write(string.Format("閣僚特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                     Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[5]));
                 }
@@ -814,12 +783,13 @@ namespace HoI2Editor.Models
             }
             else
             {
-                minister.Loyalty = MinisterLoyalty.None;
+                minister.Loyalty = null;
                 Log.Write(string.Format("忠誠度の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[6]));
             }
             minister.PictureName = token[7];
             minister.CountryTag = countryTag;
+
             ministers.Add(minister);
         }
 
@@ -832,8 +802,9 @@ namespace HoI2Editor.Models
         {
             foreach (
                 CountryTag countryTag in
-                    Enum.GetValues(typeof (CountryTag)).Cast<CountryTag>().Where(
-                        countryTag => dirtyFlags[(int) countryTag]).Where(countryTag => countryTag != CountryTag.None))
+                    Enum.GetValues(typeof (CountryTag))
+                        .Cast<CountryTag>()
+                        .Where(countryTag => dirtyFlags[(int) countryTag]))
             {
                 SaveMinisterFile(ministers, countryTag);
             }
@@ -846,12 +817,8 @@ namespace HoI2Editor.Models
         /// <param name="countryTag">国タグ</param>
         private static void SaveMinisterFile(IEnumerable<Minister> ministers, CountryTag countryTag)
         {
-            if (countryTag == CountryTag.None)
-            {
-                return;
-            }
-
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, "db\\ministers");
+            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                             Game.MinisterPathName);
             // 閣僚フォルダが存在しなければ作成する
             if (!Directory.Exists(folderName))
             {
@@ -867,9 +834,7 @@ namespace HoI2Editor.Models
                              Country.CountryTextTable[(int) countryTag]);
             writer.WriteLine(";Replacements;;;;;;;x");
 
-            foreach (
-                Minister minister in
-                    ministers.Where(minister => minister.CountryTag == countryTag).Where(minister => minister != null))
+            foreach (Minister minister in ministers.Where(minister => minister.CountryTag == countryTag))
             {
                 // 不正な値が設定されている場合は警告をログに出力する
                 if (minister.StartYear < 1900 || minister.StartYear > 1999)
@@ -882,32 +847,37 @@ namespace HoI2Editor.Models
                     Log.Write(string.Format("終了年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                     Log.Write(string.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, minister.EndYear));
                 }
-                if (minister.Position == MinisterPosition.None)
+                if (minister.Position == null)
                 {
                     Log.Write(string.Format("閣僚地位の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                     Log.Write(string.Format("  {0}: {1}\n\n", minister.Id, minister.Name));
                 }
-                if (minister.Personality == MinisterPersonality.None)
+                if (minister.Personality == null)
                 {
                     Log.Write(string.Format("閣僚特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                     Log.Write(string.Format("  {0}: {1}\n\n", minister.Id, minister.Name));
                 }
-                if (minister.Ideology == MinisterIdeology.None)
+                if (minister.Ideology == null)
                 {
                     Log.Write(string.Format("イデオロギーの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                     Log.Write(string.Format("  {0}: {1}\n\n", minister.Id, minister.Name));
                 }
-                if (minister.Loyalty == MinisterLoyalty.None)
+                if (minister.Loyalty == null)
                 {
                     Log.Write(string.Format("忠誠度の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                     Log.Write(string.Format("  {0}: {1}\n\n", minister.Id, minister.Name));
                 }
 
-                writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};x", minister.Id,
-                                 PositionNameTable[(int) minister.Position], minister.Name, minister.StartYear - 1900,
-                                 IdeologyNameTable[(int) minister.Ideology],
-                                 PersonalityNameTable[(int) minister.Personality],
-                                 LoyaltyNameTable[(int) minister.Loyalty], minister.PictureName);
+                writer.WriteLine(
+                    "{0};{1};{2};{3};{4};{5};{6};{7};x",
+                    minister.Id,
+                    minister.Position != null ? PositionNameTable[(int) minister.Position] : "",
+                    minister.Name,
+                    minister.StartYear - 1900,
+                    minister.Ideology != null ? IdeologyNameTable[(int) minister.Ideology] : "",
+                    minister.Personality != null ? PersonalityNameTable[(int) minister.Personality] : "",
+                    minister.Loyalty != null ? LoyaltyNameTable[(int) minister.Loyalty] : "",
+                    minister.PictureName);
                 _currentLineNo++;
             }
 
@@ -920,7 +890,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum MinisterPosition
     {
-        None,
         HeadOfState, // 国家元首
         HeadOfGovernment, // 政府首班
         ForeignMinister, // 外務大臣
@@ -938,8 +907,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum MinisterPersonality
     {
-        None,
-
         // 汎用
         UndistinguishedSuit, // 平凡な政治家
 
@@ -1048,7 +1015,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum MinisterLoyalty
     {
-        None,
         VeryLow,
         Low,
         Medium,
@@ -1063,7 +1029,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum MinisterIdeology
     {
-        None,
         NationalSocialist, // NS 国家社会主義
         Fascist, // FA ファシスト
         PaternalAutocrat, // PA 権威主義者
