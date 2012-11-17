@@ -101,7 +101,7 @@ namespace HoI2Editor.Models
         /// <returns>指揮官ファイル名</returns>
         public static string GetLeaderFileName(CountryTag countryTag)
         {
-            return Leader.FileNameMap[countryTag];
+            return Leaders.FileNameMap[countryTag];
         }
 
         /// <summary>

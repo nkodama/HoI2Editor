@@ -16,19 +16,9 @@ namespace HoI2Editor.Forms
     public partial class MinisterEditorForm : Form
     {
         /// <summary>
-        ///     閣僚編集フラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
-
-        /// <summary>
         ///     絞り込み後の閣僚リスト
         /// </summary>
-        private readonly List<Minister> _narrowedMinisterList = new List<Minister>();
-
-        /// <summary>
-        ///     マスター閣僚リスト
-        /// </summary>
-        private List<Minister> _masterMinisterList = new List<Minister>();
+        private readonly List<Minister> _narrowedList = new List<Minister>();
 
         /// <summary>
         ///     コンストラクタ
@@ -43,41 +33,29 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadMinisterFiles()
         {
-            _masterMinisterList = Minister.LoadMinisterFiles();
+            // 閣僚ファイルを読み込む
+            Ministers.LoadMinisterFiles();
 
-            ClearDirtyFlags();
-
+            // 閣僚リストを絞り込む
             NarrowMinisterList();
+
+            // 閣僚リストの表示を更新する
             UpdateMinisterList();
+
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Update();
         }
 
         /// <summary>
-        ///     編集フラグをセットする
+        ///     閣僚ファイルを保存する
         /// </summary>
-        /// <param name="countryTag">国タグ</param>
-        private void SetDirtyFlag(CountryTag countryTag)
+        private void SaveMinisterFiles()
         {
-            _dirtyFlags[(int) countryTag] = true;
-        }
+            // 閣僚ファイルを保存する
+            Ministers.SaveMinisterFiles();
 
-        /// <summary>
-        ///     編集フラグをクリアする
-        /// </summary>
-        /// <param name="countryTag">国タグ</param>
-        private void ClearDirtyFlag(CountryTag countryTag)
-        {
-            _dirtyFlags[(int) countryTag] = false;
-        }
-
-        /// <summary>
-        ///     編集フラグを全てクリアする
-        /// </summary>
-        private void ClearDirtyFlags()
-        {
-            foreach (CountryTag countryTag in Enum.GetValues(typeof (CountryTag)))
-            {
-                ClearDirtyFlag(countryTag);
-            }
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Update();
         }
 
         /// <summary>
@@ -85,7 +63,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void NarrowMinisterList()
         {
-            _narrowedMinisterList.Clear();
+            _narrowedList.Clear();
             List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
                                                    ? new List<CountryTag>()
                                                    : (from string country in countryListBox.SelectedItems
@@ -93,10 +71,10 @@ namespace HoI2Editor.Forms
 
             foreach (
                 Minister minister in
-                    _masterMinisterList.Where(
+                    Ministers.List.Where(
                         minister => minister.CountryTag != null && selectedTagList.Contains(minister.CountryTag.Value)))
             {
-                _narrowedMinisterList.Add(minister);
+                _narrowedList.Add(minister);
             }
         }
 
@@ -108,9 +86,9 @@ namespace HoI2Editor.Forms
             ministerListView.BeginUpdate();
             ministerListView.Items.Clear();
 
-            foreach (Minister minister in _narrowedMinisterList)
+            foreach (Minister minister in _narrowedList)
             {
-                AddMinisterListViewItem(minister);
+                ministerListView.Items.Add(CreateMinisterListViewItem(minister));
             }
 
             if (ministerListView.Items.Count > 0)
@@ -173,7 +151,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     国家リストボックスを初期化する
         /// </summary>
-        private void InitCountryList()
+        private void InitCountryListBox()
         {
             foreach (string country in Country.CountryTextTable)
             {
@@ -183,43 +161,88 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     フォーム読み込み時の処理
+        ///     閣僚リストに項目を追加する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterEditorFormLoad(object sender, EventArgs e)
+        /// <param name="target">挿入対象の項目</param>
+        private void AddListItem(Minister target)
         {
-            InitEditableItems();
-            InitCountryList();
-            LoadMinisterFiles();
+            _narrowedList.Add(target);
+
+            ministerListView.Items.Add(CreateMinisterListViewItem(target));
+
+            ministerListView.Items[0].Focused = true;
+            ministerListView.Items[0].Selected = true;
         }
 
         /// <summary>
-        ///     閣僚リストビューの項目を追加する
+        ///     閣僚リストに項目を挿入する
         /// </summary>
-        /// <param name="minister">追加する項目</param>
-        private void AddMinisterListViewItem(Minister minister)
+        /// <param name="target">挿入対象の項目</param>
+        /// <param name="index">挿入先の位置</param>
+        private void InsertListItem(Minister target, int index)
         {
-            ministerListView.Items.Add(CreateMinisterListViewItem(minister));
+            _narrowedList.Insert(index, target);
+
+            ministerListView.Items.Insert(index, CreateMinisterListViewItem(target));
+
+            ministerListView.Items[index].Focused = true;
+            ministerListView.Items[index].Selected = true;
+            ministerListView.Items[index].EnsureVisible();
         }
 
         /// <summary>
-        ///     閣僚リストビューの項目を挿入する
+        ///     閣僚リストから項目を削除する
         /// </summary>
-        /// <param name="index">挿入する位置</param>
-        /// <param name="minister">挿入する項目</param>
-        private void InsertMinisterListViewItem(int index, Minister minister)
+        /// <param name="index">削除対象の位置</param>
+        private void RemoveItem(int index)
         {
-            ministerListView.Items.Insert(index, CreateMinisterListViewItem(minister));
-        }
+            _narrowedList.RemoveAt(index);
 
-        /// <summary>
-        ///     閣僚リストビューの項目を削除する
-        /// </summary>
-        /// <param name="index">削除する位置</param>
-        private void RemoveMinisterListViewItem(int index)
-        {
             ministerListView.Items.RemoveAt(index);
+
+            if (index < ministerListView.Items.Count)
+            {
+                ministerListView.Items[index].Focused = true;
+                ministerListView.Items[index].Selected = true;
+            }
+            else if (index - 1 >= 0)
+            {
+                ministerListView.Items[index - 1].Focused = true;
+                ministerListView.Items[index - 1].Selected = true;
+            }
+        }
+
+        /// <summary>
+        ///     閣僚リストの項目を移動する
+        /// </summary>
+        /// <param name="target">移動対象の位置</param>
+        /// <param name="position">移動先の位置</param>
+        private void MoveListItem(int target, int position)
+        {
+            Minister minister = _narrowedList[target];
+
+            if (target > position)
+            {
+                // 上へ移動する場合
+                _narrowedList.Insert(position, minister);
+                _narrowedList.RemoveAt(target + 1);
+
+                ministerListView.Items.Insert(position, CreateMinisterListViewItem(minister));
+                ministerListView.Items.RemoveAt(target + 1);
+            }
+            else
+            {
+                // 下へ移動する場合
+                _narrowedList.Insert(position + 1, minister);
+                _narrowedList.RemoveAt(target);
+
+                ministerListView.Items.Insert(position + 1, CreateMinisterListViewItem(minister));
+                ministerListView.Items.RemoveAt(target);
+            }
+
+            ministerListView.Items[position].Focused = true;
+            ministerListView.Items[position].Selected = true;
+            ministerListView.Items[position].EnsureVisible();
         }
 
         /// <summary>
@@ -319,6 +342,18 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterEditorFormLoad(object sender, EventArgs e)
+        {
+            InitEditableItems();
+            InitCountryListBox();
+            LoadMinisterFiles();
+        }
+
+        /// <summary>
         ///     新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -328,16 +363,16 @@ namespace HoI2Editor.Forms
             Minister minister;
             if (ministerListView.SelectedItems.Count > 0)
             {
-                var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
-                if (selectedMinister == null)
+                var selected = ministerListView.SelectedItems[0].Tag as Minister;
+                if (selected == null)
                 {
                     return;
                 }
 
                 minister = new Minister
                                {
-                                   CountryTag = selectedMinister.CountryTag,
-                                   Id = selectedMinister.Id + 1,
+                                   CountryTag = selected.CountryTag,
+                                   Id = selected.Id + 1,
                                    StartYear = 1930,
                                    EndYear = 1970,
                                    Position = null,
@@ -346,16 +381,9 @@ namespace HoI2Editor.Forms
                                    Loyalty = null,
                                };
 
-                int masterIndex = _masterMinisterList.IndexOf(selectedMinister);
-                _masterMinisterList.Insert(masterIndex + 1, minister);
+                Ministers.InsertItemNext(minister, selected);
 
-                int narrowedIndex = ministerListView.SelectedIndices[0] + 1;
-                _narrowedMinisterList.Insert(narrowedIndex, minister);
-                InsertMinisterListViewItem(narrowedIndex, minister);
-
-                ministerListView.Items[narrowedIndex].Focused = true;
-                ministerListView.Items[narrowedIndex].Selected = true;
-                ministerListView.Items[narrowedIndex].EnsureVisible();
+                InsertListItem(minister, ministerListView.SelectedIndices[0] + 1);
             }
             else
             {
@@ -374,20 +402,16 @@ namespace HoI2Editor.Forms
                                    Loyalty = null,
                                };
 
-                _masterMinisterList.Add(minister);
+                Ministers.AddItem(minister);
 
-                _narrowedMinisterList.Add(minister);
-                AddMinisterListViewItem(minister);
-
-                ministerListView.Items[0].Focused = true;
-                ministerListView.Items[0].Selected = true;
+                AddListItem(minister);
 
                 EnableEditableItems();
             }
 
             if (minister.CountryTag != null)
             {
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -402,39 +426,34 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
-            if (selectedMinister == null)
+
+            var selected = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selected == null)
             {
                 return;
             }
+
             var minister = new Minister
                                {
-                                   CountryTag = selectedMinister.CountryTag,
-                                   Id = selectedMinister.Id + 1,
-                                   Name = selectedMinister.Name,
-                                   StartYear = selectedMinister.StartYear,
-                                   EndYear = selectedMinister.EndYear,
-                                   Position = selectedMinister.Position,
-                                   Personality = selectedMinister.Personality,
-                                   Ideology = selectedMinister.Ideology,
-                                   Loyalty = selectedMinister.Loyalty,
-                                   PictureName = selectedMinister.PictureName
+                                   CountryTag = selected.CountryTag,
+                                   Id = selected.Id + 1,
+                                   Name = selected.Name,
+                                   StartYear = selected.StartYear,
+                                   EndYear = selected.EndYear,
+                                   Position = selected.Position,
+                                   Personality = selected.Personality,
+                                   Ideology = selected.Ideology,
+                                   Loyalty = selected.Loyalty,
+                                   PictureName = selected.PictureName
                                };
 
-            int masterIndex = _masterMinisterList.IndexOf(selectedMinister);
-            _masterMinisterList.Insert(masterIndex + 1, minister);
+            Ministers.InsertItemNext(minister, selected);
 
-            int narrowedIndex = ministerListView.SelectedIndices[0] + 1;
-            _narrowedMinisterList.Insert(narrowedIndex, minister);
-            InsertMinisterListViewItem(narrowedIndex, minister);
-
-            ministerListView.Items[narrowedIndex].Focused = true;
-            ministerListView.Items[narrowedIndex].Selected = true;
-            ministerListView.Items[narrowedIndex].EnsureVisible();
+            InsertListItem(minister, ministerListView.SelectedIndices[0] + 1);
 
             if (minister.CountryTag != null)
             {
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -449,37 +468,25 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
-            if (selectedMinister == null)
+
+            var selected = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selected == null)
             {
                 return;
             }
 
-            int masterIndex = _masterMinisterList.IndexOf(selectedMinister);
-            _masterMinisterList.RemoveAt(masterIndex);
+            Ministers.RemoveItem(selected);
 
-            int narrowedIndex = ministerListView.SelectedIndices[0];
-            _narrowedMinisterList.RemoveAt(narrowedIndex);
-            RemoveMinisterListViewItem(narrowedIndex);
+            RemoveItem(ministerListView.SelectedIndices[0]);
 
-            if (narrowedIndex < ministerListView.Items.Count)
-            {
-                ministerListView.Items[narrowedIndex].Focused = true;
-                ministerListView.Items[narrowedIndex].Selected = true;
-            }
-            else if (narrowedIndex - 1 >= 0)
-            {
-                ministerListView.Items[narrowedIndex - 1].Focused = true;
-                ministerListView.Items[narrowedIndex - 1].Selected = true;
-            }
-            else
+            if (ministerListView.Items.Count == 0)
             {
                 DisableEditableItems();
             }
 
-            if (selectedMinister.CountryTag != null)
+            if (selected.CountryTag != null)
             {
-                SetDirtyFlag(selectedMinister.CountryTag.Value);
+                Ministers.SetDirtyFlag(selected.CountryTag.Value);
             }
         }
 
@@ -495,40 +502,33 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int selectedIndex = ministerListView.SelectedIndices[0];
+
+            int index = ministerListView.SelectedIndices[0];
             // 選択項目がリストの先頭ならば何もしない
             if (ministerListView.SelectedIndices[0] == 0)
             {
                 return;
             }
 
-            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
-            if (selectedMinister == null)
-            {
-                return;
-            }
-            var topMinister = ministerListView.Items[0].Tag as Minister;
-            if (topMinister == null)
+            var selected = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selected == null)
             {
                 return;
             }
 
-            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
-            int masterTopIndex = _masterMinisterList.IndexOf(topMinister);
-            _masterMinisterList.Insert(masterTopIndex, selectedMinister);
-            _masterMinisterList.RemoveAt(masterSelectedIndex + 1);
-
-            _narrowedMinisterList.Insert(0, selectedMinister);
-            _narrowedMinisterList.RemoveAt(selectedIndex + 1);
-            InsertMinisterListViewItem(0, selectedMinister);
-            RemoveMinisterListViewItem(selectedIndex + 1);
-
-            ministerListView.Items[0].Focused = true;
-            ministerListView.Items[0].Selected = true;
-
-            if (selectedMinister.CountryTag != null)
+            var top = ministerListView.Items[0].Tag as Minister;
+            if (top == null)
             {
-                SetDirtyFlag(selectedMinister.CountryTag.Value);
+                return;
+            }
+
+            Ministers.MoveItem(selected, top);
+
+            MoveListItem(index, 0);
+
+            if (selected.CountryTag != null)
+            {
+                Ministers.SetDirtyFlag(selected.CountryTag.Value);
             }
         }
 
@@ -544,40 +544,33 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 選択項目がリストの先頭ならば何もしない
-            if (ministerListView.SelectedIndices[0] == 0)
+            int index = ministerListView.SelectedIndices[0];
+            if (index == 0)
             {
                 return;
             }
 
-            int selectedIndex = ministerListView.SelectedIndices[0];
-            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
-            if (selectedMinister == null)
-            {
-                return;
-            }
-            var upperMinister = ministerListView.Items[selectedIndex - 1].Tag as Minister;
-            if (upperMinister == null)
+            var selected = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selected == null)
             {
                 return;
             }
 
-            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
-            int masterUpperIndex = _masterMinisterList.IndexOf(upperMinister);
-            _masterMinisterList.Insert(masterUpperIndex, selectedMinister);
-            _masterMinisterList.RemoveAt(masterSelectedIndex + 1);
-
-            _narrowedMinisterList.Insert(selectedIndex - 1, selectedMinister);
-            _narrowedMinisterList.RemoveAt(selectedIndex + 1);
-            InsertMinisterListViewItem(selectedIndex - 1, selectedMinister);
-            RemoveMinisterListViewItem(selectedIndex + 1);
-
-            ministerListView.Items[selectedIndex - 1].Focused = true;
-            ministerListView.Items[selectedIndex - 1].Selected = true;
-
-            if (selectedMinister.CountryTag != null)
+            var upper = ministerListView.Items[index - 1].Tag as Minister;
+            if (upper == null)
             {
-                SetDirtyFlag(selectedMinister.CountryTag.Value);
+                return;
+            }
+
+            Ministers.MoveItem(selected, upper);
+
+            MoveListItem(index, index - 1);
+
+            if (selected.CountryTag != null)
+            {
+                Ministers.SetDirtyFlag(selected.CountryTag.Value);
             }
         }
 
@@ -593,40 +586,33 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             // 選択項目がリストの末尾ならば何もしない
-            if (ministerListView.SelectedIndices[0] == ministerListView.Items.Count - 1)
+            int index = ministerListView.SelectedIndices[0];
+            if (index == ministerListView.Items.Count - 1)
             {
                 return;
             }
 
-            int selectedIndex = ministerListView.SelectedIndices[0];
-            var selectedMinister = ministerListView.SelectedItems[0].Tag as Minister;
-            if (selectedMinister == null)
-            {
-                return;
-            }
-            var lowerMinister = ministerListView.Items[selectedIndex + 1].Tag as Minister;
-            if (lowerMinister == null)
+            var selected = ministerListView.SelectedItems[0].Tag as Minister;
+            if (selected == null)
             {
                 return;
             }
 
-            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
-            int masterLowerIndex = _masterMinisterList.IndexOf(lowerMinister);
-            _masterMinisterList.Insert(masterSelectedIndex, lowerMinister);
-            _masterMinisterList.RemoveAt(masterLowerIndex + 1);
-
-            _narrowedMinisterList.Insert(selectedIndex, lowerMinister);
-            _narrowedMinisterList.RemoveAt(selectedIndex + 2);
-            InsertMinisterListViewItem(selectedIndex, lowerMinister);
-            RemoveMinisterListViewItem(selectedIndex + 2);
-
-            ministerListView.Items[selectedIndex + 1].Focused = true;
-            ministerListView.Items[selectedIndex + 1].Selected = true;
-
-            if (selectedMinister.CountryTag != null)
+            var lower = ministerListView.Items[index + 1].Tag as Minister;
+            if (lower == null)
             {
-                SetDirtyFlag(selectedMinister.CountryTag.Value);
+                return;
+            }
+
+            Ministers.MoveItem(selected, lower);
+
+            MoveListItem(index, index + 1);
+
+            if (selected.CountryTag != null)
+            {
+                Ministers.SetDirtyFlag(selected.CountryTag.Value);
             }
         }
 
@@ -642,41 +628,34 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int selectedIndex = ministerListView.SelectedIndices[0];
-            int bottomIndex = ministerListView.Items.Count - 1;
+
             // 選択項目がリストの末尾ならば何もしない
+            int index = ministerListView.SelectedIndices[0];
+            int bottomIndex = ministerListView.Items.Count - 1;
             if (ministerListView.SelectedIndices[0] == bottomIndex)
             {
                 return;
             }
 
-            var selectedMinister = ministerListView.Items[selectedIndex].Tag as Minister;
-            if (selectedMinister == null)
-            {
-                return;
-            }
-            var bottomMinister = ministerListView.Items[bottomIndex].Tag as Minister;
-            if (bottomMinister == null)
+            var selected = ministerListView.Items[index].Tag as Minister;
+            if (selected == null)
             {
                 return;
             }
 
-            int masterSelectedIndex = _masterMinisterList.IndexOf(selectedMinister);
-            int masterBottomIndex = _masterMinisterList.IndexOf(bottomMinister);
-            _masterMinisterList.Insert(masterBottomIndex + 1, selectedMinister);
-            _masterMinisterList.RemoveAt(masterSelectedIndex);
-
-            _narrowedMinisterList.Insert(bottomIndex + 1, selectedMinister);
-            _narrowedMinisterList.RemoveAt(selectedIndex);
-            InsertMinisterListViewItem(bottomIndex + 1, selectedMinister);
-            RemoveMinisterListViewItem(selectedIndex);
-
-            ministerListView.Items[bottomIndex].Focused = true;
-            ministerListView.Items[bottomIndex].Selected = true;
-
-            if (selectedMinister.CountryTag != null)
+            var bottom = ministerListView.Items[ministerListView.Items.Count - 1].Tag as Minister;
+            if (bottom == null)
             {
-                SetDirtyFlag(selectedMinister.CountryTag.Value);
+                return;
+            }
+
+            Ministers.MoveItem(selected, bottom);
+
+            MoveListItem(index, ministerListView.Items.Count - 1);
+
+            if (selected.CountryTag != null)
+            {
+                Ministers.SetDirtyFlag(selected.CountryTag.Value);
             }
         }
 
@@ -697,7 +676,9 @@ namespace HoI2Editor.Forms
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
                 {
                     // 変更ありの項目は文字色を変更する
-                    brush = _dirtyFlags[e.Index] ? new SolidBrush(Color.Red) : new SolidBrush(SystemColors.WindowText);
+                    brush = Ministers.DirtyFlags[e.Index]
+                                ? new SolidBrush(Color.Red)
+                                : new SolidBrush(SystemColors.WindowText);
                 }
                 else
                 {
@@ -743,6 +724,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -877,6 +859,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -894,10 +877,12 @@ namespace HoI2Editor.Forms
 
             if (minister.CountryTag != null)
             {
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
+
             minister.CountryTag = newCountryTag;
             ministerListView.SelectedItems[0].Text = Country.CountryTextTable[(int) minister.CountryTag];
+
             if (minister.CountryTag != null)
             {
                 if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
@@ -905,7 +890,7 @@ namespace HoI2Editor.Forms
                     countryComboBox.Items.RemoveAt(0);
                 }
                 countryComboBox.SelectedIndex = (int) minister.CountryTag.Value;
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
 
             // 国家リストボックスの項目色を変更するため描画更新する
@@ -923,6 +908,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -935,12 +921,13 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             minister.Id = newId;
             ministerListView.SelectedItems[0].SubItems[1].Text = minister.Id.ToString(CultureInfo.InvariantCulture);
 
             if (minister.CountryTag != null)
             {
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -955,6 +942,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -967,12 +955,13 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             minister.Name = newName;
             ministerListView.SelectedItems[0].SubItems[2].Text = minister.Name;
 
             if (minister.CountryTag != null)
             {
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -987,6 +976,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -999,13 +989,14 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             minister.StartYear = newStartYear;
             ministerListView.SelectedItems[0].SubItems[3].Text =
                 minister.StartYear.ToString(CultureInfo.InvariantCulture);
 
             if (minister.CountryTag != null)
             {
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -1020,6 +1011,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -1046,7 +1038,7 @@ namespace HoI2Editor.Forms
                     positionComboBox.Items.RemoveAt(0);
                 }
                 positionComboBox.SelectedIndex = (int) minister.Position.Value;
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -1061,6 +1053,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -1089,7 +1082,7 @@ namespace HoI2Editor.Forms
                     personalityComboBox.Items.RemoveAt(0);
                 }
                 personalityComboBox.SelectedIndex = (int) minister.Personality;
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -1104,6 +1097,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -1130,7 +1124,7 @@ namespace HoI2Editor.Forms
                     ideologyComboBox.Items.RemoveAt(0);
                 }
                 ideologyComboBox.SelectedIndex = (int) minister.Ideology;
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -1145,6 +1139,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -1169,7 +1164,7 @@ namespace HoI2Editor.Forms
                     loyaltyComboBox.Items.RemoveAt(0);
                 }
                 loyaltyComboBox.SelectedIndex = (int) minister.Loyalty;
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -1184,6 +1179,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -1225,7 +1221,7 @@ namespace HoI2Editor.Forms
 
             if (minister.CountryTag != null)
             {
-                SetDirtyFlag(minister.CountryTag.Value);
+                Ministers.SetDirtyFlag(minister.CountryTag.Value);
             }
         }
 
@@ -1240,6 +1236,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var minister = ministerListView.SelectedItems[0].Tag as Minister;
             if (minister == null)
             {
@@ -1312,8 +1309,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            Minister.SaveMinisterFiles(_masterMinisterList, _dirtyFlags);
-            ClearDirtyFlags();
+            SaveMinisterFiles();
         }
 
         /// <summary>

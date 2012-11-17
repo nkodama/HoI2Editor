@@ -16,19 +16,9 @@ namespace HoI2Editor.Forms
     public partial class LeaderEditorForm : Form
     {
         /// <summary>
-        ///     指揮官編集フラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
-
-        /// <summary>
         ///     絞り込み後の指揮官リスト
         /// </summary>
-        private readonly List<Leader> _narrowedLeaderList = new List<Leader>();
-
-        /// <summary>
-        ///     マスター指揮官リスト
-        /// </summary>
-        private List<Leader> _masterLeaderList = new List<Leader>();
+        private readonly List<Leader> _narrowedList = new List<Leader>();
 
         /// <summary>
         ///     コンストラクタ
@@ -43,41 +33,29 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadLeaderFiles()
         {
-            _masterLeaderList = Leader.LoadLeaderFiles();
+            // 指揮官ファイルを読み込む
+            Leaders.LoadLeaderFiles();
 
-            ClearDirtyFlags();
-
+            // 指揮官リストを絞り込む
             NarrowLeaderList();
+
+            // 指揮官リストの表示を更新する
             UpdateLeaderList();
+
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Update();
         }
 
         /// <summary>
-        ///     編集フラグをセットする
+        ///     指揮官ファイルを保存する
         /// </summary>
-        /// <param name="countryTag">国タグ</param>
-        private void SetDirtyFlag(CountryTag countryTag)
+        private void SaveLeaderFiles()
         {
-            _dirtyFlags[(int) countryTag] = true;
-        }
+            // 指揮官ファイルを保存する
+            Leaders.SaveLeaderFiles();
 
-        /// <summary>
-        ///     編集フラグをクリアする
-        /// </summary>
-        /// <param name="countryTag">国タグ</param>
-        private void ClearDirtyFlag(CountryTag countryTag)
-        {
-            _dirtyFlags[(int) countryTag] = false;
-        }
-
-        /// <summary>
-        ///     編集フラグを全てクリアする
-        /// </summary>
-        private void ClearDirtyFlags()
-        {
-            foreach (CountryTag countryTag in Enum.GetValues(typeof (CountryTag)))
-            {
-                ClearDirtyFlag(countryTag);
-            }
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Update();
         }
 
         /// <summary>
@@ -85,9 +63,10 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void NarrowLeaderList()
         {
-            _narrowedLeaderList.Clear();
-            uint traitsMask = GetNarrowedLeaderTraits();
+            _narrowedList.Clear();
+            uint traitsMask = GetNarrowedTraits();
 
+            // 選択中の国家リストを作成する
             List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
                                                    ? new List<CountryTag>()
                                                    : (from string country in countryListBox.SelectedItems
@@ -95,7 +74,7 @@ namespace HoI2Editor.Forms
 
             foreach (
                 Leader leader in
-                    _masterLeaderList.Where(
+                    Leaders.List.Where(
                         leader => leader.CountryTag != null && selectedTagList.Contains(leader.CountryTag.Value)))
             {
                 // 兵科による絞り込み
@@ -134,6 +113,7 @@ namespace HoI2Editor.Forms
                 // 指揮官特性による絞り込み
                 if (traitsOrNarrowRadioButton.Checked)
                 {
+                    // OR条件
                     if ((leader.Traits & traitsMask) == 0)
                     {
                         continue;
@@ -141,13 +121,14 @@ namespace HoI2Editor.Forms
                 }
                 else if (traitsAndNarrowRadioButton.Checked)
                 {
+                    // AND条件
                     if ((leader.Traits & traitsMask) != traitsMask)
                     {
                         continue;
                     }
                 }
 
-                _narrowedLeaderList.Add(leader);
+                _narrowedList.Add(leader);
             }
         }
 
@@ -159,9 +140,9 @@ namespace HoI2Editor.Forms
             leaderListView.BeginUpdate();
             leaderListView.Items.Clear();
 
-            foreach (Leader leader in _narrowedLeaderList)
+            foreach (Leader leader in _narrowedList)
             {
-                AddLeaderListViewItem(leader);
+                leaderListView.Items.Add(CreateLeaderListViewItem(leader));
             }
 
             if (leaderListView.Items.Count > 0)
@@ -354,44 +335,88 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     フォーム読み込み時の処理
+        ///     指揮官リストに項目を追加する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnLeaderEditorFormLoad(object sender, EventArgs e)
+        /// <param name="target">挿入対象の項目</param>
+        private void AddListItem(Leader target)
         {
-            InitTraitsText();
-            InitEditableItems();
-            InitCountryListBox();
-            LoadLeaderFiles();
+            _narrowedList.Add(target);
+
+            leaderListView.Items.Add(CreateLeaderListViewItem(target));
+
+            leaderListView.Items[0].Focused = true;
+            leaderListView.Items[0].Selected = true;
         }
 
         /// <summary>
-        ///     指揮官リストビューの項目を追加する
+        ///     指揮官リストに項目を挿入する
         /// </summary>
-        /// <param name="leader">追加する項目</param>
-        private void AddLeaderListViewItem(Leader leader)
+        /// <param name="target">挿入対象の項目</param>
+        /// <param name="index">挿入先の位置</param>
+        private void InsertListItem(Leader target, int index)
         {
-            leaderListView.Items.Add(CreateLeaderListViewItem(leader));
+            _narrowedList.Insert(index, target);
+
+            leaderListView.Items.Insert(index, CreateLeaderListViewItem(target));
+
+            leaderListView.Items[index].Focused = true;
+            leaderListView.Items[index].Selected = true;
+            leaderListView.Items[index].EnsureVisible();
         }
 
         /// <summary>
-        ///     指揮官リストビューの項目を挿入する
+        ///     指揮官リストから項目を削除する
         /// </summary>
-        /// <param name="index">挿入する位置</param>
-        /// <param name="leader">挿入する項目</param>
-        private void InsertLeaderListViewItem(int index, Leader leader)
+        /// <param name="index">削除対象の位置</param>
+        private void RemoveItem(int index)
         {
-            leaderListView.Items.Insert(index, CreateLeaderListViewItem(leader));
-        }
+            _narrowedList.RemoveAt(index);
 
-        /// <summary>
-        ///     指揮官リストビューの項目を削除する
-        /// </summary>
-        /// <param name="index">削除する位置</param>
-        private void RemoveLeaderListViewItem(int index)
-        {
             leaderListView.Items.RemoveAt(index);
+
+            if (index < leaderListView.Items.Count)
+            {
+                leaderListView.Items[index].Focused = true;
+                leaderListView.Items[index].Selected = true;
+            }
+            else if (index - 1 >= 0)
+            {
+                leaderListView.Items[index - 1].Focused = true;
+                leaderListView.Items[index - 1].Selected = true;
+            }
+        }
+
+        /// <summary>
+        ///     指揮官リストの項目を移動する
+        /// </summary>
+        /// <param name="target">移動対象の位置</param>
+        /// <param name="position">移動先の位置</param>
+        private void MoveListItem(int target, int position)
+        {
+            Leader leader = _narrowedList[target];
+
+            if (target > position)
+            {
+                // 上へ移動する場合
+                _narrowedList.Insert(position, leader);
+                _narrowedList.RemoveAt(target + 1);
+
+                leaderListView.Items.Insert(position, CreateLeaderListViewItem(leader));
+                leaderListView.Items.RemoveAt(target + 1);
+            }
+            else
+            {
+                // 下へ移動する場合
+                _narrowedList.Insert(position + 1, leader);
+                _narrowedList.RemoveAt(target);
+
+                leaderListView.Items.Insert(position + 1, CreateLeaderListViewItem(leader));
+                leaderListView.Items.RemoveAt(target);
+            }
+
+            leaderListView.Items[position].Focused = true;
+            leaderListView.Items[position].Selected = true;
+            leaderListView.Items[position].EnsureVisible();
         }
 
         /// <summary>
@@ -502,37 +527,7 @@ namespace HoI2Editor.Forms
             pictureNameTextBox.Text = "";
             leaderPictureBox.ImageLocation = "";
 
-            logisticsWizardCheckBox.Checked = false;
-            defensiveDoctrineCheckBox.Checked = false;
-            offensiveDoctrineCheckBox.Checked = false;
-            winterSpecialistCheckBox.Checked = false;
-            tricksterCheckBox.Checked = false;
-            engineerCheckBox.Checked = false;
-            fortressBusterCheckBox.Checked = false;
-            panzerLeaderCheckBox.Checked = false;
-            commandoCheckBox.Checked = false;
-            oldGuardCheckBox.Checked = false;
-            seaWolfCheckBox.Checked = false;
-            blockadeRunnerCheckBox.Checked = false;
-            superiorTacticianCheckBox.Checked = false;
-            spotterCheckBox.Checked = false;
-            tankBusterCheckBox.Checked = false;
-            carpetBomberCheckBox.Checked = false;
-            nightFlyerCheckBox.Checked = false;
-            fleetDestroyerCheckBox.Checked = false;
-            desertFoxCheckBox.Checked = false;
-            jungleRatCheckBox.Checked = false;
-            urbanWarfareSpecialistCheckBox.Checked = false;
-            rangerCheckBox.Checked = false;
-            mountaineerCheckBox.Checked = false;
-            hillsFighterCheckBox.Checked = false;
-            counterAttackerCheckBox.Checked = false;
-            assaulterCheckBox.Checked = false;
-            encirclerCheckBox.Checked = false;
-            ambusherCheckBox.Checked = false;
-            disciplinedCheckBox.Checked = false;
-            elasticDefenceSpecialistCheckBox.Checked = false;
-            blitzerCheckBox.Checked = false;
+            SetTraitsCheckBoxValue(false);
 
             countryComboBox.Enabled = false;
             idNumericUpDown.Enabled = false;
@@ -562,1279 +557,117 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     新規ボタン押下時の処理
+        ///     指揮官特性チェックボックスの値を一括設定する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnNewButtonClick(object sender, EventArgs e)
+        /// <param name="flag">設定する値</param>
+        private void SetTraitsCheckBoxValue(bool flag)
         {
-            Leader leader;
-            if (leaderListView.SelectedItems.Count > 0)
+            logisticsWizardCheckBox.Checked = flag;
+            defensiveDoctrineCheckBox.Checked = flag;
+            offensiveDoctrineCheckBox.Checked = flag;
+            winterSpecialistCheckBox.Checked = flag;
+            tricksterCheckBox.Checked = flag;
+            engineerCheckBox.Checked = flag;
+            fortressBusterCheckBox.Checked = flag;
+            panzerLeaderCheckBox.Checked = flag;
+            commandoCheckBox.Checked = flag;
+            oldGuardCheckBox.Checked = flag;
+            seaWolfCheckBox.Checked = flag;
+            blockadeRunnerCheckBox.Checked = flag;
+            superiorTacticianCheckBox.Checked = flag;
+            spotterCheckBox.Checked = flag;
+            tankBusterCheckBox.Checked = flag;
+            carpetBomberCheckBox.Checked = flag;
+            nightFlyerCheckBox.Checked = flag;
+            fleetDestroyerCheckBox.Checked = flag;
+            desertFoxCheckBox.Checked = flag;
+            jungleRatCheckBox.Checked = flag;
+            urbanWarfareSpecialistCheckBox.Checked = flag;
+            rangerCheckBox.Checked = flag;
+            mountaineerCheckBox.Checked = flag;
+            hillsFighterCheckBox.Checked = flag;
+            counterAttackerCheckBox.Checked = flag;
+            assaulterCheckBox.Checked = flag;
+            encirclerCheckBox.Checked = flag;
+            ambusherCheckBox.Checked = flag;
+            disciplinedCheckBox.Checked = flag;
+            elasticDefenceSpecialistCheckBox.Checked = flag;
+            blitzerCheckBox.Checked = flag;
+        }
+
+        /// <summary>
+        ///     指揮官特性チェックボックスのイベントを一括設定する
+        /// </summary>
+        /// <param name="flag">イベントの有効/無効</param>
+        private void SetTraitsCheckBoxEvent(bool flag)
+        {
+            if (flag)
             {
-                var selectedLeader = leaderListView.SelectedItems[0].Tag as Leader;
-                if (selectedLeader == null)
-                {
-                    return;
-                }
-
-                leader = new Leader
-                             {
-                                 CountryTag = selectedLeader.CountryTag,
-                                 Id = selectedLeader.Id + 1,
-                                 Branch = null,
-                                 IdealRank = null,
-                                 StartYear = 1930,
-                                 EndYear = 1990,
-                             };
-                leader.RankYear[0] = 1930;
-                leader.RankYear[1] = 1990;
-                leader.RankYear[2] = 1990;
-                leader.RankYear[3] = 1990;
-
-                int masterIndex = _masterLeaderList.IndexOf(selectedLeader);
-                _masterLeaderList.Insert(masterIndex + 1, leader);
-
-                int narrowedIndex = leaderListView.SelectedIndices[0] + 1;
-                _narrowedLeaderList.Insert(narrowedIndex, leader);
-                InsertLeaderListViewItem(narrowedIndex, leader);
-
-                leaderListView.Items[narrowedIndex].Focused = true;
-                leaderListView.Items[narrowedIndex].Selected = true;
-                leaderListView.Items[narrowedIndex].EnsureVisible();
+                logisticsWizardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                defensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                offensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                winterSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                tricksterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                engineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                fortressBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                panzerLeaderCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                commandoCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                oldGuardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                seaWolfCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                blockadeRunnerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                superiorTacticianCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                spotterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                tankBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                carpetBomberCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                nightFlyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                fleetDestroyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                desertFoxCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                jungleRatCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                urbanWarfareSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                rangerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                mountaineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                hillsFighterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                counterAttackerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                assaulterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                encirclerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                ambusherCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                disciplinedCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                elasticDefenceSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                blitzerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
             }
             else
             {
-                leader = new Leader
-                             {
-                                 CountryTag =
-                                     countryListBox.SelectedItems.Count > 0
-                                         ? (CountryTag?) countryListBox.SelectedIndex
-                                         : null,
-                                 Id = 0,
-                                 Branch = null,
-                                 IdealRank = null,
-                                 StartYear = 1930,
-                                 EndYear = 1990,
-                             };
-                leader.RankYear[0] = 1930;
-                leader.RankYear[1] = 1990;
-                leader.RankYear[2] = 1990;
-                leader.RankYear[3] = 1990;
-
-                _masterLeaderList.Add(leader);
-
-                _narrowedLeaderList.Add(leader);
-                AddLeaderListViewItem(leader);
-
-                leaderListView.Items[0].Focused = true;
-                leaderListView.Items[0].Selected = true;
-
-                EnableEditableItems();
-            }
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     複製ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloneButtonClick(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var selectedLeader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selectedLeader == null)
-            {
-                return;
-            }
-            var leader = new Leader
-                             {
-                                 CountryTag = selectedLeader.CountryTag,
-                                 Id = selectedLeader.Id + 1,
-                                 Name = selectedLeader.Name,
-                                 Branch = selectedLeader.Branch,
-                                 IdealRank = selectedLeader.IdealRank,
-                                 Skill = selectedLeader.Skill,
-                                 MaxSkill = selectedLeader.MaxSkill,
-                                 Experience = selectedLeader.Experience,
-                                 Loyalty = selectedLeader.Loyalty,
-                                 StartYear = selectedLeader.StartYear,
-                                 EndYear = selectedLeader.EndYear,
-                                 PictureName = selectedLeader.PictureName,
-                                 Traits = selectedLeader.Traits
-                             };
-            leader.RankYear[0] = selectedLeader.RankYear[0];
-            leader.RankYear[1] = selectedLeader.RankYear[1];
-            leader.RankYear[2] = selectedLeader.RankYear[2];
-            leader.RankYear[3] = selectedLeader.RankYear[3];
-
-            int masterIndex = _masterLeaderList.IndexOf(selectedLeader);
-            _masterLeaderList.Insert(masterIndex + 1, leader);
-
-            int narrowedIndex = leaderListView.SelectedIndices[0] + 1;
-            _narrowedLeaderList.Insert(narrowedIndex, leader);
-            InsertLeaderListViewItem(narrowedIndex, leader);
-
-            leaderListView.Items[narrowedIndex].Focused = true;
-            leaderListView.Items[narrowedIndex].Selected = true;
-            leaderListView.Items[narrowedIndex].EnsureVisible();
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     削除ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDeleteButtonClick(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var selectedLeader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selectedLeader == null)
-            {
-                return;
-            }
-
-            int masterIndex = _masterLeaderList.IndexOf(selectedLeader);
-            _masterLeaderList.RemoveAt(masterIndex);
-
-            int narrowedIndex = leaderListView.SelectedIndices[0];
-            _narrowedLeaderList.RemoveAt(narrowedIndex);
-            RemoveLeaderListViewItem(narrowedIndex);
-
-            if (narrowedIndex < leaderListView.Items.Count)
-            {
-                leaderListView.Items[narrowedIndex].Focused = true;
-                leaderListView.Items[narrowedIndex].Selected = true;
-            }
-            else if (narrowedIndex - 1 >= 0)
-            {
-                leaderListView.Items[narrowedIndex - 1].Focused = true;
-                leaderListView.Items[narrowedIndex - 1].Selected = true;
-            }
-            else
-            {
-                DisableEditableItems();
-            }
-
-            if (selectedLeader.CountryTag != null)
-            {
-                SetDirtyFlag(selectedLeader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     先頭へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTopButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            int selectedIndex = leaderListView.SelectedIndices[0];
-            // 選択項目がリストの先頭ならば何もしない
-            if (selectedIndex == 0)
-            {
-                return;
-            }
-
-            var selectedLeader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selectedLeader == null)
-            {
-                return;
-            }
-            var topLeader = leaderListView.Items[0].Tag as Leader;
-            if (topLeader == null)
-            {
-                return;
-            }
-
-            int masterSelectedIndex = _masterLeaderList.IndexOf(selectedLeader);
-            int masterTopIndex = _masterLeaderList.IndexOf(topLeader);
-            _masterLeaderList.Insert(masterTopIndex, selectedLeader);
-            _masterLeaderList.RemoveAt(masterSelectedIndex + 1);
-
-            _narrowedLeaderList.Insert(0, selectedLeader);
-            _narrowedLeaderList.RemoveAt(selectedIndex + 1);
-            InsertLeaderListViewItem(0, selectedLeader);
-            RemoveLeaderListViewItem(selectedIndex + 1);
-
-            leaderListView.Items[0].Focused = true;
-            leaderListView.Items[0].Selected = true;
-
-            if (selectedLeader.CountryTag != null)
-            {
-                SetDirtyFlag(selectedLeader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     上へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUpButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            int selectedIndex = leaderListView.SelectedIndices[0];
-            // 選択項目がリストの先頭ならば何もしない
-            if (selectedIndex == 0)
-            {
-                return;
-            }
-
-            var selectedLeader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selectedLeader == null)
-            {
-                return;
-            }
-            var upperLeader = leaderListView.Items[selectedIndex - 1].Tag as Leader;
-            if (upperLeader == null)
-            {
-                return;
-            }
-
-            int masterSelectedIndex = _masterLeaderList.IndexOf(selectedLeader);
-            int masterUpperIndex = _masterLeaderList.IndexOf(upperLeader);
-            _masterLeaderList.Insert(masterUpperIndex, selectedLeader);
-            _masterLeaderList.RemoveAt(masterSelectedIndex + 1);
-
-            _narrowedLeaderList.Insert(selectedIndex - 1, selectedLeader);
-            _narrowedLeaderList.RemoveAt(selectedIndex + 1);
-            InsertLeaderListViewItem(selectedIndex - 1, selectedLeader);
-            RemoveLeaderListViewItem(selectedIndex + 1);
-
-            leaderListView.Items[selectedIndex - 1].Focused = true;
-            leaderListView.Items[selectedIndex - 1].Selected = true;
-
-            if (selectedLeader.CountryTag != null)
-            {
-                SetDirtyFlag(selectedLeader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     下へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDownButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            // 選択項目がリストの末尾ならば何もしない
-            int selectedIndex = leaderListView.SelectedIndices[0];
-            if (selectedIndex == leaderListView.Items.Count - 1)
-            {
-                return;
-            }
-
-            var selectedLeader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selectedLeader == null)
-            {
-                return;
-            }
-            var lowerLeader = leaderListView.Items[selectedIndex + 1].Tag as Leader;
-            if (lowerLeader == null)
-            {
-                return;
-            }
-
-            int masterSelectedIndex = _masterLeaderList.IndexOf(selectedLeader);
-            int masterLowerIndex = _masterLeaderList.IndexOf(lowerLeader);
-            _masterLeaderList.Insert(masterSelectedIndex, lowerLeader);
-            _masterLeaderList.RemoveAt(masterLowerIndex + 1);
-
-            _narrowedLeaderList.Insert(selectedIndex, lowerLeader);
-            _narrowedLeaderList.RemoveAt(selectedIndex + 2);
-            InsertLeaderListViewItem(selectedIndex, lowerLeader);
-            RemoveLeaderListViewItem(selectedIndex + 2);
-
-            leaderListView.Items[selectedIndex + 1].Focused = true;
-            leaderListView.Items[selectedIndex + 1].Selected = true;
-
-            if (selectedLeader.CountryTag != null)
-            {
-                SetDirtyFlag(selectedLeader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     末尾へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnBottomButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            int selectedIndex = leaderListView.SelectedIndices[0];
-            int bottomIndex = leaderListView.Items.Count - 1;
-            // 選択項目がリストの末尾ならば何もしない
-            if (selectedIndex == bottomIndex)
-            {
-                return;
-            }
-
-            var selectedLeader = leaderListView.Items[selectedIndex].Tag as Leader;
-            if (selectedLeader == null)
-            {
-                return;
-            }
-            var bottomLeader = leaderListView.Items[bottomIndex].Tag as Leader;
-            if (bottomLeader == null)
-            {
-                return;
-            }
-
-            int masterSelectedIndex = _masterLeaderList.IndexOf(selectedLeader);
-            int masterBottomIndex = _masterLeaderList.IndexOf(bottomLeader);
-            _masterLeaderList.Insert(masterBottomIndex + 1, selectedLeader);
-            _masterLeaderList.RemoveAt(masterSelectedIndex);
-
-            _narrowedLeaderList.Insert(bottomIndex + 1, selectedLeader);
-            _narrowedLeaderList.RemoveAt(selectedIndex);
-            InsertLeaderListViewItem(bottomIndex + 1, selectedLeader);
-            RemoveLeaderListViewItem(selectedIndex);
-
-            leaderListView.Items[bottomIndex].Focused = true;
-            leaderListView.Items[bottomIndex].Selected = true;
-
-            if (selectedLeader.CountryTag != null)
-            {
-                SetDirtyFlag(selectedLeader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     兵科チェックボックスのチェック状態変化時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnBranchNarrowCheckBoxCheckedChanged(object sender, EventArgs e)
-        {
-            NarrowLeaderList();
-            UpdateLeaderList();
-        }
-
-        /// <summary>
-        ///     特性絞り込みチェックボックスのチェック状態変化時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTraitsNarrowCheckBoxCheckedChanged(object sender, EventArgs e)
-        {
-            NarrowLeaderList();
-            UpdateLeaderList();
-        }
-
-        /// <summary>
-        ///     特性絞込み条件ラジオボタンのチェック状態変化時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTraitsNarrowRadioButtonCheckedChanged(object sender, EventArgs e)
-        {
-            NarrowLeaderList();
-            UpdateLeaderList();
-        }
-
-        /// <summary>
-        ///     選択反転ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTraitsNarrowInvertButtonClick(object sender, EventArgs e)
-        {
-            logisticsWizardNarrowCheckBox.Checked = !logisticsWizardNarrowCheckBox.Checked;
-            defensiveDoctrineNarrowCheckBox.Checked = !defensiveDoctrineNarrowCheckBox.Checked;
-            offensiveDoctrineNarrowCheckBox.Checked = !offensiveDoctrineNarrowCheckBox.Checked;
-            winterSpecialistNarrowCheckBox.Checked = !winterSpecialistNarrowCheckBox.Checked;
-            tricksterNarrowCheckBox.Checked = !tricksterNarrowCheckBox.Checked;
-            engineerNarrowCheckBox.Checked = !engineerNarrowCheckBox.Checked;
-            fortressBusterNarrowCheckBox.Checked = !fortressBusterNarrowCheckBox.Checked;
-            panzerLeaderNarrowCheckBox.Checked = !panzerLeaderNarrowCheckBox.Checked;
-            commandoNarrowCheckBox.Checked = !commandoNarrowCheckBox.Checked;
-            oldGuardNarrowCheckBox.Checked = !oldGuardNarrowCheckBox.Checked;
-            seaWolfNarrowCheckBox.Checked = !seaWolfNarrowCheckBox.Checked;
-            blockadeRunnerNarrowCheckBox.Checked = !blockadeRunnerNarrowCheckBox.Checked;
-            superiorTacticianNarrowCheckBox.Checked = !superiorTacticianNarrowCheckBox.Checked;
-            spotterNarrowCheckBox.Checked = !spotterNarrowCheckBox.Checked;
-            tankBusterNarrowCheckBox.Checked = !tankBusterNarrowCheckBox.Checked;
-            carpetBomberNarrowCheckBox.Checked = !carpetBomberNarrowCheckBox.Checked;
-            nightFlyerNarrowCheckBox.Checked = !nightFlyerNarrowCheckBox.Checked;
-            fleetDestroyerNarrowCheckBox.Checked = !fleetDestroyerNarrowCheckBox.Checked;
-            desertFoxNarrowCheckBox.Checked = !desertFoxNarrowCheckBox.Checked;
-            jungleRatNarrowCheckBox.Checked = !jungleRatNarrowCheckBox.Checked;
-            urbanWarfareSpecialistNarrowCheckBox.Checked = !urbanWarfareSpecialistNarrowCheckBox.Checked;
-            rangerNarrowCheckBox.Checked = !rangerNarrowCheckBox.Checked;
-            mountaineerNarrowCheckBox.Checked = !mountaineerNarrowCheckBox.Checked;
-            hillsFighterNarrowCheckBox.Checked = !hillsFighterNarrowCheckBox.Checked;
-            counterAttackerNarrowCheckBox.Checked = !counterAttackerNarrowCheckBox.Checked;
-            assaulterNarrowCheckBox.Checked = !assaulterNarrowCheckBox.Checked;
-            encirclerNarrowCheckBox.Checked = !encirclerNarrowCheckBox.Checked;
-            ambusherNarrowCheckBox.Checked = !ambusherNarrowCheckBox.Checked;
-            disciplinedNarrowCheckBox.Checked = !disciplinedNarrowCheckBox.Checked;
-            elasticDefenceSpecialistNarrowCheckBox.Checked = !elasticDefenceSpecialistNarrowCheckBox.Checked;
-            blitzerNarrowCheckBox.Checked = !blitzerNarrowCheckBox.Checked;
-        }
-
-        /// <summary>
-        ///     国家リストボックスの項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 背景を描画する
-            e.DrawBackground();
-
-            // 選択項目がない場合はスキップ
-            if (e.Index != -1)
-            {
-                Brush brush;
-                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
-                {
-                    // 変更ありの項目は文字色を変更する
-                    brush = _dirtyFlags[e.Index] ? new SolidBrush(Color.Red) : new SolidBrush(SystemColors.WindowText);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.HighlightText);
-                }
-                var listbox = sender as ListBox;
-                if (listbox != null)
-                {
-                    string s = listbox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                }
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     国家リストボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
-                                        ? Resources.KeySelectAll
-                                        : Resources.KeyUnselectAll;
-            newButton.Enabled = countryListBox.SelectedItems.Count > 0;
-
-            NarrowLeaderList();
-            UpdateLeaderList();
-        }
-
-        /// <summary>
-        ///     指揮官リストビューの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnLeaderListViewSelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            if (leader.CountryTag != null)
-            {
-                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.RemoveAt(0);
-                }
-                countryComboBox.SelectedIndex = (int) leader.CountryTag.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.Insert(0, "");
-                }
-                countryComboBox.SelectedIndex = 0;
-            }
-
-            idNumericUpDown.Value = leader.Id;
-            nameTextBox.Text = leader.Name;
-
-            if (leader.Branch != null)
-            {
-                if (string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
-                {
-                    branchComboBox.Items.RemoveAt(0);
-                }
-                branchComboBox.SelectedIndex = (int) leader.Branch.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
-                {
-                    branchComboBox.Items.Insert(0, "");
-                }
-                branchComboBox.SelectedIndex = 0;
-            }
-
-            if (leader.IdealRank != null)
-            {
-                if (string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
-                {
-                    idealRankComboBox.Items.RemoveAt(0);
-                }
-                idealRankComboBox.SelectedIndex = (int) leader.IdealRank.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
-                {
-                    idealRankComboBox.Items.Insert(0, "");
-                }
-                idealRankComboBox.SelectedIndex = 0;
-            }
-
-            skillNumericUpDown.Value = leader.Skill;
-            maxSkillNumericUpDown.Value = leader.MaxSkill;
-            experienceNumericUpDown.Value = leader.Experience;
-            loyaltyNumericUpDown.Value = leader.Loyalty;
-            startYearNumericUpDown.Value = leader.StartYear;
-            endYearNumericUpDown.Value = leader.EndYear;
-            rankYearNumericUpDown1.Value = leader.RankYear[0];
-            rankYearNumericUpDown2.Value = leader.RankYear[1];
-            rankYearNumericUpDown3.Value = leader.RankYear[2];
-            rankYearNumericUpDown4.Value = leader.RankYear[3];
-
-            pictureNameTextBox.Text = leader.PictureName;
-            if (!string.IsNullOrEmpty(leader.PictureName))
-            {
-                if (Game.IsModActive)
-                {
-                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
-                                                      Path.ChangeExtension(leader.PictureName, ".bmp"));
-                    if (File.Exists(modFileName))
-                    {
-                        leaderPictureBox.ImageLocation = modFileName;
-                    }
-                    else
-                    {
-                        leaderPictureBox.ImageLocation =
-                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                         Path.ChangeExtension(leader.PictureName, ".bmp"));
-                    }
-                }
-                else
-                {
-                    leaderPictureBox.ImageLocation =
-                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                     Path.ChangeExtension(leader.PictureName, ".bmp"));
-                }
-            }
-
-            // 中途半端な状態での更新を防ぐため、更新イベントを抑止する
-            logisticsWizardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            defensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            offensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            winterSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            tricksterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            engineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            fortressBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            panzerLeaderCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            commandoCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            oldGuardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            seaWolfCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            blockadeRunnerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            superiorTacticianCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            spotterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            tankBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            carpetBomberCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            nightFlyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            fleetDestroyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            desertFoxCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            jungleRatCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            urbanWarfareSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            rangerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            mountaineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            hillsFighterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            counterAttackerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            assaulterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            encirclerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            ambusherCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            disciplinedCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            elasticDefenceSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-            blitzerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-
-            // 特性チェックボックスの状態を更新する
-            logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
-            defensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.DefensiveDoctrine) != 0);
-            offensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.OffensiveDoctrine) != 0);
-            winterSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.WinterSpecialist) != 0);
-            tricksterCheckBox.Checked = ((leader.Traits & LeaderTraits.Trickster) != 0);
-            engineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Engineer) != 0);
-            fortressBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.FortressBuster) != 0);
-            panzerLeaderCheckBox.Checked = ((leader.Traits & LeaderTraits.PanzerLeader) != 0);
-            commandoCheckBox.Checked = ((leader.Traits & LeaderTraits.Commando) != 0);
-            oldGuardCheckBox.Checked = ((leader.Traits & LeaderTraits.OldGuard) != 0);
-            seaWolfCheckBox.Checked = ((leader.Traits & LeaderTraits.SeaWolf) != 0);
-            blockadeRunnerCheckBox.Checked = ((leader.Traits & LeaderTraits.BlockadeRunner) != 0);
-            superiorTacticianCheckBox.Checked = ((leader.Traits & LeaderTraits.SuperiorTactician) != 0);
-            spotterCheckBox.Checked = ((leader.Traits & LeaderTraits.Spotter) != 0);
-            tankBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.TankBuster) != 0);
-            carpetBomberCheckBox.Checked = ((leader.Traits & LeaderTraits.CarpetBomber) != 0);
-            nightFlyerCheckBox.Checked = ((leader.Traits & LeaderTraits.NightFlyer) != 0);
-            fleetDestroyerCheckBox.Checked = ((leader.Traits & LeaderTraits.FleetDestroyer) != 0);
-            desertFoxCheckBox.Checked = ((leader.Traits & LeaderTraits.DesertFox) != 0);
-            jungleRatCheckBox.Checked = ((leader.Traits & LeaderTraits.JungleRat) != 0);
-            urbanWarfareSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.UrbanWarfareSpecialist) != 0);
-            rangerCheckBox.Checked = ((leader.Traits & LeaderTraits.Ranger) != 0);
-            mountaineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Mountaineer) != 0);
-            hillsFighterCheckBox.Checked = ((leader.Traits & LeaderTraits.HillsFighter) != 0);
-            counterAttackerCheckBox.Checked = ((leader.Traits & LeaderTraits.CounterAttacker) != 0);
-            assaulterCheckBox.Checked = ((leader.Traits & LeaderTraits.Assaulter) != 0);
-            encirclerCheckBox.Checked = ((leader.Traits & LeaderTraits.Encircler) != 0);
-            ambusherCheckBox.Checked = ((leader.Traits & LeaderTraits.Ambusher) != 0);
-            disciplinedCheckBox.Checked = ((leader.Traits & LeaderTraits.Disciplined) != 0);
-            elasticDefenceSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0);
-            blitzerCheckBox.Checked = ((leader.Traits & LeaderTraits.Blitzer) != 0);
-
-            // 更新イベントを再開する
-            logisticsWizardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            defensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            offensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            winterSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            tricksterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            engineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            fortressBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            panzerLeaderCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            commandoCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            oldGuardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            seaWolfCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            blockadeRunnerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            superiorTacticianCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            spotterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            tankBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            carpetBomberCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            nightFlyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            fleetDestroyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            desertFoxCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            jungleRatCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            urbanWarfareSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            rangerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            mountaineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            hillsFighterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            counterAttackerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            assaulterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            encirclerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            ambusherCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            disciplinedCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            elasticDefenceSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-            blitzerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-        }
-
-        /// <summary>
-        ///     国タグ変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCountryComboBoxSelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            CountryTag? newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
-                                            ? (CountryTag?) countryComboBox.SelectedIndex
-                                            : (CountryTag?) (countryComboBox.SelectedIndex - 1);
-            if (newCountryTag == leader.CountryTag)
-            {
-                return;
-            }
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-            leader.CountryTag = newCountryTag;
-            leaderListView.SelectedItems[0].Text = leader.CountryTag != null
-                                                       ? Country.CountryTextTable[(int) leader.CountryTag.Value]
-                                                       : "";
-            if (leader.CountryTag != null)
-            {
-                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.RemoveAt(0);
-                }
-                countryComboBox.SelectedIndex = (int) leader.CountryTag.Value;
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
-        }
-
-        /// <summary>
-        ///     ID変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnIdNumericUpDownValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newId = (int) idNumericUpDown.Value;
-            if (newId == leader.Id)
-            {
-                return;
-            }
-            leader.Id = newId;
-            leaderListView.SelectedItems[0].SubItems[1].Text = leader.Id.ToString(CultureInfo.InvariantCulture);
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     名前文字列変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnNameTextBoxTextChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            string newName = nameTextBox.Text;
-            if (newName.Equals(leader.Name))
-            {
-                return;
-            }
-            leader.Name = newName;
-            leaderListView.SelectedItems[0].SubItems[2].Text = leader.Name;
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     兵科変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnBranchComboBoxSelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            LeaderBranch? newBranch = !string.IsNullOrEmpty(branchComboBox.Items[0].ToString())
-                                          ? (LeaderBranch?) branchComboBox.SelectedIndex
-                                          : (LeaderBranch?) (branchComboBox.SelectedIndex - 1);
-            if (newBranch == leader.Branch)
-            {
-                return;
-            }
-
-            leader.Branch = newBranch;
-            leaderListView.SelectedItems[0].SubItems[3].Text =
-                leader.Branch != null ? Leader.BranchTextTable[(int) leader.Branch] : "";
-
-            if (leader.Branch != null)
-            {
-                if (string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
-                {
-                    branchComboBox.Items.RemoveAt(0);
-                }
-                branchComboBox.SelectedIndex = (int) leader.Branch.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
-                {
-                    branchComboBox.Items.Insert(0, "");
-                }
-                branchComboBox.SelectedIndex = 0;
-            }
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     理想階級変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnIdealRankComboBoxSelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            LeaderRank? newIdealRank = !string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString())
-                                           ? (LeaderRank?) idealRankComboBox.SelectedIndex
-                                           : (LeaderRank?) (idealRankComboBox.SelectedIndex - 1);
-            if (newIdealRank == leader.IdealRank)
-            {
-                return;
-            }
-
-            leader.IdealRank = newIdealRank;
-
-            if (leader.IdealRank != null)
-            {
-                if (string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
-                {
-                    idealRankComboBox.Items.RemoveAt(0);
-                }
-                idealRankComboBox.SelectedIndex = (int) leader.IdealRank.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
-                {
-                    idealRankComboBox.Items.Insert(0, "");
-                }
-                idealRankComboBox.SelectedIndex = 0;
-            }
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     スキル変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSkillNumericUpDownValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newSkill = (int) skillNumericUpDown.Value;
-            if (newSkill == leader.Skill)
-            {
-                return;
-            }
-
-            leader.Skill = newSkill;
-            leaderListView.SelectedItems[0].SubItems[4].Text = leader.Skill.ToString(CultureInfo.InvariantCulture);
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     最大スキル変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMaxSkillNumericUpDownValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newMaxSkill = (int) maxSkillNumericUpDown.Value;
-            if (newMaxSkill == leader.MaxSkill)
-            {
-                return;
-            }
-
-            leader.MaxSkill = newMaxSkill;
-            leaderListView.SelectedItems[0].SubItems[5].Text = leader.MaxSkill.ToString(CultureInfo.InvariantCulture);
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     経験値変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnExperienceNumericUpDownValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newExperience = (int) experienceNumericUpDown.Value;
-            if (newExperience == leader.Experience)
-            {
-                return;
-            }
-
-            leader.Experience = newExperience;
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     忠誠度変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnLoyaltyNumericUpDownValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newLoyalty = (int) loyaltyNumericUpDown.Value;
-            if (newLoyalty == leader.Loyalty)
-            {
-                return;
-            }
-
-            leader.Loyalty = newLoyalty;
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     開始年変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newStartYear = (int) startYearNumericUpDown.Value;
-            if (newStartYear == leader.StartYear)
-            {
-                return;
-            }
-
-            leader.StartYear = newStartYear;
-            leaderListView.SelectedItems[0].SubItems[6].Text = leader.StartYear.ToString(CultureInfo.InvariantCulture);
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     終了年変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newEndYear = (int) endYearNumericUpDown.Value;
-            if (newEndYear == leader.EndYear)
-            {
-                return;
-            }
-
-            leader.EndYear = newEndYear;
-            leaderListView.SelectedItems[0].SubItems[7].Text = leader.EndYear.ToString(CultureInfo.InvariantCulture);
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     少将任官年変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRankYearNumericUpDown1ValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newRankYear = (int) rankYearNumericUpDown1.Value;
-            if (newRankYear == leader.RankYear[0])
-            {
-                return;
-            }
-
-            leader.RankYear[0] = newRankYear;
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     中将任官年変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRankYearNumericUpDown2ValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newRankYear = (int) rankYearNumericUpDown2.Value;
-            if (newRankYear == leader.RankYear[1])
-            {
-                return;
-            }
-            leader.RankYear[1] = newRankYear;
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     大将任官年変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRankYearNumericUpDown3ValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newRankYear = (int) rankYearNumericUpDown3.Value;
-            if (newRankYear == leader.RankYear[2])
-            {
-                return;
-            }
-            leader.RankYear[2] = newRankYear;
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     元帥任官年変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRankYearNumericUpDown4ValueChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newRankYear = (int) rankYearNumericUpDown1.Value;
-            if (newRankYear == leader.RankYear[3])
-            {
-                return;
-            }
-
-            leader.RankYear[3] = newRankYear;
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
-            }
-        }
-
-        /// <summary>
-        ///     特性変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTraitsCheckBoxCheckedChanged(object sender, EventArgs e)
-        {
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            uint newTraits = GetCheckedLeaderTraits();
-            if (newTraits == leader.Traits)
-            {
-                return;
-            }
-
-            leader.Traits = newTraits;
-            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
-
-            if (leader.CountryTag != null)
-            {
-                SetDirtyFlag(leader.CountryTag.Value);
+                logisticsWizardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                defensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                offensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                winterSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                tricksterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                engineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                fortressBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                panzerLeaderCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                commandoCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                oldGuardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                seaWolfCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                blockadeRunnerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                superiorTacticianCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                spotterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                tankBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                carpetBomberCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                nightFlyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                fleetDestroyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                desertFoxCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                jungleRatCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                urbanWarfareSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                rangerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                mountaineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                hillsFighterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                counterAttackerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                assaulterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                encirclerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                ambusherCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                disciplinedCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                elasticDefenceSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                blitzerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
             }
         }
 
@@ -2009,7 +842,7 @@ namespace HoI2Editor.Forms
         ///     絞り込まれた指揮官特性を取得する
         /// </summary>
         /// <returns>指揮官特性</returns>
-        private uint GetNarrowedLeaderTraits()
+        private uint GetNarrowedTraits()
         {
             uint traits = 0;
 
@@ -2173,6 +1006,1187 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderEditorFormLoad(object sender, EventArgs e)
+        {
+            InitTraitsText();
+            InitEditableItems();
+            InitCountryListBox();
+            LoadLeaderFiles();
+        }
+
+        /// <summary>
+        ///     新規ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNewButtonClick(object sender, EventArgs e)
+        {
+            Leader leader;
+            if (leaderListView.SelectedItems.Count > 0)
+            {
+                var selected = leaderListView.SelectedItems[0].Tag as Leader;
+                if (selected == null)
+                {
+                    return;
+                }
+
+                leader = new Leader
+                             {
+                                 CountryTag = selected.CountryTag,
+                                 Id = selected.Id + 1,
+                                 Branch = null,
+                                 IdealRank = null,
+                                 StartYear = 1930,
+                                 EndYear = 1990,
+                             };
+                leader.RankYear[0] = 1930;
+                leader.RankYear[1] = 1990;
+                leader.RankYear[2] = 1990;
+                leader.RankYear[3] = 1990;
+
+                Leaders.InsertItemNext(leader, selected);
+
+                InsertListItem(leader, leaderListView.SelectedIndices[0] + 1);
+            }
+            else
+            {
+                leader = new Leader
+                             {
+                                 CountryTag =
+                                     countryListBox.SelectedItems.Count > 0
+                                         ? (CountryTag?) countryListBox.SelectedIndex
+                                         : null,
+                                 Id = 0,
+                                 Branch = null,
+                                 IdealRank = null,
+                                 StartYear = 1930,
+                                 EndYear = 1990,
+                             };
+                leader.RankYear[0] = 1930;
+                leader.RankYear[1] = 1990;
+                leader.RankYear[2] = 1990;
+                leader.RankYear[3] = 1990;
+
+                Leaders.AddItem(leader);
+
+                AddListItem(leader);
+
+                EnableEditableItems();
+            }
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     複製ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloneButtonClick(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var selected = leaderListView.SelectedItems[0].Tag as Leader;
+            if (selected == null)
+            {
+                return;
+            }
+
+            var leader = new Leader
+                             {
+                                 CountryTag = selected.CountryTag,
+                                 Id = selected.Id + 1,
+                                 Name = selected.Name,
+                                 Branch = selected.Branch,
+                                 IdealRank = selected.IdealRank,
+                                 Skill = selected.Skill,
+                                 MaxSkill = selected.MaxSkill,
+                                 Experience = selected.Experience,
+                                 Loyalty = selected.Loyalty,
+                                 StartYear = selected.StartYear,
+                                 EndYear = selected.EndYear,
+                                 PictureName = selected.PictureName,
+                                 Traits = selected.Traits
+                             };
+            leader.RankYear[0] = selected.RankYear[0];
+            leader.RankYear[1] = selected.RankYear[1];
+            leader.RankYear[2] = selected.RankYear[2];
+            leader.RankYear[3] = selected.RankYear[3];
+
+            Leaders.InsertItemNext(leader, selected);
+
+            InsertListItem(leader, leaderListView.SelectedIndices[0] + 1);
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDeleteButtonClick(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var selected = leaderListView.SelectedItems[0].Tag as Leader;
+            if (selected == null)
+            {
+                return;
+            }
+
+            Leaders.RemoveItem(selected);
+
+            RemoveItem(leaderListView.SelectedIndices[0]);
+
+            if (leaderListView.Items.Count == 0)
+            {
+                DisableEditableItems();
+            }
+
+            if (selected.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(selected.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     先頭へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTopButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            // 選択項目がリストの先頭ならば何もしない
+            int index = leaderListView.SelectedIndices[0];
+            if (index == 0)
+            {
+                return;
+            }
+
+            var selected = leaderListView.SelectedItems[0].Tag as Leader;
+            if (selected == null)
+            {
+                return;
+            }
+
+            var top = leaderListView.Items[0].Tag as Leader;
+            if (top == null)
+            {
+                return;
+            }
+
+            Leaders.MoveItem(selected, top);
+
+            MoveListItem(index, 0);
+
+            if (selected.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(selected.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            // 選択項目がリストの先頭ならば何もしない
+            int index = leaderListView.SelectedIndices[0];
+            if (index == 0)
+            {
+                return;
+            }
+
+            var selected = leaderListView.SelectedItems[0].Tag as Leader;
+            if (selected == null)
+            {
+                return;
+            }
+            var upper = leaderListView.Items[index - 1].Tag as Leader;
+            if (upper == null)
+            {
+                return;
+            }
+
+            Leaders.MoveItem(selected, upper);
+
+            MoveListItem(index, index - 1);
+
+            if (selected.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(selected.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDownButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            // 選択項目がリストの末尾ならば何もしない
+            int index = leaderListView.SelectedIndices[0];
+            if (index == leaderListView.Items.Count - 1)
+            {
+                return;
+            }
+
+            var selected = leaderListView.SelectedItems[0].Tag as Leader;
+            if (selected == null)
+            {
+                return;
+            }
+
+            var lower = leaderListView.Items[index + 1].Tag as Leader;
+            if (lower == null)
+            {
+                return;
+            }
+
+            Leaders.MoveItem(selected, lower);
+
+            MoveListItem(index, index + 1);
+
+            if (selected.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(selected.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     末尾へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBottomButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            // 選択項目がリストの末尾ならば何もしない
+            int index = leaderListView.SelectedIndices[0];
+            if (index == leaderListView.Items.Count - 1)
+            {
+                return;
+            }
+
+            var selected = leaderListView.Items[index].Tag as Leader;
+            if (selected == null)
+            {
+                return;
+            }
+
+            var bottom = leaderListView.Items[leaderListView.Items.Count - 1].Tag as Leader;
+            if (bottom == null)
+            {
+                return;
+            }
+
+            Leaders.MoveItem(selected, bottom);
+
+            MoveListItem(index, leaderListView.Items.Count - 1);
+
+            if (selected.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(selected.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     兵科チェックボックスのチェック状態変化時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBranchNarrowCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            NarrowLeaderList();
+            UpdateLeaderList();
+        }
+
+        /// <summary>
+        ///     特性絞り込みチェックボックスのチェック状態変化時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTraitsNarrowCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            NarrowLeaderList();
+            UpdateLeaderList();
+        }
+
+        /// <summary>
+        ///     特性絞込み条件ラジオボタンのチェック状態変化時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTraitsNarrowRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            NarrowLeaderList();
+            UpdateLeaderList();
+        }
+
+        /// <summary>
+        ///     選択反転ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTraitsNarrowInvertButtonClick(object sender, EventArgs e)
+        {
+            logisticsWizardNarrowCheckBox.Checked = !logisticsWizardNarrowCheckBox.Checked;
+            defensiveDoctrineNarrowCheckBox.Checked = !defensiveDoctrineNarrowCheckBox.Checked;
+            offensiveDoctrineNarrowCheckBox.Checked = !offensiveDoctrineNarrowCheckBox.Checked;
+            winterSpecialistNarrowCheckBox.Checked = !winterSpecialistNarrowCheckBox.Checked;
+            tricksterNarrowCheckBox.Checked = !tricksterNarrowCheckBox.Checked;
+            engineerNarrowCheckBox.Checked = !engineerNarrowCheckBox.Checked;
+            fortressBusterNarrowCheckBox.Checked = !fortressBusterNarrowCheckBox.Checked;
+            panzerLeaderNarrowCheckBox.Checked = !panzerLeaderNarrowCheckBox.Checked;
+            commandoNarrowCheckBox.Checked = !commandoNarrowCheckBox.Checked;
+            oldGuardNarrowCheckBox.Checked = !oldGuardNarrowCheckBox.Checked;
+            seaWolfNarrowCheckBox.Checked = !seaWolfNarrowCheckBox.Checked;
+            blockadeRunnerNarrowCheckBox.Checked = !blockadeRunnerNarrowCheckBox.Checked;
+            superiorTacticianNarrowCheckBox.Checked = !superiorTacticianNarrowCheckBox.Checked;
+            spotterNarrowCheckBox.Checked = !spotterNarrowCheckBox.Checked;
+            tankBusterNarrowCheckBox.Checked = !tankBusterNarrowCheckBox.Checked;
+            carpetBomberNarrowCheckBox.Checked = !carpetBomberNarrowCheckBox.Checked;
+            nightFlyerNarrowCheckBox.Checked = !nightFlyerNarrowCheckBox.Checked;
+            fleetDestroyerNarrowCheckBox.Checked = !fleetDestroyerNarrowCheckBox.Checked;
+            desertFoxNarrowCheckBox.Checked = !desertFoxNarrowCheckBox.Checked;
+            jungleRatNarrowCheckBox.Checked = !jungleRatNarrowCheckBox.Checked;
+            urbanWarfareSpecialistNarrowCheckBox.Checked = !urbanWarfareSpecialistNarrowCheckBox.Checked;
+            rangerNarrowCheckBox.Checked = !rangerNarrowCheckBox.Checked;
+            mountaineerNarrowCheckBox.Checked = !mountaineerNarrowCheckBox.Checked;
+            hillsFighterNarrowCheckBox.Checked = !hillsFighterNarrowCheckBox.Checked;
+            counterAttackerNarrowCheckBox.Checked = !counterAttackerNarrowCheckBox.Checked;
+            assaulterNarrowCheckBox.Checked = !assaulterNarrowCheckBox.Checked;
+            encirclerNarrowCheckBox.Checked = !encirclerNarrowCheckBox.Checked;
+            ambusherNarrowCheckBox.Checked = !ambusherNarrowCheckBox.Checked;
+            disciplinedNarrowCheckBox.Checked = !disciplinedNarrowCheckBox.Checked;
+            elasticDefenceSpecialistNarrowCheckBox.Checked = !elasticDefenceSpecialistNarrowCheckBox.Checked;
+            blitzerNarrowCheckBox.Checked = !blitzerNarrowCheckBox.Checked;
+        }
+
+        /// <summary>
+        ///     国家リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            if (e.Index != -1)
+            {
+                Brush brush;
+                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
+                {
+                    // 変更ありの項目は文字色を変更する
+                    brush = Leaders.DirtyFlags[e.Index]
+                                ? new SolidBrush(Color.Red)
+                                : new SolidBrush(SystemColors.WindowText);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.HighlightText);
+                }
+                var listbox = sender as ListBox;
+                if (listbox != null)
+                {
+                    string s = listbox.Items[e.Index].ToString();
+                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                }
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     国家リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
+                                        ? Resources.KeySelectAll
+                                        : Resources.KeyUnselectAll;
+            newButton.Enabled = countryListBox.SelectedItems.Count > 0;
+
+            NarrowLeaderList();
+            UpdateLeaderList();
+        }
+
+        /// <summary>
+        ///     指揮官リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            if (leader.CountryTag != null)
+            {
+                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.RemoveAt(0);
+                }
+                countryComboBox.SelectedIndex = (int) leader.CountryTag.Value;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.Insert(0, "");
+                }
+                countryComboBox.SelectedIndex = 0;
+            }
+
+            idNumericUpDown.Value = leader.Id;
+            nameTextBox.Text = leader.Name;
+
+            if (leader.Branch != null)
+            {
+                if (string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
+                {
+                    branchComboBox.Items.RemoveAt(0);
+                }
+                branchComboBox.SelectedIndex = (int) leader.Branch.Value;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
+                {
+                    branchComboBox.Items.Insert(0, "");
+                }
+                branchComboBox.SelectedIndex = 0;
+            }
+
+            if (leader.IdealRank != null)
+            {
+                if (string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
+                {
+                    idealRankComboBox.Items.RemoveAt(0);
+                }
+                idealRankComboBox.SelectedIndex = (int) leader.IdealRank.Value;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
+                {
+                    idealRankComboBox.Items.Insert(0, "");
+                }
+                idealRankComboBox.SelectedIndex = 0;
+            }
+
+            skillNumericUpDown.Value = leader.Skill;
+            maxSkillNumericUpDown.Value = leader.MaxSkill;
+            experienceNumericUpDown.Value = leader.Experience;
+            loyaltyNumericUpDown.Value = leader.Loyalty;
+            startYearNumericUpDown.Value = leader.StartYear;
+            endYearNumericUpDown.Value = leader.EndYear;
+            rankYearNumericUpDown1.Value = leader.RankYear[0];
+            rankYearNumericUpDown2.Value = leader.RankYear[1];
+            rankYearNumericUpDown3.Value = leader.RankYear[2];
+            rankYearNumericUpDown4.Value = leader.RankYear[3];
+
+            pictureNameTextBox.Text = leader.PictureName;
+            if (!string.IsNullOrEmpty(leader.PictureName))
+            {
+                if (Game.IsModActive)
+                {
+                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
+                                                      Path.ChangeExtension(leader.PictureName, ".bmp"));
+                    if (File.Exists(modFileName))
+                    {
+                        leaderPictureBox.ImageLocation = modFileName;
+                    }
+                    else
+                    {
+                        leaderPictureBox.ImageLocation =
+                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
+                                         Path.ChangeExtension(leader.PictureName, ".bmp"));
+                    }
+                }
+                else
+                {
+                    leaderPictureBox.ImageLocation =
+                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
+                                     Path.ChangeExtension(leader.PictureName, ".bmp"));
+                }
+            }
+
+            // 中途半端な状態での更新を防ぐため、更新イベントを抑止する
+            SetTraitsCheckBoxEvent(false);
+
+            // 特性チェックボックスの状態を更新する
+            logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
+            defensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.DefensiveDoctrine) != 0);
+            offensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.OffensiveDoctrine) != 0);
+            winterSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.WinterSpecialist) != 0);
+            tricksterCheckBox.Checked = ((leader.Traits & LeaderTraits.Trickster) != 0);
+            engineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Engineer) != 0);
+            fortressBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.FortressBuster) != 0);
+            panzerLeaderCheckBox.Checked = ((leader.Traits & LeaderTraits.PanzerLeader) != 0);
+            commandoCheckBox.Checked = ((leader.Traits & LeaderTraits.Commando) != 0);
+            oldGuardCheckBox.Checked = ((leader.Traits & LeaderTraits.OldGuard) != 0);
+            seaWolfCheckBox.Checked = ((leader.Traits & LeaderTraits.SeaWolf) != 0);
+            blockadeRunnerCheckBox.Checked = ((leader.Traits & LeaderTraits.BlockadeRunner) != 0);
+            superiorTacticianCheckBox.Checked = ((leader.Traits & LeaderTraits.SuperiorTactician) != 0);
+            spotterCheckBox.Checked = ((leader.Traits & LeaderTraits.Spotter) != 0);
+            tankBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.TankBuster) != 0);
+            carpetBomberCheckBox.Checked = ((leader.Traits & LeaderTraits.CarpetBomber) != 0);
+            nightFlyerCheckBox.Checked = ((leader.Traits & LeaderTraits.NightFlyer) != 0);
+            fleetDestroyerCheckBox.Checked = ((leader.Traits & LeaderTraits.FleetDestroyer) != 0);
+            desertFoxCheckBox.Checked = ((leader.Traits & LeaderTraits.DesertFox) != 0);
+            jungleRatCheckBox.Checked = ((leader.Traits & LeaderTraits.JungleRat) != 0);
+            urbanWarfareSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.UrbanWarfareSpecialist) != 0);
+            rangerCheckBox.Checked = ((leader.Traits & LeaderTraits.Ranger) != 0);
+            mountaineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Mountaineer) != 0);
+            hillsFighterCheckBox.Checked = ((leader.Traits & LeaderTraits.HillsFighter) != 0);
+            counterAttackerCheckBox.Checked = ((leader.Traits & LeaderTraits.CounterAttacker) != 0);
+            assaulterCheckBox.Checked = ((leader.Traits & LeaderTraits.Assaulter) != 0);
+            encirclerCheckBox.Checked = ((leader.Traits & LeaderTraits.Encircler) != 0);
+            ambusherCheckBox.Checked = ((leader.Traits & LeaderTraits.Ambusher) != 0);
+            disciplinedCheckBox.Checked = ((leader.Traits & LeaderTraits.Disciplined) != 0);
+            elasticDefenceSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0);
+            blitzerCheckBox.Checked = ((leader.Traits & LeaderTraits.Blitzer) != 0);
+
+            // 更新イベントを再開する
+            SetTraitsCheckBoxEvent(true);
+        }
+
+        /// <summary>
+        ///     国タグ変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            CountryTag? newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
+                                            ? (CountryTag?) countryComboBox.SelectedIndex
+                                            : (CountryTag?) (countryComboBox.SelectedIndex - 1);
+            if (newCountryTag == leader.CountryTag)
+            {
+                return;
+            }
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+
+            leader.CountryTag = newCountryTag;
+            leaderListView.SelectedItems[0].Text = leader.CountryTag != null
+                                                       ? Country.CountryTextTable[(int) leader.CountryTag.Value]
+                                                       : "";
+
+            if (leader.CountryTag != null)
+            {
+                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.RemoveAt(0);
+                }
+                countryComboBox.SelectedIndex = (int) leader.CountryTag.Value;
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     ID変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIdNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newId = (int) idNumericUpDown.Value;
+            if (newId == leader.Id)
+            {
+                return;
+            }
+
+            leader.Id = newId;
+            leaderListView.SelectedItems[0].SubItems[1].Text = leader.Id.ToString(CultureInfo.InvariantCulture);
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     名前文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNameTextBoxTextChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            string newName = nameTextBox.Text;
+            if (newName.Equals(leader.Name))
+            {
+                return;
+            }
+
+            leader.Name = newName;
+            leaderListView.SelectedItems[0].SubItems[2].Text = leader.Name;
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     兵科変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBranchComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            LeaderBranch? newBranch = !string.IsNullOrEmpty(branchComboBox.Items[0].ToString())
+                                          ? (LeaderBranch?) branchComboBox.SelectedIndex
+                                          : (LeaderBranch?) (branchComboBox.SelectedIndex - 1);
+            if (newBranch == leader.Branch)
+            {
+                return;
+            }
+
+            leader.Branch = newBranch;
+            leaderListView.SelectedItems[0].SubItems[3].Text =
+                leader.Branch != null ? Leader.BranchTextTable[(int) leader.Branch] : "";
+
+            if (leader.Branch != null)
+            {
+                if (string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
+                {
+                    branchComboBox.Items.RemoveAt(0);
+                }
+                branchComboBox.SelectedIndex = (int) leader.Branch.Value;
+            }
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     理想階級変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIdealRankComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            LeaderRank? newIdealRank = !string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString())
+                                           ? (LeaderRank?) idealRankComboBox.SelectedIndex
+                                           : (LeaderRank?) (idealRankComboBox.SelectedIndex - 1);
+            if (newIdealRank == leader.IdealRank)
+            {
+                return;
+            }
+
+            leader.IdealRank = newIdealRank;
+
+            if (leader.IdealRank != null)
+            {
+                if (string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
+                {
+                    idealRankComboBox.Items.RemoveAt(0);
+                }
+                idealRankComboBox.SelectedIndex = (int) leader.IdealRank.Value;
+            }
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     スキル変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSkillNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newSkill = (int) skillNumericUpDown.Value;
+            if (newSkill == leader.Skill)
+            {
+                return;
+            }
+
+            leader.Skill = newSkill;
+            leaderListView.SelectedItems[0].SubItems[4].Text = leader.Skill.ToString(CultureInfo.InvariantCulture);
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     最大スキル変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaxSkillNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newMaxSkill = (int) maxSkillNumericUpDown.Value;
+            if (newMaxSkill == leader.MaxSkill)
+            {
+                return;
+            }
+
+            leader.MaxSkill = newMaxSkill;
+            leaderListView.SelectedItems[0].SubItems[5].Text = leader.MaxSkill.ToString(CultureInfo.InvariantCulture);
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     経験値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnExperienceNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newExperience = (int) experienceNumericUpDown.Value;
+            if (newExperience == leader.Experience)
+            {
+                return;
+            }
+
+            leader.Experience = newExperience;
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     忠誠度変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLoyaltyNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newLoyalty = (int) loyaltyNumericUpDown.Value;
+            if (newLoyalty == leader.Loyalty)
+            {
+                return;
+            }
+
+            leader.Loyalty = newLoyalty;
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     開始年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newStartYear = (int) startYearNumericUpDown.Value;
+            if (newStartYear == leader.StartYear)
+            {
+                return;
+            }
+
+            leader.StartYear = newStartYear;
+            leaderListView.SelectedItems[0].SubItems[6].Text = leader.StartYear.ToString(CultureInfo.InvariantCulture);
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     終了年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newEndYear = (int) endYearNumericUpDown.Value;
+            if (newEndYear == leader.EndYear)
+            {
+                return;
+            }
+
+            leader.EndYear = newEndYear;
+            leaderListView.SelectedItems[0].SubItems[7].Text = leader.EndYear.ToString(CultureInfo.InvariantCulture);
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     少将任官年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRankYearNumericUpDown1ValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newRankYear = (int) rankYearNumericUpDown1.Value;
+            if (newRankYear == leader.RankYear[0])
+            {
+                return;
+            }
+
+            leader.RankYear[0] = newRankYear;
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     中将任官年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRankYearNumericUpDown2ValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newRankYear = (int) rankYearNumericUpDown2.Value;
+            if (newRankYear == leader.RankYear[1])
+            {
+                return;
+            }
+
+            leader.RankYear[1] = newRankYear;
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     大将任官年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRankYearNumericUpDown3ValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newRankYear = (int) rankYearNumericUpDown3.Value;
+            if (newRankYear == leader.RankYear[2])
+            {
+                return;
+            }
+
+            leader.RankYear[2] = newRankYear;
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     元帥任官年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRankYearNumericUpDown4ValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newRankYear = (int) rankYearNumericUpDown1.Value;
+            if (newRankYear == leader.RankYear[3])
+            {
+                return;
+            }
+
+            leader.RankYear[3] = newRankYear;
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
+        ///     特性変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTraitsCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            uint newTraits = GetCheckedLeaderTraits();
+            if (newTraits == leader.Traits)
+            {
+                return;
+            }
+
+            leader.Traits = newTraits;
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            if (leader.CountryTag != null)
+            {
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
+            }
+        }
+
+        /// <summary>
         ///     画像ファイル名変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -2183,6 +2197,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var leader = leaderListView.SelectedItems[0].Tag as Leader;
             if (leader == null)
             {
@@ -2224,7 +2239,7 @@ namespace HoI2Editor.Forms
 
             if (leader.CountryTag != null)
             {
-                SetDirtyFlag(leader.CountryTag.Value);
+                Leaders.SetDirtyFlag(leader.CountryTag.Value);
             }
         }
 
@@ -2239,6 +2254,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
             var leader = leaderListView.SelectedItems[0].Tag as Leader;
             if (leader == null)
             {
@@ -2311,8 +2327,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            Leader.SaveLeaderFiles(_masterLeaderList, _dirtyFlags);
-            ClearDirtyFlags();
+            SaveLeaderFiles();
         }
 
         /// <summary>

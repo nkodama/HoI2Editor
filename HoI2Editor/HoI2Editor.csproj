@@ -78,9 +78,12 @@
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Leader.cs" />
+    <Compile Include="Models\Leaders.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Minister.cs" />
+    <Compile Include="Models\Ministers.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\Teams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\LeaderEditorForm.resx">
       <DependentUpon>LeaderEditorForm.cs</DependentUpon>
