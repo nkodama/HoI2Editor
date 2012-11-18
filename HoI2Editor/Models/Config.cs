@@ -17,12 +17,23 @@ namespace HoI2Editor.Models
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        public static bool Loaded { get; set; }
+
+        /// <summary>
         ///     文字列ファイル群を読み込む
         /// </summary>
         public static void LoadConfigFiles()
         {
+            // 読み込み済みならば戻る
+            if (Loaded)
+            {
+                return;
+            }
+
             Text.Clear();
-            var list = new List<string>();
+            var fileList = new List<string>();
             string folderName;
 
             if (Game.IsModActive)
@@ -36,7 +47,7 @@ namespace HoI2Editor.Models
                         string name = Path.GetFileName(fileName);
                         if (!string.IsNullOrEmpty(name))
                         {
-                            list.Add(name.ToLower());
+                            fileList.Add(name.ToLower());
                         }
                     }
                 }
@@ -48,7 +59,7 @@ namespace HoI2Editor.Models
                 foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                 {
                     string name = Path.GetFileName(fileName);
-                    if (!string.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
+                    if (!string.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
                     {
                         LoadConfigFile(fileName);
                     }
@@ -57,7 +68,7 @@ namespace HoI2Editor.Models
 
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                list.Clear();
+                fileList.Clear();
 
                 folderName = Path.Combine(Game.ModFolderName, "config\\Additional");
                 if (Directory.Exists(folderName))
@@ -68,7 +79,7 @@ namespace HoI2Editor.Models
                         string name = Path.GetFileName(fileName);
                         if (!string.IsNullOrEmpty(name))
                         {
-                            list.Add(name.ToLower());
+                            fileList.Add(name.ToLower());
                         }
                     }
                 }
@@ -79,7 +90,7 @@ namespace HoI2Editor.Models
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                     {
                         string name = Path.GetFileName(fileName);
-                        if (!string.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
+                        if (!string.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
                         {
                             LoadConfigFile(fileName);
                         }
@@ -88,6 +99,8 @@ namespace HoI2Editor.Models
             }
 
             ModifyDuplicatedStrings();
+
+            Loaded = true;
         }
 
         /// <summary>

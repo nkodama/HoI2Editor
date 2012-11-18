@@ -109,13 +109,13 @@
             // dhRadioButton
             // 
             this.dhRadioButton.AutoSize = true;
-            this.dhRadioButton.Enabled = false;
             this.dhRadioButton.Location = new System.Drawing.Point(149, 18);
             this.dhRadioButton.Name = "dhRadioButton";
             this.dhRadioButton.Size = new System.Drawing.Size(39, 16);
             this.dhRadioButton.TabIndex = 2;
             this.dhRadioButton.Text = "DH";
             this.dhRadioButton.UseVisualStyleBackColor = true;
+            this.dhRadioButton.CheckedChanged += new System.EventHandler(this.OnGameTypeRadioButtonCheckedChanged);
             // 
             // aodRadioButton
             // 
@@ -128,6 +128,7 @@
             this.aodRadioButton.TabStop = true;
             this.aodRadioButton.Text = "AoD";
             this.aodRadioButton.UseVisualStyleBackColor = true;
+            this.aodRadioButton.CheckedChanged += new System.EventHandler(this.OnGameTypeRadioButtonCheckedChanged);
             // 
             // hoi2RadioButton
             // 
@@ -138,6 +139,7 @@
             this.hoi2RadioButton.TabIndex = 0;
             this.hoi2RadioButton.Text = "HoI2 DDA";
             this.hoi2RadioButton.UseVisualStyleBackColor = true;
+            this.hoi2RadioButton.CheckedChanged += new System.EventHandler(this.OnGameTypeRadioButtonCheckedChanged);
             // 
             // editGroupBox
             // 

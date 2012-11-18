@@ -1,0 +1,391 @@
+﻿using System.IO;
+using HoI2Editor.Persers;
+
+namespace HoI2Editor.Models
+{
+    /// <summary>
+    ///     miscファイルの設定項目
+    /// </summary>
+    public static class Misc
+    {
+        /// <summary>
+        ///     economyセクション
+        /// </summary>
+        public static MiscEconomy Economy = new MiscEconomy();
+
+        /// <summary>
+        ///     intelligenceセクション
+        /// </summary>
+        public static MiscIntelligence Intelligence = new MiscIntelligence();
+
+        /// <summary>
+        ///     diplomacyセクション
+        /// </summary>
+        public static MiscDiplomacy Diplomacy = new MiscDiplomacy();
+
+        /// <summary>
+        ///     combatセクション
+        /// </summary>
+        public static MiscCombat Combat = new MiscCombat();
+
+        /// <summary>
+        ///     missionセクション
+        /// </summary>
+        public static MiscMission Mission = new MiscMission();
+
+        /// <summary>
+        ///     countryセクション
+        /// </summary>
+        public static MiscCountry Country = new MiscCountry();
+
+        /// <summary>
+        ///     researchセクション
+        /// </summary>
+        public static MiscResearch Research = new MiscResearch();
+
+        /// <summary>
+        ///     tradeセクション
+        /// </summary>
+        public static MiscTrade Trade = new MiscTrade();
+
+        /// <summary>
+        ///     aiセクション
+        /// </summary>
+        public static MiscAi Ai = new MiscAi();
+
+        /// <summary>
+        ///     modセクション
+        /// </summary>
+        public static MiscMod Mod = new MiscMod();
+
+        /// <summary>
+        ///     mapセクション
+        /// </summary>
+        public static MiscMap Map = new MiscMap();
+
+        /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        public static bool Loaded { get; set; }
+
+        /// <summary>
+        ///     miscファイルを読み込む
+        /// </summary>
+        public static void LoadMiscFile()
+        {
+            // 読み込み済みならば戻る
+            if (Loaded)
+            {
+                return;
+            }
+
+            string fileName;
+            if (Game.IsModActive)
+            {
+                fileName = Path.Combine(Game.ModFolderName, "db\\misc.txt");
+                if (!File.Exists(fileName))
+                {
+                    fileName = Path.Combine(Game.FolderName, "db\\misc.txt");
+                }
+            }
+            else
+            {
+                fileName = Path.Combine(Game.FolderName, "db\\misc.txt");
+            }
+
+            if (!MiscParser.Parse(fileName))
+            {
+                return;
+            }
+
+            Loaded = true;
+        }
+    }
+
+
+    /// <summary>
+    ///     economyセクション
+    /// </summary>
+    public class MiscEconomy
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     intelligenceセクション
+    /// </summary>
+    public class MiscIntelligence
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     diplomacyセクション
+    /// </summary>
+    public class MiscDiplomacy
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     combatセクション
+    /// </summary>
+    public class MiscCombat
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     missionセクション
+    /// </summary>
+    public class MiscMission
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     countryセクション
+    /// </summary>
+    public class MiscCountry
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     researchセクション
+    /// </summary>
+    public class MiscResearch
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     tradeセクション
+    /// </summary>
+    public class MiscTrade
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     aiセクション
+    /// </summary>
+    public class MiscAi
+    {
+        // NOT IMPLEMENTED
+    }
+
+    /// <summary>
+    ///     modセクション
+    /// </summary>
+    public class MiscMod
+    {
+        /// <summary>
+        ///     AIのスパイ/外交活動をログに記録する [0:無効/1:有効]
+        /// </summary>
+        public int AiSpyDiplomacyLogger;
+
+        /// <summary>
+        ///     自国領土外でも補給が届いていれば旅団の配備を可能にする [0:無効/1:有効]
+        /// </summary>
+        public int AllowBrigadeAttachingInSupply;
+
+        /// <summary>
+        ///     全ての陸地プロヴィンスで固有の画像を許可する [0:無効/1:有効]
+        /// </summary>
+        public int AllowUniquePictureAllLandProvinces;
+
+        /// <summary>
+        ///     プレイヤー国のイベントに自動応答する [0:無効/1:有効]
+        /// </summary>
+        public int AutoReplyEvents;
+
+        /// <summary>
+        ///     国家の状態をログに記録する [0:無効/>0:指定日数毎に記録/-1:プレイヤー国のみ]
+        /// </summary>
+        public int CountryLogger;
+
+        /// <summary>
+        ///     備蓄庫の統合/再配置の計算間隔 [0:DDAのシステムを使用/>0:指定日数毎に計算]
+        /// </summary>
+        public int DepotCalculationInterval;
+
+        /// <summary>
+        ///     ディシジョンを有効にする [0:無効/1:有効]
+        /// </summary>
+        public int EnableDecisionsPlayer;
+
+        /// <summary>
+        ///     無効なアクションを表示する [0:無効/1:有効なトリガーがあれば表示/2:常に表示]
+        /// </summary>
+        public int ForceActionsToShowNoValidCommands;
+
+        /// <summary>
+        ///     AIをMODDIRからのみ読み込む [0:無効/有効]
+        /// </summary>
+        public int LoadAiModdirOnly;
+
+        /// <summary>
+        ///     マルチプレイで新しいAI設定/切り替えを使用する [0:無効/1:有効]
+        /// </summary>
+        public int LoadNewAiSettingMultiPlayer;
+
+        /// <summary>
+        ///     スプライトをMODDIRからのみ読み込む [0:無効/有効]
+        /// </summary>
+        public int LoadSpriteModdirOnly;
+
+        /// <summary>
+        ///     ユニットアイコンをMODDIRからのみ読み込む [0:無効/有効]
+        /// </summary>
+        public int LoadUnitIconModdirOnly;
+
+        /// <summary>
+        ///     ユニット画像をMODDIRからのみ読み込む [0:無効/有効]
+        /// </summary>
+        public int LoadUnitPictureModdirOnly;
+
+        /// <summary>
+        ///     損失をログに記録する [0:無効/1:有効]
+        /// </summary>
+        public int LossesLogger;
+
+        /// <summary>
+        ///     一括配備数(空軍)
+        /// </summary>
+        public int MultipleDeploymentSizeAir;
+
+        /// <summary>
+        ///     一括配備数(陸軍)
+        /// </summary>
+        public int MultipleDeploymentSizeArmy;
+
+        /// <summary>
+        ///     一括配備数(海軍)
+        /// </summary>
+        public int MultipleDeploymentSizeFleet;
+
+        /// <summary>
+        ///     新しい自動セーブファイル名フォーマットを使用する [0:無効/1:有効]
+        /// </summary>
+        public int NewAutoSaveFileFormat;
+
+        /// <summary>
+        ///     新閣僚フォーマットを使用する [0:無効/1:有効]
+        /// </summary>
+        public int NewMinisterFormat;
+
+        /// <summary>
+        ///     反乱軍の構成 [0:民兵のみ/100:歩兵のみ]
+        /// </summary>
+        public int RebelArmyComposition;
+
+        /// <summary>
+        ///     反乱軍の最大戦力 [1-100]
+        /// </summary>
+        public double RebelArmyMaxStr;
+
+        /// <summary>
+        ///     反乱軍の最小戦力 [1-100]
+        /// </summary>
+        public double RebelArmyMinStr;
+
+        /// <summary>
+        ///     反乱軍の指揮統制率回復
+        /// </summary>
+        public double RebelArmyOrgRegain;
+
+        /// <summary>
+        ///     反乱軍の技術レベル [-1:モデル1/0:最新モデル/>0:最新モデルから指定数幅のランダム]
+        /// </summary>
+        public int RebelArmyTechLevel;
+
+        /// <summary>
+        ///     海軍/空軍基地のあるプロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusBase;
+
+        /// <summary>
+        ///     隣接プロヴィンスが反乱軍に支配されている時の反乱危険率増加値
+        /// </summary>
+        public double RebelBonusControlledRebel;
+
+        /// <summary>
+        ///     砂漠プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusDesert;
+
+        /// <summary>
+        ///     森林プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusForest;
+
+        /// <summary>
+        ///     丘陵プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusHill;
+
+        /// <summary>
+        ///     密林プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusJungle;
+
+        /// <summary>
+        ///     山岳プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusMountain;
+
+        /// <summary>
+        ///     隣接プロヴィンスが敵軍に占領されている時の反乱危険率増加値
+        /// </summary>
+        public double RebelBonusOccupiedEnemy;
+
+        /// <summary>
+        ///     平地プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusPlain;
+
+        /// <summary>
+        ///     湿地プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusSwamp;
+
+        /// <summary>
+        ///     都市プロヴィンスの反乱危険率増加値
+        /// </summary>
+        public double RebelBonusUrban;
+
+        /// <summary>
+        ///     反乱軍消滅後にプロヴィンスが元の所有国に復帰するまでの月数 [100000:復帰しない]
+        /// </summary>
+        public int ReturnMonthNoRebelArmy;
+
+        /// <summary>
+        ///     AI切り替えをログに記録する [0:無効/1:有効]
+        /// </summary>
+        public int SwitchedAiLogger;
+
+        /// <summary>
+        ///     新しい貿易システムの計算間隔 [0:DDAのシステムを使用/>0:指定日数毎に計算]
+        /// </summary>
+        public int TradeEfficiencyCalculationInterval;
+
+        /// <summary>
+        ///     DH1.02より前のセーブデータフォーマットを使用する [0:無効/1:有効]
+        /// </summary>
+        public int UseOldSaveGameFormat;
+
+        /// <summary>
+        ///     移動不可ユニットの判定に速度の値を使用する [0:守備隊のみ移動不可/1:速度0ならば移動不可]
+        /// </summary>
+        public int UseSpeedGarrisonStatus;
+    }
+
+    /// <summary>
+    ///     mapセクション
+    /// </summary>
+    public class MiscMap
+    {
+        // NOT IMPLEMENTED
+    }
+}
