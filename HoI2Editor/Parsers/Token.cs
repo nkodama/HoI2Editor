@@ -1,4 +1,4 @@
-﻿namespace HoI2Editor.Persers
+﻿namespace HoI2Editor.Parsers
 {
     /// <summary>
     ///     字句解析トークン

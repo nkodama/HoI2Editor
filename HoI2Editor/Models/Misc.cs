@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using HoI2Editor.Persers;
+using HoI2Editor.Parsers;
 
 namespace HoI2Editor.Models
 {

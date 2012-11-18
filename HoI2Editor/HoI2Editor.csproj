@@ -85,9 +85,9 @@
     <Compile Include="Models\Misc.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
-    <Compile Include="Persers\MiscParser.cs" />
-    <Compile Include="Persers\TextLexer.cs" />
-    <Compile Include="Persers\Token.cs" />
+    <Compile Include="Parsers\MiscParser.cs" />
+    <Compile Include="Parsers\TextLexer.cs" />
+    <Compile Include="Parsers\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\LeaderEditorForm.resx">
       <DependentUpon>LeaderEditorForm.cs</DependentUpon>

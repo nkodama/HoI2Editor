@@ -1,6 +1,6 @@
 ﻿using HoI2Editor.Models;
 
-namespace HoI2Editor.Persers
+namespace HoI2Editor.Parsers
 {
     /// <summary>
     ///     miscファイルの構文解析クラス

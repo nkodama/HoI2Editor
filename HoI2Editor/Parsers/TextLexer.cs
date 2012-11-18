@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace HoI2Editor.Persers
+namespace HoI2Editor.Parsers
 {
     /// <summary>
     ///     テキストファイルの字句解析クラス
