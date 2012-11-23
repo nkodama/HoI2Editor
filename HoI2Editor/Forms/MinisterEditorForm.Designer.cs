@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MinisterEditorForm));
             this.ministerListView = new System.Windows.Forms.ListView();
             this.countryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -79,9 +80,7 @@
             // 
             // ministerListView
             // 
-            this.ministerListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ministerListView, "ministerListView");
             this.ministerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.countryColumnHeader,
             this.idColumnHeader,
@@ -94,251 +93,165 @@
             this.ministerListView.FullRowSelect = true;
             this.ministerListView.GridLines = true;
             this.ministerListView.HideSelection = false;
-            this.ministerListView.Location = new System.Drawing.Point(12, 12);
             this.ministerListView.MultiSelect = false;
             this.ministerListView.Name = "ministerListView";
-            this.ministerListView.Size = new System.Drawing.Size(760, 188);
-            this.ministerListView.TabIndex = 0;
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
             this.ministerListView.SelectedIndexChanged += new System.EventHandler(this.OnMinisterListViewSelectedIndexChanged);
             // 
             // countryColumnHeader
             // 
-            this.countryColumnHeader.Text = "国家";
-            this.countryColumnHeader.Width = 40;
+            resources.ApplyResources(this.countryColumnHeader, "countryColumnHeader");
             // 
             // idColumnHeader
             // 
-            this.idColumnHeader.Text = "ID";
-            this.idColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            resources.ApplyResources(this.idColumnHeader, "idColumnHeader");
             // 
             // nameColumnHeader
             // 
-            this.nameColumnHeader.Text = "名前";
-            this.nameColumnHeader.Width = 180;
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
             // 
             // startYearColumnHeader
             // 
-            this.startYearColumnHeader.Text = "開始年";
-            this.startYearColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.startYearColumnHeader.Width = 50;
+            resources.ApplyResources(this.startYearColumnHeader, "startYearColumnHeader");
             // 
             // endYearColumnHeader
             // 
-            this.endYearColumnHeader.Text = "終了年";
-            this.endYearColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.endYearColumnHeader.Width = 50;
+            resources.ApplyResources(this.endYearColumnHeader, "endYearColumnHeader");
             // 
             // positionColumnHeader
             // 
-            this.positionColumnHeader.Text = "地位";
-            this.positionColumnHeader.Width = 90;
+            resources.ApplyResources(this.positionColumnHeader, "positionColumnHeader");
             // 
             // personalityColumnHeader
             // 
-            this.personalityColumnHeader.Text = "特性";
-            this.personalityColumnHeader.Width = 160;
+            resources.ApplyResources(this.personalityColumnHeader, "personalityColumnHeader");
             // 
             // ideologyColumnHeader
             // 
-            this.ideologyColumnHeader.Text = "イデオロギー";
-            this.ideologyColumnHeader.Width = 100;
+            resources.ApplyResources(this.ideologyColumnHeader, "ideologyColumnHeader");
             // 
             // newButton
             // 
-            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.newButton.Location = new System.Drawing.Point(12, 206);
+            resources.ApplyResources(this.newButton, "newButton");
             this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(75, 23);
-            this.newButton.TabIndex = 1;
-            this.newButton.Text = "新規";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.OnNewButtonClick);
             // 
             // cloneButton
             // 
-            this.cloneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cloneButton.Location = new System.Drawing.Point(93, 206);
+            resources.ApplyResources(this.cloneButton, "cloneButton");
             this.cloneButton.Name = "cloneButton";
-            this.cloneButton.Size = new System.Drawing.Size(75, 23);
-            this.cloneButton.TabIndex = 2;
-            this.cloneButton.Text = "複製";
             this.cloneButton.UseVisualStyleBackColor = true;
             this.cloneButton.Click += new System.EventHandler(this.OnCloneButtonClick);
             // 
             // deleteButton
             // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.deleteButton.Location = new System.Drawing.Point(174, 206);
+            resources.ApplyResources(this.deleteButton, "deleteButton");
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(75, 23);
-            this.deleteButton.TabIndex = 3;
-            this.deleteButton.Text = "削除";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.OnDeleteButtonClick);
             // 
             // topButton
             // 
-            this.topButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.topButton.Location = new System.Drawing.Point(454, 206);
+            resources.ApplyResources(this.topButton, "topButton");
             this.topButton.Name = "topButton";
-            this.topButton.Size = new System.Drawing.Size(75, 23);
-            this.topButton.TabIndex = 4;
-            this.topButton.Text = "先頭へ";
             this.topButton.UseVisualStyleBackColor = true;
             this.topButton.Click += new System.EventHandler(this.OnTopButtonClick);
             // 
             // upButton
             // 
-            this.upButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.upButton.Location = new System.Drawing.Point(535, 206);
+            resources.ApplyResources(this.upButton, "upButton");
             this.upButton.Name = "upButton";
-            this.upButton.Size = new System.Drawing.Size(75, 23);
-            this.upButton.TabIndex = 5;
-            this.upButton.Text = "上へ";
             this.upButton.UseVisualStyleBackColor = true;
             this.upButton.Click += new System.EventHandler(this.OnUpButtonClick);
             // 
             // downButton
             // 
-            this.downButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.downButton.Location = new System.Drawing.Point(616, 206);
+            resources.ApplyResources(this.downButton, "downButton");
             this.downButton.Name = "downButton";
-            this.downButton.Size = new System.Drawing.Size(75, 23);
-            this.downButton.TabIndex = 6;
-            this.downButton.Text = "下へ";
             this.downButton.UseVisualStyleBackColor = true;
             this.downButton.Click += new System.EventHandler(this.OnDownButtonClick);
             // 
             // bottomButton
             // 
-            this.bottomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bottomButton.Location = new System.Drawing.Point(697, 206);
+            resources.ApplyResources(this.bottomButton, "bottomButton");
             this.bottomButton.Name = "bottomButton";
-            this.bottomButton.Size = new System.Drawing.Size(75, 23);
-            this.bottomButton.TabIndex = 7;
-            this.bottomButton.Text = "末尾へ";
             this.bottomButton.UseVisualStyleBackColor = true;
             this.bottomButton.Click += new System.EventHandler(this.OnBottomButtonClick);
             // 
             // countryListBox
             // 
-            this.countryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.countryListBox.ColumnWidth = 40;
+            resources.ApplyResources(this.countryListBox, "countryListBox");
             this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryListBox.FormattingEnabled = true;
-            this.countryListBox.ItemHeight = 12;
-            this.countryListBox.Location = new System.Drawing.Point(12, 252);
             this.countryListBox.MultiColumn = true;
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.countryListBox.Size = new System.Drawing.Size(237, 268);
-            this.countryListBox.TabIndex = 8;
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
             // countryAllButton
             // 
-            this.countryAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.countryAllButton.Location = new System.Drawing.Point(174, 526);
+            resources.ApplyResources(this.countryAllButton, "countryAllButton");
             this.countryAllButton.Name = "countryAllButton";
-            this.countryAllButton.Size = new System.Drawing.Size(75, 23);
-            this.countryAllButton.TabIndex = 9;
-            this.countryAllButton.Text = "全選択";
             this.countryAllButton.UseVisualStyleBackColor = true;
             this.countryAllButton.Click += new System.EventHandler(this.OnCountryAllButtonClick);
             // 
             // countryLabel
             // 
-            this.countryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(278, 255);
+            resources.ApplyResources(this.countryLabel, "countryLabel");
             this.countryLabel.Name = "countryLabel";
-            this.countryLabel.Size = new System.Drawing.Size(29, 12);
-            this.countryLabel.TabIndex = 10;
-            this.countryLabel.Text = "国家";
             // 
             // countryComboBox
             // 
-            this.countryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.countryComboBox.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(359, 252);
             this.countryComboBox.Name = "countryComboBox";
-            this.countryComboBox.Size = new System.Drawing.Size(160, 20);
-            this.countryComboBox.TabIndex = 11;
             this.countryComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnCountryComboBoxSelectionChangeCommitted);
             // 
             // idLabel
             // 
-            this.idLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(557, 255);
+            resources.ApplyResources(this.idLabel, "idLabel");
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(16, 12);
-            this.idLabel.TabIndex = 12;
-            this.idLabel.Text = "ID";
             // 
             // idNumericUpDown
             // 
-            this.idNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.idNumericUpDown.Location = new System.Drawing.Point(612, 253);
+            resources.ApplyResources(this.idNumericUpDown, "idNumericUpDown");
             this.idNumericUpDown.Maximum = new decimal(new int[] {
             16777215,
             0,
             0,
             0});
             this.idNumericUpDown.Name = "idNumericUpDown";
-            this.idNumericUpDown.Size = new System.Drawing.Size(159, 19);
-            this.idNumericUpDown.TabIndex = 13;
-            this.idNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.idNumericUpDown.ValueChanged += new System.EventHandler(this.OnIdNumericUpDownValueChanged);
             // 
             // nameLabel
             // 
-            this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(278, 287);
+            resources.ApplyResources(this.nameLabel, "nameLabel");
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(29, 12);
-            this.nameLabel.TabIndex = 14;
-            this.nameLabel.Text = "名前";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameTextBox.Location = new System.Drawing.Point(359, 284);
+            resources.ApplyResources(this.nameTextBox, "nameTextBox");
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(412, 19);
-            this.nameTextBox.TabIndex = 15;
             this.nameTextBox.TextChanged += new System.EventHandler(this.OnNameTextBoxTextChanged);
             // 
             // startYearLabel
             // 
-            this.startYearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.startYearLabel.AutoSize = true;
-            this.startYearLabel.Location = new System.Drawing.Point(278, 318);
+            resources.ApplyResources(this.startYearLabel, "startYearLabel");
             this.startYearLabel.Name = "startYearLabel";
-            this.startYearLabel.Size = new System.Drawing.Size(41, 12);
-            this.startYearLabel.TabIndex = 16;
-            this.startYearLabel.Text = "開始年";
             // 
             // startYearNumericUpDown
             // 
-            this.startYearNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.startYearNumericUpDown.Location = new System.Drawing.Point(359, 316);
+            resources.ApplyResources(this.startYearNumericUpDown, "startYearNumericUpDown");
             this.startYearNumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
             this.startYearNumericUpDown.Name = "startYearNumericUpDown";
-            this.startYearNumericUpDown.Size = new System.Drawing.Size(160, 19);
-            this.startYearNumericUpDown.TabIndex = 17;
-            this.startYearNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.startYearNumericUpDown.Value = new decimal(new int[] {
             1900,
             0,
@@ -348,28 +261,18 @@
             // 
             // endYearLabel
             // 
-            this.endYearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.endYearLabel.AutoSize = true;
-            this.endYearLabel.Location = new System.Drawing.Point(557, 318);
+            resources.ApplyResources(this.endYearLabel, "endYearLabel");
             this.endYearLabel.Name = "endYearLabel";
-            this.endYearLabel.Size = new System.Drawing.Size(41, 12);
-            this.endYearLabel.TabIndex = 18;
-            this.endYearLabel.Text = "終了年";
             // 
             // endYearNumericUpDown
             // 
-            this.endYearNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.endYearNumericUpDown.Enabled = false;
-            this.endYearNumericUpDown.Location = new System.Drawing.Point(612, 316);
+            resources.ApplyResources(this.endYearNumericUpDown, "endYearNumericUpDown");
             this.endYearNumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
             this.endYearNumericUpDown.Name = "endYearNumericUpDown";
-            this.endYearNumericUpDown.Size = new System.Drawing.Size(160, 19);
-            this.endYearNumericUpDown.TabIndex = 19;
-            this.endYearNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.endYearNumericUpDown.Value = new decimal(new int[] {
             1970,
             0,
@@ -378,165 +281,105 @@
             // 
             // loyaltyComboBox
             // 
-            this.loyaltyComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.loyaltyComboBox.FormattingEnabled = true;
-            this.loyaltyComboBox.Location = new System.Drawing.Point(610, 380);
             this.loyaltyComboBox.Name = "loyaltyComboBox";
-            this.loyaltyComboBox.Size = new System.Drawing.Size(161, 20);
-            this.loyaltyComboBox.TabIndex = 31;
             this.loyaltyComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnLoyaltyComboBoxSelectionChangeCommitted);
             // 
             // loyaltyLabel
             // 
-            this.loyaltyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.loyaltyLabel.AutoSize = true;
-            this.loyaltyLabel.Location = new System.Drawing.Point(557, 383);
+            resources.ApplyResources(this.loyaltyLabel, "loyaltyLabel");
             this.loyaltyLabel.Name = "loyaltyLabel";
-            this.loyaltyLabel.Size = new System.Drawing.Size(41, 12);
-            this.loyaltyLabel.TabIndex = 30;
-            this.loyaltyLabel.Text = "忠誠度";
             // 
             // ideologyComboBox
             // 
-            this.ideologyComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ideologyComboBox.FormattingEnabled = true;
-            this.ideologyComboBox.Location = new System.Drawing.Point(359, 380);
             this.ideologyComboBox.Name = "ideologyComboBox";
-            this.ideologyComboBox.Size = new System.Drawing.Size(160, 20);
-            this.ideologyComboBox.TabIndex = 29;
             this.ideologyComboBox.SelectionChangeCommitted += new System.EventHandler(this.IdeologyComboBoxSelectionChangeCommitted);
             // 
             // ideologyLabel
             // 
-            this.ideologyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ideologyLabel.AutoSize = true;
-            this.ideologyLabel.Location = new System.Drawing.Point(278, 383);
+            resources.ApplyResources(this.ideologyLabel, "ideologyLabel");
             this.ideologyLabel.Name = "ideologyLabel";
-            this.ideologyLabel.Size = new System.Drawing.Size(62, 12);
-            this.ideologyLabel.TabIndex = 28;
-            this.ideologyLabel.Text = "イデオロギー";
             // 
             // personalityComboBox
             // 
-            this.personalityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.personalityComboBox, "personalityComboBox");
             this.personalityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.personalityComboBox.FormattingEnabled = true;
-            this.personalityComboBox.Location = new System.Drawing.Point(611, 348);
             this.personalityComboBox.Name = "personalityComboBox";
-            this.personalityComboBox.Size = new System.Drawing.Size(160, 20);
-            this.personalityComboBox.TabIndex = 27;
             this.personalityComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnPersonalityComboBoxSelectionChangeCommitted);
             // 
             // personalityLabel
             // 
-            this.personalityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.personalityLabel.AutoSize = true;
-            this.personalityLabel.Location = new System.Drawing.Point(557, 351);
+            resources.ApplyResources(this.personalityLabel, "personalityLabel");
             this.personalityLabel.Name = "personalityLabel";
-            this.personalityLabel.Size = new System.Drawing.Size(29, 12);
-            this.personalityLabel.TabIndex = 26;
-            this.personalityLabel.Text = "特性";
             // 
             // positionComboBox
             // 
-            this.positionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.positionComboBox, "positionComboBox");
             this.positionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.positionComboBox.FormattingEnabled = true;
-            this.positionComboBox.Location = new System.Drawing.Point(359, 348);
             this.positionComboBox.Name = "positionComboBox";
-            this.positionComboBox.Size = new System.Drawing.Size(160, 20);
-            this.positionComboBox.TabIndex = 25;
             this.positionComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnPositionComboBoxSelectionChangeCommitted);
             // 
             // positionLabel
             // 
-            this.positionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.positionLabel.AutoSize = true;
-            this.positionLabel.Location = new System.Drawing.Point(278, 351);
+            resources.ApplyResources(this.positionLabel, "positionLabel");
             this.positionLabel.Name = "positionLabel";
-            this.positionLabel.Size = new System.Drawing.Size(29, 12);
-            this.positionLabel.TabIndex = 24;
-            this.positionLabel.Text = "地位";
             // 
             // pictureNameLabel
             // 
-            this.pictureNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureNameLabel.AutoSize = true;
-            this.pictureNameLabel.Location = new System.Drawing.Point(278, 416);
+            resources.ApplyResources(this.pictureNameLabel, "pictureNameLabel");
             this.pictureNameLabel.Name = "pictureNameLabel";
-            this.pictureNameLabel.Size = new System.Drawing.Size(75, 12);
-            this.pictureNameLabel.TabIndex = 32;
-            this.pictureNameLabel.Text = "画像ファイル名";
             // 
             // pictureNameTextBox
             // 
-            this.pictureNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureNameTextBox.Location = new System.Drawing.Point(359, 413);
+            resources.ApplyResources(this.pictureNameTextBox, "pictureNameTextBox");
             this.pictureNameTextBox.Name = "pictureNameTextBox";
-            this.pictureNameTextBox.Size = new System.Drawing.Size(332, 19);
-            this.pictureNameTextBox.TabIndex = 33;
             this.pictureNameTextBox.TextChanged += new System.EventHandler(this.OnPictureNameTextBoxTextChanged);
             // 
             // pictureNameReferButton
             // 
-            this.pictureNameReferButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureNameReferButton.Location = new System.Drawing.Point(697, 411);
+            resources.ApplyResources(this.pictureNameReferButton, "pictureNameReferButton");
             this.pictureNameReferButton.Name = "pictureNameReferButton";
-            this.pictureNameReferButton.Size = new System.Drawing.Size(75, 23);
-            this.pictureNameReferButton.TabIndex = 34;
-            this.pictureNameReferButton.Text = "参照";
             this.pictureNameReferButton.UseVisualStyleBackColor = true;
             this.pictureNameReferButton.Click += new System.EventHandler(this.OnPictureNameReferButtonClick);
             // 
             // ministerPictureBox
             // 
-            this.ministerPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ministerPictureBox.Location = new System.Drawing.Point(294, 448);
+            resources.ApplyResources(this.ministerPictureBox, "ministerPictureBox");
             this.ministerPictureBox.Name = "ministerPictureBox";
-            this.ministerPictureBox.Size = new System.Drawing.Size(36, 50);
-            this.ministerPictureBox.TabIndex = 35;
             this.ministerPictureBox.TabStop = false;
             // 
             // reloadButton
             // 
-            this.reloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.reloadButton.Location = new System.Drawing.Point(535, 526);
+            resources.ApplyResources(this.reloadButton, "reloadButton");
             this.reloadButton.Name = "reloadButton";
-            this.reloadButton.Size = new System.Drawing.Size(75, 23);
-            this.reloadButton.TabIndex = 37;
-            this.reloadButton.Text = "再読み込み";
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.OnReloadButtonClick);
             // 
             // saveButton
             // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(616, 526);
+            resources.ApplyResources(this.saveButton, "saveButton");
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 38;
-            this.saveButton.Text = "保存";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.OnSaveButtonClick);
             // 
             // closeButton
             // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.Location = new System.Drawing.Point(697, 526);
+            resources.ApplyResources(this.closeButton, "closeButton");
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 39;
-            this.closeButton.Text = "閉じる";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.OnCloseButtonClick);
             // 
             // MinisterEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
@@ -573,7 +416,6 @@
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.ministerListView);
             this.Name = "MinisterEditorForm";
-            this.Text = "Minister Editor";
             this.Load += new System.EventHandler(this.OnMinisterEditorFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();

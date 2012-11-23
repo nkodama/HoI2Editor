@@ -109,8 +109,14 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MinisterEditorForm.ja-JP.resx">
+      <DependentUpon>MinisterEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MinisterEditorForm.resx">
       <DependentUpon>MinisterEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TeamEditorForm.ja-JP.resx">
+      <DependentUpon>TeamEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TeamEditorForm.resx">
       <DependentUpon>TeamEditorForm.cs</DependentUpon>
