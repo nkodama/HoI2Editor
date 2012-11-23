@@ -20,27 +20,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ゲーム種類ラジオボタンの状態を設定する
-        /// </summary>
-        private void SetGameTypeRadioButton()
-        {
-            switch (Game.Type)
-            {
-                case GameType.HeartsOfIron2:
-                    hoi2RadioButton.Checked = true;
-                    break;
-
-                case GameType.ArsenalOfDemocracy:
-                    aodRadioButton.Checked = true;
-                    break;
-
-                case GameType.DarkestHour:
-                    dhRadioButton.Checked = true;
-                    break;
-            }
-        }
-
-        /// <summary>
         ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -61,27 +40,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ゲーム種類ラジオボタンのチェック状態変化時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnGameTypeRadioButtonCheckedChanged(object sender, EventArgs e)
-        {
-            if (hoi2RadioButton.Checked)
-            {
-                Game.Type = GameType.HeartsOfIron2;
-            }
-            else if (aodRadioButton.Checked)
-            {
-                Game.Type = GameType.ArsenalOfDemocracy;
-            }
-            else if (dhRadioButton.Checked)
-            {
-                Game.Type = GameType.DarkestHour;
-            }
-        }
-
-        /// <summary>
         ///     ゲームフォルダ参照ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -90,7 +48,7 @@ namespace HoI2Editor.Forms
         {
             var dialog = new FolderBrowserDialog
                              {
-                                 SelectedPath = gameFolderTextBox.Text,
+                                 SelectedPath = Game.FolderName,
                                  ShowNewFolderButton = false,
                                  Description = Resources.OpenGameFolderDialogDescription
                              };
@@ -109,12 +67,30 @@ namespace HoI2Editor.Forms
         {
             Game.FolderName = gameFolderTextBox.Text;
 
-            Game.DistinguishGameType();
-            SetGameTypeRadioButton();
+            editGroupBox.Enabled = Game.IsGameFolderActive;
+        }
 
-            leaderButton.Enabled = Game.IsGameFolderActive;
-            ministerButton.Enabled = Game.IsGameFolderActive;
-            teamButton.Enabled = Game.IsGameFolderActive;
+        /// <summary>
+        ///     MODフォルダ参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModFolderReferButtonClick(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog
+                             {
+                                 SelectedPath = Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                 ShowNewFolderButton = false,
+                                 Description = Resources.OpenModFolderDialogDescription
+                             };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                modTextBox.Text = Path.GetFileName(dialog.SelectedPath);
+                string folderName = Path.GetDirectoryName(Path.GetFileName(dialog.SelectedPath));
+                gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
+                                             ? Path.GetDirectoryName(folderName)
+                                             : folderName;
+            }
         }
 
         /// <summary>
@@ -169,7 +145,7 @@ namespace HoI2Editor.Forms
             var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             modTextBox.Text = Path.GetFileName(fileNames[0]);
             string folderName = Path.GetDirectoryName(fileNames[0]);
-            gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), "Mods")
+            gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
                                          ? Path.GetDirectoryName(folderName)
                                          : folderName;
         }

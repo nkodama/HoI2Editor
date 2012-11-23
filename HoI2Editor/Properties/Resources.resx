@@ -156,4 +156,7 @@
   <data name="Stalin" xml:space="preserve">
     <value>(スターリン)</value>
   </data>
+  <data name="OpenModFolderDialogDescription" xml:space="preserve">
+    <value>MODフォルダを選択して下さい。</value>
+  </data>
 </root>

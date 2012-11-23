@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace HoI2Editor.Models
 {
@@ -8,6 +10,8 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Game
     {
+        #region パス定義
+
         /// <summary>
         ///     指揮官フォルダ
         /// </summary>
@@ -29,14 +33,14 @@ namespace HoI2Editor.Models
         public const string PicturePathName = "gfx\\interface\\pics";
 
         /// <summary>
+        ///     MODフォルダ名(DH)
+        /// </summary>
+        public const string ModPathNameDh = "Mods";
+
+        /// <summary>
         ///     miscのファイル名
         /// </summary>
         public const string MiscPathName = "db\\misc.txt";
-
-        /// <summary>
-        ///     閣僚一覧ファイル名(DH)
-        /// </summary>
-        public const string DhMinisterListPathName = "db\\ministers.txt";
 
         /// <summary>
         ///     閣僚特性ファイル名(AoD)
@@ -49,14 +53,16 @@ namespace HoI2Editor.Models
         public const string MinisterPersonalityPathNameDh = "db\\ministers\\minister_personalities.txt";
 
         /// <summary>
+        ///     閣僚一覧ファイル名(DH)
+        /// </summary>
+        public const string DhMinisterListPathName = "db\\ministers.txt";
+
+        /// <summary>
         ///     研究特性アイコンのファイル名
         /// </summary>
         public const string TechIconPathName = "gfx\\interface\\tc_icons.bmp";
 
-        /// <summary>
-        ///     MODフォルダ名(DH)
-        /// </summary>
-        private const string ModPathNameDh = "Mods";
+        #endregion
 
         /// <summary>
         ///     ゲームフォルダ名
@@ -69,40 +75,24 @@ namespace HoI2Editor.Models
         private static string _modName;
 
         /// <summary>
-        ///     ゲームの種類
-        /// </summary>
-        private static GameType _type = GameType.HeartsOfIron2;
-
-        /// <summary>
         ///     MODフォルダ名
         /// </summary>
         private static string _modFolderName;
 
         /// <summary>
-        ///     静的コンストラクタ
+        /// 実行ファイル名
         /// </summary>
-        static Game()
-        {
-            FolderName = Environment.CurrentDirectory;
-        }
+        private static string _exeFileName;
 
         /// <summary>
         ///     ゲームの種類
         /// </summary>
-        public static GameType Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
+        public static GameType Type { get; private set; }
 
-                SetModFolderName();
-
-                // 再読み込み必要
-                Misc.Loaded = false;
-                Config.Loaded = false;
-            }
-        }
+        /// <summary>
+        /// ゲームバージョン
+        /// </summary>
+        public static int Version { get; private set; }
 
         /// <summary>
         ///     ゲームフォルダ名
@@ -113,11 +103,17 @@ namespace HoI2Editor.Models
             set
             {
                 _folderName = value;
-                IsGameFolderActive = (!string.IsNullOrEmpty(_folderName) && Directory.Exists(_folderName));
 
-                SetModFolderName();
+                // ゲームの種類を判別する
+                DistinguishGameType();
 
-                // 再読み込み必要
+                // ゲームのバージョンを判別する
+                DistinguishGameVersion();
+
+                // MODフォルダ名を更新する
+                UpdateModFolderName();
+
+                // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
                 Config.Loaded = false;
             }
@@ -126,7 +122,10 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ゲームフォルダが有効かどうか
         /// </summary>
-        public static bool IsGameFolderActive { get; private set; }
+        public static bool IsGameFolderActive
+        {
+            get { return Type != GameType.None; }
+        }
 
         /// <summary>
         ///     MOD名
@@ -138,9 +137,10 @@ namespace HoI2Editor.Models
             {
                 _modName = value;
 
-                SetModFolderName();
+                // MODフォルダ名を更新する
+                UpdateModFolderName();
 
-                // 再読み込み必要
+                // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
                 Config.Loaded = false;
             }
@@ -157,6 +157,14 @@ namespace HoI2Editor.Models
         public static string ModFolderName
         {
             get { return _modFolderName; }
+        }
+
+        /// <summary>
+        ///     静的コンストラクタ
+        /// </summary>
+        static Game()
+        {
+            FolderName = Environment.CurrentDirectory;
         }
 
         /// <summary>
@@ -210,31 +218,78 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ゲームの種類を自動判別する
         /// </summary>
-        public static void DistinguishGameType()
+        private static void DistinguishGameType()
         {
             if (string.IsNullOrEmpty(FolderName))
             {
+                Type = GameType.None;
                 return;
             }
-            if (File.Exists(Path.Combine(FolderName, "Hoi2.exe")) ||
-                File.Exists(Path.Combine(FolderName, "DoomsdayJP.exe")))
+
+            // HoI2
+            string fileName = Path.Combine(FolderName, "Hoi2.exe");
+            if (File.Exists(fileName))
             {
                 Type = GameType.HeartsOfIron2;
+                _exeFileName = fileName;
+                return;
             }
-            else if (File.Exists(Path.Combine(FolderName, "AODGame.exe")))
+            fileName = Path.Combine(FolderName, "DoomsdayJP.exe");
+            if (File.Exists(fileName))
+            {
+                Type = GameType.HeartsOfIron2;
+                _exeFileName = fileName;
+                return;
+            }
+
+            // AoD
+            fileName = Path.Combine(FolderName, "AODGame.exe");
+            if (File.Exists(fileName))
             {
                 Type = GameType.ArsenalOfDemocracy;
+                _exeFileName = fileName;
+                return;
             }
-            else if (File.Exists(Path.Combine(FolderName, "Darkest Hour.exe")))
+
+            // DH
+            fileName = Path.Combine(FolderName, "Darkest Hour.exe");
+            if (File.Exists(fileName))
             {
                 Type = GameType.DarkestHour;
+                _exeFileName = fileName;
+                return;
             }
+
+            Type = GameType.None;
         }
 
         /// <summary>
-        ///     MODフォルダ名を設定する
+        /// ゲームのバージョンを自動判別する
         /// </summary>
-        private static void SetModFolderName()
+        private static void DistinguishGameVersion()
+        {
+            // DH以外では必要がないので判別しない
+            if (Type != GameType.DarkestHour)
+            {
+                Version = 100;
+                return;
+            }
+
+            FileVersionInfo info = FileVersionInfo.GetVersionInfo(_exeFileName);
+
+            if (info.ProductVersion.Length < 4)
+            {
+                Version = 100;
+                return;
+            }
+            Version = (info.ProductVersion[0] - '0') * 100 + (info.ProductVersion[2] - '0') * 10 +
+                      (info.ProductVersion[3] - '0');
+        }
+
+        /// <summary>
+        ///     MODフォルダ名を更新する
+        /// </summary>
+        private static void UpdateModFolderName()
         {
             if (!IsGameFolderActive)
             {
@@ -267,6 +322,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum GameType
     {
+        None,
         HeartsOfIron2, // Hearts of Iron 2 (Doomsday Armageddon)
         ArsenalOfDemocracy, // Arsenal of Democracy
         DarkestHour // Darkest Hour

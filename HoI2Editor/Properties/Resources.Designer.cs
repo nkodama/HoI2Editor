@@ -22,7 +22,7 @@ namespace HoI2Editor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace HoI2Editor.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HoI2Editor.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace HoI2Editor.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   (陸軍) に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Army {
+        public static string Army {
             get {
                 return ResourceManager.GetString("Army", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   (ヒトラー) に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Hitler {
+        public static string Hitler {
             get {
                 return ResourceManager.GetString("Hitler", resourceCulture);
             }
@@ -83,7 +83,7 @@ namespace HoI2Editor.Properties {
         ///
         /// に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string InvalidToken {
+        public static string InvalidToken {
             get {
                 return ResourceManager.GetString("InvalidToken", resourceCulture);
             }
@@ -92,7 +92,7 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   全選択 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string KeySelectAll {
+        public static string KeySelectAll {
             get {
                 return ResourceManager.GetString("KeySelectAll", resourceCulture);
             }
@@ -101,7 +101,7 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   全解除 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string KeyUnselectAll {
+        public static string KeyUnselectAll {
             get {
                 return ResourceManager.GetString("KeyUnselectAll", resourceCulture);
             }
@@ -110,7 +110,7 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   (海軍) に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Navy {
+        public static string Navy {
             get {
                 return ResourceManager.GetString("Navy", resourceCulture);
             }
@@ -119,7 +119,7 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string OpenBitmapFileDialogFilter {
+        public static string OpenBitmapFileDialogFilter {
             get {
                 return ResourceManager.GetString("OpenBitmapFileDialogFilter", resourceCulture);
             }
@@ -128,9 +128,18 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   ゲームフォルダを選択して下さい。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string OpenGameFolderDialogDescription {
+        public static string OpenGameFolderDialogDescription {
             get {
                 return ResourceManager.GetString("OpenGameFolderDialogDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   MODフォルダを選択して下さい。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OpenModFolderDialogDescription {
+            get {
+                return ResourceManager.GetString("OpenModFolderDialogDescription", resourceCulture);
             }
         }
         
@@ -139,7 +148,7 @@ namespace HoI2Editor.Properties {
         ///
         /// に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ParseFailed {
+        public static string ParseFailed {
             get {
                 return ResourceManager.GetString("ParseFailed", resourceCulture);
             }
@@ -150,7 +159,7 @@ namespace HoI2Editor.Properties {
         ///
         /// に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ParseFailedSection {
+        public static string ParseFailedSection {
             get {
                 return ResourceManager.GetString("ParseFailedSection", resourceCulture);
             }
@@ -159,7 +168,7 @@ namespace HoI2Editor.Properties {
         /// <summary>
         ///   (スターリン) に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Stalin {
+        public static string Stalin {
             get {
                 return ResourceManager.GetString("Stalin", resourceCulture);
             }
