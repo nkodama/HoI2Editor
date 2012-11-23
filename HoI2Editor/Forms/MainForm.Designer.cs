@@ -134,7 +134,10 @@
             // 
             // languageComboBox
             // 
+            this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
+            this.languageComboBox.Items.AddRange(new object[] {
+            resources.GetString("languageComboBox.Items")});
             resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
             // 
@@ -152,6 +155,7 @@
             resources.ApplyResources(this.logCheckBox, "logCheckBox");
             this.logCheckBox.Name = "logCheckBox";
             this.logCheckBox.UseVisualStyleBackColor = true;
+            this.logCheckBox.CheckedChanged += new System.EventHandler(this.OnLogCheckBoxChekcedChanged);
             // 
             // MainForm
             // 

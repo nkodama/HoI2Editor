@@ -21,12 +21,20 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     ログ出力が有効か
+        /// </summary>
+        public static bool Enabled { get; set; }
+
+        /// <summary>
         ///     ログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
         public static void Write(string s)
         {
-            Form.Write(s);
+            if (Enabled)
+            {
+                Form.Write(s);
+            }
         }
 
         /// <summary>

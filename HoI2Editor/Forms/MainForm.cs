@@ -27,6 +27,7 @@ namespace HoI2Editor.Forms
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             gameFolderTextBox.Text = Game.FolderName;
+            languageComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -148,6 +149,16 @@ namespace HoI2Editor.Forms
             gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
                                          ? Path.GetDirectoryName(folderName)
                                          : folderName;
+        }
+
+        /// <summary>
+        ///     エラーログ出力チェックボックスのチェック状態変化時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLogCheckBoxChekcedChanged(object sender, EventArgs e)
+        {
+            Log.Enabled = logCheckBox.Checked;
         }
 
         /// <summary>

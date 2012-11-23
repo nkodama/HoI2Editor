@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 
 namespace HoI2Editor.Models
 {
@@ -80,9 +79,17 @@ namespace HoI2Editor.Models
         private static string _modFolderName;
 
         /// <summary>
-        /// 実行ファイル名
+        ///     実行ファイル名
         /// </summary>
         private static string _exeFileName;
+
+        /// <summary>
+        ///     静的コンストラクタ
+        /// </summary>
+        static Game()
+        {
+            FolderName = Environment.CurrentDirectory;
+        }
 
         /// <summary>
         ///     ゲームの種類
@@ -90,7 +97,7 @@ namespace HoI2Editor.Models
         public static GameType Type { get; private set; }
 
         /// <summary>
-        /// ゲームバージョン
+        ///     ゲームバージョン
         /// </summary>
         public static int Version { get; private set; }
 
@@ -157,14 +164,6 @@ namespace HoI2Editor.Models
         public static string ModFolderName
         {
             get { return _modFolderName; }
-        }
-
-        /// <summary>
-        ///     静的コンストラクタ
-        /// </summary>
-        static Game()
-        {
-            FolderName = Environment.CurrentDirectory;
         }
 
         /// <summary>
@@ -264,7 +263,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ゲームのバージョンを自動判別する
+        ///     ゲームのバージョンを自動判別する
         /// </summary>
         private static void DistinguishGameVersion()
         {
@@ -282,7 +281,7 @@ namespace HoI2Editor.Models
                 Version = 100;
                 return;
             }
-            Version = (info.ProductVersion[0] - '0') * 100 + (info.ProductVersion[2] - '0') * 10 +
+            Version = (info.ProductVersion[0] - '0')*100 + (info.ProductVersion[2] - '0')*10 +
                       (info.ProductVersion[3] - '0');
         }
 
