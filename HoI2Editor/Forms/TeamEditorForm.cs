@@ -1097,6 +1097,8 @@ namespace HoI2Editor.Forms
 
             team.Specialities[0] = newSpeciality;
 
+            UpdateTeamList();
+
             Teams.SetDirtyFlag(team.CountryTag);
         }
 
@@ -1126,6 +1128,8 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[1] = newSpeciality;
+
+            UpdateTeamList();
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
@@ -1157,6 +1161,8 @@ namespace HoI2Editor.Forms
 
             team.Specialities[2] = newSpeciality;
 
+            UpdateTeamList();
+
             Teams.SetDirtyFlag(team.CountryTag);
         }
 
@@ -1186,6 +1192,8 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[3] = newSpeciality;
+
+            UpdateTeamList();
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
@@ -1217,6 +1225,8 @@ namespace HoI2Editor.Forms
 
             team.Specialities[4] = newSpeciality;
 
+            UpdateTeamList();
+
             Teams.SetDirtyFlag(team.CountryTag);
         }
 
@@ -1246,6 +1256,8 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[5] = newSpeciality;
+
+            UpdateTeamList();
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
