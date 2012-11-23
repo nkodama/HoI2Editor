@@ -1428,6 +1428,21 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTraitsNarrowCheckBoxCheckedChanged(object sender, EventArgs e)
         {
+            if (GetNarrowedTraits() == 0)
+            {
+                if (!traitsNoneNarrowRadioButton.Checked)
+                {
+                    traitsNoneNarrowRadioButton.Checked = true;
+                }
+            }
+            else
+            {
+                if (traitsNoneNarrowRadioButton.Checked)
+                {
+                    traitsOrNarrowRadioButton.Checked = true;
+                }
+            }
+
             NarrowLeaderList();
             UpdateLeaderList();
         }

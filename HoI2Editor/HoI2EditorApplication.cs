@@ -18,6 +18,7 @@ namespace HoI2Editor
         public static void Main()
         {
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
