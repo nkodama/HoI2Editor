@@ -251,12 +251,7 @@
             this.endYearNumericUpDown.Enabled = false;
             this.endYearNumericUpDown.Location = new System.Drawing.Point(500, 539);
             this.endYearNumericUpDown.Maximum = new decimal(new int[] {
-            1999,
-            0,
-            0,
-            0});
-            this.endYearNumericUpDown.Minimum = new decimal(new int[] {
-            1900,
+            9999,
             0,
             0,
             0});
@@ -286,12 +281,7 @@
             this.startYearNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.startYearNumericUpDown.Location = new System.Drawing.Point(301, 539);
             this.startYearNumericUpDown.Maximum = new decimal(new int[] {
-            1999,
-            0,
-            0,
-            0});
-            this.startYearNumericUpDown.Minimum = new decimal(new int[] {
-            1900,
+            9999,
             0,
             0,
             0});

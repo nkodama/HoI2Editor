@@ -21,6 +21,11 @@ namespace HoI2Editor.Forms
         private readonly List<Team> _narrowedList = new List<Team>();
 
         /// <summary>
+        ///     研究特性画像リスト
+        /// </summary>
+        private ImageList _specialityImages;
+
+        /// <summary>
         ///     コンストラクタ
         /// </summary>
         public TeamEditorForm()
@@ -150,13 +155,28 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集項目を初期化する
+        ///     研究特性を初期化する
         /// </summary>
-        private void InitEditableItems()
+        private void InitSpecialities()
         {
             // ゲームの種類に合わせて研究特性を初期化する
             Teams.InitSpecialities();
 
+            // 研究特性画像リストを作成する
+            var bitmap = new Bitmap(Game.GetFileName(Game.TechIconPathName));
+            _specialityImages = new ImageList
+                                    {
+                                        ImageSize = new Size(24, 24),
+                                        TransparentColor = bitmap.GetPixel(0, 0)
+                                    };
+            _specialityImages.Images.AddStrip(bitmap);
+        }
+
+        /// <summary>
+        ///     編集項目を初期化する
+        /// </summary>
+        private void InitEditableItems()
+        {
             // 国タグ
             int maxSize = countryComboBox.DropDownWidth;
             foreach (string s in Country.CountryTextTable.Select(
@@ -171,6 +191,7 @@ namespace HoI2Editor.Forms
             countryComboBox.DropDownWidth = maxSize;
 
             // 特性
+            maxSize = specialityComboBox1.DropDownWidth;
             foreach (
                 string name in
                     Teams.SpecialityTable.Select(
@@ -182,7 +203,16 @@ namespace HoI2Editor.Forms
                 specialityComboBox4.Items.Add(name);
                 specialityComboBox5.Items.Add(name);
                 specialityComboBox6.Items.Add(name);
+                maxSize = Math.Max(maxSize,
+                                   TextRenderer.MeasureText(name, specialityComboBox1.Font).Width +
+                                   SystemInformation.VerticalScrollBarWidth + 24);
             }
+            specialityComboBox1.DropDownWidth = maxSize;
+            specialityComboBox2.DropDownWidth = maxSize;
+            specialityComboBox3.DropDownWidth = maxSize;
+            specialityComboBox4.DropDownWidth = maxSize;
+            specialityComboBox5.DropDownWidth = maxSize;
+            specialityComboBox6.DropDownWidth = maxSize;
         }
 
         /// <summary>
@@ -304,12 +334,7 @@ namespace HoI2Editor.Forms
             item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(team.StartYear.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(team.EndYear.ToString(CultureInfo.InvariantCulture));
-            for (int i = 0; i < 6; i++)
-            {
-                item.SubItems.Add(team.Specialities[i] != TechSpeciality.None
-                                      ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[i]]]
-                                      : "");
-            }
+            item.SubItems.Add("");
 
             return item;
         }
@@ -386,6 +411,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamEditorFormLoad(object sender, EventArgs e)
         {
+            // 閣僚リストビューの高さを設定するためにダミーのイメージリストを作成する
+            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, 18)};
+
+            InitSpecialities();
             InitEditableItems();
             InitCountryList();
             LoadTeamFiles();
@@ -688,7 +717,7 @@ namespace HoI2Editor.Forms
                     // 変更ありの項目は文字色を変更する
                     brush = Teams.DirtyFlags[e.Index + 1]
                                 ? new SolidBrush(Color.Red)
-                                : new SolidBrush(SystemColors.WindowText);
+                                : new SolidBrush(countryListBox.ForeColor);
                 }
                 else
                 {
@@ -705,6 +734,92 @@ namespace HoI2Editor.Forms
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究特性コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            var combobox = sender as ComboBox;
+            if (combobox != null && e.Index > 0)
+            {
+                if (e.Index - 1 < _specialityImages.Images.Count)
+                {
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(_specialityImages.Images[e.Index - 1], gr);
+                }
+
+                Brush brush = new SolidBrush(combobox.ForeColor);
+                string s = combobox.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究機関リストビューのサブ項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewDrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 6:
+                    e.Graphics.FillRectangle(
+                        teamListView.SelectedIndices.Count > 0 && e.ItemIndex == teamListView.SelectedIndices[0]
+                            ? (teamListView.Focused ? SystemBrushes.Highlight : SystemBrushes.Control)
+                            : SystemBrushes.Window, e.Bounds);
+                    DrawTechSpecialityIcon(e, teamListView.Items[e.ItemIndex].Tag as Team);
+                    break;
+
+                default:
+                    e.DrawDefault = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     研究機関リストビューの研究特性アイコン描画処理
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="team">研究機関データ</param>
+        private void DrawTechSpecialityIcon(DrawListViewSubItemEventArgs e, Team team)
+        {
+            if (team == null)
+            {
+                return;
+            }
+
+            var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, 16, 16);
+            for (int i = 0; i < Team.SpecialityLength; i++)
+            {
+                if (team.Specialities[i] != TechSpeciality.None)
+                {
+                    e.Graphics.DrawImage(_specialityImages.Images[(int) team.Specialities[i] - 1], rect);
+                    rect.X += 19;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     研究機関リストビューの列ヘッダ描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewDrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            e.DrawDefault = true;
         }
 
         /// <summary>
@@ -981,10 +1096,6 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[0] = newSpeciality;
-            teamListView.SelectedItems[0].SubItems[6].Text =
-                team.Specialities[0] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[0]]]
-                    : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
@@ -1015,10 +1126,6 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[1] = newSpeciality;
-            teamListView.SelectedItems[0].SubItems[7].Text =
-                team.Specialities[1] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[1]]]
-                    : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
@@ -1049,10 +1156,6 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[2] = newSpeciality;
-            teamListView.SelectedItems[0].SubItems[8].Text =
-                team.Specialities[2] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[2]]]
-                    : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
@@ -1083,10 +1186,6 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[3] = newSpeciality;
-            teamListView.SelectedItems[0].SubItems[9].Text =
-                team.Specialities[3] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[3]]]
-                    : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
@@ -1117,10 +1216,6 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[4] = newSpeciality;
-            teamListView.SelectedItems[0].SubItems[10].Text =
-                team.Specialities[4] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[4]]]
-                    : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
         }
@@ -1151,10 +1246,6 @@ namespace HoI2Editor.Forms
             }
 
             team.Specialities[5] = newSpeciality;
-            teamListView.SelectedItems[0].SubItems[11].Text =
-                team.Specialities[5] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[5]]]
-                    : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
         }

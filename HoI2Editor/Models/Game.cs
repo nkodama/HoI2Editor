@@ -49,6 +49,11 @@ namespace HoI2Editor.Models
         public const string MinisterPersonalityPathNameDh = "db\\ministers\\minister_personalities.txt";
 
         /// <summary>
+        ///     研究特性アイコンのファイル名
+        /// </summary>
+        public const string TechIconPathName = "gfx\\interface\\tc_icons.bmp";
+
+        /// <summary>
         ///     MODフォルダ名(DH)
         /// </summary>
         private const string ModPathNameDh = "Mods";

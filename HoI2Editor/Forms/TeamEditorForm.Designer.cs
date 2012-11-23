@@ -50,12 +50,7 @@
             this.skillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.startYearColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endYearColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.specialityColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.specialityColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.specialityColumnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.specialityColumnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.specialityColumnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.specialityColumnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.specialityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idLabel = new System.Windows.Forms.Label();
             this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.countryLabel = new System.Windows.Forms.Label();
@@ -120,7 +115,7 @@
             // teamPictureBox
             // 
             this.teamPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.teamPictureBox.Location = new System.Drawing.Point(360, 430);
+            this.teamPictureBox.Location = new System.Drawing.Point(359, 418);
             this.teamPictureBox.Name = "teamPictureBox";
             this.teamPictureBox.Size = new System.Drawing.Size(96, 96);
             this.teamPictureBox.TabIndex = 71;
@@ -129,7 +124,7 @@
             // pictureNameReferButton
             // 
             this.pictureNameReferButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureNameReferButton.Location = new System.Drawing.Point(466, 428);
+            this.pictureNameReferButton.Location = new System.Drawing.Point(465, 416);
             this.pictureNameReferButton.Name = "pictureNameReferButton";
             this.pictureNameReferButton.Size = new System.Drawing.Size(75, 23);
             this.pictureNameReferButton.TabIndex = 70;
@@ -140,7 +135,7 @@
             // pictureNameTextBox
             // 
             this.pictureNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureNameTextBox.Location = new System.Drawing.Point(360, 403);
+            this.pictureNameTextBox.Location = new System.Drawing.Point(359, 391);
             this.pictureNameTextBox.Name = "pictureNameTextBox";
             this.pictureNameTextBox.Size = new System.Drawing.Size(181, 19);
             this.pictureNameTextBox.TabIndex = 69;
@@ -150,7 +145,7 @@
             // 
             this.pictureNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureNameLabel.AutoSize = true;
-            this.pictureNameLabel.Location = new System.Drawing.Point(278, 406);
+            this.pictureNameLabel.Location = new System.Drawing.Point(277, 394);
             this.pictureNameLabel.Name = "pictureNameLabel";
             this.pictureNameLabel.Size = new System.Drawing.Size(75, 12);
             this.pictureNameLabel.TabIndex = 68;
@@ -160,14 +155,9 @@
             // 
             this.endYearNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.endYearNumericUpDown.Enabled = false;
-            this.endYearNumericUpDown.Location = new System.Drawing.Point(360, 378);
+            this.endYearNumericUpDown.Location = new System.Drawing.Point(359, 366);
             this.endYearNumericUpDown.Maximum = new decimal(new int[] {
-            1999,
-            0,
-            0,
-            0});
-            this.endYearNumericUpDown.Minimum = new decimal(new int[] {
-            1900,
+            9999,
             0,
             0,
             0});
@@ -186,7 +176,7 @@
             // 
             this.endYearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.endYearLabel.AutoSize = true;
-            this.endYearLabel.Location = new System.Drawing.Point(279, 380);
+            this.endYearLabel.Location = new System.Drawing.Point(278, 368);
             this.endYearLabel.Name = "endYearLabel";
             this.endYearLabel.Size = new System.Drawing.Size(41, 12);
             this.endYearLabel.TabIndex = 58;
@@ -195,14 +185,9 @@
             // startYearNumericUpDown
             // 
             this.startYearNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.startYearNumericUpDown.Location = new System.Drawing.Point(360, 353);
+            this.startYearNumericUpDown.Location = new System.Drawing.Point(359, 341);
             this.startYearNumericUpDown.Maximum = new decimal(new int[] {
-            1999,
-            0,
-            0,
-            0});
-            this.startYearNumericUpDown.Minimum = new decimal(new int[] {
-            1900,
+            9999,
             0,
             0,
             0});
@@ -211,7 +196,7 @@
             this.startYearNumericUpDown.TabIndex = 57;
             this.startYearNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.startYearNumericUpDown.Value = new decimal(new int[] {
-            1900,
+            1930,
             0,
             0,
             0});
@@ -221,7 +206,7 @@
             // 
             this.startYearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.startYearLabel.AutoSize = true;
-            this.startYearLabel.Location = new System.Drawing.Point(279, 355);
+            this.startYearLabel.Location = new System.Drawing.Point(278, 343);
             this.startYearLabel.Name = "startYearLabel";
             this.startYearLabel.Size = new System.Drawing.Size(41, 12);
             this.startYearLabel.TabIndex = 56;
@@ -230,7 +215,7 @@
             // nameTextBox
             // 
             this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameTextBox.Location = new System.Drawing.Point(360, 303);
+            this.nameTextBox.Location = new System.Drawing.Point(359, 291);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(181, 19);
             this.nameTextBox.TabIndex = 55;
@@ -240,7 +225,7 @@
             // 
             this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(278, 306);
+            this.nameLabel.Location = new System.Drawing.Point(277, 294);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(29, 12);
             this.nameLabel.TabIndex = 54;
@@ -249,7 +234,7 @@
             // idNumericUpDown
             // 
             this.idNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.idNumericUpDown.Location = new System.Drawing.Point(360, 278);
+            this.idNumericUpDown.Location = new System.Drawing.Point(359, 266);
             this.idNumericUpDown.Maximum = new decimal(new int[] {
             16777215,
             0,
@@ -269,11 +254,11 @@
             this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryListBox.FormattingEnabled = true;
             this.countryListBox.ItemHeight = 12;
-            this.countryListBox.Location = new System.Drawing.Point(12, 252);
+            this.countryListBox.Location = new System.Drawing.Point(12, 240);
             this.countryListBox.MultiColumn = true;
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.countryListBox.Size = new System.Drawing.Size(237, 268);
+            this.countryListBox.Size = new System.Drawing.Size(237, 280);
             this.countryListBox.TabIndex = 48;
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
@@ -290,22 +275,20 @@
             this.skillColumnHeader,
             this.startYearColumnHeader,
             this.endYearColumnHeader,
-            this.specialityColumnHeader1,
-            this.specialityColumnHeader2,
-            this.specialityColumnHeader3,
-            this.specialityColumnHeader4,
-            this.specialityColumnHeader5,
-            this.specialityColumnHeader6});
+            this.specialityColumnHeader});
             this.teamListView.FullRowSelect = true;
             this.teamListView.GridLines = true;
             this.teamListView.HideSelection = false;
             this.teamListView.Location = new System.Drawing.Point(12, 12);
             this.teamListView.MultiSelect = false;
             this.teamListView.Name = "teamListView";
-            this.teamListView.Size = new System.Drawing.Size(760, 188);
+            this.teamListView.OwnerDraw = true;
+            this.teamListView.Size = new System.Drawing.Size(760, 181);
             this.teamListView.TabIndex = 40;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
+            this.teamListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.OnTeamListViewDrawColumnHeader);
+            this.teamListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.OnTeamListViewDrawSubItem);
             this.teamListView.SelectedIndexChanged += new System.EventHandler(this.OnTeamListViewSelectedIndexChanged);
             // 
             // countryColumnHeader
@@ -321,7 +304,7 @@
             // nameColumnHeader
             // 
             this.nameColumnHeader.Text = "名前";
-            this.nameColumnHeader.Width = 180;
+            this.nameColumnHeader.Width = 300;
             // 
             // skillColumnHeader
             // 
@@ -341,41 +324,16 @@
             this.endYearColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.endYearColumnHeader.Width = 50;
             // 
-            // specialityColumnHeader1
+            // specialityColumnHeader
             // 
-            this.specialityColumnHeader1.Text = "特性1";
-            this.specialityColumnHeader1.Width = 50;
-            // 
-            // specialityColumnHeader2
-            // 
-            this.specialityColumnHeader2.Text = "特性2";
-            this.specialityColumnHeader2.Width = 50;
-            // 
-            // specialityColumnHeader3
-            // 
-            this.specialityColumnHeader3.Text = "特性3";
-            this.specialityColumnHeader3.Width = 50;
-            // 
-            // specialityColumnHeader4
-            // 
-            this.specialityColumnHeader4.Text = "特性4";
-            this.specialityColumnHeader4.Width = 50;
-            // 
-            // specialityColumnHeader5
-            // 
-            this.specialityColumnHeader5.Text = "特性5";
-            this.specialityColumnHeader5.Width = 50;
-            // 
-            // specialityColumnHeader6
-            // 
-            this.specialityColumnHeader6.Text = " 特性6";
-            this.specialityColumnHeader6.Width = 50;
+            this.specialityColumnHeader.Text = "特性";
+            this.specialityColumnHeader.Width = 185;
             // 
             // idLabel
             // 
             this.idLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(278, 280);
+            this.idLabel.Location = new System.Drawing.Point(277, 268);
             this.idLabel.Name = "idLabel";
             this.idLabel.Size = new System.Drawing.Size(16, 12);
             this.idLabel.TabIndex = 52;
@@ -387,7 +345,7 @@
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(360, 252);
+            this.countryComboBox.Location = new System.Drawing.Point(359, 240);
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(181, 20);
             this.countryComboBox.TabIndex = 51;
@@ -397,7 +355,7 @@
             // 
             this.countryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(278, 255);
+            this.countryLabel.Location = new System.Drawing.Point(277, 243);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(29, 12);
             this.countryLabel.TabIndex = 50;
@@ -417,7 +375,7 @@
             // bottomButton
             // 
             this.bottomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bottomButton.Location = new System.Drawing.Point(697, 206);
+            this.bottomButton.Location = new System.Drawing.Point(697, 199);
             this.bottomButton.Name = "bottomButton";
             this.bottomButton.Size = new System.Drawing.Size(75, 23);
             this.bottomButton.TabIndex = 47;
@@ -428,7 +386,7 @@
             // downButton
             // 
             this.downButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.downButton.Location = new System.Drawing.Point(616, 206);
+            this.downButton.Location = new System.Drawing.Point(616, 199);
             this.downButton.Name = "downButton";
             this.downButton.Size = new System.Drawing.Size(75, 23);
             this.downButton.TabIndex = 46;
@@ -439,7 +397,7 @@
             // upButton
             // 
             this.upButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.upButton.Location = new System.Drawing.Point(535, 206);
+            this.upButton.Location = new System.Drawing.Point(535, 199);
             this.upButton.Name = "upButton";
             this.upButton.Size = new System.Drawing.Size(75, 23);
             this.upButton.TabIndex = 45;
@@ -450,7 +408,7 @@
             // topButton
             // 
             this.topButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.topButton.Location = new System.Drawing.Point(454, 206);
+            this.topButton.Location = new System.Drawing.Point(454, 199);
             this.topButton.Name = "topButton";
             this.topButton.Size = new System.Drawing.Size(75, 23);
             this.topButton.TabIndex = 44;
@@ -461,7 +419,7 @@
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.deleteButton.Location = new System.Drawing.Point(174, 206);
+            this.deleteButton.Location = new System.Drawing.Point(174, 199);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(75, 23);
             this.deleteButton.TabIndex = 43;
@@ -472,7 +430,7 @@
             // cloneButton
             // 
             this.cloneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cloneButton.Location = new System.Drawing.Point(93, 206);
+            this.cloneButton.Location = new System.Drawing.Point(93, 199);
             this.cloneButton.Name = "cloneButton";
             this.cloneButton.Size = new System.Drawing.Size(75, 23);
             this.cloneButton.TabIndex = 42;
@@ -483,7 +441,7 @@
             // newButton
             // 
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.newButton.Location = new System.Drawing.Point(12, 206);
+            this.newButton.Location = new System.Drawing.Point(12, 199);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(75, 23);
             this.newButton.TabIndex = 41;
@@ -494,7 +452,7 @@
             // skillNumericUpDown
             // 
             this.skillNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.skillNumericUpDown.Location = new System.Drawing.Point(360, 328);
+            this.skillNumericUpDown.Location = new System.Drawing.Point(359, 316);
             this.skillNumericUpDown.Name = "skillNumericUpDown";
             this.skillNumericUpDown.Size = new System.Drawing.Size(181, 19);
             this.skillNumericUpDown.TabIndex = 76;
@@ -505,7 +463,7 @@
             // 
             this.skillLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.skillLabel.AutoSize = true;
-            this.skillLabel.Location = new System.Drawing.Point(278, 330);
+            this.skillLabel.Location = new System.Drawing.Point(277, 318);
             this.skillLabel.Name = "skillLabel";
             this.skillLabel.Size = new System.Drawing.Size(34, 12);
             this.skillLabel.TabIndex = 75;
@@ -520,71 +478,89 @@
             this.specialityGroupBox.Controls.Add(this.specialityComboBox3);
             this.specialityGroupBox.Controls.Add(this.specialityComboBox2);
             this.specialityGroupBox.Controls.Add(this.specialityComboBox1);
-            this.specialityGroupBox.Location = new System.Drawing.Point(568, 252);
+            this.specialityGroupBox.Location = new System.Drawing.Point(567, 240);
             this.specialityGroupBox.Name = "specialityGroupBox";
-            this.specialityGroupBox.Size = new System.Drawing.Size(204, 185);
+            this.specialityGroupBox.Size = new System.Drawing.Size(204, 208);
             this.specialityGroupBox.TabIndex = 77;
             this.specialityGroupBox.TabStop = false;
             this.specialityGroupBox.Text = "研究特性";
             // 
             // specialityComboBox6
             // 
+            this.specialityComboBox6.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox6.FormattingEnabled = true;
-            this.specialityComboBox6.Location = new System.Drawing.Point(21, 149);
+            this.specialityComboBox6.ItemHeight = 18;
+            this.specialityComboBox6.Location = new System.Drawing.Point(21, 168);
             this.specialityComboBox6.Name = "specialityComboBox6";
-            this.specialityComboBox6.Size = new System.Drawing.Size(160, 20);
+            this.specialityComboBox6.Size = new System.Drawing.Size(160, 24);
             this.specialityComboBox6.TabIndex = 83;
+            this.specialityComboBox6.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox6.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox6SelectionChangeCommitted);
             // 
             // specialityComboBox5
             // 
+            this.specialityComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox5.FormattingEnabled = true;
-            this.specialityComboBox5.Location = new System.Drawing.Point(21, 123);
+            this.specialityComboBox5.ItemHeight = 18;
+            this.specialityComboBox5.Location = new System.Drawing.Point(21, 138);
             this.specialityComboBox5.Name = "specialityComboBox5";
-            this.specialityComboBox5.Size = new System.Drawing.Size(160, 20);
+            this.specialityComboBox5.Size = new System.Drawing.Size(160, 24);
             this.specialityComboBox5.TabIndex = 82;
+            this.specialityComboBox5.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox5.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox5SelectionChangeCommitted);
             // 
             // specialityComboBox4
             // 
+            this.specialityComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox4.FormattingEnabled = true;
-            this.specialityComboBox4.Location = new System.Drawing.Point(21, 97);
+            this.specialityComboBox4.ItemHeight = 18;
+            this.specialityComboBox4.Location = new System.Drawing.Point(21, 108);
             this.specialityComboBox4.Name = "specialityComboBox4";
-            this.specialityComboBox4.Size = new System.Drawing.Size(160, 20);
+            this.specialityComboBox4.Size = new System.Drawing.Size(160, 24);
             this.specialityComboBox4.TabIndex = 81;
+            this.specialityComboBox4.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox4.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox4SelectionChangeCommitted);
             // 
             // specialityComboBox3
             // 
+            this.specialityComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox3.FormattingEnabled = true;
-            this.specialityComboBox3.Location = new System.Drawing.Point(21, 70);
+            this.specialityComboBox3.ItemHeight = 18;
+            this.specialityComboBox3.Location = new System.Drawing.Point(21, 78);
             this.specialityComboBox3.Name = "specialityComboBox3";
-            this.specialityComboBox3.Size = new System.Drawing.Size(160, 20);
+            this.specialityComboBox3.Size = new System.Drawing.Size(160, 24);
             this.specialityComboBox3.TabIndex = 80;
+            this.specialityComboBox3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox3.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox3SelectionChangeCommitted);
             // 
             // specialityComboBox2
             // 
+            this.specialityComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox2.FormattingEnabled = true;
-            this.specialityComboBox2.Location = new System.Drawing.Point(21, 44);
+            this.specialityComboBox2.ItemHeight = 18;
+            this.specialityComboBox2.Location = new System.Drawing.Point(21, 48);
             this.specialityComboBox2.Name = "specialityComboBox2";
-            this.specialityComboBox2.Size = new System.Drawing.Size(160, 20);
+            this.specialityComboBox2.Size = new System.Drawing.Size(160, 24);
             this.specialityComboBox2.TabIndex = 79;
+            this.specialityComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox2.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox2SelectionChangeCommitted);
             // 
             // specialityComboBox1
             // 
+            this.specialityComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox1.FormattingEnabled = true;
+            this.specialityComboBox1.ItemHeight = 18;
             this.specialityComboBox1.Location = new System.Drawing.Point(21, 18);
             this.specialityComboBox1.Name = "specialityComboBox1";
-            this.specialityComboBox1.Size = new System.Drawing.Size(160, 20);
+            this.specialityComboBox1.Size = new System.Drawing.Size(160, 24);
             this.specialityComboBox1.TabIndex = 78;
+            this.specialityComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox1.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox1SelectionChangeCommitted);
             // 
             // TeamEditorForm
@@ -659,7 +635,7 @@
         private System.Windows.Forms.ColumnHeader nameColumnHeader;
         private System.Windows.Forms.ColumnHeader startYearColumnHeader;
         private System.Windows.Forms.ColumnHeader endYearColumnHeader;
-        private System.Windows.Forms.ColumnHeader specialityColumnHeader1;
+        private System.Windows.Forms.ColumnHeader specialityColumnHeader;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.ComboBox countryComboBox;
         private System.Windows.Forms.Label countryLabel;
@@ -681,10 +657,5 @@
         private System.Windows.Forms.ComboBox specialityComboBox2;
         private System.Windows.Forms.ComboBox specialityComboBox1;
         private System.Windows.Forms.ColumnHeader skillColumnHeader;
-        private System.Windows.Forms.ColumnHeader specialityColumnHeader2;
-        private System.Windows.Forms.ColumnHeader specialityColumnHeader3;
-        private System.Windows.Forms.ColumnHeader specialityColumnHeader4;
-        private System.Windows.Forms.ColumnHeader specialityColumnHeader5;
-        private System.Windows.Forms.ColumnHeader specialityColumnHeader6;
     }
 }
