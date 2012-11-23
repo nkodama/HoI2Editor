@@ -47,6 +47,9 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void LoadLeaderFiles()
         {
+            // 編集済みフラグを全クリアする
+            ClearDirtyFlags();
+
             List.Clear();
             FileNameMap.Clear();
 
@@ -82,9 +85,6 @@ namespace HoI2Editor.Models
                     }
                 }
             }
-
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
         }
 
         /// <summary>

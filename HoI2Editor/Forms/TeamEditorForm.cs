@@ -154,6 +154,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
+            // ゲームの種類に合わせて研究特性を初期化する
+            Teams.InitSpecialities();
+
             // 国タグ
             int maxSize = countryComboBox.DropDownWidth;
             foreach (string s in Country.CountryTextTable.Select(
@@ -169,16 +172,16 @@ namespace HoI2Editor.Forms
 
             // 特性
             foreach (
-                string text in
-                    Team.SpecialityTextTable.Select(
-                        speciality => !string.IsNullOrEmpty(speciality) ? Config.Text[speciality] : ""))
+                string name in
+                    Teams.SpecialityTable.Select(
+                        speciality => Config.GetText(Team.SpecialityNameTable[(int) speciality])))
             {
-                specialityComboBox1.Items.Add(text);
-                specialityComboBox2.Items.Add(text);
-                specialityComboBox3.Items.Add(text);
-                specialityComboBox4.Items.Add(text);
-                specialityComboBox5.Items.Add(text);
-                specialityComboBox6.Items.Add(text);
+                specialityComboBox1.Items.Add(name);
+                specialityComboBox2.Items.Add(name);
+                specialityComboBox3.Items.Add(name);
+                specialityComboBox4.Items.Add(name);
+                specialityComboBox5.Items.Add(name);
+                specialityComboBox6.Items.Add(name);
             }
         }
 
@@ -304,7 +307,7 @@ namespace HoI2Editor.Forms
             for (int i = 0; i < 6; i++)
             {
                 item.SubItems.Add(team.Specialities[i] != TechSpeciality.None
-                                      ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[i]]]
+                                      ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[i]]]
                                       : "");
             }
 
@@ -980,7 +983,7 @@ namespace HoI2Editor.Forms
             team.Specialities[0] = newSpeciality;
             teamListView.SelectedItems[0].SubItems[6].Text =
                 team.Specialities[0] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[0]]]
+                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[0]]]
                     : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
@@ -1014,7 +1017,7 @@ namespace HoI2Editor.Forms
             team.Specialities[1] = newSpeciality;
             teamListView.SelectedItems[0].SubItems[7].Text =
                 team.Specialities[1] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[1]]]
+                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[1]]]
                     : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
@@ -1048,7 +1051,7 @@ namespace HoI2Editor.Forms
             team.Specialities[2] = newSpeciality;
             teamListView.SelectedItems[0].SubItems[8].Text =
                 team.Specialities[2] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[2]]]
+                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[2]]]
                     : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
@@ -1082,7 +1085,7 @@ namespace HoI2Editor.Forms
             team.Specialities[3] = newSpeciality;
             teamListView.SelectedItems[0].SubItems[9].Text =
                 team.Specialities[3] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[3]]]
+                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[3]]]
                     : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
@@ -1116,7 +1119,7 @@ namespace HoI2Editor.Forms
             team.Specialities[4] = newSpeciality;
             teamListView.SelectedItems[0].SubItems[10].Text =
                 team.Specialities[4] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[4]]]
+                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[4]]]
                     : "";
 
             Teams.SetDirtyFlag(team.CountryTag);
@@ -1150,7 +1153,7 @@ namespace HoI2Editor.Forms
             team.Specialities[5] = newSpeciality;
             teamListView.SelectedItems[0].SubItems[11].Text =
                 team.Specialities[5] != TechSpeciality.None
-                    ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[5]]]
+                    ? Config.Text[Team.SpecialityNameTable[(int) team.Specialities[5]]]
                     : "";
 
             Teams.SetDirtyFlag(team.CountryTag);

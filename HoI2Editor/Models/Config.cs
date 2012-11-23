@@ -115,6 +115,8 @@ namespace HoI2Editor.Models
 
             ModifyDuplicatedStrings();
 
+            AddInsufficientStrings();
+
             Loaded = true;
         }
 
@@ -165,6 +167,83 @@ namespace HoI2Editor.Models
             {
                 Text["NPERSONALITY_HITLER"] += Resources.Hitler;
                 Text["NPERSONALITY_STALIN"] += Resources.Stalin;
+            }
+        }
+
+        /// <summary>
+        ///     不足している文字列を追加する
+        /// </summary>
+        private static void AddInsufficientStrings()
+        {
+            // DH固有の研究特性
+            if (!Text.ContainsKey("RT_AVIONICS"))
+            {
+                Text["RT_AVIONICS"] = "航空電子工学";
+            }
+            if (!Text.ContainsKey("RT_MUNITIONS"))
+            {
+                Text["RT_MUNITIONS"] = "弾薬";
+            }
+            if (!Text.ContainsKey("RT_VEHICLE_ENGINEERING"))
+            {
+                Text["RT_VEHICLE_ENGINEERING"] = "車両工学";
+            }
+            if (!Text.ContainsKey("RT_CARRIER_DESIGN"))
+            {
+                Text["RT_CARRIER_DESIGN"] = "空母設計";
+            }
+            if (!Text.ContainsKey("RT_SUBMARINE_DESIGN"))
+            {
+                Text["RT_SUBMARINE_DESIGN"] = "潜水艦設計";
+            }
+            if (!Text.ContainsKey("RT_FIGHTER_DESIGN"))
+            {
+                Text["RT_FIGHTER_DESIGN"] = "戦闘機設計";
+            }
+            if (!Text.ContainsKey("RT_BOMBER_DESIGN"))
+            {
+                Text["RT_BOMBER_DESIGN"] = "爆撃機設計";
+            }
+            if (!Text.ContainsKey("RT_MOUNTAIN_TRAINING"))
+            {
+                Text["RT_MOUNTAIN_TRAINING"] = "山岳訓練";
+            }
+            if (!Text.ContainsKey("RT_AIRBORNE_TRAINING"))
+            {
+                Text["RT_AIRBORNE_TRAINING"] = "空挺訓練";
+            }
+            if (!Text.ContainsKey("RT_MARINE_TRAINING"))
+            {
+                Text["RT_MARINE_TRAINING"] = "海兵訓練";
+            }
+            if (!Text.ContainsKey("RT_MANEUVER_TACTICS"))
+            {
+                Text["RT_MANEUVER_TACTICS"] = "機動戦術";
+            }
+            if (!Text.ContainsKey("RT_BLITZKRIEG_TACTICS"))
+            {
+                Text["RT_BLITZKRIEG_TACTICS"] = "電撃戦戦術";
+            }
+            if (!Text.ContainsKey("RT_STATIC_DEFENSE_TACTICS"))
+            {
+                Text["RT_STATIC_DEFENSE_TACTICS"] = "静的防衛戦術";
+            }
+            if (!Text.ContainsKey("RT_MEDICINE"))
+            {
+                Text["RT_MEDICINE"] = "医療科学";
+            }
+            if (!Text.ContainsKey("RT_CAVALRY_TACTICS"))
+            {
+                Text["RT_CAVALRY_TACTICS"] = "騎兵戦術";
+            }
+            // ユーザー定義
+            for (int i = 1; i <= 60; i++)
+            {
+                string key = string.Format("RT_USER{0}", i);
+                if (!Text.ContainsKey(key))
+                {
+                    Text[key] = string.Format("ユーザー定義{0}", i);
+                }
             }
         }
     }

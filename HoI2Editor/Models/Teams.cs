@@ -22,10 +22,246 @@ namespace HoI2Editor.Models
         public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
-        ///     研究特性名とIDの対応付け
+        ///     研究特性文字列とIDの対応付け
         /// </summary>
-        private static readonly Dictionary<string, TechSpeciality> SpecialityNameMap =
+        private static readonly Dictionary<string, TechSpeciality> SpecialityStringMap =
             new Dictionary<string, TechSpeciality>();
+
+        /// <summary>
+        ///     研究特性リスト
+        /// </summary>
+        public static TechSpeciality[] SpecialityTable;
+
+        /// <summary>
+        ///     研究特性リスト(HoI2)
+        /// </summary>
+        private static readonly TechSpeciality[] SpecialityTableHoI2 =
+            {
+                TechSpeciality.None,
+                TechSpeciality.Artillery,
+                TechSpeciality.Mechanics,
+                TechSpeciality.Electronics,
+                TechSpeciality.Chemistry,
+                TechSpeciality.Training,
+                TechSpeciality.GeneralEquipment,
+                TechSpeciality.Rocketry,
+                TechSpeciality.NavalEngineering,
+                TechSpeciality.Aeronautics,
+                TechSpeciality.NuclearPhysics,
+                TechSpeciality.NuclearEngineering,
+                TechSpeciality.Management,
+                TechSpeciality.IndustrialEngineering,
+                TechSpeciality.Mathematics,
+                TechSpeciality.SmallUnitTactics,
+                TechSpeciality.LargeUnitTactics,
+                TechSpeciality.CentralizedExecution,
+                TechSpeciality.DecentralizedExecution,
+                TechSpeciality.TechnicalEfficiency,
+                TechSpeciality.IndividualCourage,
+                TechSpeciality.InfantryFocus,
+                TechSpeciality.CombinedArmsFocus,
+                TechSpeciality.LargeUnitFocus,
+                TechSpeciality.NavalArtillery,
+                TechSpeciality.NavalTraining,
+                TechSpeciality.AircraftTesting,
+                TechSpeciality.FighterTactics,
+                TechSpeciality.BomberTactics,
+                TechSpeciality.CarrierTactics,
+                TechSpeciality.SubmarineTactics,
+                TechSpeciality.LargeTaskforceTactics,
+                TechSpeciality.SmallTaskforceTactics,
+                TechSpeciality.Seamanship,
+                TechSpeciality.Piloting
+            };
+
+        /// <summary>
+        ///     研究特性リスト(DH1.02)
+        /// </summary>
+        private static readonly TechSpeciality[] SpecialityTableDh102 =
+            {
+                TechSpeciality.None,
+                TechSpeciality.Artillery,
+                TechSpeciality.Mechanics,
+                TechSpeciality.Electronics,
+                TechSpeciality.Chemistry,
+                TechSpeciality.Training,
+                TechSpeciality.GeneralEquipment,
+                TechSpeciality.Rocketry,
+                TechSpeciality.NavalEngineering,
+                TechSpeciality.Aeronautics,
+                TechSpeciality.NuclearPhysics,
+                TechSpeciality.NuclearEngineering,
+                TechSpeciality.Management,
+                TechSpeciality.IndustrialEngineering,
+                TechSpeciality.Mathematics,
+                TechSpeciality.SmallUnitTactics,
+                TechSpeciality.LargeUnitTactics,
+                TechSpeciality.CentralizedExecution,
+                TechSpeciality.DecentralizedExecution,
+                TechSpeciality.TechnicalEfficiency,
+                TechSpeciality.IndividualCourage,
+                TechSpeciality.InfantryFocus,
+                TechSpeciality.CombinedArmsFocus,
+                TechSpeciality.LargeUnitFocus,
+                TechSpeciality.NavalArtillery,
+                TechSpeciality.NavalTraining,
+                TechSpeciality.AircraftTesting,
+                TechSpeciality.FighterTactics,
+                TechSpeciality.BomberTactics,
+                TechSpeciality.CarrierTactics,
+                TechSpeciality.SubmarineTactics,
+                TechSpeciality.LargeTaskforceTactics,
+                TechSpeciality.SmallTaskforceTactics,
+                TechSpeciality.Seamanship,
+                TechSpeciality.Piloting,
+                TechSpeciality.Avionics,
+                TechSpeciality.Munitions,
+                TechSpeciality.VehicleEngineering,
+                TechSpeciality.CarrierDesign,
+                TechSpeciality.SubmarineDesign,
+                TechSpeciality.FighterDesign,
+                TechSpeciality.BomberDesign,
+                TechSpeciality.MountainTraining,
+                TechSpeciality.AirborneTraining,
+                TechSpeciality.MarineTraining,
+                TechSpeciality.ManeuverTactics,
+                TechSpeciality.BlitzkriegTactics,
+                TechSpeciality.StaticDefenseTactics,
+                TechSpeciality.Medicine,
+                TechSpeciality.RtUser1,
+                TechSpeciality.RtUser2,
+                TechSpeciality.RtUser3,
+                TechSpeciality.RtUser4,
+                TechSpeciality.RtUser5,
+                TechSpeciality.RtUser6,
+                TechSpeciality.RtUser7,
+                TechSpeciality.RtUser8,
+                TechSpeciality.RtUser9,
+                TechSpeciality.RtUser10,
+                TechSpeciality.RtUser11,
+                TechSpeciality.RtUser12,
+                TechSpeciality.RtUser13,
+                TechSpeciality.RtUser14,
+                TechSpeciality.RtUser15,
+                TechSpeciality.RtUser16
+            };
+
+        /// <summary>
+        ///     研究特性リスト(DH1.03)
+        /// </summary>
+        private static readonly TechSpeciality[] SpecialityTableDh =
+            {
+                TechSpeciality.None,
+                TechSpeciality.Artillery,
+                TechSpeciality.Mechanics,
+                TechSpeciality.Electronics,
+                TechSpeciality.Chemistry,
+                TechSpeciality.Training,
+                TechSpeciality.GeneralEquipment,
+                TechSpeciality.Rocketry,
+                TechSpeciality.NavalEngineering,
+                TechSpeciality.Aeronautics,
+                TechSpeciality.NuclearPhysics,
+                TechSpeciality.NuclearEngineering,
+                TechSpeciality.Management,
+                TechSpeciality.IndustrialEngineering,
+                TechSpeciality.Mathematics,
+                TechSpeciality.SmallUnitTactics,
+                TechSpeciality.LargeUnitTactics,
+                TechSpeciality.CentralizedExecution,
+                TechSpeciality.DecentralizedExecution,
+                TechSpeciality.TechnicalEfficiency,
+                TechSpeciality.IndividualCourage,
+                TechSpeciality.InfantryFocus,
+                TechSpeciality.CombinedArmsFocus,
+                TechSpeciality.LargeUnitFocus,
+                TechSpeciality.NavalArtillery,
+                TechSpeciality.NavalTraining,
+                TechSpeciality.AircraftTesting,
+                TechSpeciality.FighterTactics,
+                TechSpeciality.BomberTactics,
+                TechSpeciality.CarrierTactics,
+                TechSpeciality.SubmarineTactics,
+                TechSpeciality.LargeTaskforceTactics,
+                TechSpeciality.SmallTaskforceTactics,
+                TechSpeciality.Seamanship,
+                TechSpeciality.Piloting,
+                TechSpeciality.Avionics,
+                TechSpeciality.Munitions,
+                TechSpeciality.VehicleEngineering,
+                TechSpeciality.CarrierDesign,
+                TechSpeciality.SubmarineDesign,
+                TechSpeciality.FighterDesign,
+                TechSpeciality.BomberDesign,
+                TechSpeciality.MountainTraining,
+                TechSpeciality.AirborneTraining,
+                TechSpeciality.MarineTraining,
+                TechSpeciality.ManeuverTactics,
+                TechSpeciality.BlitzkriegTactics,
+                TechSpeciality.StaticDefenseTactics,
+                TechSpeciality.Medicine,
+                TechSpeciality.CavalryTactics,
+                TechSpeciality.RtUser1,
+                TechSpeciality.RtUser2,
+                TechSpeciality.RtUser3,
+                TechSpeciality.RtUser4,
+                TechSpeciality.RtUser5,
+                TechSpeciality.RtUser6,
+                TechSpeciality.RtUser7,
+                TechSpeciality.RtUser8,
+                TechSpeciality.RtUser9,
+                TechSpeciality.RtUser10,
+                TechSpeciality.RtUser11,
+                TechSpeciality.RtUser12,
+                TechSpeciality.RtUser13,
+                TechSpeciality.RtUser14,
+                TechSpeciality.RtUser15,
+                TechSpeciality.RtUser16,
+                TechSpeciality.RtUser17,
+                TechSpeciality.RtUser18,
+                TechSpeciality.RtUser19,
+                TechSpeciality.RtUser20,
+                TechSpeciality.RtUser21,
+                TechSpeciality.RtUser22,
+                TechSpeciality.RtUser23,
+                TechSpeciality.RtUser24,
+                TechSpeciality.RtUser25,
+                TechSpeciality.RtUser26,
+                TechSpeciality.RtUser27,
+                TechSpeciality.RtUser28,
+                TechSpeciality.RtUser29,
+                TechSpeciality.RtUser30,
+                TechSpeciality.RtUser31,
+                TechSpeciality.RtUser32,
+                TechSpeciality.RtUser33,
+                TechSpeciality.RtUser34,
+                TechSpeciality.RtUser35,
+                TechSpeciality.RtUser36,
+                TechSpeciality.RtUser37,
+                TechSpeciality.RtUser38,
+                TechSpeciality.RtUser39,
+                TechSpeciality.RtUser40,
+                TechSpeciality.RtUser41,
+                TechSpeciality.RtUser42,
+                TechSpeciality.RtUser43,
+                TechSpeciality.RtUser44,
+                TechSpeciality.RtUser45,
+                TechSpeciality.RtUser46,
+                TechSpeciality.RtUser47,
+                TechSpeciality.RtUser48,
+                TechSpeciality.RtUser49,
+                TechSpeciality.RtUser50,
+                TechSpeciality.RtUser51,
+                TechSpeciality.RtUser52,
+                TechSpeciality.RtUser53,
+                TechSpeciality.RtUser54,
+                TechSpeciality.RtUser55,
+                TechSpeciality.RtUser56,
+                TechSpeciality.RtUser57,
+                TechSpeciality.RtUser58,
+                TechSpeciality.RtUser59,
+                TechSpeciality.RtUser60
+            };
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -43,17 +279,29 @@ namespace HoI2Editor.Models
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
-        ///     静的コンストラクタ
+        ///     研究特性を初期化する
         /// </summary>
-        static Teams()
+        public static void InitSpecialities()
         {
-            foreach (
-                TechSpeciality speciality in
-                    Enum.GetValues(typeof (TechSpeciality))
-                        .Cast<TechSpeciality>()
-                        .Where(speciality => speciality != TechSpeciality.None))
+            // 研究特性リストを設定する
+            switch (Game.Type)
             {
-                SpecialityNameMap.Add(Team.SpecialityNameTable[(int) speciality].ToLower(), speciality);
+                case GameType.HeartsOfIron2:
+                case GameType.ArsenalOfDemocracy:
+                    SpecialityTable = SpecialityTableHoI2;
+                    break;
+
+                case GameType.DarkestHour:
+                    SpecialityTable = SpecialityTableDh102;
+                    break;
+            }
+
+            // 研究特性文字列とIDの対応付け
+            SpecialityStringMap.Clear();
+            foreach (
+                TechSpeciality speciality in SpecialityTable.Where(speciality => speciality != TechSpeciality.None))
+            {
+                SpecialityStringMap.Add(Team.SpecialityStringTable[(int) speciality].ToLower(), speciality);
             }
         }
 
@@ -62,6 +310,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void LoadTeamFiles()
         {
+            // 編集済みフラグを全クリアする
+            ClearDirtyFlags();
+
+            List.Clear();
+
             var list = new List<string>();
             string folderName;
 
@@ -94,9 +347,6 @@ namespace HoI2Editor.Models
                     }
                 }
             }
-
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
         }
 
         /// <summary>
@@ -175,7 +425,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            var team = new Team();
+            var team = new Team {CountryTag = country};
             int id;
             if (!Int32.TryParse(token[0], out id))
             {
@@ -221,15 +471,14 @@ namespace HoI2Editor.Models
             }
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
-                string specialityName = token[6 + i].ToLower();
-                if (String.IsNullOrEmpty(specialityName))
+                string speciality = token[6 + i].ToLower();
+                if (String.IsNullOrEmpty(speciality))
                 {
                     team.Specialities[i] = TechSpeciality.None;
-                    continue;
                 }
-                if (SpecialityNameMap.ContainsKey(specialityName))
+                else if (SpecialityStringMap.ContainsKey(speciality))
                 {
-                    team.Specialities[i] = SpecialityNameMap[specialityName];
+                    team.Specialities[i] = SpecialityStringMap[speciality];
                 }
                 else
                 {
@@ -238,7 +487,6 @@ namespace HoI2Editor.Models
                     Log.Write(String.Format("  {0}: {1} => {2}\n\n", team.Id, team.Name, token[6 + i]));
                 }
             }
-            team.CountryTag = country;
 
             List.Add(team);
         }
@@ -297,7 +545,7 @@ namespace HoI2Editor.Models
                 {
                     writer.Write(";{0}",
                                  team.Specialities[i] != TechSpeciality.None
-                                     ? Team.SpecialityNameTable[(int) team.Specialities[i]]
+                                     ? Team.SpecialityStringTable[(int) team.Specialities[i]]
                                      : "");
                 }
                 writer.WriteLine(";x");
