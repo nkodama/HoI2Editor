@@ -117,136 +117,191 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;logRichTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>閉じる</value>
   </data>
-  <data name="&gt;&gt;copyButton.Name" xml:space="preserve">
-    <value>copyButton</value>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>保存</value>
   </data>
-  <data name="&gt;&gt;copyButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>再読み込み</value>
   </data>
-  <data name="&gt;&gt;logRichTextBox.Name" xml:space="preserve">
-    <value>logRichTextBox</value>
-  </data>
-  <data name="&gt;&gt;copyButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;clearButton.Name" xml:space="preserve">
-    <value>clearButton</value>
-  </data>
-  <data name="&gt;&gt;copyButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="copyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="pictureNameReferButton.Text" xml:space="preserve">
+    <value>参照</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="clearButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 12</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pictureNameLabel.Text" xml:space="preserve">
+    <value>画像ファイル名</value>
   </data>
-  <data name="&gt;&gt;logRichTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>LogForm</value>
+  <data name="endYearLabel.Text" xml:space="preserve">
+    <value>終了年</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="copyButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="&gt;&gt;clearButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="startYearLabel.Text" xml:space="preserve">
+    <value>開始年</value>
   </data>
-  <data name="&gt;&gt;clearButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
   </data>
-  <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="nameLabel.Text" xml:space="preserve">
+    <value>名前</value>
   </data>
-  <data name="&gt;&gt;closeButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>464, 281</value>
+  <data name="countryLabel.Text" xml:space="preserve">
+    <value>国家</value>
   </data>
-  <data name="logRichTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="bottomButton.Text" xml:space="preserve">
+    <value>末尾へ</value>
   </data>
-  <data name="copyButton.Text" xml:space="preserve">
-    <value>Copy</value>
+  <data name="downButton.Text" xml:space="preserve">
+    <value>下へ</value>
   </data>
-  <data name="logRichTextBox.Text" xml:space="preserve">
-    <value />
+  <data name="upButton.Text" xml:space="preserve">
+    <value>上へ</value>
   </data>
-  <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>377, 246</value>
+  <data name="topButton.Text" xml:space="preserve">
+    <value>先頭へ</value>
   </data>
-  <data name="logRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+  <data name="deleteButton.Text" xml:space="preserve">
+    <value>削除</value>
   </data>
-  <data name="copyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 246</value>
+  <data name="cloneButton.Text" xml:space="preserve">
+    <value>複製</value>
   </data>
-  <data name="&gt;&gt;closeButton.Name" xml:space="preserve">
-    <value>closeButton</value>
+  <data name="countryColumnHeader.Text" xml:space="preserve">
+    <value>国家</value>
   </data>
-  <data name="&gt;&gt;clearButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="nameColumnHeader.Text" xml:space="preserve">
+    <value>名前</value>
   </data>
-  <data name="logRichTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 228</value>
+  <data name="startYearColumnHeader.Text" xml:space="preserve">
+    <value>開始年</value>
   </data>
-  <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="newButton.Text" xml:space="preserve">
+    <value>新規</value>
   </data>
-  <data name="logRichTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>ＭＳ ゴシック, 9.75pt</value>
+  <data name="traitsColumnHeader.Text" xml:space="preserve">
+    <value>特性</value>
   </data>
-  <data name="closeButton.Text" xml:space="preserve">
-    <value>Close</value>
+  <data name="endYearColumnHeader.Text" xml:space="preserve">
+    <value>終了年</value>
   </data>
-  <data name="clearButton.Text" xml:space="preserve">
-    <value>Clear</value>
+  <data name="branchColumnHeader.Text" xml:space="preserve">
+    <value>兵科</value>
   </data>
-  <data name="clearButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="skillColumnHeader.Text" xml:space="preserve">
+    <value>スキル</value>
   </data>
-  <data name="&gt;&gt;logRichTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="maxSkillColumnHeader.Text" xml:space="preserve">
+    <value>最大スキル</value>
   </data>
-  <data name="copyButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="rankYearLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
   </data>
-  <data name="clearButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 246</value>
+  <data name="rankYearLabel1.Text" xml:space="preserve">
+    <value>少将任官年</value>
   </data>
-  <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="rankYearLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
   </data>
-  <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="rankYearLabel2.Text" xml:space="preserve">
+    <value>中将任官年</value>
   </data>
-  <data name="&gt;&gt;closeButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="rankYearLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+  <data name="rankYearLabel3.Text" xml:space="preserve">
+    <value>大将任官年</value>
+  </data>
+  <data name="rankYearLabel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="rankYearLabel4.Text" xml:space="preserve">
+    <value>元帥任官年</value>
+  </data>
+  <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="skillLabel.Text" xml:space="preserve">
+    <value>スキル</value>
+  </data>
+  <data name="maxSkillLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 12</value>
+  </data>
+  <data name="maxSkillLabel.Text" xml:space="preserve">
+    <value>最大スキル</value>
+  </data>
+  <data name="idealRankLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="idealRankLabel.Text" xml:space="preserve">
+    <value>理想階級</value>
+  </data>
+  <data name="loyaltyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="loyaltyLabel.Text" xml:space="preserve">
+    <value>忠誠度</value>
+  </data>
+  <data name="airforceNarrowCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="airforceNarrowCheckBox.Text" xml:space="preserve">
+    <value>空軍</value>
+  </data>
+  <data name="navyNarrowCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="navyNarrowCheckBox.Text" xml:space="preserve">
+    <value>海軍</value>
+  </data>
+  <data name="armyNarrowCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="armyNarrowCheckBox.Text" xml:space="preserve">
+    <value>陸軍</value>
+  </data>
+  <data name="branchNarrowGroupBox.Text" xml:space="preserve">
+    <value>兵科の絞り込み</value>
+  </data>
+  <data name="traitsNarrowInvertButton.Text" xml:space="preserve">
+    <value>選択反転</value>
+  </data>
+  <data name="traitsNoneNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 16</value>
+  </data>
+  <data name="traitsNoneNarrowRadioButton.Text" xml:space="preserve">
+    <value>絞り込みなし</value>
+  </data>
+  <data name="traitsNarrowGroupBox.Text" xml:space="preserve">
+    <value>特性の絞り込み</value>
+  </data>
+  <data name="branchLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="branchLabel.Text" xml:space="preserve">
+    <value>兵科</value>
+  </data>
+  <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="experienceLabel.Text" xml:space="preserve">
+    <value>経験値</value>
+  </data>
+  <data name="traitsGroupBox.Text" xml:space="preserve">
+    <value>特性</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Log</value>
+    <value>指揮官エディタ</value>
   </data>
-  <data name="clearButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="logRichTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

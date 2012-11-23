@@ -137,9 +137,11 @@
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
             this.languageComboBox.Items.AddRange(new object[] {
-            resources.GetString("languageComboBox.Items")});
+            resources.GetString("languageComboBox.Items"),
+            resources.GetString("languageComboBox.Items1")});
             resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
+            this.languageComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnLanguageComboBoxSelectionChangeCommitted);
             // 
             // optionGroupBox
             // 

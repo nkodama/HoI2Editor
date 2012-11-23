@@ -129,7 +129,7 @@
     <value>0</value>
   </data>
   <data name="ministerButton.Text" xml:space="preserve">
-    <value>閣僚</value>
+    <value>Minister</value>
   </data>
   <data name="&gt;&gt;ministerButton.Name" xml:space="preserve">
     <value>ministerButton</value>
@@ -150,13 +150,13 @@
     <value>12, 9</value>
   </data>
   <data name="gameFolderLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 12</value>
+    <value>97, 12</value>
   </data>
   <data name="gameFolderLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="gameFolderLabel.Text" xml:space="preserve">
-    <value>ゲームフォルダ名</value>
+    <value>Game Folder Path</value>
   </data>
   <data name="&gt;&gt;gameFolderLabel.Name" xml:space="preserve">
     <value>gameFolderLabel</value>
@@ -198,13 +198,13 @@
     <value>12, 56</value>
   </data>
   <data name="modLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 12</value>
+    <value>63, 12</value>
   </data>
   <data name="modLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="modLabel.Text" xml:space="preserve">
-    <value>MOD名</value>
+    <value>MOD Name</value>
   </data>
   <data name="&gt;&gt;modLabel.Name" xml:space="preserve">
     <value>modLabel</value>
@@ -239,54 +239,6 @@
   <data name="&gt;&gt;modTextBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;leaderButton.Name" xml:space="preserve">
-    <value>leaderButton</value>
-  </data>
-  <data name="&gt;&gt;leaderButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leaderButton.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;leaderButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;teamButton.Name" xml:space="preserve">
-    <value>teamButton</value>
-  </data>
-  <data name="&gt;&gt;teamButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;teamButton.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;teamButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="editGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 160</value>
-  </data>
-  <data name="editGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 109</value>
-  </data>
-  <data name="editGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="editGroupBox.Text" xml:space="preserve">
-    <value>編集</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.Name" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="leaderButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 18</value>
   </data>
@@ -297,7 +249,7 @@
     <value>2</value>
   </data>
   <data name="leaderButton.Text" xml:space="preserve">
-    <value>指揮官</value>
+    <value>Leader</value>
   </data>
   <data name="&gt;&gt;leaderButton.Name" xml:space="preserve">
     <value>leaderButton</value>
@@ -321,7 +273,7 @@
     <value>1</value>
   </data>
   <data name="teamButton.Text" xml:space="preserve">
-    <value>研究機関</value>
+    <value>Tech Team</value>
   </data>
   <data name="&gt;&gt;teamButton.Name" xml:space="preserve">
     <value>teamButton</value>
@@ -335,6 +287,30 @@
   <data name="&gt;&gt;teamButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="editGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 160</value>
+  </data>
+  <data name="editGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 109</value>
+  </data>
+  <data name="editGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="editGroupBox.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="&gt;&gt;editGroupBox.Name" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;editGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;editGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="gameFolderReferButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>377, 22</value>
   </data>
@@ -345,7 +321,7 @@
     <value>8</value>
   </data>
   <data name="gameFolderReferButton.Text" xml:space="preserve">
-    <value>参照</value>
+    <value>Browse</value>
   </data>
   <data name="&gt;&gt;gameFolderReferButton.Name" xml:space="preserve">
     <value>gameFolderReferButton</value>
@@ -369,7 +345,7 @@
     <value>9</value>
   </data>
   <data name="exitButton.Text" xml:space="preserve">
-    <value>終了</value>
+    <value>Exit</value>
   </data>
   <data name="&gt;&gt;exitButton.Name" xml:space="preserve">
     <value>exitButton</value>
@@ -393,7 +369,7 @@
     <value>10</value>
   </data>
   <data name="modFolderReferButton.Text" xml:space="preserve">
-    <value>参照</value>
+    <value>Browse</value>
   </data>
   <data name="&gt;&gt;modFolderReferButton.Name" xml:space="preserve">
     <value>modFolderReferButton</value>
@@ -414,13 +390,13 @@
     <value>13, 21</value>
   </data>
   <data name="languageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
+    <value>53, 12</value>
   </data>
   <data name="languageLabel.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="languageLabel.Text" xml:space="preserve">
-    <value>言語</value>
+    <value>Language</value>
   </data>
   <data name="&gt;&gt;languageLabel.Name" xml:space="preserve">
     <value>languageLabel</value>
@@ -435,10 +411,13 @@
     <value>2</value>
   </data>
   <data name="languageComboBox.Items" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="languageComboBox.Items1" xml:space="preserve">
     <value>日本語</value>
   </data>
   <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 18</value>
+    <value>72, 18</value>
   </data>
   <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 20</value>
@@ -462,16 +441,16 @@
     <value>True</value>
   </data>
   <data name="logCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 20</value>
+    <value>208, 20</value>
   </data>
   <data name="logCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
+    <value>104, 16</value>
   </data>
   <data name="logCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
   <data name="logCheckBox.Text" xml:space="preserve">
-    <value>エラーログ出力</value>
+    <value>Show error logs</value>
   </data>
   <data name="&gt;&gt;logCheckBox.Name" xml:space="preserve">
     <value>logCheckBox</value>
@@ -495,7 +474,7 @@
     <value>13</value>
   </data>
   <data name="optionGroupBox.Text" xml:space="preserve">
-    <value>オプション</value>
+    <value>Option</value>
   </data>
   <data name="&gt;&gt;optionGroupBox.Name" xml:space="preserve">
     <value>optionGroupBox</value>

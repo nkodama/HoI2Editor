@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using HoI2Editor.Forms;
 
@@ -15,6 +17,8 @@ namespace HoI2Editor
         [STAThread]
         public static void Main()
         {
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

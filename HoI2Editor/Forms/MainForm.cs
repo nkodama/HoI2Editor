@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -27,7 +29,8 @@ namespace HoI2Editor.Forms
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             gameFolderTextBox.Text = Game.FolderName;
-            languageComboBox.SelectedIndex = 0;
+            languageComboBox.SelectedIndex =
+                Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP")) ? 1 : 0;
         }
 
         /// <summary>
@@ -149,6 +152,25 @@ namespace HoI2Editor.Forms
             gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
                                          ? Path.GetDirectoryName(folderName)
                                          : folderName;
+        }
+
+        /// <summary>
+        ///     言語変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLanguageComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        {
+            switch (languageComboBox.SelectedIndex)
+            {
+                case 0:
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    break;
+
+                case 1:
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
+                    break;
+            }
         }
 
         /// <summary>
