@@ -88,11 +88,14 @@
             // 
             // modTextBox
             // 
+            this.modTextBox.AllowDrop = true;
             this.modTextBox.Location = new System.Drawing.Point(32, 131);
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.Size = new System.Drawing.Size(339, 19);
             this.modTextBox.TabIndex = 5;
             this.modTextBox.TextChanged += new System.EventHandler(this.OnModTextBoxTextChanged);
+            this.modTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnModTextBoxDragDrop);
+            this.modTextBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnModTextBoxDragEnter);
             // 
             // gameTypeGroupBox
             // 

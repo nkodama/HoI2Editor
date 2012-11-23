@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -114,16 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="OpenBitmapFileDialogFilter">
-    <value xml:space="preserve">ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.*</value>
+  <data name="OpenBitmapFileDialogFilter" xml:space="preserve">
+    <value>ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.*</value>
   </data>
-  <data name="OpenGameFolderDialogDescription">
-    <value xml:space="preserve">ゲームフォルダを選択して下さい。</value>
+  <data name="OpenGameFolderDialogDescription" xml:space="preserve">
+    <value>ゲームフォルダを選択して下さい。</value>
   </data>
-  <data name="KeySelectAll">
-    <value xml:space="preserve">全選択</value>
+  <data name="KeySelectAll" xml:space="preserve">
+    <value>全選択</value>
   </data>
-  <data name="KeyUnselectAll">
-    <value xml:space="preserve">全解除</value>
+  <data name="KeyUnselectAll" xml:space="preserve">
+    <value>全解除</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>無効なトークン: {0}
+
+</value>
+  </data>
+  <data name="ParseFailed" xml:space="preserve">
+    <value>解析失敗: {0}
+
+</value>
+  </data>
+  <data name="ParseFailedSection" xml:space="preserve">
+    <value>解析失敗: {0}セクション / {1}
+
+</value>
+  </data>
+  <data name="Army" xml:space="preserve">
+    <value>(陸軍)</value>
+  </data>
+  <data name="Hitler" xml:space="preserve">
+    <value>(ヒトラー)</value>
+  </data>
+  <data name="Navy" xml:space="preserve">
+    <value>(海軍)</value>
+  </data>
+  <data name="Stalin" xml:space="preserve">
+    <value>(スターリン)</value>
   </data>
 </root>

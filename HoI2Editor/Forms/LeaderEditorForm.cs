@@ -73,9 +73,7 @@ namespace HoI2Editor.Forms
                                                       select Country.CountryTextMap[country]).ToList();
 
             foreach (
-                Leader leader in
-                    Leaders.List.Where(
-                        leader => leader.CountryTag != null && selectedTagList.Contains(leader.CountryTag.Value)))
+                Leader leader in Leaders.List.Where(leader => selectedTagList.Contains(leader.CountryTag)))
             {
                 // 兵科による絞り込み
                 switch (leader.Branch)
@@ -292,6 +290,34 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     国家コンボボックスの項目を更新する
+        /// </summary>
+        /// <param name="leader">指揮官データ</param>
+        private void UpdateCountryComboBox(Leader leader)
+        {
+            countryComboBox.BeginUpdate();
+
+            if (leader.CountryTag != CountryTag.None)
+            {
+                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.RemoveAt(0);
+                }
+                countryComboBox.SelectedIndex = (int) (leader.CountryTag - 1);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.Insert(0, "");
+                }
+                countryComboBox.SelectedIndex = 0;
+            }
+
+            countryComboBox.EndUpdate();
+        }
+
+        /// <summary>
         ///     編集項目を初期化する
         /// </summary>
         private void InitEditableItems()
@@ -323,11 +349,86 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     兵科コンボボックスの項目を更新する
+        /// </summary>
+        /// <param name="leader">指揮官データ</param>
+        private void UpdateBranchComboBox(Leader leader)
+        {
+            branchComboBox.BeginUpdate();
+
+            if (leader.Branch != LeaderBranch.None)
+            {
+                if (string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
+                {
+                    branchComboBox.Items.RemoveAt(0);
+                }
+                branchComboBox.SelectedIndex = (int) (leader.Branch - 1);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
+                {
+                    branchComboBox.Items.Insert(0, "");
+                }
+                branchComboBox.SelectedIndex = 0;
+            }
+
+            branchComboBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     理想階級コンボボックスの項目を更新する
+        /// </summary>
+        /// <param name="leader">指揮官データ</param>
+        private void UpdateIdealRankComboBox(Leader leader)
+        {
+            idealRankComboBox.BeginUpdate();
+
+            if (leader.IdealRank != LeaderRank.None)
+            {
+                if (string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
+                {
+                    idealRankComboBox.Items.RemoveAt(0);
+                }
+                idealRankComboBox.SelectedIndex = (int) (leader.IdealRank - 1);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
+                {
+                    idealRankComboBox.Items.Insert(0, "");
+                }
+                idealRankComboBox.SelectedIndex = 0;
+            }
+
+            idealRankComboBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     指揮官画像ピクチャーボックスの項目を更新する
+        /// </summary>
+        /// <param name="leader">指揮官データ</param>
+        private void UpdateLeaderPicture(Leader leader)
+        {
+            if (!string.IsNullOrEmpty(leader.PictureName))
+            {
+                string fileName =
+                    Game.GetFileName(Path.Combine(Game.PicturePathName,
+                                                  Path.ChangeExtension(leader.PictureName, ".bmp")));
+                leaderPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
+            }
+            else
+            {
+                leaderPictureBox.ImageLocation = "";
+            }
+        }
+
+        /// <summary>
         ///     国家リストボックスを初期化する
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string country in Country.CountryTextTable)
+            foreach (string country in Country.CountryTextTable.Where(country => !string.IsNullOrEmpty(country)))
             {
                 countryListBox.Items.Add(country);
             }
@@ -433,15 +534,12 @@ namespace HoI2Editor.Forms
 
             var item = new ListViewItem
                            {
-                               Text =
-                                   leader.CountryTag != null
-                                       ? Country.CountryTextTable[(int) leader.CountryTag.Value]
-                                       : "",
+                               Text = Country.CountryTextTable[(int) leader.CountryTag],
                                Tag = leader
                            };
             item.SubItems.Add(leader.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.Name);
-            item.SubItems.Add(leader.Branch != null ? Leader.BranchTextTable[(int) leader.Branch.Value] : "");
+            item.SubItems.Add(Leader.BranchTextTable[(int) leader.Branch]);
             item.SubItems.Add(leader.Skill.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.MaxSkill.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.StartYear.ToString(CultureInfo.InvariantCulture));
@@ -1038,8 +1136,8 @@ namespace HoI2Editor.Forms
                              {
                                  CountryTag = selected.CountryTag,
                                  Id = selected.Id + 1,
-                                 Branch = null,
-                                 IdealRank = null,
+                                 Branch = LeaderBranch.None,
+                                 IdealRank = LeaderRank.None,
                                  StartYear = 1930,
                                  EndYear = 1990,
                              };
@@ -1058,11 +1156,11 @@ namespace HoI2Editor.Forms
                              {
                                  CountryTag =
                                      countryListBox.SelectedItems.Count > 0
-                                         ? (CountryTag?) countryListBox.SelectedIndex
-                                         : null,
+                                         ? (CountryTag) (countryListBox.SelectedIndex + 1)
+                                         : CountryTag.None,
                                  Id = 0,
-                                 Branch = null,
-                                 IdealRank = null,
+                                 Branch = LeaderBranch.None,
+                                 IdealRank = LeaderRank.None,
                                  StartYear = 1930,
                                  EndYear = 1990,
                              };
@@ -1078,10 +1176,7 @@ namespace HoI2Editor.Forms
                 EnableEditableItems();
             }
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1127,10 +1222,7 @@ namespace HoI2Editor.Forms
 
             InsertListItem(leader, leaderListView.SelectedIndices[0] + 1);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1160,10 +1252,7 @@ namespace HoI2Editor.Forms
                 DisableEditableItems();
             }
 
-            if (selected.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -1202,10 +1291,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, 0);
 
-            if (selected.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -1243,10 +1329,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, index - 1);
 
-            if (selected.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -1285,10 +1368,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, index + 1);
 
-            if (selected.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -1327,10 +1407,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, leaderListView.Items.Count - 1);
 
-            if (selected.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -1423,7 +1500,7 @@ namespace HoI2Editor.Forms
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
                 {
                     // 変更ありの項目は文字色を変更する
-                    brush = Leaders.DirtyFlags[e.Index]
+                    brush = Leaders.DirtyFlags[e.Index + 1]
                                 ? new SolidBrush(Color.Red)
                                 : new SolidBrush(SystemColors.WindowText);
                 }
@@ -1478,60 +1555,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            if (leader.CountryTag != null)
-            {
-                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.RemoveAt(0);
-                }
-                countryComboBox.SelectedIndex = (int) leader.CountryTag.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.Insert(0, "");
-                }
-                countryComboBox.SelectedIndex = 0;
-            }
-
+            UpdateCountryComboBox(leader);
             idNumericUpDown.Value = leader.Id;
             nameTextBox.Text = leader.Name;
-
-            if (leader.Branch != null)
-            {
-                if (string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
-                {
-                    branchComboBox.Items.RemoveAt(0);
-                }
-                branchComboBox.SelectedIndex = (int) leader.Branch.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
-                {
-                    branchComboBox.Items.Insert(0, "");
-                }
-                branchComboBox.SelectedIndex = 0;
-            }
-
-            if (leader.IdealRank != null)
-            {
-                if (string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
-                {
-                    idealRankComboBox.Items.RemoveAt(0);
-                }
-                idealRankComboBox.SelectedIndex = (int) leader.IdealRank.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
-                {
-                    idealRankComboBox.Items.Insert(0, "");
-                }
-                idealRankComboBox.SelectedIndex = 0;
-            }
-
+            UpdateBranchComboBox(leader);
+            UpdateIdealRankComboBox(leader);
             skillNumericUpDown.Value = leader.Skill;
             maxSkillNumericUpDown.Value = leader.MaxSkill;
             experienceNumericUpDown.Value = leader.Experience;
@@ -1542,32 +1570,8 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown2.Value = leader.RankYear[1];
             rankYearNumericUpDown3.Value = leader.RankYear[2];
             rankYearNumericUpDown4.Value = leader.RankYear[3];
-
             pictureNameTextBox.Text = leader.PictureName;
-            if (!string.IsNullOrEmpty(leader.PictureName))
-            {
-                if (Game.IsModActive)
-                {
-                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
-                                                      Path.ChangeExtension(leader.PictureName, ".bmp"));
-                    if (File.Exists(modFileName))
-                    {
-                        leaderPictureBox.ImageLocation = modFileName;
-                    }
-                    else
-                    {
-                        leaderPictureBox.ImageLocation =
-                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                         Path.ChangeExtension(leader.PictureName, ".bmp"));
-                    }
-                }
-                else
-                {
-                    leaderPictureBox.ImageLocation =
-                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                     Path.ChangeExtension(leader.PictureName, ".bmp"));
-                }
-            }
+            UpdateLeaderPicture(leader);
 
             // 中途半端な状態での更新を防ぐため、更新イベントを抑止する
             SetTraitsCheckBoxEvent(false);
@@ -1628,33 +1632,22 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もせずに戻る
-            CountryTag? newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
-                                            ? (CountryTag?) countryComboBox.SelectedIndex
-                                            : (CountryTag?) (countryComboBox.SelectedIndex - 1);
+            CountryTag newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
+                                           ? (CountryTag) (countryComboBox.SelectedIndex + 1)
+                                           : (CountryTag) countryComboBox.SelectedIndex;
             if (newCountryTag == leader.CountryTag)
             {
                 return;
             }
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
 
             leader.CountryTag = newCountryTag;
-            leaderListView.SelectedItems[0].Text = leader.CountryTag != null
-                                                       ? Country.CountryTextTable[(int) leader.CountryTag.Value]
-                                                       : "";
+            leaderListView.SelectedItems[0].Text = Country.CountryTextTable[(int) leader.CountryTag];
 
-            if (leader.CountryTag != null)
-            {
-                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.RemoveAt(0);
-                }
-                countryComboBox.SelectedIndex = (int) leader.CountryTag.Value;
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            UpdateCountryComboBox(leader);
+
+            Leaders.SetDirtyFlag(leader.CountryTag);
 
             // 国家リストボックスの項目色を変更するため描画更新する
             countryListBox.Refresh();
@@ -1688,10 +1681,7 @@ namespace HoI2Editor.Forms
             leader.Id = newId;
             leaderListView.SelectedItems[0].SubItems[1].Text = leader.Id.ToString(CultureInfo.InvariantCulture);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1722,10 +1712,7 @@ namespace HoI2Editor.Forms
             leader.Name = newName;
             leaderListView.SelectedItems[0].SubItems[2].Text = leader.Name;
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1747,31 +1734,20 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もせずに戻る
-            LeaderBranch? newBranch = !string.IsNullOrEmpty(branchComboBox.Items[0].ToString())
-                                          ? (LeaderBranch?) branchComboBox.SelectedIndex
-                                          : (LeaderBranch?) (branchComboBox.SelectedIndex - 1);
+            LeaderBranch newBranch = !string.IsNullOrEmpty(branchComboBox.Items[0].ToString())
+                                         ? (LeaderBranch) (branchComboBox.SelectedIndex + 1)
+                                         : (LeaderBranch) branchComboBox.SelectedIndex;
             if (newBranch == leader.Branch)
             {
                 return;
             }
 
             leader.Branch = newBranch;
-            leaderListView.SelectedItems[0].SubItems[3].Text =
-                leader.Branch != null ? Leader.BranchTextTable[(int) leader.Branch] : "";
+            leaderListView.SelectedItems[0].SubItems[3].Text = Leader.BranchTextTable[(int) leader.Branch];
 
-            if (leader.Branch != null)
-            {
-                if (string.IsNullOrEmpty(branchComboBox.Items[0].ToString()))
-                {
-                    branchComboBox.Items.RemoveAt(0);
-                }
-                branchComboBox.SelectedIndex = (int) leader.Branch.Value;
-            }
+            UpdateBranchComboBox(leader);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1793,9 +1769,9 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もせずに戻る
-            LeaderRank? newIdealRank = !string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString())
-                                           ? (LeaderRank?) idealRankComboBox.SelectedIndex
-                                           : (LeaderRank?) (idealRankComboBox.SelectedIndex - 1);
+            LeaderRank newIdealRank = !string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString())
+                                          ? (LeaderRank) (idealRankComboBox.SelectedIndex + 1)
+                                          : (LeaderRank) idealRankComboBox.SelectedIndex;
             if (newIdealRank == leader.IdealRank)
             {
                 return;
@@ -1803,19 +1779,9 @@ namespace HoI2Editor.Forms
 
             leader.IdealRank = newIdealRank;
 
-            if (leader.IdealRank != null)
-            {
-                if (string.IsNullOrEmpty(idealRankComboBox.Items[0].ToString()))
-                {
-                    idealRankComboBox.Items.RemoveAt(0);
-                }
-                idealRankComboBox.SelectedIndex = (int) leader.IdealRank.Value;
-            }
+            UpdateIdealRankComboBox(leader);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1846,10 +1812,7 @@ namespace HoI2Editor.Forms
             leader.Skill = newSkill;
             leaderListView.SelectedItems[0].SubItems[4].Text = leader.Skill.ToString(CultureInfo.InvariantCulture);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1880,10 +1843,7 @@ namespace HoI2Editor.Forms
             leader.MaxSkill = newMaxSkill;
             leaderListView.SelectedItems[0].SubItems[5].Text = leader.MaxSkill.ToString(CultureInfo.InvariantCulture);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1913,10 +1873,7 @@ namespace HoI2Editor.Forms
 
             leader.Experience = newExperience;
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1946,10 +1903,7 @@ namespace HoI2Editor.Forms
 
             leader.Loyalty = newLoyalty;
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -1980,10 +1934,7 @@ namespace HoI2Editor.Forms
             leader.StartYear = newStartYear;
             leaderListView.SelectedItems[0].SubItems[6].Text = leader.StartYear.ToString(CultureInfo.InvariantCulture);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -2014,10 +1965,7 @@ namespace HoI2Editor.Forms
             leader.EndYear = newEndYear;
             leaderListView.SelectedItems[0].SubItems[7].Text = leader.EndYear.ToString(CultureInfo.InvariantCulture);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -2047,10 +1995,7 @@ namespace HoI2Editor.Forms
 
             leader.RankYear[0] = newRankYear;
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -2080,10 +2025,7 @@ namespace HoI2Editor.Forms
 
             leader.RankYear[1] = newRankYear;
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -2113,10 +2055,7 @@ namespace HoI2Editor.Forms
 
             leader.RankYear[2] = newRankYear;
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -2146,10 +2085,7 @@ namespace HoI2Editor.Forms
 
             leader.RankYear[3] = newRankYear;
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -2180,10 +2116,7 @@ namespace HoI2Editor.Forms
             leader.Traits = newTraits;
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>
@@ -2212,35 +2145,9 @@ namespace HoI2Editor.Forms
             }
 
             leader.PictureName = newPictureName;
-            if (!string.IsNullOrEmpty(leader.PictureName))
-            {
-                if (Game.IsModActive)
-                {
-                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
-                                                      Path.ChangeExtension(leader.PictureName, ".bmp"));
-                    if (File.Exists(modFileName))
-                    {
-                        leaderPictureBox.ImageLocation = modFileName;
-                    }
-                    else
-                    {
-                        leaderPictureBox.ImageLocation =
-                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                         Path.ChangeExtension(leader.PictureName, ".bmp"));
-                    }
-                }
-                else
-                {
-                    leaderPictureBox.ImageLocation =
-                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                     Path.ChangeExtension(leader.PictureName, ".bmp"));
-                }
-            }
+            UpdateLeaderPicture(leader);
 
-            if (leader.CountryTag != null)
-            {
-                Leaders.SetDirtyFlag(leader.CountryTag.Value);
-            }
+            Leaders.SetDirtyFlag(leader.CountryTag);
         }
 
         /// <summary>

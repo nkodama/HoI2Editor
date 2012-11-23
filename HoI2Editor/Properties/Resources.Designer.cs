@@ -61,6 +61,35 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   (陸軍) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Army {
+            get {
+                return ResourceManager.GetString("Army", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   (ヒトラー) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Hitler {
+            get {
+                return ResourceManager.GetString("Hitler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   無効なトークン: {0}
+        ///
+        /// に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidToken {
+            get {
+                return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   全選択 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string KeySelectAll {
@@ -79,6 +108,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   (海軍) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Navy {
+            get {
+                return ResourceManager.GetString("Navy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string OpenBitmapFileDialogFilter {
@@ -93,6 +131,37 @@ namespace HoI2Editor.Properties {
         internal static string OpenGameFolderDialogDescription {
             get {
                 return ResourceManager.GetString("OpenGameFolderDialogDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   解析失敗: {0}
+        ///
+        /// に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ParseFailed {
+            get {
+                return ResourceManager.GetString("ParseFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   解析失敗: {0}セクション / {1}
+        ///
+        /// に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ParseFailedSection {
+            get {
+                return ResourceManager.GetString("ParseFailedSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   (スターリン) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Stalin {
+            get {
+                return ResourceManager.GetString("Stalin", resourceCulture);
             }
         }
     }

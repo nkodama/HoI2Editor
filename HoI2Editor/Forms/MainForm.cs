@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -144,7 +145,33 @@ namespace HoI2Editor.Forms
         private void OnGameFolderTextBoxDragDrop(object sender, DragEventArgs e)
         {
             var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            modTextBox.Text = "";
             gameFolderTextBox.Text = fileNames[0];
+        }
+
+        /// <summary>
+        ///     MOD名テキストボックスにドラッグした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModTextBoxDragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.Copy : DragDropEffects.None;
+        }
+
+        /// <summary>
+        ///     MOD名テキストボックスにドロップした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModTextBoxDragDrop(object sender, DragEventArgs e)
+        {
+            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            modTextBox.Text = Path.GetFileName(fileNames[0]);
+            string folderName = Path.GetDirectoryName(fileNames[0]);
+            gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), "Mods")
+                                         ? Path.GetDirectoryName(folderName)
+                                         : folderName;
         }
 
         /// <summary>
@@ -167,6 +194,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
+            Misc.LoadMiscFile();
             Config.LoadConfigFiles();
             var form = new MinisterEditorForm();
             form.Show();
@@ -179,6 +207,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamButtonClick(object sender, EventArgs e)
         {
+            Misc.LoadMiscFile();
             Config.LoadConfigFiles();
             var form = new TeamEditorForm();
             form.Show();

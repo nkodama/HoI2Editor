@@ -69,10 +69,7 @@ namespace HoI2Editor.Forms
                                                    : (from string countryText in countryListBox.SelectedItems
                                                       select Country.CountryTextMap[countryText]).ToList();
 
-            foreach (
-                Team team in
-                    Teams.List.Where(
-                        team => team.CountryTag != null && selectedTagList.Contains(team.CountryTag.Value)))
+            foreach (Team team in Teams.List.Where(team => selectedTagList.Contains(team.CountryTag)))
             {
                 _narrowedList.Add(team);
             }
@@ -103,6 +100,53 @@ namespace HoI2Editor.Forms
             }
 
             teamListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     国家コンボボックスの項目を更新する
+        /// </summary>
+        /// <param name="team">研究機関データ</param>
+        private void UpdateCountryComboBox(Team team)
+        {
+            countryComboBox.BeginUpdate();
+
+            if (team.CountryTag != CountryTag.None)
+            {
+                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.RemoveAt(0);
+                }
+                countryComboBox.SelectedIndex = (int) (team.CountryTag - 1);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
+                {
+                    countryComboBox.Items.Insert(0, "");
+                }
+                countryComboBox.SelectedIndex = 0;
+            }
+
+            countryComboBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     研究機関画像ピクチャーボックスの項目を更新する
+        /// </summary>
+        /// <param name="team">研究機関データ</param>
+        private void UpdateTeamPicture(Team team)
+        {
+            if (!string.IsNullOrEmpty(team.PictureName))
+            {
+                string fileName =
+                    Game.GetFileName(Path.Combine(Game.PicturePathName,
+                                                  Path.ChangeExtension(team.PictureName, ".bmp")));
+                teamPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
+            }
+            else
+            {
+                teamPictureBox.ImageLocation = "";
+            }
         }
 
         /// <summary>
@@ -143,7 +187,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryList()
         {
-            foreach (string country in Country.CountryTextTable)
+            foreach (string country in Country.CountryTextTable.Where(country => !string.IsNullOrEmpty(country)))
             {
                 countryListBox.Items.Add(country);
             }
@@ -249,10 +293,7 @@ namespace HoI2Editor.Forms
 
             var item = new ListViewItem
                            {
-                               Text =
-                                   team.CountryTag != null
-                                       ? Country.CountryTextTable[(int) team.CountryTag]
-                                       : "",
+                               Text = Country.CountryTextTable[(int) team.CountryTag],
                                Tag = team
                            };
             item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
@@ -382,8 +423,8 @@ namespace HoI2Editor.Forms
                            {
                                CountryTag =
                                    countryListBox.SelectedItems.Count > 0
-                                       ? (CountryTag?) (countryListBox.SelectedIndex)
-                                       : null,
+                                       ? (CountryTag) (countryListBox.SelectedIndex + 1)
+                                       : CountryTag.None,
                                Id = 0,
                                Skill = 1,
                                StartYear = 1930,
@@ -397,10 +438,7 @@ namespace HoI2Editor.Forms
                 EnableEditableItems();
             }
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -439,10 +477,7 @@ namespace HoI2Editor.Forms
 
             InsertListItem(team, teamListView.SelectedIndices[0] + 1);
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -472,10 +507,7 @@ namespace HoI2Editor.Forms
                 DisableEditableItems();
             }
 
-            if (selected.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -514,10 +546,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, 0);
 
-            if (selected.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -556,10 +585,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, index - 1);
 
-            if (selected.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -598,10 +624,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, index + 1);
 
-            if (selected.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -640,10 +663,7 @@ namespace HoI2Editor.Forms
 
             MoveListItem(index, teamListView.Items.Count - 1);
 
-            if (selected.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(selected.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(selected.CountryTag);
         }
 
         /// <summary>
@@ -663,7 +683,7 @@ namespace HoI2Editor.Forms
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
                 {
                     // 変更ありの項目は文字色を変更する
-                    brush = Teams.DirtyFlags[e.Index]
+                    brush = Teams.DirtyFlags[e.Index + 1]
                                 ? new SolidBrush(Color.Red)
                                 : new SolidBrush(SystemColors.WindowText);
                 }
@@ -718,23 +738,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            if (team.CountryTag != null)
-            {
-                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.RemoveAt(0);
-                }
-                countryComboBox.SelectedIndex = (int) team.CountryTag.Value;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.Insert(0, "");
-                }
-                countryComboBox.SelectedIndex = 0;
-            }
-
+            UpdateCountryComboBox(team);
             idNumericUpDown.Value = team.Id;
             nameTextBox.Text = team.Name;
             skillNumericUpDown.Value = team.Skill;
@@ -746,32 +750,8 @@ namespace HoI2Editor.Forms
             specialityComboBox4.SelectedIndex = (int) team.Specialities[3];
             specialityComboBox5.SelectedIndex = (int) team.Specialities[4];
             specialityComboBox6.SelectedIndex = (int) team.Specialities[5];
-
             pictureNameTextBox.Text = team.PictureName;
-            if (!string.IsNullOrEmpty(team.PictureName))
-            {
-                if (Game.IsModActive)
-                {
-                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
-                                                      Path.ChangeExtension(team.PictureName, ".bmp"));
-                    if (File.Exists(modFileName))
-                    {
-                        teamPictureBox.ImageLocation = modFileName;
-                    }
-                    else
-                    {
-                        teamPictureBox.ImageLocation =
-                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                         Path.ChangeExtension(team.PictureName, ".bmp"));
-                    }
-                }
-                else
-                {
-                    teamPictureBox.ImageLocation =
-                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                     Path.ChangeExtension(team.PictureName, ".bmp"));
-                }
-            }
+            UpdateTeamPicture(team);
         }
 
         /// <summary>
@@ -793,31 +773,22 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もせずに戻る
-            CountryTag? newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
-                                            ? (CountryTag?) countryComboBox.SelectedIndex
-                                            : (CountryTag?) (countryComboBox.SelectedIndex - 1);
+            CountryTag newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
+                                           ? (CountryTag) (countryComboBox.SelectedIndex + 1)
+                                           : (CountryTag) countryComboBox.SelectedIndex;
             if (newCountryTag == team.CountryTag)
             {
                 return;
             }
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
 
             team.CountryTag = newCountryTag;
             teamListView.SelectedItems[0].Text = Country.CountryTextTable[(int) team.CountryTag];
 
-            if (team.CountryTag != null)
-            {
-                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.RemoveAt(0);
-                }
-                countryComboBox.SelectedIndex = (int) team.CountryTag.Value;
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            UpdateCountryComboBox(team);
+
+            Teams.SetDirtyFlag(team.CountryTag);
 
             // 国家リストボックスの項目色を変更するため描画更新する
             countryListBox.Refresh();
@@ -851,10 +822,7 @@ namespace HoI2Editor.Forms
             team.Id = newId;
             teamListView.SelectedItems[0].SubItems[1].Text = team.Id.ToString(CultureInfo.InvariantCulture);
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -885,10 +853,7 @@ namespace HoI2Editor.Forms
             team.Name = newName;
             teamListView.SelectedItems[0].SubItems[2].Text = team.Name;
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -920,10 +885,7 @@ namespace HoI2Editor.Forms
             teamListView.SelectedItems[0].SubItems[3].Text =
                 team.Skill.ToString(CultureInfo.InvariantCulture);
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -955,10 +917,7 @@ namespace HoI2Editor.Forms
             teamListView.SelectedItems[0].SubItems[4].Text =
                 team.StartYear.ToString(CultureInfo.InvariantCulture);
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -990,10 +949,7 @@ namespace HoI2Editor.Forms
             teamListView.SelectedItems[0].SubItems[5].Text =
                 team.EndYear.ToString(CultureInfo.InvariantCulture);
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -1027,10 +983,7 @@ namespace HoI2Editor.Forms
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[0]]]
                     : "";
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -1064,10 +1017,7 @@ namespace HoI2Editor.Forms
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[1]]]
                     : "";
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -1101,10 +1051,7 @@ namespace HoI2Editor.Forms
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[2]]]
                     : "";
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -1138,10 +1085,7 @@ namespace HoI2Editor.Forms
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[3]]]
                     : "";
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -1175,10 +1119,7 @@ namespace HoI2Editor.Forms
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[4]]]
                     : "";
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -1212,10 +1153,7 @@ namespace HoI2Editor.Forms
                     ? Config.Text[Team.SpecialityTextTable[(int) team.Specialities[5]]]
                     : "";
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>
@@ -1244,35 +1182,9 @@ namespace HoI2Editor.Forms
             }
 
             team.PictureName = newPictureName;
-            if (!string.IsNullOrEmpty(team.PictureName))
-            {
-                if (Game.IsModActive)
-                {
-                    string modFileName = Path.Combine(Path.Combine(Game.ModFolderName, Game.PicturePathName),
-                                                      Path.ChangeExtension(team.PictureName, ".bmp"));
-                    if (File.Exists(modFileName))
-                    {
-                        teamPictureBox.ImageLocation = modFileName;
-                    }
-                    else
-                    {
-                        teamPictureBox.ImageLocation =
-                            Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                         Path.ChangeExtension(team.PictureName, ".bmp"));
-                    }
-                }
-                else
-                {
-                    teamPictureBox.ImageLocation =
-                        Path.Combine(Path.Combine(Game.FolderName, Game.PicturePathName),
-                                     Path.ChangeExtension(team.PictureName, ".bmp"));
-                }
-            }
+            UpdateTeamPicture(team);
 
-            if (team.CountryTag != null)
-            {
-                Teams.SetDirtyFlag(team.CountryTag.Value);
-            }
+            Teams.SetDirtyFlag(team.CountryTag);
         }
 
         /// <summary>

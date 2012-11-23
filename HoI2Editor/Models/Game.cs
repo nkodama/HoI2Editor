@@ -29,9 +29,29 @@ namespace HoI2Editor.Models
         public const string PicturePathName = "gfx\\interface\\pics";
 
         /// <summary>
-        ///     Darkest HourのMODフォルダ名
+        ///     miscのファイル名
         /// </summary>
-        private const string DhModPathName = "Mods";
+        public const string MiscPathName = "db\\misc.txt";
+
+        /// <summary>
+        ///     閣僚一覧ファイル名(DH)
+        /// </summary>
+        public const string DhMinisterListPathName = "db\\ministers.txt";
+
+        /// <summary>
+        ///     閣僚特性ファイル名(AoD)
+        /// </summary>
+        public const string MinisterPersonalityPathNameAoD = "db\\ministers\\minister_modifiers.txt";
+
+        /// <summary>
+        ///     閣僚特性ファイル名(DH)
+        /// </summary>
+        public const string MinisterPersonalityPathNameDh = "db\\ministers\\minister_personalities.txt";
+
+        /// <summary>
+        ///     MODフォルダ名(DH)
+        /// </summary>
+        private const string ModPathNameDh = "Mods";
 
         /// <summary>
         ///     ゲームフォルダ名
@@ -135,6 +155,24 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     MODフォルダを考慮してファイル名を取得する
+        /// </summary>
+        /// <param name="pathName">パス名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetFileName(string pathName)
+        {
+            if (IsModActive)
+            {
+                string fileName = Path.Combine(ModFolderName, pathName);
+                if (File.Exists(fileName))
+                {
+                    return fileName;
+                }
+            }
+            return Path.Combine(FolderName, pathName);
+        }
+
+        /// <summary>
         ///     指揮官ファイル名を取得する
         /// </summary>
         /// <param name="countryTag">国タグ</param>
@@ -209,7 +247,7 @@ namespace HoI2Editor.Models
             switch (Type)
             {
                 case GameType.DarkestHour:
-                    _modFolderName = Path.Combine(Path.Combine(FolderName, DhModPathName), ModName);
+                    _modFolderName = Path.Combine(Path.Combine(FolderName, ModPathNameDh), ModName);
                     break;
 
                 default:

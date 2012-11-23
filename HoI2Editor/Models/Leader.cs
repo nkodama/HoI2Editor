@@ -84,12 +84,12 @@
         /// <summary>
         ///     兵科文字列
         /// </summary>
-        public static readonly string[] BranchTextTable = {"陸軍", "海軍", "空軍"};
+        public static readonly string[] BranchTextTable = {"", "陸軍", "海軍", "空軍"};
 
         /// <summary>
         ///     階級文字列
         /// </summary>
-        public static readonly string[] RankTextTable = {"少将", "中将", "大将", "元帥"};
+        public static readonly string[] RankTextTable = {"", "少将", "中将", "大将", "元帥"};
 
         /// <summary>
         ///     任官年
@@ -99,7 +99,7 @@
         /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag? CountryTag { get; set; }
+        public CountryTag CountryTag { get; set; }
 
         /// <summary>
         ///     指揮官ID
@@ -147,7 +147,7 @@
         /// <summary>
         ///     理想階級
         /// </summary>
-        public LeaderRank? IdealRank { get; set; }
+        public LeaderRank IdealRank { get; set; }
 
         /// <summary>
         ///     指揮官特性
@@ -167,7 +167,7 @@
         /// <summary>
         ///     兵科
         /// </summary>
-        public LeaderBranch? Branch { get; set; }
+        public LeaderBranch Branch { get; set; }
     }
 
     /// <summary>
@@ -399,6 +399,7 @@
     /// </summary>
     public enum LeaderBranch
     {
+        None,
         Army, // 陸軍
         Navy, //海軍
         Airforce, //空軍
@@ -409,6 +410,7 @@
     /// </summary>
     public enum LeaderRank
     {
+        None,
         MajorGeneral, // 少将
         LieutenantGeneral, // 中将
         General, // 大将

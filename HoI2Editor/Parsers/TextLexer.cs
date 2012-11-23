@@ -15,6 +15,11 @@ namespace HoI2Editor.Parsers
         private StreamReader _reader;
 
         /// <summary>
+        ///     保留中のトークン
+        /// </summary>
+        private Token _token;
+
+        /// <summary>
         ///     コンストラクタ
         /// </summary>
         /// <param name="fileName">解析対象のファイル名</param>
@@ -57,7 +62,85 @@ namespace HoI2Editor.Parsers
         ///     字句解析
         /// </summary>
         /// <returns>トークン</returns>
-        public Token Parse()
+        public Token GetToken()
+        {
+            return Read();
+        }
+
+        /// <summary>
+        ///     指定の種類のトークンを要求する
+        /// </summary>
+        /// <param name="type">要求するトークンの種類</param>
+        /// <returns>次のトークンが要求する種類ならばそのトークンを、異なればnullを返す</returns>
+        public bool WantToken(TokenType type)
+        {
+            Token token = Peek();
+
+            if (token != null && token.Type == type)
+            {
+                Read();
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///     指定の種類の識別子トークンを要求する
+        /// </summary>
+        /// <param name="keyword">要求するキーワード名</param>
+        /// <returns>要求する識別子trueを返す</returns>
+        public bool WantIdentifier(string keyword)
+        {
+            Token token = Peek();
+
+            if (token != null && token.Type == TokenType.Identifier && ((string) token.Value).Equals(keyword))
+            {
+                Read();
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///     先頭のトークンを解析し、読み込みポインタを移動する
+        /// </summary>
+        /// <returns></returns>
+        private Token Read()
+        {
+            // 既に解析済みのトークンがあれば返す
+            if (_token != null)
+            {
+                Token result = _token;
+                _token = null;
+                return result;
+            }
+
+            return Parse();
+        }
+
+        /// <summary>
+        ///     先頭のトークンを解析し、読み込みポインタを移動しない
+        /// </summary>
+        /// <returns></returns>
+        private Token Peek()
+        {
+            // 既に解析済みのトークンがあれば返す
+            if (_token != null)
+            {
+                return _token;
+            }
+
+            _token = Parse();
+            return _token;
+        }
+
+        /// <summary>
+        ///     字句解析
+        /// </summary>
+        /// <returns>トークン</returns>
+        private Token Parse()
         {
             int c;
 
@@ -97,7 +180,7 @@ namespace HoI2Editor.Parsers
             }
 
             // 識別子
-            if (char.IsLetter((char) c))
+            if (char.IsLetter((char) c) || c == '_')
             {
                 return ParseIdentifier();
             }
@@ -209,8 +292,8 @@ namespace HoI2Editor.Parsers
                     break;
                 }
 
-                // 英文字ならば読み進める
-                if (char.IsLetter((char) c))
+                // 英文字または数字ならば読み進める
+                if (char.IsLetter((char) c) || char.IsNumber((char) c) || c == '_')
                 {
                     _reader.Read();
                     sb.Append((char) c);
@@ -288,7 +371,8 @@ namespace HoI2Editor.Parsers
                     c == '"' ||
                     c == '=' ||
                     c == '{' ||
-                    c == '}')
+                    c == '}' ||
+                    c == '_')
                 {
                     break;
                 }
@@ -298,6 +382,35 @@ namespace HoI2Editor.Parsers
             }
 
             return new Token {Type = TokenType.Invalid, Value = sb.ToString()};
+        }
+
+        /// <summary>
+        ///     行末まで読み飛ばす
+        /// </summary>
+        public void SkipLine()
+        {
+            _reader.ReadLine();
+        }
+
+        /// <summary>
+        ///     指定種類のトークンまで読み飛ばす
+        /// </summary>
+        /// <param name="type"></param>
+        public void SkipToToken(TokenType type)
+        {
+            while (true)
+            {
+                Token token = GetToken();
+                if (token == null)
+                {
+                    return;
+                }
+
+                if (token.Type == type)
+                {
+                    return;
+                }
+            }
         }
     }
 }

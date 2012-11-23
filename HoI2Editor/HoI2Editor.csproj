@@ -85,6 +85,8 @@
     <Compile Include="Models\Misc.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
+    <Compile Include="Parsers\MinisterModifierParser.cs" />
+    <Compile Include="Parsers\MinisterPersonalityParser.cs" />
     <Compile Include="Parsers\MiscParser.cs" />
     <Compile Include="Parsers\TextLexer.cs" />
     <Compile Include="Parsers\Token.cs" />

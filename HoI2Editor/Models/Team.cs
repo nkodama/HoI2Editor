@@ -102,7 +102,7 @@
         /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag? CountryTag { get; set; }
+        public CountryTag CountryTag { get; set; }
 
         /// <summary>
         ///     研究機関ID

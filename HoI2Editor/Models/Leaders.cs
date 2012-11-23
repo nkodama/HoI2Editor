@@ -111,18 +111,18 @@ namespace HoI2Editor.Models
             }
 
             _currentLineNo++;
-            CountryTag? country = null;
+            var country = CountryTag.None;
 
             while (!reader.EndOfStream)
             {
                 Leader leader = ParseLeaderLine(reader.ReadLine());
 
-                if (country == null && leader != null)
+                if (country == CountryTag.None && leader != null)
                 {
                     country = leader.CountryTag;
-                    if (country != null && !FileNameMap.ContainsKey(country.Value))
+                    if (country != CountryTag.None && !FileNameMap.ContainsKey(country))
                     {
-                        FileNameMap.Add(country.Value, Path.GetFileName(fileName));
+                        FileNameMap.Add(country, Path.GetFileName(fileName));
                     }
                 }
                 _currentLineNo++;
@@ -197,11 +197,11 @@ namespace HoI2Editor.Models
             int idealRank;
             if (Int32.TryParse(token[7], out idealRank) && 0 <= idealRank && idealRank <= 3)
             {
-                leader.IdealRank = (LeaderRank) (3 - idealRank);
+                leader.IdealRank = (LeaderRank) (4 - idealRank);
             }
             else
             {
-                leader.IdealRank = null;
+                leader.IdealRank = LeaderRank.None;
                 Log.Write(String.Format("理想階級の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[7]));
             }
@@ -225,7 +225,7 @@ namespace HoI2Editor.Models
             {
                 leader.Traits = LeaderTraits.None;
                 Log.Write(String.Format("特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[8]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[9]));
             }
             int skill;
             if (Int32.TryParse(token[10], out skill))
@@ -263,11 +263,11 @@ namespace HoI2Editor.Models
             int branch;
             if (Int32.TryParse(token[13], out branch))
             {
-                leader.Branch = (LeaderBranch) branch;
+                leader.Branch = (LeaderBranch) (branch + 1);
             }
             else
             {
-                leader.Branch = null;
+                leader.Branch = LeaderBranch.None;
                 Log.Write(String.Format("兵科の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
                 Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[13]));
             }
@@ -344,20 +344,22 @@ namespace HoI2Editor.Models
                     "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
                     leader.Name,
                     leader.Id,
-                    leader.CountryTag != null ? Country.CountryTextTable[(int) leader.CountryTag.Value] : "",
+                    Country.CountryTextTable[(int) leader.CountryTag],
                     leader.RankYear[0],
                     leader.RankYear[1],
                     leader.RankYear[2],
                     leader.RankYear[3],
-                    leader.IdealRank != null
-                        ? (3 - (int) leader.IdealRank.Value).ToString(CultureInfo.InvariantCulture)
+                    leader.IdealRank != LeaderRank.None
+                        ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
                         : "",
                     leader.MaxSkill,
                     leader.Traits,
                     leader.Skill,
                     leader.Experience,
                     leader.Loyalty,
-                    leader.Branch != null ? ((int) leader.Branch.Value).ToString(CultureInfo.InvariantCulture) : "",
+                    leader.Branch != LeaderBranch.None
+                        ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
+                        : "",
                     leader.PictureName,
                     leader.StartYear,
                     leader.EndYear);

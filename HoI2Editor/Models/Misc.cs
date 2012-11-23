@@ -1,5 +1,4 @@
-﻿using System.IO;
-using HoI2Editor.Parsers;
+﻿using HoI2Editor.Parsers;
 
 namespace HoI2Editor.Models
 {
@@ -79,21 +78,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            string fileName;
-            if (Game.IsModActive)
-            {
-                fileName = Path.Combine(Game.ModFolderName, "db\\misc.txt");
-                if (!File.Exists(fileName))
-                {
-                    fileName = Path.Combine(Game.FolderName, "db\\misc.txt");
-                }
-            }
-            else
-            {
-                fileName = Path.Combine(Game.FolderName, "db\\misc.txt");
-            }
-
-            if (!MiscParser.Parse(fileName))
+            if (!MiscParser.Parse(Game.GetFileName(Game.MiscPathName)))
             {
                 return;
             }
@@ -271,9 +256,9 @@ namespace HoI2Editor.Models
         public int NewAutoSaveFileFormat;
 
         /// <summary>
-        ///     新閣僚フォーマットを使用する [0:無効/1:有効]
+        ///     新閣僚フォーマットを使用する
         /// </summary>
-        public int NewMinisterFormat;
+        public bool NewMinisterFormat;
 
         /// <summary>
         ///     反乱軍の構成 [0:民兵のみ/100:歩兵のみ]
