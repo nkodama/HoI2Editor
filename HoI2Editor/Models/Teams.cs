@@ -293,7 +293,7 @@ namespace HoI2Editor.Models
                     break;
 
                 case GameType.DarkestHour:
-                    SpecialityTable = SpecialityTableDh102;
+                    SpecialityTable = (Game.Version >= 103 ? SpecialityTableDh : SpecialityTableDh102);
                     break;
             }
 
