@@ -736,7 +736,7 @@
     <value>161, 20</value>
   </data>
   <data name="loyaltyComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+    <value>29</value>
   </data>
   <data name="&gt;&gt;loyaltyComboBox.Name" xml:space="preserve">
     <value>loyaltyComboBox</value>
@@ -763,7 +763,7 @@
     <value>42, 12</value>
   </data>
   <data name="loyaltyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>28</value>
   </data>
   <data name="loyaltyLabel.Text" xml:space="preserve">
     <value>Loyalty</value>
@@ -790,7 +790,7 @@
     <value>160, 20</value>
   </data>
   <data name="ideologyComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>27</value>
   </data>
   <data name="&gt;&gt;ideologyComboBox.Name" xml:space="preserve">
     <value>ideologyComboBox</value>
@@ -817,7 +817,7 @@
     <value>47, 12</value>
   </data>
   <data name="ideologyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>26</value>
   </data>
   <data name="ideologyLabel.Text" xml:space="preserve">
     <value>Ideology</value>
@@ -844,7 +844,7 @@
     <value>160, 20</value>
   </data>
   <data name="personalityComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>25</value>
   </data>
   <data name="&gt;&gt;personalityComboBox.Name" xml:space="preserve">
     <value>personalityComboBox</value>
@@ -871,7 +871,7 @@
     <value>62, 12</value>
   </data>
   <data name="personalityLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>24</value>
   </data>
   <data name="personalityLabel.Text" xml:space="preserve">
     <value>Personality</value>
@@ -898,7 +898,7 @@
     <value>160, 20</value>
   </data>
   <data name="positionComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>23</value>
   </data>
   <data name="&gt;&gt;positionComboBox.Name" xml:space="preserve">
     <value>positionComboBox</value>
@@ -925,7 +925,7 @@
     <value>46, 12</value>
   </data>
   <data name="positionLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>22</value>
   </data>
   <data name="positionLabel.Text" xml:space="preserve">
     <value>Position</value>
@@ -955,7 +955,7 @@
     <value>74, 12</value>
   </data>
   <data name="pictureNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>30</value>
   </data>
   <data name="pictureNameLabel.Text" xml:space="preserve">
     <value>Picture Name</value>
@@ -982,7 +982,7 @@
     <value>332, 19</value>
   </data>
   <data name="pictureNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>31</value>
   </data>
   <data name="&gt;&gt;pictureNameTextBox.Name" xml:space="preserve">
     <value>pictureNameTextBox</value>
@@ -1006,7 +1006,7 @@
     <value>75, 23</value>
   </data>
   <data name="pictureNameReferButton.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>32</value>
   </data>
   <data name="pictureNameReferButton.Text" xml:space="preserve">
     <value>Browse</value>
@@ -1057,7 +1057,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>33</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -1084,7 +1084,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>34</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -1111,7 +1111,7 @@
     <value>75, 23</value>
   </data>
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>35</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -1138,7 +1138,7 @@
     <value>160, 19</value>
   </data>
   <data name="retirementYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>21</value>
   </data>
   <data name="retirementYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1171,7 +1171,7 @@
     <value>65, 12</value>
   </data>
   <data name="retirementYearLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>20</value>
   </data>
   <data name="retirementYearLabel.Text" xml:space="preserve">
     <value>Retire. Year</value>
