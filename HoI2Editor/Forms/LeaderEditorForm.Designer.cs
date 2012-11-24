@@ -157,6 +157,8 @@
             this.offensiveDoctrineCheckBox = new System.Windows.Forms.CheckBox();
             this.defensiveDoctrineCheckBox = new System.Windows.Forms.CheckBox();
             this.logisticsWizardCheckBox = new System.Windows.Forms.CheckBox();
+            this.retirementYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.retirementYearLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.leaderPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
@@ -172,6 +174,7 @@
             this.traitsNarrowGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.experienceNumericUpDown)).BeginInit();
             this.traitsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // closeButton
@@ -1158,10 +1161,33 @@
             this.logisticsWizardCheckBox.UseVisualStyleBackColor = true;
             this.logisticsWizardCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
             // 
+            // retirementYearNumericUpDown
+            // 
+            resources.ApplyResources(this.retirementYearNumericUpDown, "retirementYearNumericUpDown");
+            this.retirementYearNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.retirementYearNumericUpDown.Name = "retirementYearNumericUpDown";
+            this.retirementYearNumericUpDown.Value = new decimal(new int[] {
+            1999,
+            0,
+            0,
+            0});
+            this.retirementYearNumericUpDown.ValueChanged += new System.EventHandler(this.OnRetirementYearNumericUpDownValueChanged);
+            // 
+            // retirementYearLabel
+            // 
+            resources.ApplyResources(this.retirementYearLabel, "retirementYearLabel");
+            this.retirementYearLabel.Name = "retirementYearLabel";
+            // 
             // LeaderEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.retirementYearNumericUpDown);
+            this.Controls.Add(this.retirementYearLabel);
             this.Controls.Add(this.traitsGroupBox);
             this.Controls.Add(this.experienceNumericUpDown);
             this.Controls.Add(this.experienceLabel);
@@ -1232,6 +1258,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.experienceNumericUpDown)).EndInit();
             this.traitsGroupBox.ResumeLayout(false);
             this.traitsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1367,5 +1394,7 @@
         private System.Windows.Forms.ColumnHeader branchColumnHeader;
         private System.Windows.Forms.ColumnHeader skillColumnHeader;
         private System.Windows.Forms.ColumnHeader maxSkillColumnHeader;
+        private System.Windows.Forms.NumericUpDown retirementYearNumericUpDown;
+        private System.Windows.Forms.Label retirementYearLabel;
     }
 }

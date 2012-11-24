@@ -592,6 +592,7 @@ namespace HoI2Editor.Forms
             loyaltyNumericUpDown.Enabled = true;
             startYearNumericUpDown.Enabled = true;
             endYearNumericUpDown.Enabled = true;
+            retirementYearNumericUpDown.Enabled = Misc.Mod.RetirementYearLeader;
             rankYearNumericUpDown1.Enabled = true;
             rankYearNumericUpDown2.Enabled = true;
             rankYearNumericUpDown3.Enabled = true;
@@ -624,6 +625,7 @@ namespace HoI2Editor.Forms
             loyaltyNumericUpDown.Value = 0;
             startYearNumericUpDown.Value = 1930;
             endYearNumericUpDown.Value = 1990;
+            retirementYearNumericUpDown.Value = 1999;
             rankYearNumericUpDown1.Value = 1990;
             rankYearNumericUpDown2.Value = 1990;
             rankYearNumericUpDown3.Value = 1990;
@@ -644,6 +646,7 @@ namespace HoI2Editor.Forms
             loyaltyNumericUpDown.Enabled = false;
             startYearNumericUpDown.Enabled = false;
             endYearNumericUpDown.Enabled = false;
+            retirementYearNumericUpDown.Enabled = false;
             rankYearNumericUpDown1.Enabled = false;
             rankYearNumericUpDown2.Enabled = false;
             rankYearNumericUpDown3.Enabled = false;
@@ -1146,6 +1149,7 @@ namespace HoI2Editor.Forms
                                  IdealRank = LeaderRank.None,
                                  StartYear = 1930,
                                  EndYear = 1990,
+                                 RetirementYear = 1999,
                              };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
@@ -1169,6 +1173,7 @@ namespace HoI2Editor.Forms
                                  IdealRank = LeaderRank.None,
                                  StartYear = 1930,
                                  EndYear = 1990,
+                                 RetirementYear = 1999,
                              };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
@@ -1216,6 +1221,7 @@ namespace HoI2Editor.Forms
                                  Loyalty = selected.Loyalty,
                                  StartYear = selected.StartYear,
                                  EndYear = selected.EndYear,
+                                 RetirementYear = selected.RetirementYear,
                                  PictureName = selected.PictureName,
                                  Traits = selected.Traits
                              };
@@ -1587,6 +1593,7 @@ namespace HoI2Editor.Forms
             loyaltyNumericUpDown.Value = leader.Loyalty;
             startYearNumericUpDown.Value = leader.StartYear;
             endYearNumericUpDown.Value = leader.EndYear;
+            retirementYearNumericUpDown.Value = leader.RetirementYear;
             rankYearNumericUpDown1.Value = leader.RankYear[0];
             rankYearNumericUpDown2.Value = leader.RankYear[1];
             rankYearNumericUpDown3.Value = leader.RankYear[2];
@@ -1985,6 +1992,36 @@ namespace HoI2Editor.Forms
 
             leader.EndYear = newEndYear;
             leaderListView.SelectedItems[0].SubItems[7].Text = leader.EndYear.ToString(CultureInfo.InvariantCulture);
+
+            Leaders.SetDirtyFlag(leader.CountryTag);
+        }
+
+        /// <summary>
+        ///     引退年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRetirementYearNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newRetirementYear = (int) retirementYearNumericUpDown.Value;
+            if (newRetirementYear == leader.RetirementYear)
+            {
+                return;
+            }
+
+            leader.RetirementYear = newRetirementYear;
 
             Leaders.SetDirtyFlag(leader.CountryTag);
         }

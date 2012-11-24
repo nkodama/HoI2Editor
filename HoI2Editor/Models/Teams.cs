@@ -504,7 +504,7 @@ namespace HoI2Editor.Models
                 CountryTag country in
                     Enum.GetValues(typeof (CountryTag))
                         .Cast<CountryTag>()
-                        .Where(country => DirtyFlags[(int) country]))
+                        .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
             {
                 SaveTeamFile(country);
             }

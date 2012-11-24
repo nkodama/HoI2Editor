@@ -94,6 +94,11 @@ namespace HoI2Editor.Models
         private static string _exeFileName;
 
         /// <summary>
+        ///     ファイル読み書き時のコードページ
+        /// </summary>
+        private static int _codePage;
+
+        /// <summary>
         ///     静的コンストラクタ
         /// </summary>
         static Game()
@@ -114,7 +119,18 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ファイル読み書き時のコードページ
         /// </summary>
-        public static int CodePage { get; set; }
+        public static int CodePage
+        {
+            get { return _codePage; }
+            set
+            {
+                _codePage = value;
+
+                // 共通リソースの再読み込み必要
+                Misc.Loaded = false;
+                Config.Loaded = false;
+            }
+        }
 
         /// <summary>
         ///     ゲームフォルダ名
@@ -206,7 +222,9 @@ namespace HoI2Editor.Models
         /// <returns>指揮官ファイル名</returns>
         public static string GetLeaderFileName(CountryTag countryTag)
         {
-            return Leaders.FileNameMap[countryTag];
+            return Leaders.FileNameMap.ContainsKey(countryTag)
+                       ? Leaders.FileNameMap[countryTag]
+                       : string.Format("leaders{0}.csv", Country.CountryTextTable[(int) countryTag].ToUpper());
         }
 
         /// <summary>

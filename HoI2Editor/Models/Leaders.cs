@@ -170,12 +170,12 @@ namespace HoI2Editor.Models
             string[] token = line.Split(CsvSeparator);
 
             // トークン数が足りない行は読み飛ばす
-            if (token.Length != 18)
+            if (token.Length != (Misc.Mod.RetirementYearLeader ? 19 : 18))
             {
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
                 Log.Write(String.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
-                if (token.Length < 17)
+                if (token.Length < (Misc.Mod.RetirementYearLeader ? 18 : 17))
                 {
                     return null;
                 }
@@ -188,26 +188,38 @@ namespace HoI2Editor.Models
             }
 
             var leader = new Leader();
+            int index = 0;
+
+            // 名前
+            leader.Name = token[index];
+            index++;
+
+            // ID
             int id;
-            if (!Int32.TryParse(token[1], out id))
+            if (!Int32.TryParse(token[index], out id))
             {
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1}\n", token[1], token[0]));
+                Log.Write(String.Format("  {0}: {1}\n", token[index], leader.Name));
                 return null;
             }
             leader.Id = id;
-            leader.Name = token[0];
-            if (String.IsNullOrEmpty(token[2]) || !Country.CountryStringMap.ContainsKey(token[2].ToUpper()))
+            index++;
+
+            // 国家
+            if (String.IsNullOrEmpty(token[index]) || !Country.CountryStringMap.ContainsKey(token[index].ToUpper()))
             {
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[2]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
                 return null;
             }
-            leader.CountryTag = Country.CountryStringMap[token[2].ToUpper()];
+            leader.CountryTag = Country.CountryStringMap[token[index].ToUpper()];
+            index++;
+
+            // 任官年
             for (int i = 0; i < 4; i++)
             {
                 int rankYear;
-                if (Int32.TryParse(token[3 + i], out rankYear))
+                if (Int32.TryParse(token[index], out rankYear))
                 {
                     leader.RankYear[i] = rankYear;
                 }
@@ -216,11 +228,14 @@ namespace HoI2Editor.Models
                     leader.RankYear[i] = 1990;
                     Log.Write(String.Format("{0}({1}): {2} L{3}\n", Resources.InvalidRankYear, RankNameTable[i],
                                             _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[3 + i]));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
                 }
+                index++;
             }
+
+            // 理想階級
             int idealRank;
-            if (Int32.TryParse(token[7], out idealRank) && 0 <= idealRank && idealRank <= 3)
+            if (Int32.TryParse(token[index], out idealRank) && 0 <= idealRank && idealRank <= 3)
             {
                 leader.IdealRank = (LeaderRank) (4 - idealRank);
             }
@@ -228,10 +243,13 @@ namespace HoI2Editor.Models
             {
                 leader.IdealRank = LeaderRank.None;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[7]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
+            index++;
+
+            // 最大スキル
             int maxSkill;
-            if (Int32.TryParse(token[8], out maxSkill))
+            if (Int32.TryParse(token[index], out maxSkill))
             {
                 leader.MaxSkill = maxSkill;
             }
@@ -239,10 +257,13 @@ namespace HoI2Editor.Models
             {
                 leader.MaxSkill = 0;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidMaxSkill, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[8]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
+            index++;
+
+            // 指揮官特性
             uint traits;
-            if (UInt32.TryParse(token[9], out traits))
+            if (UInt32.TryParse(token[index], out traits))
             {
                 leader.Traits = traits;
             }
@@ -250,10 +271,13 @@ namespace HoI2Editor.Models
             {
                 leader.Traits = LeaderTraits.None;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTraits, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[9]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
+            index++;
+
+            // スキル
             int skill;
-            if (Int32.TryParse(token[10], out skill))
+            if (Int32.TryParse(token[index], out skill))
             {
                 leader.Skill = skill;
             }
@@ -261,10 +285,13 @@ namespace HoI2Editor.Models
             {
                 leader.Skill = 0;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[10]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
+            index++;
+
+            // 経験値
             int experience;
-            if (Int32.TryParse(token[11], out experience))
+            if (Int32.TryParse(token[index], out experience))
             {
                 leader.Experience = experience;
             }
@@ -272,10 +299,13 @@ namespace HoI2Editor.Models
             {
                 leader.Experience = 0;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidExperience, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[11]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
+            index++;
+
+            // 忠誠度
             int loyalty;
-            if (Int32.TryParse(token[12], out loyalty))
+            if (Int32.TryParse(token[index], out loyalty))
             {
                 leader.Loyalty = loyalty;
             }
@@ -283,10 +313,13 @@ namespace HoI2Editor.Models
             {
                 leader.Loyalty = 0;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[12]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
+            index++;
+
+            // 兵科
             int branch;
-            if (Int32.TryParse(token[13], out branch))
+            if (Int32.TryParse(token[index], out branch))
             {
                 leader.Branch = (LeaderBranch) (branch + 1);
             }
@@ -294,11 +327,17 @@ namespace HoI2Editor.Models
             {
                 leader.Branch = LeaderBranch.None;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[13]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
-            leader.PictureName = token[14];
+            index++;
+
+            // 画像ファイル名
+            leader.PictureName = token[index];
+            index++;
+
+            // 開始年
             int startYear;
-            if (Int32.TryParse(token[15], out startYear))
+            if (Int32.TryParse(token[index], out startYear))
             {
                 leader.StartYear = startYear;
             }
@@ -306,10 +345,13 @@ namespace HoI2Editor.Models
             {
                 leader.StartYear = 1930;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[15]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
             }
+            index++;
+
+            // 終了年
             int endYear;
-            if (Int32.TryParse(token[16], out endYear))
+            if (Int32.TryParse(token[index], out endYear))
             {
                 leader.EndYear = endYear;
             }
@@ -317,7 +359,29 @@ namespace HoI2Editor.Models
             {
                 leader.EndYear = 1970;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[16]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
+            }
+            index++;
+
+            // 引退年
+            if (Misc.Mod.RetirementYearLeader)
+            {
+                int retirementYear;
+                if (Int32.TryParse(token[index], out retirementYear))
+                {
+                    leader.RetirementYear = retirementYear;
+                }
+                else
+                {
+                    leader.RetirementYear = 1999;
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[index]));
+                }
+            }
+            else
+            {
+                leader.RetirementYear = 1999;
             }
 
             List.Add(leader);
@@ -332,7 +396,9 @@ namespace HoI2Editor.Models
         {
             foreach (
                 CountryTag country in
-                    Enum.GetValues(typeof (CountryTag)).Cast<CountryTag>().Where(country => DirtyFlags[(int) country]))
+                    Enum.GetValues(typeof (CountryTag))
+                        .Cast<CountryTag>()
+                        .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
             {
                 SaveLeaderFile(country);
             }
@@ -361,33 +427,65 @@ namespace HoI2Editor.Models
 
             var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage));
             writer.WriteLine(
-                "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
+                Misc.Mod.RetirementYearLeader
+                    ? "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;Retirement Year;x"
+                    : "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
 
             foreach (Leader leader in List.Where(leader => leader.CountryTag == country))
             {
-                writer.WriteLine(
-                    "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
-                    leader.Name,
-                    leader.Id,
-                    Country.CountryTextTable[(int) leader.CountryTag],
-                    leader.RankYear[0],
-                    leader.RankYear[1],
-                    leader.RankYear[2],
-                    leader.RankYear[3],
-                    leader.IdealRank != LeaderRank.None
-                        ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
-                        : "",
-                    leader.MaxSkill,
-                    leader.Traits,
-                    leader.Skill,
-                    leader.Experience,
-                    leader.Loyalty,
-                    leader.Branch != LeaderBranch.None
-                        ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
-                        : "",
-                    leader.PictureName,
-                    leader.StartYear,
-                    leader.EndYear);
+                if (Misc.Mod.RetirementYearLeader)
+                {
+                    writer.WriteLine(
+                        "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};x",
+                        leader.Name,
+                        leader.Id,
+                        Country.CountryTextTable[(int) leader.CountryTag],
+                        leader.RankYear[0],
+                        leader.RankYear[1],
+                        leader.RankYear[2],
+                        leader.RankYear[3],
+                        leader.IdealRank != LeaderRank.None
+                            ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
+                            : "",
+                        leader.MaxSkill,
+                        leader.Traits,
+                        leader.Skill,
+                        leader.Experience,
+                        leader.Loyalty,
+                        leader.Branch != LeaderBranch.None
+                            ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
+                            : "",
+                        leader.PictureName,
+                        leader.StartYear,
+                        leader.EndYear,
+                        leader.RetirementYear);
+                }
+                else
+                {
+                    writer.WriteLine(
+                        "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
+                        leader.Name,
+                        leader.Id,
+                        Country.CountryTextTable[(int) leader.CountryTag],
+                        leader.RankYear[0],
+                        leader.RankYear[1],
+                        leader.RankYear[2],
+                        leader.RankYear[3],
+                        leader.IdealRank != LeaderRank.None
+                            ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
+                            : "",
+                        leader.MaxSkill,
+                        leader.Traits,
+                        leader.Skill,
+                        leader.Experience,
+                        leader.Loyalty,
+                        leader.Branch != LeaderBranch.None
+                            ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
+                            : "",
+                        leader.PictureName,
+                        leader.StartYear,
+                        leader.EndYear);
+                }
                 _currentLineNo++;
             }
 

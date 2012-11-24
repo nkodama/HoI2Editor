@@ -135,6 +135,11 @@
         public int EndYear { get; set; }
 
         /// <summary>
+        ///     引退年
+        /// </summary>
+        public int RetirementYear { get; set; }
+
+        /// <summary>
         ///     理想階級
         /// </summary>
         public LeaderRank IdealRank { get; set; }
