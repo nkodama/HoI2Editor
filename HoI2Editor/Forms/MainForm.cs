@@ -29,7 +29,7 @@ namespace HoI2Editor.Forms
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             gameFolderTextBox.Text = Game.FolderName;
-            languageComboBox.SelectedIndex =
+            encodingComboBox.SelectedIndex =
                 Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP")) ? 1 : 0;
         }
 
@@ -155,13 +155,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     言語変更時の処理
+        ///     エンコード変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLanguageComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        private void OnEncodingComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
-            switch (languageComboBox.SelectedIndex)
+            switch (encodingComboBox.SelectedIndex)
             {
                 case 0:
                     Game.CodePage = 1252;
