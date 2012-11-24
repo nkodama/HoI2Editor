@@ -316,6 +316,31 @@ namespace HoI2Editor.Models
 
             List.Clear();
 
+            switch (Game.Type)
+            {
+                case GameType.HeartsOfIron2:
+                case GameType.ArsenalOfDemocracy:
+                    LoadTeamFilesHoI2();
+                    break;
+
+                case GameType.DarkestHour:
+                    if (Game.IsModActive)
+                    {
+                        LoadTeamFilesDh();
+                    }
+                    else
+                    {
+                        LoadTeamFilesHoI2();
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     研究機関ファイル群を読み込む(HoI2/AoD/DH-MOD未使用時)
+        /// </summary>
+        private static void LoadTeamFilesHoI2()
+        {
             var list = new List<string>();
             string folderName;
 
@@ -348,6 +373,56 @@ namespace HoI2Editor.Models
                     }
                 }
             }
+        }
+
+        /// <summary>
+        ///     研究機関ファイル群を読み込む(DH-MOD使用時)
+        /// </summary>
+        private static void LoadTeamFilesDh()
+        {
+            // teams.txtが存在しなければ従来通りの読み込み方法を使用する
+            string listFileName = Game.GetFileName(Game.DhTeamListPathName);
+            if (!File.Exists(listFileName))
+            {
+                LoadTeamFilesHoI2();
+                return;
+            }
+
+            IEnumerable<string> fileList = LoadTeamListFileDh(listFileName);
+            foreach (string fileName in fileList)
+            {
+                LoadTeamFile(Game.GetFileName(Path.Combine(Game.TeamPathName, fileName)));
+            }
+        }
+
+        /// <summary>
+        ///     研究機関リストファイルを読み込む(DH)
+        /// </summary>
+        private static IEnumerable<string> LoadTeamListFileDh(string fileName)
+        {
+            var list = new List<string>();
+            var reader = new StreamReader(fileName);
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+
+                // 空行
+                if (String.IsNullOrEmpty(line))
+                {
+                    continue;
+                }
+
+                // コメント行
+                if (line[0] == '#')
+                {
+                    continue;
+                }
+
+                list.Add(line);
+            }
+            reader.Close();
+
+            return list;
         }
 
         /// <summary>

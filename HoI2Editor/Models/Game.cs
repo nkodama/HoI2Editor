@@ -62,9 +62,19 @@ namespace HoI2Editor.Models
         public const string MinisterPersonalityPathNameDh = "db\\ministers\\minister_personalities.txt";
 
         /// <summary>
+        ///     指揮官一覧ファイル名(DH)
+        /// </summary>
+        public const string DhLeaderListPathName = "db\\leaders.txt";
+
+        /// <summary>
         ///     閣僚一覧ファイル名(DH)
         /// </summary>
         public const string DhMinisterListPathName = "db\\ministers.txt";
+
+        /// <summary>
+        ///     研究機関一覧ファイル名(DH)
+        /// </summary>
+        public const string DhTeamListPathName = "db\\teams.txt";
 
         /// <summary>
         ///     研究特性アイコンのファイル名

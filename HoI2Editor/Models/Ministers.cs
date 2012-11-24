@@ -764,7 +764,14 @@ namespace HoI2Editor.Models
                     break;
 
                 case GameType.DarkestHour:
-                    LoadMinisterFilesDh();
+                    if (Game.IsModActive)
+                    {
+                        LoadMinisterFilesDh();
+                    }
+                    else
+                    {
+                        LoadMinisterFilesHoI2();
+                    }
                     break;
             }
         }
@@ -772,7 +779,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ファイル群を読み込む(HoI2/AoD/DH-MOD未使用時)
         /// </summary>
-        public static void LoadMinisterFilesHoI2()
+        private static void LoadMinisterFilesHoI2()
         {
             var fileList = new List<string>();
             string folderName;
@@ -809,9 +816,9 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     閣僚ファイル群を読み込む(DH)
+        ///     閣僚ファイル群を読み込む(DH-MOD使用時)
         /// </summary>
-        public static void LoadMinisterFilesDh()
+        private static void LoadMinisterFilesDh()
         {
             // ministers.txtが存在しなければ従来通りの読み込み方法を使用する
             string listFileName = Game.GetFileName(Game.DhMinisterListPathName);
@@ -821,8 +828,20 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            var fileList = new List<string>();
-            var reader = new StreamReader(listFileName);
+            IEnumerable<string> fileList = LoadMinisterListFileDh(listFileName);
+            foreach (string fileName in fileList)
+            {
+                LoadMinisterFile(Game.GetFileName(Path.Combine(Game.MinisterPathName, fileName)));
+            }
+        }
+
+        /// <summary>
+        ///     閣僚リストファイルを読み込む(DH)
+        /// </summary>
+        private static IEnumerable<string> LoadMinisterListFileDh(string fileName)
+        {
+            var list = new List<string>();
+            var reader = new StreamReader(fileName);
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();
@@ -839,14 +858,11 @@ namespace HoI2Editor.Models
                     continue;
                 }
 
-                fileList.Add(line);
+                list.Add(line);
             }
             reader.Close();
 
-            foreach (string name in fileList)
-            {
-                LoadMinisterFile(Game.GetFileName(Path.Combine(Game.MinisterPathName, name)));
-            }
+            return list;
         }
 
         /// <summary>
