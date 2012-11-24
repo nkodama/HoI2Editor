@@ -514,6 +514,34 @@ namespace HoI2Editor.Models
                       {"school of manoeuvre", "School of Manoeuvre"},
                       {"school of psychology", "School of Psychology"},
                       {"guns and butter doctrine", "Guns and Butter Doctrine"},
+                      {"health and safety", "Health and Safety"},
+                      {"doctrine of autonomy", "Doctrine of Autonomy"},
+                      {"ger_mil_m1", "ger_mil_m1"},
+                      {"ger_mil_m2", "ger_mil_m2"},
+                      {"ger_mil_m3", "ger_mil_m3"},
+                      {"ger_mil_m4", "ger_mil_m4"},
+                      {"ger_mil_m5", "ger_mil_m5"},
+                      {"ger_mil_m6", "ger_mil_m6"},
+                      {"ger_mil_m7", "ger_mil_m7"},
+                      {"ger_mil_m8", "ger_mil_m8"},
+                      {"ger_mil_m9", "ger_mil_m9"},
+                      {"ger_mil_m10", "ger_mil_m10"},
+                      {"ger_mil_m11", "ger_mil_m11"},
+                      {"brit_nav_mis", "brit_nav_mis"},
+                      {"ss reichsfuhrer", "SS Reichsfuhrer"},
+                      {"salesman of deception", "Salesman of Deception"},
+                      {"master of propaganda", "Master of Propaganda"},
+                      {"undersecretary of war", "Undersecretary of War"},
+                      {"persuader of democracies", "Persuader of Democracies"},
+                      {"father of united nations", "Father of United Nations"},
+                      {"director of fbi", "Director of FBI"},
+                      {"secretary of war", "Secretary of War"},
+                      {"ambassador to un", "Ambassador to UN"},
+                      {"secretary of the interior", "Secretary of the Interior"},
+                      {"supporter of devaluation", "Supporter of Devaluation"},
+                      {"opposer of the far right", "Opposer of the Far Right"},
+                      {"supporter of friendly relations", "Supporter of Friendly Relations"},
+                      {"opposer to military spending", "Opposer to Military Spending"}
                   };
 
         /// <summary>
@@ -678,7 +706,7 @@ namespace HoI2Editor.Models
             for (int i = 0; i < PersonalityTable.Length; i++)
             {
                 PersonalityStringMap.Add(PersonalityTable[i].String.ToLower(), i);
-                PersonalityTable[i].String = GetTitleCasePersonality(PersonalityTable[i].String);
+                PersonalityTable[i].String = GetTitleCasePersonality(PersonalityTable[i].String.ToLower());
                 for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
                 {
                     if (PersonalityTable[i].Position[j])
@@ -707,7 +735,7 @@ namespace HoI2Editor.Models
             for (int i = 0; i < PersonalityTable.Length; i++)
             {
                 PersonalityStringMap.Add(PersonalityTable[i].String.ToLower(), i);
-                PersonalityTable[i].String = GetTitleCasePersonality(PersonalityTable[i].String);
+                PersonalityTable[i].String = GetTitleCasePersonality(PersonalityTable[i].String.ToLower());
                 for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
                 {
                     if (PersonalityTable[i].Position[j])
@@ -883,12 +911,12 @@ namespace HoI2Editor.Models
             }
 
             // トークン数が足りない行は読み飛ばす
-            if (token.Length != 9 + (Misc.Mod.NewMinisterFormat ? 1 : 0))
+            if (token.Length != (Misc.Mod.RetirementYearMinister ? 11 : (Misc.Mod.NewMinisterFormat ? 10 : 9)))
             {
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
                 Log.Write(String.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
-                if (token.Length < 8 + (Misc.Mod.NewMinisterFormat ? 1 : 0))
+                if (token.Length < (Misc.Mod.RetirementYearMinister ? 10 : (Misc.Mod.NewMinisterFormat ? 9 : 8)))
                 {
                     return;
                 }
@@ -897,6 +925,7 @@ namespace HoI2Editor.Models
             var minister = new Minister {CountryTag = country};
             int index = 0;
 
+            // ID
             int id;
             if (!Int32.TryParse(token[index], out id))
             {
@@ -907,6 +936,7 @@ namespace HoI2Editor.Models
             minister.Id = id;
             index++;
 
+            // 閣僚地位
             string positionName = token[index].ToLower();
             if (PositionStringMap.ContainsKey(positionName))
             {
@@ -920,9 +950,11 @@ namespace HoI2Editor.Models
             }
             index++;
 
+            // 名前
             minister.Name = token[index];
             index++;
 
+            // 開始年
             int startYear;
             if (Int32.TryParse(token[index], out startYear))
             {
@@ -936,6 +968,7 @@ namespace HoI2Editor.Models
             }
             index++;
 
+            // 終了年
             if (Misc.Mod.NewMinisterFormat)
             {
                 int endYear;
@@ -957,6 +990,29 @@ namespace HoI2Editor.Models
                 minister.EndYear = 1970;
             }
 
+            // 引退年
+            if (Misc.Mod.RetirementYearMinister)
+            {
+                int retirementYear;
+                if (Int32.TryParse(token[index], out retirementYear))
+                {
+                    minister.RetirementYear = retirementYear;
+                }
+                else
+                {
+                    minister.RetirementYear = 1999;
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidRetirementYear, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
+                }
+                index++;
+            }
+            else
+            {
+                minister.RetirementYear = 1999;
+            }
+
+            // イデオロギー
             string ideologyName = token[index].ToLower();
             if (IdeologyStringMap.ContainsKey(ideologyName))
             {
@@ -970,6 +1026,7 @@ namespace HoI2Editor.Models
             }
             index++;
 
+            // 閣僚特性
             string personalityName = token[index].ToLower();
             if (PersonalityStringMap.ContainsKey(personalityName))
             {
@@ -996,6 +1053,7 @@ namespace HoI2Editor.Models
             }
             index++;
 
+            // 忠誠度
             string loyaltyName = token[index].ToLower();
             if (LoyaltyStringMap.ContainsKey(loyaltyName))
             {
@@ -1009,6 +1067,7 @@ namespace HoI2Editor.Models
             }
             index++;
 
+            // 画像ファイル名
             minister.PictureName = token[index];
 
             List.Add(minister);
@@ -1051,7 +1110,14 @@ namespace HoI2Editor.Models
             _currentLineNo = 3;
 
             var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage));
-            if (Misc.Mod.NewMinisterFormat)
+            if (Misc.Mod.RetirementYearMinister)
+            {
+                writer.WriteLine(
+                    "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Retirement Year;Ideology;Personality;Loyalty;Picturename;X",
+                    Country.CountryTextTable[(int) country]);
+                writer.WriteLine(";Replacements;;;;;;;;;X");
+            }
+            else if (Misc.Mod.NewMinisterFormat)
             {
                 writer.WriteLine(
                     "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Ideology;Personality;Loyalty;Picturename;X",
@@ -1086,8 +1152,22 @@ namespace HoI2Editor.Models
                                             _currentLineNo));
                     Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
                 }
-
-                if (Misc.Mod.NewMinisterFormat)
+                if (Misc.Mod.RetirementYearMinister)
+                {
+                    writer.WriteLine(
+                        "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};X",
+                        minister.Id,
+                        PositionTable[(int) minister.Position].String,
+                        minister.Name,
+                        minister.StartYear,
+                        minister.EndYear,
+                        minister.RetirementYear,
+                        IdeologyTable[(int) minister.Ideology].String,
+                        PersonalityTable[minister.Personality].String,
+                        LoyaltyTable[(int) minister.Loyalty].String,
+                        minister.PictureName);
+                }
+                else if (Misc.Mod.NewMinisterFormat)
                 {
                     writer.WriteLine(
                         "{0};{1};{2};{3};{4};{5};{6};{7};{8};X",
@@ -1198,7 +1278,8 @@ namespace HoI2Editor.Models
         {
             foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
             {
-                ClearDirtyFlag(country);
+                //ClearDirtyFlag(country);
+                SetDirtyFlag(country);
             }
         }
 

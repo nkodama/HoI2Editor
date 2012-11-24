@@ -186,6 +186,12 @@ namespace HoI2Editor.Models
         public int AutoReplyEvents;
 
         /// <summary>
+        ///     建物をプロヴィンスからのみ生産可能にする
+        ///     [0:無効/1:有効(港/飛行場/原子炉/ロケット試験所)/2:1に加えて対空砲/レーダーも]
+        /// </summary>
+        public int BuildableOnlyProvince;
+
+        /// <summary>
         ///     国家の状態をログに記録する [0:無効/>0:指定日数毎に記録/-1:プレイヤー国のみ]
         /// </summary>
         public int CountryLogger;
@@ -231,7 +237,9 @@ namespace HoI2Editor.Models
         public int LoadUnitPictureModdirOnly;
 
         /// <summary>
-        ///     損失をログに記録する [0:無効/1:有効]
+        ///     損失をログに記録する
+        ///     [0:無効/1:有効(艦船/輸送船団)/2:装備の損失も含む]
+        ///     [3:捕獲されたユニットの装備の損失も含む/4:消耗も含む]
         /// </summary>
         public int LossesLogger;
 
@@ -256,9 +264,14 @@ namespace HoI2Editor.Models
         public int NewAutoSaveFileFormat;
 
         /// <summary>
-        ///     新閣僚フォーマットを使用する
+        ///     新閣僚フォーマットを使用する [0:無効/1:有効]
         /// </summary>
         public bool NewMinisterFormat;
+
+        /// <summary>
+        ///     生産画面のUIスタイル [0:従来スタイル/1:新スタイル]
+        /// </summary>
+        public int ProductionPanelStyle;
 
         /// <summary>
         ///     反乱軍の構成 [0:民兵のみ/100:歩兵のみ]
@@ -341,6 +354,16 @@ namespace HoI2Editor.Models
         public double RebelBonusUrban;
 
         /// <summary>
+        ///     指揮官の引退年を有効にする [0:無効/1:有効]
+        /// </summary>
+        public bool RetirementYearLeader;
+
+        /// <summary>
+        ///     閣僚の引退年を有効にする [0:無効/1:有効]
+        /// </summary>
+        public bool RetirementYearMinister;
+
+        /// <summary>
         ///     反乱軍消滅後にプロヴィンスが元の所有国に復帰するまでの月数 [100000:復帰しない]
         /// </summary>
         public int ReturnMonthNoRebelArmy;
@@ -356,9 +379,24 @@ namespace HoI2Editor.Models
         public int TradeEfficiencyCalculationInterval;
 
         /// <summary>
+        ///     ユニット補正の統計ページを新スタイルにする閾値
+        /// </summary>
+        public int UnitModifierStatisticsPage;
+
+        /// <summary>
+        ///     ユニット画像のサイズ [0:従来サイズ(192x104)/1:新サイズ(360x160)]
+        /// </summary>
+        public int UnitPictureSize;
+
+        /// <summary>
         ///     DH1.02より前のセーブデータフォーマットを使用する [0:無効/1:有効]
         /// </summary>
         public int UseOldSaveGameFormat;
+
+        /// <summary>
+        ///     艦船装備に画像を使用する [0:アイコンを使用/1:画像を使用]
+        /// </summary>
+        public int UsePictureNavalBrigade;
 
         /// <summary>
         ///     移動不可ユニットの判定に速度の値を使用する [0:守備隊のみ移動不可/1:速度0ならば移動不可]

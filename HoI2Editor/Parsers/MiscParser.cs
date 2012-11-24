@@ -909,6 +909,27 @@ namespace HoI2Editor.Parsers
             }
             Misc.Mod.NewMinisterFormat = ((int) (double) token.Value == 1);
 
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                // 閣僚の引退年を有効にする
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Number)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
+                }
+                Misc.Mod.RetirementYearMinister = ((int) (double) token.Value == 1);
+
+                // 指揮官の引退年を有効にする
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Number)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
+                }
+                Misc.Mod.RetirementYearLeader = ((int) (double) token.Value == 1);
+            }
+
             // スプライトをMODDIRからのみ読み込む
             token = lexer.GetToken();
             if (token.Type != TokenType.Number)
@@ -962,6 +983,55 @@ namespace HoI2Editor.Parsers
                 return false;
             }
             Misc.Mod.UseOldSaveGameFormat = (int) (double) token.Value;
+
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                // 生産画面のUIスタイル
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Number)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
+                }
+                Misc.Mod.ProductionPanelStyle = (int) (double) token.Value;
+
+                // ユニット画像のサイズ
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Number)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
+                }
+                Misc.Mod.UnitPictureSize = (int) (double) token.Value;
+
+                // 艦船装備に画像を使用する
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Number)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
+                }
+                Misc.Mod.UsePictureNavalBrigade = (int) (double) token.Value;
+
+                // 建物をプロヴィンスからのみ生産可能にする
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Number)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
+                }
+                Misc.Mod.BuildableOnlyProvince = (int) (double) token.Value;
+
+                // ユニット補正の統計ページを新スタイルにする閾値
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Number)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
+                }
+                Misc.Mod.UnitModifierStatisticsPage = (int) (double) token.Value;
+            }
+
             while (true)
             {
                 // 暫定: 数字を読み飛ばす

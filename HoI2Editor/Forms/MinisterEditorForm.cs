@@ -471,6 +471,7 @@ namespace HoI2Editor.Forms
             nameTextBox.Enabled = true;
             startYearNumericUpDown.Enabled = true;
             endYearNumericUpDown.Enabled = Misc.Mod.NewMinisterFormat;
+            retirementYearNumericUpDown.Enabled = Misc.Mod.RetirementYearMinister;
             positionComboBox.Enabled = true;
             personalityComboBox.Enabled = true;
             ideologyComboBox.Enabled = true;
@@ -496,6 +497,7 @@ namespace HoI2Editor.Forms
             nameTextBox.Text = "";
             startYearNumericUpDown.Value = 1936;
             endYearNumericUpDown.Value = 1970;
+            retirementYearNumericUpDown.Value = 1999;
             pictureNameTextBox.Text = "";
             ministerPictureBox.ImageLocation = "";
 
@@ -504,6 +506,7 @@ namespace HoI2Editor.Forms
             nameTextBox.Enabled = false;
             startYearNumericUpDown.Enabled = false;
             endYearNumericUpDown.Enabled = false;
+            retirementYearNumericUpDown.Enabled = false;
             positionComboBox.Enabled = false;
             personalityComboBox.Enabled = false;
             ideologyComboBox.Enabled = false;
@@ -554,6 +557,7 @@ namespace HoI2Editor.Forms
                                    Id = selected.Id + 1,
                                    StartYear = 1936,
                                    EndYear = 1970,
+                                   RetirementYear = 1999,
                                    Position = MinisterPosition.None,
                                    Personality = 0,
                                    Ideology = MinisterIdeology.None,
@@ -575,6 +579,7 @@ namespace HoI2Editor.Forms
                                    Id = 0,
                                    StartYear = 1930,
                                    EndYear = 1970,
+                                   RetirementYear = 1999,
                                    Position = MinisterPosition.None,
                                    Personality = 0,
                                    Ideology = MinisterIdeology.None,
@@ -616,6 +621,7 @@ namespace HoI2Editor.Forms
                                    Name = selected.Name,
                                    StartYear = selected.StartYear,
                                    EndYear = selected.EndYear,
+                                   RetirementYear = selected.RetirementYear,
                                    Position = selected.Position,
                                    Personality = selected.Personality,
                                    Ideology = selected.Ideology,
@@ -894,6 +900,7 @@ namespace HoI2Editor.Forms
             nameTextBox.Text = minister.Name;
             startYearNumericUpDown.Value = minister.StartYear;
             endYearNumericUpDown.Value = minister.EndYear;
+            retirementYearNumericUpDown.Value = minister.RetirementYear;
             UpdatePositionComboBox(minister);
             UpdatePersonalityComboBox(minister);
             UpdateIdeologyComboBox(minister);
@@ -1032,6 +1039,68 @@ namespace HoI2Editor.Forms
             minister.StartYear = newStartYear;
             ministerListView.SelectedItems[0].SubItems[3].Text =
                 minister.StartYear.ToString(CultureInfo.InvariantCulture);
+
+            Ministers.SetDirtyFlag(minister.CountryTag);
+        }
+
+        /// <summary>
+        ///     終了年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var minister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (minister == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newEndYear = (int) endYearNumericUpDown.Value;
+            if (newEndYear == minister.EndYear)
+            {
+                return;
+            }
+
+            minister.EndYear = newEndYear;
+            ministerListView.SelectedItems[0].SubItems[4].Text =
+                minister.EndYear.ToString(CultureInfo.InvariantCulture);
+
+            Ministers.SetDirtyFlag(minister.CountryTag);
+        }
+
+        /// <summary>
+        ///     引退年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRetirementYearNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var minister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (minister == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var newRetirementYear = (int) retirementYearNumericUpDown.Value;
+            if (newRetirementYear == minister.RetirementYear)
+            {
+                return;
+            }
+
+            minister.RetirementYear = newRetirementYear;
 
             Ministers.SetDirtyFlag(minister.CountryTag);
         }

@@ -196,7 +196,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ministerListView.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>36</value>
   </data>
   <data name="newButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -223,7 +223,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>35</value>
   </data>
   <data name="cloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -250,7 +250,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cloneButton.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>34</value>
   </data>
   <data name="deleteButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;deleteButton.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>33</value>
   </data>
   <data name="topButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -304,7 +304,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;topButton.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>32</value>
   </data>
   <data name="upButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -331,7 +331,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;upButton.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>31</value>
   </data>
   <data name="downButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -358,7 +358,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;downButton.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>30</value>
   </data>
   <data name="bottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -385,7 +385,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bottomButton.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>29</value>
   </data>
   <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -415,7 +415,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryListBox.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>28</value>
   </data>
   <data name="countryAllButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -442,7 +442,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryAllButton.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>27</value>
   </data>
   <data name="countryLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -472,7 +472,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryLabel.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>26</value>
   </data>
   <data name="countryComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -499,7 +499,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryComboBox.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>25</value>
   </data>
   <data name="idLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -529,7 +529,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>24</value>
   </data>
   <data name="idNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -556,7 +556,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
   <data name="nameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -586,7 +586,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -610,7 +610,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="startYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -640,7 +640,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;startYearLabel.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="startYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -667,7 +667,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;startYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="endYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -697,13 +697,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;endYearLabel.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="endYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
-  </data>
-  <data name="endYearNumericUpDown.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="endYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>612, 316</value>
@@ -727,13 +724,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="loyaltyComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="loyaltyComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>610, 380</value>
+    <value>610, 412</value>
   </data>
   <data name="loyaltyComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 20</value>
@@ -751,7 +748,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;loyaltyComboBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="loyaltyLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -760,7 +757,7 @@
     <value>True</value>
   </data>
   <data name="loyaltyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>543, 383</value>
+    <value>543, 415</value>
   </data>
   <data name="loyaltyLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 12</value>
@@ -781,13 +778,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;loyaltyLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="ideologyComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="ideologyComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 380</value>
+    <value>359, 412</value>
   </data>
   <data name="ideologyComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 20</value>
@@ -805,7 +802,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ideologyComboBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="ideologyLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -814,7 +811,7 @@
     <value>True</value>
   </data>
   <data name="ideologyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 383</value>
+    <value>278, 415</value>
   </data>
   <data name="ideologyLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -835,13 +832,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ideologyLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="personalityComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="personalityComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>611, 348</value>
+    <value>611, 380</value>
   </data>
   <data name="personalityComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 20</value>
@@ -859,7 +856,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;personalityComboBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="personalityLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -868,7 +865,7 @@
     <value>True</value>
   </data>
   <data name="personalityLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>543, 351</value>
+    <value>543, 383</value>
   </data>
   <data name="personalityLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 12</value>
@@ -889,13 +886,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;personalityLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="positionComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="positionComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 348</value>
+    <value>359, 380</value>
   </data>
   <data name="positionComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 20</value>
@@ -913,7 +910,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;positionComboBox.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="positionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -922,7 +919,7 @@
     <value>True</value>
   </data>
   <data name="positionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 351</value>
+    <value>278, 383</value>
   </data>
   <data name="positionLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 12</value>
@@ -943,7 +940,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;positionLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="pictureNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -952,7 +949,7 @@
     <value>True</value>
   </data>
   <data name="pictureNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 416</value>
+    <value>278, 448</value>
   </data>
   <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 12</value>
@@ -973,13 +970,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="pictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="pictureNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 413</value>
+    <value>359, 445</value>
   </data>
   <data name="pictureNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>332, 19</value>
@@ -997,13 +994,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="pictureNameReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="pictureNameReferButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>697, 411</value>
+    <value>697, 443</value>
   </data>
   <data name="pictureNameReferButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1024,13 +1021,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameReferButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="ministerPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="ministerPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 448</value>
+    <value>299, 470</value>
   </data>
   <data name="ministerPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 50</value>
@@ -1048,7 +1045,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ministerPictureBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1075,7 +1072,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1102,7 +1099,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1129,7 +1126,67 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="retirementYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="retirementYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 348</value>
+  </data>
+  <data name="retirementYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 19</value>
+  </data>
+  <data name="retirementYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="retirementYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;retirementYearNumericUpDown.Name" xml:space="preserve">
+    <value>retirementYearNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;retirementYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;retirementYearNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;retirementYearNumericUpDown.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="retirementYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="retirementYearLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="retirementYearLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="retirementYearLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 352</value>
+  </data>
+  <data name="retirementYearLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="retirementYearLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="retirementYearLabel.Text" xml:space="preserve">
+    <value>Retire. Year</value>
+  </data>
+  <data name="&gt;&gt;retirementYearLabel.Name" xml:space="preserve">
+    <value>retirementYearLabel</value>
+  </data>
+  <data name="&gt;&gt;retirementYearLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;retirementYearLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;retirementYearLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

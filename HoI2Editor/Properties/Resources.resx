@@ -291,4 +291,7 @@
   <data name="ModifiedPersonality" xml:space="preserve">
     <value>Modified minister personality</value>
   </data>
+  <data name="InvalidRetirementYear" xml:space="preserve">
+    <value>Invalid retirement year</value>
+  </data>
 </root>

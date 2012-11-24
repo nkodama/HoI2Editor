@@ -391,6 +391,8 @@ namespace HoI2Editor.Models
                 ParseTeamLine(reader.ReadLine(), country);
                 _currentLineNo++;
             }
+
+            reader.Close();
         }
 
         /// <summary>

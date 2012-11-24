@@ -165,6 +165,9 @@
   <data name="InvalidRankYear" xml:space="preserve">
     <value>任官年の異常</value>
   </data>
+  <data name="InvalidRetirementYear" xml:space="preserve">
+    <value>引退年の異常</value>
+  </data>
   <data name="InvalidSkill" xml:space="preserve">
     <value>スキルの異常</value>
   </data>

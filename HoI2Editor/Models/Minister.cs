@@ -54,6 +54,11 @@
         ///     終了年
         /// </summary>
         public int EndYear { get; set; }
+
+        /// <summary>
+        ///     引退年
+        /// </summary>
+        public int RetirementYear { get; set; }
     }
 
     /// <summary>

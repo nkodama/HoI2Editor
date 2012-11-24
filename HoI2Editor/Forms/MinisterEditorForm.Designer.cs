@@ -72,10 +72,13 @@
             this.reloadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.retirementYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.retirementYearLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ministerPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // ministerListView
@@ -278,6 +281,7 @@
             0,
             0,
             0});
+            this.endYearNumericUpDown.ValueChanged += new System.EventHandler(this.OnEndYearNumericUpDownValueChanged);
             // 
             // loyaltyComboBox
             // 
@@ -376,10 +380,33 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.OnCloseButtonClick);
             // 
+            // retirementYearNumericUpDown
+            // 
+            resources.ApplyResources(this.retirementYearNumericUpDown, "retirementYearNumericUpDown");
+            this.retirementYearNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.retirementYearNumericUpDown.Name = "retirementYearNumericUpDown";
+            this.retirementYearNumericUpDown.Value = new decimal(new int[] {
+            1999,
+            0,
+            0,
+            0});
+            this.retirementYearNumericUpDown.ValueChanged += new System.EventHandler(this.OnRetirementYearNumericUpDownValueChanged);
+            // 
+            // retirementYearLabel
+            // 
+            resources.ApplyResources(this.retirementYearLabel, "retirementYearLabel");
+            this.retirementYearLabel.Name = "retirementYearLabel";
+            // 
             // MinisterEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.retirementYearNumericUpDown);
+            this.Controls.Add(this.retirementYearLabel);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
@@ -421,6 +448,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ministerPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,5 +499,7 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.ColumnHeader ideologyColumnHeader;
+        private System.Windows.Forms.NumericUpDown retirementYearNumericUpDown;
+        private System.Windows.Forms.Label retirementYearLabel;
     }
 }

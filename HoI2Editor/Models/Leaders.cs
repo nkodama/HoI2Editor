@@ -150,6 +150,8 @@ namespace HoI2Editor.Models
                 }
                 _currentLineNo++;
             }
+
+            reader.Close();
         }
 
         /// <summary>

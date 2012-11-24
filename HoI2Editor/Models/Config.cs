@@ -144,6 +144,7 @@ namespace HoI2Editor.Models
                 // 変換テーブルに登録する
                 Text[tokens[0]] = tokens[1];
             }
+            reader.Close();
         }
 
         /// <summary>

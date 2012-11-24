@@ -205,6 +205,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Invalid retirement year に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidRetirementYear {
+            get {
+                return ResourceManager.GetString("InvalidRetirementYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Invalid skill に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string InvalidSkill {
