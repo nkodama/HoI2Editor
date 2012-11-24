@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using HoI2Editor.Models;
 
 namespace HoI2Editor.Parsers
 {
@@ -47,7 +48,7 @@ namespace HoI2Editor.Parsers
                 return;
             }
 
-            _reader = new StreamReader(fileName);
+            _reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
         }
 
         /// <summary>

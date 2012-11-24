@@ -359,7 +359,7 @@ namespace HoI2Editor.Models
             _currentFileName = Path.GetFileName(fileName);
             _currentLineNo = 1;
 
-            var reader = new StreamReader(fileName, Encoding.Default);
+            var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
             // 空ファイルを読み飛ばす
             if (reader.EndOfStream)
             {
@@ -528,7 +528,7 @@ namespace HoI2Editor.Models
             _currentFileName = fileName;
             _currentLineNo = 2;
 
-            var writer = new StreamWriter(fileName, false, Encoding.Default);
+            var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage));
             writer.WriteLine(
                 "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
                 Country.CountryTextTable[(int) country]);

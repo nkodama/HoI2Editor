@@ -126,7 +126,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadConfigFile(string fileName)
         {
-            var reader = new StreamReader(fileName, Encoding.Default);
+            var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();

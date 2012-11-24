@@ -112,6 +112,11 @@ namespace HoI2Editor.Models
         public static int Version { get; private set; }
 
         /// <summary>
+        ///     ファイル読み書き時のコードページ
+        /// </summary>
+        public static int CodePage { get; set; }
+
+        /// <summary>
         ///     ゲームフォルダ名
         /// </summary>
         public static string FolderName

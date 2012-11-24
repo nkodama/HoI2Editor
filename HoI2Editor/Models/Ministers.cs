@@ -830,7 +830,7 @@ namespace HoI2Editor.Models
             _currentFileName = Path.GetFileName(fileName);
             _currentLineNo = 1;
 
-            var reader = new StreamReader(fileName, Encoding.Default);
+            var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
             // 空ファイルを読み飛ばす
             if (reader.EndOfStream)
             {
@@ -1050,7 +1050,7 @@ namespace HoI2Editor.Models
             _currentFileName = fileName;
             _currentLineNo = 3;
 
-            var writer = new StreamWriter(fileName, false, Encoding.Default);
+            var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage));
             if (Misc.Mod.NewMinisterFormat)
             {
                 writer.WriteLine(

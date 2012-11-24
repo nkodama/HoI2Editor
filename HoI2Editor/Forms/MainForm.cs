@@ -164,11 +164,11 @@ namespace HoI2Editor.Forms
             switch (languageComboBox.SelectedIndex)
             {
                 case 0:
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    Game.CodePage = 1252;
                     break;
 
                 case 1:
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
+                    Game.CodePage = 932;
                     break;
             }
         }
