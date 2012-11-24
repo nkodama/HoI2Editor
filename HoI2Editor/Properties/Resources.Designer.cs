@@ -61,16 +61,34 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   (陸軍) に類似しているローカライズされた文字列を検索します。
+        ///   Airforce に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string Army {
+        public static string BranchAirforce {
             get {
-                return ResourceManager.GetString("Army", resourceCulture);
+                return ResourceManager.GetString("BranchAirforce", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   (ヒトラー) に類似しているローカライズされた文字列を検索します。
+        ///   Army に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BranchArmy {
+            get {
+                return ResourceManager.GetString("BranchArmy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BranchNavy {
+            get {
+                return ResourceManager.GetString("BranchNavy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Hitler に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Hitler {
             get {
@@ -79,9 +97,142 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   無効なトークン: {0}
-        ///
-        /// に類似しているローカライズされた文字列を検索します。
+        ///   Invalid branch に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidBranch {
+            get {
+                return ResourceManager.GetString("InvalidBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid country tag に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidCountryTag {
+            get {
+                return ResourceManager.GetString("InvalidCountryTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid end year に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidEndYear {
+            get {
+                return ResourceManager.GetString("InvalidEndYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid experience に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidExperience {
+            get {
+                return ResourceManager.GetString("InvalidExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid ID に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidID {
+            get {
+                return ResourceManager.GetString("InvalidID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid ideal rank に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidIdealRank {
+            get {
+                return ResourceManager.GetString("InvalidIdealRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid ideology に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidIdeology {
+            get {
+                return ResourceManager.GetString("InvalidIdeology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid loyalty に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidLoyalty {
+            get {
+                return ResourceManager.GetString("InvalidLoyalty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid max skill に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidMaxSkill {
+            get {
+                return ResourceManager.GetString("InvalidMaxSkill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid minister personality に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidPersonality {
+            get {
+                return ResourceManager.GetString("InvalidPersonality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid minister position に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidPosition {
+            get {
+                return ResourceManager.GetString("InvalidPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid rank year に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidRankYear {
+            get {
+                return ResourceManager.GetString("InvalidRankYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid skill に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidSkill {
+            get {
+                return ResourceManager.GetString("InvalidSkill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid tech speciality に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidSpeciality {
+            get {
+                return ResourceManager.GetString("InvalidSpeciality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid start year に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidStartYear {
+            get {
+                return ResourceManager.GetString("InvalidStartYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid token に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string InvalidToken {
             get {
@@ -90,7 +241,25 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   全選択 に類似しているローカライズされた文字列を検索します。
+        ///   Invalid token count に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidTokenCount {
+            get {
+                return ResourceManager.GetString("InvalidTokenCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid leader traits に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidTraits {
+            get {
+                return ResourceManager.GetString("InvalidTraits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select All に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string KeySelectAll {
             get {
@@ -99,7 +268,7 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   全解除 に類似しているローカライズされた文字列を検索します。
+        ///   Cancel All に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string KeyUnselectAll {
             get {
@@ -108,16 +277,79 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   (海軍) に類似しているローカライズされた文字列を検索します。
+        ///   High に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string Navy {
+        public static string LoyaltyHigh {
             get {
-                return ResourceManager.GetString("Navy", resourceCulture);
+                return ResourceManager.GetString("LoyaltyHigh", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        ///   Low に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LoyaltyLow {
+            get {
+                return ResourceManager.GetString("LoyaltyLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Medium に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LoyaltyMedium {
+            get {
+                return ResourceManager.GetString("LoyaltyMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   NA に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LoyaltyNA {
+            get {
+                return ResourceManager.GetString("LoyaltyNA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Undying に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LoyaltyUndying {
+            get {
+                return ResourceManager.GetString("LoyaltyUndying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Very High に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LoyaltyVeryHigh {
+            get {
+                return ResourceManager.GetString("LoyaltyVeryHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Very Low に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LoyaltyVeryLow {
+            get {
+                return ResourceManager.GetString("LoyaltyVeryLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Modified minister personality に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ModifiedPersonality {
+            get {
+                return ResourceManager.GetString("ModifiedPersonality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bitmap (*.bmp)|*.bmp|All files (*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string OpenBitmapFileDialogFilter {
             get {
@@ -126,7 +358,7 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   ゲームフォルダを選択して下さい。 に類似しているローカライズされた文字列を検索します。
+        ///   Select a game folder. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string OpenGameFolderDialogDescription {
             get {
@@ -135,7 +367,7 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   MODフォルダを選択して下さい。 に類似しているローカライズされた文字列を検索します。
+        ///   Select a MOD folder. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string OpenModFolderDialogDescription {
             get {
@@ -144,9 +376,7 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   解析失敗: {0}
-        ///
-        /// に類似しているローカライズされた文字列を検索します。
+        ///   Parse failed に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ParseFailed {
             get {
@@ -155,18 +385,196 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   解析失敗: {0}セクション / {1}
-        ///
-        /// に類似しているローカライズされた文字列を検索します。
+        ///   Marshal に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string ParseFailedSection {
+        public static string Rank0 {
             get {
-                return ResourceManager.GetString("ParseFailedSection", resourceCulture);
+                return ResourceManager.GetString("Rank0", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   (スターリン) に類似しているローカライズされた文字列を検索します。
+        ///   General に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Rank1 {
+            get {
+                return ResourceManager.GetString("Rank1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Lieutenant General に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Rank2 {
+            get {
+                return ResourceManager.GetString("Rank2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Major General に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Rank3 {
+            get {
+                return ResourceManager.GetString("Rank3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   section に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Section {
+            get {
+                return ResourceManager.GetString("Section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Airborne Training に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityAirborneTraining {
+            get {
+                return ResourceManager.GetString("SpecialityAirborneTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Avionics に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityAvionics {
+            get {
+                return ResourceManager.GetString("SpecialityAvionics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Blitzkrieg Tactics に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityBlitzkriegTactics {
+            get {
+                return ResourceManager.GetString("SpecialityBlitzkriegTactics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bomber Design に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityBomberDesign {
+            get {
+                return ResourceManager.GetString("SpecialityBomberDesign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Carrier Design に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityCarrierDesign {
+            get {
+                return ResourceManager.GetString("SpecialityCarrierDesign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cavalry Tactics に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityCavalryTactics {
+            get {
+                return ResourceManager.GetString("SpecialityCavalryTactics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fighter Design に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityFighterDesign {
+            get {
+                return ResourceManager.GetString("SpecialityFighterDesign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Maneuver Tactics に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityManeuverTactics {
+            get {
+                return ResourceManager.GetString("SpecialityManeuverTactics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Marine Training に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityMarineTraining {
+            get {
+                return ResourceManager.GetString("SpecialityMarineTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Medical Science に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityMedicine {
+            get {
+                return ResourceManager.GetString("SpecialityMedicine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Mountain Training に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityMountainTraining {
+            get {
+                return ResourceManager.GetString("SpecialityMountainTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Munitions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityMunitions {
+            get {
+                return ResourceManager.GetString("SpecialityMunitions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Static Defense Tactics に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityStaticDefenseTactics {
+            get {
+                return ResourceManager.GetString("SpecialityStaticDefenseTactics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Submarine Design に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialitySubmarineDesign {
+            get {
+                return ResourceManager.GetString("SpecialitySubmarineDesign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   User tech component  に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityUser {
+            get {
+                return ResourceManager.GetString("SpecialityUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Vehicle Engineering に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SpecialityVehicleEngineering {
+            get {
+                return ResourceManager.GetString("SpecialityVehicleEngineering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stalin に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Stalin {
             get {

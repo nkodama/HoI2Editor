@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using HoI2Editor.Parsers;
+using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
 {
@@ -496,36 +497,6 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     忠誠度文字列
-        /// </summary>
-        private static readonly string[] LoyaltyStringTable =
-            {
-                "",
-                "Very High",
-                "High",
-                "Medium",
-                "Low",
-                "Very Low",
-                "Undying",
-                "NA"
-            };
-
-        /// <summary>
-        ///     忠誠度名
-        /// </summary>
-        private static readonly string[] LoyaltyNameTable =
-            {
-                "",
-                "最高",
-                "高",
-                "中",
-                "低",
-                "最低",
-                "不死",
-                "NA"
-            };
-
-        /// <summary>
         ///     閣僚特性文字列の先頭大文字変換の特例
         /// </summary>
         private static readonly Dictionary<string, string> PersonalityTitleCaseMap
@@ -603,18 +574,21 @@ namespace HoI2Editor.Models
             PositionTable = positionList.ToArray();
 
             // 閣僚忠誠度
-            var loyaltyList = new List<MinisterLoyaltyInfo>();
-            foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof (MinisterLoyalty)))
-            {
-                var info = new MinisterLoyaltyInfo
+            LoyaltyTable = new[]
                                {
-                                   String = LoyaltyStringTable[(int) loyalty],
-                                   Name = LoyaltyNameTable[(int) loyalty]
+                                   new MinisterLoyaltyInfo {String = "", Name = ""},
+                                   new MinisterLoyaltyInfo {String = "Very High", Name = Resources.LoyaltyVeryHigh},
+                                   new MinisterLoyaltyInfo {String = "High", Name = Resources.LoyaltyHigh},
+                                   new MinisterLoyaltyInfo {String = "Medium", Name = Resources.LoyaltyMedium},
+                                   new MinisterLoyaltyInfo {String = "Low", Name = Resources.LoyaltyLow},
+                                   new MinisterLoyaltyInfo {String = "Very Low", Name = Resources.LoyaltyVeryLow},
+                                   new MinisterLoyaltyInfo {String = "Undying", Name = Resources.LoyaltyUndying},
+                                   new MinisterLoyaltyInfo {String = "NA", Name = Resources.LoyaltyNA}
                                };
-                loyaltyList.Add(info);
-                LoyaltyStringMap.Add(info.String.ToLower(), loyalty);
+            for (int i = 0; i < LoyaltyTable.Length; i++)
+            {
+                LoyaltyStringMap.Add(LoyaltyTable[i].String.ToLower(), (MinisterLoyalty) i);
             }
-            LoyaltyTable = loyaltyList.ToArray();
 
             // 閣僚イデオロギー
             var ideologyList = new List<MinisterIdeologyInfo>();
@@ -874,7 +848,7 @@ namespace HoI2Editor.Models
             {
                 return;
             }
-            CountryTag country = Country.CountryTextMap[token[0].ToUpper()];
+            CountryTag country = Country.CountryStringMap[token[0].ToUpper()];
 
             _currentLineNo++;
 
@@ -911,8 +885,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (token.Length != 9 + (Misc.Mod.NewMinisterFormat ? 1 : 0))
             {
-                Log.Write(String.Format("項目数の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n\n", line));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (token.Length < 8 + (Misc.Mod.NewMinisterFormat ? 1 : 0))
                 {
@@ -926,8 +900,8 @@ namespace HoI2Editor.Models
             int id;
             if (!Int32.TryParse(token[index], out id))
             {
-                Log.Write(String.Format("IDの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1}\n\n", token[index], token[index + 2]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1}\n", token[index], token[index + 2]));
                 return;
             }
             minister.Id = id;
@@ -941,8 +915,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.Position = MinisterPosition.None;
-                Log.Write(String.Format("閣僚地位の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, token[index + 1], token[index]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, token[index + 1], token[index]));
             }
             index++;
 
@@ -957,8 +931,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.StartYear = 1936;
-                Log.Write(String.Format("開始年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[index]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
             }
             index++;
 
@@ -972,8 +946,9 @@ namespace HoI2Editor.Models
                 else
                 {
                     minister.EndYear = 1970;
-                    Log.Write(String.Format("終了年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[index]));
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
                 }
                 index++;
             }
@@ -990,8 +965,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.Ideology = MinisterIdeology.None;
-                Log.Write(String.Format("イデオロギーの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[index]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
             }
             index++;
 
@@ -1006,15 +981,17 @@ namespace HoI2Editor.Models
                     PersonalityStringMap.ContainsKey(PersonalityTypoMap[personalityName]))
                 {
                     minister.Personality = PersonalityStringMap[PersonalityTypoMap[personalityName]];
-                    Log.Write(String.Format("閣僚特性の修正: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2} -> {3}\n\n", minister.Id, minister.Name, token[index],
-                                            PersonalityStringTableHoI2[minister.Personality]));
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.ModifiedPersonality, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2} -> {3}\n", minister.Id, minister.Name, token[index],
+                                            PersonalityTable[minister.Personality].String));
                 }
                 else
                 {
                     minister.Personality = 0;
-                    Log.Write(String.Format("閣僚特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[index]));
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPersonality, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
                 }
             }
             index++;
@@ -1027,8 +1004,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.Loyalty = MinisterLoyalty.None;
-                Log.Write(String.Format("忠誠度の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, token[index]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
             }
             index++;
 
@@ -1091,30 +1068,23 @@ namespace HoI2Editor.Models
             foreach (Minister minister in List.Where(minister => minister.CountryTag == country))
             {
                 // 不正な値が設定されている場合は警告をログに出力する
-                if (minister.StartYear < 0 || minister.StartYear > 9999)
-                {
-                    Log.Write(String.Format("開始年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, minister.StartYear));
-                }
-                if (minister.EndYear < 0 || minister.EndYear > 9999)
-                {
-                    Log.Write(String.Format("終了年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n\n", minister.Id, minister.Name, minister.EndYear));
-                }
                 if (minister.Position == MinisterPosition.None)
                 {
-                    Log.Write(String.Format("閣僚地位の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1}\n\n", minister.Id, minister.Name));
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
                 }
                 if (minister.Ideology == MinisterIdeology.None)
                 {
-                    Log.Write(String.Format("イデオロギーの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1}\n\n", minister.Id, minister.Name));
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
                 }
                 if (minister.Loyalty == MinisterLoyalty.None)
                 {
-                    Log.Write(String.Format("忠誠度の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1}\n\n", minister.Id, minister.Name));
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
                 }
 
                 if (Misc.Mod.NewMinisterFormat)

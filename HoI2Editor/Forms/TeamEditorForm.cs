@@ -72,7 +72,7 @@ namespace HoI2Editor.Forms
             List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
                                                    ? new List<CountryTag>()
                                                    : (from string countryText in countryListBox.SelectedItems
-                                                      select Country.CountryTextMap[countryText]).ToList();
+                                                      select Country.CountryStringMap[countryText]).ToList();
 
             foreach (Team team in Teams.List.Where(team => selectedTagList.Contains(team.CountryTag)))
             {
@@ -411,7 +411,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamEditorFormLoad(object sender, EventArgs e)
         {
-            // 閣僚リストビューの高さを設定するためにダミーのイメージリストを作成する
+            // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
             teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, 18)};
 
             InitSpecialities();

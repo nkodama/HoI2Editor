@@ -33,9 +33,6 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadMinisterFiles()
         {
-            // 閣僚特性を読み込む
-            Ministers.LoadMinisterPersonality();
-
             // 閣僚ファイルを読み込む
             Ministers.LoadMinisterFiles();
 
@@ -70,7 +67,7 @@ namespace HoI2Editor.Forms
             List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
                                                    ? new List<CountryTag>()
                                                    : (from string country in countryListBox.SelectedItems
-                                                      select Country.CountryTextMap[country]).ToList();
+                                                      select Country.CountryStringMap[country]).ToList();
 
             foreach (
                 Minister minister in Ministers.List.Where(minister => selectedTagList.Contains(minister.CountryTag)))
@@ -277,6 +274,15 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     閣僚特性を読み込む
+        /// </summary>
+        private void LoadPersonality()
+        {
+            // 閣僚特性を読み込む
+            Ministers.LoadMinisterPersonality();
+        }
+
+        /// <summary>
         ///     編集項目を初期化する
         /// </summary>
         private void InitEditableItems()
@@ -285,7 +291,8 @@ namespace HoI2Editor.Forms
             int maxSize = countryComboBox.DropDownWidth;
             foreach (string s in Country.CountryTextTable.Select(
                 country =>
-                Config.Text.ContainsKey(country) ? string.Format("{0} {1}", country, Config.Text[country]) : country))
+                Config.Text.ContainsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country)
+                )
             {
                 countryComboBox.Items.Add(s);
                 maxSize = Math.Max(maxSize,
@@ -295,22 +302,38 @@ namespace HoI2Editor.Forms
             countryComboBox.DropDownWidth = maxSize;
 
             // 地位
-            foreach (string name in Ministers.PositionTable.Select(info => info.Name))
+            maxSize = positionComboBox.DropDownWidth;
+            foreach (string name in Ministers.PositionTable.Select(info => Config.GetText(info.Name)))
             {
-                positionComboBox.Items.Add(Config.GetText(name));
+                positionComboBox.Items.Add(name);
+                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(name, positionComboBox.Font).Width);
             }
+            positionComboBox.DropDownWidth = maxSize;
+
+            // 特性
+            personalityComboBox.DropDownWidth =
+                Ministers.PersonalityTable.Select(info => Config.GetText(info.Name))
+                         .Select(name => TextRenderer.MeasureText(name, personalityComboBox.Font).Width)
+                         .Concat(new[] {personalityComboBox.DropDownWidth})
+                         .Max();
 
             // イデオロギー
-            foreach (string name in Ministers.IdeologyTable.Select(info => info.Name))
+            maxSize = ideologyComboBox.DropDownWidth;
+            foreach (string name in Ministers.IdeologyTable.Select(info => Config.GetText(info.Name)))
             {
                 ideologyComboBox.Items.Add(Config.GetText(name));
+                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(name, ideologyComboBox.Font).Width);
             }
+            ideologyComboBox.DropDownWidth = maxSize;
 
             // 忠誠度
+            maxSize = loyaltyComboBox.DropDownWidth;
             foreach (string name in Ministers.LoyaltyTable.Select(info => info.Name))
             {
                 loyaltyComboBox.Items.Add(name);
+                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(name, loyaltyComboBox.Font).Width);
             }
+            loyaltyComboBox.DropDownWidth = maxSize;
         }
 
         /// <summary>
@@ -503,6 +526,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterEditorFormLoad(object sender, EventArgs e)
         {
+            LoadPersonality();
             InitEditableItems();
             InitCountryListBox();
             LoadMinisterFiles();

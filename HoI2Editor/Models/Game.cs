@@ -12,6 +12,16 @@ namespace HoI2Editor.Models
         #region パス定義
 
         /// <summary>
+        ///     文字列定義フォルダ
+        /// </summary>
+        public const string ConfigPathName = "config";
+
+        /// <summary>
+        ///     追加文字列定義フォルダ(AoD)
+        /// </summary>
+        public const string ConfigAdditionalPathName = "config\\Additional";
+
+        /// <summary>
         ///     指揮官フォルダ
         /// </summary>
         public const string LeaderPathName = "db\\leaders";

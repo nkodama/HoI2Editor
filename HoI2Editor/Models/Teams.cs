@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
 {
@@ -377,11 +378,11 @@ namespace HoI2Editor.Models
                 return;
             }
             // サポート外の国タグの場合は何もしない
-            if (!Country.CountryTextMap.ContainsKey(token[0].ToUpper()))
+            if (!Country.CountryStringMap.ContainsKey(token[0].ToUpper()))
             {
                 return;
             }
-            CountryTag country = Country.CountryTextMap[token[0].ToUpper()];
+            CountryTag country = Country.CountryStringMap[token[0].ToUpper()];
 
             _currentLineNo++;
 
@@ -416,8 +417,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (token.Length != 39)
             {
-                Log.Write(String.Format("項目数の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n\n", line));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (token.Length < 38)
                 {
@@ -429,8 +430,8 @@ namespace HoI2Editor.Models
             int id;
             if (!Int32.TryParse(token[0], out id))
             {
-                Log.Write(String.Format("IDの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n\n", token[0]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}\n", token[0]));
                 return;
             }
             team.Id = id;
@@ -444,8 +445,8 @@ namespace HoI2Editor.Models
             else
             {
                 team.Skill = 1;
-                Log.Write(String.Format("スキルの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", team.Id, team.Name, token[3]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[3]));
             }
             int startYear;
             if (Int32.TryParse(token[4], out startYear))
@@ -455,8 +456,8 @@ namespace HoI2Editor.Models
             else
             {
                 team.StartYear = 1930;
-                Log.Write(String.Format("開始年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", team.Id, team.Name, token[4]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[4]));
             }
             int endYear;
             if (Int32.TryParse(token[5], out endYear))
@@ -466,8 +467,8 @@ namespace HoI2Editor.Models
             else
             {
                 team.EndYear = 1970;
-                Log.Write(String.Format("終了年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", team.Id, team.Name, token[5]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[5]));
             }
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
@@ -483,8 +484,9 @@ namespace HoI2Editor.Models
                 else
                 {
                     team.Specialities[i] = TechSpeciality.None;
-                    Log.Write(String.Format("研究特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n\n", team.Id, team.Name, token[6 + i]));
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[6 + i]));
                 }
             }
 

@@ -51,7 +51,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier || !((string) token.Value).Equals("minister"))
                 {
-                    Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     continue;
                 }
 
@@ -59,7 +59,8 @@ namespace HoI2Editor.Parsers
                 MinisterPersonalityInfo info = ParseMinister(lexer);
                 if (info == null)
                 {
-                    Log.Write(string.Format(Resources.ParseFailedSection, "minister", "minister_personalities.txt"));
+                    Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "minister",
+                                            Resources.Section, "minister_personalities.txt"));
                 }
 
                 // 閣僚特性リストへ登録
@@ -80,7 +81,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                 return null;
             }
 
@@ -88,7 +89,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                 return null;
             }
 
@@ -111,7 +112,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return null;
                 }
 
@@ -128,7 +129,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -137,7 +138,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -162,7 +163,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -171,7 +172,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier && token.Type != TokenType.String)
                     {
-                        Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -196,7 +197,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -205,7 +206,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -234,7 +235,7 @@ namespace HoI2Editor.Parsers
                     else if (!position.Equals("generic"))
                     {
                         // 無効なトークン
-                        Log.Write(string.Format(Resources.InvalidToken, token.Value));
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
                     }
                     continue;

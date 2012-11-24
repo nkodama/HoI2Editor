@@ -117,178 +117,178 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="OpenBitmapFileDialogFilter" xml:space="preserve">
-    <value>Bitmap (*.bmp)|*.bmp|All files (*.*)|*.*</value>
+  <data name="BranchAirforce" xml:space="preserve">
+    <value>空軍</value>
   </data>
-  <data name="OpenGameFolderDialogDescription" xml:space="preserve">
-    <value>Select a game folder.</value>
+  <data name="BranchArmy" xml:space="preserve">
+    <value>陸軍</value>
   </data>
-  <data name="KeySelectAll" xml:space="preserve">
-    <value>Select All</value>
-  </data>
-  <data name="KeyUnselectAll" xml:space="preserve">
-    <value>Cancel All</value>
-  </data>
-  <data name="InvalidToken" xml:space="preserve">
-    <value>Invalid token</value>
-  </data>
-  <data name="ParseFailed" xml:space="preserve">
-    <value>Parse failed</value>
-  </data>
-  <data name="Section" xml:space="preserve">
-    <value>section</value>
+  <data name="BranchNavy" xml:space="preserve">
+    <value>海軍</value>
   </data>
   <data name="Hitler" xml:space="preserve">
-    <value>Hitler</value>
+    <value>ヒトラー</value>
   </data>
-  <data name="Stalin" xml:space="preserve">
-    <value>Stalin</value>
+  <data name="InvalidBranch" xml:space="preserve">
+    <value>兵科の異常</value>
   </data>
-  <data name="OpenModFolderDialogDescription" xml:space="preserve">
-    <value>Select a MOD folder.</value>
+  <data name="InvalidCountryTag" xml:space="preserve">
+    <value>国タグの異常</value>
+  </data>
+  <data name="InvalidEndYear" xml:space="preserve">
+    <value>終了年の異常</value>
+  </data>
+  <data name="InvalidExperience" xml:space="preserve">
+    <value>経験値の異常</value>
+  </data>
+  <data name="InvalidID" xml:space="preserve">
+    <value>IDの異常</value>
+  </data>
+  <data name="InvalidIdealRank" xml:space="preserve">
+    <value>理想階級の異常</value>
+  </data>
+  <data name="InvalidIdeology" xml:space="preserve">
+    <value>イデオロギーの異常</value>
+  </data>
+  <data name="InvalidLoyalty" xml:space="preserve">
+    <value>忠誠度の異常</value>
+  </data>
+  <data name="InvalidMaxSkill" xml:space="preserve">
+    <value>最大スキルの異常</value>
+  </data>
+  <data name="InvalidPersonality" xml:space="preserve">
+    <value>閣僚特性の異常</value>
+  </data>
+  <data name="InvalidPosition" xml:space="preserve">
+    <value>閣僚地位の異常</value>
+  </data>
+  <data name="InvalidRankYear" xml:space="preserve">
+    <value>任官年の異常</value>
+  </data>
+  <data name="InvalidSkill" xml:space="preserve">
+    <value>スキルの異常</value>
+  </data>
+  <data name="InvalidSpeciality" xml:space="preserve">
+    <value>研究特性の異常</value>
+  </data>
+  <data name="InvalidStartYear" xml:space="preserve">
+    <value>開始年の異常</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>無効なトークン</value>
+  </data>
+  <data name="InvalidTokenCount" xml:space="preserve">
+    <value>項目数の異常</value>
+  </data>
+  <data name="InvalidTraits" xml:space="preserve">
+    <value>指揮官特性の異常</value>
+  </data>
+  <data name="KeySelectAll" xml:space="preserve">
+    <value>全選択</value>
+  </data>
+  <data name="KeyUnselectAll" xml:space="preserve">
+    <value>全解除</value>
   </data>
   <data name="LoyaltyHigh" xml:space="preserve">
-    <value>High</value>
+    <value>高</value>
   </data>
   <data name="LoyaltyLow" xml:space="preserve">
-    <value>Low</value>
+    <value>低</value>
   </data>
   <data name="LoyaltyMedium" xml:space="preserve">
-    <value>Medium</value>
+    <value>中</value>
   </data>
   <data name="LoyaltyNA" xml:space="preserve">
     <value>NA</value>
   </data>
   <data name="LoyaltyUndying" xml:space="preserve">
-    <value>Undying</value>
+    <value>不死</value>
   </data>
   <data name="LoyaltyVeryHigh" xml:space="preserve">
-    <value>Very High</value>
+    <value>最高</value>
   </data>
   <data name="LoyaltyVeryLow" xml:space="preserve">
-    <value>Very Low</value>
-  </data>
-  <data name="BranchAirforce" xml:space="preserve">
-    <value>Airforce</value>
-  </data>
-  <data name="BranchArmy" xml:space="preserve">
-    <value>Army</value>
-  </data>
-  <data name="BranchNavy" xml:space="preserve">
-    <value>Navy</value>
-  </data>
-  <data name="InvalidBranch" xml:space="preserve">
-    <value>Invalid branch</value>
-  </data>
-  <data name="InvalidCountryTag" xml:space="preserve">
-    <value>Invalid country tag</value>
-  </data>
-  <data name="InvalidEndYear" xml:space="preserve">
-    <value>Invalid end year</value>
-  </data>
-  <data name="InvalidExperience" xml:space="preserve">
-    <value>Invalid experience</value>
-  </data>
-  <data name="InvalidID" xml:space="preserve">
-    <value>Invalid ID</value>
-  </data>
-  <data name="InvalidIdealRank" xml:space="preserve">
-    <value>Invalid ideal rank</value>
-  </data>
-  <data name="InvalidLoyalty" xml:space="preserve">
-    <value>Invalid loyalty</value>
-  </data>
-  <data name="InvalidMaxSkill" xml:space="preserve">
-    <value>Invalid max skill</value>
-  </data>
-  <data name="InvalidRankYear" xml:space="preserve">
-    <value>Invalid rank year</value>
-  </data>
-  <data name="InvalidSkill" xml:space="preserve">
-    <value>Invalid skill</value>
-  </data>
-  <data name="InvalidStartYear" xml:space="preserve">
-    <value>Invalid start year</value>
-  </data>
-  <data name="InvalidTokenCount" xml:space="preserve">
-    <value>Invalid token count</value>
-  </data>
-  <data name="InvalidTraits" xml:space="preserve">
-    <value>Invalid leader traits</value>
-  </data>
-  <data name="Rank0" xml:space="preserve">
-    <value>Marshal</value>
-  </data>
-  <data name="Rank1" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="Rank2" xml:space="preserve">
-    <value>Lieutenant General</value>
-  </data>
-  <data name="Rank3" xml:space="preserve">
-    <value>Major General</value>
-  </data>
-  <data name="SpecialityAirborneTraining" xml:space="preserve">
-    <value>Airborne Training</value>
-  </data>
-  <data name="SpecialityAvionics" xml:space="preserve">
-    <value>Avionics</value>
-  </data>
-  <data name="SpecialityBlitzkriegTactics" xml:space="preserve">
-    <value>Blitzkrieg Tactics</value>
-  </data>
-  <data name="SpecialityBomberDesign" xml:space="preserve">
-    <value>Bomber Design</value>
-  </data>
-  <data name="SpecialityCarrierDesign" xml:space="preserve">
-    <value>Carrier Design</value>
-  </data>
-  <data name="SpecialityCavalryTactics" xml:space="preserve">
-    <value>Cavalry Tactics</value>
-  </data>
-  <data name="SpecialityFighterDesign" xml:space="preserve">
-    <value>Fighter Design</value>
-  </data>
-  <data name="SpecialityManeuverTactics" xml:space="preserve">
-    <value>Maneuver Tactics</value>
-  </data>
-  <data name="SpecialityMarineTraining" xml:space="preserve">
-    <value>Marine Training</value>
-  </data>
-  <data name="SpecialityMedicine" xml:space="preserve">
-    <value>Medical Science</value>
-  </data>
-  <data name="SpecialityMountainTraining" xml:space="preserve">
-    <value>Mountain Training</value>
-  </data>
-  <data name="SpecialityMunitions" xml:space="preserve">
-    <value>Munitions</value>
-  </data>
-  <data name="SpecialityStaticDefenseTactics" xml:space="preserve">
-    <value>Static Defense Tactics</value>
-  </data>
-  <data name="SpecialitySubmarineDesign" xml:space="preserve">
-    <value>Submarine Design</value>
-  </data>
-  <data name="SpecialityUser" xml:space="preserve">
-    <value>User tech component </value>
-  </data>
-  <data name="SpecialityVehicleEngineering" xml:space="preserve">
-    <value>Vehicle Engineering</value>
-  </data>
-  <data name="InvalidIdeology" xml:space="preserve">
-    <value>Invalid ideology</value>
-  </data>
-  <data name="InvalidPersonality" xml:space="preserve">
-    <value>Invalid minister personality</value>
-  </data>
-  <data name="InvalidPosition" xml:space="preserve">
-    <value>Invalid minister position</value>
-  </data>
-  <data name="InvalidSpeciality" xml:space="preserve">
-    <value>Invalid tech speciality</value>
+    <value>最低</value>
   </data>
   <data name="ModifiedPersonality" xml:space="preserve">
-    <value>Modified minister personality</value>
+    <value>閣僚特性を修正</value>
+  </data>
+  <data name="OpenBitmapFileDialogFilter" xml:space="preserve">
+    <value>ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.*</value>
+  </data>
+  <data name="OpenGameFolderDialogDescription" xml:space="preserve">
+    <value>ゲームフォルダを選択して下さい。</value>
+  </data>
+  <data name="OpenModFolderDialogDescription" xml:space="preserve">
+    <value>MODフォルダを選択して下さい。</value>
+  </data>
+  <data name="ParseFailed" xml:space="preserve">
+    <value>解析失敗</value>
+  </data>
+  <data name="Rank0" xml:space="preserve">
+    <value>元帥</value>
+  </data>
+  <data name="Rank1" xml:space="preserve">
+    <value>大将</value>
+  </data>
+  <data name="Rank2" xml:space="preserve">
+    <value>中将</value>
+  </data>
+  <data name="Rank3" xml:space="preserve">
+    <value>少将</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>セクション</value>
+  </data>
+  <data name="SpecialityAirborneTraining" xml:space="preserve">
+    <value>空挺訓練</value>
+  </data>
+  <data name="SpecialityAvionics" xml:space="preserve">
+    <value>航空電子工学</value>
+  </data>
+  <data name="SpecialityBlitzkriegTactics" xml:space="preserve">
+    <value>電撃戦戦術</value>
+  </data>
+  <data name="SpecialityBomberDesign" xml:space="preserve">
+    <value>爆撃機設計</value>
+  </data>
+  <data name="SpecialityCarrierDesign" xml:space="preserve">
+    <value>空母設計</value>
+  </data>
+  <data name="SpecialityCavalryTactics" xml:space="preserve">
+    <value>騎兵戦術</value>
+  </data>
+  <data name="SpecialityFighterDesign" xml:space="preserve">
+    <value>戦闘機設計</value>
+  </data>
+  <data name="SpecialityManeuverTactics" xml:space="preserve">
+    <value>機動戦術</value>
+  </data>
+  <data name="SpecialityMarineTraining" xml:space="preserve">
+    <value>海兵訓練</value>
+  </data>
+  <data name="SpecialityMedicine" xml:space="preserve">
+    <value>医療科学</value>
+  </data>
+  <data name="SpecialityMountainTraining" xml:space="preserve">
+    <value>山岳訓練</value>
+  </data>
+  <data name="SpecialityMunitions" xml:space="preserve">
+    <value>弾薬</value>
+  </data>
+  <data name="SpecialityStaticDefenseTactics" xml:space="preserve">
+    <value>静的防衛戦術</value>
+  </data>
+  <data name="SpecialitySubmarineDesign" xml:space="preserve">
+    <value>潜水艦設計</value>
+  </data>
+  <data name="SpecialityUser" xml:space="preserve">
+    <value>ユーザー定義</value>
+  </data>
+  <data name="SpecialityVehicleEngineering" xml:space="preserve">
+    <value>車両工学</value>
+  </data>
+  <data name="Stalin" xml:space="preserve">
+    <value>スターリン</value>
   </data>
 </root>

@@ -53,7 +53,7 @@ namespace HoI2Editor.Models
 
             if (Game.IsModActive)
             {
-                folderName = Path.Combine(Game.ModFolderName, "config");
+                folderName = Path.Combine(Game.ModFolderName, Game.ConfigPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -68,7 +68,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            folderName = Path.Combine(Game.FolderName, "config");
+            folderName = Path.Combine(Game.FolderName, Game.ConfigPathName);
             if (Directory.Exists(folderName))
             {
                 foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -85,7 +85,7 @@ namespace HoI2Editor.Models
             {
                 fileList.Clear();
 
-                folderName = Path.Combine(Game.ModFolderName, "config\\Additional");
+                folderName = Path.Combine(Game.ModFolderName, Game.ConfigAdditionalPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -99,7 +99,7 @@ namespace HoI2Editor.Models
                     }
                 }
 
-                folderName = Path.Combine(Game.FolderName, "config\\Additional");
+                folderName = Path.Combine(Game.FolderName, Game.ConfigAdditionalPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -156,8 +156,8 @@ namespace HoI2Editor.Models
                 Text.ContainsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2") &&
                 Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"].Equals(Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"]))
             {
-                Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"] += Resources.Army;
-                Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"] += Resources.Navy;
+                Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"] += string.Format("({0})", Resources.BranchArmy);
+                Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"] += string.Format("({0})", Resources.BranchNavy);
             }
 
             // 偏執的誇大妄想家: ヒトラー/スターリン
@@ -165,8 +165,8 @@ namespace HoI2Editor.Models
                 Text.ContainsKey("NPERSONALITY_STALIN") &&
                 Text["NPERSONALITY_HITLER"].Equals(Text["NPERSONALITY_STALIN"]))
             {
-                Text["NPERSONALITY_HITLER"] += Resources.Hitler;
-                Text["NPERSONALITY_STALIN"] += Resources.Stalin;
+                Text["NPERSONALITY_HITLER"] += string.Format("({0})", Resources.Hitler);
+                Text["NPERSONALITY_STALIN"] += string.Format("({0})", Resources.Stalin);
             }
         }
 
@@ -178,63 +178,63 @@ namespace HoI2Editor.Models
             // DH固有の研究特性
             if (!Text.ContainsKey("RT_AVIONICS"))
             {
-                Text["RT_AVIONICS"] = "航空電子工学";
+                Text["RT_AVIONICS"] = Resources.SpecialityAvionics;
             }
             if (!Text.ContainsKey("RT_MUNITIONS"))
             {
-                Text["RT_MUNITIONS"] = "弾薬";
+                Text["RT_MUNITIONS"] = Resources.SpecialityMunitions;
             }
             if (!Text.ContainsKey("RT_VEHICLE_ENGINEERING"))
             {
-                Text["RT_VEHICLE_ENGINEERING"] = "車両工学";
+                Text["RT_VEHICLE_ENGINEERING"] = Resources.SpecialityVehicleEngineering;
             }
             if (!Text.ContainsKey("RT_CARRIER_DESIGN"))
             {
-                Text["RT_CARRIER_DESIGN"] = "空母設計";
+                Text["RT_CARRIER_DESIGN"] = Resources.SpecialityCarrierDesign;
             }
             if (!Text.ContainsKey("RT_SUBMARINE_DESIGN"))
             {
-                Text["RT_SUBMARINE_DESIGN"] = "潜水艦設計";
+                Text["RT_SUBMARINE_DESIGN"] = Resources.SpecialitySubmarineDesign;
             }
             if (!Text.ContainsKey("RT_FIGHTER_DESIGN"))
             {
-                Text["RT_FIGHTER_DESIGN"] = "戦闘機設計";
+                Text["RT_FIGHTER_DESIGN"] = Resources.SpecialityFighterDesign;
             }
             if (!Text.ContainsKey("RT_BOMBER_DESIGN"))
             {
-                Text["RT_BOMBER_DESIGN"] = "爆撃機設計";
+                Text["RT_BOMBER_DESIGN"] = Resources.SpecialityBomberDesign;
             }
             if (!Text.ContainsKey("RT_MOUNTAIN_TRAINING"))
             {
-                Text["RT_MOUNTAIN_TRAINING"] = "山岳訓練";
+                Text["RT_MOUNTAIN_TRAINING"] = Resources.SpecialityMountainTraining;
             }
             if (!Text.ContainsKey("RT_AIRBORNE_TRAINING"))
             {
-                Text["RT_AIRBORNE_TRAINING"] = "空挺訓練";
+                Text["RT_AIRBORNE_TRAINING"] = Resources.SpecialityAirborneTraining;
             }
             if (!Text.ContainsKey("RT_MARINE_TRAINING"))
             {
-                Text["RT_MARINE_TRAINING"] = "海兵訓練";
+                Text["RT_MARINE_TRAINING"] = Resources.SpecialityMarineTraining;
             }
             if (!Text.ContainsKey("RT_MANEUVER_TACTICS"))
             {
-                Text["RT_MANEUVER_TACTICS"] = "機動戦術";
+                Text["RT_MANEUVER_TACTICS"] = Resources.SpecialityManeuverTactics;
             }
             if (!Text.ContainsKey("RT_BLITZKRIEG_TACTICS"))
             {
-                Text["RT_BLITZKRIEG_TACTICS"] = "電撃戦戦術";
+                Text["RT_BLITZKRIEG_TACTICS"] = Resources.SpecialityBlitzkriegTactics;
             }
             if (!Text.ContainsKey("RT_STATIC_DEFENSE_TACTICS"))
             {
-                Text["RT_STATIC_DEFENSE_TACTICS"] = "静的防衛戦術";
+                Text["RT_STATIC_DEFENSE_TACTICS"] = Resources.SpecialityStaticDefenseTactics;
             }
             if (!Text.ContainsKey("RT_MEDICINE"))
             {
-                Text["RT_MEDICINE"] = "医療科学";
+                Text["RT_MEDICINE"] = Resources.SpecialityMedicine;
             }
             if (!Text.ContainsKey("RT_CAVALRY_TACTICS"))
             {
-                Text["RT_CAVALRY_TACTICS"] = "騎兵戦術";
+                Text["RT_CAVALRY_TACTICS"] = Resources.SpecialityCavalryTactics;
             }
             // ユーザー定義
             for (int i = 1; i <= 60; i++)
@@ -242,7 +242,7 @@ namespace HoI2Editor.Models
                 string key = string.Format("RT_USER{0}", i);
                 if (!Text.ContainsKey(key))
                 {
-                    Text[key] = string.Format("ユーザー定義{0}", i);
+                    Text[key] = string.Format("{0}{1}", Resources.SpecialityUser, i);
                 }
             }
         }

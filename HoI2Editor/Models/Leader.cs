@@ -44,9 +44,9 @@
             };
 
         /// <summary>
-        ///     指揮官特性文字列
+        ///     指揮官特性名
         /// </summary>
-        public static readonly string[] TraitsTextTable =
+        public static readonly string[] TraitsNameTable =
             {
                 "TRAIT_LOGWIZ",
                 "TRAIT_DEFDOC",
@@ -80,16 +80,6 @@
                 "TRAIT_TATICAL",
                 "TRAIT_BREAK"
             };
-
-        /// <summary>
-        ///     兵科文字列
-        /// </summary>
-        public static readonly string[] BranchTextTable = {"", "陸軍", "海軍", "空軍"};
-
-        /// <summary>
-        ///     階級文字列
-        /// </summary>
-        public static readonly string[] RankTextTable = {"", "少将", "中将", "大将", "元帥"};
 
         /// <summary>
         ///     任官年

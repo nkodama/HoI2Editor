@@ -70,7 +70,7 @@ namespace HoI2Editor.Forms
             List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
                                                    ? new List<CountryTag>()
                                                    : (from string country in countryListBox.SelectedItems
-                                                      select Country.CountryTextMap[country]).ToList();
+                                                      select Country.CountryStringMap[country]).ToList();
 
             foreach (
                 Leader leader in Leaders.List.Where(leader => selectedTagList.Contains(leader.CountryTag)))
@@ -163,130 +163,130 @@ namespace HoI2Editor.Forms
         private void InitTraitsText()
         {
             logisticsWizardCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.LogisticsWizard]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.LogisticsWizard]];
             defensiveDoctrineCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DefensiveDoctrine]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.DefensiveDoctrine]];
             offensiveDoctrineCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OffensiveDoctrine]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.OffensiveDoctrine]];
             winterSpecialistCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.WinterSpecialist]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.WinterSpecialist]];
             tricksterCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Trickster]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Trickster]];
             engineerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Engineer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Engineer]];
             fortressBusterCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FortressBuster]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.FortressBuster]];
             panzerLeaderCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.PanzerLeader]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.PanzerLeader]];
             commandoCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Commando]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Commando]];
             oldGuardCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OldGuard]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.OldGuard]];
             seaWolfCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SeaWolf]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.SeaWolf]];
             blockadeRunnerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.BlockadeRunner]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.BlockadeRunner]];
             superiorTacticianCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SuperiorTactician]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.SuperiorTactician]];
             spotterCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Spotter]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Spotter]];
             tankBusterCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.TankBuster]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.TankBuster]];
             carpetBomberCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CarpetBomber]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.CarpetBomber]];
             nightFlyerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.NightFlyer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.NightFlyer]];
             fleetDestroyerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FleetDestroyer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.FleetDestroyer]];
             desertFoxCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DesertFox]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.DesertFox]];
             jungleRatCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.JungleRat]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.JungleRat]];
             urbanWarfareSpecialistCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.UrbanWarfareSpecialist]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.UrbanWarfareSpecialist]];
             rangerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ranger]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Ranger]];
             mountaineerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Mountaineer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Mountaineer]];
             hillsFighterCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.HillsFighter]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.HillsFighter]];
             counterAttackerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CounterAttacker]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.CounterAttacker]];
             assaulterCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Assaulter]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Assaulter]];
             encirclerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Encircler]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Encircler]];
             ambusherCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ambusher]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Ambusher]];
             disciplinedCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Disciplined]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Disciplined]];
             elasticDefenceSpecialistCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.ElasticDefenceSpecialist]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.ElasticDefenceSpecialist]];
             blitzerCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Blitzer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Blitzer]];
 
             logisticsWizardNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.LogisticsWizard]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.LogisticsWizard]];
             defensiveDoctrineNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DefensiveDoctrine]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.DefensiveDoctrine]];
             offensiveDoctrineNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OffensiveDoctrine]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.OffensiveDoctrine]];
             winterSpecialistNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.WinterSpecialist]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.WinterSpecialist]];
             tricksterNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Trickster]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Trickster]];
             engineerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Engineer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Engineer]];
             fortressBusterNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FortressBuster]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.FortressBuster]];
             panzerLeaderNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.PanzerLeader]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.PanzerLeader]];
             commandoNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Commando]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Commando]];
             oldGuardNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.OldGuard]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.OldGuard]];
             seaWolfNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SeaWolf]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.SeaWolf]];
             blockadeRunnerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.BlockadeRunner]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.BlockadeRunner]];
             superiorTacticianNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.SuperiorTactician]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.SuperiorTactician]];
             spotterNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Spotter]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Spotter]];
             tankBusterNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.TankBuster]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.TankBuster]];
             carpetBomberNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CarpetBomber]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.CarpetBomber]];
             nightFlyerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.NightFlyer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.NightFlyer]];
             fleetDestroyerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.FleetDestroyer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.FleetDestroyer]];
             desertFoxNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.DesertFox]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.DesertFox]];
             jungleRatNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.JungleRat]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.JungleRat]];
             urbanWarfareSpecialistNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.UrbanWarfareSpecialist]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.UrbanWarfareSpecialist]];
             rangerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ranger]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Ranger]];
             mountaineerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Mountaineer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Mountaineer]];
             hillsFighterNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.HillsFighter]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.HillsFighter]];
             counterAttackerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.CounterAttacker]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.CounterAttacker]];
             assaulterNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Assaulter]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Assaulter]];
             encirclerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Encircler]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Encircler]];
             ambusherNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Ambusher]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Ambusher]];
             disciplinedNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Disciplined]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Disciplined]];
             elasticDefenceSpecialistNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.ElasticDefenceSpecialist]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.ElasticDefenceSpecialist]];
             blitzerNarrowCheckBox.Text =
-                Config.Text[Leader.TraitsTextTable[(int) LeaderTraitsId.Blitzer]];
+                Config.Text[Leader.TraitsNameTable[(int) LeaderTraitsId.Blitzer]];
         }
 
         /// <summary>
@@ -336,16 +336,22 @@ namespace HoI2Editor.Forms
             countryComboBox.DropDownWidth = maxSize;
 
             // 兵科
-            foreach (string branch in Leader.BranchTextTable)
+            maxSize = branchComboBox.DropDownWidth;
+            foreach (string name in Leaders.BranchNameTable)
             {
-                branchComboBox.Items.Add(branch);
+                branchComboBox.Items.Add(name);
+                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(name, branchComboBox.Font).Width);
             }
+            branchComboBox.DropDownWidth = maxSize;
 
             // 階級
-            foreach (string rank in Leader.RankTextTable)
+            maxSize = idealRankComboBox.DropDownWidth;
+            foreach (string name in Leaders.RankNameTable)
             {
-                idealRankComboBox.Items.Add(rank);
+                idealRankComboBox.Items.Add(name);
+                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(name, idealRankComboBox.Font).Width);
             }
+            idealRankComboBox.DropDownWidth = maxSize;
         }
 
         /// <summary>
@@ -539,7 +545,7 @@ namespace HoI2Editor.Forms
                            };
             item.SubItems.Add(leader.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.Name);
-            item.SubItems.Add(Leader.BranchTextTable[(int) leader.Branch]);
+            item.SubItems.Add(Leaders.BranchNameTable[(int) leader.Branch]);
             item.SubItems.Add(leader.Skill.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.MaxSkill.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.StartYear.ToString(CultureInfo.InvariantCulture));
@@ -560,7 +566,7 @@ namespace HoI2Editor.Forms
                 Enum.GetValues(typeof (LeaderTraitsId))
                     .Cast<LeaderTraitsId>()
                     .Where(id => (traits & Leader.TraitsValueTable[(int) id]) != 0)
-                    .Aggregate("", (current, id) => current + (", " + Config.Text[Leader.TraitsTextTable[(int) id]]));
+                    .Aggregate("", (current, id) => current + (", " + Config.Text[Leader.TraitsNameTable[(int) id]]));
             // 先頭項目の", "を削除する
             if (!string.IsNullOrEmpty(s))
             {
@@ -1758,7 +1764,7 @@ namespace HoI2Editor.Forms
             }
 
             leader.Branch = newBranch;
-            leaderListView.SelectedItems[0].SubItems[3].Text = Leader.BranchTextTable[(int) leader.Branch];
+            leaderListView.SelectedItems[0].SubItems[3].Text = Leaders.BranchNameTable[(int) leader.Branch];
 
             UpdateBranchComboBox(leader);
 

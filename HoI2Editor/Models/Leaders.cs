@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
 {
@@ -28,6 +29,16 @@ namespace HoI2Editor.Models
         public static readonly Dictionary<CountryTag, string> FileNameMap = new Dictionary<CountryTag, string>();
 
         /// <summary>
+        ///     兵科名
+        /// </summary>
+        public static string[] BranchNameTable;
+
+        /// <summary>
+        ///     階級名
+        /// </summary>
+        public static string[] RankNameTable;
+
+        /// <summary>
         ///     現在解析中のファイル名
         /// </summary>
         private static string _currentFileName = "";
@@ -41,6 +52,18 @@ namespace HoI2Editor.Models
         ///     CSVファイルの区切り文字
         /// </summary>
         private static readonly char[] CsvSeparator = {';'};
+
+        /// <summary>
+        ///     静的コンストラクタ
+        /// </summary>
+        static Leaders()
+        {
+            // 兵科
+            BranchNameTable = new[] {"", Resources.BranchArmy, Resources.BranchNavy, Resources.BranchAirforce};
+
+            // 階級
+            RankNameTable = new[] {"", Resources.Rank3, Resources.Rank2, Resources.Rank1, Resources.Rank0};
+        }
 
         /// <summary>
         ///     指揮官ファイル群を読み込む
@@ -147,8 +170,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (token.Length != 18)
             {
-                Log.Write(String.Format("項目数の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n\n", line));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (token.Length < 17)
                 {
@@ -166,19 +189,19 @@ namespace HoI2Editor.Models
             int id;
             if (!Int32.TryParse(token[1], out id))
             {
-                Log.Write(String.Format("IDの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1}\n\n", token[1], token[0]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1}\n", token[1], token[0]));
                 return null;
             }
             leader.Id = id;
             leader.Name = token[0];
-            if (String.IsNullOrEmpty(token[2]) || !Country.CountryTextMap.ContainsKey(token[2].ToUpper()))
+            if (String.IsNullOrEmpty(token[2]) || !Country.CountryStringMap.ContainsKey(token[2].ToUpper()))
             {
-                Log.Write(String.Format("国タグの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[2]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[2]));
                 return null;
             }
-            leader.CountryTag = Country.CountryTextMap[token[2].ToUpper()];
+            leader.CountryTag = Country.CountryStringMap[token[2].ToUpper()];
             for (int i = 0; i < 4; i++)
             {
                 int rankYear;
@@ -189,9 +212,9 @@ namespace HoI2Editor.Models
                 else
                 {
                     leader.RankYear[i] = 1990;
-                    Log.Write(String.Format("{0}任官年の異常: {1} L{2} \n", Leader.RankTextTable[i], _currentFileName,
-                                            _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[3 + i]));
+                    Log.Write(String.Format("{0}({1}): {2} L{3}\n", Resources.InvalidRankYear, RankNameTable[i],
+                                            _currentFileName, _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[3 + i]));
                 }
             }
             int idealRank;
@@ -202,8 +225,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.IdealRank = LeaderRank.None;
-                Log.Write(String.Format("理想階級の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[7]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[7]));
             }
             int maxSkill;
             if (Int32.TryParse(token[8], out maxSkill))
@@ -213,8 +236,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.MaxSkill = 0;
-                Log.Write(String.Format("最大スキルの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[8]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidMaxSkill, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[8]));
             }
             uint traits;
             if (UInt32.TryParse(token[9], out traits))
@@ -224,8 +247,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Traits = LeaderTraits.None;
-                Log.Write(String.Format("特性の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[9]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTraits, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[9]));
             }
             int skill;
             if (Int32.TryParse(token[10], out skill))
@@ -235,8 +258,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Skill = 0;
-                Log.Write(String.Format("スキルの異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[10]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[10]));
             }
             int experience;
             if (Int32.TryParse(token[11], out experience))
@@ -246,8 +269,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Experience = 0;
-                Log.Write(String.Format("経験値の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[11]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidExperience, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[11]));
             }
             int loyalty;
             if (Int32.TryParse(token[12], out loyalty))
@@ -257,8 +280,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Loyalty = 0;
-                Log.Write(String.Format("忠誠度の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[12]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[12]));
             }
             int branch;
             if (Int32.TryParse(token[13], out branch))
@@ -268,8 +291,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Branch = LeaderBranch.None;
-                Log.Write(String.Format("兵科の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[13]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[13]));
             }
             leader.PictureName = token[14];
             int startYear;
@@ -280,8 +303,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.StartYear = 1930;
-                Log.Write(String.Format("開始年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[15]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[15]));
             }
             int endYear;
             if (Int32.TryParse(token[16], out endYear))
@@ -291,8 +314,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.EndYear = 1970;
-                Log.Write(String.Format("終了年の異常: {0} L{1} \n", _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n\n", leader.Id, leader.Name, token[16]));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, token[16]));
             }
 
             List.Add(leader);

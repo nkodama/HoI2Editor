@@ -360,7 +360,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ文字列とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<string, CountryTag> CountryTextMap = new Dictionary<string, CountryTag>();
+        public static readonly Dictionary<string, CountryTag> CountryStringMap = new Dictionary<string, CountryTag>();
 
         /// <summary>
         ///     静的コンストラクタ
@@ -369,7 +369,7 @@ namespace HoI2Editor.Models
         {
             foreach (CountryTag countryTag in Enum.GetValues(typeof (CountryTag)))
             {
-                CountryTextMap.Add(CountryTextTable[(int) countryTag], countryTag);
+                CountryStringMap.Add(CountryTextTable[(int) countryTag], countryTag);
             }
         }
     }
