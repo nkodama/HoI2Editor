@@ -1278,8 +1278,7 @@ namespace HoI2Editor.Models
         {
             foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
             {
-                //ClearDirtyFlag(country);
-                SetDirtyFlag(country);
+                ClearDirtyFlag(country);
             }
         }
 
