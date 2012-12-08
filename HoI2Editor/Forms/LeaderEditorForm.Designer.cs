@@ -561,10 +561,10 @@
             // 
             // branchNarrowGroupBox
             // 
-            resources.ApplyResources(this.branchNarrowGroupBox, "branchNarrowGroupBox");
             this.branchNarrowGroupBox.Controls.Add(this.airforceNarrowCheckBox);
             this.branchNarrowGroupBox.Controls.Add(this.navyNarrowCheckBox);
             this.branchNarrowGroupBox.Controls.Add(this.armyNarrowCheckBox);
+            resources.ApplyResources(this.branchNarrowGroupBox, "branchNarrowGroupBox");
             this.branchNarrowGroupBox.Name = "branchNarrowGroupBox";
             this.branchNarrowGroupBox.TabStop = false;
             // 
@@ -597,7 +597,6 @@
             // 
             // traitsNarrowGroupBox
             // 
-            resources.ApplyResources(this.traitsNarrowGroupBox, "traitsNarrowGroupBox");
             this.traitsNarrowGroupBox.Controls.Add(this.traitsNarrowInvertButton);
             this.traitsNarrowGroupBox.Controls.Add(this.traitsAndNarrowRadioButton);
             this.traitsNarrowGroupBox.Controls.Add(this.traitsOrNarrowRadioButton);
@@ -633,6 +632,7 @@
             this.traitsNarrowGroupBox.Controls.Add(this.offensiveDoctrineNarrowCheckBox);
             this.traitsNarrowGroupBox.Controls.Add(this.defensiveDoctrineNarrowCheckBox);
             this.traitsNarrowGroupBox.Controls.Add(this.logisticsWizardNarrowCheckBox);
+            resources.ApplyResources(this.traitsNarrowGroupBox, "traitsNarrowGroupBox");
             this.traitsNarrowGroupBox.Name = "traitsNarrowGroupBox";
             this.traitsNarrowGroupBox.TabStop = false;
             // 
@@ -909,7 +909,6 @@
             // 
             // traitsGroupBox
             // 
-            resources.ApplyResources(this.traitsGroupBox, "traitsGroupBox");
             this.traitsGroupBox.Controls.Add(this.blitzerCheckBox);
             this.traitsGroupBox.Controls.Add(this.elasticDefenceSpecialistCheckBox);
             this.traitsGroupBox.Controls.Add(this.disciplinedCheckBox);
@@ -941,6 +940,7 @@
             this.traitsGroupBox.Controls.Add(this.offensiveDoctrineCheckBox);
             this.traitsGroupBox.Controls.Add(this.defensiveDoctrineCheckBox);
             this.traitsGroupBox.Controls.Add(this.logisticsWizardCheckBox);
+            resources.ApplyResources(this.traitsGroupBox, "traitsGroupBox");
             this.traitsGroupBox.Name = "traitsGroupBox";
             this.traitsGroupBox.TabStop = false;
             // 
