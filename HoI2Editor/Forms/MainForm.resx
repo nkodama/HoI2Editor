@@ -170,6 +170,10 @@
   <data name="&gt;&gt;gameFolderLabel.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="gameFolderTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="gameFolderTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 24</value>
   </data>
@@ -218,6 +222,9 @@
   <data name="&gt;&gt;modLabel.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="modTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="modTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 71</value>
   </data>
@@ -238,6 +245,9 @@
   </data>
   <data name="&gt;&gt;modTextBox.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="editGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="techButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 47</value>
@@ -335,6 +345,9 @@
   <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="gameFolderReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="gameFolderReferButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>377, 22</value>
   </data>
@@ -359,6 +372,9 @@
   <data name="&gt;&gt;gameFolderReferButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="exitButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="exitButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>377, 131</value>
   </data>
@@ -382,6 +398,9 @@
   </data>
   <data name="&gt;&gt;exitButton.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="modFolderReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="modFolderReferButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>377, 69</value>
@@ -460,6 +479,9 @@
   </data>
   <data name="&gt;&gt;encodingComboBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="optionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="logCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

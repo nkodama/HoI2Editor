@@ -86,11 +86,11 @@
             // 
             // editGroupBox
             // 
+            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Controls.Add(this.techButton);
             this.editGroupBox.Controls.Add(this.leaderButton);
             this.editGroupBox.Controls.Add(this.teamButton);
             this.editGroupBox.Controls.Add(this.ministerButton);
-            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
             // 
@@ -154,10 +154,10 @@
             // 
             // optionGroupBox
             // 
+            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Controls.Add(this.logCheckBox);
             this.optionGroupBox.Controls.Add(this.encodingComboBox);
             this.optionGroupBox.Controls.Add(this.encodingLabel);
-            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
             // 

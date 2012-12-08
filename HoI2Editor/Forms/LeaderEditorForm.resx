@@ -882,6 +882,27 @@
   <data name="leaderListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="leaderListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="leaderListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>984, 190</value>
+  </data>
+  <data name="leaderListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;leaderListView.Name" xml:space="preserve">
+    <value>leaderListView</value>
+  </data>
+  <data name="&gt;&gt;leaderListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leaderListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;leaderListView.ZOrder" xml:space="preserve">
+    <value>51</value>
+  </data>
   <data name="branchColumnHeader.Text" xml:space="preserve">
     <value>Branch</value>
   </data>
@@ -905,27 +926,6 @@
   </data>
   <data name="maxSkillColumnHeader.Width" type="System.Int32, mscorlib">
     <value>70</value>
-  </data>
-  <data name="leaderListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="leaderListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>984, 190</value>
-  </data>
-  <data name="leaderListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;leaderListView.Name" xml:space="preserve">
-    <value>leaderListView</value>
-  </data>
-  <data name="&gt;&gt;leaderListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leaderListView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;leaderListView.ZOrder" xml:space="preserve">
-    <value>51</value>
   </data>
   <data name="rankYearNumericUpDown1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1380,6 +1380,9 @@
   <data name="&gt;&gt;loyaltyLabel.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="branchNarrowGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="airforceNarrowCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1484,6 +1487,9 @@
   </data>
   <data name="&gt;&gt;branchNarrowGroupBox.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="traitsNarrowGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
   </data>
   <data name="traitsNarrowInvertButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>783, 124</value>
@@ -2562,6 +2568,405 @@
   <data name="&gt;&gt;experienceLabel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="traitsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;blitzerCheckBox.Name" xml:space="preserve">
+    <value>blitzerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;blitzerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;blitzerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;blitzerCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;elasticDefenceSpecialistCheckBox.Name" xml:space="preserve">
+    <value>elasticDefenceSpecialistCheckBox</value>
+  </data>
+  <data name="&gt;&gt;elasticDefenceSpecialistCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;elasticDefenceSpecialistCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;elasticDefenceSpecialistCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;disciplinedCheckBox.Name" xml:space="preserve">
+    <value>disciplinedCheckBox</value>
+  </data>
+  <data name="&gt;&gt;disciplinedCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;disciplinedCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;disciplinedCheckBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ambusherCheckBox.Name" xml:space="preserve">
+    <value>ambusherCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ambusherCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ambusherCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;ambusherCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;encirclerCheckBox.Name" xml:space="preserve">
+    <value>encirclerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;encirclerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;encirclerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;encirclerCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;assaulterCheckBox.Name" xml:space="preserve">
+    <value>assaulterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;assaulterCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;assaulterCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;assaulterCheckBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;counterAttackerCheckBox.Name" xml:space="preserve">
+    <value>counterAttackerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;counterAttackerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;counterAttackerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;counterAttackerCheckBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;hillsFighterCheckBox.Name" xml:space="preserve">
+    <value>hillsFighterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;hillsFighterCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hillsFighterCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;hillsFighterCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;mountaineerCheckBox.Name" xml:space="preserve">
+    <value>mountaineerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;mountaineerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mountaineerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;mountaineerCheckBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;rangerCheckBox.Name" xml:space="preserve">
+    <value>rangerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;rangerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rangerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rangerCheckBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;urbanWarfareSpecialistCheckBox.Name" xml:space="preserve">
+    <value>urbanWarfareSpecialistCheckBox</value>
+  </data>
+  <data name="&gt;&gt;urbanWarfareSpecialistCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;urbanWarfareSpecialistCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;urbanWarfareSpecialistCheckBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;jungleRatCheckBox.Name" xml:space="preserve">
+    <value>jungleRatCheckBox</value>
+  </data>
+  <data name="&gt;&gt;jungleRatCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;jungleRatCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;jungleRatCheckBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;desertFoxCheckBox.Name" xml:space="preserve">
+    <value>desertFoxCheckBox</value>
+  </data>
+  <data name="&gt;&gt;desertFoxCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;desertFoxCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;desertFoxCheckBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;fleetDestroyerCheckBox.Name" xml:space="preserve">
+    <value>fleetDestroyerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;fleetDestroyerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fleetDestroyerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fleetDestroyerCheckBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;nightFlyerCheckBox.Name" xml:space="preserve">
+    <value>nightFlyerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;nightFlyerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nightFlyerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;nightFlyerCheckBox.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;carpetBomberCheckBox.Name" xml:space="preserve">
+    <value>carpetBomberCheckBox</value>
+  </data>
+  <data name="&gt;&gt;carpetBomberCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;carpetBomberCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;carpetBomberCheckBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;tankBusterCheckBox.Name" xml:space="preserve">
+    <value>tankBusterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;tankBusterCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tankBusterCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tankBusterCheckBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;spotterCheckBox.Name" xml:space="preserve">
+    <value>spotterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;spotterCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spotterCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;spotterCheckBox.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;superiorTacticianCheckBox.Name" xml:space="preserve">
+    <value>superiorTacticianCheckBox</value>
+  </data>
+  <data name="&gt;&gt;superiorTacticianCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;superiorTacticianCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;superiorTacticianCheckBox.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;blockadeRunnerCheckBox.Name" xml:space="preserve">
+    <value>blockadeRunnerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;blockadeRunnerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;blockadeRunnerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;blockadeRunnerCheckBox.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;seaWolfCheckBox.Name" xml:space="preserve">
+    <value>seaWolfCheckBox</value>
+  </data>
+  <data name="&gt;&gt;seaWolfCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;seaWolfCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;seaWolfCheckBox.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;oldGuardCheckBox.Name" xml:space="preserve">
+    <value>oldGuardCheckBox</value>
+  </data>
+  <data name="&gt;&gt;oldGuardCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oldGuardCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oldGuardCheckBox.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;commandoCheckBox.Name" xml:space="preserve">
+    <value>commandoCheckBox</value>
+  </data>
+  <data name="&gt;&gt;commandoCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;commandoCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;commandoCheckBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;panzerLeaderCheckBox.Name" xml:space="preserve">
+    <value>panzerLeaderCheckBox</value>
+  </data>
+  <data name="&gt;&gt;panzerLeaderCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panzerLeaderCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;panzerLeaderCheckBox.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;fortressBusterCheckBox.Name" xml:space="preserve">
+    <value>fortressBusterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;fortressBusterCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fortressBusterCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fortressBusterCheckBox.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.Name" xml:space="preserve">
+    <value>engineerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;tricksterCheckBox.Name" xml:space="preserve">
+    <value>tricksterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;tricksterCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tricksterCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tricksterCheckBox.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;winterSpecialistCheckBox.Name" xml:space="preserve">
+    <value>winterSpecialistCheckBox</value>
+  </data>
+  <data name="&gt;&gt;winterSpecialistCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;winterSpecialistCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;winterSpecialistCheckBox.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;offensiveDoctrineCheckBox.Name" xml:space="preserve">
+    <value>offensiveDoctrineCheckBox</value>
+  </data>
+  <data name="&gt;&gt;offensiveDoctrineCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;offensiveDoctrineCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;offensiveDoctrineCheckBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;defensiveDoctrineCheckBox.Name" xml:space="preserve">
+    <value>defensiveDoctrineCheckBox</value>
+  </data>
+  <data name="&gt;&gt;defensiveDoctrineCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defensiveDoctrineCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;defensiveDoctrineCheckBox.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;logisticsWizardCheckBox.Name" xml:space="preserve">
+    <value>logisticsWizardCheckBox</value>
+  </data>
+  <data name="&gt;&gt;logisticsWizardCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;logisticsWizardCheckBox.Parent" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;logisticsWizardCheckBox.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="traitsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>612, 397</value>
+  </data>
+  <data name="traitsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>384, 291</value>
+  </data>
+  <data name="traitsGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="traitsGroupBox.Text" xml:space="preserve">
+    <value>Traits</value>
+  </data>
+  <data name="&gt;&gt;traitsGroupBox.Name" xml:space="preserve">
+    <value>traitsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;traitsGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;traitsGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;traitsGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="blitzerCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3398,30 +3803,6 @@
   </data>
   <data name="&gt;&gt;logisticsWizardCheckBox.ZOrder" xml:space="preserve">
     <value>30</value>
-  </data>
-  <data name="traitsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>612, 397</value>
-  </data>
-  <data name="traitsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 291</value>
-  </data>
-  <data name="traitsGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="traitsGroupBox.Text" xml:space="preserve">
-    <value>Traits</value>
-  </data>
-  <data name="&gt;&gt;traitsGroupBox.Name" xml:space="preserve">
-    <value>traitsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;traitsGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;traitsGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;traitsGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="retirementYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>

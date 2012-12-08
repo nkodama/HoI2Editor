@@ -204,6 +204,7 @@
             // 
             // editTabControl
             // 
+            resources.ApplyResources(this.editTabControl, "editTabControl");
             this.editTabControl.Controls.Add(this.categoryTabPage);
             this.editTabControl.Controls.Add(this.techTabPage);
             this.editTabControl.Controls.Add(this.requiredTabPage);
@@ -211,7 +212,6 @@
             this.editTabControl.Controls.Add(this.effectTabPage);
             this.editTabControl.Controls.Add(this.labelTabPage);
             this.editTabControl.Controls.Add(this.eventTabPage);
-            resources.ApplyResources(this.editTabControl, "editTabControl");
             this.editTabControl.Name = "editTabControl";
             this.editTabControl.SelectedIndex = 0;
             // 
@@ -288,13 +288,13 @@
             // 
             // techPositionListView
             // 
+            resources.ApplyResources(this.techPositionListView, "techPositionListView");
             this.techPositionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.techXColumnHeader,
             this.techYColumnHeader});
             this.techPositionListView.FullRowSelect = true;
             this.techPositionListView.GridLines = true;
             this.techPositionListView.HideSelection = false;
-            resources.ApplyResources(this.techPositionListView, "techPositionListView");
             this.techPositionListView.MultiSelect = false;
             this.techPositionListView.Name = "techPositionListView";
             this.techPositionListView.UseCompatibleStateImageBehavior = false;
@@ -382,12 +382,12 @@
             // 
             // techIdNumericUpDown
             // 
+            resources.ApplyResources(this.techIdNumericUpDown, "techIdNumericUpDown");
             this.techIdNumericUpDown.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            resources.ApplyResources(this.techIdNumericUpDown, "techIdNumericUpDown");
             this.techIdNumericUpDown.Maximum = new decimal(new int[] {
             16777210,
             0,
@@ -453,19 +453,19 @@
             // 
             // orTechComboBox
             // 
-            this.orTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.orTechComboBox, "orTechComboBox");
+            this.orTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.orTechComboBox.FormattingEnabled = true;
             this.orTechComboBox.Name = "orTechComboBox";
             // 
             // orIdNumericUpDown
             // 
+            resources.ApplyResources(this.orIdNumericUpDown, "orIdNumericUpDown");
             this.orIdNumericUpDown.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            resources.ApplyResources(this.orIdNumericUpDown, "orIdNumericUpDown");
             this.orIdNumericUpDown.Maximum = new decimal(new int[] {
             16777210,
             0,
@@ -480,19 +480,19 @@
             // 
             // andTechComboBox
             // 
-            this.andTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.andTechComboBox, "andTechComboBox");
+            this.andTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.andTechComboBox.FormattingEnabled = true;
             this.andTechComboBox.Name = "andTechComboBox";
             // 
             // andIdNumericUpDown
             // 
+            resources.ApplyResources(this.andIdNumericUpDown, "andIdNumericUpDown");
             this.andIdNumericUpDown.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            resources.ApplyResources(this.andIdNumericUpDown, "andIdNumericUpDown");
             this.andIdNumericUpDown.Maximum = new decimal(new int[] {
             16777210,
             0,
@@ -549,13 +549,13 @@
             // 
             // orRequiredListView
             // 
+            resources.ApplyResources(this.orRequiredListView, "orRequiredListView");
             this.orRequiredListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.orIdcolumnHeader,
             this.orNameColumnHeader});
             this.orRequiredListView.FullRowSelect = true;
             this.orRequiredListView.GridLines = true;
             this.orRequiredListView.HideSelection = false;
-            resources.ApplyResources(this.orRequiredListView, "orRequiredListView");
             this.orRequiredListView.MultiSelect = false;
             this.orRequiredListView.Name = "orRequiredListView";
             this.orRequiredListView.UseCompatibleStateImageBehavior = false;
@@ -571,13 +571,13 @@
             // 
             // andRequiredListView
             // 
+            resources.ApplyResources(this.andRequiredListView, "andRequiredListView");
             this.andRequiredListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.andIdColumnHeader,
             this.andNameColumnHeader});
             this.andRequiredListView.FullRowSelect = true;
             this.andRequiredListView.GridLines = true;
             this.andRequiredListView.HideSelection = false;
-            resources.ApplyResources(this.andRequiredListView, "andRequiredListView");
             this.andRequiredListView.MultiSelect = false;
             this.andRequiredListView.Name = "andRequiredListView";
             this.andRequiredListView.UseCompatibleStateImageBehavior = false;
@@ -677,8 +677,8 @@
             // 
             // componentSpecialityComboBox
             // 
-            this.componentSpecialityComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.componentSpecialityComboBox, "componentSpecialityComboBox");
+            this.componentSpecialityComboBox.FormattingEnabled = true;
             this.componentSpecialityComboBox.Name = "componentSpecialityComboBox";
             this.componentSpecialityComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnComponentSpecialityComboBoxSelectionChangeCommitted);
             // 
@@ -716,6 +716,7 @@
             // 
             // componentListView
             // 
+            resources.ApplyResources(this.componentListView, "componentListView");
             this.componentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.componentIdColumnHeader,
             this.componentNameColumnHeader,
@@ -725,7 +726,6 @@
             this.componentListView.FullRowSelect = true;
             this.componentListView.GridLines = true;
             this.componentListView.HideSelection = false;
-            resources.ApplyResources(this.componentListView, "componentListView");
             this.componentListView.MultiSelect = false;
             this.componentListView.Name = "componentListView";
             this.componentListView.UseCompatibleStateImageBehavior = false;
@@ -776,15 +776,15 @@
             // 
             // commandValueComboBox
             // 
-            this.commandValueComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.commandValueComboBox, "commandValueComboBox");
+            this.commandValueComboBox.FormattingEnabled = true;
             this.commandValueComboBox.Name = "commandValueComboBox";
             this.commandValueComboBox.TextUpdate += new System.EventHandler(this.OnCommandValueComboBoxTextUpdate);
             // 
             // commandWhereComboBox
             // 
-            this.commandWhereComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.commandWhereComboBox, "commandWhereComboBox");
+            this.commandWhereComboBox.FormattingEnabled = true;
             this.commandWhereComboBox.Name = "commandWhereComboBox";
             this.commandWhereComboBox.TextUpdate += new System.EventHandler(this.OnCommandWhereComboBoxTextUpdate);
             // 
@@ -795,15 +795,15 @@
             // 
             // commandWhenComboBox
             // 
-            this.commandWhenComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.commandWhenComboBox, "commandWhenComboBox");
+            this.commandWhenComboBox.FormattingEnabled = true;
             this.commandWhenComboBox.Name = "commandWhenComboBox";
             this.commandWhenComboBox.TextUpdate += new System.EventHandler(this.OnCommandWhenComboBoxTextUpdate);
             // 
             // commandTypeComboBox
             // 
-            this.commandTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.commandTypeComboBox, "commandTypeComboBox");
+            this.commandTypeComboBox.FormattingEnabled = true;
             this.commandTypeComboBox.Name = "commandTypeComboBox";
             this.commandTypeComboBox.Click += new System.EventHandler(this.OnCommandTypeComboBoxSelectionChangeCommitted);
             // 
@@ -849,8 +849,8 @@
             // 
             // commandWhichComboBox
             // 
-            this.commandWhichComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.commandWhichComboBox, "commandWhichComboBox");
+            this.commandWhichComboBox.FormattingEnabled = true;
             this.commandWhichComboBox.Name = "commandWhichComboBox";
             this.commandWhichComboBox.TextUpdate += new System.EventHandler(this.OnCommandWhichComboBoxTextUpdate);
             // 
@@ -871,6 +871,7 @@
             // 
             // effectListView
             // 
+            resources.ApplyResources(this.effectListView, "effectListView");
             this.effectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.commandTypeColumnHeader,
             this.commandWhichColumnHeader,
@@ -880,7 +881,6 @@
             this.effectListView.FullRowSelect = true;
             this.effectListView.GridLines = true;
             this.effectListView.HideSelection = false;
-            resources.ApplyResources(this.effectListView, "effectListView");
             this.effectListView.Name = "effectListView";
             this.effectListView.UseCompatibleStateImageBehavior = false;
             this.effectListView.View = System.Windows.Forms.View.Details;
@@ -937,13 +937,13 @@
             // 
             // labelPositionListView
             // 
+            resources.ApplyResources(this.labelPositionListView, "labelPositionListView");
             this.labelPositionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.labelXColumnHeader,
             this.labelYColumnHeader});
             this.labelPositionListView.FullRowSelect = true;
             this.labelPositionListView.GridLines = true;
             this.labelPositionListView.HideSelection = false;
-            resources.ApplyResources(this.labelPositionListView, "labelPositionListView");
             this.labelPositionListView.MultiSelect = false;
             this.labelPositionListView.Name = "labelPositionListView";
             this.labelPositionListView.UseCompatibleStateImageBehavior = false;
@@ -1035,13 +1035,13 @@
             // 
             // eventPositionListView
             // 
+            resources.ApplyResources(this.eventPositionListView, "eventPositionListView");
             this.eventPositionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.eventXColumnHeader,
             this.eventYColumnHeader});
             this.eventPositionListView.FullRowSelect = true;
             this.eventPositionListView.GridLines = true;
             this.eventPositionListView.HideSelection = false;
-            resources.ApplyResources(this.eventPositionListView, "eventPositionListView");
             this.eventPositionListView.MultiSelect = false;
             this.eventPositionListView.Name = "eventPositionListView";
             this.eventPositionListView.UseCompatibleStateImageBehavior = false;
@@ -1133,8 +1133,8 @@
             // 
             // techListBox
             // 
-            this.techListBox.FormattingEnabled = true;
             resources.ApplyResources(this.techListBox, "techListBox");
+            this.techListBox.FormattingEnabled = true;
             this.techListBox.Name = "techListBox";
             this.techListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechListBoxSelectedIndexChanged);
             // 
