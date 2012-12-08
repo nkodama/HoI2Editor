@@ -296,7 +296,7 @@ namespace HoI2Editor.Models
         private static void LoadTechFile(string fileName)
         {
             TechGroup group = TechParser.Parse(fileName);
-            List.Add(@group);
+            List.Add(group);
         }
 
         /// <summary>
@@ -306,8 +306,8 @@ namespace HoI2Editor.Models
         {
             foreach (TechGroup group in List)
             {
-                string fileName = Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) @group.Category]));
-                TechWriter.Write(@group, fileName);
+                string fileName = Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) group.Category]));
+                TechWriter.Write(group, fileName);
             }
 
             // 編集済みフラグを全クリアする
@@ -322,7 +322,7 @@ namespace HoI2Editor.Models
         public static void AddItem(TechCategory category, object target)
         {
             TechGroup group = List[(int) category];
-            @group.Items.Add(target);
+            group.Items.Add(target);
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace HoI2Editor.Models
         public static void InsertItemNext(TechCategory category, object target, object position)
         {
             TechGroup group = List[(int) category];
-            @group.Items.Insert(@group.Items.IndexOf(position) + 1, target);
+            group.Items.Insert(group.Items.IndexOf(position) + 1, target);
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace HoI2Editor.Models
         public static void RemoveItem(TechCategory category, object target)
         {
             TechGroup group = List[(int) category];
-            @group.Items.Remove(target);
+            group.Items.Remove(target);
         }
 
         /// <summary>
