@@ -35,6 +35,7 @@
             this.modLabel = new System.Windows.Forms.Label();
             this.modTextBox = new System.Windows.Forms.TextBox();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.techButton = new System.Windows.Forms.Button();
             this.leaderButton = new System.Windows.Forms.Button();
             this.teamButton = new System.Windows.Forms.Button();
             this.gameFolderReferButton = new System.Windows.Forms.Button();
@@ -62,8 +63,8 @@
             // 
             // gameFolderTextBox
             // 
-            this.gameFolderTextBox.AllowDrop = true;
             resources.ApplyResources(this.gameFolderTextBox, "gameFolderTextBox");
+            this.gameFolderTextBox.AllowDrop = true;
             this.gameFolderTextBox.Name = "gameFolderTextBox";
             this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
             this.gameFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnGameFolderTextBoxDragDrop);
@@ -76,8 +77,8 @@
             // 
             // modTextBox
             // 
-            this.modTextBox.AllowDrop = true;
             resources.ApplyResources(this.modTextBox, "modTextBox");
+            this.modTextBox.AllowDrop = true;
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.TextChanged += new System.EventHandler(this.OnModTextBoxTextChanged);
             this.modTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnModTextBoxDragDrop);
@@ -85,12 +86,20 @@
             // 
             // editGroupBox
             // 
+            resources.ApplyResources(this.editGroupBox, "editGroupBox");
+            this.editGroupBox.Controls.Add(this.techButton);
             this.editGroupBox.Controls.Add(this.leaderButton);
             this.editGroupBox.Controls.Add(this.teamButton);
             this.editGroupBox.Controls.Add(this.ministerButton);
-            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
+            // 
+            // techButton
+            // 
+            resources.ApplyResources(this.techButton, "techButton");
+            this.techButton.Name = "techButton";
+            this.techButton.UseVisualStyleBackColor = true;
+            this.techButton.Click += new System.EventHandler(this.OnTechButtonClick);
             // 
             // leaderButton
             // 
@@ -134,21 +143,21 @@
             // 
             // encodingComboBox
             // 
+            resources.ApplyResources(this.encodingComboBox, "encodingComboBox");
             this.encodingComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.encodingComboBox.FormattingEnabled = true;
             this.encodingComboBox.Items.AddRange(new object[] {
             resources.GetString("encodingComboBox.Items"),
             resources.GetString("encodingComboBox.Items1")});
-            resources.ApplyResources(this.encodingComboBox, "encodingComboBox");
             this.encodingComboBox.Name = "encodingComboBox";
             this.encodingComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnEncodingComboBoxSelectionChangeCommitted);
             // 
             // optionGroupBox
             // 
+            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Controls.Add(this.logCheckBox);
             this.optionGroupBox.Controls.Add(this.encodingComboBox);
             this.optionGroupBox.Controls.Add(this.encodingLabel);
-            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
             // 
@@ -199,5 +208,6 @@
         private System.Windows.Forms.ComboBox encodingComboBox;
         private System.Windows.Forms.GroupBox optionGroupBox;
         private System.Windows.Forms.CheckBox logCheckBox;
+        private System.Windows.Forms.Button techButton;
     }
 }

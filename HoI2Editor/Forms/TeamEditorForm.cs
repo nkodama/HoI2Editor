@@ -144,7 +144,7 @@ namespace HoI2Editor.Forms
             if (!string.IsNullOrEmpty(team.PictureName))
             {
                 string fileName =
-                    Game.GetFileName(Path.Combine(Game.PicturePathName,
+                    Game.GetFileName(Path.Combine(Game.PersonPicturePathName,
                                                   Path.ChangeExtension(team.PictureName, ".bmp")));
                 teamPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
             }
@@ -160,7 +160,7 @@ namespace HoI2Editor.Forms
         private void InitSpecialities()
         {
             // ゲームの種類に合わせて研究特性を初期化する
-            Teams.InitSpecialities();
+            Techs.InitSpecialities();
 
             // 研究特性画像リストを作成する
             var bitmap = new Bitmap(Game.GetFileName(Game.TechIconPathName));
@@ -181,7 +181,7 @@ namespace HoI2Editor.Forms
             int maxSize = countryComboBox.DropDownWidth;
             foreach (string s in Country.CountryTextTable.Select(
                 country =>
-                Config.Text.ContainsKey(country) ? string.Format("{0} {1}", country, Config.Text[country]) : country))
+                Config.ExistsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country))
             {
                 countryComboBox.Items.Add(s);
                 maxSize = Math.Max(maxSize,
@@ -194,8 +194,8 @@ namespace HoI2Editor.Forms
             maxSize = specialityComboBox1.DropDownWidth;
             foreach (
                 string name in
-                    Teams.SpecialityTable.Select(
-                        speciality => Config.GetText(Team.SpecialityNameTable[(int) speciality])))
+                    Techs.SpecialityTable.Select(
+                        speciality => Config.GetText(Tech.SpecialityNameTable[(int) speciality])))
             {
                 specialityComboBox1.Items.Add(name);
                 specialityComboBox2.Items.Add(name);
@@ -230,7 +230,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     研究機関リストに項目を追加する
         /// </summary>
-        /// <param name="target">挿入対象の項目</param>
+        /// <param name="target">追加対象の項目</param>
         private void AddListItem(Team target)
         {
             _narrowedList.Add(target);
@@ -1313,7 +1313,7 @@ namespace HoI2Editor.Forms
 
             var dialog = new OpenFileDialog
                              {
-                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PicturePathName),
+                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
                                  FileName = team.PictureName,
                                  Filter = Resources.OpenBitmapFileDialogFilter
                              };

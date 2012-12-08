@@ -244,7 +244,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                if (!string.IsNullOrEmpty(ideologyComboBox.Items[0].ToString()))
+                if (!string.IsNullOrEmpty(loyaltyComboBox.Items[0].ToString()))
                 {
                     loyaltyComboBox.Items.Insert(0, "");
                 }
@@ -263,7 +263,7 @@ namespace HoI2Editor.Forms
             if (!string.IsNullOrEmpty(minister.PictureName))
             {
                 string fileName =
-                    Game.GetFileName(Path.Combine(Game.PicturePathName,
+                    Game.GetFileName(Path.Combine(Game.PersonPicturePathName,
                                                   Path.ChangeExtension(minister.PictureName, ".bmp")));
                 ministerPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
             }
@@ -291,8 +291,7 @@ namespace HoI2Editor.Forms
             int maxSize = countryComboBox.DropDownWidth;
             foreach (string s in Country.CountryTextTable.Select(
                 country =>
-                Config.Text.ContainsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country)
-                )
+                Config.ExistsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country))
             {
                 countryComboBox.Items.Add(s);
                 maxSize = Math.Max(maxSize,
@@ -1134,7 +1133,7 @@ namespace HoI2Editor.Forms
 
             minister.Position = newPosition;
             ministerListView.SelectedItems[0].SubItems[5].Text =
-                Config.Text[Ministers.PositionTable[(int) minister.Position].Name];
+                Config.GetText(Ministers.PositionTable[(int) minister.Position].Name);
 
             UpdatePositionComboBox(minister);
             // 地位に連動して特性の選択肢も変更する
@@ -1190,7 +1189,7 @@ namespace HoI2Editor.Forms
 
             minister.Personality = newPersonality;
             ministerListView.SelectedItems[0].SubItems[6].Text =
-                Config.Text[Ministers.PersonalityTable[minister.Personality].Name];
+                Config.GetText(Ministers.PersonalityTable[minister.Personality].Name);
 
             UpdatePersonalityComboBox(minister);
 
@@ -1226,7 +1225,7 @@ namespace HoI2Editor.Forms
 
             minister.Ideology = newIdeology;
             ministerListView.SelectedItems[0].SubItems[7].Text =
-                Config.Text[Ministers.IdeologyTable[(int) minister.Ideology].Name];
+                Config.GetText(Ministers.IdeologyTable[(int) minister.Ideology].Name);
 
             UpdateIdeologyComboBox(minister);
 
@@ -1318,7 +1317,7 @@ namespace HoI2Editor.Forms
 
             var dialog = new OpenFileDialog
                              {
-                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PicturePathName),
+                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
                                  FileName = minister.PictureName,
                                  Filter = Resources.OpenBitmapFileDialogFilter
                              };

@@ -88,6 +88,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Event に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Event {
+            get {
+                return ResourceManager.GetString("Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Hitler に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Hitler {
@@ -286,6 +295,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Label に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Label {
+            get {
+                return ResourceManager.GetString("Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   High に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string LoyaltyHigh {
@@ -354,6 +372,15 @@ namespace HoI2Editor.Properties {
         public static string ModifiedPersonality {
             get {
                 return ResourceManager.GetString("ModifiedPersonality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -588,6 +615,15 @@ namespace HoI2Editor.Properties {
         public static string Stalin {
             get {
                 return ResourceManager.GetString("Stalin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

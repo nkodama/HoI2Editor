@@ -35,39 +35,41 @@ namespace HoI2Editor.Parsers
         /// <returns>閣僚特性リスト</returns>
         public static List<MinisterPersonalityInfo> Parse(string fileName)
         {
-            var lexer = new TextLexer(fileName);
             var list = new List<MinisterPersonalityInfo>();
 
-            while (true)
+            using (var lexer = new TextLexer(fileName))
             {
-                Token token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
+                while (true)
                 {
-                    break;
+                    Token token = lexer.GetToken();
+
+                    // ファイルの終端
+                    if (token == null)
+                    {
+                        break;
+                    }
+
+                    // 無効なトークン
+                    if (token.Type != TokenType.Identifier || !((string) token.Value).Equals("minister"))
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        continue;
+                    }
+
+                    // ministerセクション
+                    MinisterPersonalityInfo info = ParseMinister(lexer);
+                    if (info == null)
+                    {
+                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "minister",
+                                                Resources.Section, "minister_personalities.txt"));
+                    }
+
+                    // 閣僚特性リストへ登録
+                    list.Add(info);
                 }
 
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier || !((string) token.Value).Equals("minister"))
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    continue;
-                }
-
-                // ministerセクション
-                MinisterPersonalityInfo info = ParseMinister(lexer);
-                if (info == null)
-                {
-                    Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "minister",
-                                            Resources.Section, "minister_personalities.txt"));
-                }
-
-                // 閣僚特性リストへ登録
-                list.Add(info);
+                return list;
             }
-
-            return list;
         }
 
         /// <summary>

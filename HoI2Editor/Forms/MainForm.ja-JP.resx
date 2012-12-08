@@ -133,6 +133,9 @@
   <data name="modLabel.Text" xml:space="preserve">
     <value>MOD名</value>
   </data>
+  <data name="techButton.Text" xml:space="preserve">
+    <value>技術ツリー</value>
+  </data>
   <data name="leaderButton.Text" xml:space="preserve">
     <value>指揮官</value>
   </data>

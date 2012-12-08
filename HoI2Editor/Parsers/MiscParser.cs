@@ -15,154 +15,155 @@ namespace HoI2Editor.Parsers
         /// <returns>構文解析の成否</returns>
         public static bool Parse(string fileName)
         {
-            var lexer = new TextLexer(fileName);
-
-            while (true)
+            using (var lexer = new TextLexer(fileName))
             {
-                Token token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
+                while (true)
                 {
-                    return true;
-                }
+                    Token token = lexer.GetToken();
 
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
+                    // ファイルの終端
+                    if (token == null)
+                    {
+                        return true;
+                    }
+
+                    // 無効なトークン
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        continue;
+                    }
+
+                    var keyword = token.Value as string;
+                    if (string.IsNullOrEmpty(keyword))
+                    {
+                        continue;
+                    }
+
+                    // economyセクション
+                    if (keyword.Equals("economy"))
+                    {
+                        if (!ParseEconomy(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "economy",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // intelligenceセクション
+                    if (keyword.Equals("intelligence"))
+                    {
+                        if (!ParseIntelligence(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "intelligence",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // diplomacyセクション
+                    if (keyword.Equals("diplomacy"))
+                    {
+                        if (!ParseDiplomacy(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "diplomacy",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // combatセクション
+                    if (keyword.Equals("combat"))
+                    {
+                        if (!ParseCombat(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "combat",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // missionセクション
+                    if (keyword.Equals("mission"))
+                    {
+                        if (!ParseMission(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mission",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // countryセクション
+                    if (keyword.Equals("country"))
+                    {
+                        if (!ParseCountry(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "country",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // researchセクション
+                    if (keyword.Equals("research"))
+                    {
+                        if (!ParseResearch(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "research",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // tradeセクション
+                    if (keyword.Equals("trade"))
+                    {
+                        if (!ParseTrade(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "trade",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // aiセクション
+                    if (keyword.Equals("ai"))
+                    {
+                        if (!ParseAi(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "ai",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // modセクション
+                    if (keyword.Equals("mod"))
+                    {
+                        if (!ParseMod(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mod",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // mapセクション
+                    if (keyword.Equals("map"))
+                    {
+                        if (!ParseMap(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "map",
+                                                    Resources.Section, "misc.txt"));
+                        }
+                        continue;
+                    }
+
+                    // 無効なトークン
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    continue;
                 }
-
-                var keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-
-                // economyセクション
-                if (keyword.Equals("economy"))
-                {
-                    if (!ParseEconomy(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "economy",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // intelligenceセクション
-                if (keyword.Equals("intelligence"))
-                {
-                    if (!ParseIntelligence(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "intelligence",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // diplomacyセクション
-                if (keyword.Equals("diplomacy"))
-                {
-                    if (!ParseDiplomacy(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "diplomacy",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // combatセクション
-                if (keyword.Equals("combat"))
-                {
-                    if (!ParseCombat(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "combat",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // missionセクション
-                if (keyword.Equals("mission"))
-                {
-                    if (!ParseMission(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mission",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // countryセクション
-                if (keyword.Equals("country"))
-                {
-                    if (!ParseCountry(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "country",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // researchセクション
-                if (keyword.Equals("research"))
-                {
-                    if (!ParseResearch(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "research",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // tradeセクション
-                if (keyword.Equals("trade"))
-                {
-                    if (!ParseTrade(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "trade",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // aiセクション
-                if (keyword.Equals("ai"))
-                {
-                    if (!ParseAi(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "ai",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // modセクション
-                if (keyword.Equals("mod"))
-                {
-                    if (!ParseMod(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mod",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // mapセクション
-                if (keyword.Equals("map"))
-                {
-                    if (!ParseMap(lexer))
-                    {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "map",
-                                                Resources.Section, "misc.txt"));
-                    }
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
             }
         }
 

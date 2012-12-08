@@ -73,6 +73,13 @@
     <Compile Include="Forms\TeamEditorForm.Designer.cs">
       <DependentUpon>TeamEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TechEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TechEditorForm.Designer.cs">
+      <DependentUpon>TechEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Command.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="HoI2EditorApplication.cs" />
     <Compile Include="Models\Config.cs" />
@@ -85,12 +92,17 @@
     <Compile Include="Models\Misc.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
+    <Compile Include="Models\Tech.cs" />
+    <Compile Include="Models\Techs.cs" />
+    <Compile Include="Parsers\CommandParser.cs" />
     <Compile Include="Parsers\MinisterModifierParser.cs" />
     <Compile Include="Parsers\MinisterPersonalityParser.cs" />
     <Compile Include="Parsers\MiscParser.cs" />
+    <Compile Include="Parsers\TechParser.cs" />
     <Compile Include="Parsers\TextLexer.cs" />
     <Compile Include="Parsers\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Writers\TechWriter.cs" />
     <EmbeddedResource Include="Forms\LeaderEditorForm.ja-JP.resx">
       <DependentUpon>LeaderEditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +132,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TeamEditorForm.resx">
       <DependentUpon>TeamEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TechEditorForm.ja-JP.resx">
+      <DependentUpon>TechEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TechEditorForm.resx">
+      <DependentUpon>TechEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

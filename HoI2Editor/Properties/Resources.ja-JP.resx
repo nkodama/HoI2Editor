@@ -126,6 +126,9 @@
   <data name="BranchNavy" xml:space="preserve">
     <value>海軍</value>
   </data>
+  <data name="Event" xml:space="preserve">
+    <value>イベント</value>
+  </data>
   <data name="Hitler" xml:space="preserve">
     <value>ヒトラー</value>
   </data>
@@ -192,6 +195,9 @@
   <data name="KeyUnselectAll" xml:space="preserve">
     <value>全解除</value>
   </data>
+  <data name="Label" xml:space="preserve">
+    <value>ラベル</value>
+  </data>
   <data name="LoyaltyHigh" xml:space="preserve">
     <value>高</value>
   </data>
@@ -215,6 +221,9 @@
   </data>
   <data name="ModifiedPersonality" xml:space="preserve">
     <value>閣僚特性を修正</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>×</value>
   </data>
   <data name="OpenBitmapFileDialogFilter" xml:space="preserve">
     <value>ビットマップ (*.bmp)|*.bmp|すべてのファイル (*.*)|*.*</value>
@@ -293,5 +302,8 @@
   </data>
   <data name="Stalin" xml:space="preserve">
     <value>スターリン</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>○</value>
   </data>
 </root>

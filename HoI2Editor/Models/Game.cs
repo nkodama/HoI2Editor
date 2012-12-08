@@ -37,9 +37,24 @@ namespace HoI2Editor.Models
         public const string TeamPathName = "db\\tech\\teams";
 
         /// <summary>
-        ///     画像フォルダ
+        ///     技術フォルダ
         /// </summary>
-        public const string PicturePathName = "gfx\\interface\\pics";
+        public const string TechPathName = "db\\tech";
+
+        /// <summary>
+        ///     一般画像フォルダ
+        /// </summary>
+        public const string PicturePathName = "gfx\\interface";
+
+        /// <summary>
+        ///     指揮官/閣僚/研究機関画像フォルダ
+        /// </summary>
+        public const string PersonPicturePathName = "gfx\\interface\\pics";
+
+        /// <summary>
+        ///     技術画像フォルダ
+        /// </summary>
+        public const string TechPicturePathName = "gfx\\interface\\tech";
 
         /// <summary>
         ///     MODフォルダ名(DH)
@@ -80,6 +95,21 @@ namespace HoI2Editor.Models
         ///     研究特性アイコンのファイル名
         /// </summary>
         public const string TechIconPathName = "gfx\\interface\\tc_icons.bmp";
+
+        /// <summary>
+        ///     技術ラベルのファイル名
+        /// </summary>
+        public const string TechLabelPathName = "gfx\\interface\\button_tech_normal.bmp";
+
+        /// <summary>
+        ///     イベントラベルのファイル名
+        /// </summary>
+        public const string SecretLabelPathName = "gfx\\interface\\button_tech_secret.bmp";
+
+        /// <summary>
+        ///     技術文字列定義のファイル名
+        /// </summary>
+        public const string TechTextFileName = "tech_names.csv";
 
         #endregion
 
@@ -138,7 +168,7 @@ namespace HoI2Editor.Models
 
                 // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
-                Config.Loaded = false;
+                Config.RequireReload();
             }
         }
 
@@ -163,7 +193,7 @@ namespace HoI2Editor.Models
 
                 // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
-                Config.Loaded = false;
+                Config.RequireReload();
             }
         }
 
@@ -190,7 +220,7 @@ namespace HoI2Editor.Models
 
                 // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
-                Config.Loaded = false;
+                Config.RequireReload();
             }
         }
 

@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="categoryDescLabel.Text" xml:space="preserve">
+    <value>カテゴリ説明</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="categoryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 12</value>
+  </data>
+  <data name="categoryNameLabel.Text" xml:space="preserve">
+    <value>カテゴリ名</value>
+  </data>
+  <data name="categoryTabPage.Text" xml:space="preserve">
+    <value>カテゴリ</value>
+  </data>
+  <data name="techPositionRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="techPositionAddButton.Text" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="techPictureNameBrowseButton.Text" xml:space="preserve">
+    <value>参照</value>
+  </data>
+  <data name="techPictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 12</value>
+  </data>
+  <data name="techPictureNameLabel.Text" xml:space="preserve">
+    <value>画像ファイル名</value>
+  </data>
+  <data name="techYearLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="techYearLabel.Text" xml:space="preserve">
+    <value>史実年度</value>
+  </data>
+  <data name="techShortNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="techShortNameLabel.Text" xml:space="preserve">
+    <value>短縮名</value>
+  </data>
+  <data name="techNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="techNameLabel.Text" xml:space="preserve">
+    <value>技術名</value>
+  </data>
+  <data name="techTabPage.Text" xml:space="preserve">
+    <value>技術</value>
+  </data>
+  <data name="andRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="andModifyButton.Text" xml:space="preserve">
+    <value>変更</value>
+  </data>
+  <data name="andAddButton.Text" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="orRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="orModifyButton.Text" xml:space="preserve">
+    <value>変更</value>
+  </data>
+  <data name="orAddButton.Text" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="orNameColumnHeader.Text" xml:space="preserve">
+    <value>技術名</value>
+  </data>
+  <data name="andNameColumnHeader.Text" xml:space="preserve">
+    <value>技術名</value>
+  </data>
+  <data name="orRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
+  </data>
+  <data name="orRequiredLabel.Text" xml:space="preserve">
+    <value>OR条件</value>
+  </data>
+  <data name="andRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="andRequiredLabel.Text" xml:space="preserve">
+    <value>AND条件</value>
+  </data>
+  <data name="requiredTabPage.Text" xml:space="preserve">
+    <value>必要技術</value>
+  </data>
+  <data name="componentDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="componentUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="componentRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="componentCloneButton.Text" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="componentNewButton.Text" xml:space="preserve">
+    <value>新規</value>
+  </data>
+  <data name="componentDoubleTimeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 16</value>
+  </data>
+  <data name="componentDoubleTimeCheckBox.Text" xml:space="preserve">
+    <value>2倍</value>
+  </data>
+  <data name="componentDifficultyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="componentDifficultyLabel.Text" xml:space="preserve">
+    <value>難易度</value>
+  </data>
+  <data name="componentSpecialityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="componentSpecialityLabel.Text" xml:space="preserve">
+    <value>研究特性</value>
+  </data>
+  <data name="componentNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="componentNameLabel.Text" xml:space="preserve">
+    <value>小研究名</value>
+  </data>
+  <data name="componentNameColumnHeader.Text" xml:space="preserve">
+    <value>小研究名</value>
+  </data>
+  <data name="componentSpecialityColumnHeader.Text" xml:space="preserve">
+    <value>研究特性</value>
+  </data>
+  <data name="componentDifficultyColumnHeader.Text" xml:space="preserve">
+    <value>難易度</value>
+  </data>
+  <data name="componentDoubleTimeColumnHeader.Text" xml:space="preserve">
+    <value>2倍</value>
+  </data>
+  <data name="componentTabPage.Text" xml:space="preserve">
+    <value>小研究</value>
+  </data>
+  <data name="effectDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="effectUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="effectRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="effectCloneButton.Text" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="effectNewButton.Text" xml:space="preserve">
+    <value>新規</value>
+  </data>
+  <data name="commandTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="commandTypeLabel.Text" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="commandTypeColumnHeader.Text" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="effectTabPage.Text" xml:space="preserve">
+    <value>技術効果</value>
+  </data>
+  <data name="labelPositionRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="labelPositionAddButton.Text" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="labelNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
+  </data>
+  <data name="labelNameLabel.Text" xml:space="preserve">
+    <value>ラベル名</value>
+  </data>
+  <data name="labelTabPage.Text" xml:space="preserve">
+    <value>ラベル</value>
+  </data>
+  <data name="eventPositionRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="eventPositionAddButton.Text" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="eventTechLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
+  </data>
+  <data name="eventTechLabel.Text" xml:space="preserve">
+    <value>技術ID</value>
+  </data>
+  <data name="eventTabPage.Text" xml:space="preserve">
+    <value>発明イベント</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="topButton.Text" xml:space="preserve">
+    <value>先頭へ</value>
+  </data>
+  <data name="bottomButton.Text" xml:space="preserve">
+    <value>末尾へ</value>
+  </data>
+  <data name="upButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="downButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="newTechButton.Text" xml:space="preserve">
+    <value>新規技術</value>
+  </data>
+  <data name="newLabelButton.Text" xml:space="preserve">
+    <value>新規ラベル</value>
+  </data>
+  <data name="newEventButton.Text" xml:space="preserve">
+    <value>新規イベント</value>
+  </data>
+  <data name="cloneButton.Text" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="removeButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>技術ツリーエディタ</value>
+  </data>
+</root>

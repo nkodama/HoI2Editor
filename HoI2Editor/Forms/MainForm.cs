@@ -190,8 +190,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderButtonClick(object sender, EventArgs e)
         {
-            Misc.LoadMiscFile();
-            Config.LoadConfigFiles();
+            LoadCommonFiles();
             var form = new LeaderEditorForm();
             form.Show();
         }
@@ -203,8 +202,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
-            Misc.LoadMiscFile();
-            Config.LoadConfigFiles();
+            LoadCommonFiles();
             var form = new MinisterEditorForm();
             form.Show();
         }
@@ -216,10 +214,30 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamButtonClick(object sender, EventArgs e)
         {
-            Misc.LoadMiscFile();
-            Config.LoadConfigFiles();
+            LoadCommonFiles();
             var form = new TeamEditorForm();
             form.Show();
+        }
+
+        /// <summary>
+        ///     技術ツリーボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechButtonClick(object sender, EventArgs e)
+        {
+            LoadCommonFiles();
+            var form = new TechEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
+        ///     共通ファイルを読み込む
+        /// </summary>
+        private void LoadCommonFiles()
+        {
+            Misc.LoadMiscFile();
+            Config.LoadConfigFiles();
         }
     }
 }

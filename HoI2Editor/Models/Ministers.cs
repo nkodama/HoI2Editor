@@ -918,21 +918,21 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            string[] token = line.Split(CsvSeparator);
+            string[] tokens = line.Split(CsvSeparator);
 
             // ID指定のない行は読み飛ばす
-            if (String.IsNullOrEmpty(token[0]))
+            if (String.IsNullOrEmpty(tokens[0]))
             {
                 return;
             }
 
             // トークン数が足りない行は読み飛ばす
-            if (token.Length != (Misc.Mod.RetirementYearMinister ? 11 : (Misc.Mod.NewMinisterFormat ? 10 : 9)))
+            if (tokens.Length != (Misc.Mod.RetirementYearMinister ? 11 : (Misc.Mod.NewMinisterFormat ? 10 : 9)))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", line));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
-                if (token.Length < (Misc.Mod.RetirementYearMinister ? 10 : (Misc.Mod.NewMinisterFormat ? 9 : 8)))
+                if (tokens.Length < (Misc.Mod.RetirementYearMinister ? 10 : (Misc.Mod.NewMinisterFormat ? 9 : 8)))
                 {
                     return;
                 }
@@ -943,17 +943,17 @@ namespace HoI2Editor.Models
 
             // ID
             int id;
-            if (!Int32.TryParse(token[index], out id))
+            if (!Int32.TryParse(tokens[index], out id))
             {
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1}\n", token[index], token[index + 2]));
+                Log.Write(String.Format("  {0}: {1}\n", tokens[index], tokens[index + 2]));
                 return;
             }
             minister.Id = id;
             index++;
 
             // 閣僚地位
-            string positionName = token[index].ToLower();
+            string positionName = tokens[index].ToLower();
             if (PositionStringMap.ContainsKey(positionName))
             {
                 minister.Position = PositionStringMap[positionName];
@@ -962,17 +962,17 @@ namespace HoI2Editor.Models
             {
                 minister.Position = MinisterPosition.None;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, token[index + 1], token[index]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, tokens[index + 1], tokens[index]));
             }
             index++;
 
             // 名前
-            minister.Name = token[index];
+            minister.Name = tokens[index];
             index++;
 
             // 開始年
             int startYear;
-            if (Int32.TryParse(token[index], out startYear))
+            if (Int32.TryParse(tokens[index], out startYear))
             {
                 minister.StartYear = startYear + (Misc.Mod.NewMinisterFormat ? 0 : 1900);
             }
@@ -980,7 +980,7 @@ namespace HoI2Editor.Models
             {
                 minister.StartYear = 1936;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
             }
             index++;
 
@@ -988,7 +988,7 @@ namespace HoI2Editor.Models
             if (Misc.Mod.NewMinisterFormat)
             {
                 int endYear;
-                if (Int32.TryParse(token[index], out endYear))
+                if (Int32.TryParse(tokens[index], out endYear))
                 {
                     minister.EndYear = endYear;
                 }
@@ -997,7 +997,7 @@ namespace HoI2Editor.Models
                     minister.EndYear = 1970;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
                                             _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
                 }
                 index++;
             }
@@ -1010,7 +1010,7 @@ namespace HoI2Editor.Models
             if (Misc.Mod.RetirementYearMinister)
             {
                 int retirementYear;
-                if (Int32.TryParse(token[index], out retirementYear))
+                if (Int32.TryParse(tokens[index], out retirementYear))
                 {
                     minister.RetirementYear = retirementYear;
                 }
@@ -1019,7 +1019,7 @@ namespace HoI2Editor.Models
                     minister.RetirementYear = 1999;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidRetirementYear, _currentFileName,
                                             _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
                 }
                 index++;
             }
@@ -1029,7 +1029,7 @@ namespace HoI2Editor.Models
             }
 
             // イデオロギー
-            string ideologyName = token[index].ToLower();
+            string ideologyName = tokens[index].ToLower();
             if (IdeologyStringMap.ContainsKey(ideologyName))
             {
                 minister.Ideology = IdeologyStringMap[ideologyName];
@@ -1038,12 +1038,12 @@ namespace HoI2Editor.Models
             {
                 minister.Ideology = MinisterIdeology.None;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
             }
             index++;
 
             // 閣僚特性
-            string personalityName = token[index].ToLower();
+            string personalityName = tokens[index].ToLower();
             if (PersonalityStringMap.ContainsKey(personalityName))
             {
                 minister.Personality = PersonalityStringMap[personalityName];
@@ -1056,7 +1056,7 @@ namespace HoI2Editor.Models
                     minister.Personality = PersonalityStringMap[PersonalityTypoMap[personalityName]];
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.ModifiedPersonality, _currentFileName,
                                             _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2} -> {3}\n", minister.Id, minister.Name, token[index],
+                    Log.Write(String.Format("  {0}: {1} => {2} -> {3}\n", minister.Id, minister.Name, tokens[index],
                                             PersonalityTable[minister.Personality].String));
                 }
                 else
@@ -1064,13 +1064,13 @@ namespace HoI2Editor.Models
                     minister.Personality = 0;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPersonality, _currentFileName,
                                             _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
                 }
             }
             index++;
 
             // 忠誠度
-            string loyaltyName = token[index].ToLower();
+            string loyaltyName = tokens[index].ToLower();
             if (LoyaltyStringMap.ContainsKey(loyaltyName))
             {
                 minister.Loyalty = LoyaltyStringMap[loyaltyName];
@@ -1079,12 +1079,12 @@ namespace HoI2Editor.Models
             {
                 minister.Loyalty = MinisterLoyalty.None;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, token[index]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
             }
             index++;
 
             // 画像ファイル名
-            minister.PictureName = token[index];
+            minister.PictureName = tokens[index];
 
             List.Add(minister);
         }

@@ -35,51 +35,53 @@ namespace HoI2Editor.Parsers
         /// <returns>閣僚特性リスト</returns>
         public static List<MinisterPersonalityInfo> Parse(string fileName)
         {
-            var lexer = new TextLexer(fileName);
             List<MinisterPersonalityInfo> list = null;
 
-            while (true)
+            using (var lexer = new TextLexer(fileName))
             {
-                Token token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
+                while (true)
                 {
-                    return list;
-                }
+                    Token token = lexer.GetToken();
 
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    continue;
-                }
-
-                var keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-
-                // minister_modifiersセクション
-                if (keyword.Equals("minister_modifiers"))
-                {
-                    if (!ParseMinisterModifiers(lexer))
+                    // ファイルの終端
+                    if (token == null)
                     {
-                        Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "minister_modifiers",
-                                                Resources.Section, "minister_modifiers.txt"));
+                        return list;
                     }
-                    continue;
-                }
 
-                // minister_personalitiesセクション
-                if (keyword.Equals("minister_personalities"))
-                {
-                    list = ParseMinisterPersonalities(lexer);
-                    continue;
-                }
+                    // 無効なトークン
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        continue;
+                    }
 
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    var keyword = token.Value as string;
+                    if (string.IsNullOrEmpty(keyword))
+                    {
+                        continue;
+                    }
+
+                    // minister_modifiersセクション
+                    if (keyword.Equals("minister_modifiers"))
+                    {
+                        if (!ParseMinisterModifiers(lexer))
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "minister_modifiers",
+                                                    Resources.Section, "minister_modifiers.txt"));
+                        }
+                        continue;
+                    }
+
+                    // minister_personalitiesセクション
+                    if (keyword.Equals("minister_personalities"))
+                    {
+                        list = ParseMinisterPersonalities(lexer);
+                        continue;
+                    }
+
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                }
             }
         }
 
