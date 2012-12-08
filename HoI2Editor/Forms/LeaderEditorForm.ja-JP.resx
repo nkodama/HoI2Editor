@@ -172,7 +172,7 @@
   <data name="topButton.Text" xml:space="preserve">
     <value>先頭へ</value>
   </data>
-  <data name="deleteButton.Text" xml:space="preserve">
+  <data name="removeButton.Text" xml:space="preserve">
     <value>削除</value>
   </data>
   <data name="cloneButton.Text" xml:space="preserve">

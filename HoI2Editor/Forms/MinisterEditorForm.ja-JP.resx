@@ -144,7 +144,7 @@
   <data name="cloneButton.Text" xml:space="preserve">
     <value>複製</value>
   </data>
-  <data name="deleteButton.Text" xml:space="preserve">
+  <data name="removeButton.Text" xml:space="preserve">
     <value>削除</value>
   </data>
   <data name="topButton.Text" xml:space="preserve">

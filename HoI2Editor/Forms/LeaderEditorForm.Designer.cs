@@ -52,7 +52,7 @@
             this.downButton = new System.Windows.Forms.Button();
             this.upButton = new System.Windows.Forms.Button();
             this.topButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             this.cloneButton = new System.Windows.Forms.Button();
             this.countryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -350,12 +350,12 @@
             this.topButton.UseVisualStyleBackColor = true;
             this.topButton.Click += new System.EventHandler(this.OnTopButtonClick);
             // 
-            // deleteButton
+            // removeButton
             // 
-            resources.ApplyResources(this.deleteButton, "deleteButton");
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.OnDeleteButtonClick);
+            resources.ApplyResources(this.removeButton, "removeButton");
+            this.removeButton.Name = "removeButton";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.OnRemoveButtonClick);
             // 
             // cloneButton
             // 
@@ -561,10 +561,10 @@
             // 
             // branchNarrowGroupBox
             // 
+            resources.ApplyResources(this.branchNarrowGroupBox, "branchNarrowGroupBox");
             this.branchNarrowGroupBox.Controls.Add(this.airforceNarrowCheckBox);
             this.branchNarrowGroupBox.Controls.Add(this.navyNarrowCheckBox);
             this.branchNarrowGroupBox.Controls.Add(this.armyNarrowCheckBox);
-            resources.ApplyResources(this.branchNarrowGroupBox, "branchNarrowGroupBox");
             this.branchNarrowGroupBox.Name = "branchNarrowGroupBox";
             this.branchNarrowGroupBox.TabStop = false;
             // 
@@ -597,6 +597,7 @@
             // 
             // traitsNarrowGroupBox
             // 
+            resources.ApplyResources(this.traitsNarrowGroupBox, "traitsNarrowGroupBox");
             this.traitsNarrowGroupBox.Controls.Add(this.traitsNarrowInvertButton);
             this.traitsNarrowGroupBox.Controls.Add(this.traitsAndNarrowRadioButton);
             this.traitsNarrowGroupBox.Controls.Add(this.traitsOrNarrowRadioButton);
@@ -632,7 +633,6 @@
             this.traitsNarrowGroupBox.Controls.Add(this.offensiveDoctrineNarrowCheckBox);
             this.traitsNarrowGroupBox.Controls.Add(this.defensiveDoctrineNarrowCheckBox);
             this.traitsNarrowGroupBox.Controls.Add(this.logisticsWizardNarrowCheckBox);
-            resources.ApplyResources(this.traitsNarrowGroupBox, "traitsNarrowGroupBox");
             this.traitsNarrowGroupBox.Name = "traitsNarrowGroupBox";
             this.traitsNarrowGroupBox.TabStop = false;
             // 
@@ -909,6 +909,7 @@
             // 
             // traitsGroupBox
             // 
+            resources.ApplyResources(this.traitsGroupBox, "traitsGroupBox");
             this.traitsGroupBox.Controls.Add(this.blitzerCheckBox);
             this.traitsGroupBox.Controls.Add(this.elasticDefenceSpecialistCheckBox);
             this.traitsGroupBox.Controls.Add(this.disciplinedCheckBox);
@@ -940,7 +941,6 @@
             this.traitsGroupBox.Controls.Add(this.offensiveDoctrineCheckBox);
             this.traitsGroupBox.Controls.Add(this.defensiveDoctrineCheckBox);
             this.traitsGroupBox.Controls.Add(this.logisticsWizardCheckBox);
-            resources.ApplyResources(this.traitsGroupBox, "traitsGroupBox");
             this.traitsGroupBox.Name = "traitsGroupBox";
             this.traitsGroupBox.TabStop = false;
             // 
@@ -1234,7 +1234,7 @@
             this.Controls.Add(this.downButton);
             this.Controls.Add(this.upButton);
             this.Controls.Add(this.topButton);
-            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.leaderListView);
@@ -1289,7 +1289,7 @@
         private System.Windows.Forms.Button downButton;
         private System.Windows.Forms.Button upButton;
         private System.Windows.Forms.Button topButton;
-        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button cloneButton;
         private System.Windows.Forms.ColumnHeader countryColumnHeader;
         private System.Windows.Forms.ColumnHeader idColumnHeader;

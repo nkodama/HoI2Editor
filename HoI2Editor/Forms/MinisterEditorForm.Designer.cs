@@ -40,7 +40,7 @@
             this.ideologyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.newButton = new System.Windows.Forms.Button();
             this.cloneButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             this.topButton = new System.Windows.Forms.Button();
             this.upButton = new System.Windows.Forms.Button();
             this.downButton = new System.Windows.Forms.Button();
@@ -148,12 +148,12 @@
             this.cloneButton.UseVisualStyleBackColor = true;
             this.cloneButton.Click += new System.EventHandler(this.OnCloneButtonClick);
             // 
-            // deleteButton
+            // removeButton
             // 
-            resources.ApplyResources(this.deleteButton, "deleteButton");
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.OnDeleteButtonClick);
+            resources.ApplyResources(this.removeButton, "removeButton");
+            this.removeButton.Name = "removeButton";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.OnRemoveButtonClick);
             // 
             // topButton
             // 
@@ -438,7 +438,7 @@
             this.Controls.Add(this.downButton);
             this.Controls.Add(this.upButton);
             this.Controls.Add(this.topButton);
-            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.ministerListView);
@@ -466,7 +466,7 @@
         private System.Windows.Forms.ColumnHeader personalityColumnHeader;
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button cloneButton;
-        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button topButton;
         private System.Windows.Forms.Button upButton;
         private System.Windows.Forms.Button downButton;

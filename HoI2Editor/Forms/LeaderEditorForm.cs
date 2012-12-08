@@ -602,7 +602,7 @@ namespace HoI2Editor.Forms
             traitsGroupBox.Enabled = true;
 
             cloneButton.Enabled = true;
-            deleteButton.Enabled = true;
+            removeButton.Enabled = true;
             topButton.Enabled = true;
             upButton.Enabled = true;
             downButton.Enabled = true;
@@ -656,7 +656,7 @@ namespace HoI2Editor.Forms
             traitsGroupBox.Enabled = false;
 
             cloneButton.Enabled = false;
-            deleteButton.Enabled = false;
+            removeButton.Enabled = false;
             topButton.Enabled = false;
             upButton.Enabled = false;
             downButton.Enabled = false;
@@ -1242,7 +1242,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnDeleteButtonClick(object sender, EventArgs e)
+        private void OnRemoveButtonClick(object sender, EventArgs e)
         {
             if (leaderListView.SelectedItems.Count == 0)
             {

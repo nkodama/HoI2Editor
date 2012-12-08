@@ -60,7 +60,7 @@
             this.downButton = new System.Windows.Forms.Button();
             this.upButton = new System.Windows.Forms.Button();
             this.topButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             this.cloneButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
             this.skillNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -304,12 +304,12 @@
             this.topButton.UseVisualStyleBackColor = true;
             this.topButton.Click += new System.EventHandler(this.OnTopButtonClick);
             // 
-            // deleteButton
+            // removeButton
             // 
-            resources.ApplyResources(this.deleteButton, "deleteButton");
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.OnDeleteButtonClick);
+            resources.ApplyResources(this.removeButton, "removeButton");
+            this.removeButton.Name = "removeButton";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.OnRemoveButtonClick);
             // 
             // cloneButton
             // 
@@ -350,60 +350,60 @@
             // 
             // specialityComboBox6
             // 
+            resources.ApplyResources(this.specialityComboBox6, "specialityComboBox6");
             this.specialityComboBox6.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox6.FormattingEnabled = true;
-            resources.ApplyResources(this.specialityComboBox6, "specialityComboBox6");
             this.specialityComboBox6.Name = "specialityComboBox6";
             this.specialityComboBox6.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox6.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox6SelectionChangeCommitted);
             // 
             // specialityComboBox5
             // 
+            resources.ApplyResources(this.specialityComboBox5, "specialityComboBox5");
             this.specialityComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox5.FormattingEnabled = true;
-            resources.ApplyResources(this.specialityComboBox5, "specialityComboBox5");
             this.specialityComboBox5.Name = "specialityComboBox5";
             this.specialityComboBox5.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox5.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox5SelectionChangeCommitted);
             // 
             // specialityComboBox4
             // 
+            resources.ApplyResources(this.specialityComboBox4, "specialityComboBox4");
             this.specialityComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox4.FormattingEnabled = true;
-            resources.ApplyResources(this.specialityComboBox4, "specialityComboBox4");
             this.specialityComboBox4.Name = "specialityComboBox4";
             this.specialityComboBox4.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox4.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox4SelectionChangeCommitted);
             // 
             // specialityComboBox3
             // 
+            resources.ApplyResources(this.specialityComboBox3, "specialityComboBox3");
             this.specialityComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox3.FormattingEnabled = true;
-            resources.ApplyResources(this.specialityComboBox3, "specialityComboBox3");
             this.specialityComboBox3.Name = "specialityComboBox3";
             this.specialityComboBox3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox3.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox3SelectionChangeCommitted);
             // 
             // specialityComboBox2
             // 
+            resources.ApplyResources(this.specialityComboBox2, "specialityComboBox2");
             this.specialityComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox2.FormattingEnabled = true;
-            resources.ApplyResources(this.specialityComboBox2, "specialityComboBox2");
             this.specialityComboBox2.Name = "specialityComboBox2";
             this.specialityComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox2.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox2SelectionChangeCommitted);
             // 
             // specialityComboBox1
             // 
+            resources.ApplyResources(this.specialityComboBox1, "specialityComboBox1");
             this.specialityComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.specialityComboBox1, "specialityComboBox1");
             this.specialityComboBox1.Name = "specialityComboBox1";
             this.specialityComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox1.SelectionChangeCommitted += new System.EventHandler(this.OnSpecialityComboBox1SelectionChangeCommitted);
@@ -439,7 +439,7 @@
             this.Controls.Add(this.downButton);
             this.Controls.Add(this.upButton);
             this.Controls.Add(this.topButton);
-            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.newButton);
             this.Name = "TeamEditorForm";
@@ -487,7 +487,7 @@
         private System.Windows.Forms.Button downButton;
         private System.Windows.Forms.Button upButton;
         private System.Windows.Forms.Button topButton;
-        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button cloneButton;
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.NumericUpDown skillNumericUpDown;
