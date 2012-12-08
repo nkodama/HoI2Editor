@@ -2900,6 +2900,12 @@ namespace HoI2Editor.Forms
             }
             int index = effectListView.SelectedIndices[0];
 
+            // コマンドリストの選択項目がなければ何もしない
+            if (commandTypeComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
             Command command = item.Effects[index];
             if (command == null)
             {
