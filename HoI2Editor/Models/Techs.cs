@@ -341,11 +341,22 @@ namespace HoI2Editor.Models
         ///     項目リストから項目を削除する
         /// </summary>
         /// <param name="category">カテゴリ</param>
-        /// <param name="target">削除対象の項目</param>
-        public static void RemoveItem(TechCategory category, object target)
+        /// <param name="item">削除対象の項目</param>
+        public static void RemoveItem(TechCategory category, object item)
         {
             TechGroup group = List[(int) category];
-            group.Items.Remove(target);
+            group.Items.Remove(item);
+
+            if (item is Tech)
+            {
+                var techItem = item as Tech;
+                techItem.RemoveTempKey();
+            }
+            else if (item is TechLabel)
+            {
+                var labelItem = item as TechLabel;
+                labelItem.RemoveTempKey();
+            }
         }
 
         /// <summary>

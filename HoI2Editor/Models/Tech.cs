@@ -101,6 +101,18 @@ namespace HoI2Editor.Models
             return label;
         }
 
+        /// <summary>
+        ///     文字列の一時キーを削除する
+        /// </summary>
+        public void RemoveTempKey()
+        {
+            // ラベル名
+            if (Config.IsTempKey(Tag, Game.TechTextFileName))
+            {
+                Config.RemoveTempKey(Tag, Game.TechTextFileName);
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -111,7 +123,8 @@ namespace HoI2Editor.Models
         {
             string s = Config.GetText(Tag);
 
-            if ((s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
+            if (!string.IsNullOrEmpty(s) &&
+                (s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
                 s.Length > 4 &&
                 s[1] >= '0' && s[1] <= '9' &&
                 s[2] >= '0' && s[2] <= '9' &&
@@ -580,6 +593,37 @@ namespace HoI2Editor.Models
             }
 
             return tech;
+        }
+
+        /// <summary>
+        ///     文字列の一時キーを削除する
+        /// </summary>
+        public void RemoveTempKey()
+        {
+            // 技術名
+            if (Config.IsTempKey(Name, Game.TechTextFileName))
+            {
+                Config.RemoveTempKey(Name, Game.TechTextFileName);
+            }
+            // 技術短縮名
+            if (Config.IsTempKey(ShortName, Game.TechTextFileName))
+            {
+                Config.RemoveTempKey(ShortName, Game.TechTextFileName);
+            }
+            // 技術説明
+            if (Config.IsTempKey(Desc, Game.TechTextFileName))
+            {
+                Config.RemoveTempKey(Desc, Game.TechTextFileName);
+            }
+
+            // 小研究名
+            foreach (TechComponent component in Components)
+            {
+                if (Config.IsTempKey(component.Name, Game.TechTextFileName))
+                {
+                    Config.RemoveTempKey(component.Name, Game.TechTextFileName);
+                }
+            }
         }
 
         #endregion
