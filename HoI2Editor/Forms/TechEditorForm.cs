@@ -1708,7 +1708,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            andRequiredListView.BeginUpdate();
             andRequiredListView.Items.Clear();
+
             foreach (int id in item.Required)
             {
                 var listItem = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
@@ -1727,6 +1729,8 @@ namespace HoI2Editor.Forms
                 andRequiredListView.Items[0].Focused = true;
                 andRequiredListView.Items[0].Selected = true;
             }
+
+            andRequiredListView.EndUpdate();
         }
 
 
@@ -1741,7 +1745,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            orRequiredListView.BeginUpdate();
             orRequiredListView.Items.Clear();
+
             foreach (int id in item.OrRequired)
             {
                 var listItem = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
@@ -1760,6 +1766,8 @@ namespace HoI2Editor.Forms
                 orRequiredListView.Items[0].Focused = true;
                 orRequiredListView.Items[0].Selected = true;
             }
+
+            orRequiredListView.EndUpdate();
         }
 
         /// <summary>
@@ -2077,7 +2085,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            componentListView.BeginUpdate();
             componentListView.Items.Clear();
+
             foreach (TechComponent component in item.Components)
             {
                 ListViewItem listItem = CreateComponentListItem(component);
@@ -2090,6 +2100,8 @@ namespace HoI2Editor.Forms
                 componentListView.Items[0].Focused = true;
                 componentListView.Items[0].Selected = true;
             }
+
+            componentListView.EndUpdate();
         }
 
         /// <summary>
@@ -2690,7 +2702,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            effectListView.BeginUpdate();
             effectListView.Items.Clear();
+
             foreach (Command command in item.Effects)
             {
                 ListViewItem listItem = CreateEffectListItem(command);
@@ -2703,6 +2717,8 @@ namespace HoI2Editor.Forms
                 effectListView.Items[0].Focused = true;
                 effectListView.Items[0].Selected = true;
             }
+
+            effectListView.EndUpdate();
         }
 
         /// <summary>
