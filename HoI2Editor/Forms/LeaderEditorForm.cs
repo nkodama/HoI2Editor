@@ -603,10 +603,6 @@ namespace HoI2Editor.Forms
 
             cloneButton.Enabled = true;
             removeButton.Enabled = true;
-            topButton.Enabled = true;
-            upButton.Enabled = true;
-            downButton.Enabled = true;
-            bottomButton.Enabled = true;
         }
 
         /// <summary>
@@ -657,10 +653,6 @@ namespace HoI2Editor.Forms
 
             cloneButton.Enabled = false;
             removeButton.Enabled = false;
-            topButton.Enabled = false;
-            upButton.Enabled = false;
-            downButton.Enabled = false;
-            bottomButton.Enabled = false;
         }
 
         /// <summary>
@@ -1639,6 +1631,12 @@ namespace HoI2Editor.Forms
 
             // 更新イベントを再開する
             SetTraitsCheckBoxEvent(true);
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = leaderListView.SelectedIndices[0] != 0;
+            upButton.Enabled = leaderListView.SelectedIndices[0] != 0;
+            downButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
+            bottomButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
         }
 
         /// <summary>
@@ -2135,7 +2133,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もせずに戻る
-            var newRankYear = (int) rankYearNumericUpDown1.Value;
+            var newRankYear = (int) rankYearNumericUpDown4.Value;
             if (newRankYear == leader.RankYear[3])
             {
                 return;
