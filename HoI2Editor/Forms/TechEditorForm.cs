@@ -1152,13 +1152,13 @@ namespace HoI2Editor.Forms
             TechGroup group = Techs.List[(int) category];
 
             // 値に変化がなければ何もせずに戻る
-            string newText = categoryNameTextBox.Text;
-            if (newText.Equals(Config.GetText(group.Name)))
+            string newText = categoryDescTextBox.Text;
+            if (newText.Equals(Config.GetText(group.Desc)))
             {
                 return;
             }
 
-            Config.SetText(Techs.List[(int) category].Desc, categoryDescTextBox.Text);
+            Config.SetText(group.Desc, categoryDescTextBox.Text);
 
             SetDirtyFlag();
             Config.SetDirtyFlag(Game.TechTextFileName);
