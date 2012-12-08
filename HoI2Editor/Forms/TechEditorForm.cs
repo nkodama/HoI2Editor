@@ -786,7 +786,7 @@ namespace HoI2Editor.Forms
             {
                 techListBox.SelectedIndex = index;
             }
-            else if (index - 1 >= 0)
+            else if (index > 0)
             {
                 techListBox.SelectedIndex = index - 1;
             }
@@ -1470,8 +1470,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            int index = techPositionListView.SelectedIndices[0];
 
-            TechPosition position = item.Positions[techPositionListView.SelectedIndices[0]];
+            TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もせずに戻る
             var newX = (int) techXNumericUpDown.Value;
@@ -1482,7 +1483,7 @@ namespace HoI2Editor.Forms
 
             position.X = newX;
 
-            UpdateTechPositionList(item);
+            techPositionListView.Items[index].Text = newX.ToString(CultureInfo.InvariantCulture);
 
             foreach (Label label in treePictureBox.Controls)
             {
@@ -1518,6 +1519,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            int index = techPositionListView.SelectedIndices[0];
 
             TechPosition position = item.Positions[techPositionListView.SelectedIndices[0]];
 
@@ -1530,7 +1532,7 @@ namespace HoI2Editor.Forms
 
             position.Y = newY;
 
-            UpdateTechPositionList(item);
+            techPositionListView.Items[index].SubItems[1].Text = newY.ToString(CultureInfo.InvariantCulture);
 
             foreach (Label label in treePictureBox.Controls)
             {
@@ -1565,7 +1567,12 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
-            UpdateTechPositionList(item);
+            var listItem = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
+            listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+            techPositionListView.Items.Add(listItem);
+
+            techPositionListView.Items[techPositionListView.Items.Count - 1].Focused = true;
+            techPositionListView.Items[techPositionListView.Items.Count - 1].Selected = true;
 
             AddTechTreeTechItem(item, position);
 
@@ -1599,7 +1606,18 @@ namespace HoI2Editor.Forms
 
             item.Positions.RemoveAt(index);
 
-            UpdateTechPositionList(item);
+            techPositionListView.Items.RemoveAt(index);
+
+            if (index < techPositionListView.Items.Count)
+            {
+                techPositionListView.Items[index].Focused = true;
+                techPositionListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                techPositionListView.Items[techPositionListView.Items.Count - 1].Focused = true;
+                techPositionListView.Items[techPositionListView.Items.Count - 1].Selected = true;
+            }
 
             RemoveTechTreeItem(item, position);
 
@@ -2032,18 +2050,15 @@ namespace HoI2Editor.Forms
         {
             andRequiredListView.Items[index].Remove();
 
-            if (andRequiredListView.Items.Count > 0)
+            if (index < andRequiredListView.Items.Count)
             {
-                if (index < andRequiredListView.Items.Count)
-                {
-                    andRequiredListView.Items[index].Focused = true;
-                    andRequiredListView.Items[index].Selected = true;
-                }
-                else
-                {
-                    andRequiredListView.Items[andRequiredListView.Items.Count - 1].Focused = true;
-                    andRequiredListView.Items[andRequiredListView.Items.Count - 1].Selected = true;
-                }
+                andRequiredListView.Items[index].Focused = true;
+                andRequiredListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                andRequiredListView.Items[andRequiredListView.Items.Count - 1].Focused = true;
+                andRequiredListView.Items[andRequiredListView.Items.Count - 1].Selected = true;
             }
         }
 
@@ -2055,18 +2070,15 @@ namespace HoI2Editor.Forms
         {
             orRequiredListView.Items[index].Remove();
 
-            if (orRequiredListView.Items.Count > 0)
+            if (index < orRequiredListView.Items.Count)
             {
-                if (index < orRequiredListView.Items.Count)
-                {
-                    orRequiredListView.Items[index].Focused = true;
-                    orRequiredListView.Items[index].Selected = true;
-                }
-                else
-                {
-                    orRequiredListView.Items[orRequiredListView.Items.Count - 1].Focused = true;
-                    orRequiredListView.Items[orRequiredListView.Items.Count - 1].Selected = true;
-                }
+                orRequiredListView.Items[index].Focused = true;
+                orRequiredListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                orRequiredListView.Items[orRequiredListView.Items.Count - 1].Focused = true;
+                orRequiredListView.Items[orRequiredListView.Items.Count - 1].Selected = true;
             }
         }
 
@@ -2644,18 +2656,15 @@ namespace HoI2Editor.Forms
         {
             componentListView.Items.RemoveAt(index);
 
-            if (componentListView.Items.Count > 0)
+            if (index < componentListView.Items.Count)
             {
-                if (index < componentListView.Items.Count - 1)
-                {
-                    componentListView.Items[index].Focused = true;
-                    componentListView.Items[index].Selected = true;
-                }
-                else
-                {
-                    componentListView.Items[componentListView.Items.Count - 1].Focused = true;
-                    componentListView.Items[componentListView.Items.Count - 1].Selected = true;
-                }
+                componentListView.Items[index].Focused = true;
+                componentListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                componentListView.Items[componentListView.Items.Count - 1].Focused = true;
+                componentListView.Items[componentListView.Items.Count - 1].Selected = true;
             }
         }
 
@@ -3263,18 +3272,15 @@ namespace HoI2Editor.Forms
         {
             effectListView.Items.RemoveAt(index);
 
-            if (effectListView.Items.Count > 0)
+            if (index < effectListView.Items.Count)
             {
-                if (index < effectListView.Items.Count - 1)
-                {
-                    effectListView.Items[index].Focused = true;
-                    effectListView.Items[index].Selected = true;
-                }
-                else
-                {
-                    effectListView.Items[effectListView.Items.Count - 1].Focused = true;
-                    effectListView.Items[effectListView.Items.Count - 1].Selected = true;
-                }
+                effectListView.Items[index].Focused = true;
+                effectListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                effectListView.Items[effectListView.Items.Count - 1].Focused = true;
+                effectListView.Items[effectListView.Items.Count - 1].Selected = true;
             }
         }
 
@@ -3468,8 +3474,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            int index = labelPositionListView.SelectedIndices[0];
 
-            TechPosition position = item.Positions[labelPositionListView.SelectedIndices[0]];
+            TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もせずに戻る
             var newX = (int) labelXNumericUpDown.Value;
@@ -3480,7 +3487,7 @@ namespace HoI2Editor.Forms
 
             position.X = newX;
 
-            UpdateLabelPositionList(item);
+            labelPositionListView.Items[index].Text = newX.ToString(CultureInfo.InvariantCulture);
 
             foreach (Label label in treePictureBox.Controls)
             {
@@ -3516,8 +3523,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            int index = labelPositionListView.SelectedIndices[0];
 
-            TechPosition position = item.Positions[labelPositionListView.SelectedIndices[0]];
+            TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もせずに戻る
             var newY = (int) labelYNumericUpDown.Value;
@@ -3528,7 +3536,7 @@ namespace HoI2Editor.Forms
 
             position.Y = newY;
 
-            UpdateLabelPositionList(item);
+            labelPositionListView.Items[index].SubItems[1].Text = newY.ToString(CultureInfo.InvariantCulture);
 
             foreach (Label label in treePictureBox.Controls)
             {
@@ -3563,7 +3571,12 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
-            UpdateLabelPositionList(item);
+            var listItem = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
+            listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+            labelPositionListView.Items.Add(listItem);
+
+            labelPositionListView.Items[labelPositionListView.Items.Count - 1].Focused = true;
+            labelPositionListView.Items[labelPositionListView.Items.Count - 1].Selected = true;
 
             AddTechTreeLabelItem(item, position);
 
@@ -3597,7 +3610,18 @@ namespace HoI2Editor.Forms
 
             item.Positions.RemoveAt(index);
 
-            UpdateLabelPositionList(item);
+            labelPositionListView.Items.RemoveAt(index);
+
+            if (index < labelPositionListView.Items.Count)
+            {
+                labelPositionListView.Items[index].Focused = true;
+                labelPositionListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                labelPositionListView.Items[labelPositionListView.Items.Count - 1].Focused = true;
+                labelPositionListView.Items[labelPositionListView.Items.Count - 1].Selected = true;
+            }
 
             RemoveTechTreeItem(item, position);
 
@@ -3786,8 +3810,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            int index = eventPositionListView.SelectedIndices[0];
 
-            TechPosition position = item.Positions[eventPositionListView.SelectedIndices[0]];
+            TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もせずに戻る
             var newX = (int) eventXNumericUpDown.Value;
@@ -3798,7 +3823,7 @@ namespace HoI2Editor.Forms
 
             position.X = newX;
 
-            UpdateEventPositionList(item);
+            eventPositionListView.Items[index].Text = newX.ToString(CultureInfo.InvariantCulture);
 
             foreach (Label label in treePictureBox.Controls)
             {
@@ -3834,8 +3859,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            int index = eventPositionListView.SelectedIndices[0];
 
-            TechPosition position = item.Positions[eventPositionListView.SelectedIndices[0]];
+            TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もせずに戻る
             var newY = (int) eventYNumericUpDown.Value;
@@ -3846,7 +3872,7 @@ namespace HoI2Editor.Forms
 
             position.Y = newY;
 
-            UpdateEventPositionList(item);
+            eventPositionListView.Items[index].SubItems[1].Text = newY.ToString(CultureInfo.InvariantCulture);
 
             foreach (Label label in treePictureBox.Controls)
             {
@@ -3881,7 +3907,12 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
-            UpdateEventPositionList(item);
+            var listItem = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
+            listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+            eventPositionListView.Items.Add(listItem);
+
+            eventPositionListView.Items[eventPositionListView.Items.Count - 1].Focused = true;
+            eventPositionListView.Items[eventPositionListView.Items.Count - 1].Selected = true;
 
             AddTechTreeEventItem(item, position);
 
@@ -3915,7 +3946,18 @@ namespace HoI2Editor.Forms
 
             item.Positions.RemoveAt(index);
 
-            UpdateEventPositionList(item);
+            eventPositionListView.Items.RemoveAt(index);
+
+            if (index < techPositionListView.Items.Count)
+            {
+                eventPositionListView.Items[index].Focused = true;
+                eventPositionListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                eventPositionListView.Items[eventPositionListView.Items.Count - 1].Focused = true;
+                eventPositionListView.Items[eventPositionListView.Items.Count - 1].Selected = true;
+            }
 
             RemoveTechTreeItem(item, position);
 
