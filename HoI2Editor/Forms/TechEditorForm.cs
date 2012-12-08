@@ -1291,6 +1291,7 @@ namespace HoI2Editor.Forms
 
             Config.SetText(item.ShortName, newText);
 
+            // 技術ツリー上のラベル名を更新する
             foreach (Label label in treePictureBox.Controls)
             {
                 var info = label.Tag as TechLabelInfo;
@@ -3336,6 +3337,17 @@ namespace HoI2Editor.Forms
             techListBox.SelectedIndexChanged -= OnTechListBoxSelectedIndexChanged;
             techListBox.Items[techListBox.SelectedIndex] = item;
             techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
+
+            // 技術ツリー上のラベル名を更新する
+            foreach (Label label in treePictureBox.Controls)
+            {
+                var info = label.Tag as TechLabelInfo;
+                if (info != null && info.Item == item)
+                {
+                    label.Size = TextRenderer.MeasureText(Config.GetText(item.Tag), label.Font);
+                    label.Refresh();
+                }
+            }
 
             SetDirtyFlag();
             Config.SetDirtyFlag(Game.TechTextFileName);
