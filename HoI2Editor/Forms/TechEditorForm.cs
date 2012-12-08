@@ -278,6 +278,44 @@ namespace HoI2Editor.Forms
             editTabControl.SelectedIndex = 0;
         }
 
+        /// <summary>
+        ///     カテゴリリストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCategoryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 選択項目がない場合はスキップ
+            if (e.Index != -1)
+            {
+                Brush brush;
+                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
+                {
+                    // 変更ありの項目は文字色を変更する
+                    brush = Techs.DirtyFlags[e.Index]
+                                ? new SolidBrush(Color.Red)
+                                : new SolidBrush(categoryListBox.ForeColor);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.HighlightText);
+                }
+                var listbox = sender as ListBox;
+                if (listbox != null)
+                {
+                    string s = listbox.Items[e.Index].ToString();
+                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                }
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
         #endregion
 
         #region 項目リスト
@@ -1084,6 +1122,13 @@ namespace HoI2Editor.Forms
             var category = (TechCategory) categoryListBox.SelectedIndex;
             TechGroup group = Techs.List[(int) category];
 
+            // 値に変化がなければ何もせずに戻る
+            string newText = categoryNameTextBox.Text;
+            if (newText.Equals(Config.GetText(group.Name)))
+            {
+                return;
+            }
+
             Config.SetText(group.Name, categoryNameTextBox.Text);
 
             // カテゴリリストボックスの項目を再設定することで表示更新している
@@ -1104,6 +1149,15 @@ namespace HoI2Editor.Forms
         private void OnCategoryDescTextBoxTextChanged(object sender, EventArgs e)
         {
             var category = (TechCategory) categoryListBox.SelectedIndex;
+            TechGroup group = Techs.List[(int) category];
+
+            // 値に変化がなければ何もせずに戻る
+            string newText = categoryNameTextBox.Text;
+            if (newText.Equals(Config.GetText(group.Name)))
+            {
+                return;
+            }
+
             Config.SetText(Techs.List[(int) category].Desc, categoryDescTextBox.Text);
 
             SetDirtyFlag();

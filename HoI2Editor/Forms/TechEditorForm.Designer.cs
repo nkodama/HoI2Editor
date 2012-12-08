@@ -191,9 +191,11 @@
             // 
             // categoryListBox
             // 
+            this.categoryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.categoryListBox.FormattingEnabled = true;
             resources.ApplyResources(this.categoryListBox, "categoryListBox");
             this.categoryListBox.Name = "categoryListBox";
+            this.categoryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCategoryListBoxDrawItem);
             this.categoryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCategoryListBoxSelectedIndexChanged);
             // 
             // treePictureBox
