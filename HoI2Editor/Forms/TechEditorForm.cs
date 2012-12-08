@@ -417,22 +417,33 @@ namespace HoI2Editor.Forms
             Config.SetText(item.ShortName, "");
             Config.SetText(item.Desc, "");
 
-            if (techListBox.SelectedIndex > 0 && techListBox.SelectedItem is Tech)
+            if (techListBox.SelectedIndex >= 0)
             {
-                var selected = techListBox.SelectedItem as Tech;
+                if (techListBox.SelectedItem is Tech)
+                {
+                    var selected = techListBox.SelectedItem as Tech;
+                    item.Id = selected.Id + 10;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
+                else if (techListBox.SelectedItem is TechLabel)
+                {
+                    var selected = techListBox.SelectedItem as TechLabel;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
+                else if (techListBox.SelectedItem is TechEvent)
+                {
+                    var selected = techListBox.SelectedItem as TechEvent;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
 
-                item.Id = selected.Id + 10;
-                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-
-                Techs.InsertItemNext(category, item, selected);
+                Techs.InsertItemNext(category, item, techListBox.SelectedItem);
                 TechIdMap.Add(new KeyValuePair<int, Tech>(item.Id, item));
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
             {
-                item.Id = 0;
-                item.Positions.Add(new TechPosition {X = 0, Y = 0});
+                item.Positions.Add(new TechPosition());
 
                 Techs.AddItem(category, item);
                 TechIdMap.Add(new KeyValuePair<int, Tech>(item.Id, item));
@@ -458,20 +469,35 @@ namespace HoI2Editor.Forms
             var category = (TechCategory) categoryListBox.SelectedIndex;
             var item = new TechLabel {Tag = Config.GetTempKey(Game.TechTextFileName)};
             Config.SetText(item.Tag, "");
-            if (techListBox.SelectedIndex > 0 && techListBox.SelectedItem is TechLabel)
+
+            if (techListBox.SelectedIndex >= 0)
             {
-                var selected = techListBox.SelectedItem as TechLabel;
+                if (techListBox.SelectedItem is TechLabel)
+                {
+                    var selected = techListBox.SelectedItem as TechLabel;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
+                else if (techListBox.SelectedItem is Tech)
+                {
+                    var selected = techListBox.SelectedItem as Tech;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
+                else if (techListBox.SelectedItem is TechEvent)
+                {
+                    var selected = techListBox.SelectedItem as TechEvent;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
 
-                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                Techs.InsertItemNext(category, item, techListBox.SelectedItem);
 
-                Techs.InsertItemNext(category, item, selected);
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
             {
-                item.Positions.Add(new TechPosition {X = 0, Y = 0});
+                item.Positions.Add(new TechPosition());
 
                 Techs.AddItem(category, item);
+
                 AddTechListItem(item);
             }
 
@@ -491,32 +517,38 @@ namespace HoI2Editor.Forms
         private void OnNewEventButtonClick(object sender, EventArgs e)
         {
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            TechEvent item;
-            if (techListBox.SelectedIndex > 0 && techListBox.SelectedItem is TechEvent)
+            var item = new TechEvent();
+
+            if (techListBox.SelectedIndex >= 0)
             {
-                var selected = techListBox.SelectedItem as TechEvent;
+                if (techListBox.SelectedItem is TechEvent)
+                {
+                    var selected = techListBox.SelectedItem as TechEvent;
+                    item.Id = selected.Id + 1;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
+                else if (techListBox.SelectedItem is Tech)
+                {
+                    var selected = techListBox.SelectedItem as Tech;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
+                else if (techListBox.SelectedItem is TechLabel)
+                {
+                    var selected = techListBox.SelectedItem as TechLabel;
+                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                }
 
-                item = new TechEvent
-                           {
-                               Id = selected.Id + 1,
-                           };
-                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-
-                Techs.InsertItemNext(category, item, selected);
+                Techs.InsertItemNext(category, item, techListBox.SelectedItem);
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
             {
-                item = new TechEvent
-                           {
-                               Id = 0,
-                           };
+                item.Positions.Add(new TechPosition());
 
                 Techs.AddItem(category, item);
 
                 AddTechListItem(item);
-                techListBox.SelectedIndex = 0;
             }
 
             foreach (TechPosition position in item.Positions)
