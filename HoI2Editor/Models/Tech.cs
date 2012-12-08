@@ -109,7 +109,18 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         public override string ToString()
         {
-            return Config.GetText(Tag);
+            string s = Config.GetText(Tag);
+
+            if ((s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
+                s.Length > 4 &&
+                s[1] >= '0' && s[1] <= '9' &&
+                s[2] >= '0' && s[2] <= '9' &&
+                s[3] >= '0' && s[3] <= '9')
+            {
+                s = s.Substring(4);
+            }
+
+            return s;
         }
     }
 
