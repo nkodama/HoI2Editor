@@ -361,10 +361,6 @@ namespace HoI2Editor.Forms
 
             cloneButton.Enabled = true;
             removeButton.Enabled = true;
-            topButton.Enabled = true;
-            upButton.Enabled = true;
-            downButton.Enabled = true;
-            bottomButton.Enabled = true;
         }
 
         /// <summary>
@@ -870,6 +866,12 @@ namespace HoI2Editor.Forms
             specialityComboBox6.SelectedIndex = (int) team.Specialities[5];
             pictureNameTextBox.Text = team.PictureName;
             UpdateTeamPicture(team);
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = teamListView.SelectedIndices[0] != 0;
+            upButton.Enabled = teamListView.SelectedIndices[0] != 0;
+            downButton.Enabled = teamListView.SelectedIndices[0] != teamListView.Items.Count - 1;
+            bottomButton.Enabled = teamListView.SelectedIndices[0] != teamListView.Items.Count - 1;
         }
 
         /// <summary>

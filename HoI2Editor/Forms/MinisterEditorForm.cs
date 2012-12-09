@@ -480,10 +480,6 @@ namespace HoI2Editor.Forms
 
             cloneButton.Enabled = true;
             removeButton.Enabled = true;
-            topButton.Enabled = true;
-            upButton.Enabled = true;
-            downButton.Enabled = true;
-            bottomButton.Enabled = true;
         }
 
         /// <summary>
@@ -906,6 +902,12 @@ namespace HoI2Editor.Forms
             UpdateLoyaltyComboBox(minister);
             pictureNameTextBox.Text = minister.PictureName;
             UpdateMinisterPicture(minister);
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = ministerListView.SelectedIndices[0] != 0;
+            upButton.Enabled = ministerListView.SelectedIndices[0] != 0;
+            downButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
+            bottomButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
         }
 
         /// <summary>

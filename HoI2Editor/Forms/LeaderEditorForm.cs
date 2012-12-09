@@ -653,6 +653,10 @@ namespace HoI2Editor.Forms
 
             cloneButton.Enabled = false;
             removeButton.Enabled = false;
+            topButton.Enabled = false;
+            upButton.Enabled = false;
+            downButton.Enabled = false;
+            bottomButton.Enabled = false;
         }
 
         /// <summary>

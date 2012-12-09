@@ -276,6 +276,13 @@ namespace HoI2Editor.Forms
             DisableTechItems();
 
             editTabControl.SelectedIndex = 0;
+
+            cloneButton.Enabled = false;
+            removeButton.Enabled = false;
+            topButton.Enabled = false;
+            upButton.Enabled = false;
+            downButton.Enabled = false;
+            bottomButton.Enabled = false;
         }
 
         /// <summary>
@@ -396,6 +403,13 @@ namespace HoI2Editor.Forms
 
                 editTabControl.SelectedIndex = 6;
             }
+
+            cloneButton.Enabled = true;
+            removeButton.Enabled = true;
+            topButton.Enabled = techListBox.SelectedIndex != 0;
+            upButton.Enabled = techListBox.SelectedIndex != 0;
+            downButton.Enabled = techListBox.SelectedIndex != techListBox.Items.Count - 1;
+            bottomButton.Enabled = techListBox.SelectedIndex != techListBox.Items.Count - 1;
         }
 
         /// <summary>
@@ -1273,6 +1287,29 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     技術座標の編集項目を有効化する
+        /// </summary>
+        private void EnableTechPositionItems()
+        {
+            techXNumericUpDown.Enabled = true;
+            techYNumericUpDown.Enabled = true;
+            techPositionRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     技術座標の編集項目を無効化する
+        /// </summary>
+        private void DisableTechPositionItems()
+        {
+            techXNumericUpDown.Value = 0;
+            techYNumericUpDown.Value = 0;
+
+            techXNumericUpDown.Enabled = false;
+            techYNumericUpDown.Enabled = false;
+            techPositionRemoveButton.Enabled = false;
+        }
+
+        /// <summary>
         ///     技術座標リストを更新する
         /// </summary>
         /// <param name="item">技術</param>
@@ -1298,16 +1335,11 @@ namespace HoI2Editor.Forms
                 techPositionListView.Items[0].Focused = true;
                 techPositionListView.Items[0].Selected = true;
 
-                techXNumericUpDown.Enabled = true;
-                techYNumericUpDown.Enabled = true;
+                EnableTechPositionItems();
             }
             else
             {
-                techXNumericUpDown.Value = 0;
-                techYNumericUpDown.Value = 0;
-
-                techXNumericUpDown.Enabled = false;
-                techYNumericUpDown.Enabled = false;
+                DisableTechPositionItems();
             }
 
             techPositionListView.EndUpdate();
@@ -1606,6 +1638,8 @@ namespace HoI2Editor.Forms
             techPositionListView.Items[techPositionListView.Items.Count - 1].Focused = true;
             techPositionListView.Items[techPositionListView.Items.Count - 1].Selected = true;
 
+            EnableTechPositionItems();
+
             AddTechTreeTechItem(item, position);
 
             SetDirtyFlag();
@@ -1649,6 +1683,10 @@ namespace HoI2Editor.Forms
             {
                 techPositionListView.Items[techPositionListView.Items.Count - 1].Focused = true;
                 techPositionListView.Items[techPositionListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                DisableTechPositionItems();
             }
 
             RemoveTechTreeItem(item, position);
@@ -1778,6 +1816,12 @@ namespace HoI2Editor.Forms
             {
                 andRequiredListView.Items[0].Focused = true;
                 andRequiredListView.Items[0].Selected = true;
+
+                EnableAndRequiredItems();
+            }
+            else
+            {
+                DisableAndReuqiredItems();
             }
 
             andRequiredListView.EndUpdate();
@@ -1815,9 +1859,113 @@ namespace HoI2Editor.Forms
             {
                 orRequiredListView.Items[0].Focused = true;
                 orRequiredListView.Items[0].Selected = true;
+
+                EnableOrRequiredItems();
+            }
+            else
+            {
+                DisableOrReuqiredItems();
             }
 
             orRequiredListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     AND条件必要技術の編集項目を有効化する
+        /// </summary>
+        private void EnableAndRequiredItems()
+        {
+            andIdNumericUpDown.Enabled = true;
+            andTechComboBox.Enabled = true;
+            andRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     AND条件必要技術の編集項目を無効化する
+        /// </summary>
+        private void DisableAndReuqiredItems()
+        {
+            andIdNumericUpDown.Value = 0;
+
+            andIdNumericUpDown.Enabled = false;
+            andTechComboBox.Enabled = false;
+            andRemoveButton.Enabled = false;
+        }
+
+        /// <summary>
+        ///     OR条件必要技術の編集項目を有効化する
+        /// </summary>
+        private void EnableOrRequiredItems()
+        {
+            orIdNumericUpDown.Enabled = true;
+            orTechComboBox.Enabled = true;
+            orRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     OR条件必要技術の編集項目を無効化する
+        /// </summary>
+        private void DisableOrReuqiredItems()
+        {
+            orIdNumericUpDown.Value = 0;
+
+            orIdNumericUpDown.Enabled = false;
+            orTechComboBox.Enabled = false;
+            orRemoveButton.Enabled = false;
+        }
+
+        /// <summary>
+        ///     AND条件必要技術リストの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAndRequiredListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (techListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var item = techListBox.SelectedItem as Tech;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (andRequiredListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = andRequiredListView.SelectedIndices[0];
+
+            andIdNumericUpDown.Value = item.Required[index];
+        }
+
+        /// <summary>
+        ///     OR条件必要技術リストの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOrRequiredListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (techListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var item = techListBox.SelectedItem as Tech;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (orRequiredListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = orRequiredListView.SelectedIndices[0];
+
+            orIdNumericUpDown.Value = item.OrRequired[index];
         }
 
         /// <summary>
@@ -1838,10 +1986,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var id = (int) andIdNumericUpDown.Value;
-            item.Required.Add(id);
+            item.Required.Add(0);
 
-            AddAndRequiredListItem(id);
+            AddAndRequiredListItem(0);
 
             SetDirtyFlag();
         }
@@ -1864,74 +2011,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var id = (int) orIdNumericUpDown.Value;
-            item.OrRequired.Add(id);
+            item.OrRequired.Add(0);
 
-            AddOrRequiredListItem(id);
-
-            SetDirtyFlag();
-        }
-
-        /// <summary>
-        ///     AND条件必要技術変更ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnAndModifyButtonClick(object sender, EventArgs e)
-        {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as Tech;
-            if (item == null)
-            {
-                return;
-            }
-
-            if (andRequiredListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-            int index = andRequiredListView.SelectedIndices[0];
-
-            var id = (int) andIdNumericUpDown.Value;
-            item.Required[index] = id;
-
-            ModifyAndRequiredListItem(id, index);
-
-            SetDirtyFlag();
-        }
-
-        /// <summary>
-        ///     OR条件必要技術変更ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnOrModifyButtonClick(object sender, EventArgs e)
-        {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as Tech;
-            if (item == null)
-            {
-                return;
-            }
-
-            if (orRequiredListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-            int index = orRequiredListView.SelectedIndices[0];
-
-            var id = (int) orIdNumericUpDown.Value;
-            item.OrRequired[index] = id;
-
-            ModifyOrRequiredListItem(id, index);
+            AddOrRequiredListItem(0);
 
             SetDirtyFlag();
         }
@@ -1999,6 +2081,82 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     AND条件必要技術ID変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAndIdNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (techListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var item = techListBox.SelectedItem as Tech;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (andRequiredListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = andRequiredListView.SelectedIndices[0];
+
+            // 値に変化がなければ何もせずに戻る
+            var newId = (int) andIdNumericUpDown.Value;
+            if (newId == item.Required[index])
+            {
+                return;
+            }
+
+            item.Required[index] = newId;
+
+            ModifyAndRequiredListItem(newId, index);
+
+            SetDirtyFlag();
+        }
+
+        /// <summary>
+        ///     OR条件必要技術ID変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOrIdNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            if (techListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var item = techListBox.SelectedItem as Tech;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (orRequiredListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = orRequiredListView.SelectedIndices[0];
+
+            // 値に変化がなければ何もせずに戻る
+            var newId = (int) orIdNumericUpDown.Value;
+            if (newId == item.OrRequired[index])
+            {
+                return;
+            }
+
+            item.OrRequired[index] = newId;
+
+            ModifyOrRequiredListItem(newId, index);
+
+            SetDirtyFlag();
+        }
+
+        /// <summary>
         ///     AND条件必要技術リストに項目を追加する
         /// </summary>
         /// <param name="id">必要技術ID</param>
@@ -2014,8 +2172,12 @@ namespace HoI2Editor.Forms
             }
             andRequiredListView.Items.Add(listItem);
 
-            andRequiredListView.Items[andRequiredListView.Items.Count - 1].Focused = true;
-            andRequiredListView.Items[andRequiredListView.Items.Count - 1].Selected = true;
+            int index = andRequiredListView.Items.Count - 1;
+            andRequiredListView.Items[index].Focused = true;
+            andRequiredListView.Items[index].Selected = true;
+            andRequiredListView.EnsureVisible(index);
+
+            EnableAndRequiredItems();
         }
 
         /// <summary>
@@ -2034,8 +2196,12 @@ namespace HoI2Editor.Forms
             }
             orRequiredListView.Items.Add(listItem);
 
-            orRequiredListView.Items[orRequiredListView.Items.Count - 1].Focused = true;
-            orRequiredListView.Items[orRequiredListView.Items.Count - 1].Selected = true;
+            int index = orRequiredListView.Items.Count - 1;
+            orRequiredListView.Items[index].Focused = true;
+            orRequiredListView.Items[index].Selected = true;
+            orRequiredListView.EnsureVisible(index);
+
+            EnableOrRequiredItems();
         }
 
         /// <summary>
@@ -2092,6 +2258,10 @@ namespace HoI2Editor.Forms
                 andRequiredListView.Items[andRequiredListView.Items.Count - 1].Focused = true;
                 andRequiredListView.Items[andRequiredListView.Items.Count - 1].Selected = true;
             }
+            else
+            {
+                DisableAndReuqiredItems();
+            }
         }
 
         /// <summary>
@@ -2111,6 +2281,10 @@ namespace HoI2Editor.Forms
             {
                 orRequiredListView.Items[orRequiredListView.Items.Count - 1].Focused = true;
                 orRequiredListView.Items[orRequiredListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                DisableOrReuqiredItems();
             }
         }
 
@@ -2143,9 +2317,51 @@ namespace HoI2Editor.Forms
             {
                 componentListView.Items[0].Focused = true;
                 componentListView.Items[0].Selected = true;
+
+                EnableComponentItems();
+            }
+            else
+            {
+                DisableComponentItems();
             }
 
             componentListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     小研究の編集項目を有効化する
+        /// </summary>
+        private void EnableComponentItems()
+        {
+            componentIdNumericUpDown.Enabled = true;
+            componentNameTextBox.Enabled = true;
+            componentSpecialityComboBox.Enabled = true;
+            componentDifficultyNumericUpDown.Enabled = true;
+            componentDoubleTimeCheckBox.Enabled = true;
+
+            componentCloneButton.Enabled = true;
+            componentRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     小研究の編集項目を無効化する
+        /// </summary>
+        private void DisableComponentItems()
+        {
+            componentIdNumericUpDown.Value = 0;
+            componentNameTextBox.Text = "";
+            componentSpecialityComboBox.Text = "";
+            componentDifficultyNumericUpDown.Value = 0;
+            componentDoubleTimeCheckBox.Checked = false;
+
+            componentIdNumericUpDown.Enabled = false;
+            componentNameTextBox.Enabled = false;
+            componentSpecialityComboBox.Enabled = false;
+            componentDifficultyNumericUpDown.Enabled = false;
+            componentDoubleTimeCheckBox.Enabled = false;
+
+            componentCloneButton.Enabled = false;
+            componentRemoveButton.Enabled = false;
         }
 
         /// <summary>
@@ -2185,6 +2401,9 @@ namespace HoI2Editor.Forms
             UpdateComponentSpecialityComboBox(component);
             componentDifficultyNumericUpDown.Value = component.Difficulty;
             componentDoubleTimeCheckBox.Checked = component.DoubleTime;
+
+            componentUpButton.Enabled = index != 0;
+            componentDownButton.Enabled = index != item.Components.Count - 1;
         }
 
         /// <summary>
@@ -2640,6 +2859,8 @@ namespace HoI2Editor.Forms
             ListViewItem listItem = CreateComponentListItem(component);
 
             componentListView.Items.Add(listItem);
+
+            EnableComponentItems();
         }
 
         /// <summary>
@@ -2661,7 +2882,11 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveComponentListItem(int src, int dest)
         {
-            ListViewItem listItem = componentListView.Items[src];
+            var listItem = componentListView.Items[src].Clone() as ListViewItem;
+            if (listItem == null)
+            {
+                return;
+            }
 
             if (src > dest)
             {
@@ -2697,6 +2922,10 @@ namespace HoI2Editor.Forms
             {
                 componentListView.Items[componentListView.Items.Count - 1].Focused = true;
                 componentListView.Items[componentListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                DisableComponentItems();
             }
         }
 
@@ -2757,9 +2986,51 @@ namespace HoI2Editor.Forms
             {
                 effectListView.Items[0].Focused = true;
                 effectListView.Items[0].Selected = true;
+
+                EnableEffectItems();
+            }
+            else
+            {
+                DisableEventItems();
             }
 
             effectListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     技術効果の編集項目を有効化する
+        /// </summary>
+        private void EnableEffectItems()
+        {
+            commandTypeComboBox.Enabled = true;
+            commandWhichComboBox.Enabled = true;
+            commandValueComboBox.Enabled = true;
+            commandWhenComboBox.Enabled = true;
+            commandWhereComboBox.Enabled = true;
+
+            effectCloneButton.Enabled = true;
+            effectRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     技術効果の編集項目を無効化する
+        /// </summary>
+        private void DisableEffectItems()
+        {
+            commandTypeComboBox.Text = "";
+            commandWhichComboBox.Text = "";
+            commandValueComboBox.Text = "";
+            commandWhenComboBox.Text = "";
+            commandWhereComboBox.Text = "";
+
+            commandTypeComboBox.Enabled = false;
+            commandWhichComboBox.Enabled = false;
+            commandValueComboBox.Enabled = false;
+            commandWhenComboBox.Enabled = false;
+            commandWhereComboBox.Enabled = false;
+
+            effectCloneButton.Enabled = false;
+            effectRemoveButton.Enabled = false;
         }
 
         /// <summary>
@@ -2799,6 +3070,9 @@ namespace HoI2Editor.Forms
             commandValueComboBox.Text = command.Value != null ? command.Value.ToString() : "";
             commandWhenComboBox.Text = command.When != null ? command.When.ToString() : "";
             commandWhereComboBox.Text = command.Where != null ? command.Where.ToString() : "";
+
+            effectUpButton.Enabled = index != 0;
+            effectDownButton.Enabled = index != item.Effects.Count - 1;
         }
 
         /// <summary>
@@ -2841,7 +3115,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     小研究の複製ボタン押下時の処理
+        ///     技術効果の複製ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3034,11 +3308,15 @@ namespace HoI2Editor.Forms
             {
                 newType = (CommandType) commandTypeComboBox.SelectedIndex;
             }
+
+            Log.Write("OnCommandTypeComboBoxSelectionChangeCommitted:");
+            Log.Write(string.Format("  {0} => {1}", Command.TypeStringTable[(int) command.Type],
+                                    Command.TypeStringTable[(int) newType]));
+
             if (newType == command.Type)
             {
                 return;
             }
-
             command.Type = newType;
 
             effectListView.Items[index].Text = Command.TypeStringTable[(int) newType];
@@ -3256,6 +3534,8 @@ namespace HoI2Editor.Forms
             ListViewItem listItem = CreateEffectListItem(command);
 
             effectListView.Items.Add(listItem);
+
+            EnableEffectItems();
         }
 
         /// <summary>
@@ -3277,7 +3557,11 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveEffectListItem(int src, int dest)
         {
-            ListViewItem listItem = effectListView.Items[src];
+            var listItem = effectListView.Items[src].Clone() as ListViewItem;
+            if (listItem == null)
+            {
+                return;
+            }
 
             if (src > dest)
             {
@@ -3313,6 +3597,10 @@ namespace HoI2Editor.Forms
             {
                 effectListView.Items[effectListView.Items.Count - 1].Focused = true;
                 effectListView.Items[effectListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                DisableEffectItems();
             }
         }
 
@@ -3384,6 +3672,29 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     技術ラベル座標の編集項目を有効化する
+        /// </summary>
+        private void EnableLabelPositionItems()
+        {
+            labelXNumericUpDown.Enabled = true;
+            labelYNumericUpDown.Enabled = true;
+            labelPositionRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     技術ラベル座標の編集項目を無効化する
+        /// </summary>
+        private void DisableLabelPositionItems()
+        {
+            labelXNumericUpDown.Value = 0;
+            labelYNumericUpDown.Value = 0;
+
+            labelXNumericUpDown.Enabled = false;
+            labelYNumericUpDown.Enabled = false;
+            labelPositionRemoveButton.Enabled = false;
+        }
+
+        /// <summary>
         ///     技術ラベル座標リストを更新する
         /// </summary>
         /// <param name="item">技術ラベル</param>
@@ -3408,6 +3719,12 @@ namespace HoI2Editor.Forms
             {
                 labelPositionListView.Items[0].Focused = true;
                 labelPositionListView.Items[0].Selected = true;
+
+                EnableLabelPositionItems();
+            }
+            else
+            {
+                DisableLabelPositionItems();
             }
 
             labelPositionListView.EndUpdate();
@@ -3610,6 +3927,8 @@ namespace HoI2Editor.Forms
             labelPositionListView.Items[labelPositionListView.Items.Count - 1].Focused = true;
             labelPositionListView.Items[labelPositionListView.Items.Count - 1].Selected = true;
 
+            EnableLabelPositionItems();
+
             AddTechTreeLabelItem(item, position);
 
             SetDirtyFlag();
@@ -3653,6 +3972,10 @@ namespace HoI2Editor.Forms
             {
                 labelPositionListView.Items[labelPositionListView.Items.Count - 1].Focused = true;
                 labelPositionListView.Items[labelPositionListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                DisableLabelPositionItems();
             }
 
             RemoveTechTreeItem(item, position);
@@ -3702,6 +4025,30 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     技術イベント座標の編集項目を有効化する
+        /// </summary>
+        private void EnableEventPositionItems()
+        {
+            eventXNumericUpDown.Enabled = true;
+            eventYNumericUpDown.Enabled = true;
+
+            eventPositionRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     技術イベント座標の編集項目を無効化する
+        /// </summary>
+        private void DisableEventPositionItems()
+        {
+            eventXNumericUpDown.Value = 0;
+            eventYNumericUpDown.Value = 0;
+
+            eventXNumericUpDown.Enabled = false;
+            eventYNumericUpDown.Enabled = false;
+            eventPositionRemoveButton.Enabled = false;
+        }
+
+        /// <summary>
         ///     技術イベント座標リストを更新する
         /// </summary>
         /// <param name="item">技術イベント</param>
@@ -3726,6 +4073,12 @@ namespace HoI2Editor.Forms
             {
                 eventPositionListView.Items[0].Focused = true;
                 eventPositionListView.Items[0].Selected = true;
+
+                EnableEventPositionItems();
+            }
+            else
+            {
+                DisableEventPositionItems();
             }
 
             eventPositionListView.EndUpdate();
@@ -3946,6 +4299,8 @@ namespace HoI2Editor.Forms
             eventPositionListView.Items[eventPositionListView.Items.Count - 1].Focused = true;
             eventPositionListView.Items[eventPositionListView.Items.Count - 1].Selected = true;
 
+            EnableEventPositionItems();
+
             AddTechTreeEventItem(item, position);
 
             SetDirtyFlag();
@@ -3989,6 +4344,10 @@ namespace HoI2Editor.Forms
             {
                 eventPositionListView.Items[eventPositionListView.Items.Count - 1].Focused = true;
                 eventPositionListView.Items[eventPositionListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                DisableEventPositionItems();
             }
 
             RemoveTechTreeItem(item, position);

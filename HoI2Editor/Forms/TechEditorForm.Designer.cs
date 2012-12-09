@@ -67,10 +67,8 @@
             this.andIdNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.andIdLabel = new System.Windows.Forms.Label();
             this.andRemoveButton = new System.Windows.Forms.Button();
-            this.andModifyButton = new System.Windows.Forms.Button();
             this.andAddButton = new System.Windows.Forms.Button();
             this.orRemoveButton = new System.Windows.Forms.Button();
-            this.orModifyButton = new System.Windows.Forms.Button();
             this.orAddButton = new System.Windows.Forms.Button();
             this.orRequiredListView = new System.Windows.Forms.ListView();
             this.orIdcolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -441,10 +439,8 @@
             this.requiredTabPage.Controls.Add(this.andIdNumericUpDown);
             this.requiredTabPage.Controls.Add(this.andIdLabel);
             this.requiredTabPage.Controls.Add(this.andRemoveButton);
-            this.requiredTabPage.Controls.Add(this.andModifyButton);
             this.requiredTabPage.Controls.Add(this.andAddButton);
             this.requiredTabPage.Controls.Add(this.orRemoveButton);
-            this.requiredTabPage.Controls.Add(this.orModifyButton);
             this.requiredTabPage.Controls.Add(this.orAddButton);
             this.requiredTabPage.Controls.Add(this.orRequiredListView);
             this.requiredTabPage.Controls.Add(this.andRequiredListView);
@@ -474,6 +470,7 @@
             0,
             0});
             this.orIdNumericUpDown.Name = "orIdNumericUpDown";
+            this.orIdNumericUpDown.ValueChanged += new System.EventHandler(this.OnOrIdNumericUpDownValueChanged);
             // 
             // orIdLabel
             // 
@@ -501,6 +498,7 @@
             0,
             0});
             this.andIdNumericUpDown.Name = "andIdNumericUpDown";
+            this.andIdNumericUpDown.ValueChanged += new System.EventHandler(this.OnAndIdNumericUpDownValueChanged);
             // 
             // andIdLabel
             // 
@@ -513,13 +511,6 @@
             this.andRemoveButton.Name = "andRemoveButton";
             this.andRemoveButton.UseVisualStyleBackColor = true;
             this.andRemoveButton.Click += new System.EventHandler(this.OnAndRemoveButtonClick);
-            // 
-            // andModifyButton
-            // 
-            resources.ApplyResources(this.andModifyButton, "andModifyButton");
-            this.andModifyButton.Name = "andModifyButton";
-            this.andModifyButton.UseVisualStyleBackColor = true;
-            this.andModifyButton.Click += new System.EventHandler(this.OnAndModifyButtonClick);
             // 
             // andAddButton
             // 
@@ -534,13 +525,6 @@
             this.orRemoveButton.Name = "orRemoveButton";
             this.orRemoveButton.UseVisualStyleBackColor = true;
             this.orRemoveButton.Click += new System.EventHandler(this.OnOrRemoveButtonClick);
-            // 
-            // orModifyButton
-            // 
-            resources.ApplyResources(this.orModifyButton, "orModifyButton");
-            this.orModifyButton.Name = "orModifyButton";
-            this.orModifyButton.UseVisualStyleBackColor = true;
-            this.orModifyButton.Click += new System.EventHandler(this.OnOrModifyButtonClick);
             // 
             // orAddButton
             // 
@@ -562,6 +546,7 @@
             this.orRequiredListView.Name = "orRequiredListView";
             this.orRequiredListView.UseCompatibleStateImageBehavior = false;
             this.orRequiredListView.View = System.Windows.Forms.View.Details;
+            this.orRequiredListView.SelectedIndexChanged += new System.EventHandler(this.OnOrRequiredListViewSelectedIndexChanged);
             // 
             // orIdcolumnHeader
             // 
@@ -584,6 +569,7 @@
             this.andRequiredListView.Name = "andRequiredListView";
             this.andRequiredListView.UseCompatibleStateImageBehavior = false;
             this.andRequiredListView.View = System.Windows.Forms.View.Details;
+            this.andRequiredListView.SelectedIndexChanged += new System.EventHandler(this.OnAndRequiredListViewSelectedIndexChanged);
             // 
             // andIdColumnHeader
             // 
@@ -1324,9 +1310,7 @@
         private System.Windows.Forms.ComboBox andTechComboBox;
         private System.Windows.Forms.NumericUpDown andIdNumericUpDown;
         private System.Windows.Forms.Label andIdLabel;
-        private System.Windows.Forms.Button andModifyButton;
         private System.Windows.Forms.Button andAddButton;
-        private System.Windows.Forms.Button orModifyButton;
         private System.Windows.Forms.Button orAddButton;
         private System.Windows.Forms.ListView orRequiredListView;
         private System.Windows.Forms.ColumnHeader orIdcolumnHeader;
