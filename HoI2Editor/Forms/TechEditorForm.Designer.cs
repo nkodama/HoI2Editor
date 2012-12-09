@@ -666,6 +666,7 @@
             // componentSpecialityComboBox
             // 
             resources.ApplyResources(this.componentSpecialityComboBox, "componentSpecialityComboBox");
+            this.componentSpecialityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.componentSpecialityComboBox.FormattingEnabled = true;
             this.componentSpecialityComboBox.Name = "componentSpecialityComboBox";
             this.componentSpecialityComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnComponentSpecialityComboBoxSelectionChangeCommitted);
@@ -793,6 +794,7 @@
             resources.ApplyResources(this.commandTypeComboBox, "commandTypeComboBox");
             this.commandTypeComboBox.FormattingEnabled = true;
             this.commandTypeComboBox.Name = "commandTypeComboBox";
+            this.commandTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnCommandTypeComboBoxSelectionChangeCommitted);
             this.commandTypeComboBox.Click += new System.EventHandler(this.OnCommandTypeComboBoxSelectionChangeCommitted);
             // 
             // effectDownButton
@@ -869,6 +871,7 @@
             this.effectListView.FullRowSelect = true;
             this.effectListView.GridLines = true;
             this.effectListView.HideSelection = false;
+            this.effectListView.MultiSelect = false;
             this.effectListView.Name = "effectListView";
             this.effectListView.UseCompatibleStateImageBehavior = false;
             this.effectListView.View = System.Windows.Forms.View.Details;

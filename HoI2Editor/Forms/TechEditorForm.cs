@@ -2860,6 +2860,11 @@ namespace HoI2Editor.Forms
 
             componentListView.Items.Add(listItem);
 
+            int index = componentListView.Items.Count - 1;
+            componentListView.Items[index].Focused = true;
+            componentListView.Items[index].Selected = true;
+            componentListView.EnsureVisible(index);
+
             EnableComponentItems();
         }
 
@@ -2873,6 +2878,10 @@ namespace HoI2Editor.Forms
             ListViewItem listItem = CreateComponentListItem(component);
 
             componentListView.Items.Insert(index, listItem);
+
+            componentListView.Items[index].Focused = true;
+            componentListView.Items[index].Selected = true;
+            componentListView.EnsureVisible(index);
         }
 
         /// <summary>
@@ -2903,6 +2912,7 @@ namespace HoI2Editor.Forms
 
             componentListView.Items[dest].Focused = true;
             componentListView.Items[dest].Selected = true;
+            componentListView.EnsureVisible(dest);
         }
 
         /// <summary>
@@ -2991,7 +3001,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                DisableEventItems();
+                DisableEffectItems();
             }
 
             effectListView.EndUpdate();
@@ -3065,7 +3075,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            commandTypeComboBox.SelectedIndex = (int) command.Type;
+            UpdateCommandTypeComboBox(command);
             commandWhichComboBox.Text = command.Which != null ? command.Which.ToString() : "";
             commandValueComboBox.Text = command.Value != null ? command.Value.ToString() : "";
             commandWhenComboBox.Text = command.When != null ? command.When.ToString() : "";
@@ -3308,11 +3318,6 @@ namespace HoI2Editor.Forms
             {
                 newType = (CommandType) commandTypeComboBox.SelectedIndex;
             }
-
-            Log.Write("OnCommandTypeComboBoxSelectionChangeCommitted:");
-            Log.Write(string.Format("  {0} => {1}", Command.TypeStringTable[(int) command.Type],
-                                    Command.TypeStringTable[(int) newType]));
-
             if (newType == command.Type)
             {
                 return;
@@ -3535,6 +3540,11 @@ namespace HoI2Editor.Forms
 
             effectListView.Items.Add(listItem);
 
+            int index = effectListView.Items.Count - 1;
+            effectListView.Items[index].Focused = true;
+            effectListView.Items[index].Selected = true;
+            effectListView.EnsureVisible(index);
+
             EnableEffectItems();
         }
 
@@ -3548,6 +3558,10 @@ namespace HoI2Editor.Forms
             ListViewItem listItem = CreateEffectListItem(command);
 
             effectListView.Items.Insert(index, listItem);
+
+            effectListView.Items[index].Focused = true;
+            effectListView.Items[index].Selected = true;
+            effectListView.EnsureVisible(index);
         }
 
         /// <summary>
@@ -3578,6 +3592,7 @@ namespace HoI2Editor.Forms
 
             effectListView.Items[dest].Focused = true;
             effectListView.Items[dest].Selected = true;
+            effectListView.EnsureVisible(dest);
         }
 
         /// <summary>
