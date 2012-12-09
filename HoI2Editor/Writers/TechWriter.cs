@@ -43,7 +43,7 @@ namespace HoI2Editor.Writers
                 {
                     WriteTechItem(item, writer);
                 }
-                writer.WriteLine("}}");
+                writer.WriteLine("}");
             }
         }
 
@@ -81,7 +81,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    position = {{ x = {0} y = {1} }}", position.X, position.Y);
             }
-            writer.WriteLine("  }}");
+            writer.WriteLine("  }");
         }
 
         /// <summary>
@@ -95,10 +95,10 @@ namespace HoI2Editor.Writers
             writer.WriteLine("  {{ id         = {0}", ev.Id);
             foreach (TechPosition position in ev.Positions)
             {
-                writer.WriteLine("    position  = {{ x = {0} y = {1} }}", position.X, position.Y);
+                writer.WriteLine("    position   = {{ x = {0} y = {1} }}", position.X, position.Y);
             }
             writer.WriteLine("    technology = {0}", ev.Technology);
-            writer.WriteLine("  }}");
+            writer.WriteLine("  }");
         }
 
         /// <summary>
@@ -108,13 +108,14 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteApplication(Tech application, StreamWriter writer)
         {
+            writer.WriteLine("  # ");
             writer.WriteLine("  application =");
             writer.WriteLine("  {{ id        = {0}", application.Id);
             writer.WriteLine("    name      = {0}", application.Name);
             writer.WriteLine("    desc      = {0}", application.Desc);
             foreach (TechPosition position in application.Positions)
             {
-                writer.WriteLine("    position = {{ x = {0} y = {1} }}", position.X, position.Y);
+                writer.WriteLine("    position  = {{ x = {0} y = {1} }}", position.X, position.Y);
             }
             if (!string.IsNullOrEmpty(application.PictureName))
             {
@@ -144,16 +145,18 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteComponent(TechComponent component, StreamWriter writer)
         {
+            writer.WriteLine("    # ");
             writer.Write(
-                "    component = {{ id = {0} name = {1} type = {2} ",
+                "    component = {{ id = {0} name = {1} type = {2} difficulty = {3}",
                 component.Id,
                 component.Name,
-                Tech.SpecialityStringTable[(int) component.Speciality]);
+                Tech.SpecialityStringTable[(int) component.Speciality],
+                component.Difficulty);
             if (component.DoubleTime)
             {
                 writer.Write(" double_time = yes");
             }
-            writer.WriteLine(" difficulty = {0} }}", component.Difficulty);
+            writer.WriteLine(" }");
         }
 
         /// <summary>
@@ -163,12 +166,12 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteRequired(IEnumerable<int> required, StreamWriter writer)
         {
-            writer.Write("    required = {{");
+            writer.Write("    required  = {");
             foreach (int id in required)
             {
                 writer.Write(" {0}", id);
             }
-            writer.WriteLine(" }}");
+            writer.WriteLine(" }");
         }
 
         /// <summary>
@@ -178,12 +181,12 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteOrRequired(IEnumerable<int> required, StreamWriter writer)
         {
-            writer.Write("    or_required = {{");
+            writer.Write("    or_required = {");
             foreach (int id in required)
             {
                 writer.Write(" {0}", id);
             }
-            writer.WriteLine(" }}");
+            writer.WriteLine(" }");
         }
 
         /// <summary>
@@ -195,7 +198,7 @@ namespace HoI2Editor.Writers
         {
             if (effects.Count == 0)
             {
-                writer.WriteLine("    effects = {{ }}");
+                writer.WriteLine("    effects = {{ }");
                 return;
             }
 
@@ -212,10 +215,6 @@ namespace HoI2Editor.Writers
                 {
                     writer.Write("      command = {{ type = {0}", Command.TypeStringTable[(int) command.Type]);
                 }
-                if (command.Value != null)
-                {
-                    writer.Write(" value = {0}", command.Value);
-                }
                 if (command.Which != null)
                 {
                     writer.Write(" which = {0}", command.Which);
@@ -228,9 +227,13 @@ namespace HoI2Editor.Writers
                 {
                     writer.Write(" where = {0}", command.Where);
                 }
-                writer.WriteLine(" }}");
+                if (command.Value != null)
+                {
+                    writer.Write(" value = {0}", command.Value);
+                }
+                writer.WriteLine(" }");
             }
-            writer.WriteLine("    }}");
+            writer.WriteLine("    }");
         }
     }
 }
