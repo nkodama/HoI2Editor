@@ -102,6 +102,21 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     文字列の一時キーをIDに沿った値に変更する
+        /// </summary>
+        /// <param name="name">ラベル名</param>
+        public void RenameTempKey(string name)
+        {
+            // ラベル名
+            if (Config.IsTempKey(Tag, Game.TechTextFileName))
+            {
+                string newKey = String.Format("TECH_CAT_{0}", name);
+                Config.RenameTempKey(Tag, newKey, Game.TechTextFileName);
+                Tag = newKey;
+            }
+        }
+
+        /// <summary>
         ///     文字列の一時キーを削除する
         /// </summary>
         public void RemoveTempKey()
@@ -133,7 +148,7 @@ namespace HoI2Editor.Models
                 s = s.Substring(4);
             }
 
-            return s;
+            return s ?? "";
         }
     }
 
@@ -211,6 +226,8 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Tech
     {
+        #region 定数
+
         /// <summary>
         ///     研究特性文字列
         /// </summary>
@@ -446,6 +463,24 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
+        ///     技術カテゴリキー名テーブル
+        /// </summary>
+        private static readonly string[] TechCategoryKeyNames =
+            {
+                "INFANTRY",
+                "ARMOR",
+                "NAVAL",
+                "AIRCRAFT",
+                "INDUSTRY",
+                "LD",
+                "SW",
+                "ND",
+                "AD"
+            };
+
+        #endregion
+
+        /// <summary>
         ///     研究特性文字列とIDの対応付け
         /// </summary>
         public static Dictionary<string, TechSpeciality> SpecialityStringMap = new Dictionary<string, TechSpeciality>();
@@ -593,6 +628,48 @@ namespace HoI2Editor.Models
             }
 
             return tech;
+        }
+
+        /// <summary>
+        ///     文字列の一時キーをIDに沿った値に変更する
+        /// </summary>
+        /// <param name="category">技術カテゴリ</param>
+        public void RenameTempKey(TechCategory category)
+        {
+            // 技術名
+            if (Config.IsTempKey(Name, Game.TechTextFileName))
+            {
+                string newKey = String.Format("TECH_APP_{0}_{1}_NAME", TechCategoryKeyNames[(int) category], Id);
+                Config.RenameTempKey(Name, newKey, Game.TechTextFileName);
+                Name = newKey;
+            }
+            // 技術短縮名
+            if (Config.IsTempKey(ShortName, Game.TechTextFileName))
+            {
+                string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", TechCategoryKeyNames[(int) category], Id);
+                Config.RenameTempKey(ShortName, newKey, Game.TechTextFileName);
+                ShortName = newKey;
+            }
+            // 技術説明
+            if (Config.IsTempKey(Desc, Game.TechTextFileName))
+            {
+                string newKey = String.Format("TECH_APP_{0}_{1}_DESC", TechCategoryKeyNames[(int) category], Id);
+                Config.RenameTempKey(Desc, newKey, Game.TechTextFileName);
+                Desc = newKey;
+            }
+            // 小研究名
+            int componentId = 1;
+            foreach (TechComponent component in Components)
+            {
+                if (Config.IsTempKey(component.Name, Game.TechTextFileName))
+                {
+                    string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", TechCategoryKeyNames[(int) category], Id,
+                                                  componentId);
+                    Config.RenameTempKey(component.Name, newKey, Game.TechTextFileName);
+                    component.Name = newKey;
+                }
+                componentId++;
+            }
         }
 
         /// <summary>

@@ -112,7 +112,10 @@ namespace HoI2Editor.Writers
             writer.WriteLine("  application =");
             writer.WriteLine("  {{ id        = {0}", application.Id);
             writer.WriteLine("    name      = {0}", application.Name);
-            writer.WriteLine("    desc      = {0}", application.Desc);
+            if (!string.IsNullOrEmpty(application.Desc))
+            {
+                writer.WriteLine("    desc      = {0}", application.Desc);
+            }
             foreach (TechPosition position in application.Positions)
             {
                 writer.WriteLine("    position  = {{ x = {0} y = {1} }}", position.X, position.Y);
@@ -208,13 +211,23 @@ namespace HoI2Editor.Writers
             {
                 if (first)
                 {
-                    writer.Write("    {{ command = {{ type = {0}", Command.TypeStringTable[(int) command.Type]);
+                    writer.Write("    { command = {");
                     first = false;
                 }
                 else
                 {
-                    writer.Write("      command = {{ type = {0}", Command.TypeStringTable[(int) command.Type]);
+                    writer.Write("      command = {");
                 }
+                if (command.Triggers != null)
+                {
+                    writer.Write(" trigger = {");
+                    foreach (Trigger trigger in command.Triggers)
+                    {
+                        writer.Write(" {0} = {1}", Trigger.TypeStringTable[(int) trigger.Type], trigger.Value);
+                    }
+                    writer.Write(" }");
+                }
+                writer.Write(" type = {0}", Command.TypeStringTable[(int) command.Type]);
                 if (command.Which != null)
                 {
                     writer.Write(" which = {0}", command.Which);

@@ -1050,6 +1050,7 @@ namespace HoI2Editor.Parsers
                     {
                         continue;
                     }
+                    s = s.ToLower();
                     if (!Tech.SpecialityStringMap.ContainsKey(s))
                     {
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));

@@ -207,6 +207,7 @@ namespace HoI2Editor.Forms
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
             SaveTechFiles();
+            SaveConfigFiles();
         }
 
         /// <summary>
@@ -234,6 +235,36 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグがクリアされるため表示を更新する
             categoryListBox.Update();
+        }
+
+        /// <summary>
+        ///     文字列定義ファイルを保存する
+        /// </summary>
+        private void SaveConfigFiles()
+        {
+            int labelno = 1;
+
+            // 一時キーをIDに応じた値に変更する
+            foreach (TechGroup group in Techs.List)
+            {
+                foreach (object item in group.Items)
+                {
+                    if (item is Tech)
+                    {
+                        var techItem = item as Tech;
+                        techItem.RenameTempKey(group.Category);
+                    }
+                    else if (item is TechLabel)
+                    {
+                        var labelItem = item as TechLabel;
+                        labelItem.RenameTempKey(labelno.ToString(CultureInfo.InvariantCulture));
+                        labelno++;
+                    }
+                }
+            }
+
+            // 文字列定義ファイルを保存する
+            Config.SaveConfigFiles();
         }
 
         /// <summary>

@@ -94,6 +94,7 @@
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Models\Tech.cs" />
     <Compile Include="Models\Techs.cs" />
+    <Compile Include="Models\Trigger.cs" />
     <Compile Include="Parsers\CommandParser.cs" />
     <Compile Include="Parsers\MinisterModifierParser.cs" />
     <Compile Include="Parsers\MinisterPersonalityParser.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Parsers\TechParser.cs" />
     <Compile Include="Parsers\TextLexer.cs" />
     <Compile Include="Parsers\Token.cs" />
+    <Compile Include="Parsers\TriggerParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Writers\TechWriter.cs" />
     <EmbeddedResource Include="Forms\LeaderEditorForm.ja-JP.resx">

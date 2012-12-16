@@ -229,6 +229,18 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // trigger
+                if (keyword.Equals("trigger"))
+                {
+                    // トリガー
+                    List<Trigger> triggers = TriggerParser.Parse(lexer);
+                    if (triggers != null)
+                    {
+                        command.Triggers = triggers;
+                    }
+                    continue;
+                }
+
                 // 無効なトークン
                 Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                 lexer.SkipLine();

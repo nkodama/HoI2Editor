@@ -169,9 +169,13 @@ namespace HoI2Editor.Models
             oldKey = oldKey.ToUpper();
             newKey = newKey.ToUpper();
 
-            string text = ReplacedText[oldKey];
-            ReplacedText.Remove(oldKey);
-            ReplacedText.Add(newKey, text);
+            if (!Text.ContainsKey(oldKey) || Text.ContainsKey(newKey))
+            {
+                return;
+            }
+
+            Text.Add(newKey, Text[oldKey]);
+            Text.Remove(oldKey);
 
             ReservedListTable[fileName].Remove(oldKey);
             ReservedListTable[fileName].Add(newKey);
@@ -298,8 +302,32 @@ namespace HoI2Editor.Models
             {
                 name = Path.Combine("Addtional", name);
             }
-            int lineNo = 0;
 
+            // トークン数の設定
+            int expectedCount;
+            int effectiveCount;
+            if (name.Equals("editor.csv"))
+            {
+                expectedCount = 11;
+                effectiveCount = 10;
+            }
+            else if (name.Equals("famous_quotes.csv"))
+            {
+                expectedCount = 16;
+                effectiveCount = 16;
+            }
+            else if (name.Equals("launcher.csv"))
+            {
+                expectedCount = 10;
+                effectiveCount = 10;
+            }
+            else
+            {
+                expectedCount = 12;
+                effectiveCount = 11;
+            }
+
+            int lineNo = 0;
             var orderList = new List<string>();
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
@@ -322,14 +350,14 @@ namespace HoI2Editor.Models
                     orderList.Add(tokens[0]);
 
                     // トークン数が足りない行は読み飛ばす
-                    if (tokens.Length != 12)
+                    if (tokens.Length != expectedCount)
                     {
                         Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount,
                                                 Path.Combine(Game.ConfigPathName, name), lineNo));
-                        Log.Write(string.Format("  {0}\n", line));
+                        Log.Write(string.Format("  {0}\n\n", line));
 
                         // 末尾のxがない/余分な項目がある場合は解析を続ける
-                        if (tokens.Length < 11)
+                        if (tokens.Length < effectiveCount)
                         {
                             continue;
                         }
@@ -372,6 +400,9 @@ namespace HoI2Editor.Models
         {
             using (var writer = new StreamWriter(Game.GetFileName(Path.Combine(Game.ConfigPathName, fileName))))
             {
+                // 最初のEOF定義で追加文字列を書き込むためのフラグ
+                bool firsteof = true;
+
                 // 既存の文字列定義
                 foreach (string key in OrderListTable[fileName])
                 {
@@ -391,10 +422,12 @@ namespace HoI2Editor.Models
                                 "#  STRING NAME (do not change!);English;French;Italian;Spanish;German;Polish;Portuguese;Russian;;Extra2;X");
                             continue;
                         }
-                        // ファイル末尾は追加文字列の後で
-                        if (key.Equals("#EOF"))
+                        // ファイル末尾のEOFの直前に追加文字列を出力する
+                        if (key.Equals("#EOF") && firsteof)
                         {
-                            break;
+                            // 追加文字列
+                            WriteAdditionalStrings(fileName, writer);
+                            firsteof = false;
                         }
                         writer.WriteLine("{0};;;;;;;;;;;X", key);
                         continue;
@@ -411,25 +444,39 @@ namespace HoI2Editor.Models
                     }
                 }
 
-                // 追加の文字列定義
-                if (ReservedListTable.ContainsKey(fileName))
+                // ファイル末尾のEOFがない場合の保険
+                if (firsteof)
                 {
-                    foreach (string key in ReservedListTable[fileName])
+                    // 追加文字列
+                    WriteAdditionalStrings(fileName, writer);
+                    // 末尾行
+                    writer.WriteLine("#EOF;;;;;;;;;;;X");
+                }
+            }
+        }
+
+        /// <summary>
+        ///     追加の文字列定義を出力する
+        /// </summary>
+        /// <param name="fileName">ファイル名</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteAdditionalStrings(string fileName, StreamWriter writer)
+        {
+            // 追加の文字列定義
+            if (ReservedListTable.ContainsKey(fileName))
+            {
+                foreach (string key in ReservedListTable[fileName])
+                {
+                    string k = key.ToUpper();
+                    if (Text.ContainsKey(k))
                     {
-                        string k = key.ToUpper();
-                        if (Text.ContainsKey(k))
-                        {
-                            writer.WriteLine("{0};{1};;;;;;;;;;X", key, Text[k]);
-                        }
-                        else
-                        {
-                            writer.WriteLine("{0};;;;;;;;;;;X", key);
-                        }
+                        writer.WriteLine("{0};{1};;;;;;;;;;X", key, Text[k]);
+                    }
+                    else
+                    {
+                        writer.WriteLine("{0};;;;;;;;;;;X", key);
                     }
                 }
-
-                // 末尾行
-                writer.WriteLine("#EOF;;;;;;;;;;;X");
             }
         }
 

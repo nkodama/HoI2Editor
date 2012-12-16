@@ -296,7 +296,7 @@ namespace HoI2Editor.Models
         private static void LoadTechFile(string fileName)
         {
             TechGroup group = TechParser.Parse(fileName);
-            List.Add(group);
+            List.Add(@group);
         }
 
         /// <summary>
@@ -306,8 +306,8 @@ namespace HoI2Editor.Models
         {
             foreach (TechGroup group in List)
             {
-                string fileName = Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) group.Category]));
-                TechWriter.Write(group, fileName);
+                string fileName = Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) @group.Category]));
+                TechWriter.Write(@group, fileName);
             }
 
             // 編集済みフラグを全クリアする
@@ -322,7 +322,7 @@ namespace HoI2Editor.Models
         public static void AddItem(TechCategory category, object target)
         {
             TechGroup group = List[(int) category];
-            group.Items.Add(target);
+            @group.Items.Add(target);
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace HoI2Editor.Models
         public static void InsertItemNext(TechCategory category, object target, object position)
         {
             TechGroup group = List[(int) category];
-            group.Items.Insert(group.Items.IndexOf(position) + 1, target);
+            @group.Items.Insert(@group.Items.IndexOf(position) + 1, target);
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace HoI2Editor.Models
         public static void RemoveItem(TechCategory category, object item)
         {
             TechGroup group = List[(int) category];
-            group.Items.Remove(item);
+            @group.Items.Remove(item);
 
             if (item is Tech)
             {
@@ -368,20 +368,20 @@ namespace HoI2Editor.Models
         public static void MoveItem(TechCategory category, object target, object position)
         {
             TechGroup group = List[(int) category];
-            int targetIndex = group.Items.IndexOf(target);
-            int positionIndex = group.Items.IndexOf(position);
+            int targetIndex = @group.Items.IndexOf(target);
+            int positionIndex = @group.Items.IndexOf(position);
 
             if (targetIndex > positionIndex)
             {
                 // 上へ移動する場合
-                group.Items.Insert(positionIndex, target);
-                group.Items.RemoveAt(targetIndex + 1);
+                @group.Items.Insert(positionIndex, target);
+                @group.Items.RemoveAt(targetIndex + 1);
             }
             else
             {
                 // 下へ移動する場合
-                group.Items.Insert(positionIndex + 1, target);
-                group.Items.RemoveAt(targetIndex);
+                @group.Items.Insert(positionIndex + 1, target);
+                @group.Items.RemoveAt(targetIndex);
             }
         }
 
