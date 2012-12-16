@@ -666,9 +666,11 @@
             // componentSpecialityComboBox
             // 
             resources.ApplyResources(this.componentSpecialityComboBox, "componentSpecialityComboBox");
+            this.componentSpecialityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.componentSpecialityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.componentSpecialityComboBox.FormattingEnabled = true;
             this.componentSpecialityComboBox.Name = "componentSpecialityComboBox";
+            this.componentSpecialityComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnComponentSpecialityComboBoxDrawItem);
             this.componentSpecialityComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnComponentSpecialityComboBoxSelectionChangeCommitted);
             // 
             // componentSpecialityLabel

@@ -21,11 +21,6 @@ namespace HoI2Editor.Forms
         private readonly List<Team> _narrowedList = new List<Team>();
 
         /// <summary>
-        ///     研究特性画像リスト
-        /// </summary>
-        private ImageList _specialityImages;
-
-        /// <summary>
         ///     コンストラクタ
         /// </summary>
         public TeamEditorForm()
@@ -162,14 +157,8 @@ namespace HoI2Editor.Forms
             // ゲームの種類に合わせて研究特性を初期化する
             Techs.InitSpecialities();
 
-            // 研究特性画像リストを作成する
-            var bitmap = new Bitmap(Game.GetFileName(Game.TechIconPathName));
-            _specialityImages = new ImageList
-                                    {
-                                        ImageSize = new Size(24, 24),
-                                        TransparentColor = bitmap.GetPixel(0, 0)
-                                    };
-            _specialityImages.Images.AddStrip(bitmap);
+            // 研究特性画像リストを初期化する
+            Techs.InitSpecialityImages();
         }
 
         /// <summary>
@@ -745,10 +734,10 @@ namespace HoI2Editor.Forms
             var combobox = sender as ComboBox;
             if (combobox != null && e.Index > 0)
             {
-                if (e.Index - 1 < _specialityImages.Images.Count)
+                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
                     var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                    e.Graphics.DrawImage(_specialityImages.Images[e.Index - 1], gr);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
 
                 Brush brush = new SolidBrush(combobox.ForeColor);
@@ -802,7 +791,7 @@ namespace HoI2Editor.Forms
             {
                 if (team.Specialities[i] != TechSpeciality.None)
                 {
-                    e.Graphics.DrawImage(_specialityImages.Images[(int) team.Specialities[i] - 1], rect);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[(int) team.Specialities[i] - 1], rect);
                     rect.X += 19;
                 }
             }

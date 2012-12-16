@@ -173,6 +173,9 @@ namespace HoI2Editor.Forms
         {
             // ゲームの種類に合わせて研究特性を初期化する
             Techs.InitSpecialities();
+
+            // 研究特性画像リストを初期化する
+            Techs.InitSpecialityImages();
         }
 
         /// <summary>
@@ -2435,6 +2438,37 @@ namespace HoI2Editor.Forms
 
             componentUpButton.Enabled = index != 0;
             componentDownButton.Enabled = index != item.Components.Count - 1;
+        }
+
+        /// <summary>
+        ///     小研究特性コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnComponentSpecialityComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            var combobox = sender as ComboBox;
+            if (combobox != null && e.Index >= 0)
+            {
+                int imageIndex = e.Index - (string.IsNullOrEmpty(combobox.Items[0] as string) ? 1 : 0);
+                if (imageIndex < Techs.SpecialityImages.Images.Count && imageIndex >= 0)
+                {
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[imageIndex], gr);
+                }
+
+                Brush brush = new SolidBrush(combobox.ForeColor);
+                string s = combobox.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
         }
 
         /// <summary>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Writers;
 
@@ -36,6 +38,11 @@ namespace HoI2Editor.Models
                 "naval_doctrines_tech.txt",
                 "air_doctrines_tech.txt"
             };
+
+        /// <summary>
+        ///     研究特性画像リスト
+        /// </summary>
+        public static ImageList SpecialityImages;
 
         /// <summary>
         ///     研究特性リスト
@@ -402,6 +409,21 @@ namespace HoI2Editor.Models
                     SpecialityTable = (Game.Version >= 103 ? SpecialityTableDh : SpecialityTableDh102);
                     break;
             }
+        }
+
+        /// <summary>
+        ///     研究特性画像リストを初期化する
+        /// </summary>
+        public static void InitSpecialityImages()
+        {
+            // 研究特性画像リストを作成する
+            var bitmap = new Bitmap(Game.GetFileName(Game.TechIconPathName));
+            SpecialityImages = new ImageList
+                                   {
+                                       ImageSize = new Size(24, 24),
+                                       TransparentColor = bitmap.GetPixel(0, 0)
+                                   };
+            SpecialityImages.Images.AddStrip(bitmap);
         }
 
         /// <summary>
