@@ -1129,8 +1129,10 @@
             // techListBox
             // 
             resources.ApplyResources(this.techListBox, "techListBox");
+            this.techListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.techListBox.FormattingEnabled = true;
             this.techListBox.Name = "techListBox";
+            this.techListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTechListBoxDrawItem);
             this.techListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechListBoxSelectedIndexChanged);
             // 
             // reloadButton

@@ -276,7 +276,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     閣僚特性を読み込む
         /// </summary>
-        private void LoadPersonality()
+        private static void LoadPersonality()
         {
             // 閣僚特性を読み込む
             Ministers.LoadMinisterPersonality();
@@ -437,7 +437,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="minister">閣僚データ</param>
         /// <returns>閣僚リストビューの項目</returns>
-        private ListViewItem CreateMinisterListViewItem(Minister minister)
+        private static ListViewItem CreateMinisterListViewItem(Minister minister)
         {
             if (minister == null)
             {

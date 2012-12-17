@@ -234,7 +234,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     共通ファイルを読み込む
         /// </summary>
-        private void LoadCommonFiles()
+        private static void LoadCommonFiles()
         {
             Misc.LoadMiscFile();
             Config.LoadConfigFiles();

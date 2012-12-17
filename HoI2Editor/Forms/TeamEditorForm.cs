@@ -152,7 +152,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     研究特性を初期化する
         /// </summary>
-        private void InitSpecialities()
+        private static void InitSpecialities()
         {
             // ゲームの種類に合わせて研究特性を初期化する
             Techs.InitSpecialities();
@@ -306,7 +306,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="team">研究機関データ</param>
         /// <returns>研究機関リストビューの項目</returns>
-        private ListViewItem CreateTeamListViewItem(Team team)
+        private static ListViewItem CreateTeamListViewItem(Team team)
         {
             if (team == null)
             {
@@ -779,7 +779,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="e"></param>
         /// <param name="team">研究機関データ</param>
-        private void DrawTechSpecialityIcon(DrawListViewSubItemEventArgs e, Team team)
+        private static void DrawTechSpecialityIcon(DrawListViewSubItemEventArgs e, Team team)
         {
             if (team == null)
             {

@@ -250,7 +250,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     文字列定義ファイルを保存する
         /// </summary>
-        private void SaveConfigFiles()
+        private static void SaveConfigFiles()
         {
             int labelno = 1;
 
@@ -451,6 +451,42 @@ namespace HoI2Editor.Forms
             upButton.Enabled = techListBox.SelectedIndex != 0;
             downButton.Enabled = techListBox.SelectedIndex != techListBox.Items.Count - 1;
             bottomButton.Enabled = techListBox.SelectedIndex != techListBox.Items.Count - 1;
+        }
+
+        /// <summary>
+        ///     項目リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            e.DrawBackground();
+
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                if (techListBox.Items[e.Index] is TechLabel)
+                {
+                    e.Graphics.FillRectangle(Brushes.AliceBlue,
+                                             new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+                }
+                else if (techListBox.Items[e.Index] is TechEvent)
+                {
+                    e.Graphics.FillRectangle(Brushes.Honeydew,
+                                             new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+                }
+            }
+
+            Brush brush = new SolidBrush(techListBox.ForeColor);
+            e.Graphics.DrawString(techListBox.Items[e.Index].ToString(), e.Font, brush,
+                                  new RectangleF(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+            brush.Dispose();
+
+            e.DrawFocusRectangle();
         }
 
         /// <summary>
@@ -1054,7 +1090,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechLabelPaint(object sender, PaintEventArgs e)
+        private static void OnTechLabelPaint(object sender, PaintEventArgs e)
         {
             var label = sender as Label;
             if (label == null)
@@ -1245,7 +1281,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelMouseUp(object sender, MouseEventArgs e)
+        private static void OnTechTreeLabelMouseUp(object sender, MouseEventArgs e)
         {
             _dragPoint = Point.Empty;
         }
@@ -1291,14 +1327,7 @@ namespace HoI2Editor.Forms
 
             var dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
             Point p = treePictureBox.PointToClient(new Point(e.X, e.Y));
-            if (dragRect.Contains(p))
-            {
-                e.Effect = DragDropEffects.Move;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
+            e.Effect = dragRect.Contains(p) ? DragDropEffects.Move : DragDropEffects.None;
         }
 
         /// <summary>
@@ -3132,7 +3161,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="component">小研究</param>
         /// <returns>小研究リストの項目</returns>
-        private ListViewItem CreateComponentListItem(TechComponent component)
+        private static ListViewItem CreateComponentListItem(TechComponent component)
         {
             var listItem = new ListViewItem {Text = component.Id.ToString(CultureInfo.InvariantCulture)};
             listItem.SubItems.Add(Config.GetText(component.Name));
@@ -3812,7 +3841,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="command">技術効果</param>
         /// <returns>技術効果リストの項目</returns>
-        private ListViewItem CreateEffectListItem(Command command)
+        private static ListViewItem CreateEffectListItem(Command command)
         {
             var listItem = new ListViewItem {Text = Command.TypeStringTable[(int) command.Type]};
             listItem.SubItems.Add(command.Which != null ? command.Which.ToString() : "");
@@ -4448,7 +4477,7 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もせずに戻る
             var newTechnology = (int) eventTechNumericUpDown.Value;
-            if (newTechnology == item.Id)
+            if (newTechnology == item.Technology)
             {
                 return;
             }
