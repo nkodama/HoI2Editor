@@ -43,6 +43,11 @@ namespace HoI2Editor.Forms
         private static readonly Region EventLabelRegion =
             new Region(new Rectangle(0, 0, EventLabelWidth, EventLabelHeight));
 
+        /// <summary>
+        ///     ドラッグアンドドロップの開始位置
+        /// </summary>
+        private static Point _dragPoint = Point.Empty;
+
         #endregion
 
         #region 定数
@@ -93,6 +98,8 @@ namespace HoI2Editor.Forms
         public TechEditorForm()
         {
             InitializeComponent();
+
+            treePictureBox.AllowDrop = true;
         }
 
         #endregion
@@ -950,6 +957,9 @@ namespace HoI2Editor.Forms
                                 Tag = new TechLabelInfo {Item = item, Position = position},
                             };
             label.Paint += OnTechLabelPaint;
+            label.MouseDown += OnTechTreeLabelMouseDown;
+            label.MouseUp += OnTechTreeLabelMouseUp;
+            label.MouseMove += OnTechTreeLabelMouseMove;
             treePictureBox.Controls.Add(label);
         }
 
@@ -968,6 +978,9 @@ namespace HoI2Editor.Forms
                             };
             label.Size = TextRenderer.MeasureText(Config.GetText(item.Tag), label.Font);
             label.Paint += OnLabelLabelPaint;
+            label.MouseDown += OnTechTreeLabelMouseDown;
+            label.MouseUp += OnTechTreeLabelMouseUp;
+            label.MouseMove += OnTechTreeLabelMouseMove;
             treePictureBox.Controls.Add(label);
         }
 
@@ -987,6 +1000,9 @@ namespace HoI2Editor.Forms
                                 Region = EventLabelRegion,
                                 Tag = new TechLabelInfo {Item = item, Position = position},
                             };
+            label.MouseDown += OnTechTreeLabelMouseDown;
+            label.MouseUp += OnTechTreeLabelMouseUp;
+            label.MouseMove += OnTechTreeLabelMouseMove;
             treePictureBox.Controls.Add(label);
         }
 
@@ -1155,6 +1171,218 @@ namespace HoI2Editor.Forms
                     }
                 }
             }
+        }
+
+        /// <summary>
+        ///     技術ツリーラベルのマウスダウン時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechTreeLabelMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                _dragPoint = Point.Empty;
+                return;
+            }
+
+            var label = sender as Label;
+            if (label == null)
+            {
+                return;
+            }
+
+            var info = label.Tag as TechLabelInfo;
+            if (info == null)
+            {
+                return;
+            }
+
+            techListBox.SelectedItem = info.Item;
+
+            if (info.Item is Tech)
+            {
+                var techItem = info.Item as Tech;
+                for (int i = 0; i < techItem.Positions.Count; i++)
+                {
+                    if (techItem.Positions[i] == info.Position)
+                    {
+                        techPositionListView.Items[i].Focused = true;
+                        techPositionListView.Items[i].Selected = true;
+                    }
+                }
+            }
+            else if (info.Item is TechLabel)
+            {
+                var labelItem = info.Item as TechLabel;
+                for (int i = 0; i < labelItem.Positions.Count; i++)
+                {
+                    if (labelItem.Positions[i] == info.Position)
+                    {
+                        labelPositionListView.Items[i].Focused = true;
+                        labelPositionListView.Items[i].Selected = true;
+                    }
+                }
+            }
+            else if (info.Item is TechEvent)
+            {
+                var eventItem = info.Item as TechEvent;
+                for (int i = 0; i < eventItem.Positions.Count; i++)
+                {
+                    if (eventItem.Positions[i] == info.Position)
+                    {
+                        eventPositionListView.Items[i].Focused = true;
+                        eventPositionListView.Items[i].Selected = true;
+                    }
+                }
+            }
+
+            _dragPoint = new Point(label.Left + e.X, label.Top + e.Y);
+        }
+
+        /// <summary>
+        ///     技術ツリーラベルのマウスアップ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechTreeLabelMouseUp(object sender, MouseEventArgs e)
+        {
+            _dragPoint = Point.Empty;
+        }
+
+        /// <summary>
+        ///     技術ツリーラベルのマウス移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechTreeLabelMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_dragPoint != Point.Empty)
+            {
+                Size dragSize = SystemInformation.DragSize;
+                var dragRect = new Rectangle(_dragPoint.X - dragSize.Width/2, _dragPoint.Y - dragSize.Height/2,
+                                             dragSize.Width, dragSize.Height);
+                if (!dragRect.Contains(e.X, e.Y))
+                {
+                    DoDragDrop(sender, DragDropEffects.Move);
+                    _dragPoint = Point.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     技術ツリーピクチャーボックスにドラッグした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTreePictureBoxDragOver(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(typeof (Label)))
+            {
+                e.Effect = DragDropEffects.None;
+                return;
+            }
+
+            var label = e.Data.GetData(typeof (Label)) as Label;
+            if (label == null)
+            {
+                return;
+            }
+
+            var dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
+            Point p = treePictureBox.PointToClient(new Point(e.X, e.Y));
+            if (dragRect.Contains(p))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        /// <summary>
+        ///     技術ツリーピクチャーボックスにドロップした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTreePictureBoxDragDrop(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(typeof (Label)))
+            {
+                return;
+            }
+
+            var label = e.Data.GetData(typeof (Label)) as Label;
+            if (label == null)
+            {
+                return;
+            }
+
+            var p = new Point(e.X, e.Y);
+            p = treePictureBox.PointToClient(p);
+
+            p.X = label.Left + p.X - _dragPoint.X;
+            p.Y = label.Top + p.Y - _dragPoint.Y;
+
+            var info = label.Tag as TechLabelInfo;
+            if (info == null)
+            {
+                return;
+            }
+            info.Position.X = p.X;
+            info.Position.Y = p.Y;
+
+            if (info.Item is Tech)
+            {
+                var techItem = info.Item as Tech;
+                for (int i = 0; i < techItem.Positions.Count; i++)
+                {
+                    if (techItem.Positions[i] == info.Position)
+                    {
+                        techPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
+                        techPositionListView.Items[i].SubItems[1].Text =
+                            info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                    }
+                }
+
+                techXNumericUpDown.Value = info.Position.X;
+                techYNumericUpDown.Value = info.Position.Y;
+            }
+            else if (info.Item is TechLabel)
+            {
+                var labelItem = info.Item as TechLabel;
+                for (int i = 0; i < labelItem.Positions.Count; i++)
+                {
+                    if (labelItem.Positions[i] == info.Position)
+                    {
+                        labelPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
+                        labelPositionListView.Items[i].SubItems[1].Text =
+                            info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                    }
+                }
+
+                techXNumericUpDown.Value = info.Position.X;
+                techYNumericUpDown.Value = info.Position.Y;
+            }
+            else if (info.Item is TechEvent)
+            {
+                var eventItem = info.Item as TechEvent;
+                for (int i = 0; i < eventItem.Positions.Count; i++)
+                {
+                    if (eventItem.Positions[i] == info.Position)
+                    {
+                        eventPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
+                        eventPositionListView.Items[i].SubItems[1].Text =
+                            info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                    }
+                }
+
+                techXNumericUpDown.Value = info.Position.X;
+                techYNumericUpDown.Value = info.Position.Y;
+            }
+
+            label.Location = p;
         }
 
         /// <summary>

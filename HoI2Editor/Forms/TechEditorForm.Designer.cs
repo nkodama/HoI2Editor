@@ -201,6 +201,8 @@
             resources.ApplyResources(this.treePictureBox, "treePictureBox");
             this.treePictureBox.Name = "treePictureBox";
             this.treePictureBox.TabStop = false;
+            this.treePictureBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnTreePictureBoxDragDrop);
+            this.treePictureBox.DragOver += new System.Windows.Forms.DragEventHandler(this.OnTreePictureBoxDragOver);
             // 
             // editTabControl
             // 
