@@ -53,12 +53,44 @@ namespace HoI2Editor.Utilities
     /// </summary>
     public struct IconInfo
     {
+        #region
+
         // ReSharper disable InconsistentNaming
         public bool fIcon;
+        // ReSharper restore InconsistentNaming
+
+        #endregion
+
+        #region
+
+        // ReSharper disable InconsistentNaming
         public int xHotspot;
+        // ReSharper restore InconsistentNaming
+
+        #endregion
+
+        #region
+
+        // ReSharper disable InconsistentNaming
         public int yHotspot;
+        // ReSharper restore InconsistentNaming
+
+        #endregion
+
+        #region
+
+        // ReSharper disable InconsistentNaming
         public IntPtr hbmMask;
+        // ReSharper restore InconsistentNaming
+
+        #endregion
+
+        #region
+
+        // ReSharper disable InconsistentNaming
         public IntPtr hbmColor;
         // ReSharper restore InconsistentNaming
+
+        #endregion
     }
 }
