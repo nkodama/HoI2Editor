@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -47,6 +48,11 @@ namespace HoI2Editor.Forms
         ///     ドラッグアンドドロップの開始位置
         /// </summary>
         private static Point _dragPoint = Point.Empty;
+
+        /// <summary>
+        ///     ドラッグ中のカーソル
+        /// </summary>
+        private static Cursor _dragCursor;
 
         #endregion
 
@@ -996,6 +1002,7 @@ namespace HoI2Editor.Forms
             label.MouseDown += OnTechTreeLabelMouseDown;
             label.MouseUp += OnTechTreeLabelMouseUp;
             label.MouseMove += OnTechTreeLabelMouseMove;
+            label.GiveFeedback += OnTechTreeLabelGiveFeedback;
             treePictureBox.Controls.Add(label);
         }
 
@@ -1017,6 +1024,7 @@ namespace HoI2Editor.Forms
             label.MouseDown += OnTechTreeLabelMouseDown;
             label.MouseUp += OnTechTreeLabelMouseUp;
             label.MouseMove += OnTechTreeLabelMouseMove;
+            label.GiveFeedback += OnTechTreeLabelGiveFeedback;
             treePictureBox.Controls.Add(label);
         }
 
@@ -1039,6 +1047,7 @@ namespace HoI2Editor.Forms
             label.MouseDown += OnTechTreeLabelMouseDown;
             label.MouseUp += OnTechTreeLabelMouseUp;
             label.MouseMove += OnTechTreeLabelMouseMove;
+            label.GiveFeedback += OnTechTreeLabelGiveFeedback;
             treePictureBox.Controls.Add(label);
         }
 
@@ -1190,12 +1199,12 @@ namespace HoI2Editor.Forms
                     }
                 }
             }
+            _techLabelBitmap.MakeTransparent(transparent);
 
             // 技術イベント
             bitmap = new Bitmap(Game.GetFileName(Game.SecretLabelPathName));
             _eventLabelBitmap = bitmap.Clone(new Rectangle(0, 0, EventLabelWidth, EventLabelHeight), bitmap.PixelFormat);
             bitmap.Dispose();
-            _eventLabelBitmap.MakeTransparent(_eventLabelBitmap.GetPixel(0, 0));
             transparent = _eventLabelBitmap.GetPixel(0, 0);
             for (int x = 0; x < _eventLabelBitmap.Width; x++)
             {
@@ -1207,6 +1216,7 @@ namespace HoI2Editor.Forms
                     }
                 }
             }
+            _eventLabelBitmap.MakeTransparent(transparent);
         }
 
         /// <summary>
@@ -1284,6 +1294,7 @@ namespace HoI2Editor.Forms
         private static void OnTechTreeLabelMouseUp(object sender, MouseEventArgs e)
         {
             _dragPoint = Point.Empty;
+            Cursor.Current = Cursors.Default;
         }
 
         /// <summary>
@@ -1300,9 +1311,38 @@ namespace HoI2Editor.Forms
                                              dragSize.Width, dragSize.Height);
                 if (!dragRect.Contains(e.X, e.Y))
                 {
-                    DoDragDrop(sender, DragDropEffects.Move);
-                    _dragPoint = Point.Empty;
+                    var label = sender as Label;
+                    if (label != null)
+                    {
+                        var bitmap = new Bitmap(label.Width, label.Height);
+                        bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+                        label.DrawToBitmap(bitmap, new Rectangle(0, 0, label.Width, label.Height));
+                        _dragCursor = CursorFactory.CreateCursor(bitmap, _dragPoint.X - label.Left,
+                                                                 _dragPoint.Y - label.Top);
+                        label.DoDragDrop(sender, DragDropEffects.Move);
+                        _dragPoint = Point.Empty;
+                        _dragCursor.Dispose();
+                        bitmap.Dispose();
+                    }
                 }
+            }
+        }
+
+        /// <summary>
+        ///     技術ツリーラベルのカーソル更新処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechTreeLabelGiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+            if ((e.Effect & DragDropEffects.Move) != 0)
+            {
+                e.UseDefaultCursors = false;
+                Cursor.Current = _dragCursor;
+            }
+            else
+            {
+                e.UseDefaultCursors = true;
             }
         }
 
