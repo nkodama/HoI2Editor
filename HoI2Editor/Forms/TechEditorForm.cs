@@ -131,6 +131,12 @@ namespace HoI2Editor.Forms
             // 編集可能な項目を初期化する
             InitEditableItems();
 
+            // 必要技術タブの技術リストを更新する
+            UpdateRequiredTechItems();
+
+            // 技術イベントタブの技術リストを更新する
+            UpdateEventTechItems();
+
             // カテゴリリストボックスを初期化する
             InitCategoryList();
         }
@@ -553,6 +559,9 @@ namespace HoI2Editor.Forms
                 AddTechTreeTechItem(item, position);
             }
 
+            UpdateRequiredTechItems();
+            UpdateEventTechItems();
+
             SetDirtyFlag();
         }
 
@@ -681,6 +690,9 @@ namespace HoI2Editor.Forms
                 {
                     AddTechTreeTechItem(item, position);
                 }
+
+                UpdateRequiredTechItems();
+                UpdateEventTechItems();
             }
             else if (techListBox.SelectedItem is TechLabel)
             {
@@ -749,6 +761,12 @@ namespace HoI2Editor.Forms
                 editTabControl.SelectedIndex = 0;
             }
 
+            if (item is Tech)
+            {
+                UpdateRequiredTechItems();
+                UpdateEventTechItems();
+            }
+
             SetDirtyFlag();
         }
 
@@ -780,6 +798,12 @@ namespace HoI2Editor.Forms
             Techs.MoveItem(category, selected, top);
 
             MoveTechListItem(index, 0);
+
+            if (selected is Tech)
+            {
+                UpdateRequiredTechItems();
+                UpdateEventTechItems();
+            }
 
             SetDirtyFlag();
         }
@@ -813,6 +837,12 @@ namespace HoI2Editor.Forms
 
             MoveTechListItem(index, index - 1);
 
+            if (selected is Tech)
+            {
+                UpdateRequiredTechItems();
+                UpdateEventTechItems();
+            }
+
             SetDirtyFlag();
         }
 
@@ -845,6 +875,12 @@ namespace HoI2Editor.Forms
 
             MoveTechListItem(index, index + 1);
 
+            if (selected is Tech)
+            {
+                UpdateRequiredTechItems();
+                UpdateEventTechItems();
+            }
+
             SetDirtyFlag();
         }
 
@@ -876,6 +912,12 @@ namespace HoI2Editor.Forms
             Techs.MoveItem(category, selected, bottom);
 
             MoveTechListItem(index, techListBox.Items.Count - 1);
+
+            if (selected is Tech)
+            {
+                UpdateRequiredTechItems();
+                UpdateEventTechItems();
+            }
 
             SetDirtyFlag();
         }
@@ -1607,7 +1649,9 @@ namespace HoI2Editor.Forms
             andRequiredListView.Items.Clear();
             orRequiredListView.Items.Clear();
             andIdNumericUpDown.Value = 0;
+            andTechComboBox.SelectedIndex = -1;
             orIdNumericUpDown.Value = 0;
+            orTechComboBox.SelectedIndex = -1;
 
             // 小研究タブの設定項目初期化
             componentListView.Items.Clear();
@@ -1708,6 +1752,24 @@ namespace HoI2Editor.Forms
             techListBox.SelectedIndexChanged -= OnTechListBoxSelectedIndexChanged;
             techListBox.Items[techListBox.SelectedIndex] = item;
             techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
+
+            // 技術コンボボックスの項目を再設定することで表示更新している
+            // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
+            andTechComboBox.SelectedIndexChanged -= OnAndTechComboBoxSelectedIndexChanged;
+            orTechComboBox.SelectedIndexChanged -= OnOrTechComboBoxSelectedIndexChanged;
+            eventTechComboBox.SelectedIndexChanged -= OnEventTechComboBoxSelectedIndexChanged;
+            for (int i = 0; i < andTechComboBox.Items.Count; i++)
+            {
+                if (andTechComboBox.Items[i] == item)
+                {
+                    andTechComboBox.Items[i] = item;
+                    orTechComboBox.Items[i] = item;
+                    eventTechComboBox.Items[i] = item;
+                }
+            }
+            andTechComboBox.SelectedIndexChanged += OnAndTechComboBoxSelectedIndexChanged;
+            orTechComboBox.SelectedIndexChanged += OnOrTechComboBoxSelectedIndexChanged;
+            eventTechComboBox.SelectedIndexChanged += OnEventTechComboBoxSelectedIndexChanged;
 
             SetDirtyFlag();
             Config.SetDirtyFlag(Game.TechTextFileName);
@@ -2202,6 +2264,40 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     必要技術タブの技術リストを更新する
+        /// </summary>
+        private void UpdateRequiredTechItems()
+        {
+            andTechComboBox.BeginUpdate();
+            orTechComboBox.BeginUpdate();
+
+            andTechComboBox.Items.Clear();
+            orTechComboBox.Items.Clear();
+
+            int maxSize = andTechComboBox.DropDownWidth;
+            foreach (Tech item in Techs.List.SelectMany(group => group.Items.OfType<Tech>()))
+            {
+                andTechComboBox.Items.Add(item);
+                orTechComboBox.Items.Add(item);
+                maxSize = Math.Max(maxSize,
+                                   TextRenderer.MeasureText(Config.GetText(item.Name), andTechComboBox.Font).Width +
+                                   SystemInformation.VerticalScrollBarWidth);
+            }
+            andTechComboBox.DropDownWidth = maxSize;
+            orTechComboBox.DropDownWidth = maxSize;
+
+            andTechComboBox.EndUpdate();
+            orTechComboBox.EndUpdate();
+
+            if (techListBox.SelectedItem is Tech)
+            {
+                var techItem = techListBox.SelectedItem as Tech;
+                UpdateAndRequiredList(techItem);
+                UpdateOrRequiredList(techItem);
+            }
+        }
+
+        /// <summary>
         ///     AND条件必要技術の編集項目を有効化する
         /// </summary>
         private void EnableAndRequiredItems()
@@ -2217,6 +2313,7 @@ namespace HoI2Editor.Forms
         private void DisableAndReuqiredItems()
         {
             andIdNumericUpDown.Value = 0;
+            andTechComboBox.SelectedIndex = -1;
 
             andIdNumericUpDown.Enabled = false;
             andTechComboBox.Enabled = false;
@@ -2239,6 +2336,7 @@ namespace HoI2Editor.Forms
         private void DisableOrReuqiredItems()
         {
             orIdNumericUpDown.Value = 0;
+            orTechComboBox.SelectedIndex = -1;
 
             orIdNumericUpDown.Enabled = false;
             orTechComboBox.Enabled = false;
@@ -2270,6 +2368,14 @@ namespace HoI2Editor.Forms
             int index = andRequiredListView.SelectedIndices[0];
 
             andIdNumericUpDown.Value = item.Required[index];
+
+            andTechComboBox.SelectedIndex = -1;
+            foreach (
+                Tech techItem in
+                    andTechComboBox.Items.Cast<Tech>().Where(techItem => techItem.Id == item.Required[index]))
+            {
+                andTechComboBox.SelectedItem = techItem;
+            }
         }
 
         /// <summary>
@@ -2297,6 +2403,14 @@ namespace HoI2Editor.Forms
             int index = orRequiredListView.SelectedIndices[0];
 
             orIdNumericUpDown.Value = item.OrRequired[index];
+
+            orTechComboBox.SelectedIndex = -1;
+            foreach (
+                Tech techItem in
+                    orTechComboBox.Items.Cast<Tech>().Where(techItem => techItem.Id == item.OrRequired[index]))
+            {
+                orTechComboBox.SelectedItem = techItem;
+            }
         }
 
         /// <summary>
@@ -2446,6 +2560,12 @@ namespace HoI2Editor.Forms
 
             ModifyAndRequiredListItem(newId, index);
 
+            andTechComboBox.SelectedIndex = -1;
+            foreach (Tech techItem in andTechComboBox.Items.Cast<Tech>().Where(techItem => techItem.Id == newId))
+            {
+                andTechComboBox.SelectedItem = techItem;
+            }
+
             SetDirtyFlag();
         }
 
@@ -2482,6 +2602,100 @@ namespace HoI2Editor.Forms
 
             item.OrRequired[index] = newId;
 
+            ModifyOrRequiredListItem(newId, index);
+
+            orTechComboBox.SelectedIndex = -1;
+            foreach (Tech techItem in orTechComboBox.Items.Cast<Tech>().Where(techItem => techItem.Id == newId))
+            {
+                orTechComboBox.SelectedItem = techItem;
+            }
+
+            SetDirtyFlag();
+        }
+
+        /// <summary>
+        ///     AND必要条件技術変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAndTechComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (techListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var item = techListBox.SelectedItem as Tech;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (andRequiredListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = andRequiredListView.SelectedIndices[0];
+
+            // 値に変化がなければ何もせずに戻る
+            var techItem = andTechComboBox.SelectedItem as Tech;
+            if (techItem == null)
+            {
+                return;
+            }
+            int newId = techItem.Id;
+            if (newId == item.Required[index])
+            {
+                return;
+            }
+
+            item.Required[index] = newId;
+
+            andIdNumericUpDown.Value = newId;
+            ModifyAndRequiredListItem(newId, index);
+
+            SetDirtyFlag();
+        }
+
+        /// <summary>
+        ///     OR必要条件技術変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOrTechComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (techListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var item = techListBox.SelectedItem as Tech;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (orRequiredListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = orRequiredListView.SelectedIndices[0];
+
+            // 値に変化がなければ何もせずに戻る
+            var techItem = orTechComboBox.SelectedItem as Tech;
+            if (techItem == null)
+            {
+                return;
+            }
+            int newId = techItem.Id;
+            if (newId == item.OrRequired[index])
+            {
+                return;
+            }
+
+            item.OrRequired[index] = newId;
+
+            orIdNumericUpDown.Value = newId;
             ModifyOrRequiredListItem(newId, index);
 
             SetDirtyFlag();
@@ -2681,7 +2895,7 @@ namespace HoI2Editor.Forms
         {
             componentIdNumericUpDown.Value = 0;
             componentNameTextBox.Text = "";
-            componentSpecialityComboBox.Text = "";
+            componentSpecialityComboBox.SelectedIndex = -1;
             componentDifficultyNumericUpDown.Value = 0;
             componentDoubleTimeCheckBox.Checked = false;
 
@@ -4373,7 +4587,43 @@ namespace HoI2Editor.Forms
             // イベントタブの編集項目
             eventIdNumericUpDown.Value = item.Id;
             eventTechNumericUpDown.Value = item.Technology;
+            eventTechComboBox.SelectedIndex = -1;
+            foreach (Tech techItem in eventTechComboBox.Items)
+            {
+                if (techItem.Id == item.Technology)
+                {
+                    eventTechComboBox.SelectedItem = techItem;
+                }
+            }
             UpdateEventPositionList(item);
+        }
+
+        /// <summary>
+        ///     イベントタブの技術リストを更新する
+        /// </summary>
+        private void UpdateEventTechItems()
+        {
+            eventTechComboBox.BeginUpdate();
+
+            eventTechComboBox.Items.Clear();
+
+            int maxSize = eventTechComboBox.DropDownWidth;
+            foreach (Tech item in Techs.List.SelectMany(group => group.Items.OfType<Tech>()))
+            {
+                eventTechComboBox.Items.Add(item);
+                maxSize = Math.Max(maxSize,
+                                   TextRenderer.MeasureText(Config.GetText(item.Name), eventTechComboBox.Font).Width +
+                                   SystemInformation.VerticalScrollBarWidth);
+            }
+            eventTechComboBox.DropDownWidth = maxSize;
+
+            eventTechComboBox.EndUpdate();
+
+            if (techListBox.SelectedItem is TechEvent)
+            {
+                var eventItem = techListBox.SelectedItem as TechEvent;
+                UpdateEventItems(eventItem);
+            }
         }
 
         /// <summary>
@@ -4396,6 +4646,7 @@ namespace HoI2Editor.Forms
             // 設定項目の初期化
             eventIdNumericUpDown.Value = 0;
             eventTechNumericUpDown.Value = 0;
+            eventTechComboBox.SelectedIndex = -1;
             eventPositionListView.Items.Clear();
             eventXNumericUpDown.Value = 0;
             eventYNumericUpDown.Value = 0;
@@ -4523,6 +4774,52 @@ namespace HoI2Editor.Forms
             }
 
             item.Technology = newTechnology;
+
+            eventTechComboBox.SelectedIndex = -1;
+            foreach (Tech techItem in eventTechComboBox.Items)
+            {
+                if (techItem.Id == newTechnology)
+                {
+                    eventTechComboBox.SelectedItem = techItem;
+                }
+            }
+
+            SetDirtyFlag();
+        }
+
+        /// <summary>
+        ///     技術イベント技術変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEventTechComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (techListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var item = techListBox.SelectedItem as TechEvent;
+            if (item == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もせずに戻る
+            var techItem = eventTechComboBox.SelectedItem as Tech;
+            if (techItem == null)
+            {
+                return;
+            }
+            int newTechnology = techItem.Id;
+            if (newTechnology == item.Technology)
+            {
+                return;
+            }
+
+            item.Technology = newTechnology;
+
+            eventTechNumericUpDown.Value = newTechnology;
 
             SetDirtyFlag();
         }

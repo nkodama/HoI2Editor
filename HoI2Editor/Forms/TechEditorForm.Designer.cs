@@ -457,6 +457,7 @@
             this.orTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.orTechComboBox.FormattingEnabled = true;
             this.orTechComboBox.Name = "orTechComboBox";
+            this.orTechComboBox.SelectedIndexChanged += new System.EventHandler(this.OnOrTechComboBoxSelectedIndexChanged);
             // 
             // orIdNumericUpDown
             // 
@@ -485,6 +486,7 @@
             this.andTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.andTechComboBox.FormattingEnabled = true;
             this.andTechComboBox.Name = "andTechComboBox";
+            this.andTechComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAndTechComboBoxSelectedIndexChanged);
             // 
             // andIdNumericUpDown
             // 
@@ -1053,9 +1055,11 @@
             // 
             // eventTechComboBox
             // 
-            resources.ApplyResources(this.eventTechComboBox, "eventTechComboBox");
+            this.eventTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.eventTechComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.eventTechComboBox, "eventTechComboBox");
             this.eventTechComboBox.Name = "eventTechComboBox";
+            this.eventTechComboBox.SelectedIndexChanged += new System.EventHandler(this.OnEventTechComboBoxSelectedIndexChanged);
             // 
             // eventYNumericUpDown
             // 
