@@ -169,6 +169,12 @@ namespace HoI2Editor.Models
                 // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
                 Config.RequireReload();
+
+                // 編集対象ファイルの再読み込み必要
+                Leaders.RequireReload();
+                Ministers.RequireReload();
+                Teams.RequireReload();
+                Techs.RequireReload();
             }
         }
 
@@ -194,6 +200,12 @@ namespace HoI2Editor.Models
                 // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
                 Config.RequireReload();
+
+                // 編集対象ファイルの再読み込み必要
+                Leaders.RequireReload();
+                Ministers.RequireReload();
+                Teams.RequireReload();
+                Techs.RequireReload();
             }
         }
 
@@ -221,6 +233,12 @@ namespace HoI2Editor.Models
                 // 共通リソースの再読み込み必要
                 Misc.Loaded = false;
                 Config.RequireReload();
+
+                // 編集対象ファイルの再読み込み必要
+                Leaders.RequireReload();
+                Ministers.RequireReload();
+                Teams.RequireReload();
+                Techs.RequireReload();
             }
         }
 

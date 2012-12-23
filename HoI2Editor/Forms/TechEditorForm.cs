@@ -148,7 +148,7 @@ namespace HoI2Editor.Forms
         {
             TechIdMap.Clear();
 
-            foreach (Tech item in Techs.List.SelectMany(group => group.Items.OfType<Tech>()))
+            foreach (Tech item in Techs.List.SelectMany(grp => grp.Items.OfType<Tech>()))
             {
                 TechIdMap.Add(new KeyValuePair<int, Tech>(item.Id, item));
             }
@@ -218,7 +218,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
+            // 文字列定義ファイルを再読み込みする
+            Config.RequireReload();
+            Config.LoadConfigFiles();
+
+            // 技術定義ファイルを再読み込みする
+            Techs.RequireReload();
             LoadTechFiles();
+
+            // 必要技術タブの技術リストを更新する
+            UpdateRequiredTechItems();
+
+            // 技術イベントタブの技術リストを更新する
+            UpdateEventTechItems();
+
+            // カテゴリリストボックスを初期化する
+            InitCategoryList();
         }
 
         /// <summary>
@@ -228,8 +243,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveTechFiles();
             SaveConfigFiles();
+            SaveTechFiles();
         }
 
         /// <summary>
@@ -267,14 +282,14 @@ namespace HoI2Editor.Forms
             int labelno = 1;
 
             // 一時キーをIDに応じた値に変更する
-            foreach (TechGroup group in Techs.List)
+            foreach (TechGroup grp in Techs.List)
             {
-                foreach (object item in group.Items)
+                foreach (object item in grp.Items)
                 {
                     if (item is Tech)
                     {
                         var techItem = item as Tech;
-                        techItem.RenameTempKey(group.Category);
+                        techItem.RenameTempKey(grp.Category);
                     }
                     else if (item is TechLabel)
                     {
@@ -307,9 +322,10 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCategoryList()
         {
-            foreach (TechGroup group in Techs.List)
+            categoryListBox.Items.Clear();
+            foreach (TechGroup grp in Techs.List)
             {
-                categoryListBox.Items.Add(Config.GetText(group.Name));
+                categoryListBox.Items.Add(Config.GetText(grp.Name));
             }
             categoryListBox.SelectedIndex = 0;
         }
@@ -417,8 +433,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            TechGroup group = Techs.List[categoryListBox.SelectedIndex];
-            object item = group.Items[techListBox.SelectedIndex];
+            TechGroup grp = Techs.List[categoryListBox.SelectedIndex];
+            object item = grp.Items[techListBox.SelectedIndex];
 
             if (item is Tech)
             {
@@ -791,9 +807,9 @@ namespace HoI2Editor.Forms
             }
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            TechGroup group = Techs.List[(int) category];
-            object selected = group.Items[index];
-            object top = group.Items[0];
+            TechGroup grp = Techs.List[(int) category];
+            object selected = grp.Items[index];
+            object top = grp.Items[0];
 
             Techs.MoveItem(category, selected, top);
 
@@ -829,9 +845,9 @@ namespace HoI2Editor.Forms
             }
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            TechGroup group = Techs.List[(int) category];
-            object selected = group.Items[index];
-            object upper = group.Items[index - 1];
+            TechGroup grp = Techs.List[(int) category];
+            object selected = grp.Items[index];
+            object upper = grp.Items[index - 1];
 
             Techs.MoveItem(category, selected, upper);
 
@@ -867,9 +883,9 @@ namespace HoI2Editor.Forms
             }
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            TechGroup group = Techs.List[(int) category];
-            object selected = group.Items[index];
-            object lower = group.Items[index + 1];
+            TechGroup grp = Techs.List[(int) category];
+            object selected = grp.Items[index];
+            object lower = grp.Items[index + 1];
 
             Techs.MoveItem(category, selected, lower);
 
@@ -905,9 +921,9 @@ namespace HoI2Editor.Forms
             }
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            TechGroup group = Techs.List[(int) category];
-            object selected = group.Items[index];
-            object bottom = group.Items[techListBox.Items.Count - 1];
+            TechGroup grp = Techs.List[(int) category];
+            object selected = grp.Items[index];
+            object bottom = grp.Items[techListBox.Items.Count - 1];
 
             Techs.MoveItem(category, selected, bottom);
 
@@ -1526,9 +1542,9 @@ namespace HoI2Editor.Forms
             treePictureBox.ImageLocation = Game.GetFileName(Path.Combine(Game.PicturePathName, TechTreeFileNames[index]));
 
             // カテゴリタブの編集項目
-            TechGroup group = Techs.List[index];
-            categoryNameTextBox.Text = Config.GetText(group.Name);
-            categoryDescTextBox.Text = Config.GetText(group.Desc);
+            TechGroup grp = Techs.List[index];
+            categoryNameTextBox.Text = Config.GetText(grp.Name);
+            categoryDescTextBox.Text = Config.GetText(grp.Desc);
         }
 
         /// <summary>
@@ -1539,21 +1555,21 @@ namespace HoI2Editor.Forms
         private void OnCategoryNameTextBoxTextChanged(object sender, EventArgs e)
         {
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            TechGroup group = Techs.List[(int) category];
+            TechGroup grp = Techs.List[(int) category];
 
             // 値に変化がなければ何もせずに戻る
             string newText = categoryNameTextBox.Text;
-            if (newText.Equals(Config.GetText(group.Name)))
+            if (newText.Equals(Config.GetText(grp.Name)))
             {
                 return;
             }
 
-            Config.SetText(group.Name, categoryNameTextBox.Text);
+            Config.SetText(grp.Name, categoryNameTextBox.Text);
 
             // カテゴリリストボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
             categoryListBox.SelectedIndexChanged -= OnCategoryListBoxSelectedIndexChanged;
-            categoryListBox.Items[(int) category] = Config.GetText(group.Name);
+            categoryListBox.Items[(int) category] = Config.GetText(grp.Name);
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
             SetDirtyFlag();
@@ -1568,16 +1584,16 @@ namespace HoI2Editor.Forms
         private void OnCategoryDescTextBoxTextChanged(object sender, EventArgs e)
         {
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            TechGroup group = Techs.List[(int) category];
+            TechGroup grp = Techs.List[(int) category];
 
             // 値に変化がなければ何もせずに戻る
             string newText = categoryDescTextBox.Text;
-            if (newText.Equals(Config.GetText(group.Desc)))
+            if (newText.Equals(Config.GetText(grp.Desc)))
             {
                 return;
             }
 
-            Config.SetText(group.Desc, categoryDescTextBox.Text);
+            Config.SetText(grp.Desc, categoryDescTextBox.Text);
 
             SetDirtyFlag();
             Config.SetDirtyFlag(Game.TechTextFileName);
@@ -2275,7 +2291,7 @@ namespace HoI2Editor.Forms
             orTechComboBox.Items.Clear();
 
             int maxSize = andTechComboBox.DropDownWidth;
-            foreach (Tech item in Techs.List.SelectMany(group => group.Items.OfType<Tech>()))
+            foreach (Tech item in Techs.List.SelectMany(grp => grp.Items.OfType<Tech>()))
             {
                 andTechComboBox.Items.Add(item);
                 orTechComboBox.Items.Add(item);
@@ -4608,7 +4624,7 @@ namespace HoI2Editor.Forms
             eventTechComboBox.Items.Clear();
 
             int maxSize = eventTechComboBox.DropDownWidth;
-            foreach (Tech item in Techs.List.SelectMany(group => group.Items.OfType<Tech>()))
+            foreach (Tech item in Techs.List.SelectMany(grp => grp.Items.OfType<Tech>()))
             {
                 eventTechComboBox.Items.Add(item);
                 maxSize = Math.Max(maxSize,

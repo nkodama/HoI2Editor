@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -218,11 +220,19 @@ namespace HoI2Editor.Models
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                     {
-                        LoadConfigFile(fileName);
-                        string name = Path.GetFileName(fileName);
-                        if (!string.IsNullOrEmpty(name))
+                        try
                         {
-                            fileList.Add(name.ToLower());
+                            LoadConfigFile(fileName);
+                            string name = Path.GetFileName(fileName);
+                            if (!string.IsNullOrEmpty(name))
+                            {
+                                fileList.Add(name.ToLower());
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
                         }
                     }
                 }
@@ -236,7 +246,15 @@ namespace HoI2Editor.Models
                     string name = Path.GetFileName(fileName);
                     if (!string.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
                     {
-                        LoadConfigFile(fileName);
+                        try
+                        {
+                            LoadConfigFile(fileName);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
+                        }
                     }
                 }
             }
@@ -251,11 +269,19 @@ namespace HoI2Editor.Models
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                     {
-                        LoadConfigFile(fileName);
-                        string name = Path.GetFileName(fileName);
-                        if (!string.IsNullOrEmpty(name))
+                        try
                         {
-                            fileList.Add(Path.Combine("Additional", name.ToLower()));
+                            LoadConfigFile(fileName);
+                            string name = Path.GetFileName(fileName);
+                            if (!string.IsNullOrEmpty(name))
+                            {
+                                fileList.Add(Path.Combine("Additional", name.ToLower()));
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
                         }
                     }
                 }
@@ -269,7 +295,15 @@ namespace HoI2Editor.Models
                         if (!string.IsNullOrEmpty(name) &&
                             !fileList.Contains(Path.Combine("Additional", name.ToLower())))
                         {
-                            LoadConfigFile(fileName);
+                            try
+                            {
+                                LoadConfigFile(fileName);
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                                Resources.Error);
+                            }
                         }
                     }
                 }
@@ -383,13 +417,22 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void SaveConfigFiles()
         {
-            foreach (string fileName in DirtyFiles)
+            var list = new List<string>(DirtyFiles);
+            foreach (string fileName in list)
             {
-                SaveConfigFile(fileName);
+                try
+                {
+                    SaveConfigFile(fileName);
+                    ClearDirtyFlag(fileName);
+                }
+                catch (Exception)
+                {
+                    string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                                     Game.ConfigPathName);
+                    string pathName = Path.Combine(folderName, fileName);
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, pathName), Resources.Error);
+                }
             }
-
-            // 編集フラグを全てクリアする
-            ClearDirtyFlags();
         }
 
         /// <summary>
@@ -398,7 +441,16 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void SaveConfigFile(string fileName)
         {
-            using (var writer = new StreamWriter(Game.GetFileName(Path.Combine(Game.ConfigPathName, fileName))))
+            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                             Game.ConfigPathName);
+            // 文字列フォルダがなければ作成する
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+            string pathName = Path.Combine(folderName, fileName);
+
+            using (var writer = new StreamWriter(pathName))
             {
                 // 最初のEOF定義で追加文字列を書き込むためのフラグ
                 bool firsteof = true;
@@ -621,14 +673,6 @@ namespace HoI2Editor.Models
             {
                 DirtyFiles.Remove(fileName);
             }
-        }
-
-        /// <summary>
-        ///     編集フラグを全てクリアする
-        /// </summary>
-        private static void ClearDirtyFlags()
-        {
-            DirtyFiles.Clear();
         }
     }
 

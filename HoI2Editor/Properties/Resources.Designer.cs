@@ -88,11 +88,38 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Error に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Event に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Event {
             get {
                 return ResourceManager.GetString("Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reading file error に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string FileReadError {
+            get {
+                return ResourceManager.GetString("FileReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Writing file error に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string FileWriteError {
+            get {
+                return ResourceManager.GetString("FileWriteError", resourceCulture);
             }
         }
         

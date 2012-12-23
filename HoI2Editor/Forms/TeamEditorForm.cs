@@ -1358,6 +1358,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
+            Teams.RequireReload();
             LoadTeamFiles();
         }
 

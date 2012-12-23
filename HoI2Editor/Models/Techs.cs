@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
+using HoI2Editor.Properties;
 using HoI2Editor.Writers;
 
 namespace HoI2Editor.Models
@@ -281,19 +282,37 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        private static bool _loaded;
+
+        /// <summary>
         ///     技術定義ファイル群を読み込む
         /// </summary>
         public static void LoadTechFiles()
         {
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
+            // 読み込み済みならば戻る
+            if (_loaded)
+            {
+                return;
+            }
 
             List.Clear();
 
             foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
             {
-                LoadTechFile(Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) category])));
+                string fileName = Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) category]));
+                try
+                {
+                    LoadTechFile(fileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
+                }
             }
+
+            _loaded = true;
         }
 
         /// <summary>
@@ -302,8 +321,9 @@ namespace HoI2Editor.Models
         /// <param name="fileName">技術定義ファイル名</param>
         private static void LoadTechFile(string fileName)
         {
-            TechGroup group = TechParser.Parse(fileName);
-            List.Add(@group);
+            TechGroup grp = TechParser.Parse(fileName);
+            List.Add(grp);
+            ClearDirtyFlag(grp.Category);
         }
 
         /// <summary>
@@ -311,14 +331,29 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void SaveTechFiles()
         {
-            foreach (TechGroup group in List)
+            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                             Game.TechPathName);
+            // 文字列フォルダがなければ作成する
+            if (!Directory.Exists(folderName))
             {
-                string fileName = Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) @group.Category]));
-                TechWriter.Write(@group, fileName);
+                Directory.CreateDirectory(folderName);
             }
-
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
+            foreach (TechGroup grp in List)
+            {
+                if (DirtyFlags[(int) grp.Category])
+                {
+                    string fileName = Path.Combine(folderName, TechFileNames[(int) grp.Category]);
+                    try
+                    {
+                        TechWriter.Write(grp, fileName);
+                        ClearDirtyFlag(grp.Category);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.Error);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -328,8 +363,8 @@ namespace HoI2Editor.Models
         /// <param name="target">追加対象の項目</param>
         public static void AddItem(TechCategory category, object target)
         {
-            TechGroup group = List[(int) category];
-            @group.Items.Add(target);
+            TechGroup grp = List[(int) category];
+            grp.Items.Add(target);
         }
 
         /// <summary>
@@ -340,8 +375,8 @@ namespace HoI2Editor.Models
         /// <param name="position">挿入位置の直前の項目</param>
         public static void InsertItemNext(TechCategory category, object target, object position)
         {
-            TechGroup group = List[(int) category];
-            @group.Items.Insert(@group.Items.IndexOf(position) + 1, target);
+            TechGroup grp = List[(int) category];
+            grp.Items.Insert(grp.Items.IndexOf(position) + 1, target);
         }
 
         /// <summary>
@@ -351,8 +386,8 @@ namespace HoI2Editor.Models
         /// <param name="item">削除対象の項目</param>
         public static void RemoveItem(TechCategory category, object item)
         {
-            TechGroup group = List[(int) category];
-            @group.Items.Remove(item);
+            TechGroup grp = List[(int) category];
+            grp.Items.Remove(item);
 
             if (item is Tech)
             {
@@ -374,21 +409,21 @@ namespace HoI2Editor.Models
         /// <param name="position">移動先位置の項目</param>
         public static void MoveItem(TechCategory category, object target, object position)
         {
-            TechGroup group = List[(int) category];
-            int targetIndex = @group.Items.IndexOf(target);
-            int positionIndex = @group.Items.IndexOf(position);
+            TechGroup grp = List[(int) category];
+            int targetIndex = grp.Items.IndexOf(target);
+            int positionIndex = grp.Items.IndexOf(position);
 
             if (targetIndex > positionIndex)
             {
                 // 上へ移動する場合
-                @group.Items.Insert(positionIndex, target);
-                @group.Items.RemoveAt(targetIndex + 1);
+                grp.Items.Insert(positionIndex, target);
+                grp.Items.RemoveAt(targetIndex + 1);
             }
             else
             {
                 // 下へ移動する場合
-                @group.Items.Insert(positionIndex + 1, target);
-                @group.Items.RemoveAt(targetIndex);
+                grp.Items.Insert(positionIndex + 1, target);
+                grp.Items.RemoveAt(targetIndex);
             }
         }
 
@@ -427,6 +462,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     技術ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
+        }
+
+        /// <summary>
         ///     編集フラグをセットする
         /// </summary>
         /// <param name="category">技術カテゴリ</param>
@@ -442,17 +485,6 @@ namespace HoI2Editor.Models
         public static void ClearDirtyFlag(TechCategory category)
         {
             DirtyFlags[(int) category] = false;
-        }
-
-        /// <summary>
-        ///     編集フラグを全てクリアする
-        /// </summary>
-        private static void ClearDirtyFlags()
-        {
-            foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
-            {
-                ClearDirtyFlag(category);
-            }
         }
     }
 }

@@ -126,8 +126,17 @@
   <data name="BranchNavy" xml:space="preserve">
     <value>海軍</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
   <data name="Event" xml:space="preserve">
     <value>イベント</value>
+  </data>
+  <data name="FileReadError" xml:space="preserve">
+    <value>ファイル読み込みエラー</value>
+  </data>
+  <data name="FileWriteError" xml:space="preserve">
+    <value>ファイル書き込みエラー</value>
   </data>
   <data name="Hitler" xml:space="preserve">
     <value>ヒトラー</value>

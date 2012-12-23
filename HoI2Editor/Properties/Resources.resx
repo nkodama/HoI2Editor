@@ -306,4 +306,13 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="FileReadError" xml:space="preserve">
+    <value>Reading file error</value>
+  </data>
+  <data name="FileWriteError" xml:space="preserve">
+    <value>Writing file error</value>
+  </data>
 </root>

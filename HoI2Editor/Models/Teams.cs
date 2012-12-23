@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -44,12 +45,20 @@ namespace HoI2Editor.Models
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        private static bool _loaded;
+
+        /// <summary>
         ///     研究機関ファイル群を読み込む
         /// </summary>
         public static void LoadTeamFiles()
         {
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
+            // 読み込み済みならば戻る
+            if (_loaded)
+            {
+                return;
+            }
 
             List.Clear();
 
@@ -71,6 +80,8 @@ namespace HoI2Editor.Models
                     }
                     break;
             }
+
+            _loaded = true;
         }
 
         /// <summary>
@@ -88,11 +99,19 @@ namespace HoI2Editor.Models
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                     {
-                        LoadTeamFile(fileName);
-                        string name = Path.GetFileName(fileName);
-                        if (!String.IsNullOrEmpty(name))
+                        try
                         {
-                            list.Add(name.ToLower());
+                            LoadTeamFile(fileName);
+                            string name = Path.GetFileName(fileName);
+                            if (!String.IsNullOrEmpty(name))
+                            {
+                                list.Add(name.ToLower());
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
                         }
                     }
                 }
@@ -106,7 +125,15 @@ namespace HoI2Editor.Models
                     string name = Path.GetFileName(fileName);
                     if (!String.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
                     {
-                        LoadTeamFile(fileName);
+                        try
+                        {
+                            LoadTeamFile(fileName);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
+                        }
                     }
                 }
             }
@@ -125,10 +152,28 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            IEnumerable<string> fileList = LoadTeamListFileDh(listFileName);
-            foreach (string fileName in fileList)
+            IEnumerable<string> fileList;
+            try
             {
-                LoadTeamFile(Game.GetFileName(Path.Combine(Game.TeamPathName, fileName)));
+                fileList = LoadTeamListFileDh(listFileName);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName), Resources.Error);
+                return;
+            }
+
+            foreach (string fileName in fileList.Select(name => Game.GetFileName(Path.Combine(Game.TeamPathName, name)))
+                )
+            {
+                try
+                {
+                    LoadTeamFile(fileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
+                }
             }
         }
 
@@ -138,27 +183,28 @@ namespace HoI2Editor.Models
         private static IEnumerable<string> LoadTeamListFileDh(string fileName)
         {
             var list = new List<string>();
-            var reader = new StreamReader(fileName);
-            while (!reader.EndOfStream)
+            using (var reader = new StreamReader(fileName))
             {
-                string line = reader.ReadLine();
-
-                // 空行
-                if (String.IsNullOrEmpty(line))
+                while (!reader.EndOfStream)
                 {
-                    continue;
-                }
+                    string line = reader.ReadLine();
 
-                // コメント行
-                if (line[0] == '#')
-                {
-                    continue;
-                }
+                    // 空行
+                    if (String.IsNullOrEmpty(line))
+                    {
+                        continue;
+                    }
 
-                list.Add(line);
+                    // コメント行
+                    if (line[0] == '#')
+                    {
+                        continue;
+                    }
+
+                    list.Add(line);
+                }
+                reader.Close();
             }
-            reader.Close();
-
             return list;
         }
 
@@ -168,43 +214,46 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadTeamFile(string fileName)
         {
-            _currentFileName = Path.GetFileName(fileName);
-            _currentLineNo = 1;
+            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            {
+                _currentFileName = Path.GetFileName(fileName);
+                _currentLineNo = 1;
 
-            var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
-            // 空ファイルを読み飛ばす
-            if (reader.EndOfStream)
-            {
-                return;
-            }
+                // 空ファイルを読み飛ばす
+                if (reader.EndOfStream)
+                {
+                    return;
+                }
 
-            // 国タグ読み込み
-            string line = reader.ReadLine();
-            if (String.IsNullOrEmpty(line))
-            {
-                return;
-            }
-            string[] tokens = line.Split(CsvSeparator);
-            if (tokens.Length == 0 || String.IsNullOrEmpty(tokens[0]))
-            {
-                return;
-            }
-            // サポート外の国タグの場合は何もしない
-            if (!Country.CountryStringMap.ContainsKey(tokens[0].ToUpper()))
-            {
-                return;
-            }
-            CountryTag country = Country.CountryStringMap[tokens[0].ToUpper()];
+                // 国タグ読み込み
+                string line = reader.ReadLine();
+                if (String.IsNullOrEmpty(line))
+                {
+                    return;
+                }
+                string[] tokens = line.Split(CsvSeparator);
+                if (tokens.Length == 0 || String.IsNullOrEmpty(tokens[0]))
+                {
+                    return;
+                }
+                // サポート外の国タグの場合は何もしない
+                if (!Country.CountryStringMap.ContainsKey(tokens[0].ToUpper()))
+                {
+                    return;
+                }
+                CountryTag country = Country.CountryStringMap[tokens[0].ToUpper()];
 
-            _currentLineNo++;
-
-            while (!reader.EndOfStream)
-            {
-                ParseTeamLine(reader.ReadLine(), country);
                 _currentLineNo++;
-            }
 
-            reader.Close();
+                while (!reader.EndOfStream)
+                {
+                    ParseTeamLine(reader.ReadLine(), country);
+                    _currentLineNo++;
+                }
+                reader.Close();
+
+                ClearDirtyFlag(country);
+            }
         }
 
         /// <summary>
@@ -325,11 +374,18 @@ namespace HoI2Editor.Models
                         .Cast<CountryTag>()
                         .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
             {
-                SaveTeamFile(country);
+                try
+                {
+                    SaveTeamFile(country);
+                }
+                catch (Exception)
+                {
+                    string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                                     Game.TeamPathName);
+                    string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.Error);
+                }
             }
-
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
         }
 
         /// <summary>
@@ -346,36 +402,39 @@ namespace HoI2Editor.Models
             }
             string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
 
-            _currentFileName = fileName;
-            _currentLineNo = 2;
-
-            var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage));
-            writer.WriteLine(
-                "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
-                Country.CountryTextTable[(int) country]);
-
-            foreach (Team team in List.Where(team => team.CountryTag == country).Where(team => team != null))
+            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                writer.Write(
-                    "{0};{1};{2};{3};{4};{5}",
-                    team.Id,
-                    team.Name,
-                    team.PictureName,
-                    team.Skill,
-                    team.StartYear,
-                    team.EndYear);
-                for (int i = 0; i < Team.SpecialityLength; i++)
+                _currentFileName = fileName;
+                _currentLineNo = 2;
+
+                writer.WriteLine(
+                    "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
+                    Country.CountryTextTable[(int) country]);
+
+                foreach (Team team in List.Where(team => team.CountryTag == country).Where(team => team != null))
                 {
-                    writer.Write(";{0}",
-                                 team.Specialities[i] != TechSpeciality.None
-                                     ? Tech.SpecialityStringTable[(int) team.Specialities[i]]
-                                     : "");
+                    writer.Write(
+                        "{0};{1};{2};{3};{4};{5}",
+                        team.Id,
+                        team.Name,
+                        team.PictureName,
+                        team.Skill,
+                        team.StartYear,
+                        team.EndYear);
+                    for (int i = 0; i < Team.SpecialityLength; i++)
+                    {
+                        writer.Write(";{0}",
+                                     team.Specialities[i] != TechSpeciality.None
+                                         ? Tech.SpecialityStringTable[(int) team.Specialities[i]]
+                                         : "");
+                    }
+                    writer.WriteLine(";x");
+                    _currentLineNo++;
                 }
-                writer.WriteLine(";x");
-                _currentLineNo++;
+                writer.Close();
             }
 
-            writer.Close();
+            ClearDirtyFlag(country);
         }
 
         /// <summary>
@@ -431,6 +490,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     研究機関ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
+        }
+
+        /// <summary>
         ///     編集フラグをセットする
         /// </summary>
         /// <param name="country">国タグ</param>
@@ -446,17 +513,6 @@ namespace HoI2Editor.Models
         public static void ClearDirtyFlag(CountryTag country)
         {
             DirtyFlags[(int) country] = false;
-        }
-
-        /// <summary>
-        ///     編集フラグを全てクリアする
-        /// </summary>
-        private static void ClearDirtyFlags()
-        {
-            foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
-            {
-                ClearDirtyFlag(country);
-            }
         }
     }
 }

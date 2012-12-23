@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 
@@ -583,6 +584,11 @@ namespace HoI2Editor.Models
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        private static bool _loaded;
+
+        /// <summary>
         ///     静的コンストラクタ
         /// </summary>
         static Ministers()
@@ -751,8 +757,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void LoadMinisterFiles()
         {
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
+            // 読み込み済みならば戻る
+            if (_loaded)
+            {
+                return;
+            }
 
             List.Clear();
 
@@ -774,6 +783,8 @@ namespace HoI2Editor.Models
                     }
                     break;
             }
+
+            _loaded = true;
         }
 
         /// <summary>
@@ -791,11 +802,19 @@ namespace HoI2Editor.Models
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                     {
-                        LoadMinisterFile(fileName);
-                        string name = Path.GetFileName(fileName);
-                        if (!String.IsNullOrEmpty(name))
+                        try
                         {
-                            fileList.Add(name.ToLower());
+                            LoadMinisterFile(fileName);
+                            string name = Path.GetFileName(fileName);
+                            if (!String.IsNullOrEmpty(name))
+                            {
+                                fileList.Add(name.ToLower());
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
                         }
                     }
                 }
@@ -809,7 +828,15 @@ namespace HoI2Editor.Models
                     string name = Path.GetFileName(fileName);
                     if (!String.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
                     {
-                        LoadMinisterFile(fileName);
+                        try
+                        {
+                            LoadMinisterFile(fileName);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
+                        }
                     }
                 }
             }
@@ -828,10 +855,28 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            IEnumerable<string> fileList = LoadMinisterListFileDh(listFileName);
-            foreach (string fileName in fileList)
+            IEnumerable<string> fileList;
+            try
             {
-                LoadMinisterFile(Game.GetFileName(Path.Combine(Game.MinisterPathName, fileName)));
+                fileList = LoadMinisterListFileDh(listFileName);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName), Resources.Error);
+                return;
+            }
+
+            foreach (
+                string fileName in fileList.Select(name => Game.GetFileName(Path.Combine(Game.MinisterPathName, name))))
+            {
+                try
+                {
+                    LoadMinisterFile(fileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
+                }
             }
         }
 
@@ -841,27 +886,28 @@ namespace HoI2Editor.Models
         private static IEnumerable<string> LoadMinisterListFileDh(string fileName)
         {
             var list = new List<string>();
-            var reader = new StreamReader(fileName);
-            while (!reader.EndOfStream)
+            using (var reader = new StreamReader(fileName))
             {
-                string line = reader.ReadLine();
-
-                // 空行
-                if (String.IsNullOrEmpty(line))
+                while (!reader.EndOfStream)
                 {
-                    continue;
-                }
+                    string line = reader.ReadLine();
 
-                // コメント行
-                if (line[0] == '#')
-                {
-                    continue;
-                }
+                    // 空行
+                    if (String.IsNullOrEmpty(line))
+                    {
+                        continue;
+                    }
 
-                list.Add(line);
+                    // コメント行
+                    if (line[0] == '#')
+                    {
+                        continue;
+                    }
+
+                    list.Add(line);
+                }
+                reader.Close();
             }
-            reader.Close();
-
             return list;
         }
 
@@ -871,38 +917,41 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadMinisterFile(string fileName)
         {
-            _currentFileName = Path.GetFileName(fileName);
-            _currentLineNo = 1;
-
-            var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
-            // 空ファイルを読み飛ばす
-            if (reader.EndOfStream)
+            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
-                return;
-            }
+                _currentFileName = Path.GetFileName(fileName);
+                _currentLineNo = 1;
 
-            // 国タグ読み込み
-            string line = reader.ReadLine();
-            if (String.IsNullOrEmpty(line))
-            {
-                return;
-            }
-            string[] token = line.Split(CsvSeparator);
-            if (token.Length == 0 || String.IsNullOrEmpty(token[0]))
-            {
-                return;
-            }
-            CountryTag country = Country.CountryStringMap[token[0].ToUpper()];
+                // 空ファイルを読み飛ばす
+                if (reader.EndOfStream)
+                {
+                    return;
+                }
 
-            _currentLineNo++;
+                // 国タグ読み込み
+                string line = reader.ReadLine();
+                if (String.IsNullOrEmpty(line))
+                {
+                    return;
+                }
+                string[] token = line.Split(CsvSeparator);
+                if (token.Length == 0 || String.IsNullOrEmpty(token[0]))
+                {
+                    return;
+                }
+                CountryTag country = Country.CountryStringMap[token[0].ToUpper()];
 
-            while (!reader.EndOfStream)
-            {
-                ParseMinisterLine(reader.ReadLine(), country);
                 _currentLineNo++;
-            }
 
-            reader.Close();
+                while (!reader.EndOfStream)
+                {
+                    ParseMinisterLine(reader.ReadLine(), country);
+                    _currentLineNo++;
+                }
+                reader.Close();
+
+                ClearDirtyFlag(country);
+            }
         }
 
         /// <summary>
@@ -1100,11 +1149,18 @@ namespace HoI2Editor.Models
                         .Cast<CountryTag>()
                         .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
             {
-                SaveMinisterFile(country);
+                try
+                {
+                    SaveMinisterFile(country);
+                }
+                catch (Exception)
+                {
+                    string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                                     Game.MinisterPathName);
+                    string fileName = Path.Combine(folderName, Game.GetMinisterFileName(country));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.Error);
+                }
             }
-
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
         }
 
         /// <summary>
@@ -1122,99 +1178,101 @@ namespace HoI2Editor.Models
             }
             string fileName = Path.Combine(folderName, Game.GetMinisterFileName(country));
 
-            _currentFileName = fileName;
-            _currentLineNo = 3;
+            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            {
+                _currentFileName = fileName;
+                _currentLineNo = 3;
 
-            var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage));
-            if (Misc.Mod.RetirementYearMinister)
-            {
-                writer.WriteLine(
-                    "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Retirement Year;Ideology;Personality;Loyalty;Picturename;X",
-                    Country.CountryTextTable[(int) country]);
-                writer.WriteLine(";Replacements;;;;;;;;;X");
-            }
-            else if (Misc.Mod.NewMinisterFormat)
-            {
-                writer.WriteLine(
-                    "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Ideology;Personality;Loyalty;Picturename;X",
-                    Country.CountryTextTable[(int) country]);
-                writer.WriteLine(";Replacements;;;;;;;;X");
-            }
-            else
-            {
-                writer.WriteLine("{0};Ruling Cabinet - Start;Name;Pool;Ideology;Personality;Loyalty;Picturename;x",
-                                 Country.CountryTextTable[(int) country]);
-                writer.WriteLine(";Replacements;;;;;;;x");
-            }
-
-            foreach (Minister minister in List.Where(minister => minister.CountryTag == country))
-            {
-                // 不正な値が設定されている場合は警告をログに出力する
-                if (minister.Position == MinisterPosition.None)
-                {
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName,
-                                            _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
-                }
-                if (minister.Ideology == MinisterIdeology.None)
-                {
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName,
-                                            _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
-                }
-                if (minister.Loyalty == MinisterLoyalty.None)
-                {
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName,
-                                            _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
-                }
                 if (Misc.Mod.RetirementYearMinister)
                 {
                     writer.WriteLine(
-                        "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};X",
-                        minister.Id,
-                        PositionTable[(int) minister.Position].String,
-                        minister.Name,
-                        minister.StartYear,
-                        minister.EndYear,
-                        minister.RetirementYear,
-                        IdeologyTable[(int) minister.Ideology].String,
-                        PersonalityTable[minister.Personality].String,
-                        LoyaltyTable[(int) minister.Loyalty].String,
-                        minister.PictureName);
+                        "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Retirement Year;Ideology;Personality;Loyalty;Picturename;X",
+                        Country.CountryTextTable[(int) country]);
+                    writer.WriteLine(";Replacements;;;;;;;;;X");
                 }
                 else if (Misc.Mod.NewMinisterFormat)
                 {
                     writer.WriteLine(
-                        "{0};{1};{2};{3};{4};{5};{6};{7};{8};X",
-                        minister.Id,
-                        PositionTable[(int) minister.Position].String,
-                        minister.Name,
-                        minister.StartYear,
-                        minister.EndYear,
-                        IdeologyTable[(int) minister.Ideology].String,
-                        PersonalityTable[minister.Personality].String,
-                        LoyaltyTable[(int) minister.Loyalty].String,
-                        minister.PictureName);
+                        "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Ideology;Personality;Loyalty;Picturename;X",
+                        Country.CountryTextTable[(int) country]);
+                    writer.WriteLine(";Replacements;;;;;;;;X");
                 }
                 else
                 {
-                    writer.WriteLine(
-                        "{0};{1};{2};{3};{4};{5};{6};{7};x",
-                        minister.Id,
-                        PositionTable[(int) minister.Position].String,
-                        minister.Name,
-                        minister.StartYear - 1900,
-                        IdeologyTable[(int) minister.Ideology].String,
-                        PersonalityTable[minister.Personality].String,
-                        LoyaltyTable[(int) minister.Loyalty].String,
-                        minister.PictureName);
+                    writer.WriteLine("{0};Ruling Cabinet - Start;Name;Pool;Ideology;Personality;Loyalty;Picturename;x",
+                                     Country.CountryTextTable[(int) country]);
+                    writer.WriteLine(";Replacements;;;;;;;x");
                 }
 
-                _currentLineNo++;
+                foreach (Minister minister in List.Where(minister => minister.CountryTag == country))
+                {
+                    // 不正な値が設定されている場合は警告をログに出力する
+                    if (minister.Position == MinisterPosition.None)
+                    {
+                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName,
+                                                _currentLineNo));
+                        Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
+                    }
+                    if (minister.Ideology == MinisterIdeology.None)
+                    {
+                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName,
+                                                _currentLineNo));
+                        Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
+                    }
+                    if (minister.Loyalty == MinisterLoyalty.None)
+                    {
+                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName,
+                                                _currentLineNo));
+                        Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
+                    }
+                    if (Misc.Mod.RetirementYearMinister)
+                    {
+                        writer.WriteLine(
+                            "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};X",
+                            minister.Id,
+                            PositionTable[(int) minister.Position].String,
+                            minister.Name,
+                            minister.StartYear,
+                            minister.EndYear,
+                            minister.RetirementYear,
+                            IdeologyTable[(int) minister.Ideology].String,
+                            PersonalityTable[minister.Personality].String,
+                            LoyaltyTable[(int) minister.Loyalty].String,
+                            minister.PictureName);
+                    }
+                    else if (Misc.Mod.NewMinisterFormat)
+                    {
+                        writer.WriteLine(
+                            "{0};{1};{2};{3};{4};{5};{6};{7};{8};X",
+                            minister.Id,
+                            PositionTable[(int) minister.Position].String,
+                            minister.Name,
+                            minister.StartYear,
+                            minister.EndYear,
+                            IdeologyTable[(int) minister.Ideology].String,
+                            PersonalityTable[minister.Personality].String,
+                            LoyaltyTable[(int) minister.Loyalty].String,
+                            minister.PictureName);
+                    }
+                    else
+                    {
+                        writer.WriteLine(
+                            "{0};{1};{2};{3};{4};{5};{6};{7};x",
+                            minister.Id,
+                            PositionTable[(int) minister.Position].String,
+                            minister.Name,
+                            minister.StartYear - 1900,
+                            IdeologyTable[(int) minister.Ideology].String,
+                            PersonalityTable[minister.Personality].String,
+                            LoyaltyTable[(int) minister.Loyalty].String,
+                            minister.PictureName);
+                    }
+                    _currentLineNo++;
+                }
+                writer.Close();
             }
 
-            writer.Close();
+            ClearDirtyFlag(country);
         }
 
         /// <summary>
@@ -1270,6 +1328,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     閣僚ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
+        }
+
+        /// <summary>
         ///     編集フラグをセットする
         /// </summary>
         /// <param name="country">国タグ</param>
@@ -1285,17 +1351,6 @@ namespace HoI2Editor.Models
         public static void ClearDirtyFlag(CountryTag country)
         {
             DirtyFlags[(int) country] = false;
-        }
-
-        /// <summary>
-        ///     編集フラグを全てクリアする
-        /// </summary>
-        private static void ClearDirtyFlags()
-        {
-            foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
-            {
-                ClearDirtyFlag(country);
-            }
         }
 
         /// <summary>

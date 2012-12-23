@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -54,6 +55,11 @@ namespace HoI2Editor.Models
         private static readonly char[] CsvSeparator = {';'};
 
         /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        private static bool _loaded;
+
+        /// <summary>
         ///     静的コンストラクタ
         /// </summary>
         static Leaders()
@@ -70,8 +76,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void LoadLeaderFiles()
         {
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
+            // 読み込み済みならば戻る
+            if (_loaded)
+            {
+                return;
+            }
 
             List.Clear();
             FileNameMap.Clear();
@@ -94,6 +103,8 @@ namespace HoI2Editor.Models
                     }
                     break;
             }
+
+            _loaded = true;
         }
 
         /// <summary>
@@ -111,11 +122,19 @@ namespace HoI2Editor.Models
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                     {
-                        LoadLeaderFile(fileName);
-                        string name = Path.GetFileName(fileName);
-                        if (!String.IsNullOrEmpty(name))
+                        try
                         {
-                            filelist.Add(name.ToLower());
+                            LoadLeaderFile(fileName);
+                            string name = Path.GetFileName(fileName);
+                            if (!String.IsNullOrEmpty(name))
+                            {
+                                filelist.Add(name.ToLower());
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
                         }
                     }
                 }
@@ -129,7 +148,15 @@ namespace HoI2Editor.Models
                     string name = Path.GetFileName(fileName);
                     if (!String.IsNullOrEmpty(name) && !filelist.Contains(name.ToLower()))
                     {
-                        LoadLeaderFile(fileName);
+                        try
+                        {
+                            LoadLeaderFile(fileName);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                            Resources.Error);
+                        }
                     }
                 }
             }
@@ -148,10 +175,28 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            IEnumerable<string> fileList = LoadLeaderListFileDh(listFileName);
-            foreach (string fileName in fileList)
+            IEnumerable<string> fileList;
+            try
             {
-                LoadLeaderFile(Game.GetFileName(Path.Combine(Game.LeaderPathName, fileName)));
+                fileList = LoadLeaderListFileDh(listFileName);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName), Resources.Error);
+                return;
+            }
+
+            foreach (
+                string fileName in fileList.Select(name => Game.GetFileName(Path.Combine(Game.LeaderPathName, name))))
+            {
+                try
+                {
+                    LoadLeaderFile(fileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
+                }
             }
         }
 
@@ -161,27 +206,28 @@ namespace HoI2Editor.Models
         private static IEnumerable<string> LoadLeaderListFileDh(string fileName)
         {
             var list = new List<string>();
-            var reader = new StreamReader(fileName);
-            while (!reader.EndOfStream)
+            using (var reader = new StreamReader(fileName))
             {
-                string line = reader.ReadLine();
-
-                // 空行
-                if (String.IsNullOrEmpty(line))
+                while (!reader.EndOfStream)
                 {
-                    continue;
-                }
+                    string line = reader.ReadLine();
 
-                // コメント行
-                if (line[0] == '#')
-                {
-                    continue;
-                }
+                    // 空行
+                    if (String.IsNullOrEmpty(line))
+                    {
+                        continue;
+                    }
 
-                list.Add(line);
+                    // コメント行
+                    if (line[0] == '#')
+                    {
+                        continue;
+                    }
+
+                    list.Add(line);
+                }
+                reader.Close();
             }
-            reader.Close();
-
             return list;
         }
 
@@ -191,42 +237,45 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadLeaderFile(string fileName)
         {
-            _currentFileName = Path.GetFileName(fileName);
-            _currentLineNo = 1;
-
-            var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
-            // 空ファイルを読み飛ばす
-            if (reader.EndOfStream)
+            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
-                return;
-            }
+                _currentFileName = Path.GetFileName(fileName);
+                _currentLineNo = 1;
 
-            // ヘッダ行読み込み
-            string line = reader.ReadLine();
-            if (String.IsNullOrEmpty(line))
-            {
-                return;
-            }
-
-            _currentLineNo++;
-            var country = CountryTag.None;
-
-            while (!reader.EndOfStream)
-            {
-                Leader leader = ParseLeaderLine(reader.ReadLine());
-
-                if (country == CountryTag.None && leader != null)
+                // 空ファイルを読み飛ばす
+                if (reader.EndOfStream)
                 {
-                    country = leader.CountryTag;
-                    if (country != CountryTag.None && !FileNameMap.ContainsKey(country))
-                    {
-                        FileNameMap.Add(country, Path.GetFileName(fileName));
-                    }
+                    return;
                 }
-                _currentLineNo++;
-            }
 
-            reader.Close();
+                // ヘッダ行読み込み
+                string line = reader.ReadLine();
+                if (String.IsNullOrEmpty(line))
+                {
+                    return;
+                }
+
+                _currentLineNo++;
+                var country = CountryTag.None;
+
+                while (!reader.EndOfStream)
+                {
+                    Leader leader = ParseLeaderLine(reader.ReadLine());
+
+                    if (country == CountryTag.None && leader != null)
+                    {
+                        country = leader.CountryTag;
+                        if (country != CountryTag.None && !FileNameMap.ContainsKey(country))
+                        {
+                            FileNameMap.Add(country, Path.GetFileName(fileName));
+                        }
+                    }
+                    _currentLineNo++;
+                }
+                reader.Close();
+
+                ClearDirtyFlag(country);
+            }
         }
 
         /// <summary>
@@ -475,11 +524,18 @@ namespace HoI2Editor.Models
                         .Cast<CountryTag>()
                         .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
             {
-                SaveLeaderFile(country);
+                try
+                {
+                    SaveLeaderFile(country);
+                }
+                catch (Exception)
+                {
+                    string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                                                     Game.LeaderPathName);
+                    string fileName = Path.Combine(folderName, Game.GetLeaderFileName(country));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.Error);
+                }
             }
-
-            // 編集済みフラグを全クリアする
-            ClearDirtyFlags();
         }
 
         /// <summary>
@@ -497,74 +553,77 @@ namespace HoI2Editor.Models
             }
             string fileName = Path.Combine(folderName, Game.GetLeaderFileName(country));
 
-            _currentFileName = fileName;
-            _currentLineNo = 2;
-
-            var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage));
-            writer.WriteLine(
-                Misc.Mod.RetirementYearLeader
-                    ? "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;Retirement Year;x"
-                    : "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
-
-            foreach (Leader leader in List.Where(leader => leader.CountryTag == country))
+            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                if (Misc.Mod.RetirementYearLeader)
+                _currentFileName = fileName;
+                _currentLineNo = 2;
+
+                writer.WriteLine(
+                    Misc.Mod.RetirementYearLeader
+                        ? "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;Retirement Year;x"
+                        : "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
+
+                foreach (Leader leader in List.Where(leader => leader.CountryTag == country))
                 {
-                    writer.WriteLine(
-                        "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};x",
-                        leader.Name,
-                        leader.Id,
-                        Country.CountryTextTable[(int) leader.CountryTag],
-                        leader.RankYear[0],
-                        leader.RankYear[1],
-                        leader.RankYear[2],
-                        leader.RankYear[3],
-                        leader.IdealRank != LeaderRank.None
-                            ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
-                            : "",
-                        leader.MaxSkill,
-                        leader.Traits,
-                        leader.Skill,
-                        leader.Experience,
-                        leader.Loyalty,
-                        leader.Branch != LeaderBranch.None
-                            ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
-                            : "",
-                        leader.PictureName,
-                        leader.StartYear,
-                        leader.EndYear,
-                        leader.RetirementYear);
+                    if (Misc.Mod.RetirementYearLeader)
+                    {
+                        writer.WriteLine(
+                            "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};x",
+                            leader.Name,
+                            leader.Id,
+                            Country.CountryTextTable[(int) leader.CountryTag],
+                            leader.RankYear[0],
+                            leader.RankYear[1],
+                            leader.RankYear[2],
+                            leader.RankYear[3],
+                            leader.IdealRank != LeaderRank.None
+                                ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            leader.MaxSkill,
+                            leader.Traits,
+                            leader.Skill,
+                            leader.Experience,
+                            leader.Loyalty,
+                            leader.Branch != LeaderBranch.None
+                                ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            leader.PictureName,
+                            leader.StartYear,
+                            leader.EndYear,
+                            leader.RetirementYear);
+                    }
+                    else
+                    {
+                        writer.WriteLine(
+                            "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
+                            leader.Name,
+                            leader.Id,
+                            Country.CountryTextTable[(int) leader.CountryTag],
+                            leader.RankYear[0],
+                            leader.RankYear[1],
+                            leader.RankYear[2],
+                            leader.RankYear[3],
+                            leader.IdealRank != LeaderRank.None
+                                ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            leader.MaxSkill,
+                            leader.Traits,
+                            leader.Skill,
+                            leader.Experience,
+                            leader.Loyalty,
+                            leader.Branch != LeaderBranch.None
+                                ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            leader.PictureName,
+                            leader.StartYear,
+                            leader.EndYear);
+                    }
+                    _currentLineNo++;
                 }
-                else
-                {
-                    writer.WriteLine(
-                        "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
-                        leader.Name,
-                        leader.Id,
-                        Country.CountryTextTable[(int) leader.CountryTag],
-                        leader.RankYear[0],
-                        leader.RankYear[1],
-                        leader.RankYear[2],
-                        leader.RankYear[3],
-                        leader.IdealRank != LeaderRank.None
-                            ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
-                            : "",
-                        leader.MaxSkill,
-                        leader.Traits,
-                        leader.Skill,
-                        leader.Experience,
-                        leader.Loyalty,
-                        leader.Branch != LeaderBranch.None
-                            ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
-                            : "",
-                        leader.PictureName,
-                        leader.StartYear,
-                        leader.EndYear);
-                }
-                _currentLineNo++;
+                writer.Close();
             }
 
-            writer.Close();
+            ClearDirtyFlag(country);
         }
 
         /// <summary>
@@ -620,6 +679,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     指揮官ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
+        }
+
+        /// <summary>
         ///     編集フラグをセットする
         /// </summary>
         /// <param name="country">国タグ</param>
@@ -635,17 +702,6 @@ namespace HoI2Editor.Models
         public static void ClearDirtyFlag(CountryTag country)
         {
             DirtyFlags[(int) country] = false;
-        }
-
-        /// <summary>
-        ///     編集フラグを全てクリアする
-        /// </summary>
-        private static void ClearDirtyFlags()
-        {
-            foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
-            {
-                ClearDirtyFlag(country);
-            }
         }
     }
 }
