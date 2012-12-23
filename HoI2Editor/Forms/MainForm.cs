@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using HoI2Editor.Models;
@@ -28,6 +30,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMainFormLoad(object sender, EventArgs e)
         {
+            FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+            char privateVersion;
+            if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
+            {
+                privateVersion = (char) ('`' + info.FilePrivatePart);
+            }
+            else
+            {
+                privateVersion = '\0';
+            }
+            Text = string.Format("Alternative HoI2 Editor Ver {0}.{1}{2}{3}", info.FileMajorPart, info.FileMinorPart,
+                                 info.FileBuildPart, privateVersion);
             gameFolderTextBox.Text = Game.FolderName;
             encodingComboBox.SelectedIndex =
                 Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP")) ? 1 : 0;
