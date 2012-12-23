@@ -54,6 +54,16 @@ namespace HoI2Editor.Forms
         /// </summary>
         private static Cursor _dragCursor;
 
+        /// <summary>
+        ///     技術ラベルのANDマスク
+        /// </summary>
+        private static Bitmap _techLabelAndMask;
+
+        /// <summary>
+        ///     イベントラベルのANDマスク
+        /// </summary>
+        private static Bitmap _eventLabelAndMask;
+
         #endregion
 
         #region 定数
@@ -1246,6 +1256,7 @@ namespace HoI2Editor.Forms
             var bitmap = new Bitmap(Game.GetFileName(Game.TechLabelPathName));
             _techLabelBitmap = bitmap.Clone(new Rectangle(0, 0, TechLabelWidth, TechLabelHeight), bitmap.PixelFormat);
             bitmap.Dispose();
+            _techLabelAndMask = new Bitmap(_techLabelBitmap.Width, _techLabelBitmap.Height);
             Color transparent = _techLabelBitmap.GetPixel(0, 0);
             for (int x = 0; x < _techLabelBitmap.Width; x++)
             {
@@ -1254,6 +1265,11 @@ namespace HoI2Editor.Forms
                     if (_techLabelBitmap.GetPixel(x, y) == transparent)
                     {
                         TechLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
+                        _techLabelAndMask.SetPixel(x, y, Color.White);
+                    }
+                    else
+                    {
+                        _techLabelAndMask.SetPixel(x, y, Color.Black);
                     }
                 }
             }
@@ -1263,6 +1279,7 @@ namespace HoI2Editor.Forms
             bitmap = new Bitmap(Game.GetFileName(Game.SecretLabelPathName));
             _eventLabelBitmap = bitmap.Clone(new Rectangle(0, 0, EventLabelWidth, EventLabelHeight), bitmap.PixelFormat);
             bitmap.Dispose();
+            _eventLabelAndMask = new Bitmap(_eventLabelBitmap.Width, _eventLabelBitmap.Height);
             transparent = _eventLabelBitmap.GetPixel(0, 0);
             for (int x = 0; x < _eventLabelBitmap.Width; x++)
             {
@@ -1271,6 +1288,11 @@ namespace HoI2Editor.Forms
                     if (_eventLabelBitmap.GetPixel(x, y) == transparent)
                     {
                         EventLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
+                        _eventLabelAndMask.SetPixel(x, y, Color.White);
+                    }
+                    else
+                    {
+                        _eventLabelAndMask.SetPixel(x, y, Color.Black);
                     }
                 }
             }
@@ -1362,28 +1384,54 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechTreeLabelMouseMove(object sender, MouseEventArgs e)
         {
-            if (_dragPoint != Point.Empty)
+            if (_dragPoint == Point.Empty)
             {
-                Size dragSize = SystemInformation.DragSize;
-                var dragRect = new Rectangle(_dragPoint.X - dragSize.Width/2, _dragPoint.Y - dragSize.Height/2,
-                                             dragSize.Width, dragSize.Height);
-                if (!dragRect.Contains(e.X, e.Y))
-                {
-                    var label = sender as Label;
-                    if (label != null)
-                    {
-                        var bitmap = new Bitmap(label.Width, label.Height);
-                        bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
-                        label.DrawToBitmap(bitmap, new Rectangle(0, 0, label.Width, label.Height));
-                        _dragCursor = CursorFactory.CreateCursor(bitmap, _dragPoint.X - label.Left,
-                                                                 _dragPoint.Y - label.Top);
-                        label.DoDragDrop(sender, DragDropEffects.Move);
-                        _dragPoint = Point.Empty;
-                        _dragCursor.Dispose();
-                        bitmap.Dispose();
-                    }
-                }
+                return;
             }
+
+            Size dragSize = SystemInformation.DragSize;
+            var dragRect = new Rectangle(_dragPoint.X - dragSize.Width/2, _dragPoint.Y - dragSize.Height/2,
+                                         dragSize.Width, dragSize.Height);
+            if (dragRect.Contains(e.X, e.Y))
+            {
+                return;
+            }
+
+            var label = sender as Label;
+            if (label == null)
+            {
+                return;
+            }
+
+            var info = label.Tag as TechLabelInfo;
+            if (info == null)
+            {
+                return;
+            }
+
+            var bitmap = new Bitmap(label.Width, label.Height);
+            bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+            label.DrawToBitmap(bitmap, new Rectangle(0, 0, label.Width, label.Height));
+
+            if (info.Item is Tech)
+            {
+                _dragCursor = CursorFactory.CreateCursor(bitmap, _techLabelAndMask, _dragPoint.X - label.Left,
+                                                         _dragPoint.Y - label.Top);
+            }
+            else if (info.Item is TechLabel)
+            {
+                _dragCursor = CursorFactory.CreateCursor(bitmap, _dragPoint.X - label.Left,
+                                                         _dragPoint.Y - label.Top);
+            }
+            else
+            {
+                _dragCursor = CursorFactory.CreateCursor(bitmap, _eventLabelAndMask, _dragPoint.X - label.Left,
+                                                         _dragPoint.Y - label.Top);
+            }
+            label.DoDragDrop(sender, DragDropEffects.Move);
+            _dragPoint = Point.Empty;
+            _dragCursor.Dispose();
+            bitmap.Dispose();
         }
 
         /// <summary>
