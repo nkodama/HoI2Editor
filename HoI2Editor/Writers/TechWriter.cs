@@ -134,10 +134,7 @@ namespace HoI2Editor.Writers
             {
                 WriteOrRequired(application.OrRequired, writer);
             }
-            if (application.Effects.Count > 0)
-            {
-                WriteEffects(application.Effects, writer);
-            }
+            WriteEffects(application.Effects, writer);
             writer.WriteLine("  }");
         }
 

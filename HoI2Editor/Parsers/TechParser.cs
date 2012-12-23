@@ -1263,6 +1263,10 @@ namespace HoI2Editor.Parsers
                                                 Resources.Section, _fileName));
                         continue;
                     }
+                    if (command.Type == CommandType.None)
+                    {
+                        continue;
+                    }
 
                     // コマンド
                     list.Add(command);
