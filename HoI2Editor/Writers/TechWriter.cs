@@ -198,7 +198,9 @@ namespace HoI2Editor.Writers
         {
             if (effects.Count == 0)
             {
-                writer.WriteLine("    effects = {{ }");
+                writer.WriteLine("    effects =");
+                writer.WriteLine("    { command = { }");
+                writer.WriteLine("    }");
                 return;
             }
 
