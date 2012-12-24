@@ -37,8 +37,8 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("technology =");
                 writer.WriteLine("{{ id          = {0}", group.Id);
                 writer.WriteLine("  category    = {0}", CategoryStringTable[(int) group.Category]);
-                writer.WriteLine("  name        = {0}", group.Name);
-                writer.WriteLine("  desc        = {0}", group.Desc);
+                writer.WriteLine("  name        = {0} # Localized name", group.Name);
+                writer.WriteLine("  desc        = {0} # Localized description", group.Desc);
                 foreach (object item in group.Items)
                 {
                     WriteTechItem(item, writer);
@@ -108,7 +108,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteApplication(Tech application, StreamWriter writer)
         {
-            writer.WriteLine("  # ");
+            writer.WriteLine("  # {0}", Config.GetText(application.Name));
             writer.WriteLine("  application =");
             writer.WriteLine("  {{ id        = {0}", application.Id);
             writer.WriteLine("    name      = {0}", application.Name);
@@ -145,7 +145,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteComponent(TechComponent component, StreamWriter writer)
         {
-            writer.WriteLine("    # ");
+            writer.WriteLine("    # {0}", Config.GetText(component.Name));
             writer.Write(
                 "    component = {{ id = {0} name = {1} type = {2} difficulty = {3}",
                 component.Id,
