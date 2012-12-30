@@ -119,10 +119,10 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ministerButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 18</value>
+    <value>113, 18</value>
   </data>
   <data name="ministerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 23</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ministerButton.TabIndex" type="System.Int32, mscorlib">
@@ -141,7 +141,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;ministerButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="gameFolderLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -249,11 +249,38 @@
   <data name="editGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="unitButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="unitButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 47</value>
+  </data>
+  <data name="unitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="unitButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="unitButton.Text" xml:space="preserve">
+    <value>Unit Model</value>
+  </data>
+  <data name="&gt;&gt;unitButton.Name" xml:space="preserve">
+    <value>unitButton</value>
+  </data>
+  <data name="&gt;&gt;unitButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unitButton.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;unitButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="techButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 47</value>
   </data>
   <data name="techButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 23</value>
   </data>
   <data name="techButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -271,13 +298,13 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;techButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="leaderButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 18</value>
   </data>
   <data name="leaderButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 23</value>
   </data>
   <data name="leaderButton.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -295,13 +322,13 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;leaderButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="teamButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>169, 18</value>
+    <value>219, 18</value>
   </data>
   <data name="teamButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 23</value>
   </data>
   <data name="teamButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -319,7 +346,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;teamButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="editGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 160</value>
@@ -483,21 +510,6 @@
   <data name="optionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="logCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="logCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 20</value>
-  </data>
-  <data name="logCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 16</value>
-  </data>
-  <data name="logCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="logCheckBox.Text" xml:space="preserve">
-    <value>Show error logs</value>
-  </data>
   <data name="&gt;&gt;logCheckBox.Name" xml:space="preserve">
     <value>logCheckBox</value>
   </data>
@@ -532,6 +544,33 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;optionGroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="logCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="logCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 20</value>
+  </data>
+  <data name="logCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 16</value>
+  </data>
+  <data name="logCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="logCheckBox.Text" xml:space="preserve">
+    <value>Show error logs</value>
+  </data>
+  <data name="&gt;&gt;logCheckBox.Name" xml:space="preserve">
+    <value>logCheckBox</value>
+  </data>
+  <data name="&gt;&gt;logCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;logCheckBox.Parent" xml:space="preserve">
+    <value>optionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;logCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

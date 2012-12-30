@@ -42,6 +42,11 @@ namespace HoI2Editor.Models
         public const string TechPathName = "db\\tech";
 
         /// <summary>
+        ///     ユニットフォルダ
+        /// </summary>
+        public const string UnitPathName = "db\\units";
+
+        /// <summary>
         ///     一般画像フォルダ
         /// </summary>
         public const string PicturePathName = "gfx\\interface";

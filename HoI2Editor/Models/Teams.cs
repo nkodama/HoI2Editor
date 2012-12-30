@@ -24,12 +24,6 @@ namespace HoI2Editor.Models
         public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
-        ///     研究特性文字列とIDの対応付け
-        /// </summary>
-        private static readonly Dictionary<string, TechSpeciality> SpecialityStringMap =
-            new Dictionary<string, TechSpeciality>();
-
-        /// <summary>
         ///     現在解析中のファイル名
         /// </summary>
         private static string _currentFileName = "";

@@ -35,6 +35,7 @@
             this.modLabel = new System.Windows.Forms.Label();
             this.modTextBox = new System.Windows.Forms.TextBox();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.unitButton = new System.Windows.Forms.Button();
             this.techButton = new System.Windows.Forms.Button();
             this.leaderButton = new System.Windows.Forms.Button();
             this.teamButton = new System.Windows.Forms.Button();
@@ -87,12 +88,20 @@
             // editGroupBox
             // 
             resources.ApplyResources(this.editGroupBox, "editGroupBox");
+            this.editGroupBox.Controls.Add(this.unitButton);
             this.editGroupBox.Controls.Add(this.techButton);
             this.editGroupBox.Controls.Add(this.leaderButton);
             this.editGroupBox.Controls.Add(this.teamButton);
             this.editGroupBox.Controls.Add(this.ministerButton);
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
+            // 
+            // unitButton
+            // 
+            resources.ApplyResources(this.unitButton, "unitButton");
+            this.unitButton.Name = "unitButton";
+            this.unitButton.UseVisualStyleBackColor = true;
+            this.unitButton.Click += new System.EventHandler(this.OnUnitButtonClick);
             // 
             // techButton
             // 
@@ -209,5 +218,6 @@
         private System.Windows.Forms.GroupBox optionGroupBox;
         private System.Windows.Forms.CheckBox logCheckBox;
         private System.Windows.Forms.Button techButton;
+        private System.Windows.Forms.Button unitButton;
     }
 }
