@@ -1558,6 +1558,8 @@ namespace HoI2Editor.Forms
             }
 
             label.Location = p;
+
+            SetDirtyFlag();
         }
 
         /// <summary>
