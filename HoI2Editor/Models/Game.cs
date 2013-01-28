@@ -62,6 +62,11 @@ namespace HoI2Editor.Models
         public const string TechPicturePathName = "gfx\\interface\\tech";
 
         /// <summary>
+        ///     ユニットモデル画像フォルダ
+        /// </summary>
+        public const string ModelPicturePathName = "gfx\\interface\\models";
+
+        /// <summary>
         ///     MODフォルダ名(DH)
         /// </summary>
         public const string ModPathNameDh = "Mods";
@@ -115,6 +120,16 @@ namespace HoI2Editor.Models
         ///     技術文字列定義のファイル名
         /// </summary>
         public const string TechTextFileName = "tech_names.csv";
+
+        /// <summary>
+        /// ユニット文字列定義のファイル名
+        /// </summary>
+        public const string UnitTextFileName = "unit_names.csv";
+
+        /// <summary>
+        /// 国別モデル文字列定義のファイル名
+        /// </summary>
+        public const string ModelTextFileName = "models.csv";
 
         #endregion
 
@@ -261,11 +276,11 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     MODフォルダを考慮してファイル名を取得する
+        ///     MODフォルダを考慮して読み込み用のファイル名を取得する
         /// </summary>
         /// <param name="pathName">パス名</param>
         /// <returns>ファイル名</returns>
-        public static string GetFileName(string pathName)
+        public static string GetReadFileName(string pathName)
         {
             if (IsModActive)
             {
@@ -276,6 +291,16 @@ namespace HoI2Editor.Models
                 }
             }
             return Path.Combine(FolderName, pathName);
+        }
+
+        /// <summary>
+        ///     MODフォルダを考慮して書き込み用のファイル名を取得する
+        /// </summary>
+        /// <param name="pathName">パス名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetWriteFileName(string pathName)
+        {
+            return Path.Combine(IsModActive ? ModFolderName : FolderName, pathName);
         }
 
         /// <summary>

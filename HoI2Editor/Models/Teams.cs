@@ -139,7 +139,7 @@ namespace HoI2Editor.Models
         private static void LoadTeamFilesDh()
         {
             // teams.txtが存在しなければ従来通りの読み込み方法を使用する
-            string listFileName = Game.GetFileName(Game.DhTeamListPathName);
+            string listFileName = Game.GetReadFileName(Game.DhTeamListPathName);
             if (!File.Exists(listFileName))
             {
                 LoadTeamFilesHoI2();
@@ -157,8 +157,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (string fileName in fileList.Select(name => Game.GetFileName(Path.Combine(Game.TeamPathName, name)))
-                )
+            foreach (
+                string fileName in fileList.Select(name => Game.GetReadFileName(Path.Combine(Game.TeamPathName, name))))
             {
                 try
                 {
@@ -388,7 +388,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         private static void SaveTeamFile(CountryTag country)
         {
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, Game.TeamPathName);
+            string folderName = Game.GetWriteFileName(Game.TeamPathName);
             // 研究機関フォルダが存在しなければ作成する
             if (!Directory.Exists(folderName))
             {

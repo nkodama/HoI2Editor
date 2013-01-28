@@ -168,7 +168,7 @@ namespace HoI2Editor.Models
         private static void LoadLeaderFilesDh()
         {
             // leaders.txtが存在しなければ従来通りの読み込み方法を使用する
-            string listFileName = Game.GetFileName(Game.DhLeaderListPathName);
+            string listFileName = Game.GetReadFileName(Game.DhLeaderListPathName);
             if (!File.Exists(listFileName))
             {
                 LoadLeaderFilesHoI2();
@@ -186,8 +186,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (
-                string fileName in fileList.Select(name => Game.GetFileName(Path.Combine(Game.LeaderPathName, name))))
+            foreach (string fileName
+                in fileList.Select(name => Game.GetReadFileName(Path.Combine(Game.LeaderPathName, name))))
             {
                 try
                 {
@@ -544,8 +544,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         private static void SaveLeaderFile(CountryTag country)
         {
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                             Game.LeaderPathName);
+            string folderName = Game.GetWriteFileName(Game.LeaderPathName);
             // 指揮官フォルダが存在しなければ作成する
             if (!Directory.Exists(folderName))
             {

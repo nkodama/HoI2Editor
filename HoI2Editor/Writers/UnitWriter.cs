@@ -24,18 +24,15 @@ namespace HoI2Editor.Writers
                 {
                     switch (unit.Branch)
                     {
-                        case UnitBranch.LandDivision:
-                        case UnitBranch.LandBrigade:
+                        case UnitBranch.Army:
                             writer.WriteLine("land_unit_type = 1");
                             break;
 
-                        case UnitBranch.NavalDivision:
-                        case UnitBranch.NavalBrigade:
+                        case UnitBranch.Navy:
                             writer.WriteLine("naval_unit_type = 1");
                             break;
 
-                        case UnitBranch.AirDivision:
-                        case UnitBranch.AirBrigade:
+                        case UnitBranch.AirForce:
                             writer.WriteLine("air_unit_type = 1");
                             break;
                     }
@@ -76,7 +73,7 @@ namespace HoI2Editor.Writers
                 int no = 0;
                 foreach (UnitModel model in unit.Models)
                 {
-                    WriteModel(model, unit.Branch, no, writer);
+                    WriteModel(model, unit, no, writer);
                     no++;
                 }
             }
@@ -86,49 +83,58 @@ namespace HoI2Editor.Writers
         ///     modelセクションを書き出す
         /// </summary>
         /// <param name="model">ユニットモデルデータ</param>
-        /// <param name="branch">ユニットの兵科</param>
+        /// <param name="unit">ユニットデータ</param>
         /// <param name="no">モデル番号</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteModel(UnitModel model, UnitBranch branch, int no, StreamWriter writer)
+        private static void WriteModel(UnitModel model, Unit unit, int no, StreamWriter writer)
         {
-            writer.WriteLine("# {0} - {1}", no, Config.GetText(model.Name));
+            writer.WriteLine("# {0} - {1}", no, Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
             writer.WriteLine("model = {");
 
             // 兵科固有部分
-            switch (branch)
+            switch (unit.Branch)
             {
-                case UnitBranch.LandDivision:
-                    WriteLandDivision(model, writer);
+                case UnitBranch.Army:
+                    if (unit.Organization == UnitOrganization.Division)
+                    {
+                        WriteLandDivision(model, writer);
+                    }
+                    else
+                    {
+                        WriteLandBrigade(model, writer);
+                    }
                     break;
 
-                case UnitBranch.NavalDivision:
-                    WriteNavalDivision(model, writer);
+                case UnitBranch.Navy:
+                    if (unit.Organization == UnitOrganization.Division)
+                    {
+                        WriteNavalDivision(model, writer);
+                    }
+                    else
+                    {
+                        WriteNavalBrigade(model, writer);
+                    }
                     break;
 
-                case UnitBranch.AirDivision:
-                    WriteAirDivision(model, writer);
-                    break;
-
-                case UnitBranch.LandBrigade:
-                    WriteLandBrigade(model, writer);
-                    break;
-
-                case UnitBranch.NavalBrigade:
-                    WriteNavalBrigade(model, writer);
-                    break;
-
-                case UnitBranch.AirBrigade:
-                    WriteAirBrigade(model, writer);
+                case UnitBranch.AirForce:
+                    if (unit.Organization == UnitOrganization.Division)
+                    {
+                        WriteAirDivision(model, writer);
+                    }
+                    else
+                    {
+                        WriteAirBrigade(model, writer);
+                    }
                     break;
             }
 
             // equipment (DH1.03以降)
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103 && model.Equipment.Count > 0)
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103 && model.Equipments.Count > 0)
             {
                 writer.Write("\tequipment = {");
-                foreach (var pair in model.Equipment)
+                foreach (UnitEquipment equipment in model.Equipments)
                 {
-                    writer.Write(" {0} = {1}", pair.Key, pair.Value);
+                    writer.Write(" {0} = {1}", equipment.Resource, equipment.Quantity);
                 }
                 writer.WriteLine(" }");
             }

@@ -20,14 +20,13 @@ namespace HoI2Editor.Parsers
         ///     ユニットファイルを構文解析する
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        /// <param name="branch">ユニットの兵科</param>
-        /// <returns>ユニットクラスデータ</returns>
-        public static Unit Parse(string fileName, UnitBranch branch)
+        /// <param name="unit">ユニットデータ</param>
+        /// <returns>構文解析の成否</returns>
+        public static bool Parse(string fileName, Unit unit)
         {
             _fileName = Path.GetFileName(fileName);
             using (var lexer = new TextLexer(fileName))
             {
-                var unit = new Unit {Branch = branch};
                 while (true)
                 {
                     Token token = lexer.GetToken();
@@ -49,7 +48,7 @@ namespace HoI2Editor.Parsers
                     var keyword = token.Value as string;
                     if (string.IsNullOrEmpty(keyword))
                     {
-                        return null;
+                        return false;
                     }
                     keyword = keyword.ToLower();
 
@@ -77,7 +76,7 @@ namespace HoI2Editor.Parsers
                         var s = token.Value as string;
                         if (string.IsNullOrEmpty(s))
                         {
-                            return null;
+                            return false;
                         }
                         s = s.ToLower();
 
@@ -91,7 +90,7 @@ namespace HoI2Editor.Parsers
 
                         // サポート外のユニットクラス
                         UnitType brigade = Units.StringMap[s];
-                        if (!Units.UnitTable.Contains(brigade))
+                        if (!Units.Types.Contains(brigade))
                         {
                             Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                             lexer.SkipLine();
@@ -143,16 +142,7 @@ namespace HoI2Editor.Parsers
                             }
 
                             // 陸軍師団/旅団
-                            if (unit.Branch == UnitBranch.LandDivision ||
-                                unit.Branch == UnitBranch.NavalDivision ||
-                                unit.Branch == UnitBranch.AirDivision)
-                            {
-                                unit.Branch = UnitBranch.LandDivision;
-                            }
-                            else
-                            {
-                                unit.Branch = UnitBranch.LandBrigade;
-                            }
+                            unit.Branch = UnitBranch.Army;
                             continue;
                         }
 
@@ -178,16 +168,7 @@ namespace HoI2Editor.Parsers
                             }
 
                             // 海軍師団/旅団
-                            if (unit.Branch == UnitBranch.LandDivision ||
-                                unit.Branch == UnitBranch.NavalDivision ||
-                                unit.Branch == UnitBranch.AirDivision)
-                            {
-                                unit.Branch = UnitBranch.NavalDivision;
-                            }
-                            else
-                            {
-                                unit.Branch = UnitBranch.NavalBrigade;
-                            }
+                            unit.Branch = UnitBranch.Navy;
                             continue;
                         }
 
@@ -213,16 +194,7 @@ namespace HoI2Editor.Parsers
                             }
 
                             // 空軍師団/旅団
-                            if (unit.Branch == UnitBranch.LandDivision ||
-                                unit.Branch == UnitBranch.NavalDivision ||
-                                unit.Branch == UnitBranch.AirDivision)
-                            {
-                                unit.Branch = UnitBranch.AirDivision;
-                            }
-                            else
-                            {
-                                unit.Branch = UnitBranch.AirBrigade;
-                            }
+                            unit.Branch = UnitBranch.AirForce;
                             continue;
                         }
                     }
@@ -253,7 +225,7 @@ namespace HoI2Editor.Parsers
                             var s = token.Value as string;
                             if (string.IsNullOrEmpty(s))
                             {
-                                return null;
+                                return false;
                             }
                             s = s.ToLower();
 
@@ -282,9 +254,9 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     lexer.SkipLine();
                 }
-
-                return unit;
             }
+
+            return true;
         }
 
         /// <summary>
@@ -1525,8 +1497,8 @@ namespace HoI2Editor.Parsers
                         // equipment
                         if (keyword.Equals("equipment"))
                         {
-                            Dictionary<string, double> equipment = ParseEquipment(lexer);
-                            if (equipment == null)
+                            IEnumerable<UnitEquipment> equipments = ParseEquipment(lexer);
+                            if (equipments == null)
                             {
                                 Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "equipment",
                                                         Resources.Section, _fileName));
@@ -1534,7 +1506,7 @@ namespace HoI2Editor.Parsers
                             }
 
                             // 装備
-                            model.Equipment = equipment;
+                            model.Equipments.AddRange(equipments);
                             continue;
                         }
                     }
@@ -1553,7 +1525,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>装備データ</returns>
-        private static Dictionary<string, double> ParseEquipment(TextLexer lexer)
+        private static IEnumerable<UnitEquipment> ParseEquipment(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -1571,7 +1543,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var equipment = new Dictionary<string, double>();
+            var equipments = new List<UnitEquipment>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1618,10 +1590,11 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                equipment.Add(resource, (double) token.Value);
+                var equipment = new UnitEquipment {Resource = resource, Quantity = (double) token.Value};
+                equipments.Add(equipment);
             }
 
-            return equipment;
+            return equipments;
         }
     }
 }

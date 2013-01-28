@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="bottomButton.Text" xml:space="preserve">
+    <value>末尾へ</value>
+  </data>
+  <data name="downButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="upButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="topButton.Text" xml:space="preserve">
+    <value>先頭へ</value>
+  </data>
+  <data name="removeButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="cloneButton.Text" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="newButton.Text" xml:space="preserve">
+    <value>新規</value>
+  </data>
+  <data name="nameColumnHeader.Text" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="classColumnHeader.Text" xml:space="preserve">
+    <value>ユニットクラス</value>
+  </data>
+  <data name="branchColumnHeader.Text" xml:space="preserve">
+    <value>兵科</value>
+  </data>
+  <data name="costColumnHeader.Text" xml:space="preserve">
+    <value>IC</value>
+  </data>
+  <data name="buildTimeColumnHeader.Text" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="manPowerSkillColumnHeader.Text" xml:space="preserve">
+    <value>労働力</value>
+  </data>
+  <data name="supplyColumnHeader.Text" xml:space="preserve">
+    <value>物資</value>
+  </data>
+  <data name="fuelColumnHeader.Text" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="listPrioLabel.Text" xml:space="preserve">
+    <value>リスト優先度</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="upgradeTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="upgradeTimeLabel.Text" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="upgradeCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="upgradeCostLabel.Text" xml:space="preserve">
+    <value>IC</value>
+  </data>
+  <data name="upgradeTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="upgradeTypeLabel.Text" xml:space="preserve">
+    <value>ユニット種類</value>
+  </data>
+  <data name="upgradeRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="upgradeAddButton.Text" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="upgradeTypeColumnHeader.Text" xml:space="preserve">
+    <value>ユニット種類</value>
+  </data>
+  <data name="upgradeCostColumnHeader.Text" xml:space="preserve">
+    <value>IC</value>
+  </data>
+  <data name="upgradeTimeColumnHeader.Text" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="upgradeGroupBox.Text" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="militaryValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="militaryValueLabel.Text" xml:space="preserve">
+    <value>軍事力</value>
+  </data>
+  <data name="transmuteLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="transmuteLabel.Text" xml:space="preserve">
+    <value>代替ユニット</value>
+  </data>
+  <data name="spriteTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 12</value>
+  </data>
+  <data name="spriteTypeLabel.Text" xml:space="preserve">
+    <value>スプライト種類</value>
+  </data>
+  <data name="realUnitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="realUnitTypeLabel.Text" xml:space="preserve">
+    <value>ユニット種類</value>
+  </data>
+  <data name="productableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="productableCheckBox.Text" xml:space="preserve">
+    <value>生産可能</value>
+  </data>
+  <data name="gfxPrioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="gfxPrioLabel.Text" xml:space="preserve">
+    <value>画像優先度</value>
+  </data>
+  <data name="detachableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="detachableCheckBox.Text" xml:space="preserve">
+    <value>着脱可能</value>
+  </data>
+  <data name="allowedBrigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 12</value>
+  </data>
+  <data name="allowedBrigadesLabel.Text" xml:space="preserve">
+    <value>配備可能な旅団</value>
+  </data>
+  <data name="branchLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="branchLabel.Text" xml:space="preserve">
+    <value>兵科</value>
+  </data>
+  <data name="classShortDescLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="classShortDescLabel.Text" xml:space="preserve">
+    <value>短縮説明</value>
+  </data>
+  <data name="classDescLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="classDescLabel.Text" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="classShortNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="classShortNameLabel.Text" xml:space="preserve">
+    <value>短縮名</value>
+  </data>
+  <data name="classNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="classNameLabel.Text" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="classTabPage.Text" xml:space="preserve">
+    <value>ユニットクラス</value>
+  </data>
+  <data name="equipmentDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="equipmentUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="quantityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 12</value>
+  </data>
+  <data name="quantityLabel.Text" xml:space="preserve">
+    <value>量</value>
+  </data>
+  <data name="resourceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="resourceLabel.Text" xml:space="preserve">
+    <value>資源</value>
+  </data>
+  <data name="equipmentRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="equipmentAddButton.Text" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="resourceColumnHeader.Text" xml:space="preserve">
+    <value>資源</value>
+  </data>
+  <data name="quantityColumnHeader.Text" xml:space="preserve">
+    <value>量</value>
+  </data>
+  <data name="equipmentGroupBox.Text" xml:space="preserve">
+    <value>装備</value>
+  </data>
+  <data name="reinforceCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 12</value>
+  </data>
+  <data name="reinforceCostLabel.Text" xml:space="preserve">
+    <value>補充コスト</value>
+  </data>
+  <data name="costLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
+  </data>
+  <data name="costLabel.Text" xml:space="preserve">
+    <value>必要IC</value>
+  </data>
+  <data name="buildTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="buildTimeLabel.Text" xml:space="preserve">
+    <value>必要時間</value>
+  </data>
+  <data name="reinforceTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="reinforceTimeLabel.Text" xml:space="preserve">
+    <value>補充時間</value>
+  </data>
+  <data name="manPowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="manPowerLabel.Text" xml:space="preserve">
+    <value>労働力</value>
+  </data>
+  <data name="upgradeTimeFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="upgradeTimeFactorLabel.Text" xml:space="preserve">
+    <value>改良時間</value>
+  </data>
+  <data name="upgradeCostFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 12</value>
+  </data>
+  <data name="upgradeCostFactorLabel.Text" xml:space="preserve">
+    <value>改良コスト</value>
+  </data>
+  <data name="productionGroupBox.Text" xml:space="preserve">
+    <value>生産ステータス</value>
+  </data>
+  <data name="speedCapAaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="speedCapAaLabel.Text" xml:space="preserve">
+    <value>対空</value>
+  </data>
+  <data name="maxSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="maxSpeedLabel.Text" xml:space="preserve">
+    <value>最大速度</value>
+  </data>
+  <data name="speedCapAtLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="speedCapAtLabel.Text" xml:space="preserve">
+    <value>対戦車</value>
+  </data>
+  <data name="speedCapEngLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="speedCapEngLabel.Text" xml:space="preserve">
+    <value>工兵</value>
+  </data>
+  <data name="speedCapAllLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="speedCapAllLabel.Text" xml:space="preserve">
+    <value>速度キャップ</value>
+  </data>
+  <data name="speedCapArtLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="speedCapArtLabel.Text" xml:space="preserve">
+    <value>砲兵</value>
+  </data>
+  <data name="speedGroupBox.Text" xml:space="preserve">
+    <value>速度ステータス</value>
+  </data>
+  <data name="artilleryBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="artilleryBombardmentLabel.Text" xml:space="preserve">
+    <value>砲撃能力</value>
+  </data>
+  <data name="visibilityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="visibilityLabel.Text" xml:space="preserve">
+    <value>視認性</value>
+  </data>
+  <data name="noFuelCombatModLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 12</value>
+  </data>
+  <data name="noFuelCombatModLabel.Text" xml:space="preserve">
+    <value>燃料切れ補正</value>
+  </data>
+  <data name="airDetectionCapabilityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="airDetectionCapabilityLabel.Text" xml:space="preserve">
+    <value>対空索敵力</value>
+  </data>
+  <data name="subDetectionCapabilityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="subDetectionCapabilityLabel.Text" xml:space="preserve">
+    <value>対潜索敵力</value>
+  </data>
+  <data name="surfaceDetectionCapabilityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="surfaceDetectionCapabilityLabel.Text" xml:space="preserve">
+    <value>対地索敵力</value>
+  </data>
+  <data name="distanceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="distanceLabel.Text" xml:space="preserve">
+    <value>射程</value>
+  </data>
+  <data name="strategicAttackLabel.Text" xml:space="preserve">
+    <value>戦略爆撃攻撃力</value>
+  </data>
+  <data name="navalAttackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="navalAttackLabel.Text" xml:space="preserve">
+    <value>空対艦攻撃力</value>
+  </data>
+  <data name="airAttackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="airAttackLabel.Text" xml:space="preserve">
+    <value>対空攻撃力</value>
+  </data>
+  <data name="shoreBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="shoreBombardmentLabel.Text" xml:space="preserve">
+    <value>沿岸砲撃能力</value>
+  </data>
+  <data name="convoyAttackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="convoyAttackLabel.Text" xml:space="preserve">
+    <value>船団攻撃力</value>
+  </data>
+  <data name="subAttackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="subAttackLabel.Text" xml:space="preserve">
+    <value>対潜攻撃力</value>
+  </data>
+  <data name="seaAttackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="seaAttackLabel.Text" xml:space="preserve">
+    <value>艦対艦攻撃力</value>
+  </data>
+  <data name="hardAttackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="hardAttackLabel.Text" xml:space="preserve">
+    <value>対甲攻撃力</value>
+  </data>
+  <data name="softAttackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="softAttackLabel.Text" xml:space="preserve">
+    <value>対人攻撃力</value>
+  </data>
+  <data name="softnessLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="softnessLabel.Text" xml:space="preserve">
+    <value>脆弱性</value>
+  </data>
+  <data name="toughnessLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="toughnessLabel.Text" xml:space="preserve">
+    <value>耐久力</value>
+  </data>
+  <data name="surfaceDefenceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="surfaceDefenceLabel.Text" xml:space="preserve">
+    <value>対地防御力</value>
+  </data>
+  <data name="airDefenceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="airDefenceLabel.Text" xml:space="preserve">
+    <value>対空防御力</value>
+  </data>
+  <data name="seaDefenceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="seaDefenceLabel.Text" xml:space="preserve">
+    <value>対艦防御力</value>
+  </data>
+  <data name="defensivenessLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="defensivenessLabel.Text" xml:space="preserve">
+    <value>防御力</value>
+  </data>
+  <data name="battleGroupBox.Text" xml:space="preserve">
+    <value>戦闘ステータス</value>
+  </data>
+  <data name="rangeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="rangeLabel.Text" xml:space="preserve">
+    <value>航続距離</value>
+  </data>
+  <data name="transportWeightLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="transportWeightLabel.Text" xml:space="preserve">
+    <value>輸送負荷</value>
+  </data>
+  <data name="transportCapabilityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="transportCapabilityLabel.Text" xml:space="preserve">
+    <value>輸送能力</value>
+  </data>
+  <data name="maxOilStockLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="maxOilStockLabel.Text" xml:space="preserve">
+    <value>最大燃料</value>
+  </data>
+  <data name="maxSupplyStockLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="maxSupplyStockLabel.Text" xml:space="preserve">
+    <value>最大物資</value>
+  </data>
+  <data name="fuelConsumptionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="fuelConsumptionLabel.Text" xml:space="preserve">
+    <value>消費燃料</value>
+  </data>
+  <data name="supplyConsumptionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="supplyConsumptionLabel.Text" xml:space="preserve">
+    <value>消費物資</value>
+  </data>
+  <data name="suppressionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="suppressionLabel.Text" xml:space="preserve">
+    <value>制圧力</value>
+  </data>
+  <data name="moraleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="moraleLabel.Text" xml:space="preserve">
+    <value>士気</value>
+  </data>
+  <data name="defaultOrganisationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="defaultOrganisationLabel.Text" xml:space="preserve">
+    <value>組織率</value>
+  </data>
+  <data name="basicGroupBox.Text" xml:space="preserve">
+    <value>基本ステータス</value>
+  </data>
+  <data name="modelTabPage.Text" xml:space="preserve">
+    <value>ユニットモデル</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="countryUnselectButton.Text" xml:space="preserve">
+    <value>選択解除</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ユニットモデルエディタ</value>
+  </data>
+</root>

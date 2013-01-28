@@ -78,7 +78,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            if (!MiscParser.Parse(Game.GetFileName(Game.MiscPathName)))
+            if (!MiscParser.Parse(Game.GetReadFileName(Game.MiscPathName)))
             {
                 return;
             }

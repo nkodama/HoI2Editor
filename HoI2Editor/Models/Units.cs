@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
@@ -13,15 +14,52 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Units
     {
+        #region 変数
+
         /// <summary>
-        ///     ユニット群
+        ///     ユニット一覧
         /// </summary>
-        public static List<Unit> List;
+        public static List<Unit> List = new List<Unit>();
 
         /// <summary>
         ///     ユニット種類文字列とIDの対応付け
         /// </summary>
         public static readonly Dictionary<string, UnitType> StringMap = new Dictionary<string, UnitType>();
+
+        /// <summary>
+        ///     利用可能なユニット種類
+        /// </summary>
+        public static UnitType[] Types;
+
+        /// <summary>
+        ///     ユニット定義ファイル名とIDの対応付け
+        /// </summary>
+        public static Dictionary<UnitType, string> FileNameMap = new Dictionary<UnitType, string>();
+
+        /// <summary>
+        ///     ユニットの兵科とIDの対応付け
+        /// </summary>
+        public static readonly Dictionary<UnitType, UnitBranch> BranchMap = new Dictionary<UnitType, UnitBranch>();
+
+        /// <summary>
+        ///     ユニットの編成とIDの対応付け
+        /// </summary>
+        public static readonly Dictionary<UnitType, UnitOrganization> OrganizationMap =
+            new Dictionary<UnitType, UnitOrganization>();
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (UnitType)).Length];
+
+        /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        private static bool _loaded;
+
+        #endregion
+
+        #region 定数
 
         /// <summary>
         ///     ユニット種類文字列テーブル
@@ -195,6 +233,10 @@ namespace HoI2Editor.Models
                 "naval_fire_controll_l",
                 "naval_improved_hull_l",
                 "naval_torpedoes_l",
+                "naval_mines",
+                "naval_sa_l",
+                "naval_spotter_l",
+                "naval_spotter_s",
                 "b_u1",
                 "b_u2",
                 "b_u3",
@@ -517,14 +559,9 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     ユニット一覧
+        ///     利用可能なユニット種類 (HoI2)
         /// </summary>
-        public static UnitType[] UnitTable;
-
-        /// <summary>
-        ///     ユニット一覧 (HoI2)
-        /// </summary>
-        private static readonly UnitType[] UnitTableHoI2 =
+        private static readonly UnitType[] TypesHoI2 =
             {
                 // 師団
                 UnitType.Infantry,
@@ -590,9 +627,9 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     ユニット一覧 (AoD)
+        ///     利用可能なユニット種類 (AoD)
         /// </summary>
-        private static readonly UnitType[] UnitTableAoD =
+        private static readonly UnitType[] TypesAoD =
             {
                 // 師団
                 UnitType.Infantry,
@@ -655,6 +692,10 @@ namespace HoI2Editor.Models
                 UnitType.NavalFireControllL,
                 UnitType.NavalImprovedHullL,
                 UnitType.NavalTorpedoesL,
+                UnitType.NavalMines,
+                UnitType.NavalSaL,
+                UnitType.NavalSpotterL,
+                UnitType.NavalSpotterS,
                 UnitType.Bu1,
                 UnitType.Bu2,
                 UnitType.Bu3,
@@ -678,9 +719,9 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     ユニット一覧 (DH1.03以降)
+        ///     利用可能なユニット種類 (DH1.03以降)
         /// </summary>
-        private static readonly UnitType[] UnitTableDh =
+        private static readonly UnitType[] TypesDh =
             {
                 // 師団
                 UnitType.Infantry,
@@ -968,12 +1009,7 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     ユニット定義ファイル名とIDの対応付け
-        /// </summary>
-        public static Dictionary<UnitType, string> FileNameMap = new Dictionary<UnitType, string>();
-
-        /// <summary>
-        ///     デフォルトのユニット定義ファイル名
+        ///     ユニット定義ファイル名の初期設定値
         /// </summary>
         private static readonly string[] DefaultFileNames =
             {
@@ -1144,6 +1180,10 @@ namespace HoI2Editor.Models
                 "brigades\\naval_fire_controll_l.txt",
                 "brigades\\naval_improved_hull_l.txt",
                 "brigades\\naval_torpedoes_l.txt",
+                "brigades\\naval_mines.txt",
+                "brigades\\naval_sa_l.txt",
+                "brigades\\naval_spotter_l.txt",
+                "brigades\\naval_spotter_s.txt",
                 "brigades\\b_u1.txt",
                 "brigades\\b_u2.txt",
                 "brigades\\b_u3.txt",
@@ -1280,326 +1320,1250 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     ユニットの兵科とIDの対応付け
-        /// </summary>
-        public static readonly Dictionary<UnitType, UnitBranch> BranchMap = new Dictionary<UnitType, UnitBranch>();
-
-        /// <summary>
-        ///     デフォルトの兵科
+        ///     兵科の初期設定値
         /// </summary>
         private static readonly UnitBranch[] DefaultBranches =
             {
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.NavalDivision,
-                UnitBranch.AirDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandDivision,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.AirBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.NavalBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade,
-                UnitBranch.LandBrigade
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Army,
+                UnitBranch.AirForce,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.AirForce,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Navy,
+                UnitBranch.AirForce,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army
             };
 
         /// <summary>
-        ///     編集済みフラグ
+        ///     編成の初期設定値
         /// </summary>
-        private static readonly bool[] Dirty = new bool[Enum.GetValues(typeof (UnitType)).Length];
+        public static readonly UnitOrganization[] DefaultOrganizations =
+            {
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Division,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade,
+                UnitOrganization.Brigade
+            };
 
         /// <summary>
-        ///     読み込み済みフラグ
+        ///     ユニット名の初期設定値
         /// </summary>
-        private static bool _loaded;
+        private static readonly string[] DefaultNames =
+            {
+                "INFANTRY",
+                "CAVALRY",
+                "MOTORIZED",
+                "MECHANIZED",
+                "LIGHT_ARMOR",
+                "ARMOR",
+                "GARRISON",
+                "HQ",
+                "PARATROOPER",
+                "MARINE",
+                "BERGSJAEGER",
+                "CAS",
+                "MULTI_ROLE",
+                "INTERCEPTOR",
+                "STRATEGIC_BOMBER",
+                "TACTICAL_BOMBER",
+                "NAVAL_BOMBER",
+                "TRANSPORT_PLANE",
+                "BATTLESHIP",
+                "LIGHT_CRUISER",
+                "HEAVY_CRUISER",
+                "BATTLECRUISER",
+                "DESTROYER",
+                "CARRIER",
+                "SUBMARINE",
+                "TRANSPORT",
+                "FLYING_BOMB",
+                "FLYING_ROCKET",
+                "MILITIA",
+                "ESCORT_CARRIER",
+                "NUCLEAR_SUBMARINE",
+                "LIGHT_CARRIER",
+                "ROCKET_INTERCEPTOR",
+                "D_RSV_33",
+                "D_RSV_34",
+                "D_RSV_35",
+                "D_RSV_36",
+                "D_RSV_37",
+                "D_RSV_38",
+                "D_RSV_39",
+                "D_RSV_40",
+                "D_01",
+                "D_02",
+                "D_03",
+                "D_04",
+                "D_05",
+                "D_06",
+                "D_07",
+                "D_08",
+                "D_09",
+                "D_10",
+                "D_11",
+                "D_12",
+                "D_13",
+                "D_14",
+                "D_15",
+                "D_16",
+                "D_17",
+                "D_18",
+                "D_19",
+                "D_20",
+                "D_21",
+                "D_22",
+                "D_23",
+                "D_24",
+                "D_25",
+                "D_26",
+                "D_27",
+                "D_28",
+                "D_29",
+                "D_30",
+                "D_31",
+                "D_32",
+                "D_33",
+                "D_34",
+                "D_35",
+                "D_36",
+                "D_37",
+                "D_38",
+                "D_39",
+                "D_40",
+                "D_41",
+                "D_42",
+                "D_43",
+                "D_44",
+                "D_45",
+                "D_46",
+                "D_47",
+                "D_48",
+                "D_49",
+                "D_50",
+                "D_51",
+                "D_52",
+                "D_53",
+                "D_54",
+                "D_55",
+                "D_56",
+                "D_57",
+                "D_58",
+                "D_59",
+                "D_60",
+                "D_61",
+                "D_62",
+                "D_63",
+                "D_64",
+                "D_65",
+                "D_66",
+                "D_67",
+                "D_68",
+                "D_69",
+                "D_70",
+                "D_71",
+                "D_72",
+                "D_73",
+                "D_74",
+                "D_75",
+                "D_76",
+                "D_77",
+                "D_78",
+                "D_79",
+                "D_80",
+                "D_81",
+                "D_82",
+                "D_83",
+                "D_84",
+                "D_85",
+                "D_86",
+                "D_87",
+                "D_88",
+                "D_89",
+                "D_90",
+                "D_91",
+                "D_92",
+                "D_93",
+                "D_94",
+                "D_95",
+                "D_96",
+                "D_97",
+                "D_98",
+                "D_99",
+                "NONE",
+                "ARTILLERY",
+                "SP_ARTILLERY",
+                "ROCKET_ARTILLERY",
+                "SP_ROCKET_ARTILLERY",
+                "ANTITANK",
+                "TANK_DESTROYER",
+                "LIGHT_ARMOR",
+                "HEAVY_ARMOR",
+                "SUPER_HEAVY_ARMOR",
+                "ARMORED_CAR",
+                "ANTIAIR",
+                "POLICE",
+                "ENGINEER",
+                "CAG",
+                "ESCORT",
+                "NAVAL_ASW",
+                "NAVAL_ANTI_AIR_S",
+                "NAVAL_RADAR_S",
+                "NAVAL_FIRE_CONTROLL_S",
+                "NAVAL_IMPROVED_HULL_S",
+                "NAVAL_TORPEDOES_S",
+                "NAVAL_ANTI_AIR_L",
+                "NAVAL_RADAR_L",
+                "NAVAL_FIRE_CONTROLL_L",
+                "NAVAL_IMPROVED_HULL_L",
+                "NAVAL_TORPEDOES_L",
+                "NAVAL_MINES",
+                "NAVAL_SA_L",
+                "NAVAL_SPOTTER_L",
+                "NAVAL_SPOTTER_S",
+                "B_U1",
+                "B_U2",
+                "B_U3",
+                "B_U4",
+                "B_U5",
+                "B_U6",
+                "B_U7",
+                "B_U8",
+                "B_U9",
+                "B_U10",
+                "B_U11",
+                "B_U12",
+                "B_U13",
+                "B_U14",
+                "B_U15",
+                "B_U16",
+                "B_U17",
+                "B_U18",
+                "B_U19",
+                "B_U20",
+                "CAVALRY_BRIGADE",
+                "SP_ANTI_AIR",
+                "MEDIUM_ARMOR",
+                "FLOATPLANE",
+                "LCAG",
+                "AMPH_LIGHT_ARMOR_BRIGADE",
+                "GLI_LIGHT_ARMOR_BRIGADE",
+                "GLI_LIGHT_ARTILLERY",
+                "SH_ARTILLERY",
+                "B_RSV_36",
+                "B_RSV_37",
+                "B_RSV_38",
+                "B_RSV_39",
+                "B_RSV_40",
+                "B_01",
+                "B_02",
+                "B_03",
+                "B_04",
+                "B_05",
+                "B_06",
+                "B_07",
+                "B_08",
+                "B_09",
+                "B_10",
+                "B_11",
+                "B_12",
+                "B_13",
+                "B_14",
+                "B_15",
+                "B_16",
+                "B_17",
+                "B_18",
+                "B_19",
+                "B_20",
+                "B_21",
+                "B_22",
+                "B_23",
+                "B_24",
+                "B_25",
+                "B_26",
+                "B_27",
+                "B_28",
+                "B_29",
+                "B_30",
+                "B_31",
+                "B_32",
+                "B_33",
+                "B_34",
+                "B_35",
+                "B_36",
+                "B_37",
+                "B_38",
+                "B_39",
+                "B_40",
+                "B_41",
+                "B_42",
+                "B_43",
+                "B_44",
+                "B_45",
+                "B_46",
+                "B_47",
+                "B_48",
+                "B_49",
+                "B_50",
+                "B_51",
+                "B_52",
+                "B_53",
+                "B_54",
+                "B_55",
+                "B_56",
+                "B_57",
+                "B_58",
+                "B_59",
+                "B_60",
+                "B_61",
+                "B_62",
+                "B_63",
+                "B_64",
+                "B_65",
+                "B_66",
+                "B_67",
+                "B_68",
+                "B_69",
+                "B_70",
+                "B_71",
+                "B_72",
+                "B_73",
+                "B_74",
+                "B_75",
+                "B_76",
+                "B_77",
+                "B_78",
+                "B_79",
+                "B_80",
+                "B_81",
+                "B_82",
+                "B_83",
+                "B_84",
+                "B_85",
+                "B_86",
+                "B_87",
+                "B_88",
+                "B_89",
+                "B_90",
+                "B_91",
+                "B_92",
+                "B_93",
+                "B_94",
+                "B_95",
+                "B_96",
+                "B_97",
+                "B_98",
+                "B_99"
+            };
+
+        /// <summary>
+        ///     ユニット番号の初期設定値
+        /// </summary>
+        public static readonly int[] UnitNumbers =
+            {
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                9,
+                10,
+                6,
+                7,
+                8,
+                17,
+                12,
+                13,
+                14,
+                15,
+                16,
+                18,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                28,
+                30,
+                19,
+                20,
+                11,
+                27,
+                29,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87,
+                88,
+                89,
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99,
+                100,
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120,
+                121,
+                122,
+                123,
+                124,
+                125,
+                126,
+                127,
+                128,
+                129,
+                130,
+                131,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137,
+                138,
+                139,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87,
+                88,
+                89,
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99,
+                100,
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120,
+                121,
+                122,
+                123,
+                124,
+                125,
+                126,
+                127,
+                128,
+                129,
+                130,
+                131,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137,
+                138,
+                139
+            };
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     静的コンストラクタ
@@ -1614,6 +2578,76 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     ユニットデータを初期化する
+        /// </summary>
+        public static void Init()
+        {
+            InitTypes();
+            InitFileNames();
+            InitBranches();
+            InitOrganizations();
+        }
+
+        /// <summary>
+        ///     利用可能なユニット種類を初期化する
+        /// </summary>
+        private static void InitTypes()
+        {
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                Types = TypesAoD;
+            }
+            else if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                Types = TypesDh;
+            }
+            else
+            {
+                Types = TypesHoI2;
+            }
+        }
+
+        /// <summary>
+        ///     ユニット定義ファイル名を初期化する
+        /// </summary>
+        private static void InitFileNames()
+        {
+            FileNameMap.Clear();
+            foreach (UnitType type in Types)
+            {
+                FileNameMap.Add(type, DefaultFileNames[(int) type]);
+            }
+        }
+
+        /// <summary>
+        ///     ユニットの兵科を初期化する
+        /// </summary>
+        private static void InitBranches()
+        {
+            BranchMap.Clear();
+            foreach (UnitType type in Types)
+            {
+                BranchMap.Add(type, DefaultBranches[(int) type]);
+            }
+        }
+
+        /// <summary>
+        ///     ユニットの編成を初期化する
+        /// </summary>
+        private static void InitOrganizations()
+        {
+            OrganizationMap.Clear();
+            foreach (UnitType type in Types)
+            {
+                OrganizationMap.Add(type, DefaultOrganizations[(int) type]);
+            }
+        }
+
+        #endregion
+
+        #region データ操作
+
+        /// <summary>
         ///     ユニット定義ファイル群を読み込む
         /// </summary>
         public static void Load()
@@ -1624,12 +2658,26 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            InitUnitTable();
-            InitFileNames();
-            InitBranches();
+            LoadFiles();
+        }
 
+        /// <summary>
+        ///     ユニット定義ファイル群を再読み込みする
+        /// </summary>
+        public static void Reload()
+        {
+            _loaded = false;
+
+            LoadFiles();
+        }
+
+        /// <summary>
+        ///     ユニット定義ファイル群を読み込む
+        /// </summary>
+        private static void LoadFiles()
+        {
             List.Clear();
-            foreach (UnitType type in UnitTable)
+            foreach (UnitType type in Types)
             {
                 try
                 {
@@ -1637,7 +2685,7 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    string fileName = Game.GetFileName(Path.Combine(Game.UnitPathName, FileNameMap[type]));
+                    string fileName = Game.GetReadFileName(Path.Combine(Game.UnitPathName, FileNameMap[type]));
                     MessageBox.Show(String.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
                 }
             }
@@ -1651,10 +2699,25 @@ namespace HoI2Editor.Models
         /// <param name="type">ユニットの種類</param>
         private static void LoadFile(UnitType type)
         {
-            string fileName = Game.GetFileName(Path.Combine(Game.UnitPathName, FileNameMap[type]));
-            Unit unit = UnitParser.Parse(fileName, BranchMap[type]);
+            // ユニットクラスデータの初期値を設定する
+            var unit = new Unit {Type = type, Branch = BranchMap[type], Organization = OrganizationMap[type]};
+            string s = DefaultNames[(int)unit.Type];
+            unit.Name = "NAME_" + s;
+            unit.ShortName = "SNAME_" + s;
+            unit.Desc = "DESC_" + s;
+            unit.ShortDesc = "SDESC_" + s;
+
+            // インデックスがずれるのを防ぐため、予めリストに登録しておく
             List.Add(unit);
             SetDirty(type, false);
+
+            // ユニット定義ファイルを解析する
+            string fileName = Game.GetReadFileName(Path.Combine(Game.UnitPathName, FileNameMap[type]));
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+            UnitParser.Parse(fileName, unit);
         }
 
         /// <summary>
@@ -1662,8 +2725,8 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName, Game.UnitPathName);
-            // フォルダがなければ作成する
+            string folderName = Game.GetWriteFileName(Game.UnitPathName);
+            // ユニット定義フォルダがなければ作成する
             if (!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);
@@ -1671,7 +2734,7 @@ namespace HoI2Editor.Models
 
             foreach (Unit unit in List)
             {
-                if (Dirty[(int) unit.Type])
+                if (DirtyFlags[(int) unit.Type])
                 {
                     string fileName = Path.Combine(folderName, FileNameMap[unit.Type]);
                     try
@@ -1688,64 +2751,15 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     ユニット一覧を初期化する
-        /// </summary>
-        private static void InitUnitTable()
-        {
-            if (Game.Type == GameType.ArsenalOfDemocracy)
-            {
-                UnitTable = UnitTableAoD;
-            }
-            else if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
-            {
-                UnitTable = UnitTableDh;
-            }
-            else
-            {
-                UnitTable = UnitTableHoI2;
-            }
-        }
-
-        /// <summary>
-        ///     ユニット定義ファイル一覧を初期化する
-        /// </summary>
-        private static void InitFileNames()
-        {
-            FileNameMap.Clear();
-            foreach (UnitType type in UnitTable)
-            {
-                FileNameMap.Add(type, DefaultFileNames[(int) type]);
-            }
-        }
-
-        /// <summary>
-        ///     ユニットの兵科を初期化する
-        /// </summary>
-        private static void InitBranches()
-        {
-            BranchMap.Clear();
-            foreach (UnitType type in UnitTable)
-            {
-                BranchMap.Add(type, DefaultBranches[(int) type]);
-            }
-        }
-
-        /// <summary>
-        ///     ファイルの再読み込みを要求する
-        /// </summary>
-        public static void RequireReload()
-        {
-            _loaded = false;
-        }
-
-        /// <summary>
         ///     編集済みフラグを更新する
         /// </summary>
         /// <param name="type">ユニットの種類</param>
         /// <param name="flag">フラグ状態</param>
         public static void SetDirty(UnitType type, bool flag)
         {
-            Dirty[(int) type] = flag;
+            DirtyFlags[(int) type] = flag;
         }
+
+        #endregion
     }
 }

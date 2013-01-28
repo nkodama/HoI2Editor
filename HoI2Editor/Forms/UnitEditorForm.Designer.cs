@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnitEditorForm));
             this.bottomButton = new System.Windows.Forms.Button();
             this.downButton = new System.Windows.Forms.Button();
             this.upButton = new System.Windows.Forms.Button();
@@ -35,24 +36,64 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.cloneButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
-            this.leaderListView = new System.Windows.Forms.ListView();
-            this.classColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.branchColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.modelListView = new System.Windows.Forms.ListView();
             this.noColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.classColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.branchColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.costColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buildTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.manPowerSkillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.supplyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.fuelColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.countryListBox = new System.Windows.Forms.ListBox();
-            this.classListBox = new System.Windows.Forms.ListBox();
+            this.unitListBox = new System.Windows.Forms.ListBox();
             this.editTabControl = new System.Windows.Forms.TabControl();
             this.classTabPage = new System.Windows.Forms.TabPage();
+            this.listPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.listPrioLabel = new System.Windows.Forms.Label();
+            this.upgradeGroupBox = new System.Windows.Forms.GroupBox();
+            this.upgradeTimeTextBox = new System.Windows.Forms.TextBox();
+            this.upgradeTimeLabel = new System.Windows.Forms.Label();
+            this.upgradeCostTextBox = new System.Windows.Forms.TextBox();
+            this.upgradeCostLabel = new System.Windows.Forms.Label();
+            this.upgradeTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.upgradeTypeLabel = new System.Windows.Forms.Label();
+            this.upgradeRemoveButton = new System.Windows.Forms.Button();
+            this.upgradeAddButton = new System.Windows.Forms.Button();
+            this.upgradeListView = new System.Windows.Forms.ListView();
+            this.upgradeTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.upgradeCostColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.upgradeTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.militaryValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.militaryValueLabel = new System.Windows.Forms.Label();
+            this.transmuteComboBox = new System.Windows.Forms.ComboBox();
+            this.transmuteLabel = new System.Windows.Forms.Label();
+            this.spriteTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.spriteTypeLabel = new System.Windows.Forms.Label();
+            this.realUnitTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.realUnitTypeLabel = new System.Windows.Forms.Label();
+            this.productableCheckBox = new System.Windows.Forms.CheckBox();
+            this.gfxPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.gfxPrioLabel = new System.Windows.Forms.Label();
+            this.detachableCheckBox = new System.Windows.Forms.CheckBox();
+            this.allowedBrigadesLabel = new System.Windows.Forms.Label();
+            this.branchLabel = new System.Windows.Forms.Label();
+            this.branchComboBox = new System.Windows.Forms.ComboBox();
+            this.allowedBrigadesCheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.classShortDescTextBox = new System.Windows.Forms.TextBox();
+            this.classShortDescLabel = new System.Windows.Forms.Label();
+            this.classDescTextBox = new System.Windows.Forms.TextBox();
+            this.classDescLabel = new System.Windows.Forms.Label();
+            this.classShortNameTextBox = new System.Windows.Forms.TextBox();
+            this.classShortNameLabel = new System.Windows.Forms.Label();
+            this.classNameTextBox = new System.Windows.Forms.TextBox();
+            this.classNameLabel = new System.Windows.Forms.Label();
             this.modelTabPage = new System.Windows.Forms.TabPage();
             this.modelNameTextBox = new System.Windows.Forms.TextBox();
             this.equipmentGroupBox = new System.Windows.Forms.GroupBox();
-            this.quantityNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.quantityTextBox = new System.Windows.Forms.TextBox();
+            this.equipmentDownButton = new System.Windows.Forms.Button();
+            this.equipmentUpButton = new System.Windows.Forms.Button();
             this.quantityLabel = new System.Windows.Forms.Label();
             this.resourceComboBox = new System.Windows.Forms.ComboBox();
             this.resourceLabel = new System.Windows.Forms.Label();
@@ -160,253 +201,144 @@
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
-            this.classNameLabel = new System.Windows.Forms.Label();
-            this.classNameTextBox = new System.Windows.Forms.TextBox();
-            this.classShortNameTextBox = new System.Windows.Forms.TextBox();
-            this.classShortNameLabel = new System.Windows.Forms.Label();
-            this.classDescTextBox = new System.Windows.Forms.TextBox();
-            this.classDescLabel = new System.Windows.Forms.Label();
-            this.classShortDescTextBox = new System.Windows.Forms.TextBox();
-            this.classShortDescLabel = new System.Windows.Forms.Label();
-            this.equipmentUpButton = new System.Windows.Forms.Button();
-            this.equipmentDownButton = new System.Windows.Forms.Button();
-            this.allowedBrigadesCheckedListBox = new System.Windows.Forms.CheckedListBox();
-            this.branchComboBox = new System.Windows.Forms.ComboBox();
-            this.branchLabel = new System.Windows.Forms.Label();
-            this.allowedBrigadesLabel = new System.Windows.Forms.Label();
-            this.detachableCheckBox = new System.Windows.Forms.CheckBox();
-            this.gfxPrioLabel = new System.Windows.Forms.Label();
-            this.gfxPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.productableCheckBox = new System.Windows.Forms.CheckBox();
-            this.realUnitTypeLabel = new System.Windows.Forms.Label();
-            this.realUnitTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.spriteTypeLabel = new System.Windows.Forms.Label();
-            this.spriteTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.transmuteLabel = new System.Windows.Forms.Label();
-            this.transmuteComboBox = new System.Windows.Forms.ComboBox();
-            this.upgradeListView = new System.Windows.Forms.ListView();
-            this.militaryValueLabel = new System.Windows.Forms.Label();
-            this.militaryValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.upgradeGroupBox = new System.Windows.Forms.GroupBox();
-            this.upgradeTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.upgradeCostColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.upgradeTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.upgradeAddButton = new System.Windows.Forms.Button();
-            this.upgradeRemoveButton = new System.Windows.Forms.Button();
-            this.upgradeTypeLabel = new System.Windows.Forms.Label();
-            this.upgradeTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.upgradeCostLabel = new System.Windows.Forms.Label();
-            this.upgradeCostTextBox = new System.Windows.Forms.TextBox();
-            this.upgradeTimeLabel = new System.Windows.Forms.Label();
-            this.upgradeTimeTextBox = new System.Windows.Forms.TextBox();
-            this.listPrioLabel = new System.Windows.Forms.Label();
-            this.listPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.countryListView = new System.Windows.Forms.ListView();
+            this.dummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editTabControl.SuspendLayout();
             this.classTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).BeginInit();
+            this.upgradeGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.militaryValueNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gfxPrioNumericUpDown)).BeginInit();
             this.modelTabPage.SuspendLayout();
             this.equipmentGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quantityNumericUpDown)).BeginInit();
             this.productionGroupBox.SuspendLayout();
             this.speedGroupBox.SuspendLayout();
             this.battleGroupBox.SuspendLayout();
             this.basicGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modelIconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelImagePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gfxPrioNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.militaryValueNumericUpDown)).BeginInit();
-            this.upgradeGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // bottomButton
             // 
-            this.bottomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bottomButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bottomButton.Location = new System.Drawing.Point(921, 208);
+            resources.ApplyResources(this.bottomButton, "bottomButton");
             this.bottomButton.Name = "bottomButton";
-            this.bottomButton.Size = new System.Drawing.Size(75, 23);
-            this.bottomButton.TabIndex = 15;
-            this.bottomButton.Text = "Bottom";
             this.bottomButton.UseVisualStyleBackColor = true;
+            this.bottomButton.Click += new System.EventHandler(this.OnBottonButtonClick);
             // 
             // downButton
             // 
-            this.downButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.downButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.downButton.Location = new System.Drawing.Point(840, 208);
+            resources.ApplyResources(this.downButton, "downButton");
             this.downButton.Name = "downButton";
-            this.downButton.Size = new System.Drawing.Size(75, 23);
-            this.downButton.TabIndex = 14;
-            this.downButton.Text = "Down";
             this.downButton.UseVisualStyleBackColor = true;
+            this.downButton.Click += new System.EventHandler(this.OnDownButtonClick);
             // 
             // upButton
             // 
-            this.upButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.upButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.upButton.Location = new System.Drawing.Point(759, 208);
+            resources.ApplyResources(this.upButton, "upButton");
             this.upButton.Name = "upButton";
-            this.upButton.Size = new System.Drawing.Size(75, 23);
-            this.upButton.TabIndex = 13;
-            this.upButton.Text = "Up";
             this.upButton.UseVisualStyleBackColor = true;
+            this.upButton.Click += new System.EventHandler(this.OnUpButtonClick);
             // 
             // topButton
             // 
-            this.topButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.topButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.topButton.Location = new System.Drawing.Point(678, 208);
+            resources.ApplyResources(this.topButton, "topButton");
             this.topButton.Name = "topButton";
-            this.topButton.Size = new System.Drawing.Size(75, 23);
-            this.topButton.TabIndex = 12;
-            this.topButton.Text = "Top";
             this.topButton.UseVisualStyleBackColor = true;
+            this.topButton.Click += new System.EventHandler(this.OnTopButtonClick);
             // 
             // removeButton
             // 
-            this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.removeButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.removeButton.Location = new System.Drawing.Point(384, 208);
+            resources.ApplyResources(this.removeButton, "removeButton");
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(75, 23);
-            this.removeButton.TabIndex = 11;
-            this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.OnRemoveButtonClick);
             // 
             // cloneButton
             // 
-            this.cloneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cloneButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cloneButton.Location = new System.Drawing.Point(303, 208);
+            resources.ApplyResources(this.cloneButton, "cloneButton");
             this.cloneButton.Name = "cloneButton";
-            this.cloneButton.Size = new System.Drawing.Size(75, 23);
-            this.cloneButton.TabIndex = 10;
-            this.cloneButton.Text = "Clone";
             this.cloneButton.UseVisualStyleBackColor = true;
+            this.cloneButton.Click += new System.EventHandler(this.OnCloneButtonClick);
             // 
             // newButton
             // 
-            this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.newButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.newButton.Location = new System.Drawing.Point(222, 208);
+            resources.ApplyResources(this.newButton, "newButton");
             this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(75, 23);
-            this.newButton.TabIndex = 9;
-            this.newButton.Text = "New";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.OnNewButtonClick);
             // 
-            // leaderListView
+            // modelListView
             // 
-            this.leaderListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.leaderListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.classColumnHeader,
-            this.branchColumnHeader,
+            resources.ApplyResources(this.modelListView, "modelListView");
+            this.modelListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.noColumnHeader,
             this.nameColumnHeader,
+            this.classColumnHeader,
+            this.branchColumnHeader,
             this.costColumnHeader,
             this.buildTimeColumnHeader,
             this.manPowerSkillColumnHeader,
             this.supplyColumnHeader,
             this.fuelColumnHeader});
-            this.leaderListView.FullRowSelect = true;
-            this.leaderListView.GridLines = true;
-            this.leaderListView.HideSelection = false;
-            this.leaderListView.Location = new System.Drawing.Point(222, 12);
-            this.leaderListView.MultiSelect = false;
-            this.leaderListView.Name = "leaderListView";
-            this.leaderListView.Size = new System.Drawing.Size(774, 190);
-            this.leaderListView.TabIndex = 8;
-            this.leaderListView.UseCompatibleStateImageBehavior = false;
-            this.leaderListView.View = System.Windows.Forms.View.Details;
-            // 
-            // classColumnHeader
-            // 
-            this.classColumnHeader.Text = "Class";
-            this.classColumnHeader.Width = 150;
-            // 
-            // branchColumnHeader
-            // 
-            this.branchColumnHeader.Text = "Branch";
+            this.modelListView.FullRowSelect = true;
+            this.modelListView.GridLines = true;
+            this.modelListView.HideSelection = false;
+            this.modelListView.MultiSelect = false;
+            this.modelListView.Name = "modelListView";
+            this.modelListView.UseCompatibleStateImageBehavior = false;
+            this.modelListView.View = System.Windows.Forms.View.Details;
+            this.modelListView.SelectedIndexChanged += new System.EventHandler(this.OnModelListViewSelectedIndexChanged);
             // 
             // noColumnHeader
             // 
-            this.noColumnHeader.Text = "No.";
-            this.noColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.noColumnHeader.Width = 40;
+            resources.ApplyResources(this.noColumnHeader, "noColumnHeader");
             // 
             // nameColumnHeader
             // 
-            this.nameColumnHeader.Text = "Name";
-            this.nameColumnHeader.Width = 240;
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
+            // 
+            // classColumnHeader
+            // 
+            resources.ApplyResources(this.classColumnHeader, "classColumnHeader");
+            // 
+            // branchColumnHeader
+            // 
+            resources.ApplyResources(this.branchColumnHeader, "branchColumnHeader");
             // 
             // costColumnHeader
             // 
-            this.costColumnHeader.Text = "Cost";
-            this.costColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.costColumnHeader.Width = 50;
+            resources.ApplyResources(this.costColumnHeader, "costColumnHeader");
             // 
             // buildTimeColumnHeader
             // 
-            this.buildTimeColumnHeader.Text = "Time";
-            this.buildTimeColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.buildTimeColumnHeader.Width = 50;
+            resources.ApplyResources(this.buildTimeColumnHeader, "buildTimeColumnHeader");
             // 
             // manPowerSkillColumnHeader
             // 
-            this.manPowerSkillColumnHeader.Text = "MP";
-            this.manPowerSkillColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.manPowerSkillColumnHeader.Width = 50;
+            resources.ApplyResources(this.manPowerSkillColumnHeader, "manPowerSkillColumnHeader");
             // 
             // supplyColumnHeader
             // 
-            this.supplyColumnHeader.Text = "Supply";
-            this.supplyColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.supplyColumnHeader.Width = 50;
+            resources.ApplyResources(this.supplyColumnHeader, "supplyColumnHeader");
             // 
             // fuelColumnHeader
             // 
-            this.fuelColumnHeader.Text = "Fuel";
-            this.fuelColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.fuelColumnHeader.Width = 50;
+            resources.ApplyResources(this.fuelColumnHeader, "fuelColumnHeader");
             // 
-            // countryListBox
+            // unitListBox
             // 
-            this.countryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.countryListBox.ColumnWidth = 40;
-            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.countryListBox.FormattingEnabled = true;
-            this.countryListBox.ItemHeight = 12;
-            this.countryListBox.Location = new System.Drawing.Point(12, 437);
-            this.countryListBox.MultiColumn = true;
-            this.countryListBox.Name = "countryListBox";
-            this.countryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.countryListBox.Size = new System.Drawing.Size(192, 280);
-            this.countryListBox.TabIndex = 16;
-            // 
-            // classListBox
-            // 
-            this.classListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.classListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.classListBox.FormattingEnabled = true;
-            this.classListBox.ItemHeight = 12;
-            this.classListBox.Location = new System.Drawing.Point(12, 12);
-            this.classListBox.Name = "classListBox";
-            this.classListBox.Size = new System.Drawing.Size(192, 412);
-            this.classListBox.TabIndex = 17;
+            resources.ApplyResources(this.unitListBox, "unitListBox");
+            this.unitListBox.Name = "unitListBox";
+            this.unitListBox.SelectedIndexChanged += new System.EventHandler(this.OnUnitListBoxSelectedIndexChanged);
             // 
             // editTabControl
             // 
             this.editTabControl.Controls.Add(this.classTabPage);
             this.editTabControl.Controls.Add(this.modelTabPage);
-            this.editTabControl.Location = new System.Drawing.Point(222, 237);
+            resources.ApplyResources(this.editTabControl, "editTabControl");
             this.editTabControl.Name = "editTabControl";
             this.editTabControl.SelectedIndex = 0;
-            this.editTabControl.Size = new System.Drawing.Size(774, 451);
-            this.editTabControl.TabIndex = 18;
             // 
             // classTabPage
             // 
@@ -438,12 +370,237 @@
             this.classTabPage.Controls.Add(this.classShortNameLabel);
             this.classTabPage.Controls.Add(this.classNameTextBox);
             this.classTabPage.Controls.Add(this.classNameLabel);
-            this.classTabPage.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.classTabPage, "classTabPage");
             this.classTabPage.Name = "classTabPage";
-            this.classTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.classTabPage.Size = new System.Drawing.Size(766, 425);
-            this.classTabPage.TabIndex = 0;
-            this.classTabPage.Text = "Unit Class";
+            // 
+            // listPrioNumericUpDown
+            // 
+            resources.ApplyResources(this.listPrioNumericUpDown, "listPrioNumericUpDown");
+            this.listPrioNumericUpDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.listPrioNumericUpDown.Name = "listPrioNumericUpDown";
+            // 
+            // listPrioLabel
+            // 
+            resources.ApplyResources(this.listPrioLabel, "listPrioLabel");
+            this.listPrioLabel.Name = "listPrioLabel";
+            // 
+            // upgradeGroupBox
+            // 
+            this.upgradeGroupBox.Controls.Add(this.upgradeTimeTextBox);
+            this.upgradeGroupBox.Controls.Add(this.upgradeTimeLabel);
+            this.upgradeGroupBox.Controls.Add(this.upgradeCostTextBox);
+            this.upgradeGroupBox.Controls.Add(this.upgradeCostLabel);
+            this.upgradeGroupBox.Controls.Add(this.upgradeTypeComboBox);
+            this.upgradeGroupBox.Controls.Add(this.upgradeTypeLabel);
+            this.upgradeGroupBox.Controls.Add(this.upgradeRemoveButton);
+            this.upgradeGroupBox.Controls.Add(this.upgradeAddButton);
+            this.upgradeGroupBox.Controls.Add(this.upgradeListView);
+            resources.ApplyResources(this.upgradeGroupBox, "upgradeGroupBox");
+            this.upgradeGroupBox.Name = "upgradeGroupBox";
+            this.upgradeGroupBox.TabStop = false;
+            // 
+            // upgradeTimeTextBox
+            // 
+            resources.ApplyResources(this.upgradeTimeTextBox, "upgradeTimeTextBox");
+            this.upgradeTimeTextBox.Name = "upgradeTimeTextBox";
+            // 
+            // upgradeTimeLabel
+            // 
+            resources.ApplyResources(this.upgradeTimeLabel, "upgradeTimeLabel");
+            this.upgradeTimeLabel.Name = "upgradeTimeLabel";
+            // 
+            // upgradeCostTextBox
+            // 
+            resources.ApplyResources(this.upgradeCostTextBox, "upgradeCostTextBox");
+            this.upgradeCostTextBox.Name = "upgradeCostTextBox";
+            // 
+            // upgradeCostLabel
+            // 
+            resources.ApplyResources(this.upgradeCostLabel, "upgradeCostLabel");
+            this.upgradeCostLabel.Name = "upgradeCostLabel";
+            // 
+            // upgradeTypeComboBox
+            // 
+            this.upgradeTypeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.upgradeTypeComboBox, "upgradeTypeComboBox");
+            this.upgradeTypeComboBox.Name = "upgradeTypeComboBox";
+            // 
+            // upgradeTypeLabel
+            // 
+            resources.ApplyResources(this.upgradeTypeLabel, "upgradeTypeLabel");
+            this.upgradeTypeLabel.Name = "upgradeTypeLabel";
+            // 
+            // upgradeRemoveButton
+            // 
+            resources.ApplyResources(this.upgradeRemoveButton, "upgradeRemoveButton");
+            this.upgradeRemoveButton.Name = "upgradeRemoveButton";
+            this.upgradeRemoveButton.UseVisualStyleBackColor = true;
+            // 
+            // upgradeAddButton
+            // 
+            resources.ApplyResources(this.upgradeAddButton, "upgradeAddButton");
+            this.upgradeAddButton.Name = "upgradeAddButton";
+            this.upgradeAddButton.UseVisualStyleBackColor = true;
+            // 
+            // upgradeListView
+            // 
+            this.upgradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.upgradeTypeColumnHeader,
+            this.upgradeCostColumnHeader,
+            this.upgradeTimeColumnHeader});
+            resources.ApplyResources(this.upgradeListView, "upgradeListView");
+            this.upgradeListView.Name = "upgradeListView";
+            this.upgradeListView.UseCompatibleStateImageBehavior = false;
+            this.upgradeListView.View = System.Windows.Forms.View.Details;
+            // 
+            // upgradeTypeColumnHeader
+            // 
+            resources.ApplyResources(this.upgradeTypeColumnHeader, "upgradeTypeColumnHeader");
+            // 
+            // upgradeCostColumnHeader
+            // 
+            resources.ApplyResources(this.upgradeCostColumnHeader, "upgradeCostColumnHeader");
+            // 
+            // upgradeTimeColumnHeader
+            // 
+            resources.ApplyResources(this.upgradeTimeColumnHeader, "upgradeTimeColumnHeader");
+            // 
+            // militaryValueNumericUpDown
+            // 
+            resources.ApplyResources(this.militaryValueNumericUpDown, "militaryValueNumericUpDown");
+            this.militaryValueNumericUpDown.Name = "militaryValueNumericUpDown";
+            // 
+            // militaryValueLabel
+            // 
+            resources.ApplyResources(this.militaryValueLabel, "militaryValueLabel");
+            this.militaryValueLabel.Name = "militaryValueLabel";
+            // 
+            // transmuteComboBox
+            // 
+            this.transmuteComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.transmuteComboBox, "transmuteComboBox");
+            this.transmuteComboBox.Name = "transmuteComboBox";
+            // 
+            // transmuteLabel
+            // 
+            resources.ApplyResources(this.transmuteLabel, "transmuteLabel");
+            this.transmuteLabel.Name = "transmuteLabel";
+            // 
+            // spriteTypeComboBox
+            // 
+            this.spriteTypeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.spriteTypeComboBox, "spriteTypeComboBox");
+            this.spriteTypeComboBox.Name = "spriteTypeComboBox";
+            // 
+            // spriteTypeLabel
+            // 
+            resources.ApplyResources(this.spriteTypeLabel, "spriteTypeLabel");
+            this.spriteTypeLabel.Name = "spriteTypeLabel";
+            // 
+            // realUnitTypeComboBox
+            // 
+            this.realUnitTypeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.realUnitTypeComboBox, "realUnitTypeComboBox");
+            this.realUnitTypeComboBox.Name = "realUnitTypeComboBox";
+            // 
+            // realUnitTypeLabel
+            // 
+            resources.ApplyResources(this.realUnitTypeLabel, "realUnitTypeLabel");
+            this.realUnitTypeLabel.Name = "realUnitTypeLabel";
+            // 
+            // productableCheckBox
+            // 
+            resources.ApplyResources(this.productableCheckBox, "productableCheckBox");
+            this.productableCheckBox.Name = "productableCheckBox";
+            this.productableCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // gfxPrioNumericUpDown
+            // 
+            resources.ApplyResources(this.gfxPrioNumericUpDown, "gfxPrioNumericUpDown");
+            this.gfxPrioNumericUpDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.gfxPrioNumericUpDown.Name = "gfxPrioNumericUpDown";
+            // 
+            // gfxPrioLabel
+            // 
+            resources.ApplyResources(this.gfxPrioLabel, "gfxPrioLabel");
+            this.gfxPrioLabel.Name = "gfxPrioLabel";
+            // 
+            // detachableCheckBox
+            // 
+            resources.ApplyResources(this.detachableCheckBox, "detachableCheckBox");
+            this.detachableCheckBox.Name = "detachableCheckBox";
+            this.detachableCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // allowedBrigadesLabel
+            // 
+            resources.ApplyResources(this.allowedBrigadesLabel, "allowedBrigadesLabel");
+            this.allowedBrigadesLabel.Name = "allowedBrigadesLabel";
+            // 
+            // branchLabel
+            // 
+            resources.ApplyResources(this.branchLabel, "branchLabel");
+            this.branchLabel.Name = "branchLabel";
+            // 
+            // branchComboBox
+            // 
+            this.branchComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.branchComboBox, "branchComboBox");
+            this.branchComboBox.Name = "branchComboBox";
+            // 
+            // allowedBrigadesCheckedListBox
+            // 
+            this.allowedBrigadesCheckedListBox.FormattingEnabled = true;
+            resources.ApplyResources(this.allowedBrigadesCheckedListBox, "allowedBrigadesCheckedListBox");
+            this.allowedBrigadesCheckedListBox.MultiColumn = true;
+            this.allowedBrigadesCheckedListBox.Name = "allowedBrigadesCheckedListBox";
+            // 
+            // classShortDescTextBox
+            // 
+            resources.ApplyResources(this.classShortDescTextBox, "classShortDescTextBox");
+            this.classShortDescTextBox.Name = "classShortDescTextBox";
+            // 
+            // classShortDescLabel
+            // 
+            resources.ApplyResources(this.classShortDescLabel, "classShortDescLabel");
+            this.classShortDescLabel.Name = "classShortDescLabel";
+            // 
+            // classDescTextBox
+            // 
+            resources.ApplyResources(this.classDescTextBox, "classDescTextBox");
+            this.classDescTextBox.Name = "classDescTextBox";
+            // 
+            // classDescLabel
+            // 
+            resources.ApplyResources(this.classDescLabel, "classDescLabel");
+            this.classDescLabel.Name = "classDescLabel";
+            // 
+            // classShortNameTextBox
+            // 
+            resources.ApplyResources(this.classShortNameTextBox, "classShortNameTextBox");
+            this.classShortNameTextBox.Name = "classShortNameTextBox";
+            // 
+            // classShortNameLabel
+            // 
+            resources.ApplyResources(this.classShortNameLabel, "classShortNameLabel");
+            this.classShortNameLabel.Name = "classShortNameLabel";
+            // 
+            // classNameTextBox
+            // 
+            resources.ApplyResources(this.classNameTextBox, "classNameTextBox");
+            this.classNameTextBox.Name = "classNameTextBox";
+            // 
+            // classNameLabel
+            // 
+            resources.ApplyResources(this.classNameLabel, "classNameLabel");
+            this.classNameLabel.Name = "classNameLabel";
             // 
             // modelTabPage
             // 
@@ -456,116 +613,99 @@
             this.modelTabPage.Controls.Add(this.basicGroupBox);
             this.modelTabPage.Controls.Add(this.modelIconPictureBox);
             this.modelTabPage.Controls.Add(this.modelImagePictureBox);
-            this.modelTabPage.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.modelTabPage, "modelTabPage");
             this.modelTabPage.Name = "modelTabPage";
-            this.modelTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.modelTabPage.Size = new System.Drawing.Size(766, 425);
-            this.modelTabPage.TabIndex = 1;
-            this.modelTabPage.Text = "Unit Model";
             // 
             // modelNameTextBox
             // 
-            this.modelNameTextBox.Location = new System.Drawing.Point(9, 116);
+            resources.ApplyResources(this.modelNameTextBox, "modelNameTextBox");
             this.modelNameTextBox.Name = "modelNameTextBox";
-            this.modelNameTextBox.Size = new System.Drawing.Size(291, 19);
-            this.modelNameTextBox.TabIndex = 33;
+            this.modelNameTextBox.TextChanged += new System.EventHandler(this.OnModelNameTextBoxTextChanged);
             // 
             // equipmentGroupBox
             // 
+            this.equipmentGroupBox.Controls.Add(this.quantityTextBox);
             this.equipmentGroupBox.Controls.Add(this.equipmentDownButton);
             this.equipmentGroupBox.Controls.Add(this.equipmentUpButton);
-            this.equipmentGroupBox.Controls.Add(this.quantityNumericUpDown);
             this.equipmentGroupBox.Controls.Add(this.quantityLabel);
             this.equipmentGroupBox.Controls.Add(this.resourceComboBox);
             this.equipmentGroupBox.Controls.Add(this.resourceLabel);
             this.equipmentGroupBox.Controls.Add(this.equipmentRemoveButton);
             this.equipmentGroupBox.Controls.Add(this.equipmentAddButton);
             this.equipmentGroupBox.Controls.Add(this.equipmentListView);
-            this.equipmentGroupBox.Location = new System.Drawing.Point(306, 312);
+            resources.ApplyResources(this.equipmentGroupBox, "equipmentGroupBox");
             this.equipmentGroupBox.Name = "equipmentGroupBox";
-            this.equipmentGroupBox.Size = new System.Drawing.Size(448, 107);
-            this.equipmentGroupBox.TabIndex = 17;
             this.equipmentGroupBox.TabStop = false;
-            this.equipmentGroupBox.Text = "Equipment";
             // 
-            // quantityNumericUpDown
+            // quantityTextBox
             // 
-            this.quantityNumericUpDown.Location = new System.Drawing.Point(342, 79);
-            this.quantityNumericUpDown.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.quantityNumericUpDown.Name = "quantityNumericUpDown";
-            this.quantityNumericUpDown.Size = new System.Drawing.Size(95, 19);
-            this.quantityNumericUpDown.TabIndex = 6;
-            this.quantityNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            resources.ApplyResources(this.quantityTextBox, "quantityTextBox");
+            this.quantityTextBox.Name = "quantityTextBox";
+            this.quantityTextBox.Validated += new System.EventHandler(this.OnQuantityTextBoxValidated);
+            // 
+            // equipmentDownButton
+            // 
+            resources.ApplyResources(this.equipmentDownButton, "equipmentDownButton");
+            this.equipmentDownButton.Name = "equipmentDownButton";
+            this.equipmentDownButton.UseVisualStyleBackColor = true;
+            this.equipmentDownButton.Click += new System.EventHandler(this.OnEquipmentDownButtonClick);
+            // 
+            // equipmentUpButton
+            // 
+            resources.ApplyResources(this.equipmentUpButton, "equipmentUpButton");
+            this.equipmentUpButton.Name = "equipmentUpButton";
+            this.equipmentUpButton.UseVisualStyleBackColor = true;
+            this.equipmentUpButton.Click += new System.EventHandler(this.OnEquipmentUpButtonClick);
             // 
             // quantityLabel
             // 
-            this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(279, 81);
+            resources.ApplyResources(this.quantityLabel, "quantityLabel");
             this.quantityLabel.Name = "quantityLabel";
-            this.quantityLabel.Size = new System.Drawing.Size(48, 12);
-            this.quantityLabel.TabIndex = 5;
-            this.quantityLabel.Text = "Quantity";
             // 
             // resourceComboBox
             // 
             this.resourceComboBox.FormattingEnabled = true;
-            this.resourceComboBox.Location = new System.Drawing.Point(342, 49);
+            resources.ApplyResources(this.resourceComboBox, "resourceComboBox");
             this.resourceComboBox.Name = "resourceComboBox";
-            this.resourceComboBox.Size = new System.Drawing.Size(95, 20);
-            this.resourceComboBox.TabIndex = 4;
+            this.resourceComboBox.Validated += new System.EventHandler(this.OnResourceComboBoxValidated);
             // 
             // resourceLabel
             // 
-            this.resourceLabel.AutoSize = true;
-            this.resourceLabel.Location = new System.Drawing.Point(279, 52);
+            resources.ApplyResources(this.resourceLabel, "resourceLabel");
             this.resourceLabel.Name = "resourceLabel";
-            this.resourceLabel.Size = new System.Drawing.Size(53, 12);
-            this.resourceLabel.TabIndex = 3;
-            this.resourceLabel.Text = "Resource";
             // 
             // equipmentRemoveButton
             // 
-            this.equipmentRemoveButton.Location = new System.Drawing.Point(362, 20);
+            resources.ApplyResources(this.equipmentRemoveButton, "equipmentRemoveButton");
             this.equipmentRemoveButton.Name = "equipmentRemoveButton";
-            this.equipmentRemoveButton.Size = new System.Drawing.Size(75, 23);
-            this.equipmentRemoveButton.TabIndex = 2;
-            this.equipmentRemoveButton.Text = "Remove";
             this.equipmentRemoveButton.UseVisualStyleBackColor = true;
+            this.equipmentRemoveButton.Click += new System.EventHandler(this.OnEquipmentRemoveButtonClick);
             // 
             // equipmentAddButton
             // 
-            this.equipmentAddButton.Location = new System.Drawing.Point(281, 20);
+            resources.ApplyResources(this.equipmentAddButton, "equipmentAddButton");
             this.equipmentAddButton.Name = "equipmentAddButton";
-            this.equipmentAddButton.Size = new System.Drawing.Size(75, 23);
-            this.equipmentAddButton.TabIndex = 1;
-            this.equipmentAddButton.Text = "Add";
             this.equipmentAddButton.UseVisualStyleBackColor = true;
+            this.equipmentAddButton.Click += new System.EventHandler(this.OnEquipmentAddButtonClick);
             // 
             // equipmentListView
             // 
             this.equipmentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.resourceColumnHeader,
             this.quantityColumnHeader});
-            this.equipmentListView.Location = new System.Drawing.Point(8, 18);
+            resources.ApplyResources(this.equipmentListView, "equipmentListView");
             this.equipmentListView.Name = "equipmentListView";
-            this.equipmentListView.Size = new System.Drawing.Size(184, 83);
-            this.equipmentListView.TabIndex = 0;
             this.equipmentListView.UseCompatibleStateImageBehavior = false;
             this.equipmentListView.View = System.Windows.Forms.View.Details;
+            this.equipmentListView.SelectedIndexChanged += new System.EventHandler(this.OnEquipmentListViewSelectedIndexChanged);
             // 
             // resourceColumnHeader
             // 
-            this.resourceColumnHeader.Text = "Resource";
-            this.resourceColumnHeader.Width = 100;
+            resources.ApplyResources(this.resourceColumnHeader, "resourceColumnHeader");
             // 
             // quantityColumnHeader
             // 
-            this.quantityColumnHeader.Text = "Quantity";
-            this.quantityColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            resources.ApplyResources(this.quantityColumnHeader, "quantityColumnHeader");
             // 
             // productionGroupBox
             // 
@@ -583,124 +723,86 @@
             this.productionGroupBox.Controls.Add(this.upgradeTimeFactorLabel);
             this.productionGroupBox.Controls.Add(this.upgradeCostFactorLabel);
             this.productionGroupBox.Controls.Add(this.upgradeCostFactorTextBox);
-            this.productionGroupBox.Location = new System.Drawing.Point(9, 290);
+            resources.ApplyResources(this.productionGroupBox, "productionGroupBox");
             this.productionGroupBox.Name = "productionGroupBox";
-            this.productionGroupBox.Size = new System.Drawing.Size(291, 129);
-            this.productionGroupBox.TabIndex = 16;
             this.productionGroupBox.TabStop = false;
-            this.productionGroupBox.Text = "Production Status";
             // 
             // reinforceCostTextBox
             // 
-            this.reinforceCostTextBox.Location = new System.Drawing.Point(231, 93);
+            resources.ApplyResources(this.reinforceCostTextBox, "reinforceCostTextBox");
             this.reinforceCostTextBox.Name = "reinforceCostTextBox";
-            this.reinforceCostTextBox.Size = new System.Drawing.Size(50, 19);
-            this.reinforceCostTextBox.TabIndex = 37;
+            this.reinforceCostTextBox.Validated += new System.EventHandler(this.OnReinforceCostTextBoxValidated);
             // 
             // costTextBox
             // 
-            this.costTextBox.Location = new System.Drawing.Point(87, 18);
+            resources.ApplyResources(this.costTextBox, "costTextBox");
             this.costTextBox.Name = "costTextBox";
-            this.costTextBox.Size = new System.Drawing.Size(50, 19);
-            this.costTextBox.TabIndex = 1;
+            this.costTextBox.Validated += new System.EventHandler(this.OnCostTextBoxValidated);
             // 
             // reinforceCostLabel
             // 
-            this.reinforceCostLabel.AutoSize = true;
-            this.reinforceCostLabel.Location = new System.Drawing.Point(142, 96);
+            resources.ApplyResources(this.reinforceCostLabel, "reinforceCostLabel");
             this.reinforceCostLabel.Name = "reinforceCostLabel";
-            this.reinforceCostLabel.Size = new System.Drawing.Size(82, 12);
-            this.reinforceCostLabel.TabIndex = 36;
-            this.reinforceCostLabel.Text = "Reinforce Cost";
             // 
             // costLabel
             // 
-            this.costLabel.AutoSize = true;
-            this.costLabel.Location = new System.Drawing.Point(7, 21);
+            resources.ApplyResources(this.costLabel, "costLabel");
             this.costLabel.Name = "costLabel";
-            this.costLabel.Size = new System.Drawing.Size(59, 12);
-            this.costLabel.TabIndex = 0;
-            this.costLabel.Text = "Build Cost";
             // 
             // reinforceTimeTextBox
             // 
-            this.reinforceTimeTextBox.Location = new System.Drawing.Point(231, 68);
+            resources.ApplyResources(this.reinforceTimeTextBox, "reinforceTimeTextBox");
             this.reinforceTimeTextBox.Name = "reinforceTimeTextBox";
-            this.reinforceTimeTextBox.Size = new System.Drawing.Size(50, 19);
-            this.reinforceTimeTextBox.TabIndex = 35;
+            this.reinforceTimeTextBox.Validated += new System.EventHandler(this.OnReinforceTimeTextBoxValidated);
             // 
             // buildTimeLabel
             // 
-            this.buildTimeLabel.AutoSize = true;
-            this.buildTimeLabel.Location = new System.Drawing.Point(7, 45);
+            resources.ApplyResources(this.buildTimeLabel, "buildTimeLabel");
             this.buildTimeLabel.Name = "buildTimeLabel";
-            this.buildTimeLabel.Size = new System.Drawing.Size(60, 12);
-            this.buildTimeLabel.TabIndex = 2;
-            this.buildTimeLabel.Text = "Build Time";
             // 
             // reinforceTimeLabel
             // 
-            this.reinforceTimeLabel.AutoSize = true;
-            this.reinforceTimeLabel.Location = new System.Drawing.Point(142, 71);
+            resources.ApplyResources(this.reinforceTimeLabel, "reinforceTimeLabel");
             this.reinforceTimeLabel.Name = "reinforceTimeLabel";
-            this.reinforceTimeLabel.Size = new System.Drawing.Size(83, 12);
-            this.reinforceTimeLabel.TabIndex = 34;
-            this.reinforceTimeLabel.Text = "Reinforce Time";
             // 
             // buildTimeTextBox
             // 
-            this.buildTimeTextBox.Location = new System.Drawing.Point(86, 43);
+            resources.ApplyResources(this.buildTimeTextBox, "buildTimeTextBox");
             this.buildTimeTextBox.Name = "buildTimeTextBox";
-            this.buildTimeTextBox.Size = new System.Drawing.Size(50, 19);
-            this.buildTimeTextBox.TabIndex = 3;
+            this.buildTimeTextBox.Validated += new System.EventHandler(this.OnBuildTimeTextBoxValidated);
             // 
             // manPowerTextBox
             // 
-            this.manPowerTextBox.Location = new System.Drawing.Point(86, 68);
+            resources.ApplyResources(this.manPowerTextBox, "manPowerTextBox");
             this.manPowerTextBox.Name = "manPowerTextBox";
-            this.manPowerTextBox.Size = new System.Drawing.Size(50, 19);
-            this.manPowerTextBox.TabIndex = 5;
+            this.manPowerTextBox.Validated += new System.EventHandler(this.OnManPowerTextBoxValidated);
             // 
             // manPowerLabel
             // 
-            this.manPowerLabel.AutoSize = true;
-            this.manPowerLabel.Location = new System.Drawing.Point(6, 70);
+            resources.ApplyResources(this.manPowerLabel, "manPowerLabel");
             this.manPowerLabel.Name = "manPowerLabel";
-            this.manPowerLabel.Size = new System.Drawing.Size(61, 12);
-            this.manPowerLabel.TabIndex = 4;
-            this.manPowerLabel.Text = "Man Power";
             // 
             // upgradeTimeFactorTextBox
             // 
-            this.upgradeTimeFactorTextBox.Location = new System.Drawing.Point(231, 18);
+            resources.ApplyResources(this.upgradeTimeFactorTextBox, "upgradeTimeFactorTextBox");
             this.upgradeTimeFactorTextBox.Name = "upgradeTimeFactorTextBox";
-            this.upgradeTimeFactorTextBox.Size = new System.Drawing.Size(50, 19);
-            this.upgradeTimeFactorTextBox.TabIndex = 25;
+            this.upgradeTimeFactorTextBox.Validated += new System.EventHandler(this.OnUpgradeTimeFactorTextBoxValidated);
             // 
             // upgradeTimeFactorLabel
             // 
-            this.upgradeTimeFactorLabel.AutoSize = true;
-            this.upgradeTimeFactorLabel.Location = new System.Drawing.Point(142, 21);
+            resources.ApplyResources(this.upgradeTimeFactorLabel, "upgradeTimeFactorLabel");
             this.upgradeTimeFactorLabel.Name = "upgradeTimeFactorLabel";
-            this.upgradeTimeFactorLabel.Size = new System.Drawing.Size(76, 12);
-            this.upgradeTimeFactorLabel.TabIndex = 24;
-            this.upgradeTimeFactorLabel.Text = "Upgrade Time";
             // 
             // upgradeCostFactorLabel
             // 
-            this.upgradeCostFactorLabel.AutoSize = true;
-            this.upgradeCostFactorLabel.Location = new System.Drawing.Point(142, 46);
+            resources.ApplyResources(this.upgradeCostFactorLabel, "upgradeCostFactorLabel");
             this.upgradeCostFactorLabel.Name = "upgradeCostFactorLabel";
-            this.upgradeCostFactorLabel.Size = new System.Drawing.Size(75, 12);
-            this.upgradeCostFactorLabel.TabIndex = 26;
-            this.upgradeCostFactorLabel.Text = "Upgrade Cost";
             // 
             // upgradeCostFactorTextBox
             // 
-            this.upgradeCostFactorTextBox.Location = new System.Drawing.Point(231, 43);
+            resources.ApplyResources(this.upgradeCostFactorTextBox, "upgradeCostFactorTextBox");
             this.upgradeCostFactorTextBox.Name = "upgradeCostFactorTextBox";
-            this.upgradeCostFactorTextBox.Size = new System.Drawing.Size(50, 19);
-            this.upgradeCostFactorTextBox.TabIndex = 27;
+            this.upgradeCostFactorTextBox.Validated += new System.EventHandler(this.OnUpgradeCostFactorTextBoxValidated);
             // 
             // speedGroupBox
             // 
@@ -716,108 +818,75 @@
             this.speedGroupBox.Controls.Add(this.speedCapAllLabel);
             this.speedGroupBox.Controls.Add(this.speedCapArtTextBox);
             this.speedGroupBox.Controls.Add(this.speedCapArtLabel);
-            this.speedGroupBox.Location = new System.Drawing.Point(306, 6);
+            resources.ApplyResources(this.speedGroupBox, "speedGroupBox");
             this.speedGroupBox.Name = "speedGroupBox";
-            this.speedGroupBox.Size = new System.Drawing.Size(448, 74);
-            this.speedGroupBox.TabIndex = 15;
             this.speedGroupBox.TabStop = false;
-            this.speedGroupBox.Text = "Speed Status";
             // 
             // speedCapAaTextBox
             // 
-            this.speedCapAaTextBox.Location = new System.Drawing.Point(387, 43);
+            resources.ApplyResources(this.speedCapAaTextBox, "speedCapAaTextBox");
             this.speedCapAaTextBox.Name = "speedCapAaTextBox";
-            this.speedCapAaTextBox.Size = new System.Drawing.Size(50, 19);
-            this.speedCapAaTextBox.TabIndex = 11;
+            this.speedCapAaTextBox.Validated += new System.EventHandler(this.OnSpeedCapAaTextBoxValidated);
             // 
             // maxSpeedTextBox
             // 
-            this.maxSpeedTextBox.Location = new System.Drawing.Point(93, 18);
+            resources.ApplyResources(this.maxSpeedTextBox, "maxSpeedTextBox");
             this.maxSpeedTextBox.Name = "maxSpeedTextBox";
-            this.maxSpeedTextBox.Size = new System.Drawing.Size(50, 19);
-            this.maxSpeedTextBox.TabIndex = 7;
+            this.maxSpeedTextBox.Validated += new System.EventHandler(this.OnMaxSpeedTextBoxValidated);
             // 
             // speedCapAaLabel
             // 
-            this.speedCapAaLabel.AutoSize = true;
-            this.speedCapAaLabel.Location = new System.Drawing.Point(300, 46);
+            resources.ApplyResources(this.speedCapAaLabel, "speedCapAaLabel");
             this.speedCapAaLabel.Name = "speedCapAaLabel";
-            this.speedCapAaLabel.Size = new System.Drawing.Size(45, 12);
-            this.speedCapAaLabel.TabIndex = 10;
-            this.speedCapAaLabel.Text = "AA Cap";
             // 
             // maxSpeedLabel
             // 
-            this.maxSpeedLabel.AutoSize = true;
-            this.maxSpeedLabel.Location = new System.Drawing.Point(6, 21);
+            resources.ApplyResources(this.maxSpeedLabel, "maxSpeedLabel");
             this.maxSpeedLabel.Name = "maxSpeedLabel";
-            this.maxSpeedLabel.Size = new System.Drawing.Size(61, 12);
-            this.maxSpeedLabel.TabIndex = 6;
-            this.maxSpeedLabel.Text = "Max Speed";
             // 
             // speedCapAtTextBox
             // 
-            this.speedCapAtTextBox.Location = new System.Drawing.Point(387, 18);
+            resources.ApplyResources(this.speedCapAtTextBox, "speedCapAtTextBox");
             this.speedCapAtTextBox.Name = "speedCapAtTextBox";
-            this.speedCapAtTextBox.Size = new System.Drawing.Size(50, 19);
-            this.speedCapAtTextBox.TabIndex = 9;
+            this.speedCapAtTextBox.Validated += new System.EventHandler(this.OnSpeedCapAtTextBoxValidated);
             // 
             // speedCapAtLabel
             // 
-            this.speedCapAtLabel.AutoSize = true;
-            this.speedCapAtLabel.Location = new System.Drawing.Point(300, 21);
+            resources.ApplyResources(this.speedCapAtLabel, "speedCapAtLabel");
             this.speedCapAtLabel.Name = "speedCapAtLabel";
-            this.speedCapAtLabel.Size = new System.Drawing.Size(44, 12);
-            this.speedCapAtLabel.TabIndex = 8;
-            this.speedCapAtLabel.Text = "AT Cap";
             // 
             // speedCapEngTextBox
             // 
-            this.speedCapEngTextBox.Location = new System.Drawing.Point(244, 43);
+            resources.ApplyResources(this.speedCapEngTextBox, "speedCapEngTextBox");
             this.speedCapEngTextBox.Name = "speedCapEngTextBox";
-            this.speedCapEngTextBox.Size = new System.Drawing.Size(50, 19);
-            this.speedCapEngTextBox.TabIndex = 7;
+            this.speedCapEngTextBox.Validated += new System.EventHandler(this.OnSpeedCapEngTextBoxValidated);
             // 
             // speedCapAllTextBox
             // 
-            this.speedCapAllTextBox.Location = new System.Drawing.Point(93, 43);
+            resources.ApplyResources(this.speedCapAllTextBox, "speedCapAllTextBox");
             this.speedCapAllTextBox.Name = "speedCapAllTextBox";
-            this.speedCapAllTextBox.Size = new System.Drawing.Size(50, 19);
-            this.speedCapAllTextBox.TabIndex = 3;
+            this.speedCapAllTextBox.Validated += new System.EventHandler(this.OnSpeedCapTextBoxValidated);
             // 
             // speedCapEngLabel
             // 
-            this.speedCapEngLabel.AutoSize = true;
-            this.speedCapEngLabel.Location = new System.Drawing.Point(149, 46);
+            resources.ApplyResources(this.speedCapEngLabel, "speedCapEngLabel");
             this.speedCapEngLabel.Name = "speedCapEngLabel";
-            this.speedCapEngLabel.Size = new System.Drawing.Size(50, 12);
-            this.speedCapEngLabel.TabIndex = 6;
-            this.speedCapEngLabel.Text = "Eng. Cap";
             // 
             // speedCapAllLabel
             // 
-            this.speedCapAllLabel.AutoSize = true;
-            this.speedCapAllLabel.Location = new System.Drawing.Point(6, 46);
+            resources.ApplyResources(this.speedCapAllLabel, "speedCapAllLabel");
             this.speedCapAllLabel.Name = "speedCapAllLabel";
-            this.speedCapAllLabel.Size = new System.Drawing.Size(60, 12);
-            this.speedCapAllLabel.TabIndex = 2;
-            this.speedCapAllLabel.Text = "Speed Cap";
             // 
             // speedCapArtTextBox
             // 
-            this.speedCapArtTextBox.Location = new System.Drawing.Point(244, 17);
+            resources.ApplyResources(this.speedCapArtTextBox, "speedCapArtTextBox");
             this.speedCapArtTextBox.Name = "speedCapArtTextBox";
-            this.speedCapArtTextBox.Size = new System.Drawing.Size(50, 19);
-            this.speedCapArtTextBox.TabIndex = 5;
+            this.speedCapArtTextBox.Validated += new System.EventHandler(this.OnSpeedCapArtTextBox);
             // 
             // speedCapArtLabel
             // 
-            this.speedCapArtLabel.AutoSize = true;
-            this.speedCapArtLabel.Location = new System.Drawing.Point(149, 21);
+            resources.ApplyResources(this.speedCapArtLabel, "speedCapArtLabel");
             this.speedCapArtLabel.Name = "speedCapArtLabel";
-            this.speedCapArtLabel.Size = new System.Drawing.Size(47, 12);
-            this.speedCapArtLabel.TabIndex = 4;
-            this.speedCapArtLabel.Text = "Art. Cap";
             // 
             // battleGroupBox
             // 
@@ -865,364 +934,250 @@
             this.battleGroupBox.Controls.Add(this.seaDefenceLabel);
             this.battleGroupBox.Controls.Add(this.defensivenessTextBox);
             this.battleGroupBox.Controls.Add(this.defensivenessLabel);
-            this.battleGroupBox.Location = new System.Drawing.Point(306, 86);
+            resources.ApplyResources(this.battleGroupBox, "battleGroupBox");
             this.battleGroupBox.Name = "battleGroupBox";
-            this.battleGroupBox.Size = new System.Drawing.Size(448, 220);
-            this.battleGroupBox.TabIndex = 14;
             this.battleGroupBox.TabStop = false;
-            this.battleGroupBox.Text = "Battle Status";
             // 
             // artilleryBombardmentTextBox
             // 
-            this.artilleryBombardmentTextBox.Location = new System.Drawing.Point(244, 193);
+            resources.ApplyResources(this.artilleryBombardmentTextBox, "artilleryBombardmentTextBox");
             this.artilleryBombardmentTextBox.Name = "artilleryBombardmentTextBox";
-            this.artilleryBombardmentTextBox.Size = new System.Drawing.Size(50, 19);
-            this.artilleryBombardmentTextBox.TabIndex = 41;
+            this.artilleryBombardmentTextBox.Validated += new System.EventHandler(this.OnArtilleryBombardmentTextBoxValidated);
             // 
             // artilleryBombardmentLabel
             // 
-            this.artilleryBombardmentLabel.AutoSize = true;
-            this.artilleryBombardmentLabel.Location = new System.Drawing.Point(149, 196);
+            resources.ApplyResources(this.artilleryBombardmentLabel, "artilleryBombardmentLabel");
             this.artilleryBombardmentLabel.Name = "artilleryBombardmentLabel";
-            this.artilleryBombardmentLabel.Size = new System.Drawing.Size(58, 12);
-            this.artilleryBombardmentLabel.TabIndex = 40;
-            this.artilleryBombardmentLabel.Text = "Art. Bomb.";
             // 
             // visibilityTextBox
             // 
-            this.visibilityTextBox.Location = new System.Drawing.Point(387, 43);
+            resources.ApplyResources(this.visibilityTextBox, "visibilityTextBox");
             this.visibilityTextBox.Name = "visibilityTextBox";
-            this.visibilityTextBox.Size = new System.Drawing.Size(50, 19);
-            this.visibilityTextBox.TabIndex = 39;
+            this.visibilityTextBox.Validated += new System.EventHandler(this.OnVisibilityTextBoxValidated);
             // 
             // visibilityLabel
             // 
-            this.visibilityLabel.AutoSize = true;
-            this.visibilityLabel.Location = new System.Drawing.Point(300, 46);
+            resources.ApplyResources(this.visibilityLabel, "visibilityLabel");
             this.visibilityLabel.Name = "visibilityLabel";
-            this.visibilityLabel.Size = new System.Drawing.Size(50, 12);
-            this.visibilityLabel.TabIndex = 38;
-            this.visibilityLabel.Text = "Visibility";
             // 
             // noFuelCombatModTextBox
             // 
-            this.noFuelCombatModTextBox.Location = new System.Drawing.Point(387, 143);
+            resources.ApplyResources(this.noFuelCombatModTextBox, "noFuelCombatModTextBox");
             this.noFuelCombatModTextBox.Name = "noFuelCombatModTextBox";
-            this.noFuelCombatModTextBox.Size = new System.Drawing.Size(50, 19);
-            this.noFuelCombatModTextBox.TabIndex = 33;
+            this.noFuelCombatModTextBox.Validated += new System.EventHandler(this.OnNoFuelCombatModTextBoxValidated);
             // 
             // noFuelCombatModLabel
             // 
-            this.noFuelCombatModLabel.AutoSize = true;
-            this.noFuelCombatModLabel.Location = new System.Drawing.Point(300, 146);
+            resources.ApplyResources(this.noFuelCombatModLabel, "noFuelCombatModLabel");
             this.noFuelCombatModLabel.Name = "noFuelCombatModLabel";
-            this.noFuelCombatModLabel.Size = new System.Drawing.Size(72, 12);
-            this.noFuelCombatModLabel.TabIndex = 32;
-            this.noFuelCombatModLabel.Text = "No Fuel Mod.";
             // 
             // airDetectionCapabilityTextBox
             // 
-            this.airDetectionCapabilityTextBox.Location = new System.Drawing.Point(387, 118);
+            resources.ApplyResources(this.airDetectionCapabilityTextBox, "airDetectionCapabilityTextBox");
             this.airDetectionCapabilityTextBox.Name = "airDetectionCapabilityTextBox";
-            this.airDetectionCapabilityTextBox.Size = new System.Drawing.Size(50, 19);
-            this.airDetectionCapabilityTextBox.TabIndex = 37;
+            this.airDetectionCapabilityTextBox.Validated += new System.EventHandler(this.OnAirDetectionCapabilityTextBoxValidated);
             // 
             // airDetectionCapabilityLabel
             // 
-            this.airDetectionCapabilityLabel.AutoSize = true;
-            this.airDetectionCapabilityLabel.Location = new System.Drawing.Point(300, 121);
+            resources.ApplyResources(this.airDetectionCapabilityLabel, "airDetectionCapabilityLabel");
             this.airDetectionCapabilityLabel.Name = "airDetectionCapabilityLabel";
-            this.airDetectionCapabilityLabel.Size = new System.Drawing.Size(73, 12);
-            this.airDetectionCapabilityLabel.TabIndex = 36;
-            this.airDetectionCapabilityLabel.Text = "Air Detection";
             // 
             // subDetectionCapabilityTextBox
             // 
-            this.subDetectionCapabilityTextBox.Location = new System.Drawing.Point(387, 93);
+            resources.ApplyResources(this.subDetectionCapabilityTextBox, "subDetectionCapabilityTextBox");
             this.subDetectionCapabilityTextBox.Name = "subDetectionCapabilityTextBox";
-            this.subDetectionCapabilityTextBox.Size = new System.Drawing.Size(50, 19);
-            this.subDetectionCapabilityTextBox.TabIndex = 35;
+            this.subDetectionCapabilityTextBox.Validated += new System.EventHandler(this.OnSubDetectionCapabilityTextBoxValidated);
             // 
             // subDetectionCapabilityLabel
             // 
-            this.subDetectionCapabilityLabel.AutoSize = true;
-            this.subDetectionCapabilityLabel.Location = new System.Drawing.Point(300, 96);
+            resources.ApplyResources(this.subDetectionCapabilityLabel, "subDetectionCapabilityLabel");
             this.subDetectionCapabilityLabel.Name = "subDetectionCapabilityLabel";
-            this.subDetectionCapabilityLabel.Size = new System.Drawing.Size(77, 12);
-            this.subDetectionCapabilityLabel.TabIndex = 34;
-            this.subDetectionCapabilityLabel.Text = "Sub Detection";
             // 
             // surfaceDetectionCapabilityTextBox
             // 
-            this.surfaceDetectionCapabilityTextBox.Location = new System.Drawing.Point(387, 68);
+            resources.ApplyResources(this.surfaceDetectionCapabilityTextBox, "surfaceDetectionCapabilityTextBox");
             this.surfaceDetectionCapabilityTextBox.Name = "surfaceDetectionCapabilityTextBox";
-            this.surfaceDetectionCapabilityTextBox.Size = new System.Drawing.Size(50, 19);
-            this.surfaceDetectionCapabilityTextBox.TabIndex = 33;
+            this.surfaceDetectionCapabilityTextBox.Validated += new System.EventHandler(this.OnSurfaceDetectionCapabilityTextBoxValidated);
             // 
             // surfaceDetectionCapabilityLabel
             // 
-            this.surfaceDetectionCapabilityLabel.AutoSize = true;
-            this.surfaceDetectionCapabilityLabel.Location = new System.Drawing.Point(300, 71);
+            resources.ApplyResources(this.surfaceDetectionCapabilityLabel, "surfaceDetectionCapabilityLabel");
             this.surfaceDetectionCapabilityLabel.Name = "surfaceDetectionCapabilityLabel";
-            this.surfaceDetectionCapabilityLabel.Size = new System.Drawing.Size(81, 12);
-            this.surfaceDetectionCapabilityLabel.TabIndex = 32;
-            this.surfaceDetectionCapabilityLabel.Text = "Surf. Detection";
             // 
             // distanceTextBox
             // 
-            this.distanceTextBox.Location = new System.Drawing.Point(387, 18);
+            resources.ApplyResources(this.distanceTextBox, "distanceTextBox");
             this.distanceTextBox.Name = "distanceTextBox";
-            this.distanceTextBox.Size = new System.Drawing.Size(50, 19);
-            this.distanceTextBox.TabIndex = 31;
+            this.distanceTextBox.Validated += new System.EventHandler(this.OnDistanceTextBoxValidated);
             // 
             // distanceLabel
             // 
-            this.distanceLabel.AutoSize = true;
-            this.distanceLabel.Location = new System.Drawing.Point(300, 21);
+            resources.ApplyResources(this.distanceLabel, "distanceLabel");
             this.distanceLabel.Name = "distanceLabel";
-            this.distanceLabel.Size = new System.Drawing.Size(50, 12);
-            this.distanceLabel.TabIndex = 30;
-            this.distanceLabel.Text = "Distance";
             // 
             // strategicAttackTextBox
             // 
-            this.strategicAttackTextBox.Location = new System.Drawing.Point(244, 168);
+            resources.ApplyResources(this.strategicAttackTextBox, "strategicAttackTextBox");
             this.strategicAttackTextBox.Name = "strategicAttackTextBox";
-            this.strategicAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.strategicAttackTextBox.TabIndex = 29;
+            this.strategicAttackTextBox.Validated += new System.EventHandler(this.OnStrategicAttackTextBoxValidated);
             // 
             // strategicAttackLabel
             // 
-            this.strategicAttackLabel.AutoSize = true;
-            this.strategicAttackLabel.Location = new System.Drawing.Point(149, 171);
+            resources.ApplyResources(this.strategicAttackLabel, "strategicAttackLabel");
             this.strategicAttackLabel.Name = "strategicAttackLabel";
-            this.strategicAttackLabel.Size = new System.Drawing.Size(89, 12);
-            this.strategicAttackLabel.TabIndex = 28;
-            this.strategicAttackLabel.Text = "Strategic Attack";
             // 
             // navalAttackTextBox
             // 
-            this.navalAttackTextBox.Location = new System.Drawing.Point(244, 143);
+            resources.ApplyResources(this.navalAttackTextBox, "navalAttackTextBox");
             this.navalAttackTextBox.Name = "navalAttackTextBox";
-            this.navalAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.navalAttackTextBox.TabIndex = 27;
+            this.navalAttackTextBox.Validated += new System.EventHandler(this.OnNavalAttackTextBoxValidated);
             // 
             // navalAttackLabel
             // 
-            this.navalAttackLabel.AutoSize = true;
-            this.navalAttackLabel.Location = new System.Drawing.Point(149, 146);
+            resources.ApplyResources(this.navalAttackLabel, "navalAttackLabel");
             this.navalAttackLabel.Name = "navalAttackLabel";
-            this.navalAttackLabel.Size = new System.Drawing.Size(72, 12);
-            this.navalAttackLabel.TabIndex = 26;
-            this.navalAttackLabel.Text = "Naval Attack";
             // 
             // airAttackTextBox
             // 
-            this.airAttackTextBox.Location = new System.Drawing.Point(244, 118);
+            resources.ApplyResources(this.airAttackTextBox, "airAttackTextBox");
             this.airAttackTextBox.Name = "airAttackTextBox";
-            this.airAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.airAttackTextBox.TabIndex = 25;
+            this.airAttackTextBox.Validated += new System.EventHandler(this.OnAirAttackTextBoxValidated);
             // 
             // airAttackLabel
             // 
-            this.airAttackLabel.AutoSize = true;
-            this.airAttackLabel.Location = new System.Drawing.Point(149, 121);
+            resources.ApplyResources(this.airAttackLabel, "airAttackLabel");
             this.airAttackLabel.Name = "airAttackLabel";
-            this.airAttackLabel.Size = new System.Drawing.Size(58, 12);
-            this.airAttackLabel.TabIndex = 24;
-            this.airAttackLabel.Text = "Air Attack";
             // 
             // shoreBombardmentTextBox
             // 
-            this.shoreBombardmentTextBox.Location = new System.Drawing.Point(244, 93);
+            resources.ApplyResources(this.shoreBombardmentTextBox, "shoreBombardmentTextBox");
             this.shoreBombardmentTextBox.Name = "shoreBombardmentTextBox";
-            this.shoreBombardmentTextBox.Size = new System.Drawing.Size(50, 19);
-            this.shoreBombardmentTextBox.TabIndex = 23;
+            this.shoreBombardmentTextBox.Validated += new System.EventHandler(this.OnShoreBombardmentTextBoxValidated);
             // 
             // shoreBombardmentLabel
             // 
-            this.shoreBombardmentLabel.AutoSize = true;
-            this.shoreBombardmentLabel.Location = new System.Drawing.Point(149, 96);
+            resources.ApplyResources(this.shoreBombardmentLabel, "shoreBombardmentLabel");
             this.shoreBombardmentLabel.Name = "shoreBombardmentLabel";
-            this.shoreBombardmentLabel.Size = new System.Drawing.Size(69, 12);
-            this.shoreBombardmentLabel.TabIndex = 22;
-            this.shoreBombardmentLabel.Text = "Shore Bomb.";
             // 
             // convoyAttackTextBox
             // 
-            this.convoyAttackTextBox.Location = new System.Drawing.Point(244, 68);
+            resources.ApplyResources(this.convoyAttackTextBox, "convoyAttackTextBox");
             this.convoyAttackTextBox.Name = "convoyAttackTextBox";
-            this.convoyAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.convoyAttackTextBox.TabIndex = 21;
             // 
             // convoyAttackLabel
             // 
-            this.convoyAttackLabel.AutoSize = true;
-            this.convoyAttackLabel.Location = new System.Drawing.Point(149, 71);
+            resources.ApplyResources(this.convoyAttackLabel, "convoyAttackLabel");
             this.convoyAttackLabel.Name = "convoyAttackLabel";
-            this.convoyAttackLabel.Size = new System.Drawing.Size(81, 12);
-            this.convoyAttackLabel.TabIndex = 20;
-            this.convoyAttackLabel.Text = "Convoy Attack";
             // 
             // subAttackTextBox
             // 
-            this.subAttackTextBox.Location = new System.Drawing.Point(244, 43);
+            resources.ApplyResources(this.subAttackTextBox, "subAttackTextBox");
             this.subAttackTextBox.Name = "subAttackTextBox";
-            this.subAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.subAttackTextBox.TabIndex = 19;
+            this.subAttackTextBox.Validated += new System.EventHandler(this.OnSubAttackTextBoxValidated);
             // 
             // subAttackLabel
             // 
-            this.subAttackLabel.AutoSize = true;
-            this.subAttackLabel.Location = new System.Drawing.Point(149, 46);
+            resources.ApplyResources(this.subAttackLabel, "subAttackLabel");
             this.subAttackLabel.Name = "subAttackLabel";
-            this.subAttackLabel.Size = new System.Drawing.Size(64, 12);
-            this.subAttackLabel.TabIndex = 18;
-            this.subAttackLabel.Text = "Sub. Attack";
             // 
             // seaAttackTextBox
             // 
-            this.seaAttackTextBox.Location = new System.Drawing.Point(244, 18);
+            resources.ApplyResources(this.seaAttackTextBox, "seaAttackTextBox");
             this.seaAttackTextBox.Name = "seaAttackTextBox";
-            this.seaAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.seaAttackTextBox.TabIndex = 17;
+            this.seaAttackTextBox.Validated += new System.EventHandler(this.OnSeaAttackTextBoxValidated);
             // 
             // seaAttackLabel
             // 
-            this.seaAttackLabel.AutoSize = true;
-            this.seaAttackLabel.Location = new System.Drawing.Point(149, 21);
+            resources.ApplyResources(this.seaAttackLabel, "seaAttackLabel");
             this.seaAttackLabel.Name = "seaAttackLabel";
-            this.seaAttackLabel.Size = new System.Drawing.Size(62, 12);
-            this.seaAttackLabel.TabIndex = 16;
-            this.seaAttackLabel.Text = "Sea Attack";
             // 
             // hardAttackTextBox
             // 
-            this.hardAttackTextBox.Location = new System.Drawing.Point(93, 193);
+            resources.ApplyResources(this.hardAttackTextBox, "hardAttackTextBox");
             this.hardAttackTextBox.Name = "hardAttackTextBox";
-            this.hardAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.hardAttackTextBox.TabIndex = 15;
+            this.hardAttackTextBox.Validated += new System.EventHandler(this.OnHardAttackTextBoxValidated);
             // 
             // hardAttackLabel
             // 
-            this.hardAttackLabel.AutoSize = true;
-            this.hardAttackLabel.Location = new System.Drawing.Point(6, 196);
+            resources.ApplyResources(this.hardAttackLabel, "hardAttackLabel");
             this.hardAttackLabel.Name = "hardAttackLabel";
-            this.hardAttackLabel.Size = new System.Drawing.Size(67, 12);
-            this.hardAttackLabel.TabIndex = 14;
-            this.hardAttackLabel.Text = "Hard Attack";
             // 
             // softAttackTextBox
             // 
-            this.softAttackTextBox.Location = new System.Drawing.Point(93, 168);
+            resources.ApplyResources(this.softAttackTextBox, "softAttackTextBox");
             this.softAttackTextBox.Name = "softAttackTextBox";
-            this.softAttackTextBox.Size = new System.Drawing.Size(50, 19);
-            this.softAttackTextBox.TabIndex = 13;
+            this.softAttackTextBox.Validated += new System.EventHandler(this.OnSoftAttackTextBoxValidated);
             // 
             // softAttackLabel
             // 
-            this.softAttackLabel.AutoSize = true;
-            this.softAttackLabel.Location = new System.Drawing.Point(6, 171);
+            resources.ApplyResources(this.softAttackLabel, "softAttackLabel");
             this.softAttackLabel.Name = "softAttackLabel";
-            this.softAttackLabel.Size = new System.Drawing.Size(64, 12);
-            this.softAttackLabel.TabIndex = 12;
-            this.softAttackLabel.Text = "Soft Attack";
             // 
             // softnessTextBox
             // 
-            this.softnessTextBox.Location = new System.Drawing.Point(93, 143);
+            resources.ApplyResources(this.softnessTextBox, "softnessTextBox");
             this.softnessTextBox.Name = "softnessTextBox";
-            this.softnessTextBox.Size = new System.Drawing.Size(50, 19);
-            this.softnessTextBox.TabIndex = 11;
+            this.softnessTextBox.Validated += new System.EventHandler(this.OnSoftnessTextBoxValidated);
             // 
             // softnessLabel
             // 
-            this.softnessLabel.AutoSize = true;
-            this.softnessLabel.Location = new System.Drawing.Point(6, 146);
+            resources.ApplyResources(this.softnessLabel, "softnessLabel");
             this.softnessLabel.Name = "softnessLabel";
-            this.softnessLabel.Size = new System.Drawing.Size(50, 12);
-            this.softnessLabel.TabIndex = 10;
-            this.softnessLabel.Text = "Softness";
             // 
             // toughnessTextBox
             // 
-            this.toughnessTextBox.Location = new System.Drawing.Point(93, 118);
+            resources.ApplyResources(this.toughnessTextBox, "toughnessTextBox");
             this.toughnessTextBox.Name = "toughnessTextBox";
-            this.toughnessTextBox.Size = new System.Drawing.Size(50, 19);
-            this.toughnessTextBox.TabIndex = 9;
+            this.toughnessTextBox.Validated += new System.EventHandler(this.OnToughnessTextBoxValidated);
             // 
             // toughnessLabel
             // 
-            this.toughnessLabel.AutoSize = true;
-            this.toughnessLabel.Location = new System.Drawing.Point(6, 121);
+            resources.ApplyResources(this.toughnessLabel, "toughnessLabel");
             this.toughnessLabel.Name = "toughnessLabel";
-            this.toughnessLabel.Size = new System.Drawing.Size(60, 12);
-            this.toughnessLabel.TabIndex = 8;
-            this.toughnessLabel.Text = "Toughness";
             // 
             // surfaceDefenceTextBox
             // 
-            this.surfaceDefenceTextBox.Location = new System.Drawing.Point(93, 93);
+            resources.ApplyResources(this.surfaceDefenceTextBox, "surfaceDefenceTextBox");
             this.surfaceDefenceTextBox.Name = "surfaceDefenceTextBox";
-            this.surfaceDefenceTextBox.Size = new System.Drawing.Size(50, 19);
-            this.surfaceDefenceTextBox.TabIndex = 7;
             // 
             // surfaceDefenceLabel
             // 
-            this.surfaceDefenceLabel.AutoSize = true;
-            this.surfaceDefenceLabel.Location = new System.Drawing.Point(6, 96);
+            resources.ApplyResources(this.surfaceDefenceLabel, "surfaceDefenceLabel");
             this.surfaceDefenceLabel.Name = "surfaceDefenceLabel";
-            this.surfaceDefenceLabel.Size = new System.Drawing.Size(74, 12);
-            this.surfaceDefenceLabel.TabIndex = 6;
-            this.surfaceDefenceLabel.Text = "Surf. Defence";
+            this.surfaceDefenceLabel.Validated += new System.EventHandler(this.OnSurfaceDefenceTextBoxValidated);
             // 
             // airDefenceTextBox
             // 
-            this.airDefenceTextBox.Location = new System.Drawing.Point(93, 68);
+            resources.ApplyResources(this.airDefenceTextBox, "airDefenceTextBox");
             this.airDefenceTextBox.Name = "airDefenceTextBox";
-            this.airDefenceTextBox.Size = new System.Drawing.Size(50, 19);
-            this.airDefenceTextBox.TabIndex = 5;
+            this.airDefenceTextBox.Validated += new System.EventHandler(this.OnAirDefenceTextBoxValidated);
             // 
             // airDefenceLabel
             // 
-            this.airDefenceLabel.AutoSize = true;
-            this.airDefenceLabel.Location = new System.Drawing.Point(6, 71);
+            resources.ApplyResources(this.airDefenceLabel, "airDefenceLabel");
             this.airDefenceLabel.Name = "airDefenceLabel";
-            this.airDefenceLabel.Size = new System.Drawing.Size(66, 12);
-            this.airDefenceLabel.TabIndex = 4;
-            this.airDefenceLabel.Text = "Air Defence";
             // 
             // seaDefenceTextBox
             // 
-            this.seaDefenceTextBox.Location = new System.Drawing.Point(93, 43);
+            resources.ApplyResources(this.seaDefenceTextBox, "seaDefenceTextBox");
             this.seaDefenceTextBox.Name = "seaDefenceTextBox";
-            this.seaDefenceTextBox.Size = new System.Drawing.Size(50, 19);
-            this.seaDefenceTextBox.TabIndex = 3;
+            this.seaDefenceTextBox.Validated += new System.EventHandler(this.OnSeaDefenceTextBoxValidated);
             // 
             // seaDefenceLabel
             // 
-            this.seaDefenceLabel.AutoSize = true;
-            this.seaDefenceLabel.Location = new System.Drawing.Point(6, 46);
+            resources.ApplyResources(this.seaDefenceLabel, "seaDefenceLabel");
             this.seaDefenceLabel.Name = "seaDefenceLabel";
-            this.seaDefenceLabel.Size = new System.Drawing.Size(70, 12);
-            this.seaDefenceLabel.TabIndex = 2;
-            this.seaDefenceLabel.Text = "Sea Defence";
             // 
             // defensivenessTextBox
             // 
-            this.defensivenessTextBox.Location = new System.Drawing.Point(93, 18);
+            resources.ApplyResources(this.defensivenessTextBox, "defensivenessTextBox");
             this.defensivenessTextBox.Name = "defensivenessTextBox";
-            this.defensivenessTextBox.Size = new System.Drawing.Size(50, 19);
-            this.defensivenessTextBox.TabIndex = 1;
+            this.defensivenessTextBox.Validated += new System.EventHandler(this.OnDefensivenessTextBoxValidated);
             // 
             // defensivenessLabel
             // 
-            this.defensivenessLabel.AutoSize = true;
-            this.defensivenessLabel.Location = new System.Drawing.Point(6, 21);
+            resources.ApplyResources(this.defensivenessLabel, "defensivenessLabel");
             this.defensivenessLabel.Name = "defensivenessLabel";
-            this.defensivenessLabel.Size = new System.Drawing.Size(80, 12);
-            this.defensivenessLabel.TabIndex = 0;
-            this.defensivenessLabel.Text = "Defensiveness";
             // 
             // basicGroupBox
             // 
@@ -1246,585 +1201,180 @@
             this.basicGroupBox.Controls.Add(this.moraleLabel);
             this.basicGroupBox.Controls.Add(this.defaultOrganisationTextBox);
             this.basicGroupBox.Controls.Add(this.defaultOrganisationLabel);
-            this.basicGroupBox.Location = new System.Drawing.Point(9, 141);
+            resources.ApplyResources(this.basicGroupBox, "basicGroupBox");
             this.basicGroupBox.Name = "basicGroupBox";
-            this.basicGroupBox.Size = new System.Drawing.Size(291, 143);
-            this.basicGroupBox.TabIndex = 2;
             this.basicGroupBox.TabStop = false;
-            this.basicGroupBox.Text = "Basic Status";
             // 
             // transportWeightTextBox
             // 
-            this.transportWeightTextBox.Location = new System.Drawing.Point(88, 93);
+            resources.ApplyResources(this.transportWeightTextBox, "transportWeightTextBox");
             this.transportWeightTextBox.Name = "transportWeightTextBox";
-            this.transportWeightTextBox.Size = new System.Drawing.Size(50, 19);
-            this.transportWeightTextBox.TabIndex = 17;
+            this.transportWeightTextBox.Validated += new System.EventHandler(this.OnTransportWeightTextBoxValidated);
             // 
             // rangeLabel
             // 
-            this.rangeLabel.AutoSize = true;
-            this.rangeLabel.Location = new System.Drawing.Point(8, 71);
+            resources.ApplyResources(this.rangeLabel, "rangeLabel");
             this.rangeLabel.Name = "rangeLabel";
-            this.rangeLabel.Size = new System.Drawing.Size(37, 12);
-            this.rangeLabel.TabIndex = 8;
-            this.rangeLabel.Text = "Range";
             // 
             // transportWeightLabel
             // 
-            this.transportWeightLabel.AutoSize = true;
-            this.transportWeightLabel.Location = new System.Drawing.Point(8, 96);
+            resources.ApplyResources(this.transportWeightLabel, "transportWeightLabel");
             this.transportWeightLabel.Name = "transportWeightLabel";
-            this.transportWeightLabel.Size = new System.Drawing.Size(74, 12);
-            this.transportWeightLabel.TabIndex = 16;
-            this.transportWeightLabel.Text = "Trans. Weight";
             // 
             // maxOilStockTextBox
             // 
-            this.maxOilStockTextBox.Location = new System.Drawing.Point(231, 118);
+            resources.ApplyResources(this.maxOilStockTextBox, "maxOilStockTextBox");
             this.maxOilStockTextBox.Name = "maxOilStockTextBox";
-            this.maxOilStockTextBox.Size = new System.Drawing.Size(50, 19);
-            this.maxOilStockTextBox.TabIndex = 31;
+            this.maxOilStockTextBox.Validated += new System.EventHandler(this.OnMaxOilStockTextBoxValidated);
             // 
             // rangeTextBox
             // 
-            this.rangeTextBox.Location = new System.Drawing.Point(87, 68);
+            resources.ApplyResources(this.rangeTextBox, "rangeTextBox");
             this.rangeTextBox.Name = "rangeTextBox";
-            this.rangeTextBox.Size = new System.Drawing.Size(50, 19);
-            this.rangeTextBox.TabIndex = 9;
+            this.rangeTextBox.Validated += new System.EventHandler(this.OnRangeTextBoxValidated);
             // 
             // transportCapabilityLabel
             // 
-            this.transportCapabilityLabel.AutoSize = true;
-            this.transportCapabilityLabel.Location = new System.Drawing.Point(8, 121);
+            resources.ApplyResources(this.transportCapabilityLabel, "transportCapabilityLabel");
             this.transportCapabilityLabel.Name = "transportCapabilityLabel";
-            this.transportCapabilityLabel.Size = new System.Drawing.Size(62, 12);
-            this.transportCapabilityLabel.TabIndex = 18;
-            this.transportCapabilityLabel.Text = "Trans. Cap.";
             // 
             // maxOilStockLabel
             // 
-            this.maxOilStockLabel.AutoSize = true;
-            this.maxOilStockLabel.Location = new System.Drawing.Point(142, 121);
+            resources.ApplyResources(this.maxOilStockLabel, "maxOilStockLabel");
             this.maxOilStockLabel.Name = "maxOilStockLabel";
-            this.maxOilStockLabel.Size = new System.Drawing.Size(52, 12);
-            this.maxOilStockLabel.TabIndex = 30;
-            this.maxOilStockLabel.Text = "Max Fuel";
             // 
             // transportCapabilityTextBox
             // 
-            this.transportCapabilityTextBox.Location = new System.Drawing.Point(87, 118);
+            resources.ApplyResources(this.transportCapabilityTextBox, "transportCapabilityTextBox");
             this.transportCapabilityTextBox.Name = "transportCapabilityTextBox";
-            this.transportCapabilityTextBox.Size = new System.Drawing.Size(50, 19);
-            this.transportCapabilityTextBox.TabIndex = 19;
+            this.transportCapabilityTextBox.Validated += new System.EventHandler(this.OnTransportCapabilityTextBoxTextChanged);
             // 
             // maxSupplyStockTextBox
             // 
-            this.maxSupplyStockTextBox.Location = new System.Drawing.Point(231, 93);
+            resources.ApplyResources(this.maxSupplyStockTextBox, "maxSupplyStockTextBox");
             this.maxSupplyStockTextBox.Name = "maxSupplyStockTextBox";
-            this.maxSupplyStockTextBox.Size = new System.Drawing.Size(50, 19);
-            this.maxSupplyStockTextBox.TabIndex = 29;
+            this.maxSupplyStockTextBox.Validated += new System.EventHandler(this.OnMaxSupplyStockTextBoxValidated);
             // 
             // maxSupplyStockLabel
             // 
-            this.maxSupplyStockLabel.AutoSize = true;
-            this.maxSupplyStockLabel.Location = new System.Drawing.Point(142, 96);
+            resources.ApplyResources(this.maxSupplyStockLabel, "maxSupplyStockLabel");
             this.maxSupplyStockLabel.Name = "maxSupplyStockLabel";
-            this.maxSupplyStockLabel.Size = new System.Drawing.Size(64, 12);
-            this.maxSupplyStockLabel.TabIndex = 28;
-            this.maxSupplyStockLabel.Text = "Max Supply";
             // 
             // fuelConsumptionTextBox
             // 
-            this.fuelConsumptionTextBox.Location = new System.Drawing.Point(231, 68);
+            resources.ApplyResources(this.fuelConsumptionTextBox, "fuelConsumptionTextBox");
             this.fuelConsumptionTextBox.Name = "fuelConsumptionTextBox";
-            this.fuelConsumptionTextBox.Size = new System.Drawing.Size(50, 19);
-            this.fuelConsumptionTextBox.TabIndex = 23;
+            this.fuelConsumptionTextBox.Validated += new System.EventHandler(this.OnFuelConsumptionTextBox);
             // 
             // fuelConsumptionLabel
             // 
-            this.fuelConsumptionLabel.AutoSize = true;
-            this.fuelConsumptionLabel.Location = new System.Drawing.Point(142, 71);
+            resources.ApplyResources(this.fuelConsumptionLabel, "fuelConsumptionLabel");
             this.fuelConsumptionLabel.Name = "fuelConsumptionLabel";
-            this.fuelConsumptionLabel.Size = new System.Drawing.Size(59, 12);
-            this.fuelConsumptionLabel.TabIndex = 22;
-            this.fuelConsumptionLabel.Text = "Fuel Cons.";
             // 
             // supplyConsumptionTextBox
             // 
-            this.supplyConsumptionTextBox.Location = new System.Drawing.Point(231, 43);
+            resources.ApplyResources(this.supplyConsumptionTextBox, "supplyConsumptionTextBox");
             this.supplyConsumptionTextBox.Name = "supplyConsumptionTextBox";
-            this.supplyConsumptionTextBox.Size = new System.Drawing.Size(50, 19);
-            this.supplyConsumptionTextBox.TabIndex = 21;
+            this.supplyConsumptionTextBox.Validated += new System.EventHandler(this.OnSupplyConsumptionTextBoxValidated);
             // 
             // supplyConsumptionLabel
             // 
-            this.supplyConsumptionLabel.AutoSize = true;
-            this.supplyConsumptionLabel.Location = new System.Drawing.Point(142, 46);
+            resources.ApplyResources(this.supplyConsumptionLabel, "supplyConsumptionLabel");
             this.supplyConsumptionLabel.Name = "supplyConsumptionLabel";
-            this.supplyConsumptionLabel.Size = new System.Drawing.Size(71, 12);
-            this.supplyConsumptionLabel.TabIndex = 20;
-            this.supplyConsumptionLabel.Text = "Supply Cons.";
             // 
             // suppressionTextBox
             // 
-            this.suppressionTextBox.Location = new System.Drawing.Point(231, 18);
+            resources.ApplyResources(this.suppressionTextBox, "suppressionTextBox");
             this.suppressionTextBox.Name = "suppressionTextBox";
-            this.suppressionTextBox.Size = new System.Drawing.Size(50, 19);
-            this.suppressionTextBox.TabIndex = 15;
+            this.suppressionTextBox.Validated += new System.EventHandler(this.OnSuppressionTextBoxValidated);
             // 
             // suppressionLabel
             // 
-            this.suppressionLabel.AutoSize = true;
-            this.suppressionLabel.Location = new System.Drawing.Point(142, 21);
+            resources.ApplyResources(this.suppressionLabel, "suppressionLabel");
             this.suppressionLabel.Name = "suppressionLabel";
-            this.suppressionLabel.Size = new System.Drawing.Size(67, 12);
-            this.suppressionLabel.TabIndex = 14;
-            this.suppressionLabel.Text = "Suppression";
             // 
             // moraleTextBox
             // 
-            this.moraleTextBox.Location = new System.Drawing.Point(87, 43);
+            resources.ApplyResources(this.moraleTextBox, "moraleTextBox");
             this.moraleTextBox.Name = "moraleTextBox";
-            this.moraleTextBox.Size = new System.Drawing.Size(50, 19);
-            this.moraleTextBox.TabIndex = 13;
+            this.moraleTextBox.Validated += new System.EventHandler(this.OnMoraleTextBoxValidated);
             // 
             // moraleLabel
             // 
-            this.moraleLabel.AutoSize = true;
-            this.moraleLabel.Location = new System.Drawing.Point(7, 46);
+            resources.ApplyResources(this.moraleLabel, "moraleLabel");
             this.moraleLabel.Name = "moraleLabel";
-            this.moraleLabel.Size = new System.Drawing.Size(39, 12);
-            this.moraleLabel.TabIndex = 12;
-            this.moraleLabel.Text = "Morale";
             // 
             // defaultOrganisationTextBox
             // 
-            this.defaultOrganisationTextBox.Location = new System.Drawing.Point(87, 18);
+            resources.ApplyResources(this.defaultOrganisationTextBox, "defaultOrganisationTextBox");
             this.defaultOrganisationTextBox.Name = "defaultOrganisationTextBox";
-            this.defaultOrganisationTextBox.Size = new System.Drawing.Size(50, 19);
-            this.defaultOrganisationTextBox.TabIndex = 11;
+            this.defaultOrganisationTextBox.Validated += new System.EventHandler(this.OnDefaultOrganizationTextBoxValidated);
             // 
             // defaultOrganisationLabel
             // 
-            this.defaultOrganisationLabel.AutoSize = true;
-            this.defaultOrganisationLabel.Location = new System.Drawing.Point(7, 21);
+            resources.ApplyResources(this.defaultOrganisationLabel, "defaultOrganisationLabel");
             this.defaultOrganisationLabel.Name = "defaultOrganisationLabel";
-            this.defaultOrganisationLabel.Size = new System.Drawing.Size(69, 12);
-            this.defaultOrganisationLabel.TabIndex = 10;
-            this.defaultOrganisationLabel.Text = "Organisation";
             // 
             // modelIconPictureBox
             // 
-            this.modelIconPictureBox.Location = new System.Drawing.Point(207, 6);
+            this.modelIconPictureBox.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.modelIconPictureBox, "modelIconPictureBox");
             this.modelIconPictureBox.Name = "modelIconPictureBox";
-            this.modelIconPictureBox.Size = new System.Drawing.Size(44, 44);
-            this.modelIconPictureBox.TabIndex = 1;
             this.modelIconPictureBox.TabStop = false;
             // 
             // modelImagePictureBox
             // 
-            this.modelImagePictureBox.Location = new System.Drawing.Point(9, 6);
+            resources.ApplyResources(this.modelImagePictureBox, "modelImagePictureBox");
             this.modelImagePictureBox.Name = "modelImagePictureBox";
-            this.modelImagePictureBox.Size = new System.Drawing.Size(192, 104);
-            this.modelImagePictureBox.TabIndex = 0;
             this.modelImagePictureBox.TabStop = false;
             // 
             // closeButton
             // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.closeButton.Location = new System.Drawing.Point(921, 694);
+            resources.ApplyResources(this.closeButton, "closeButton");
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 53;
-            this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.OnCloseButtonClick);
             // 
             // saveButton
             // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.saveButton.Location = new System.Drawing.Point(840, 694);
+            resources.ApplyResources(this.saveButton, "saveButton");
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 52;
-            this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.OnSaveButtonClick);
             // 
             // reloadButton
             // 
-            this.reloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.reloadButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.reloadButton.Location = new System.Drawing.Point(759, 694);
+            resources.ApplyResources(this.reloadButton, "reloadButton");
             this.reloadButton.Name = "reloadButton";
-            this.reloadButton.Size = new System.Drawing.Size(75, 23);
-            this.reloadButton.TabIndex = 51;
-            this.reloadButton.Text = "Reload";
             this.reloadButton.UseVisualStyleBackColor = true;
-            // 
-            // classNameLabel
-            // 
-            this.classNameLabel.AutoSize = true;
-            this.classNameLabel.Location = new System.Drawing.Point(15, 13);
-            this.classNameLabel.Name = "classNameLabel";
-            this.classNameLabel.Size = new System.Drawing.Size(34, 12);
-            this.classNameLabel.TabIndex = 0;
-            this.classNameLabel.Text = "Name";
-            // 
-            // classNameTextBox
-            // 
-            this.classNameTextBox.Location = new System.Drawing.Point(86, 10);
-            this.classNameTextBox.Name = "classNameTextBox";
-            this.classNameTextBox.Size = new System.Drawing.Size(178, 19);
-            this.classNameTextBox.TabIndex = 1;
-            // 
-            // classShortNameTextBox
-            // 
-            this.classShortNameTextBox.Location = new System.Drawing.Point(86, 38);
-            this.classShortNameTextBox.Name = "classShortNameTextBox";
-            this.classShortNameTextBox.Size = new System.Drawing.Size(178, 19);
-            this.classShortNameTextBox.TabIndex = 3;
-            // 
-            // classShortNameLabel
-            // 
-            this.classShortNameLabel.AutoSize = true;
-            this.classShortNameLabel.Location = new System.Drawing.Point(15, 41);
-            this.classShortNameLabel.Name = "classShortNameLabel";
-            this.classShortNameLabel.Size = new System.Drawing.Size(65, 12);
-            this.classShortNameLabel.TabIndex = 2;
-            this.classShortNameLabel.Text = "Short Name";
-            // 
-            // classDescTextBox
-            // 
-            this.classDescTextBox.Location = new System.Drawing.Point(86, 63);
-            this.classDescTextBox.Multiline = true;
-            this.classDescTextBox.Name = "classDescTextBox";
-            this.classDescTextBox.Size = new System.Drawing.Size(178, 120);
-            this.classDescTextBox.TabIndex = 5;
-            // 
-            // classDescLabel
-            // 
-            this.classDescLabel.AutoSize = true;
-            this.classDescLabel.Location = new System.Drawing.Point(15, 66);
-            this.classDescLabel.Name = "classDescLabel";
-            this.classDescLabel.Size = new System.Drawing.Size(63, 12);
-            this.classDescLabel.TabIndex = 4;
-            this.classDescLabel.Text = "Description";
-            // 
-            // classShortDescTextBox
-            // 
-            this.classShortDescTextBox.Location = new System.Drawing.Point(86, 189);
-            this.classShortDescTextBox.Name = "classShortDescTextBox";
-            this.classShortDescTextBox.Size = new System.Drawing.Size(178, 19);
-            this.classShortDescTextBox.TabIndex = 7;
-            // 
-            // classShortDescLabel
-            // 
-            this.classShortDescLabel.AutoSize = true;
-            this.classShortDescLabel.Location = new System.Drawing.Point(15, 192);
-            this.classShortDescLabel.Name = "classShortDescLabel";
-            this.classShortDescLabel.Size = new System.Drawing.Size(62, 12);
-            this.classShortDescLabel.TabIndex = 6;
-            this.classShortDescLabel.Text = "Short Desc";
-            // 
-            // equipmentUpButton
-            // 
-            this.equipmentUpButton.Location = new System.Drawing.Point(198, 47);
-            this.equipmentUpButton.Name = "equipmentUpButton";
-            this.equipmentUpButton.Size = new System.Drawing.Size(75, 23);
-            this.equipmentUpButton.TabIndex = 7;
-            this.equipmentUpButton.Text = "Up";
-            this.equipmentUpButton.UseVisualStyleBackColor = true;
-            // 
-            // equipmentDownButton
-            // 
-            this.equipmentDownButton.Location = new System.Drawing.Point(198, 76);
-            this.equipmentDownButton.Name = "equipmentDownButton";
-            this.equipmentDownButton.Size = new System.Drawing.Size(75, 23);
-            this.equipmentDownButton.TabIndex = 8;
-            this.equipmentDownButton.Text = "Down";
-            this.equipmentDownButton.UseVisualStyleBackColor = true;
-            // 
-            // allowedBrigadesCheckedListBox
-            // 
-            this.allowedBrigadesCheckedListBox.FormattingEnabled = true;
-            this.allowedBrigadesCheckedListBox.Location = new System.Drawing.Point(281, 28);
-            this.allowedBrigadesCheckedListBox.MultiColumn = true;
-            this.allowedBrigadesCheckedListBox.Name = "allowedBrigadesCheckedListBox";
-            this.allowedBrigadesCheckedListBox.Size = new System.Drawing.Size(468, 228);
-            this.allowedBrigadesCheckedListBox.TabIndex = 8;
-            // 
-            // branchComboBox
-            // 
-            this.branchComboBox.FormattingEnabled = true;
-            this.branchComboBox.Location = new System.Drawing.Point(144, 214);
-            this.branchComboBox.Name = "branchComboBox";
-            this.branchComboBox.Size = new System.Drawing.Size(120, 20);
-            this.branchComboBox.TabIndex = 9;
-            // 
-            // branchLabel
-            // 
-            this.branchLabel.AutoSize = true;
-            this.branchLabel.Location = new System.Drawing.Point(15, 217);
-            this.branchLabel.Name = "branchLabel";
-            this.branchLabel.Size = new System.Drawing.Size(41, 12);
-            this.branchLabel.TabIndex = 10;
-            this.branchLabel.Text = "Branch";
-            // 
-            // allowedBrigadesLabel
-            // 
-            this.allowedBrigadesLabel.AutoSize = true;
-            this.allowedBrigadesLabel.Location = new System.Drawing.Point(279, 13);
-            this.allowedBrigadesLabel.Name = "allowedBrigadesLabel";
-            this.allowedBrigadesLabel.Size = new System.Drawing.Size(94, 12);
-            this.allowedBrigadesLabel.TabIndex = 11;
-            this.allowedBrigadesLabel.Text = "Allowed Brigades";
-            // 
-            // detachableCheckBox
-            // 
-            this.detachableCheckBox.AutoSize = true;
-            this.detachableCheckBox.Location = new System.Drawing.Point(183, 240);
-            this.detachableCheckBox.Name = "detachableCheckBox";
-            this.detachableCheckBox.Size = new System.Drawing.Size(81, 16);
-            this.detachableCheckBox.TabIndex = 12;
-            this.detachableCheckBox.Text = "Detachable";
-            this.detachableCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // gfxPrioLabel
-            // 
-            this.gfxPrioLabel.AutoSize = true;
-            this.gfxPrioLabel.Location = new System.Drawing.Point(15, 265);
-            this.gfxPrioLabel.Name = "gfxPrioLabel";
-            this.gfxPrioLabel.Size = new System.Drawing.Size(91, 12);
-            this.gfxPrioLabel.TabIndex = 13;
-            this.gfxPrioLabel.Text = "Graphics Priority";
-            // 
-            // gfxPrioNumericUpDown
-            // 
-            this.gfxPrioNumericUpDown.Location = new System.Drawing.Point(144, 263);
-            this.gfxPrioNumericUpDown.Name = "gfxPrioNumericUpDown";
-            this.gfxPrioNumericUpDown.Size = new System.Drawing.Size(120, 19);
-            this.gfxPrioNumericUpDown.TabIndex = 14;
-            // 
-            // productableCheckBox
-            // 
-            this.productableCheckBox.AutoSize = true;
-            this.productableCheckBox.Location = new System.Drawing.Point(17, 240);
-            this.productableCheckBox.Name = "productableCheckBox";
-            this.productableCheckBox.Size = new System.Drawing.Size(84, 16);
-            this.productableCheckBox.TabIndex = 15;
-            this.productableCheckBox.Text = "Productable";
-            this.productableCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // realUnitTypeLabel
-            // 
-            this.realUnitTypeLabel.AutoSize = true;
-            this.realUnitTypeLabel.Location = new System.Drawing.Point(15, 316);
-            this.realUnitTypeLabel.Name = "realUnitTypeLabel";
-            this.realUnitTypeLabel.Size = new System.Drawing.Size(82, 12);
-            this.realUnitTypeLabel.TabIndex = 16;
-            this.realUnitTypeLabel.Text = "Real Unit Type";
-            // 
-            // realUnitTypeComboBox
-            // 
-            this.realUnitTypeComboBox.FormattingEnabled = true;
-            this.realUnitTypeComboBox.Location = new System.Drawing.Point(144, 313);
-            this.realUnitTypeComboBox.Name = "realUnitTypeComboBox";
-            this.realUnitTypeComboBox.Size = new System.Drawing.Size(120, 20);
-            this.realUnitTypeComboBox.TabIndex = 17;
-            // 
-            // spriteTypeLabel
-            // 
-            this.spriteTypeLabel.AutoSize = true;
-            this.spriteTypeLabel.Location = new System.Drawing.Point(15, 342);
-            this.spriteTypeLabel.Name = "spriteTypeLabel";
-            this.spriteTypeLabel.Size = new System.Drawing.Size(64, 12);
-            this.spriteTypeLabel.TabIndex = 18;
-            this.spriteTypeLabel.Text = "Sprite Type";
-            // 
-            // spriteTypeComboBox
-            // 
-            this.spriteTypeComboBox.FormattingEnabled = true;
-            this.spriteTypeComboBox.Location = new System.Drawing.Point(144, 339);
-            this.spriteTypeComboBox.Name = "spriteTypeComboBox";
-            this.spriteTypeComboBox.Size = new System.Drawing.Size(120, 20);
-            this.spriteTypeComboBox.TabIndex = 19;
-            // 
-            // transmuteLabel
-            // 
-            this.transmuteLabel.AutoSize = true;
-            this.transmuteLabel.Location = new System.Drawing.Point(15, 368);
-            this.transmuteLabel.Name = "transmuteLabel";
-            this.transmuteLabel.Size = new System.Drawing.Size(84, 12);
-            this.transmuteLabel.TabIndex = 20;
-            this.transmuteLabel.Text = "Transmute Unit";
-            // 
-            // transmuteComboBox
-            // 
-            this.transmuteComboBox.FormattingEnabled = true;
-            this.transmuteComboBox.Location = new System.Drawing.Point(144, 365);
-            this.transmuteComboBox.Name = "transmuteComboBox";
-            this.transmuteComboBox.Size = new System.Drawing.Size(120, 20);
-            this.transmuteComboBox.TabIndex = 21;
-            // 
-            // upgradeListView
-            // 
-            this.upgradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.upgradeTypeColumnHeader,
-            this.upgradeCostColumnHeader,
-            this.upgradeTimeColumnHeader});
-            this.upgradeListView.Location = new System.Drawing.Point(15, 23);
-            this.upgradeListView.Name = "upgradeListView";
-            this.upgradeListView.Size = new System.Drawing.Size(253, 103);
-            this.upgradeListView.TabIndex = 22;
-            this.upgradeListView.UseCompatibleStateImageBehavior = false;
-            this.upgradeListView.View = System.Windows.Forms.View.Details;
-            // 
-            // militaryValueLabel
-            // 
-            this.militaryValueLabel.AutoSize = true;
-            this.militaryValueLabel.Location = new System.Drawing.Point(15, 393);
-            this.militaryValueLabel.Name = "militaryValueLabel";
-            this.militaryValueLabel.Size = new System.Drawing.Size(76, 12);
-            this.militaryValueLabel.TabIndex = 23;
-            this.militaryValueLabel.Text = "Military Value";
-            // 
-            // militaryValueNumericUpDown
-            // 
-            this.militaryValueNumericUpDown.Location = new System.Drawing.Point(144, 391);
-            this.militaryValueNumericUpDown.Name = "militaryValueNumericUpDown";
-            this.militaryValueNumericUpDown.Size = new System.Drawing.Size(120, 19);
-            this.militaryValueNumericUpDown.TabIndex = 24;
-            // 
-            // upgradeGroupBox
-            // 
-            this.upgradeGroupBox.Controls.Add(this.upgradeTimeTextBox);
-            this.upgradeGroupBox.Controls.Add(this.upgradeTimeLabel);
-            this.upgradeGroupBox.Controls.Add(this.upgradeCostTextBox);
-            this.upgradeGroupBox.Controls.Add(this.upgradeCostLabel);
-            this.upgradeGroupBox.Controls.Add(this.upgradeTypeComboBox);
-            this.upgradeGroupBox.Controls.Add(this.upgradeTypeLabel);
-            this.upgradeGroupBox.Controls.Add(this.upgradeRemoveButton);
-            this.upgradeGroupBox.Controls.Add(this.upgradeAddButton);
-            this.upgradeGroupBox.Controls.Add(this.upgradeListView);
-            this.upgradeGroupBox.Location = new System.Drawing.Point(281, 271);
-            this.upgradeGroupBox.Name = "upgradeGroupBox";
-            this.upgradeGroupBox.Size = new System.Drawing.Size(468, 139);
-            this.upgradeGroupBox.TabIndex = 25;
-            this.upgradeGroupBox.TabStop = false;
-            this.upgradeGroupBox.Text = "Upgrade";
-            // 
-            // upgradeTypeColumnHeader
-            // 
-            this.upgradeTypeColumnHeader.Text = "Unit Type";
-            this.upgradeTypeColumnHeader.Width = 150;
-            // 
-            // upgradeCostColumnHeader
-            // 
-            this.upgradeCostColumnHeader.Text = "Cost";
-            this.upgradeCostColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.upgradeCostColumnHeader.Width = 40;
-            // 
-            // upgradeTimeColumnHeader
-            // 
-            this.upgradeTimeColumnHeader.Text = "Time";
-            this.upgradeTimeColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.upgradeTimeColumnHeader.Width = 40;
-            // 
-            // upgradeAddButton
-            // 
-            this.upgradeAddButton.Location = new System.Drawing.Point(299, 23);
-            this.upgradeAddButton.Name = "upgradeAddButton";
-            this.upgradeAddButton.Size = new System.Drawing.Size(75, 23);
-            this.upgradeAddButton.TabIndex = 25;
-            this.upgradeAddButton.Text = "Add";
-            this.upgradeAddButton.UseVisualStyleBackColor = true;
-            // 
-            // upgradeRemoveButton
-            // 
-            this.upgradeRemoveButton.Location = new System.Drawing.Point(380, 23);
-            this.upgradeRemoveButton.Name = "upgradeRemoveButton";
-            this.upgradeRemoveButton.Size = new System.Drawing.Size(75, 23);
-            this.upgradeRemoveButton.TabIndex = 26;
-            this.upgradeRemoveButton.Text = "Remove";
-            this.upgradeRemoveButton.UseVisualStyleBackColor = true;
-            // 
-            // upgradeTypeLabel
-            // 
-            this.upgradeTypeLabel.AutoSize = true;
-            this.upgradeTypeLabel.Location = new System.Drawing.Point(274, 57);
-            this.upgradeTypeLabel.Name = "upgradeTypeLabel";
-            this.upgradeTypeLabel.Size = new System.Drawing.Size(55, 12);
-            this.upgradeTypeLabel.TabIndex = 27;
-            this.upgradeTypeLabel.Text = "Unit Type";
-            // 
-            // upgradeTypeComboBox
-            // 
-            this.upgradeTypeComboBox.FormattingEnabled = true;
-            this.upgradeTypeComboBox.Location = new System.Drawing.Point(335, 54);
-            this.upgradeTypeComboBox.Name = "upgradeTypeComboBox";
-            this.upgradeTypeComboBox.Size = new System.Drawing.Size(120, 20);
-            this.upgradeTypeComboBox.TabIndex = 28;
-            // 
-            // upgradeCostLabel
-            // 
-            this.upgradeCostLabel.AutoSize = true;
-            this.upgradeCostLabel.Location = new System.Drawing.Point(274, 83);
-            this.upgradeCostLabel.Name = "upgradeCostLabel";
-            this.upgradeCostLabel.Size = new System.Drawing.Size(29, 12);
-            this.upgradeCostLabel.TabIndex = 29;
-            this.upgradeCostLabel.Text = "Cost";
-            // 
-            // upgradeCostTextBox
-            // 
-            this.upgradeCostTextBox.Location = new System.Drawing.Point(335, 80);
-            this.upgradeCostTextBox.Name = "upgradeCostTextBox";
-            this.upgradeCostTextBox.Size = new System.Drawing.Size(120, 19);
-            this.upgradeCostTextBox.TabIndex = 30;
-            // 
-            // upgradeTimeLabel
-            // 
-            this.upgradeTimeLabel.AutoSize = true;
-            this.upgradeTimeLabel.Location = new System.Drawing.Point(274, 108);
-            this.upgradeTimeLabel.Name = "upgradeTimeLabel";
-            this.upgradeTimeLabel.Size = new System.Drawing.Size(30, 12);
-            this.upgradeTimeLabel.TabIndex = 31;
-            this.upgradeTimeLabel.Text = "Time";
-            // 
-            // upgradeTimeTextBox
-            // 
-            this.upgradeTimeTextBox.Location = new System.Drawing.Point(335, 105);
-            this.upgradeTimeTextBox.Name = "upgradeTimeTextBox";
-            this.upgradeTimeTextBox.Size = new System.Drawing.Size(120, 19);
-            this.upgradeTimeTextBox.TabIndex = 32;
-            // 
-            // listPrioLabel
-            // 
-            this.listPrioLabel.AutoSize = true;
-            this.listPrioLabel.Location = new System.Drawing.Point(15, 290);
-            this.listPrioLabel.Name = "listPrioLabel";
-            this.listPrioLabel.Size = new System.Drawing.Size(65, 12);
-            this.listPrioLabel.TabIndex = 26;
-            this.listPrioLabel.Text = "List Priority";
-            // 
-            // listPrioNumericUpDown
-            // 
-            this.listPrioNumericUpDown.Location = new System.Drawing.Point(144, 288);
-            this.listPrioNumericUpDown.Name = "listPrioNumericUpDown";
-            this.listPrioNumericUpDown.Size = new System.Drawing.Size(120, 19);
-            this.listPrioNumericUpDown.TabIndex = 27;
+            this.reloadButton.Click += new System.EventHandler(this.OnReloadButtonClick);
+            // 
+            // countryListView
+            // 
+            this.countryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.dummyColumnHeader});
+            this.countryListView.HideSelection = false;
+            resources.ApplyResources(this.countryListView, "countryListView");
+            this.countryListView.MultiSelect = false;
+            this.countryListView.Name = "countryListView";
+            this.countryListView.UseCompatibleStateImageBehavior = false;
+            this.countryListView.View = System.Windows.Forms.View.List;
+            this.countryListView.SelectedIndexChanged += new System.EventHandler(this.OnCountryListViewSelectedIndexChanged);
+            // 
+            // dummyColumnHeader
+            // 
+            resources.ApplyResources(this.dummyColumnHeader, "dummyColumnHeader");
             // 
             // UnitEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.countryListView);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.editTabControl);
-            this.Controls.Add(this.classListBox);
-            this.Controls.Add(this.countryListBox);
+            this.Controls.Add(this.unitListBox);
             this.Controls.Add(this.bottomButton);
             this.Controls.Add(this.downButton);
             this.Controls.Add(this.upButton);
@@ -1832,17 +1382,21 @@
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.newButton);
-            this.Controls.Add(this.leaderListView);
+            this.Controls.Add(this.modelListView);
             this.Name = "UnitEditorForm";
-            this.Text = "Unit Model Editor";
+            this.Load += new System.EventHandler(this.OnUnitModelEditorFormLoad);
             this.editTabControl.ResumeLayout(false);
             this.classTabPage.ResumeLayout(false);
             this.classTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).EndInit();
+            this.upgradeGroupBox.ResumeLayout(false);
+            this.upgradeGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.militaryValueNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gfxPrioNumericUpDown)).EndInit();
             this.modelTabPage.ResumeLayout(false);
             this.modelTabPage.PerformLayout();
             this.equipmentGroupBox.ResumeLayout(false);
             this.equipmentGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quantityNumericUpDown)).EndInit();
             this.productionGroupBox.ResumeLayout(false);
             this.productionGroupBox.PerformLayout();
             this.speedGroupBox.ResumeLayout(false);
@@ -1853,11 +1407,6 @@
             this.basicGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.modelIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelImagePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gfxPrioNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.militaryValueNumericUpDown)).EndInit();
-            this.upgradeGroupBox.ResumeLayout(false);
-            this.upgradeGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1871,7 +1420,7 @@
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button cloneButton;
         private System.Windows.Forms.Button newButton;
-        private System.Windows.Forms.ListView leaderListView;
+        private System.Windows.Forms.ListView modelListView;
         private System.Windows.Forms.ColumnHeader classColumnHeader;
         private System.Windows.Forms.ColumnHeader branchColumnHeader;
         private System.Windows.Forms.ColumnHeader nameColumnHeader;
@@ -1881,8 +1430,7 @@
         private System.Windows.Forms.ColumnHeader supplyColumnHeader;
         private System.Windows.Forms.ColumnHeader fuelColumnHeader;
         private System.Windows.Forms.ColumnHeader noColumnHeader;
-        private System.Windows.Forms.ListBox countryListBox;
-        private System.Windows.Forms.ListBox classListBox;
+        private System.Windows.Forms.ListBox unitListBox;
         private System.Windows.Forms.TabControl editTabControl;
         private System.Windows.Forms.TabPage classTabPage;
         private System.Windows.Forms.TabPage modelTabPage;
@@ -1991,7 +1539,6 @@
         private System.Windows.Forms.GroupBox speedGroupBox;
         private System.Windows.Forms.Button equipmentRemoveButton;
         private System.Windows.Forms.Button equipmentAddButton;
-        private System.Windows.Forms.NumericUpDown quantityNumericUpDown;
         private System.Windows.Forms.Label quantityLabel;
         private System.Windows.Forms.ComboBox resourceComboBox;
         private System.Windows.Forms.Label resourceLabel;
@@ -2037,5 +1584,8 @@
         private System.Windows.Forms.Button upgradeAddButton;
         private System.Windows.Forms.NumericUpDown listPrioNumericUpDown;
         private System.Windows.Forms.Label listPrioLabel;
+        private System.Windows.Forms.TextBox quantityTextBox;
+        private System.Windows.Forms.ListView countryListView;
+        private System.Windows.Forms.ColumnHeader dummyColumnHeader;
     }
 }

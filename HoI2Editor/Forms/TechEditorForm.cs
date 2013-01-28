@@ -1253,7 +1253,7 @@ namespace HoI2Editor.Forms
         private static void InitLabelBitmap()
         {
             // 技術
-            var bitmap = new Bitmap(Game.GetFileName(Game.TechLabelPathName));
+            var bitmap = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
             _techLabelBitmap = bitmap.Clone(new Rectangle(0, 0, TechLabelWidth, TechLabelHeight), bitmap.PixelFormat);
             bitmap.Dispose();
             _techLabelAndMask = new Bitmap(_techLabelBitmap.Width, _techLabelBitmap.Height);
@@ -1276,7 +1276,7 @@ namespace HoI2Editor.Forms
             _techLabelBitmap.MakeTransparent(transparent);
 
             // 技術イベント
-            bitmap = new Bitmap(Game.GetFileName(Game.SecretLabelPathName));
+            bitmap = new Bitmap(Game.GetReadFileName(Game.SecretLabelPathName));
             _eventLabelBitmap = bitmap.Clone(new Rectangle(0, 0, EventLabelWidth, EventLabelHeight), bitmap.PixelFormat);
             bitmap.Dispose();
             _eventLabelAndMask = new Bitmap(_eventLabelBitmap.Width, _eventLabelBitmap.Height);
@@ -1589,7 +1589,8 @@ namespace HoI2Editor.Forms
         {
             // 技術ツリー画像
             int index = categoryListBox.SelectedIndex;
-            treePictureBox.ImageLocation = Game.GetFileName(Path.Combine(Game.PicturePathName, TechTreeFileNames[index]));
+            treePictureBox.ImageLocation =
+                Game.GetReadFileName(Path.Combine(Game.PicturePathName, TechTreeFileNames[index]));
 
             // カテゴリタブの編集項目
             TechGroup grp = Techs.List[index];
@@ -2162,11 +2163,11 @@ namespace HoI2Editor.Forms
             techPictureNameTextBox.Text = string.IsNullOrEmpty(item.PictureName) ? "" : item.PictureName;
 
             string fileName =
-                Game.GetFileName(Path.Combine(Game.TechPicturePathName,
-                                              string.Format("{0}.bmp",
-                                                            string.IsNullOrEmpty(item.PictureName)
-                                                                ? item.Id.ToString(CultureInfo.InvariantCulture)
-                                                                : item.PictureName)));
+                Game.GetReadFileName(Path.Combine(Game.TechPicturePathName,
+                                                  string.Format("{0}.bmp",
+                                                                string.IsNullOrEmpty(item.PictureName)
+                                                                    ? item.Id.ToString(CultureInfo.InvariantCulture)
+                                                                    : item.PictureName)));
             if (File.Exists(fileName))
             {
                 var bitmap = new Bitmap(fileName);

@@ -152,6 +152,9 @@
     <EmbeddedResource Include="Forms\TechEditorForm.resx">
       <DependentUpon>TechEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UnitEditorForm.ja-JP.resx">
+      <DependentUpon>UnitEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnitEditorForm.resx">
       <DependentUpon>UnitEditorForm.cs</DependentUpon>
     </EmbeddedResource>

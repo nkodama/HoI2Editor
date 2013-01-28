@@ -706,7 +706,7 @@ namespace HoI2Editor.Models
             }
 
             List<MinisterPersonalityInfo> list =
-                MinisterModifierParser.Parse(Game.GetFileName(Game.MinisterPersonalityPathNameAoD));
+                MinisterModifierParser.Parse(Game.GetReadFileName(Game.MinisterPersonalityPathNameAoD));
             PersonalityTable = list.ToArray();
 
             for (int i = 0; i < PersonalityTable.Length; i++)
@@ -735,7 +735,7 @@ namespace HoI2Editor.Models
             }
 
             List<MinisterPersonalityInfo> list =
-                MinisterPersonalityParser.Parse(Game.GetFileName(Game.MinisterPersonalityPathNameDh));
+                MinisterPersonalityParser.Parse(Game.GetReadFileName(Game.MinisterPersonalityPathNameDh));
             PersonalityTable = list.ToArray();
 
             for (int i = 0; i < PersonalityTable.Length; i++)
@@ -848,7 +848,7 @@ namespace HoI2Editor.Models
         private static void LoadMinisterFilesDh()
         {
             // ministers.txtが存在しなければ従来通りの読み込み方法を使用する
-            string listFileName = Game.GetFileName(Game.DhMinisterListPathName);
+            string listFileName = Game.GetReadFileName(Game.DhMinisterListPathName);
             if (!File.Exists(listFileName))
             {
                 LoadMinisterFilesHoI2();
@@ -867,7 +867,8 @@ namespace HoI2Editor.Models
             }
 
             foreach (
-                string fileName in fileList.Select(name => Game.GetFileName(Path.Combine(Game.MinisterPathName, name))))
+                string fileName in
+                    fileList.Select(name => Game.GetReadFileName(Path.Combine(Game.MinisterPathName, name))))
             {
                 try
                 {
@@ -1169,8 +1170,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         private static void SaveMinisterFile(CountryTag country)
         {
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                             Game.MinisterPathName);
+            string folderName = Game.GetWriteFileName(Game.MinisterPathName);
             // 閣僚フォルダが存在しなければ作成する
             if (!Directory.Exists(folderName))
             {

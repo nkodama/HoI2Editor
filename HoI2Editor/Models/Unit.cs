@@ -8,7 +8,7 @@ namespace HoI2Editor.Models
     public class Unit
     {
         /// <summary>
-        ///     付属可能な旅団
+        ///     付属可能旅団
         /// </summary>
         public List<UnitType> AllowedBrigades = new List<UnitType>();
 
@@ -46,6 +46,11 @@ namespace HoI2Editor.Models
         ///     名前
         /// </summary>
         public string Name;
+
+        /// <summary>
+        ///     ユニットの編成
+        /// </summary>
+        public UnitOrganization Organization;
 
         /// <summary>
         ///     生産可能かどうか
@@ -91,6 +96,53 @@ namespace HoI2Editor.Models
         ///     軍事力
         /// </summary>
         public double Value;
+
+        /// <summary>
+        /// 統計グループ
+        /// </summary>
+        public int Eyr;
+
+        /// <summary>
+        /// ユニットモデルを挿入する
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="index"></param>
+        public void InsertModel(UnitModel model, int index)
+        {
+            Models.Insert(index, model);
+        }
+
+        /// <summary>
+        /// ユニットモデルを削除する
+        /// </summary>
+        /// <param name="index"></param>
+        public void RemoveModel(int index)
+        {
+            Models.RemoveAt(index);
+        }
+
+        /// <summary>
+        ///     ユニットモデルを移動する
+        /// </summary>
+        /// <param name="src">移動元の位置</param>
+        /// <param name="dest">移動先の位置</param>
+        public void MoveModel(int src, int dest)
+        {
+            UnitModel model = Models[src];
+
+            if (src > dest)
+            {
+                // 上へ移動する場合
+                Models.Insert(dest, model);
+                Models.RemoveAt(src + 1);
+            }
+            else
+            {
+                // 下へ移動する場合
+                Models.Insert(dest + 1, model);
+                Models.RemoveAt(src);
+            }
+        }
     }
 
     /// <summary>
@@ -151,7 +203,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     装備 (DH1.03以降)
         /// </summary>
-        public Dictionary<string, double> Equipment;
+        public List<UnitEquipment> Equipments = new List<UnitEquipment>();
 
         /// <summary>
         ///     消費燃料
@@ -187,11 +239,6 @@ namespace HoI2Editor.Models
         ///     士気
         /// </summary>
         public double Morale;
-
-        /// <summary>
-        ///     モデル名
-        /// </summary>
-        public string Name;
 
         /// <summary>
         ///     対艦攻撃力(空軍)
@@ -332,6 +379,130 @@ namespace HoI2Editor.Models
         ///     可視性
         /// </summary>
         public double Visibility;
+
+        /// <summary>
+        /// ユニットモデルを複製する
+        /// </summary>
+        /// <returns>複製したユニットモデル</returns>
+        public UnitModel Clone()
+        {
+            var copy = new UnitModel
+                           {
+                               DefaultOrganization = DefaultOrganization,
+                               Morale = Morale,
+                               Range = Range,
+                               TransportWeight = TransportWeight,
+                               TransportCapability = TransportCapability,
+                               Suppression = Suppression,
+                               SupplyConsumption = SupplyConsumption,
+                               FuelConsumption = FuelConsumption,
+                               MaxSupplyStock = MaxSupplyStock,
+                               MaxOilStock = MaxOilStock,
+                               Cost = Cost,
+                               BuildTime = BuildTime,
+                               ManPower = ManPower,
+                               UpgradeCostFactor = UpgradeCostFactor,
+                               UpgradeTimeFactor = UpgradeTimeFactor,
+                               ReinforceCostFactor = ReinforceCostFactor,
+                               ReinforceTimeFactor = ReinforceTimeFactor,
+                               MaxSpeed = MaxSpeed,
+                               SpeedCap = SpeedCap,
+                               SpeedCapArt = SpeedCapArt,
+                               SpeedCapEng = SpeedCapEng,
+                               SpeedCapAt = SpeedCapAt,
+                               SpeedCapAa = SpeedCapAa,
+                               Defensiveness = Defensiveness,
+                               SeaDefense = SeaDefense,
+                               AirDefense = AirDefense,
+                               SurfaceDefense = SurfaceDefense,
+                               Toughness = Toughness,
+                               Softness = Softness,
+                               SoftAttack = SoftAttack,
+                               HardAttack = HardAttack,
+                               SeaAttack = SeaAttack,
+                               SubAttack = SubAttack,
+                               ConvoyAttack = ConvoyAttack,
+                               ShoreBombardment = ShoreBombardment,
+                               AirAttack = AirAttack,
+                               NavalAttack = NavalAttack,
+                               StrategicAttack = StrategicAttack,
+                               ArtilleryBombardment = ArtilleryBombardment,
+                               Distance = Distance,
+                               Visibility = Visibility,
+                               SurfaceDetectionCapability = SurfaceDetectionCapability,
+                               SubDetectionCapability = SubDetectionCapability,
+                               AirDetectionCapability = AirDetectionCapability,
+                               NoFuelCombatMod = NoFuelCombatMod
+                           };
+            copy.Equipments.AddRange(Equipments);
+
+            return copy;
+        }
+
+        /// <summary>
+        /// ユニットモデル名を取得する
+        /// </summary>
+        /// <param name="unit">ユニットクラス</param>
+        /// <param name="no">ユニットモデル番号</param>
+        /// <param name="country">国タグ</param>
+        /// <returns>ユニットモデル名</returns>
+        public static string GetName(Unit unit, int no, CountryTag country)
+        {
+            string name;
+            int unitNo = Units.UnitNumbers[(int)unit.Type];
+            if (country == CountryTag.None)
+            {
+                name = string.Format(
+                    unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", unitNo, no);
+            }
+            else
+            {
+                string countryText = Country.CountryTextTable[(int)country];
+                name = string.Format(
+                    unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
+                    countryText, unitNo, no);
+            }
+            return name;
+        }
+
+        /// <summary>
+        ///     装備の項目を移動する
+        /// </summary>
+        /// <param name="src">移動元の位置</param>
+        /// <param name="dest">移動先の位置</param>
+        public void MoveEquipment(int src, int dest)
+        {
+            UnitEquipment equipment = Equipments[src];
+
+            if (src > dest)
+            {
+                // 上へ移動する場合
+                Equipments.Insert(dest, equipment);
+                Equipments.RemoveAt(src + 1);
+            }
+            else
+            {
+                // 下へ移動する場合
+                Equipments.Insert(dest + 1, equipment);
+                Equipments.RemoveAt(src);
+            }
+        }
+    }
+
+    /// <summary>
+    /// ユニット装備情報
+    /// </summary>
+    public class UnitEquipment
+    {
+        /// <summary>
+        /// 資源
+        /// </summary>
+        public string Resource;
+
+        /// <summary>
+        /// 量
+        /// </summary>
+        public double Quantity;
     }
 
     /// <summary>
@@ -360,12 +531,18 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum UnitBranch
     {
-        LandDivision,
-        NavalDivision,
-        AirDivision,
-        LandBrigade,
-        NavalBrigade,
-        AirBrigade,
+        Army, // 陸軍
+        Navy, // 海軍
+        AirForce, // 空軍
+    }
+
+    /// <summary>
+    ///     ユニットの編成
+    /// </summary>
+    public enum UnitOrganization
+    {
+        Division, // 師団
+        Brigade, // 旅団
     }
 
     /// <summary>
@@ -545,6 +722,10 @@ namespace HoI2Editor.Models
         NavalImprovedHullL,
         NavalTorpedoesL,
         // AoDのみ
+        NavalMines,
+        NavalSaL,
+        NavalSpotterL,
+        NavalSpotterS,
         Bu1,
         Bu2,
         Bu3,

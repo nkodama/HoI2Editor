@@ -301,7 +301,7 @@ namespace HoI2Editor.Models
 
             foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
             {
-                string fileName = Game.GetFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) category]));
+                string fileName = Game.GetReadFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) category]));
                 try
                 {
                     LoadTechFile(fileName);
@@ -331,9 +331,8 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void SaveTechFiles()
         {
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                             Game.TechPathName);
-            // 文字列フォルダがなければ作成する
+            string folderName = Game.GetWriteFileName(Game.TechPathName);
+            // 技術定義フォルダがなければ作成する
             if (!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);
@@ -452,7 +451,7 @@ namespace HoI2Editor.Models
         public static void InitSpecialityImages()
         {
             // 研究特性画像リストを作成する
-            var bitmap = new Bitmap(Game.GetFileName(Game.TechIconPathName));
+            var bitmap = new Bitmap(Game.GetReadFileName(Game.TechIconPathName));
             SpecialityImages = new ImageList
                                    {
                                        ImageSize = new Size(24, 24),
