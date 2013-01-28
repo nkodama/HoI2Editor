@@ -616,11 +616,15 @@ namespace HoI2Editor.Forms
             int index = unitListBox.SelectedIndex;
             Unit unit = Units.List[index];
             int no = modelListView.SelectedIndices[0];
-            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no,
-                                                                       countryListView.SelectedIndices.Count == 0
-                                                                           ? CountryTag.None
-                                                                           : (CountryTag)
-                                                                             (countryListView.SelectedIndices[0] + 1));
+            CountryTag country = countryListView.SelectedIndices.Count == 0
+                                     ? CountryTag.None
+                                     : (CountryTag) (countryListView.SelectedIndices[0] + 1);
+
+            // ユニットモデル画像名を更新する
+            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
+
+            // ユニットモデル名を更新する
+            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, country));
         }
 
         #endregion
@@ -645,7 +649,11 @@ namespace HoI2Editor.Forms
 
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
             modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, no);
-            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, CountryTag.None));
+            modelNameTextBox.Text =
+                Config.GetText(UnitModel.GetName(unit, no,
+                                                 countryListView.SelectedIndices.Count == 0
+                                                     ? CountryTag.None
+                                                     : (CountryTag) (countryListView.SelectedIndices[0] + 1)));
             defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
             moraleTextBox.Text = model.Morale.ToString(CultureInfo.InvariantCulture);
             rangeTextBox.Text = model.Range.ToString(CultureInfo.InvariantCulture);

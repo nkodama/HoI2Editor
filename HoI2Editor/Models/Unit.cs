@@ -449,19 +449,20 @@ namespace HoI2Editor.Models
         public static string GetName(Unit unit, int no, CountryTag country)
         {
             string name;
-            int unitNo = Units.UnitNumbers[(int)unit.Type];
-            if (country == CountryTag.None)
-            {
-                name = string.Format(
-                    unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", unitNo, no);
-            }
-            else
+            int unitNo = Units.UnitNumbers[(int) unit.Type];
+            if (country != CountryTag.None)
             {
                 string countryText = Country.CountryTextTable[(int)country];
                 name = string.Format(
                     unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
                     countryText, unitNo, no);
+                if (Config.ExistsKey(name))
+                {
+                    return name;
+                }
             }
+            name = string.Format(
+                unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", unitNo, no);
             return name;
         }
 
