@@ -88,6 +88,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   None に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeNone {
+            get {
+                return ResourceManager.GetString("BrigadeNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Error に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Error {

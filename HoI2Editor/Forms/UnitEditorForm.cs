@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -40,6 +40,9 @@ namespace HoI2Editor.Forms
             // 編集可能な項目を初期化する
             InitEditableItems();
 
+            // ゲームの種類により編集項目を有効化/無効化する
+            ActivateEditableItems();
+
             // ユニットリストボックスを更新する
             UpdateUnitListBox();
         }
@@ -47,7 +50,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     各種データを初期化する
         /// </summary>
-        private void InitData()
+        private static void InitData()
         {
             // 国家データを初期化する
             Country.Init();
@@ -73,8 +76,114 @@ namespace HoI2Editor.Forms
             branchComboBox.Items.Add(Resources.BranchAirforce);
 
             // 付属可能旅団チェックリストボックス
+            foreach (UnitType type in Units.BrigadeTypes)
+            {
+                allowedBrigadesCheckedListBox.Items.Add(Config.GetText(Units.List[(int) type].Name));
+            }
 
             // 更新ユニット種類コンボボックス
+            foreach (UnitType type in Units.Types)
+            {
+                upgradeTypeComboBox.Items.Add(Config.GetText(Units.List[(int) type].Name));
+            }
+
+            // ユニットモデルの編集項目を無効化する
+            DisableModelEditableItems();
+        }
+
+        /// <summary>
+        ///     ゲームの種類により編集項目を有効化/無効化する
+        /// </summary>
+        private void ActivateEditableItems()
+        {
+            if (Game.Type == GameType.ArsenalOfDemocracy || (Game.Type == GameType.DarkestHour && Game.Version >= 103))
+            {
+                branchComboBox.Enabled = true;
+            }
+            else
+            {
+                branchComboBox.Enabled = false;
+            }
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                productableCheckBox.Enabled = true;
+                detachableCheckBox.Enabled = true;
+                gfxPrioLabel.Enabled = true;
+                gfxPrioNumericUpDown.Enabled = true;
+                listPrioLabel.Enabled = true;
+                listPrioNumericUpDown.Enabled = true;
+                realUnitTypeLabel.Enabled = true;
+                realUnitTypeComboBox.Enabled = true;
+                spriteTypeLabel.Enabled = true;
+                spriteTypeComboBox.Enabled = true;
+                transmuteLabel.Enabled = true;
+                transmuteComboBox.Enabled = true;
+                militaryValueLabel.Enabled = true;
+                militaryValueTextBox.Enabled = true;
+                upgradeGroupBox.Enabled = true;
+
+                speedCapAllLabel.Enabled = true;
+                speedCapAllTextBox.Enabled = true;
+                equipmentGroupBox.Enabled = true;
+            }
+            else
+            {
+                productableCheckBox.Enabled = false;
+                detachableCheckBox.Enabled = false;
+                gfxPrioLabel.Enabled = false;
+                gfxPrioNumericUpDown.Enabled = false;
+                listPrioLabel.Enabled = false;
+                listPrioNumericUpDown.Enabled = false;
+                realUnitTypeLabel.Enabled = false;
+                realUnitTypeComboBox.Enabled = false;
+                spriteTypeLabel.Enabled = false;
+                spriteTypeComboBox.Enabled = false;
+                transmuteLabel.Enabled = false;
+                transmuteComboBox.Enabled = false;
+                militaryValueLabel.Enabled = false;
+                militaryValueTextBox.Enabled = false;
+                upgradeGroupBox.Enabled = false;
+
+                speedCapAllLabel.Enabled = false;
+                speedCapAllTextBox.Enabled = false;
+                equipmentGroupBox.Enabled = false;
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                maxSupplyStockLabel.Enabled = true;
+                maxSupplyStockTextBox.Enabled = true;
+                maxOilStockLabel.Enabled = true;
+                maxOilStockTextBox.Enabled = true;
+                artilleryBombardmentLabel.Enabled = true;
+                artilleryBombardmentTextBox.Enabled = true;
+            }
+            else
+            {
+                maxSupplyStockLabel.Enabled = false;
+                maxSupplyStockTextBox.Enabled = false;
+                maxOilStockLabel.Enabled = false;
+                maxOilStockTextBox.Enabled = false;
+                artilleryBombardmentLabel.Enabled = false;
+                artilleryBombardmentTextBox.Enabled = false;
+            }
+            if (Game.Type == GameType.DarkestHour)
+            {
+                reinforceCostLabel.Enabled = true;
+                reinforceCostTextBox.Enabled = true;
+                reinforceTimeLabel.Enabled = true;
+                reinforceTimeTextBox.Enabled = true;
+                noFuelCombatModLabel.Enabled = true;
+                noFuelCombatModTextBox.Enabled = true;
+            }
+            else
+            {
+                reinforceCostLabel.Enabled = false;
+                reinforceCostTextBox.Enabled = false;
+                reinforceTimeLabel.Enabled = false;
+                reinforceTimeTextBox.Enabled = false;
+                noFuelCombatModLabel.Enabled = false;
+                noFuelCombatModTextBox.Enabled = false;
+            }
         }
 
         #endregion
@@ -94,7 +203,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 各種ファイルを再読み込みする
+        ///     各種ファイルを再読み込みする
         /// </summary>
         private void ReloadFiles()
         {
@@ -106,7 +215,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 各種ファイルを保存する
+        ///     各種ファイルを保存する
         /// </summary>
         private void SaveFiles()
         {
@@ -118,7 +227,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 編集済みフラグを設定する
+        ///     編集済みフラグを設定する
         /// </summary>
         private void SetDirty()
         {
@@ -128,7 +237,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ユニットモデルを挿入する
+        ///     ユニットモデルを挿入する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
         /// <param name="model">挿入対象のユニットモデル</param>
@@ -168,7 +277,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ユニットモデルを削除する
+        ///     ユニットモデルを削除する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
         /// <param name="index">削除する位置</param>
@@ -209,7 +318,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ユニットモデルを移動する
+        ///     ユニットモデルを移動する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
         /// <param name="src">移動元の位置</param>
@@ -258,7 +367,7 @@ namespace HoI2Editor.Forms
         #region フォーム直下のボタン
 
         /// <summary>
-        /// 再読み込みボタン押下時の処理
+        ///     再読み込みボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -268,7 +377,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 保存ボタン押下時の処理
+        ///     保存ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -278,7 +387,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閉じるボタン押下時の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -299,8 +408,9 @@ namespace HoI2Editor.Forms
             // リストボックスに項目を登録する
             unitListBox.BeginUpdate();
             unitListBox.Items.Clear();
-            foreach (Unit unit in Units.List)
+            foreach (UnitType type in Units.Types)
             {
+                Unit unit = Units.List[(int) type];
                 unitListBox.Items.Add(Config.GetText(unit.Name));
             }
             unitListBox.EndUpdate();
@@ -313,6 +423,59 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// ユニットクラスリストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 選択項目がない場合は何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            UnitType type = Units.Types[e.Index];
+            Unit unit = Units.List[(int) type];
+
+            // 背景を描画する
+            e.DrawBackground();
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                if (unit.Models.Count > 0)
+                {
+                    e.Graphics.FillRectangle(
+                        unit.Organization == UnitOrganization.Division ? Brushes.AliceBlue : Brushes.Honeydew,
+                        new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+                }
+            }
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = Units.DirtyFlags[(int)type]
+                            ? new SolidBrush(Color.Red)
+                            : new SolidBrush(unitListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            var listbox = sender as ListBox;
+            if (listbox != null)
+            {
+                string s = listbox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            }
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     ユニットクラスリストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -320,15 +483,29 @@ namespace HoI2Editor.Forms
         private void OnUnitListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // ユニットモデルリストビューの表示を更新する
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             UpdateModelListView(unit);
 
-            // ユニットモデル編集中ならば先頭の項目を選択する
-            if (editTabControl.SelectedIndex == 1 && modelListView.Items.Count > 0)
+            // ユニットクラスタブの表示を更新する
+            UpdateClassEditableItems();
+
+            if (editTabControl.SelectedIndex == 1)
             {
-                modelListView.Items[0].Focused = true;
-                modelListView.Items[0].Selected = true;
+                // ユニットモデル編集中ならば先頭の項目を選択する
+                if (modelListView.Items.Count > 0)
+                {
+                    modelListView.Items[0].Focused = true;
+                    modelListView.Items[0].Selected = true;
+                }
+                else
+                {
+                    // ユニットクラスタブを選択する
+                    editTabControl.SelectedIndex = 0;
+
+                    // ユニットモデルの編集項目を無効化する
+                    DisableModelEditableItems();
+                }
             }
         }
 
@@ -374,20 +551,12 @@ namespace HoI2Editor.Forms
             // 編集項目を有効化する
             EnableModelEditableItems();
 
-            // ユニットモデル画像を更新する
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
-            int no = modelListView.SelectedIndices[0];
-
             // 編集項目の値を更新する
-            UpdateModelEditableItems(unit, no,
-                                     countryListView.SelectedIndices.Count == 0
-                                         ? CountryTag.None
-                                         : (CountryTag) countryListView.SelectedIndices[0]);
+            UpdateModelEditableItems();
         }
 
         /// <summary>
-        /// ユニットモデルリストビューの項目を作成する
+        ///     ユニットモデルリストビューの項目を作成する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
         /// <param name="no">ユニットモデル番号</param>
@@ -396,7 +565,7 @@ namespace HoI2Editor.Forms
         {
             UnitModel model = unit.Models[no];
 
-            var item = new ListViewItem { Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture)) };
+            var item = new ListViewItem {Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture))};
             item.SubItems.Add(Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
             item.SubItems.Add(Config.GetText(unit.Name));
             switch (unit.Branch)
@@ -423,20 +592,20 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 新規ボタン押下時の処理
+        ///     新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnNewButtonClick(object sender, EventArgs e)
         {
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
-            int no = modelListView.SelectedIndices[0];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
 
             // ユニットモデルを挿入する
             var model = new UnitModel();
             if (modelListView.SelectedIndices.Count > 0)
             {
+                int no = modelListView.SelectedIndices[0];
                 InsertModel(unit, model, no + 1, "");
             }
             else
@@ -446,7 +615,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 複製ボタン押下時の処理
+        ///     複製ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -458,17 +627,17 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
 
             // ユニットモデルを挿入する
-            var model = unit.Models[no].Clone();
+            UnitModel model = unit.Models[no].Clone();
             InsertModel(unit, model, no + 1, Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
         }
 
         /// <summary>
-        /// 削除ボタン押下時の処理
+        ///     削除ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -480,8 +649,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
 
             // ユニットモデルを削除する
@@ -489,7 +658,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 先頭へボタン押下時の処理
+        ///     先頭へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -501,8 +670,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
 
             // リストの先頭ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -516,7 +685,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 上へボタン押下時の処理
+        ///     上へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -528,8 +697,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
 
             // リストの先頭ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -543,7 +712,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 下へボタン押下時の処理
+        ///     下へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -555,8 +724,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
 
             // リストの末尾ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -570,7 +739,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 末尾へボタン押下時の処理
+        ///     末尾へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -582,8 +751,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
 
             // リストの末尾ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -601,7 +770,7 @@ namespace HoI2Editor.Forms
         #region 国家リストビュー
 
         /// <summary>
-        /// 国家リストビューの選択項目変更時の処理
+        ///     国家リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -613,8 +782,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = unitListBox.SelectedIndex;
-            Unit unit = Units.List[index];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             CountryTag country = countryListView.SelectedIndices.Count == 0
                                      ? CountryTag.None
@@ -631,6 +800,354 @@ namespace HoI2Editor.Forms
 
         #region ユニットクラスタブ
 
+        /// <summary>
+        ///     ユニットクラスタブの編集項目の値を更新する
+        /// </summary>
+        private void UpdateClassEditableItems()
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            classNameTextBox.Text = Config.GetText(unit.Name);
+            classShortNameTextBox.Text = Config.GetText(unit.ShortName);
+            classDescTextBox.Text = Config.GetText(unit.Desc);
+            classShortDescTextBox.Text = Config.GetText(unit.ShortDesc);
+            branchComboBox.SelectedIndex = (int) unit.Branch;
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                productableCheckBox.Checked = unit.Productable;
+                detachableCheckBox.Checked = unit.Detachable;
+                gfxPrioNumericUpDown.Value = unit.GfxPrio;
+                listPrioNumericUpDown.Value = unit.ListPrio;
+                //realUnitTypeComboBox.SelectedIndex = (int)unit.RealType;
+                //spriteTypeComboBox.SelectedIndex = (int)unit.Sprite;
+                //transmuteComboBox.SelectedIndex = (int)unit.Transmute;
+                militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+            }
+            for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
+            {
+                UnitType brigade = Units.BrigadeTypes[i];
+                allowedBrigadesCheckedListBox.SetItemChecked(i, unit.AllowedBrigades.Contains(brigade));
+            }
+        }
+
+        /// <summary>
+        ///     ユニットクラス名テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnClassNameTextBoxValidated(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            if (classNameTextBox.Text.Equals(Config.GetText(unit.Name)))
+            {
+                return;
+            }
+
+            // 値を更新する
+            Config.SetText(unit.Name, classNameTextBox.Text);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+            Config.SetDirtyFlag(Game.UnitTextFileName);
+        }
+
+        /// <summary>
+        ///     ユニットクラス短縮名テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnClassShortNameTextBoxValidated(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            if (classShortNameTextBox.Text.Equals(Config.GetText(unit.ShortName)))
+            {
+                return;
+            }
+
+            // 値を更新する
+            Config.SetText(unit.ShortName, classShortNameTextBox.Text);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+            Config.SetDirtyFlag(Game.UnitTextFileName);
+        }
+
+        /// <summary>
+        ///     ユニットクラス説明テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnClassDescTextBoxValidated(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            if (classDescTextBox.Text.Equals(Config.GetText(unit.Desc)))
+            {
+                return;
+            }
+
+            // 値を更新する
+            Config.SetText(unit.Desc, classDescTextBox.Text);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+            Config.SetDirtyFlag(Game.UnitTextFileName);
+        }
+
+        /// <summary>
+        ///     ユニットクラス短縮説明テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnClassShortDescTextBox(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            if (classShortDescTextBox.Text.Equals(Config.GetText(unit.ShortDesc)))
+            {
+                return;
+            }
+
+            // 値を更新する
+            Config.SetText(unit.ShortDesc, classShortDescTextBox.Text);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+            Config.SetDirtyFlag(Game.UnitTextFileName);
+        }
+
+        /// <summary>
+        ///     兵科コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBranchComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            var val = (UnitBranch) branchComboBox.SelectedIndex;
+            if (val == unit.Branch)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Branch = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     生産可能チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProductableCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            if (productableCheckBox.Checked == unit.Productable)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Productable = productableCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     着脱可能チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDetachableCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            if (detachableCheckBox.Checked == unit.Detachable)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Detachable = detachableCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     画像優先度数値アップダウンフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGraphicsPriorityNumericUpDownValidated(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            var val = (int) gfxPrioNumericUpDown.Value;
+            if (val == unit.GfxPrio)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.GfxPrio = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     リスト優先度数値アップダウンフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnListPrioNumericUpDownValidated(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            var val = (int) listPrioNumericUpDown.Value;
+            if (val == unit.ListPrio)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.ListPrio = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     標準ユニット種類コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRealUnitTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            var val = (RealUnitType) realUnitTypeComboBox.SelectedIndex;
+            if (val == unit.RealType)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.RealType = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     スプライト種類コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpriteTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            var val = (SpriteType) spriteTypeComboBox.SelectedIndex;
+            if (val == unit.Sprite)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Sprite = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     代替ユニットコンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTransmuteComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 値に変化がなければ何もしない
+            var val = (UnitType) transmuteComboBox.SelectedIndex;
+            if (val == unit.Transmute)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Transmute = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     軍事力テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMilitaryValueTextBoxValidated(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(militaryValueTextBox.Text, out val))
+            {
+                militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - unit.Value) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Value = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
         #endregion
 
         #region ユニットモデルタブ
@@ -640,20 +1157,19 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     ユニットモデルタブの編集項目の値を更新する
         /// </summary>
-        /// <param name="unit">ユニットクラス</param>
-        /// <param name="no">ユニットモデル番号</param>
-        /// <param name="country">国タグ</param>
-        private void UpdateModelEditableItems(Unit unit, int no, CountryTag country)
+        private void UpdateModelEditableItems()
         {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+            int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
+            CountryTag country = countryListView.SelectedIndices.Count == 0
+                                     ? CountryTag.None
+                                     : (CountryTag) (countryListView.SelectedIndices[0] + 1);
 
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
             modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, no);
-            modelNameTextBox.Text =
-                Config.GetText(UnitModel.GetName(unit, no,
-                                                 countryListView.SelectedIndices.Count == 0
-                                                     ? CountryTag.None
-                                                     : (CountryTag) (countryListView.SelectedIndices[0] + 1)));
+            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, country));
             defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
             moraleTextBox.Text = model.Morale.ToString(CultureInfo.InvariantCulture);
             rangeTextBox.Text = model.Range.ToString(CultureInfo.InvariantCulture);
@@ -735,17 +1251,7 @@ namespace HoI2Editor.Forms
                 artilleryBombardmentLabel.Enabled = true;
                 artilleryBombardmentTextBox.Enabled = true;
             }
-            else
-            {
-                maxSupplyStockLabel.Enabled = false;
-                maxSupplyStockTextBox.Enabled = false;
-                maxOilStockLabel.Enabled = false;
-                maxOilStockTextBox.Enabled = false;
-                artilleryBombardmentLabel.Enabled = false;
-                artilleryBombardmentTextBox.Enabled = false;
-            }
-
-            if (Game.Type == GameType.DarkestHour)
+            else if (Game.Type == GameType.DarkestHour)
             {
                 reinforceCostLabel.Enabled = true;
                 reinforceCostTextBox.Enabled = true;
@@ -760,24 +1266,6 @@ namespace HoI2Editor.Forms
                     speedCapAllTextBox.Enabled = true;
                     equipmentGroupBox.Enabled = true;
                 }
-                else
-                {
-                    speedCapAllLabel.Enabled = false;
-                    speedCapAllTextBox.Enabled = false;
-                    equipmentGroupBox.Enabled = false;
-                }
-            }
-            else
-            {
-                reinforceCostLabel.Enabled = false;
-                reinforceCostTextBox.Enabled = false;
-                reinforceTimeLabel.Enabled = false;
-                reinforceTimeTextBox.Enabled = false;
-                noFuelCombatModLabel.Enabled = false;
-                noFuelCombatModTextBox.Enabled = false;
-                speedCapAllLabel.Enabled = false;
-                speedCapAllTextBox.Enabled = false;
-                equipmentGroupBox.Enabled = false;
             }
         }
 
@@ -836,7 +1324,7 @@ namespace HoI2Editor.Forms
             noFuelCombatModTextBox.Text = "";
             equipmentListView.Items.Clear();
             resourceComboBox.Text = "";
-            quantityTextBox.Text= "";
+            quantityTextBox.Text = "";
 
             modelNameTextBox.Enabled = false;
             basicGroupBox.Enabled = false;
@@ -851,7 +1339,7 @@ namespace HoI2Editor.Forms
         #region ユニットモデル名
 
         /// <summary>
-        /// ユニットモデル名変更時の処理
+        ///     ユニットモデル名変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -863,7 +1351,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
 
             // 値に変化がなければ何もしない
@@ -891,7 +1380,7 @@ namespace HoI2Editor.Forms
         }
 
         #endregion
-        
+
         #region ユニットモデルの画像
 
         /// <summary>
@@ -912,8 +1401,8 @@ namespace HoI2Editor.Forms
                     unit.Organization == UnitOrganization.Division
                         ? "ill_div_{0}_{1}_{2}.bmp"
                         : "ill_bri_{0}_{1}_{2}.bmp",
-                    Country.CountryTextTable[(int)country],
-                    Units.UnitNumbers[(int)unit.Type],
+                    Country.CountryTextTable[(int) country],
+                    Units.UnitNumbers[(int) unit.Type],
                     no);
                 fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
                 if (File.Exists(fileName))
@@ -926,8 +1415,8 @@ namespace HoI2Editor.Forms
                     unit.Organization == UnitOrganization.Division
                         ? "ill_div_{0}_{1}_0.bmp"
                         : "ill_bri_{0}_{1}_0.bmp",
-                    Country.CountryTextTable[(int)country],
-                    Units.UnitNumbers[(int)unit.Type]);
+                    Country.CountryTextTable[(int) country],
+                    Units.UnitNumbers[(int) unit.Type]);
                 fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
                 if (File.Exists(fileName))
                 {
@@ -940,7 +1429,7 @@ namespace HoI2Editor.Forms
                 unit.Organization == UnitOrganization.Division
                     ? "ill_div_{0}_{1}.bmp"
                     : "ill_bri_{0}_{1}.bmp",
-                Units.UnitNumbers[(int)unit.Type],
+                Units.UnitNumbers[(int) unit.Type],
                 no);
             fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
             if (File.Exists(fileName))
@@ -953,7 +1442,7 @@ namespace HoI2Editor.Forms
                 unit.Organization == UnitOrganization.Division
                     ? "ill_div_{0}_0.bmp"
                     : "ill_bri_{0}_0.bmp",
-                Units.UnitNumbers[(int)unit.Type]);
+                Units.UnitNumbers[(int) unit.Type]);
             fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
             return File.Exists(fileName) ? fileName : string.Empty;
         }
@@ -972,7 +1461,7 @@ namespace HoI2Editor.Forms
                 return string.Empty;
             }
 
-            string name = string.Format("model_{0}_{1}.bmp", Units.UnitNumbers[(int)unit.Type], no);
+            string name = string.Format("model_{0}_{1}.bmp", Units.UnitNumbers[(int) unit.Type], no);
             string fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
             return File.Exists(fileName) ? fileName : string.Empty;
         }
@@ -982,7 +1471,7 @@ namespace HoI2Editor.Forms
         #region 基本ステータス
 
         /// <summary>
-        /// 組織率テキストボックスフォーカス移動後の処理
+        ///     組織率テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -994,7 +1483,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1020,7 +1510,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 士気テキストボックスフォーカス移動後の処理
+        ///     士気テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1032,7 +1522,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1058,7 +1549,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 航続距離テキストボックスフォーカス移動後の処理
+        ///     航続距離テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1070,7 +1561,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1096,7 +1588,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 輸送負荷テキストボックスフォーカス移動後の処理
+        ///     輸送負荷テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1108,7 +1600,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1134,7 +1627,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 輸送能力テキストボックスフォーカス移動後の処理
+        ///     輸送能力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1146,7 +1639,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1172,7 +1666,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 制圧力テキストボックスフォーカス移動後の処理
+        ///     制圧力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1184,7 +1678,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1210,7 +1705,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 消費物資テキストボックスフォーカス移動後の処理
+        ///     消費物資テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1222,7 +1717,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1251,7 +1747,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 消費燃料テキストボックスフォーカス移動後の処理
+        ///     消費燃料テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1263,7 +1759,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1292,7 +1789,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 最大物資テキストボックスフォーカス移動後の処理
+        ///     最大物資テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1304,7 +1801,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1330,7 +1828,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 最大燃料テキストボックスフォーカス移動後の処理
+        ///     最大燃料テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1342,7 +1840,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1372,7 +1871,7 @@ namespace HoI2Editor.Forms
         #region 生産ステータス
 
         /// <summary>
-        /// 必要ICテキストボックスフォーカス移動後の処理
+        ///     必要ICテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1384,7 +1883,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1413,7 +1913,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 必要時間テキストボックスフォーカス移動後の処理
+        ///     必要時間テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1425,7 +1925,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1454,7 +1955,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 労働力テキストボックスフォーカス移動後の処理
+        ///     労働力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1466,7 +1967,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1495,7 +1997,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 改良コストテキストボックスフォーカス移動後の処理
+        ///     改良コストテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1507,7 +2009,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1533,7 +2036,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 改良時間テキストボックスフォーカス移動後の処理
+        ///     改良時間テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1545,7 +2048,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1571,7 +2075,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 補充コストテキストボックスフォーカス移動後の処理
+        ///     補充コストテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1583,7 +2087,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1609,7 +2114,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 補充時間テキストボックスフォーカス移動後の処理
+        ///     補充時間テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1621,7 +2126,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1651,7 +2157,7 @@ namespace HoI2Editor.Forms
         #region 速度ステータス
 
         /// <summary>
-        /// 最大速度テキストボックスフォーカス移動後の処理
+        ///     最大速度テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1663,7 +2169,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1689,7 +2196,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 速度キャップテキストボックスフォーカス移動後の処理
+        ///     速度キャップテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1701,7 +2208,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1727,7 +2235,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 砲兵旅団速度キャップテキストボックスフォーカス移動後の処理
+        ///     砲兵旅団速度キャップテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1739,7 +2247,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1765,7 +2274,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 工兵旅団速度キャップテキストボックスフォーカス移動後の処理
+        ///     工兵旅団速度キャップテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1777,7 +2286,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1803,7 +2313,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対戦車旅団速度キャップテキストボックスフォーカス移動後の処理
+        ///     対戦車旅団速度キャップテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1815,7 +2325,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1841,7 +2352,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対空旅団速度キャップテキストボックスフォーカス移動後の処理
+        ///     対空旅団速度キャップテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1853,7 +2364,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1883,7 +2395,7 @@ namespace HoI2Editor.Forms
         #region 戦闘ステータス
 
         /// <summary>
-        /// 防御力テキストボックスフォーカス移動後の処理
+        ///     防御力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1895,7 +2407,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1921,7 +2434,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対艦防御力テキストボックスフォーカス移動後の処理
+        ///     対艦防御力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1933,7 +2446,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1959,7 +2473,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対空防御力テキストボックスフォーカス移動後の処理
+        ///     対空防御力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1971,7 +2485,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1997,7 +2512,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対地防御力テキストボックスフォーカス移動後の処理
+        ///     対地防御力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2009,7 +2524,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2035,7 +2551,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 耐久力テキストボックスフォーカス移動後の処理
+        ///     耐久力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2047,7 +2563,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2073,7 +2590,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 脆弱性テキストボックスフォーカス移動後の処理
+        ///     脆弱性テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2085,7 +2602,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2111,7 +2629,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対人攻撃力テキストボックスフォーカス移動後の処理
+        ///     対人攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2123,7 +2641,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2149,7 +2668,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対甲攻撃力テキストボックスフォーカス移動後の処理
+        ///     対甲攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2161,7 +2680,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2187,7 +2707,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対艦攻撃力テキストボックスフォーカス移動後の処理
+        ///     対艦攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2199,7 +2719,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2225,7 +2746,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対潜攻撃力テキストボックスフォーカス移動後の処理
+        ///     対潜攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2237,7 +2758,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2263,7 +2785,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 沿岸砲撃能力テキストボックスフォーカス移動後の処理
+        ///     沿岸砲撃能力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2275,7 +2797,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2301,7 +2824,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対空攻撃力テキストボックスフォーカス移動後の処理
+        ///     対空攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2313,7 +2836,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2339,7 +2863,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 空対艦攻撃力テキストボックスフォーカス移動後の処理
+        ///     空対艦攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2351,7 +2875,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2377,7 +2902,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 戦略爆撃攻撃力テキストボックスフォーカス移動後の処理
+        ///     戦略爆撃攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2389,7 +2914,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2415,7 +2941,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 砲撃能力テキストボックスフォーカス移動後の処理
+        ///     砲撃能力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2427,7 +2953,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2453,7 +2980,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 射程テキストボックスフォーカス移動後の処理
+        ///     射程テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2465,7 +2992,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2491,7 +3019,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 視認性テキストボックスフォーカス移動後の処理
+        ///     視認性テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2503,7 +3031,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2529,7 +3058,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対地索敵力テキストボックスフォーカス移動後の処理
+        ///     対地索敵力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2541,7 +3070,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2549,7 +3079,8 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(surfaceDetectionCapabilityTextBox.Text, out val))
             {
-                surfaceDetectionCapabilityTextBox.Text = model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                surfaceDetectionCapabilityTextBox.Text =
+                    model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
@@ -2567,7 +3098,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対潜索敵力テキストボックスフォーカス移動後の処理
+        ///     対潜索敵力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2579,7 +3110,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2605,7 +3137,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 対空索敵力テキストボックスフォーカス移動後の処理
+        ///     対空索敵力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2617,7 +3149,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2643,7 +3176,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 燃料切れ補正テキストボックスフォーカス移動後の処理
+        ///     燃料切れ補正テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2655,7 +3188,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2685,7 +3219,7 @@ namespace HoI2Editor.Forms
         #region 装備
 
         /// <summary>
-        /// 装備リストビューの項目を更新する
+        ///     装備リストビューの項目を更新する
         /// </summary>
         /// <param name="model"></param>
         private void UpdateEquipmentList(UnitModel model)
@@ -2711,7 +3245,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 装備の編集項目を有効化する
+        ///     装備の編集項目を有効化する
         /// </summary>
         private void EnableEquipmentItems()
         {
@@ -2724,7 +3258,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 装備の編集項目を無効化する
+        ///     装備の編集項目を無効化する
         /// </summary>
         private void DisableEquipmentItems()
         {
@@ -2737,7 +3271,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 装備リストビューの選択項目変更時の処理
+        ///     装備リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2756,7 +3290,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2769,7 +3304,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 資源コンボボックスのフォーカス移動後の処理
+        ///     資源コンボボックスのフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2781,10 +3316,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
-            int index = modelListView.SelectedIndices[0];
+            int index = equipmentListView.SelectedIndices[0];
             UnitEquipment equipment = model.Equipments[index];
 
             // 値に変化がなければ何もしない
@@ -2804,7 +3340,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 量テキストボックスのフォーカス移動後の処理
+        ///     量テキストボックスのフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2816,7 +3352,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
             int index = modelListView.SelectedIndices[0];
@@ -2847,7 +3384,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 装備の追加ボタン押下時の処理
+        ///     装備の追加ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2859,7 +3396,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2872,7 +3410,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 装備の削除ボタン押下時の処理
+        ///     装備の削除ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2884,7 +3422,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2903,7 +3442,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 装備の上へボタン押下時の処理
+        ///     装備の上へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2915,7 +3454,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2934,7 +3474,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 装備の下へボタン押下時の処理
+        ///     装備の下へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2946,7 +3486,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[unitListBox.SelectedIndex];
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 

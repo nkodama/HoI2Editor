@@ -126,6 +126,9 @@
   <data name="BranchNavy" xml:space="preserve">
     <value>海軍</value>
   </data>
+  <data name="BrigadeNone" xml:space="preserve">
+    <value>旅団なし</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>エラー</value>
   </data>

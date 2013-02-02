@@ -565,6 +565,11 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void AddInsufficientStrings()
         {
+            // 旅団なし
+            if (!Text.ContainsKey("NAME_NONE"))
+            {
+                ReplacedText["NAME_NONE"] = Resources.BrigadeNone;
+            }
             // DH固有の研究特性
             if (Game.Type == GameType.DarkestHour)
             {

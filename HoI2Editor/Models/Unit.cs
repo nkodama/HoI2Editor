@@ -28,6 +28,11 @@ namespace HoI2Editor.Models
         public bool Detachable;
 
         /// <summary>
+        ///     統計グループ
+        /// </summary>
+        public int Eyr;
+
+        /// <summary>
         ///     画像の優先度
         /// </summary>
         public int GfxPrio;
@@ -98,12 +103,7 @@ namespace HoI2Editor.Models
         public double Value;
 
         /// <summary>
-        /// 統計グループ
-        /// </summary>
-        public int Eyr;
-
-        /// <summary>
-        /// ユニットモデルを挿入する
+        ///     ユニットモデルを挿入する
         /// </summary>
         /// <param name="model"></param>
         /// <param name="index"></param>
@@ -113,7 +113,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ユニットモデルを削除する
+        ///     ユニットモデルを削除する
         /// </summary>
         /// <param name="index"></param>
         public void RemoveModel(int index)
@@ -381,7 +381,7 @@ namespace HoI2Editor.Models
         public double Visibility;
 
         /// <summary>
-        /// ユニットモデルを複製する
+        ///     ユニットモデルを複製する
         /// </summary>
         /// <returns>複製したユニットモデル</returns>
         public UnitModel Clone()
@@ -440,7 +440,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ユニットモデル名を取得する
+        ///     ユニットモデル名を取得する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
         /// <param name="no">ユニットモデル番号</param>
@@ -452,7 +452,7 @@ namespace HoI2Editor.Models
             int unitNo = Units.UnitNumbers[(int) unit.Type];
             if (country != CountryTag.None)
             {
-                string countryText = Country.CountryTextTable[(int)country];
+                string countryText = Country.CountryTextTable[(int) country];
                 name = string.Format(
                     unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
                     countryText, unitNo, no);
@@ -491,19 +491,19 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// ユニット装備情報
+    ///     ユニット装備情報
     /// </summary>
     public class UnitEquipment
     {
         /// <summary>
-        /// 資源
-        /// </summary>
-        public string Resource;
-
-        /// <summary>
-        /// 量
+        ///     量
         /// </summary>
         public double Quantity;
+
+        /// <summary>
+        ///     資源
+        /// </summary>
+        public string Resource;
     }
 
     /// <summary>

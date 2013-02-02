@@ -315,4 +315,7 @@
   <data name="FileWriteError" xml:space="preserve">
     <value>Writing file error</value>
   </data>
+  <data name="BrigadeNone" xml:space="preserve">
+    <value>None</value>
+  </data>
 </root>

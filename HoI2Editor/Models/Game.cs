@@ -122,12 +122,12 @@ namespace HoI2Editor.Models
         public const string TechTextFileName = "tech_names.csv";
 
         /// <summary>
-        /// ユニット文字列定義のファイル名
+        ///     ユニット文字列定義のファイル名
         /// </summary>
         public const string UnitTextFileName = "unit_names.csv";
 
         /// <summary>
-        /// 国別モデル文字列定義のファイル名
+        ///     国別モデル文字列定義のファイル名
         /// </summary>
         public const string ModelTextFileName = "models.csv";
 

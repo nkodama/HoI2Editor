@@ -49,6 +49,7 @@
             this.unitListBox = new System.Windows.Forms.ListBox();
             this.editTabControl = new System.Windows.Forms.TabControl();
             this.classTabPage = new System.Windows.Forms.TabPage();
+            this.militaryValueTextBox = new System.Windows.Forms.TextBox();
             this.listPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.listPrioLabel = new System.Windows.Forms.Label();
             this.upgradeGroupBox = new System.Windows.Forms.GroupBox();
@@ -64,7 +65,6 @@
             this.upgradeTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.upgradeCostColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.upgradeTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.militaryValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.militaryValueLabel = new System.Windows.Forms.Label();
             this.transmuteComboBox = new System.Windows.Forms.ComboBox();
             this.transmuteLabel = new System.Windows.Forms.Label();
@@ -207,7 +207,6 @@
             this.classTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).BeginInit();
             this.upgradeGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.militaryValueNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gfxPrioNumericUpDown)).BeginInit();
             this.modelTabPage.SuspendLayout();
             this.equipmentGroupBox.SuspendLayout();
@@ -329,7 +328,9 @@
             // unitListBox
             // 
             resources.ApplyResources(this.unitListBox, "unitListBox");
+            this.unitListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.unitListBox.Name = "unitListBox";
+            this.unitListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnUnitListBoxDrawItem);
             this.unitListBox.SelectedIndexChanged += new System.EventHandler(this.OnUnitListBoxSelectedIndexChanged);
             // 
             // editTabControl
@@ -343,10 +344,10 @@
             // classTabPage
             // 
             this.classTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.classTabPage.Controls.Add(this.militaryValueTextBox);
             this.classTabPage.Controls.Add(this.listPrioNumericUpDown);
             this.classTabPage.Controls.Add(this.listPrioLabel);
             this.classTabPage.Controls.Add(this.upgradeGroupBox);
-            this.classTabPage.Controls.Add(this.militaryValueNumericUpDown);
             this.classTabPage.Controls.Add(this.militaryValueLabel);
             this.classTabPage.Controls.Add(this.transmuteComboBox);
             this.classTabPage.Controls.Add(this.transmuteLabel);
@@ -373,6 +374,12 @@
             resources.ApplyResources(this.classTabPage, "classTabPage");
             this.classTabPage.Name = "classTabPage";
             // 
+            // militaryValueTextBox
+            // 
+            resources.ApplyResources(this.militaryValueTextBox, "militaryValueTextBox");
+            this.militaryValueTextBox.Name = "militaryValueTextBox";
+            this.militaryValueTextBox.Validated += new System.EventHandler(this.OnMilitaryValueTextBoxValidated);
+            // 
             // listPrioNumericUpDown
             // 
             resources.ApplyResources(this.listPrioNumericUpDown, "listPrioNumericUpDown");
@@ -382,6 +389,7 @@
             0,
             0});
             this.listPrioNumericUpDown.Name = "listPrioNumericUpDown";
+            this.listPrioNumericUpDown.Validated += new System.EventHandler(this.OnListPrioNumericUpDownValidated);
             // 
             // listPrioLabel
             // 
@@ -469,11 +477,6 @@
             // 
             resources.ApplyResources(this.upgradeTimeColumnHeader, "upgradeTimeColumnHeader");
             // 
-            // militaryValueNumericUpDown
-            // 
-            resources.ApplyResources(this.militaryValueNumericUpDown, "militaryValueNumericUpDown");
-            this.militaryValueNumericUpDown.Name = "militaryValueNumericUpDown";
-            // 
             // militaryValueLabel
             // 
             resources.ApplyResources(this.militaryValueLabel, "militaryValueLabel");
@@ -481,9 +484,11 @@
             // 
             // transmuteComboBox
             // 
+            this.transmuteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.transmuteComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.transmuteComboBox, "transmuteComboBox");
             this.transmuteComboBox.Name = "transmuteComboBox";
+            this.transmuteComboBox.SelectedIndexChanged += new System.EventHandler(this.OnTransmuteComboBoxSelectedIndexChanged);
             // 
             // transmuteLabel
             // 
@@ -492,9 +497,11 @@
             // 
             // spriteTypeComboBox
             // 
+            this.spriteTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.spriteTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.spriteTypeComboBox, "spriteTypeComboBox");
             this.spriteTypeComboBox.Name = "spriteTypeComboBox";
+            this.spriteTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnSpriteTypeComboBoxSelectedIndexChanged);
             // 
             // spriteTypeLabel
             // 
@@ -503,9 +510,11 @@
             // 
             // realUnitTypeComboBox
             // 
+            this.realUnitTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.realUnitTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.realUnitTypeComboBox, "realUnitTypeComboBox");
             this.realUnitTypeComboBox.Name = "realUnitTypeComboBox";
+            this.realUnitTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRealUnitTypeComboBoxSelectedIndexChanged);
             // 
             // realUnitTypeLabel
             // 
@@ -517,6 +526,7 @@
             resources.ApplyResources(this.productableCheckBox, "productableCheckBox");
             this.productableCheckBox.Name = "productableCheckBox";
             this.productableCheckBox.UseVisualStyleBackColor = true;
+            this.productableCheckBox.CheckedChanged += new System.EventHandler(this.OnProductableCheckBoxCheckedChanged);
             // 
             // gfxPrioNumericUpDown
             // 
@@ -527,6 +537,7 @@
             0,
             0});
             this.gfxPrioNumericUpDown.Name = "gfxPrioNumericUpDown";
+            this.gfxPrioNumericUpDown.Validated += new System.EventHandler(this.OnGraphicsPriorityNumericUpDownValidated);
             // 
             // gfxPrioLabel
             // 
@@ -538,6 +549,7 @@
             resources.ApplyResources(this.detachableCheckBox, "detachableCheckBox");
             this.detachableCheckBox.Name = "detachableCheckBox";
             this.detachableCheckBox.UseVisualStyleBackColor = true;
+            this.detachableCheckBox.CheckedChanged += new System.EventHandler(this.OnDetachableCheckBoxCheckedChanged);
             // 
             // allowedBrigadesLabel
             // 
@@ -551,9 +563,11 @@
             // 
             // branchComboBox
             // 
+            this.branchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.branchComboBox, "branchComboBox");
             this.branchComboBox.Name = "branchComboBox";
+            this.branchComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchComboBoxSelectedIndexChanged);
             // 
             // allowedBrigadesCheckedListBox
             // 
@@ -566,6 +580,7 @@
             // 
             resources.ApplyResources(this.classShortDescTextBox, "classShortDescTextBox");
             this.classShortDescTextBox.Name = "classShortDescTextBox";
+            this.classShortDescTextBox.Validated += new System.EventHandler(this.OnClassShortDescTextBox);
             // 
             // classShortDescLabel
             // 
@@ -576,6 +591,7 @@
             // 
             resources.ApplyResources(this.classDescTextBox, "classDescTextBox");
             this.classDescTextBox.Name = "classDescTextBox";
+            this.classDescTextBox.Validated += new System.EventHandler(this.OnClassDescTextBoxValidated);
             // 
             // classDescLabel
             // 
@@ -586,6 +602,7 @@
             // 
             resources.ApplyResources(this.classShortNameTextBox, "classShortNameTextBox");
             this.classShortNameTextBox.Name = "classShortNameTextBox";
+            this.classShortNameTextBox.Validated += new System.EventHandler(this.OnClassShortNameTextBoxValidated);
             // 
             // classShortNameLabel
             // 
@@ -596,6 +613,7 @@
             // 
             resources.ApplyResources(this.classNameTextBox, "classNameTextBox");
             this.classNameTextBox.Name = "classNameTextBox";
+            this.classNameTextBox.Validated += new System.EventHandler(this.OnClassNameTextBoxValidated);
             // 
             // classNameLabel
             // 
@@ -1391,7 +1409,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).EndInit();
             this.upgradeGroupBox.ResumeLayout(false);
             this.upgradeGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.militaryValueNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gfxPrioNumericUpDown)).EndInit();
             this.modelTabPage.ResumeLayout(false);
             this.modelTabPage.PerformLayout();
@@ -1568,7 +1585,6 @@
         private System.Windows.Forms.ComboBox transmuteComboBox;
         private System.Windows.Forms.Label transmuteLabel;
         private System.Windows.Forms.ListView upgradeListView;
-        private System.Windows.Forms.NumericUpDown militaryValueNumericUpDown;
         private System.Windows.Forms.Label militaryValueLabel;
         private System.Windows.Forms.GroupBox upgradeGroupBox;
         private System.Windows.Forms.ColumnHeader upgradeTypeColumnHeader;
@@ -1587,5 +1603,6 @@
         private System.Windows.Forms.TextBox quantityTextBox;
         private System.Windows.Forms.ListView countryListView;
         private System.Windows.Forms.ColumnHeader dummyColumnHeader;
+        private System.Windows.Forms.TextBox militaryValueTextBox;
     }
 }

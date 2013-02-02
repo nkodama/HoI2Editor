@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
@@ -32,6 +31,11 @@ namespace HoI2Editor.Models
         public static UnitType[] Types;
 
         /// <summary>
+        ///     利用可能な旅団ユニット種類
+        /// </summary>
+        public static UnitType[] BrigadeTypes;
+
+        /// <summary>
         ///     ユニット定義ファイル名とIDの対応付け
         /// </summary>
         public static Dictionary<UnitType, string> FileNameMap = new Dictionary<UnitType, string>();
@@ -50,7 +54,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (UnitType)).Length];
+        public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (UnitType)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -866,6 +870,245 @@ namespace HoI2Editor.Models
                 UnitType.Division99,
 
                 // 旅団
+                UnitType.None,
+                UnitType.Artillery,
+                UnitType.SpArtillery,
+                UnitType.RocketArtillery,
+                UnitType.SpRctArtillery,
+                UnitType.AntiTank,
+                UnitType.TankDestroyer,
+                UnitType.LightArmorBrigade,
+                UnitType.HeavyArmor,
+                UnitType.SuperHeavyArmor,
+                UnitType.ArmoredCar,
+                UnitType.AntiAir,
+                UnitType.Police,
+                UnitType.Engineer,
+                UnitType.Cag,
+                UnitType.Escort,
+                UnitType.NavalAsw,
+                UnitType.NavalAntiAirS,
+                UnitType.NavalRadarS,
+                UnitType.NavalFireControllS,
+                UnitType.NavalImprovedHullS,
+                UnitType.NavalTorpedoesS,
+                UnitType.NavalAntiAirL,
+                UnitType.NavalRadarL,
+                UnitType.NavalFireControllL,
+                UnitType.NavalImprovedHullL,
+                UnitType.NavalTorpedoesL,
+                UnitType.CavalryBrigade,
+                UnitType.SpAntiAir,
+                UnitType.MediumArmor,
+                UnitType.FloatPlane,
+                UnitType.LightCag,
+                UnitType.AmphArmor,
+                UnitType.GliderArmor,
+                UnitType.GliderArtillery,
+                UnitType.SuperHeavyArtillery,
+                UnitType.BRsv36,
+                UnitType.BRsv37,
+                UnitType.BRsv38,
+                UnitType.BRsv39,
+                UnitType.BRsv40,
+                UnitType.B01,
+                UnitType.B02,
+                UnitType.B03,
+                UnitType.B04,
+                UnitType.B05,
+                UnitType.B06,
+                UnitType.B07,
+                UnitType.B08,
+                UnitType.B09,
+                UnitType.B10,
+                UnitType.B11,
+                UnitType.B12,
+                UnitType.B13,
+                UnitType.B14,
+                UnitType.B15,
+                UnitType.B16,
+                UnitType.B17,
+                UnitType.B18,
+                UnitType.B19,
+                UnitType.B20,
+                UnitType.B21,
+                UnitType.B22,
+                UnitType.B23,
+                UnitType.B24,
+                UnitType.B25,
+                UnitType.B26,
+                UnitType.B27,
+                UnitType.B28,
+                UnitType.B29,
+                UnitType.B30,
+                UnitType.B31,
+                UnitType.B32,
+                UnitType.B33,
+                UnitType.B34,
+                UnitType.B35,
+                UnitType.B36,
+                UnitType.B37,
+                UnitType.B38,
+                UnitType.B39,
+                UnitType.B40,
+                UnitType.B41,
+                UnitType.B42,
+                UnitType.B43,
+                UnitType.B44,
+                UnitType.B45,
+                UnitType.B46,
+                UnitType.B47,
+                UnitType.B48,
+                UnitType.B49,
+                UnitType.B50,
+                UnitType.B51,
+                UnitType.B52,
+                UnitType.B53,
+                UnitType.B54,
+                UnitType.B55,
+                UnitType.B56,
+                UnitType.B57,
+                UnitType.B58,
+                UnitType.B59,
+                UnitType.B60,
+                UnitType.B61,
+                UnitType.B62,
+                UnitType.B63,
+                UnitType.B64,
+                UnitType.B65,
+                UnitType.B66,
+                UnitType.B67,
+                UnitType.B68,
+                UnitType.B69,
+                UnitType.B70,
+                UnitType.B71,
+                UnitType.B72,
+                UnitType.B73,
+                UnitType.B74,
+                UnitType.B75,
+                UnitType.B76,
+                UnitType.B77,
+                UnitType.B78,
+                UnitType.B79,
+                UnitType.B80,
+                UnitType.B81,
+                UnitType.B82,
+                UnitType.B83,
+                UnitType.B84,
+                UnitType.B85,
+                UnitType.B86,
+                UnitType.B87,
+                UnitType.B88,
+                UnitType.B89,
+                UnitType.B90,
+                UnitType.B91,
+                UnitType.B92,
+                UnitType.B93,
+                UnitType.B94,
+                UnitType.B95,
+                UnitType.B96,
+                UnitType.B97,
+                UnitType.B98,
+                UnitType.B99
+            };
+
+        /// <summary>
+        ///     利用可能な旅団ユニット種類 (HoI2)
+        /// </summary>
+        private static readonly UnitType[] BrigadeTypesHoI2 =
+            {
+                UnitType.None,
+                UnitType.Artillery,
+                UnitType.SpArtillery,
+                UnitType.RocketArtillery,
+                UnitType.SpRctArtillery,
+                UnitType.AntiTank,
+                UnitType.TankDestroyer,
+                UnitType.LightArmorBrigade,
+                UnitType.HeavyArmor,
+                UnitType.SuperHeavyArmor,
+                UnitType.ArmoredCar,
+                UnitType.AntiAir,
+                UnitType.Police,
+                UnitType.Engineer,
+                UnitType.Cag,
+                UnitType.Escort,
+                UnitType.NavalAsw,
+                UnitType.NavalAntiAirS,
+                UnitType.NavalRadarS,
+                UnitType.NavalFireControllS,
+                UnitType.NavalImprovedHullS,
+                UnitType.NavalTorpedoesS,
+                UnitType.NavalAntiAirL,
+                UnitType.NavalRadarL,
+                UnitType.NavalFireControllL,
+                UnitType.NavalImprovedHullL,
+                UnitType.NavalTorpedoesL
+            };
+
+        /// <summary>
+        ///     利用可能なユニット種類 (AoD)
+        /// </summary>
+        private static readonly UnitType[] BrigadeTypesAoD =
+            {
+                UnitType.None,
+                UnitType.Artillery,
+                UnitType.SpArtillery,
+                UnitType.RocketArtillery,
+                UnitType.SpRctArtillery,
+                UnitType.AntiTank,
+                UnitType.TankDestroyer,
+                UnitType.LightArmorBrigade,
+                UnitType.HeavyArmor,
+                UnitType.SuperHeavyArmor,
+                UnitType.ArmoredCar,
+                UnitType.AntiAir,
+                UnitType.Police,
+                UnitType.Engineer,
+                UnitType.Cag,
+                UnitType.Escort,
+                UnitType.NavalAsw,
+                UnitType.NavalAntiAirS,
+                UnitType.NavalRadarS,
+                UnitType.NavalFireControllS,
+                UnitType.NavalImprovedHullS,
+                UnitType.NavalTorpedoesS,
+                UnitType.NavalAntiAirL,
+                UnitType.NavalRadarL,
+                UnitType.NavalFireControllL,
+                UnitType.NavalImprovedHullL,
+                UnitType.NavalTorpedoesL,
+                UnitType.NavalMines,
+                UnitType.NavalSaL,
+                UnitType.NavalSpotterL,
+                UnitType.NavalSpotterS,
+                UnitType.Bu1,
+                UnitType.Bu2,
+                UnitType.Bu3,
+                UnitType.Bu4,
+                UnitType.Bu5,
+                UnitType.Bu6,
+                UnitType.Bu7,
+                UnitType.Bu8,
+                UnitType.Bu9,
+                UnitType.Bu10,
+                UnitType.Bu11,
+                UnitType.Bu12,
+                UnitType.Bu13,
+                UnitType.Bu14,
+                UnitType.Bu15,
+                UnitType.Bu16,
+                UnitType.Bu17,
+                UnitType.Bu18,
+                UnitType.Bu19,
+                UnitType.Bu20
+            };
+
+        /// <summary>
+        ///     利用可能なユニット種類 (DH1.03以降)
+        /// </summary>
+        private static readonly UnitType[] BrigadeTypesDh =
+            {
                 UnitType.None,
                 UnitType.Artillery,
                 UnitType.SpArtillery,
@@ -2596,14 +2839,17 @@ namespace HoI2Editor.Models
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
                 Types = TypesAoD;
+                BrigadeTypes = BrigadeTypesAoD;
             }
             else if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
                 Types = TypesDh;
+                BrigadeTypes = BrigadeTypesDh;
             }
             else
             {
                 Types = TypesHoI2;
+                BrigadeTypes = BrigadeTypesHoI2;
             }
         }
 
@@ -2613,7 +2859,7 @@ namespace HoI2Editor.Models
         private static void InitFileNames()
         {
             FileNameMap.Clear();
-            foreach (UnitType type in Types)
+            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
                 FileNameMap.Add(type, DefaultFileNames[(int) type]);
             }
@@ -2625,7 +2871,7 @@ namespace HoI2Editor.Models
         private static void InitBranches()
         {
             BranchMap.Clear();
-            foreach (UnitType type in Types)
+            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
                 BranchMap.Add(type, DefaultBranches[(int) type]);
             }
@@ -2637,7 +2883,7 @@ namespace HoI2Editor.Models
         private static void InitOrganizations()
         {
             OrganizationMap.Clear();
-            foreach (UnitType type in Types)
+            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
                 OrganizationMap.Add(type, DefaultOrganizations[(int) type]);
             }
@@ -2677,6 +2923,22 @@ namespace HoI2Editor.Models
         private static void LoadFiles()
         {
             List.Clear();
+
+            // ユニットクラスデータの初期値を設定する
+            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
+            {
+                var unit = new Unit {Type = type, Branch = BranchMap[type], Organization = OrganizationMap[type]};
+                string s = DefaultNames[(int) unit.Type];
+                unit.Name = "NAME_" + s;
+                unit.ShortName = "SNAME_" + s;
+                unit.Desc = "LDESC_" + s;
+                unit.ShortDesc = "SDESC_" + s;
+
+                List.Add(unit);
+                SetDirty(type, false);
+            }
+
+            // ユニット定義ファイルを順に読み込む
             foreach (UnitType type in Types)
             {
                 try
@@ -2699,24 +2961,13 @@ namespace HoI2Editor.Models
         /// <param name="type">ユニットの種類</param>
         private static void LoadFile(UnitType type)
         {
-            // ユニットクラスデータの初期値を設定する
-            var unit = new Unit {Type = type, Branch = BranchMap[type], Organization = OrganizationMap[type]};
-            string s = DefaultNames[(int)unit.Type];
-            unit.Name = "NAME_" + s;
-            unit.ShortName = "SNAME_" + s;
-            unit.Desc = "DESC_" + s;
-            unit.ShortDesc = "SDESC_" + s;
-
-            // インデックスがずれるのを防ぐため、予めリストに登録しておく
-            List.Add(unit);
-            SetDirty(type, false);
-
             // ユニット定義ファイルを解析する
             string fileName = Game.GetReadFileName(Path.Combine(Game.UnitPathName, FileNameMap[type]));
             if (!File.Exists(fileName))
             {
                 return;
             }
+            Unit unit = List[(int) type];
             UnitParser.Parse(fileName, unit);
         }
 
