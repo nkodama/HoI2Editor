@@ -333,6 +333,27 @@
   <data name="modelListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="modelListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 12</value>
+  </data>
+  <data name="modelListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>774, 190</value>
+  </data>
+  <data name="modelListView.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;modelListView.Name" xml:space="preserve">
+    <value>modelListView</value>
+  </data>
+  <data name="&gt;&gt;modelListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;modelListView.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
   <data name="noColumnHeader.Text" xml:space="preserve">
     <value>No.</value>
   </data>
@@ -401,27 +422,6 @@
   </data>
   <data name="fuelColumnHeader.Width" type="System.Int32, mscorlib">
     <value>50</value>
-  </data>
-  <data name="modelListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 12</value>
-  </data>
-  <data name="modelListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>774, 190</value>
-  </data>
-  <data name="modelListView.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;modelListView.Name" xml:space="preserve">
-    <value>modelListView</value>
-  </data>
-  <data name="&gt;&gt;modelListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelListView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;modelListView.ZOrder" xml:space="preserve">
-    <value>13</value>
   </data>
   <data name="unitListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -713,30 +713,6 @@
   </data>
   <data name="&gt;&gt;upgradeAddButton.ZOrder" xml:space="preserve">
     <value>7</value>
-  </data>
-  <data name="upgradeTypeColumnHeader.Text" xml:space="preserve">
-    <value>Unit Type</value>
-  </data>
-  <data name="upgradeTypeColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>180</value>
-  </data>
-  <data name="upgradeCostColumnHeader.Text" xml:space="preserve">
-    <value>Cost</value>
-  </data>
-  <data name="upgradeCostColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="upgradeCostColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="upgradeTimeColumnHeader.Text" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="upgradeTimeColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="upgradeTimeColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>40</value>
   </data>
   <data name="upgradeListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 18</value>
@@ -1377,6 +1353,174 @@
   <data name="&gt;&gt;classTabPage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;modelNameTextBox.Name" xml:space="preserve">
+    <value>modelNameTextBox</value>
+  </data>
+  <data name="&gt;&gt;modelNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelNameTextBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;modelNameTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Name" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;productionGroupBox.Name" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;productionGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;productionGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;productionGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;speedGroupBox.Name" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;speedGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;battleGroupBox.Name" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;battleGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;battleGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;battleGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.Name" xml:space="preserve">
+    <value>modelIconPictureBox</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.Name" xml:space="preserve">
+    <value>modelImagePictureBox</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="modelTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="modelTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="modelTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>766, 425</value>
+  </data>
+  <data name="modelTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="modelTabPage.Text" xml:space="preserve">
+    <value>Unit Model</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.Name" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.Parent" xml:space="preserve">
+    <value>editTabControl</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="editTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 237</value>
+  </data>
+  <data name="editTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>774, 451</value>
+  </data>
+  <data name="editTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Name" xml:space="preserve">
+    <value>editTabControl</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="upgradeTypeColumnHeader.Text" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="upgradeTypeColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>180</value>
+  </data>
+  <data name="upgradeCostColumnHeader.Text" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="upgradeCostColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="upgradeCostColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="upgradeTimeColumnHeader.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="upgradeTimeColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="upgradeTimeColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
   <data name="modelNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 116</value>
   </data>
@@ -1397,6 +1541,138 @@
   </data>
   <data name="&gt;&gt;modelNameTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;quantityTextBox.Name" xml:space="preserve">
+    <value>quantityTextBox</value>
+  </data>
+  <data name="&gt;&gt;quantityTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;quantityTextBox.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;quantityTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;equipmentDownButton.Name" xml:space="preserve">
+    <value>equipmentDownButton</value>
+  </data>
+  <data name="&gt;&gt;equipmentDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentDownButton.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentDownButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;equipmentUpButton.Name" xml:space="preserve">
+    <value>equipmentUpButton</value>
+  </data>
+  <data name="&gt;&gt;equipmentUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentUpButton.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentUpButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;quantityLabel.Name" xml:space="preserve">
+    <value>quantityLabel</value>
+  </data>
+  <data name="&gt;&gt;quantityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;quantityLabel.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;quantityLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;resourceComboBox.Name" xml:space="preserve">
+    <value>resourceComboBox</value>
+  </data>
+  <data name="&gt;&gt;resourceComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resourceComboBox.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;resourceComboBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;resourceLabel.Name" xml:space="preserve">
+    <value>resourceLabel</value>
+  </data>
+  <data name="&gt;&gt;resourceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resourceLabel.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;resourceLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;equipmentRemoveButton.Name" xml:space="preserve">
+    <value>equipmentRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;equipmentRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentRemoveButton.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentRemoveButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;equipmentAddButton.Name" xml:space="preserve">
+    <value>equipmentAddButton</value>
+  </data>
+  <data name="&gt;&gt;equipmentAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentAddButton.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentAddButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;equipmentListView.Name" xml:space="preserve">
+    <value>equipmentListView</value>
+  </data>
+  <data name="&gt;&gt;equipmentListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentListView.Parent" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentListView.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="equipmentGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 312</value>
+  </data>
+  <data name="equipmentGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>448, 107</value>
+  </data>
+  <data name="equipmentGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="equipmentGroupBox.Text" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Name" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="quantityTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>342, 78</value>
@@ -1593,18 +1869,6 @@
   <data name="&gt;&gt;equipmentAddButton.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="resourceColumnHeader.Text" xml:space="preserve">
-    <value>Resource</value>
-  </data>
-  <data name="resourceColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="quantityColumnHeader.Text" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
-  <data name="quantityColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
   <data name="equipmentListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 18</value>
   </data>
@@ -1626,29 +1890,209 @@
   <data name="&gt;&gt;equipmentListView.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="equipmentGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 312</value>
+  <data name="resourceColumnHeader.Text" xml:space="preserve">
+    <value>Resource</value>
   </data>
-  <data name="equipmentGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 107</value>
+  <data name="resourceColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>100</value>
   </data>
-  <data name="equipmentGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="quantityColumnHeader.Text" xml:space="preserve">
+    <value>Quantity</value>
   </data>
-  <data name="equipmentGroupBox.Text" xml:space="preserve">
-    <value>Equipment</value>
+  <data name="quantityColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;equipmentGroupBox.Name" xml:space="preserve">
-    <value>equipmentGroupBox</value>
+  <data name="&gt;&gt;reinforceCostTextBox.Name" xml:space="preserve">
+    <value>reinforceCostTextBox</value>
   </data>
-  <data name="&gt;&gt;equipmentGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;reinforceCostTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.Name" xml:space="preserve">
+    <value>costTextBox</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.Name" xml:space="preserve">
+    <value>reinforceCostLabel</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;costLabel.Name" xml:space="preserve">
+    <value>costLabel</value>
+  </data>
+  <data name="&gt;&gt;costLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;costLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;costLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.Name" xml:space="preserve">
+    <value>reinforceTimeTextBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.Name" xml:space="preserve">
+    <value>buildTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.Name" xml:space="preserve">
+    <value>reinforceTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.Name" xml:space="preserve">
+    <value>buildTimeTextBox</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.Name" xml:space="preserve">
+    <value>manPowerTextBox</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.Name" xml:space="preserve">
+    <value>manPowerLabel</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.Name" xml:space="preserve">
+    <value>upgradeTimeFactorTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.Name" xml:space="preserve">
+    <value>upgradeTimeFactorLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.Name" xml:space="preserve">
+    <value>upgradeCostFactorLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.Name" xml:space="preserve">
+    <value>upgradeCostFactorTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="productionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 290</value>
+  </data>
+  <data name="productionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>291, 129</value>
+  </data>
+  <data name="productionGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="productionGroupBox.Text" xml:space="preserve">
+    <value>Production Status</value>
+  </data>
+  <data name="&gt;&gt;productionGroupBox.Name" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;productionGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;equipmentGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;productionGroupBox.Parent" xml:space="preserve">
     <value>modelTabPage</value>
   </data>
-  <data name="&gt;&gt;equipmentGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;productionGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="reinforceCostTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>231, 67</value>
@@ -2007,29 +2451,173 @@
   <data name="&gt;&gt;upgradeCostFactorTextBox.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="productionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 290</value>
+  <data name="&gt;&gt;speedCapAaTextBox.Name" xml:space="preserve">
+    <value>speedCapAaTextBox</value>
   </data>
-  <data name="productionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>291, 129</value>
+  <data name="&gt;&gt;speedCapAaTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="productionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+  <data name="&gt;&gt;speedCapAaTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
   </data>
-  <data name="productionGroupBox.Text" xml:space="preserve">
-    <value>Production Status</value>
+  <data name="&gt;&gt;speedCapAaTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;productionGroupBox.Name" xml:space="preserve">
-    <value>productionGroupBox</value>
+  <data name="&gt;&gt;maxSpeedTextBox.Name" xml:space="preserve">
+    <value>maxSpeedTextBox</value>
   </data>
-  <data name="&gt;&gt;productionGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;maxSpeedTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.Name" xml:space="preserve">
+    <value>speedCapAaLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.Name" xml:space="preserve">
+    <value>maxSpeedLabel</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.Name" xml:space="preserve">
+    <value>speedCapAtTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.Name" xml:space="preserve">
+    <value>speedCapAtLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.Name" xml:space="preserve">
+    <value>speedCapEngTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.Name" xml:space="preserve">
+    <value>speedCapAllTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.Name" xml:space="preserve">
+    <value>speedCapEngLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.Name" xml:space="preserve">
+    <value>speedCapAllLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.Name" xml:space="preserve">
+    <value>speedCapArtTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.Name" xml:space="preserve">
+    <value>speedCapArtLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="speedGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 6</value>
+  </data>
+  <data name="speedGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>448, 74</value>
+  </data>
+  <data name="speedGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="speedGroupBox.Text" xml:space="preserve">
+    <value>Speed Status</value>
+  </data>
+  <data name="&gt;&gt;speedGroupBox.Name" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;productionGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;speedGroupBox.Parent" xml:space="preserve">
     <value>modelTabPage</value>
   </data>
-  <data name="&gt;&gt;productionGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;speedGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="speedCapAaTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>387, 43</value>
@@ -2337,29 +2925,557 @@
   <data name="&gt;&gt;speedCapArtLabel.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="speedGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 6</value>
+  <data name="&gt;&gt;artilleryBombardmentTextBox.Name" xml:space="preserve">
+    <value>artilleryBombardmentTextBox</value>
   </data>
-  <data name="speedGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 74</value>
+  <data name="&gt;&gt;artilleryBombardmentTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="speedGroupBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;artilleryBombardmentTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;artilleryBombardmentTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;artilleryBombardmentLabel.Name" xml:space="preserve">
+    <value>artilleryBombardmentLabel</value>
+  </data>
+  <data name="&gt;&gt;artilleryBombardmentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;artilleryBombardmentLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;artilleryBombardmentLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;visibilityTextBox.Name" xml:space="preserve">
+    <value>visibilityTextBox</value>
+  </data>
+  <data name="&gt;&gt;visibilityTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;visibilityTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;visibilityTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;visibilityLabel.Name" xml:space="preserve">
+    <value>visibilityLabel</value>
+  </data>
+  <data name="&gt;&gt;visibilityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;visibilityLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;visibilityLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModTextBox.Name" xml:space="preserve">
+    <value>noFuelCombatModTextBox</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModLabel.Name" xml:space="preserve">
+    <value>noFuelCombatModLabel</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;noFuelCombatModLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityTextBox.Name" xml:space="preserve">
+    <value>airDetectionCapabilityTextBox</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityLabel.Name" xml:space="preserve">
+    <value>airDetectionCapabilityLabel</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;airDetectionCapabilityLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityTextBox.Name" xml:space="preserve">
+    <value>subDetectionCapabilityTextBox</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityLabel.Name" xml:space="preserve">
+    <value>subDetectionCapabilityLabel</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;subDetectionCapabilityLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityTextBox.Name" xml:space="preserve">
+    <value>surfaceDetectionCapabilityTextBox</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityLabel.Name" xml:space="preserve">
+    <value>surfaceDetectionCapabilityLabel</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;surfaceDetectionCapabilityLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;distanceTextBox.Name" xml:space="preserve">
+    <value>distanceTextBox</value>
+  </data>
+  <data name="&gt;&gt;distanceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;distanceTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;distanceTextBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;distanceLabel.Name" xml:space="preserve">
+    <value>distanceLabel</value>
+  </data>
+  <data name="&gt;&gt;distanceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;distanceLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;distanceLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackTextBox.Name" xml:space="preserve">
+    <value>strategicAttackTextBox</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackTextBox.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackLabel.Name" xml:space="preserve">
+    <value>strategicAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;strategicAttackLabel.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="speedGroupBox.Text" xml:space="preserve">
-    <value>Speed Status</value>
+  <data name="&gt;&gt;navalAttackTextBox.Name" xml:space="preserve">
+    <value>navalAttackTextBox</value>
   </data>
-  <data name="&gt;&gt;speedGroupBox.Name" xml:space="preserve">
-    <value>speedGroupBox</value>
+  <data name="&gt;&gt;navalAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;speedGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;navalAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;navalAttackTextBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;navalAttackLabel.Name" xml:space="preserve">
+    <value>navalAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;navalAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;navalAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;navalAttackLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;airAttackTextBox.Name" xml:space="preserve">
+    <value>airAttackTextBox</value>
+  </data>
+  <data name="&gt;&gt;airAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;airAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;airAttackTextBox.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;airAttackLabel.Name" xml:space="preserve">
+    <value>airAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;airAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;airAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;airAttackLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentTextBox.Name" xml:space="preserve">
+    <value>shoreBombardmentTextBox</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentTextBox.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentLabel.Name" xml:space="preserve">
+    <value>shoreBombardmentLabel</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;shoreBombardmentLabel.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackTextBox.Name" xml:space="preserve">
+    <value>convoyAttackTextBox</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackTextBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackLabel.Name" xml:space="preserve">
+    <value>convoyAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;convoyAttackLabel.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;subAttackTextBox.Name" xml:space="preserve">
+    <value>subAttackTextBox</value>
+  </data>
+  <data name="&gt;&gt;subAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;subAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;subAttackTextBox.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;subAttackLabel.Name" xml:space="preserve">
+    <value>subAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;subAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;subAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;subAttackLabel.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;seaAttackTextBox.Name" xml:space="preserve">
+    <value>seaAttackTextBox</value>
+  </data>
+  <data name="&gt;&gt;seaAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;seaAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;seaAttackTextBox.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;seaAttackLabel.Name" xml:space="preserve">
+    <value>seaAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;seaAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;seaAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;seaAttackLabel.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;hardAttackTextBox.Name" xml:space="preserve">
+    <value>hardAttackTextBox</value>
+  </data>
+  <data name="&gt;&gt;hardAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hardAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;hardAttackTextBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;hardAttackLabel.Name" xml:space="preserve">
+    <value>hardAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;hardAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hardAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;hardAttackLabel.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;softAttackTextBox.Name" xml:space="preserve">
+    <value>softAttackTextBox</value>
+  </data>
+  <data name="&gt;&gt;softAttackTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;softAttackTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;softAttackTextBox.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;softAttackLabel.Name" xml:space="preserve">
+    <value>softAttackLabel</value>
+  </data>
+  <data name="&gt;&gt;softAttackLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;softAttackLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;softAttackLabel.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;softnessTextBox.Name" xml:space="preserve">
+    <value>softnessTextBox</value>
+  </data>
+  <data name="&gt;&gt;softnessTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;softnessTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;softnessTextBox.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;softnessLabel.Name" xml:space="preserve">
+    <value>softnessLabel</value>
+  </data>
+  <data name="&gt;&gt;softnessLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;softnessLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;softnessLabel.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;toughnessTextBox.Name" xml:space="preserve">
+    <value>toughnessTextBox</value>
+  </data>
+  <data name="&gt;&gt;toughnessTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toughnessTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;toughnessTextBox.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;toughnessLabel.Name" xml:space="preserve">
+    <value>toughnessLabel</value>
+  </data>
+  <data name="&gt;&gt;toughnessLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toughnessLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;toughnessLabel.ZOrder" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceTextBox.Name" xml:space="preserve">
+    <value>surfaceDefenceTextBox</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceTextBox.ZOrder" xml:space="preserve">
+    <value>36</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceLabel.Name" xml:space="preserve">
+    <value>surfaceDefenceLabel</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;surfaceDefenceLabel.ZOrder" xml:space="preserve">
+    <value>37</value>
+  </data>
+  <data name="&gt;&gt;airDefenceTextBox.Name" xml:space="preserve">
+    <value>airDefenceTextBox</value>
+  </data>
+  <data name="&gt;&gt;airDefenceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;airDefenceTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;airDefenceTextBox.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;airDefenceLabel.Name" xml:space="preserve">
+    <value>airDefenceLabel</value>
+  </data>
+  <data name="&gt;&gt;airDefenceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;airDefenceLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;airDefenceLabel.ZOrder" xml:space="preserve">
+    <value>39</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceTextBox.Name" xml:space="preserve">
+    <value>seaDefenceTextBox</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceTextBox.ZOrder" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceLabel.Name" xml:space="preserve">
+    <value>seaDefenceLabel</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;seaDefenceLabel.ZOrder" xml:space="preserve">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;defensivenessTextBox.Name" xml:space="preserve">
+    <value>defensivenessTextBox</value>
+  </data>
+  <data name="&gt;&gt;defensivenessTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defensivenessTextBox.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;defensivenessTextBox.ZOrder" xml:space="preserve">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;defensivenessLabel.Name" xml:space="preserve">
+    <value>defensivenessLabel</value>
+  </data>
+  <data name="&gt;&gt;defensivenessLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defensivenessLabel.Parent" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;defensivenessLabel.ZOrder" xml:space="preserve">
+    <value>43</value>
+  </data>
+  <data name="battleGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 86</value>
+  </data>
+  <data name="battleGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>448, 220</value>
+  </data>
+  <data name="battleGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="battleGroupBox.Text" xml:space="preserve">
+    <value>Battle Status</value>
+  </data>
+  <data name="&gt;&gt;battleGroupBox.Name" xml:space="preserve">
+    <value>battleGroupBox</value>
+  </data>
+  <data name="&gt;&gt;battleGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;speedGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;battleGroupBox.Parent" xml:space="preserve">
     <value>modelTabPage</value>
   </data>
-  <data name="&gt;&gt;speedGroupBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;battleGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="artilleryBombardmentTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>244, 193</value>
@@ -3483,29 +4599,269 @@
   <data name="&gt;&gt;defensivenessLabel.ZOrder" xml:space="preserve">
     <value>43</value>
   </data>
-  <data name="battleGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 86</value>
+  <data name="&gt;&gt;transportWeightTextBox.Name" xml:space="preserve">
+    <value>transportWeightTextBox</value>
   </data>
-  <data name="battleGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 220</value>
+  <data name="&gt;&gt;transportWeightTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="battleGroupBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;transportWeightTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportWeightTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.Name" xml:space="preserve">
+    <value>rangeLabel</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.Name" xml:space="preserve">
+    <value>transportWeightLabel</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.Name" xml:space="preserve">
+    <value>maxOilStockTextBox</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.Name" xml:space="preserve">
+    <value>rangeTextBox</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.Name" xml:space="preserve">
+    <value>transportCapabilityLabel</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.Name" xml:space="preserve">
+    <value>maxOilStockLabel</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.Name" xml:space="preserve">
+    <value>transportCapabilityTextBox</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.Name" xml:space="preserve">
+    <value>maxSupplyStockTextBox</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.Name" xml:space="preserve">
+    <value>maxSupplyStockLabel</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.Name" xml:space="preserve">
+    <value>fuelConsumptionTextBox</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.Name" xml:space="preserve">
+    <value>fuelConsumptionLabel</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.Name" xml:space="preserve">
+    <value>supplyConsumptionTextBox</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.Name" xml:space="preserve">
+    <value>supplyConsumptionLabel</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.Name" xml:space="preserve">
+    <value>suppressionTextBox</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="battleGroupBox.Text" xml:space="preserve">
-    <value>Battle Status</value>
+  <data name="&gt;&gt;suppressionLabel.Name" xml:space="preserve">
+    <value>suppressionLabel</value>
   </data>
-  <data name="&gt;&gt;battleGroupBox.Name" xml:space="preserve">
-    <value>battleGroupBox</value>
+  <data name="&gt;&gt;suppressionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;battleGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;suppressionLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;suppressionLabel.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.Name" xml:space="preserve">
+    <value>moraleTextBox</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.Name" xml:space="preserve">
+    <value>moraleLabel</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.Name" xml:space="preserve">
+    <value>defaultOrganisationTextBox</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.Name" xml:space="preserve">
+    <value>defaultOrganisationLabel</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="basicGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 141</value>
+  </data>
+  <data name="basicGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>291, 143</value>
+  </data>
+  <data name="basicGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="basicGroupBox.Text" xml:space="preserve">
+    <value>Basic Status</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;battleGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
     <value>modelTabPage</value>
   </data>
-  <data name="&gt;&gt;battleGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="transportWeightTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 93</value>
@@ -4017,30 +5373,6 @@
   <data name="&gt;&gt;defaultOrganisationLabel.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="basicGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 141</value>
-  </data>
-  <data name="basicGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>291, 143</value>
-  </data>
-  <data name="basicGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="basicGroupBox.Text" xml:space="preserve">
-    <value>Basic Status</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="modelIconPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>207, 6</value>
   </data>
@@ -4082,54 +5414,6 @@
   </data>
   <data name="&gt;&gt;modelImagePictureBox.ZOrder" xml:space="preserve">
     <value>7</value>
-  </data>
-  <data name="modelTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="modelTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="modelTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>766, 425</value>
-  </data>
-  <data name="modelTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="modelTabPage.Text" xml:space="preserve">
-    <value>Unit Model</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.Name" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.Parent" xml:space="preserve">
-    <value>editTabControl</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="editTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 237</value>
-  </data>
-  <data name="editTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>774, 451</value>
-  </data>
-  <data name="editTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Name" xml:space="preserve">
-    <value>editTabControl</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -4221,9 +5505,6 @@
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="dummyColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
   <data name="countryListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 430</value>
   </data>
@@ -4244,6 +5525,9 @@
   </data>
   <data name="&gt;&gt;countryListView.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="dummyColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>40</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

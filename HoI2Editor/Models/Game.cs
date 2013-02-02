@@ -186,15 +186,8 @@ namespace HoI2Editor.Models
             {
                 _codePage = value;
 
-                // 共通リソースの再読み込み必要
-                Misc.Loaded = false;
-                Config.RequireReload();
-
-                // 編集対象ファイルの再読み込み必要
-                Leaders.RequireReload();
-                Ministers.RequireReload();
-                Teams.RequireReload();
-                Techs.RequireReload();
+                // ファイルの再読み込みを要求する
+                RequireReload();
             }
         }
 
@@ -217,15 +210,8 @@ namespace HoI2Editor.Models
                 // MODフォルダ名を更新する
                 UpdateModFolderName();
 
-                // 共通リソースの再読み込み必要
-                Misc.Loaded = false;
-                Config.RequireReload();
-
-                // 編集対象ファイルの再読み込み必要
-                Leaders.RequireReload();
-                Ministers.RequireReload();
-                Teams.RequireReload();
-                Techs.RequireReload();
+                // ファイルの再読み込みを要求する
+                RequireReload();
             }
         }
 
@@ -250,15 +236,8 @@ namespace HoI2Editor.Models
                 // MODフォルダ名を更新する
                 UpdateModFolderName();
 
-                // 共通リソースの再読み込み必要
-                Misc.Loaded = false;
-                Config.RequireReload();
-
-                // 編集対象ファイルの再読み込み必要
-                Leaders.RequireReload();
-                Ministers.RequireReload();
-                Teams.RequireReload();
-                Techs.RequireReload();
+                // ファイルの再読み込みを要求する
+                RequireReload();
             }
         }
 
@@ -273,6 +252,18 @@ namespace HoI2Editor.Models
         public static string ModFolderName
         {
             get { return _modFolderName; }
+        }
+
+        // ファイルの再読み込みを要求する
+        private static void RequireReload()
+        {
+            Misc.Loaded = false;
+            Config.RequireReload();
+            Leaders.RequireReload();
+            Ministers.RequireReload();
+            Teams.RequireReload();
+            Techs.RequireReload();
+            Units.RequireReload();
         }
 
         /// <summary>

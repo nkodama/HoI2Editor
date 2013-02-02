@@ -3002,6 +3002,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
+        }
+
+        /// <summary>
         ///     編集済みフラグを更新する
         /// </summary>
         /// <param name="type">ユニットの種類</param>

@@ -90,7 +90,7 @@ namespace HoI2Editor.Parsers
 
                         // サポート外のユニットクラス
                         UnitType brigade = Units.StringMap[s];
-                        if (!Units.Types.Contains(brigade))
+                        if (!Units.BrigadeTypes.Contains(brigade))
                         {
                             Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                             lexer.SkipLine();
@@ -99,6 +99,22 @@ namespace HoI2Editor.Parsers
 
                         // 旅団名
                         unit.AllowedBrigades.Add(brigade);
+                        continue;
+                    }
+
+                    // upgrade
+                    if (keyword.Equals("upgrade"))
+                    {
+                        UnitUpgrade upgrade = ParseUpgrade(lexer);
+                        if (upgrade == null)
+                        {
+                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "upgrade",
+                                                    Resources.Section, _fileName));
+                            continue;
+                        }
+
+                        // 改良情報
+                        unit.Upgrades.Add(upgrade);
                         continue;
                     }
 
@@ -1595,6 +1611,170 @@ namespace HoI2Editor.Parsers
             }
 
             return equipments;
+        }
+
+        /// <summary>
+        ///     upgradeセクションを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>改良情報</returns>
+        private static UnitUpgrade ParseUpgrade(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                return null;
+            }
+
+            var upgrade = new UnitUpgrade();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    continue;
+                }
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    return null;
+                }
+                keyword = keyword.ToLower();
+
+                // type
+                if (keyword.Equals("type"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.Types.Contains(type))
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // ユニット種類
+                    upgrade.Type = type;
+                    continue;
+                }
+
+                // upgrade_cost_factor
+                if (keyword.Equals("upgrade_cost_factor"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 改良コスト
+                    upgrade.UpgradeCostFactor = (double) token.Value;
+                    continue;
+                }
+
+                // upgrade_time_factor
+                if (keyword.Equals("upgrade_time_factor"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 改良時間
+                    upgrade.UpgradeTimeFactor = (double) token.Value;
+                    continue;
+                }
+
+
+                // 無効なトークン
+                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                lexer.SkipLine();
+            }
+
+            return upgrade;
         }
     }
 }

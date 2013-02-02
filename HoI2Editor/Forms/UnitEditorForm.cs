@@ -76,12 +76,35 @@ namespace HoI2Editor.Forms
             branchComboBox.Items.Add(Resources.BranchAirforce);
 
             // 付属可能旅団チェックリストボックス
+            allowedBrigadesCheckedListBox.Items.Clear();
             foreach (UnitType type in Units.BrigadeTypes)
             {
                 allowedBrigadesCheckedListBox.Items.Add(Config.GetText(Units.List[(int) type].Name));
             }
 
+            // 生産ユニット種類コンボボックス
+            realUnitTypeComboBox.Items.Clear();
+            foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
+            {
+                realUnitTypeComboBox.Items.Add(Units.RealStringTable[(int) type]);
+            }
+
+            // スプライト種類コンボボックス
+            spriteTypeComboBox.Items.Clear();
+            foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
+            {
+                spriteTypeComboBox.Items.Add(Units.SpriteStringTable[(int) type]);
+            }
+
+            // 代替ユニット種類コンボボックス
+            transmuteComboBox.Items.Clear();
+            foreach (UnitType type in Units.Types)
+            {
+                transmuteComboBox.Items.Add(Config.GetText(Units.List[(int) type].Name));
+            }
+
             // 更新ユニット種類コンボボックス
+            upgradeTypeComboBox.Items.Clear();
             foreach (UnitType type in Units.Types)
             {
                 upgradeTypeComboBox.Items.Add(Config.GetText(Units.List[(int) type].Name));
@@ -120,7 +143,6 @@ namespace HoI2Editor.Forms
                 transmuteComboBox.Enabled = true;
                 militaryValueLabel.Enabled = true;
                 militaryValueTextBox.Enabled = true;
-                upgradeGroupBox.Enabled = true;
 
                 speedCapAllLabel.Enabled = true;
                 speedCapAllTextBox.Enabled = true;
@@ -142,7 +164,6 @@ namespace HoI2Editor.Forms
                 transmuteComboBox.Enabled = false;
                 militaryValueLabel.Enabled = false;
                 militaryValueTextBox.Enabled = false;
-                upgradeGroupBox.Enabled = false;
 
                 speedCapAllLabel.Enabled = false;
                 speedCapAllTextBox.Enabled = false;
@@ -174,6 +195,8 @@ namespace HoI2Editor.Forms
                 reinforceTimeTextBox.Enabled = true;
                 noFuelCombatModLabel.Enabled = true;
                 noFuelCombatModTextBox.Enabled = true;
+
+                upgradeGroupBox.Enabled = true;
             }
             else
             {
@@ -183,6 +206,8 @@ namespace HoI2Editor.Forms
                 reinforceTimeTextBox.Enabled = false;
                 noFuelCombatModLabel.Enabled = false;
                 noFuelCombatModTextBox.Enabled = false;
+
+                upgradeGroupBox.Enabled = false;
             }
         }
 
@@ -423,7 +448,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ユニットクラスリストボックスの項目描画処理
+        ///     ユニットクラスリストボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -455,7 +480,7 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
                 // 変更ありの項目は文字色を変更する
-                brush = Units.DirtyFlags[(int)type]
+                brush = Units.DirtyFlags[(int) type]
                             ? new SolidBrush(Color.Red)
                             : new SolidBrush(unitListBox.ForeColor);
             }
@@ -813,21 +838,33 @@ namespace HoI2Editor.Forms
             classDescTextBox.Text = Config.GetText(unit.Desc);
             classShortDescTextBox.Text = Config.GetText(unit.ShortDesc);
             branchComboBox.SelectedIndex = (int) unit.Branch;
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
-            {
-                productableCheckBox.Checked = unit.Productable;
-                detachableCheckBox.Checked = unit.Detachable;
-                gfxPrioNumericUpDown.Value = unit.GfxPrio;
-                listPrioNumericUpDown.Value = unit.ListPrio;
-                //realUnitTypeComboBox.SelectedIndex = (int)unit.RealType;
-                //spriteTypeComboBox.SelectedIndex = (int)unit.Sprite;
-                //transmuteComboBox.SelectedIndex = (int)unit.Transmute;
-                militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
-            }
             for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
             {
                 UnitType brigade = Units.BrigadeTypes[i];
                 allowedBrigadesCheckedListBox.SetItemChecked(i, unit.AllowedBrigades.Contains(brigade));
+            }
+            if (Game.Type == GameType.DarkestHour)
+            {
+                UpdateUpgradeList(unit);
+                if (Game.Version >= 103)
+                {
+                    productableCheckBox.Checked = unit.Productable;
+                    detachableCheckBox.Checked = unit.Detachable;
+                    gfxPrioNumericUpDown.Value = unit.GfxPrio;
+                    listPrioNumericUpDown.Value = unit.ListPrio;
+                    realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
+                    spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
+                    int index = -1;
+                    for (int i = 0; i < Units.Types.Length; i++)
+                    {
+                        if (unit.Transmute == Units.Types[i])
+                        {
+                            index = i;
+                        }
+                    }
+                    transmuteComboBox.SelectedIndex = index;
+                    militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                }
             }
         }
 
@@ -1046,7 +1083,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     標準ユニット種類コンボボックスの選択項目変更時の処理
+        ///     生産ユニット種類コンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1146,6 +1183,310 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             SetDirty();
+        }
+
+        /// <summary>
+        ///     改良リストビューの項目を更新する
+        /// </summary>
+        /// <param name="unit"></param>
+        private void UpdateUpgradeList(Unit unit)
+        {
+            // 項目を順に登録する
+            upgradeListView.BeginUpdate();
+            upgradeListView.Items.Clear();
+            foreach (UnitUpgrade upgrade in unit.Upgrades)
+            {
+                upgradeListView.Items.Add(CreateUpgradeListItem(upgrade));
+            }
+            upgradeListView.EndUpdate();
+
+            // 改良情報が登録されていなければ編集項目を無効化して戻る
+            if (unit.Upgrades.Count == 0)
+            {
+                DisableUpgradeItems();
+                return;
+            }
+
+            upgradeListView.Items[0].Focused = true;
+            upgradeListView.Items[0].Selected = true;
+
+            // 編集項目を有効化する
+            EnableUpgradeItems();
+        }
+
+        /// <summary>
+        ///     改良の編集項目を有効化する
+        /// </summary>
+        private void EnableUpgradeItems()
+        {
+            upgradeTypeComboBox.Enabled = true;
+            upgradeCostTextBox.Enabled = true;
+            upgradeTimeTextBox.Enabled = true;
+
+            upgradeRemoveButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     改良の編集項目を無効化する
+        /// </summary>
+        private void DisableUpgradeItems()
+        {
+            upgradeTypeComboBox.Text = "";
+            upgradeCostTextBox.Text = "";
+            upgradeTimeTextBox.Text = "";
+
+            upgradeTypeComboBox.Enabled = false;
+            upgradeCostTextBox.Enabled = false;
+            upgradeTimeTextBox.Enabled = false;
+
+            upgradeRemoveButton.Enabled = false;
+        }
+
+        /// <summary>
+        ///     改良リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集を禁止する
+            if (upgradeListView.SelectedIndices.Count == 0)
+            {
+                DisableUpgradeItems();
+                return;
+            }
+
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
+
+            upgradeTypeComboBox.SelectedIndex = (int) upgrade.Type;
+            upgradeCostTextBox.Text = upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
+            upgradeTimeTextBox.Text = upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+
+            EnableUpgradeItems();
+        }
+
+        /// <summary>
+        ///     改良ユニット種類コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (upgradeListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+            int index = upgradeListView.SelectedIndices[0];
+            UnitUpgrade upgrade = unit.Upgrades[index];
+
+            // 値に変化がなければ何もしない
+            var val = (UnitType) upgradeTypeComboBox.SelectedIndex;
+            if (val == upgrade.Type)
+            {
+                return;
+            }
+
+            // 値を更新する
+            upgrade.Type = val;
+
+            // 改良リストビューの項目を更新する
+            upgradeListView.Items[index].Text = Config.GetText(Units.List[(int) val].Name);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     改良コストテキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeCostTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (upgradeListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+            int index = upgradeListView.SelectedIndices[0];
+            UnitUpgrade upgrade = unit.Upgrades[index];
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(upgradeCostTextBox.Text, out val))
+            {
+                upgradeCostTextBox.Text = upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - upgrade.UpgradeCostFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            upgrade.UpgradeCostFactor = val;
+
+            // 改良リストビューの項目を更新する
+            upgradeListView.Items[index].SubItems[1].Text = val.ToString(CultureInfo.InvariantCulture);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     改良時間テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeTimeTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (upgradeListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+            int index = upgradeListView.SelectedIndices[0];
+            UnitUpgrade upgrade = unit.Upgrades[index];
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(upgradeTimeTextBox.Text, out val))
+            {
+                upgradeTimeTextBox.Text = upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - upgrade.UpgradeTimeFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            upgrade.UpgradeTimeFactor = val;
+
+            // 改良リストビューの項目を更新する
+            upgradeListView.Items[index].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     改良設定の追加ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeAddButtonClick(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+
+            var upgrade = new UnitUpgrade();
+            unit.Upgrades.Add(upgrade);
+
+            AddUpgradeListItem(upgrade);
+
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     改良設定の削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeRemoveButtonClick(object sender, EventArgs e)
+        {
+            // 選択中の項目がなければ何もしない
+            if (upgradeListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int) type];
+            int index = upgradeListView.SelectedIndices[0];
+
+            RemoveUpgradeListItem(index);
+
+            unit.Upgrades.RemoveAt(index);
+
+            SetDirty();
+        }
+
+        /// <summary>
+        ///     改良リストの項目を作成する
+        /// </summary>
+        /// <param name="upgrade">改良設定</param>
+        /// <returns>改良リストの項目</returns>
+        private static ListViewItem CreateUpgradeListItem(UnitUpgrade upgrade)
+        {
+            var item = new ListViewItem {Text = Config.GetText(Units.List[(int) upgrade.Type].Name)};
+            item.SubItems.Add(upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
+            return item;
+        }
+
+        /// <summary>
+        ///     改良リストの項目を追加する
+        /// </summary>
+        /// <param name="upgrade">追加対象の改良設定</param>
+        private void AddUpgradeListItem(UnitUpgrade upgrade)
+        {
+            // 改良リストビューの項目を追加する
+            upgradeListView.Items.Add(CreateUpgradeListItem(upgrade));
+
+            // 追加した項目を選択する
+            int index = upgradeListView.Items.Count - 1;
+            upgradeListView.Items[index].Focused = true;
+            upgradeListView.Items[index].Selected = true;
+            upgradeListView.EnsureVisible(index);
+
+            // 改良の編集項目を有効化する
+            EnableUpgradeItems();
+        }
+
+        /// <summary>
+        ///     改良リストから項目を削除する
+        /// </summary>
+        /// <param name="index">削除する項目の位置</param>
+        private void RemoveUpgradeListItem(int index)
+        {
+            // 改良リストビューの項目を削除する
+            upgradeListView.Items.RemoveAt(index);
+
+            if (index < upgradeListView.Items.Count)
+            {
+                // 追加した項目の次を選択する
+                upgradeListView.Items[index].Focused = true;
+                upgradeListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                // 末尾の項目を選択する
+                upgradeListView.Items[upgradeListView.Items.Count - 1].Focused = true;
+                upgradeListView.Items[upgradeListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                // 改良の編集項目を無効化する
+                DisableUpgradeItems();
+            }
         }
 
         #endregion

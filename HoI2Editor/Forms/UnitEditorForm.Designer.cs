@@ -415,6 +415,7 @@
             // 
             resources.ApplyResources(this.upgradeTimeTextBox, "upgradeTimeTextBox");
             this.upgradeTimeTextBox.Name = "upgradeTimeTextBox";
+            this.upgradeTimeTextBox.Validated += new System.EventHandler(this.OnUpgradeTimeTextBoxValidated);
             // 
             // upgradeTimeLabel
             // 
@@ -425,6 +426,7 @@
             // 
             resources.ApplyResources(this.upgradeCostTextBox, "upgradeCostTextBox");
             this.upgradeCostTextBox.Name = "upgradeCostTextBox";
+            this.upgradeCostTextBox.Validated += new System.EventHandler(this.OnUpgradeCostTextBoxValidated);
             // 
             // upgradeCostLabel
             // 
@@ -433,9 +435,11 @@
             // 
             // upgradeTypeComboBox
             // 
+            this.upgradeTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.upgradeTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.upgradeTypeComboBox, "upgradeTypeComboBox");
             this.upgradeTypeComboBox.Name = "upgradeTypeComboBox";
+            this.upgradeTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnUpgradeTypeComboBoxSelectedIndexChanged);
             // 
             // upgradeTypeLabel
             // 
@@ -447,12 +451,14 @@
             resources.ApplyResources(this.upgradeRemoveButton, "upgradeRemoveButton");
             this.upgradeRemoveButton.Name = "upgradeRemoveButton";
             this.upgradeRemoveButton.UseVisualStyleBackColor = true;
+            this.upgradeRemoveButton.Click += new System.EventHandler(this.OnUpgradeRemoveButtonClick);
             // 
             // upgradeAddButton
             // 
             resources.ApplyResources(this.upgradeAddButton, "upgradeAddButton");
             this.upgradeAddButton.Name = "upgradeAddButton";
             this.upgradeAddButton.UseVisualStyleBackColor = true;
+            this.upgradeAddButton.Click += new System.EventHandler(this.OnUpgradeAddButtonClick);
             // 
             // upgradeListView
             // 
@@ -460,10 +466,14 @@
             this.upgradeTypeColumnHeader,
             this.upgradeCostColumnHeader,
             this.upgradeTimeColumnHeader});
+            this.upgradeListView.FullRowSelect = true;
+            this.upgradeListView.HideSelection = false;
             resources.ApplyResources(this.upgradeListView, "upgradeListView");
+            this.upgradeListView.MultiSelect = false;
             this.upgradeListView.Name = "upgradeListView";
             this.upgradeListView.UseCompatibleStateImageBehavior = false;
             this.upgradeListView.View = System.Windows.Forms.View.Details;
+            this.upgradeListView.SelectedIndexChanged += new System.EventHandler(this.OnUpgradeListViewSelectedIndexChanged);
             // 
             // upgradeTypeColumnHeader
             // 
@@ -711,7 +721,10 @@
             this.equipmentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.resourceColumnHeader,
             this.quantityColumnHeader});
+            this.equipmentListView.FullRowSelect = true;
+            this.equipmentListView.HideSelection = false;
             resources.ApplyResources(this.equipmentListView, "equipmentListView");
+            this.equipmentListView.MultiSelect = false;
             this.equipmentListView.Name = "equipmentListView";
             this.equipmentListView.UseCompatibleStateImageBehavior = false;
             this.equipmentListView.View = System.Windows.Forms.View.Details;
