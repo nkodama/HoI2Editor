@@ -1596,7 +1596,7 @@ namespace HoI2Editor.Models
                 UnitBranch.AirForce,
                 UnitBranch.AirForce,
                 UnitBranch.Army,
-                UnitBranch.AirForce,
+                UnitBranch.Navy,
                 UnitBranch.Navy,
                 UnitBranch.Navy,
                 UnitBranch.AirForce,
@@ -2987,6 +2987,14 @@ namespace HoI2Editor.Models
             {
                 if (DirtyFlags[(int) unit.Type])
                 {
+                    // 師団/旅団定義フォルダがなければ作成する
+                    string subFolderName = Path.Combine(
+                        folderName, unit.Organization == UnitOrganization.Division ? "divisions" : "brigades");
+                    if (!Directory.Exists(subFolderName))
+                    {
+                        Directory.CreateDirectory(subFolderName);
+                    }
+                    // ユニット定義ファイルに保存する
                     string fileName = Path.Combine(folderName, FileNameMap[unit.Type]);
                     try
                     {

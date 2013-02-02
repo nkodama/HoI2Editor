@@ -1288,7 +1288,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 消費燃料
-                    model.SupplyConsumption = (double) token.Value;
+                    model.FuelConsumption = (double) token.Value;
                     continue;
                 }
 
@@ -1503,7 +1503,7 @@ namespace HoI2Editor.Parsers
                         }
 
                         // 補充IC補正
-                        model.Cost = (double) token.Value;
+                        model.ReinforceCostFactor = (double) token.Value;
                         continue;
                     }
 

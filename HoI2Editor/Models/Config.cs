@@ -450,7 +450,7 @@ namespace HoI2Editor.Models
             }
             string pathName = Path.Combine(folderName, fileName);
 
-            using (var writer = new StreamWriter(pathName))
+            using (var writer = new StreamWriter(pathName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 // 最初のEOF定義で追加文字列を書き込むためのフラグ
                 bool firsteof = true;

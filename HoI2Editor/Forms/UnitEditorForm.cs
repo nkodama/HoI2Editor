@@ -1196,14 +1196,14 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 最大付属旅団数変更時の処理
+        ///     最大付属旅団数変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnMaxAllowedBrigadesNumericUpDownValueChanged(object sender, EventArgs e)
         {
             UnitType type = Units.Types[unitListBox.SelectedIndex];
-            Unit unit = Units.List[(int)type];
+            Unit unit = Units.List[(int) type];
 
             // 値に変化がなければ何もしない
             if (maxAllowedBrigadesNumericUpDown.Value == unit.MaxAllowedBrigades)
@@ -1218,8 +1218,8 @@ namespace HoI2Editor.Forms
             SetDirty();
         }
 
-         /// <summary>
-        /// 付属旅団リストビューののチェック状態変更時の処理
+        /// <summary>
+        ///     付属旅団リストビューののチェック状態変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1232,7 +1232,7 @@ namespace HoI2Editor.Forms
             }
 
             UnitType type = Units.Types[unitListBox.SelectedIndex];
-            Unit unit = Units.List[(int)type];
+            Unit unit = Units.List[(int) type];
             UnitType brigade = Units.BrigadeTypes[e.Item.Index];
 
             if (e.Item.Checked)
