@@ -43,6 +43,11 @@ namespace HoI2Editor.Models
         public int ListPrio;
 
         /// <summary>
+        ///     最大旅団数
+        /// </summary>
+        public int MaxAllowedBrigades;
+
+        /// <summary>
         ///     モデルリスト
         /// </summary>
         public List<UnitModel> Models = new List<UnitModel>();
@@ -169,6 +174,11 @@ namespace HoI2Editor.Models
         ///     砲撃攻撃力 (AoD)
         /// </summary>
         public double ArtilleryBombardment;
+
+        /// <summary>
+        ///     他師団への自動改良を許可するか
+        /// </summary>
+        public bool AutoUpgrade;
 
         /// <summary>
         ///     生産に要する時間
@@ -366,9 +376,24 @@ namespace HoI2Editor.Models
         public double TransportWeight;
 
         /// <summary>
+        ///     自動改良先のユニットクラス
+        /// </summary>
+        public UnitType UpgradeClass;
+
+        /// <summary>
         ///     改良IC補正
         /// </summary>
         public double UpgradeCostFactor;
+
+        /// <summary>
+        ///     自動改良先モデル番号
+        /// </summary>
+        public int UpgradeModel;
+
+        /// <summary>
+        ///     改良時間の補正をするか
+        /// </summary>
+        public bool UpgradeTimeBoost;
 
         /// <summary>
         ///     改良時間補正

@@ -49,6 +49,7 @@
             this.unitListBox = new System.Windows.Forms.ListBox();
             this.editTabControl = new System.Windows.Forms.TabControl();
             this.classTabPage = new System.Windows.Forms.TabPage();
+            this.maxAllowedBrigadesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.militaryValueTextBox = new System.Windows.Forms.TextBox();
             this.listPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.listPrioLabel = new System.Windows.Forms.Label();
@@ -76,10 +77,9 @@
             this.gfxPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.gfxPrioLabel = new System.Windows.Forms.Label();
             this.detachableCheckBox = new System.Windows.Forms.CheckBox();
-            this.allowedBrigadesLabel = new System.Windows.Forms.Label();
+            this.maxAllowedBrigadesLabel = new System.Windows.Forms.Label();
             this.branchLabel = new System.Windows.Forms.Label();
             this.branchComboBox = new System.Windows.Forms.ComboBox();
-            this.allowedBrigadesCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.classShortDescTextBox = new System.Windows.Forms.TextBox();
             this.classShortDescLabel = new System.Windows.Forms.Label();
             this.classDescTextBox = new System.Windows.Forms.TextBox();
@@ -202,9 +202,12 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
             this.countryListView = new System.Windows.Forms.ListView();
-            this.dummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.countryDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.allowedBrigadesListView = new System.Windows.Forms.ListView();
+            this.allowedBrigadesDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editTabControl.SuspendLayout();
             this.classTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxAllowedBrigadesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).BeginInit();
             this.upgradeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gfxPrioNumericUpDown)).BeginInit();
@@ -344,6 +347,8 @@
             // classTabPage
             // 
             this.classTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.classTabPage.Controls.Add(this.allowedBrigadesListView);
+            this.classTabPage.Controls.Add(this.maxAllowedBrigadesNumericUpDown);
             this.classTabPage.Controls.Add(this.militaryValueTextBox);
             this.classTabPage.Controls.Add(this.listPrioNumericUpDown);
             this.classTabPage.Controls.Add(this.listPrioLabel);
@@ -359,10 +364,9 @@
             this.classTabPage.Controls.Add(this.gfxPrioNumericUpDown);
             this.classTabPage.Controls.Add(this.gfxPrioLabel);
             this.classTabPage.Controls.Add(this.detachableCheckBox);
-            this.classTabPage.Controls.Add(this.allowedBrigadesLabel);
+            this.classTabPage.Controls.Add(this.maxAllowedBrigadesLabel);
             this.classTabPage.Controls.Add(this.branchLabel);
             this.classTabPage.Controls.Add(this.branchComboBox);
-            this.classTabPage.Controls.Add(this.allowedBrigadesCheckedListBox);
             this.classTabPage.Controls.Add(this.classShortDescTextBox);
             this.classTabPage.Controls.Add(this.classShortDescLabel);
             this.classTabPage.Controls.Add(this.classDescTextBox);
@@ -373,6 +377,12 @@
             this.classTabPage.Controls.Add(this.classNameLabel);
             resources.ApplyResources(this.classTabPage, "classTabPage");
             this.classTabPage.Name = "classTabPage";
+            // 
+            // maxAllowedBrigadesNumericUpDown
+            // 
+            resources.ApplyResources(this.maxAllowedBrigadesNumericUpDown, "maxAllowedBrigadesNumericUpDown");
+            this.maxAllowedBrigadesNumericUpDown.Name = "maxAllowedBrigadesNumericUpDown";
+            this.maxAllowedBrigadesNumericUpDown.ValueChanged += new System.EventHandler(this.OnMaxAllowedBrigadesNumericUpDownValueChanged);
             // 
             // militaryValueTextBox
             // 
@@ -561,10 +571,10 @@
             this.detachableCheckBox.UseVisualStyleBackColor = true;
             this.detachableCheckBox.CheckedChanged += new System.EventHandler(this.OnDetachableCheckBoxCheckedChanged);
             // 
-            // allowedBrigadesLabel
+            // maxAllowedBrigadesLabel
             // 
-            resources.ApplyResources(this.allowedBrigadesLabel, "allowedBrigadesLabel");
-            this.allowedBrigadesLabel.Name = "allowedBrigadesLabel";
+            resources.ApplyResources(this.maxAllowedBrigadesLabel, "maxAllowedBrigadesLabel");
+            this.maxAllowedBrigadesLabel.Name = "maxAllowedBrigadesLabel";
             // 
             // branchLabel
             // 
@@ -578,13 +588,6 @@
             resources.ApplyResources(this.branchComboBox, "branchComboBox");
             this.branchComboBox.Name = "branchComboBox";
             this.branchComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchComboBoxSelectedIndexChanged);
-            // 
-            // allowedBrigadesCheckedListBox
-            // 
-            this.allowedBrigadesCheckedListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.allowedBrigadesCheckedListBox, "allowedBrigadesCheckedListBox");
-            this.allowedBrigadesCheckedListBox.MultiColumn = true;
-            this.allowedBrigadesCheckedListBox.Name = "allowedBrigadesCheckedListBox";
             // 
             // classShortDescTextBox
             // 
@@ -1383,7 +1386,7 @@
             // countryListView
             // 
             this.countryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.dummyColumnHeader});
+            this.countryDummyColumnHeader});
             this.countryListView.HideSelection = false;
             resources.ApplyResources(this.countryListView, "countryListView");
             this.countryListView.MultiSelect = false;
@@ -1392,9 +1395,21 @@
             this.countryListView.View = System.Windows.Forms.View.List;
             this.countryListView.SelectedIndexChanged += new System.EventHandler(this.OnCountryListViewSelectedIndexChanged);
             // 
-            // dummyColumnHeader
+            // countryDummyColumnHeader
             // 
-            resources.ApplyResources(this.dummyColumnHeader, "dummyColumnHeader");
+            resources.ApplyResources(this.countryDummyColumnHeader, "countryDummyColumnHeader");
+            // 
+            // allowedBrigadesListView
+            // 
+            this.allowedBrigadesListView.CheckBoxes = true;
+            this.allowedBrigadesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.allowedBrigadesDummyColumnHeader});
+            resources.ApplyResources(this.allowedBrigadesListView, "allowedBrigadesListView");
+            this.allowedBrigadesListView.MultiSelect = false;
+            this.allowedBrigadesListView.Name = "allowedBrigadesListView";
+            this.allowedBrigadesListView.UseCompatibleStateImageBehavior = false;
+            this.allowedBrigadesListView.View = System.Windows.Forms.View.List;
+            this.allowedBrigadesListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.OnAllowedBrigadesListViewItemChecked);
             // 
             // UnitEditorForm
             // 
@@ -1419,6 +1434,7 @@
             this.editTabControl.ResumeLayout(false);
             this.classTabPage.ResumeLayout(false);
             this.classTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxAllowedBrigadesNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).EndInit();
             this.upgradeGroupBox.ResumeLayout(false);
             this.upgradeGroupBox.PerformLayout();
@@ -1583,8 +1599,7 @@
         private System.Windows.Forms.TextBox classNameTextBox;
         private System.Windows.Forms.Button equipmentDownButton;
         private System.Windows.Forms.Button equipmentUpButton;
-        private System.Windows.Forms.CheckedListBox allowedBrigadesCheckedListBox;
-        private System.Windows.Forms.Label allowedBrigadesLabel;
+        private System.Windows.Forms.Label maxAllowedBrigadesLabel;
         private System.Windows.Forms.Label branchLabel;
         private System.Windows.Forms.ComboBox branchComboBox;
         private System.Windows.Forms.CheckBox detachableCheckBox;
@@ -1615,7 +1630,10 @@
         private System.Windows.Forms.Label listPrioLabel;
         private System.Windows.Forms.TextBox quantityTextBox;
         private System.Windows.Forms.ListView countryListView;
-        private System.Windows.Forms.ColumnHeader dummyColumnHeader;
+        private System.Windows.Forms.ColumnHeader countryDummyColumnHeader;
         private System.Windows.Forms.TextBox militaryValueTextBox;
+        private System.Windows.Forms.NumericUpDown maxAllowedBrigadesNumericUpDown;
+        private System.Windows.Forms.ListView allowedBrigadesListView;
+        private System.Windows.Forms.ColumnHeader allowedBrigadesDummyColumnHeader;
     }
 }

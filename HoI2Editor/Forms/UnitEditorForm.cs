@@ -75,12 +75,17 @@ namespace HoI2Editor.Forms
             branchComboBox.Items.Add(Resources.BranchNavy);
             branchComboBox.Items.Add(Resources.BranchAirforce);
 
-            // 付属可能旅団チェックリストボックス
-            allowedBrigadesCheckedListBox.Items.Clear();
+            // 付属可能旅団リストビュー
+            int maxWidth = 60;
+            allowedBrigadesListView.Items.Clear();
             foreach (UnitType type in Units.BrigadeTypes)
             {
-                allowedBrigadesCheckedListBox.Items.Add(Config.GetText(Units.List[(int) type].Name));
+                string s = Config.GetText(Units.List[(int) type].Name);
+                allowedBrigadesListView.Items.Add(s);
+                // +16はチェックボックスの分
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, allowedBrigadesListView.Font).Width + 16);
             }
+            allowedBrigadesDummyColumnHeader.Width = maxWidth;
 
             // 生産ユニット種類コンボボックス
             realUnitTypeComboBox.Items.Clear();
@@ -196,6 +201,8 @@ namespace HoI2Editor.Forms
                 noFuelCombatModLabel.Enabled = true;
                 noFuelCombatModTextBox.Enabled = true;
 
+                maxAllowedBrigadesLabel.Enabled = true;
+                maxAllowedBrigadesNumericUpDown.Enabled = true;
                 upgradeGroupBox.Enabled = true;
             }
             else
@@ -207,6 +214,8 @@ namespace HoI2Editor.Forms
                 noFuelCombatModLabel.Enabled = false;
                 noFuelCombatModTextBox.Enabled = false;
 
+                maxAllowedBrigadesLabel.Enabled = false;
+                maxAllowedBrigadesNumericUpDown.Enabled = false;
                 upgradeGroupBox.Enabled = false;
             }
         }
@@ -841,10 +850,11 @@ namespace HoI2Editor.Forms
             for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
             {
                 UnitType brigade = Units.BrigadeTypes[i];
-                allowedBrigadesCheckedListBox.SetItemChecked(i, unit.AllowedBrigades.Contains(brigade));
+                allowedBrigadesListView.Items[i].Checked = unit.AllowedBrigades.Contains(brigade);
             }
             if (Game.Type == GameType.DarkestHour)
             {
+                maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
                 UpdateUpgradeList(unit);
                 if (Game.Version >= 103)
                 {
@@ -1180,6 +1190,73 @@ namespace HoI2Editor.Forms
 
             // 値を更新する
             unit.Value = val;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        /// <summary>
+        /// 最大付属旅団数変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaxAllowedBrigadesNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int)type];
+
+            // 値に変化がなければ何もしない
+            if (maxAllowedBrigadesNumericUpDown.Value == unit.MaxAllowedBrigades)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.MaxAllowedBrigades = (int) maxAllowedBrigadesNumericUpDown.Value;
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+         /// <summary>
+        /// 付属旅団リストビューののチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllowedBrigadesListViewItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            // ユニットクラスリストボックスの選択項目がなければ何もしない
+            if (unitListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            UnitType type = Units.Types[unitListBox.SelectedIndex];
+            Unit unit = Units.List[(int)type];
+            UnitType brigade = Units.BrigadeTypes[e.Item.Index];
+
+            if (e.Item.Checked)
+            {
+                // 値に変化がなければ何もしない
+                if (unit.AllowedBrigades.Contains(brigade))
+                {
+                    return;
+                }
+
+                // 値を更新する
+                unit.AllowedBrigades.Add(brigade);
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                if (!unit.AllowedBrigades.Contains(brigade))
+                {
+                    return;
+                }
+
+                // 値を更新する
+                unit.AllowedBrigades.Remove(brigade);
+            }
 
             // 編集済みフラグを設定する
             SetDirty();

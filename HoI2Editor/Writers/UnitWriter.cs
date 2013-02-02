@@ -52,6 +52,11 @@ namespace HoI2Editor.Writers
                     {
                         writer.WriteLine("allowed_brigades = {0}", Units.StringTable[(int) brigade]);
                     }
+                    // max_allowed_brigades
+                    if (Game.Type == GameType.DarkestHour && unit.MaxAllowedBrigades != 0)
+                    {
+                        writer.WriteLine("max_allowed_brigades = {0}", unit.MaxAllowedBrigades);
+                    }
                     writer.WriteLine();
                 }
 
