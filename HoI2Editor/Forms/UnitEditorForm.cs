@@ -587,6 +587,12 @@ namespace HoI2Editor.Forms
 
             // 編集項目の値を更新する
             UpdateModelEditableItems();
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = modelListView.SelectedIndices[0] != 0;
+            upButton.Enabled = modelListView.SelectedIndices[0] != 0;
+            downButton.Enabled = modelListView.SelectedIndices[0] != modelListView.Items.Count - 1;
+            bottomButton.Enabled = modelListView.SelectedIndices[0] != modelListView.Items.Count - 1;
         }
 
         /// <summary>
@@ -1659,6 +1665,9 @@ namespace HoI2Editor.Forms
             speedGroupBox.Enabled = true;
             battleGroupBox.Enabled = true;
 
+            cloneButton.Enabled = true;
+            removeButton.Enabled = true;
+
             // ゲームの種類依存の項目
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
@@ -1750,6 +1759,13 @@ namespace HoI2Editor.Forms
             speedGroupBox.Enabled = false;
             battleGroupBox.Enabled = false;
             equipmentGroupBox.Enabled = false;
+
+            cloneButton.Enabled = false;
+            removeButton.Enabled = false;
+            topButton.Enabled = false;
+            upButton.Enabled = false;
+            downButton.Enabled = false;
+            bottomButton.Enabled = false;
         }
 
         #endregion
