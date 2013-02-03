@@ -46,9 +46,11 @@
             this.manPowerSkillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.supplyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.fuelColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.unitListBox = new System.Windows.Forms.ListBox();
+            this.classListBox = new System.Windows.Forms.ListBox();
             this.editTabControl = new System.Windows.Forms.TabControl();
             this.classTabPage = new System.Windows.Forms.TabPage();
+            this.allowedBrigadesListView = new System.Windows.Forms.ListView();
+            this.allowedBrigadesDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.maxAllowedBrigadesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.militaryValueTextBox = new System.Windows.Forms.TextBox();
             this.listPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -203,8 +205,6 @@
             this.reloadButton = new System.Windows.Forms.Button();
             this.countryListView = new System.Windows.Forms.ListView();
             this.countryDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.allowedBrigadesListView = new System.Windows.Forms.ListView();
-            this.allowedBrigadesDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editTabControl.SuspendLayout();
             this.classTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxAllowedBrigadesNumericUpDown)).BeginInit();
@@ -328,13 +328,13 @@
             // 
             resources.ApplyResources(this.fuelColumnHeader, "fuelColumnHeader");
             // 
-            // unitListBox
+            // classListBox
             // 
-            resources.ApplyResources(this.unitListBox, "unitListBox");
-            this.unitListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.unitListBox.Name = "unitListBox";
-            this.unitListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnUnitListBoxDrawItem);
-            this.unitListBox.SelectedIndexChanged += new System.EventHandler(this.OnUnitListBoxSelectedIndexChanged);
+            resources.ApplyResources(this.classListBox, "classListBox");
+            this.classListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.classListBox.Name = "classListBox";
+            this.classListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnClassListBoxDrawItem);
+            this.classListBox.SelectedIndexChanged += new System.EventHandler(this.OnClassListBoxSelectedIndexChanged);
             // 
             // editTabControl
             // 
@@ -377,6 +377,18 @@
             this.classTabPage.Controls.Add(this.classNameLabel);
             resources.ApplyResources(this.classTabPage, "classTabPage");
             this.classTabPage.Name = "classTabPage";
+            // 
+            // allowedBrigadesListView
+            // 
+            this.allowedBrigadesListView.CheckBoxes = true;
+            this.allowedBrigadesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.allowedBrigadesDummyColumnHeader});
+            resources.ApplyResources(this.allowedBrigadesListView, "allowedBrigadesListView");
+            this.allowedBrigadesListView.MultiSelect = false;
+            this.allowedBrigadesListView.Name = "allowedBrigadesListView";
+            this.allowedBrigadesListView.UseCompatibleStateImageBehavior = false;
+            this.allowedBrigadesListView.View = System.Windows.Forms.View.List;
+            this.allowedBrigadesListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.OnAllowedBrigadesListViewItemChecked);
             // 
             // maxAllowedBrigadesNumericUpDown
             // 
@@ -1399,18 +1411,6 @@
             // 
             resources.ApplyResources(this.countryDummyColumnHeader, "countryDummyColumnHeader");
             // 
-            // allowedBrigadesListView
-            // 
-            this.allowedBrigadesListView.CheckBoxes = true;
-            this.allowedBrigadesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.allowedBrigadesDummyColumnHeader});
-            resources.ApplyResources(this.allowedBrigadesListView, "allowedBrigadesListView");
-            this.allowedBrigadesListView.MultiSelect = false;
-            this.allowedBrigadesListView.Name = "allowedBrigadesListView";
-            this.allowedBrigadesListView.UseCompatibleStateImageBehavior = false;
-            this.allowedBrigadesListView.View = System.Windows.Forms.View.List;
-            this.allowedBrigadesListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.OnAllowedBrigadesListViewItemChecked);
-            // 
             // UnitEditorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1420,7 +1420,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.editTabControl);
-            this.Controls.Add(this.unitListBox);
+            this.Controls.Add(this.classListBox);
             this.Controls.Add(this.bottomButton);
             this.Controls.Add(this.downButton);
             this.Controls.Add(this.upButton);
@@ -1476,7 +1476,7 @@
         private System.Windows.Forms.ColumnHeader supplyColumnHeader;
         private System.Windows.Forms.ColumnHeader fuelColumnHeader;
         private System.Windows.Forms.ColumnHeader noColumnHeader;
-        private System.Windows.Forms.ListBox unitListBox;
+        private System.Windows.Forms.ListBox classListBox;
         private System.Windows.Forms.TabControl editTabControl;
         private System.Windows.Forms.TabPage classTabPage;
         private System.Windows.Forms.TabPage modelTabPage;

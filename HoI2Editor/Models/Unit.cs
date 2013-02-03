@@ -406,62 +406,64 @@ namespace HoI2Editor.Models
         public double Visibility;
 
         /// <summary>
-        ///     ユニットモデルを複製する
+        ///     コンストラクタ
         /// </summary>
-        /// <returns>複製したユニットモデル</returns>
-        public UnitModel Clone()
+        public UnitModel()
         {
-            var copy = new UnitModel
-                           {
-                               DefaultOrganization = DefaultOrganization,
-                               Morale = Morale,
-                               Range = Range,
-                               TransportWeight = TransportWeight,
-                               TransportCapability = TransportCapability,
-                               Suppression = Suppression,
-                               SupplyConsumption = SupplyConsumption,
-                               FuelConsumption = FuelConsumption,
-                               MaxSupplyStock = MaxSupplyStock,
-                               MaxOilStock = MaxOilStock,
-                               Cost = Cost,
-                               BuildTime = BuildTime,
-                               ManPower = ManPower,
-                               UpgradeCostFactor = UpgradeCostFactor,
-                               UpgradeTimeFactor = UpgradeTimeFactor,
-                               ReinforceCostFactor = ReinforceCostFactor,
-                               ReinforceTimeFactor = ReinforceTimeFactor,
-                               MaxSpeed = MaxSpeed,
-                               SpeedCap = SpeedCap,
-                               SpeedCapArt = SpeedCapArt,
-                               SpeedCapEng = SpeedCapEng,
-                               SpeedCapAt = SpeedCapAt,
-                               SpeedCapAa = SpeedCapAa,
-                               Defensiveness = Defensiveness,
-                               SeaDefense = SeaDefense,
-                               AirDefense = AirDefense,
-                               SurfaceDefense = SurfaceDefense,
-                               Toughness = Toughness,
-                               Softness = Softness,
-                               SoftAttack = SoftAttack,
-                               HardAttack = HardAttack,
-                               SeaAttack = SeaAttack,
-                               SubAttack = SubAttack,
-                               ConvoyAttack = ConvoyAttack,
-                               ShoreBombardment = ShoreBombardment,
-                               AirAttack = AirAttack,
-                               NavalAttack = NavalAttack,
-                               StrategicAttack = StrategicAttack,
-                               ArtilleryBombardment = ArtilleryBombardment,
-                               Distance = Distance,
-                               Visibility = Visibility,
-                               SurfaceDetectionCapability = SurfaceDetectionCapability,
-                               SubDetectionCapability = SubDetectionCapability,
-                               AirDetectionCapability = AirDetectionCapability,
-                               NoFuelCombatMod = NoFuelCombatMod
-                           };
-            copy.Equipments.AddRange(Equipments);
+        }
 
-            return copy;
+        /// <summary>
+        ///     コピーコンストラクタ
+        /// </summary>
+        /// <param name="original">複製元のユニットモデル</param>
+        public UnitModel(UnitModel original)
+        {
+            DefaultOrganization = original.DefaultOrganization;
+            Morale = original.Morale;
+            Range = original.Range;
+            TransportWeight = original.TransportWeight;
+            TransportCapability = original.TransportCapability;
+            Suppression = original.Suppression;
+            SupplyConsumption = original.SupplyConsumption;
+            FuelConsumption = original.FuelConsumption;
+            MaxSupplyStock = original.MaxSupplyStock;
+            MaxOilStock = original.MaxOilStock;
+            Cost = original.Cost;
+            BuildTime = original.BuildTime;
+            ManPower = original.ManPower;
+            UpgradeCostFactor = original.UpgradeCostFactor;
+            UpgradeTimeFactor = original.UpgradeTimeFactor;
+            ReinforceCostFactor = original.ReinforceCostFactor;
+            ReinforceTimeFactor = original.ReinforceTimeFactor;
+            MaxSpeed = original.MaxSpeed;
+            SpeedCap = original.SpeedCap;
+            SpeedCapArt = original.SpeedCapArt;
+            SpeedCapEng = original.SpeedCapEng;
+            SpeedCapAt = original.SpeedCapAt;
+            SpeedCapAa = original.SpeedCapAa;
+            Defensiveness = original.Defensiveness;
+            SeaDefense = original.SeaDefense;
+            AirDefense = original.AirDefense;
+            SurfaceDefense = original.SurfaceDefense;
+            Toughness = original.Toughness;
+            Softness = original.Softness;
+            SoftAttack = original.SoftAttack;
+            HardAttack = original.HardAttack;
+            SeaAttack = original.SeaAttack;
+            SubAttack = original.SubAttack;
+            ConvoyAttack = original.ConvoyAttack;
+            ShoreBombardment = original.ShoreBombardment;
+            AirAttack = original.AirAttack;
+            NavalAttack = original.NavalAttack;
+            StrategicAttack = original.StrategicAttack;
+            ArtilleryBombardment = original.ArtilleryBombardment;
+            Distance = original.Distance;
+            Visibility = original.Visibility;
+            SurfaceDetectionCapability = original.SurfaceDetectionCapability;
+            SubDetectionCapability = original.SubDetectionCapability;
+            AirDetectionCapability = original.AirDetectionCapability;
+            NoFuelCombatMod = original.NoFuelCombatMod;
+            Equipments.AddRange(original.Equipments);
         }
 
         /// <summary>

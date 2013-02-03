@@ -167,20 +167,20 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
-            int maxSize = countryComboBox.DropDownWidth;
+            int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Country.CountryTextTable.Select(
                 country =>
                 Config.ExistsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country))
             {
                 countryComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize,
-                                   TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                                   SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
             }
-            countryComboBox.DropDownWidth = maxSize;
+            countryComboBox.DropDownWidth = maxWidth;
 
             // 特性
-            maxSize = specialityComboBox1.DropDownWidth;
+            maxWidth = specialityComboBox1.DropDownWidth;
             foreach (
                 string name in
                     Techs.SpecialityTable.Select(
@@ -192,16 +192,17 @@ namespace HoI2Editor.Forms
                 specialityComboBox4.Items.Add(name);
                 specialityComboBox5.Items.Add(name);
                 specialityComboBox6.Items.Add(name);
-                maxSize = Math.Max(maxSize,
-                                   TextRenderer.MeasureText(name, specialityComboBox1.Font).Width +
-                                   SystemInformation.VerticalScrollBarWidth + 24);
+                // +24は特性アイコンの分
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(name, specialityComboBox1.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth + 24);
             }
-            specialityComboBox1.DropDownWidth = maxSize;
-            specialityComboBox2.DropDownWidth = maxSize;
-            specialityComboBox3.DropDownWidth = maxSize;
-            specialityComboBox4.DropDownWidth = maxSize;
-            specialityComboBox5.DropDownWidth = maxSize;
-            specialityComboBox6.DropDownWidth = maxSize;
+            specialityComboBox1.DropDownWidth = maxWidth;
+            specialityComboBox2.DropDownWidth = maxWidth;
+            specialityComboBox3.DropDownWidth = maxWidth;
+            specialityComboBox4.DropDownWidth = maxWidth;
+            specialityComboBox5.DropDownWidth = maxWidth;
+            specialityComboBox6.DropDownWidth = maxWidth;
         }
 
         /// <summary>
