@@ -257,20 +257,14 @@ namespace HoI2Editor.Forms
             unit.InsertModel(model, index);
 
             // 挿入位置以降のユニットモデル名を変更する
-            string key = UnitModel.GetName(unit, unit.Models.Count - 1, CountryTag.None);
-            if (!Config.ExistsKey(key))
-            {
-                string temp = Config.GetTempKey(Game.UnitTextFileName);
-                Config.RenameTempKey(temp, key, Game.UnitTextFileName);
-            }
-            for (int i = unit.Models.Count - 1; i >= index; i--)
+            for (int i = unit.Models.Count - 1; i > index; i--)
             {
                 Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                               Config.GetText(UnitModel.GetName(unit, i - 1, CountryTag.None)));
+                               Config.GetText(UnitModel.GetName(unit, i - 1, CountryTag.None)), Game.UnitTextFileName);
             }
 
             // 挿入位置のユニットモデル名を変更する
-            Config.SetText(UnitModel.GetName(unit, index, CountryTag.None), name);
+            Config.SetText(UnitModel.GetName(unit, index, CountryTag.None), name, Game.UnitTextFileName);
 
             // ユニットモデルリストビューの表示を更新する
             UpdateModelListView(unit);
@@ -281,7 +275,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(Game.UnitTextFileName);
+            Config.SetDirty(Game.UnitTextFileName, true);
         }
 
         /// <summary>
@@ -300,10 +294,13 @@ namespace HoI2Editor.Forms
                 for (int i = index; i < unit.Models.Count; i++)
                 {
                     Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                                   Config.GetText(UnitModel.GetName(unit, i + 1, CountryTag.None)));
+                                   Config.GetText(UnitModel.GetName(unit, i + 1, CountryTag.None)),
+                                   Game.UnitTextFileName);
                 }
             }
-            Config.SetText(UnitModel.GetName(unit, unit.Models.Count, CountryTag.None), String.Empty);
+
+            // 末尾のユニットモデル名を削除する
+            Config.RemoveText(UnitModel.GetName(unit, unit.Models.Count, CountryTag.None), Game.UnitTextFileName);
 
             // ユニットモデルリストビューの表示を更新する
             UpdateModelListView(unit);
@@ -322,7 +319,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(Game.UnitTextFileName);
+            Config.SetDirty(Game.UnitTextFileName, true);
         }
 
         /// <summary>
@@ -344,7 +341,8 @@ namespace HoI2Editor.Forms
                 for (int i = src; i > dest; i--)
                 {
                     Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                                   Config.GetText(UnitModel.GetName(unit, i - 1, CountryTag.None)));
+                                   Config.GetText(UnitModel.GetName(unit, i - 1, CountryTag.None)),
+                                   Game.UnitTextFileName);
                 }
             }
             else
@@ -353,10 +351,13 @@ namespace HoI2Editor.Forms
                 for (int i = src; i < dest; i++)
                 {
                     Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                                   Config.GetText(UnitModel.GetName(unit, i + 1, CountryTag.None)));
+                                   Config.GetText(UnitModel.GetName(unit, i + 1, CountryTag.None)),
+                                   Game.UnitTextFileName);
                 }
             }
-            Config.SetText(UnitModel.GetName(unit, dest, CountryTag.None), name);
+
+            // 移動先のユニットモデル名を変更する
+            Config.SetText(UnitModel.GetName(unit, dest, CountryTag.None), name, Game.UnitTextFileName);
 
             // ユニットモデルリストビューの表示を更新する
             UpdateModelListView(unit);
@@ -367,7 +368,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(Game.UnitTextFileName);
+            Config.SetDirty(Game.UnitTextFileName, true);
         }
 
         #endregion
@@ -864,11 +865,11 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            Config.SetText(unit.Name, classNameTextBox.Text);
+            Config.SetText(unit.Name, classNameTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(Game.UnitTextFileName);
+            Config.SetDirty(Game.UnitTextFileName, true);
         }
 
         /// <summary>
@@ -887,11 +888,11 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            Config.SetText(unit.ShortName, classShortNameTextBox.Text);
+            Config.SetText(unit.ShortName, classShortNameTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(Game.UnitTextFileName);
+            Config.SetDirty(Game.UnitTextFileName, true);
         }
 
         /// <summary>
@@ -910,11 +911,11 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            Config.SetText(unit.Desc, classDescTextBox.Text);
+            Config.SetText(unit.Desc, classDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(Game.UnitTextFileName);
+            Config.SetDirty(Game.UnitTextFileName, true);
         }
 
         /// <summary>
@@ -933,11 +934,11 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            Config.SetText(unit.ShortDesc, classShortDescTextBox.Text);
+            Config.SetText(unit.ShortDesc, classShortDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(Game.UnitTextFileName);
+            Config.SetDirty(Game.UnitTextFileName, true);
         }
 
         /// <summary>
@@ -1748,16 +1749,17 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            Config.SetText(name, val);
+            string fileName = (countryListView.SelectedIndices.Count == 0
+                                   ? Game.UnitTextFileName
+                                   : Game.ModelTextFileName);
+            Config.SetText(name, val, fileName);
 
             // モデルリストビューの項目を変更する
             modelListView.Items[no].SubItems[1].Text = val;
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirtyFlag(countryListView.SelectedIndices.Count == 0
-                                    ? Game.UnitTextFileName
-                                    : Game.ModelTextFileName);
+            Config.SetDirty(fileName, true);
         }
 
         #endregion

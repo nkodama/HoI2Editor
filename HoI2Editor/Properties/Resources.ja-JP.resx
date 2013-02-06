@@ -126,8 +126,53 @@
   <data name="BranchNavy" xml:space="preserve">
     <value>海軍</value>
   </data>
+  <data name="BrigadeAmphibiousLightArmor" xml:space="preserve">
+    <value>水陸両用戦車旅団</value>
+  </data>
+  <data name="BrigadeCavalry" xml:space="preserve">
+    <value>騎兵旅団</value>
+  </data>
+  <data name="BrigadeFloatPlane" xml:space="preserve">
+    <value>水上機</value>
+  </data>
+  <data name="BrigadeGliderLightArmor" xml:space="preserve">
+    <value>空挺戦車旅団</value>
+  </data>
+  <data name="BrigadeGliderLightArtillery" xml:space="preserve">
+    <value>空挺用軽砲旅団</value>
+  </data>
+  <data name="BrigadeLightCarrierAirGroup" xml:space="preserve">
+    <value>軽空母艦載機</value>
+  </data>
+  <data name="BrigadeMediumTank" xml:space="preserve">
+    <value>中戦車旅団</value>
+  </data>
   <data name="BrigadeNone" xml:space="preserve">
     <value>旅団なし</value>
+  </data>
+  <data name="BrigadeReserved" xml:space="preserve">
+    <value>予約旅団</value>
+  </data>
+  <data name="BrigadeSpAntiAir" xml:space="preserve">
+    <value>自走対空砲旅団</value>
+  </data>
+  <data name="BrigadeSuperHeavyArtillery" xml:space="preserve">
+    <value>超重砲旅団</value>
+  </data>
+  <data name="BrigadeUser" xml:space="preserve">
+    <value>ユーザー定義旅団</value>
+  </data>
+  <data name="DivisionLightCarrier" xml:space="preserve">
+    <value>軽空母</value>
+  </data>
+  <data name="DivisionReserved" xml:space="preserve">
+    <value>予約師団</value>
+  </data>
+  <data name="DivisionRocketInterceptor" xml:space="preserve">
+    <value>ロケット迎撃機</value>
+  </data>
+  <data name="DivisionUser" xml:space="preserve">
+    <value>ユーザー定義師団</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>エラー</value>

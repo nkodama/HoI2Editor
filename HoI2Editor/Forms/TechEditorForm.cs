@@ -538,13 +538,13 @@ namespace HoI2Editor.Forms
             var item = new Tech
                            {
                                Year = 1936,
-                               Name = Config.GetTempKey(Game.TechTextFileName),
-                               Desc = Config.GetTempKey(Game.TechTextFileName)
+                               Name = Config.GetTempKey(),
+                               ShortName = Config.GetTempKey(),
+                               Desc = Config.GetTempKey()
                            };
-            item.ShortName = "SHORT_" + item.Name;
-            Config.SetText(item.Name, "");
-            Config.SetText(item.ShortName, "");
-            Config.SetText(item.Desc, "");
+            Config.SetText(item.Name, "", Game.TechTextFileName);
+            Config.SetText(item.ShortName, "", Game.TechTextFileName);
+            Config.SetText(item.Desc, "", Game.TechTextFileName);
 
             if (techListBox.SelectedIndex >= 0)
             {
@@ -599,8 +599,8 @@ namespace HoI2Editor.Forms
         private void OnNewLabelButtonClick(object sender, EventArgs e)
         {
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            var item = new TechLabel {Tag = Config.GetTempKey(Game.TechTextFileName)};
-            Config.SetText(item.Tag, "");
+            var item = new TechLabel {Tag = Config.GetTempKey()};
+            Config.SetText(item.Tag, "", Game.TechTextFileName);
 
             if (techListBox.SelectedIndex >= 0)
             {
@@ -1615,7 +1615,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Config.SetText(grp.Name, categoryNameTextBox.Text);
+            Config.SetText(grp.Name, categoryNameTextBox.Text, Game.TechTextFileName);
 
             // カテゴリリストボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
@@ -1624,7 +1624,7 @@ namespace HoI2Editor.Forms
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
             SetDirtyFlag();
-            Config.SetDirtyFlag(Game.TechTextFileName);
+            Config.SetDirty(Game.TechTextFileName, true);
         }
 
         /// <summary>
@@ -1644,10 +1644,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Config.SetText(grp.Desc, categoryDescTextBox.Text);
+            Config.SetText(grp.Desc, categoryDescTextBox.Text, Game.TechTextFileName);
 
             SetDirtyFlag();
-            Config.SetDirtyFlag(Game.TechTextFileName);
+            Config.SetDirty(Game.TechTextFileName, true);
         }
 
         #endregion
@@ -1812,7 +1812,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Config.SetText(item.Name, newText);
+            Config.SetText(item.Name, newText, Game.TechTextFileName);
 
             // 項目リストボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
@@ -1839,7 +1839,7 @@ namespace HoI2Editor.Forms
             eventTechComboBox.SelectedIndexChanged += OnEventTechComboBoxSelectedIndexChanged;
 
             SetDirtyFlag();
-            Config.SetDirtyFlag(Game.TechTextFileName);
+            Config.SetDirty(Game.TechTextFileName, true);
         }
 
         /// <summary>
@@ -1867,7 +1867,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Config.SetText(item.ShortName, newText);
+            Config.SetText(item.ShortName, newText, Game.TechTextFileName);
 
             // 技術ツリー上のラベル名を更新する
             foreach (Label label in treePictureBox.Controls)
@@ -1880,7 +1880,7 @@ namespace HoI2Editor.Forms
             }
 
             SetDirtyFlag();
-            Config.SetDirtyFlag(Game.TechTextFileName);
+            Config.SetDirty(Game.TechTextFileName, true);
         }
 
         /// <summary>
@@ -3321,12 +3321,12 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Config.SetText(component.Name, newText);
+            Config.SetText(component.Name, newText, Game.TechTextFileName);
 
             componentListView.Items[index].SubItems[1].Text = newText;
 
             SetDirtyFlag();
-            Config.SetDirtyFlag(Game.TechTextFileName);
+            Config.SetDirty(Game.TechTextFileName, true);
         }
 
         /// <summary>
@@ -4413,7 +4413,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Config.SetText(item.Tag, newText);
+            Config.SetText(item.Tag, newText, Game.TechTextFileName);
 
             // 項目リストボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
@@ -4433,7 +4433,7 @@ namespace HoI2Editor.Forms
             }
 
             SetDirtyFlag();
-            Config.SetDirtyFlag(Game.TechTextFileName);
+            Config.SetDirty(Game.TechTextFileName, true);
         }
 
         /// <summary>

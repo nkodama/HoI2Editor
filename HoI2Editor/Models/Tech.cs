@@ -74,9 +74,9 @@ namespace HoI2Editor.Models
         /// <returns>作成した技術ラベル</returns>
         public TechLabel Create()
         {
-            var label = new TechLabel {Tag = Config.GetTempKey(Game.TechTextFileName)};
+            var label = new TechLabel {Tag = Config.GetTempKey()};
 
-            Config.SetText(label.Tag, "");
+            Config.SetText(label.Tag, "", Game.TechTextFileName);
 
             label.Positions.Add(new TechPosition());
 
@@ -89,9 +89,9 @@ namespace HoI2Editor.Models
         /// <returns>複製した技術ラベル</returns>
         public TechLabel Clone()
         {
-            var label = new TechLabel {Tag = Config.GetTempKey(Game.TechTextFileName)};
+            var label = new TechLabel {Tag = Config.GetTempKey()};
 
-            Config.SetText(label.Tag, Config.GetText(Tag));
+            Config.SetText(label.Tag, Config.GetText(Tag), Game.TechTextFileName);
 
             foreach (TechPosition position in Positions)
             {
@@ -108,10 +108,10 @@ namespace HoI2Editor.Models
         public void RenameTempKey(string name)
         {
             // ラベル名
-            if (Config.IsTempKey(Tag, Game.TechTextFileName))
+            if (Config.IsReservedKey(Tag, Game.TechTextFileName))
             {
                 string newKey = String.Format("TECH_CAT_{0}", name);
-                Config.RenameTempKey(Tag, newKey, Game.TechTextFileName);
+                Config.RenameText(Tag, newKey, Game.TechTextFileName);
                 Tag = newKey;
             }
         }
@@ -122,9 +122,9 @@ namespace HoI2Editor.Models
         public void RemoveTempKey()
         {
             // ラベル名
-            if (Config.IsTempKey(Tag, Game.TechTextFileName))
+            if (Config.IsReservedKey(Tag, Game.TechTextFileName))
             {
-                Config.RemoveTempKey(Tag, Game.TechTextFileName);
+                Config.RemoveText(Tag, Game.TechTextFileName);
             }
         }
 
@@ -574,15 +574,15 @@ namespace HoI2Editor.Models
         {
             var tech = new Tech
                            {
-                               Name = Config.GetTempKey(Game.TechTextFileName),
-                               ShortName = Config.GetTempKey(Game.TechTextFileName),
-                               Desc = Config.GetTempKey(Game.TechTextFileName),
+                               Name = Config.GetTempKey(),
+                               ShortName = Config.GetTempKey(),
+                               Desc = Config.GetTempKey(),
                                Year = 1936,
                            };
 
-            Config.SetText(tech.Name, "");
-            Config.SetText(tech.ShortName, "");
-            Config.SetText(tech.Desc, "");
+            Config.SetText(tech.Name, "", Game.TechTextFileName);
+            Config.SetText(tech.ShortName, "", Game.TechTextFileName);
+            Config.SetText(tech.Desc, "", Game.TechTextFileName);
 
             tech.Positions.Add(new TechPosition());
 
@@ -598,16 +598,16 @@ namespace HoI2Editor.Models
             var tech = new Tech
                            {
                                Id = Id + 10,
-                               Name = Config.GetTempKey(Game.TechTextFileName),
-                               ShortName = Config.GetTempKey(Game.TechTextFileName),
-                               Desc = Config.GetTempKey(Game.TechTextFileName),
+                               Name = Config.GetTempKey(),
+                               ShortName = Config.GetTempKey(),
+                               Desc = Config.GetTempKey(),
                                PictureName = PictureName,
                                Year = Year,
                            };
 
-            Config.SetText(tech.Name, Config.GetText(Name));
-            Config.SetText(tech.ShortName, Config.GetText(ShortName));
-            Config.SetText(tech.Desc, Config.GetText(Desc));
+            Config.SetText(tech.Name, Config.GetText(Name), Game.TechTextFileName);
+            Config.SetText(tech.ShortName, Config.GetText(ShortName), Game.TechTextFileName);
+            Config.SetText(tech.Desc, Config.GetText(Desc), Game.TechTextFileName);
 
             foreach (TechPosition position in Positions)
             {
@@ -637,35 +637,35 @@ namespace HoI2Editor.Models
         public void RenameTempKey(TechCategory category)
         {
             // 技術名
-            if (Config.IsTempKey(Name, Game.TechTextFileName))
+            if (Config.IsReservedKey(Name, Game.TechTextFileName))
             {
                 string newKey = String.Format("TECH_APP_{0}_{1}_NAME", TechCategoryKeyNames[(int) category], Id);
-                Config.RenameTempKey(Name, newKey, Game.TechTextFileName);
+                Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
             }
             // 技術短縮名
-            if (Config.IsTempKey(ShortName, Game.TechTextFileName))
+            if (Config.IsReservedKey(ShortName, Game.TechTextFileName))
             {
                 string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", TechCategoryKeyNames[(int) category], Id);
-                Config.RenameTempKey(ShortName, newKey, Game.TechTextFileName);
+                Config.RenameText(ShortName, newKey, Game.TechTextFileName);
                 ShortName = newKey;
             }
             // 技術説明
-            if (Config.IsTempKey(Desc, Game.TechTextFileName))
+            if (Config.IsReservedKey(Desc, Game.TechTextFileName))
             {
                 string newKey = String.Format("TECH_APP_{0}_{1}_DESC", TechCategoryKeyNames[(int) category], Id);
-                Config.RenameTempKey(Desc, newKey, Game.TechTextFileName);
+                Config.RenameText(Desc, newKey, Game.TechTextFileName);
                 Desc = newKey;
             }
             // 小研究名
             int componentId = 1;
             foreach (TechComponent component in Components)
             {
-                if (Config.IsTempKey(component.Name, Game.TechTextFileName))
+                if (Config.IsReservedKey(component.Name, Game.TechTextFileName))
                 {
                     string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", TechCategoryKeyNames[(int) category], Id,
                                                   componentId);
-                    Config.RenameTempKey(component.Name, newKey, Game.TechTextFileName);
+                    Config.RenameText(component.Name, newKey, Game.TechTextFileName);
                     component.Name = newKey;
                 }
                 componentId++;
@@ -678,27 +678,27 @@ namespace HoI2Editor.Models
         public void RemoveTempKey()
         {
             // 技術名
-            if (Config.IsTempKey(Name, Game.TechTextFileName))
+            if (Config.IsReservedKey(Name, Game.TechTextFileName))
             {
-                Config.RemoveTempKey(Name, Game.TechTextFileName);
+                Config.RemoveText(Name, Game.TechTextFileName);
             }
             // 技術短縮名
-            if (Config.IsTempKey(ShortName, Game.TechTextFileName))
+            if (Config.IsReservedKey(ShortName, Game.TechTextFileName))
             {
-                Config.RemoveTempKey(ShortName, Game.TechTextFileName);
+                Config.RemoveText(ShortName, Game.TechTextFileName);
             }
             // 技術説明
-            if (Config.IsTempKey(Desc, Game.TechTextFileName))
+            if (Config.IsReservedKey(Desc, Game.TechTextFileName))
             {
-                Config.RemoveTempKey(Desc, Game.TechTextFileName);
+                Config.RemoveText(Desc, Game.TechTextFileName);
             }
 
             // 小研究名
             foreach (TechComponent component in Components)
             {
-                if (Config.IsTempKey(component.Name, Game.TechTextFileName))
+                if (Config.IsReservedKey(component.Name, Game.TechTextFileName))
                 {
-                    Config.RemoveTempKey(component.Name, Game.TechTextFileName);
+                    Config.RemoveText(component.Name, Game.TechTextFileName);
                 }
             }
         }
@@ -896,11 +896,11 @@ namespace HoI2Editor.Models
         {
             var component = new TechComponent
                                 {
-                                    Name = Config.GetTempKey(Game.TechTextFileName),
+                                    Name = Config.GetTempKey(),
                                     Difficulty = 1,
                                 };
 
-            Config.SetText(component.Name, "");
+            Config.SetText(component.Name, "", Game.TechTextFileName);
 
             return component;
         }
@@ -914,13 +914,13 @@ namespace HoI2Editor.Models
             var component = new TechComponent
                                 {
                                     Id = Id + 1,
-                                    Name = Config.GetTempKey(Game.TechTextFileName),
+                                    Name = Config.GetTempKey(),
                                     Speciality = Speciality,
                                     Difficulty = Difficulty,
                                     DoubleTime = DoubleTime,
                                 };
 
-            Config.SetText(component.Name, Config.GetText(Name));
+            Config.SetText(component.Name, Config.GetText(Name), Game.TechTextFileName);
 
             return component;
         }

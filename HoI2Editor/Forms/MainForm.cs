@@ -30,6 +30,21 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMainFormLoad(object sender, EventArgs e)
         {
+            // バージョン名を設定する
+            UpdateVersion();
+
+            // 初期状態のゲームフォルダ名を設定する
+            gameFolderTextBox.Text = Game.FolderName;
+
+            // エンコードを初期化する
+            InitEncoding();
+        }
+
+        /// <summary>
+        ///     バージョン名を更新する
+        /// </summary>
+        private void UpdateVersion()
+        {
             FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             char privateVersion;
             if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
@@ -42,9 +57,24 @@ namespace HoI2Editor.Forms
             }
             Text = string.Format("Alternative HoI2 Editor Ver {0}.{1}{2}{3}", info.FileMajorPart, info.FileMinorPart,
                                  info.FileBuildPart, privateVersion);
-            gameFolderTextBox.Text = Game.FolderName;
+        }
+
+        /// <summary>
+        ///     エンコードを初期化する
+        /// </summary>
+        private void InitEncoding()
+        {
+            // エンコード文字列を登録する
+            encodingComboBox.BeginUpdate();
+            foreach (string s in Config.LanguageStrings)
+            {
+                encodingComboBox.Items.Add(s);
+            }
+            encodingComboBox.EndUpdate();
+
+            // 初期エンコードを設定する
             encodingComboBox.SelectedIndex =
-                Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP")) ? 1 : 0;
+                Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP")) ? 10 : 0;
         }
 
         /// <summary>
@@ -177,12 +207,33 @@ namespace HoI2Editor.Forms
         {
             switch (encodingComboBox.SelectedIndex)
             {
-                case 0:
+                case 0: // 英語
+                case 1: // フランス語
+                case 2: // イタリア語
+                case 3: // スペイン語
+                case 4: // ドイツ語
+                case 5: // ポーランド語
+                case 6: // ポルトガル語
+                case 8: // Extra1
+                case 9: // Extra2
                     Game.CodePage = 1252;
+                    Config.LanguageIndex = encodingComboBox.SelectedIndex;
                     break;
 
-                case 1:
+                case 7: // ロシア語
+                    Game.CodePage = 1251;
+                    Config.LanguageIndex = encodingComboBox.SelectedIndex;
+                    break;
+
+                case 10: // 日本語
                     Game.CodePage = 932;
+                    Config.LanguageIndex = 0;
+                    break;
+
+                default:
+                    // 不明な値の場合は英語として扱う
+                    Game.CodePage = 1252;
+                    Config.LanguageIndex = 0;
                     break;
             }
         }

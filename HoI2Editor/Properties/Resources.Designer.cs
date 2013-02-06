@@ -88,11 +88,146 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Amphibious Light Armor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeAmphibiousLightArmor {
+            get {
+                return ResourceManager.GetString("BrigadeAmphibiousLightArmor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cavalry に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeCavalry {
+            get {
+                return ResourceManager.GetString("BrigadeCavalry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Floatplane に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeFloatPlane {
+            get {
+                return ResourceManager.GetString("BrigadeFloatPlane", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Light Glider Armor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeGliderLightArmor {
+            get {
+                return ResourceManager.GetString("BrigadeGliderLightArmor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Light Glider Artillery に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeGliderLightArtillery {
+            get {
+                return ResourceManager.GetString("BrigadeGliderLightArtillery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Light Carrier Air Group に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeLightCarrierAirGroup {
+            get {
+                return ResourceManager.GetString("BrigadeLightCarrierAirGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Medium-tank Brigade に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeMediumTank {
+            get {
+                return ResourceManager.GetString("BrigadeMediumTank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   None に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string BrigadeNone {
             get {
                 return ResourceManager.GetString("BrigadeNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reserved Brigade  に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeReserved {
+            get {
+                return ResourceManager.GetString("BrigadeReserved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Self-Propelled Anti-aircraft に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeSpAntiAir {
+            get {
+                return ResourceManager.GetString("BrigadeSpAntiAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Super Heavy Artillery に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeSuperHeavyArtillery {
+            get {
+                return ResourceManager.GetString("BrigadeSuperHeavyArtillery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   User Brigade  に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeUser {
+            get {
+                return ResourceManager.GetString("BrigadeUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Light Carrier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DivisionLightCarrier {
+            get {
+                return ResourceManager.GetString("DivisionLightCarrier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reserved Division  に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DivisionReserved {
+            get {
+                return ResourceManager.GetString("DivisionReserved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rocket Interceptors に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DivisionRocketInterceptor {
+            get {
+                return ResourceManager.GetString("DivisionRocketInterceptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   User Division  に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DivisionUser {
+            get {
+                return ResourceManager.GetString("DivisionUser", resourceCulture);
             }
         }
         
@@ -336,6 +471,105 @@ namespace HoI2Editor.Properties {
         public static string Label {
             get {
                 return ResourceManager.GetString("Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   English に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageEnglish {
+            get {
+                return ResourceManager.GetString("LanguageEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageExtra1 {
+            get {
+                return ResourceManager.GetString("LanguageExtra1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageExtra2 {
+            get {
+                return ResourceManager.GetString("LanguageExtra2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Français に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageFrench {
+            get {
+                return ResourceManager.GetString("LanguageFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Deutsch に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageGerman {
+            get {
+                return ResourceManager.GetString("LanguageGerman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Italiano に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageItalian {
+            get {
+                return ResourceManager.GetString("LanguageItalian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   日本語 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageJapanese {
+            get {
+                return ResourceManager.GetString("LanguageJapanese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Polski に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguagePolish {
+            get {
+                return ResourceManager.GetString("LanguagePolish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Português に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguagePortuguese {
+            get {
+                return ResourceManager.GetString("LanguagePortuguese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Русский に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageRussian {
+            get {
+                return ResourceManager.GetString("LanguageRussian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Español に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageSpanish {
+            get {
+                return ResourceManager.GetString("LanguageSpanish", resourceCulture);
             }
         }
         
@@ -628,7 +862,7 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   User tech component  に類似しているローカライズされた文字列を検索します。
+        ///   User Tech Speciality  に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SpecialityUser {
             get {

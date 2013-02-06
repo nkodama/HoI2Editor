@@ -10,9 +10,49 @@ namespace HoI2Editor.Models
     internal static class Config
     {
         /// <summary>
+        ///     言語の最大数
+        /// </summary>
+        /// <remarks>
+        ///     設定可能な言語は11種類あるが、日本語は英語の位置の置き換えになるため-1する
+        /// </remarks>
+        private const int MaxLanguages = 10;
+
+        /// <summary>
+        ///     言語名文字列
+        /// </summary>
+        public static readonly string[] LanguageStrings =
+            {
+                Resources.LanguageEnglish,
+                Resources.LanguageFrench,
+                Resources.LanguageItalian,
+                Resources.LanguageSpanish,
+                Resources.LanguageGerman,
+                Resources.LanguagePolish,
+                Resources.LanguagePortuguese,
+                Resources.LanguageRussian,
+                Resources.LanguageExtra1,
+                Resources.LanguageExtra2,
+                Resources.LanguageJapanese
+            };
+
+        /// <summary>
+        ///     日本語環境か
+        /// </summary>
+        public static bool IsJapanese = true;
+
+        /// <summary>
+        ///     言語インデックス
+        /// </summary>
+        /// <remarks>
+        ///     日本語環境ならば先頭言語が日本語、その次が英語(英語版日本語化の場合)で残りは空
+        ///     日本語環境でなければ、英仏伊西独波葡露Extra1/2の順
+        /// </remarks>
+        public static int LanguageIndex = 0;
+
+        /// <summary>
         ///     文字列変換テーブル
         /// </summary>
-        private static readonly Dictionary<string, string> Text = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string[]> Text = new Dictionary<string, string[]>();
 
         /// <summary>
         ///     置き換え文字列変換テーブル
@@ -22,7 +62,7 @@ namespace HoI2Editor.Models
         ///     ファイルに書き出される時には無視される。
         ///     エディタ内部で文字列を修正/補完したい時に使用する。
         /// </remarks>
-        private static readonly Dictionary<string, string> ReplacedText = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string[]> ReplacedText = new Dictionary<string, string[]>();
 
         /// <summary>
         ///     文字列定義順リストテーブル
@@ -80,16 +120,15 @@ namespace HoI2Editor.Models
             key = key.ToUpper();
 
             // 置き換え文字列変換テーブルに登録されていれば優先して参照する
-            string text;
-            if (ReplacedText.TryGetValue(key, out text))
+            if (ReplacedText.ContainsKey(key))
             {
-                return text;
+                return ReplacedText[key][LanguageIndex];
             }
 
             // 文字列変換テーブルに登録されていれば参照する
-            if (Text.TryGetValue(key, out text))
+            if (Text.ContainsKey(key))
             {
-                return text;
+                return Text[key][LanguageIndex];
             }
 
             // テーブルに登録されていなければ定義名を返す
@@ -100,74 +139,45 @@ namespace HoI2Editor.Models
         ///     文字列を設定する
         /// </summary>
         /// <param name="key">文字列の定義名</param>
-        /// <param name="text">文字列</param>
+        /// <param name="text">登録する文字列</param>
+        /// <param name="fileName">文字列定義ファイル名</param>
         /// <remarks>
         ///     文字列が登録されていなければ新規追加、登録されていれば値を変更する
         /// </remarks>
-        public static void SetText(string key, string text)
+        public static void SetText(string key, string text, string fileName)
         {
             if (string.IsNullOrEmpty(key))
             {
                 return;
             }
-
-            Text[key.ToUpper()] = text;
-        }
-
-        /// <summary>
-        ///     文字列定義が登録されているかを返す
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <returns>文字列定義が登録されていればtrueを返す</returns>
-        public static bool ExistsKey(string key)
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                return false;
-            }
             key = key.ToUpper();
 
-            return Text.ContainsKey(key) || ReplacedText.ContainsKey(key);
-        }
-
-        /// <summary>
-        ///     一時キーを取得する
-        /// </summary>
-        /// <param name="fileName">文字列定義ファイル名</param>
-        /// <returns>一時キー</returns>
-        public static string GetTempKey(string fileName)
-        {
-            string key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
-            _tempNo++;
-
-            if (!ReservedListTable.ContainsKey(fileName))
+            // 文字列変換テーブルに登録されていなければ登録する
+            if (!Text.ContainsKey(key))
             {
-                ReservedListTable[fileName] = new List<string>();
+                // 予約リストに登録する
+                ReservedListTable[fileName].Add(key);
+
+                // 文字列変換テーブルに登録する
+                Text[key] = new string[MaxLanguages];
             }
-            ReservedListTable[fileName].Add(key);
 
-            return key;
+            // 文字列変換テーブルの文字列を変更する
+            Text[key][LanguageIndex] = text;
         }
 
         /// <summary>
-        ///     一時キーを削除する
+        ///     文字列定義名を変更する
         /// </summary>
-        /// <param name="key">一時キー</param>
+        /// <param name="oldKey">変更対象の文字列定義名</param>
+        /// <param name="newKey">変更後の文字列定義名</param>
         /// <param name="fileName">文字列定義ファイル名</param>
-        public static void RemoveTempKey(string key, string fileName)
+        public static void RenameText(string oldKey, string newKey, string fileName)
         {
-            Text.Remove(key);
-            ReservedListTable[fileName].Remove(key);
-        }
-
-        /// <summary>
-        ///     一時キーをリネームする
-        /// </summary>
-        /// <param name="oldKey">リネーム対象の一時キー</param>
-        /// <param name="newKey">リネーム後の一時キー</param>
-        /// <param name="fileName">文字列定義ファイル名</param>
-        public static void RenameTempKey(string oldKey, string newKey, string fileName)
-        {
+            if (string.IsNullOrEmpty(oldKey) || string.IsNullOrEmpty(newKey))
+            {
+                return;
+            }
             oldKey = oldKey.ToUpper();
             newKey = newKey.ToUpper();
 
@@ -176,22 +186,84 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // 文字列変換テーブルに登録し直す
             Text.Add(newKey, Text[oldKey]);
             Text.Remove(oldKey);
 
-            ReservedListTable[fileName].Remove(oldKey);
-            ReservedListTable[fileName].Add(newKey);
+            // 予約リストに登録し直す
+            if (ReservedListTable[fileName].Contains(oldKey) && !ReservedListTable[fileName].Contains(newKey))
+            {
+                ReservedListTable[fileName].Remove(oldKey);
+                ReservedListTable[fileName].Add(newKey);
+            }
         }
 
         /// <summary>
-        ///     一時キーかどうかを判定する
+        ///     文字列を削除する
         /// </summary>
-        /// <param name="key">一時キー</param>
+        /// <param name="key">文字列の定義名</param>
         /// <param name="fileName">文字列定義ファイル名</param>
-        /// <returns>一時キーかどうか</returns>
-        public static bool IsTempKey(string key, string fileName)
+        public static void RemoveText(string key, string fileName)
         {
-            return ReservedListTable.ContainsKey(fileName) && ReservedListTable[fileName].Contains(key);
+            Text.Remove(key);
+            ReservedListTable[fileName].Remove(key);
+        }
+
+        /// <summary>
+        ///     文字列が登録されているかを返す
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <returns>文字列が登録されていればtrueを返す</returns>
+        public static bool ExistsKey(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return false;
+            }
+            key = key.ToUpper();
+
+            return Text.ContainsKey(key);
+        }
+
+        /// <summary>
+        ///     予約キーかどうかを判定する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="fileName">文字列定義ファイル名</param>
+        /// <returns>予約キーかどうか</returns>
+        public static bool IsReservedKey(string key, string fileName)
+        {
+            return (ReservedListTable.ContainsKey(fileName) && ReservedListTable[fileName].Contains(key));
+        }
+
+        /// <summary>
+        ///     一時キーを取得する
+        /// </summary>
+        /// <returns>一時キー名</returns>
+        public static string GetTempKey()
+        {
+            string key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
+            _tempNo++;
+
+            return key;
+        }
+
+        /// <summary>
+        ///     置き換え文字列変換テーブルに登録する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="text">登録する文字列</param>
+        private static void AddReplacedText(string key, string text)
+        {
+            // 登録文字列があれば何もしない
+            if (Text.ContainsKey(key))
+            {
+                return;
+            }
+
+            // 置き換え文字列変換テーブルに登録する
+            ReplacedText[key] = new string[MaxLanguages];
+            ReplacedText[key][LanguageIndex] = text;
         }
 
         /// <summary>
@@ -231,8 +303,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                            Resources.Error);
+                            Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -252,8 +323,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                            Resources.Error);
+                            Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -280,8 +350,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                            Resources.Error);
+                            Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -301,8 +370,7 @@ namespace HoI2Editor.Models
                             }
                             catch (Exception)
                             {
-                                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                                Resources.Error);
+                                Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
                             }
                         }
                     }
@@ -404,7 +472,12 @@ namespace HoI2Editor.Models
                     }
 
                     // 変換テーブルに登録する
-                    Text[tokens[0].ToUpper()] = tokens[1];
+                    var t = new string[MaxLanguages];
+                    for (int i = 0; i < MaxLanguages; i++)
+                    {
+                        t[i] = tokens[i + 1];
+                    }
+                    Text[tokens[0].ToUpper()] = t;
                 }
             }
 
@@ -423,7 +496,7 @@ namespace HoI2Editor.Models
                 try
                 {
                     SaveConfigFile(fileName);
-                    ClearDirtyFlag(fileName);
+                    SetDirty(fileName, false);
                 }
                 catch (Exception)
                 {
@@ -441,8 +514,8 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void SaveConfigFile(string fileName)
         {
-            string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                             Game.ConfigPathName);
+            string folderName = Game.GetWriteFileName(Game.ConfigPathName);
+
             // 文字列フォルダがなければ作成する
             if (!Directory.Exists(folderName))
             {
@@ -488,11 +561,9 @@ namespace HoI2Editor.Models
                     string k = key.ToUpper();
                     if (Text.ContainsKey(k))
                     {
-                        writer.WriteLine("{0};{1};;;;;;;;;;X", key, Text[k]);
-                    }
-                    else
-                    {
-                        writer.WriteLine("{0};;;;;;;;;;;X", key);
+                        string[] t = Text[k];
+                        writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};X",
+                                         key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
                     }
                 }
 
@@ -514,20 +585,25 @@ namespace HoI2Editor.Models
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAdditionalStrings(string fileName, StreamWriter writer)
         {
-            // 追加の文字列定義
-            if (ReservedListTable.ContainsKey(fileName))
+            // 追加の文字列定義がなければ戻る
+            if (!ReservedListTable.ContainsKey(fileName))
             {
-                foreach (string key in ReservedListTable[fileName])
+                return;
+            }
+
+            // 追加の文字列定義を順に出力する
+            foreach (string key in ReservedListTable[fileName])
+            {
+                string k = key.ToUpper();
+                if (Text.ContainsKey(k))
                 {
-                    string k = key.ToUpper();
-                    if (Text.ContainsKey(k))
-                    {
-                        writer.WriteLine("{0};{1};;;;;;;;;;X", key, Text[k]);
-                    }
-                    else
-                    {
-                        writer.WriteLine("{0};;;;;;;;;;;X", key);
-                    }
+                    string[] t = Text[k];
+                    writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};X",
+                                     key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
+                }
+                else
+                {
+                    writer.WriteLine("{0};;;;;;;;;;;X", key);
                 }
             }
         }
@@ -538,25 +614,27 @@ namespace HoI2Editor.Models
         private static void ModifyDuplicatedStrings()
         {
             // 決戦ドクトリン: 陸軍総司令官/海軍総司令官
-            if (Text.ContainsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE") &&
-                Text.ContainsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2") &&
+            if (ExistsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE") &&
+                ExistsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2") &&
                 Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"].Equals(Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"]))
             {
-                ReplacedText["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"] =
-                    string.Format("{0}({1})", Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"], Resources.BranchArmy);
-                ReplacedText["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"] =
-                    string.Format("{0}({1})", Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"], Resources.BranchNavy);
+                AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE",
+                                string.Format("{0}({1})", Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"],
+                                              Resources.BranchArmy));
+                AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2",
+                                string.Format("{0}({1})", Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"],
+                                              Resources.BranchNavy));
             }
 
             // 偏執的誇大妄想家: ヒトラー/スターリン
-            if (Text.ContainsKey("NPERSONALITY_HITLER") &&
-                Text.ContainsKey("NPERSONALITY_STALIN") &&
+            if (ExistsKey("NPERSONALITY_HITLER") &&
+                ExistsKey("NPERSONALITY_STALIN") &&
                 Text["NPERSONALITY_HITLER"].Equals(Text["NPERSONALITY_STALIN"]))
             {
-                ReplacedText["NPERSONALITY_HITLER"] =
-                    string.Format("{0}({1})", Text["NPERSONALITY_HITLER"], Resources.Hitler);
-                ReplacedText["NPERSONALITY_STALIN"] =
-                    string.Format("{0}({1})", Text["NPERSONALITY_STALIN"], Resources.Stalin);
+                AddReplacedText("NPERSONALITY_HITLER",
+                                string.Format("{0}({1})", Text["NPERSONALITY_HITLER"], Resources.Hitler));
+                AddReplacedText("NPERSONALITY_STALIN",
+                                string.Format("{0}({1})", Text["NPERSONALITY_STALIN"], Resources.Stalin));
             }
         }
 
@@ -565,77 +643,72 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void AddInsufficientStrings()
         {
-            // DH固有の研究特性
+            // 旅団なし
+            AddReplacedText("NAME_NONE", Resources.BrigadeNone);
+
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                // ユーザー定義のユニットクラス名
+                for (int i = 1; i <= 20; i++)
+                {
+                    AddReplacedText(string.Format("NAME_B_U{0}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
+                }
+            }
+
             if (Game.Type == GameType.DarkestHour)
             {
-                if (!Text.ContainsKey("RT_AVIONICS"))
-                {
-                    ReplacedText["RT_AVIONICS"] = Resources.SpecialityAvionics;
-                }
-                if (!Text.ContainsKey("RT_MUNITIONS"))
-                {
-                    ReplacedText["RT_MUNITIONS"] = Resources.SpecialityMunitions;
-                }
-                if (!Text.ContainsKey("RT_VEHICLE_ENGINEERING"))
-                {
-                    ReplacedText["RT_VEHICLE_ENGINEERING"] = Resources.SpecialityVehicleEngineering;
-                }
-                if (!Text.ContainsKey("RT_CARRIER_DESIGN"))
-                {
-                    ReplacedText["RT_CARRIER_DESIGN"] = Resources.SpecialityCarrierDesign;
-                }
-                if (!Text.ContainsKey("RT_SUBMARINE_DESIGN"))
-                {
-                    ReplacedText["RT_SUBMARINE_DESIGN"] = Resources.SpecialitySubmarineDesign;
-                }
-                if (!Text.ContainsKey("RT_FIGHTER_DESIGN"))
-                {
-                    ReplacedText["RT_FIGHTER_DESIGN"] = Resources.SpecialityFighterDesign;
-                }
-                if (!Text.ContainsKey("RT_BOMBER_DESIGN"))
-                {
-                    ReplacedText["RT_BOMBER_DESIGN"] = Resources.SpecialityBomberDesign;
-                }
-                if (!Text.ContainsKey("RT_MOUNTAIN_TRAINING"))
-                {
-                    ReplacedText["RT_MOUNTAIN_TRAINING"] = Resources.SpecialityMountainTraining;
-                }
-                if (!Text.ContainsKey("RT_AIRBORNE_TRAINING"))
-                {
-                    ReplacedText["RT_AIRBORNE_TRAINING"] = Resources.SpecialityAirborneTraining;
-                }
-                if (!Text.ContainsKey("RT_MARINE_TRAINING"))
-                {
-                    ReplacedText["RT_MARINE_TRAINING"] = Resources.SpecialityMarineTraining;
-                }
-                if (!Text.ContainsKey("RT_MANEUVER_TACTICS"))
-                {
-                    ReplacedText["RT_MANEUVER_TACTICS"] = Resources.SpecialityManeuverTactics;
-                }
-                if (!Text.ContainsKey("RT_BLITZKRIEG_TACTICS"))
-                {
-                    ReplacedText["RT_BLITZKRIEG_TACTICS"] = Resources.SpecialityBlitzkriegTactics;
-                }
-                if (!Text.ContainsKey("RT_STATIC_DEFENSE_TACTICS"))
-                {
-                    ReplacedText["RT_STATIC_DEFENSE_TACTICS"] = Resources.SpecialityStaticDefenseTactics;
-                }
-                if (!Text.ContainsKey("RT_MEDICINE"))
-                {
-                    ReplacedText["RT_MEDICINE"] = Resources.SpecialityMedicine;
-                }
-                if (!Text.ContainsKey("RT_CAVALRY_TACTICS"))
-                {
-                    ReplacedText["RT_CAVALRY_TACTICS"] = Resources.SpecialityCavalryTactics;
-                }
-                // ユーザー定義
+                // DH固有の研究特性
+                AddReplacedText("RT_AVIONICS", Resources.SpecialityAvionics);
+                AddReplacedText("RT_MUNITIONS", Resources.SpecialityMunitions);
+                AddReplacedText("RT_VEHICLE_ENGINEERING", Resources.SpecialityVehicleEngineering);
+                AddReplacedText("RT_CARRIER_DESIGN", Resources.SpecialityCarrierDesign);
+                AddReplacedText("RT_SUBMARINE_DESIGN", Resources.SpecialitySubmarineDesign);
+                AddReplacedText("RT_FIGHTER_DESIGN", Resources.SpecialityFighterDesign);
+                AddReplacedText("RT_BOMBER_DESIGN", Resources.SpecialityBomberDesign);
+                AddReplacedText("RT_MOUNTAIN_TRAINING", Resources.SpecialityMountainTraining);
+                AddReplacedText("RT_AIRBORNE_TRAINING", Resources.SpecialityAirborneTraining);
+                AddReplacedText("RT_MARINE_TRAINING", Resources.SpecialityMarineTraining);
+                AddReplacedText("RT_MANEUVER_TACTICS", Resources.SpecialityManeuverTactics);
+                AddReplacedText("RT_BLITZKRIEG_TACTICS", Resources.SpecialityBlitzkriegTactics);
+                AddReplacedText("RT_STATIC_DEFENSE_TACTICS", Resources.SpecialityStaticDefenseTactics);
+                AddReplacedText("RT_MEDICINE", Resources.SpecialityMedicine);
+                AddReplacedText("RT_CAVALRY_TACTICS", Resources.SpecialityCavalryTactics);
+
+                // ユーザー定義の研究特性
                 for (int i = 1; i <= 60; i++)
                 {
-                    string key = string.Format("RT_USER{0}", i);
-                    if (!Text.ContainsKey(key))
-                    {
-                        ReplacedText[key] = string.Format("{0}{1}", Resources.SpecialityUser, i);
-                    }
+                    AddReplacedText(string.Format("RT_USER{0}", i), string.Format("{0}{1}", Resources.SpecialityUser, i));
+                }
+
+                // DH固有のユニットクラス名
+                AddReplacedText("NAME_LIGHT_CARRIER", Resources.DivisionLightCarrier);
+                AddReplacedText("NAME_ROCKET_INTERCEPTOR", Resources.DivisionRocketInterceptor);
+                AddReplacedText("NAME_CAVALRY_BRIGADE", Resources.BrigadeCavalry);
+                AddReplacedText("NAME_SP_ANTI_AIR", Resources.BrigadeSpAntiAir);
+                AddReplacedText("NAME_MEDIUM_ARMOR", Resources.BrigadeMediumTank);
+                AddReplacedText("NAME_FLOATPLANE", Resources.BrigadeFloatPlane);
+                AddReplacedText("NAME_LCAG", Resources.BrigadeLightCarrierAirGroup);
+                AddReplacedText("NAME_AMPH_LIGHT_ARMOR_BRIGADE", Resources.BrigadeAmphibiousLightArmor);
+                AddReplacedText("NAME_GLI_LIGHT_ARMOR_BRIGADE", Resources.BrigadeGliderLightArmor);
+                AddReplacedText("NAME_GLI_LIGHT_ARTILLERY", Resources.BrigadeGliderLightArtillery);
+                AddReplacedText("NAME_SH_ARTILLERY", Resources.BrigadeSuperHeavyArtillery);
+
+                // ユーザー定義のユニットクラス名
+                for (int i = 33; i <= 40; i++)
+                {
+                    AddReplacedText(string.Format("NAME_D_RSV_{0}", i),
+                                    string.Format("{0}{1}", Resources.DivisionReserved, i));
+                }
+                for (int i = 36; i <= 40; i++)
+                {
+                    AddReplacedText(string.Format("NAME_B_RSV_{0}", i),
+                                    string.Format("{0}{1}", Resources.BrigadeReserved, i));
+                }
+                for (int i = 1; i <= 99; i++)
+                {
+                    AddReplacedText(string.Format("NAME_D_{0:D2}", i),
+                                    string.Format("{0}{1}", Resources.DivisionUser, i));
+                    AddReplacedText(string.Format("NAME_B_{0:D2}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
             }
         }
@@ -652,26 +725,25 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     編集フラグを設定する
+        ///     編集済みフラグを更新する
         /// </summary>
         /// <param name="fileName">文字列定義ファイル名</param>
-        public static void SetDirtyFlag(string fileName)
+        /// <param name="flag">フラグ状態</param>
+        public static void SetDirty(string fileName, bool flag)
         {
-            if (!DirtyFiles.Contains(fileName))
+            if (flag)
             {
-                DirtyFiles.Add(fileName);
+                if (!DirtyFiles.Contains(fileName))
+                {
+                    DirtyFiles.Add(fileName);
+                }
             }
-        }
-
-        /// <summary>
-        ///     編集フラグをクリアする
-        /// </summary>
-        /// <param name="fileName">文字列定義ファイル名</param>
-        public static void ClearDirtyFlag(string fileName)
-        {
-            if (DirtyFiles.Contains(fileName))
+            else
             {
-                DirtyFiles.Remove(fileName);
+                if (DirtyFiles.Contains(fileName))
+                {
+                    DirtyFiles.Remove(fileName);
+                }
             }
         }
     }
@@ -681,7 +753,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum Languages
     {
-        Japanese,
         English,
         French,
         Italian,
@@ -692,5 +763,6 @@ namespace HoI2Editor.Models
         Russian,
         Extra1,
         Extra2,
+        Japanese,
     }
 }

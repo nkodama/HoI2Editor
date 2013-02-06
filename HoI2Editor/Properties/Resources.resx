@@ -271,7 +271,7 @@
     <value>Submarine Design</value>
   </data>
   <data name="SpecialityUser" xml:space="preserve">
-    <value>User tech component </value>
+    <value>User Tech Speciality </value>
   </data>
   <data name="SpecialityVehicleEngineering" xml:space="preserve">
     <value>Vehicle Engineering</value>
@@ -317,5 +317,83 @@
   </data>
   <data name="BrigadeNone" xml:space="preserve">
     <value>None</value>
+  </data>
+  <data name="BrigadeAmphibiousLightArmor" xml:space="preserve">
+    <value>Amphibious Light Armor</value>
+  </data>
+  <data name="BrigadeCavalry" xml:space="preserve">
+    <value>Cavalry</value>
+  </data>
+  <data name="BrigadeFloatPlane" xml:space="preserve">
+    <value>Floatplane</value>
+  </data>
+  <data name="BrigadeGliderLightArmor" xml:space="preserve">
+    <value>Light Glider Armor</value>
+  </data>
+  <data name="BrigadeGliderLightArtillery" xml:space="preserve">
+    <value>Light Glider Artillery</value>
+  </data>
+  <data name="BrigadeLightCarrierAirGroup" xml:space="preserve">
+    <value>Light Carrier Air Group</value>
+  </data>
+  <data name="BrigadeMediumTank" xml:space="preserve">
+    <value>Medium-tank Brigade</value>
+  </data>
+  <data name="BrigadeReserved" xml:space="preserve">
+    <value>Reserved Brigade </value>
+  </data>
+  <data name="BrigadeSpAntiAir" xml:space="preserve">
+    <value>Self-Propelled Anti-aircraft</value>
+  </data>
+  <data name="BrigadeSuperHeavyArtillery" xml:space="preserve">
+    <value>Super Heavy Artillery</value>
+  </data>
+  <data name="BrigadeUser" xml:space="preserve">
+    <value>User Brigade </value>
+  </data>
+  <data name="DivisionLightCarrier" xml:space="preserve">
+    <value>Light Carrier</value>
+  </data>
+  <data name="DivisionReserved" xml:space="preserve">
+    <value>Reserved Division </value>
+  </data>
+  <data name="DivisionRocketInterceptor" xml:space="preserve">
+    <value>Rocket Interceptors</value>
+  </data>
+  <data name="DivisionUser" xml:space="preserve">
+    <value>User Division </value>
+  </data>
+  <data name="LanguageEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LanguageExtra1" xml:space="preserve">
+    <value>Extra1</value>
+  </data>
+  <data name="LanguageExtra2" xml:space="preserve">
+    <value>Extra2</value>
+  </data>
+  <data name="LanguageFrench" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="LanguageGerman" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="LanguageItalian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="LanguageJapanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="LanguagePolish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="LanguagePortuguese" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="LanguageRussian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="LanguageSpanish" xml:space="preserve">
+    <value>Español</value>
   </data>
 </root>

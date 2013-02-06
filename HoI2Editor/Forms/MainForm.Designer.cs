@@ -154,9 +154,6 @@
             // 
             this.encodingComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.encodingComboBox.FormattingEnabled = true;
-            this.encodingComboBox.Items.AddRange(new object[] {
-            resources.GetString("encodingComboBox.Items"),
-            resources.GetString("encodingComboBox.Items1")});
             resources.ApplyResources(this.encodingComboBox, "encodingComboBox");
             this.encodingComboBox.Name = "encodingComboBox";
             this.encodingComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnEncodingComboBoxSelectionChangeCommitted);
