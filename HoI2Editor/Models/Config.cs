@@ -12,33 +12,28 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     言語の最大数
         /// </summary>
-        /// <remarks>
-        ///     設定可能な言語は11種類あるが、日本語は英語の位置の置き換えになるため-1する
-        /// </remarks>
         private const int MaxLanguages = 10;
 
         /// <summary>
         ///     言語名文字列
         /// </summary>
-        public static readonly string[] LanguageStrings =
+        public static readonly string[][] LanguageStrings =
             {
-                Resources.LanguageEnglish,
-                Resources.LanguageFrench,
-                Resources.LanguageItalian,
-                Resources.LanguageSpanish,
-                Resources.LanguageGerman,
-                Resources.LanguagePolish,
-                Resources.LanguagePortuguese,
-                Resources.LanguageRussian,
-                Resources.LanguageExtra1,
-                Resources.LanguageExtra2,
-                Resources.LanguageJapanese
+                new[] {Resources.LanguageJapanese},
+                new[]
+                    {
+                        Resources.LanguageEnglish, Resources.LanguageFrench, Resources.LanguageItalian,
+                        Resources.LanguageSpanish, Resources.LanguageGerman, Resources.LanguagePolish,
+                        Resources.LanguagePortuguese, Resources.LanguageRussian, Resources.LanguageExtra1,
+                        Resources.LanguageExtra2
+                    },
+                new[] {Resources.LanguageJapanese, Resources.LanguageEnglish}
             };
 
         /// <summary>
-        ///     日本語環境か
+        ///     言語モード
         /// </summary>
-        public static bool IsJapanese = true;
+        public static LanguageMode LangMode;
 
         /// <summary>
         ///     言語インデックス
@@ -47,7 +42,7 @@ namespace HoI2Editor.Models
         ///     日本語環境ならば先頭言語が日本語、その次が英語(英語版日本語化の場合)で残りは空
         ///     日本語環境でなければ、英仏伊西独波葡露Extra1/2の順
         /// </remarks>
-        public static int LanguageIndex = 0;
+        public static int LangIndex = 0;
 
         /// <summary>
         ///     文字列変換テーブル
@@ -122,13 +117,13 @@ namespace HoI2Editor.Models
             // 置き換え文字列変換テーブルに登録されていれば優先して参照する
             if (ReplacedText.ContainsKey(key))
             {
-                return ReplacedText[key][LanguageIndex];
+                return ReplacedText[key][LangIndex];
             }
 
             // 文字列変換テーブルに登録されていれば参照する
             if (Text.ContainsKey(key))
             {
-                return Text[key][LanguageIndex];
+                return Text[key][LangIndex];
             }
 
             // テーブルに登録されていなければ定義名を返す
@@ -163,7 +158,7 @@ namespace HoI2Editor.Models
             }
 
             // 文字列変換テーブルの文字列を変更する
-            Text[key][LanguageIndex] = text;
+            Text[key][LangIndex] = text;
         }
 
         /// <summary>
@@ -263,7 +258,7 @@ namespace HoI2Editor.Models
 
             // 置き換え文字列変換テーブルに登録する
             ReplacedText[key] = new string[MaxLanguages];
-            ReplacedText[key][LanguageIndex] = text;
+            ReplacedText[key][LangIndex] = text;
         }
 
         /// <summary>
@@ -749,9 +744,19 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
+    ///     言語モード
+    /// </summary>
+    public enum LanguageMode
+    {
+        Japanese, // 日本語版
+        English, // 英語版
+        PatchedJapanese, // 英語版日本語化
+    }
+
+    /// <summary>
     ///     言語コード
     /// </summary>
-    public enum Languages
+    public enum LanguageCode
     {
         English,
         French,

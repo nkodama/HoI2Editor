@@ -42,8 +42,8 @@
             this.gameFolderReferButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.modFolderReferButton = new System.Windows.Forms.Button();
-            this.encodingLabel = new System.Windows.Forms.Label();
-            this.encodingComboBox = new System.Windows.Forms.ComboBox();
+            this.languageLabel = new System.Windows.Forms.Label();
+            this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.optionGroupBox = new System.Windows.Forms.GroupBox();
             this.logCheckBox = new System.Windows.Forms.CheckBox();
             this.editGroupBox.SuspendLayout();
@@ -145,25 +145,25 @@
             this.modFolderReferButton.UseVisualStyleBackColor = true;
             this.modFolderReferButton.Click += new System.EventHandler(this.OnModFolderReferButtonClick);
             // 
-            // encodingLabel
+            // languageLabel
             // 
-            resources.ApplyResources(this.encodingLabel, "encodingLabel");
-            this.encodingLabel.Name = "encodingLabel";
+            resources.ApplyResources(this.languageLabel, "languageLabel");
+            this.languageLabel.Name = "languageLabel";
             // 
-            // encodingComboBox
+            // languageComboBox
             // 
-            this.encodingComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.encodingComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.encodingComboBox, "encodingComboBox");
-            this.encodingComboBox.Name = "encodingComboBox";
-            this.encodingComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnEncodingComboBoxSelectionChangeCommitted);
+            this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.languageComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
+            this.languageComboBox.Name = "languageComboBox";
+            this.languageComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnLanguageComboBoxSelectionChangeCommitted);
             // 
             // optionGroupBox
             // 
             resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Controls.Add(this.logCheckBox);
-            this.optionGroupBox.Controls.Add(this.encodingComboBox);
-            this.optionGroupBox.Controls.Add(this.encodingLabel);
+            this.optionGroupBox.Controls.Add(this.languageComboBox);
+            this.optionGroupBox.Controls.Add(this.languageLabel);
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
             // 
@@ -210,8 +210,8 @@
         private System.Windows.Forms.Button teamButton;
         private System.Windows.Forms.Button leaderButton;
         private System.Windows.Forms.Button modFolderReferButton;
-        private System.Windows.Forms.Label encodingLabel;
-        private System.Windows.Forms.ComboBox encodingComboBox;
+        private System.Windows.Forms.Label languageLabel;
+        private System.Windows.Forms.ComboBox languageComboBox;
         private System.Windows.Forms.GroupBox optionGroupBox;
         private System.Windows.Forms.CheckBox logCheckBox;
         private System.Windows.Forms.Button techButton;

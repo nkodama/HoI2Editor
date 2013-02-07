@@ -30,18 +30,23 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMainFormLoad(object sender, EventArgs e)
         {
-            // バージョン名を設定する
+            // バージョン文字列を更新する
             UpdateVersion();
+
+            // 言語を初期化する
+            Config.LangMode = Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP"))
+                                  ? LanguageMode.Japanese
+                                  : LanguageMode.English;
 
             // 初期状態のゲームフォルダ名を設定する
             gameFolderTextBox.Text = Game.FolderName;
 
-            // エンコードを初期化する
-            InitEncoding();
+            // 言語リストを更新する
+            UpdateLanguage();
         }
 
         /// <summary>
-        ///     バージョン名を更新する
+        ///     バージョン文字列を更新する
         /// </summary>
         private void UpdateVersion()
         {
@@ -60,21 +65,19 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     エンコードを初期化する
+        ///     言語リストを更新する
         /// </summary>
-        private void InitEncoding()
+        private void UpdateLanguage()
         {
-            // エンコード文字列を登録する
-            encodingComboBox.BeginUpdate();
-            foreach (string s in Config.LanguageStrings)
+            // 言語文字列を登録する
+            languageComboBox.BeginUpdate();
+            languageComboBox.Items.Clear();
+            foreach (string s in Config.LanguageStrings[(int) Config.LangMode])
             {
-                encodingComboBox.Items.Add(s);
+                languageComboBox.Items.Add(s);
             }
-            encodingComboBox.EndUpdate();
-
-            // 初期エンコードを設定する
-            encodingComboBox.SelectedIndex =
-                Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP")) ? 10 : 0;
+            languageComboBox.EndUpdate();
+            languageComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -113,8 +116,19 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGameFolderTextBoxTextChanged(object sender, EventArgs e)
         {
+            // 言語モードを記憶する
+            LanguageMode prev = Config.LangMode;
+
+            // ゲームフォルダ名を変更する
             Game.FolderName = gameFolderTextBox.Text;
 
+            // 言語モードが変更されたら言語リストを更新する
+            if (Config.LangMode != prev)
+            {
+                UpdateLanguage();
+            }
+
+            // ゲームフォルダ名が有効ならばデータ編集を有効化する
             editGroupBox.Enabled = Game.IsGameFolderActive;
         }
 
@@ -199,41 +213,31 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     エンコード変更時の処理
+        ///     言語変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnEncodingComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        private void OnLanguageComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
-            switch (encodingComboBox.SelectedIndex)
+            // 言語インデックスを更新する
+            Config.LangIndex = languageComboBox.SelectedIndex;
+
+            // コードページを設定する
+            switch (Config.LangMode)
             {
-                case 0: // 英語
-                case 1: // フランス語
-                case 2: // イタリア語
-                case 3: // スペイン語
-                case 4: // ドイツ語
-                case 5: // ポーランド語
-                case 6: // ポルトガル語
-                case 8: // Extra1
-                case 9: // Extra2
-                    Game.CodePage = 1252;
-                    Config.LanguageIndex = encodingComboBox.SelectedIndex;
-                    break;
-
-                case 7: // ロシア語
-                    Game.CodePage = 1251;
-                    Config.LanguageIndex = encodingComboBox.SelectedIndex;
-                    break;
-
-                case 10: // 日本語
+                case LanguageMode.Japanese:
+                    // 日本語は932
                     Game.CodePage = 932;
-                    Config.LanguageIndex = 0;
                     break;
 
-                default:
-                    // 不明な値の場合は英語として扱う
-                    Game.CodePage = 1252;
-                    Config.LanguageIndex = 0;
+                case LanguageMode.English:
+                    // ロシア語は1251/それ以外は1252
+                    Game.CodePage = languageComboBox.SelectedIndex == 7 ? 1251 : 1252;
+                    break;
+
+                case LanguageMode.PatchedJapanese:
+                    // 日本語は932/それ以外は1252
+                    Game.CodePage = languageComboBox.SelectedIndex == 0 ? 932 : 1252;
                     break;
             }
         }

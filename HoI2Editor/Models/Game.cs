@@ -207,6 +207,9 @@ namespace HoI2Editor.Models
                 // ゲームのバージョンを判別する
                 DistinguishGameVersion();
 
+                // 言語モードを判別する
+                DistinguishLanguageMode();
+
                 // MODフォルダ名を更新する
                 UpdateModFolderName();
 
@@ -395,6 +398,48 @@ namespace HoI2Editor.Models
             }
             Version = (info.ProductVersion[0] - '0')*100 + (info.ProductVersion[2] - '0')*10 +
                       (info.ProductVersion[3] - '0');
+        }
+
+        /// <summary>
+        ///     言語モードを自動判別する
+        /// </summary>
+        private static void DistinguishLanguageMode()
+        {
+            // ゲームフォルダ名が設定されていなければ判別しない
+            if (string.IsNullOrEmpty(FolderName))
+            {
+                return;
+            }
+
+            // ゲームフォルダが存在しなければ判別しない
+            if (!Directory.Exists(FolderName))
+            {
+                return;
+            }
+
+            // ゲームの種類が不明ならば判別しない
+            if (Type == GameType.None)
+            {
+                return;
+            }
+
+            // _inmm.dllが存在すれば英語版日本語化
+            if (File.Exists(Path.Combine(FolderName, "_inmm.dll")))
+            {
+                Config.LangMode = LanguageMode.PatchedJapanese;
+                return;
+            }
+
+            // DoomsdayJP.exe(HoI2)/cyberfront.url(AoD)が存在すれば日本語版
+            if (File.Exists(Path.Combine(FolderName, "DoomsdayJP.exe")) ||
+                File.Exists(Path.Combine(FolderName, "cyberfront.url")))
+            {
+                Config.LangMode = LanguageMode.Japanese;
+                return;
+            }
+
+            // それ以外は英語版
+            Config.LangMode = LanguageMode.English;
         }
 
         /// <summary>
