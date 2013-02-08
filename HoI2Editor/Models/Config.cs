@@ -55,9 +55,19 @@ namespace HoI2Editor.Models
         /// <remarks>
         ///     登録した文字列はTextよりも優先して参照される。
         ///     ファイルに書き出される時には無視される。
-        ///     エディタ内部で文字列を修正/補完したい時に使用する。
+        ///     エディタ内部で重複文字列を修正したい時に使用する。
         /// </remarks>
         private static readonly Dictionary<string, string[]> ReplacedText = new Dictionary<string, string[]>();
+
+        /// <summary>
+        /// 補完文字列変換テーブル
+        /// </summary>
+        /// <remarks>
+        ///     登録した文字列はTextに定義が存在しない時に参照される。
+        ///     ファイルに書き出される時には無視される。
+        ///     エディタ内部で文字列を補完したい時に使用する。
+        /// </remarks>
+        private static readonly Dictionary<string, string[]> ComplementedText = new Dictionary<string, string[]>(); 
 
         /// <summary>
         ///     文字列定義順リストテーブル
@@ -124,6 +134,12 @@ namespace HoI2Editor.Models
             if (Text.ContainsKey(key))
             {
                 return Text[key][LangIndex];
+            }
+
+            // 補完文字列変換テーブルに登録されていれば参照する
+            if (ComplementedText.ContainsKey(key))
+            {
+                return ComplementedText[key][LangIndex];
             }
 
             // テーブルに登録されていなければ定義名を返す
@@ -250,15 +266,27 @@ namespace HoI2Editor.Models
         /// <param name="text">登録する文字列</param>
         private static void AddReplacedText(string key, string text)
         {
+            // 置き換え文字列変換テーブルに登録する
+            ReplacedText[key] = new string[MaxLanguages];
+            ReplacedText[key][LangIndex] = text;
+        }
+
+        /// <summary>
+        /// 補完文字列変換テーブルに登録する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="text">登録する文字列</param>
+        private static void AddComplementedText(string key, string text)
+        {
             // 登録文字列があれば何もしない
             if (Text.ContainsKey(key))
             {
                 return;
             }
 
-            // 置き換え文字列変換テーブルに登録する
-            ReplacedText[key] = new string[MaxLanguages];
-            ReplacedText[key][LangIndex] = text;
+            // 補完文字列変換テーブルに登録する
+            ComplementedText[key] = new string[MaxLanguages];
+            ComplementedText[key][LangIndex] = text;
         }
 
         /// <summary>
@@ -372,7 +400,10 @@ namespace HoI2Editor.Models
                 }
             }
 
+            // 重複文字列を置き換える
             ModifyDuplicatedStrings();
+
+            // 不足している文字列を補完する
             AddInsufficientStrings();
 
             _loaded = true;
@@ -611,25 +642,25 @@ namespace HoI2Editor.Models
             // 決戦ドクトリン: 陸軍総司令官/海軍総司令官
             if (ExistsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE") &&
                 ExistsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2") &&
-                Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"].Equals(Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"]))
+                GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE").Equals(GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2")))
             {
                 AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE",
-                                string.Format("{0}({1})", Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"],
+                                string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"),
                                               Resources.BranchArmy));
                 AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2",
-                                string.Format("{0}({1})", Text["NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"],
+                                string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"),
                                               Resources.BranchNavy));
             }
 
             // 偏執的誇大妄想家: ヒトラー/スターリン
             if (ExistsKey("NPERSONALITY_HITLER") &&
                 ExistsKey("NPERSONALITY_STALIN") &&
-                Text["NPERSONALITY_HITLER"].Equals(Text["NPERSONALITY_STALIN"]))
+                GetText("NPERSONALITY_HITLER").Equals(GetText("NPERSONALITY_STALIN")))
             {
                 AddReplacedText("NPERSONALITY_HITLER",
-                                string.Format("{0}({1})", Text["NPERSONALITY_HITLER"], Resources.Hitler));
+                                string.Format("{0}({1})", GetText("NPERSONALITY_HITLER"), Resources.Hitler));
                 AddReplacedText("NPERSONALITY_STALIN",
-                                string.Format("{0}({1})", Text["NPERSONALITY_STALIN"], Resources.Stalin));
+                                string.Format("{0}({1})", GetText("NPERSONALITY_STALIN"), Resources.Stalin));
             }
         }
 
@@ -639,78 +670,78 @@ namespace HoI2Editor.Models
         private static void AddInsufficientStrings()
         {
             // 旅団なし
-            AddReplacedText("NAME_NONE", Resources.BrigadeNone);
+            AddComplementedText("NAME_NONE", Resources.BrigadeNone);
 
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
                 // ユーザー定義のユニットクラス名
                 for (int i = 1; i <= 20; i++)
                 {
-                    AddReplacedText(string.Format("NAME_B_U{0}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
+                    AddComplementedText(string.Format("NAME_B_U{0}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
             }
 
             if (Game.Type == GameType.DarkestHour)
             {
                 // DH固有の研究特性
-                AddReplacedText("RT_AVIONICS", Resources.SpecialityAvionics);
-                AddReplacedText("RT_MUNITIONS", Resources.SpecialityMunitions);
-                AddReplacedText("RT_VEHICLE_ENGINEERING", Resources.SpecialityVehicleEngineering);
-                AddReplacedText("RT_CARRIER_DESIGN", Resources.SpecialityCarrierDesign);
-                AddReplacedText("RT_SUBMARINE_DESIGN", Resources.SpecialitySubmarineDesign);
-                AddReplacedText("RT_FIGHTER_DESIGN", Resources.SpecialityFighterDesign);
-                AddReplacedText("RT_BOMBER_DESIGN", Resources.SpecialityBomberDesign);
-                AddReplacedText("RT_MOUNTAIN_TRAINING", Resources.SpecialityMountainTraining);
-                AddReplacedText("RT_AIRBORNE_TRAINING", Resources.SpecialityAirborneTraining);
-                AddReplacedText("RT_MARINE_TRAINING", Resources.SpecialityMarineTraining);
-                AddReplacedText("RT_MANEUVER_TACTICS", Resources.SpecialityManeuverTactics);
-                AddReplacedText("RT_BLITZKRIEG_TACTICS", Resources.SpecialityBlitzkriegTactics);
-                AddReplacedText("RT_STATIC_DEFENSE_TACTICS", Resources.SpecialityStaticDefenseTactics);
-                AddReplacedText("RT_MEDICINE", Resources.SpecialityMedicine);
-                AddReplacedText("RT_CAVALRY_TACTICS", Resources.SpecialityCavalryTactics);
+                AddComplementedText("RT_AVIONICS", Resources.SpecialityAvionics);
+                AddComplementedText("RT_MUNITIONS", Resources.SpecialityMunitions);
+                AddComplementedText("RT_VEHICLE_ENGINEERING", Resources.SpecialityVehicleEngineering);
+                AddComplementedText("RT_CARRIER_DESIGN", Resources.SpecialityCarrierDesign);
+                AddComplementedText("RT_SUBMARINE_DESIGN", Resources.SpecialitySubmarineDesign);
+                AddComplementedText("RT_FIGHTER_DESIGN", Resources.SpecialityFighterDesign);
+                AddComplementedText("RT_BOMBER_DESIGN", Resources.SpecialityBomberDesign);
+                AddComplementedText("RT_MOUNTAIN_TRAINING", Resources.SpecialityMountainTraining);
+                AddComplementedText("RT_AIRBORNE_TRAINING", Resources.SpecialityAirborneTraining);
+                AddComplementedText("RT_MARINE_TRAINING", Resources.SpecialityMarineTraining);
+                AddComplementedText("RT_MANEUVER_TACTICS", Resources.SpecialityManeuverTactics);
+                AddComplementedText("RT_BLITZKRIEG_TACTICS", Resources.SpecialityBlitzkriegTactics);
+                AddComplementedText("RT_STATIC_DEFENSE_TACTICS", Resources.SpecialityStaticDefenseTactics);
+                AddComplementedText("RT_MEDICINE", Resources.SpecialityMedicine);
+                AddComplementedText("RT_CAVALRY_TACTICS", Resources.SpecialityCavalryTactics);
 
                 // ユーザー定義の研究特性
                 for (int i = 1; i <= 60; i++)
                 {
-                    AddReplacedText(string.Format("RT_USER{0}", i), string.Format("{0}{1}", Resources.SpecialityUser, i));
+                    AddComplementedText(string.Format("RT_USER{0}", i), string.Format("{0}{1}", Resources.SpecialityUser, i));
                 }
 
                 // DH固有のユニットクラス名
-                AddReplacedText("NAME_LIGHT_CARRIER", Resources.DivisionLightCarrier);
-                AddReplacedText("NAME_ROCKET_INTERCEPTOR", Resources.DivisionRocketInterceptor);
-                AddReplacedText("NAME_CAVALRY_BRIGADE", Resources.BrigadeCavalry);
-                AddReplacedText("NAME_SP_ANTI_AIR", Resources.BrigadeSpAntiAir);
-                AddReplacedText("NAME_MEDIUM_ARMOR", Resources.BrigadeMediumTank);
-                AddReplacedText("NAME_FLOATPLANE", Resources.BrigadeFloatPlane);
-                AddReplacedText("NAME_LCAG", Resources.BrigadeLightCarrierAirGroup);
-                AddReplacedText("NAME_AMPH_LIGHT_ARMOR_BRIGADE", Resources.BrigadeAmphibiousLightArmor);
-                AddReplacedText("NAME_GLI_LIGHT_ARMOR_BRIGADE", Resources.BrigadeGliderLightArmor);
-                AddReplacedText("NAME_GLI_LIGHT_ARTILLERY", Resources.BrigadeGliderLightArtillery);
-                AddReplacedText("NAME_SH_ARTILLERY", Resources.BrigadeSuperHeavyArtillery);
+                AddComplementedText("NAME_LIGHT_CARRIER", Resources.DivisionLightCarrier);
+                AddComplementedText("NAME_ROCKET_INTERCEPTOR", Resources.DivisionRocketInterceptor);
+                AddComplementedText("NAME_CAVALRY_BRIGADE", Resources.BrigadeCavalry);
+                AddComplementedText("NAME_SP_ANTI_AIR", Resources.BrigadeSpAntiAir);
+                AddComplementedText("NAME_MEDIUM_ARMOR", Resources.BrigadeMediumTank);
+                AddComplementedText("NAME_FLOATPLANE", Resources.BrigadeFloatPlane);
+                AddComplementedText("NAME_LCAG", Resources.BrigadeLightCarrierAirGroup);
+                AddComplementedText("NAME_AMPH_LIGHT_ARMOR_BRIGADE", Resources.BrigadeAmphibiousLightArmor);
+                AddComplementedText("NAME_GLI_LIGHT_ARMOR_BRIGADE", Resources.BrigadeGliderLightArmor);
+                AddComplementedText("NAME_GLI_LIGHT_ARTILLERY", Resources.BrigadeGliderLightArtillery);
+                AddComplementedText("NAME_SH_ARTILLERY", Resources.BrigadeSuperHeavyArtillery);
 
                 // ユーザー定義のユニットクラス名
                 for (int i = 33; i <= 40; i++)
                 {
-                    AddReplacedText(string.Format("NAME_D_RSV_{0}", i),
+                    AddComplementedText(string.Format("NAME_D_RSV_{0}", i),
                                     string.Format("{0}{1}", Resources.DivisionReserved, i));
                 }
                 for (int i = 36; i <= 40; i++)
                 {
-                    AddReplacedText(string.Format("NAME_B_RSV_{0}", i),
+                    AddComplementedText(string.Format("NAME_B_RSV_{0}", i),
                                     string.Format("{0}{1}", Resources.BrigadeReserved, i));
                 }
                 for (int i = 1; i <= 99; i++)
                 {
-                    AddReplacedText(string.Format("NAME_D_{0:D2}", i),
+                    AddComplementedText(string.Format("NAME_D_{0:D2}", i),
                                     string.Format("{0}{1}", Resources.DivisionUser, i));
-                    AddReplacedText(string.Format("NAME_B_{0:D2}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
+                    AddComplementedText(string.Format("NAME_B_{0:D2}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
 
                 // DH Fullで定義されていない旅団のユニットクラス名
-                AddReplacedText("NAME_ROCKET_ARTILLERY", Resources.BrigadeRocketArtillery);
-                AddReplacedText("NAME_SP_ROCKET_ARTILLERY", Resources.BrigadeSpRocketArtillery);
-                AddReplacedText("NAME_ANTITANK", Resources.BrigadeAntiTank);
-                AddReplacedText("NAME_NAVAL_TORPEDOES_L", Resources.BrigadeNavalTorpedoesL);
+                AddComplementedText("NAME_ROCKET_ARTILLERY", Resources.BrigadeRocketArtillery);
+                AddComplementedText("NAME_SP_ROCKET_ARTILLERY", Resources.BrigadeSpRocketArtillery);
+                AddComplementedText("NAME_ANTITANK", Resources.BrigadeAntiTank);
+                AddComplementedText("NAME_NAVAL_TORPEDOES_L", Resources.BrigadeNavalTorpedoesL);
             }
         }
 
