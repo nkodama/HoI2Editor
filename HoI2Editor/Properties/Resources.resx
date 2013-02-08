@@ -396,4 +396,16 @@
   <data name="LanguageSpanish" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="BrigadeAntiTank" xml:space="preserve">
+    <value>Anti-tank Brigade</value>
+  </data>
+  <data name="BrigadeNavalTorpedoesL" xml:space="preserve">
+    <value>Capital Torpedoes</value>
+  </data>
+  <data name="BrigadeRocketArtillery" xml:space="preserve">
+    <value>Rocket Artillery</value>
+  </data>
+  <data name="BrigadeSpRocketArtillery" xml:space="preserve">
+    <value>Self-Propelled Rocket Artillery</value>
+  </data>
 </root>

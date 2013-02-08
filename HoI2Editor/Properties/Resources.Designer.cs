@@ -97,6 +97,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Anti-tank Brigade に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeAntiTank {
+            get {
+                return ResourceManager.GetString("BrigadeAntiTank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cavalry に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string BrigadeCavalry {
@@ -151,6 +160,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Capital Torpedoes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeNavalTorpedoesL {
+            get {
+                return ResourceManager.GetString("BrigadeNavalTorpedoesL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   None に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string BrigadeNone {
@@ -169,11 +187,29 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Rocket Artillery に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeRocketArtillery {
+            get {
+                return ResourceManager.GetString("BrigadeRocketArtillery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Self-Propelled Anti-aircraft に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string BrigadeSpAntiAir {
             get {
                 return ResourceManager.GetString("BrigadeSpAntiAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Self-Propelled Rocket Artillery に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BrigadeSpRocketArtillery {
+            get {
+                return ResourceManager.GetString("BrigadeSpRocketArtillery", resourceCulture);
             }
         }
         

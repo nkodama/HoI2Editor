@@ -129,6 +129,9 @@
   <data name="BrigadeAmphibiousLightArmor" xml:space="preserve">
     <value>水陸両用戦車旅団</value>
   </data>
+  <data name="BrigadeAntiTank" xml:space="preserve">
+    <value>対戦車兵旅団</value>
+  </data>
   <data name="BrigadeCavalry" xml:space="preserve">
     <value>騎兵旅団</value>
   </data>
@@ -147,14 +150,23 @@
   <data name="BrigadeMediumTank" xml:space="preserve">
     <value>中戦車旅団</value>
   </data>
+  <data name="BrigadeNavalTorpedoesL" xml:space="preserve">
+    <value>主力艦魚雷</value>
+  </data>
   <data name="BrigadeNone" xml:space="preserve">
     <value>旅団なし</value>
   </data>
   <data name="BrigadeReserved" xml:space="preserve">
     <value>予約旅団</value>
   </data>
+  <data name="BrigadeRocketArtillery" xml:space="preserve">
+    <value>ロケット砲</value>
+  </data>
   <data name="BrigadeSpAntiAir" xml:space="preserve">
     <value>自走対空砲旅団</value>
+  </data>
+  <data name="BrigadeSpRocketArtillery" xml:space="preserve">
+    <value>自走ロケット砲</value>
   </data>
   <data name="BrigadeSuperHeavyArtillery" xml:space="preserve">
     <value>超重砲旅団</value>

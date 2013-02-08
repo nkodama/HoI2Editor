@@ -705,6 +705,12 @@ namespace HoI2Editor.Models
                                     string.Format("{0}{1}", Resources.DivisionUser, i));
                     AddReplacedText(string.Format("NAME_B_{0:D2}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
+
+                // DH Fullで定義されていない旅団のユニットクラス名
+                AddReplacedText("NAME_ROCKET_ARTILLERY", Resources.BrigadeRocketArtillery);
+                AddReplacedText("NAME_SP_ROCKET_ARTILLERY", Resources.BrigadeSpRocketArtillery);
+                AddReplacedText("NAME_ANTITANK", Resources.BrigadeAntiTank);
+                AddReplacedText("NAME_NAVAL_TORPEDOES_L", Resources.BrigadeNavalTorpedoesL);
             }
         }
 
