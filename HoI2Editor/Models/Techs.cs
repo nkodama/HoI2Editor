@@ -308,7 +308,7 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                 }
             }
 
@@ -349,7 +349,7 @@ namespace HoI2Editor.Models
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.Error);
+                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     }
                 }
             }

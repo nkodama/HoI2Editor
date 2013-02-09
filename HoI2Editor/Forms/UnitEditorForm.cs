@@ -90,12 +90,12 @@ namespace HoI2Editor.Forms
             }
             allowedBrigadesDummyColumnHeader.Width = maxWidth;
 
-            // 生産ユニット種類コンボボックス
+            // 実ユニット種類コンボボックス
             maxWidth = realUnitTypeComboBox.DropDownWidth;
             realUnitTypeComboBox.Items.Clear();
             foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
             {
-                string s = Units.RealStringTable[(int) type];
+                string s = Config.GetText(Units.RealNames[(int) type]);
                 realUnitTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
                                     TextRenderer.MeasureText(s, realUnitTypeComboBox.Font).Width +
@@ -108,7 +108,7 @@ namespace HoI2Editor.Forms
             spriteTypeComboBox.Items.Clear();
             foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
             {
-                string s = Units.SpriteStringTable[(int) type];
+                string s = Config.GetText(Units.SpriteNames[(int) type]);
                 spriteTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
                                     TextRenderer.MeasureText(s, spriteTypeComboBox.Font).Width +
@@ -119,7 +119,7 @@ namespace HoI2Editor.Forms
             // 代替ユニット種類コンボボックス
             maxWidth = transmuteComboBox.DropDownWidth;
             transmuteComboBox.Items.Clear();
-            foreach (UnitType type in Units.Types)
+            foreach (UnitType type in Units.DivisionTypes)
             {
                 string s = Config.GetText(Units.List[(int) type].Name);
                 transmuteComboBox.Items.Add(s);
@@ -132,7 +132,7 @@ namespace HoI2Editor.Forms
             // 更新ユニット種類コンボボックス
             maxWidth = upgradeTypeComboBox.DropDownWidth;
             upgradeTypeComboBox.Items.Clear();
-            foreach (UnitType type in Units.Types)
+            foreach (UnitType type in Units.DivisionTypes)
             {
                 string s = Config.GetText(Units.List[(int) type].Name);
                 upgradeTypeComboBox.Items.Add(s);
@@ -141,6 +141,11 @@ namespace HoI2Editor.Forms
                                     SystemInformation.VerticalScrollBarWidth);
             }
             upgradeTypeComboBox.DropDownWidth = maxWidth;
+
+            // チェックボックスの文字列
+            cagCheckBox.Text = Config.GetText("NAME_CAG");
+            escortCheckBox.Text = Config.GetText("NAME_ESCORT");
+            engineerCheckBox.Text = Config.GetText("NAME_ENGINEER");
         }
 
         /// <summary>
@@ -173,12 +178,16 @@ namespace HoI2Editor.Forms
             flag = (Game.Type == GameType.DarkestHour && Game.Version >= 103);
             productableCheckBox.Enabled = flag;
             detachableCheckBox.Enabled = flag;
+            cagCheckBox.Enabled = flag;
+            escortCheckBox.Enabled = flag;
+            engineerCheckBox.Enabled = flag;
             gfxPrioLabel.Enabled = flag;
             gfxPrioNumericUpDown.Enabled = flag;
             listPrioLabel.Enabled = flag;
             listPrioNumericUpDown.Enabled = flag;
             realUnitTypeLabel.Enabled = flag;
             realUnitTypeComboBox.Enabled = flag;
+            defaultTypeCheckBox.Enabled = flag;
             spriteTypeLabel.Enabled = flag;
             spriteTypeComboBox.Enabled = flag;
             transmuteLabel.Enabled = flag;
@@ -240,8 +249,24 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void SetDirty()
         {
-            UnitType type = Units.Types[classListBox.SelectedIndex];
+            UnitType type = Units.UnitTypes[classListBox.SelectedIndex];
             Units.SetDirty(type, true);
+        }
+
+        /// <summary>
+        ///     ユニットクラス定義の編集済みフラグを設定する
+        /// </summary>
+        private void SetDirtyTypes()
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            if (unit.Organization == UnitOrganization.Division)
+            {
+                Units.SetDirtyDivisionTypes(true);
+            }
+            else
+            {
+                Units.SetDirtyBrigadeTypes(true);
+            }
         }
 
         /// <summary>
@@ -382,7 +407,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnNewButtonClick(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // ユニットモデルを挿入する
             var model = new UnitModel();
@@ -410,7 +435,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
 
             // ユニットモデルを挿入する
@@ -431,7 +456,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
 
             // ユニットモデルを削除する
@@ -451,7 +476,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストの先頭ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -477,7 +502,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストの先頭ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -503,7 +528,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストの末尾ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -529,7 +554,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストの末尾ならば何もしない
             int no = modelListView.SelectedIndices[0];
@@ -584,7 +609,7 @@ namespace HoI2Editor.Forms
             // リストボックスに項目を登録する
             classListBox.BeginUpdate();
             classListBox.Items.Clear();
-            foreach (UnitType type in Units.Types)
+            foreach (UnitType type in Units.UnitTypes)
             {
                 Unit unit = Units.List[(int) type];
                 classListBox.Items.Add(Config.GetText(unit.Name));
@@ -611,7 +636,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[e.Index]];
+            Unit unit = Units.List[(int) Units.UnitTypes[e.Index]];
 
             // 背景を描画する
             e.DrawBackground();
@@ -658,7 +683,7 @@ namespace HoI2Editor.Forms
         private void OnClassListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // ユニットモデルリストビューの表示を更新する
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             UpdateModelListView(unit);
 
             // ユニットクラスタブの表示を更新する
@@ -789,7 +814,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             CountryTag country = (countryListView.SelectedIndices.Count == 0
                                       ? CountryTag.None
@@ -811,7 +836,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateClassEditableItems()
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             classNameTextBox.Text = Config.GetText(unit.Name);
             classShortNameTextBox.Text = Config.GetText(unit.ShortName);
@@ -831,19 +856,15 @@ namespace HoI2Editor.Forms
                 {
                     productableCheckBox.Checked = unit.Productable;
                     detachableCheckBox.Checked = unit.Detachable;
+                    cagCheckBox.Checked = unit.Cag;
+                    escortCheckBox.Checked = unit.Escort;
+                    engineerCheckBox.Checked = unit.Engineer;
                     gfxPrioNumericUpDown.Value = unit.GfxPrio;
                     listPrioNumericUpDown.Value = unit.ListPrio;
                     realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
+                    defaultTypeCheckBox.Checked = unit.DefaultType;
                     spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
-                    int index = -1;
-                    for (int i = 0; i < Units.Types.Length; i++)
-                    {
-                        if (unit.Transmute == Units.Types[i])
-                        {
-                            index = i;
-                        }
-                    }
-                    transmuteComboBox.SelectedIndex = index;
+                    transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
                     militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
                 }
             }
@@ -856,7 +877,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassNameTextBoxValidated(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classNameTextBox.Text.Equals(Config.GetText(unit.Name)))
@@ -868,7 +889,6 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.Name, classNameTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
-            SetDirty();
             Config.SetDirty(Game.UnitTextFileName, true);
         }
 
@@ -879,7 +899,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassShortNameTextBoxValidated(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classShortNameTextBox.Text.Equals(Config.GetText(unit.ShortName)))
@@ -891,7 +911,6 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.ShortName, classShortNameTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
-            SetDirty();
             Config.SetDirty(Game.UnitTextFileName, true);
         }
 
@@ -902,7 +921,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassDescTextBoxValidated(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classDescTextBox.Text.Equals(Config.GetText(unit.Desc)))
@@ -914,7 +933,6 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.Desc, classDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
-            SetDirty();
             Config.SetDirty(Game.UnitTextFileName, true);
         }
 
@@ -925,7 +943,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassShortDescTextBox(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classShortDescTextBox.Text.Equals(Config.GetText(unit.ShortDesc)))
@@ -937,7 +955,6 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.ShortDesc, classShortDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
-            SetDirty();
             Config.SetDirty(Game.UnitTextFileName, true);
         }
 
@@ -948,7 +965,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBranchComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var val = (UnitBranch) branchComboBox.SelectedIndex;
@@ -961,51 +978,37 @@ namespace HoI2Editor.Forms
             unit.Branch = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                SetDirty();
+            }
+            else if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                SetDirtyTypes();
+            }
         }
 
         /// <summary>
-        ///     生産可能チェックボックスの状態変更時の処理
+        ///     統計グループ数値アップダウンフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProductableCheckBoxCheckedChanged(object sender, EventArgs e)
+        private void OnEyrNumericUpDownValidated(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            if (productableCheckBox.Checked == unit.Productable)
+            var val = (int) eyrNumericUpDown.Value;
+            if (val == unit.Eyr)
             {
                 return;
             }
 
             // 値を更新する
-            unit.Productable = productableCheckBox.Checked;
+            unit.Eyr = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
-        }
-
-        /// <summary>
-        ///     着脱可能チェックボックスの状態変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDetachableCheckBoxCheckedChanged(object sender, EventArgs e)
-        {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
-
-            // 値に変化がなければ何もしない
-            if (detachableCheckBox.Checked == unit.Detachable)
-            {
-                return;
-            }
-
-            // 値を更新する
-            unit.Detachable = detachableCheckBox.Checked;
-
-            // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyTypes();
         }
 
         /// <summary>
@@ -1015,7 +1018,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGraphicsPriorityNumericUpDownValidated(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var val = (int) gfxPrioNumericUpDown.Value;
@@ -1028,7 +1031,7 @@ namespace HoI2Editor.Forms
             unit.GfxPrio = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyTypes();
         }
 
         /// <summary>
@@ -1038,7 +1041,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnListPrioNumericUpDownValidated(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var val = (int) listPrioNumericUpDown.Value;
@@ -1051,17 +1054,17 @@ namespace HoI2Editor.Forms
             unit.ListPrio = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyTypes();
         }
 
         /// <summary>
-        ///     生産ユニット種類コンボボックスの選択項目変更時の処理
+        ///     実ユニット種類コンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnRealUnitTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var val = (RealUnitType) realUnitTypeComboBox.SelectedIndex;
@@ -1074,7 +1077,29 @@ namespace HoI2Editor.Forms
             unit.RealType = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyTypes();
+        }
+
+        /// <summary>
+        ///     標準の生産タイプチェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDefaultTypeCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 値に変化がなければ何もしない
+            if (defaultTypeCheckBox.Checked == unit.DefaultType)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.DefaultType = defaultTypeCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirtyTypes();
         }
 
         /// <summary>
@@ -1084,7 +1109,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpriteTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var val = (SpriteType) spriteTypeComboBox.SelectedIndex;
@@ -1097,7 +1122,7 @@ namespace HoI2Editor.Forms
             unit.Sprite = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyTypes();
         }
 
         /// <summary>
@@ -1107,7 +1132,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTransmuteComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var val = (UnitType) transmuteComboBox.SelectedIndex;
@@ -1120,7 +1145,7 @@ namespace HoI2Editor.Forms
             unit.Transmute = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyTypes();
         }
 
         /// <summary>
@@ -1130,7 +1155,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMilitaryValueTextBoxValidated(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -1150,7 +1175,117 @@ namespace HoI2Editor.Forms
             unit.Value = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyTypes();
+        }
+
+        /// <summary>
+        ///     生産可能チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProductableCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 値に変化がなければ何もしない
+            if (productableCheckBox.Checked == unit.Productable)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Productable = productableCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirtyTypes();
+        }
+
+        /// <summary>
+        ///     着脱可能チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDetachableCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 値に変化がなければ何もしない
+            if (detachableCheckBox.Checked == unit.Detachable)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Detachable = detachableCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirtyTypes();
+        }
+
+        /// <summary>
+        ///     空母航空隊チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCagCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 値に変化がなければ何もしない
+            if (cagCheckBox.Checked == unit.Cag)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Cag = cagCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirtyTypes();
+        }
+
+        /// <summary>
+        ///     護衛戦闘機チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEscortCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 値に変化がなければ何もしない
+            if (escortCheckBox.Checked == unit.Escort)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Escort = escortCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirtyTypes();
+        }
+
+        /// <summary>
+        ///     工兵チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEngineerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 値に変化がなければ何もしない
+            if (engineerCheckBox.Checked == unit.Engineer)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.Engineer = engineerCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            SetDirtyTypes();
         }
 
         /// <summary>
@@ -1160,7 +1295,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMaxAllowedBrigadesNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (maxAllowedBrigadesNumericUpDown.Value == unit.MaxAllowedBrigades)
@@ -1188,7 +1323,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             UnitType type = Units.BrigadeTypes[e.Item.Index];
 
             if (e.Item.Checked)
@@ -1292,7 +1427,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
 
             upgradeTypeComboBox.SelectedIndex = (int) upgrade.Type;
@@ -1316,7 +1451,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
             UnitUpgrade upgrade = unit.Upgrades[index];
 
@@ -1350,7 +1485,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
             UnitUpgrade upgrade = unit.Upgrades[index];
 
@@ -1391,7 +1526,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
             UnitUpgrade upgrade = unit.Upgrades[index];
 
@@ -1426,7 +1561,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeAddButtonClick(object sender, EventArgs e)
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             var upgrade = new UnitUpgrade();
             unit.Upgrades.Add(upgrade);
@@ -1449,7 +1584,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
 
             RemoveUpgradeListItem(index);
@@ -1533,7 +1668,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateModelEditableItems()
         {
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
             CountryTag country = (countryListView.SelectedIndices.Count == 0
@@ -1734,7 +1869,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
 
             // 値に変化がなければ何もしない
@@ -1758,7 +1893,6 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[1].Text = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
             Config.SetDirty(fileName, true);
         }
 
@@ -1866,7 +2000,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1904,7 +2038,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1942,7 +2076,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -1980,7 +2114,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2018,7 +2152,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2056,7 +2190,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2094,7 +2228,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2135,7 +2269,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2176,7 +2310,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2214,7 +2348,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2256,7 +2390,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2297,7 +2431,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2338,7 +2472,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2379,7 +2513,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2417,7 +2551,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2455,7 +2589,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2493,7 +2627,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2515,7 +2649,6 @@ namespace HoI2Editor.Forms
             model.ReinforceTimeFactor = val;
 
             SetDirty();
-            Units.SetDirty(unit.Type, true);
         }
 
         #endregion
@@ -2535,7 +2668,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2573,7 +2706,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2611,7 +2744,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2649,7 +2782,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2687,7 +2820,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2725,7 +2858,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2767,7 +2900,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2805,7 +2938,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2843,7 +2976,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2881,7 +3014,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2919,7 +3052,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2957,7 +3090,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2995,7 +3128,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3033,7 +3166,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3071,7 +3204,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3109,7 +3242,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3147,7 +3280,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3185,7 +3318,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3223,7 +3356,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3261,7 +3394,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3299,7 +3432,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3337,7 +3470,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3375,7 +3508,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3413,7 +3546,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3452,7 +3585,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3490,7 +3623,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3528,7 +3661,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3633,7 +3766,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
             UnitEquipment equipment = model.Equipments[equipmentListView.SelectedIndices[0]];
@@ -3658,7 +3791,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
             int index = equipmentListView.SelectedIndices[0];
@@ -3693,7 +3826,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
             int index = modelListView.SelectedIndices[0];
@@ -3736,7 +3869,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3761,7 +3894,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3792,7 +3925,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3823,7 +3956,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.Types[classListBox.SelectedIndex]];
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 

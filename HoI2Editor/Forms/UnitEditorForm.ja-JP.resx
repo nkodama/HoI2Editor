@@ -162,10 +162,40 @@
   <data name="fuelColumnHeader.Text" xml:space="preserve">
     <value>燃料</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="eyrLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 12</value>
+  </data>
+  <data name="eyrLabel.Text" xml:space="preserve">
+    <value>統計グループ</value>
+  </data>
+  <data name="defaultTypeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="defaultTypeCheckBox.Text" xml:space="preserve">
+    <value>標準の生産タイプ</value>
+  </data>
+  <data name="engineerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="engineerCheckBox.Text" xml:space="preserve">
+    <value>工兵</value>
+  </data>
+  <data name="cagCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="cagCheckBox.Text" xml:space="preserve">
+    <value>空母航空隊</value>
+  </data>
+  <data name="escortCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="escortCheckBox.Text" xml:space="preserve">
+    <value>護衛戦闘機</value>
+  </data>
   <data name="listPrioLabel.Text" xml:space="preserve">
     <value>リスト優先度</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="upgradeTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
   </data>
@@ -221,16 +251,16 @@
     <value>スプライト種類</value>
   </data>
   <data name="realUnitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 12</value>
+    <value>87, 12</value>
   </data>
   <data name="realUnitTypeLabel.Text" xml:space="preserve">
-    <value>ユニット種類</value>
+    <value>実ユニット種類</value>
   </data>
   <data name="productableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
+    <value>96, 16</value>
   </data>
   <data name="productableCheckBox.Text" xml:space="preserve">
-    <value>生産可能</value>
+    <value>初期生産可能</value>
   </data>
   <data name="gfxPrioLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>

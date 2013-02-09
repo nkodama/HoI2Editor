@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -60,14 +59,14 @@ namespace HoI2Editor.Models
         private static readonly Dictionary<string, string[]> ReplacedText = new Dictionary<string, string[]>();
 
         /// <summary>
-        /// 補完文字列変換テーブル
+        ///     補完文字列変換テーブル
         /// </summary>
         /// <remarks>
         ///     登録した文字列はTextに定義が存在しない時に参照される。
         ///     ファイルに書き出される時には無視される。
         ///     エディタ内部で文字列を補完したい時に使用する。
         /// </remarks>
-        private static readonly Dictionary<string, string[]> ComplementedText = new Dictionary<string, string[]>(); 
+        private static readonly Dictionary<string, string[]> ComplementedText = new Dictionary<string, string[]>();
 
         /// <summary>
         ///     文字列定義順リストテーブル
@@ -166,6 +165,12 @@ namespace HoI2Editor.Models
             // 文字列変換テーブルに登録されていなければ登録する
             if (!Text.ContainsKey(key))
             {
+                // 予約リストがなければ作成する
+                if (!ReservedListTable.ContainsKey(fileName))
+                {
+                    ReservedListTable.Add(fileName, new List<string>());
+                }
+
                 // 予約リストに登録する
                 ReservedListTable[fileName].Add(key);
 
@@ -272,7 +277,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 補完文字列変換テーブルに登録する
+        ///     補完文字列変換テーブルに登録する
         /// </summary>
         /// <param name="key">文字列の定義名</param>
         /// <param name="text">登録する文字列</param>
@@ -326,7 +331,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -346,7 +351,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -373,7 +378,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -393,7 +398,7 @@ namespace HoI2Editor.Models
                             }
                             catch (Exception)
                             {
-                                Log.Write(string.Format("{0}: {1}", Resources.FileReadError, fileName));
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                             }
                         }
                     }
@@ -425,6 +430,13 @@ namespace HoI2Editor.Models
             {
                 return;
             }
+
+            // ゲーム中に使用しないファイルを無視する
+            if (name.Equals("editor.csv") || name.Equals("launcher.csv"))
+            {
+                return;
+            }
+
             string dirName = Path.GetFileName(Path.GetDirectoryName(fileName));
             if (!string.IsNullOrEmpty(dirName) && dirName.ToLower().Equals("additional"))
             {
@@ -529,7 +541,7 @@ namespace HoI2Editor.Models
                     string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
                                                      Game.ConfigPathName);
                     string pathName = Path.Combine(folderName, fileName);
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, pathName), Resources.Error);
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, pathName));
                 }
             }
         }
@@ -642,7 +654,8 @@ namespace HoI2Editor.Models
             // 決戦ドクトリン: 陸軍総司令官/海軍総司令官
             if (ExistsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE") &&
                 ExistsKey("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2") &&
-                GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE").Equals(GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2")))
+                GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE")
+                    .Equals(GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2")))
             {
                 AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE",
                                 string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"),
@@ -677,7 +690,8 @@ namespace HoI2Editor.Models
                 // ユーザー定義のユニットクラス名
                 for (int i = 1; i <= 20; i++)
                 {
-                    AddComplementedText(string.Format("NAME_B_U{0}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
+                    AddComplementedText(string.Format("NAME_B_U{0}", i),
+                                        string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
             }
 
@@ -703,7 +717,8 @@ namespace HoI2Editor.Models
                 // ユーザー定義の研究特性
                 for (int i = 1; i <= 60; i++)
                 {
-                    AddComplementedText(string.Format("RT_USER{0}", i), string.Format("{0}{1}", Resources.SpecialityUser, i));
+                    AddComplementedText(string.Format("RT_USER{0}", i),
+                                        string.Format("{0}{1}", Resources.SpecialityUser, i));
                 }
 
                 // DH固有のユニットクラス名
@@ -723,18 +738,19 @@ namespace HoI2Editor.Models
                 for (int i = 33; i <= 40; i++)
                 {
                     AddComplementedText(string.Format("NAME_D_RSV_{0}", i),
-                                    string.Format("{0}{1}", Resources.DivisionReserved, i));
+                                        string.Format("{0}{1}", Resources.DivisionReserved, i));
                 }
                 for (int i = 36; i <= 40; i++)
                 {
                     AddComplementedText(string.Format("NAME_B_RSV_{0}", i),
-                                    string.Format("{0}{1}", Resources.BrigadeReserved, i));
+                                        string.Format("{0}{1}", Resources.BrigadeReserved, i));
                 }
                 for (int i = 1; i <= 99; i++)
                 {
                     AddComplementedText(string.Format("NAME_D_{0:D2}", i),
-                                    string.Format("{0}{1}", Resources.DivisionUser, i));
-                    AddComplementedText(string.Format("NAME_B_{0:D2}", i), string.Format("{0}{1}", Resources.BrigadeUser, i));
+                                        string.Format("{0}{1}", Resources.DivisionUser, i));
+                    AddComplementedText(string.Format("NAME_B_{0:D2}", i),
+                                        string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
 
                 // DH Fullで定義されていない旅団のユニットクラス名

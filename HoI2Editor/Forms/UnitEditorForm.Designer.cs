@@ -49,6 +49,12 @@
             this.classListBox = new System.Windows.Forms.ListBox();
             this.editTabControl = new System.Windows.Forms.TabControl();
             this.classTabPage = new System.Windows.Forms.TabPage();
+            this.eyrNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.eyrLabel = new System.Windows.Forms.Label();
+            this.defaultTypeCheckBox = new System.Windows.Forms.CheckBox();
+            this.engineerCheckBox = new System.Windows.Forms.CheckBox();
+            this.cagCheckBox = new System.Windows.Forms.CheckBox();
+            this.escortCheckBox = new System.Windows.Forms.CheckBox();
             this.allowedBrigadesListView = new System.Windows.Forms.ListView();
             this.allowedBrigadesDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.maxAllowedBrigadesNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -207,6 +213,7 @@
             this.countryDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editTabControl.SuspendLayout();
             this.classTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eyrNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxAllowedBrigadesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).BeginInit();
             this.upgradeGroupBox.SuspendLayout();
@@ -338,15 +345,22 @@
             // 
             // editTabControl
             // 
+            resources.ApplyResources(this.editTabControl, "editTabControl");
             this.editTabControl.Controls.Add(this.classTabPage);
             this.editTabControl.Controls.Add(this.modelTabPage);
-            resources.ApplyResources(this.editTabControl, "editTabControl");
             this.editTabControl.Name = "editTabControl";
             this.editTabControl.SelectedIndex = 0;
             // 
             // classTabPage
             // 
+            resources.ApplyResources(this.classTabPage, "classTabPage");
             this.classTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.classTabPage.Controls.Add(this.eyrNumericUpDown);
+            this.classTabPage.Controls.Add(this.eyrLabel);
+            this.classTabPage.Controls.Add(this.defaultTypeCheckBox);
+            this.classTabPage.Controls.Add(this.engineerCheckBox);
+            this.classTabPage.Controls.Add(this.cagCheckBox);
+            this.classTabPage.Controls.Add(this.escortCheckBox);
             this.classTabPage.Controls.Add(this.allowedBrigadesListView);
             this.classTabPage.Controls.Add(this.maxAllowedBrigadesNumericUpDown);
             this.classTabPage.Controls.Add(this.militaryValueTextBox);
@@ -375,20 +389,62 @@
             this.classTabPage.Controls.Add(this.classShortNameLabel);
             this.classTabPage.Controls.Add(this.classNameTextBox);
             this.classTabPage.Controls.Add(this.classNameLabel);
-            resources.ApplyResources(this.classTabPage, "classTabPage");
             this.classTabPage.Name = "classTabPage";
+            // 
+            // eyrNumericUpDown
+            // 
+            resources.ApplyResources(this.eyrNumericUpDown, "eyrNumericUpDown");
+            this.eyrNumericUpDown.Name = "eyrNumericUpDown";
+            this.eyrNumericUpDown.Validated += new System.EventHandler(this.OnEyrNumericUpDownValidated);
+            // 
+            // eyrLabel
+            // 
+            resources.ApplyResources(this.eyrLabel, "eyrLabel");
+            this.eyrLabel.Name = "eyrLabel";
+            // 
+            // defaultTypeCheckBox
+            // 
+            resources.ApplyResources(this.defaultTypeCheckBox, "defaultTypeCheckBox");
+            this.defaultTypeCheckBox.Name = "defaultTypeCheckBox";
+            this.defaultTypeCheckBox.UseVisualStyleBackColor = true;
+            this.defaultTypeCheckBox.CheckedChanged += new System.EventHandler(this.OnDefaultTypeCheckBoxCheckedChanged);
+            // 
+            // engineerCheckBox
+            // 
+            resources.ApplyResources(this.engineerCheckBox, "engineerCheckBox");
+            this.engineerCheckBox.Name = "engineerCheckBox";
+            this.engineerCheckBox.UseVisualStyleBackColor = true;
+            this.engineerCheckBox.CheckedChanged += new System.EventHandler(this.OnEngineerCheckBoxCheckedChanged);
+            // 
+            // cagCheckBox
+            // 
+            resources.ApplyResources(this.cagCheckBox, "cagCheckBox");
+            this.cagCheckBox.Name = "cagCheckBox";
+            this.cagCheckBox.UseVisualStyleBackColor = true;
+            this.cagCheckBox.CheckedChanged += new System.EventHandler(this.OnCagCheckBoxCheckedChanged);
+            // 
+            // escortCheckBox
+            // 
+            resources.ApplyResources(this.escortCheckBox, "escortCheckBox");
+            this.escortCheckBox.Name = "escortCheckBox";
+            this.escortCheckBox.UseVisualStyleBackColor = true;
+            this.escortCheckBox.CheckedChanged += new System.EventHandler(this.OnEscortCheckBoxCheckedChanged);
             // 
             // allowedBrigadesListView
             // 
+            resources.ApplyResources(this.allowedBrigadesListView, "allowedBrigadesListView");
             this.allowedBrigadesListView.CheckBoxes = true;
             this.allowedBrigadesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.allowedBrigadesDummyColumnHeader});
-            resources.ApplyResources(this.allowedBrigadesListView, "allowedBrigadesListView");
             this.allowedBrigadesListView.MultiSelect = false;
             this.allowedBrigadesListView.Name = "allowedBrigadesListView";
             this.allowedBrigadesListView.UseCompatibleStateImageBehavior = false;
             this.allowedBrigadesListView.View = System.Windows.Forms.View.List;
             this.allowedBrigadesListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.OnAllowedBrigadesListViewItemChecked);
+            // 
+            // allowedBrigadesDummyColumnHeader
+            // 
+            resources.ApplyResources(this.allowedBrigadesDummyColumnHeader, "allowedBrigadesDummyColumnHeader");
             // 
             // maxAllowedBrigadesNumericUpDown
             // 
@@ -410,6 +466,11 @@
             0,
             0,
             0});
+            this.listPrioNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.listPrioNumericUpDown.Name = "listPrioNumericUpDown";
             this.listPrioNumericUpDown.Validated += new System.EventHandler(this.OnListPrioNumericUpDownValidated);
             // 
@@ -420,6 +481,7 @@
             // 
             // upgradeGroupBox
             // 
+            resources.ApplyResources(this.upgradeGroupBox, "upgradeGroupBox");
             this.upgradeGroupBox.Controls.Add(this.upgradeTimeTextBox);
             this.upgradeGroupBox.Controls.Add(this.upgradeTimeLabel);
             this.upgradeGroupBox.Controls.Add(this.upgradeCostTextBox);
@@ -429,7 +491,6 @@
             this.upgradeGroupBox.Controls.Add(this.upgradeRemoveButton);
             this.upgradeGroupBox.Controls.Add(this.upgradeAddButton);
             this.upgradeGroupBox.Controls.Add(this.upgradeListView);
-            resources.ApplyResources(this.upgradeGroupBox, "upgradeGroupBox");
             this.upgradeGroupBox.Name = "upgradeGroupBox";
             this.upgradeGroupBox.TabStop = false;
             // 
@@ -457,9 +518,9 @@
             // 
             // upgradeTypeComboBox
             // 
+            resources.ApplyResources(this.upgradeTypeComboBox, "upgradeTypeComboBox");
             this.upgradeTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.upgradeTypeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.upgradeTypeComboBox, "upgradeTypeComboBox");
             this.upgradeTypeComboBox.Name = "upgradeTypeComboBox";
             this.upgradeTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnUpgradeTypeComboBoxSelectedIndexChanged);
             // 
@@ -484,13 +545,13 @@
             // 
             // upgradeListView
             // 
+            resources.ApplyResources(this.upgradeListView, "upgradeListView");
             this.upgradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.upgradeTypeColumnHeader,
             this.upgradeCostColumnHeader,
             this.upgradeTimeColumnHeader});
             this.upgradeListView.FullRowSelect = true;
             this.upgradeListView.HideSelection = false;
-            resources.ApplyResources(this.upgradeListView, "upgradeListView");
             this.upgradeListView.MultiSelect = false;
             this.upgradeListView.Name = "upgradeListView";
             this.upgradeListView.UseCompatibleStateImageBehavior = false;
@@ -516,9 +577,9 @@
             // 
             // transmuteComboBox
             // 
+            resources.ApplyResources(this.transmuteComboBox, "transmuteComboBox");
             this.transmuteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.transmuteComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.transmuteComboBox, "transmuteComboBox");
             this.transmuteComboBox.Name = "transmuteComboBox";
             this.transmuteComboBox.SelectedIndexChanged += new System.EventHandler(this.OnTransmuteComboBoxSelectedIndexChanged);
             // 
@@ -529,9 +590,9 @@
             // 
             // spriteTypeComboBox
             // 
+            resources.ApplyResources(this.spriteTypeComboBox, "spriteTypeComboBox");
             this.spriteTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.spriteTypeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.spriteTypeComboBox, "spriteTypeComboBox");
             this.spriteTypeComboBox.Name = "spriteTypeComboBox";
             this.spriteTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnSpriteTypeComboBoxSelectedIndexChanged);
             // 
@@ -542,9 +603,9 @@
             // 
             // realUnitTypeComboBox
             // 
+            resources.ApplyResources(this.realUnitTypeComboBox, "realUnitTypeComboBox");
             this.realUnitTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.realUnitTypeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.realUnitTypeComboBox, "realUnitTypeComboBox");
             this.realUnitTypeComboBox.Name = "realUnitTypeComboBox";
             this.realUnitTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRealUnitTypeComboBoxSelectedIndexChanged);
             // 
@@ -595,9 +656,9 @@
             // 
             // branchComboBox
             // 
+            resources.ApplyResources(this.branchComboBox, "branchComboBox");
             this.branchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.branchComboBox, "branchComboBox");
             this.branchComboBox.Name = "branchComboBox";
             this.branchComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchComboBoxSelectedIndexChanged);
             // 
@@ -647,6 +708,7 @@
             // 
             // modelTabPage
             // 
+            resources.ApplyResources(this.modelTabPage, "modelTabPage");
             this.modelTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.modelTabPage.Controls.Add(this.modelNameTextBox);
             this.modelTabPage.Controls.Add(this.equipmentGroupBox);
@@ -656,7 +718,6 @@
             this.modelTabPage.Controls.Add(this.basicGroupBox);
             this.modelTabPage.Controls.Add(this.modelIconPictureBox);
             this.modelTabPage.Controls.Add(this.modelImagePictureBox);
-            resources.ApplyResources(this.modelTabPage, "modelTabPage");
             this.modelTabPage.Name = "modelTabPage";
             // 
             // modelNameTextBox
@@ -667,6 +728,7 @@
             // 
             // equipmentGroupBox
             // 
+            resources.ApplyResources(this.equipmentGroupBox, "equipmentGroupBox");
             this.equipmentGroupBox.Controls.Add(this.quantityTextBox);
             this.equipmentGroupBox.Controls.Add(this.equipmentDownButton);
             this.equipmentGroupBox.Controls.Add(this.equipmentUpButton);
@@ -676,7 +738,6 @@
             this.equipmentGroupBox.Controls.Add(this.equipmentRemoveButton);
             this.equipmentGroupBox.Controls.Add(this.equipmentAddButton);
             this.equipmentGroupBox.Controls.Add(this.equipmentListView);
-            resources.ApplyResources(this.equipmentGroupBox, "equipmentGroupBox");
             this.equipmentGroupBox.Name = "equipmentGroupBox";
             this.equipmentGroupBox.TabStop = false;
             // 
@@ -707,8 +768,8 @@
             // 
             // resourceComboBox
             // 
-            this.resourceComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.resourceComboBox, "resourceComboBox");
+            this.resourceComboBox.FormattingEnabled = true;
             this.resourceComboBox.Name = "resourceComboBox";
             this.resourceComboBox.Validated += new System.EventHandler(this.OnResourceComboBoxValidated);
             // 
@@ -733,12 +794,12 @@
             // 
             // equipmentListView
             // 
+            resources.ApplyResources(this.equipmentListView, "equipmentListView");
             this.equipmentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.resourceColumnHeader,
             this.quantityColumnHeader});
             this.equipmentListView.FullRowSelect = true;
             this.equipmentListView.HideSelection = false;
-            resources.ApplyResources(this.equipmentListView, "equipmentListView");
             this.equipmentListView.MultiSelect = false;
             this.equipmentListView.Name = "equipmentListView";
             this.equipmentListView.UseCompatibleStateImageBehavior = false;
@@ -755,6 +816,7 @@
             // 
             // productionGroupBox
             // 
+            resources.ApplyResources(this.productionGroupBox, "productionGroupBox");
             this.productionGroupBox.Controls.Add(this.reinforceCostTextBox);
             this.productionGroupBox.Controls.Add(this.costTextBox);
             this.productionGroupBox.Controls.Add(this.reinforceCostLabel);
@@ -769,7 +831,6 @@
             this.productionGroupBox.Controls.Add(this.upgradeTimeFactorLabel);
             this.productionGroupBox.Controls.Add(this.upgradeCostFactorLabel);
             this.productionGroupBox.Controls.Add(this.upgradeCostFactorTextBox);
-            resources.ApplyResources(this.productionGroupBox, "productionGroupBox");
             this.productionGroupBox.Name = "productionGroupBox";
             this.productionGroupBox.TabStop = false;
             // 
@@ -852,6 +913,7 @@
             // 
             // speedGroupBox
             // 
+            resources.ApplyResources(this.speedGroupBox, "speedGroupBox");
             this.speedGroupBox.Controls.Add(this.speedCapAaTextBox);
             this.speedGroupBox.Controls.Add(this.maxSpeedTextBox);
             this.speedGroupBox.Controls.Add(this.speedCapAaLabel);
@@ -864,7 +926,6 @@
             this.speedGroupBox.Controls.Add(this.speedCapAllLabel);
             this.speedGroupBox.Controls.Add(this.speedCapArtTextBox);
             this.speedGroupBox.Controls.Add(this.speedCapArtLabel);
-            resources.ApplyResources(this.speedGroupBox, "speedGroupBox");
             this.speedGroupBox.Name = "speedGroupBox";
             this.speedGroupBox.TabStop = false;
             // 
@@ -936,6 +997,7 @@
             // 
             // battleGroupBox
             // 
+            resources.ApplyResources(this.battleGroupBox, "battleGroupBox");
             this.battleGroupBox.Controls.Add(this.artilleryBombardmentTextBox);
             this.battleGroupBox.Controls.Add(this.artilleryBombardmentLabel);
             this.battleGroupBox.Controls.Add(this.visibilityTextBox);
@@ -980,7 +1042,6 @@
             this.battleGroupBox.Controls.Add(this.seaDefenceLabel);
             this.battleGroupBox.Controls.Add(this.defensivenessTextBox);
             this.battleGroupBox.Controls.Add(this.defensivenessLabel);
-            resources.ApplyResources(this.battleGroupBox, "battleGroupBox");
             this.battleGroupBox.Name = "battleGroupBox";
             this.battleGroupBox.TabStop = false;
             // 
@@ -1227,6 +1288,7 @@
             // 
             // basicGroupBox
             // 
+            resources.ApplyResources(this.basicGroupBox, "basicGroupBox");
             this.basicGroupBox.Controls.Add(this.transportWeightTextBox);
             this.basicGroupBox.Controls.Add(this.rangeLabel);
             this.basicGroupBox.Controls.Add(this.transportWeightLabel);
@@ -1247,7 +1309,6 @@
             this.basicGroupBox.Controls.Add(this.moraleLabel);
             this.basicGroupBox.Controls.Add(this.defaultOrganisationTextBox);
             this.basicGroupBox.Controls.Add(this.defaultOrganisationLabel);
-            resources.ApplyResources(this.basicGroupBox, "basicGroupBox");
             this.basicGroupBox.Name = "basicGroupBox";
             this.basicGroupBox.TabStop = false;
             // 
@@ -1363,8 +1424,8 @@
             // 
             // modelIconPictureBox
             // 
-            this.modelIconPictureBox.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.modelIconPictureBox, "modelIconPictureBox");
+            this.modelIconPictureBox.BackColor = System.Drawing.Color.Transparent;
             this.modelIconPictureBox.Name = "modelIconPictureBox";
             this.modelIconPictureBox.TabStop = false;
             // 
@@ -1397,10 +1458,10 @@
             // 
             // countryListView
             // 
+            resources.ApplyResources(this.countryListView, "countryListView");
             this.countryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.countryDummyColumnHeader});
             this.countryListView.HideSelection = false;
-            resources.ApplyResources(this.countryListView, "countryListView");
             this.countryListView.MultiSelect = false;
             this.countryListView.Name = "countryListView";
             this.countryListView.UseCompatibleStateImageBehavior = false;
@@ -1434,6 +1495,7 @@
             this.editTabControl.ResumeLayout(false);
             this.classTabPage.ResumeLayout(false);
             this.classTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eyrNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxAllowedBrigadesNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listPrioNumericUpDown)).EndInit();
             this.upgradeGroupBox.ResumeLayout(false);
@@ -1635,5 +1697,11 @@
         private System.Windows.Forms.NumericUpDown maxAllowedBrigadesNumericUpDown;
         private System.Windows.Forms.ListView allowedBrigadesListView;
         private System.Windows.Forms.ColumnHeader allowedBrigadesDummyColumnHeader;
+        private System.Windows.Forms.CheckBox engineerCheckBox;
+        private System.Windows.Forms.CheckBox cagCheckBox;
+        private System.Windows.Forms.CheckBox escortCheckBox;
+        private System.Windows.Forms.CheckBox defaultTypeCheckBox;
+        private System.Windows.Forms.NumericUpDown eyrNumericUpDown;
+        private System.Windows.Forms.Label eyrLabel;
     }
 }

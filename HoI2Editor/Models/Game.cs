@@ -47,6 +47,16 @@ namespace HoI2Editor.Models
         public const string UnitPathName = "db\\units";
 
         /// <summary>
+        ///     師団ユニットフォルダ
+        /// </summary>
+        public const string DivisionPathName = "db\\units\\divisions";
+
+        /// <summary>
+        ///     旅団ユニットフォルダ
+        /// </summary>
+        public const string BrigadePathName = "db\\units\\brigades";
+
+        /// <summary>
         ///     一般画像フォルダ
         /// </summary>
         public const string PicturePathName = "gfx\\interface";
@@ -100,6 +110,16 @@ namespace HoI2Editor.Models
         ///     研究機関一覧ファイル名(DH)
         /// </summary>
         public const string DhTeamListPathName = "db\\teams.txt";
+
+        /// <summary>
+        ///     師団ユニットクラス定義ファイル名(DH)
+        /// </summary>
+        public const string DhDivisionTypePathName = "db\\units\\division_types.txt";
+
+        /// <summary>
+        ///     旅団ユニットクラス定義ファイル名(DH)
+        /// </summary>
+        public const string DhBrigadeTypePathName = "db\\units\\brigade_types.txt";
 
         /// <summary>
         ///     研究特性アイコンのファイル名

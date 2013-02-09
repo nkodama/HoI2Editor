@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -104,8 +103,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                            Resources.Error);
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -125,8 +123,7 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                            Resources.Error);
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -153,7 +150,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName), Resources.Error);
+                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
                 return;
             }
 
@@ -166,7 +163,7 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                 }
             }
         }
@@ -377,7 +374,7 @@ namespace HoI2Editor.Models
                     string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
                                                      Game.TeamPathName);
                     string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.Error);
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                 }
             }
         }

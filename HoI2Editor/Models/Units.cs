@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 using HoI2Editor.Writers;
@@ -26,9 +25,24 @@ namespace HoI2Editor.Models
         public static readonly Dictionary<string, UnitType> StringMap = new Dictionary<string, UnitType>();
 
         /// <summary>
+        ///     実ユニット種類文字列とIDの対応付け
+        /// </summary>
+        public static readonly Dictionary<string, RealUnitType> RealStringMap = new Dictionary<string, RealUnitType>();
+
+        /// <summary>
+        ///     スプライト種類文字列とIDの対応付け
+        /// </summary>
+        public static readonly Dictionary<string, SpriteType> SpriteStringMap = new Dictionary<string, SpriteType>();
+
+        /// <summary>
         ///     利用可能なユニット種類
         /// </summary>
-        public static UnitType[] Types;
+        public static List<UnitType> UnitTypes = new List<UnitType>();
+
+        /// <summary>
+        ///     利用可能な師団ユニット種類
+        /// </summary>
+        public static UnitType[] DivisionTypes;
 
         /// <summary>
         ///     利用可能な旅団ユニット種類
@@ -57,6 +71,16 @@ namespace HoI2Editor.Models
         public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (UnitType)).Length];
 
         /// <summary>
+        ///     師団ユニットクラス定義ファイルの編集済みフラグ
+        /// </summary>
+        private static bool _isDivisionTypesDirty;
+
+        /// <summary>
+        ///     旅団ユニットクラス定義ファイルの編集済みフラグ
+        /// </summary>
+        private static bool _isBrigadeTypesDirty;
+
+        /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
@@ -76,31 +100,31 @@ namespace HoI2Editor.Models
                 "mechanized",
                 "light_armor",
                 "armor",
-                "garrison",
-                "hq",
                 "paratrooper",
                 "marine",
                 "bergsjaeger",
-                "cas",
+                "garrison",
+                "hq",
+                "militia",
                 "multi_role",
                 "interceptor",
                 "strategic_bomber",
                 "tactical_bomber",
                 "naval_bomber",
+                "cas",
                 "transport_plane",
+                "flying_bomb",
+                "flying_rocket",
                 "battleship",
                 "light_cruiser",
                 "heavy_cruiser",
                 "battlecruiser",
                 "destroyer",
                 "carrier",
-                "submarine",
-                "transport",
-                "flying_bomb",
-                "flying_rocket",
-                "militia",
                 "escort_carrier",
+                "submarine",
                 "nuclear_submarine",
+                "transport",
                 "light_carrier",
                 "rocket_interceptor",
                 "d_rsv_33",
@@ -377,7 +401,7 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     生産ユニット種類文字列テーブル
+        ///     実ユニット文字列テーブル
         /// </summary>
         public static readonly string[] RealStringTable =
             {
@@ -563,202 +587,117 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     利用可能なユニット種類 (HoI2)
+        ///     利用可能な師団ユニット種類 (HoI2)
         /// </summary>
-        private static readonly UnitType[] TypesHoI2 =
+        private static readonly UnitType[] DivisionTypesHoI2 =
             {
-                // 師団
                 UnitType.Infantry,
                 UnitType.Cavalry,
                 UnitType.Motorized,
                 UnitType.Mechanized,
                 UnitType.LightArmor,
                 UnitType.Armor,
-                UnitType.Garrison,
-                UnitType.Hq,
                 UnitType.Paratrooper,
                 UnitType.Marine,
                 UnitType.Bergsjaeger,
-                UnitType.Cas,
+                UnitType.Garrison,
+                UnitType.Hq,
+                UnitType.Militia,
                 UnitType.MultiRole,
                 UnitType.Interceptor,
                 UnitType.StrategicBomber,
                 UnitType.TacticalBomber,
                 UnitType.NavalBomber,
+                UnitType.Cas,
                 UnitType.TransportPlane,
+                UnitType.FlyingBomb,
+                UnitType.FlyingRocket,
                 UnitType.BattleShip,
                 UnitType.LightCruiser,
                 UnitType.HeavyCruiser,
                 UnitType.BattleCruiser,
                 UnitType.Destroyer,
                 UnitType.Carrier,
-                UnitType.Submarine,
-                UnitType.Transport,
-                UnitType.FlyingBomb,
-                UnitType.FlyingRocket,
-                UnitType.Militia,
                 UnitType.EscortCarrier,
+                UnitType.Submarine,
                 UnitType.NuclearSubmarine,
-
-                // 旅団
-                UnitType.None,
-                UnitType.Artillery,
-                UnitType.SpArtillery,
-                UnitType.RocketArtillery,
-                UnitType.SpRctArtillery,
-                UnitType.AntiTank,
-                UnitType.TankDestroyer,
-                UnitType.LightArmorBrigade,
-                UnitType.HeavyArmor,
-                UnitType.SuperHeavyArmor,
-                UnitType.ArmoredCar,
-                UnitType.AntiAir,
-                UnitType.Police,
-                UnitType.Engineer,
-                UnitType.Cag,
-                UnitType.Escort,
-                UnitType.NavalAsw,
-                UnitType.NavalAntiAirS,
-                UnitType.NavalRadarS,
-                UnitType.NavalFireControllS,
-                UnitType.NavalImprovedHullS,
-                UnitType.NavalTorpedoesS,
-                UnitType.NavalAntiAirL,
-                UnitType.NavalRadarL,
-                UnitType.NavalFireControllL,
-                UnitType.NavalImprovedHullL,
-                UnitType.NavalTorpedoesL
+                UnitType.Transport
             };
 
         /// <summary>
-        ///     利用可能なユニット種類 (AoD)
+        ///     利用可能な師団ユニット種類 (AoD)
         /// </summary>
-        private static readonly UnitType[] TypesAoD =
+        private static readonly UnitType[] DivisionTypesAoD =
             {
-                // 師団
                 UnitType.Infantry,
                 UnitType.Cavalry,
                 UnitType.Motorized,
                 UnitType.Mechanized,
                 UnitType.LightArmor,
                 UnitType.Armor,
-                UnitType.Garrison,
-                UnitType.Hq,
                 UnitType.Paratrooper,
                 UnitType.Marine,
                 UnitType.Bergsjaeger,
-                UnitType.Cas,
+                UnitType.Garrison,
+                UnitType.Hq,
+                UnitType.Militia,
                 UnitType.MultiRole,
                 UnitType.Interceptor,
                 UnitType.StrategicBomber,
                 UnitType.TacticalBomber,
                 UnitType.NavalBomber,
+                UnitType.Cas,
                 UnitType.TransportPlane,
+                UnitType.FlyingBomb,
+                UnitType.FlyingRocket,
                 UnitType.BattleShip,
                 UnitType.LightCruiser,
                 UnitType.HeavyCruiser,
                 UnitType.BattleCruiser,
                 UnitType.Destroyer,
                 UnitType.Carrier,
-                UnitType.Submarine,
-                UnitType.Transport,
-                UnitType.FlyingBomb,
-                UnitType.FlyingRocket,
-                UnitType.Militia,
                 UnitType.EscortCarrier,
+                UnitType.Submarine,
                 UnitType.NuclearSubmarine,
-
-                // 旅団
-                UnitType.None,
-                UnitType.Artillery,
-                UnitType.SpArtillery,
-                UnitType.RocketArtillery,
-                UnitType.SpRctArtillery,
-                UnitType.AntiTank,
-                UnitType.TankDestroyer,
-                UnitType.LightArmorBrigade,
-                UnitType.HeavyArmor,
-                UnitType.SuperHeavyArmor,
-                UnitType.ArmoredCar,
-                UnitType.AntiAir,
-                UnitType.Police,
-                UnitType.Engineer,
-                UnitType.Cag,
-                UnitType.Escort,
-                UnitType.NavalAsw,
-                UnitType.NavalAntiAirS,
-                UnitType.NavalRadarS,
-                UnitType.NavalFireControllS,
-                UnitType.NavalImprovedHullS,
-                UnitType.NavalTorpedoesS,
-                UnitType.NavalAntiAirL,
-                UnitType.NavalRadarL,
-                UnitType.NavalFireControllL,
-                UnitType.NavalImprovedHullL,
-                UnitType.NavalTorpedoesL,
-                UnitType.NavalMines,
-                UnitType.NavalSaL,
-                UnitType.NavalSpotterL,
-                UnitType.NavalSpotterS,
-                UnitType.Bu1,
-                UnitType.Bu2,
-                UnitType.Bu3,
-                UnitType.Bu4,
-                UnitType.Bu5,
-                UnitType.Bu6,
-                UnitType.Bu7,
-                UnitType.Bu8,
-                UnitType.Bu9,
-                UnitType.Bu10,
-                UnitType.Bu11,
-                UnitType.Bu12,
-                UnitType.Bu13,
-                UnitType.Bu14,
-                UnitType.Bu15,
-                UnitType.Bu16,
-                UnitType.Bu17,
-                UnitType.Bu18,
-                UnitType.Bu19,
-                UnitType.Bu20
+                UnitType.Transport
             };
 
         /// <summary>
-        ///     利用可能なユニット種類 (DH1.03以降)
+        ///     利用可能な師団ユニット種類 (DH1.03以降)
         /// </summary>
-        private static readonly UnitType[] TypesDh =
+        private static readonly UnitType[] DivisionTypesDh =
             {
-                // 師団
                 UnitType.Infantry,
                 UnitType.Cavalry,
                 UnitType.Motorized,
                 UnitType.Mechanized,
                 UnitType.LightArmor,
                 UnitType.Armor,
-                UnitType.Garrison,
-                UnitType.Hq,
                 UnitType.Paratrooper,
                 UnitType.Marine,
                 UnitType.Bergsjaeger,
-                UnitType.Cas,
+                UnitType.Garrison,
+                UnitType.Hq,
+                UnitType.Militia,
                 UnitType.MultiRole,
                 UnitType.Interceptor,
                 UnitType.StrategicBomber,
                 UnitType.TacticalBomber,
                 UnitType.NavalBomber,
+                UnitType.Cas,
                 UnitType.TransportPlane,
+                UnitType.FlyingBomb,
+                UnitType.FlyingRocket,
                 UnitType.BattleShip,
                 UnitType.LightCruiser,
                 UnitType.HeavyCruiser,
                 UnitType.BattleCruiser,
                 UnitType.Destroyer,
                 UnitType.Carrier,
-                UnitType.Submarine,
-                UnitType.Transport,
-                UnitType.FlyingBomb,
-                UnitType.FlyingRocket,
-                UnitType.Militia,
                 UnitType.EscortCarrier,
+                UnitType.Submarine,
                 UnitType.NuclearSubmarine,
+                UnitType.Transport,
                 UnitType.LightCarrier,
                 UnitType.RocketInterceptor,
                 UnitType.ReserveDivision33,
@@ -867,149 +806,7 @@ namespace HoI2Editor.Models
                 UnitType.Division96,
                 UnitType.Division97,
                 UnitType.Division98,
-                UnitType.Division99,
-
-                // 旅団
-                UnitType.None,
-                UnitType.Artillery,
-                UnitType.SpArtillery,
-                UnitType.RocketArtillery,
-                UnitType.SpRctArtillery,
-                UnitType.AntiTank,
-                UnitType.TankDestroyer,
-                UnitType.LightArmorBrigade,
-                UnitType.HeavyArmor,
-                UnitType.SuperHeavyArmor,
-                UnitType.ArmoredCar,
-                UnitType.AntiAir,
-                UnitType.Police,
-                UnitType.Engineer,
-                UnitType.Cag,
-                UnitType.Escort,
-                UnitType.NavalAsw,
-                UnitType.NavalAntiAirS,
-                UnitType.NavalRadarS,
-                UnitType.NavalFireControllS,
-                UnitType.NavalImprovedHullS,
-                UnitType.NavalTorpedoesS,
-                UnitType.NavalAntiAirL,
-                UnitType.NavalRadarL,
-                UnitType.NavalFireControllL,
-                UnitType.NavalImprovedHullL,
-                UnitType.NavalTorpedoesL,
-                UnitType.CavalryBrigade,
-                UnitType.SpAntiAir,
-                UnitType.MediumArmor,
-                UnitType.FloatPlane,
-                UnitType.LightCag,
-                UnitType.AmphArmor,
-                UnitType.GliderArmor,
-                UnitType.GliderArtillery,
-                UnitType.SuperHeavyArtillery,
-                UnitType.BRsv36,
-                UnitType.BRsv37,
-                UnitType.BRsv38,
-                UnitType.BRsv39,
-                UnitType.BRsv40,
-                UnitType.B01,
-                UnitType.B02,
-                UnitType.B03,
-                UnitType.B04,
-                UnitType.B05,
-                UnitType.B06,
-                UnitType.B07,
-                UnitType.B08,
-                UnitType.B09,
-                UnitType.B10,
-                UnitType.B11,
-                UnitType.B12,
-                UnitType.B13,
-                UnitType.B14,
-                UnitType.B15,
-                UnitType.B16,
-                UnitType.B17,
-                UnitType.B18,
-                UnitType.B19,
-                UnitType.B20,
-                UnitType.B21,
-                UnitType.B22,
-                UnitType.B23,
-                UnitType.B24,
-                UnitType.B25,
-                UnitType.B26,
-                UnitType.B27,
-                UnitType.B28,
-                UnitType.B29,
-                UnitType.B30,
-                UnitType.B31,
-                UnitType.B32,
-                UnitType.B33,
-                UnitType.B34,
-                UnitType.B35,
-                UnitType.B36,
-                UnitType.B37,
-                UnitType.B38,
-                UnitType.B39,
-                UnitType.B40,
-                UnitType.B41,
-                UnitType.B42,
-                UnitType.B43,
-                UnitType.B44,
-                UnitType.B45,
-                UnitType.B46,
-                UnitType.B47,
-                UnitType.B48,
-                UnitType.B49,
-                UnitType.B50,
-                UnitType.B51,
-                UnitType.B52,
-                UnitType.B53,
-                UnitType.B54,
-                UnitType.B55,
-                UnitType.B56,
-                UnitType.B57,
-                UnitType.B58,
-                UnitType.B59,
-                UnitType.B60,
-                UnitType.B61,
-                UnitType.B62,
-                UnitType.B63,
-                UnitType.B64,
-                UnitType.B65,
-                UnitType.B66,
-                UnitType.B67,
-                UnitType.B68,
-                UnitType.B69,
-                UnitType.B70,
-                UnitType.B71,
-                UnitType.B72,
-                UnitType.B73,
-                UnitType.B74,
-                UnitType.B75,
-                UnitType.B76,
-                UnitType.B77,
-                UnitType.B78,
-                UnitType.B79,
-                UnitType.B80,
-                UnitType.B81,
-                UnitType.B82,
-                UnitType.B83,
-                UnitType.B84,
-                UnitType.B85,
-                UnitType.B86,
-                UnitType.B87,
-                UnitType.B88,
-                UnitType.B89,
-                UnitType.B90,
-                UnitType.B91,
-                UnitType.B92,
-                UnitType.B93,
-                UnitType.B94,
-                UnitType.B95,
-                UnitType.B96,
-                UnitType.B97,
-                UnitType.B98,
-                UnitType.B99
+                UnitType.Division99
             };
 
         /// <summary>
@@ -1082,26 +879,26 @@ namespace HoI2Editor.Models
                 UnitType.NavalSaL,
                 UnitType.NavalSpotterL,
                 UnitType.NavalSpotterS,
-                UnitType.Bu1,
-                UnitType.Bu2,
-                UnitType.Bu3,
-                UnitType.Bu4,
-                UnitType.Bu5,
-                UnitType.Bu6,
-                UnitType.Bu7,
-                UnitType.Bu8,
-                UnitType.Bu9,
-                UnitType.Bu10,
-                UnitType.Bu11,
-                UnitType.Bu12,
-                UnitType.Bu13,
-                UnitType.Bu14,
-                UnitType.Bu15,
-                UnitType.Bu16,
-                UnitType.Bu17,
-                UnitType.Bu18,
-                UnitType.Bu19,
-                UnitType.Bu20
+                UnitType.ExtraBrigade1,
+                UnitType.ExtraBrigade2,
+                UnitType.ExtraBrigade3,
+                UnitType.ExtraBrigade4,
+                UnitType.ExtraBrigade5,
+                UnitType.ExtraBrigade6,
+                UnitType.ExtraBrigade7,
+                UnitType.ExtraBrigade8,
+                UnitType.ExtraBrigade9,
+                UnitType.ExtraBrigade10,
+                UnitType.ExtraBrigade11,
+                UnitType.ExtraBrigade12,
+                UnitType.ExtraBrigade13,
+                UnitType.ExtraBrigade14,
+                UnitType.ExtraBrigade15,
+                UnitType.ExtraBrigade16,
+                UnitType.ExtraBrigade17,
+                UnitType.ExtraBrigade18,
+                UnitType.ExtraBrigade19,
+                UnitType.ExtraBrigade20
             };
 
         /// <summary>
@@ -1145,110 +942,110 @@ namespace HoI2Editor.Models
                 UnitType.GliderArmor,
                 UnitType.GliderArtillery,
                 UnitType.SuperHeavyArtillery,
-                UnitType.BRsv36,
-                UnitType.BRsv37,
-                UnitType.BRsv38,
-                UnitType.BRsv39,
-                UnitType.BRsv40,
-                UnitType.B01,
-                UnitType.B02,
-                UnitType.B03,
-                UnitType.B04,
-                UnitType.B05,
-                UnitType.B06,
-                UnitType.B07,
-                UnitType.B08,
-                UnitType.B09,
-                UnitType.B10,
-                UnitType.B11,
-                UnitType.B12,
-                UnitType.B13,
-                UnitType.B14,
-                UnitType.B15,
-                UnitType.B16,
-                UnitType.B17,
-                UnitType.B18,
-                UnitType.B19,
-                UnitType.B20,
-                UnitType.B21,
-                UnitType.B22,
-                UnitType.B23,
-                UnitType.B24,
-                UnitType.B25,
-                UnitType.B26,
-                UnitType.B27,
-                UnitType.B28,
-                UnitType.B29,
-                UnitType.B30,
-                UnitType.B31,
-                UnitType.B32,
-                UnitType.B33,
-                UnitType.B34,
-                UnitType.B35,
-                UnitType.B36,
-                UnitType.B37,
-                UnitType.B38,
-                UnitType.B39,
-                UnitType.B40,
-                UnitType.B41,
-                UnitType.B42,
-                UnitType.B43,
-                UnitType.B44,
-                UnitType.B45,
-                UnitType.B46,
-                UnitType.B47,
-                UnitType.B48,
-                UnitType.B49,
-                UnitType.B50,
-                UnitType.B51,
-                UnitType.B52,
-                UnitType.B53,
-                UnitType.B54,
-                UnitType.B55,
-                UnitType.B56,
-                UnitType.B57,
-                UnitType.B58,
-                UnitType.B59,
-                UnitType.B60,
-                UnitType.B61,
-                UnitType.B62,
-                UnitType.B63,
-                UnitType.B64,
-                UnitType.B65,
-                UnitType.B66,
-                UnitType.B67,
-                UnitType.B68,
-                UnitType.B69,
-                UnitType.B70,
-                UnitType.B71,
-                UnitType.B72,
-                UnitType.B73,
-                UnitType.B74,
-                UnitType.B75,
-                UnitType.B76,
-                UnitType.B77,
-                UnitType.B78,
-                UnitType.B79,
-                UnitType.B80,
-                UnitType.B81,
-                UnitType.B82,
-                UnitType.B83,
-                UnitType.B84,
-                UnitType.B85,
-                UnitType.B86,
-                UnitType.B87,
-                UnitType.B88,
-                UnitType.B89,
-                UnitType.B90,
-                UnitType.B91,
-                UnitType.B92,
-                UnitType.B93,
-                UnitType.B94,
-                UnitType.B95,
-                UnitType.B96,
-                UnitType.B97,
-                UnitType.B98,
-                UnitType.B99
+                UnitType.ReserveBrigade36,
+                UnitType.ReserveBrigade37,
+                UnitType.ReserveBrigade38,
+                UnitType.ReserveBrigade39,
+                UnitType.ReserveBrigade40,
+                UnitType.Brigade01,
+                UnitType.Brigade02,
+                UnitType.Brigade03,
+                UnitType.Brigade04,
+                UnitType.Brigade05,
+                UnitType.Brigade06,
+                UnitType.Brigade07,
+                UnitType.Brigade08,
+                UnitType.Brigade09,
+                UnitType.Brigade10,
+                UnitType.Brigade11,
+                UnitType.Brigade12,
+                UnitType.Brigade13,
+                UnitType.Brigade14,
+                UnitType.Brigade15,
+                UnitType.Brigade16,
+                UnitType.Brigade17,
+                UnitType.Brigade18,
+                UnitType.Brigade19,
+                UnitType.Brigade20,
+                UnitType.Brigade21,
+                UnitType.Brigade22,
+                UnitType.Brigade23,
+                UnitType.Brigade24,
+                UnitType.Brigade25,
+                UnitType.Brigade26,
+                UnitType.Brigade27,
+                UnitType.Brigade28,
+                UnitType.Brigade29,
+                UnitType.Brigade30,
+                UnitType.Brigade31,
+                UnitType.Brigade32,
+                UnitType.Brigade33,
+                UnitType.Brigade34,
+                UnitType.Brigade35,
+                UnitType.Brigade36,
+                UnitType.Brigade37,
+                UnitType.Brigade38,
+                UnitType.Brigade39,
+                UnitType.Brigade40,
+                UnitType.Brigade41,
+                UnitType.Brigade42,
+                UnitType.Brigade43,
+                UnitType.Brigade44,
+                UnitType.Brigade45,
+                UnitType.Brigade46,
+                UnitType.Brigade47,
+                UnitType.Brigade48,
+                UnitType.Brigade49,
+                UnitType.Brigade50,
+                UnitType.Brigade51,
+                UnitType.Brigade52,
+                UnitType.Brigade53,
+                UnitType.Brigade54,
+                UnitType.Brigade55,
+                UnitType.Brigade56,
+                UnitType.Brigade57,
+                UnitType.Brigade58,
+                UnitType.Brigade59,
+                UnitType.Brigade60,
+                UnitType.Brigade61,
+                UnitType.Brigade62,
+                UnitType.Brigade63,
+                UnitType.Brigade64,
+                UnitType.Brigade65,
+                UnitType.Brigade66,
+                UnitType.Brigade67,
+                UnitType.Brigade68,
+                UnitType.Brigade69,
+                UnitType.Brigade70,
+                UnitType.Brigade71,
+                UnitType.Brigade72,
+                UnitType.Brigade73,
+                UnitType.Brigade74,
+                UnitType.Brigade75,
+                UnitType.Brigade76,
+                UnitType.Brigade77,
+                UnitType.Brigade78,
+                UnitType.Brigade79,
+                UnitType.Brigade80,
+                UnitType.Brigade81,
+                UnitType.Brigade82,
+                UnitType.Brigade83,
+                UnitType.Brigade84,
+                UnitType.Brigade85,
+                UnitType.Brigade86,
+                UnitType.Brigade87,
+                UnitType.Brigade88,
+                UnitType.Brigade89,
+                UnitType.Brigade90,
+                UnitType.Brigade91,
+                UnitType.Brigade92,
+                UnitType.Brigade93,
+                UnitType.Brigade94,
+                UnitType.Brigade95,
+                UnitType.Brigade96,
+                UnitType.Brigade97,
+                UnitType.Brigade98,
+                UnitType.Brigade99
             };
 
         /// <summary>
@@ -1256,310 +1053,310 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly string[] DefaultFileNames =
             {
-                "divisions\\infantry.txt",
-                "divisions\\cavalry.txt",
-                "divisions\\motorized.txt",
-                "divisions\\mechanized.txt",
-                "divisions\\light_armor.txt",
-                "divisions\\armor.txt",
-                "divisions\\garrison.txt",
-                "divisions\\hq.txt",
-                "divisions\\paratrooper.txt",
-                "divisions\\marine.txt",
-                "divisions\\bergsjaeger.txt",
-                "divisions\\cas.txt",
-                "divisions\\multi_role.txt",
-                "divisions\\interceptor.txt",
-                "divisions\\strategic_bomber.txt",
-                "divisions\\tactical_bomber.txt",
-                "divisions\\naval_bomber.txt",
-                "divisions\\transport_plane.txt",
-                "divisions\\battleship.txt",
-                "divisions\\light_cruiser.txt",
-                "divisions\\heavy_cruiser.txt",
-                "divisions\\battlecruiser.txt",
-                "divisions\\destroyer.txt",
-                "divisions\\carrier.txt",
-                "divisions\\submarine.txt",
-                "divisions\\transport.txt",
-                "divisions\\flying_bomb.txt",
-                "divisions\\flying_rocket.txt",
-                "divisions\\militia.txt",
-                "divisions\\escort_carrier.txt",
-                "divisions\\nuclear_submarine.txt",
-                "divisions\\light_carrier.txt",
-                "divisions\\rocket_interceptor.txt",
-                "divisions\\d_rsv_33.txt",
-                "divisions\\d_rsv_34.txt",
-                "divisions\\d_rsv_35.txt",
-                "divisions\\d_rsv_36.txt",
-                "divisions\\d_rsv_37.txt",
-                "divisions\\d_rsv_38.txt",
-                "divisions\\d_rsv_39.txt",
-                "divisions\\d_rsv_40.txt",
-                "divisions\\d_01.txt",
-                "divisions\\d_02.txt",
-                "divisions\\d_03.txt",
-                "divisions\\d_04.txt",
-                "divisions\\d_05.txt",
-                "divisions\\d_06.txt",
-                "divisions\\d_07.txt",
-                "divisions\\d_08.txt",
-                "divisions\\d_09.txt",
-                "divisions\\d_10.txt",
-                "divisions\\d_11.txt",
-                "divisions\\d_12.txt",
-                "divisions\\d_13.txt",
-                "divisions\\d_14.txt",
-                "divisions\\d_15.txt",
-                "divisions\\d_16.txt",
-                "divisions\\d_17.txt",
-                "divisions\\d_18.txt",
-                "divisions\\d_19.txt",
-                "divisions\\d_20.txt",
-                "divisions\\d_21.txt",
-                "divisions\\d_22.txt",
-                "divisions\\d_23.txt",
-                "divisions\\d_24.txt",
-                "divisions\\d_25.txt",
-                "divisions\\d_26.txt",
-                "divisions\\d_27.txt",
-                "divisions\\d_28.txt",
-                "divisions\\d_29.txt",
-                "divisions\\d_30.txt",
-                "divisions\\d_31.txt",
-                "divisions\\d_32.txt",
-                "divisions\\d_33.txt",
-                "divisions\\d_34.txt",
-                "divisions\\d_35.txt",
-                "divisions\\d_36.txt",
-                "divisions\\d_37.txt",
-                "divisions\\d_38.txt",
-                "divisions\\d_39.txt",
-                "divisions\\d_40.txt",
-                "divisions\\d_41.txt",
-                "divisions\\d_42.txt",
-                "divisions\\d_43.txt",
-                "divisions\\d_44.txt",
-                "divisions\\d_45.txt",
-                "divisions\\d_46.txt",
-                "divisions\\d_47.txt",
-                "divisions\\d_48.txt",
-                "divisions\\d_49.txt",
-                "divisions\\d_50.txt",
-                "divisions\\d_51.txt",
-                "divisions\\d_52.txt",
-                "divisions\\d_53.txt",
-                "divisions\\d_54.txt",
-                "divisions\\d_55.txt",
-                "divisions\\d_56.txt",
-                "divisions\\d_57.txt",
-                "divisions\\d_58.txt",
-                "divisions\\d_59.txt",
-                "divisions\\d_60.txt",
-                "divisions\\d_61.txt",
-                "divisions\\d_62.txt",
-                "divisions\\d_63.txt",
-                "divisions\\d_64.txt",
-                "divisions\\d_65.txt",
-                "divisions\\d_66.txt",
-                "divisions\\d_67.txt",
-                "divisions\\d_68.txt",
-                "divisions\\d_69.txt",
-                "divisions\\d_70.txt",
-                "divisions\\d_71.txt",
-                "divisions\\d_72.txt",
-                "divisions\\d_73.txt",
-                "divisions\\d_74.txt",
-                "divisions\\d_75.txt",
-                "divisions\\d_76.txt",
-                "divisions\\d_77.txt",
-                "divisions\\d_78.txt",
-                "divisions\\d_79.txt",
-                "divisions\\d_80.txt",
-                "divisions\\d_81.txt",
-                "divisions\\d_82.txt",
-                "divisions\\d_83.txt",
-                "divisions\\d_84.txt",
-                "divisions\\d_85.txt",
-                "divisions\\d_86.txt",
-                "divisions\\d_87.txt",
-                "divisions\\d_88.txt",
-                "divisions\\d_89.txt",
-                "divisions\\d_90.txt",
-                "divisions\\d_91.txt",
-                "divisions\\d_92.txt",
-                "divisions\\d_93.txt",
-                "divisions\\d_94.txt",
-                "divisions\\d_95.txt",
-                "divisions\\d_96.txt",
-                "divisions\\d_97.txt",
-                "divisions\\d_98.txt",
-                "divisions\\d_99.txt",
-                "brigades\\none.txt",
-                "brigades\\artillery.txt",
-                "brigades\\sp_artillery.txt",
-                "brigades\\rocket_artillery.txt",
-                "brigades\\sp_rct_artillery.txt",
-                "brigades\\anti_tank.txt",
-                "brigades\\tank_destroyer.txt",
-                "brigades\\light_armor_brigade.txt",
-                "brigades\\heavy_armor.txt",
-                "brigades\\super_heavy_armor.txt",
-                "brigades\\armored_car.txt",
-                "brigades\\anti_air.txt",
-                "brigades\\police.txt",
-                "brigades\\engineer.txt",
-                "brigades\\cag.txt",
-                "brigades\\escort.txt",
-                "brigades\\naval_asw.txt",
-                "brigades\\naval_anti_air_s.txt",
-                "brigades\\naval_radar_s.txt",
-                "brigades\\naval_fire_controll_s.txt",
-                "brigades\\naval_improved_hull_s.txt",
-                "brigades\\naval_torpedoes_s.txt",
-                "brigades\\naval_anti_air_l.txt",
-                "brigades\\naval_radar_l.txt",
-                "brigades\\naval_fire_controll_l.txt",
-                "brigades\\naval_improved_hull_l.txt",
-                "brigades\\naval_torpedoes_l.txt",
-                "brigades\\naval_mines.txt",
-                "brigades\\naval_sa_l.txt",
-                "brigades\\naval_spotter_l.txt",
-                "brigades\\naval_spotter_s.txt",
-                "brigades\\b_u1.txt",
-                "brigades\\b_u2.txt",
-                "brigades\\b_u3.txt",
-                "brigades\\b_u4.txt",
-                "brigades\\b_u5.txt",
-                "brigades\\b_u6.txt",
-                "brigades\\b_u7.txt",
-                "brigades\\b_u8.txt",
-                "brigades\\b_u9.txt",
-                "brigades\\b_u10.txt",
-                "brigades\\b_u11.txt",
-                "brigades\\b_u12.txt",
-                "brigades\\b_u13.txt",
-                "brigades\\b_u14.txt",
-                "brigades\\b_u15.txt",
-                "brigades\\b_u16.txt",
-                "brigades\\b_u17.txt",
-                "brigades\\b_u18.txt",
-                "brigades\\b_u19.txt",
-                "brigades\\b_u20.txt",
-                "brigades\\cavalry_brigade.txt",
-                "brigades\\sp_anti_air.txt",
-                "brigades\\medium_armor.txt",
-                "brigades\\floatplane.txt",
-                "brigades\\light_cag.txt",
-                "brigades\\amph_armor.txt",
-                "brigades\\glider_armor.txt",
-                "brigades\\glider_artillery.txt",
-                "brigades\\super_heavy_artillery.txt",
-                "brigades\\b_rsv_36.txt",
-                "brigades\\b_rsv_37.txt",
-                "brigades\\b_rsv_38.txt",
-                "brigades\\b_rsv_39.txt",
-                "brigades\\b_rsv_40.txt",
-                "brigades\\b_01.txt",
-                "brigades\\b_02.txt",
-                "brigades\\b_03.txt",
-                "brigades\\b_04.txt",
-                "brigades\\b_05.txt",
-                "brigades\\b_06.txt",
-                "brigades\\b_07.txt",
-                "brigades\\b_08.txt",
-                "brigades\\b_09.txt",
-                "brigades\\b_10.txt",
-                "brigades\\b_11.txt",
-                "brigades\\b_12.txt",
-                "brigades\\b_13.txt",
-                "brigades\\b_14.txt",
-                "brigades\\b_15.txt",
-                "brigades\\b_16.txt",
-                "brigades\\b_17.txt",
-                "brigades\\b_18.txt",
-                "brigades\\b_19.txt",
-                "brigades\\b_20.txt",
-                "brigades\\b_21.txt",
-                "brigades\\b_22.txt",
-                "brigades\\b_23.txt",
-                "brigades\\b_24.txt",
-                "brigades\\b_25.txt",
-                "brigades\\b_26.txt",
-                "brigades\\b_27.txt",
-                "brigades\\b_28.txt",
-                "brigades\\b_29.txt",
-                "brigades\\b_30.txt",
-                "brigades\\b_31.txt",
-                "brigades\\b_32.txt",
-                "brigades\\b_33.txt",
-                "brigades\\b_34.txt",
-                "brigades\\b_35.txt",
-                "brigades\\b_36.txt",
-                "brigades\\b_37.txt",
-                "brigades\\b_38.txt",
-                "brigades\\b_39.txt",
-                "brigades\\b_40.txt",
-                "brigades\\b_41.txt",
-                "brigades\\b_42.txt",
-                "brigades\\b_43.txt",
-                "brigades\\b_44.txt",
-                "brigades\\b_45.txt",
-                "brigades\\b_46.txt",
-                "brigades\\b_47.txt",
-                "brigades\\b_48.txt",
-                "brigades\\b_49.txt",
-                "brigades\\b_50.txt",
-                "brigades\\b_51.txt",
-                "brigades\\b_52.txt",
-                "brigades\\b_53.txt",
-                "brigades\\b_54.txt",
-                "brigades\\b_55.txt",
-                "brigades\\b_56.txt",
-                "brigades\\b_57.txt",
-                "brigades\\b_58.txt",
-                "brigades\\b_59.txt",
-                "brigades\\b_60.txt",
-                "brigades\\b_61.txt",
-                "brigades\\b_62.txt",
-                "brigades\\b_63.txt",
-                "brigades\\b_64.txt",
-                "brigades\\b_65.txt",
-                "brigades\\b_66.txt",
-                "brigades\\b_67.txt",
-                "brigades\\b_68.txt",
-                "brigades\\b_69.txt",
-                "brigades\\b_70.txt",
-                "brigades\\b_71.txt",
-                "brigades\\b_72.txt",
-                "brigades\\b_73.txt",
-                "brigades\\b_74.txt",
-                "brigades\\b_75.txt",
-                "brigades\\b_76.txt",
-                "brigades\\b_77.txt",
-                "brigades\\b_78.txt",
-                "brigades\\b_79.txt",
-                "brigades\\b_80.txt",
-                "brigades\\b_81.txt",
-                "brigades\\b_82.txt",
-                "brigades\\b_83.txt",
-                "brigades\\b_84.txt",
-                "brigades\\b_85.txt",
-                "brigades\\b_86.txt",
-                "brigades\\b_87.txt",
-                "brigades\\b_88.txt",
-                "brigades\\b_89.txt",
-                "brigades\\b_90.txt",
-                "brigades\\b_91.txt",
-                "brigades\\b_92.txt",
-                "brigades\\b_93.txt",
-                "brigades\\b_94.txt",
-                "brigades\\b_95.txt",
-                "brigades\\b_96.txt",
-                "brigades\\b_97.txt",
-                "brigades\\b_98.txt",
-                "brigades\\b_99.txt"
+                "infantry.txt",
+                "cavalry.txt",
+                "motorized.txt",
+                "mechanized.txt",
+                "light_armor.txt",
+                "armor.txt",
+                "paratrooper.txt",
+                "marine.txt",
+                "bergsjaeger.txt",
+                "garrison.txt",
+                "hq.txt",
+                "militia.txt",
+                "multi_role.txt",
+                "interceptor.txt",
+                "strategic_bomber.txt",
+                "tactical_bomber.txt",
+                "naval_bomber.txt",
+                "cas.txt",
+                "transport_plane.txt",
+                "flying_bomb.txt",
+                "flying_rocket.txt",
+                "battleship.txt",
+                "light_cruiser.txt",
+                "heavy_cruiser.txt",
+                "battlecruiser.txt",
+                "destroyer.txt",
+                "carrier.txt",
+                "escort_carrier.txt",
+                "submarine.txt",
+                "nuclear_submarine.txt",
+                "transport.txt",
+                "light_carrier.txt",
+                "rocket_interceptor.txt",
+                "d_rsv_33.txt",
+                "d_rsv_34.txt",
+                "d_rsv_35.txt",
+                "d_rsv_36.txt",
+                "d_rsv_37.txt",
+                "d_rsv_38.txt",
+                "d_rsv_39.txt",
+                "d_rsv_40.txt",
+                "d_01.txt",
+                "d_02.txt",
+                "d_03.txt",
+                "d_04.txt",
+                "d_05.txt",
+                "d_06.txt",
+                "d_07.txt",
+                "d_08.txt",
+                "d_09.txt",
+                "d_10.txt",
+                "d_11.txt",
+                "d_12.txt",
+                "d_13.txt",
+                "d_14.txt",
+                "d_15.txt",
+                "d_16.txt",
+                "d_17.txt",
+                "d_18.txt",
+                "d_19.txt",
+                "d_20.txt",
+                "d_21.txt",
+                "d_22.txt",
+                "d_23.txt",
+                "d_24.txt",
+                "d_25.txt",
+                "d_26.txt",
+                "d_27.txt",
+                "d_28.txt",
+                "d_29.txt",
+                "d_30.txt",
+                "d_31.txt",
+                "d_32.txt",
+                "d_33.txt",
+                "d_34.txt",
+                "d_35.txt",
+                "d_36.txt",
+                "d_37.txt",
+                "d_38.txt",
+                "d_39.txt",
+                "d_40.txt",
+                "d_41.txt",
+                "d_42.txt",
+                "d_43.txt",
+                "d_44.txt",
+                "d_45.txt",
+                "d_46.txt",
+                "d_47.txt",
+                "d_48.txt",
+                "d_49.txt",
+                "d_50.txt",
+                "d_51.txt",
+                "d_52.txt",
+                "d_53.txt",
+                "d_54.txt",
+                "d_55.txt",
+                "d_56.txt",
+                "d_57.txt",
+                "d_58.txt",
+                "d_59.txt",
+                "d_60.txt",
+                "d_61.txt",
+                "d_62.txt",
+                "d_63.txt",
+                "d_64.txt",
+                "d_65.txt",
+                "d_66.txt",
+                "d_67.txt",
+                "d_68.txt",
+                "d_69.txt",
+                "d_70.txt",
+                "d_71.txt",
+                "d_72.txt",
+                "d_73.txt",
+                "d_74.txt",
+                "d_75.txt",
+                "d_76.txt",
+                "d_77.txt",
+                "d_78.txt",
+                "d_79.txt",
+                "d_80.txt",
+                "d_81.txt",
+                "d_82.txt",
+                "d_83.txt",
+                "d_84.txt",
+                "d_85.txt",
+                "d_86.txt",
+                "d_87.txt",
+                "d_88.txt",
+                "d_89.txt",
+                "d_90.txt",
+                "d_91.txt",
+                "d_92.txt",
+                "d_93.txt",
+                "d_94.txt",
+                "d_95.txt",
+                "d_96.txt",
+                "d_97.txt",
+                "d_98.txt",
+                "d_99.txt",
+                "none.txt",
+                "artillery.txt",
+                "sp_artillery.txt",
+                "rocket_artillery.txt",
+                "sp_rct_artillery.txt",
+                "anti_tank.txt",
+                "tank_destroyer.txt",
+                "light_armor_brigade.txt",
+                "heavy_armor.txt",
+                "super_heavy_armor.txt",
+                "armored_car.txt",
+                "anti_air.txt",
+                "police.txt",
+                "engineer.txt",
+                "cag.txt",
+                "escort.txt",
+                "naval_asw.txt",
+                "naval_anti_air_s.txt",
+                "naval_radar_s.txt",
+                "naval_fire_controll_s.txt",
+                "naval_improved_hull_s.txt",
+                "naval_torpedoes_s.txt",
+                "naval_anti_air_l.txt",
+                "naval_radar_l.txt",
+                "naval_fire_controll_l.txt",
+                "naval_improved_hull_l.txt",
+                "naval_torpedoes_l.txt",
+                "naval_mines.txt",
+                "naval_sa_l.txt",
+                "naval_spotter_l.txt",
+                "naval_spotter_s.txt",
+                "b_u1.txt",
+                "b_u2.txt",
+                "b_u3.txt",
+                "b_u4.txt",
+                "b_u5.txt",
+                "b_u6.txt",
+                "b_u7.txt",
+                "b_u8.txt",
+                "b_u9.txt",
+                "b_u10.txt",
+                "b_u11.txt",
+                "b_u12.txt",
+                "b_u13.txt",
+                "b_u14.txt",
+                "b_u15.txt",
+                "b_u16.txt",
+                "b_u17.txt",
+                "b_u18.txt",
+                "b_u19.txt",
+                "b_u20.txt",
+                "cavalry_brigade.txt",
+                "sp_anti_air.txt",
+                "medium_armor.txt",
+                "floatplane.txt",
+                "light_cag.txt",
+                "amph_armor.txt",
+                "glider_armor.txt",
+                "glider_artillery.txt",
+                "super_heavy_artillery.txt",
+                "b_rsv_36.txt",
+                "b_rsv_37.txt",
+                "b_rsv_38.txt",
+                "b_rsv_39.txt",
+                "b_rsv_40.txt",
+                "b_01.txt",
+                "b_02.txt",
+                "b_03.txt",
+                "b_04.txt",
+                "b_05.txt",
+                "b_06.txt",
+                "b_07.txt",
+                "b_08.txt",
+                "b_09.txt",
+                "b_10.txt",
+                "b_11.txt",
+                "b_12.txt",
+                "b_13.txt",
+                "b_14.txt",
+                "b_15.txt",
+                "b_16.txt",
+                "b_17.txt",
+                "b_18.txt",
+                "b_19.txt",
+                "b_20.txt",
+                "b_21.txt",
+                "b_22.txt",
+                "b_23.txt",
+                "b_24.txt",
+                "b_25.txt",
+                "b_26.txt",
+                "b_27.txt",
+                "b_28.txt",
+                "b_29.txt",
+                "b_30.txt",
+                "b_31.txt",
+                "b_32.txt",
+                "b_33.txt",
+                "b_34.txt",
+                "b_35.txt",
+                "b_36.txt",
+                "b_37.txt",
+                "b_38.txt",
+                "b_39.txt",
+                "b_40.txt",
+                "b_41.txt",
+                "b_42.txt",
+                "b_43.txt",
+                "b_44.txt",
+                "b_45.txt",
+                "b_46.txt",
+                "b_47.txt",
+                "b_48.txt",
+                "b_49.txt",
+                "b_50.txt",
+                "b_51.txt",
+                "b_52.txt",
+                "b_53.txt",
+                "b_54.txt",
+                "b_55.txt",
+                "b_56.txt",
+                "b_57.txt",
+                "b_58.txt",
+                "b_59.txt",
+                "b_60.txt",
+                "b_61.txt",
+                "b_62.txt",
+                "b_63.txt",
+                "b_64.txt",
+                "b_65.txt",
+                "b_66.txt",
+                "b_67.txt",
+                "b_68.txt",
+                "b_69.txt",
+                "b_70.txt",
+                "b_71.txt",
+                "b_72.txt",
+                "b_73.txt",
+                "b_74.txt",
+                "b_75.txt",
+                "b_76.txt",
+                "b_77.txt",
+                "b_78.txt",
+                "b_79.txt",
+                "b_80.txt",
+                "b_81.txt",
+                "b_82.txt",
+                "b_83.txt",
+                "b_84.txt",
+                "b_85.txt",
+                "b_86.txt",
+                "b_87.txt",
+                "b_88.txt",
+                "b_89.txt",
+                "b_90.txt",
+                "b_91.txt",
+                "b_92.txt",
+                "b_93.txt",
+                "b_94.txt",
+                "b_95.txt",
+                "b_96.txt",
+                "b_97.txt",
+                "b_98.txt",
+                "b_99.txt"
             };
 
         /// <summary>
@@ -1578,24 +1375,24 @@ namespace HoI2Editor.Models
                 UnitBranch.Army,
                 UnitBranch.Army,
                 UnitBranch.Army,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
                 UnitBranch.Army,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
                 UnitBranch.Navy,
                 UnitBranch.Navy,
                 UnitBranch.Navy,
@@ -2185,6 +1982,44 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
+        ///     実ユニット種類に対応する兵科
+        /// </summary>
+        public static readonly UnitBranch[] RealBranchTable =
+            {
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Army,
+                UnitBranch.Navy,
+                UnitBranch.Navy
+            };
+
+        /// <summary>
         ///     ユニット名の初期設定値
         /// </summary>
         private static readonly string[] DefaultNames =
@@ -2195,31 +2030,31 @@ namespace HoI2Editor.Models
                 "MECHANIZED",
                 "LIGHT_ARMOR",
                 "ARMOR",
-                "GARRISON",
-                "HQ",
                 "PARATROOPER",
                 "MARINE",
                 "BERGSJAEGER",
-                "CAS",
+                "GARRISON",
+                "HQ",
+                "MILITIA",
                 "MULTI_ROLE",
                 "INTERCEPTOR",
                 "STRATEGIC_BOMBER",
                 "TACTICAL_BOMBER",
                 "NAVAL_BOMBER",
+                "CAS",
                 "TRANSPORT_PLANE",
+                "FLYING_BOMB",
+                "FLYING_ROCKET",
                 "BATTLESHIP",
                 "LIGHT_CRUISER",
                 "HEAVY_CRUISER",
                 "BATTLECRUISER",
                 "DESTROYER",
                 "CARRIER",
-                "SUBMARINE",
-                "TRANSPORT",
-                "FLYING_BOMB",
-                "FLYING_ROCKET",
-                "MILITIA",
                 "ESCORT_CARRIER",
+                "SUBMARINE",
                 "NUCLEAR_SUBMARINE",
+                "TRANSPORT",
                 "LIGHT_CARRIER",
                 "ROCKET_INTERCEPTOR",
                 "D_RSV_33",
@@ -2496,6 +2331,192 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
+        ///     実ユニット名
+        /// </summary>
+        public static readonly string[] RealNames =
+            {
+                "NAME_INFANTRY",
+                "NAME_CAVALRY",
+                "NAME_MOTORIZED",
+                "NAME_MECHANIZED",
+                "NAME_LIGHT_ARMOR",
+                "NAME_ARMOR",
+                "NAME_GARRISON",
+                "NAME_HQ",
+                "NAME_PARATROOPER",
+                "NAME_MARINE",
+                "NAME_BERGSJAEGER",
+                "NAME_CAS",
+                "NAME_MULTI_ROLE",
+                "NAME_INTERCEPTOR",
+                "NAME_STRATEGIC_BOMBER",
+                "NAME_TACTICAL_BOMBER",
+                "NAME_NAVAL_BOMBER",
+                "NAME_TRANSPORT_PLANE",
+                "NAME_BATTLESHIP",
+                "NAME_BATTLECRUISER",
+                "NAME_HEAVY_CRUISER",
+                "NAME_LIGHT_CRUISER",
+                "NAME_DESTROYER",
+                "NAME_CARRIER",
+                "NAME_SUBMARINE",
+                "NAME_TRANSPORT",
+                "NAME_FLYING_BOMB",
+                "NAME_FLYING_ROCKET",
+                "NAME_MILITIA",
+                "NAME_ESCORT_CARRIER",
+                "NAME_NUCLEAR_SUBMARINE"
+            };
+
+        /// <summary>
+        ///     スプライト種類名
+        /// </summary>
+        public static readonly string[] SpriteNames =
+            {
+                "NAME_INFANTRY",
+                "NAME_CAVALRY",
+                "NAME_MOTORIZED",
+                "NAME_MECHANIZED",
+                "NAME_LIGHT_ARMOR",
+                "NAME_ARMOR",
+                "NAME_PARATROOPER",
+                "NAME_MARINE",
+                "NAME_BERGSJAEGER",
+                "NAME_MULTI_ROLE",
+                "NAME_ESCORT",
+                "NAME_INTERCEPTOR",
+                "NAME_STRATEGIC_BOMBER",
+                "NAME_TACTICAL_BOMBER",
+                "NAME_CAS",
+                "NAME_NAVAL_BOMBER",
+                "NAME_TRANSPORT_PLANE",
+                "NAME_BATTLESHIP",
+                "NAME_BATTLECRUISER",
+                "NAME_HEAVY_CRUISER",
+                "NAME_LIGHT_CRUISER",
+                "NAME_DESTROYER",
+                "NAME_CARRIER",
+                "NAME_SUBMARINE",
+                "NAME_TRANSPORT",
+                "NAME_MILITIA",
+                "NAME_GARRISON",
+                "NAME_HQ",
+                "NAME_FLYING_BOMB",
+                "NAME_FLYING_ROCKET",
+                "NAME_NUCLEAR_SUBMARINE",
+                "NAME_ESCORT_CARRIER",
+                "NAME_LIGHT_CARRIER",
+                "NAME_ROCKET_INTERCEPTOR",
+                "NAME_D_RSV_33",
+                "NAME_D_RSV_34",
+                "NAME_D_RSV_35",
+                "NAME_D_RSV_36",
+                "NAME_D_RSV_37",
+                "NAME_D_RSV_38",
+                "NAME_D_RSV_39",
+                "NAME_D_RSV_40",
+                "NAME_D_01",
+                "NAME_D_02",
+                "NAME_D_03",
+                "NAME_D_04",
+                "NAME_D_05",
+                "NAME_D_06",
+                "NAME_D_07",
+                "NAME_D_08",
+                "NAME_D_09",
+                "NAME_D_10",
+                "NAME_D_11",
+                "NAME_D_12",
+                "NAME_D_13",
+                "NAME_D_14",
+                "NAME_D_15",
+                "NAME_D_16",
+                "NAME_D_17",
+                "NAME_D_18",
+                "NAME_D_19",
+                "NAME_D_20",
+                "NAME_D_21",
+                "NAME_D_22",
+                "NAME_D_23",
+                "NAME_D_24",
+                "NAME_D_25",
+                "NAME_D_26",
+                "NAME_D_27",
+                "NAME_D_28",
+                "NAME_D_29",
+                "NAME_D_30",
+                "NAME_D_31",
+                "NAME_D_32",
+                "NAME_D_33",
+                "NAME_D_34",
+                "NAME_D_35",
+                "NAME_D_36",
+                "NAME_D_37",
+                "NAME_D_38",
+                "NAME_D_39",
+                "NAME_D_40",
+                "NAME_D_41",
+                "NAME_D_42",
+                "NAME_D_43",
+                "NAME_D_44",
+                "NAME_D_45",
+                "NAME_D_46",
+                "NAME_D_47",
+                "NAME_D_48",
+                "NAME_D_49",
+                "NAME_D_50",
+                "NAME_D_51",
+                "NAME_D_52",
+                "NAME_D_53",
+                "NAME_D_54",
+                "NAME_D_55",
+                "NAME_D_56",
+                "NAME_D_57",
+                "NAME_D_58",
+                "NAME_D_59",
+                "NAME_D_60",
+                "NAME_D_61",
+                "NAME_D_62",
+                "NAME_D_63",
+                "NAME_D_64",
+                "NAME_D_65",
+                "NAME_D_66",
+                "NAME_D_67",
+                "NAME_D_68",
+                "NAME_D_69",
+                "NAME_D_70",
+                "NAME_D_71",
+                "NAME_D_72",
+                "NAME_D_73",
+                "NAME_D_74",
+                "NAME_D_75",
+                "NAME_D_76",
+                "NAME_D_77",
+                "NAME_D_78",
+                "NAME_D_79",
+                "NAME_D_80",
+                "NAME_D_81",
+                "NAME_D_82",
+                "NAME_D_83",
+                "NAME_D_84",
+                "NAME_D_85",
+                "NAME_D_86",
+                "NAME_D_87",
+                "NAME_D_88",
+                "NAME_D_89",
+                "NAME_D_90",
+                "NAME_D_91",
+                "NAME_D_92",
+                "NAME_D_93",
+                "NAME_D_94",
+                "NAME_D_95",
+                "NAME_D_96",
+                "NAME_D_97",
+                "NAME_D_98",
+                "NAME_D_99"
+            };
+
+        /// <summary>
         ///     ユニット番号の初期設定値
         /// </summary>
         public static readonly int[] UnitNumbers =
@@ -2506,31 +2527,31 @@ namespace HoI2Editor.Models
                 3,
                 4,
                 5,
-                9,
-                10,
                 6,
                 7,
                 8,
-                17,
+                9,
+                10,
+                11,
                 12,
                 13,
                 14,
                 15,
                 16,
+                17,
                 18,
+                19,
+                20,
                 21,
                 22,
                 23,
                 24,
                 25,
                 26,
-                28,
-                30,
-                19,
-                20,
-                11,
                 27,
+                28,
                 29,
+                30,
                 31,
                 32,
                 33,
@@ -2820,6 +2841,18 @@ namespace HoI2Editor.Models
             {
                 StringMap.Add(StringTable[(int) type], type);
             }
+
+            // 実ユニット種類文字列とIDの対応付けを初期化
+            foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
+            {
+                RealStringMap.Add(RealStringTable[(int) type], type);
+            }
+
+            // スプライト種類文字列とIDの対応付けを初期化
+            foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
+            {
+                SpriteStringMap.Add(SpriteStringTable[(int) type], type);
+            }
         }
 
         /// <summary>
@@ -2840,19 +2873,22 @@ namespace HoI2Editor.Models
         {
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                Types = TypesAoD;
+                DivisionTypes = DivisionTypesAoD;
                 BrigadeTypes = BrigadeTypesAoD;
             }
             else if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
-                Types = TypesDh;
+                DivisionTypes = DivisionTypesDh;
                 BrigadeTypes = BrigadeTypesDh;
             }
             else
             {
-                Types = TypesHoI2;
+                DivisionTypes = DivisionTypesHoI2;
                 BrigadeTypes = BrigadeTypesHoI2;
             }
+
+            UnitTypes.AddRange(DivisionTypes);
+            UnitTypes.AddRange(BrigadeTypes);
         }
 
         /// <summary>
@@ -2929,7 +2965,13 @@ namespace HoI2Editor.Models
             // ユニットクラスデータの初期値を設定する
             foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
-                var unit = new Unit {Type = type, Branch = BranchMap[type], Organization = OrganizationMap[type]};
+                var unit = new Unit
+                               {
+                                   Type = type,
+                                   Branch = BranchMap[type],
+                                   Organization = OrganizationMap[type],
+                                   ListPrio = -1
+                               };
                 string s = DefaultNames[(int) unit.Type];
                 unit.Name = "NAME_" + s;
                 unit.ShortName = "SNAME_" + s;
@@ -2940,8 +2982,18 @@ namespace HoI2Editor.Models
                 SetDirty(type, false);
             }
 
+            // ユニットクラス定義ファイルを読み込む(DH1.03以降)
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                LoadDivisionTypes();
+                LoadBrigadeTypes();
+
+                SetDirtyDivisionTypes(false);
+                SetDirtyBrigadeTypes(false);
+            }
+
             // ユニット定義ファイルを順に読み込む
-            foreach (UnitType type in Types)
+            foreach (UnitType type in UnitTypes)
             {
                 try
                 {
@@ -2949,8 +3001,14 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    string fileName = Game.GetReadFileName(Path.Combine(Game.UnitPathName, FileNameMap[type]));
-                    MessageBox.Show(String.Format("{0}: {1}", Resources.FileReadError, fileName), Resources.Error);
+                    Unit unit = List[(int) type];
+                    string fileName =
+                        Game.GetReadFileName(
+                            Path.Combine(
+                                unit.Organization == UnitOrganization.Division
+                                    ? Game.DivisionPathName
+                                    : Game.BrigadePathName, FileNameMap[type]));
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                 }
             }
 
@@ -2964,13 +3022,49 @@ namespace HoI2Editor.Models
         private static void LoadFile(UnitType type)
         {
             // ユニット定義ファイルを解析する
-            string fileName = Game.GetReadFileName(Path.Combine(Game.UnitPathName, FileNameMap[type]));
+            Unit unit = List[(int) type];
+            string fileName =
+                Game.GetReadFileName(
+                    Path.Combine(
+                        unit.Organization == UnitOrganization.Division ? Game.DivisionPathName : Game.BrigadePathName,
+                        FileNameMap[type]));
             if (!File.Exists(fileName))
             {
                 return;
             }
-            Unit unit = List[(int) type];
             UnitParser.Parse(fileName, unit);
+        }
+
+        /// <summary>
+        ///     師団ユニットクラス定義ファイルを読み込む
+        /// </summary>
+        private static void LoadDivisionTypes()
+        {
+            // ファイルが存在しなければ戻る
+            string fileName = Game.GetReadFileName(Game.DhDivisionTypePathName);
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+
+            // ファイルを解析する
+            UnitParser.ParseDivisionTypes(fileName, List);
+        }
+
+        /// <summary>
+        ///     旅団ユニットクラス定義ファイルを読み込む
+        /// </summary>
+        private static void LoadBrigadeTypes()
+        {
+            // ファイルが存在しなければ戻る
+            string fileName = Game.GetReadFileName(Game.DhBrigadeTypePathName);
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+
+            // ファイルを解析する
+            UnitParser.ParseBrigadeTypes(fileName, List);
         }
 
         /// <summary>
@@ -2978,25 +3072,35 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
-            string folderName = Game.GetWriteFileName(Game.UnitPathName);
             // ユニット定義フォルダがなければ作成する
+            string folderName = Game.GetWriteFileName(Game.UnitPathName);
             if (!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);
             }
 
+            // ユニットクラス定義ファイルを保存する(DH1.03以降)
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                SaveDivisionTypes();
+                SaveBrigadeTypes();
+            }
+
+            // ユニット定義ファイルへ順に保存する
             foreach (Unit unit in List)
             {
                 if (DirtyFlags[(int) unit.Type])
                 {
                     // 師団/旅団定義フォルダがなければ作成する
-                    string subFolderName = Path.Combine(
-                        folderName, unit.Organization == UnitOrganization.Division ? "divisions" : "brigades");
-                    if (!Directory.Exists(subFolderName))
+                    folderName =
+                        Game.GetWriteFileName(unit.Organization == UnitOrganization.Division
+                                                  ? Game.DivisionPathName
+                                                  : Game.BrigadePathName);
+                    if (!Directory.Exists(folderName))
                     {
-                        Directory.CreateDirectory(subFolderName);
+                        Directory.CreateDirectory(folderName);
                     }
-                    // ユニット定義ファイルに保存する
+                    // ユニット定義ファイルを保存する
                     string fileName = Path.Combine(folderName, FileNameMap[unit.Type]);
                     try
                     {
@@ -3005,9 +3109,57 @@ namespace HoI2Editor.Models
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show(String.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.Error);
+                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        ///     師団ユニットクラス定義ファイルを保存する
+        /// </summary>
+        private static void SaveDivisionTypes()
+        {
+            // 変更がなければ何もしない
+            if (!_isDivisionTypesDirty)
+            {
+                return;
+            }
+
+            // 師団ユニットクラス定義ファイルを保存する
+            string fileName = Game.GetWriteFileName(Game.DhDivisionTypePathName);
+            try
+            {
+                UnitWriter.WriteDivisionTypes(List, fileName);
+                SetDirtyDivisionTypes(false);
+            }
+            catch (Exception)
+            {
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+            }
+        }
+
+        /// <summary>
+        ///     旅団ユニットクラス定義ファイルを保存する
+        /// </summary>
+        private static void SaveBrigadeTypes()
+        {
+            // 変更がなければ何もしない
+            if (!_isBrigadeTypesDirty)
+            {
+                return;
+            }
+
+            // 旅団ユニットクラス定義ファイルを保存する
+            string fileName = Game.GetWriteFileName(Game.DhBrigadeTypePathName);
+            try
+            {
+                UnitWriter.WriteBrigadeTypes(List, fileName);
+                SetDirtyBrigadeTypes(false);
+            }
+            catch (Exception)
+            {
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
             }
         }
 
@@ -3020,13 +3172,31 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     編集済みフラグを更新する
+        ///     ユニットクラスの編集済みフラグを更新する
         /// </summary>
         /// <param name="type">ユニットの種類</param>
         /// <param name="flag">フラグ状態</param>
         public static void SetDirty(UnitType type, bool flag)
         {
             DirtyFlags[(int) type] = flag;
+        }
+
+        /// <summary>
+        ///     師団ユニットクラス定義の編集済みフラグを更新する
+        /// </summary>
+        /// <param name="flag">フラグ状態</param>
+        public static void SetDirtyDivisionTypes(bool flag)
+        {
+            _isDivisionTypesDirty = flag;
+        }
+
+        /// <summary>
+        ///     旅団ユニットクラス定義の編集済みフラグを更新する
+        /// </summary>
+        /// <param name="flag">フラグ状態</param>
+        public static void SetDirtyBrigadeTypes(bool flag)
+        {
+            _isBrigadeTypesDirty = flag;
         }
 
         #endregion
