@@ -827,6 +827,9 @@ namespace HoI2Editor.Forms
         private void UpdateClassEditableItems()
         {
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            bool isDivision = (unit.Organization == UnitOrganization.Division);
+
+            allowedBrigadesListView.Enabled = isDivision;
 
             classNameTextBox.Text = Config.GetText(unit.Name);
             classShortNameTextBox.Text = Config.GetText(unit.ShortName);
@@ -840,23 +843,45 @@ namespace HoI2Editor.Forms
             }
             if (Game.Type == GameType.DarkestHour)
             {
+                maxAllowedBrigadesLabel.Enabled = isDivision;
+                maxAllowedBrigadesNumericUpDown.Enabled = isDivision;
+                upgradeGroupBox.Enabled = isDivision;
+
                 maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
                 UpdateUpgradeList(unit);
+
                 if (Game.Version >= 103)
                 {
-                    productableCheckBox.Checked = unit.Productable;
-                    detachableCheckBox.Checked = unit.Detachable;
-                    cagCheckBox.Checked = unit.Cag;
-                    escortCheckBox.Checked = unit.Escort;
-                    engineerCheckBox.Checked = unit.Engineer;
+                    eyrLabel.Enabled = isDivision;
+                    eyrNumericUpDown.Enabled = isDivision;
+                    gfxPrioLabel.Enabled = isDivision;
+                    gfxPrioNumericUpDown.Enabled = isDivision;
+                    realUnitTypeLabel.Enabled = isDivision;
+                    realUnitTypeComboBox.Enabled = isDivision;
+                    spriteTypeLabel.Enabled = isDivision;
+                    spriteTypeComboBox.Enabled = isDivision;
+                    transmuteLabel.Enabled = isDivision;
+                    transmuteComboBox.Enabled = isDivision;
+                    detachableCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.Navy));
+                    cagCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.Navy));
+                    escortCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.AirForce));
+                    engineerCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.Army));
+                    defaultTypeCheckBox.Enabled = isDivision;
+                    productableCheckBox.Enabled = isDivision;
+
                     eyrNumericUpDown.Value = unit.Eyr;
                     gfxPrioNumericUpDown.Value = unit.GfxPrio;
                     listPrioNumericUpDown.Value = unit.ListPrio;
                     realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
-                    defaultTypeCheckBox.Checked = unit.DefaultType;
                     spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
                     transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
                     militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                    detachableCheckBox.Checked = unit.Detachable;
+                    cagCheckBox.Checked = unit.Cag;
+                    escortCheckBox.Checked = unit.Escort;
+                    engineerCheckBox.Checked = unit.Engineer;
+                    defaultTypeCheckBox.Checked = unit.DefaultType;
+                    productableCheckBox.Checked = unit.Productable;
                 }
             }
         }
@@ -1725,6 +1750,64 @@ namespace HoI2Editor.Forms
                                       ? CountryTag.None
                                       : (CountryTag) (countryListView.SelectedIndices[0] + 1));
 
+            bool isDivision = (unit.Organization == UnitOrganization.Division);
+            bool isArmy = (unit.Branch == UnitBranch.Army);
+            bool isNavy = (unit.Branch == UnitBranch.Navy);
+            bool isAirForce = (unit.Branch == UnitBranch.AirForce);
+
+            rangeLabel.Enabled = !isArmy;
+            rangeTextBox.Enabled = !isArmy;
+            transportWeightLabel.Enabled = isArmy;
+            transportWeightTextBox.Enabled = isArmy;
+            transportCapabilityLabel.Enabled = !isArmy;
+            transportCapabilityTextBox.Enabled = !isArmy;
+            suppressionLabel.Enabled = isArmy;
+            suppressionTextBox.Enabled = isDivision && isArmy;
+            speedCapArtLabel.Enabled = isDivision && isArmy;
+            speedCapArtTextBox.Enabled = isDivision && isArmy;
+            speedCapEngLabel.Enabled = isDivision && isArmy;
+            speedCapEngTextBox.Enabled = isDivision && isArmy;
+            speedCapAtLabel.Enabled = isDivision && isArmy;
+            speedCapAtTextBox.Enabled = isDivision && isArmy;
+            speedCapAaLabel.Enabled = isDivision && isArmy;
+            speedCapAaTextBox.Enabled = isDivision && isArmy;
+            defensivenessLabel.Enabled = isArmy;
+            defensivenessTextBox.Enabled = isArmy;
+            seaDefenceLabel.Enabled = isNavy;
+            seaAttackTextBox.Enabled = isNavy;
+            surfaceDefenceLabel.Enabled = isAirForce;
+            surfaceDefenceTextBox.Enabled = isAirForce;
+            toughnessLabel.Enabled = isArmy;
+            toughnessTextBox.Enabled = isArmy;
+            softnessLabel.Enabled = isArmy;
+            softnessTextBox.Enabled = isArmy;
+            softAttackLabel.Enabled = !isNavy;
+            softAttackTextBox.Enabled = !isNavy;
+            hardAttackLabel.Enabled = !isNavy;
+            hardAttackTextBox.Enabled = !isNavy;
+            seaAttackLabel.Enabled = isNavy;
+            seaAttackTextBox.Enabled = isNavy;
+            subAttackLabel.Enabled = isNavy;
+            subAttackTextBox.Enabled = isNavy;
+            convoyAttackLabel.Enabled = isNavy;
+            convoyAttackTextBox.Enabled = isNavy;
+            shoreBombardmentLabel.Enabled = isNavy;
+            shoreBombardmentTextBox.Enabled = isNavy;
+            navalAttackLabel.Enabled = isAirForce;
+            navalAttackTextBox.Enabled = isAirForce;
+            strategicAttackLabel.Enabled = isAirForce;
+            strategicAttackTextBox.Enabled = isAirForce;
+            distanceLabel.Enabled = isNavy;
+            distanceTextBox.Enabled = isNavy;
+            visibilityLabel.Enabled = isNavy;
+            visibilityTextBox.Enabled = isNavy;
+            surfaceDetectionCapabilityLabel.Enabled = !isArmy;
+            surfaceDetectionCapabilityTextBox.Enabled = !isArmy;
+            subDetectionCapabilityLabel.Enabled = !isArmy;
+            subDetectionCapabilityTextBox.Enabled = !isArmy;
+            airDetectionCapabilityLabel.Enabled = !isArmy;
+            airDetectionCapabilityTextBox.Enabled = !isArmy;
+
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
             modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, no);
             modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, country));
@@ -1770,6 +1853,13 @@ namespace HoI2Editor.Forms
 
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
+                maxSupplyStockLabel.Enabled = isDivision && isArmy;
+                maxSupplyStockTextBox.Enabled = isDivision && isArmy;
+                maxOilStockLabel.Enabled = isDivision && isArmy;
+                maxOilStockTextBox.Enabled = isDivision && isArmy;
+                artilleryBombardmentLabel.Enabled = !isDivision && isArmy;
+                artilleryBombardmentTextBox.Enabled = !isDivision && isArmy;
+
                 maxSupplyStockTextBox.Text = model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture);
                 maxOilStockTextBox.Text = model.MaxOilStock.ToString(CultureInfo.InvariantCulture);
                 artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
@@ -1777,11 +1867,21 @@ namespace HoI2Editor.Forms
 
             if (Game.Type == GameType.DarkestHour)
             {
+                reinforceCostLabel.Enabled = isDivision;
+                reinforceCostTextBox.Enabled = isDivision;
+                reinforceTimeLabel.Enabled = isDivision;
+                reinforceTimeTextBox.Enabled = isDivision;
+                noFuelCombatModLabel.Enabled = isDivision && isArmy;
+                noFuelCombatModTextBox.Enabled = isDivision && isArmy;
+
                 reinforceCostTextBox.Text = model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture);
                 reinforceTimeTextBox.Text = model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture);
                 noFuelCombatModTextBox.Text = model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture);
                 if (Game.Version >= 103)
                 {
+                    speedCapAllLabel.Enabled = !isDivision && isArmy;
+                    speedCapAllTextBox.Enabled = !isDivision && isArmy;
+
                     speedCapAllTextBox.Text = model.SpeedCap.ToString(CultureInfo.InvariantCulture);
                     UpdateEquipmentList(model);
                 }
