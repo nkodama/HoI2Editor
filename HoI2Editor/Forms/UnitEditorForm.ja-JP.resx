@@ -141,12 +141,6 @@
   <data name="nameColumnHeader.Text" xml:space="preserve">
     <value>名前</value>
   </data>
-  <data name="classColumnHeader.Text" xml:space="preserve">
-    <value>ユニットクラス</value>
-  </data>
-  <data name="branchColumnHeader.Text" xml:space="preserve">
-    <value>兵科</value>
-  </data>
   <data name="costColumnHeader.Text" xml:space="preserve">
     <value>IC</value>
   </data>
@@ -161,6 +155,15 @@
   </data>
   <data name="fuelColumnHeader.Text" xml:space="preserve">
     <value>燃料</value>
+  </data>
+  <data name="organisationColumnHeader.Text" xml:space="preserve">
+    <value>組織率</value>
+  </data>
+  <data name="moraleColumnHeader.Text" xml:space="preserve">
+    <value>士気</value>
+  </data>
+  <data name="maxSpeedColumnHeader.Text" xml:space="preserve">
+    <value>速度</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="eyrLabel.Size" type="System.Drawing.Size, System.Drawing">
@@ -251,7 +254,7 @@
     <value>スプライト種類</value>
   </data>
   <data name="realUnitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 12</value>
+    <value>75, 12</value>
   </data>
   <data name="realUnitTypeLabel.Text" xml:space="preserve">
     <value>実ユニット種類</value>
