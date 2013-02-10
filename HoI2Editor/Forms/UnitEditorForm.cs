@@ -181,6 +181,8 @@ namespace HoI2Editor.Forms
             cagCheckBox.Enabled = flag;
             escortCheckBox.Enabled = flag;
             engineerCheckBox.Enabled = flag;
+            eyrLabel.Enabled = flag;
+            eyrNumericUpDown.Enabled = flag;
             gfxPrioLabel.Enabled = flag;
             gfxPrioNumericUpDown.Enabled = flag;
             listPrioLabel.Enabled = flag;
@@ -773,26 +775,14 @@ namespace HoI2Editor.Forms
 
             var item = new ListViewItem {Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture))};
             item.SubItems.Add(Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
-            item.SubItems.Add(Config.GetText(unit.Name));
-            switch (unit.Branch)
-            {
-                case UnitBranch.Army:
-                    item.SubItems.Add(Resources.BranchArmy);
-                    break;
-
-                case UnitBranch.Navy:
-                    item.SubItems.Add(Resources.BranchNavy);
-                    break;
-
-                case UnitBranch.AirForce:
-                    item.SubItems.Add(Resources.BranchAirforce);
-                    break;
-            }
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.Morale.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
 
             return item;
         }
@@ -859,6 +849,7 @@ namespace HoI2Editor.Forms
                     cagCheckBox.Checked = unit.Cag;
                     escortCheckBox.Checked = unit.Escort;
                     engineerCheckBox.Checked = unit.Engineer;
+                    eyrNumericUpDown.Value = unit.Eyr;
                     gfxPrioNumericUpDown.Value = unit.GfxPrio;
                     listPrioNumericUpDown.Value = unit.ListPrio;
                     realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
@@ -887,6 +878,65 @@ namespace HoI2Editor.Forms
 
             // 値を更新する
             Config.SetText(unit.Name, classNameTextBox.Text, Game.UnitTextFileName);
+
+            // ユニットクラスリストボックスの項目を再設定することで表示更新している
+            // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
+            classListBox.SelectedIndexChanged -= OnClassListBoxSelectedIndexChanged;
+            classListBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
+            classListBox.SelectedIndexChanged += OnClassListBoxSelectedIndexChanged;
+
+            // 実ユニットコンボボックスの項目を更新する
+            int index = Array.IndexOf(Units.RealNames, unit.Name);
+            if (index >= 0)
+            {
+                realUnitTypeComboBox.Items[index] = classNameTextBox.Text;
+                // ドロップダウン幅を更新する
+                realUnitTypeComboBox.DropDownWidth =
+                    Math.Max(realUnitTypeComboBox.DropDownWidth,
+                             TextRenderer.MeasureText(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
+                             SystemInformation.VerticalScrollBarWidth);
+            }
+
+            // スプライトコンボボックスの項目を更新する
+            index = Array.IndexOf(Units.SpriteNames, unit.Name);
+            if (index >= 0)
+            {
+                spriteTypeComboBox.Items[index] = classNameTextBox.Text;
+                // ドロップダウン幅を更新する
+                spriteTypeComboBox.DropDownWidth =
+                    Math.Max(spriteTypeComboBox.DropDownWidth,
+                             TextRenderer.MeasureText(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
+                             SystemInformation.VerticalScrollBarWidth);
+            }
+
+            if (unit.Organization == UnitOrganization.Division)
+            {
+                // 代替ユニットコンボボックスの項目を更新する
+                transmuteComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
+                // ドロップダウン幅を更新する
+                transmuteComboBox.DropDownWidth =
+                    Math.Max(transmuteComboBox.DropDownWidth,
+                             TextRenderer.MeasureText(classNameTextBox.Text, transmuteComboBox.Font).Width +
+                             SystemInformation.VerticalScrollBarWidth);
+
+                // 更新ユニットコンボボックスの項目を更新する
+                upgradeTypeComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
+                // ドロップダウン幅を更新する
+                upgradeTypeComboBox.DropDownWidth =
+                    Math.Max(upgradeTypeComboBox.DropDownWidth,
+                             TextRenderer.MeasureText(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
+                             SystemInformation.VerticalScrollBarWidth);
+            }
+            else
+            {
+                // 付属旅団リストビューの項目を更新する
+                index = Array.IndexOf(Units.BrigadeTypes, unit.Type);
+                if (index >= 0)
+                {
+                    allowedBrigadesListView.Items[index].Text = classNameTextBox.Text;
+                }
+            }
+
 
             // 編集済みフラグを設定する
             Config.SetDirty(Game.UnitTextFileName, true);
@@ -2021,6 +2071,9 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.DefaultOrganization = val;
 
+            // モデルリストビューの項目を変更する
+            modelListView.Items[no].SubItems[7].Text = val.ToString(CultureInfo.InvariantCulture);
+
             // 編集済みフラグを設定する
             SetDirty();
         }
@@ -2058,6 +2111,9 @@ namespace HoI2Editor.Forms
 
             // 値を更新する
             model.Morale = val;
+
+            // モデルリストビューの項目を変更する
+            modelListView.Items[no].SubItems[8].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -2250,7 +2306,7 @@ namespace HoI2Editor.Forms
             model.SupplyConsumption = val;
 
             // モデルリストビューの項目を変更する
-            modelListView.Items[no].SubItems[7].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[no].SubItems[5].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -2291,7 +2347,7 @@ namespace HoI2Editor.Forms
             model.FuelConsumption = val;
 
             // モデルリストビューの項目を変更する
-            modelListView.Items[no].SubItems[8].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[no].SubItems[6].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -2412,7 +2468,7 @@ namespace HoI2Editor.Forms
             model.Cost = val;
 
             // モデルリストビューの項目を変更する
-            modelListView.Items[no].SubItems[4].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[no].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -2453,7 +2509,7 @@ namespace HoI2Editor.Forms
             model.BuildTime = val;
 
             // モデルリストビューの項目を変更する
-            modelListView.Items[no].SubItems[5].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[no].SubItems[3].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -2494,7 +2550,7 @@ namespace HoI2Editor.Forms
             model.ManPower = val;
 
             // モデルリストビューの項目を変更する
-            modelListView.Items[no].SubItems[6].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[no].SubItems[4].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -2688,6 +2744,9 @@ namespace HoI2Editor.Forms
 
             // 値を更新する
             model.MaxSpeed = val;
+
+            // モデルリストビューの項目を変更する
+            modelListView.Items[no].SubItems[9].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             SetDirty();
