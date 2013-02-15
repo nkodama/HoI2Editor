@@ -13,15 +13,12 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Leaders
     {
+        #region フィールド
+
         /// <summary>
         ///     マスター指揮官リスト
         /// </summary>
         public static List<Leader> List = new List<Leader>();
-
-        /// <summary>
-        ///     指揮官編集フラグ
-        /// </summary>
-        public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     国タグと指揮官ファイル名の対応付け
@@ -31,12 +28,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     兵科名
         /// </summary>
-        public static string[] BranchNameTable;
+        public static string[] BranchNames;
 
         /// <summary>
         ///     階級名
         /// </summary>
-        public static string[] RankNameTable;
+        public static string[] RankNames;
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -49,14 +46,101 @@ namespace HoI2Editor.Models
         private static int _currentLineNo;
 
         /// <summary>
-        ///     CSVファイルの区切り文字
+        ///     編集済みフラグ
         /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
+        public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
+
+        #endregion
+
+        #region 定数
+
+        /// <summary>
+        ///     指揮官特性値
+        /// </summary>
+        public static readonly uint[] TraitsValueTable =
+            {
+                LeaderTraits.LogisticsWizard,
+                LeaderTraits.DefensiveDoctrine,
+                LeaderTraits.OffensiveDoctrine,
+                LeaderTraits.WinterSpecialist,
+                LeaderTraits.Trickster,
+                LeaderTraits.Engineer,
+                LeaderTraits.FortressBuster,
+                LeaderTraits.PanzerLeader,
+                LeaderTraits.Commando,
+                LeaderTraits.OldGuard,
+                LeaderTraits.SeaWolf,
+                LeaderTraits.BlockadeRunner,
+                LeaderTraits.SuperiorTactician,
+                LeaderTraits.Spotter,
+                LeaderTraits.TankBuster,
+                LeaderTraits.CarpetBomber,
+                LeaderTraits.NightFlyer,
+                LeaderTraits.FleetDestroyer,
+                LeaderTraits.DesertFox,
+                LeaderTraits.JungleRat,
+                LeaderTraits.UrbanWarfareSpecialist,
+                LeaderTraits.Ranger,
+                LeaderTraits.Mountaineer,
+                LeaderTraits.HillsFighter,
+                LeaderTraits.CounterAttacker,
+                LeaderTraits.Assaulter,
+                LeaderTraits.Encircler,
+                LeaderTraits.Ambusher,
+                LeaderTraits.Disciplined,
+                LeaderTraits.ElasticDefenceSpecialist,
+                LeaderTraits.Blitzer
+            };
+
+        /// <summary>
+        ///     指揮官特性名
+        /// </summary>
+        public static readonly string[] TraitsNames =
+            {
+                "TRAIT_LOGWIZ",
+                "TRAIT_DEFDOC",
+                "TRAIT_OFFDOC",
+                "TRAIT_WINSPE",
+                "TRAIT_TRICKS",
+                "TRAIT_ENGINE",
+                "TRAIT_FORBUS",
+                "TRAIT_PNZLED",
+                "TRAIT_COMMAN",
+                "TRAIT_OLDGRD",
+                "TRAIT_SEAWOL",
+                "TRAIT_BLKRUN",
+                "TRAIT_SUPTAC",
+                "TRAIT_SPOTTE",
+                "TRAIT_TNKBUS",
+                "TRAIT_CRPBOM",
+                "TRAIT_NGHTFL",
+                "TRAIT_FLTDES",
+                "TRAIT_DSRFOX",
+                "TRAIT_JUNGLE",
+                "TRAIT_URBAN",
+                "TRAIT_FOREST",
+                "TRAIT_MOUNTAIN",
+                "TRAIT_HILLS",
+                "TRAIT_COUNTER",
+                "TRAIT_ASSAULT",
+                "TRAIT_ENCIRCL",
+                "TRAIT_AMBUSH",
+                "TRAIT_DELAY",
+                "TRAIT_TATICAL",
+                "TRAIT_BREAK"
+            };
+
+        /// <summary>
+        ///     CSVファイルの区切り文字
+        /// </summary>
+        private static readonly char[] CsvSeparator = {';'};
+
+        #endregion
 
         /// <summary>
         ///     静的コンストラクタ
@@ -64,16 +148,16 @@ namespace HoI2Editor.Models
         static Leaders()
         {
             // 兵科
-            BranchNameTable = new[] {"", Resources.BranchArmy, Resources.BranchNavy, Resources.BranchAirforce};
+            BranchNames = new[] {"", Resources.BranchArmy, Resources.BranchNavy, Resources.BranchAirforce};
 
             // 階級
-            RankNameTable = new[] {"", Resources.Rank3, Resources.Rank2, Resources.Rank1, Resources.Rank0};
+            RankNames = new[] {"", Resources.Rank3, Resources.Rank2, Resources.Rank1, Resources.Rank0};
         }
 
         /// <summary>
         ///     指揮官ファイル群を読み込む
         /// </summary>
-        public static void LoadLeaderFiles()
+        public static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -92,14 +176,7 @@ namespace HoI2Editor.Models
                     break;
 
                 case GameType.DarkestHour:
-                    if (Game.IsModActive)
-                    {
-                        LoadLeaderFilesDh();
-                    }
-                    else
-                    {
-                        LoadLeaderFilesHoI2();
-                    }
+                    LoadLeaderFilesDh();
                     break;
             }
 
@@ -114,6 +191,7 @@ namespace HoI2Editor.Models
             var filelist = new List<string>();
             string folderName;
 
+            // MODフォルダ内の指揮官ファイルを読み込む
             if (Game.IsModActive)
             {
                 folderName = Path.Combine(Game.ModFolderName, Game.LeaderPathName);
@@ -123,7 +201,10 @@ namespace HoI2Editor.Models
                     {
                         try
                         {
+                            // 指揮官ファイルを読み込む
                             LoadLeaderFile(fileName);
+
+                            // 指揮官ファイル一覧に読み込んだファイル名を登録する
                             string name = Path.GetFileName(fileName);
                             if (!String.IsNullOrEmpty(name))
                             {
@@ -132,27 +213,30 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                         }
                     }
                 }
             }
 
+            // バニラフォルダ内の指揮官ファイルを読み込む
             folderName = Path.Combine(Game.FolderName, Game.LeaderPathName);
             if (Directory.Exists(folderName))
             {
                 foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                 {
+                    // MODフォルダ内で読み込んだファイルは無視する
                     string name = Path.GetFileName(fileName);
-                    if (!String.IsNullOrEmpty(name) && !filelist.Contains(name.ToLower()))
+                    if (!string.IsNullOrEmpty(name) && !filelist.Contains(name.ToLower()))
                     {
                         try
                         {
+                            // 指揮官ファイルを読み込む
                             LoadLeaderFile(fileName);
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                         }
                     }
                 }
@@ -164,7 +248,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void LoadLeaderFilesDh()
         {
-            // leaders.txtが存在しなければ従来通りの読み込み方法を使用する
+            // 指揮官リストファイルが存在しなければ従来通りの読み込み方法を使用する
             string listFileName = Game.GetReadFileName(Game.DhLeaderListPathName);
             if (!File.Exists(listFileName))
             {
@@ -172,6 +256,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // 指揮官リストファイルを読み込む
             IEnumerable<string> fileList;
             try
             {
@@ -179,7 +264,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
                 return;
             }
 
@@ -192,7 +277,7 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                 }
             }
         }
@@ -261,7 +346,7 @@ namespace HoI2Editor.Models
 
                     if (country == CountryTag.None && leader != null)
                     {
-                        country = leader.CountryTag;
+                        country = leader.Country;
                         if (country != CountryTag.None && !FileNameMap.ContainsKey(country))
                         {
                             FileNameMap.Add(country, Path.GetFileName(fileName));
@@ -283,7 +368,7 @@ namespace HoI2Editor.Models
         private static Leader ParseLeaderLine(string line)
         {
             // 空行を読み飛ばす
-            if (String.IsNullOrEmpty(line))
+            if (string.IsNullOrEmpty(line))
             {
                 return null;
             }
@@ -293,8 +378,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != (Misc.Mod.RetirementYearLeader ? 19 : 18))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", line));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (tokens.Length < (Misc.Mod.RetirementYearLeader ? 18 : 17))
                 {
@@ -303,7 +388,7 @@ namespace HoI2Editor.Models
             }
 
             // 名前指定のない行は読み飛ばす
-            if (String.IsNullOrEmpty(tokens[0]))
+            if (string.IsNullOrEmpty(tokens[0]))
             {
                 return null;
             }
@@ -317,138 +402,138 @@ namespace HoI2Editor.Models
 
             // ID
             int id;
-            if (!Int32.TryParse(tokens[index], out id))
+            if (!int.TryParse(tokens[index], out id))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1}\n", tokens[index], leader.Name));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1}\n", tokens[index], leader.Name));
                 return null;
             }
             leader.Id = id;
             index++;
 
             // 国家
-            if (String.IsNullOrEmpty(tokens[index]) || !Country.CountryStringMap.ContainsKey(tokens[index].ToUpper()))
+            if (string.IsNullOrEmpty(tokens[index]) || !Country.StringMap.ContainsKey(tokens[index].ToUpper()))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
                 return null;
             }
-            leader.CountryTag = Country.CountryStringMap[tokens[index].ToUpper()];
+            leader.Country = Country.StringMap[tokens[index].ToUpper()];
             index++;
 
             // 任官年
             for (int i = 0; i < 4; i++)
             {
                 int rankYear;
-                if (Int32.TryParse(tokens[index], out rankYear))
+                if (int.TryParse(tokens[index], out rankYear))
                 {
                     leader.RankYear[i] = rankYear;
                 }
                 else
                 {
                     leader.RankYear[i] = 1990;
-                    Log.Write(String.Format("{0}({1}): {2} L{3}\n", Resources.InvalidRankYear, RankNameTable[i],
+                    Log.Write(string.Format("{0}({1}): {2} L{3}\n", Resources.InvalidRankYear, RankNames[i],
                                             _currentFileName, _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                    Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
                 }
                 index++;
             }
 
             // 理想階級
             int idealRank;
-            if (Int32.TryParse(tokens[index], out idealRank) && 0 <= idealRank && idealRank <= 3)
+            if (int.TryParse(tokens[index], out idealRank) && 0 <= idealRank && idealRank <= 3)
             {
                 leader.IdealRank = (LeaderRank) (4 - idealRank);
             }
             else
             {
                 leader.IdealRank = LeaderRank.None;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
             // 最大スキル
             int maxSkill;
-            if (Int32.TryParse(tokens[index], out maxSkill))
+            if (int.TryParse(tokens[index], out maxSkill))
             {
                 leader.MaxSkill = maxSkill;
             }
             else
             {
                 leader.MaxSkill = 0;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidMaxSkill, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidMaxSkill, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
             // 指揮官特性
             uint traits;
-            if (UInt32.TryParse(tokens[index], out traits))
+            if (uint.TryParse(tokens[index], out traits))
             {
                 leader.Traits = traits;
             }
             else
             {
                 leader.Traits = LeaderTraits.None;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTraits, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTraits, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
             // スキル
             int skill;
-            if (Int32.TryParse(tokens[index], out skill))
+            if (int.TryParse(tokens[index], out skill))
             {
                 leader.Skill = skill;
             }
             else
             {
                 leader.Skill = 0;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
             // 経験値
             int experience;
-            if (Int32.TryParse(tokens[index], out experience))
+            if (int.TryParse(tokens[index], out experience))
             {
                 leader.Experience = experience;
             }
             else
             {
                 leader.Experience = 0;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidExperience, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidExperience, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
             // 忠誠度
             int loyalty;
-            if (Int32.TryParse(tokens[index], out loyalty))
+            if (int.TryParse(tokens[index], out loyalty))
             {
                 leader.Loyalty = loyalty;
             }
             else
             {
                 leader.Loyalty = 0;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
             // 兵科
             int branch;
-            if (Int32.TryParse(tokens[index], out branch))
+            if (int.TryParse(tokens[index], out branch))
             {
                 leader.Branch = (LeaderBranch) (branch + 1);
             }
             else
             {
                 leader.Branch = LeaderBranch.None;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
@@ -458,29 +543,29 @@ namespace HoI2Editor.Models
 
             // 開始年
             int startYear;
-            if (Int32.TryParse(tokens[index], out startYear))
+            if (int.TryParse(tokens[index], out startYear))
             {
                 leader.StartYear = startYear;
             }
             else
             {
                 leader.StartYear = 1930;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
             // 終了年
             int endYear;
-            if (Int32.TryParse(tokens[index], out endYear))
+            if (int.TryParse(tokens[index], out endYear))
             {
                 leader.EndYear = endYear;
             }
             else
             {
                 leader.EndYear = 1970;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
             index++;
 
@@ -488,16 +573,16 @@ namespace HoI2Editor.Models
             if (Misc.Mod.RetirementYearLeader)
             {
                 int retirementYear;
-                if (Int32.TryParse(tokens[index], out retirementYear))
+                if (int.TryParse(tokens[index], out retirementYear))
                 {
                     leader.RetirementYear = retirementYear;
                 }
                 else
                 {
                     leader.RetirementYear = 1999;
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
+                    Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
                                             _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                    Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
                 }
             }
             else
@@ -513,13 +598,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官ファイル群を保存する
         /// </summary>
-        public static void SaveLeaderFiles()
+        public static void Save()
         {
             foreach (
-                CountryTag country in
-                    Enum.GetValues(typeof (CountryTag))
-                        .Cast<CountryTag>()
-                        .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
+                CountryTag country in Enum.GetValues(typeof (CountryTag))
+                                          .Cast<CountryTag>()
+                                          .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
             {
                 try
                 {
@@ -559,7 +643,7 @@ namespace HoI2Editor.Models
                         ? "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;Retirement Year;x"
                         : "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
 
-                foreach (Leader leader in List.Where(leader => leader.CountryTag == country))
+                foreach (Leader leader in List.Where(leader => leader.Country == country))
                 {
                     if (Misc.Mod.RetirementYearLeader)
                     {
@@ -567,7 +651,7 @@ namespace HoI2Editor.Models
                             "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};x",
                             leader.Name,
                             leader.Id,
-                            Country.CountryTextTable[(int) leader.CountryTag],
+                            Country.Strings[(int) leader.Country],
                             leader.RankYear[0],
                             leader.RankYear[1],
                             leader.RankYear[2],
@@ -594,7 +678,7 @@ namespace HoI2Editor.Models
                             "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
                             leader.Name,
                             leader.Id,
-                            Country.CountryTextTable[(int) leader.CountryTag],
+                            Country.Strings[(int) leader.Country],
                             leader.RankYear[0],
                             leader.RankYear[1],
                             leader.RankYear[2],
@@ -635,16 +719,17 @@ namespace HoI2Editor.Models
         ///     指揮官リストに項目を挿入する
         /// </summary>
         /// <param name="target">挿入対象の項目</param>
-        /// <param name="position">挿入位置の直前の項目</param>
-        public static void InsertItemNext(Leader target, Leader position)
+        /// <param name="position">挿入先の項目</param>
+        public static void InsertItem(Leader target, Leader position)
         {
-            List.Insert(List.IndexOf(position) + 1, target);
+            int index = List.IndexOf(position) + 1;
+            List.Insert(index, target);
         }
 
         /// <summary>
         ///     指揮官リストから項目を削除する
         /// </summary>
-        /// <param name="target"></param>
+        /// <param name="target">削除対象の項目</param>
         public static void RemoveItem(Leader target)
         {
             List.Remove(target);

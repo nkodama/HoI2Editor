@@ -67,7 +67,7 @@ namespace HoI2Editor.Forms
             List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
                                                    ? new List<CountryTag>()
                                                    : (from string countryText in countryListBox.SelectedItems
-                                                      select Country.CountryStringMap[countryText]).ToList();
+                                                      select Country.StringMap[countryText]).ToList();
 
             foreach (Team team in Teams.List.Where(team => selectedTagList.Contains(team.CountryTag)))
             {
@@ -168,7 +168,7 @@ namespace HoI2Editor.Forms
         {
             // 国タグ
             int maxWidth = countryComboBox.DropDownWidth;
-            foreach (string s in Country.CountryTextTable.Select(
+            foreach (string s in Country.Strings.Select(
                 country =>
                 Config.ExistsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country))
             {
@@ -210,7 +210,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryList()
         {
-            foreach (string country in Country.CountryTextTable.Where(country => !string.IsNullOrEmpty(country)))
+            foreach (string country in Country.Strings.Where(country => !string.IsNullOrEmpty(country)))
             {
                 countryListBox.Items.Add(country);
             }
@@ -316,7 +316,7 @@ namespace HoI2Editor.Forms
 
             var item = new ListViewItem
                            {
-                               Text = Country.CountryTextTable[(int) team.CountryTag],
+                               Text = Country.Strings[(int) team.CountryTag],
                                Tag = team
                            };
             item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
@@ -894,7 +894,7 @@ namespace HoI2Editor.Forms
             Teams.SetDirtyFlag(team.CountryTag);
 
             team.CountryTag = newCountryTag;
-            teamListView.SelectedItems[0].Text = Country.CountryTextTable[(int) team.CountryTag];
+            teamListView.SelectedItems[0].Text = Country.Strings[(int) team.CountryTag];
 
             UpdateCountryComboBox(team);
 

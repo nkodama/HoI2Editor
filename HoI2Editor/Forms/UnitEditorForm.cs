@@ -68,7 +68,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国家リストボックス
-            foreach (string s in Country.CountryTextTable.Where(country => !string.IsNullOrEmpty(country)))
+            foreach (string s in Country.Strings.Where(country => !string.IsNullOrEmpty(country)))
             {
                 countryListView.Items.Add(s);
             }
@@ -2068,7 +2068,7 @@ namespace HoI2Editor.Forms
                     unit.Organization == UnitOrganization.Division
                         ? "ill_div_{0}_{1}_{2}.bmp"
                         : "ill_bri_{0}_{1}_{2}.bmp",
-                    Country.CountryTextTable[(int) country],
+                    Country.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type],
                     no);
                 fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
@@ -2082,7 +2082,7 @@ namespace HoI2Editor.Forms
                     unit.Organization == UnitOrganization.Division
                         ? "ill_div_{0}_{1}_0.bmp"
                         : "ill_bri_{0}_{1}_0.bmp",
-                    Country.CountryTextTable[(int) country],
+                    Country.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type]);
                 fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
                 if (File.Exists(fileName))

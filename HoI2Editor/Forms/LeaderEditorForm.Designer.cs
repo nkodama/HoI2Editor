@@ -297,7 +297,7 @@
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.FormattingEnabled = true;
             this.countryComboBox.Name = "countryComboBox";
-            this.countryComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnCountryComboBoxSelectionChangeCommitted);
+            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryComboBoxSelectedIndexChanged);
             // 
             // countryLabel
             // 
@@ -541,7 +541,7 @@
             this.idealRankComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.idealRankComboBox.FormattingEnabled = true;
             this.idealRankComboBox.Name = "idealRankComboBox";
-            this.idealRankComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnIdealRankComboBoxSelectionChangeCommitted);
+            this.idealRankComboBox.SelectedIndexChanged += new System.EventHandler(this.OnIdealRankComboBoxSelectedIndexChanged);
             // 
             // idealRankLabel
             // 
@@ -889,7 +889,7 @@
             this.branchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchComboBox.FormattingEnabled = true;
             this.branchComboBox.Name = "branchComboBox";
-            this.branchComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnBranchComboBoxSelectionChangeCommitted);
+            this.branchComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchComboBoxSelectedIndexChanged);
             // 
             // branchLabel
             // 

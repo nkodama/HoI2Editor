@@ -326,7 +326,7 @@ namespace HoI2Editor.Models
         {
             return Leaders.FileNameMap.ContainsKey(countryTag)
                        ? Leaders.FileNameMap[countryTag]
-                       : string.Format("leaders{0}.csv", Country.CountryTextTable[(int) countryTag].ToUpper());
+                       : string.Format("leaders{0}.csv", Country.Strings[(int) countryTag].ToUpper());
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ namespace HoI2Editor.Models
         /// <returns>閣僚ファイル名</returns>
         public static string GetMinisterFileName(CountryTag countryTag)
         {
-            return string.Format("ministers_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower());
+            return string.Format("ministers_{0}.csv", Country.Strings[(int) countryTag].ToLower());
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace HoI2Editor.Models
         /// <returns>研究機関ファイル名</returns>
         public static string GetTeamFileName(CountryTag countryTag)
         {
-            return string.Format("teams_{0}.csv", Country.CountryTextTable[(int) countryTag].ToLower());
+            return string.Format("teams_{0}.csv", Country.Strings[(int) countryTag].ToLower());
         }
 
         /// <summary>

@@ -228,11 +228,11 @@ namespace HoI2Editor.Models
                     return;
                 }
                 // サポート外の国タグの場合は何もしない
-                if (!Country.CountryStringMap.ContainsKey(tokens[0].ToUpper()))
+                if (!Country.StringMap.ContainsKey(tokens[0].ToUpper()))
                 {
                     return;
                 }
-                CountryTag country = Country.CountryStringMap[tokens[0].ToUpper()];
+                CountryTag country = Country.StringMap[tokens[0].ToUpper()];
 
                 _currentLineNo++;
 
@@ -400,7 +400,7 @@ namespace HoI2Editor.Models
 
                 writer.WriteLine(
                     "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
-                    Country.CountryTextTable[(int) country]);
+                    Country.Strings[(int) country]);
 
                 foreach (Team team in List.Where(team => team.CountryTag == country).Where(team => team != null))
                 {

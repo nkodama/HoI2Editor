@@ -499,7 +499,7 @@ namespace HoI2Editor.Models
             int unitNo = Units.UnitNumbers[(int) unit.Type];
             if (country != CountryTag.None)
             {
-                string countryText = Country.CountryTextTable[(int) country];
+                string countryText = Country.Strings[(int) country];
                 name = string.Format(
                     unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
                     countryText, unitNo, no);

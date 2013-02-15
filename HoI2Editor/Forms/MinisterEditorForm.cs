@@ -15,10 +15,16 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class MinisterEditorForm : Form
     {
+        #region フィールド
+
         /// <summary>
         ///     絞り込み後の閣僚リスト
         /// </summary>
         private readonly List<Minister> _narrowedList = new List<Minister>();
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     コンストラクタ
@@ -26,6 +32,67 @@ namespace HoI2Editor.Forms
         public MinisterEditorForm()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterEditorFormLoad(object sender, EventArgs e)
+        {
+            // 国家データを初期化する
+            Country.Init();
+
+            // 閣僚特性を読み込む
+            LoadPersonality();
+
+            // 編集項目を初期化する
+            InitEditableItems();
+
+            // 国家リストボックスを初期化する
+            InitCountryListBox();
+
+            // 閣僚ファイルを読み込む
+            LoadMinisterFiles();
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
+        #region 閣僚データ処理
+
+        /// <summary>
+        ///     再読み込みボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnReloadButtonClick(object sender, EventArgs e)
+        {
+            // 閣僚ファイルの再読み込みを要求する
+            Ministers.RequireReload();
+
+            // 閣僚ファイルを読み込む
+            LoadMinisterFiles();
+        }
+
+        /// <summary>
+        ///     保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            SaveMinisterFiles();
         }
 
         /// <summary>
@@ -58,23 +125,9 @@ namespace HoI2Editor.Forms
             countryListBox.Update();
         }
 
-        /// <summary>
-        ///     閣僚リストを国タグで絞り込む
-        /// </summary>
-        private void NarrowMinisterList()
-        {
-            _narrowedList.Clear();
-            List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
-                                                   ? new List<CountryTag>()
-                                                   : (from string country in countryListBox.SelectedItems
-                                                      select Country.CountryStringMap[country]).ToList();
+        #endregion
 
-            foreach (
-                Minister minister in Ministers.List.Where(minister => selectedTagList.Contains(minister.CountryTag)))
-            {
-                _narrowedList.Add(minister);
-            }
-        }
+        #region 閣僚リストビュー
 
         /// <summary>
         ///     閣僚リストの表示を更新する
@@ -102,6 +155,66 @@ namespace HoI2Editor.Forms
 
             ministerListView.EndUpdate();
         }
+
+        /// <summary>
+        ///     閣僚リストを国タグで絞り込む
+        /// </summary>
+        private void NarrowMinisterList()
+        {
+            _narrowedList.Clear();
+            List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
+                                                   ? new List<CountryTag>()
+                                                   : (from string country in countryListBox.SelectedItems
+                                                      select Country.StringMap[country]).ToList();
+
+            foreach (
+                Minister minister in Ministers.List.Where(minister => selectedTagList.Contains(minister.CountryTag)))
+            {
+                _narrowedList.Add(minister);
+            }
+        }
+
+        /// <summary>
+        ///     閣僚リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (ministerListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var minister = ministerListView.SelectedItems[0].Tag as Minister;
+            if (minister == null)
+            {
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateCountryComboBox(minister);
+            idNumericUpDown.Value = minister.Id;
+            nameTextBox.Text = minister.Name;
+            startYearNumericUpDown.Value = minister.StartYear;
+            endYearNumericUpDown.Value = minister.EndYear;
+            retirementYearNumericUpDown.Value = minister.RetirementYear;
+            UpdatePositionComboBox(minister);
+            UpdatePersonalityComboBox(minister);
+            UpdateIdeologyComboBox(minister);
+            UpdateLoyaltyComboBox(minister);
+            pictureNameTextBox.Text = minister.PictureName;
+            UpdateMinisterPicture(minister);
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = ministerListView.SelectedIndices[0] != 0;
+            upButton.Enabled = ministerListView.SelectedIndices[0] != 0;
+            downButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
+            bottomButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
+        }
+
+        #endregion
 
         /// <summary>
         ///     国家コンボボックスの項目を更新する
@@ -289,7 +402,7 @@ namespace HoI2Editor.Forms
         {
             // 国タグ
             int maxSize = countryComboBox.DropDownWidth;
-            foreach (string s in Country.CountryTextTable.Select(
+            foreach (string s in Country.Strings.Select(
                 country =>
                 Config.ExistsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country))
             {
@@ -340,7 +453,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string country in Country.CountryTextTable.Where(country => !string.IsNullOrEmpty(country)))
+            foreach (string country in Country.Strings.Where(country => !string.IsNullOrEmpty(country)))
             {
                 countryListBox.Items.Add(country);
             }
@@ -446,7 +559,7 @@ namespace HoI2Editor.Forms
 
             var item = new ListViewItem
                            {
-                               Text = Country.CountryTextTable[(int) minister.CountryTag],
+                               Text = Country.Strings[(int) minister.CountryTag],
                                Tag = minister
                            };
             item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
@@ -515,19 +628,6 @@ namespace HoI2Editor.Forms
             upButton.Enabled = false;
             downButton.Enabled = false;
             bottomButton.Enabled = false;
-        }
-
-        /// <summary>
-        ///     フォーム読み込み時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterEditorFormLoad(object sender, EventArgs e)
-        {
-            LoadPersonality();
-            InitEditableItems();
-            InitCountryListBox();
-            LoadMinisterFiles();
         }
 
         /// <summary>
@@ -873,44 +973,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     閣僚リストビューの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterListViewSelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ministerListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var minister = ministerListView.SelectedItems[0].Tag as Minister;
-            if (minister == null)
-            {
-                return;
-            }
-
-            UpdateCountryComboBox(minister);
-            idNumericUpDown.Value = minister.Id;
-            nameTextBox.Text = minister.Name;
-            startYearNumericUpDown.Value = minister.StartYear;
-            endYearNumericUpDown.Value = minister.EndYear;
-            retirementYearNumericUpDown.Value = minister.RetirementYear;
-            UpdatePositionComboBox(minister);
-            UpdatePersonalityComboBox(minister);
-            UpdateIdeologyComboBox(minister);
-            UpdateLoyaltyComboBox(minister);
-            pictureNameTextBox.Text = minister.PictureName;
-            UpdateMinisterPicture(minister);
-
-            // 項目移動ボタンの状態更新
-            topButton.Enabled = ministerListView.SelectedIndices[0] != 0;
-            upButton.Enabled = ministerListView.SelectedIndices[0] != 0;
-            downButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
-            bottomButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
-        }
-
-        /// <summary>
         ///     国タグ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -940,7 +1002,7 @@ namespace HoI2Editor.Forms
             Ministers.SetDirtyFlag(minister.CountryTag);
 
             minister.CountryTag = newCountryTag;
-            ministerListView.SelectedItems[0].Text = Country.CountryTextTable[(int) minister.CountryTag];
+            ministerListView.SelectedItems[0].Text = Country.Strings[(int) minister.CountryTag];
 
             UpdateCountryComboBox(minister);
 
@@ -1364,37 +1426,6 @@ namespace HoI2Editor.Forms
             OnCountryListBoxSelectedIndexChanged(sender, e);
 
             countryListBox.EndUpdate();
-        }
-
-        /// <summary>
-        ///     再読み込みボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnReloadButtonClick(object sender, EventArgs e)
-        {
-            Ministers.RequireReload();
-            LoadMinisterFiles();
-        }
-
-        /// <summary>
-        ///     保存ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSaveButtonClick(object sender, EventArgs e)
-        {
-            SaveMinisterFiles();
-        }
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

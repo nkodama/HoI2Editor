@@ -156,7 +156,7 @@
             this.languageComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
-            this.languageComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnLanguageComboBoxSelectionChangeCommitted);
+            this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLanguageComboBoxSelectedIndexChanged);
             // 
             // optionGroupBox
             // 

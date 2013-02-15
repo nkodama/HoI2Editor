@@ -6,82 +6,6 @@
     public class Leader
     {
         /// <summary>
-        ///     指揮官特性値
-        /// </summary>
-        public static readonly uint[] TraitsValueTable =
-            {
-                LeaderTraits.LogisticsWizard,
-                LeaderTraits.DefensiveDoctrine,
-                LeaderTraits.OffensiveDoctrine,
-                LeaderTraits.WinterSpecialist,
-                LeaderTraits.Trickster,
-                LeaderTraits.Engineer,
-                LeaderTraits.FortressBuster,
-                LeaderTraits.PanzerLeader,
-                LeaderTraits.Commando,
-                LeaderTraits.OldGuard,
-                LeaderTraits.SeaWolf,
-                LeaderTraits.BlockadeRunner,
-                LeaderTraits.SuperiorTactician,
-                LeaderTraits.Spotter,
-                LeaderTraits.TankBuster,
-                LeaderTraits.CarpetBomber,
-                LeaderTraits.NightFlyer,
-                LeaderTraits.FleetDestroyer,
-                LeaderTraits.DesertFox,
-                LeaderTraits.JungleRat,
-                LeaderTraits.UrbanWarfareSpecialist,
-                LeaderTraits.Ranger,
-                LeaderTraits.Mountaineer,
-                LeaderTraits.HillsFighter,
-                LeaderTraits.CounterAttacker,
-                LeaderTraits.Assaulter,
-                LeaderTraits.Encircler,
-                LeaderTraits.Ambusher,
-                LeaderTraits.Disciplined,
-                LeaderTraits.ElasticDefenceSpecialist,
-                LeaderTraits.Blitzer
-            };
-
-        /// <summary>
-        ///     指揮官特性名
-        /// </summary>
-        public static readonly string[] TraitsNameTable =
-            {
-                "TRAIT_LOGWIZ",
-                "TRAIT_DEFDOC",
-                "TRAIT_OFFDOC",
-                "TRAIT_WINSPE",
-                "TRAIT_TRICKS",
-                "TRAIT_ENGINE",
-                "TRAIT_FORBUS",
-                "TRAIT_PNZLED",
-                "TRAIT_COMMAN",
-                "TRAIT_OLDGRD",
-                "TRAIT_SEAWOL",
-                "TRAIT_BLKRUN",
-                "TRAIT_SUPTAC",
-                "TRAIT_SPOTTE",
-                "TRAIT_TNKBUS",
-                "TRAIT_CRPBOM",
-                "TRAIT_NGHTFL",
-                "TRAIT_FLTDES",
-                "TRAIT_DSRFOX",
-                "TRAIT_JUNGLE",
-                "TRAIT_URBAN",
-                "TRAIT_FOREST",
-                "TRAIT_MOUNTAIN",
-                "TRAIT_HILLS",
-                "TRAIT_COUNTER",
-                "TRAIT_ASSAULT",
-                "TRAIT_ENCIRCL",
-                "TRAIT_AMBUSH",
-                "TRAIT_DELAY",
-                "TRAIT_TATICAL",
-                "TRAIT_BREAK"
-            };
-
-        /// <summary>
         ///     任官年
         /// </summary>
         private readonly int[] _rankYear = new int[4];
@@ -89,7 +13,7 @@
         /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag CountryTag { get; set; }
+        public CountryTag Country { get; set; }
 
         /// <summary>
         ///     指揮官ID
@@ -352,7 +276,7 @@
     }
 
     /// <summary>
-    ///     指揮官特性ID
+    ///     指揮官特性
     /// </summary>
     public enum LeaderTraitsId
     {

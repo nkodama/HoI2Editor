@@ -13,12 +13,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ一覧
         /// </summary>
-        public static CountryTag[] CountryTable;
+        public static CountryTag[] Tags;
 
         /// <summary>
         ///     国タグ文字列とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<string, CountryTag> CountryStringMap = new Dictionary<string, CountryTag>();
+        public static readonly Dictionary<string, CountryTag> StringMap = new Dictionary<string, CountryTag>();
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ文字列
         /// </summary>
-        public static string[] CountryTextTable =
+        public static string[] Strings =
             {
                 "",
                 "AFG",
@@ -376,7 +376,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ一覧 (HoI2)
         /// </summary>
-        private static readonly CountryTag[] CountryTableHoI2 =
+        private static readonly CountryTag[] TagsHoI2 =
             {
                 CountryTag.AFG,
                 CountryTag.ALB,
@@ -664,7 +664,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ一覧 (AoD)
         /// </summary>
-        private static readonly CountryTag[] CountryTableAoD =
+        private static readonly CountryTag[] TagsAoD =
             {
                 CountryTag.AFG,
                 CountryTag.ALB,
@@ -1016,9 +1016,9 @@ namespace HoI2Editor.Models
         /// </summary>
         static Country()
         {
-            foreach (CountryTag countryTag in Enum.GetValues(typeof (CountryTag)))
+            foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
             {
-                CountryStringMap.Add(CountryTextTable[(int) countryTag], countryTag);
+                StringMap.Add(Strings[(int) country], country);
             }
         }
 
@@ -1031,11 +1031,11 @@ namespace HoI2Editor.Models
             {
                 case GameType.HeartsOfIron2:
                 case GameType.DarkestHour:
-                    CountryTable = CountryTableHoI2;
+                    Tags = TagsHoI2;
                     break;
 
                 case GameType.ArsenalOfDemocracy:
-                    CountryTable = CountryTableAoD;
+                    Tags = TagsAoD;
                     break;
             }
         }

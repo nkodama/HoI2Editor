@@ -937,7 +937,7 @@ namespace HoI2Editor.Models
                 {
                     return;
                 }
-                CountryTag country = Country.CountryStringMap[token[0].ToUpper()];
+                CountryTag country = Country.StringMap[token[0].ToUpper()];
 
                 _currentLineNo++;
 
@@ -1184,20 +1184,20 @@ namespace HoI2Editor.Models
                 {
                     writer.WriteLine(
                         "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Retirement Year;Ideology;Personality;Loyalty;Picturename;X",
-                        Country.CountryTextTable[(int) country]);
+                        Country.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;;;X");
                 }
                 else if (Misc.Mod.NewMinisterFormat)
                 {
                     writer.WriteLine(
                         "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Ideology;Personality;Loyalty;Picturename;X",
-                        Country.CountryTextTable[(int) country]);
+                        Country.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;;X");
                 }
                 else
                 {
                     writer.WriteLine("{0};Ruling Cabinet - Start;Name;Pool;Ideology;Personality;Loyalty;Picturename;x",
-                                     Country.CountryTextTable[(int) country]);
+                                     Country.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;x");
                 }
 

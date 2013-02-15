@@ -217,7 +217,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLanguageComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        private void OnLanguageComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 言語インデックスを更新する
             Config.LangIndex = languageComboBox.SelectedIndex;
