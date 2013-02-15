@@ -32,11 +32,6 @@
             this.categoryListBox = new System.Windows.Forms.ListBox();
             this.treePictureBox = new System.Windows.Forms.PictureBox();
             this.editTabControl = new System.Windows.Forms.TabControl();
-            this.categoryTabPage = new System.Windows.Forms.TabPage();
-            this.categoryDescTextBox = new System.Windows.Forms.TextBox();
-            this.categoryDescLabel = new System.Windows.Forms.Label();
-            this.categoryNameTextBox = new System.Windows.Forms.TextBox();
-            this.categoryNameLabel = new System.Windows.Forms.Label();
             this.techTabPage = new System.Windows.Forms.TabPage();
             this.techPositionRemoveButton = new System.Windows.Forms.Button();
             this.techPositionAddButton = new System.Windows.Forms.Button();
@@ -161,9 +156,14 @@
             this.newEventButton = new System.Windows.Forms.Button();
             this.cloneButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
+            this.treePanel = new System.Windows.Forms.Panel();
+            this.categoryNameLabel = new System.Windows.Forms.Label();
+            this.categoryNameTextBox = new System.Windows.Forms.TextBox();
+            this.categoryDescLabel = new System.Windows.Forms.Label();
+            this.categoryDescTextBox = new System.Windows.Forms.TextBox();
+            this.categoryTabPage = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.treePictureBox)).BeginInit();
             this.editTabControl.SuspendLayout();
-            this.categoryTabPage.SuspendLayout();
             this.techTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.techYNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techXNumericUpDown)).BeginInit();
@@ -185,6 +185,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventXNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventTechNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventIdNumericUpDown)).BeginInit();
+            this.treePanel.SuspendLayout();
+            this.categoryTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // categoryListBox
@@ -192,6 +194,16 @@
             this.categoryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.categoryListBox.FormattingEnabled = true;
             resources.ApplyResources(this.categoryListBox, "categoryListBox");
+            this.categoryListBox.Items.AddRange(new object[] {
+            resources.GetString("categoryListBox.Items"),
+            resources.GetString("categoryListBox.Items1"),
+            resources.GetString("categoryListBox.Items2"),
+            resources.GetString("categoryListBox.Items3"),
+            resources.GetString("categoryListBox.Items4"),
+            resources.GetString("categoryListBox.Items5"),
+            resources.GetString("categoryListBox.Items6"),
+            resources.GetString("categoryListBox.Items7"),
+            resources.GetString("categoryListBox.Items8")});
             this.categoryListBox.Name = "categoryListBox";
             this.categoryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCategoryListBoxDrawItem);
             this.categoryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCategoryListBoxSelectedIndexChanged);
@@ -216,38 +228,6 @@
             this.editTabControl.Controls.Add(this.eventTabPage);
             this.editTabControl.Name = "editTabControl";
             this.editTabControl.SelectedIndex = 0;
-            // 
-            // categoryTabPage
-            // 
-            this.categoryTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.categoryTabPage.Controls.Add(this.categoryDescTextBox);
-            this.categoryTabPage.Controls.Add(this.categoryDescLabel);
-            this.categoryTabPage.Controls.Add(this.categoryNameTextBox);
-            this.categoryTabPage.Controls.Add(this.categoryNameLabel);
-            resources.ApplyResources(this.categoryTabPage, "categoryTabPage");
-            this.categoryTabPage.Name = "categoryTabPage";
-            // 
-            // categoryDescTextBox
-            // 
-            resources.ApplyResources(this.categoryDescTextBox, "categoryDescTextBox");
-            this.categoryDescTextBox.Name = "categoryDescTextBox";
-            this.categoryDescTextBox.TextChanged += new System.EventHandler(this.OnCategoryDescTextBoxTextChanged);
-            // 
-            // categoryDescLabel
-            // 
-            resources.ApplyResources(this.categoryDescLabel, "categoryDescLabel");
-            this.categoryDescLabel.Name = "categoryDescLabel";
-            // 
-            // categoryNameTextBox
-            // 
-            resources.ApplyResources(this.categoryNameTextBox, "categoryNameTextBox");
-            this.categoryNameTextBox.Name = "categoryNameTextBox";
-            this.categoryNameTextBox.TextChanged += new System.EventHandler(this.OnCategoryNameTextBoxTextChanged);
-            // 
-            // categoryNameLabel
-            // 
-            resources.ApplyResources(this.categoryNameLabel, "categoryNameLabel");
-            this.categoryNameLabel.Name = "categoryNameLabel";
             // 
             // techTabPage
             // 
@@ -333,7 +313,7 @@
             // 
             resources.ApplyResources(this.techYNumericUpDown, "techYNumericUpDown");
             this.techYNumericUpDown.Maximum = new decimal(new int[] {
-            499,
+            999,
             0,
             0,
             0});
@@ -344,7 +324,7 @@
             // 
             resources.ApplyResources(this.techXNumericUpDown, "techXNumericUpDown");
             this.techXNumericUpDown.Maximum = new decimal(new int[] {
-            694,
+            999,
             0,
             0,
             0});
@@ -959,7 +939,7 @@
             // 
             resources.ApplyResources(this.labelYNumericUpDown, "labelYNumericUpDown");
             this.labelYNumericUpDown.Maximum = new decimal(new int[] {
-            499,
+            999,
             0,
             0,
             0});
@@ -970,7 +950,7 @@
             // 
             resources.ApplyResources(this.labelXNumericUpDown, "labelXNumericUpDown");
             this.labelXNumericUpDown.Maximum = new decimal(new int[] {
-            694,
+            999,
             0,
             0,
             0});
@@ -1065,7 +1045,7 @@
             // 
             resources.ApplyResources(this.eventYNumericUpDown, "eventYNumericUpDown");
             this.eventYNumericUpDown.Maximum = new decimal(new int[] {
-            499,
+            999,
             0,
             0,
             0});
@@ -1076,7 +1056,7 @@
             // 
             resources.ApplyResources(this.eventXNumericUpDown, "eventXNumericUpDown");
             this.eventXNumericUpDown.Maximum = new decimal(new int[] {
-            694,
+            999,
             0,
             0,
             0});
@@ -1223,10 +1203,50 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.OnRemoveButtonClick);
             // 
+            // treePanel
+            // 
+            resources.ApplyResources(this.treePanel, "treePanel");
+            this.treePanel.Controls.Add(this.treePictureBox);
+            this.treePanel.Name = "treePanel";
+            // 
+            // categoryNameLabel
+            // 
+            resources.ApplyResources(this.categoryNameLabel, "categoryNameLabel");
+            this.categoryNameLabel.Name = "categoryNameLabel";
+            // 
+            // categoryNameTextBox
+            // 
+            resources.ApplyResources(this.categoryNameTextBox, "categoryNameTextBox");
+            this.categoryNameTextBox.Name = "categoryNameTextBox";
+            this.categoryNameTextBox.TextChanged += new System.EventHandler(this.OnCategoryNameTextBoxTextChanged);
+            // 
+            // categoryDescLabel
+            // 
+            resources.ApplyResources(this.categoryDescLabel, "categoryDescLabel");
+            this.categoryDescLabel.Name = "categoryDescLabel";
+            // 
+            // categoryDescTextBox
+            // 
+            resources.ApplyResources(this.categoryDescTextBox, "categoryDescTextBox");
+            this.categoryDescTextBox.Name = "categoryDescTextBox";
+            this.categoryDescTextBox.TextChanged += new System.EventHandler(this.OnCategoryDescTextBoxTextChanged);
+            // 
+            // categoryTabPage
+            // 
+            this.categoryTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.categoryTabPage.Controls.Add(this.categoryDescTextBox);
+            this.categoryTabPage.Controls.Add(this.categoryDescLabel);
+            this.categoryTabPage.Controls.Add(this.categoryNameTextBox);
+            this.categoryTabPage.Controls.Add(this.categoryNameLabel);
+            resources.ApplyResources(this.categoryTabPage, "categoryTabPage");
+            this.categoryTabPage.Name = "categoryTabPage";
+            // 
             // TechEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.treePanel);
+            this.Controls.Add(this.editTabControl);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.newEventButton);
@@ -1240,15 +1260,11 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.techListBox);
-            this.Controls.Add(this.editTabControl);
-            this.Controls.Add(this.treePictureBox);
             this.Controls.Add(this.categoryListBox);
             this.Name = "TechEditorForm";
             this.Load += new System.EventHandler(this.OnTechEditorFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.treePictureBox)).EndInit();
             this.editTabControl.ResumeLayout(false);
-            this.categoryTabPage.ResumeLayout(false);
-            this.categoryTabPage.PerformLayout();
             this.techTabPage.ResumeLayout(false);
             this.techTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.techYNumericUpDown)).EndInit();
@@ -1276,6 +1292,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventXNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventTechNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventIdNumericUpDown)).EndInit();
+            this.treePanel.ResumeLayout(false);
+            this.treePanel.PerformLayout();
+            this.categoryTabPage.ResumeLayout(false);
+            this.categoryTabPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1285,11 +1305,6 @@
         private System.Windows.Forms.ListBox categoryListBox;
         private System.Windows.Forms.PictureBox treePictureBox;
         private System.Windows.Forms.TabControl editTabControl;
-        private System.Windows.Forms.TabPage categoryTabPage;
-        private System.Windows.Forms.TextBox categoryDescTextBox;
-        private System.Windows.Forms.Label categoryDescLabel;
-        private System.Windows.Forms.TextBox categoryNameTextBox;
-        private System.Windows.Forms.Label categoryNameLabel;
         private System.Windows.Forms.TabPage techTabPage;
         private System.Windows.Forms.NumericUpDown techYearNumericUpDown;
         private System.Windows.Forms.Label techYearLabel;
@@ -1414,5 +1429,11 @@
         private System.Windows.Forms.Button labelPositionAddButton;
         private System.Windows.Forms.Button eventPositionRemoveButton;
         private System.Windows.Forms.Button eventPositionAddButton;
+        private System.Windows.Forms.Panel treePanel;
+        private System.Windows.Forms.TabPage categoryTabPage;
+        private System.Windows.Forms.TextBox categoryDescTextBox;
+        private System.Windows.Forms.Label categoryDescLabel;
+        private System.Windows.Forms.TextBox categoryNameTextBox;
+        private System.Windows.Forms.Label categoryNameLabel;
     }
 }

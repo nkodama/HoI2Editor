@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>921, 694</value>
+    <value>897, 646</value>
   </data>
   <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -145,13 +145,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>5</value>
   </data>
   <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>840, 694</value>
+    <value>816, 646</value>
   </data>
   <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -172,13 +172,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>6</value>
   </data>
   <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>759, 694</value>
+    <value>735, 646</value>
   </data>
   <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -199,13 +199,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>8</value>
   </data>
   <data name="leaderPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="leaderPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>564, 639</value>
+    <value>529, 619</value>
   </data>
   <data name="leaderPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 50</value>
@@ -223,13 +223,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;leaderPictureBox.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>43</value>
   </data>
   <data name="pictureNameReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="pictureNameReferButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>483, 666</value>
+    <value>448, 646</value>
   </data>
   <data name="pictureNameReferButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -250,13 +250,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameReferButton.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>41</value>
   </data>
   <data name="pictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="pictureNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 641</value>
+    <value>266, 621</value>
   </data>
   <data name="pictureNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 19</value>
@@ -274,7 +274,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameTextBox.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>40</value>
   </data>
   <data name="pictureNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -283,7 +283,7 @@
     <value>True</value>
   </data>
   <data name="pictureNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 644</value>
+    <value>185, 624</value>
   </data>
   <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 12</value>
@@ -304,7 +304,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameLabel.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>38</value>
   </data>
   <data name="endYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -313,7 +313,7 @@
     <value>False</value>
   </data>
   <data name="endYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 539</value>
+    <value>465, 519</value>
   </data>
   <data name="endYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -334,7 +334,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>37</value>
   </data>
   <data name="endYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -343,7 +343,7 @@
     <value>True</value>
   </data>
   <data name="endYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 541</value>
+    <value>384, 521</value>
   </data>
   <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 12</value>
@@ -364,13 +364,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;endYearLabel.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>35</value>
   </data>
   <data name="startYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="startYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 539</value>
+    <value>266, 519</value>
   </data>
   <data name="startYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -400,7 +400,7 @@
     <value>True</value>
   </data>
   <data name="startYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 541</value>
+    <value>185, 521</value>
   </data>
   <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 12</value>
@@ -421,13 +421,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;startYearLabel.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>32</value>
   </data>
   <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 434</value>
+    <value>266, 414</value>
   </data>
   <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>299, 19</value>
@@ -445,7 +445,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>31</value>
   </data>
   <data name="nameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -454,7 +454,7 @@
     <value>True</value>
   </data>
   <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 437</value>
+    <value>185, 417</value>
   </data>
   <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 12</value>
@@ -475,13 +475,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>28</value>
   </data>
   <data name="idNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="idNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 409</value>
+    <value>465, 389</value>
   </data>
   <data name="idNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -502,7 +502,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>25</value>
   </data>
   <data name="idLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -511,7 +511,7 @@
     <value>True</value>
   </data>
   <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 411</value>
+    <value>385, 391</value>
   </data>
   <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 12</value>
@@ -532,7 +532,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>26</value>
   </data>
   <data name="countryComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -541,7 +541,7 @@
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="countryComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 408</value>
+    <value>266, 388</value>
   </data>
   <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -559,7 +559,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryComboBox.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>29</value>
   </data>
   <data name="countryLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -568,7 +568,7 @@
     <value>True</value>
   </data>
   <data name="countryLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 411</value>
+    <value>185, 391</value>
   </data>
   <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 12</value>
@@ -589,13 +589,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryLabel.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>23</value>
   </data>
   <data name="countryAllButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="countryAllButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 694</value>
+    <value>101, 646</value>
   </data>
   <data name="countryAllButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -616,7 +616,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryAllButton.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>9</value>
   </data>
   <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -628,10 +628,10 @@
     <value>12</value>
   </data>
   <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 408</value>
+    <value>12, 384</value>
   </data>
   <data name="countryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 280</value>
+    <value>164, 256</value>
   </data>
   <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -646,13 +646,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryListBox.ZOrder" xml:space="preserve">
-    <value>43</value>
+    <value>11</value>
   </data>
   <data name="bottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="bottomButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>921, 208</value>
+    <value>897, 185</value>
   </data>
   <data name="bottomButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -673,13 +673,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bottomButton.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>12</value>
   </data>
   <data name="downButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="downButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>840, 208</value>
+    <value>816, 185</value>
   </data>
   <data name="downButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -700,13 +700,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;downButton.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>14</value>
   </data>
   <data name="upButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="upButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>759, 208</value>
+    <value>735, 185</value>
   </data>
   <data name="upButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -727,13 +727,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;upButton.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>15</value>
   </data>
   <data name="topButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="topButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>678, 208</value>
+    <value>654, 185</value>
   </data>
   <data name="topButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -754,13 +754,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;topButton.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>17</value>
   </data>
   <data name="removeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
   <data name="removeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 208</value>
+    <value>174, 185</value>
   </data>
   <data name="removeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -781,13 +781,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;removeButton.ZOrder" xml:space="preserve">
-    <value>48</value>
+    <value>18</value>
   </data>
   <data name="cloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
   <data name="cloneButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 208</value>
+    <value>93, 185</value>
   </data>
   <data name="cloneButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -808,7 +808,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cloneButton.ZOrder" xml:space="preserve">
-    <value>49</value>
+    <value>19</value>
   </data>
   <data name="countryColumnHeader.Text" xml:space="preserve">
     <value>Tag</value>
@@ -841,7 +841,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="newButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 208</value>
+    <value>12, 185</value>
   </data>
   <data name="newButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -862,13 +862,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
-    <value>50</value>
+    <value>20</value>
   </data>
   <data name="traitsColumnHeader.Text" xml:space="preserve">
     <value>Traits</value>
   </data>
   <data name="traitsColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>315</value>
+    <value>290</value>
   </data>
   <data name="endYearColumnHeader.Text" xml:space="preserve">
     <value>End</value>
@@ -886,7 +886,7 @@
     <value>12, 12</value>
   </data>
   <data name="leaderListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>984, 190</value>
+    <value>960, 167</value>
   </data>
   <data name="leaderListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -901,7 +901,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;leaderListView.ZOrder" xml:space="preserve">
-    <value>51</value>
+    <value>22</value>
   </data>
   <data name="branchColumnHeader.Text" xml:space="preserve">
     <value>Branch</value>
@@ -931,7 +931,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 589</value>
+    <value>266, 569</value>
   </data>
   <data name="rankYearNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -952,7 +952,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown1.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>46</value>
   </data>
   <data name="rankYearLabel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -961,7 +961,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 593</value>
+    <value>185, 573</value>
   </data>
   <data name="rankYearLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -982,13 +982,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearLabel1.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>44</value>
   </data>
   <data name="rankYearNumericUpDown2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 589</value>
+    <value>465, 569</value>
   </data>
   <data name="rankYearNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1009,7 +1009,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown2.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>49</value>
   </data>
   <data name="rankYearLabel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1018,7 +1018,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 591</value>
+    <value>384, 571</value>
   </data>
   <data name="rankYearLabel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -1039,13 +1039,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearLabel2.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>47</value>
   </data>
   <data name="rankYearNumericUpDown3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 614</value>
+    <value>266, 594</value>
   </data>
   <data name="rankYearNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1066,7 +1066,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown3.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>51</value>
   </data>
   <data name="rankYearLabel3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1075,7 +1075,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 618</value>
+    <value>185, 598</value>
   </data>
   <data name="rankYearLabel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -1096,13 +1096,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearLabel3.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>50</value>
   </data>
   <data name="rankYearNumericUpDown4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 614</value>
+    <value>465, 594</value>
   </data>
   <data name="rankYearNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1123,7 +1123,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown4.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>45</value>
   </data>
   <data name="rankYearLabel4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1132,7 +1132,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 618</value>
+    <value>384, 598</value>
   </data>
   <data name="rankYearLabel4.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -1153,13 +1153,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rankYearLabel4.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>48</value>
   </data>
   <data name="skillNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="skillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 489</value>
+    <value>266, 469</value>
   </data>
   <data name="skillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1180,7 +1180,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;skillNumericUpDown.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>39</value>
   </data>
   <data name="skillLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1189,7 +1189,7 @@
     <value>True</value>
   </data>
   <data name="skillLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 491</value>
+    <value>185, 471</value>
   </data>
   <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 12</value>
@@ -1210,13 +1210,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;skillLabel.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>42</value>
   </data>
   <data name="maxSkillNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="maxSkillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 489</value>
+    <value>465, 469</value>
   </data>
   <data name="maxSkillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1237,7 +1237,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;maxSkillNumericUpDown.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>33</value>
   </data>
   <data name="maxSkillLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1246,7 +1246,7 @@
     <value>True</value>
   </data>
   <data name="maxSkillLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 492</value>
+    <value>384, 472</value>
   </data>
   <data name="maxSkillLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 12</value>
@@ -1267,13 +1267,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;maxSkillLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>36</value>
   </data>
   <data name="idealRankComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="idealRankComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 463</value>
+    <value>465, 443</value>
   </data>
   <data name="idealRankComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -1291,7 +1291,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idealRankComboBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>27</value>
   </data>
   <data name="idealRankLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1300,7 +1300,7 @@
     <value>True</value>
   </data>
   <data name="idealRankLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>418, 466</value>
+    <value>383, 446</value>
   </data>
   <data name="idealRankLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -1321,13 +1321,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idealRankLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>30</value>
   </data>
   <data name="loyaltyNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="loyaltyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 514</value>
+    <value>465, 494</value>
   </data>
   <data name="loyaltyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1348,7 +1348,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;loyaltyNumericUpDown.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>21</value>
   </data>
   <data name="loyaltyLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1357,7 +1357,7 @@
     <value>True</value>
   </data>
   <data name="loyaltyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 516</value>
+    <value>384, 496</value>
   </data>
   <data name="loyaltyLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 12</value>
@@ -1378,70 +1378,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;loyaltyLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>24</value>
   </data>
   <data name="branchNarrowGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
-  </data>
-  <data name="&gt;&gt;airforceNarrowCheckBox.Name" xml:space="preserve">
-    <value>airforceNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;airforceNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;airforceNarrowCheckBox.Parent" xml:space="preserve">
-    <value>branchNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;airforceNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;navyNarrowCheckBox.Name" xml:space="preserve">
-    <value>navyNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;navyNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;navyNarrowCheckBox.Parent" xml:space="preserve">
-    <value>branchNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;navyNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;armyNarrowCheckBox.Name" xml:space="preserve">
-    <value>armyNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;armyNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;armyNarrowCheckBox.Parent" xml:space="preserve">
-    <value>branchNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;armyNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="branchNarrowGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 237</value>
-  </data>
-  <data name="branchNarrowGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 154</value>
-  </data>
-  <data name="branchNarrowGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="branchNarrowGroupBox.Text" xml:space="preserve">
-    <value>Branch Filter</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.Name" xml:space="preserve">
-    <value>branchNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="airforceNarrowCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1524,455 +1464,35 @@
   <data name="&gt;&gt;armyNarrowCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="branchNarrowGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 214</value>
+  </data>
+  <data name="branchNarrowGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 154</value>
+  </data>
+  <data name="branchNarrowGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="branchNarrowGroupBox.Text" xml:space="preserve">
+    <value>Branch Filter</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.Name" xml:space="preserve">
+    <value>branchNarrowGroupBox</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="traitsNarrowGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;traitsNarrowInvertButton.Name" xml:space="preserve">
-    <value>traitsNarrowInvertButton</value>
-  </data>
-  <data name="&gt;&gt;traitsNarrowInvertButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;traitsNarrowInvertButton.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;traitsNarrowInvertButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;traitsAndNarrowRadioButton.Name" xml:space="preserve">
-    <value>traitsAndNarrowRadioButton</value>
-  </data>
-  <data name="&gt;&gt;traitsAndNarrowRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;traitsAndNarrowRadioButton.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;traitsAndNarrowRadioButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;traitsOrNarrowRadioButton.Name" xml:space="preserve">
-    <value>traitsOrNarrowRadioButton</value>
-  </data>
-  <data name="&gt;&gt;traitsOrNarrowRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;traitsOrNarrowRadioButton.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;traitsOrNarrowRadioButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;traitsNoneNarrowRadioButton.Name" xml:space="preserve">
-    <value>traitsNoneNarrowRadioButton</value>
-  </data>
-  <data name="&gt;&gt;traitsNoneNarrowRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;traitsNoneNarrowRadioButton.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;traitsNoneNarrowRadioButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;blitzerNarrowCheckBox.Name" xml:space="preserve">
-    <value>blitzerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;blitzerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;blitzerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;blitzerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;elasticDefenceSpecialistNarrowCheckBox.Name" xml:space="preserve">
-    <value>elasticDefenceSpecialistNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;elasticDefenceSpecialistNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;elasticDefenceSpecialistNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;elasticDefenceSpecialistNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;disciplinedNarrowCheckBox.Name" xml:space="preserve">
-    <value>disciplinedNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;disciplinedNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;disciplinedNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;disciplinedNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;ambusherNarrowCheckBox.Name" xml:space="preserve">
-    <value>ambusherNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;ambusherNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ambusherNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;ambusherNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;encirclerNarrowCheckBox.Name" xml:space="preserve">
-    <value>encirclerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;encirclerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;encirclerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;encirclerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;assaulterNarrowCheckBox.Name" xml:space="preserve">
-    <value>assaulterNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;assaulterNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;assaulterNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;assaulterNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;counterAttackerNarrowCheckBox.Name" xml:space="preserve">
-    <value>counterAttackerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;counterAttackerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;counterAttackerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;counterAttackerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;hillsFighterNarrowCheckBox.Name" xml:space="preserve">
-    <value>hillsFighterNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;hillsFighterNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;hillsFighterNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;hillsFighterNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;mountaineerNarrowCheckBox.Name" xml:space="preserve">
-    <value>mountaineerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;mountaineerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mountaineerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;mountaineerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;rangerNarrowCheckBox.Name" xml:space="preserve">
-    <value>rangerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;rangerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rangerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rangerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;urbanWarfareSpecialistNarrowCheckBox.Name" xml:space="preserve">
-    <value>urbanWarfareSpecialistNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;urbanWarfareSpecialistNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;urbanWarfareSpecialistNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;urbanWarfareSpecialistNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;jungleRatNarrowCheckBox.Name" xml:space="preserve">
-    <value>jungleRatNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;jungleRatNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;jungleRatNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;jungleRatNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;desertFoxNarrowCheckBox.Name" xml:space="preserve">
-    <value>desertFoxNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;desertFoxNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;desertFoxNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;desertFoxNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;fleetDestroyerNarrowCheckBox.Name" xml:space="preserve">
-    <value>fleetDestroyerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;fleetDestroyerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fleetDestroyerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fleetDestroyerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;nightFlyerNarrowCheckBox.Name" xml:space="preserve">
-    <value>nightFlyerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;nightFlyerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nightFlyerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;nightFlyerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;carpetBomberNarrowCheckBox.Name" xml:space="preserve">
-    <value>carpetBomberNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;carpetBomberNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;carpetBomberNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;carpetBomberNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;tankBusterNarrowCheckBox.Name" xml:space="preserve">
-    <value>tankBusterNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;tankBusterNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tankBusterNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tankBusterNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;spotterNarrowCheckBox.Name" xml:space="preserve">
-    <value>spotterNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;spotterNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;spotterNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;spotterNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;superiorTacticianNarrowCheckBox.Name" xml:space="preserve">
-    <value>superiorTacticianNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;superiorTacticianNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;superiorTacticianNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;superiorTacticianNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;blockadeRunnerNarrowCheckBox.Name" xml:space="preserve">
-    <value>blockadeRunnerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;blockadeRunnerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;blockadeRunnerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;blockadeRunnerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="&gt;&gt;seaWolfNarrowCheckBox.Name" xml:space="preserve">
-    <value>seaWolfNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;seaWolfNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;seaWolfNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;seaWolfNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;oldGuardNarrowCheckBox.Name" xml:space="preserve">
-    <value>oldGuardNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;oldGuardNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oldGuardNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;oldGuardNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;commandoNarrowCheckBox.Name" xml:space="preserve">
-    <value>commandoNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;commandoNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;commandoNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;commandoNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;panzerLeaderNarrowCheckBox.Name" xml:space="preserve">
-    <value>panzerLeaderNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;panzerLeaderNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panzerLeaderNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;panzerLeaderNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;fortressBusterNarrowCheckBox.Name" xml:space="preserve">
-    <value>fortressBusterNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;fortressBusterNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fortressBusterNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fortressBusterNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>28</value>
-  </data>
-  <data name="&gt;&gt;engineerNarrowCheckBox.Name" xml:space="preserve">
-    <value>engineerNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;engineerNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;engineerNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;engineerNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>29</value>
-  </data>
-  <data name="&gt;&gt;tricksterNarrowCheckBox.Name" xml:space="preserve">
-    <value>tricksterNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;tricksterNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tricksterNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tricksterNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;winterSpecialistNarrowCheckBox.Name" xml:space="preserve">
-    <value>winterSpecialistNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;winterSpecialistNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;winterSpecialistNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;winterSpecialistNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;offensiveDoctrineNarrowCheckBox.Name" xml:space="preserve">
-    <value>offensiveDoctrineNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;offensiveDoctrineNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;offensiveDoctrineNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;offensiveDoctrineNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>32</value>
-  </data>
-  <data name="&gt;&gt;defensiveDoctrineNarrowCheckBox.Name" xml:space="preserve">
-    <value>defensiveDoctrineNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;defensiveDoctrineNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;defensiveDoctrineNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;defensiveDoctrineNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>33</value>
-  </data>
-  <data name="&gt;&gt;logisticsWizardNarrowCheckBox.Name" xml:space="preserve">
-    <value>logisticsWizardNarrowCheckBox</value>
-  </data>
-  <data name="&gt;&gt;logisticsWizardNarrowCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;logisticsWizardNarrowCheckBox.Parent" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;logisticsWizardNarrowCheckBox.ZOrder" xml:space="preserve">
-    <value>34</value>
-  </data>
-  <data name="traitsNarrowGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 237</value>
-  </data>
-  <data name="traitsNarrowGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>878, 154</value>
-  </data>
-  <data name="traitsNarrowGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="traitsNarrowGroupBox.Text" xml:space="preserve">
-    <value>Traits Filter</value>
-  </data>
-  <data name="&gt;&gt;traitsNarrowGroupBox.Name" xml:space="preserve">
-    <value>traitsNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;traitsNarrowGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;traitsNarrowGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;traitsNarrowGroupBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="traitsNarrowInvertButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>783, 124</value>
+    <value>769, 124</value>
   </data>
   <data name="traitsNarrowInvertButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1999,7 +1519,7 @@
     <value>True</value>
   </data>
   <data name="traitsAndNarrowRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>783, 61</value>
+    <value>769, 61</value>
   </data>
   <data name="traitsAndNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 16</value>
@@ -2026,7 +1546,7 @@
     <value>True</value>
   </data>
   <data name="traitsOrNarrowRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>783, 39</value>
+    <value>769, 39</value>
   </data>
   <data name="traitsOrNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 16</value>
@@ -2053,7 +1573,7 @@
     <value>True</value>
   </data>
   <data name="traitsNoneNarrowRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>783, 17</value>
+    <value>769, 17</value>
   </data>
   <data name="traitsNoneNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 16</value>
@@ -2913,11 +2433,35 @@
   <data name="&gt;&gt;logisticsWizardNarrowCheckBox.ZOrder" xml:space="preserve">
     <value>34</value>
   </data>
+  <data name="traitsNarrowGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 214</value>
+  </data>
+  <data name="traitsNarrowGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>850, 154</value>
+  </data>
+  <data name="traitsNarrowGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="traitsNarrowGroupBox.Text" xml:space="preserve">
+    <value>Traits Filter</value>
+  </data>
+  <data name="&gt;&gt;traitsNarrowGroupBox.Name" xml:space="preserve">
+    <value>traitsNarrowGroupBox</value>
+  </data>
+  <data name="&gt;&gt;traitsNarrowGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;traitsNarrowGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;traitsNarrowGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="branchComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="branchComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 463</value>
+    <value>266, 443</value>
   </data>
   <data name="branchComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -2935,7 +2479,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;branchComboBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>13</value>
   </data>
   <data name="branchLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -2944,7 +2488,7 @@
     <value>True</value>
   </data>
   <data name="branchLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 466</value>
+    <value>185, 446</value>
   </data>
   <data name="branchLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
@@ -2965,13 +2509,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;branchLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>16</value>
   </data>
   <data name="experienceNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="experienceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 514</value>
+    <value>266, 494</value>
   </data>
   <data name="experienceNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -2992,7 +2536,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;experienceNumericUpDown.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="experienceLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -3001,7 +2545,7 @@
     <value>True</value>
   </data>
   <data name="experienceLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 516</value>
+    <value>185, 496</value>
   </data>
   <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 12</value>
@@ -3022,7 +2566,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;experienceLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>10</value>
   </data>
   <data name="traitsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -3400,10 +2944,10 @@
     <value>30</value>
   </data>
   <data name="traitsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>612, 397</value>
+    <value>572, 374</value>
   </data>
   <data name="traitsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 291</value>
+    <value>400, 266</value>
   </data>
   <data name="traitsGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
@@ -3421,13 +2965,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;traitsGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="blitzerCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="blitzerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 150</value>
+    <value>271, 195</value>
   </data>
   <data name="blitzerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 16</value>
@@ -3454,7 +2998,7 @@
     <value>True</value>
   </data>
   <data name="elasticDefenceSpecialistCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 127</value>
+    <value>271, 172</value>
   </data>
   <data name="elasticDefenceSpecialistCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 16</value>
@@ -3481,7 +3025,7 @@
     <value>True</value>
   </data>
   <data name="disciplinedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 105</value>
+    <value>271, 150</value>
   </data>
   <data name="disciplinedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 16</value>
@@ -3508,7 +3052,7 @@
     <value>True</value>
   </data>
   <data name="ambusherCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 83</value>
+    <value>271, 128</value>
   </data>
   <data name="ambusherCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 16</value>
@@ -3535,7 +3079,7 @@
     <value>True</value>
   </data>
   <data name="encirclerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 61</value>
+    <value>271, 106</value>
   </data>
   <data name="encirclerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 16</value>
@@ -3562,7 +3106,7 @@
     <value>True</value>
   </data>
   <data name="assaulterCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 39</value>
+    <value>271, 84</value>
   </data>
   <data name="assaulterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 16</value>
@@ -3589,7 +3133,7 @@
     <value>True</value>
   </data>
   <data name="counterAttackerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 17</value>
+    <value>271, 62</value>
   </data>
   <data name="counterAttackerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 16</value>
@@ -3616,7 +3160,7 @@
     <value>True</value>
   </data>
   <data name="hillsFighterCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 258</value>
+    <value>271, 40</value>
   </data>
   <data name="hillsFighterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 16</value>
@@ -3643,7 +3187,7 @@
     <value>True</value>
   </data>
   <data name="mountaineerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 236</value>
+    <value>271, 18</value>
   </data>
   <data name="mountaineerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 16</value>
@@ -3670,7 +3214,7 @@
     <value>True</value>
   </data>
   <data name="rangerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 214</value>
+    <value>143, 237</value>
   </data>
   <data name="rangerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 16</value>
@@ -3697,7 +3241,7 @@
     <value>True</value>
   </data>
   <data name="urbanWarfareSpecialistCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 192</value>
+    <value>143, 215</value>
   </data>
   <data name="urbanWarfareSpecialistCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 16</value>
@@ -3724,7 +3268,7 @@
     <value>True</value>
   </data>
   <data name="jungleRatCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 170</value>
+    <value>143, 193</value>
   </data>
   <data name="jungleRatCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 16</value>
@@ -3751,7 +3295,7 @@
     <value>True</value>
   </data>
   <data name="desertFoxCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 148</value>
+    <value>143, 171</value>
   </data>
   <data name="desertFoxCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 16</value>
@@ -3778,7 +3322,7 @@
     <value>True</value>
   </data>
   <data name="fleetDestroyerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 127</value>
+    <value>143, 150</value>
   </data>
   <data name="fleetDestroyerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
@@ -3805,7 +3349,7 @@
     <value>True</value>
   </data>
   <data name="nightFlyerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 105</value>
+    <value>143, 128</value>
   </data>
   <data name="nightFlyerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 16</value>
@@ -3832,7 +3376,7 @@
     <value>True</value>
   </data>
   <data name="carpetBomberCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 83</value>
+    <value>143, 106</value>
   </data>
   <data name="carpetBomberCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 16</value>
@@ -3859,7 +3403,7 @@
     <value>True</value>
   </data>
   <data name="tankBusterCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 61</value>
+    <value>143, 84</value>
   </data>
   <data name="tankBusterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 16</value>
@@ -3886,7 +3430,7 @@
     <value>True</value>
   </data>
   <data name="spotterCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 39</value>
+    <value>143, 62</value>
   </data>
   <data name="spotterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 16</value>
@@ -3913,7 +3457,7 @@
     <value>True</value>
   </data>
   <data name="superiorTacticianCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 17</value>
+    <value>143, 40</value>
   </data>
   <data name="superiorTacticianCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 16</value>
@@ -3940,7 +3484,7 @@
     <value>True</value>
   </data>
   <data name="blockadeRunnerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 260</value>
+    <value>143, 18</value>
   </data>
   <data name="blockadeRunnerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 16</value>
@@ -4264,7 +3808,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="retirementYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 564</value>
+    <value>266, 544</value>
   </data>
   <data name="retirementYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -4297,7 +3841,7 @@
     <value>NoControl</value>
   </data>
   <data name="retirementYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 566</value>
+    <value>185, 546</value>
   </data>
   <data name="retirementYearLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>
@@ -4318,7 +3862,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;retirementYearLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4327,7 +3871,10 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1008, 729</value>
+    <value>984, 681</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Leader Editor</value>

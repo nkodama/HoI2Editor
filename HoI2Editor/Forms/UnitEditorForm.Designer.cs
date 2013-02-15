@@ -351,9 +351,9 @@
             // 
             // editTabControl
             // 
+            resources.ApplyResources(this.editTabControl, "editTabControl");
             this.editTabControl.Controls.Add(this.classTabPage);
             this.editTabControl.Controls.Add(this.modelTabPage);
-            resources.ApplyResources(this.editTabControl, "editTabControl");
             this.editTabControl.Name = "editTabControl";
             this.editTabControl.SelectedIndex = 0;
             // 
@@ -1460,10 +1460,10 @@
             // 
             // countryListView
             // 
+            resources.ApplyResources(this.countryListView, "countryListView");
             this.countryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.countryDummyColumnHeader});
             this.countryListView.HideSelection = false;
-            resources.ApplyResources(this.countryListView, "countryListView");
             this.countryListView.MultiSelect = false;
             this.countryListView.Name = "countryListView";
             this.countryListView.UseCompatibleStateImageBehavior = false;
