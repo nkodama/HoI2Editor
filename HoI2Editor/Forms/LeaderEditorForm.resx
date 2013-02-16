@@ -205,7 +205,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="leaderPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>529, 619</value>
+    <value>530, 610</value>
   </data>
   <data name="leaderPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 50</value>
@@ -229,7 +229,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="pictureNameReferButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 646</value>
+    <value>449, 637</value>
   </data>
   <data name="pictureNameReferButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -256,7 +256,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="pictureNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 621</value>
+    <value>267, 612</value>
   </data>
   <data name="pictureNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 19</value>
@@ -283,7 +283,7 @@
     <value>True</value>
   </data>
   <data name="pictureNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 624</value>
+    <value>186, 615</value>
   </data>
   <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 12</value>
@@ -313,7 +313,7 @@
     <value>False</value>
   </data>
   <data name="endYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 519</value>
+    <value>466, 510</value>
   </data>
   <data name="endYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -343,7 +343,7 @@
     <value>True</value>
   </data>
   <data name="endYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 521</value>
+    <value>385, 512</value>
   </data>
   <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 12</value>
@@ -370,7 +370,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="startYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 519</value>
+    <value>267, 510</value>
   </data>
   <data name="startYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -400,7 +400,7 @@
     <value>True</value>
   </data>
   <data name="startYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 521</value>
+    <value>186, 512</value>
   </data>
   <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 12</value>
@@ -427,7 +427,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 414</value>
+    <value>267, 405</value>
   </data>
   <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>299, 19</value>
@@ -454,7 +454,7 @@
     <value>True</value>
   </data>
   <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 417</value>
+    <value>186, 408</value>
   </data>
   <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 12</value>
@@ -481,7 +481,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="idNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 389</value>
+    <value>466, 380</value>
   </data>
   <data name="idNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -511,7 +511,7 @@
     <value>True</value>
   </data>
   <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>385, 391</value>
+    <value>386, 382</value>
   </data>
   <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 12</value>
@@ -541,7 +541,7 @@
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="countryComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 388</value>
+    <value>267, 379</value>
   </data>
   <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -568,7 +568,7 @@
     <value>True</value>
   </data>
   <data name="countryLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 391</value>
+    <value>186, 382</value>
   </data>
   <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 12</value>
@@ -628,10 +628,10 @@
     <value>12</value>
   </data>
   <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 384</value>
+    <value>12, 372</value>
   </data>
   <data name="countryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 256</value>
+    <value>164, 268</value>
   </data>
   <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -652,7 +652,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="bottomButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 185</value>
+    <value>897, 176</value>
   </data>
   <data name="bottomButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -679,7 +679,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="downButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>816, 185</value>
+    <value>816, 176</value>
   </data>
   <data name="downButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -706,7 +706,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="upButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>735, 185</value>
+    <value>735, 176</value>
   </data>
   <data name="upButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -733,7 +733,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="topButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>654, 185</value>
+    <value>654, 176</value>
   </data>
   <data name="topButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -760,7 +760,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="removeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 185</value>
+    <value>174, 176</value>
   </data>
   <data name="removeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -787,7 +787,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="cloneButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 185</value>
+    <value>93, 176</value>
   </data>
   <data name="cloneButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -841,7 +841,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="newButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 185</value>
+    <value>12, 176</value>
   </data>
   <data name="newButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -886,7 +886,7 @@
     <value>12, 12</value>
   </data>
   <data name="leaderListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>960, 167</value>
+    <value>960, 158</value>
   </data>
   <data name="leaderListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -931,7 +931,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 569</value>
+    <value>267, 560</value>
   </data>
   <data name="rankYearNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -961,7 +961,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 573</value>
+    <value>186, 564</value>
   </data>
   <data name="rankYearLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -988,7 +988,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 569</value>
+    <value>466, 560</value>
   </data>
   <data name="rankYearNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1018,7 +1018,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 571</value>
+    <value>385, 562</value>
   </data>
   <data name="rankYearLabel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -1045,7 +1045,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 594</value>
+    <value>267, 585</value>
   </data>
   <data name="rankYearNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1075,7 +1075,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 598</value>
+    <value>186, 589</value>
   </data>
   <data name="rankYearLabel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -1102,7 +1102,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="rankYearNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 594</value>
+    <value>466, 585</value>
   </data>
   <data name="rankYearNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1132,7 +1132,7 @@
     <value>True</value>
   </data>
   <data name="rankYearLabel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 598</value>
+    <value>385, 589</value>
   </data>
   <data name="rankYearLabel4.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -1159,7 +1159,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="skillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 469</value>
+    <value>267, 460</value>
   </data>
   <data name="skillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1189,7 +1189,7 @@
     <value>True</value>
   </data>
   <data name="skillLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 471</value>
+    <value>186, 462</value>
   </data>
   <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 12</value>
@@ -1216,7 +1216,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="maxSkillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 469</value>
+    <value>466, 460</value>
   </data>
   <data name="maxSkillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1246,7 +1246,7 @@
     <value>True</value>
   </data>
   <data name="maxSkillLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 472</value>
+    <value>385, 463</value>
   </data>
   <data name="maxSkillLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 12</value>
@@ -1273,7 +1273,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="idealRankComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 443</value>
+    <value>466, 434</value>
   </data>
   <data name="idealRankComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -1300,7 +1300,7 @@
     <value>True</value>
   </data>
   <data name="idealRankLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 446</value>
+    <value>384, 437</value>
   </data>
   <data name="idealRankLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -1327,7 +1327,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="loyaltyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 494</value>
+    <value>466, 485</value>
   </data>
   <data name="loyaltyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -1357,7 +1357,7 @@
     <value>True</value>
   </data>
   <data name="loyaltyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 496</value>
+    <value>385, 487</value>
   </data>
   <data name="loyaltyLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 12</value>
@@ -1382,6 +1382,66 @@
   </data>
   <data name="branchNarrowGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;airforceNarrowCheckBox.Name" xml:space="preserve">
+    <value>airforceNarrowCheckBox</value>
+  </data>
+  <data name="&gt;&gt;airforceNarrowCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;airforceNarrowCheckBox.Parent" xml:space="preserve">
+    <value>branchNarrowGroupBox</value>
+  </data>
+  <data name="&gt;&gt;airforceNarrowCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;navyNarrowCheckBox.Name" xml:space="preserve">
+    <value>navyNarrowCheckBox</value>
+  </data>
+  <data name="&gt;&gt;navyNarrowCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;navyNarrowCheckBox.Parent" xml:space="preserve">
+    <value>branchNarrowGroupBox</value>
+  </data>
+  <data name="&gt;&gt;navyNarrowCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;armyNarrowCheckBox.Name" xml:space="preserve">
+    <value>armyNarrowCheckBox</value>
+  </data>
+  <data name="&gt;&gt;armyNarrowCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;armyNarrowCheckBox.Parent" xml:space="preserve">
+    <value>branchNarrowGroupBox</value>
+  </data>
+  <data name="&gt;&gt;armyNarrowCheckBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="branchNarrowGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 205</value>
+  </data>
+  <data name="branchNarrowGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 154</value>
+  </data>
+  <data name="branchNarrowGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="branchNarrowGroupBox.Text" xml:space="preserve">
+    <value>Branch Filter</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.Name" xml:space="preserve">
+    <value>branchNarrowGroupBox</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;branchNarrowGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="airforceNarrowCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1464,35 +1524,11 @@
   <data name="&gt;&gt;armyNarrowCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="branchNarrowGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 214</value>
-  </data>
-  <data name="branchNarrowGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 154</value>
-  </data>
-  <data name="branchNarrowGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="branchNarrowGroupBox.Text" xml:space="preserve">
-    <value>Branch Filter</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.Name" xml:space="preserve">
-    <value>branchNarrowGroupBox</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;branchNarrowGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="traitsNarrowGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
   <data name="traitsNarrowInvertButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>769, 124</value>
+    <value>756, 124</value>
   </data>
   <data name="traitsNarrowInvertButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1519,7 +1555,7 @@
     <value>True</value>
   </data>
   <data name="traitsAndNarrowRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>769, 61</value>
+    <value>756, 61</value>
   </data>
   <data name="traitsAndNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 16</value>
@@ -1546,7 +1582,7 @@
     <value>True</value>
   </data>
   <data name="traitsOrNarrowRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>769, 39</value>
+    <value>756, 39</value>
   </data>
   <data name="traitsOrNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 16</value>
@@ -1573,7 +1609,7 @@
     <value>True</value>
   </data>
   <data name="traitsNoneNarrowRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>769, 17</value>
+    <value>756, 17</value>
   </data>
   <data name="traitsNoneNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 16</value>
@@ -2434,7 +2470,7 @@
     <value>34</value>
   </data>
   <data name="traitsNarrowGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 214</value>
+    <value>122, 205</value>
   </data>
   <data name="traitsNarrowGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>850, 154</value>
@@ -2461,7 +2497,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="branchComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 443</value>
+    <value>267, 434</value>
   </data>
   <data name="branchComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -2488,7 +2524,7 @@
     <value>True</value>
   </data>
   <data name="branchLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 446</value>
+    <value>186, 437</value>
   </data>
   <data name="branchLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
@@ -2515,7 +2551,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="experienceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 494</value>
+    <value>267, 485</value>
   </data>
   <data name="experienceNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -2545,7 +2581,7 @@
     <value>True</value>
   </data>
   <data name="experienceLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 496</value>
+    <value>186, 487</value>
   </data>
   <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 12</value>
@@ -2944,7 +2980,7 @@
     <value>30</value>
   </data>
   <data name="traitsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>572, 374</value>
+    <value>572, 365</value>
   </data>
   <data name="traitsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>400, 266</value>
@@ -3808,7 +3844,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="retirementYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 544</value>
+    <value>267, 535</value>
   </data>
   <data name="retirementYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 19</value>
@@ -3841,7 +3877,7 @@
     <value>NoControl</value>
   </data>
   <data name="retirementYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 546</value>
+    <value>186, 537</value>
   </data>
   <data name="retirementYearLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>
@@ -3872,9 +3908,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>984, 681</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Leader Editor</value>
