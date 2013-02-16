@@ -243,23 +243,39 @@ namespace HoI2Editor.Forms
         private void OnLeaderListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
             }
 
+            Log.Write(string.Format("{0}\n", leader.Id));
+
             // 編集項目を更新する
-            UpdateCountryComboBox(leader);
+            UpdateEditableItemsValue(leader);
+
+            // 編集項目の色を更新する
+            UpdateEditableItemsColor(leader);
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = leaderListView.SelectedIndices[0] != 0;
+            upButton.Enabled = leaderListView.SelectedIndices[0] != 0;
+            downButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
+            bottomButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="leader">指揮官データ</param>
+        private void UpdateEditableItemsValue(Leader leader)
+        {
+            // 編集項目の値を更新する
+            countryComboBox.SelectedIndex = leader.Country != CountryTag.None ? (int) leader.Country - 1 : -1;
             idNumericUpDown.Value = leader.Id;
             nameTextBox.Text = leader.Name;
-            UpdateBranchComboBox(leader);
-            UpdateIdealRankComboBox(leader);
+            branchComboBox.SelectedIndex = leader.Branch != LeaderBranch.None ? (int) leader.Branch - 1 : -1;
+            idealRankComboBox.SelectedIndex = leader.IdealRank != LeaderRank.None ? (int) leader.IdealRank - 1 : -1;
             skillNumericUpDown.Value = leader.Skill;
             maxSkillNumericUpDown.Value = leader.MaxSkill;
             experienceNumericUpDown.Value = leader.Experience;
@@ -273,9 +289,6 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown4.Value = leader.RankYear[3];
             pictureNameTextBox.Text = leader.PictureName;
             UpdateLeaderPicture(leader);
-
-            // 中途半端な状態での更新を防ぐため、更新イベントを抑止する
-            SetTraitsCheckBoxEvent(false);
 
             // 特性チェックボックスの状態を更新する
             logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
@@ -309,15 +322,117 @@ namespace HoI2Editor.Forms
             disciplinedCheckBox.Checked = ((leader.Traits & LeaderTraits.Disciplined) != 0);
             elasticDefenceSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0);
             blitzerCheckBox.Checked = ((leader.Traits & LeaderTraits.Blitzer) != 0);
+        }
 
-            // 更新イベントを再開する
-            SetTraitsCheckBoxEvent(true);
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="leader"></param>
+        private void UpdateEditableItemsColor(Leader leader)
+        {
+            // コンボボックスの色を更新する
+            countryComboBox.Refresh();
+            branchComboBox.Refresh();
+            idealRankComboBox.Refresh();
 
-            // 項目移動ボタンの状態更新
-            topButton.Enabled = leaderListView.SelectedIndices[0] != 0;
-            upButton.Enabled = leaderListView.SelectedIndices[0] != 0;
-            downButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
-            bottomButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
+            // 編集項目の色を更新する
+            idNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Id) ? Color.Red : SystemColors.WindowText;
+            nameTextBox.ForeColor = leader.IsDirty(LeaderItemId.Name) ? Color.Red : SystemColors.WindowText;
+            skillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Skill) ? Color.Red : SystemColors.WindowText;
+            maxSkillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.MaxSkill)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+            experienceNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Experience)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            loyaltyNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Loyalty) ? Color.Red : SystemColors.WindowText;
+            startYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.StartYear)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            endYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            retirementYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.RetirementYear)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            rankYearNumericUpDown1.ForeColor = leader.IsDirty(LeaderItemId.Rank3Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            rankYearNumericUpDown2.ForeColor = leader.IsDirty(LeaderItemId.Rank2Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            rankYearNumericUpDown3.ForeColor = leader.IsDirty(LeaderItemId.Rank1Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            rankYearNumericUpDown4.ForeColor = leader.IsDirty(LeaderItemId.Rank0Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            pictureNameTextBox.ForeColor = leader.IsDirty(LeaderItemId.PictureName)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+
+            // 特性チェックボックスの項目色を更新する
+            logisticsWizardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.LogisticsWizard)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            defensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DefensiveDoctrine)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            offensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OffensiveDoctrine)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            winterSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.WinterSpecialist)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            tricksterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Trickster) ? Color.Red : SystemColors.WindowText;
+            engineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Engineer) ? Color.Red : SystemColors.WindowText;
+            fortressBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FortressBuster)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            panzerLeaderCheckBox.ForeColor = leader.IsDirty(LeaderItemId.PanzerLeader)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            commandoCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Commando) ? Color.Red : SystemColors.WindowText;
+            oldGuardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OldGuard) ? Color.Red : SystemColors.WindowText;
+            seaWolfCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SeaWolf) ? Color.Red : SystemColors.WindowText;
+            blockadeRunnerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.BlockadeRunner)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            superiorTacticianCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SuperiorTactician)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            spotterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Spotter) ? Color.Red : SystemColors.WindowText;
+            tankBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.TankBuster) ? Color.Red : SystemColors.WindowText;
+            carpetBomberCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CarpetBomber)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            nightFlyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.NightFlyer) ? Color.Red : SystemColors.WindowText;
+            fleetDestroyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FleetDestroyer)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            desertFoxCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DesertFox) ? Color.Red : SystemColors.WindowText;
+            jungleRatCheckBox.ForeColor = leader.IsDirty(LeaderItemId.JungleRat) ? Color.Red : SystemColors.WindowText;
+            urbanWarfareSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.UrbanWarfareSpecialist)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+            rangerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ranger) ? Color.Red : SystemColors.WindowText;
+            mountaineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Mountaineer)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+            hillsFighterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.HillsFighter)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            counterAttackerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CounterAttacker)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            assaulterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Assaulter) ? Color.Red : SystemColors.WindowText;
+            encirclerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Encircler) ? Color.Red : SystemColors.WindowText;
+            ambusherCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ambusher) ? Color.Red : SystemColors.WindowText;
+            disciplinedCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Disciplined)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+            elasticDefenceSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.ElasticDefenceSpecialist)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+            blitzerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Blitzer) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -328,14 +443,9 @@ namespace HoI2Editor.Forms
         private void OnNewButtonClick(object sender, EventArgs e)
         {
             Leader leader;
-            if (leaderListView.SelectedItems.Count > 0)
+            Leader selected = GetSelectedLeader();
+            if (selected != null)
             {
-                var selected = leaderListView.SelectedItems[0].Tag as Leader;
-                if (selected == null)
-                {
-                    return;
-                }
-
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
                 leader = new Leader
                              {
@@ -351,6 +461,9 @@ namespace HoI2Editor.Forms
                 leader.RankYear[1] = 1990;
                 leader.RankYear[2] = 1990;
                 leader.RankYear[3] = 1990;
+
+                // 指揮官ごとの編集済みフラグを設定する
+                leader.SetDirty();
 
                 // 指揮官リストに項目を挿入する
                 Leaders.InsertItem(leader, selected);
@@ -377,6 +490,9 @@ namespace HoI2Editor.Forms
                 leader.RankYear[2] = 1990;
                 leader.RankYear[3] = 1990;
 
+                // 指揮官ごとの編集済みフラグを設定する
+                leader.SetDirty();
+
                 // 指揮官リストに項目を追加する
                 Leaders.AddItem(leader);
                 AddListItem(leader);
@@ -385,8 +501,8 @@ namespace HoI2Editor.Forms
                 EnableEditableItems();
             }
 
-            // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            // 国家ごとの編集済みフラグを設定する
+            Leaders.SetDirty(leader.Country);
         }
 
         /// <summary>
@@ -397,11 +513,7 @@ namespace HoI2Editor.Forms
         private void OnCloneButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            var selected = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader selected = GetSelectedLeader();
             if (selected == null)
             {
                 return;
@@ -430,12 +542,15 @@ namespace HoI2Editor.Forms
             leader.RankYear[2] = selected.RankYear[2];
             leader.RankYear[3] = selected.RankYear[3];
 
+            // 指揮官ごとの編集済みフラグを設定する
+            leader.SetDirty();
+
             // 指揮官リストに項目を挿入する
             Leaders.InsertItem(leader, selected);
             InsertListItem(leader, leaderListView.SelectedIndices[0] + 1);
 
-            // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            // 国家ごとの編集済みフラグを設定する
+            Leaders.SetDirty(leader.Country);
         }
 
         /// <summary>
@@ -446,12 +561,7 @@ namespace HoI2Editor.Forms
         private void OnRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var selected = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader selected = GetSelectedLeader();
             if (selected == null)
             {
                 return;
@@ -468,7 +578,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(selected.Country);
+            Leaders.SetDirty(selected.Country);
         }
 
         /// <summary>
@@ -479,7 +589,8 @@ namespace HoI2Editor.Forms
         private void OnTopButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
+            Leader selected = GetSelectedLeader();
+            if (selected == null)
             {
                 return;
             }
@@ -487,12 +598,6 @@ namespace HoI2Editor.Forms
             // 選択項目がリストの先頭ならば何もしない
             int index = leaderListView.SelectedIndices[0];
             if (index == 0)
-            {
-                return;
-            }
-
-            var selected = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selected == null)
             {
                 return;
             }
@@ -508,7 +613,7 @@ namespace HoI2Editor.Forms
             MoveListItem(index, 0);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(selected.Country);
+            Leaders.SetDirty(selected.Country);
         }
 
         /// <summary>
@@ -519,7 +624,8 @@ namespace HoI2Editor.Forms
         private void OnUpButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
+            Leader selected = GetSelectedLeader();
+            if (selected == null)
             {
                 return;
             }
@@ -531,11 +637,6 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var selected = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selected == null)
-            {
-                return;
-            }
             var upper = leaderListView.Items[index - 1].Tag as Leader;
             if (upper == null)
             {
@@ -547,7 +648,7 @@ namespace HoI2Editor.Forms
             MoveListItem(index, index - 1);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(selected.Country);
+            Leaders.SetDirty(selected.Country);
         }
 
         /// <summary>
@@ -558,7 +659,8 @@ namespace HoI2Editor.Forms
         private void OnDownButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
+            Leader selected = GetSelectedLeader();
+            if (selected == null)
             {
                 return;
             }
@@ -566,12 +668,6 @@ namespace HoI2Editor.Forms
             // 選択項目がリストの末尾ならば何もしない
             int index = leaderListView.SelectedIndices[0];
             if (index == leaderListView.Items.Count - 1)
-            {
-                return;
-            }
-
-            var selected = leaderListView.SelectedItems[0].Tag as Leader;
-            if (selected == null)
             {
                 return;
             }
@@ -587,7 +683,7 @@ namespace HoI2Editor.Forms
             MoveListItem(index, index + 1);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(selected.Country);
+            Leaders.SetDirty(selected.Country);
         }
 
         /// <summary>
@@ -598,7 +694,8 @@ namespace HoI2Editor.Forms
         private void OnBottomButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
+            Leader selected = GetSelectedLeader();
+            if (selected == null)
             {
                 return;
             }
@@ -606,12 +703,6 @@ namespace HoI2Editor.Forms
             // 選択項目がリストの末尾ならば何もしない
             int index = leaderListView.SelectedIndices[0];
             if (index == leaderListView.Items.Count - 1)
-            {
-                return;
-            }
-
-            var selected = leaderListView.Items[index].Tag as Leader;
-            if (selected == null)
             {
                 return;
             }
@@ -627,7 +718,7 @@ namespace HoI2Editor.Forms
             MoveListItem(index, leaderListView.Items.Count - 1);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(selected.Country);
+            Leaders.SetDirty(selected.Country);
         }
 
         /// <summary>
@@ -755,6 +846,21 @@ namespace HoI2Editor.Forms
             item.SubItems.Add(GetLeaderTraitsText(leader.Traits));
 
             return item;
+        }
+
+        /// <summary>
+        ///     選択中の指揮官データを取得する
+        /// </summary>
+        /// <returns></returns>
+        private Leader GetSelectedLeader()
+        {
+            // 選択項目がない場合
+            if (leaderListView.SelectedItems.Count == 0)
+            {
+                return null;
+            }
+
+            return leaderListView.SelectedItems[0].Tag as Leader;
         }
 
         /// <summary>
@@ -1184,9 +1290,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string name in Country.Tags
-                                           .Select(country => Country.Strings[(int) country])
-                                           .Where(name => !string.IsNullOrEmpty(name)))
+            foreach (string name in Country.Tags.Select(country => Country.Strings[(int) country]))
             {
                 countryListBox.Items.Add(name);
             }
@@ -1210,8 +1314,8 @@ namespace HoI2Editor.Forms
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
                 {
                     // 変更ありの項目は文字色を変更する
-                    CountryTag country = Country.Tags[e.Index + 1];
-                    brush = Leaders.DirtyFlags[(int) country]
+                    CountryTag country = Country.Tags[e.Index];
+                    brush = Leaders.IsDirty(country)
                                 ? new SolidBrush(Color.Red)
                                 : new SolidBrush(SystemColors.WindowText);
                 }
@@ -1403,7 +1507,7 @@ namespace HoI2Editor.Forms
             pictureNameTextBox.ResetText();
             leaderPictureBox.ImageLocation = "";
 
-            SetTraitsCheckBoxValue(false);
+            ResetTraitsCheckBoxValue();
 
             countryComboBox.Enabled = false;
             idNumericUpDown.Enabled = false;
@@ -1434,69 +1538,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     国家コンボボックスの項目を更新する
-        /// </summary>
-        /// <param name="leader">指揮官データ</param>
-        private void UpdateCountryComboBox(Leader leader)
-        {
-            countryComboBox.BeginUpdate();
-
-            if (leader.Country != CountryTag.None)
-            {
-                // CountryTag.Noneの分インデックスを-1する
-                countryComboBox.SelectedIndex = (int) (leader.Country - 1);
-            }
-            else
-            {
-                countryComboBox.SelectedIndex = -1;
-            }
-
-            countryComboBox.EndUpdate();
-        }
-
-        /// <summary>
-        ///     兵科コンボボックスの項目を更新する
-        /// </summary>
-        /// <param name="leader">指揮官データ</param>
-        private void UpdateBranchComboBox(Leader leader)
-        {
-            branchComboBox.BeginUpdate();
-
-            if (leader.Branch != LeaderBranch.None)
-            {
-                // LeaderBranch.Noneの分インデックスを-1する
-                branchComboBox.SelectedIndex = (int) (leader.Branch - 1);
-            }
-            else
-            {
-                branchComboBox.SelectedIndex = -1;
-            }
-
-            branchComboBox.EndUpdate();
-        }
-
-        /// <summary>
-        ///     理想階級コンボボックスの項目を更新する
-        /// </summary>
-        /// <param name="leader">指揮官データ</param>
-        private void UpdateIdealRankComboBox(Leader leader)
-        {
-            idealRankComboBox.BeginUpdate();
-
-            if (leader.IdealRank != LeaderRank.None)
-            {
-                // LeaderRank.Noneの分インデックスを-1する
-                idealRankComboBox.SelectedIndex = (int) (leader.IdealRank - 1);
-            }
-            else
-            {
-                idealRankComboBox.SelectedIndex = -1;
-            }
-
-            idealRankComboBox.EndUpdate();
-        }
-
-        /// <summary>
         ///     指揮官画像ピクチャーボックスの項目を更新する
         /// </summary>
         /// <param name="leader">指揮官データ</param>
@@ -1516,6 +1557,111 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     国家コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            if (e.Index != -1)
+            {
+                Leader leader = GetSelectedLeader();
+                if (leader != null)
+                {
+                    Brush brush;
+                    if ((Country.Tags[e.Index] == leader.Country) && leader.IsDirty(LeaderItemId.Country))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = countryComboBox.Items[e.Index].ToString();
+                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     兵科コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBranchComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            if (e.Index != -1)
+            {
+                Leader leader = GetSelectedLeader();
+                if (leader != null)
+                {
+                    Brush brush;
+                    if ((e.Index == (int) leader.Branch - 1) && leader.IsDirty(LeaderItemId.Branch))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = branchComboBox.Items[e.Index].ToString();
+                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     理想階級コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIdealRankComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            if (e.Index != -1)
+            {
+                Leader leader = GetSelectedLeader();
+                if (leader != null)
+                {
+                    Brush brush;
+                    if ((e.Index == (int) leader.IdealRank - 1) && leader.IsDirty(LeaderItemId.IdealRank))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = idealRankComboBox.Items[e.Index].ToString();
+                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     国タグ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1523,12 +1669,7 @@ namespace HoI2Editor.Forms
         private void OnCountryComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1542,7 +1683,7 @@ namespace HoI2Editor.Forms
             }
 
             // 変更前の国タグの編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            Leaders.SetDirty(leader.Country);
 
             // 値を更新する
             leader.Country = country;
@@ -1550,8 +1691,14 @@ namespace HoI2Editor.Forms
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].Text = Country.Strings[(int) leader.Country];
 
+            // 指揮官ごとの編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Country);
+
             // 変更後の国タグの編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            Leaders.SetDirty(leader.Country);
+
+            // 国家コンボボックスの項目色を変更するため描画更新する
+            countryComboBox.Refresh();
 
             // 国家リストボックスの項目色を変更するため描画更新する
             countryListBox.Refresh();
@@ -1565,12 +1712,7 @@ namespace HoI2Editor.Forms
         private void OnIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1590,7 +1732,11 @@ namespace HoI2Editor.Forms
             leaderListView.SelectedItems[0].SubItems[1].Text = leader.Id.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Id);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            idNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1601,12 +1747,7 @@ namespace HoI2Editor.Forms
         private void OnNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1626,7 +1767,11 @@ namespace HoI2Editor.Forms
             leaderListView.SelectedItems[0].SubItems[2].Text = leader.Name;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Name);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            nameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1637,12 +1782,7 @@ namespace HoI2Editor.Forms
         private void OnBranchComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1662,7 +1802,11 @@ namespace HoI2Editor.Forms
             leaderListView.SelectedItems[0].SubItems[3].Text = Leaders.BranchNames[(int) leader.Branch];
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Branch);
+            Leaders.SetDirty(leader.Country);
+
+            // 兵科コンボボックスの項目色を変更するため描画更新する
+            branchComboBox.Refresh();
         }
 
         /// <summary>
@@ -1673,12 +1817,7 @@ namespace HoI2Editor.Forms
         private void OnIdealRankComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1694,11 +1833,12 @@ namespace HoI2Editor.Forms
             // 値を更新する
             leader.IdealRank = idealRank;
 
-            // 指揮官リストビューの項目を更新する
-            UpdateIdealRankComboBox(leader);
-
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.IdealRank);
+            Leaders.SetDirty(leader.Country);
+
+            // 理想階級コンボボックスの項目色を変更するため描画更新する
+            idealRankComboBox.Refresh();
         }
 
         /// <summary>
@@ -1709,12 +1849,7 @@ namespace HoI2Editor.Forms
         private void OnSkillNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1734,7 +1869,11 @@ namespace HoI2Editor.Forms
             leaderListView.SelectedItems[0].SubItems[4].Text = leader.Skill.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Skill);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            skillNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1745,12 +1884,7 @@ namespace HoI2Editor.Forms
         private void OnMaxSkillNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1770,7 +1904,11 @@ namespace HoI2Editor.Forms
             leaderListView.SelectedItems[0].SubItems[5].Text = leader.MaxSkill.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.MaxSkill);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            maxSkillNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1781,12 +1919,7 @@ namespace HoI2Editor.Forms
         private void OnExperienceNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1803,7 +1936,11 @@ namespace HoI2Editor.Forms
             leader.Experience = experience;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Experience);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            experienceNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1814,12 +1951,7 @@ namespace HoI2Editor.Forms
         private void OnLoyaltyNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1835,7 +1967,11 @@ namespace HoI2Editor.Forms
             leader.Loyalty = loyalty;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Loyalty);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            loyaltyNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1846,12 +1982,7 @@ namespace HoI2Editor.Forms
         private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1871,7 +2002,11 @@ namespace HoI2Editor.Forms
             leaderListView.SelectedItems[0].SubItems[6].Text = leader.StartYear.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.StartYear);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            startYearNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1882,12 +2017,7 @@ namespace HoI2Editor.Forms
         private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1907,7 +2037,11 @@ namespace HoI2Editor.Forms
             leaderListView.SelectedItems[0].SubItems[7].Text = leader.EndYear.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.EndYear);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            endYearNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1918,12 +2052,7 @@ namespace HoI2Editor.Forms
         private void OnRetirementYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1940,7 +2069,11 @@ namespace HoI2Editor.Forms
             leader.RetirementYear = retirementYear;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.RetirementYear);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            retirementYearNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1951,12 +2084,7 @@ namespace HoI2Editor.Forms
         private void OnRankYearNumericUpDown1ValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -1973,7 +2101,11 @@ namespace HoI2Editor.Forms
             leader.RankYear[0] = rankYear;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Rank3Year);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            rankYearNumericUpDown1.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1984,12 +2116,7 @@ namespace HoI2Editor.Forms
         private void OnRankYearNumericUpDown2ValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -2006,7 +2133,11 @@ namespace HoI2Editor.Forms
             leader.RankYear[1] = newRankYear;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Rank2Year);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            rankYearNumericUpDown2.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2017,12 +2148,7 @@ namespace HoI2Editor.Forms
         private void OnRankYearNumericUpDown3ValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -2039,7 +2165,11 @@ namespace HoI2Editor.Forms
             leader.RankYear[2] = newRankYear;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.Rank1Year);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            rankYearNumericUpDown3.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2050,12 +2180,7 @@ namespace HoI2Editor.Forms
         private void OnRankYearNumericUpDown4ValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -2072,43 +2197,11 @@ namespace HoI2Editor.Forms
             leader.RankYear[3] = newRankYear;
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
-        }
+            leader.SetDirty(LeaderItemId.Rank0Year);
+            Leaders.SetDirty(leader.Country);
 
-        /// <summary>
-        ///     特性変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTraitsCheckBoxCheckedChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
-            if (leader == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            uint traits = GetCheckedLeaderTraits();
-            if (traits == leader.Traits)
-            {
-                return;
-            }
-
-            // 値を更新する
-            leader.Traits = traits;
-
-            // 指揮官リストビューの項目を更新する
-            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
-
-            // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            // 文字色を変更する
+            rankYearNumericUpDown4.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2119,12 +2212,7 @@ namespace HoI2Editor.Forms
         private void OnPictureNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -2144,7 +2232,11 @@ namespace HoI2Editor.Forms
             UpdateLeaderPicture(leader);
 
             // 編集済みフラグを設定する
-            Leaders.SetDirtyFlag(leader.Country);
+            leader.SetDirty(LeaderItemId.PictureName);
+            Leaders.SetDirty(leader.Country);
+
+            // 文字色を変更する
+            pictureNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2155,12 +2247,7 @@ namespace HoI2Editor.Forms
         private void OnPictureNameReferButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (leaderListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var leader = leaderListView.SelectedItems[0].Tag as Leader;
+            Leader leader = GetSelectedLeader();
             if (leader == null)
             {
                 return;
@@ -2179,286 +2266,1162 @@ namespace HoI2Editor.Forms
             }
         }
 
+        #endregion
+
+        #region 指揮官特性
+
         /// <summary>
         ///     指揮官特性チェックボックスの値を一括設定する
         /// </summary>
-        /// <param name="flag">一括設定する値</param>
-        private void SetTraitsCheckBoxValue(bool flag)
+        private void ResetTraitsCheckBoxValue()
         {
-            logisticsWizardCheckBox.Checked = flag;
-            defensiveDoctrineCheckBox.Checked = flag;
-            offensiveDoctrineCheckBox.Checked = flag;
-            winterSpecialistCheckBox.Checked = flag;
-            tricksterCheckBox.Checked = flag;
-            engineerCheckBox.Checked = flag;
-            fortressBusterCheckBox.Checked = flag;
-            panzerLeaderCheckBox.Checked = flag;
-            commandoCheckBox.Checked = flag;
-            oldGuardCheckBox.Checked = flag;
-            seaWolfCheckBox.Checked = flag;
-            blockadeRunnerCheckBox.Checked = flag;
-            superiorTacticianCheckBox.Checked = flag;
-            spotterCheckBox.Checked = flag;
-            tankBusterCheckBox.Checked = flag;
-            carpetBomberCheckBox.Checked = flag;
-            nightFlyerCheckBox.Checked = flag;
-            fleetDestroyerCheckBox.Checked = flag;
-            desertFoxCheckBox.Checked = flag;
-            jungleRatCheckBox.Checked = flag;
-            urbanWarfareSpecialistCheckBox.Checked = flag;
-            rangerCheckBox.Checked = flag;
-            mountaineerCheckBox.Checked = flag;
-            hillsFighterCheckBox.Checked = flag;
-            counterAttackerCheckBox.Checked = flag;
-            assaulterCheckBox.Checked = flag;
-            encirclerCheckBox.Checked = flag;
-            ambusherCheckBox.Checked = flag;
-            disciplinedCheckBox.Checked = flag;
-            elasticDefenceSpecialistCheckBox.Checked = flag;
-            blitzerCheckBox.Checked = flag;
+            logisticsWizardCheckBox.Checked = false;
+            defensiveDoctrineCheckBox.Checked = false;
+            offensiveDoctrineCheckBox.Checked = false;
+            winterSpecialistCheckBox.Checked = false;
+            tricksterCheckBox.Checked = false;
+            engineerCheckBox.Checked = false;
+            fortressBusterCheckBox.Checked = false;
+            panzerLeaderCheckBox.Checked = false;
+            commandoCheckBox.Checked = false;
+            oldGuardCheckBox.Checked = false;
+            seaWolfCheckBox.Checked = false;
+            blockadeRunnerCheckBox.Checked = false;
+            superiorTacticianCheckBox.Checked = false;
+            spotterCheckBox.Checked = false;
+            tankBusterCheckBox.Checked = false;
+            carpetBomberCheckBox.Checked = false;
+            nightFlyerCheckBox.Checked = false;
+            fleetDestroyerCheckBox.Checked = false;
+            desertFoxCheckBox.Checked = false;
+            jungleRatCheckBox.Checked = false;
+            urbanWarfareSpecialistCheckBox.Checked = false;
+            rangerCheckBox.Checked = false;
+            mountaineerCheckBox.Checked = false;
+            hillsFighterCheckBox.Checked = false;
+            counterAttackerCheckBox.Checked = false;
+            assaulterCheckBox.Checked = false;
+            encirclerCheckBox.Checked = false;
+            ambusherCheckBox.Checked = false;
+            disciplinedCheckBox.Checked = false;
+            elasticDefenceSpecialistCheckBox.Checked = false;
+            blitzerCheckBox.Checked = false;
         }
 
         /// <summary>
-        ///     指揮官特性チェックボックスのイベントを一括設定する
+        ///     兵站管理チェックボックスの状態変更時の処理
         /// </summary>
-        /// <param name="flag">イベントの有効/無効</param>
-        private void SetTraitsCheckBoxEvent(bool flag)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLogisticsWizardCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (flag)
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
             {
-                logisticsWizardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                defensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                offensiveDoctrineCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                winterSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                tricksterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                engineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                fortressBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                panzerLeaderCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                commandoCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                oldGuardCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                seaWolfCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                blockadeRunnerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                superiorTacticianCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                spotterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                tankBusterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                carpetBomberCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                nightFlyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                fleetDestroyerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                desertFoxCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                jungleRatCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                urbanWarfareSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                rangerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                mountaineerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                hillsFighterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                counterAttackerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                assaulterCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                encirclerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                ambusherCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                disciplinedCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                elasticDefenceSpecialistCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
-                blitzerCheckBox.CheckedChanged += OnTraitsCheckBoxCheckedChanged;
+                return;
             }
-            else
+
+            // 値に変化がなければ何もしない
+            uint trait = logisticsWizardCheckBox.Checked ? LeaderTraits.LogisticsWizard : 0;
+            if (((leader.Traits & LeaderTraits.LogisticsWizard) ^ trait) == 0)
             {
-                logisticsWizardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                defensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                offensiveDoctrineCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                winterSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                tricksterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                engineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                fortressBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                panzerLeaderCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                commandoCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                oldGuardCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                seaWolfCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                blockadeRunnerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                superiorTacticianCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                spotterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                tankBusterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                carpetBomberCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                nightFlyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                fleetDestroyerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                desertFoxCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                jungleRatCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                urbanWarfareSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                rangerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                mountaineerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                hillsFighterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                counterAttackerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                assaulterCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                encirclerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                ambusherCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                disciplinedCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                elasticDefenceSpecialistCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
-                blitzerCheckBox.CheckedChanged -= OnTraitsCheckBoxCheckedChanged;
+                return;
             }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.LogisticsWizard;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.LogisticsWizard);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            logisticsWizardCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
-        ///     選択された指揮官特性を取得する
+        ///     防勢ドクトリンチェックボックスの状態変更時の処理
         /// </summary>
-        /// <returns>指揮官特性</returns>
-        private uint GetCheckedLeaderTraits()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDefensiveDoctrineCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            uint traits = 0;
-
-            // 兵站管理
-            if (logisticsWizardCheckBox.Checked)
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
             {
-                traits |= LeaderTraits.LogisticsWizard;
-            }
-            // 防勢ドクトリン
-            if (defensiveDoctrineCheckBox.Checked)
-            {
-                traits |= LeaderTraits.DefensiveDoctrine;
-            }
-            // 攻勢ドクトリン
-            if (offensiveDoctrineCheckBox.Checked)
-            {
-                traits |= LeaderTraits.OffensiveDoctrine;
-            }
-            // 冬期戦
-            if (winterSpecialistCheckBox.Checked)
-            {
-                traits |= LeaderTraits.WinterSpecialist;
-            }
-            // 伏撃
-            if (tricksterCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Trickster;
-            }
-            // 工兵
-            if (engineerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Engineer;
-            }
-            // 要塞攻撃
-            if (fortressBusterCheckBox.Checked)
-            {
-                traits |= LeaderTraits.FortressBuster;
-            }
-            // 機甲戦
-            if (panzerLeaderCheckBox.Checked)
-            {
-                traits |= LeaderTraits.PanzerLeader;
-            }
-            // 特殊戦
-            if (commandoCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Commando;
-            }
-            // 古典派
-            if (oldGuardCheckBox.Checked)
-            {
-                traits |= LeaderTraits.OldGuard;
-            }
-            // 海狼
-            if (seaWolfCheckBox.Checked)
-            {
-                traits |= LeaderTraits.SeaWolf;
-            }
-            // 封鎖線突破の達人
-            if (blockadeRunnerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.BlockadeRunner;
-            }
-            // 卓越した戦術家
-            if (superiorTacticianCheckBox.Checked)
-            {
-                traits |= LeaderTraits.SuperiorTactician;
-            }
-            // 索敵
-            if (spotterCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Spotter;
-            }
-            // 対戦車攻撃
-            if (tankBusterCheckBox.Checked)
-            {
-                traits |= LeaderTraits.TankBuster;
-            }
-            // 絨毯爆撃
-            if (carpetBomberCheckBox.Checked)
-            {
-                traits |= LeaderTraits.CarpetBomber;
-            }
-            // 夜間航空作戦
-            if (nightFlyerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.NightFlyer;
-            }
-            // 対艦攻撃
-            if (fleetDestroyerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.FleetDestroyer;
-            }
-            // 砂漠のキツネ
-            if (desertFoxCheckBox.Checked)
-            {
-                traits |= LeaderTraits.DesertFox;
-            }
-            // 密林のネズミ
-            if (jungleRatCheckBox.Checked)
-            {
-                traits |= LeaderTraits.JungleRat;
-            }
-            // 市街戦
-            if (urbanWarfareSpecialistCheckBox.Checked)
-            {
-                traits |= LeaderTraits.UrbanWarfareSpecialist;
-            }
-            // レンジャー
-            if (rangerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Ranger;
-            }
-            // 山岳戦
-            if (mountaineerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Mountaineer;
-            }
-            // 高地戦
-            if (hillsFighterCheckBox.Checked)
-            {
-                traits |= LeaderTraits.HillsFighter;
-            }
-            // 反撃戦
-            if (counterAttackerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.CounterAttacker;
-            }
-            // 突撃戦
-            if (assaulterCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Assaulter;
-            }
-            // 包囲戦
-            if (encirclerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Encircler;
-            }
-            // 奇襲戦
-            if (ambusherCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Ambusher;
-            }
-            // 規律
-            if (disciplinedCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Disciplined;
-            }
-            // 戦術的退却
-            if (elasticDefenceSpecialistCheckBox.Checked)
-            {
-                traits |= LeaderTraits.ElasticDefenceSpecialist;
-            }
-            // 電撃戦
-            if (blitzerCheckBox.Checked)
-            {
-                traits |= LeaderTraits.Blitzer;
+                return;
             }
 
-            return traits;
+            // 値に変化がなければ何もしない
+            uint trait = defensiveDoctrineCheckBox.Checked ? LeaderTraits.DefensiveDoctrine : 0;
+            if (((leader.Traits & LeaderTraits.DefensiveDoctrine) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.DefensiveDoctrine;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.DefensiveDoctrine);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            defensiveDoctrineCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     攻勢ドクトリンチェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffensiveDoctrineCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = offensiveDoctrineCheckBox.Checked ? LeaderTraits.OffensiveDoctrine : 0;
+            if (((leader.Traits & LeaderTraits.OffensiveDoctrine) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.OffensiveDoctrine;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.OffensiveDoctrine);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            offensiveDoctrineCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     冬期戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWinterSpecialistCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = winterSpecialistCheckBox.Checked ? LeaderTraits.WinterSpecialist : 0;
+            if (((leader.Traits & LeaderTraits.WinterSpecialist) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.WinterSpecialist;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.WinterSpecialist);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            winterSpecialistCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     伏撃チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTricksterCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = tricksterCheckBox.Checked ? LeaderTraits.Trickster : 0;
+            if (((leader.Traits & LeaderTraits.Trickster) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Trickster;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Trickster);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            tricksterCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     工兵チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEngineerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = engineerCheckBox.Checked ? LeaderTraits.Engineer : 0;
+            if (((leader.Traits & LeaderTraits.Engineer) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Engineer;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Engineer);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            engineerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     要塞攻撃チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFortressBusterCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = fortressBusterCheckBox.Checked ? LeaderTraits.FortressBuster : 0;
+            if (((leader.Traits & LeaderTraits.FortressBuster) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.FortressBuster;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.FortressBuster);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            fortressBusterCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     機甲戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPanzerLeaderCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = panzerLeaderCheckBox.Checked ? LeaderTraits.PanzerLeader : 0;
+            if (((leader.Traits & LeaderTraits.PanzerLeader) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.PanzerLeader;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.PanzerLeader);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            panzerLeaderCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     特殊戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCommandoCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = commandoCheckBox.Checked ? LeaderTraits.Commando : 0;
+            if (((leader.Traits & LeaderTraits.Commando) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Commando;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Commando);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            commandoCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     古典派チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOldGuardCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = oldGuardCheckBox.Checked ? LeaderTraits.OldGuard : 0;
+            if (((leader.Traits & LeaderTraits.OldGuard) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.OldGuard;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.OldGuard);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            oldGuardCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     海狼チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSeaWolfCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = seaWolfCheckBox.Checked ? LeaderTraits.SeaWolf : 0;
+            if (((leader.Traits & LeaderTraits.SeaWolf) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.SeaWolf;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.SeaWolf);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            seaWolfCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     封鎖線突破の達人チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBlockadeRunnerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = blockadeRunnerCheckBox.Checked ? LeaderTraits.BlockadeRunner : 0;
+            if (((leader.Traits & LeaderTraits.BlockadeRunner) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.BlockadeRunner;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.BlockadeRunner);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            blockadeRunnerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     卓越した戦術家チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSuperiorTacticianCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = superiorTacticianCheckBox.Checked ? LeaderTraits.SuperiorTactician : 0;
+            if (((leader.Traits & LeaderTraits.SuperiorTactician) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.SuperiorTactician;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.SuperiorTactician);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            superiorTacticianCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     索敵チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpotterCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = spotterCheckBox.Checked ? LeaderTraits.Spotter : 0;
+            if (((leader.Traits & LeaderTraits.Spotter) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Spotter;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Spotter);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            spotterCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     対戦車攻撃チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTankBusterCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = tankBusterCheckBox.Checked ? LeaderTraits.TankBuster : 0;
+            if (((leader.Traits & LeaderTraits.TankBuster) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.TankBuster;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.TankBuster);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            tankBusterCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     絨毯爆撃チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCarpetBomberCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = carpetBomberCheckBox.Checked ? LeaderTraits.CarpetBomber : 0;
+            if (((leader.Traits & LeaderTraits.CarpetBomber) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.CarpetBomber;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.CarpetBomber);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            carpetBomberCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     夜間航空作戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNightFlyerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = nightFlyerCheckBox.Checked ? LeaderTraits.NightFlyer : 0;
+            if (((leader.Traits & LeaderTraits.NightFlyer) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.NightFlyer;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.NightFlyer);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            nightFlyerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     対艦攻撃チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFleetDestroyerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = fleetDestroyerCheckBox.Checked ? LeaderTraits.FleetDestroyer : 0;
+            if (((leader.Traits & LeaderTraits.FleetDestroyer) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.FleetDestroyer;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.FleetDestroyer);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            fleetDestroyerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     砂漠のキツネチェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDesertFoxCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = desertFoxCheckBox.Checked ? LeaderTraits.DesertFox : 0;
+            if (((leader.Traits & LeaderTraits.DesertFox) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.DesertFox;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.DesertFox);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            desertFoxCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     密林のネズミチェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnJungleRatCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = jungleRatCheckBox.Checked ? LeaderTraits.JungleRat : 0;
+            if (((leader.Traits & LeaderTraits.JungleRat) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.JungleRat;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.JungleRat);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            jungleRatCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     市街戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUrbanWarfareSpecialistCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = urbanWarfareSpecialistCheckBox.Checked ? LeaderTraits.UrbanWarfareSpecialist : 0;
+            if (((leader.Traits & LeaderTraits.UrbanWarfareSpecialist) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.UrbanWarfareSpecialist;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.UrbanWarfareSpecialist);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            urbanWarfareSpecialistCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     レンジャーチェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRangerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = rangerCheckBox.Checked ? LeaderTraits.Ranger : 0;
+            if (((leader.Traits & LeaderTraits.Ranger) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Ranger;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Ranger);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            rangerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     山岳戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMountaineerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = mountaineerCheckBox.Checked ? LeaderTraits.Mountaineer : 0;
+            if (((leader.Traits & LeaderTraits.Mountaineer) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Mountaineer;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Mountaineer);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            mountaineerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     高地戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHillsFighterCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = hillsFighterCheckBox.Checked ? LeaderTraits.HillsFighter : 0;
+            if (((leader.Traits & LeaderTraits.HillsFighter) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.HillsFighter;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.HillsFighter);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            hillsFighterCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     反撃戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCounterAttackerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = counterAttackerCheckBox.Checked ? LeaderTraits.CounterAttacker : 0;
+            if (((leader.Traits & LeaderTraits.CounterAttacker) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.CounterAttacker;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.CounterAttacker);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            counterAttackerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     突撃戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAssaulterCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = assaulterCheckBox.Checked ? LeaderTraits.Assaulter : 0;
+            if (((leader.Traits & LeaderTraits.Assaulter) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Assaulter;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Assaulter);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            assaulterCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     包囲戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEncirclerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = encirclerCheckBox.Checked ? LeaderTraits.Encircler : 0;
+            if (((leader.Traits & LeaderTraits.Encircler) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Encircler;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Encircler);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            encirclerCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     奇襲戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAmbusherCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = ambusherCheckBox.Checked ? LeaderTraits.Ambusher : 0;
+            if (((leader.Traits & LeaderTraits.Ambusher) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Ambusher;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Ambusher);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            ambusherCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     規律チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDisiplinedCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = disciplinedCheckBox.Checked ? LeaderTraits.Disciplined : 0;
+            if (((leader.Traits & LeaderTraits.Disciplined) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Disciplined;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Disciplined);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            disciplinedCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦術的退却チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnElasticDefenceSpecialistCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = elasticDefenceSpecialistCheckBox.Checked ? LeaderTraits.ElasticDefenceSpecialist : 0;
+            if (((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.ElasticDefenceSpecialist;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.ElasticDefenceSpecialist);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            elasticDefenceSpecialistCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     電撃戦チェックボックスの状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBlitzerCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            uint trait = blitzerCheckBox.Checked ? LeaderTraits.Blitzer : 0;
+            if (((leader.Traits & LeaderTraits.Blitzer) ^ trait) == 0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            leader.Traits &= ~LeaderTraits.Blitzer;
+            leader.Traits |= trait;
+
+            // 指揮官リストビューの項目を更新する
+            leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
+
+            // 編集済みフラグを設定する
+            leader.SetDirty(LeaderItemId.Blitzer);
+            Leaders.SetDirty(leader.Country);
+
+            // 項目色を変更する
+            blitzerCheckBox.ForeColor = Color.Red;
         }
 
         #endregion

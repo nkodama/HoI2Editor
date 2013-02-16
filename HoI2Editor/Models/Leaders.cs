@@ -48,7 +48,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグ
         /// </summary>
-        public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -142,6 +142,8 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 初期化
+
         /// <summary>
         ///     静的コンストラクタ
         /// </summary>
@@ -152,6 +154,18 @@ namespace HoI2Editor.Models
 
             // 階級
             RankNames = new[] {"", Resources.Rank3, Resources.Rank2, Resources.Rank1, Resources.Rank0};
+        }
+
+        #endregion
+
+        #region ファイル読み込み
+
+        /// <summary>
+        ///     指揮官ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
         }
 
         /// <summary>
@@ -356,7 +370,7 @@ namespace HoI2Editor.Models
                 }
                 reader.Close();
 
-                ClearDirtyFlag(country);
+                ResetDirty(country);
             }
         }
 
@@ -595,6 +609,10 @@ namespace HoI2Editor.Models
             return leader;
         }
 
+        #endregion
+
+        #region ファイル書き込み
+
         /// <summary>
         ///     指揮官ファイル群を保存する
         /// </summary>
@@ -703,8 +721,12 @@ namespace HoI2Editor.Models
                 writer.Close();
             }
 
-            ClearDirtyFlag(country);
+            ResetDirty(country);
         }
+
+        #endregion
+
+        #region 指揮官リスト操作
 
         /// <summary>
         ///     指揮官リストに項目を追加する
@@ -759,30 +781,38 @@ namespace HoI2Editor.Models
             }
         }
 
+        #endregion
+
+        #region 編集済みフラグ操作
+
         /// <summary>
-        ///     指揮官ファイルの再読み込みを要求する
+        ///     編集済みかどうかを取得する
         /// </summary>
-        public static void RequireReload()
+        /// <param name="country">国タグ</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty(CountryTag country)
         {
-            _loaded = false;
+            return DirtyFlags[(int) country];
         }
 
         /// <summary>
-        ///     編集フラグをセットする
+        ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirtyFlag(CountryTag country)
+        public static void SetDirty(CountryTag country)
         {
             DirtyFlags[(int) country] = true;
         }
 
         /// <summary>
-        ///     編集フラグをクリアする
+        ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void ClearDirtyFlag(CountryTag country)
+        public static void ResetDirty(CountryTag country)
         {
             DirtyFlags[(int) country] = false;
         }
+
+        #endregion
     }
 }

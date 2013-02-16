@@ -1,4 +1,6 @@
-﻿namespace HoI2Editor.Models
+﻿using System;
+
+namespace HoI2Editor.Models
 {
     /// <summary>
     ///     指揮官データ
@@ -6,9 +8,19 @@
     public class Leader
     {
         /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (LeaderItemId)).Length];
+
+        /// <summary>
         ///     任官年
         /// </summary>
         private readonly int[] _rankYear = new int[4];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
 
         /// <summary>
         ///     国タグ
@@ -87,6 +99,59 @@
         ///     兵科
         /// </summary>
         public LeaderBranch Branch { get; set; }
+
+        /// <summary>
+        ///     指揮官データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(LeaderItemId itemId)
+        {
+            return _dirtyFlags[(int) itemId];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        public void SetDirty(LeaderItemId itemId)
+        {
+            _dirtyFlags[(int) itemId] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            foreach (LeaderItemId itemId in Enum.GetValues(typeof (LeaderItemId)))
+            {
+                _dirtyFlags[(int) itemId] = true;
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirty()
+        {
+            foreach (LeaderItemId itemId in Enum.GetValues(typeof (LeaderItemId)))
+            {
+                _dirtyFlags[(int) itemId] = false;
+            }
+            _dirtyFlag = false;
+        }
     }
 
     /// <summary>
@@ -334,5 +399,60 @@
         LieutenantGeneral, // 中将
         General, // 大将
         Marshal, // 元帥
+    }
+
+    /// <summary>
+    ///     指揮官項目ID
+    /// </summary>
+    public enum LeaderItemId
+    {
+        Country, // 国家
+        Id, // ID
+        Name, // 名前
+        Branch, // 兵科
+        IdealRank, // 理想階級
+        Skill, // スキル
+        MaxSkill, // 最大スキル
+        Experience, // 経験値
+        Loyalty, // 忠誠度
+        StartYear, // 開始年
+        EndYear, // 終了年
+        RetirementYear, // 引退年
+        Rank3Year, // 少将任官年
+        Rank2Year, // 中将任官年
+        Rank1Year, // 大将任官年
+        Rank0Year, // 元帥任官年
+        PictureName, // 画像ファイル名
+        LogisticsWizard, // 特性: 兵站管理
+        DefensiveDoctrine, // 特性: 防勢ドクトリン
+        OffensiveDoctrine, // 特性: 攻勢ドクトリン
+        WinterSpecialist, // 特性: 冬期戦
+        Trickster, // 特性: 伏撃
+        Engineer, // 特性: 工兵
+        FortressBuster, // 特性: 要塞攻撃
+        PanzerLeader, // 特性: 機甲戦
+        Commando, // 特性: 特殊戦
+        OldGuard, // 特性: 古典派
+        SeaWolf, // 特性: 海狼
+        BlockadeRunner, // 特性: 封鎖線突破の達人
+        SuperiorTactician, // 特性: 卓越した戦術家
+        Spotter, // 特性: 索敵
+        TankBuster, // 特性: 対戦車攻撃
+        CarpetBomber, // 特性: 絨毯爆撃
+        NightFlyer, // 特性: 夜間航空作戦
+        FleetDestroyer, // 特性: 対艦攻撃
+        DesertFox, // 特性: 砂漠のキツネ
+        JungleRat, // 特性: 密林のネズミ
+        UrbanWarfareSpecialist, // 特性: 市街戦
+        Ranger, // 特性: レンジャー
+        Mountaineer, // 特性: 山岳戦
+        HillsFighter, // 特性: 高地戦
+        CounterAttacker, // 特性: 反撃戦
+        Assaulter, // 特性: 突撃戦
+        Encircler, // 特性: 包囲戦
+        Ambusher, // 特性: 奇襲戦
+        Disciplined, // 特性: 規律
+        ElasticDefenceSpecialist, // 特性: 戦術的退却
+        Blitzer, // 特性: 電撃戦
     }
 }

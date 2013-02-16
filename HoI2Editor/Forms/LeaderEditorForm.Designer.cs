@@ -294,9 +294,11 @@
             // countryComboBox
             // 
             resources.ApplyResources(this.countryComboBox, "countryComboBox");
+            this.countryComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.FormattingEnabled = true;
             this.countryComboBox.Name = "countryComboBox";
+            this.countryComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryComboBoxDrawItem);
             this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryComboBoxSelectedIndexChanged);
             // 
             // countryLabel
@@ -538,9 +540,11 @@
             // idealRankComboBox
             // 
             resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
+            this.idealRankComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.idealRankComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.idealRankComboBox.FormattingEnabled = true;
             this.idealRankComboBox.Name = "idealRankComboBox";
+            this.idealRankComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnIdealRankComboBoxDrawItem);
             this.idealRankComboBox.SelectedIndexChanged += new System.EventHandler(this.OnIdealRankComboBoxSelectedIndexChanged);
             // 
             // idealRankLabel
@@ -886,9 +890,11 @@
             // branchComboBox
             // 
             resources.ApplyResources(this.branchComboBox, "branchComboBox");
+            this.branchComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.branchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchComboBox.FormattingEnabled = true;
             this.branchComboBox.Name = "branchComboBox";
+            this.branchComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnBranchComboBoxDrawItem);
             this.branchComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchComboBoxSelectedIndexChanged);
             // 
             // branchLabel
@@ -949,217 +955,217 @@
             resources.ApplyResources(this.blitzerCheckBox, "blitzerCheckBox");
             this.blitzerCheckBox.Name = "blitzerCheckBox";
             this.blitzerCheckBox.UseVisualStyleBackColor = true;
-            this.blitzerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.blitzerCheckBox.CheckedChanged += new System.EventHandler(this.OnBlitzerCheckBoxCheckedChanged);
             // 
             // elasticDefenceSpecialistCheckBox
             // 
             resources.ApplyResources(this.elasticDefenceSpecialistCheckBox, "elasticDefenceSpecialistCheckBox");
             this.elasticDefenceSpecialistCheckBox.Name = "elasticDefenceSpecialistCheckBox";
             this.elasticDefenceSpecialistCheckBox.UseVisualStyleBackColor = true;
-            this.elasticDefenceSpecialistCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.elasticDefenceSpecialistCheckBox.CheckedChanged += new System.EventHandler(this.OnElasticDefenceSpecialistCheckBoxCheckedChanged);
             // 
             // disciplinedCheckBox
             // 
             resources.ApplyResources(this.disciplinedCheckBox, "disciplinedCheckBox");
             this.disciplinedCheckBox.Name = "disciplinedCheckBox";
             this.disciplinedCheckBox.UseVisualStyleBackColor = true;
-            this.disciplinedCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.disciplinedCheckBox.CheckedChanged += new System.EventHandler(this.OnDisiplinedCheckBoxCheckedChanged);
             // 
             // ambusherCheckBox
             // 
             resources.ApplyResources(this.ambusherCheckBox, "ambusherCheckBox");
             this.ambusherCheckBox.Name = "ambusherCheckBox";
             this.ambusherCheckBox.UseVisualStyleBackColor = true;
-            this.ambusherCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.ambusherCheckBox.CheckedChanged += new System.EventHandler(this.OnAmbusherCheckBoxCheckedChanged);
             // 
             // encirclerCheckBox
             // 
             resources.ApplyResources(this.encirclerCheckBox, "encirclerCheckBox");
             this.encirclerCheckBox.Name = "encirclerCheckBox";
             this.encirclerCheckBox.UseVisualStyleBackColor = true;
-            this.encirclerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.encirclerCheckBox.CheckedChanged += new System.EventHandler(this.OnEncirclerCheckBoxCheckedChanged);
             // 
             // assaulterCheckBox
             // 
             resources.ApplyResources(this.assaulterCheckBox, "assaulterCheckBox");
             this.assaulterCheckBox.Name = "assaulterCheckBox";
             this.assaulterCheckBox.UseVisualStyleBackColor = true;
-            this.assaulterCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.assaulterCheckBox.CheckedChanged += new System.EventHandler(this.OnAssaulterCheckBoxCheckedChanged);
             // 
             // counterAttackerCheckBox
             // 
             resources.ApplyResources(this.counterAttackerCheckBox, "counterAttackerCheckBox");
             this.counterAttackerCheckBox.Name = "counterAttackerCheckBox";
             this.counterAttackerCheckBox.UseVisualStyleBackColor = true;
-            this.counterAttackerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.counterAttackerCheckBox.CheckedChanged += new System.EventHandler(this.OnCounterAttackerCheckBoxCheckedChanged);
             // 
             // hillsFighterCheckBox
             // 
             resources.ApplyResources(this.hillsFighterCheckBox, "hillsFighterCheckBox");
             this.hillsFighterCheckBox.Name = "hillsFighterCheckBox";
             this.hillsFighterCheckBox.UseVisualStyleBackColor = true;
-            this.hillsFighterCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.hillsFighterCheckBox.CheckedChanged += new System.EventHandler(this.OnHillsFighterCheckBoxCheckedChanged);
             // 
             // mountaineerCheckBox
             // 
             resources.ApplyResources(this.mountaineerCheckBox, "mountaineerCheckBox");
             this.mountaineerCheckBox.Name = "mountaineerCheckBox";
             this.mountaineerCheckBox.UseVisualStyleBackColor = true;
-            this.mountaineerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.mountaineerCheckBox.CheckedChanged += new System.EventHandler(this.OnMountaineerCheckBoxCheckedChanged);
             // 
             // rangerCheckBox
             // 
             resources.ApplyResources(this.rangerCheckBox, "rangerCheckBox");
             this.rangerCheckBox.Name = "rangerCheckBox";
             this.rangerCheckBox.UseVisualStyleBackColor = true;
-            this.rangerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.rangerCheckBox.CheckedChanged += new System.EventHandler(this.OnRangerCheckBoxCheckedChanged);
             // 
             // urbanWarfareSpecialistCheckBox
             // 
             resources.ApplyResources(this.urbanWarfareSpecialistCheckBox, "urbanWarfareSpecialistCheckBox");
             this.urbanWarfareSpecialistCheckBox.Name = "urbanWarfareSpecialistCheckBox";
             this.urbanWarfareSpecialistCheckBox.UseVisualStyleBackColor = true;
-            this.urbanWarfareSpecialistCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.urbanWarfareSpecialistCheckBox.CheckedChanged += new System.EventHandler(this.OnUrbanWarfareSpecialistCheckBoxCheckedChanged);
             // 
             // jungleRatCheckBox
             // 
             resources.ApplyResources(this.jungleRatCheckBox, "jungleRatCheckBox");
             this.jungleRatCheckBox.Name = "jungleRatCheckBox";
             this.jungleRatCheckBox.UseVisualStyleBackColor = true;
-            this.jungleRatCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.jungleRatCheckBox.CheckedChanged += new System.EventHandler(this.OnJungleRatCheckBoxCheckedChanged);
             // 
             // desertFoxCheckBox
             // 
             resources.ApplyResources(this.desertFoxCheckBox, "desertFoxCheckBox");
             this.desertFoxCheckBox.Name = "desertFoxCheckBox";
             this.desertFoxCheckBox.UseVisualStyleBackColor = true;
-            this.desertFoxCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.desertFoxCheckBox.CheckedChanged += new System.EventHandler(this.OnDesertFoxCheckBoxCheckedChanged);
             // 
             // fleetDestroyerCheckBox
             // 
             resources.ApplyResources(this.fleetDestroyerCheckBox, "fleetDestroyerCheckBox");
             this.fleetDestroyerCheckBox.Name = "fleetDestroyerCheckBox";
             this.fleetDestroyerCheckBox.UseVisualStyleBackColor = true;
-            this.fleetDestroyerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.fleetDestroyerCheckBox.CheckedChanged += new System.EventHandler(this.OnFleetDestroyerCheckBoxCheckedChanged);
             // 
             // nightFlyerCheckBox
             // 
             resources.ApplyResources(this.nightFlyerCheckBox, "nightFlyerCheckBox");
             this.nightFlyerCheckBox.Name = "nightFlyerCheckBox";
             this.nightFlyerCheckBox.UseVisualStyleBackColor = true;
-            this.nightFlyerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.nightFlyerCheckBox.CheckedChanged += new System.EventHandler(this.OnNightFlyerCheckBoxCheckedChanged);
             // 
             // carpetBomberCheckBox
             // 
             resources.ApplyResources(this.carpetBomberCheckBox, "carpetBomberCheckBox");
             this.carpetBomberCheckBox.Name = "carpetBomberCheckBox";
             this.carpetBomberCheckBox.UseVisualStyleBackColor = true;
-            this.carpetBomberCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.carpetBomberCheckBox.CheckedChanged += new System.EventHandler(this.OnCarpetBomberCheckBoxCheckedChanged);
             // 
             // tankBusterCheckBox
             // 
             resources.ApplyResources(this.tankBusterCheckBox, "tankBusterCheckBox");
             this.tankBusterCheckBox.Name = "tankBusterCheckBox";
             this.tankBusterCheckBox.UseVisualStyleBackColor = true;
-            this.tankBusterCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.tankBusterCheckBox.CheckedChanged += new System.EventHandler(this.OnTankBusterCheckBoxCheckedChanged);
             // 
             // spotterCheckBox
             // 
             resources.ApplyResources(this.spotterCheckBox, "spotterCheckBox");
             this.spotterCheckBox.Name = "spotterCheckBox";
             this.spotterCheckBox.UseVisualStyleBackColor = true;
-            this.spotterCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.spotterCheckBox.CheckedChanged += new System.EventHandler(this.OnSpotterCheckBoxCheckedChanged);
             // 
             // superiorTacticianCheckBox
             // 
             resources.ApplyResources(this.superiorTacticianCheckBox, "superiorTacticianCheckBox");
             this.superiorTacticianCheckBox.Name = "superiorTacticianCheckBox";
             this.superiorTacticianCheckBox.UseVisualStyleBackColor = true;
-            this.superiorTacticianCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.superiorTacticianCheckBox.CheckedChanged += new System.EventHandler(this.OnSuperiorTacticianCheckBoxCheckedChanged);
             // 
             // blockadeRunnerCheckBox
             // 
             resources.ApplyResources(this.blockadeRunnerCheckBox, "blockadeRunnerCheckBox");
             this.blockadeRunnerCheckBox.Name = "blockadeRunnerCheckBox";
             this.blockadeRunnerCheckBox.UseVisualStyleBackColor = true;
-            this.blockadeRunnerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.blockadeRunnerCheckBox.CheckedChanged += new System.EventHandler(this.OnBlockadeRunnerCheckBoxCheckedChanged);
             // 
             // seaWolfCheckBox
             // 
             resources.ApplyResources(this.seaWolfCheckBox, "seaWolfCheckBox");
             this.seaWolfCheckBox.Name = "seaWolfCheckBox";
             this.seaWolfCheckBox.UseVisualStyleBackColor = true;
-            this.seaWolfCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.seaWolfCheckBox.CheckedChanged += new System.EventHandler(this.OnSeaWolfCheckBoxCheckedChanged);
             // 
             // oldGuardCheckBox
             // 
             resources.ApplyResources(this.oldGuardCheckBox, "oldGuardCheckBox");
             this.oldGuardCheckBox.Name = "oldGuardCheckBox";
             this.oldGuardCheckBox.UseVisualStyleBackColor = true;
-            this.oldGuardCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.oldGuardCheckBox.CheckedChanged += new System.EventHandler(this.OnOldGuardCheckBoxCheckedChanged);
             // 
             // commandoCheckBox
             // 
             resources.ApplyResources(this.commandoCheckBox, "commandoCheckBox");
             this.commandoCheckBox.Name = "commandoCheckBox";
             this.commandoCheckBox.UseVisualStyleBackColor = true;
-            this.commandoCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.commandoCheckBox.CheckedChanged += new System.EventHandler(this.OnCommandoCheckBoxCheckedChanged);
             // 
             // panzerLeaderCheckBox
             // 
             resources.ApplyResources(this.panzerLeaderCheckBox, "panzerLeaderCheckBox");
             this.panzerLeaderCheckBox.Name = "panzerLeaderCheckBox";
             this.panzerLeaderCheckBox.UseVisualStyleBackColor = true;
-            this.panzerLeaderCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.panzerLeaderCheckBox.CheckedChanged += new System.EventHandler(this.OnPanzerLeaderCheckBoxCheckedChanged);
             // 
             // fortressBusterCheckBox
             // 
             resources.ApplyResources(this.fortressBusterCheckBox, "fortressBusterCheckBox");
             this.fortressBusterCheckBox.Name = "fortressBusterCheckBox";
             this.fortressBusterCheckBox.UseVisualStyleBackColor = true;
-            this.fortressBusterCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.fortressBusterCheckBox.CheckedChanged += new System.EventHandler(this.OnFortressBusterCheckBoxCheckedChanged);
             // 
             // engineerCheckBox
             // 
             resources.ApplyResources(this.engineerCheckBox, "engineerCheckBox");
             this.engineerCheckBox.Name = "engineerCheckBox";
             this.engineerCheckBox.UseVisualStyleBackColor = true;
-            this.engineerCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.engineerCheckBox.CheckedChanged += new System.EventHandler(this.OnEngineerCheckBoxCheckedChanged);
             // 
             // tricksterCheckBox
             // 
             resources.ApplyResources(this.tricksterCheckBox, "tricksterCheckBox");
             this.tricksterCheckBox.Name = "tricksterCheckBox";
             this.tricksterCheckBox.UseVisualStyleBackColor = true;
-            this.tricksterCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.tricksterCheckBox.CheckedChanged += new System.EventHandler(this.OnTricksterCheckBoxCheckedChanged);
             // 
             // winterSpecialistCheckBox
             // 
             resources.ApplyResources(this.winterSpecialistCheckBox, "winterSpecialistCheckBox");
             this.winterSpecialistCheckBox.Name = "winterSpecialistCheckBox";
             this.winterSpecialistCheckBox.UseVisualStyleBackColor = true;
-            this.winterSpecialistCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.winterSpecialistCheckBox.CheckedChanged += new System.EventHandler(this.OnWinterSpecialistCheckBoxCheckedChanged);
             // 
             // offensiveDoctrineCheckBox
             // 
             resources.ApplyResources(this.offensiveDoctrineCheckBox, "offensiveDoctrineCheckBox");
             this.offensiveDoctrineCheckBox.Name = "offensiveDoctrineCheckBox";
             this.offensiveDoctrineCheckBox.UseVisualStyleBackColor = true;
-            this.offensiveDoctrineCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.offensiveDoctrineCheckBox.CheckedChanged += new System.EventHandler(this.OnOffensiveDoctrineCheckBoxCheckedChanged);
             // 
             // defensiveDoctrineCheckBox
             // 
             resources.ApplyResources(this.defensiveDoctrineCheckBox, "defensiveDoctrineCheckBox");
             this.defensiveDoctrineCheckBox.Name = "defensiveDoctrineCheckBox";
             this.defensiveDoctrineCheckBox.UseVisualStyleBackColor = true;
-            this.defensiveDoctrineCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.defensiveDoctrineCheckBox.CheckedChanged += new System.EventHandler(this.OnDefensiveDoctrineCheckBoxCheckedChanged);
             // 
             // logisticsWizardCheckBox
             // 
             resources.ApplyResources(this.logisticsWizardCheckBox, "logisticsWizardCheckBox");
             this.logisticsWizardCheckBox.Name = "logisticsWizardCheckBox";
             this.logisticsWizardCheckBox.UseVisualStyleBackColor = true;
-            this.logisticsWizardCheckBox.CheckedChanged += new System.EventHandler(this.OnTraitsCheckBoxCheckedChanged);
+            this.logisticsWizardCheckBox.CheckedChanged += new System.EventHandler(this.OnLogisticsWizardCheckBoxCheckedChanged);
             // 
             // retirementYearNumericUpDown
             // 
