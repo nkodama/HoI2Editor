@@ -209,10 +209,12 @@
             // countryComboBox
             // 
             resources.ApplyResources(this.countryComboBox, "countryComboBox");
+            this.countryComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.FormattingEnabled = true;
             this.countryComboBox.Name = "countryComboBox";
-            this.countryComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnCountryComboBoxSelectionChangeCommitted);
+            this.countryComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryComboBoxDrawItem);
+            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryComboBoxSelectedIndexChanged);
             // 
             // idLabel
             // 
@@ -286,10 +288,12 @@
             // loyaltyComboBox
             // 
             resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
+            this.loyaltyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.loyaltyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.loyaltyComboBox.FormattingEnabled = true;
             this.loyaltyComboBox.Name = "loyaltyComboBox";
-            this.loyaltyComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnLoyaltyComboBoxSelectionChangeCommitted);
+            this.loyaltyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnLoyaltyComboBoxDrawItem);
+            this.loyaltyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLoyaltyComboBoxSelectedIndexChanged);
             // 
             // loyaltyLabel
             // 
@@ -299,10 +303,12 @@
             // ideologyComboBox
             // 
             resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
+            this.ideologyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ideologyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ideologyComboBox.FormattingEnabled = true;
             this.ideologyComboBox.Name = "ideologyComboBox";
-            this.ideologyComboBox.SelectionChangeCommitted += new System.EventHandler(this.IdeologyComboBoxSelectionChangeCommitted);
+            this.ideologyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnIdeologyComboBoxDrawItem);
+            this.ideologyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnIdeologyComboBoxSelectedIndexChanged);
             // 
             // ideologyLabel
             // 
@@ -312,10 +318,12 @@
             // personalityComboBox
             // 
             resources.ApplyResources(this.personalityComboBox, "personalityComboBox");
+            this.personalityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.personalityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.personalityComboBox.FormattingEnabled = true;
             this.personalityComboBox.Name = "personalityComboBox";
-            this.personalityComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnPersonalityComboBoxSelectionChangeCommitted);
+            this.personalityComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnPersonalityComboBoxDrawItem);
+            this.personalityComboBox.SelectedIndexChanged += new System.EventHandler(this.OnPersonalityComboBoxSelectedIndexChanged);
             // 
             // personalityLabel
             // 
@@ -325,10 +333,12 @@
             // positionComboBox
             // 
             resources.ApplyResources(this.positionComboBox, "positionComboBox");
+            this.positionComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.positionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.positionComboBox.FormattingEnabled = true;
             this.positionComboBox.Name = "positionComboBox";
-            this.positionComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnPositionComboBoxSelectionChangeCommitted);
+            this.positionComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnPositionComboBoxDrawItem);
+            this.positionComboBox.SelectedIndexChanged += new System.EventHandler(this.OnPositionComboBoxSelectedIndexChanged);
             // 
             // positionLabel
             // 

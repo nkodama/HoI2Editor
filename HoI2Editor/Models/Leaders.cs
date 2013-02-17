@@ -241,17 +241,19 @@ namespace HoI2Editor.Models
                 {
                     // MODフォルダ内で読み込んだファイルは無視する
                     string name = Path.GetFileName(fileName);
-                    if (!string.IsNullOrEmpty(name) && !filelist.Contains(name.ToLower()))
+                    if (string.IsNullOrEmpty(name) || filelist.Contains(name.ToLower()))
                     {
-                        try
-                        {
-                            // 指揮官ファイルを読み込む
-                            LoadLeaderFile(fileName);
-                        }
-                        catch (Exception)
-                        {
-                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
-                        }
+                        continue;
+                    }
+
+                    try
+                    {
+                        // 指揮官ファイルを読み込む
+                        LoadLeaderFile(fileName);
+                    }
+                    catch (Exception)
+                    {
+                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                     }
                 }
             }
@@ -287,6 +289,7 @@ namespace HoI2Editor.Models
             {
                 try
                 {
+                    // 指揮官ファイルを読み込む
                     LoadLeaderFile(fileName);
                 }
                 catch (Exception)
@@ -625,6 +628,7 @@ namespace HoI2Editor.Models
             {
                 try
                 {
+                    // 指揮官ファイルを保存する
                     SaveLeaderFile(country);
                 }
                 catch (Exception)
@@ -643,8 +647,8 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         private static void SaveLeaderFile(CountryTag country)
         {
-            string folderName = Game.GetWriteFileName(Game.LeaderPathName);
             // 指揮官フォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Game.LeaderPathName);
             if (!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);
@@ -656,13 +660,30 @@ namespace HoI2Editor.Models
                 _currentFileName = fileName;
                 _currentLineNo = 2;
 
+                // ヘッダ行を書き込む
                 writer.WriteLine(
                     Misc.Mod.RetirementYearLeader
                         ? "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;Retirement Year;x"
                         : "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
 
+                // 指揮官定義行を順に書き込む
                 foreach (Leader leader in List.Where(leader => leader.Country == country))
                 {
+                    // 不正な値が設定されている場合は警告をログに出力する
+                    if (leader.Branch == LeaderBranch.None)
+                    {
+                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName,
+                                                _currentLineNo));
+                        Log.Write(String.Format("  {0}: {1}\n", leader.Id, leader.Name));
+                    }
+                    if (leader.IdealRank == LeaderRank.None)
+                    {
+                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName,
+                                                _currentLineNo));
+                        Log.Write(String.Format("  {0}: {1}\n", leader.Id, leader.Name));
+                    }
+
+                    // 指揮官定義行を書き込む
                     if (Misc.Mod.RetirementYearLeader)
                     {
                         writer.WriteLine(
@@ -731,53 +752,53 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官リストに項目を追加する
         /// </summary>
-        /// <param name="target">挿入対象の項目</param>
-        public static void AddItem(Leader target)
+        /// <param name="leader">挿入対象の項目</param>
+        public static void AddItem(Leader leader)
         {
-            List.Add(target);
+            List.Add(leader);
         }
 
         /// <summary>
         ///     指揮官リストに項目を挿入する
         /// </summary>
-        /// <param name="target">挿入対象の項目</param>
+        /// <param name="leader">挿入対象の項目</param>
         /// <param name="position">挿入先の項目</param>
-        public static void InsertItem(Leader target, Leader position)
+        public static void InsertItem(Leader leader, Leader position)
         {
             int index = List.IndexOf(position) + 1;
-            List.Insert(index, target);
+            List.Insert(index, leader);
         }
 
         /// <summary>
         ///     指揮官リストから項目を削除する
         /// </summary>
-        /// <param name="target">削除対象の項目</param>
-        public static void RemoveItem(Leader target)
+        /// <param name="leader">削除対象の項目</param>
+        public static void RemoveItem(Leader leader)
         {
-            List.Remove(target);
+            List.Remove(leader);
         }
 
         /// <summary>
         ///     指揮官リストの項目を移動する
         /// </summary>
-        /// <param name="target">移動対象の項目</param>
-        /// <param name="position">移動先位置の項目</param>
-        public static void MoveItem(Leader target, Leader position)
+        /// <param name="src">移動元の項目</param>
+        /// <param name="dest">移動先の項目</param>
+        public static void MoveItem(Leader src, Leader dest)
         {
-            int targetIndex = List.IndexOf(target);
-            int positionIndex = List.IndexOf(position);
+            int srcIndex = List.IndexOf(src);
+            int destIndex = List.IndexOf(dest);
 
-            if (targetIndex > positionIndex)
+            if (srcIndex > destIndex)
             {
                 // 上へ移動する場合
-                List.Insert(positionIndex, target);
-                List.RemoveAt(targetIndex + 1);
+                List.Insert(destIndex, src);
+                List.RemoveAt(srcIndex + 1);
             }
             else
             {
                 // 下へ移動する場合
-                List.Insert(positionIndex + 1, target);
-                List.RemoveAt(targetIndex);
+                List.Insert(destIndex + 1, src);
+                List.RemoveAt(srcIndex);
             }
         }
 

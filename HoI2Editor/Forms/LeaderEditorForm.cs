@@ -137,11 +137,13 @@ namespace HoI2Editor.Forms
             leaderListView.BeginUpdate();
             leaderListView.Items.Clear();
 
+            // 項目を順に登録する
             foreach (Leader leader in _narrowedList)
             {
                 leaderListView.Items.Add(CreateLeaderListViewItem(leader));
             }
 
+            // 編集項目を更新する
             if (leaderListView.Items.Count > 0)
             {
                 leaderListView.Items[0].Focused = true;
@@ -173,11 +175,11 @@ namespace HoI2Editor.Forms
             uint traitsMask = GetNarrowedTraits();
 
             // 選択中の国家リストを作成する
-            List<CountryTag> selectedTags =
-                (from string country in countryListBox.SelectedItems select Country.StringMap[country]).ToList();
+            List<CountryTag> tags =
+                (from string name in countryListBox.SelectedItems select Country.StringMap[name]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
-            foreach (Leader leader in Leaders.List.Where(leader => selectedTags.Contains(leader.Country)))
+            foreach (Leader leader in Leaders.List.Where(leader => tags.Contains(leader.Country)))
             {
                 // 兵科による絞り込み
                 switch (leader.Branch)
@@ -730,7 +732,7 @@ namespace HoI2Editor.Forms
             // 絞り込みリストに項目を追加する
             _narrowedList.Add(leader);
 
-            // 指揮官リストビューに追加する
+            // 指揮官リストビューに項目を追加する
             leaderListView.Items.Add(CreateLeaderListViewItem(leader));
 
             // 追加した項目を選択する
@@ -851,7 +853,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     選択中の指揮官データを取得する
         /// </summary>
-        /// <returns></returns>
+        /// <returns>選択中の指揮官データ</returns>
         private Leader GetSelectedLeader()
         {
             // 選択項目がない場合
@@ -1415,19 +1417,19 @@ namespace HoI2Editor.Forms
 
             // 兵科
             maxSize = branchComboBox.DropDownWidth;
-            foreach (string name in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
+            foreach (string s in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
             {
-                branchComboBox.Items.Add(name);
-                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(name, branchComboBox.Font).Width);
+                branchComboBox.Items.Add(s);
+                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(s, branchComboBox.Font).Width);
             }
             branchComboBox.DropDownWidth = maxSize;
 
             // 階級
             maxSize = idealRankComboBox.DropDownWidth;
-            foreach (string name in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
+            foreach (string s in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
             {
-                idealRankComboBox.Items.Add(name);
-                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(name, idealRankComboBox.Font).Width);
+                idealRankComboBox.Items.Add(s);
+                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(s, idealRankComboBox.Font).Width);
             }
             idealRankComboBox.DropDownWidth = maxSize;
         }
@@ -1538,25 +1540,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     指揮官画像ピクチャーボックスの項目を更新する
-        /// </summary>
-        /// <param name="leader">指揮官データ</param>
-        private void UpdateLeaderPicture(Leader leader)
-        {
-            if (!string.IsNullOrEmpty(leader.PictureName))
-            {
-                string fileName =
-                    Game.GetReadFileName(Path.Combine(Game.PersonPicturePathName,
-                                                      Path.ChangeExtension(leader.PictureName, ".bmp")));
-                leaderPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
-            }
-            else
-            {
-                leaderPictureBox.ImageLocation = "";
-            }
-        }
-
-        /// <summary>
         ///     国家コンボボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1659,6 +1642,25 @@ namespace HoI2Editor.Forms
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     指揮官画像ピクチャーボックスの項目を更新する
+        /// </summary>
+        /// <param name="leader">指揮官データ</param>
+        private void UpdateLeaderPicture(Leader leader)
+        {
+            if (!string.IsNullOrEmpty(leader.PictureName))
+            {
+                string fileName =
+                    Game.GetReadFileName(Path.Combine(Game.PersonPicturePathName,
+                                                      Path.ChangeExtension(leader.PictureName, ".bmp")));
+                leaderPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
+            }
+            else
+            {
+                leaderPictureBox.ImageLocation = "";
+            }
         }
 
         /// <summary>

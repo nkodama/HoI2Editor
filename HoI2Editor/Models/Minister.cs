@@ -1,4 +1,6 @@
-﻿namespace HoI2Editor.Models
+﻿using System;
+
+namespace HoI2Editor.Models
 {
     /// <summary>
     ///     閣僚データ
@@ -6,9 +8,19 @@
     public class Minister
     {
         /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (MinisterItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag CountryTag { get; set; }
+        public CountryTag Country { get; set; }
 
         /// <summary>
         ///     閣僚ID
@@ -26,7 +38,7 @@
         public string PictureName { get; set; }
 
         /// <summary>
-        ///     閣僚ポスト
+        ///     閣僚地位
         /// </summary>
         public MinisterPosition Position { get; set; }
 
@@ -36,7 +48,7 @@
         public int Personality { get; set; }
 
         /// <summary>
-        ///     閣僚忠誠度
+        ///     忠誠度
         /// </summary>
         public MinisterLoyalty Loyalty { get; set; }
 
@@ -59,10 +71,63 @@
         ///     引退年
         /// </summary>
         public int RetirementYear { get; set; }
+
+        /// <summary>
+        ///     閣僚データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(MinisterItemId itemId)
+        {
+            return _dirtyFlags[(int) itemId];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        public void SetDirty(MinisterItemId itemId)
+        {
+            _dirtyFlags[(int) itemId] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            foreach (MinisterItemId itemId in Enum.GetValues(typeof (MinisterItemId)))
+            {
+                _dirtyFlags[(int) itemId] = true;
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirty()
+        {
+            foreach (LeaderItemId itemId in Enum.GetValues(typeof (LeaderItemId)))
+            {
+                _dirtyFlags[(int) itemId] = false;
+            }
+            _dirtyFlag = false;
+        }
     }
 
     /// <summary>
-    ///     閣僚ポスト
+    ///     閣僚地位
     /// </summary>
     public enum MinisterPosition
     {
@@ -110,5 +175,23 @@
         LeftWingRadical, // LWR 急進的左翼
         Leninist, // LE レーニン主義者
         Stalinist, // ST スターリン主義者
+    }
+
+    /// <summary>
+    ///     閣僚項目ID
+    /// </summary>
+    public enum MinisterItemId
+    {
+        Country, // 国家
+        Id, // ID
+        Name, // 名前
+        StartYear, // 開始年
+        EndYear, // 終了年
+        RetirementYear, // 引退年
+        Position, // 閣僚地位
+        Personality, // 閣僚特性
+        Ideology, // イデオロギー
+        Loyalty, // 忠誠度
+        PictureName, // 画像ファイル名
     }
 }
