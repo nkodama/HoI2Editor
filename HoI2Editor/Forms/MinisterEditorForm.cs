@@ -1046,7 +1046,7 @@ namespace HoI2Editor.Forms
                     {
                         if ((Ministers.PositionPersonalityTable[(int) minister.Position][e.Index] ==
                              minister.Personality) &&
-                            minister.IsDirty(MinisterItemId.Position))
+                            minister.IsDirty(MinisterItemId.Personality))
                         {
                             brush = new SolidBrush(Color.Red);
                         }
