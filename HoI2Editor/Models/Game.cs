@@ -280,7 +280,7 @@ namespace HoI2Editor.Models
         // ファイルの再読み込みを要求する
         private static void RequireReload()
         {
-            Misc.Loaded = false;
+            Misc.RequireReload();
             Config.RequireReload();
             Leaders.RequireReload();
             Ministers.RequireReload();

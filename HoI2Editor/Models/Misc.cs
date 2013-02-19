@@ -10,80 +10,105 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     economyセクション
         /// </summary>
-        public static MiscEconomy Economy = new MiscEconomy();
+        public static MiscEconomy Economy;
 
         /// <summary>
         ///     intelligenceセクション
         /// </summary>
-        public static MiscIntelligence Intelligence = new MiscIntelligence();
+        public static MiscIntelligence Intelligence;
 
         /// <summary>
         ///     diplomacyセクション
         /// </summary>
-        public static MiscDiplomacy Diplomacy = new MiscDiplomacy();
+        public static MiscDiplomacy Diplomacy;
 
         /// <summary>
         ///     combatセクション
         /// </summary>
-        public static MiscCombat Combat = new MiscCombat();
+        public static MiscCombat Combat;
 
         /// <summary>
         ///     missionセクション
         /// </summary>
-        public static MiscMission Mission = new MiscMission();
+        public static MiscMission Mission;
 
         /// <summary>
         ///     countryセクション
         /// </summary>
-        public static MiscCountry Country = new MiscCountry();
+        public static MiscCountry Country;
 
         /// <summary>
         ///     researchセクション
         /// </summary>
-        public static MiscResearch Research = new MiscResearch();
+        public static MiscResearch Research;
 
         /// <summary>
         ///     tradeセクション
         /// </summary>
-        public static MiscTrade Trade = new MiscTrade();
+        public static MiscTrade Trade;
 
         /// <summary>
         ///     aiセクション
         /// </summary>
-        public static MiscAi Ai = new MiscAi();
+        public static MiscAi Ai;
 
         /// <summary>
         ///     modセクション
         /// </summary>
-        public static MiscMod Mod = new MiscMod();
+        public static MiscMod Mod;
 
         /// <summary>
         ///     mapセクション
         /// </summary>
-        public static MiscMap Map = new MiscMap();
+        public static MiscMap Map;
 
         /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
-        public static bool Loaded { get; set; }
+        private static bool _loaded;
 
         /// <summary>
         ///     miscファイルを読み込む
         /// </summary>
-        public static void LoadMiscFile()
+        public static void Load()
         {
             // 読み込み済みならば戻る
-            if (Loaded)
+            if (_loaded)
             {
                 return;
             }
 
+            // 設定値を初期化する
+            Economy = new MiscEconomy();
+            Intelligence = new MiscIntelligence();
+            Diplomacy = new MiscDiplomacy();
+            Combat = new MiscCombat();
+            Mission = new MiscMission();
+            Country = new MiscCountry();
+            Research = new MiscResearch();
+            Trade = new MiscTrade();
+            Ai = new MiscAi();
+            Mod = new MiscMod();
+            Map = new MiscMap();
+
+            // miscファイルを解釈する
             if (!MiscParser.Parse(Game.GetReadFileName(Game.MiscPathName)))
             {
                 return;
             }
 
-            Loaded = true;
+            _loaded = true;
+        }
+ 
+        /// <summary>
+        ///     miscファイルの再読み込みを要求する
+        /// </summary>
+        /// <remarks>
+        ///     ゲームフォルダ、MOD名、ゲーム種類の変更があった場合に呼び出す
+        /// </remarks>
+        public static void RequireReload()
+        {
+            _loaded = false;
         }
     }
 
