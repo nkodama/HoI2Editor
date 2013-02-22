@@ -110,7 +110,7 @@ namespace HoI2Editor.Forms
             UpdateLeaderList();
 
             // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Update();
+            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -121,8 +121,11 @@ namespace HoI2Editor.Forms
             // 指揮官ファイルを保存する
             Leaders.Save();
 
+            // 指揮官リストの表示を更新する
+            UpdateLeaderList();
+
             // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Update();
+            countryListBox.Refresh();
         }
 
         #endregion

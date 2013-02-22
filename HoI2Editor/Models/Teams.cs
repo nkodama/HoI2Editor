@@ -484,6 +484,10 @@ namespace HoI2Editor.Models
                                          : "");
                     }
                     writer.WriteLine(";x");
+
+                    // 編集済みフラグを解除する
+                    team.ResetDirty();
+
                     _currentLineNo++;
                 }
                 writer.Close();

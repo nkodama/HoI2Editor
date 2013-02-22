@@ -113,7 +113,7 @@ namespace HoI2Editor.Forms
             UpdateTeamList();
 
             // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Update();
+            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -124,8 +124,11 @@ namespace HoI2Editor.Forms
             // 研究機関ファイルを保存する
             Teams.Save();
 
+            // 研究機関リストの表示を更新する
+            UpdateTeamList();
+
             // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Update();
+            countryListBox.Refresh();
         }
 
         #endregion

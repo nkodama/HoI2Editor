@@ -1443,6 +1443,10 @@ namespace HoI2Editor.Models
                             LoyaltyStrings[(int) minister.Loyalty],
                             minister.PictureName);
                     }
+
+                    // 編集済みフラグを解除する
+                    minister.ResetDirty();
+
                     _currentLineNo++;
                 }
                 writer.Close();

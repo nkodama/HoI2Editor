@@ -110,7 +110,7 @@ namespace HoI2Editor.Forms
             UpdateMinisterList();
 
             // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Update();
+            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -121,8 +121,11 @@ namespace HoI2Editor.Forms
             // 閣僚ファイルを保存する
             Ministers.Save();
 
+            // 閣僚リストの表示を更新する
+            UpdateMinisterList();
+
             // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Update();
+            countryListBox.Refresh();
         }
 
         #endregion

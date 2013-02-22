@@ -737,6 +737,10 @@ namespace HoI2Editor.Models
                             leader.StartYear,
                             leader.EndYear);
                     }
+
+                    // 編集済みフラグを解除する
+                    leader.ResetDirty();
+
                     _currentLineNo++;
                 }
                 writer.Close();
