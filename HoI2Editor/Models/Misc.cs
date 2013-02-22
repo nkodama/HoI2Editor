@@ -99,7 +99,7 @@ namespace HoI2Editor.Models
 
             _loaded = true;
         }
- 
+
         /// <summary>
         ///     miscファイルの再読み込みを要求する
         /// </summary>

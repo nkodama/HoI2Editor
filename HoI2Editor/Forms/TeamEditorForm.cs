@@ -15,10 +15,16 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class TeamEditorForm : Form
     {
+        #region フィールド
+
         /// <summary>
         ///     絞り込み後の閣僚リスト
         /// </summary>
         private readonly List<Team> _narrowedList = new List<Team>();
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     コンストラクタ
@@ -29,12 +35,76 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamEditorFormLoad(object sender, EventArgs e)
+        {
+            // 国家データを初期化する
+            Country.Init();
+
+            // 研究特性を初期化する
+            Techs.InitSpecialities();
+
+            // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
+            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, 18)};
+
+            // 編集項目を初期化する
+            InitEditableItems();
+
+            // 国家リストボックスを初期化する
+            InitCountryListBox();
+
+            // 研究機関ファイルを読み込む
+            LoadFiles();
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
+        #region 研究機関データ処理
+
+        /// <summary>
+        ///     再読み込みボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnReloadButtonClick(object sender, EventArgs e)
+        {
+            // 研究機関ファイルの再読み込みを要求する
+            Teams.RequireReload();
+
+            // 研究機関ファイルを読み込む
+            LoadFiles();
+        }
+
+        /// <summary>
+        ///     保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            SaveFiles();
+        }
+
+        /// <summary>
         ///     研究機関ファイルを読み込む
         /// </summary>
-        private void LoadTeamFiles()
+        private void LoadFiles()
         {
             // 研究機関ファイルを読み込む
-            Teams.LoadTeamFiles();
+            Teams.Load();
 
             // 研究機関リストを絞り込む
             NarrowTeamList();
@@ -49,31 +119,18 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     研究機関ファイルを保存する
         /// </summary>
-        private void SaveTeamFiles()
+        private void SaveFiles()
         {
             // 研究機関ファイルを保存する
-            Teams.SaveTeamFiles();
+            Teams.Save();
 
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Update();
         }
 
-        /// <summary>
-        ///     研究機関リストを国タグで絞り込む
-        /// </summary>
-        private void NarrowTeamList()
-        {
-            _narrowedList.Clear();
-            List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
-                                                   ? new List<CountryTag>()
-                                                   : (from string countryText in countryListBox.SelectedItems
-                                                      select Country.StringMap[countryText]).ToList();
+        #endregion
 
-            foreach (Team team in Teams.List.Where(team => selectedTagList.Contains(team.CountryTag)))
-            {
-                _narrowedList.Add(team);
-            }
-        }
+        #region 研究機関リストビュー
 
         /// <summary>
         ///     研究機関リストの表示を更新する
@@ -83,11 +140,13 @@ namespace HoI2Editor.Forms
             teamListView.BeginUpdate();
             teamListView.Items.Clear();
 
+            // 項目を順に登録する
             foreach (Team team in _narrowedList)
             {
                 teamListView.Items.Add(CreateTeamListViewItem(team));
             }
 
+            // 編集項目を更新する
             if (teamListView.Items.Count > 0)
             {
                 teamListView.Items[0].Focused = true;
@@ -103,653 +162,23 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     国家コンボボックスの項目を更新する
+        ///     研究機関リストを国タグで絞り込む
         /// </summary>
-        /// <param name="team">研究機関データ</param>
-        private void UpdateCountryComboBox(Team team)
+        private void NarrowTeamList()
         {
-            countryComboBox.BeginUpdate();
+            _narrowedList.Clear();
 
-            if (team.CountryTag != CountryTag.None)
+            // 選択中の国家リストを作成する
+            List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
+                                                   ? new List<CountryTag>()
+                                                   : (from string countryText in countryListBox.SelectedItems
+                                                      select Country.StringMap[countryText]).ToList();
+
+            // 選択中の国家に所属する指揮官を順に絞り込む
+            foreach (Team team in Teams.List.Where(team => selectedTagList.Contains(team.Country)))
             {
-                if (string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.RemoveAt(0);
-                }
-                countryComboBox.SelectedIndex = (int) (team.CountryTag - 1);
+                _narrowedList.Add(team);
             }
-            else
-            {
-                if (!string.IsNullOrEmpty(countryComboBox.Items[0].ToString()))
-                {
-                    countryComboBox.Items.Insert(0, "");
-                }
-                countryComboBox.SelectedIndex = 0;
-            }
-
-            countryComboBox.EndUpdate();
-        }
-
-        /// <summary>
-        ///     研究機関画像ピクチャーボックスの項目を更新する
-        /// </summary>
-        /// <param name="team">研究機関データ</param>
-        private void UpdateTeamPicture(Team team)
-        {
-            if (!string.IsNullOrEmpty(team.PictureName))
-            {
-                string fileName =
-                    Game.GetReadFileName(Path.Combine(Game.PersonPicturePathName,
-                                                      Path.ChangeExtension(team.PictureName, ".bmp")));
-                teamPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
-            }
-            else
-            {
-                teamPictureBox.ImageLocation = "";
-            }
-        }
-
-        /// <summary>
-        ///     研究特性を初期化する
-        /// </summary>
-        private static void InitSpecialities()
-        {
-            // ゲームの種類に合わせて研究特性を初期化する
-            Techs.InitSpecialities();
-
-            // 研究特性画像リストを初期化する
-            Techs.InitSpecialityImages();
-        }
-
-        /// <summary>
-        ///     編集項目を初期化する
-        /// </summary>
-        private void InitEditableItems()
-        {
-            // 国タグ
-            int maxWidth = countryComboBox.DropDownWidth;
-            foreach (string s in Country.Strings.Select(
-                country =>
-                Config.ExistsKey(country) ? string.Format("{0} {1}", country, Config.GetText(country)) : country))
-            {
-                countryComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
-            }
-            countryComboBox.DropDownWidth = maxWidth;
-
-            // 特性
-            maxWidth = specialityComboBox1.DropDownWidth;
-            foreach (
-                string name in
-                    Techs.SpecialityTable.Select(
-                        speciality => Config.GetText(Tech.SpecialityNameTable[(int) speciality])))
-            {
-                specialityComboBox1.Items.Add(name);
-                specialityComboBox2.Items.Add(name);
-                specialityComboBox3.Items.Add(name);
-                specialityComboBox4.Items.Add(name);
-                specialityComboBox5.Items.Add(name);
-                specialityComboBox6.Items.Add(name);
-                // +24は特性アイコンの分
-                maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(name, specialityComboBox1.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth + 24);
-            }
-            specialityComboBox1.DropDownWidth = maxWidth;
-            specialityComboBox2.DropDownWidth = maxWidth;
-            specialityComboBox3.DropDownWidth = maxWidth;
-            specialityComboBox4.DropDownWidth = maxWidth;
-            specialityComboBox5.DropDownWidth = maxWidth;
-            specialityComboBox6.DropDownWidth = maxWidth;
-        }
-
-        /// <summary>
-        ///     国家リストボックスを初期化する
-        /// </summary>
-        private void InitCountryList()
-        {
-            foreach (string country in Country.Strings.Where(country => !string.IsNullOrEmpty(country)))
-            {
-                countryListBox.Items.Add(country);
-            }
-            countryListBox.SelectedIndex = 0;
-        }
-
-        /// <summary>
-        ///     研究機関リストに項目を追加する
-        /// </summary>
-        /// <param name="target">追加対象の項目</param>
-        private void AddListItem(Team target)
-        {
-            _narrowedList.Add(target);
-
-            teamListView.Items.Add(CreateTeamListViewItem(target));
-
-            teamListView.Items[0].Focused = true;
-            teamListView.Items[0].Selected = true;
-        }
-
-        /// <summary>
-        ///     研究機関リストに項目を挿入する
-        /// </summary>
-        /// <param name="target">挿入対象の項目</param>
-        /// <param name="index">挿入先の位置</param>
-        private void InsertListItem(Team target, int index)
-        {
-            _narrowedList.Insert(index, target);
-
-            teamListView.Items.Insert(index, CreateTeamListViewItem(target));
-
-            teamListView.Items[index].Focused = true;
-            teamListView.Items[index].Selected = true;
-            teamListView.Items[index].EnsureVisible();
-        }
-
-        /// <summary>
-        ///     研究機関リストから項目を削除する
-        /// </summary>
-        /// <param name="index">削除対象の位置</param>
-        private void RemoveItem(int index)
-        {
-            _narrowedList.RemoveAt(index);
-
-            teamListView.Items.RemoveAt(index);
-
-            if (index < teamListView.Items.Count)
-            {
-                teamListView.Items[index].Focused = true;
-                teamListView.Items[index].Selected = true;
-            }
-            else if (index - 1 >= 0)
-            {
-                teamListView.Items[index - 1].Focused = true;
-                teamListView.Items[index - 1].Selected = true;
-            }
-        }
-
-        /// <summary>
-        ///     研究機関リストの項目を移動する
-        /// </summary>
-        /// <param name="target">移動対象の位置</param>
-        /// <param name="position">移動先の位置</param>
-        private void MoveListItem(int target, int position)
-        {
-            Team team = _narrowedList[target];
-
-            if (target > position)
-            {
-                // 上へ移動する場合
-                _narrowedList.Insert(position, team);
-                _narrowedList.RemoveAt(target + 1);
-
-                teamListView.Items.Insert(position, CreateTeamListViewItem(team));
-                teamListView.Items.RemoveAt(target + 1);
-            }
-            else
-            {
-                // 下へ移動する場合
-                _narrowedList.Insert(position + 1, team);
-                _narrowedList.RemoveAt(target);
-
-                teamListView.Items.Insert(position + 1, CreateTeamListViewItem(team));
-                teamListView.Items.RemoveAt(target);
-            }
-
-            teamListView.Items[position].Focused = true;
-            teamListView.Items[position].Selected = true;
-            teamListView.Items[position].EnsureVisible();
-        }
-
-        /// <summary>
-        ///     研究機関リストビューの項目を作成する
-        /// </summary>
-        /// <param name="team">研究機関データ</param>
-        /// <returns>研究機関リストビューの項目</returns>
-        private static ListViewItem CreateTeamListViewItem(Team team)
-        {
-            if (team == null)
-            {
-                return null;
-            }
-
-            var item = new ListViewItem
-                           {
-                               Text = Country.Strings[(int) team.CountryTag],
-                               Tag = team
-                           };
-            item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.Name);
-            item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.StartYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.EndYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add("");
-
-            return item;
-        }
-
-        /// <summary>
-        ///     編集可能な項目を有効化する
-        /// </summary>
-        private void EnableEditableItems()
-        {
-            countryComboBox.Enabled = true;
-            idNumericUpDown.Enabled = true;
-            nameTextBox.Enabled = true;
-            skillNumericUpDown.Enabled = true;
-            startYearNumericUpDown.Enabled = true;
-            endYearNumericUpDown.Enabled = true;
-            pictureNameTextBox.Enabled = true;
-            pictureNameReferButton.Enabled = true;
-            specialityComboBox1.Enabled = true;
-            specialityComboBox2.Enabled = true;
-            specialityComboBox3.Enabled = true;
-            specialityComboBox4.Enabled = true;
-            specialityComboBox5.Enabled = true;
-            specialityComboBox6.Enabled = true;
-
-            cloneButton.Enabled = true;
-            removeButton.Enabled = true;
-        }
-
-        /// <summary>
-        ///     編集可能な項目を無効化する
-        /// </summary>
-        private void DisableEditableItems()
-        {
-            countryComboBox.Text = "";
-            idNumericUpDown.Value = 0;
-            nameTextBox.Text = "";
-            skillNumericUpDown.Value = 0;
-            startYearNumericUpDown.Value = 1930;
-            endYearNumericUpDown.Value = 1970;
-            pictureNameTextBox.Text = "";
-            teamPictureBox.ImageLocation = "";
-
-            countryComboBox.Enabled = false;
-            idNumericUpDown.Enabled = false;
-            nameTextBox.Enabled = false;
-            skillNumericUpDown.Enabled = false;
-            startYearNumericUpDown.Enabled = false;
-            endYearNumericUpDown.Enabled = false;
-            pictureNameTextBox.Enabled = false;
-            pictureNameReferButton.Enabled = false;
-            specialityComboBox1.Enabled = false;
-            specialityComboBox2.Enabled = false;
-            specialityComboBox3.Enabled = false;
-            specialityComboBox4.Enabled = false;
-            specialityComboBox5.Enabled = false;
-            specialityComboBox6.Enabled = false;
-
-            cloneButton.Enabled = false;
-            removeButton.Enabled = false;
-            topButton.Enabled = false;
-            upButton.Enabled = false;
-            downButton.Enabled = false;
-            bottomButton.Enabled = false;
-        }
-
-        /// <summary>
-        ///     フォーム読み込み時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTeamEditorFormLoad(object sender, EventArgs e)
-        {
-            // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
-            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, 18)};
-
-            InitSpecialities();
-            InitEditableItems();
-            InitCountryList();
-            LoadTeamFiles();
-        }
-
-        /// <summary>
-        ///     新規ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnNewButtonClick(object sender, EventArgs e)
-        {
-            Team team;
-            if (teamListView.SelectedItems.Count > 0)
-            {
-                var selected = teamListView.SelectedItems[0].Tag as Team;
-                if (selected == null)
-                {
-                    return;
-                }
-
-                team = new Team
-                           {
-                               CountryTag = selected.CountryTag,
-                               Id = selected.Id + 1,
-                               Skill = 1,
-                               StartYear = 1930,
-                               EndYear = 1970,
-                           };
-
-                Teams.InsertItemNext(team, selected);
-
-                InsertListItem(team, teamListView.SelectedIndices[0] + 1);
-            }
-            else
-            {
-                team = new Team
-                           {
-                               CountryTag =
-                                   countryListBox.SelectedItems.Count > 0
-                                       ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                       : CountryTag.None,
-                               Id = 0,
-                               Skill = 1,
-                               StartYear = 1930,
-                               EndYear = 1970,
-                           };
-
-                Teams.AddItem(team);
-
-                AddListItem(team);
-
-                EnableEditableItems();
-            }
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     複製ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloneButtonClick(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var selected = teamListView.SelectedItems[0].Tag as Team;
-            if (selected == null)
-            {
-                return;
-            }
-
-            var team = new Team
-                           {
-                               CountryTag = selected.CountryTag,
-                               Id = selected.Id + 1,
-                               Name = selected.Name,
-                               StartYear = selected.StartYear,
-                               EndYear = selected.EndYear,
-                               PictureName = selected.PictureName,
-                           };
-            for (int i = 0; i < Team.SpecialityLength; i++)
-            {
-                team.Specialities[i] = selected.Specialities[i];
-            }
-
-            Teams.InsertItemNext(team, selected);
-
-            InsertListItem(team, teamListView.SelectedIndices[0] + 1);
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     削除ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRemoveButtonClick(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var selected = teamListView.SelectedItems[0].Tag as Team;
-            if (selected == null)
-            {
-                return;
-            }
-
-            Teams.RemoveItem(selected);
-
-            RemoveItem(teamListView.SelectedIndices[0]);
-
-            if (teamListView.Items.Count == 0)
-            {
-                DisableEditableItems();
-            }
-
-            Teams.SetDirtyFlag(selected.CountryTag);
-        }
-
-        /// <summary>
-        ///     先頭へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTopButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            // 選択項目がリストの先頭ならば何もしない
-            int index = teamListView.SelectedIndices[0];
-            if (index == 0)
-            {
-                return;
-            }
-
-            var selected = teamListView.SelectedItems[0].Tag as Team;
-            if (selected == null)
-            {
-                return;
-            }
-
-            var top = teamListView.Items[0].Tag as Team;
-            if (top == null)
-            {
-                return;
-            }
-
-            Teams.MoveItem(selected, top);
-
-            MoveListItem(index, 0);
-
-            Teams.SetDirtyFlag(selected.CountryTag);
-        }
-
-        /// <summary>
-        ///     上へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUpButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            // 選択項目がリストの先頭ならば何もしない
-            int index = teamListView.SelectedIndices[0];
-            if (index == 0)
-            {
-                return;
-            }
-
-            var selected = teamListView.SelectedItems[0].Tag as Team;
-            if (selected == null)
-            {
-                return;
-            }
-
-            var upper = teamListView.Items[index - 1].Tag as Team;
-            if (upper == null)
-            {
-                return;
-            }
-
-            Teams.MoveItem(selected, upper);
-
-            MoveListItem(index, index - 1);
-
-            Teams.SetDirtyFlag(selected.CountryTag);
-        }
-
-        /// <summary>
-        ///     下へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDownButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            // 選択項目がリストの末尾ならば何もしない
-            int index = teamListView.SelectedIndices[0];
-            if (index == teamListView.Items.Count - 1)
-            {
-                return;
-            }
-
-            var selected = teamListView.SelectedItems[0].Tag as Team;
-            if (selected == null)
-            {
-                return;
-            }
-
-            var lower = teamListView.Items[index + 1].Tag as Team;
-            if (lower == null)
-            {
-                return;
-            }
-
-            Teams.MoveItem(selected, lower);
-
-            MoveListItem(index, index + 1);
-
-            Teams.SetDirtyFlag(selected.CountryTag);
-        }
-
-        /// <summary>
-        ///     末尾へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnBottomButtonClick(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            // 選択項目がリストの末尾ならば何もしない
-            int index = teamListView.SelectedIndices[0];
-            if (teamListView.SelectedIndices[0] == teamListView.Items.Count - 1)
-            {
-                return;
-            }
-
-            var selected = teamListView.Items[index].Tag as Team;
-            if (selected == null)
-            {
-                return;
-            }
-
-            var bottom = teamListView.Items[teamListView.Items.Count - 1].Tag as Team;
-            if (bottom == null)
-            {
-                return;
-            }
-
-            Teams.MoveItem(selected, bottom);
-
-            MoveListItem(index, teamListView.Items.Count - 1);
-
-            Teams.SetDirtyFlag(selected.CountryTag);
-        }
-
-        /// <summary>
-        ///     国家リストボックスの項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 背景を描画する
-            e.DrawBackground();
-
-            // 選択項目がない場合はスキップ
-            if (e.Index != -1)
-            {
-                Brush brush;
-                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
-                {
-                    // 変更ありの項目は文字色を変更する
-                    brush = Teams.DirtyFlags[e.Index + 1]
-                                ? new SolidBrush(Color.Red)
-                                : new SolidBrush(countryListBox.ForeColor);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.HighlightText);
-                }
-                var listbox = sender as ListBox;
-                if (listbox != null)
-                {
-                    string s = listbox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                }
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     研究特性コンボボックスの項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBoxDrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 背景を描画する
-            e.DrawBackground();
-
-            var combobox = sender as ComboBox;
-            if (combobox != null && e.Index > 0)
-            {
-                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                }
-
-                Brush brush = new SolidBrush(combobox.ForeColor);
-                string s = combobox.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                e.Graphics.DrawString(s, e.Font, brush, tr);
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
         }
 
         /// <summary>
@@ -761,7 +190,7 @@ namespace HoI2Editor.Forms
         {
             switch (e.ColumnIndex)
             {
-                case 6:
+                case 6: // 研究特性
                     e.Graphics.FillRectangle(
                         teamListView.SelectedIndices.Count > 0 && e.ItemIndex == teamListView.SelectedIndices[0]
                             ? (teamListView.Focused ? SystemBrushes.Highlight : SystemBrushes.Control)
@@ -790,11 +219,15 @@ namespace HoI2Editor.Forms
             var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, 16, 16);
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
-                if (team.Specialities[i] != TechSpeciality.None)
+                // 研究特性なしならば何もしない
+                if (team.Specialities[i] == TechSpeciality.None)
                 {
-                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[(int) team.Specialities[i] - 1], rect);
-                    rect.X += 19;
+                    continue;
                 }
+
+                // 研究特性アイコンを描画する
+                e.Graphics.DrawImage(Techs.SpecialityImages.Images[(int) team.Specialities[i] - 1], rect);
+                rect.X += 19;
             }
         }
 
@@ -809,40 +242,21 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     国家リストボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
-                                        ? Resources.KeySelectAll
-                                        : Resources.KeyUnselectAll;
-            newButton.Enabled = countryListBox.SelectedItems.Count > 0;
-
-            NarrowTeamList();
-            UpdateTeamList();
-        }
-
-        /// <summary>
         ///     研究機関リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnTeamListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
             if (team == null)
             {
                 return;
             }
 
-            UpdateCountryComboBox(team);
+            // 編集項目を更新する
+            countryComboBox.SelectedIndex = team.Country != CountryTag.None ? (int) team.Country - 1 : -1;
             idNumericUpDown.Value = team.Id;
             nameTextBox.Text = team.Name;
             skillNumericUpDown.Value = team.Skill;
@@ -857,6 +271,23 @@ namespace HoI2Editor.Forms
             pictureNameTextBox.Text = team.PictureName;
             UpdateTeamPicture(team);
 
+            // コンボボックスの色を更新する
+            countryComboBox.Refresh();
+            specialityComboBox1.Refresh();
+            specialityComboBox2.Refresh();
+            specialityComboBox3.Refresh();
+            specialityComboBox4.Refresh();
+            specialityComboBox5.Refresh();
+            specialityComboBox6.Refresh();
+
+            // 編集項目の色を更新する
+            idNumericUpDown.ForeColor = team.IsDirty(TeamItemId.Id) ? Color.Red : SystemColors.WindowText;
+            nameTextBox.ForeColor = team.IsDirty(TeamItemId.Name) ? Color.Red : SystemColors.WindowText;
+            skillNumericUpDown.ForeColor = team.IsDirty(TeamItemId.Skill) ? Color.Red : SystemColors.WindowText;
+            startYearNumericUpDown.ForeColor = team.IsDirty(TeamItemId.StartYear) ? Color.Red : SystemColors.WindowText;
+            endYearNumericUpDown.ForeColor = team.IsDirty(TeamItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            pictureNameTextBox.ForeColor = team.IsDirty(TeamItemId.PictureName) ? Color.Red : SystemColors.WindowText;
+
             // 項目移動ボタンの状態更新
             topButton.Enabled = teamListView.SelectedIndices[0] != 0;
             upButton.Enabled = teamListView.SelectedIndices[0] != 0;
@@ -865,454 +296,483 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     国タグ変更時の処理
+        ///     新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnCountryComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        private void OnNewButtonClick(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
+            Team team;
+            Team selected = GetSelectedTeam();
+            if (selected != null)
             {
-                return;
+                // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
+                team = new Team
+                           {
+                               Country = selected.Country,
+                               Id = selected.Id + 1,
+                               Skill = 1,
+                               StartYear = 1930,
+                               EndYear = 1970,
+                           };
+
+                // 研究機関ごとの編集済みフラグを設定する
+                team.SetDirty();
+
+                // 研究機関リストに項目を挿入する
+                Teams.InsertItem(team, selected);
+                InsertListItem(team, teamListView.SelectedIndices[0] + 1);
+            }
+            else
+            {
+                // 新規項目を作成する
+                team = new Team
+                           {
+                               Country =
+                                   countryListBox.SelectedItems.Count > 0
+                                       ? (CountryTag) (countryListBox.SelectedIndex + 1)
+                                       : CountryTag.None,
+                               Id = 0,
+                               Skill = 1,
+                               StartYear = 1930,
+                               EndYear = 1970,
+                           };
+
+                // 研究機関ごとの編集済みフラグを設定する
+                team.SetDirty();
+
+                // 研究機関リストに項目を追加する
+
+                AddListItem(team);
+
+                // 編集項目を有効化する
+                EnableEditableItems();
             }
 
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            CountryTag newCountryTag = !string.IsNullOrEmpty(countryComboBox.Items[0].ToString())
-                                           ? (CountryTag) (countryComboBox.SelectedIndex + 1)
-                                           : (CountryTag) countryComboBox.SelectedIndex;
-            if (newCountryTag == team.CountryTag)
-            {
-                return;
-            }
-
-            Teams.SetDirtyFlag(team.CountryTag);
-
-            team.CountryTag = newCountryTag;
-            teamListView.SelectedItems[0].Text = Country.Strings[(int) team.CountryTag];
-
-            UpdateCountryComboBox(team);
-
-            Teams.SetDirtyFlag(team.CountryTag);
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
+            // 国家ごとの編集済みフラグを設定する
+            Teams.SetDirty(team.Country);
         }
 
         /// <summary>
-        ///     ID変更時の処理
+        ///     複製ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnIdNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnCloneButtonClick(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
+            // 選択項目がなければ何もしない
+            Team selected = GetSelectedTeam();
+            if (selected == null)
             {
                 return;
             }
 
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
+            // 選択項目を引き継いで項目を作成する
+            var team = new Team
+                           {
+                               Country = selected.Country,
+                               Id = selected.Id + 1,
+                               Name = selected.Name,
+                               StartYear = selected.StartYear,
+                               EndYear = selected.EndYear,
+                               PictureName = selected.PictureName,
+                           };
+            for (int i = 0; i < Team.SpecialityLength; i++)
             {
-                return;
+                team.Specialities[i] = selected.Specialities[i];
             }
 
-            // 値に変化がなければ何もせずに戻る
-            var newId = (int) idNumericUpDown.Value;
-            if (newId == team.Id)
-            {
-                return;
-            }
+            // 研究機関ごとの編集済みフラグを設定する
+            team.SetDirty();
 
-            team.Id = newId;
-            teamListView.SelectedItems[0].SubItems[1].Text = team.Id.ToString(CultureInfo.InvariantCulture);
+            // 研究機関リストに項目を挿入する
+            Teams.InsertItem(team, selected);
+            InsertListItem(team, teamListView.SelectedIndices[0] + 1);
 
-            Teams.SetDirtyFlag(team.CountryTag);
+            // 国家ごとの編集済みフラグを設定する
+            Teams.SetDirty(team.Country);
         }
 
         /// <summary>
-        ///     名前文字列変更時の処理
+        ///     削除ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnNameTextBoxTextChanged(object sender, EventArgs e)
+        private void OnRemoveButtonClick(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
+            // 選択項目がなければ何もしない
+            Team selected = GetSelectedTeam();
+            if (selected == null)
             {
                 return;
             }
 
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
+            // 研究機関リストから項目を削除する
+            Teams.RemoveItem(selected);
+            RemoveItem(teamListView.SelectedIndices[0]);
+
+            // リストから項目がなくなれば編集項目を無効化する
+            if (teamListView.Items.Count == 0)
             {
-                return;
+                DisableEditableItems();
             }
 
-            // 値に変化がなければ何もせずに戻る
-            string newName = nameTextBox.Text;
-            if (newName.Equals(team.Name))
-            {
-                return;
-            }
-
-            team.Name = newName;
-            teamListView.SelectedItems[0].SubItems[2].Text = team.Name;
-
-            Teams.SetDirtyFlag(team.CountryTag);
+            // 編集済みフラグを設定する
+            Teams.SetDirty(selected.Country);
         }
 
         /// <summary>
-        ///     スキル変更時の処理
+        ///     先頭へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSkillNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnTopButtonClick(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
+            // 選択項目がなければ何もしない
+            Team selected = GetSelectedTeam();
+            if (selected == null)
             {
                 return;
             }
 
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
+            // 選択項目がリストの先頭ならば何もしない
+            int index = teamListView.SelectedIndices[0];
+            if (index == 0)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            var newSkill = (int) skillNumericUpDown.Value;
-            if (newSkill == team.Skill)
+            var top = teamListView.Items[0].Tag as Team;
+            if (top == null)
             {
                 return;
             }
 
-            team.Skill = newSkill;
-            teamListView.SelectedItems[0].SubItems[3].Text =
-                team.Skill.ToString(CultureInfo.InvariantCulture);
+            // 研究機関リストの項目を移動する
+            Teams.MoveItem(selected, top);
+            MoveListItem(index, 0);
 
-            Teams.SetDirtyFlag(team.CountryTag);
+            // 編集済みフラグを設定する
+            Teams.SetDirty(selected.Country);
         }
 
         /// <summary>
-        ///     開始年変更時の処理
+        ///     上へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnUpButtonClick(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
+            // 選択項目がなければ何もしない
+            Team selected = GetSelectedTeam();
+            if (selected == null)
             {
                 return;
             }
 
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
+            // 選択項目がリストの先頭ならば何もしない
+            int index = teamListView.SelectedIndices[0];
+            if (index == 0)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            var newStartYear = (int) startYearNumericUpDown.Value;
-            if (newStartYear == team.StartYear)
+            var upper = teamListView.Items[index - 1].Tag as Team;
+            if (upper == null)
             {
                 return;
             }
 
-            team.StartYear = newStartYear;
-            teamListView.SelectedItems[0].SubItems[4].Text =
-                team.StartYear.ToString(CultureInfo.InvariantCulture);
+            // 研究機関リストの項目を移動する
+            Teams.MoveItem(selected, upper);
+            MoveListItem(index, index - 1);
 
-            Teams.SetDirtyFlag(team.CountryTag);
+            // 編集済みフラグを設定する
+            Teams.SetDirty(selected.Country);
         }
 
         /// <summary>
-        ///     終了年変更時の処理
+        ///     下へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnDownButtonClick(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
+            // 選択項目がなければ何もしない
+            Team selected = GetSelectedTeam();
+            if (selected == null)
             {
                 return;
             }
 
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
+            // 選択項目がリストの末尾ならば何もしない
+            int index = teamListView.SelectedIndices[0];
+            if (index == teamListView.Items.Count - 1)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            var newEndYear = (int) endYearNumericUpDown.Value;
-            if (newEndYear == team.EndYear)
+            var lower = teamListView.Items[index + 1].Tag as Team;
+            if (lower == null)
             {
                 return;
             }
 
-            team.EndYear = newEndYear;
-            teamListView.SelectedItems[0].SubItems[5].Text =
-                team.EndYear.ToString(CultureInfo.InvariantCulture);
+            // 研究機関リストの項目を移動する
+            Teams.MoveItem(selected, lower);
+            MoveListItem(index, index + 1);
 
-            Teams.SetDirtyFlag(team.CountryTag);
+            // 編集済みフラグを設定する
+            Teams.SetDirty(selected.Country);
         }
 
         /// <summary>
-        ///     特性1変更時の処理
+        ///     末尾へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSpecialityComboBox1SelectionChangeCommitted(object sender, EventArgs e)
+        private void OnBottomButtonClick(object sender, EventArgs e)
         {
-            if (teamListView.SelectedItems.Count == 0)
+            // 選択項目がなければ何もしない
+            Team selected = GetSelectedTeam();
+            if (selected == null)
             {
                 return;
             }
 
-            var team = teamListView.SelectedItems[0].Tag as Team;
+            // 選択項目がリストの末尾ならば何もしない
+            int index = teamListView.SelectedIndices[0];
+            if (teamListView.SelectedIndices[0] == teamListView.Items.Count - 1)
+            {
+                return;
+            }
+
+            var bottom = teamListView.Items[teamListView.Items.Count - 1].Tag as Team;
+            if (bottom == null)
+            {
+                return;
+            }
+
+            // 研究機関リストの項目を移動する
+            Teams.MoveItem(selected, bottom);
+            MoveListItem(index, teamListView.Items.Count - 1);
+
+            // 編集済みフラグを設定する
+            Teams.SetDirty(selected.Country);
+        }
+
+        /// <summary>
+        ///     研究機関リストに項目を追加する
+        /// </summary>
+        /// <param name="team">追加対象の項目</param>
+        private void AddListItem(Team team)
+        {
+            // 絞り込みリストに項目を追加する
+            _narrowedList.Add(team);
+
+            // 研究機関リストビューに項目を追加する
+            teamListView.Items.Add(CreateTeamListViewItem(team));
+
+            // 追加した項目を選択する
+            teamListView.Items[teamListView.Items.Count - 1].Focused = true;
+            teamListView.Items[teamListView.Items.Count - 1].Selected = true;
+            teamListView.Items[teamListView.Items.Count - 1].EnsureVisible();
+        }
+
+        /// <summary>
+        ///     研究機関リストに項目を挿入する
+        /// </summary>
+        /// <param name="team">挿入対象の項目</param>
+        /// <param name="index">挿入先の位置</param>
+        private void InsertListItem(Team team, int index)
+        {
+            // 絞り込みリストに項目を挿入する
+            _narrowedList.Insert(index, team);
+
+            // 研究機関リストビューに項目を挿入する
+            teamListView.Items.Insert(index, CreateTeamListViewItem(team));
+
+            // 挿入した項目を選択する
+            teamListView.Items[index].Focused = true;
+            teamListView.Items[index].Selected = true;
+            teamListView.Items[index].EnsureVisible();
+        }
+
+        /// <summary>
+        ///     研究機関リストから項目を削除する
+        /// </summary>
+        /// <param name="index">削除対象の位置</param>
+        private void RemoveItem(int index)
+        {
+            // 絞り込みリストから項目を削除する
+            _narrowedList.RemoveAt(index);
+
+            // 閣僚リストビューから項目を削除する
+            teamListView.Items.RemoveAt(index);
+
+            // 削除した項目の次の項目を選択する
+            if (index < teamListView.Items.Count)
+            {
+                teamListView.Items[index].Focused = true;
+                teamListView.Items[index].Selected = true;
+            }
+            else if (index - 1 >= 0)
+            {
+                // リストの末尾ならば、削除した項目の前の項目を選択する
+                teamListView.Items[index - 1].Focused = true;
+                teamListView.Items[index - 1].Selected = true;
+            }
+        }
+
+        /// <summary>
+        ///     研究機関リストの項目を移動する
+        /// </summary>
+        /// <param name="src">移動元の位置</param>
+        /// <param name="dest">移動先の位置</param>
+        private void MoveListItem(int src, int dest)
+        {
+            Team team = _narrowedList[src];
+
+            if (src > dest)
+            {
+                // 上へ移動する場合
+                // 絞り込みリストの項目を移動する
+                _narrowedList.Insert(dest, team);
+                _narrowedList.RemoveAt(src + 1);
+
+                // 閣僚リストビューの項目を移動する
+                teamListView.Items.Insert(dest, CreateTeamListViewItem(team));
+                teamListView.Items.RemoveAt(src + 1);
+            }
+            else
+            {
+                // 下へ移動する場合
+                // 絞り込みリストの項目を移動する
+                _narrowedList.Insert(dest + 1, team);
+                _narrowedList.RemoveAt(src);
+
+                // 閣僚リストビューの項目を移動する
+                teamListView.Items.Insert(dest + 1, CreateTeamListViewItem(team));
+                teamListView.Items.RemoveAt(src);
+            }
+
+            // 移動先の項目を選択する
+            teamListView.Items[dest].Focused = true;
+            teamListView.Items[dest].Selected = true;
+            teamListView.Items[dest].EnsureVisible();
+        }
+
+        /// <summary>
+        ///     研究機関リストビューの項目を作成する
+        /// </summary>
+        /// <param name="team">研究機関データ</param>
+        /// <returns>研究機関リストビューの項目</returns>
+        private static ListViewItem CreateTeamListViewItem(Team team)
+        {
             if (team == null)
             {
-                return;
+                return null;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            var newSpeciality = (TechSpeciality) specialityComboBox1.SelectedIndex;
-            if (newSpeciality == team.Specialities[0])
+            var item = new ListViewItem
+                           {
+                               Text = Country.Strings[(int) team.Country],
+                               Tag = team
+                           };
+            item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(team.Name);
+            item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(team.StartYear.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(team.EndYear.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add("");
+
+            return item;
+        }
+
+        /// <summary>
+        ///     選択中の研究機関データを取得する
+        /// </summary>
+        /// <returns>選択中の研究機関データ</returns>
+        private Team GetSelectedTeam()
+        {
+            // 選択項目がない場合
+            if (teamListView.SelectedItems.Count == 0)
             {
-                return;
+                return null;
             }
 
-            team.Specialities[0] = newSpeciality;
+            return teamListView.SelectedItems[0].Tag as Team;
+        }
 
+        #endregion
+
+        #region 国家リストボックス
+
+        /// <summary>
+        ///     国家リストボックスを初期化する
+        /// </summary>
+        private void InitCountryListBox()
+        {
+            foreach (string name in Country.Tags.Select(country => Country.Strings[(int) country]))
+            {
+                countryListBox.Items.Add(name);
+            }
+            countryListBox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        ///     国家リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            if (e.Index >= 0)
+            {
+                Brush brush;
+                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
+                {
+                    // 変更ありの項目は文字色を変更する
+                    CountryTag country = Country.Tags[e.Index];
+                    brush = Teams.IsDirty(country)
+                                ? new SolidBrush(Color.Red)
+                                : new SolidBrush(countryListBox.ForeColor);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.HighlightText);
+                }
+                string s = countryListBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     国家リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択数に合わせて全選択/全解除を切り替える
+            countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
+                                        ? Resources.KeySelectAll
+                                        : Resources.KeyUnselectAll;
+
+            // 選択数がゼロの場合は新規追加ボタンを無効化する
+            newButton.Enabled = countryListBox.SelectedItems.Count > 0;
+
+            // 研究機関リストを更新する
+            NarrowTeamList();
             UpdateTeamList();
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     特性2変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox2SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newSpeciality = (TechSpeciality) specialityComboBox2.SelectedIndex;
-            if (newSpeciality == team.Specialities[1])
-            {
-                return;
-            }
-
-            team.Specialities[1] = newSpeciality;
-
-            UpdateTeamList();
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     特性3変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox3SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newSpeciality = (TechSpeciality) specialityComboBox3.SelectedIndex;
-            if (newSpeciality == team.Specialities[2])
-            {
-                return;
-            }
-
-            team.Specialities[2] = newSpeciality;
-
-            UpdateTeamList();
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     特性4変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox4SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newSpeciality = (TechSpeciality) specialityComboBox4.SelectedIndex;
-            if (newSpeciality == team.Specialities[3])
-            {
-                return;
-            }
-
-            team.Specialities[3] = newSpeciality;
-
-            UpdateTeamList();
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     特性5変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox5SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newSpeciality = (TechSpeciality) specialityComboBox5.SelectedIndex;
-            if (newSpeciality == team.Specialities[4])
-            {
-                return;
-            }
-
-            team.Specialities[4] = newSpeciality;
-
-            UpdateTeamList();
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     特性6変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox6SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            var newSpeciality = (TechSpeciality) specialityComboBox6.SelectedIndex;
-            if (newSpeciality == team.Specialities[5])
-            {
-                return;
-            }
-
-            team.Specialities[5] = newSpeciality;
-
-            UpdateTeamList();
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     画像ファイル名変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPictureNameTextBoxTextChanged(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もせずに戻る
-            string newPictureName = pictureNameTextBox.Text;
-            if (newPictureName.Equals(team.PictureName))
-            {
-                return;
-            }
-
-            team.PictureName = newPictureName;
-            UpdateTeamPicture(team);
-
-            Teams.SetDirtyFlag(team.CountryTag);
-        }
-
-        /// <summary>
-        ///     画像ファイル名参照ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPictureNameReferButtonClick(object sender, EventArgs e)
-        {
-            if (teamListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var team = teamListView.SelectedItems[0].Tag as Team;
-            if (team == null)
-            {
-                return;
-            }
-
-            var dialog = new OpenFileDialog
-                             {
-                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
-                                 FileName = team.PictureName,
-                                 Filter = Resources.OpenBitmapFileDialogFilter
-                             };
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
-            }
         }
 
         /// <summary>
@@ -1352,35 +812,927 @@ namespace HoI2Editor.Forms
             countryListBox.EndUpdate();
         }
 
+        #endregion
+
+        #region 編集項目
+
         /// <summary>
-        ///     再読み込みボタン押下時の処理
+        ///     編集項目を初期化する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnReloadButtonClick(object sender, EventArgs e)
+        private void InitEditableItems()
         {
-            Teams.RequireReload();
-            LoadTeamFiles();
+            // 国タグ
+            int maxWidth = countryComboBox.DropDownWidth;
+            foreach (string s in Country.Tags
+                                        .Select(country => Country.Strings[(int) country])
+                                        .Select(name => Config.ExistsKey(name)
+                                                            ? string.Format("{0} {1}", name, Config.GetText(name))
+                                                            : name))
+            {
+                countryComboBox.Items.Add(s);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
+            }
+            countryComboBox.DropDownWidth = maxWidth;
+
+            // 研究特性
+            maxWidth = specialityComboBox1.DropDownWidth;
+            foreach (string s in Techs.Specialities
+                                      .Select(speciality => Techs.SpecialityNames[(int) speciality])
+                                      .Select(Config.GetText))
+            {
+                specialityComboBox1.Items.Add(s);
+                specialityComboBox2.Items.Add(s);
+                specialityComboBox3.Items.Add(s);
+                specialityComboBox4.Items.Add(s);
+                specialityComboBox5.Items.Add(s);
+                specialityComboBox6.Items.Add(s);
+                // +24は研究特性アイコンの分
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, specialityComboBox1.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth + 24);
+            }
+            specialityComboBox1.DropDownWidth = maxWidth;
+            specialityComboBox2.DropDownWidth = maxWidth;
+            specialityComboBox3.DropDownWidth = maxWidth;
+            specialityComboBox4.DropDownWidth = maxWidth;
+            specialityComboBox5.DropDownWidth = maxWidth;
+            specialityComboBox6.DropDownWidth = maxWidth;
         }
 
         /// <summary>
-        ///     保存ボタン押下時の処理
+        ///     編集可能な項目を有効化する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSaveButtonClick(object sender, EventArgs e)
+        private void EnableEditableItems()
         {
-            SaveTeamFiles();
+            countryComboBox.Enabled = true;
+            idNumericUpDown.Enabled = true;
+            nameTextBox.Enabled = true;
+            skillNumericUpDown.Enabled = true;
+            startYearNumericUpDown.Enabled = true;
+            endYearNumericUpDown.Enabled = true;
+            pictureNameTextBox.Enabled = true;
+            pictureNameReferButton.Enabled = true;
+            specialityComboBox1.Enabled = true;
+            specialityComboBox2.Enabled = true;
+            specialityComboBox3.Enabled = true;
+            specialityComboBox4.Enabled = true;
+            specialityComboBox5.Enabled = true;
+            specialityComboBox6.Enabled = true;
+
+            // 無効化時にクリアした文字列を再設定する
+            idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            skillNumericUpDown.Text = skillNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            startYearNumericUpDown.Text = startYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            endYearNumericUpDown.Text = endYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+
+            cloneButton.Enabled = true;
+            removeButton.Enabled = true;
         }
 
         /// <summary>
-        ///     閉じるボタン押下時の処理
+        ///     編集可能な項目を無効化する
+        /// </summary>
+        private void DisableEditableItems()
+        {
+            countryComboBox.SelectedIndex = -1;
+            countryComboBox.ResetText();
+            idNumericUpDown.ResetText();
+            nameTextBox.ResetText();
+            skillNumericUpDown.ResetText();
+            startYearNumericUpDown.ResetText();
+            endYearNumericUpDown.ResetText();
+            pictureNameTextBox.ResetText();
+            teamPictureBox.ImageLocation = "";
+
+            countryComboBox.Enabled = false;
+            idNumericUpDown.Enabled = false;
+            nameTextBox.Enabled = false;
+            skillNumericUpDown.Enabled = false;
+            startYearNumericUpDown.Enabled = false;
+            endYearNumericUpDown.Enabled = false;
+            pictureNameTextBox.Enabled = false;
+            pictureNameReferButton.Enabled = false;
+            specialityComboBox1.Enabled = false;
+            specialityComboBox2.Enabled = false;
+            specialityComboBox3.Enabled = false;
+            specialityComboBox4.Enabled = false;
+            specialityComboBox5.Enabled = false;
+            specialityComboBox6.Enabled = false;
+
+            cloneButton.Enabled = false;
+            removeButton.Enabled = false;
+            topButton.Enabled = false;
+            upButton.Enabled = false;
+            downButton.Enabled = false;
+            bottomButton.Enabled = false;
+        }
+
+        /// <summary>
+        ///     国家コンボボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
+        private void OnCountryComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
-            Close();
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            if (e.Index != -1)
+            {
+                Team team = GetSelectedTeam();
+                if (team != null)
+                {
+                    Brush brush;
+                    if ((Country.Tags[e.Index] == team.Country) && team.IsDirty(TeamItemId.Country))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = countryComboBox.Items[e.Index].ToString();
+                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
         }
+
+        /// <summary>
+        ///     研究特性コンボボックス1の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox1DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            if (e.Index > 0)
+            {
+                Team team = GetSelectedTeam();
+                if (team != null)
+                {
+                    // アイコンを描画する
+                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                    {
+                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
+                    }
+
+                    // 項目の文字列を描画する
+                    Brush brush;
+                    if ((Techs.Specialities[e.Index] == team.Specialities[0]) && team.IsDirty(TeamItemId.Speciality1))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = specialityComboBox1.Items[e.Index].ToString();
+                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                    e.Graphics.DrawString(s, e.Font, brush, tr);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究特性コンボボックス2の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox2DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            if (e.Index > 0)
+            {
+                Team team = GetSelectedTeam();
+                if (team != null)
+                {
+                    // アイコンを描画する
+                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                    {
+                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
+                    }
+
+                    // 項目の文字列を描画する
+                    Brush brush;
+                    if ((Techs.Specialities[e.Index] == team.Specialities[1]) && team.IsDirty(TeamItemId.Speciality2))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = specialityComboBox2.Items[e.Index].ToString();
+                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                    e.Graphics.DrawString(s, e.Font, brush, tr);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究特性コンボボックス3の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox3DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            if (e.Index > 0)
+            {
+                Team team = GetSelectedTeam();
+                if (team != null)
+                {
+                    // アイコンを描画する
+                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                    {
+                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
+                    }
+
+                    // 項目の文字列を描画する
+                    Brush brush;
+                    if ((Techs.Specialities[e.Index] == team.Specialities[2]) && team.IsDirty(TeamItemId.Speciality3))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = specialityComboBox3.Items[e.Index].ToString();
+                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                    e.Graphics.DrawString(s, e.Font, brush, tr);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究特性コンボボックス4の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox4DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            if (e.Index > 0)
+            {
+                Team team = GetSelectedTeam();
+                if (team != null)
+                {
+                    // アイコンを描画する
+                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                    {
+                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
+                    }
+
+                    // 項目の文字列を描画する
+                    Brush brush;
+                    if ((Techs.Specialities[e.Index] == team.Specialities[3]) && team.IsDirty(TeamItemId.Speciality4))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = specialityComboBox4.Items[e.Index].ToString();
+                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                    e.Graphics.DrawString(s, e.Font, brush, tr);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究特性コンボボックス5の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox5DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            if (e.Index > 0)
+            {
+                Team team = GetSelectedTeam();
+                if (team != null)
+                {
+                    // アイコンを描画する
+                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                    {
+                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
+                    }
+
+                    // 項目の文字列を描画する
+                    Brush brush;
+                    if ((Techs.Specialities[e.Index] == team.Specialities[4]) && team.IsDirty(TeamItemId.Speciality5))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = specialityComboBox5.Items[e.Index].ToString();
+                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                    e.Graphics.DrawString(s, e.Font, brush, tr);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究特性コンボボックス6の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox6DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 背景を描画する
+            e.DrawBackground();
+
+            if (e.Index > 0)
+            {
+                Team team = GetSelectedTeam();
+                if (team != null)
+                {
+                    // アイコンを描画する
+                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                    {
+                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
+                    }
+
+                    // 項目の文字列を描画する
+                    Brush brush;
+                    if ((Techs.Specialities[e.Index] == team.Specialities[5]) && team.IsDirty(TeamItemId.Speciality6))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                    string s = specialityComboBox6.Items[e.Index].ToString();
+                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                    e.Graphics.DrawString(s, e.Font, brush, tr);
+                    brush.Dispose();
+                }
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     研究機関画像ピクチャーボックスの項目を更新する
+        /// </summary>
+        /// <param name="team">研究機関データ</param>
+        private void UpdateTeamPicture(Team team)
+        {
+            if (!string.IsNullOrEmpty(team.PictureName))
+            {
+                string fileName =
+                    Game.GetReadFileName(Path.Combine(Game.PersonPicturePathName,
+                                                      Path.ChangeExtension(team.PictureName, ".bmp")));
+                teamPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
+            }
+            else
+            {
+                teamPictureBox.ImageLocation = "";
+            }
+        }
+
+        /// <summary>
+        ///     国タグ変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            CountryTag country = Country.Tags[countryComboBox.SelectedIndex];
+            if (country == team.Country)
+            {
+                return;
+            }
+
+            // 変更前の国タグの編集済みフラグを設定する
+            Teams.SetDirty(team.Country);
+
+            // 値を更新する
+            team.Country = country;
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.SelectedItems[0].Text = Country.Strings[(int) team.Country];
+
+            // 研究機関ごとの編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Country);
+
+            // 変更後の国タグの編集済みフラグを設定する
+            Teams.SetDirty(team.Country);
+
+            // 国家コンボボックスの項目色を変更するため描画更新する
+            countryComboBox.Refresh();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     ID変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIdNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var id = (int) idNumericUpDown.Value;
+            if (id == team.Id)
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Id = id;
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.SelectedItems[0].SubItems[1].Text = team.Id.ToString(CultureInfo.InvariantCulture);
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Id);
+            Teams.SetDirty(team.Country);
+
+            // 文字色を変更する
+            idNumericUpDown.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     名前文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNameTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            string name = nameTextBox.Text;
+            if (name.Equals(team.Name))
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Name = name;
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.SelectedItems[0].SubItems[2].Text = team.Name;
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Name);
+            Teams.SetDirty(team.Country);
+
+            // 文字色を変更する
+            nameTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     スキル変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSkillNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var skill = (int) skillNumericUpDown.Value;
+            if (skill == team.Skill)
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Skill = skill;
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.SelectedItems[0].SubItems[3].Text =
+                team.Skill.ToString(CultureInfo.InvariantCulture);
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Skill);
+            Teams.SetDirty(team.Country);
+
+            // 文字色を変更する
+            skillNumericUpDown.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     開始年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var startYear = (int) startYearNumericUpDown.Value;
+            if (startYear == team.StartYear)
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.StartYear = startYear;
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.SelectedItems[0].SubItems[4].Text =
+                team.StartYear.ToString(CultureInfo.InvariantCulture);
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.StartYear);
+            Teams.SetDirty(team.Country);
+
+            // 文字色を変更する
+            startYearNumericUpDown.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     終了年変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var endYear = (int) endYearNumericUpDown.Value;
+            if (endYear == team.EndYear)
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.EndYear = endYear;
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.SelectedItems[0].SubItems[5].Text =
+                team.EndYear.ToString(CultureInfo.InvariantCulture);
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.EndYear);
+            Teams.SetDirty(team.Country);
+
+            // 文字色を変更する
+            endYearNumericUpDown.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     研究特性1変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox1SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var speciality = (TechSpeciality) specialityComboBox1.SelectedIndex;
+            if (speciality == team.Specialities[0])
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Specialities[0] = speciality;
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Speciality1);
+            Teams.SetDirty(team.Country);
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.Refresh();
+
+            // 研究特性ボックス1の項目色を変更するため描画更新する
+            specialityComboBox1.Refresh();
+        }
+
+        /// <summary>
+        ///     特性2変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox2SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var speciality = (TechSpeciality) specialityComboBox2.SelectedIndex;
+            if (speciality == team.Specialities[1])
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Specialities[1] = speciality;
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Speciality2);
+            Teams.SetDirty(team.Country);
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.Refresh();
+
+            // 研究特性ボックス2の項目色を変更するため描画更新する
+            specialityComboBox2.Refresh();
+        }
+
+        /// <summary>
+        ///     特性3変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox3SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var speciality = (TechSpeciality) specialityComboBox3.SelectedIndex;
+            if (speciality == team.Specialities[2])
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Specialities[2] = speciality;
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Speciality3);
+            Teams.SetDirty(team.Country);
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.Refresh();
+
+            // 研究特性ボックス3の項目色を変更するため描画更新する
+            specialityComboBox3.Refresh();
+        }
+
+        /// <summary>
+        ///     特性4変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox4SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var speciality = (TechSpeciality) specialityComboBox4.SelectedIndex;
+            if (speciality == team.Specialities[3])
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Specialities[3] = speciality;
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Speciality4);
+            Teams.SetDirty(team.Country);
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.Refresh();
+
+            // 研究特性ボックス4の項目色を変更するため描画更新する
+            specialityComboBox4.Refresh();
+        }
+
+        /// <summary>
+        ///     特性5変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox5SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var speciality = (TechSpeciality) specialityComboBox5.SelectedIndex;
+            if (speciality == team.Specialities[4])
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Specialities[4] = speciality;
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Speciality5);
+            Teams.SetDirty(team.Country);
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.Refresh();
+
+            // 研究特性ボックス5の項目色を変更するため描画更新する
+            specialityComboBox5.Refresh();
+        }
+
+        /// <summary>
+        ///     特性6変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpecialityComboBox6SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            var speciality = (TechSpeciality) specialityComboBox6.SelectedIndex;
+            if (speciality == team.Specialities[5])
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.Specialities[5] = speciality;
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.Speciality6);
+            Teams.SetDirty(team.Country);
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.Refresh();
+
+            // 研究特性ボックス6の項目色を変更するため描画更新する
+            specialityComboBox6.Refresh();
+        }
+
+        /// <summary>
+        ///     画像ファイル名変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPictureNameTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            string pictureName = pictureNameTextBox.Text;
+            if (pictureName.Equals(team.PictureName))
+            {
+                return;
+            }
+
+            // 値を更新する
+            team.PictureName = pictureName;
+
+            // 画像ファイルを更新する
+            UpdateTeamPicture(team);
+
+            // 編集済みフラグを設定する
+            team.SetDirty(TeamItemId.PictureName);
+            Teams.SetDirty(team.Country);
+
+            // 文字色を変更する
+            pictureNameTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     画像ファイル名参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPictureNameReferButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            var dialog = new OpenFileDialog
+                             {
+                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
+                                 FileName = team.PictureName,
+                                 Filter = Resources.OpenBitmapFileDialogFilter
+                             };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
+            }
+        }
+
+        #endregion
     }
 }

@@ -118,7 +118,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public void ResetDirty()
         {
-            foreach (LeaderItemId itemId in Enum.GetValues(typeof (LeaderItemId)))
+            foreach (MinisterItemId itemId in Enum.GetValues(typeof (MinisterItemId)))
             {
                 _dirtyFlags[(int) itemId] = false;
             }

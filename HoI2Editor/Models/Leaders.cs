@@ -186,11 +186,11 @@ namespace HoI2Editor.Models
             {
                 case GameType.HeartsOfIron2:
                 case GameType.ArsenalOfDemocracy:
-                    LoadLeaderFilesHoI2();
+                    LoadHoI2();
                     break;
 
                 case GameType.DarkestHour:
-                    LoadLeaderFilesDh();
+                    LoadDh();
                     break;
             }
 
@@ -200,7 +200,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官ファイル群を読み込む(HoI2/AoD/DH-MOD未使用時)
         /// </summary>
-        private static void LoadLeaderFilesHoI2()
+        private static void LoadHoI2()
         {
             var filelist = new List<string>();
             string folderName;
@@ -216,7 +216,7 @@ namespace HoI2Editor.Models
                         try
                         {
                             // 指揮官ファイルを読み込む
-                            LoadLeaderFile(fileName);
+                            LoadFile(fileName);
 
                             // 指揮官ファイル一覧に読み込んだファイル名を登録する
                             string name = Path.GetFileName(fileName);
@@ -249,7 +249,7 @@ namespace HoI2Editor.Models
                     try
                     {
                         // 指揮官ファイルを読み込む
-                        LoadLeaderFile(fileName);
+                        LoadFile(fileName);
                     }
                     catch (Exception)
                     {
@@ -262,13 +262,13 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官ファイル群を読み込む(DH-MOD使用時)
         /// </summary>
-        private static void LoadLeaderFilesDh()
+        private static void LoadDh()
         {
             // 指揮官リストファイルが存在しなければ従来通りの読み込み方法を使用する
             string listFileName = Game.GetReadFileName(Game.DhLeaderListPathName);
             if (!File.Exists(listFileName))
             {
-                LoadLeaderFilesHoI2();
+                LoadHoI2();
                 return;
             }
 
@@ -276,7 +276,7 @@ namespace HoI2Editor.Models
             IEnumerable<string> fileList;
             try
             {
-                fileList = LoadLeaderListFileDh(listFileName);
+                fileList = LoadList(listFileName);
             }
             catch (Exception)
             {
@@ -290,7 +290,7 @@ namespace HoI2Editor.Models
                 try
                 {
                     // 指揮官ファイルを読み込む
-                    LoadLeaderFile(fileName);
+                    LoadFile(fileName);
                 }
                 catch (Exception)
                 {
@@ -302,7 +302,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官リストファイルを読み込む(DH)
         /// </summary>
-        private static IEnumerable<string> LoadLeaderListFileDh(string fileName)
+        private static IEnumerable<string> LoadList(string fileName)
         {
             var list = new List<string>();
             using (var reader = new StreamReader(fileName))
@@ -334,7 +334,7 @@ namespace HoI2Editor.Models
         ///     指揮官ファイルを読み込む
         /// </summary>
         /// <param name="fileName">対象ファイル名</param>
-        private static void LoadLeaderFile(string fileName)
+        private static void LoadFile(string fileName)
         {
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -359,7 +359,7 @@ namespace HoI2Editor.Models
 
                 while (!reader.EndOfStream)
                 {
-                    Leader leader = ParseLeaderLine(reader.ReadLine());
+                    Leader leader = ParseLine(reader.ReadLine());
 
                     if (country == CountryTag.None && leader != null)
                     {
@@ -382,7 +382,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="line">対象文字列</param>
         /// <returns>指揮官データ</returns>
-        private static Leader ParseLeaderLine(string line)
+        private static Leader ParseLine(string line)
         {
             // 空行を読み飛ばす
             if (string.IsNullOrEmpty(line))
@@ -629,7 +629,7 @@ namespace HoI2Editor.Models
                 try
                 {
                     // 指揮官ファイルを保存する
-                    SaveLeaderFile(country);
+                    SaveFile(country);
                 }
                 catch (Exception)
                 {
@@ -645,7 +645,7 @@ namespace HoI2Editor.Models
         ///     指揮官ファイルを保存する
         /// </summary>
         /// <param name="country">国タグ</param>
-        private static void SaveLeaderFile(CountryTag country)
+        private static void SaveFile(CountryTag country)
         {
             // 指揮官フォルダが存在しなければ作成する
             string folderName = Game.GetWriteFileName(Game.LeaderPathName);

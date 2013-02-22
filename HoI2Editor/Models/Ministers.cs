@@ -71,11 +71,6 @@ namespace HoI2Editor.Models
         private static int _currentLineNo;
 
         /// <summary>
-        ///     CSVファイルの区切り文字
-        /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
-
-        /// <summary>
         ///     編集済みフラグ
         /// </summary>
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
@@ -599,6 +594,11 @@ namespace HoI2Editor.Models
                   };
 
         /// <summary>
+        ///     CSVファイルの区切り文字
+        /// </summary>
+        private static readonly char[] CsvSeparator = {';'};
+
+        /// <summary>
         ///     閣僚特性(HoI2)
         /// </summary>
         private enum MinisterPersonalityHoI2
@@ -765,17 +765,17 @@ namespace HoI2Editor.Models
             {
                 case GameType.HeartsOfIron2:
                     // 閣僚特性を初期化する
-                    InitMinisterPeronalityHoI2();
+                    InitPeronalityHoI2();
                     break;
 
                 case GameType.ArsenalOfDemocracy:
                     // 閣僚特性定義ファイルを読み込む
-                    LoadMinisterPersonalityAoD();
+                    LoadPersonalityAoD();
                     break;
 
                 case GameType.DarkestHour:
                     // 閣僚特性定義ファイルを読み込む
-                    LoadMinisterPersonalityDh();
+                    LoadPersonalityDh();
                     break;
             }
         }
@@ -783,7 +783,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚特性を初期化する(HoI2)
         /// </summary>
-        private static void InitMinisterPeronalityHoI2()
+        private static void InitPeronalityHoI2()
         {
             int positionCount = Enum.GetValues(typeof (MinisterPosition)).Length;
             int personalityCount = Enum.GetValues(typeof (MinisterPersonalityHoI2)).Length;
@@ -822,7 +822,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚特性を読み込む(AoD)
         /// </summary>
-        private static void LoadMinisterPersonalityAoD()
+        private static void LoadPersonalityAoD()
         {
             PersonalityStringMap.Clear();
             for (int i = 0; i < Enum.GetValues(typeof (MinisterPosition)).Length; i++)
@@ -853,7 +853,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚特性を読み込む(DH)
         /// </summary>
-        private static void LoadMinisterPersonalityDh()
+        private static void LoadPersonalityDh()
         {
             PersonalityStringMap.Clear();
             for (int i = 0; i < Enum.GetValues(typeof (MinisterPosition)).Length; i++)
@@ -928,17 +928,17 @@ namespace HoI2Editor.Models
             {
                 case GameType.HeartsOfIron2:
                 case GameType.ArsenalOfDemocracy:
-                    LoadMinisterFilesHoI2();
+                    LoadHoI2();
                     break;
 
                 case GameType.DarkestHour:
                     if (Game.IsModActive)
                     {
-                        LoadMinisterFilesDh();
+                        LoadDh();
                     }
                     else
                     {
-                        LoadMinisterFilesHoI2();
+                        LoadHoI2();
                     }
                     break;
             }
@@ -949,7 +949,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ファイル群を読み込む(HoI2/AoD/DH-MOD未使用時)
         /// </summary>
-        private static void LoadMinisterFilesHoI2()
+        private static void LoadHoI2()
         {
             var fileList = new List<string>();
             string folderName;
@@ -965,7 +965,7 @@ namespace HoI2Editor.Models
                         try
                         {
                             // 閣僚ファイルを読み込む
-                            LoadMinisterFile(fileName);
+                            LoadFile(fileName);
 
                             // 閣僚ファイル一覧に読み込んだファイル名を登録する
                             string name = Path.GetFileName(fileName);
@@ -998,7 +998,7 @@ namespace HoI2Editor.Models
                     try
                     {
                         // 閣僚ファイルを読み込む
-                        LoadMinisterFile(fileName);
+                        LoadFile(fileName);
                     }
                     catch (Exception)
                     {
@@ -1011,13 +1011,13 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ファイル群を読み込む(DH-MOD使用時)
         /// </summary>
-        private static void LoadMinisterFilesDh()
+        private static void LoadDh()
         {
             // 閣僚リストファイルが存在しなければ従来通りの読み込み方法を使用する
             string listFileName = Game.GetReadFileName(Game.DhMinisterListPathName);
             if (!File.Exists(listFileName))
             {
-                LoadMinisterFilesHoI2();
+                LoadHoI2();
                 return;
             }
 
@@ -1025,7 +1025,7 @@ namespace HoI2Editor.Models
             IEnumerable<string> fileList;
             try
             {
-                fileList = LoadMinisterListFileDh(listFileName);
+                fileList = LoadList(listFileName);
             }
             catch (Exception)
             {
@@ -1039,7 +1039,7 @@ namespace HoI2Editor.Models
                 try
                 {
                     // 閣僚ファイルを読み込む
-                    LoadMinisterFile(fileName);
+                    LoadFile(fileName);
                 }
                 catch (Exception)
                 {
@@ -1051,7 +1051,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚リストファイルを読み込む(DH)
         /// </summary>
-        private static IEnumerable<string> LoadMinisterListFileDh(string fileName)
+        private static IEnumerable<string> LoadList(string fileName)
         {
             var list = new List<string>();
             using (var reader = new StreamReader(fileName))
@@ -1083,7 +1083,7 @@ namespace HoI2Editor.Models
         ///     閣僚ファイルを読み込む
         /// </summary>
         /// <param name="fileName">対象ファイル名</param>
-        private static void LoadMinisterFile(string fileName)
+        private static void LoadFile(string fileName)
         {
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -1113,7 +1113,7 @@ namespace HoI2Editor.Models
 
                 while (!reader.EndOfStream)
                 {
-                    ParseMinisterLine(reader.ReadLine(), country);
+                    ParseLine(reader.ReadLine(), country);
                     _currentLineNo++;
                 }
                 reader.Close();
@@ -1127,7 +1127,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="line">対象文字列</param>
         /// <param name="country">国家タグ</param>
-        private static void ParseMinisterLine(string line, CountryTag country)
+        private static void ParseLine(string line, CountryTag country)
         {
             // 空行を読み飛ばす
             if (String.IsNullOrEmpty(line))
@@ -1324,7 +1324,7 @@ namespace HoI2Editor.Models
                 try
                 {
                     // 閣僚ファイルを保存する
-                    SaveMinisterFile(country);
+                    SaveFile(country);
                 }
                 catch (Exception)
                 {
@@ -1340,7 +1340,7 @@ namespace HoI2Editor.Models
         ///     閣僚ファイルを保存する
         /// </summary>
         /// <param name="country">国タグ</param>
-        private static void SaveMinisterFile(CountryTag country)
+        private static void SaveFile(CountryTag country)
         {
             // 閣僚フォルダが存在しなければ作成する
             string folderName = Game.GetWriteFileName(Game.MinisterPathName);
@@ -1543,22 +1543,6 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     閣僚地位情報
-    /// </summary>
-    public class MinisterPositionInfo
-    {
-        /// <summary>
-        ///     閣僚地位名
-        /// </summary>
-        public string Name;
-
-        /// <summary>
-        ///     閣僚地位文字列
-        /// </summary>
-        public string String;
-    }
-
-    /// <summary>
     ///     閣僚特性情報
     /// </summary>
     public class MinisterPersonalityInfo
@@ -1575,38 +1559,6 @@ namespace HoI2Editor.Models
 
         /// <summary>
         ///     閣僚特性文字列
-        /// </summary>
-        public string String;
-    }
-
-    /// <summary>
-    ///     閣僚忠誠度情報
-    /// </summary>
-    public class MinisterLoyaltyInfo
-    {
-        /// <summary>
-        ///     閣僚忠誠度名
-        /// </summary>
-        public string Name;
-
-        /// <summary>
-        ///     閣僚忠誠度文字列
-        /// </summary>
-        public string String;
-    }
-
-    /// <summary>
-    ///     閣僚イデオロギー情報
-    /// </summary>
-    public class MinisterIdeologyInfo
-    {
-        /// <summary>
-        ///     閣僚イデオロギー名
-        /// </summary>
-        public string Name;
-
-        /// <summary>
-        ///     閣僚イデオロギー文字列
         /// </summary>
         public string String;
     }

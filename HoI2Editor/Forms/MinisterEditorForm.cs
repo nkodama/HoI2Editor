@@ -359,7 +359,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 指揮官リストから項目を削除する
+            // 閣僚リストから項目を削除する
             Ministers.RemoveItem(selected);
             RemoveItem(ministerListView.SelectedIndices[0]);
 
@@ -542,7 +542,7 @@ namespace HoI2Editor.Forms
             // 絞り込みリストに項目を挿入する
             _narrowedList.Insert(index, minister);
 
-            // 指揮官リストビューに項目を挿入する
+            // 閣僚リストビューに項目を挿入する
             ministerListView.Items.Insert(index, CreateMinisterListViewItem(minister));
 
             // 挿入した項目を選択する
@@ -685,7 +685,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            if (e.Index >= 0)
             {
                 Brush brush;
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
@@ -776,7 +776,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
-            int maxSize = countryComboBox.DropDownWidth;
+            int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Country.Tags
                                         .Select(country => Country.Strings[(int) country])
                                         .Select(name => Config.ExistsKey(name)
@@ -784,21 +784,21 @@ namespace HoI2Editor.Forms
                                                             : name))
             {
                 countryComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize,
-                                   TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                                   SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
             }
-            countryComboBox.DropDownWidth = maxSize;
+            countryComboBox.DropDownWidth = maxWidth;
 
             // 地位
-            maxSize = positionComboBox.DropDownWidth;
+            maxWidth = positionComboBox.DropDownWidth;
             foreach (
                 string s in Ministers.PositionNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
             {
                 positionComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(s, positionComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, positionComboBox.Font).Width);
             }
-            positionComboBox.DropDownWidth = maxSize;
+            positionComboBox.DropDownWidth = maxWidth;
 
             // 特性
             personalityComboBox.DropDownWidth =
@@ -808,23 +808,23 @@ namespace HoI2Editor.Forms
                          .Max();
 
             // イデオロギー
-            maxSize = ideologyComboBox.DropDownWidth;
+            maxWidth = ideologyComboBox.DropDownWidth;
             foreach (
                 string s in Ministers.IdeologyNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
             {
                 ideologyComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(s, ideologyComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, ideologyComboBox.Font).Width);
             }
-            ideologyComboBox.DropDownWidth = maxSize;
+            ideologyComboBox.DropDownWidth = maxWidth;
 
             // 忠誠度
-            maxSize = loyaltyComboBox.DropDownWidth;
+            maxWidth = loyaltyComboBox.DropDownWidth;
             foreach (string s in Ministers.LoyaltyNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 loyaltyComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(s, loyaltyComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, loyaltyComboBox.Font).Width);
             }
-            loyaltyComboBox.DropDownWidth = maxSize;
+            loyaltyComboBox.DropDownWidth = maxWidth;
         }
 
         /// <summary>

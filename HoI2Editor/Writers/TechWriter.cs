@@ -150,7 +150,7 @@ namespace HoI2Editor.Writers
                 "    component = {{ id = {0} name = {1} type = {2} difficulty = {3}",
                 component.Id,
                 component.Name,
-                Tech.SpecialityStringTable[(int) component.Speciality],
+                Techs.SpecialityStrings[(int) component.Speciality],
                 component.Difficulty);
             if (component.DoubleTime)
             {

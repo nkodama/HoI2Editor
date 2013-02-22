@@ -267,177 +267,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="leader">指揮官データ</param>
-        private void UpdateEditableItemsValue(Leader leader)
-        {
-            // 編集項目の値を更新する
-            countryComboBox.SelectedIndex = leader.Country != CountryTag.None ? (int) leader.Country - 1 : -1;
-            idNumericUpDown.Value = leader.Id;
-            nameTextBox.Text = leader.Name;
-            branchComboBox.SelectedIndex = leader.Branch != LeaderBranch.None ? (int) leader.Branch - 1 : -1;
-            idealRankComboBox.SelectedIndex = leader.IdealRank != LeaderRank.None ? (int) leader.IdealRank - 1 : -1;
-            skillNumericUpDown.Value = leader.Skill;
-            maxSkillNumericUpDown.Value = leader.MaxSkill;
-            experienceNumericUpDown.Value = leader.Experience;
-            loyaltyNumericUpDown.Value = leader.Loyalty;
-            startYearNumericUpDown.Value = leader.StartYear;
-            endYearNumericUpDown.Value = leader.EndYear;
-            retirementYearNumericUpDown.Value = leader.RetirementYear;
-            rankYearNumericUpDown1.Value = leader.RankYear[0];
-            rankYearNumericUpDown2.Value = leader.RankYear[1];
-            rankYearNumericUpDown3.Value = leader.RankYear[2];
-            rankYearNumericUpDown4.Value = leader.RankYear[3];
-            pictureNameTextBox.Text = leader.PictureName;
-            UpdateLeaderPicture(leader);
-
-            // 特性チェックボックスの状態を更新する
-            logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
-            defensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.DefensiveDoctrine) != 0);
-            offensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.OffensiveDoctrine) != 0);
-            winterSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.WinterSpecialist) != 0);
-            tricksterCheckBox.Checked = ((leader.Traits & LeaderTraits.Trickster) != 0);
-            engineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Engineer) != 0);
-            fortressBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.FortressBuster) != 0);
-            panzerLeaderCheckBox.Checked = ((leader.Traits & LeaderTraits.PanzerLeader) != 0);
-            commandoCheckBox.Checked = ((leader.Traits & LeaderTraits.Commando) != 0);
-            oldGuardCheckBox.Checked = ((leader.Traits & LeaderTraits.OldGuard) != 0);
-            seaWolfCheckBox.Checked = ((leader.Traits & LeaderTraits.SeaWolf) != 0);
-            blockadeRunnerCheckBox.Checked = ((leader.Traits & LeaderTraits.BlockadeRunner) != 0);
-            superiorTacticianCheckBox.Checked = ((leader.Traits & LeaderTraits.SuperiorTactician) != 0);
-            spotterCheckBox.Checked = ((leader.Traits & LeaderTraits.Spotter) != 0);
-            tankBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.TankBuster) != 0);
-            carpetBomberCheckBox.Checked = ((leader.Traits & LeaderTraits.CarpetBomber) != 0);
-            nightFlyerCheckBox.Checked = ((leader.Traits & LeaderTraits.NightFlyer) != 0);
-            fleetDestroyerCheckBox.Checked = ((leader.Traits & LeaderTraits.FleetDestroyer) != 0);
-            desertFoxCheckBox.Checked = ((leader.Traits & LeaderTraits.DesertFox) != 0);
-            jungleRatCheckBox.Checked = ((leader.Traits & LeaderTraits.JungleRat) != 0);
-            urbanWarfareSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.UrbanWarfareSpecialist) != 0);
-            rangerCheckBox.Checked = ((leader.Traits & LeaderTraits.Ranger) != 0);
-            mountaineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Mountaineer) != 0);
-            hillsFighterCheckBox.Checked = ((leader.Traits & LeaderTraits.HillsFighter) != 0);
-            counterAttackerCheckBox.Checked = ((leader.Traits & LeaderTraits.CounterAttacker) != 0);
-            assaulterCheckBox.Checked = ((leader.Traits & LeaderTraits.Assaulter) != 0);
-            encirclerCheckBox.Checked = ((leader.Traits & LeaderTraits.Encircler) != 0);
-            ambusherCheckBox.Checked = ((leader.Traits & LeaderTraits.Ambusher) != 0);
-            disciplinedCheckBox.Checked = ((leader.Traits & LeaderTraits.Disciplined) != 0);
-            elasticDefenceSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0);
-            blitzerCheckBox.Checked = ((leader.Traits & LeaderTraits.Blitzer) != 0);
-        }
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="leader"></param>
-        private void UpdateEditableItemsColor(Leader leader)
-        {
-            // コンボボックスの色を更新する
-            countryComboBox.Refresh();
-            branchComboBox.Refresh();
-            idealRankComboBox.Refresh();
-
-            // 編集項目の色を更新する
-            idNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Id) ? Color.Red : SystemColors.WindowText;
-            nameTextBox.ForeColor = leader.IsDirty(LeaderItemId.Name) ? Color.Red : SystemColors.WindowText;
-            skillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Skill) ? Color.Red : SystemColors.WindowText;
-            maxSkillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.MaxSkill)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
-            experienceNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Experience)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
-            loyaltyNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Loyalty) ? Color.Red : SystemColors.WindowText;
-            startYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.StartYear)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            endYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.EndYear) ? Color.Red : SystemColors.WindowText;
-            retirementYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.RetirementYear)
-                                                        ? Color.Red
-                                                        : SystemColors.WindowText;
-            rankYearNumericUpDown1.ForeColor = leader.IsDirty(LeaderItemId.Rank3Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            rankYearNumericUpDown2.ForeColor = leader.IsDirty(LeaderItemId.Rank2Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            rankYearNumericUpDown3.ForeColor = leader.IsDirty(LeaderItemId.Rank1Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            rankYearNumericUpDown4.ForeColor = leader.IsDirty(LeaderItemId.Rank0Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            pictureNameTextBox.ForeColor = leader.IsDirty(LeaderItemId.PictureName)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-
-            // 特性チェックボックスの項目色を更新する
-            logisticsWizardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.LogisticsWizard)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
-            defensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DefensiveDoctrine)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
-            offensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OffensiveDoctrine)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
-            winterSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.WinterSpecialist)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
-            tricksterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Trickster) ? Color.Red : SystemColors.WindowText;
-            engineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Engineer) ? Color.Red : SystemColors.WindowText;
-            fortressBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FortressBuster)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            panzerLeaderCheckBox.ForeColor = leader.IsDirty(LeaderItemId.PanzerLeader)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
-            commandoCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Commando) ? Color.Red : SystemColors.WindowText;
-            oldGuardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OldGuard) ? Color.Red : SystemColors.WindowText;
-            seaWolfCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SeaWolf) ? Color.Red : SystemColors.WindowText;
-            blockadeRunnerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.BlockadeRunner)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            superiorTacticianCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SuperiorTactician)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
-            spotterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Spotter) ? Color.Red : SystemColors.WindowText;
-            tankBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.TankBuster) ? Color.Red : SystemColors.WindowText;
-            carpetBomberCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CarpetBomber)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
-            nightFlyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.NightFlyer) ? Color.Red : SystemColors.WindowText;
-            fleetDestroyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FleetDestroyer)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            desertFoxCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DesertFox) ? Color.Red : SystemColors.WindowText;
-            jungleRatCheckBox.ForeColor = leader.IsDirty(LeaderItemId.JungleRat) ? Color.Red : SystemColors.WindowText;
-            urbanWarfareSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.UrbanWarfareSpecialist)
-                                                           ? Color.Red
-                                                           : SystemColors.WindowText;
-            rangerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ranger) ? Color.Red : SystemColors.WindowText;
-            mountaineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Mountaineer)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            hillsFighterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.HillsFighter)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
-            counterAttackerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CounterAttacker)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
-            assaulterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Assaulter) ? Color.Red : SystemColors.WindowText;
-            encirclerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Encircler) ? Color.Red : SystemColors.WindowText;
-            ambusherCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ambusher) ? Color.Red : SystemColors.WindowText;
-            disciplinedCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Disciplined)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            elasticDefenceSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.ElasticDefenceSpecialist)
-                                                             ? Color.Red
-                                                             : SystemColors.WindowText;
-            blitzerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Blitzer) ? Color.Red : SystemColors.WindowText;
-        }
-
-        /// <summary>
         ///     新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1310,7 +1139,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            if (e.Index >= 0)
             {
                 Brush brush;
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
@@ -1401,7 +1230,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
-            int maxSize = countryComboBox.DropDownWidth;
+            int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Country.Tags
                                         .Select(country => Country.Strings[(int) country])
                                         .Select(name => Config.ExistsKey(name)
@@ -1409,29 +1238,200 @@ namespace HoI2Editor.Forms
                                                             : name))
             {
                 countryComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize,
-                                   TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                                   SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
             }
-            countryComboBox.DropDownWidth = maxSize;
+            countryComboBox.DropDownWidth = maxWidth;
 
             // 兵科
-            maxSize = branchComboBox.DropDownWidth;
+            maxWidth = branchComboBox.DropDownWidth;
             foreach (string s in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 branchComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(s, branchComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, branchComboBox.Font).Width);
             }
-            branchComboBox.DropDownWidth = maxSize;
+            branchComboBox.DropDownWidth = maxWidth;
 
             // 階級
-            maxSize = idealRankComboBox.DropDownWidth;
+            maxWidth = idealRankComboBox.DropDownWidth;
             foreach (string s in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 idealRankComboBox.Items.Add(s);
-                maxSize = Math.Max(maxSize, TextRenderer.MeasureText(s, idealRankComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, idealRankComboBox.Font).Width);
             }
-            idealRankComboBox.DropDownWidth = maxSize;
+            idealRankComboBox.DropDownWidth = maxWidth;
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="leader">指揮官データ</param>
+        private void UpdateEditableItemsValue(Leader leader)
+        {
+            // 編集項目の値を更新する
+            countryComboBox.SelectedIndex = leader.Country != CountryTag.None ? (int) leader.Country - 1 : -1;
+            idNumericUpDown.Value = leader.Id;
+            nameTextBox.Text = leader.Name;
+            branchComboBox.SelectedIndex = leader.Branch != LeaderBranch.None ? (int) leader.Branch - 1 : -1;
+            idealRankComboBox.SelectedIndex = leader.IdealRank != LeaderRank.None ? (int) leader.IdealRank - 1 : -1;
+            skillNumericUpDown.Value = leader.Skill;
+            maxSkillNumericUpDown.Value = leader.MaxSkill;
+            experienceNumericUpDown.Value = leader.Experience;
+            loyaltyNumericUpDown.Value = leader.Loyalty;
+            startYearNumericUpDown.Value = leader.StartYear;
+            endYearNumericUpDown.Value = leader.EndYear;
+            retirementYearNumericUpDown.Value = leader.RetirementYear;
+            rankYearNumericUpDown1.Value = leader.RankYear[0];
+            rankYearNumericUpDown2.Value = leader.RankYear[1];
+            rankYearNumericUpDown3.Value = leader.RankYear[2];
+            rankYearNumericUpDown4.Value = leader.RankYear[3];
+            pictureNameTextBox.Text = leader.PictureName;
+            UpdateLeaderPicture(leader);
+
+            // 特性チェックボックスの状態を更新する
+            logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
+            defensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.DefensiveDoctrine) != 0);
+            offensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.OffensiveDoctrine) != 0);
+            winterSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.WinterSpecialist) != 0);
+            tricksterCheckBox.Checked = ((leader.Traits & LeaderTraits.Trickster) != 0);
+            engineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Engineer) != 0);
+            fortressBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.FortressBuster) != 0);
+            panzerLeaderCheckBox.Checked = ((leader.Traits & LeaderTraits.PanzerLeader) != 0);
+            commandoCheckBox.Checked = ((leader.Traits & LeaderTraits.Commando) != 0);
+            oldGuardCheckBox.Checked = ((leader.Traits & LeaderTraits.OldGuard) != 0);
+            seaWolfCheckBox.Checked = ((leader.Traits & LeaderTraits.SeaWolf) != 0);
+            blockadeRunnerCheckBox.Checked = ((leader.Traits & LeaderTraits.BlockadeRunner) != 0);
+            superiorTacticianCheckBox.Checked = ((leader.Traits & LeaderTraits.SuperiorTactician) != 0);
+            spotterCheckBox.Checked = ((leader.Traits & LeaderTraits.Spotter) != 0);
+            tankBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.TankBuster) != 0);
+            carpetBomberCheckBox.Checked = ((leader.Traits & LeaderTraits.CarpetBomber) != 0);
+            nightFlyerCheckBox.Checked = ((leader.Traits & LeaderTraits.NightFlyer) != 0);
+            fleetDestroyerCheckBox.Checked = ((leader.Traits & LeaderTraits.FleetDestroyer) != 0);
+            desertFoxCheckBox.Checked = ((leader.Traits & LeaderTraits.DesertFox) != 0);
+            jungleRatCheckBox.Checked = ((leader.Traits & LeaderTraits.JungleRat) != 0);
+            urbanWarfareSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.UrbanWarfareSpecialist) != 0);
+            rangerCheckBox.Checked = ((leader.Traits & LeaderTraits.Ranger) != 0);
+            mountaineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Mountaineer) != 0);
+            hillsFighterCheckBox.Checked = ((leader.Traits & LeaderTraits.HillsFighter) != 0);
+            counterAttackerCheckBox.Checked = ((leader.Traits & LeaderTraits.CounterAttacker) != 0);
+            assaulterCheckBox.Checked = ((leader.Traits & LeaderTraits.Assaulter) != 0);
+            encirclerCheckBox.Checked = ((leader.Traits & LeaderTraits.Encircler) != 0);
+            ambusherCheckBox.Checked = ((leader.Traits & LeaderTraits.Ambusher) != 0);
+            disciplinedCheckBox.Checked = ((leader.Traits & LeaderTraits.Disciplined) != 0);
+            elasticDefenceSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0);
+            blitzerCheckBox.Checked = ((leader.Traits & LeaderTraits.Blitzer) != 0);
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="leader"></param>
+        private void UpdateEditableItemsColor(Leader leader)
+        {
+            // コンボボックスの色を更新する
+            countryComboBox.Refresh();
+            branchComboBox.Refresh();
+            idealRankComboBox.Refresh();
+
+            // 編集項目の色を更新する
+            idNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Id) ? Color.Red : SystemColors.WindowText;
+            nameTextBox.ForeColor = leader.IsDirty(LeaderItemId.Name) ? Color.Red : SystemColors.WindowText;
+            skillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Skill) ? Color.Red : SystemColors.WindowText;
+            maxSkillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.MaxSkill)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+            experienceNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Experience)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            loyaltyNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Loyalty) ? Color.Red : SystemColors.WindowText;
+            startYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.StartYear)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            endYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            retirementYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.RetirementYear)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            rankYearNumericUpDown1.ForeColor = leader.IsDirty(LeaderItemId.Rank3Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            rankYearNumericUpDown2.ForeColor = leader.IsDirty(LeaderItemId.Rank2Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            rankYearNumericUpDown3.ForeColor = leader.IsDirty(LeaderItemId.Rank1Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            rankYearNumericUpDown4.ForeColor = leader.IsDirty(LeaderItemId.Rank0Year)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            pictureNameTextBox.ForeColor = leader.IsDirty(LeaderItemId.PictureName)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+
+            // 特性チェックボックスの項目色を更新する
+            logisticsWizardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.LogisticsWizard)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            defensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DefensiveDoctrine)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            offensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OffensiveDoctrine)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            winterSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.WinterSpecialist)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            tricksterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Trickster) ? Color.Red : SystemColors.WindowText;
+            engineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Engineer) ? Color.Red : SystemColors.WindowText;
+            fortressBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FortressBuster)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            panzerLeaderCheckBox.ForeColor = leader.IsDirty(LeaderItemId.PanzerLeader)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            commandoCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Commando) ? Color.Red : SystemColors.WindowText;
+            oldGuardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OldGuard) ? Color.Red : SystemColors.WindowText;
+            seaWolfCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SeaWolf) ? Color.Red : SystemColors.WindowText;
+            blockadeRunnerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.BlockadeRunner)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            superiorTacticianCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SuperiorTactician)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            spotterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Spotter) ? Color.Red : SystemColors.WindowText;
+            tankBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.TankBuster) ? Color.Red : SystemColors.WindowText;
+            carpetBomberCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CarpetBomber)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            nightFlyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.NightFlyer) ? Color.Red : SystemColors.WindowText;
+            fleetDestroyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FleetDestroyer)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            desertFoxCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DesertFox) ? Color.Red : SystemColors.WindowText;
+            jungleRatCheckBox.ForeColor = leader.IsDirty(LeaderItemId.JungleRat) ? Color.Red : SystemColors.WindowText;
+            urbanWarfareSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.UrbanWarfareSpecialist)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+            rangerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ranger) ? Color.Red : SystemColors.WindowText;
+            mountaineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Mountaineer)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+            hillsFighterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.HillsFighter)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            counterAttackerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CounterAttacker)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            assaulterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Assaulter) ? Color.Red : SystemColors.WindowText;
+            encirclerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Encircler) ? Color.Red : SystemColors.WindowText;
+            ambusherCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ambusher) ? Color.Red : SystemColors.WindowText;
+            disciplinedCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Disciplined)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+            elasticDefenceSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.ElasticDefenceSpecialist)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+            blitzerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Blitzer) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>

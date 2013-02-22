@@ -130,7 +130,7 @@ namespace HoI2Editor.Forms
         private void OnTechEditorFormLoad(object sender, EventArgs e)
         {
             // 研究特性を初期化する
-            InitSpecialities();
+            Techs.InitSpecialities();
 
             // 技術定義ファイルを読み込む
             LoadTechFiles();
@@ -173,8 +173,8 @@ namespace HoI2Editor.Forms
             int maxSize = componentSpecialityComboBox.DropDownWidth;
             foreach (
                 string name in
-                    Techs.SpecialityTable.Select(
-                        speciality => Config.GetText(Tech.SpecialityNameTable[(int) speciality])))
+                    Techs.Specialities.Select(
+                        speciality => Config.GetText(Techs.SpecialityNames[(int) speciality])))
             {
                 componentSpecialityComboBox.Items.Add(name);
                 maxSize = Math.Max(maxSize,
@@ -193,18 +193,6 @@ namespace HoI2Editor.Forms
                                    SystemInformation.VerticalScrollBarWidth);
             }
             commandTypeComboBox.DropDownWidth = maxSize;
-        }
-
-        /// <summary>
-        ///     研究特性を初期化する
-        /// </summary>
-        private static void InitSpecialities()
-        {
-            // ゲームの種類に合わせて研究特性を初期化する
-            Techs.InitSpecialities();
-
-            // 研究特性画像リストを初期化する
-            Techs.InitSpecialityImages();
         }
 
         /// <summary>
@@ -3379,7 +3367,7 @@ namespace HoI2Editor.Forms
             component.Speciality = newSpeciality;
 
             componentListView.Items[index].SubItems[2].Text =
-                Config.GetText(Tech.SpecialityNameTable[(int) newSpeciality]);
+                Config.GetText(Techs.SpecialityNames[(int) newSpeciality]);
             UpdateComponentSpecialityComboBox(component);
 
             SetDirtyFlag();
@@ -3486,7 +3474,7 @@ namespace HoI2Editor.Forms
         {
             var listItem = new ListViewItem {Text = component.Id.ToString(CultureInfo.InvariantCulture)};
             listItem.SubItems.Add(Config.GetText(component.Name));
-            listItem.SubItems.Add(Config.GetText(Tech.SpecialityNameTable[(int) component.Speciality]));
+            listItem.SubItems.Add(Config.GetText(Techs.SpecialityNames[(int) component.Speciality]));
             listItem.SubItems.Add(component.Difficulty.ToString(CultureInfo.InvariantCulture));
             listItem.SubItems.Add(component.DoubleTime ? Resources.Yes : Resources.No);
 

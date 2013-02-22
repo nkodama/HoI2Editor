@@ -12,15 +12,12 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Teams
     {
+        #region フィールド
+
         /// <summary>
         ///     マスター閣僚リスト
         /// </summary>
         public static List<Team> List = new List<Team>();
-
-        /// <summary>
-        ///     研究機関編集フラグ
-        /// </summary>
-        public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -33,19 +30,40 @@ namespace HoI2Editor.Models
         private static int _currentLineNo;
 
         /// <summary>
-        ///     CSVファイルの区切り文字
+        ///     編集済みフラグ
         /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
 
+        #endregion
+
+        #region 定数
+
+        /// <summary>
+        ///     CSVファイルの区切り文字
+        /// </summary>
+        private static readonly char[] CsvSeparator = {';'};
+
+        #endregion
+
+        #region ファイル読み込み
+
+        /// <summary>
+        ///     研究機関ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
+        }
+
         /// <summary>
         ///     研究機関ファイル群を読み込む
         /// </summary>
-        public static void LoadTeamFiles()
+        public static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -59,17 +77,17 @@ namespace HoI2Editor.Models
             {
                 case GameType.HeartsOfIron2:
                 case GameType.ArsenalOfDemocracy:
-                    LoadTeamFilesHoI2();
+                    LoadHoI2();
                     break;
 
                 case GameType.DarkestHour:
                     if (Game.IsModActive)
                     {
-                        LoadTeamFilesDh();
+                        LoadDh();
                     }
                     else
                     {
-                        LoadTeamFilesHoI2();
+                        LoadHoI2();
                     }
                     break;
             }
@@ -80,11 +98,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ファイル群を読み込む(HoI2/AoD/DH-MOD未使用時)
         /// </summary>
-        private static void LoadTeamFilesHoI2()
+        private static void LoadHoI2()
         {
             var list = new List<string>();
             string folderName;
 
+            // MODフォルダ内の研究機関ファイルを読み込む
             if (Game.IsModActive)
             {
                 folderName = Path.Combine(Game.ModFolderName, Game.TeamPathName);
@@ -94,7 +113,10 @@ namespace HoI2Editor.Models
                     {
                         try
                         {
-                            LoadTeamFile(fileName);
+                            // 研究機関ファイルを読み込む
+                            LoadFile(fileName);
+
+                            // 研究機関ファイル一覧に読み込んだファイル名を登録する
                             string name = Path.GetFileName(fileName);
                             if (!String.IsNullOrEmpty(name))
                             {
@@ -109,22 +131,27 @@ namespace HoI2Editor.Models
                 }
             }
 
+            // バニラフォルダ内の研究機関ファイルを読み込む
             folderName = Path.Combine(Game.FolderName, Game.TeamPathName);
             if (Directory.Exists(folderName))
             {
                 foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                 {
+                    // MODフォルダ内で読み込んだファイルは無視する
                     string name = Path.GetFileName(fileName);
-                    if (!String.IsNullOrEmpty(name) && !list.Contains(name.ToLower()))
+                    if (String.IsNullOrEmpty(name) || list.Contains(name.ToLower()))
                     {
-                        try
-                        {
-                            LoadTeamFile(fileName);
-                        }
-                        catch (Exception)
-                        {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
-                        }
+                        continue;
+                    }
+
+                    try
+                    {
+                        // 研究機関ファイルを読み込む
+                        LoadFile(fileName);
+                    }
+                    catch (Exception)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                     }
                 }
             }
@@ -133,20 +160,21 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ファイル群を読み込む(DH-MOD使用時)
         /// </summary>
-        private static void LoadTeamFilesDh()
+        private static void LoadDh()
         {
-            // teams.txtが存在しなければ従来通りの読み込み方法を使用する
+            // 研究機関リストファイルが存在しなければ従来通りの読み込み方法を使用する
             string listFileName = Game.GetReadFileName(Game.DhTeamListPathName);
             if (!File.Exists(listFileName))
             {
-                LoadTeamFilesHoI2();
+                LoadHoI2();
                 return;
             }
 
+            // 研究機関リストファイルを読み込む
             IEnumerable<string> fileList;
             try
             {
-                fileList = LoadTeamListFileDh(listFileName);
+                fileList = LoadList(listFileName);
             }
             catch (Exception)
             {
@@ -154,12 +182,13 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (
-                string fileName in fileList.Select(name => Game.GetReadFileName(Path.Combine(Game.TeamPathName, name))))
+            foreach (string fileName
+                in fileList.Select(name => Game.GetReadFileName(Path.Combine(Game.TeamPathName, name))))
             {
                 try
                 {
-                    LoadTeamFile(fileName);
+                    // 研究機関ファイルを読み込む
+                    LoadFile(fileName);
                 }
                 catch (Exception)
                 {
@@ -171,7 +200,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関リストファイルを読み込む(DH)
         /// </summary>
-        private static IEnumerable<string> LoadTeamListFileDh(string fileName)
+        private static IEnumerable<string> LoadList(string fileName)
         {
             var list = new List<string>();
             using (var reader = new StreamReader(fileName))
@@ -203,7 +232,7 @@ namespace HoI2Editor.Models
         ///     研究機関ファイルを読み込む
         /// </summary>
         /// <param name="fileName">対象ファイル名</param>
-        private static void LoadTeamFile(string fileName)
+        private static void LoadFile(string fileName)
         {
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -238,12 +267,12 @@ namespace HoI2Editor.Models
 
                 while (!reader.EndOfStream)
                 {
-                    ParseTeamLine(reader.ReadLine(), country);
+                    ParseLine(reader.ReadLine(), country);
                     _currentLineNo++;
                 }
                 reader.Close();
 
-                ClearDirtyFlag(country);
+                ResetDirty(country);
             }
         }
 
@@ -252,7 +281,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="line">対象文字列</param>
         /// <param name="country">国家タグ</param>
-        private static void ParseTeamLine(string line, CountryTag country)
+        private static void ParseLine(string line, CountryTag country)
         {
             // 空行を読み飛ばす
             if (String.IsNullOrEmpty(line))
@@ -280,19 +309,31 @@ namespace HoI2Editor.Models
                 }
             }
 
-            var team = new Team {CountryTag = country};
+            var team = new Team {Country = country};
+            int index = 0;
+
+            // ID
             int id;
-            if (!Int32.TryParse(token[0], out id))
+            if (!Int32.TryParse(token[index], out id))
             {
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[0]));
+                Log.Write(String.Format("  {0}\n", token[index]));
                 return;
             }
             team.Id = id;
-            team.Name = token[1];
-            team.PictureName = token[2];
+            index++;
+
+            // 名前
+            team.Name = token[index];
+            index++;
+
+            // 画像ファイル名
+            team.PictureName = token[index];
+            index++;
+
+            // スキル
             int skill;
-            if (Int32.TryParse(token[3], out skill))
+            if (Int32.TryParse(token[index], out skill))
             {
                 team.Skill = skill;
             }
@@ -300,10 +341,13 @@ namespace HoI2Editor.Models
             {
                 team.Skill = 1;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[3]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
             }
+            index++;
+
+            // 開始年
             int startYear;
-            if (Int32.TryParse(token[4], out startYear))
+            if (Int32.TryParse(token[index], out startYear))
             {
                 team.StartYear = startYear;
             }
@@ -311,10 +355,13 @@ namespace HoI2Editor.Models
             {
                 team.StartYear = 1930;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[4]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
             }
+            index++;
+
+            // 終了年
             int endYear;
-            if (Int32.TryParse(token[5], out endYear))
+            if (Int32.TryParse(token[index], out endYear))
             {
                 team.EndYear = endYear;
             }
@@ -322,42 +369,56 @@ namespace HoI2Editor.Models
             {
                 team.EndYear = 1970;
                 Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[5]));
+                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
             }
-            for (int i = 0; i < Team.SpecialityLength; i++)
+            index++;
+
+            // 研究特性
+            for (int i = 0; i < Team.SpecialityLength; i++, index++)
             {
-                string s = token[6 + i].ToLower();
+                string s = token[index].ToLower();
+
+                // 空文字列
                 if (String.IsNullOrEmpty(s))
                 {
                     team.Specialities[i] = TechSpeciality.None;
+                    continue;
                 }
-                else if (Tech.SpecialityStringMap.ContainsKey(s))
-                {
-                    TechSpeciality speciality = Tech.SpecialityStringMap[s];
-                    team.Specialities[i] = speciality;
-                    if (!Techs.SpecialityTable.Contains(speciality))
-                    {
-                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
-                                                _currentLineNo));
-                        Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[6 + i]));
-                    }
-                }
-                else
+
+                // 無効な研究特性文字列
+                if (!Tech.SpecialityStringMap.ContainsKey(s))
                 {
                     team.Specialities[i] = TechSpeciality.None;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
                                             _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[6 + i]));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
+                    continue;
                 }
+
+                // サポート外の研究特性
+                TechSpeciality speciality = Tech.SpecialityStringMap[s];
+                if (!Techs.Specialities.Contains(speciality))
+                {
+                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
+                                            _currentLineNo));
+                    Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
+                    continue;
+                }
+
+                team.Specialities[i] = speciality;
             }
 
             List.Add(team);
         }
 
+        #endregion
+
+        #region ファイル書き込み
+
         /// <summary>
         ///     研究機関ファイル群を保存する
         /// </summary>
-        public static void SaveTeamFiles()
+        public static void Save()
         {
             foreach (
                 CountryTag country in
@@ -367,7 +428,8 @@ namespace HoI2Editor.Models
             {
                 try
                 {
-                    SaveTeamFile(country);
+                    // 研究機関ファイルを保存する
+                    SaveFile(country);
                 }
                 catch (Exception)
                 {
@@ -383,10 +445,10 @@ namespace HoI2Editor.Models
         ///     研究機関ファイルを保存する
         /// </summary>
         /// <param name="country">国タグ</param>
-        private static void SaveTeamFile(CountryTag country)
+        private static void SaveFile(CountryTag country)
         {
-            string folderName = Game.GetWriteFileName(Game.TeamPathName);
             // 研究機関フォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Game.TeamPathName);
             if (!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);
@@ -398,11 +460,13 @@ namespace HoI2Editor.Models
                 _currentFileName = fileName;
                 _currentLineNo = 2;
 
+                // ヘッダ行を書き込む
                 writer.WriteLine(
                     "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
                     Country.Strings[(int) country]);
 
-                foreach (Team team in List.Where(team => team.CountryTag == country).Where(team => team != null))
+                // 研究機関定義行を順に書き込む
+                foreach (Team team in List.Where(team => team.Country == country))
                 {
                     writer.Write(
                         "{0};{1};{2};{3};{4};{5}",
@@ -416,7 +480,7 @@ namespace HoI2Editor.Models
                     {
                         writer.Write(";{0}",
                                      team.Specialities[i] != TechSpeciality.None
-                                         ? Tech.SpecialityStringTable[(int) team.Specialities[i]]
+                                         ? Techs.SpecialityStrings[(int) team.Specialities[i]]
                                          : "");
                     }
                     writer.WriteLine(";x");
@@ -425,85 +489,97 @@ namespace HoI2Editor.Models
                 writer.Close();
             }
 
-            ClearDirtyFlag(country);
+            ResetDirty(country);
         }
+
+        #endregion
+
+        #region 研究機関リスト操作
 
         /// <summary>
         ///     研究機関リストに項目を追加する
         /// </summary>
-        /// <param name="target">追加対象の項目</param>
-        public static void AddItem(Team target)
+        /// <param name="team">追加対象の項目</param>
+        public static void AddItem(Team team)
         {
-            List.Add(target);
+            List.Add(team);
         }
 
         /// <summary>
         ///     研究機関リストに項目を挿入する
         /// </summary>
-        /// <param name="target">挿入対象の項目</param>
+        /// <param name="team">挿入対象の項目</param>
         /// <param name="position">挿入位置の直前の項目</param>
-        public static void InsertItemNext(Team target, Team position)
+        public static void InsertItem(Team team, Team position)
         {
-            List.Insert(List.IndexOf(position) + 1, target);
+            List.Insert(List.IndexOf(position) + 1, team);
         }
 
         /// <summary>
         ///     研究機関リストから項目を削除する
         /// </summary>
-        /// <param name="target">削除対象の項目</param>
-        public static void RemoveItem(Team target)
+        /// <param name="team">削除対象の項目</param>
+        public static void RemoveItem(Team team)
         {
-            List.Remove(target);
+            List.Remove(team);
         }
 
         /// <summary>
         ///     研究機関リストの項目を移動する
         /// </summary>
-        /// <param name="target">移動対象の項目</param>
-        /// <param name="position">移動先位置の項目</param>
-        public static void MoveItem(Team target, Team position)
+        /// <param name="src">移動元の項目</param>
+        /// <param name="dest">移動先の項目</param>
+        public static void MoveItem(Team src, Team dest)
         {
-            int targetIndex = List.IndexOf(target);
-            int positionIndex = List.IndexOf(position);
+            int srcIndex = List.IndexOf(src);
+            int destIndex = List.IndexOf(dest);
 
-            if (targetIndex > positionIndex)
+            if (srcIndex > destIndex)
             {
                 // 上へ移動する場合
-                List.Insert(positionIndex, target);
-                List.RemoveAt(targetIndex + 1);
+                List.Insert(destIndex, src);
+                List.RemoveAt(srcIndex + 1);
             }
             else
             {
                 // 下へ移動する場合
-                List.Insert(positionIndex + 1, target);
-                List.RemoveAt(targetIndex);
+                List.Insert(destIndex + 1, src);
+                List.RemoveAt(srcIndex);
             }
         }
 
+        #endregion
+
+        #region 編集済みフラグ操作
+
         /// <summary>
-        ///     研究機関ファイルの再読み込みを要求する
+        ///     編集済みかどうかを取得する
         /// </summary>
-        public static void RequireReload()
+        /// <param name="country">国タグ</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty(CountryTag country)
         {
-            _loaded = false;
+            return DirtyFlags[(int) country];
         }
 
         /// <summary>
-        ///     編集フラグをセットする
+        ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirtyFlag(CountryTag country)
+        public static void SetDirty(CountryTag country)
         {
             DirtyFlags[(int) country] = true;
         }
 
         /// <summary>
-        ///     編集フラグをクリアする
+        ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void ClearDirtyFlag(CountryTag country)
+        public static void ResetDirty(CountryTag country)
         {
             DirtyFlags[(int) country] = false;
         }
+
+        #endregion
     }
 }
