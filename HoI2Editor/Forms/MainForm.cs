@@ -34,7 +34,7 @@ namespace HoI2Editor.Forms
             UpdateVersion();
 
             // 言語を初期化する
-            Config.LangMode = Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP"))
+            Config.LangMode = Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja"))
                                   ? LanguageMode.Japanese
                                   : LanguageMode.English;
 

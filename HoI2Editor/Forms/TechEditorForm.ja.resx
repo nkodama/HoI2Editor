@@ -169,17 +169,11 @@
   <data name="andRemoveButton.Text" xml:space="preserve">
     <value>削除</value>
   </data>
-  <data name="andModifyButton.Text" xml:space="preserve">
-    <value>変更</value>
-  </data>
   <data name="andAddButton.Text" xml:space="preserve">
     <value>追加</value>
   </data>
   <data name="orRemoveButton.Text" xml:space="preserve">
     <value>削除</value>
-  </data>
-  <data name="orModifyButton.Text" xml:space="preserve">
-    <value>変更</value>
   </data>
   <data name="orAddButton.Text" xml:space="preserve">
     <value>追加</value>

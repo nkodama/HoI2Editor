@@ -64,8 +64,8 @@
             // 
             // gameFolderTextBox
             // 
-            this.gameFolderTextBox.AllowDrop = true;
             resources.ApplyResources(this.gameFolderTextBox, "gameFolderTextBox");
+            this.gameFolderTextBox.AllowDrop = true;
             this.gameFolderTextBox.Name = "gameFolderTextBox";
             this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
             this.gameFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnGameFolderTextBoxDragDrop);
@@ -78,8 +78,8 @@
             // 
             // modTextBox
             // 
-            this.modTextBox.AllowDrop = true;
             resources.ApplyResources(this.modTextBox, "modTextBox");
+            this.modTextBox.AllowDrop = true;
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.TextChanged += new System.EventHandler(this.OnModTextBoxTextChanged);
             this.modTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnModTextBoxDragDrop);
@@ -152,9 +152,9 @@
             // 
             // languageComboBox
             // 
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
             this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLanguageComboBoxSelectedIndexChanged);
             // 
