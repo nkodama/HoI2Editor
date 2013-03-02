@@ -11,23 +11,6 @@ namespace HoI2Editor.Parsers
     public static class TechParser
     {
         /// <summary>
-        ///     カテゴリ文字列とIDの対応付け
-        /// </summary>
-        private static readonly Dictionary<string, TechCategory> CategoryMap
-            = new Dictionary<string, TechCategory>
-                  {
-                      {"infantry", TechCategory.Infantry},
-                      {"armor", TechCategory.Armor},
-                      {"naval", TechCategory.Naval},
-                      {"aircraft", TechCategory.Aircraft},
-                      {"industry", TechCategory.Industry},
-                      {"land_doctrines", TechCategory.LandDoctrines},
-                      {"secret_weapons", TechCategory.SecretWeapons},
-                      {"naval_doctrines", TechCategory.NavalDoctrines},
-                      {"air_doctrines", TechCategory.AirDoctrines},
-                  };
-
-        /// <summary>
         ///     解析中のファイル名
         /// </summary>
         private static string _fileName;
@@ -84,7 +67,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var group = new TechGroup();
+            var grp = new TechGroup();
             while (true)
             {
                 token = lexer.GetToken();
@@ -138,7 +121,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術グループID
-                    group.Id = (int) (double) token.Value;
+                    grp.Id = (int) (double) token.Value;
                     continue;
                 }
 
@@ -169,7 +152,7 @@ namespace HoI2Editor.Parsers
                     {
                         continue;
                     }
-                    if (!CategoryMap.ContainsKey(s))
+                    if (!Techs.CategoryStringMap.ContainsKey(s))
                     {
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
@@ -177,7 +160,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術カテゴリ
-                    group.Category = CategoryMap[s];
+                    grp.Category = Techs.CategoryStringMap[s];
                     continue;
                 }
 
@@ -203,7 +186,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術グループ名
-                    group.Name = token.Value as string;
+                    grp.Name = token.Value as string;
                     continue;
                 }
 
@@ -229,7 +212,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術グループ説明
-                    group.Desc = token.Value as string;
+                    grp.Desc = token.Value as string;
                     continue;
                 }
 
@@ -245,7 +228,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // ラベル
-                    group.Items.Add(label);
+                    grp.Items.Add(label);
                     continue;
                 }
 
@@ -261,14 +244,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術イベント
-                    group.Items.Add(ev);
+                    grp.Items.Add(ev);
                     continue;
                 }
 
                 // application
                 if (keyword.Equals("application"))
                 {
-                    Tech application = ParseApplication(lexer);
+                    TechApplication application = ParseApplication(lexer);
                     if (application == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "application",
@@ -277,7 +260,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術
-                    group.Items.Add(application);
+                    grp.Items.Add(application);
                     continue;
                 }
 
@@ -286,7 +269,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return group;
+            return grp;
         }
 
         /// <summary>
@@ -294,7 +277,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>技術データ</returns>
-        private static Tech ParseApplication(TextLexer lexer)
+        private static TechApplication ParseApplication(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -312,7 +295,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var application = new Tech();
+            var application = new TechApplication();
             while (true)
             {
                 token = lexer.GetToken();
@@ -521,7 +504,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 必要とする技術群(AND)
-                    application.Required.AddRange(ids);
+                    application.AndRequiredTechs.AddRange(ids);
                     continue;
                 }
 
@@ -537,7 +520,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 必要とする技術群(OR)
-                    application.OrRequired.AddRange(ids);
+                    application.OrRequiredTechs.AddRange(ids);
                     continue;
                 }
 
@@ -642,7 +625,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // タグ名
-                    label.Tag = token.Value as string;
+                    label.Name = token.Value as string;
                     continue;
                 }
 
@@ -789,7 +772,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術ID
-                    ev.Technology = (int) (double) token.Value;
+                    ev.TechId = (int) (double) token.Value;
                     continue;
                 }
 
@@ -1051,7 +1034,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
                     s = s.ToLower();
-                    if (!Tech.SpecialityStringMap.ContainsKey(s))
+                    if (!Techs.SpecialityStringMap.ContainsKey(s))
                     {
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
@@ -1059,7 +1042,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 小研究特性
-                    component.Speciality = Tech.SpecialityStringMap[s];
+                    component.Speciality = Techs.SpecialityStringMap[s];
                     continue;
                 }
 

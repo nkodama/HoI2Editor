@@ -14,20 +14,52 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Techs
     {
+        #region フィールド
+
         /// <summary>
         ///     技術グループリスト
         /// </summary>
         public static List<TechGroup> List = new List<TechGroup>();
 
         /// <summary>
-        ///     研究機関編集フラグ
+        ///     研究特性リスト
         /// </summary>
-        public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (TechCategory)).Length];
+        public static TechSpeciality[] Specialities;
 
         /// <summary>
-        ///     技術定義ファイル名テーブル
+        ///     技術カテゴリ文字列とIDの対応付け
         /// </summary>
-        private static readonly string[] TechFileNames =
+        public static readonly Dictionary<string, TechCategory> CategoryStringMap =
+            new Dictionary<string, TechCategory>();
+
+        /// <summary>
+        ///     研究特性文字列とIDの対応付け
+        /// </summary>
+        public static Dictionary<string, TechSpeciality> SpecialityStringMap = new Dictionary<string, TechSpeciality>();
+
+        /// <summary>
+        ///     研究特性画像リスト
+        /// </summary>
+        public static ImageList SpecialityImages;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (TechCategory)).Length];
+
+        /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        private static bool _loaded;
+
+        #endregion
+
+        #region 定数
+
+        /// <summary>
+        ///     技術定義ファイル名
+        /// </summary>
+        private static readonly string[] CategoryFileNames =
             {
                 "infantry_tech.txt",
                 "armor_tech.txt",
@@ -41,14 +73,36 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     研究特性画像リスト
+        ///     技術カテゴリ文字列
         /// </summary>
-        public static ImageList SpecialityImages;
+        public static readonly string[] CategoryStrings =
+            {
+                "infantry",
+                "armor",
+                "naval",
+                "aircraft",
+                "industry",
+                "land_doctrines",
+                "secret_weapons",
+                "naval_doctrines",
+                "air_doctrines"
+            };
 
         /// <summary>
-        ///     研究特性リスト
+        ///     技術カテゴリ名
         /// </summary>
-        public static TechSpeciality[] Specialities;
+        public static readonly string[] CategoryNames =
+            {
+                "INFANTRY",
+                "ARMOR",
+                "NAVAL",
+                "AIRCRAFT",
+                "INDUSTRY",
+                "LD",
+                "SW",
+                "ND",
+                "AD"
+            };
 
         /// <summary>
         ///     研究特性リスト(HoI2)
@@ -515,148 +569,25 @@ namespace HoI2Editor.Models
                 "RT_USER_60"
             };
 
-        /// <summary>
-        ///     読み込み済みフラグ
-        /// </summary>
-        private static bool _loaded;
+        #endregion
+
+        #region 初期化
 
         /// <summary>
-        ///     技術定義ファイル群を読み込む
+        ///     静的コンストラクタ
         /// </summary>
-        public static void LoadTechFiles()
+        static Techs()
         {
-            // 読み込み済みならば戻る
-            if (_loaded)
-            {
-                return;
-            }
-
-            List.Clear();
-
+            // 技術カテゴリ文字列とIDの対応付け
             foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
             {
-                string fileName = Game.GetReadFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) category]));
-                try
-                {
-                    LoadTechFile(fileName);
-                }
-                catch (Exception)
-                {
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
-                }
+                CategoryStringMap.Add(CategoryStrings[(int) category], category);
             }
 
-            _loaded = true;
-        }
-
-        /// <summary>
-        ///     技術定義ファイルを読み込む
-        /// </summary>
-        /// <param name="fileName">技術定義ファイル名</param>
-        private static void LoadTechFile(string fileName)
-        {
-            TechGroup grp = TechParser.Parse(fileName);
-            List.Add(grp);
-            ClearDirtyFlag(grp.Category);
-        }
-
-        /// <summary>
-        ///     技術定義ファイル群を保存する
-        /// </summary>
-        public static void SaveTechFiles()
-        {
-            string folderName = Game.GetWriteFileName(Game.TechPathName);
-            // 技術定義フォルダがなければ作成する
-            if (!Directory.Exists(folderName))
+            // 研究特性文字列とIDの対応付け
+            foreach (TechSpeciality speciality in Enum.GetValues(typeof (TechSpeciality)))
             {
-                Directory.CreateDirectory(folderName);
-            }
-            foreach (TechGroup grp in List)
-            {
-                if (DirtyFlags[(int) grp.Category])
-                {
-                    string fileName = Path.Combine(folderName, TechFileNames[(int) grp.Category]);
-                    try
-                    {
-                        TechWriter.Write(grp, fileName);
-                        ClearDirtyFlag(grp.Category);
-                    }
-                    catch (Exception)
-                    {
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        ///     項目リストに項目を挿入する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="target">追加対象の項目</param>
-        public static void AddItem(TechCategory category, object target)
-        {
-            TechGroup grp = List[(int) category];
-            grp.Items.Add(target);
-        }
-
-        /// <summary>
-        ///     項目リストに項目を追加する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="target">挿入対象の項目</param>
-        /// <param name="position">挿入位置の直前の項目</param>
-        public static void InsertItemNext(TechCategory category, object target, object position)
-        {
-            TechGroup grp = List[(int) category];
-            grp.Items.Insert(grp.Items.IndexOf(position) + 1, target);
-        }
-
-        /// <summary>
-        ///     項目リストから項目を削除する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="item">削除対象の項目</param>
-        public static void RemoveItem(TechCategory category, object item)
-        {
-            TechGroup grp = List[(int) category];
-            grp.Items.Remove(item);
-
-            if (item is Tech)
-            {
-                var techItem = item as Tech;
-                techItem.RemoveTempKey();
-            }
-            else if (item is TechLabel)
-            {
-                var labelItem = item as TechLabel;
-                labelItem.RemoveTempKey();
-            }
-        }
-
-        /// <summary>
-        ///     項目リストの項目を移動する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="target">移動対象の項目</param>
-        /// <param name="position">移動先位置の項目</param>
-        public static void MoveItem(TechCategory category, object target, object position)
-        {
-            TechGroup grp = List[(int) category];
-            int targetIndex = grp.Items.IndexOf(target);
-            int positionIndex = grp.Items.IndexOf(position);
-
-            if (targetIndex > positionIndex)
-            {
-                // 上へ移動する場合
-                grp.Items.Insert(positionIndex, target);
-                grp.Items.RemoveAt(targetIndex + 1);
-            }
-            else
-            {
-                // 下へ移動する場合
-                grp.Items.Insert(positionIndex + 1, target);
-                grp.Items.RemoveAt(targetIndex);
+                SpecialityStringMap.Add(SpecialityStrings[(int) speciality], speciality);
             }
         }
 
@@ -688,8 +619,12 @@ namespace HoI2Editor.Models
             SpecialityImages.Images.AddStrip(bitmap);
         }
 
+        #endregion
+
+        #region ファイル読み込み
+
         /// <summary>
-        ///     技術ファイルの再読み込みを要求する
+        ///     技術定義ファイルの再読み込みを要求する
         /// </summary>
         public static void RequireReload()
         {
@@ -697,21 +632,178 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     編集フラグをセットする
+        ///     技術定義ファイル群を読み込む
+        /// </summary>
+        public static void Load()
+        {
+            // 読み込み済みならば戻る
+            if (_loaded)
+            {
+                return;
+            }
+
+            List.Clear();
+
+            foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
+            {
+                string fileName = Game.GetReadFileName(Game.TechPathName, CategoryFileNames[(int) category]);
+                try
+                {
+                    // 技術定義ファイルを読み込む
+                    LoadFile(fileName);
+                }
+                catch (Exception)
+                {
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                }
+            }
+
+            _loaded = true;
+        }
+
+        /// <summary>
+        ///     技術定義ファイルを読み込む
+        /// </summary>
+        /// <param name="fileName">技術定義ファイル名</param>
+        private static void LoadFile(string fileName)
+        {
+            TechGroup grp = TechParser.Parse(fileName);
+            List.Add(grp);
+            ResetDirty(grp.Category);
+        }
+
+        #endregion
+
+        #region ファイル書き込み
+
+        /// <summary>
+        ///     技術定義ファイル群を保存する
+        /// </summary>
+        public static void Save()
+        {
+            string folderName = Game.GetWriteFileName(Game.TechPathName);
+            // 技術定義フォルダがなければ作成する
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+            foreach (TechGroup grp in List)
+            {
+                if (DirtyFlags[(int) grp.Category])
+                {
+                    string fileName = Path.Combine(folderName, CategoryFileNames[(int) grp.Category]);
+                    try
+                    {
+                        TechWriter.Write(grp, fileName);
+                        ResetDirty(grp.Category);
+                    }
+                    catch (Exception)
+                    {
+                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region 技術項目リスト操作
+
+        /// <summary>
+        ///     技術項目リストに項目を挿入する
         /// </summary>
         /// <param name="category">技術カテゴリ</param>
-        public static void SetDirtyFlag(TechCategory category)
+        /// <param name="item">追加対象の項目</param>
+        public static void AddItem(TechCategory category, ITechItem item)
+        {
+            TechGroup grp = List[(int) category];
+            grp.Items.Add(item);
+        }
+
+        /// <summary>
+        ///     技術項目リストに項目を追加する
+        /// </summary>
+        /// <param name="category">技術カテゴリ</param>
+        /// <param name="item">挿入対象の項目</param>
+        /// <param name="index">挿入位置</param>
+        public static void InsertItem(TechCategory category, ITechItem item, int index)
+        {
+            TechGroup grp = List[(int) category];
+            grp.Items.Insert(index, item);
+        }
+
+        /// <summary>
+        ///     技術項目リストから項目を削除する
+        /// </summary>
+        /// <param name="category">技術カテゴリ</param>
+        /// <param name="index">削除対象の項目の位置</param>
+        public static void RemoveItem(TechCategory category, int index)
+        {
+            TechGroup grp = List[(int) category];
+            ITechItem item = grp.Items[index];
+            grp.Items.RemoveAt(index);
+
+            // 文字列の一時キーを削除する
+            item.RemoveTempKey();
+        }
+
+        /// <summary>
+        ///     技術項目リストの項目を移動する
+        /// </summary>
+        /// <param name="category">技術カテゴリ</param>
+        /// <param name="src">移動元の位置</param>
+        /// <param name="dest">移動先の位置</param>
+        public static void MoveItem(TechCategory category, int src, int dest)
+        {
+            TechGroup grp = List[(int) category];
+            ITechItem item = grp.Items[src];
+
+            if (src > dest)
+            {
+                // 上へ移動する場合
+                grp.Items.Insert(dest, item);
+                grp.Items.RemoveAt(src + 1);
+            }
+            else
+            {
+                // 下へ移動する場合
+                grp.Items.Insert(dest + 1, item);
+                grp.Items.RemoveAt(src);
+            }
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="category">技術カテゴリ</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty(TechCategory category)
+        {
+            return DirtyFlags[(int) category];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="category">技術カテゴリ</param>
+        public static void SetDirty(TechCategory category)
         {
             DirtyFlags[(int) category] = true;
         }
 
         /// <summary>
-        ///     編集フラグをクリアする
+        ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="category">技術カテゴリ</param>
-        public static void ClearDirtyFlag(TechCategory category)
+        public static void ResetDirty(TechCategory category)
         {
             DirtyFlags[(int) category] = false;
         }
+
+        #endregion
     }
 }

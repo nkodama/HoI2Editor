@@ -12,7 +12,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Units
     {
-        #region 変数
+        #region フィールド
 
         /// <summary>
         ///     ユニット一覧
@@ -3004,10 +3004,9 @@ namespace HoI2Editor.Models
                     Unit unit = List[(int) type];
                     string fileName =
                         Game.GetReadFileName(
-                            Path.Combine(
-                                unit.Organization == UnitOrganization.Division
-                                    ? Game.DivisionPathName
-                                    : Game.BrigadePathName, FileNameMap[type]));
+                            unit.Organization == UnitOrganization.Division
+                                ? Game.DivisionPathName
+                                : Game.BrigadePathName, FileNameMap[type]);
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                 }
             }
@@ -3025,9 +3024,8 @@ namespace HoI2Editor.Models
             Unit unit = List[(int) type];
             string fileName =
                 Game.GetReadFileName(
-                    Path.Combine(
-                        unit.Organization == UnitOrganization.Division ? Game.DivisionPathName : Game.BrigadePathName,
-                        FileNameMap[type]));
+                    unit.Organization == UnitOrganization.Division ? Game.DivisionPathName : Game.BrigadePathName,
+                    FileNameMap[type]);
             if (!File.Exists(fileName))
             {
                 return;

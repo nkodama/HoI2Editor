@@ -22,7 +22,7 @@ namespace HoI2Editor.Parsers
         {
             foreach (CommandType type in Enum.GetValues(typeof (CommandType)))
             {
-                TypeMap.Add(Command.TypeStringTable[(int) type], type);
+                TypeMap.Add(Command.TypeStrings[(int) type], type);
             }
         }
 

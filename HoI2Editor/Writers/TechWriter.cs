@@ -10,22 +10,6 @@ namespace HoI2Editor.Writers
     public static class TechWriter
     {
         /// <summary>
-        ///     カテゴリ文字列
-        /// </summary>
-        private static readonly string[] CategoryStringTable = new[]
-                                                                   {
-                                                                       "infantry",
-                                                                       "armor",
-                                                                       "naval",
-                                                                       "aircraft",
-                                                                       "industry",
-                                                                       "land_doctrines",
-                                                                       "secret_weapons",
-                                                                       "naval_doctrines",
-                                                                       "air_doctrines"
-                                                                   };
-
-        /// <summary>
         ///     技術グループをファイルへ書き込む
         /// </summary>
         /// <param name="group">技術グループデータ</param>
@@ -36,10 +20,10 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("technology =");
                 writer.WriteLine("{{ id          = {0}", group.Id);
-                writer.WriteLine("  category    = {0}", CategoryStringTable[(int) group.Category]);
+                writer.WriteLine("  category    = {0}", Techs.CategoryStrings[(int) group.Category]);
                 writer.WriteLine("  name        = {0} # Localized name", group.Name);
                 writer.WriteLine("  desc        = {0} # Localized description", group.Desc);
-                foreach (object item in group.Items)
+                foreach (ITechItem item in group.Items)
                 {
                     WriteTechItem(item, writer);
                 }
@@ -48,15 +32,15 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        ///     項目を書き出す
+        ///     技術項目を書き出す
         /// </summary>
-        /// <param name="item">項目</param>
+        /// <param name="item">技術項目</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteTechItem(object item, StreamWriter writer)
+        private static void WriteTechItem(ITechItem item, StreamWriter writer)
         {
-            if (item is Tech)
+            if (item is TechApplication)
             {
-                WriteApplication(item as Tech, writer);
+                WriteApplication(item as TechApplication, writer);
             }
             else if (item is TechLabel)
             {
@@ -71,13 +55,13 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     labelセクションを書き出す
         /// </summary>
-        /// <param name="label">ラベルデータ</param>
+        /// <param name="item">技術ラベル</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteLabel(TechLabel label, StreamWriter writer)
+        private static void WriteLabel(TechLabel item, StreamWriter writer)
         {
             writer.WriteLine("  label =");
-            writer.WriteLine("  {{ tag      = {0}", label.Tag);
-            foreach (TechPosition position in label.Positions)
+            writer.WriteLine("  {{ tag      = {0}", item.Name);
+            foreach (TechPosition position in item.Positions)
             {
                 writer.WriteLine("    position = {{ x = {0} y = {1} }}", position.X, position.Y);
             }
@@ -87,61 +71,61 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     eventセクションを書き出す
         /// </summary>
-        /// <param name="ev">技術イベントデータ</param>
+        /// <param name="item">技術イベント</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteEvent(TechEvent ev, StreamWriter writer)
+        private static void WriteEvent(TechEvent item, StreamWriter writer)
         {
             writer.WriteLine("  event =");
-            writer.WriteLine("  {{ id         = {0}", ev.Id);
-            foreach (TechPosition position in ev.Positions)
+            writer.WriteLine("  {{ id         = {0}", item.Id);
+            foreach (TechPosition position in item.Positions)
             {
                 writer.WriteLine("    position   = {{ x = {0} y = {1} }}", position.X, position.Y);
             }
-            writer.WriteLine("    technology = {0}", ev.Technology);
+            writer.WriteLine("    technology = {0}", item.TechId);
             writer.WriteLine("  }");
         }
 
         /// <summary>
         ///     applicationセクションを書き出す
         /// </summary>
-        /// <param name="application">技術データ</param>
+        /// <param name="item">技術アプリケーション</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteApplication(Tech application, StreamWriter writer)
+        private static void WriteApplication(TechApplication item, StreamWriter writer)
         {
-            writer.WriteLine("  # {0}", Config.GetText(application.Name));
+            writer.WriteLine("  # {0}", Config.GetText(item.Name));
             writer.WriteLine("  application =");
-            writer.WriteLine("  {{ id        = {0}", application.Id);
-            writer.WriteLine("    name      = {0}", application.Name);
-            if (!string.IsNullOrEmpty(application.Desc))
+            writer.WriteLine("  {{ id        = {0}", item.Id);
+            writer.WriteLine("    name      = {0}", item.Name);
+            if (!string.IsNullOrEmpty(item.Desc))
             {
-                writer.WriteLine("    desc      = {0}", application.Desc);
+                writer.WriteLine("    desc      = {0}", item.Desc);
             }
-            foreach (TechPosition position in application.Positions)
+            foreach (TechPosition position in item.Positions)
             {
                 writer.WriteLine("    position  = {{ x = {0} y = {1} }}", position.X, position.Y);
             }
-            if (!string.IsNullOrEmpty(application.PictureName))
+            if (!string.IsNullOrEmpty(item.PictureName))
             {
-                writer.WriteLine("    picture   = \"{0}\"", application.PictureName);
+                writer.WriteLine("    picture   = \"{0}\"", item.PictureName);
             }
-            writer.WriteLine("    year      = {0}", application.Year);
-            foreach (TechComponent component in application.Components)
+            writer.WriteLine("    year      = {0}", item.Year);
+            foreach (TechComponent component in item.Components)
             {
                 WriteComponent(component, writer);
             }
-            WriteRequired(application.Required, writer);
-            if (application.OrRequired.Count > 0)
+            WriteRequired(item.AndRequiredTechs, writer);
+            if (item.OrRequiredTechs.Count > 0)
             {
-                WriteOrRequired(application.OrRequired, writer);
+                WriteOrRequired(item.OrRequiredTechs, writer);
             }
-            WriteEffects(application.Effects, writer);
+            WriteEffects(item.Effects, writer);
             writer.WriteLine("  }");
         }
 
         /// <summary>
         ///     componentセクションを書き出す
         /// </summary>
-        /// <param name="component">小研究データ</param>
+        /// <param name="component">小研究</param>
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteComponent(TechComponent component, StreamWriter writer)
         {
@@ -162,7 +146,7 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     requiredセクションを書き出す
         /// </summary>
-        /// <param name="required">要求技術IDリスト</param>
+        /// <param name="required">必要技術リスト</param>
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteRequired(IEnumerable<int> required, StreamWriter writer)
         {
@@ -177,7 +161,7 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     or_requiredセクションを書き出す
         /// </summary>
-        /// <param name="required">要求技術IDリスト</param>
+        /// <param name="required">必要技術リスト</param>
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteOrRequired(IEnumerable<int> required, StreamWriter writer)
         {
@@ -192,7 +176,7 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     effectsセクションを書き出す
         /// </summary>
-        /// <param name="effects">技術効果データ</param>
+        /// <param name="effects">技術効果リスト</param>
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteEffects(List<Command> effects, StreamWriter writer)
         {
@@ -226,7 +210,7 @@ namespace HoI2Editor.Writers
                     }
                     writer.Write(" }");
                 }
-                writer.Write(" type = {0}", Command.TypeStringTable[(int) command.Type]);
+                writer.Write(" type = {0}", Command.TypeStrings[(int) command.Type]);
                 if (command.Which != null)
                 {
                     writer.Write(" which = {0}", command.Which);

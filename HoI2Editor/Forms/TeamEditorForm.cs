@@ -345,7 +345,6 @@ namespace HoI2Editor.Forms
                 team.SetDirty();
 
                 // 研究機関リストに項目を追加する
-
                 AddListItem(team);
 
                 // 編集項目を有効化する
@@ -1233,9 +1232,8 @@ namespace HoI2Editor.Forms
         {
             if (!string.IsNullOrEmpty(team.PictureName))
             {
-                string fileName =
-                    Game.GetReadFileName(Path.Combine(Game.PersonPicturePathName,
-                                                      Path.ChangeExtension(team.PictureName, ".bmp")));
+                string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
+                                                       Path.ChangeExtension(team.PictureName, ".bmp"));
                 teamPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
             }
             else
