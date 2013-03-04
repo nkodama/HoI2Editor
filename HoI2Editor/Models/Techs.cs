@@ -535,7 +535,7 @@ namespace HoI2Editor.Models
 
             foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
             {
-                string fileName = Game.GetReadFileName(Path.Combine(Game.TechPathName, TechFileNames[(int) category]));
+                string fileName = Game.GetReadFileName(Game.TechPathName, TechFileNames[(int) category]);
                 try
                 {
                     LoadTechFile(fileName);

@@ -2071,7 +2071,7 @@ namespace HoI2Editor.Forms
                     Country.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type],
                     no);
-                fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
+                fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
                 if (File.Exists(fileName))
                 {
                     return fileName;
@@ -2084,7 +2084,7 @@ namespace HoI2Editor.Forms
                         : "ill_bri_{0}_{1}_0.bmp",
                     Country.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type]);
-                fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
+                fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
                 if (File.Exists(fileName))
                 {
                     return fileName;
@@ -2098,7 +2098,7 @@ namespace HoI2Editor.Forms
                     : "ill_bri_{0}_{1}.bmp",
                 Units.UnitNumbers[(int) unit.Type],
                 no);
-            fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
+            fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
             if (File.Exists(fileName))
             {
                 return fileName;
@@ -2110,7 +2110,7 @@ namespace HoI2Editor.Forms
                     ? "ill_div_{0}_0.bmp"
                     : "ill_bri_{0}_0.bmp",
                 Units.UnitNumbers[(int) unit.Type]);
-            fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
+            fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
             return File.Exists(fileName) ? fileName : string.Empty;
         }
 
@@ -2129,7 +2129,7 @@ namespace HoI2Editor.Forms
             }
 
             string name = string.Format("model_{0}_{1}.bmp", Units.UnitNumbers[(int) unit.Type], no);
-            string fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
+            string fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
             return File.Exists(fileName) ? fileName : string.Empty;
         }
 

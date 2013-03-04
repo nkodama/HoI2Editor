@@ -1578,7 +1578,7 @@ namespace HoI2Editor.Forms
             // 技術ツリー画像
             int index = categoryListBox.SelectedIndex;
             treePictureBox.ImageLocation =
-                Game.GetReadFileName(Path.Combine(Game.PicturePathName, TechTreeFileNames[index]));
+                Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[index]);
 
             // カテゴリタブの編集項目
             TechGroup grp = Techs.List[index];
@@ -2151,11 +2151,11 @@ namespace HoI2Editor.Forms
             techPictureNameTextBox.Text = string.IsNullOrEmpty(item.PictureName) ? "" : item.PictureName;
 
             string fileName =
-                Game.GetReadFileName(Path.Combine(Game.TechPicturePathName,
-                                                  string.Format("{0}.bmp",
-                                                                string.IsNullOrEmpty(item.PictureName)
-                                                                    ? item.Id.ToString(CultureInfo.InvariantCulture)
-                                                                    : item.PictureName)));
+                Game.GetReadFileName(Game.TechPicturePathName,
+                                     string.Format("{0}.bmp",
+                                                   string.IsNullOrEmpty(item.PictureName)
+                                                       ? item.Id.ToString(CultureInfo.InvariantCulture)
+                                                       : item.PictureName));
             if (File.Exists(fileName))
             {
                 var bitmap = new Bitmap(fileName);
