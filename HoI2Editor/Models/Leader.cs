@@ -112,20 +112,20 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目が編集済みかどうかを取得する
         /// </summary>
-        /// <param name="itemId">項目ID</param>
+        /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(LeaderItemId itemId)
+        public bool IsDirty(LeaderItemId id)
         {
-            return _dirtyFlags[(int) itemId];
+            return _dirtyFlags[(int) id];
         }
 
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        /// <param name="itemId">項目ID</param>
-        public void SetDirty(LeaderItemId itemId)
+        /// <param name="id">項目ID</param>
+        public void SetDirty(LeaderItemId id)
         {
-            _dirtyFlags[(int) itemId] = true;
+            _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
         }
 
@@ -134,9 +134,9 @@ namespace HoI2Editor.Models
         /// </summary>
         public void SetDirty()
         {
-            foreach (LeaderItemId itemId in Enum.GetValues(typeof (LeaderItemId)))
+            foreach (LeaderItemId id in Enum.GetValues(typeof (LeaderItemId)))
             {
-                _dirtyFlags[(int) itemId] = true;
+                _dirtyFlags[(int) id] = true;
             }
             _dirtyFlag = true;
         }
@@ -146,9 +146,9 @@ namespace HoI2Editor.Models
         /// </summary>
         public void ResetDirty()
         {
-            foreach (LeaderItemId itemId in Enum.GetValues(typeof (LeaderItemId)))
+            foreach (LeaderItemId id in Enum.GetValues(typeof (LeaderItemId)))
             {
-                _dirtyFlags[(int) itemId] = false;
+                _dirtyFlags[(int) id] = false;
             }
             _dirtyFlag = false;
         }
