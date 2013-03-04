@@ -218,7 +218,7 @@ namespace HoI2Editor.Forms
         {
             // 文字列定義ファイルを再読み込みする
             Config.RequireReload();
-            Config.LoadConfigFiles();
+            Config.Load();
 
             // 技術定義ファイルを再読み込みする
             Techs.RequireReload();
@@ -299,7 +299,7 @@ namespace HoI2Editor.Forms
             }
 
             // 文字列定義ファイルを保存する
-            Config.SaveConfigFiles();
+            Config.Save();
         }
 
         /// <summary>

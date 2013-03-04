@@ -216,7 +216,7 @@ namespace HoI2Editor.Forms
         private static void LoadFiles()
         {
             // 文字列定義ファイルを読み込む
-            Config.LoadConfigFiles();
+            Config.Load();
 
             // ユニットデータを読み込む
             Units.Load();
@@ -228,7 +228,7 @@ namespace HoI2Editor.Forms
         private static void ReloadFiles()
         {
             // 文字列定義ファイルを読み込む
-            Config.LoadConfigFiles();
+            Config.Load();
 
             // ユニットデータを読み込む
             Units.Reload();
@@ -240,7 +240,7 @@ namespace HoI2Editor.Forms
         private static void SaveFiles()
         {
             // 文字列定義ファイルを保存する
-            Config.SaveConfigFiles();
+            Config.Save();
 
             // ユニットデータを保存する
             Units.Save();

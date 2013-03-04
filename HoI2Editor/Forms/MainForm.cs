@@ -318,7 +318,7 @@ namespace HoI2Editor.Forms
         private static void LoadCommonFiles()
         {
             Misc.Load();
-            Config.LoadConfigFiles();
+            Config.Load();
         }
     }
 }

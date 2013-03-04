@@ -297,7 +297,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列ファイル群を読み込む
         /// </summary>
-        public static void LoadConfigFiles()
+        public static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -322,7 +322,7 @@ namespace HoI2Editor.Models
                     {
                         try
                         {
-                            LoadConfigFile(fileName);
+                            LoadFile(fileName);
                             string name = Path.GetFileName(fileName);
                             if (!string.IsNullOrEmpty(name))
                             {
@@ -347,7 +347,7 @@ namespace HoI2Editor.Models
                     {
                         try
                         {
-                            LoadConfigFile(fileName);
+                            LoadFile(fileName);
                         }
                         catch (Exception)
                         {
@@ -369,7 +369,7 @@ namespace HoI2Editor.Models
                     {
                         try
                         {
-                            LoadConfigFile(fileName);
+                            LoadFile(fileName);
                             string name = Path.GetFileName(fileName);
                             if (!string.IsNullOrEmpty(name))
                             {
@@ -394,7 +394,7 @@ namespace HoI2Editor.Models
                         {
                             try
                             {
-                                LoadConfigFile(fileName);
+                                LoadFile(fileName);
                             }
                             catch (Exception)
                             {
@@ -418,7 +418,7 @@ namespace HoI2Editor.Models
         ///     文字列ファイルを読み込む
         /// </summary>
         /// <param name="fileName">対象ファイル名</param>
-        private static void LoadConfigFile(string fileName)
+        private static void LoadFile(string fileName)
         {
             if (string.IsNullOrEmpty(fileName))
             {
@@ -526,14 +526,14 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列ファイル群を保存する
         /// </summary>
-        public static void SaveConfigFiles()
+        public static void Save()
         {
             var list = new List<string>(DirtyFiles);
             foreach (string fileName in list)
             {
                 try
                 {
-                    SaveConfigFile(fileName);
+                    SaveFile(fileName);
                     SetDirty(fileName, false);
                 }
                 catch (Exception)
@@ -550,7 +550,7 @@ namespace HoI2Editor.Models
         ///     文字列ファイルを保存する
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        private static void SaveConfigFile(string fileName)
+        private static void SaveFile(string fileName)
         {
             string folderName = Game.GetWriteFileName(Game.ConfigPathName);
 
