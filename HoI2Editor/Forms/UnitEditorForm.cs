@@ -216,7 +216,7 @@ namespace HoI2Editor.Forms
         private static void LoadFiles()
         {
             // 文字列定義ファイルを読み込む
-            Config.Load();
+            Config.LoadConfigFiles();
 
             // ユニットデータを読み込む
             Units.Load();
@@ -228,7 +228,7 @@ namespace HoI2Editor.Forms
         private static void ReloadFiles()
         {
             // 文字列定義ファイルを読み込む
-            Config.Load();
+            Config.LoadConfigFiles();
 
             // ユニットデータを読み込む
             Units.Reload();
@@ -240,7 +240,7 @@ namespace HoI2Editor.Forms
         private static void SaveFiles()
         {
             // 文字列定義ファイルを保存する
-            Config.Save();
+            Config.SaveConfigFiles();
 
             // ユニットデータを保存する
             Units.Save();
@@ -2071,7 +2071,7 @@ namespace HoI2Editor.Forms
                     Country.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type],
                     no);
-                fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
+                fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
                 if (File.Exists(fileName))
                 {
                     return fileName;
@@ -2084,7 +2084,7 @@ namespace HoI2Editor.Forms
                         : "ill_bri_{0}_{1}_0.bmp",
                     Country.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type]);
-                fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
+                fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
                 if (File.Exists(fileName))
                 {
                     return fileName;
@@ -2098,7 +2098,7 @@ namespace HoI2Editor.Forms
                     : "ill_bri_{0}_{1}.bmp",
                 Units.UnitNumbers[(int) unit.Type],
                 no);
-            fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
+            fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
             if (File.Exists(fileName))
             {
                 return fileName;
@@ -2110,7 +2110,7 @@ namespace HoI2Editor.Forms
                     ? "ill_div_{0}_0.bmp"
                     : "ill_bri_{0}_0.bmp",
                 Units.UnitNumbers[(int) unit.Type]);
-            fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
+            fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
             return File.Exists(fileName) ? fileName : string.Empty;
         }
 
@@ -2129,7 +2129,7 @@ namespace HoI2Editor.Forms
             }
 
             string name = string.Format("model_{0}_{1}.bmp", Units.UnitNumbers[(int) unit.Type], no);
-            string fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
+            string fileName = Game.GetReadFileName(Path.Combine(Game.ModelPicturePathName, name));
             return File.Exists(fileName) ? fileName : string.Empty;
         }
 

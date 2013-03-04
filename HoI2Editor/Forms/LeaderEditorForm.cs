@@ -1655,8 +1655,9 @@ namespace HoI2Editor.Forms
         {
             if (!string.IsNullOrEmpty(leader.PictureName))
             {
-                string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
-                                                       Path.ChangeExtension(leader.PictureName, ".bmp"));
+                string fileName =
+                    Game.GetReadFileName(Path.Combine(Game.PersonPicturePathName,
+                                                      Path.ChangeExtension(leader.PictureName, ".bmp")));
                 leaderPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
             }
             else

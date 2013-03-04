@@ -182,7 +182,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (string fileName in fileList.Select(name => Game.GetReadFileName(Game.TeamPathName, name)))
+            foreach (string fileName
+                in fileList.Select(name => Game.GetReadFileName(Path.Combine(Game.TeamPathName, name))))
             {
                 try
                 {
@@ -385,7 +386,7 @@ namespace HoI2Editor.Models
                 }
 
                 // 無効な研究特性文字列
-                if (!Techs.SpecialityStringMap.ContainsKey(s))
+                if (!Tech.SpecialityStringMap.ContainsKey(s))
                 {
                     team.Specialities[i] = TechSpeciality.None;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
@@ -395,7 +396,7 @@ namespace HoI2Editor.Models
                 }
 
                 // サポート外の研究特性
-                TechSpeciality speciality = Techs.SpecialityStringMap[s];
+                TechSpeciality speciality = Tech.SpecialityStringMap[s];
                 if (!Techs.Specialities.Contains(speciality))
                 {
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,

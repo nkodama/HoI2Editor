@@ -284,7 +284,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (string fileName in fileList.Select(name => Game.GetReadFileName(Game.LeaderPathName, name)))
+            foreach (string fileName
+                in fileList.Select(name => Game.GetReadFileName(Path.Combine(Game.LeaderPathName, name))))
             {
                 try
                 {

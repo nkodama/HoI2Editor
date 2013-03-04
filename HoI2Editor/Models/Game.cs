@@ -308,18 +308,6 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     MODフォルダを考慮して読み込み用のファイル名を取得する
-        /// </summary>
-        /// <param name="folderName">フォルダ名</param>
-        /// <param name="fileName">ファイル名</param>
-        /// <returns>ファイル名</returns>
-        public static string GetReadFileName(string folderName, string fileName)
-        {
-            string pathName = Path.Combine(folderName, fileName);
-            return GetReadFileName(pathName);
-        }
-
-        /// <summary>
         ///     MODフォルダを考慮して書き込み用のファイル名を取得する
         /// </summary>
         /// <param name="pathName">パス名</param>
@@ -327,18 +315,6 @@ namespace HoI2Editor.Models
         public static string GetWriteFileName(string pathName)
         {
             return Path.Combine(IsModActive ? ModFolderName : FolderName, pathName);
-        }
-
-        /// <summary>
-        ///     MODフォルダを考慮して書き込み用のファイル名を取得する
-        /// </summary>
-        /// <param name="folderName">フォルダ名</param>
-        /// <param name="fileName">ファイル名</param>
-        /// <returns>ファイル名</returns>
-        public static string GetWriteFileName(string folderName, string fileName)
-        {
-            string pathName = Path.Combine(folderName, fileName);
-            return GetWriteFileName(pathName);
         }
 
         /// <summary>

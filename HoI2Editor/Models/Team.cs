@@ -82,20 +82,20 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目が編集済みかどうかを取得する
         /// </summary>
-        /// <param name="id">項目ID</param>
+        /// <param name="itemId">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(TeamItemId id)
+        public bool IsDirty(TeamItemId itemId)
         {
-            return _dirtyFlags[(int) id];
+            return _dirtyFlags[(int) itemId];
         }
 
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        /// <param name="id">項目ID</param>
-        public void SetDirty(TeamItemId id)
+        /// <param name="itemId">項目ID</param>
+        public void SetDirty(TeamItemId itemId)
         {
-            _dirtyFlags[(int) id] = true;
+            _dirtyFlags[(int) itemId] = true;
             _dirtyFlag = true;
         }
 
@@ -104,9 +104,9 @@ namespace HoI2Editor.Models
         /// </summary>
         public void SetDirty()
         {
-            foreach (TeamItemId id in Enum.GetValues(typeof (TeamItemId)))
+            foreach (TeamItemId itemId in Enum.GetValues(typeof (TeamItemId)))
             {
-                _dirtyFlags[(int) id] = true;
+                _dirtyFlags[(int) itemId] = true;
             }
             _dirtyFlag = true;
         }
@@ -116,9 +116,9 @@ namespace HoI2Editor.Models
         /// </summary>
         public void ResetDirty()
         {
-            foreach (TeamItemId id in Enum.GetValues(typeof (TeamItemId)))
+            foreach (TeamItemId itemId in Enum.GetValues(typeof (TeamItemId)))
             {
-                _dirtyFlags[(int) id] = false;
+                _dirtyFlags[(int) itemId] = false;
             }
             _dirtyFlag = false;
         }

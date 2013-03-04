@@ -12,7 +12,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コマンド種類文字列
         /// </summary>
-        public static readonly string[] TypeStrings =
+        public static readonly string[] TypeStringTable =
             {
                 "",
                 "trigger",
