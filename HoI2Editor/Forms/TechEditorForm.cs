@@ -21,7 +21,8 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     技術IDの対応付けテーブル
         /// </summary>
-        private static readonly List<KeyValuePair<int, TechApplication>> TechIdMap = new List<KeyValuePair<int, TechApplication>>();
+        private static readonly List<KeyValuePair<int, TechApplication>> TechIdMap =
+            new List<KeyValuePair<int, TechApplication>>();
 
         /// <summary>
         ///     技術ラベルの画像
@@ -89,7 +90,7 @@ namespace HoI2Editor.Forms
         private const int EventLabelHeight = 24;
 
         /// <summary>
-        ///     技術ツリー画像ファイル名テーブル
+        ///     技術ツリー画像ファイル名
         /// </summary>
         private static readonly string[] TechTreeFileNames =
             {
@@ -115,6 +116,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
+            // 技術ツリーピクチャーボックスへのドラッグアンドドロップを許可する
+            // プロパティに存在しないので初期化時に設定する
             treePictureBox.AllowDrop = true;
         }
 
@@ -251,7 +254,7 @@ namespace HoI2Editor.Forms
         private void LoadTechFiles()
         {
             // 技術定義ファイルを読み込む
-            Techs.LoadTechFiles();
+            Techs.Load();
 
             // 技術IDの対応付けテーブルを初期化する
             InitTechIdMap();
@@ -266,7 +269,7 @@ namespace HoI2Editor.Forms
         private void SaveTechFiles()
         {
             // 技術定義ファイルを保存する
-            Techs.SaveTechFiles();
+            Techs.Save();
 
             // 編集済みフラグがクリアされるため表示を更新する
             categoryListBox.Update();
@@ -287,7 +290,7 @@ namespace HoI2Editor.Forms
                     if (item is TechApplication)
                     {
                         var techItem = item as TechApplication;
-                        techItem.RenameTempKey(grp.Category);
+                        techItem.RenameTempKey(Techs.TechCategoryNames[(int) grp.Category]);
                     }
                     else if (item is TechLabel)
                     {
@@ -308,7 +311,7 @@ namespace HoI2Editor.Forms
         private void SetDirtyFlag()
         {
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            Techs.SetDirtyFlag(category);
+            Techs.SetDirty(category);
         }
 
         #endregion
@@ -369,7 +372,7 @@ namespace HoI2Editor.Forms
                 if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
                 {
                     // 変更ありの項目は文字色を変更する
-                    brush = Techs.DirtyFlags[e.Index]
+                    brush = Techs.IsDirty((TechCategory) e.Index)
                                 ? new SolidBrush(Color.Red)
                                 : new SolidBrush(categoryListBox.ForeColor);
                 }
@@ -553,7 +556,7 @@ namespace HoI2Editor.Forms
                     item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
                 }
 
-                Techs.InsertItemNext(category, item, techListBox.SelectedItem);
+                Techs.InsertItem(category, item, techListBox.SelectedItem);
                 TechIdMap.Add(new KeyValuePair<int, TechApplication>(item.Id, item));
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
@@ -608,7 +611,7 @@ namespace HoI2Editor.Forms
                     item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
                 }
 
-                Techs.InsertItemNext(category, item, techListBox.SelectedItem);
+                Techs.InsertItem(category, item, techListBox.SelectedItem);
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
@@ -658,7 +661,7 @@ namespace HoI2Editor.Forms
                     item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
                 }
 
-                Techs.InsertItemNext(category, item, techListBox.SelectedItem);
+                Techs.InsertItem(category, item, techListBox.SelectedItem);
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
@@ -697,7 +700,7 @@ namespace HoI2Editor.Forms
                 var selected = techListBox.SelectedItem as TechApplication;
                 ITechItem item = selected.Clone();
 
-                Techs.InsertItemNext(category, item, selected);
+                Techs.InsertItem(category, item, selected);
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
                 foreach (TechPosition position in item.Positions)
@@ -713,7 +716,7 @@ namespace HoI2Editor.Forms
                 var selected = techListBox.SelectedItem as TechLabel;
                 ITechItem item = selected.Clone();
 
-                Techs.InsertItemNext(category, item, selected);
+                Techs.InsertItem(category, item, selected);
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
                 foreach (TechPosition position in item.Positions)
@@ -726,7 +729,7 @@ namespace HoI2Editor.Forms
                 var selected = techListBox.SelectedItem as TechEvent;
                 ITechItem item = selected.Clone();
 
-                Techs.InsertItemNext(category, item, selected);
+                Techs.InsertItem(category, item, selected);
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
                 foreach (TechPosition position in item.Positions)
@@ -2220,7 +2223,7 @@ namespace HoI2Editor.Forms
             andRequiredListView.BeginUpdate();
             andRequiredListView.Items.Clear();
 
-            foreach (int id in item.Required)
+            foreach (int id in item.AndRequired)
             {
                 var listItem = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
                 foreach (var pair in TechIdMap)
@@ -2395,12 +2398,13 @@ namespace HoI2Editor.Forms
             }
             int index = andRequiredListView.SelectedIndices[0];
 
-            andIdNumericUpDown.Value = item.Required[index];
+            andIdNumericUpDown.Value = item.AndRequired[index];
 
             andTechComboBox.SelectedIndex = -1;
             foreach (
                 TechApplication techItem in
-                    andTechComboBox.Items.Cast<TechApplication>().Where(techItem => techItem.Id == item.Required[index]))
+                    andTechComboBox.Items.Cast<TechApplication>()
+                                   .Where(techItem => techItem.Id == item.AndRequired[index]))
             {
                 andTechComboBox.SelectedItem = techItem;
             }
@@ -2435,7 +2439,8 @@ namespace HoI2Editor.Forms
             orTechComboBox.SelectedIndex = -1;
             foreach (
                 TechApplication techItem in
-                    orTechComboBox.Items.Cast<TechApplication>().Where(techItem => techItem.Id == item.OrRequired[index]))
+                    orTechComboBox.Items.Cast<TechApplication>()
+                                  .Where(techItem => techItem.Id == item.OrRequired[index]))
             {
                 orTechComboBox.SelectedItem = techItem;
             }
@@ -2459,7 +2464,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            item.Required.Add(0);
+            item.AndRequired.Add(0);
 
             AddAndRequiredListItem(0);
 
@@ -2517,7 +2522,7 @@ namespace HoI2Editor.Forms
 
             RemoveAndRequiredListItem(index);
 
-            item.Required.RemoveAt(index);
+            item.AndRequired.RemoveAt(index);
 
             SetDirtyFlag();
         }
@@ -2579,17 +2584,19 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もせずに戻る
             var newId = (int) andIdNumericUpDown.Value;
-            if (newId == item.Required[index])
+            if (newId == item.AndRequired[index])
             {
                 return;
             }
 
-            item.Required[index] = newId;
+            item.AndRequired[index] = newId;
 
             ModifyAndRequiredListItem(newId, index);
 
             andTechComboBox.SelectedIndex = -1;
-            foreach (TechApplication techItem in andTechComboBox.Items.Cast<TechApplication>().Where(techItem => techItem.Id == newId))
+            foreach (
+                TechApplication techItem in
+                    andTechComboBox.Items.Cast<TechApplication>().Where(techItem => techItem.Id == newId))
             {
                 andTechComboBox.SelectedItem = techItem;
             }
@@ -2633,7 +2640,9 @@ namespace HoI2Editor.Forms
             ModifyOrRequiredListItem(newId, index);
 
             orTechComboBox.SelectedIndex = -1;
-            foreach (TechApplication techItem in orTechComboBox.Items.Cast<TechApplication>().Where(techItem => techItem.Id == newId))
+            foreach (
+                TechApplication techItem in
+                    orTechComboBox.Items.Cast<TechApplication>().Where(techItem => techItem.Id == newId))
             {
                 orTechComboBox.SelectedItem = techItem;
             }
@@ -2672,12 +2681,12 @@ namespace HoI2Editor.Forms
                 return;
             }
             int newId = techItem.Id;
-            if (newId == item.Required[index])
+            if (newId == item.AndRequired[index])
             {
                 return;
             }
 
-            item.Required[index] = newId;
+            item.AndRequired[index] = newId;
 
             andIdNumericUpDown.Value = newId;
             ModifyAndRequiredListItem(newId, index);

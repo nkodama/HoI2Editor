@@ -504,7 +504,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 必要とする技術群(AND)
-                    application.Required.AddRange(ids);
+                    application.AndRequired.AddRange(ids);
                     continue;
                 }
 
