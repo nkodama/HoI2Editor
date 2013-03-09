@@ -11,23 +11,6 @@ namespace HoI2Editor.Parsers
     public static class TechParser
     {
         /// <summary>
-        ///     カテゴリ文字列とIDの対応付け
-        /// </summary>
-        private static readonly Dictionary<string, TechCategory> CategoryMap
-            = new Dictionary<string, TechCategory>
-                  {
-                      {"infantry", TechCategory.Infantry},
-                      {"armor", TechCategory.Armor},
-                      {"naval", TechCategory.Naval},
-                      {"aircraft", TechCategory.Aircraft},
-                      {"industry", TechCategory.Industry},
-                      {"land_doctrines", TechCategory.LandDoctrines},
-                      {"secret_weapons", TechCategory.SecretWeapons},
-                      {"naval_doctrines", TechCategory.NavalDoctrines},
-                      {"air_doctrines", TechCategory.AirDoctrines},
-                  };
-
-        /// <summary>
         ///     解析中のファイル名
         /// </summary>
         private static string _fileName;
@@ -169,7 +152,7 @@ namespace HoI2Editor.Parsers
                     {
                         continue;
                     }
-                    if (!CategoryMap.ContainsKey(s))
+                    if (!Techs.CategoryMap.ContainsKey(s))
                     {
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
@@ -177,7 +160,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術カテゴリ
-                    group.Category = CategoryMap[s];
+                    group.Category = Techs.CategoryMap[s];
                     continue;
                 }
 
@@ -1051,7 +1034,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
                     s = s.ToLower();
-                    if (!Tech.SpecialityStringMap.ContainsKey(s))
+                    if (!Techs.SpecialityStringMap.ContainsKey(s))
                     {
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         lexer.SkipLine();
@@ -1059,7 +1042,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 小研究特性
-                    component.Speciality = Tech.SpecialityStringMap[s];
+                    component.Speciality = Techs.SpecialityStringMap[s];
                     continue;
                 }
 

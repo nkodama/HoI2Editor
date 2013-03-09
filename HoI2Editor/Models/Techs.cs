@@ -25,7 +25,23 @@ namespace HoI2Editor.Models
         public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (TechCategory)).Length];
 
         /// <summary>
-        ///     技術定義ファイル名テーブル
+        ///     技術カテゴリ名
+        /// </summary>
+        public static readonly string[] TechCategoryNames =
+            {
+                "INFANTRY",
+                "ARMOR",
+                "NAVAL",
+                "AIRCRAFT",
+                "INDUSTRY",
+                "LD",
+                "SW",
+                "ND",
+                "AD"
+            };
+
+        /// <summary>
+        ///     技術定義ファイル名
         /// </summary>
         private static readonly string[] TechFileNames =
             {
@@ -39,6 +55,11 @@ namespace HoI2Editor.Models
                 "naval_doctrines_tech.txt",
                 "air_doctrines_tech.txt"
             };
+
+        /// <summary>
+        ///     研究特性文字列とIDの対応付け
+        /// </summary>
+        public static Dictionary<string, TechSpeciality> SpecialityStringMap = new Dictionary<string, TechSpeciality>();
 
         /// <summary>
         ///     研究特性画像リスト
@@ -516,9 +537,38 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
+        ///     カテゴリ文字列とIDの対応付け
+        /// </summary>
+        public static readonly Dictionary<string, TechCategory> CategoryMap
+            = new Dictionary<string, TechCategory>
+                  {
+                      {"infantry", TechCategory.Infantry},
+                      {"armor", TechCategory.Armor},
+                      {"naval", TechCategory.Naval},
+                      {"aircraft", TechCategory.Aircraft},
+                      {"industry", TechCategory.Industry},
+                      {"land_doctrines", TechCategory.LandDoctrines},
+                      {"secret_weapons", TechCategory.SecretWeapons},
+                      {"naval_doctrines", TechCategory.NavalDoctrines},
+                      {"air_doctrines", TechCategory.AirDoctrines},
+                  };
+
+        /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
+
+        /// <summary>
+        ///     静的コンストラクタ
+        /// </summary>
+        static Techs()
+        {
+            // 研究特性文字列とIDの対応付け
+            foreach (TechSpeciality speciality in Enum.GetValues(typeof (TechSpeciality)))
+            {
+                SpecialityStringMap.Add(SpecialityStrings[(int) speciality], speciality);
+            }
+        }
 
         /// <summary>
         ///     技術定義ファイル群を読み込む

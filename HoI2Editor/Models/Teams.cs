@@ -385,7 +385,7 @@ namespace HoI2Editor.Models
                 }
 
                 // 無効な研究特性文字列
-                if (!Tech.SpecialityStringMap.ContainsKey(s))
+                if (!Techs.SpecialityStringMap.ContainsKey(s))
                 {
                     team.Specialities[i] = TechSpeciality.None;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
@@ -395,7 +395,7 @@ namespace HoI2Editor.Models
                 }
 
                 // サポート外の研究特性
-                TechSpeciality speciality = Tech.SpecialityStringMap[s];
+                TechSpeciality speciality = Techs.SpecialityStringMap[s];
                 if (!Techs.Specialities.Contains(speciality))
                 {
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,

@@ -226,43 +226,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Tech
     {
-        #region 定数
-
-        /// <summary>
-        ///     技術カテゴリキー名テーブル
-        /// </summary>
-        private static readonly string[] TechCategoryKeyNames =
-            {
-                "INFANTRY",
-                "ARMOR",
-                "NAVAL",
-                "AIRCRAFT",
-                "INDUSTRY",
-                "LD",
-                "SW",
-                "ND",
-                "AD"
-            };
-
-        #endregion
-
-        /// <summary>
-        ///     研究特性文字列とIDの対応付け
-        /// </summary>
-        public static Dictionary<string, TechSpeciality> SpecialityStringMap = new Dictionary<string, TechSpeciality>();
-
-        /// <summary>
-        ///     静的コンストラクタ
-        /// </summary>
-        static Tech()
-        {
-            // 研究特性文字列とIDの対応付け
-            foreach (TechSpeciality speciality in Enum.GetValues(typeof (TechSpeciality)))
-            {
-                SpecialityStringMap.Add(Techs.SpecialityStrings[(int) speciality], speciality);
-            }
-        }
-
         /// <summary>
         ///     コンストラクタ
         /// </summary>
@@ -405,21 +368,21 @@ namespace HoI2Editor.Models
             // 技術名
             if (Config.IsReservedKey(Name, Game.TechTextFileName))
             {
-                string newKey = String.Format("TECH_APP_{0}_{1}_NAME", TechCategoryKeyNames[(int) category], Id);
+                string newKey = String.Format("TECH_APP_{0}_{1}_NAME", Techs.TechCategoryNames[(int) category], Id);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
             }
             // 技術短縮名
             if (Config.IsReservedKey(ShortName, Game.TechTextFileName))
             {
-                string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", TechCategoryKeyNames[(int) category], Id);
+                string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", Techs.TechCategoryNames[(int) category], Id);
                 Config.RenameText(ShortName, newKey, Game.TechTextFileName);
                 ShortName = newKey;
             }
             // 技術説明
             if (Config.IsReservedKey(Desc, Game.TechTextFileName))
             {
-                string newKey = String.Format("TECH_APP_{0}_{1}_DESC", TechCategoryKeyNames[(int) category], Id);
+                string newKey = String.Format("TECH_APP_{0}_{1}_DESC", Techs.TechCategoryNames[(int) category], Id);
                 Config.RenameText(Desc, newKey, Game.TechTextFileName);
                 Desc = newKey;
             }
@@ -429,7 +392,8 @@ namespace HoI2Editor.Models
             {
                 if (Config.IsReservedKey(component.Name, Game.TechTextFileName))
                 {
-                    string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", TechCategoryKeyNames[(int) category], Id,
+                    string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", Techs.TechCategoryNames[(int) category],
+                                                  Id,
                                                   componentId);
                     Config.RenameText(component.Name, newKey, Game.TechTextFileName);
                     component.Name = newKey;
