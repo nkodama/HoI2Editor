@@ -135,23 +135,14 @@ namespace HoI2Editor.Forms
             // 研究特性を初期化する
             Techs.InitSpecialities();
 
-            // 技術定義ファイルを読み込む
-            LoadTechFiles();
-
             // ラベル画像を読み込む
             InitLabelBitmap();
 
-            // 編集可能な項目を初期化する
+            // 編集項目を初期化する
             InitEditableItems();
 
-            // 必要技術タブの技術リストを更新する
-            UpdateRequiredTechItems();
-
-            // 技術イベントタブの技術リストを更新する
-            UpdateEventTechItems();
-
-            // カテゴリリストボックスを初期化する
-            InitCategoryList();
+            // 技術定義ファイルを読み込む
+            LoadFiles();
         }
 
         /// <summary>
@@ -173,29 +164,29 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 小研究特性
-            int maxSize = componentSpecialityComboBox.DropDownWidth;
+            int maxWidth = componentSpecialityComboBox.DropDownWidth;
             foreach (
                 string name in
                     Techs.Specialities.Select(
                         speciality => Config.GetText(Techs.SpecialityNames[(int) speciality])))
             {
                 componentSpecialityComboBox.Items.Add(name);
-                maxSize = Math.Max(maxSize,
-                                   TextRenderer.MeasureText(name, componentSpecialityComboBox.Font).Width +
-                                   SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(name, componentSpecialityComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
             }
-            componentSpecialityComboBox.DropDownWidth = maxSize;
+            componentSpecialityComboBox.DropDownWidth = maxWidth;
 
-            // 技術効果種類
-            maxSize = commandTypeComboBox.DropDownWidth;
+            // 技術効果の種類
+            maxWidth = commandTypeComboBox.DropDownWidth;
             foreach (string name in Command.TypeStringTable)
             {
                 commandTypeComboBox.Items.Add(name);
-                maxSize = Math.Max(maxSize,
-                                   TextRenderer.MeasureText(name, commandTypeComboBox.Font).Width +
-                                   SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(name, commandTypeComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
             }
-            commandTypeComboBox.DropDownWidth = maxSize;
+            commandTypeComboBox.DropDownWidth = maxWidth;
         }
 
         /// <summary>
@@ -210,7 +201,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 技術定義データ操作
+        #region 技術定義データ処理
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -219,13 +210,39 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 文字列定義ファイルを再読み込みする
+            // 文字列定義ファイルの再読み込みを要求する
             Config.RequireReload();
+
+            // 文字列定義ファイルを読み込む
             Config.Load();
 
-            // 技術定義ファイルを再読み込みする
+            // 技術定義ファイルの再読み込みを要求する
             Techs.RequireReload();
-            LoadTechFiles();
+
+            // 技術定義ファイルを読み込む
+            LoadFiles();
+        }
+
+        /// <summary>
+        ///     保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            SaveFiles();
+        }
+
+        /// <summary>
+        ///     技術定義ファイルを読み込む
+        /// </summary>
+        private void LoadFiles()
+        {
+            // 技術定義ファイルを読み込む
+            Techs.Load();
+
+            // 技術IDの対応付けテーブルを初期化する
+            InitTechIdMap();
 
             // 必要技術タブの技術リストを更新する
             UpdateRequiredTechItems();
@@ -238,54 +255,18 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     保存ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSaveButtonClick(object sender, EventArgs e)
-        {
-            SaveConfigFiles();
-            SaveTechFiles();
-        }
-
-        /// <summary>
-        ///     技術定義ファイルを読み込む
-        /// </summary>
-        private void LoadTechFiles()
-        {
-            // 技術定義ファイルを読み込む
-            Techs.Load();
-
-            // 技術IDの対応付けテーブルを初期化する
-            InitTechIdMap();
-
-            // 編集済みフラグがクリアされるため表示を更新する
-            categoryListBox.Update();
-        }
-
-        /// <summary>
         ///     技術定義ファイルを保存する
         /// </summary>
-        private void SaveTechFiles()
+        private void SaveFiles()
         {
             // 技術定義ファイルを保存する
             Techs.Save();
 
-            // 編集済みフラグがクリアされるため表示を更新する
-            categoryListBox.Update();
-        }
-
-        /// <summary>
-        ///     文字列定義ファイルを保存する
-        /// </summary>
-        private static void SaveConfigFiles()
-        {
-            int labelno = 1;
-
-            // 一時キーをIDに応じた値に変更する
+            // 一時キーを保存形式に変更する
+            int no = 1;
             foreach (TechGroup grp in Techs.List)
             {
-                foreach (object item in grp.Items)
+                foreach (ITechItem item in grp.Items)
                 {
                     if (item is TechApplication)
                     {
@@ -295,23 +276,17 @@ namespace HoI2Editor.Forms
                     else if (item is TechLabel)
                     {
                         var labelItem = item as TechLabel;
-                        labelItem.RenameTempKey(labelno.ToString(CultureInfo.InvariantCulture));
-                        labelno++;
+                        labelItem.RenameTempKey(no.ToString(CultureInfo.InvariantCulture));
+                        no++;
                     }
                 }
             }
 
             // 文字列定義ファイルを保存する
             Config.Save();
-        }
 
-        /// <summary>
-        ///     編集済みフラグをセットする
-        /// </summary>
-        private void SetDirtyFlag()
-        {
-            var category = (TechCategory) categoryListBox.SelectedIndex;
-            Techs.SetDirty(category);
+            // 編集済みフラグがクリアされるため表示を更新する
+            categoryListBox.Update();
         }
 
         #endregion
@@ -393,6 +368,15 @@ namespace HoI2Editor.Forms
             e.DrawFocusRectangle();
         }
 
+        /// <summary>
+        ///     選択中の技術カテゴリを取得する
+        /// </summary>
+        /// <returns></returns>
+        private TechCategory GetSelectedCategory()
+        {
+            return (TechCategory) categoryListBox.SelectedIndex;
+        }
+
         #endregion
 
         #region 項目リスト
@@ -407,7 +391,7 @@ namespace HoI2Editor.Forms
             techListBox.Items.Clear();
             treePictureBox.Controls.Clear();
 
-            foreach (object item in Techs.List[categoryListBox.SelectedIndex].Items)
+            foreach (ITechItem item in Techs.List[categoryListBox.SelectedIndex].Items)
             {
                 techListBox.Items.Add(item);
                 AddTechTreeItems(item);
@@ -537,26 +521,18 @@ namespace HoI2Editor.Forms
             Config.SetText(item.ShortName, "", Game.TechTextFileName);
             Config.SetText(item.Desc, "", Game.TechTextFileName);
 
-            if (techListBox.SelectedIndex >= 0)
+            if (techListBox.SelectedItem is ITechItem)
             {
-                if (techListBox.SelectedItem is TechApplication)
+                var selected = techListBox.SelectedItem as ITechItem;
+                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+
+                if (selected is TechApplication)
                 {
-                    var selected = techListBox.SelectedItem as TechApplication;
-                    item.Id = selected.Id + 10;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-                }
-                else if (techListBox.SelectedItem is TechLabel)
-                {
-                    var selected = techListBox.SelectedItem as TechLabel;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-                }
-                else if (techListBox.SelectedItem is TechEvent)
-                {
-                    var selected = techListBox.SelectedItem as TechEvent;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                    var selectedApplication = selected as TechApplication;
+                    item.Id = selectedApplication.Id + 10;
                 }
 
-                Techs.InsertItem(category, item, techListBox.SelectedItem);
+                Techs.InsertItem(category, item, selected);
                 TechIdMap.Add(new KeyValuePair<int, TechApplication>(item.Id, item));
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
@@ -579,7 +555,7 @@ namespace HoI2Editor.Forms
             UpdateRequiredTechItems();
             UpdateEventTechItems();
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -593,25 +569,12 @@ namespace HoI2Editor.Forms
             var item = new TechLabel {Name = Config.GetTempKey()};
             Config.SetText(item.Name, "", Game.TechTextFileName);
 
-            if (techListBox.SelectedIndex >= 0)
+            if (techListBox.SelectedItem is ITechItem)
             {
-                if (techListBox.SelectedItem is TechLabel)
-                {
-                    var selected = techListBox.SelectedItem as TechLabel;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-                }
-                else if (techListBox.SelectedItem is TechApplication)
-                {
-                    var selected = techListBox.SelectedItem as TechApplication;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-                }
-                else if (techListBox.SelectedItem is TechEvent)
-                {
-                    var selected = techListBox.SelectedItem as TechEvent;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-                }
+                var selected = techListBox.SelectedItem as ITechItem;
+                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
 
-                Techs.InsertItem(category, item, techListBox.SelectedItem);
+                Techs.InsertItem(category, item, selected);
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
@@ -629,7 +592,7 @@ namespace HoI2Editor.Forms
                 AddTechTreeItem(item, position);
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -642,26 +605,18 @@ namespace HoI2Editor.Forms
             var category = (TechCategory) categoryListBox.SelectedIndex;
             var item = new TechEvent();
 
-            if (techListBox.SelectedIndex >= 0)
+            if (techListBox.SelectedItem is ITechItem)
             {
-                if (techListBox.SelectedItem is TechEvent)
+                var selected = techListBox.SelectedItem as ITechItem;
+                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+
+                if (selected is TechEvent)
                 {
-                    var selected = techListBox.SelectedItem as TechEvent;
-                    item.Id = selected.Id + 1;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-                }
-                else if (techListBox.SelectedItem is TechApplication)
-                {
-                    var selected = techListBox.SelectedItem as TechApplication;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
-                }
-                else if (techListBox.SelectedItem is TechLabel)
-                {
-                    var selected = techListBox.SelectedItem as TechLabel;
-                    item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                    var selectedEvent = selected as TechEvent;
+                    item.Id = selectedEvent.Id + 10;
                 }
 
-                Techs.InsertItem(category, item, techListBox.SelectedItem);
+                Techs.InsertItem(category, item, selected);
 
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
@@ -679,7 +634,7 @@ namespace HoI2Editor.Forms
                 AddTechTreeItem(item, position);
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -738,7 +693,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -754,7 +709,7 @@ namespace HoI2Editor.Forms
             }
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
-            object item = techListBox.SelectedItem;
+            var item = techListBox.SelectedItem as ITechItem;
             Techs.RemoveItem(category, item);
             InitTechIdMap();
             if (item is TechApplication)
@@ -784,7 +739,7 @@ namespace HoI2Editor.Forms
                 UpdateEventTechItems();
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -809,8 +764,8 @@ namespace HoI2Editor.Forms
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
             TechGroup grp = Techs.List[(int) category];
-            object selected = grp.Items[index];
-            object top = grp.Items[0];
+            ITechItem selected = grp.Items[index];
+            ITechItem top = grp.Items[0];
 
             Techs.MoveItem(category, selected, top);
 
@@ -822,7 +777,7 @@ namespace HoI2Editor.Forms
                 UpdateEventTechItems();
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -847,8 +802,8 @@ namespace HoI2Editor.Forms
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
             TechGroup grp = Techs.List[(int) category];
-            object selected = grp.Items[index];
-            object upper = grp.Items[index - 1];
+            ITechItem selected = grp.Items[index];
+            ITechItem upper = grp.Items[index - 1];
 
             Techs.MoveItem(category, selected, upper);
 
@@ -860,7 +815,7 @@ namespace HoI2Editor.Forms
                 UpdateEventTechItems();
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -885,8 +840,8 @@ namespace HoI2Editor.Forms
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
             TechGroup grp = Techs.List[(int) category];
-            object selected = grp.Items[index];
-            object lower = grp.Items[index + 1];
+            ITechItem selected = grp.Items[index];
+            ITechItem lower = grp.Items[index + 1];
 
             Techs.MoveItem(category, selected, lower);
 
@@ -898,7 +853,7 @@ namespace HoI2Editor.Forms
                 UpdateEventTechItems();
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -923,8 +878,8 @@ namespace HoI2Editor.Forms
 
             var category = (TechCategory) categoryListBox.SelectedIndex;
             TechGroup grp = Techs.List[(int) category];
-            object selected = grp.Items[index];
-            object bottom = grp.Items[techListBox.Items.Count - 1];
+            ITechItem selected = grp.Items[index];
+            ITechItem bottom = grp.Items[techListBox.Items.Count - 1];
 
             Techs.MoveItem(category, selected, bottom);
 
@@ -936,7 +891,7 @@ namespace HoI2Editor.Forms
                 UpdateEventTechItems();
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -1523,7 +1478,7 @@ namespace HoI2Editor.Forms
 
             label.Location = p;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -1587,7 +1542,7 @@ namespace HoI2Editor.Forms
             categoryListBox.Items[(int) category] = Config.GetText(grp.Name);
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1610,7 +1565,7 @@ namespace HoI2Editor.Forms
 
             Config.SetText(grp.Desc, categoryDescTextBox.Text, Game.TechTextFileName);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1802,7 +1757,7 @@ namespace HoI2Editor.Forms
             orTechComboBox.SelectedIndexChanged += OnOrTechComboBoxSelectedIndexChanged;
             eventTechComboBox.SelectedIndexChanged += OnEventTechComboBoxSelectedIndexChanged;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1843,7 +1798,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1880,7 +1835,7 @@ namespace HoI2Editor.Forms
             item.Id = newId;
             TechIdMap.Add(new KeyValuePair<int, TechApplication>(item.Id, item));
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -1910,7 +1865,7 @@ namespace HoI2Editor.Forms
 
             item.Year = newYear;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -1982,7 +1937,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2031,7 +1986,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2066,7 +2021,7 @@ namespace HoI2Editor.Forms
 
             AddTechTreeItem(item, position);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2115,7 +2070,7 @@ namespace HoI2Editor.Forms
 
             RemoveTechTreeItem(item, position);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2172,7 +2127,7 @@ namespace HoI2Editor.Forms
             item.PictureName = newPictureName;
             UpdateTechPicture(item);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2468,7 +2423,7 @@ namespace HoI2Editor.Forms
 
             AddAndRequiredListItem(0);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2493,7 +2448,7 @@ namespace HoI2Editor.Forms
 
             AddOrRequiredListItem(0);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2524,7 +2479,7 @@ namespace HoI2Editor.Forms
 
             item.AndRequired.RemoveAt(index);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2555,7 +2510,7 @@ namespace HoI2Editor.Forms
 
             item.OrRequired.RemoveAt(index);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2601,7 +2556,7 @@ namespace HoI2Editor.Forms
                 andTechComboBox.SelectedItem = techItem;
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2647,7 +2602,7 @@ namespace HoI2Editor.Forms
                 orTechComboBox.SelectedItem = techItem;
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2691,7 +2646,7 @@ namespace HoI2Editor.Forms
             andIdNumericUpDown.Value = newId;
             ModifyAndRequiredListItem(newId, index);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -2735,7 +2690,7 @@ namespace HoI2Editor.Forms
             orIdNumericUpDown.Value = newId;
             ModifyOrRequiredListItem(newId, index);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3057,7 +3012,7 @@ namespace HoI2Editor.Forms
                 AddComponentListItem(component);
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3092,7 +3047,7 @@ namespace HoI2Editor.Forms
 
             InsertComponentListItem(component, index + 1);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3125,7 +3080,7 @@ namespace HoI2Editor.Forms
 
             RemoveComponentListItem(index);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3164,7 +3119,7 @@ namespace HoI2Editor.Forms
 
             MoveComponentListItem(index, index - 1);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3203,7 +3158,7 @@ namespace HoI2Editor.Forms
 
             MoveComponentListItem(index, index + 1);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3249,7 +3204,7 @@ namespace HoI2Editor.Forms
 
             componentListView.Items[index].Text = newId.ToString(CultureInfo.InvariantCulture);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3295,7 +3250,7 @@ namespace HoI2Editor.Forms
 
             componentListView.Items[index].SubItems[1].Text = newText;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -3352,7 +3307,7 @@ namespace HoI2Editor.Forms
                 Config.GetText(Techs.SpecialityNames[(int) newSpeciality]);
             UpdateComponentSpecialityComboBox(component);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3398,7 +3353,7 @@ namespace HoI2Editor.Forms
 
             componentListView.Items[index].SubItems[3].Text = newDifficulty.ToString(CultureInfo.InvariantCulture);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3444,7 +3399,7 @@ namespace HoI2Editor.Forms
 
             componentListView.Items[index].SubItems[4].Text = newDoubleTime ? Resources.Yes : Resources.No;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3734,7 +3689,7 @@ namespace HoI2Editor.Forms
                 AddEffectListItem(command);
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3769,7 +3724,7 @@ namespace HoI2Editor.Forms
 
             InsertEffectListItem(command, index + 1);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3802,7 +3757,7 @@ namespace HoI2Editor.Forms
 
             RemoveEffectListItem(index);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3841,7 +3796,7 @@ namespace HoI2Editor.Forms
 
             MoveEffectListItem(index, index - 1);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3880,7 +3835,7 @@ namespace HoI2Editor.Forms
 
             MoveEffectListItem(index, index + 1);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3940,7 +3895,7 @@ namespace HoI2Editor.Forms
             effectListView.Items[index].Text = Command.TypeStringTable[(int) newType];
             UpdateCommandTypeComboBox(command);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -3986,7 +3941,7 @@ namespace HoI2Editor.Forms
 
             effectListView.Items[index].SubItems[1].Text = newText;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4032,7 +3987,7 @@ namespace HoI2Editor.Forms
 
             effectListView.Items[index].SubItems[2].Text = newText;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4078,7 +4033,7 @@ namespace HoI2Editor.Forms
 
             effectListView.Items[index].SubItems[3].Text = newText;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4124,7 +4079,7 @@ namespace HoI2Editor.Forms
 
             effectListView.Items[index].SubItems[4].Text = newText;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4402,7 +4357,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -4475,7 +4430,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4524,7 +4479,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4559,7 +4514,7 @@ namespace HoI2Editor.Forms
 
             AddTechTreeItem(item, position);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4608,7 +4563,7 @@ namespace HoI2Editor.Forms
 
             RemoveTechTreeItem(item, position);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         #endregion
@@ -4782,7 +4737,7 @@ namespace HoI2Editor.Forms
             techListBox.Items[techListBox.SelectedIndex] = item;
             techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4821,7 +4776,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4858,7 +4813,7 @@ namespace HoI2Editor.Forms
 
             eventTechNumericUpDown.Value = newTechnology;
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4930,7 +4885,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4979,7 +4934,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -5014,7 +4969,7 @@ namespace HoI2Editor.Forms
 
             AddTechTreeItem(item, position);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -5063,7 +5018,7 @@ namespace HoI2Editor.Forms
 
             RemoveTechTreeItem(item, position);
 
-            SetDirtyFlag();
+            Techs.SetDirty(GetSelectedCategory());
         }
 
         #endregion

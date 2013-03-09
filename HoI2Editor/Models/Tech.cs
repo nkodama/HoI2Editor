@@ -34,7 +34,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目リスト
         /// </summary>
-        public List<object> Items { get; private set; }
+        public List<ITechItem> Items { get; private set; }
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public TechGroup()
         {
-            Items = new List<object>();
+            Items = new List<ITechItem>();
         }
 
         #endregion
