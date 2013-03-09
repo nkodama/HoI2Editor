@@ -54,9 +54,9 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteTechItem(object item, StreamWriter writer)
         {
-            if (item is Tech)
+            if (item is TechApplication)
             {
-                WriteApplication(item as Tech, writer);
+                WriteApplication(item as TechApplication, writer);
             }
             else if (item is TechLabel)
             {
@@ -76,7 +76,7 @@ namespace HoI2Editor.Writers
         private static void WriteLabel(TechLabel label, StreamWriter writer)
         {
             writer.WriteLine("  label =");
-            writer.WriteLine("  {{ tag      = {0}", label.Tag);
+            writer.WriteLine("  {{ tag      = {0}", label.Name);
             foreach (TechPosition position in label.Positions)
             {
                 writer.WriteLine("    position = {{ x = {0} y = {1} }}", position.X, position.Y);
@@ -106,7 +106,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="application">技術データ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteApplication(Tech application, StreamWriter writer)
+        private static void WriteApplication(TechApplication application, StreamWriter writer)
         {
             writer.WriteLine("  # {0}", Config.GetText(application.Name));
             writer.WriteLine("  application =");

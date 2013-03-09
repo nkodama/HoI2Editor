@@ -672,9 +672,9 @@ namespace HoI2Editor.Models
             TechGroup grp = List[(int) category];
             grp.Items.Remove(item);
 
-            if (item is Tech)
+            if (item is TechApplication)
             {
-                var techItem = item as Tech;
+                var techItem = item as TechApplication;
                 techItem.RemoveTempKey();
             }
             else if (item is TechLabel)

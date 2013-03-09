@@ -251,7 +251,7 @@ namespace HoI2Editor.Parsers
                 // application
                 if (keyword.Equals("application"))
                 {
-                    Tech application = ParseApplication(lexer);
+                    TechApplication application = ParseApplication(lexer);
                     if (application == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "application",
@@ -277,7 +277,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>技術データ</returns>
-        private static Tech ParseApplication(TextLexer lexer)
+        private static TechApplication ParseApplication(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -295,7 +295,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var application = new Tech();
+            var application = new TechApplication();
             while (true)
             {
                 token = lexer.GetToken();
@@ -625,7 +625,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // タグ名
-                    label.Tag = token.Value as string;
+                    label.Name = token.Value as string;
                     continue;
                 }
 
@@ -772,7 +772,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術ID
-                    ev.Technology = (int) (double) token.Value;
+                    ev.TechId = (int) (double) token.Value;
                     continue;
                 }
 

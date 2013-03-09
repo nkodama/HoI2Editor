@@ -10,14 +10,6 @@ namespace HoI2Editor.Models
     public class TechGroup
     {
         /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public TechGroup()
-        {
-            Items = new List<object>();
-        }
-
-        /// <summary>
         ///     技術グループID
         /// </summary>
         public int Id { get; set; }
@@ -41,202 +33,39 @@ namespace HoI2Editor.Models
         ///     項目リスト
         /// </summary>
         public List<object> Items { get; private set; }
-    }
 
-    /// <summary>
-    ///     技術ラベル
-    /// </summary>
-    public class TechLabel
-    {
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechLabel()
+        public TechGroup()
         {
-            Positions = new List<TechPosition>();
+            Items = new List<object>();
         }
+    }
 
-        /// <summary>
-        ///     タグ名
-        /// </summary>
-        public string Tag { get; set; }
-
+    /// <summary>
+    /// 技術項目の共通インターフェース
+    /// </summary>
+    public interface ITechItem
+    {
         /// <summary>
         ///     座標リスト
         /// </summary>
-        public List<TechPosition> Positions { get; private set; }
-
-        #region 生成
-
+        List<TechPosition> Positions { get; }
+        
         /// <summary>
-        ///     技術ラベルを作成する
+        /// 技術項目を複製する
         /// </summary>
-        /// <returns>作成した技術ラベル</returns>
-        public TechLabel Create()
-        {
-            var label = new TechLabel {Tag = Config.GetTempKey()};
-
-            Config.SetText(label.Tag, "", Game.TechTextFileName);
-
-            label.Positions.Add(new TechPosition());
-
-            return label;
-        }
-
-        /// <summary>
-        ///     技術ラベルを複製する
-        /// </summary>
-        /// <returns>複製した技術ラベル</returns>
-        public TechLabel Clone()
-        {
-            var label = new TechLabel {Tag = Config.GetTempKey()};
-
-            Config.SetText(label.Tag, Config.GetText(Tag), Game.TechTextFileName);
-
-            foreach (TechPosition position in Positions)
-            {
-                label.Positions.Add(position.Clone());
-            }
-
-            return label;
-        }
-
-        /// <summary>
-        ///     文字列の一時キーをIDに沿った値に変更する
-        /// </summary>
-        /// <param name="name">ラベル名</param>
-        public void RenameTempKey(string name)
-        {
-            // ラベル名
-            if (Config.IsReservedKey(Tag, Game.TechTextFileName))
-            {
-                string newKey = String.Format("TECH_CAT_{0}", name);
-                Config.RenameText(Tag, newKey, Game.TechTextFileName);
-                Tag = newKey;
-            }
-        }
-
-        /// <summary>
-        ///     文字列の一時キーを削除する
-        /// </summary>
-        public void RemoveTempKey()
-        {
-            // ラベル名
-            if (Config.IsReservedKey(Tag, Game.TechTextFileName))
-            {
-                Config.RemoveText(Tag, Game.TechTextFileName);
-            }
-        }
-
-        #endregion
-
-        /// <summary>
-        ///     文字列を取得する
-        /// </summary>
-        /// <returns>文字列</returns>
-        public override string ToString()
-        {
-            string s = Config.GetText(Tag);
-
-            if (!string.IsNullOrEmpty(s) &&
-                (s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
-                s.Length > 4 &&
-                s[1] >= '0' && s[1] <= '9' &&
-                s[2] >= '0' && s[2] <= '9' &&
-                s[3] >= '0' && s[3] <= '9')
-            {
-                s = s.Substring(4);
-            }
-
-            return s ?? "";
-        }
+        /// <returns>複製した技術項目</returns>
+        ITechItem Clone();
     }
 
     /// <summary>
-    ///     技術イベント
+    ///     技術アプリケーション
     /// </summary>
-    public class TechEvent
+    public class TechApplication : ITechItem
     {
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public TechEvent()
-        {
-            Positions = new List<TechPosition>();
-        }
-
-        /// <summary>
-        ///     技術イベントID
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
-        ///     座標リスト
-        /// </summary>
-        public List<TechPosition> Positions { get; private set; }
-
-        /// <summary>
-        ///     技術ID
-        /// </summary>
-        public int Technology { get; set; }
-
-        #region 生成
-
-        /// <summary>
-        ///     技術イベントを作成する
-        /// </summary>
-        /// <returns>作成した技術イベント</returns>
-        public TechEvent Create()
-        {
-            var ev = new TechEvent();
-            ev.Positions.Add(new TechPosition());
-
-            return ev;
-        }
-
-        /// <summary>
-        ///     技術イベントを複製する
-        /// </summary>
-        /// <returns>複製した技術イベント</returns>
-        public TechEvent Clone()
-        {
-            var ev = new TechEvent {Id = Id, Technology = Technology};
-            foreach (TechPosition position in Positions)
-            {
-                ev.Positions.Add(position.Clone());
-            }
-
-            return ev;
-        }
-
-        #endregion
-
-        /// <summary>
-        ///     文字列を取得する
-        /// </summary>
-        /// <returns>文字列</returns>
-        public override string ToString()
-        {
-            return Id.ToString(CultureInfo.InvariantCulture);
-        }
-    }
-
-    /// <summary>
-    ///     技術
-    /// </summary>
-    public class Tech
-    {
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public Tech()
-        {
-            Positions = new List<TechPosition>();
-            Components = new List<TechComponent>();
-            Required = new List<int>();
-            OrRequired = new List<int>();
-            Effects = new List<Command>();
-        }
+        #region フィールド
 
         /// <summary>
         ///     技術ID
@@ -293,21 +122,35 @@ namespace HoI2Editor.Models
         /// </summary>
         public List<Command> Effects { get; private set; }
 
+        #endregion
+
         #region 生成
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public TechApplication()
+        {
+            Positions = new List<TechPosition>();
+            Components = new List<TechComponent>();
+            Required = new List<int>();
+            OrRequired = new List<int>();
+            Effects = new List<Command>();
+        }
 
         /// <summary>
         ///     技術を作成する
         /// </summary>
         /// <returns>作成した技術</returns>
-        public static Tech Create()
+        public static TechApplication Create()
         {
-            var tech = new Tech
-                           {
-                               Name = Config.GetTempKey(),
-                               ShortName = Config.GetTempKey(),
-                               Desc = Config.GetTempKey(),
-                               Year = 1936,
-                           };
+            var tech = new TechApplication
+            {
+                Name = Config.GetTempKey(),
+                ShortName = Config.GetTempKey(),
+                Desc = Config.GetTempKey(),
+                Year = 1936,
+            };
 
             Config.SetText(tech.Name, "", Game.TechTextFileName);
             Config.SetText(tech.ShortName, "", Game.TechTextFileName);
@@ -322,17 +165,17 @@ namespace HoI2Editor.Models
         ///     技術を複製する
         /// </summary>
         /// <returns>複製した技術</returns>
-        public Tech Clone()
+        public ITechItem Clone()
         {
-            var tech = new Tech
-                           {
-                               Id = Id + 10,
-                               Name = Config.GetTempKey(),
-                               ShortName = Config.GetTempKey(),
-                               Desc = Config.GetTempKey(),
-                               PictureName = PictureName,
-                               Year = Year,
-                           };
+            var tech = new TechApplication
+            {
+                Id = Id + 10,
+                Name = Config.GetTempKey(),
+                ShortName = Config.GetTempKey(),
+                Desc = Config.GetTempKey(),
+                PictureName = PictureName,
+                Year = Year,
+            };
 
             Config.SetText(tech.Name, Config.GetText(Name), Game.TechTextFileName);
             Config.SetText(tech.ShortName, Config.GetText(ShortName), Game.TechTextFileName);
@@ -368,21 +211,21 @@ namespace HoI2Editor.Models
             // 技術名
             if (Config.IsReservedKey(Name, Game.TechTextFileName))
             {
-                string newKey = String.Format("TECH_APP_{0}_{1}_NAME", Techs.TechCategoryNames[(int) category], Id);
+                string newKey = String.Format("TECH_APP_{0}_{1}_NAME", Techs.TechCategoryNames[(int)category], Id);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
             }
             // 技術短縮名
             if (Config.IsReservedKey(ShortName, Game.TechTextFileName))
             {
-                string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", Techs.TechCategoryNames[(int) category], Id);
+                string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", Techs.TechCategoryNames[(int)category], Id);
                 Config.RenameText(ShortName, newKey, Game.TechTextFileName);
                 ShortName = newKey;
             }
             // 技術説明
             if (Config.IsReservedKey(Desc, Game.TechTextFileName))
             {
-                string newKey = String.Format("TECH_APP_{0}_{1}_DESC", Techs.TechCategoryNames[(int) category], Id);
+                string newKey = String.Format("TECH_APP_{0}_{1}_DESC", Techs.TechCategoryNames[(int)category], Id);
                 Config.RenameText(Desc, newKey, Game.TechTextFileName);
                 Desc = newKey;
             }
@@ -392,7 +235,7 @@ namespace HoI2Editor.Models
             {
                 if (Config.IsReservedKey(component.Name, Game.TechTextFileName))
                 {
-                    string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", Techs.TechCategoryNames[(int) category],
+                    string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", Techs.TechCategoryNames[(int)category],
                                                   Id,
                                                   componentId);
                     Config.RenameText(component.Name, newKey, Game.TechTextFileName);
@@ -545,6 +388,8 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 文字列操作
+
         /// <summary>
         ///     文字列を取得する
         /// </summary>
@@ -553,6 +398,202 @@ namespace HoI2Editor.Models
         {
             return Config.GetText(Name);
         }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     技術ラベル
+    /// </summary>
+    public class TechLabel : ITechItem
+    {
+        #region フィールド
+
+        /// <summary>
+        ///     タグ名
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     座標リスト
+        /// </summary>
+        public List<TechPosition> Positions { get; private set; }
+
+        #endregion
+
+        #region 生成
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public TechLabel()
+        {
+            Positions = new List<TechPosition>();
+        }
+
+        /// <summary>
+        ///     技術ラベルを作成する
+        /// </summary>
+        /// <returns>作成した技術ラベル</returns>
+        public TechLabel Create()
+        {
+            var label = new TechLabel {Name = Config.GetTempKey()};
+
+            Config.SetText(label.Name, "", Game.TechTextFileName);
+
+            label.Positions.Add(new TechPosition());
+
+            return label;
+        }
+
+        /// <summary>
+        ///     技術ラベルを複製する
+        /// </summary>
+        /// <returns>複製した技術ラベル</returns>
+        public ITechItem Clone()
+        {
+            var label = new TechLabel {Name = Config.GetTempKey()};
+
+            Config.SetText(label.Name, Config.GetText(Name), Game.TechTextFileName);
+
+            foreach (TechPosition position in Positions)
+            {
+                label.Positions.Add(position.Clone());
+            }
+
+            return label;
+        }
+
+        /// <summary>
+        ///     文字列の一時キーをIDに沿った値に変更する
+        /// </summary>
+        /// <param name="name">ラベル名</param>
+        public void RenameTempKey(string name)
+        {
+            // ラベル名
+            if (Config.IsReservedKey(Name, Game.TechTextFileName))
+            {
+                string newKey = String.Format("TECH_CAT_{0}", name);
+                Config.RenameText(Name, newKey, Game.TechTextFileName);
+                Name = newKey;
+            }
+        }
+
+        /// <summary>
+        ///     文字列の一時キーを削除する
+        /// </summary>
+        public void RemoveTempKey()
+        {
+            // ラベル名
+            if (Config.IsReservedKey(Name, Game.TechTextFileName))
+            {
+                Config.RemoveText(Name, Game.TechTextFileName);
+            }
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     文字列を取得する
+        /// </summary>
+        /// <returns>文字列</returns>
+        public override string ToString()
+        {
+            string s = Config.GetText(Name);
+
+            if (!string.IsNullOrEmpty(s) &&
+                (s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
+                s.Length > 4 &&
+                s[1] >= '0' && s[1] <= '9' &&
+                s[2] >= '0' && s[2] <= '9' &&
+                s[3] >= '0' && s[3] <= '9')
+            {
+                s = s.Substring(4);
+            }
+
+            return s ?? "";
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     技術イベント
+    /// </summary>
+    public class TechEvent : ITechItem
+    {
+        #region フィールド
+
+        /// <summary>
+        ///     技術イベントID
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        ///     座標リスト
+        /// </summary>
+        public List<TechPosition> Positions { get; private set; }
+
+        /// <summary>
+        ///     技術ID
+        /// </summary>
+        public int TechId { get; set; }
+
+        #endregion
+
+        #region 生成
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public TechEvent()
+        {
+            Positions = new List<TechPosition>();
+        }
+
+        /// <summary>
+        ///     技術イベントを作成する
+        /// </summary>
+        /// <returns>作成した技術イベント</returns>
+        public TechEvent Create()
+        {
+            var ev = new TechEvent();
+            ev.Positions.Add(new TechPosition());
+
+            return ev;
+        }
+
+        /// <summary>
+        ///     技術イベントを複製する
+        /// </summary>
+        /// <returns>複製した技術イベント</returns>
+        public ITechItem Clone()
+        {
+            var ev = new TechEvent {Id = Id, TechId = TechId};
+            foreach (TechPosition position in Positions)
+            {
+                ev.Positions.Add(position.Clone());
+            }
+
+            return ev;
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     文字列を取得する
+        /// </summary>
+        /// <returns>文字列</returns>
+        public override string ToString()
+        {
+            return Id.ToString(CultureInfo.InvariantCulture);
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -560,6 +601,8 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechPosition
     {
+        #region フィールド
+
         /// <summary>
         ///     X座標
         /// </summary>
@@ -569,6 +612,8 @@ namespace HoI2Editor.Models
         ///     Y座標
         /// </summary>
         public int Y;
+
+        #endregion
 
         #region 生成
 
@@ -591,6 +636,8 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechComponent
     {
+        #region フィールド
+
         /// <summary>
         ///     小研究ID
         /// </summary>
@@ -615,6 +662,8 @@ namespace HoI2Editor.Models
         ///     倍の時間を要するかどうか
         /// </summary>
         public bool DoubleTime { get; set; }
+
+        #endregion
 
         #region 生成
 
