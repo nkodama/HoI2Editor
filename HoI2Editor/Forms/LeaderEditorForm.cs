@@ -1233,6 +1233,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
+            countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Country.Tags
                                         .Select(country => Country.Strings[(int) country])
@@ -1248,6 +1249,7 @@ namespace HoI2Editor.Forms
             countryComboBox.DropDownWidth = maxWidth;
 
             // 兵科
+            branchComboBox.Items.Clear();
             maxWidth = branchComboBox.DropDownWidth;
             foreach (string s in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
             {
@@ -1257,6 +1259,7 @@ namespace HoI2Editor.Forms
             branchComboBox.DropDownWidth = maxWidth;
 
             // 階級
+            idealRankComboBox.Items.Clear();
             maxWidth = idealRankComboBox.DropDownWidth;
             foreach (string s in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
             {

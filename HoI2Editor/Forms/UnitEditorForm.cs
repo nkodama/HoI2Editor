@@ -91,6 +91,7 @@ namespace HoI2Editor.Forms
             allowedBrigadesDummyColumnHeader.Width = maxWidth;
 
             // 実ユニット種類コンボボックス
+            realUnitTypeComboBox.Items.Clear();
             maxWidth = realUnitTypeComboBox.DropDownWidth;
             realUnitTypeComboBox.Items.Clear();
             foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
@@ -104,6 +105,7 @@ namespace HoI2Editor.Forms
             realUnitTypeComboBox.DropDownWidth = maxWidth;
 
             // スプライト種類コンボボックス
+            spriteTypeComboBox.Items.Clear();
             maxWidth = spriteTypeComboBox.DropDownWidth;
             spriteTypeComboBox.Items.Clear();
             foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
@@ -117,6 +119,7 @@ namespace HoI2Editor.Forms
             spriteTypeComboBox.DropDownWidth = maxWidth;
 
             // 代替ユニット種類コンボボックス
+            transmuteComboBox.Items.Clear();
             maxWidth = transmuteComboBox.DropDownWidth;
             transmuteComboBox.Items.Clear();
             foreach (UnitType type in Units.DivisionTypes)
@@ -130,6 +133,7 @@ namespace HoI2Editor.Forms
             transmuteComboBox.DropDownWidth = maxWidth;
 
             // 更新ユニット種類コンボボックス
+            upgradeTypeComboBox.Items.Clear();
             maxWidth = upgradeTypeComboBox.DropDownWidth;
             upgradeTypeComboBox.Items.Clear();
             foreach (UnitType type in Units.DivisionTypes)

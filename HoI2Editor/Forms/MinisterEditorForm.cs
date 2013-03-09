@@ -779,6 +779,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
+            countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Country.Tags
                                         .Select(country => Country.Strings[(int) country])
@@ -794,6 +795,7 @@ namespace HoI2Editor.Forms
             countryComboBox.DropDownWidth = maxWidth;
 
             // 地位
+            positionComboBox.Items.Clear();
             maxWidth = positionComboBox.DropDownWidth;
             foreach (
                 string s in Ministers.PositionNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
@@ -811,6 +813,7 @@ namespace HoI2Editor.Forms
                          .Max();
 
             // イデオロギー
+            ideologyComboBox.Items.Clear();
             maxWidth = ideologyComboBox.DropDownWidth;
             foreach (
                 string s in Ministers.IdeologyNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
@@ -821,6 +824,7 @@ namespace HoI2Editor.Forms
             ideologyComboBox.DropDownWidth = maxWidth;
 
             // 忠誠度
+            loyaltyComboBox.Items.Clear();
             maxWidth = loyaltyComboBox.DropDownWidth;
             foreach (string s in Ministers.LoyaltyNames.Where(name => !string.IsNullOrEmpty(name)))
             {

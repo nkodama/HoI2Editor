@@ -824,6 +824,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国タグ
+            countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Country.Tags
                                         .Select(country => Country.Strings[(int) country])
@@ -839,6 +840,11 @@ namespace HoI2Editor.Forms
             countryComboBox.DropDownWidth = maxWidth;
 
             // 研究特性
+            specialityComboBox1.Items.Clear();
+            specialityComboBox2.Items.Clear();
+            specialityComboBox3.Items.Clear();
+            specialityComboBox4.Items.Clear();
+            specialityComboBox5.Items.Clear();
             maxWidth = specialityComboBox1.DropDownWidth;
             foreach (string s in Techs.Specialities
                                       .Select(speciality => Techs.SpecialityNames[(int) speciality])

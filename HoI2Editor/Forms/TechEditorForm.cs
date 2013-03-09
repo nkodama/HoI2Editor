@@ -164,6 +164,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 小研究特性
+            componentSpecialityComboBox.Items.Clear();
             int maxWidth = componentSpecialityComboBox.DropDownWidth;
             foreach (
                 string name in
@@ -178,6 +179,7 @@ namespace HoI2Editor.Forms
             componentSpecialityComboBox.DropDownWidth = maxWidth;
 
             // 技術効果の種類
+            commandTypeComboBox.Items.Clear();
             maxWidth = commandTypeComboBox.DropDownWidth;
             foreach (string name in Command.TypeStringTable)
             {
