@@ -684,29 +684,30 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index >= 0)
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
-                Brush brush;
-                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
-                {
-                    // 変更ありの項目は文字色を変更する
-                    CountryTag country = Country.Tags[e.Index];
-                    brush = Ministers.IsDirty(country)
-                                ? new SolidBrush(Color.Red)
-                                : new SolidBrush(SystemColors.WindowText);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.HighlightText);
-                }
-                string s = countryListBox.Items[e.Index].ToString();
-                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                brush.Dispose();
+                // 変更ありの項目は文字色を変更する
+                CountryTag country = Country.Tags[e.Index];
+                brush = Ministers.IsDirty(country) ? new SolidBrush(Color.Red) : new SolidBrush(SystemColors.WindowText);
             }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = countryListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
@@ -955,28 +956,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Minister minister = GetSelectedMinister();
+            if (minister != null)
             {
-                Minister minister = GetSelectedMinister();
-                if (minister != null)
+                Brush brush;
+                if ((Country.Tags[e.Index] == minister.Country) && minister.IsDirty(MinisterItemId.Country))
                 {
-                    Brush brush;
-                    if ((Country.Tags[e.Index] == minister.Country) && minister.IsDirty(MinisterItemId.Country))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = countryComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = countryComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -990,28 +994,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnPositionComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Minister minister = GetSelectedMinister();
+            if (minister != null)
             {
-                Minister minister = GetSelectedMinister();
-                if (minister != null)
+                Brush brush;
+                if ((e.Index == (int) minister.Position - 1) && minister.IsDirty(MinisterItemId.Position))
                 {
-                    Brush brush;
-                    if ((e.Index == (int) minister.Position - 1) && minister.IsDirty(MinisterItemId.Position))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = positionComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = positionComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1025,47 +1032,50 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnPersonalityComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Minister minister = GetSelectedMinister();
+            if (minister != null)
             {
-                Minister minister = GetSelectedMinister();
-                if (minister != null)
+                Brush brush;
+                if ((minister.Position == MinisterPosition.None) ||
+                    !Ministers.PositionPersonalityTable[(int) minister.Position].Contains(minister.Personality))
                 {
-                    Brush brush;
-                    if ((minister.Position == MinisterPosition.None) ||
-                        !Ministers.PositionPersonalityTable[(int) minister.Position].Contains(minister.Personality))
+                    // 閣僚地位の値が不正な場合は、現在の閣僚特性のみ登録されている
+                    // 閣僚地位とマッチしない閣僚特性の場合、現在の閣僚特性が先頭に登録されている
+                    if ((e.Index == 0) && minister.IsDirty(MinisterItemId.Personality))
                     {
-                        // 閣僚地位の値が不正な場合は、現在の閣僚特性のみ登録されている
-                        // 閣僚地位とマッチしない閣僚特性の場合、現在の閣僚特性が先頭に登録されている
-                        if ((e.Index == 0) && minister.IsDirty(MinisterItemId.Personality))
-                        {
-                            brush = new SolidBrush(Color.Red);
-                        }
-                        else
-                        {
-                            brush = new SolidBrush(SystemColors.WindowText);
-                        }
+                        brush = new SolidBrush(Color.Red);
                     }
                     else
                     {
-                        if ((Ministers.PositionPersonalityTable[(int) minister.Position][e.Index] ==
-                             minister.Personality) &&
-                            minister.IsDirty(MinisterItemId.Personality))
-                        {
-                            brush = new SolidBrush(Color.Red);
-                        }
-                        else
-                        {
-                            brush = new SolidBrush(SystemColors.WindowText);
-                        }
+                        brush = new SolidBrush(SystemColors.WindowText);
                     }
-                    string s = personalityComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
                 }
+                else
+                {
+                    if ((Ministers.PositionPersonalityTable[(int) minister.Position][e.Index] ==
+                         minister.Personality) &&
+                        minister.IsDirty(MinisterItemId.Personality))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                }
+                string s = personalityComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1079,28 +1089,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnIdeologyComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Minister minister = GetSelectedMinister();
+            if (minister != null)
             {
-                Minister minister = GetSelectedMinister();
-                if (minister != null)
+                Brush brush;
+                if ((e.Index == (int) minister.Ideology - 1) && minister.IsDirty(MinisterItemId.Ideology))
                 {
-                    Brush brush;
-                    if ((e.Index == (int) minister.Ideology - 1) && minister.IsDirty(MinisterItemId.Ideology))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = ideologyComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = ideologyComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1114,28 +1127,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLoyaltyComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Minister minister = GetSelectedMinister();
+            if (minister != null)
             {
-                Minister minister = GetSelectedMinister();
-                if (minister != null)
+                Brush brush;
+                if ((e.Index == (int) minister.Loyalty - 1) && minister.IsDirty(MinisterItemId.Loyalty))
                 {
-                    Brush brush;
-                    if ((e.Index == (int) minister.Loyalty - 1) && minister.IsDirty(MinisterItemId.Loyalty))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = loyaltyComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = loyaltyComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する

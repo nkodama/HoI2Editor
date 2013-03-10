@@ -729,29 +729,32 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index >= 0)
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
-                Brush brush;
-                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
-                {
-                    // 変更ありの項目は文字色を変更する
-                    CountryTag country = Country.Tags[e.Index];
-                    brush = Teams.IsDirty(country)
-                                ? new SolidBrush(Color.Red)
-                                : new SolidBrush(countryListBox.ForeColor);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.HighlightText);
-                }
-                string s = countryListBox.Items[e.Index].ToString();
-                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                brush.Dispose();
+                // 変更ありの項目は文字色を変更する
+                CountryTag country = Country.Tags[e.Index];
+                brush = Teams.IsDirty(country)
+                            ? new SolidBrush(Color.Red)
+                            : new SolidBrush(countryListBox.ForeColor);
             }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = countryListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
@@ -944,28 +947,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Team team = GetSelectedTeam();
+            if (team != null)
             {
-                Team team = GetSelectedTeam();
-                if (team != null)
+                Brush brush;
+                if ((Country.Tags[e.Index] == team.Country) && team.IsDirty(TeamItemId.Country))
                 {
-                    Brush brush;
-                    if ((Country.Tags[e.Index] == team.Country) && team.IsDirty(TeamItemId.Country))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = countryComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = countryComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -979,36 +985,39 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpecialityComboBox1DrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
-            if (e.Index > 0)
+            Team team = GetSelectedTeam();
+            if (team != null)
             {
-                Team team = GetSelectedTeam();
-                if (team != null)
+                // アイコンを描画する
+                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    // アイコンを描画する
-                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                    {
-                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                    }
-
-                    // 項目の文字列を描画する
-                    Brush brush;
-                    if ((Techs.Specialities[e.Index] == team.Specialities[0]) && team.IsDirty(TeamItemId.Speciality1))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = specialityComboBox1.Items[e.Index].ToString();
-                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                    e.Graphics.DrawString(s, e.Font, brush, tr);
-                    brush.Dispose();
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
+
+                // 項目の文字列を描画する
+                Brush brush;
+                if ((Techs.Specialities[e.Index] == team.Specialities[0]) && team.IsDirty(TeamItemId.Speciality1))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = specialityComboBox1.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1022,36 +1031,39 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpecialityComboBox2DrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
-            if (e.Index > 0)
+            Team team = GetSelectedTeam();
+            if (team != null)
             {
-                Team team = GetSelectedTeam();
-                if (team != null)
+                // アイコンを描画する
+                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    // アイコンを描画する
-                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                    {
-                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                    }
-
-                    // 項目の文字列を描画する
-                    Brush brush;
-                    if ((Techs.Specialities[e.Index] == team.Specialities[1]) && team.IsDirty(TeamItemId.Speciality2))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = specialityComboBox2.Items[e.Index].ToString();
-                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                    e.Graphics.DrawString(s, e.Font, brush, tr);
-                    brush.Dispose();
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
+
+                // 項目の文字列を描画する
+                Brush brush;
+                if ((Techs.Specialities[e.Index] == team.Specialities[1]) && team.IsDirty(TeamItemId.Speciality2))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = specialityComboBox2.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1065,36 +1077,39 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpecialityComboBox3DrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
-            if (e.Index > 0)
+            Team team = GetSelectedTeam();
+            if (team != null)
             {
-                Team team = GetSelectedTeam();
-                if (team != null)
+                // アイコンを描画する
+                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    // アイコンを描画する
-                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                    {
-                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                    }
-
-                    // 項目の文字列を描画する
-                    Brush brush;
-                    if ((Techs.Specialities[e.Index] == team.Specialities[2]) && team.IsDirty(TeamItemId.Speciality3))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = specialityComboBox3.Items[e.Index].ToString();
-                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                    e.Graphics.DrawString(s, e.Font, brush, tr);
-                    brush.Dispose();
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
+
+                // 項目の文字列を描画する
+                Brush brush;
+                if ((Techs.Specialities[e.Index] == team.Specialities[2]) && team.IsDirty(TeamItemId.Speciality3))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = specialityComboBox3.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1108,36 +1123,39 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpecialityComboBox4DrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
-            if (e.Index > 0)
+            Team team = GetSelectedTeam();
+            if (team != null)
             {
-                Team team = GetSelectedTeam();
-                if (team != null)
+                // アイコンを描画する
+                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    // アイコンを描画する
-                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                    {
-                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                    }
-
-                    // 項目の文字列を描画する
-                    Brush brush;
-                    if ((Techs.Specialities[e.Index] == team.Specialities[3]) && team.IsDirty(TeamItemId.Speciality4))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = specialityComboBox4.Items[e.Index].ToString();
-                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                    e.Graphics.DrawString(s, e.Font, brush, tr);
-                    brush.Dispose();
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
+
+                // 項目の文字列を描画する
+                Brush brush;
+                if ((Techs.Specialities[e.Index] == team.Specialities[3]) && team.IsDirty(TeamItemId.Speciality4))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = specialityComboBox4.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1151,36 +1169,39 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpecialityComboBox5DrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
-            if (e.Index > 0)
+            Team team = GetSelectedTeam();
+            if (team != null)
             {
-                Team team = GetSelectedTeam();
-                if (team != null)
+                // アイコンを描画する
+                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    // アイコンを描画する
-                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                    {
-                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                    }
-
-                    // 項目の文字列を描画する
-                    Brush brush;
-                    if ((Techs.Specialities[e.Index] == team.Specialities[4]) && team.IsDirty(TeamItemId.Speciality5))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = specialityComboBox5.Items[e.Index].ToString();
-                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                    e.Graphics.DrawString(s, e.Font, brush, tr);
-                    brush.Dispose();
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
+
+                // 項目の文字列を描画する
+                Brush brush;
+                if ((Techs.Specialities[e.Index] == team.Specialities[4]) && team.IsDirty(TeamItemId.Speciality5))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = specialityComboBox5.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1194,36 +1215,39 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpecialityComboBox6DrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
-            if (e.Index > 0)
+            Team team = GetSelectedTeam();
+            if (team != null)
             {
-                Team team = GetSelectedTeam();
-                if (team != null)
+                // アイコンを描画する
+                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    // アイコンを描画する
-                    if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                    {
-                        var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                        e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                    }
-
-                    // 項目の文字列を描画する
-                    Brush brush;
-                    if ((Techs.Specialities[e.Index] == team.Specialities[5]) && team.IsDirty(TeamItemId.Speciality6))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = specialityComboBox6.Items[e.Index].ToString();
-                    var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                    e.Graphics.DrawString(s, e.Font, brush, tr);
-                    brush.Dispose();
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
+
+                // 項目の文字列を描画する
+                Brush brush;
+                if ((Techs.Specialities[e.Index] == team.Specialities[5]) && team.IsDirty(TeamItemId.Speciality6))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = specialityComboBox6.Items[e.Index].ToString();
+                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                e.Graphics.DrawString(s, e.Font, brush, tr);
+                brush.Dispose();
             }
 
             // フォーカスを描画する

@@ -1138,29 +1138,30 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index >= 0)
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
-                Brush brush;
-                if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
-                {
-                    // 変更ありの項目は文字色を変更する
-                    CountryTag country = Country.Tags[e.Index];
-                    brush = Leaders.IsDirty(country)
-                                ? new SolidBrush(Color.Red)
-                                : new SolidBrush(SystemColors.WindowText);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.HighlightText);
-                }
-                string s = countryListBox.Items[e.Index].ToString();
-                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                brush.Dispose();
+                // 変更ありの項目は文字色を変更する
+                CountryTag country = Country.Tags[e.Index];
+                brush = Leaders.IsDirty(country) ? new SolidBrush(Color.Red) : new SolidBrush(SystemColors.WindowText);
             }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = countryListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
@@ -1552,28 +1553,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Leader leader = GetSelectedLeader();
+            if (leader != null)
             {
-                Leader leader = GetSelectedLeader();
-                if (leader != null)
+                Brush brush;
+                if ((Country.Tags[e.Index] == leader.Country) && leader.IsDirty(LeaderItemId.Country))
                 {
-                    Brush brush;
-                    if ((Country.Tags[e.Index] == leader.Country) && leader.IsDirty(LeaderItemId.Country))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = countryComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = countryComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1587,28 +1591,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBranchComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Leader leader = GetSelectedLeader();
+            if (leader != null)
             {
-                Leader leader = GetSelectedLeader();
-                if (leader != null)
+                Brush brush;
+                if ((e.Index == (int) leader.Branch - 1) && leader.IsDirty(LeaderItemId.Branch))
                 {
-                    Brush brush;
-                    if ((e.Index == (int) leader.Branch - 1) && leader.IsDirty(LeaderItemId.Branch))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = branchComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = branchComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する
@@ -1622,28 +1629,31 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnIdealRankComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            if (e.Index != -1)
+            Leader leader = GetSelectedLeader();
+            if (leader != null)
             {
-                Leader leader = GetSelectedLeader();
-                if (leader != null)
+                Brush brush;
+                if ((e.Index == (int) leader.IdealRank - 1) && leader.IsDirty(LeaderItemId.IdealRank))
                 {
-                    Brush brush;
-                    if ((e.Index == (int) leader.IdealRank - 1) && leader.IsDirty(LeaderItemId.IdealRank))
-                    {
-                        brush = new SolidBrush(Color.Red);
-                    }
-                    else
-                    {
-                        brush = new SolidBrush(SystemColors.WindowText);
-                    }
-                    string s = idealRankComboBox.Items[e.Index].ToString();
-                    e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-                    brush.Dispose();
+                    brush = new SolidBrush(Color.Red);
                 }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = idealRankComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
 
             // フォーカスを描画する

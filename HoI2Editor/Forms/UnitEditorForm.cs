@@ -636,7 +636,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassListBoxDrawItem(object sender, DrawItemEventArgs e)
         {
-            // 選択項目がない場合は何もしない
+            // 項目がなければ何もしない
             if (e.Index == -1)
             {
                 return;
