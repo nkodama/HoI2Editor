@@ -1535,7 +1535,8 @@ namespace HoI2Editor.Forms
         private void UpdateCategoryItems()
         {
             // カテゴリタブの編集項目
-            TechGroup grp = Techs.List[(int) GetSelectedCategory()];
+            TechCategory category = GetSelectedCategory();
+            TechGroup grp = Techs.List[(int) category];
             categoryNameTextBox.Text = Config.GetText(grp.Name);
             categoryDescTextBox.Text = Config.GetText(grp.Desc);
         }
@@ -1547,25 +1548,27 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCategoryNameTextBoxTextChanged(object sender, EventArgs e)
         {
-            var category = (TechCategory) categoryListBox.SelectedIndex;
+            TechCategory category = GetSelectedCategory();
             TechGroup grp = Techs.List[(int) category];
 
-            // 値に変化がなければ何もせずに戻る
-            string newText = categoryNameTextBox.Text;
-            if (newText.Equals(Config.GetText(grp.Name)))
+            // 値に変化がなければ何もしない
+            string name = categoryNameTextBox.Text;
+            if (name.Equals(Config.GetText(grp.Name)))
             {
                 return;
             }
 
-            Config.SetText(grp.Name, categoryNameTextBox.Text, Game.TechTextFileName);
+            // 値を更新する
+            Config.SetText(grp.Name, name, Game.TechTextFileName);
 
             // カテゴリリストボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
             categoryListBox.SelectedIndexChanged -= OnCategoryListBoxSelectedIndexChanged;
-            categoryListBox.Items[(int) category] = Config.GetText(grp.Name);
+            categoryListBox.Items[(int) category] = name;
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
-            Techs.SetDirty(GetSelectedCategory());
+            // 編集済みフラグを設定する
+            Techs.SetDirty(category);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1576,19 +1579,21 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCategoryDescTextBoxTextChanged(object sender, EventArgs e)
         {
-            var category = (TechCategory) categoryListBox.SelectedIndex;
+            TechCategory category = GetSelectedCategory();
             TechGroup grp = Techs.List[(int) category];
 
-            // 値に変化がなければ何もせずに戻る
-            string newText = categoryDescTextBox.Text;
-            if (newText.Equals(Config.GetText(grp.Desc)))
+            // 値に変化がなければ何もしない
+            string desc = categoryDescTextBox.Text;
+            if (desc.Equals(Config.GetText(grp.Desc)))
             {
                 return;
             }
 
-            Config.SetText(grp.Desc, categoryDescTextBox.Text, Game.TechTextFileName);
+            // 値を更新する
+            Config.SetText(grp.Desc, desc, Game.TechTextFileName);
 
-            Techs.SetDirty(GetSelectedCategory());
+            // 編集済みフラグを設定する
+            Techs.SetDirty(category);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1609,16 +1614,6 @@ namespace HoI2Editor.Forms
             techYearNumericUpDown.Value = item.Year;
             UpdateTechPositionList(item);
             UpdateTechPicture(item);
-
-            // 必要研究タブの編集項目
-            UpdateAndRequiredList(item);
-            UpdateOrRequiredList(item);
-
-            // 小研究タブの編集項目
-            UpdateComponentItems(item);
-
-            // 効果タブの編集項目
-            UpdateEffectItems(item);
         }
 
         /// <summary>
@@ -1627,12 +1622,11 @@ namespace HoI2Editor.Forms
         private void EnableTechItems()
         {
             // タブの有効化
-            editTabControl.TabPages[1].Enabled = true;
-            editTabControl.TabPages[2].Enabled = true;
-            editTabControl.TabPages[3].Enabled = true;
-            editTabControl.TabPages[4].Enabled = true;
+            editTabControl.TabPages[(int) TechEditorTab.Tech].Enabled = true;
 
-            // 技術タブの設定項目初期化
+            // 無効化時にクリアした文字列を再設定する
+            techIdNumericUpDown.Text = techIdNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            techYearNumericUpDown.Text = techYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -1641,35 +1635,51 @@ namespace HoI2Editor.Forms
         private void DisableTechItems()
         {
             // タブの無効化
-            editTabControl.TabPages[1].Enabled = false;
-            editTabControl.TabPages[2].Enabled = false;
-            editTabControl.TabPages[3].Enabled = false;
-            editTabControl.TabPages[4].Enabled = false;
+            editTabControl.TabPages[(int) TechEditorTab.Tech].Enabled = false;
 
-            // 技術タブの設定項目初期化
-            techNameTextBox.Text = "";
-            techShortNameTextBox.Text = "";
-            techIdNumericUpDown.Value = 0;
+            // 設定項目の初期化
+            techNameTextBox.ResetText();
+            techShortNameTextBox.ResetText();
+            techIdNumericUpDown.ResetText();
             techYearNumericUpDown.ResetText();
             techPositionListView.Items.Clear();
-            techXNumericUpDown.Value = 0;
-            techYNumericUpDown.Value = 0;
+            techXNumericUpDown.ResetText();
+            techYNumericUpDown.ResetText();
             techPictureBox.Image = null;
+        }
 
-            // 必要研究タブの設定項目初期化
-            andRequiredListView.Items.Clear();
-            orRequiredListView.Items.Clear();
-            andIdNumericUpDown.Value = 0;
-            andTechComboBox.SelectedIndex = -1;
-            orIdNumericUpDown.Value = 0;
-            orTechComboBox.SelectedIndex = -1;
+        /// <summary>
+        ///     技術座標リストを更新する
+        /// </summary>
+        /// <param name="item">技術</param>
+        private void UpdateTechPositionList(TechApplication item)
+        {
+            techPositionListView.BeginUpdate();
+            techPositionListView.Items.Clear();
 
-            // 小研究タブの設定項目初期化
-            componentListView.Items.Clear();
-            componentIdNumericUpDown.Value = 0;
-            componentNameTextBox.Text = "";
-            componentDifficultyNumericUpDown.Value = 0;
-            componentDoubleTimeCheckBox.Checked = false;
+            foreach (TechPosition position in item.Positions)
+            {
+                var listItem = new ListViewItem(position.X.ToString(CultureInfo.InvariantCulture));
+                listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+                techPositionListView.Items.Add(listItem);
+            }
+
+            if (techPositionListView.Items.Count > 0)
+            {
+                // 先頭の項目を選択する
+                techPositionListView.Items[0].Focused = true;
+                techPositionListView.Items[0].Selected = true;
+
+                // 編集項目を有効化する
+                EnableTechPositionItems();
+            }
+            else
+            {
+                // 編集項目を無効化する
+                DisableTechPositionItems();
+            }
+
+            techPositionListView.EndUpdate();
         }
 
         /// <summary>
@@ -1693,42 +1703,6 @@ namespace HoI2Editor.Forms
             techXNumericUpDown.Enabled = false;
             techYNumericUpDown.Enabled = false;
             techPositionRemoveButton.Enabled = false;
-        }
-
-        /// <summary>
-        ///     技術座標リストを更新する
-        /// </summary>
-        /// <param name="item">技術</param>
-        private void UpdateTechPositionList(TechApplication item)
-        {
-            if (item == null)
-            {
-                return;
-            }
-
-            techPositionListView.BeginUpdate();
-            techPositionListView.Items.Clear();
-
-            foreach (TechPosition position in item.Positions)
-            {
-                var listItem = new ListViewItem(position.X.ToString(CultureInfo.InvariantCulture));
-                listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
-                techPositionListView.Items.Add(listItem);
-            }
-
-            if (techPositionListView.Items.Count > 0)
-            {
-                techPositionListView.Items[0].Focused = true;
-                techPositionListView.Items[0].Selected = true;
-
-                EnableTechPositionItems();
-            }
-            else
-            {
-                DisableTechPositionItems();
-            }
-
-            techPositionListView.EndUpdate();
         }
 
         /// <summary>
