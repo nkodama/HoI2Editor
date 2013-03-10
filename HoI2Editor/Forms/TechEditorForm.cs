@@ -2229,13 +2229,16 @@ namespace HoI2Editor.Forms
 
             if (andRequiredListView.Items.Count > 0)
             {
+                // 先頭の項目を選択する
                 andRequiredListView.Items[0].Focused = true;
                 andRequiredListView.Items[0].Selected = true;
 
+                // 編集項目を有効化する
                 EnableAndRequiredItems();
             }
             else
             {
+                // 編集項目を無効化する
                 DisableAndReuqiredItems();
             }
 
@@ -2267,13 +2270,16 @@ namespace HoI2Editor.Forms
 
             if (orRequiredListView.Items.Count > 0)
             {
+                // 先頭の項目を選択する
                 orRequiredListView.Items[0].Focused = true;
                 orRequiredListView.Items[0].Selected = true;
 
+                // 編集項目を有効化する
                 EnableOrRequiredItems();
             }
             else
             {
+                // 編集項目を無効化する
                 DisableOrReuqiredItems();
             }
 
@@ -2899,13 +2905,16 @@ namespace HoI2Editor.Forms
 
             if (componentListView.Items.Count > 0)
             {
+                // 先頭の項目を選択する
                 componentListView.Items[0].Focused = true;
                 componentListView.Items[0].Selected = true;
 
+                // 編集項目を有効化する
                 EnableComponentItems();
             }
             else
             {
+                // 編集項目を無効化する
                 DisableComponentItems();
             }
 
@@ -3629,13 +3638,16 @@ namespace HoI2Editor.Forms
 
             if (effectListView.Items.Count > 0)
             {
+                // 先頭の項目を選択する
                 effectListView.Items[0].Focused = true;
                 effectListView.Items[0].Selected = true;
 
+                // 編集項目を有効化する
                 EnableEffectItems();
             }
             else
             {
+                // 編集項目を無効化する
                 DisableEffectItems();
             }
 
@@ -4367,13 +4379,16 @@ namespace HoI2Editor.Forms
 
             if (labelPositionListView.Items.Count > 0)
             {
+                // 先頭の項目を選択する
                 labelPositionListView.Items[0].Focused = true;
                 labelPositionListView.Items[0].Selected = true;
 
+                // 編集項目を有効化する
                 EnableLabelPositionItems();
             }
             else
             {
+                // 編集項目を無効化する
                 DisableLabelPositionItems();
             }
 
@@ -4758,13 +4773,16 @@ namespace HoI2Editor.Forms
 
             if (eventPositionListView.Items.Count > 0)
             {
+                // 先頭の項目を選択する
                 eventPositionListView.Items[0].Focused = true;
                 eventPositionListView.Items[0].Selected = true;
 
+                // 編集項目を有効化する
                 EnableEventPositionItems();
             }
             else
             {
+                // 編集項目を無効化する
                 DisableEventPositionItems();
             }
 

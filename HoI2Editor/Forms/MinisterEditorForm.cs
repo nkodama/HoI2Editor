@@ -146,15 +146,18 @@ namespace HoI2Editor.Forms
                 ministerListView.Items.Add(CreateMinisterListViewItem(minister));
             }
 
-            // 編集項目を更新する
             if (ministerListView.Items.Count > 0)
             {
+                // 先頭の項目を選択する
                 ministerListView.Items[0].Focused = true;
                 ministerListView.Items[0].Selected = true;
+
+                // 編集項目を有効化する
                 EnableEditableItems();
             }
             else
             {
+                // 編集項目を無効化する
                 DisableEditableItems();
             }
 
