@@ -158,9 +158,9 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     技術を複製する
+        ///     技術アプリケーションを複製する
         /// </summary>
-        /// <returns>複製した技術</returns>
+        /// <returns>複製した技術アプリケーション</returns>
         public ITechItem Clone()
         {
             var item = new TechApplication
@@ -199,31 +199,6 @@ namespace HoI2Editor.Models
             {
                 item.Effects.Add(command.Clone());
             }
-
-            return item;
-        }
-
-        /// <summary>
-        ///     技術を作成する
-        /// </summary>
-        /// <returns>作成した技術</returns>
-        public static TechApplication Create()
-        {
-            var item = new TechApplication
-                           {
-                               Name = Config.GetTempKey(),
-                               ShortName = Config.GetTempKey(),
-                               Desc = Config.GetTempKey(),
-                               Year = 1936,
-                           };
-
-            // 文字列設定
-            Config.SetText(item.Name, "", Game.TechTextFileName);
-            Config.SetText(item.ShortName, "", Game.TechTextFileName);
-            Config.SetText(item.Desc, "", Game.TechTextFileName);
-
-            // 座標リスト
-            item.Positions.Add(new TechPosition());
 
             return item;
         }
@@ -479,15 +454,12 @@ namespace HoI2Editor.Models
         ///     技術ラベルを作成する
         /// </summary>
         /// <returns>作成した技術ラベル</returns>
-        public TechLabel Create()
+        public static TechLabel Create()
         {
             var item = new TechLabel {Name = Config.GetTempKey()};
 
             // 文字列設定
             Config.SetText(item.Name, "", Game.TechTextFileName);
-
-            // 座標リスト
-            item.Positions.Add(new TechPosition());
 
             return item;
         }
@@ -595,20 +567,6 @@ namespace HoI2Editor.Models
             {
                 item.Positions.Add(position.Clone());
             }
-
-            return item;
-        }
-
-        /// <summary>
-        ///     技術イベントを作成する
-        /// </summary>
-        /// <returns>作成した技術イベント</returns>
-        public TechEvent Create()
-        {
-            var item = new TechEvent();
-
-            // 座標リスト
-            item.Positions.Add(new TechPosition());
 
             return item;
         }
