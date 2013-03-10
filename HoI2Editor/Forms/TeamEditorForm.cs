@@ -578,7 +578,7 @@ namespace HoI2Editor.Forms
             // 追加した項目を選択する
             teamListView.Items[teamListView.Items.Count - 1].Focused = true;
             teamListView.Items[teamListView.Items.Count - 1].Selected = true;
-            teamListView.Items[teamListView.Items.Count - 1].EnsureVisible();
+            teamListView.EnsureVisible(teamListView.Items.Count - 1);
         }
 
         /// <summary>
@@ -597,7 +597,7 @@ namespace HoI2Editor.Forms
             // 挿入した項目を選択する
             teamListView.Items[index].Focused = true;
             teamListView.Items[index].Selected = true;
-            teamListView.Items[index].EnsureVisible();
+            teamListView.EnsureVisible(index);
         }
 
         /// <summary>
@@ -661,7 +661,7 @@ namespace HoI2Editor.Forms
             // 移動先の項目を選択する
             teamListView.Items[dest].Focused = true;
             teamListView.Items[dest].Selected = true;
-            teamListView.Items[dest].EnsureVisible();
+            teamListView.EnsureVisible(dest);
         }
 
         /// <summary>

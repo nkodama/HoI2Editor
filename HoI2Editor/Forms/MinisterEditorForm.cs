@@ -532,7 +532,7 @@ namespace HoI2Editor.Forms
             // 追加した項目を選択する
             ministerListView.Items[ministerListView.Items.Count - 1].Focused = true;
             ministerListView.Items[ministerListView.Items.Count - 1].Selected = true;
-            ministerListView.Items[ministerListView.Items.Count - 1].EnsureVisible();
+            ministerListView.EnsureVisible(ministerListView.Items.Count - 1);
         }
 
         /// <summary>
@@ -551,7 +551,7 @@ namespace HoI2Editor.Forms
             // 挿入した項目を選択する
             ministerListView.Items[index].Focused = true;
             ministerListView.Items[index].Selected = true;
-            ministerListView.Items[index].EnsureVisible();
+            ministerListView.EnsureVisible(index);
         }
 
         /// <summary>
@@ -615,7 +615,7 @@ namespace HoI2Editor.Forms
             // 移動先の項目を選択する
             ministerListView.Items[dest].Focused = true;
             ministerListView.Items[dest].Selected = true;
-            ministerListView.Items[dest].EnsureVisible();
+            ministerListView.EnsureVisible(dest);
         }
 
         /// <summary>
