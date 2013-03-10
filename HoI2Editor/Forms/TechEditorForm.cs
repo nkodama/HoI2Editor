@@ -25,9 +25,9 @@ namespace HoI2Editor.Forms
             new List<KeyValuePair<int, TechApplication>>();
 
         /// <summary>
-        ///     技術ラベルの画像
+        ///     技術アプリケーションラベルの画像
         /// </summary>
-        private static Bitmap _techLabelBitmap;
+        private static Bitmap _applicationLabelBitmap;
 
         /// <summary>
         ///     イベントラベルの画像
@@ -35,9 +35,10 @@ namespace HoI2Editor.Forms
         private static Bitmap _eventLabelBitmap;
 
         /// <summary>
-        ///     技術ラベルの描画領域
+        ///     技術アプリケーションラベルの描画領域
         /// </summary>
-        private static readonly Region TechLabelRegion = new Region(new Rectangle(0, 0, TechLabelWidth, TechLabelHeight));
+        private static readonly Region ApplicationLabelRegion =
+            new Region(new Rectangle(0, 0, ApplicationLabelWidth, ApplicationLabelHeight));
 
         /// <summary>
         ///     イベントラベルの描画領域
@@ -56,9 +57,9 @@ namespace HoI2Editor.Forms
         private static Cursor _dragCursor;
 
         /// <summary>
-        ///     技術ラベルのANDマスク
+        ///     技術アプリケーションラベルのANDマスク
         /// </summary>
-        private static Bitmap _techLabelAndMask;
+        private static Bitmap _applicationLabelAndMask;
 
         /// <summary>
         ///     イベントラベルのANDマスク
@@ -70,14 +71,14 @@ namespace HoI2Editor.Forms
         #region 定数
 
         /// <summary>
-        ///     技術ラベルの幅
+        ///     技術アプリケーションラベルの幅
         /// </summary>
-        private const int TechLabelWidth = 112;
+        private const int ApplicationLabelWidth = 112;
 
         /// <summary>
-        ///     技術ラベルの高さ
+        ///     技術アプリケーションラベルの高さ
         /// </summary>
-        private const int TechLabelHeight = 16;
+        private const int ApplicationLabelHeight = 16;
 
         /// <summary>
         ///     イベントラベルの幅
@@ -1033,48 +1034,29 @@ namespace HoI2Editor.Forms
 
         #region 技術ツリー
 
+        /// <summary>
+        ///     技術ツリー画像を更新する
+        /// </summary>
         private void UpdateTechTreePicture()
         {
-            // 技術ツリー画像
-            int index = categoryListBox.SelectedIndex;
-            treePictureBox.ImageLocation =
-                Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[index]);
+            TechCategory category = GetSelectedCategory();
+            treePictureBox.ImageLocation = Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) category]);
         }
 
         /// <summary>
         ///     技術ツリーに項目群を追加する
         /// </summary>
         /// <param name="item">追加対象の項目</param>
-        private void AddTechTreeItems(object item)
+        private void AddTechTreeItems(ITechItem item)
         {
-            if (item is TechApplication)
+            foreach (TechPosition position in item.Positions)
             {
-                var techItem = item as TechApplication;
-                foreach (TechPosition position in techItem.Positions)
-                {
-                    AddTechTreeItem(techItem, position);
-                }
-            }
-            else if (item is TechLabel)
-            {
-                var labelItem = item as TechLabel;
-                foreach (TechPosition position in labelItem.Positions)
-                {
-                    AddTechTreeItem(labelItem, position);
-                }
-            }
-            else if (item is TechEvent)
-            {
-                var eventItem = item as TechEvent;
-                foreach (TechPosition position in eventItem.Positions)
-                {
-                    AddTechTreeItem(eventItem, position);
-                }
+                AddTechTreeItem(item, position);
             }
         }
 
         /// <summary>
-        ///     技術ツリーに技術項目を追加する
+        ///     技術ツリーに項目を追加する
         /// </summary>
         /// <param name="item">追加対象の項目</param>
         /// <param name="position">追加対象の位置</param>
@@ -1089,16 +1071,16 @@ namespace HoI2Editor.Forms
 
             if (item is TechApplication)
             {
-                label.Size = new Size(TechLabelWidth, TechLabelHeight);
-                label.Image = _techLabelBitmap;
-                label.Region = TechLabelRegion;
-                label.Paint += OnTechLabelPaint;
+                label.Size = new Size(ApplicationLabelWidth, ApplicationLabelHeight);
+                label.Image = _applicationLabelBitmap;
+                label.Region = ApplicationLabelRegion;
+                label.Paint += OnTechTreeLabelPaint;
             }
             else if (item is TechLabel)
             {
                 var labelItem = item as TechLabel;
                 label.Size = TextRenderer.MeasureText(Config.GetText(labelItem.Name), label.Font);
-                label.Paint += OnLabelLabelPaint;
+                label.Paint += OnTechTreeLabelPaint;
             }
             else
             {
@@ -1119,7 +1101,7 @@ namespace HoI2Editor.Forms
         ///     技術ツリーの項目群を削除する
         /// </summary>
         /// <param name="item">削除対象の項目</param>
-        private void RemoveTechTreeItems(object item)
+        private void RemoveTechTreeItems(ITechItem item)
         {
             Control.ControlCollection labels = treePictureBox.Controls;
             foreach (Label label in labels)
@@ -1141,7 +1123,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="item">削除対象の項目</param>
         /// <param name="position">削除対象の位置</param>
-        private void RemoveTechTreeItem(object item, TechPosition position)
+        private void RemoveTechTreeItem(ITechItem item, TechPosition position)
         {
             Control.ControlCollection labels = treePictureBox.Controls;
             foreach (Label label in labels)
@@ -1159,11 +1141,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術ラベル描画時の処理
+        ///     技術ツリーのラベル描画時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void OnTechLabelPaint(object sender, PaintEventArgs e)
+        private static void OnTechTreeLabelPaint(object sender, PaintEventArgs e)
         {
             var label = sender as Label;
             if (label == null)
@@ -1177,70 +1159,45 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var item = info.Item as TechApplication;
-            if (item == null)
+            if (info.Item is TechApplication)
             {
-                return;
+                var item = info.Item as TechApplication;
+                string s = Config.GetText(item.ShortName);
+                if (string.IsNullOrEmpty(s))
+                {
+                    return;
+                }
+                Brush brush = new SolidBrush(Color.Black);
+                e.Graphics.DrawString(s, label.Font, brush, 6, 2);
+                brush.Dispose();
             }
+            else if (info.Item is TechLabel)
+            {
+                var item = info.Item as TechLabel;
+                string s = Config.GetText(item.Name);
+                if (string.IsNullOrEmpty(s))
+                {
+                    return;
+                }
 
-            string s = Config.GetText(item.ShortName);
-            if (string.IsNullOrEmpty(s))
-            {
-                return;
+                // 色指定文字列を解釈する
+                Brush brush;
+                if ((s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
+                    s.Length > 4 &&
+                    s[1] >= '0' && s[1] <= '9' &&
+                    s[2] >= '0' && s[2] <= '9' &&
+                    s[3] >= '0' && s[3] <= '9')
+                {
+                    brush = new SolidBrush(Color.FromArgb((s[3] - '0') << 5, (s[2] - '0') << 5, (s[1] - '0') << 5));
+                    s = s.Substring(4);
+                }
+                else
+                {
+                    brush = new SolidBrush(Color.White);
+                }
+                e.Graphics.DrawString(s, label.Font, brush, -2, 0);
+                brush.Dispose();
             }
-
-            Brush brush = new SolidBrush(Color.Black);
-            e.Graphics.DrawString(s, label.Font, brush, 6, 2);
-            brush.Dispose();
-        }
-
-        /// <summary>
-        ///     ラベル描画時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnLabelLabelPaint(object sender, PaintEventArgs e)
-        {
-            var label = sender as Label;
-            if (label == null)
-            {
-                return;
-            }
-
-            var info = label.Tag as TechLabelInfo;
-            if (info == null)
-            {
-                return;
-            }
-
-            var item = info.Item as TechLabel;
-            if (item == null)
-            {
-                return;
-            }
-
-            string s = Config.GetText(item.Name);
-            if (string.IsNullOrEmpty(s))
-            {
-                return;
-            }
-
-            Brush brush;
-            if ((s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
-                s.Length > 4 &&
-                s[1] >= '0' && s[1] <= '9' &&
-                s[2] >= '0' && s[2] <= '9' &&
-                s[3] >= '0' && s[3] <= '9')
-            {
-                brush = new SolidBrush(Color.FromArgb((s[3] - '0') << 5, (s[2] - '0') << 5, (s[1] - '0') << 5));
-                s = s.Substring(4);
-            }
-            else
-            {
-                brush = new SolidBrush(Color.White);
-            }
-            e.Graphics.DrawString(s, label.Font, brush, -2, 0);
-            brush.Dispose();
         }
 
         /// <summary>
@@ -1248,28 +1205,29 @@ namespace HoI2Editor.Forms
         /// </summary>
         private static void InitLabelBitmap()
         {
-            // 技術
+            // 技術アプリケーション
             var bitmap = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
-            _techLabelBitmap = bitmap.Clone(new Rectangle(0, 0, TechLabelWidth, TechLabelHeight), bitmap.PixelFormat);
+            _applicationLabelBitmap = bitmap.Clone(new Rectangle(0, 0, ApplicationLabelWidth, ApplicationLabelHeight),
+                                                   bitmap.PixelFormat);
             bitmap.Dispose();
-            _techLabelAndMask = new Bitmap(_techLabelBitmap.Width, _techLabelBitmap.Height);
-            Color transparent = _techLabelBitmap.GetPixel(0, 0);
-            for (int x = 0; x < _techLabelBitmap.Width; x++)
+            _applicationLabelAndMask = new Bitmap(_applicationLabelBitmap.Width, _applicationLabelBitmap.Height);
+            Color transparent = _applicationLabelBitmap.GetPixel(0, 0);
+            for (int x = 0; x < _applicationLabelBitmap.Width; x++)
             {
-                for (int y = 0; y < _techLabelBitmap.Height; y++)
+                for (int y = 0; y < _applicationLabelBitmap.Height; y++)
                 {
-                    if (_techLabelBitmap.GetPixel(x, y) == transparent)
+                    if (_applicationLabelBitmap.GetPixel(x, y) == transparent)
                     {
-                        TechLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
-                        _techLabelAndMask.SetPixel(x, y, Color.White);
+                        ApplicationLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
+                        _applicationLabelAndMask.SetPixel(x, y, Color.White);
                     }
                     else
                     {
-                        _techLabelAndMask.SetPixel(x, y, Color.Black);
+                        _applicationLabelAndMask.SetPixel(x, y, Color.Black);
                     }
                 }
             }
-            _techLabelBitmap.MakeTransparent(transparent);
+            _applicationLabelBitmap.MakeTransparent(transparent);
 
             // 技術イベント
             bitmap = new Bitmap(Game.GetReadFileName(Game.SecretLabelPathName));
@@ -1302,9 +1260,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechTreeLabelMouseDown(object sender, MouseEventArgs e)
         {
+            // 左ボタンダウンでなければドラッグ状態を解除する
             if (e.Button != MouseButtons.Left)
             {
                 _dragPoint = Point.Empty;
+                Cursor.Current = Cursors.Default;
                 return;
             }
 
@@ -1320,45 +1280,37 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 技術項目リストの項目を選択する
             techListBox.SelectedItem = info.Item;
 
-            if (info.Item is TechApplication)
+            // 座標リストビューの項目を選択する
+            for (int i = 0; i < info.Item.Positions.Count; i++)
             {
-                var techItem = info.Item as TechApplication;
-                for (int i = 0; i < techItem.Positions.Count; i++)
+                if (info.Item.Positions[i] == info.Position)
                 {
-                    if (techItem.Positions[i] == info.Position)
+                    if (info.Item is TechApplication)
                     {
                         techPositionListView.Items[i].Focused = true;
                         techPositionListView.Items[i].Selected = true;
+                        techPositionListView.EnsureVisible(i);
                     }
-                }
-            }
-            else if (info.Item is TechLabel)
-            {
-                var labelItem = info.Item as TechLabel;
-                for (int i = 0; i < labelItem.Positions.Count; i++)
-                {
-                    if (labelItem.Positions[i] == info.Position)
+                    else if (info.Item is TechLabel)
                     {
                         labelPositionListView.Items[i].Focused = true;
                         labelPositionListView.Items[i].Selected = true;
+                        labelPositionListView.EnsureVisible(i);
                     }
-                }
-            }
-            else if (info.Item is TechEvent)
-            {
-                var eventItem = info.Item as TechEvent;
-                for (int i = 0; i < eventItem.Positions.Count; i++)
-                {
-                    if (eventItem.Positions[i] == info.Position)
+                    else
                     {
                         eventPositionListView.Items[i].Focused = true;
                         eventPositionListView.Items[i].Selected = true;
+                        eventPositionListView.EnsureVisible(i);
                     }
+                    break;
                 }
             }
 
+            // ドラッグ開始位置を設定する
             _dragPoint = new Point(label.Left + e.X, label.Top + e.Y);
         }
 
@@ -1369,6 +1321,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private static void OnTechTreeLabelMouseUp(object sender, MouseEventArgs e)
         {
+            // ドラッグ状態を解除する
             _dragPoint = Point.Empty;
             Cursor.Current = Cursors.Default;
         }
@@ -1380,11 +1333,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechTreeLabelMouseMove(object sender, MouseEventArgs e)
         {
+            // ドラッグ中でなければ何もしない
             if (_dragPoint == Point.Empty)
             {
                 return;
             }
 
+            // ドラッグ判定サイズを超えていなければ何もしない
             Size dragSize = SystemInformation.DragSize;
             var dragRect = new Rectangle(_dragPoint.X - dragSize.Width/2, _dragPoint.Y - dragSize.Height/2,
                                          dragSize.Width, dragSize.Height);
@@ -1405,13 +1360,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // カーソル画像を作成する
             var bitmap = new Bitmap(label.Width, label.Height);
             bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
             label.DrawToBitmap(bitmap, new Rectangle(0, 0, label.Width, label.Height));
-
             if (info.Item is TechApplication)
             {
-                _dragCursor = CursorFactory.CreateCursor(bitmap, _techLabelAndMask, _dragPoint.X - label.Left,
+                _dragCursor = CursorFactory.CreateCursor(bitmap, _applicationLabelAndMask, _dragPoint.X - label.Left,
                                                          _dragPoint.Y - label.Top);
             }
             else if (info.Item is TechLabel)
@@ -1424,9 +1379,14 @@ namespace HoI2Editor.Forms
                 _dragCursor = CursorFactory.CreateCursor(bitmap, _eventLabelAndMask, _dragPoint.X - label.Left,
                                                          _dragPoint.Y - label.Top);
             }
+
+            // ドラッグアンドドロップを開始する
             label.DoDragDrop(sender, DragDropEffects.Move);
+
+            // ドラッグ状態を解除する
             _dragPoint = Point.Empty;
             _dragCursor.Dispose();
+
             bitmap.Dispose();
         }
 
@@ -1439,6 +1399,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.Effect & DragDropEffects.Move) != 0)
             {
+                // カーソル画像を設定する
                 e.UseDefaultCursors = false;
                 Cursor.Current = _dragCursor;
             }
@@ -1455,6 +1416,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTreePictureBoxDragOver(object sender, DragEventArgs e)
         {
+            // ラベルでなければ何もしない
             if (!e.Data.GetDataPresent(typeof (Label)))
             {
                 e.Effect = DragDropEffects.None;
@@ -1467,6 +1429,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 技術ツリー画像の範囲外ならばドロップを禁止する
             var dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
             Point p = treePictureBox.PointToClient(new Point(e.X, e.Y));
             e.Effect = dragRect.Contains(p) ? DragDropEffects.Move : DragDropEffects.None;
@@ -1479,6 +1442,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTreePictureBoxDragDrop(object sender, DragEventArgs e)
         {
+            // ラベルでなければ何もしない
             if (!e.Data.GetDataPresent(typeof (Label)))
             {
                 return;
@@ -1490,12 +1454,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 技術ツリー上のドロップ座標を計算する
             var p = new Point(e.X, e.Y);
             p = treePictureBox.PointToClient(p);
-
             p.X = label.Left + p.X - _dragPoint.X;
             p.Y = label.Top + p.Y - _dragPoint.Y;
 
+            // ラベル情報の座標を更新する
             var info = label.Tag as TechLabelInfo;
             if (info == null)
             {
@@ -1504,57 +1469,43 @@ namespace HoI2Editor.Forms
             info.Position.X = p.X;
             info.Position.Y = p.Y;
 
-            if (info.Item is TechApplication)
+            // 座標リストビューの項目を更新する
+            for (int i = 0; i < info.Item.Positions.Count; i++)
             {
-                var techItem = info.Item as TechApplication;
-                for (int i = 0; i < techItem.Positions.Count; i++)
+                if (info.Item.Positions[i] == info.Position)
                 {
-                    if (techItem.Positions[i] == info.Position)
+                    if (info.Item is TechApplication)
                     {
                         techPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
                         techPositionListView.Items[i].SubItems[1].Text =
                             info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                        techXNumericUpDown.Value = info.Position.X;
+                        techYNumericUpDown.Value = info.Position.Y;
                     }
-                }
-
-                techXNumericUpDown.Value = info.Position.X;
-                techYNumericUpDown.Value = info.Position.Y;
-            }
-            else if (info.Item is TechLabel)
-            {
-                var labelItem = info.Item as TechLabel;
-                for (int i = 0; i < labelItem.Positions.Count; i++)
-                {
-                    if (labelItem.Positions[i] == info.Position)
+                    else if (info.Item is TechLabel)
                     {
                         labelPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
                         labelPositionListView.Items[i].SubItems[1].Text =
                             info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                        labelXNumericUpDown.Value = info.Position.X;
+                        labelYNumericUpDown.Value = info.Position.Y;
                     }
-                }
-
-                techXNumericUpDown.Value = info.Position.X;
-                techYNumericUpDown.Value = info.Position.Y;
-            }
-            else if (info.Item is TechEvent)
-            {
-                var eventItem = info.Item as TechEvent;
-                for (int i = 0; i < eventItem.Positions.Count; i++)
-                {
-                    if (eventItem.Positions[i] == info.Position)
+                    else
                     {
                         eventPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
                         eventPositionListView.Items[i].SubItems[1].Text =
                             info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                        eventXNumericUpDown.Value = info.Position.X;
+                        eventYNumericUpDown.Value = info.Position.Y;
                     }
+                    break;
                 }
-
-                techXNumericUpDown.Value = info.Position.X;
-                techYNumericUpDown.Value = info.Position.Y;
             }
 
+            // ラベルの座標を更新する
             label.Location = p;
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
@@ -1566,7 +1517,7 @@ namespace HoI2Editor.Forms
             /// <summary>
             ///     技術項目
             /// </summary>
-            internal object Item;
+            internal ITechItem Item;
 
             /// <summary>
             ///     位置
