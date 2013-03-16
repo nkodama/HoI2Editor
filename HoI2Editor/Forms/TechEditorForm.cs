@@ -1659,9 +1659,9 @@ namespace HoI2Editor.Forms
 
             foreach (TechPosition position in item.Positions)
             {
-                var listItem = new ListViewItem(position.X.ToString(CultureInfo.InvariantCulture));
-                listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
-                techPositionListView.Items.Add(listItem);
+                var li = new ListViewItem(position.X.ToString(CultureInfo.InvariantCulture));
+                li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+                techPositionListView.Items.Add(li);
             }
 
             if (techPositionListView.Items.Count > 0)
@@ -1690,6 +1690,10 @@ namespace HoI2Editor.Forms
             techXNumericUpDown.Enabled = true;
             techYNumericUpDown.Enabled = true;
             techPositionRemoveButton.Enabled = true;
+
+            // 無効化時にクリアした文字列を再設定する
+            techXNumericUpDown.Text = techXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            techYNumericUpDown.Text = techYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -1697,8 +1701,8 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void DisableTechPositionItems()
         {
-            techXNumericUpDown.Value = 0;
-            techYNumericUpDown.Value = 0;
+            techXNumericUpDown.ResetText();
+            techYNumericUpDown.ResetText();
 
             techXNumericUpDown.Enabled = false;
             techYNumericUpDown.Enabled = false;
@@ -1712,25 +1716,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechNameTextBoxTextChanged(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            string newText = techNameTextBox.Text;
-            if (newText.Equals(Config.GetText(item.Name)))
+            // 値に変化がなければ何もしない
+            string name = techNameTextBox.Text;
+            if (name.Equals(Config.GetText(item.Name)))
             {
                 return;
             }
 
-            Config.SetText(item.Name, newText, Game.TechTextFileName);
+            // 値を更新する
+            Config.SetText(item.Name, name, Game.TechTextFileName);
 
             // 項目リストボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
@@ -1756,6 +1757,7 @@ namespace HoI2Editor.Forms
             orTechComboBox.SelectedIndexChanged += OnOrTechComboBoxSelectedIndexChanged;
             eventTechComboBox.SelectedIndexChanged += OnEventTechComboBoxSelectedIndexChanged;
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
@@ -1767,25 +1769,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechShortNameTextBoxTextChanged(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            string newText = techShortNameTextBox.Text;
-            if (newText.Equals(Config.GetText(item.ShortName)))
+            // 値に変化がなければ何もしない
+            string shortName = techShortNameTextBox.Text;
+            if (shortName.Equals(Config.GetText(item.ShortName)))
             {
                 return;
             }
 
-            Config.SetText(item.ShortName, newText, Game.TechTextFileName);
+            // 値を更新する
+            Config.SetText(item.ShortName, shortName, Game.TechTextFileName);
 
             // 技術ツリー上のラベル名を更新する
             foreach (Label label in treePictureBox.Controls)
@@ -1797,6 +1796,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
             Config.SetDirty(Game.TechTextFileName, true);
         }
@@ -1808,32 +1808,34 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            var newId = (int) techIdNumericUpDown.Value;
-            if (newId == item.Id)
+            // 値に変化がなければ何もしない
+            var id = (int)techIdNumericUpDown.Value;
+            if (id == item.Id)
             {
                 return;
             }
 
+            // 値の変更前に技術項目とIDの対応付けを削除する
             List<KeyValuePair<int, TechApplication>> list = TechIdMap.Where(pair => pair.Value == item).ToList();
             foreach (var pair in list)
             {
                 TechIdMap.Remove(pair);
             }
-            item.Id = newId;
+
+            // 値を更新する
+            item.Id = id;
+
+            // 技術項目とIDを対応付ける
             TechIdMap.Add(new KeyValuePair<int, TechApplication>(item.Id, item));
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
@@ -1844,26 +1846,24 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            var newYear = (int) techYearNumericUpDown.Value;
-            if (newYear == item.Year)
+            // 値に変化がなければ何もしない
+            var year = (int)techYearNumericUpDown.Value;
+            if (year == item.Year)
             {
                 return;
             }
 
-            item.Year = newYear;
+            // 値を更新する
+            item.Year = year;
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
@@ -1874,17 +1874,19 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechPositionListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (techPositionListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
             }
 
+            if (techPositionListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+
+            // 編集項目を更新する
             int index = techPositionListView.SelectedIndices[0];
             techXNumericUpDown.Value = item.Positions[index].X;
             techYNumericUpDown.Value = item.Positions[index].Y;
@@ -1897,12 +1899,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechXNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
@@ -1912,21 +1910,24 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int index = techPositionListView.SelectedIndices[0];
 
+            int index = techPositionListView.SelectedIndices[0];
             TechPosition position = item.Positions[index];
 
-            // 値に変化がなければ何もせずに戻る
-            var newX = (int) techXNumericUpDown.Value;
-            if (newX == position.X)
+            // 値に変化がなければ何もしない
+            var x = (int)techXNumericUpDown.Value;
+            if (x == position.X)
             {
                 return;
             }
 
-            position.X = newX;
+            // 値を更新する
+            position.X = x;
 
-            techPositionListView.Items[index].Text = newX.ToString(CultureInfo.InvariantCulture);
+            // 座標リストビューの表示を更新する
+            techPositionListView.Items[index].Text = x.ToString(CultureInfo.InvariantCulture);
 
+            // ラベルの位置を更新する
             foreach (Label label in treePictureBox.Controls)
             {
                 var info = label.Tag as TechLabelInfo;
@@ -1936,6 +1937,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
@@ -1946,12 +1948,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechYNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
@@ -1962,20 +1960,22 @@ namespace HoI2Editor.Forms
                 return;
             }
             int index = techPositionListView.SelectedIndices[0];
-
             TechPosition position = item.Positions[techPositionListView.SelectedIndices[0]];
 
-            // 値に変化がなければ何もせずに戻る
-            var newY = (int) techYNumericUpDown.Value;
-            if (newY == position.Y)
+            // 値に変化がなければ何もしない
+            var y = (int)techYNumericUpDown.Value;
+            if (y == position.Y)
             {
                 return;
             }
 
-            position.Y = newY;
+            // 値を更新する
+            position.Y = y;
 
-            techPositionListView.Items[index].SubItems[1].Text = newY.ToString(CultureInfo.InvariantCulture);
+            // 座標リストビューの表示を更新する
+            techPositionListView.Items[index].SubItems[1].Text = y.ToString(CultureInfo.InvariantCulture);
 
+            // ラベルの位置を更新する
             foreach (Label label in treePictureBox.Controls)
             {
                 var info = label.Tag as TechLabelInfo;
@@ -1985,6 +1985,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
@@ -1995,31 +1996,34 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechPositionAddButtonClick(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
             }
 
+            // 座標をリストに追加する
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
-            var listItem = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
-            listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
-            techPositionListView.Items.Add(listItem);
+            // 座標リストビューの項目を追加する
+            var li = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
+            li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+            techPositionListView.Items.Add(li);
 
+            // 追加した項目を選択する
             techPositionListView.Items[techPositionListView.Items.Count - 1].Focused = true;
             techPositionListView.Items[techPositionListView.Items.Count - 1].Selected = true;
+            techPositionListView.EnsureVisible(techPositionListView.Items.Count - 1);
 
+            // 編集項目を有効化する
             EnableTechPositionItems();
 
+            // 技術ツリーにラベルを追加する
             AddTechTreeItem(item, position);
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
@@ -2030,12 +2034,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechPositionRemoveButtonClick(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
@@ -2048,37 +2048,45 @@ namespace HoI2Editor.Forms
             int index = techPositionListView.SelectedIndices[0];
             TechPosition position = item.Positions[index];
 
+            // 座標をリストから削除する
             item.Positions.RemoveAt(index);
 
+            // 座標リストビューの項目を削除する
             techPositionListView.Items.RemoveAt(index);
 
             if (index < techPositionListView.Items.Count)
             {
+                // 削除した項目の次の項目を選択する
                 techPositionListView.Items[index].Focused = true;
                 techPositionListView.Items[index].Selected = true;
             }
             else if (index > 0)
             {
+                // リストの末尾ならば、削除した項目の前の項目を選択する
                 techPositionListView.Items[techPositionListView.Items.Count - 1].Focused = true;
                 techPositionListView.Items[techPositionListView.Items.Count - 1].Selected = true;
             }
             else
             {
+                // 項目がなくなれば編集項目を無効化する
                 DisableTechPositionItems();
             }
 
+            // 技術ツリーからラベルを削除する
             RemoveTechTreeItem(item, position);
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
         ///     技術画像を更新する
         /// </summary>
-        /// <param name="item">技術</param>
+        /// <param name="item">技術アプリケーション</param>
         private void UpdateTechPicture(TechApplication item)
         {
-            techPictureNameTextBox.Text = string.IsNullOrEmpty(item.PictureName) ? "" : item.PictureName;
+            // 画像ファイル名テキストボックスの値を更新する
+            techPictureNameTextBox.Text = item.PictureName ?? "";
 
             string fileName =
                 Game.GetReadFileName(Game.TechPicturePathName,
@@ -2088,6 +2096,7 @@ namespace HoI2Editor.Forms
                                                        : item.PictureName));
             if (File.Exists(fileName))
             {
+                // 技術画像を更新する
                 var bitmap = new Bitmap(fileName);
                 bitmap.MakeTransparent();
                 techPictureBox.Image = bitmap;
@@ -2105,27 +2114,27 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechPictureNameTextBoxTextChanged(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
             }
 
-            // 値に変化がなければ何もせずに戻る
-            string newPictureName = techPictureNameTextBox.Text;
-            if (newPictureName.Equals(item.PictureName))
+            // 値に変化がなければ何もしない
+            string pictureName = techPictureNameTextBox.Text;
+            if (pictureName.Equals(item.PictureName))
             {
                 return;
             }
 
-            item.PictureName = newPictureName;
+            // 値を更新する
+            item.PictureName = pictureName;
+
+            // 技術画像を更新する
             UpdateTechPicture(item);
 
+            // 編集済みフラグを設定する
             Techs.SetDirty(GetSelectedCategory());
         }
 
@@ -2136,12 +2145,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechPictureNameBrowseButtonClick(object sender, EventArgs e)
         {
-            if (techListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            var item = techListBox.SelectedItem as TechApplication;
+            // 選択項目がなければ何もしない
+            var item = GetSelectedItem() as TechApplication;
             if (item == null)
             {
                 return;
@@ -2155,6 +2160,7 @@ namespace HoI2Editor.Forms
                              };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                // 画像ファイル名テキストボックスの値を更新する
                 techPictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
             }
         }
@@ -2166,11 +2172,92 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     必要技術タブの項目を更新する
         /// </summary>
-        /// <param name="item">技術</param>
+        /// <param name="item">技術アプリケーション</param>
         private void UpdateRequiredItems(TechApplication item)
         {
             UpdateAndRequiredList(item);
             UpdateOrRequiredList(item);
+        }
+
+        /// <summary>
+        ///     AND条件必要技術リストを更新する
+        /// </summary>
+        /// <param name="item">技術アプリケーション</param>
+        private void UpdateAndRequiredList(TechApplication item)
+        {
+            andRequiredListView.BeginUpdate();
+            andRequiredListView.Items.Clear();
+
+            foreach (int id in item.AndRequired)
+            {
+                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+                foreach (var pair in TechIdMap)
+                {
+                    if (pair.Key == id)
+                    {
+                        li.SubItems.Add(Config.GetText(pair.Value.Name));
+                    }
+                }
+                andRequiredListView.Items.Add(li);
+            }
+
+            if (andRequiredListView.Items.Count > 0)
+            {
+                // 先頭の項目を選択する
+                andRequiredListView.Items[0].Focused = true;
+                andRequiredListView.Items[0].Selected = true;
+
+                // 編集項目を有効化する
+                EnableAndRequiredItems();
+            }
+            else
+            {
+                // 編集項目を無効化する
+                DisableAndReuqiredItems();
+            }
+
+            andRequiredListView.EndUpdate();
+        }
+
+
+        /// <summary>
+        ///     OR条件必要技術リストを更新する
+        /// </summary>
+        /// <param name="item">技術アプリケーション</param>
+        private void UpdateOrRequiredList(TechApplication item)
+        {
+            orRequiredListView.BeginUpdate();
+            orRequiredListView.Items.Clear();
+
+            foreach (int id in item.OrRequired)
+            {
+                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+                foreach (var pair in TechIdMap)
+                {
+                    if (pair.Key == id)
+                    {
+                        li.SubItems.Add(Config.GetText(pair.Value.Name));
+                    }
+                }
+                orRequiredListView.Items.Add(li);
+            }
+
+            if (orRequiredListView.Items.Count > 0)
+            {
+                // 先頭の項目を選択する
+                orRequiredListView.Items[0].Focused = true;
+                orRequiredListView.Items[0].Selected = true;
+
+                // 編集項目を有効化する
+                EnableOrRequiredItems();
+            }
+            else
+            {
+                // 編集項目を無効化する
+                DisableOrReuqiredItems();
+            }
+
+            orRequiredListView.EndUpdate();
         }
 
         /// <summary>
@@ -2203,87 +2290,6 @@ namespace HoI2Editor.Forms
             orIdNumericUpDown.ResetText();
             orTechComboBox.SelectedIndex = -1;
             orTechComboBox.ResetText();
-        }
-
-        /// <summary>
-        ///     AND条件必要技術リストを更新する
-        /// </summary>
-        /// <param name="item">技術</param>
-        private void UpdateAndRequiredList(TechApplication item)
-        {
-            andRequiredListView.BeginUpdate();
-            andRequiredListView.Items.Clear();
-
-            foreach (int id in item.AndRequired)
-            {
-                var listItem = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
-                foreach (var pair in TechIdMap)
-                {
-                    if (pair.Key == id)
-                    {
-                        listItem.SubItems.Add(Config.GetText(pair.Value.Name));
-                    }
-                }
-                andRequiredListView.Items.Add(listItem);
-            }
-
-            if (andRequiredListView.Items.Count > 0)
-            {
-                // 先頭の項目を選択する
-                andRequiredListView.Items[0].Focused = true;
-                andRequiredListView.Items[0].Selected = true;
-
-                // 編集項目を有効化する
-                EnableAndRequiredItems();
-            }
-            else
-            {
-                // 編集項目を無効化する
-                DisableAndReuqiredItems();
-            }
-
-            andRequiredListView.EndUpdate();
-        }
-
-
-        /// <summary>
-        ///     OR条件必要技術リストを更新する
-        /// </summary>
-        /// <param name="item">技術</param>
-        private void UpdateOrRequiredList(TechApplication item)
-        {
-            orRequiredListView.BeginUpdate();
-            orRequiredListView.Items.Clear();
-
-            foreach (int id in item.OrRequired)
-            {
-                var listItem = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
-                foreach (var pair in TechIdMap)
-                {
-                    if (pair.Key == id)
-                    {
-                        listItem.SubItems.Add(Config.GetText(pair.Value.Name));
-                    }
-                }
-                orRequiredListView.Items.Add(listItem);
-            }
-
-            if (orRequiredListView.Items.Count > 0)
-            {
-                // 先頭の項目を選択する
-                orRequiredListView.Items[0].Focused = true;
-                orRequiredListView.Items[0].Selected = true;
-
-                // 編集項目を有効化する
-                EnableOrRequiredItems();
-            }
-            else
-            {
-                // 編集項目を無効化する
-                DisableOrReuqiredItems();
-            }
-
-            orRequiredListView.EndUpdate();
         }
 
         /// <summary>
