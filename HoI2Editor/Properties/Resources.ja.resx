@@ -201,8 +201,32 @@
   <data name="Hitler" xml:space="preserve">
     <value>ヒトラー</value>
   </data>
+  <data name="InvalidAaPosition" xml:space="preserve">
+    <value>対空砲の座標の異常</value>
+  </data>
+  <data name="InvalidArea" xml:space="preserve">
+    <value>地域名の異常</value>
+  </data>
+  <data name="InvalidArmyPosition" xml:space="preserve">
+    <value>軍隊の座標の異常</value>
+  </data>
+  <data name="InvalidBeach" xml:space="preserve">
+    <value>砂浜の異常</value>
+  </data>
   <data name="InvalidBranch" xml:space="preserve">
     <value>兵科の異常</value>
+  </data>
+  <data name="InvalidCityPosition" xml:space="preserve">
+    <value>都市の座標の異常</value>
+  </data>
+  <data name="InvalidClimate" xml:space="preserve">
+    <value>気候の異常</value>
+  </data>
+  <data name="InvalidContinent" xml:space="preserve">
+    <value>大陸名の異常</value>
+  </data>
+  <data name="InvalidCounterPosition" xml:space="preserve">
+    <value>カウンターの座標の異常</value>
   </data>
   <data name="InvalidCountryTag" xml:space="preserve">
     <value>国タグの異常</value>
@@ -210,8 +234,20 @@
   <data name="InvalidEndYear" xml:space="preserve">
     <value>終了年の異常</value>
   </data>
+  <data name="InvalidEnergy" xml:space="preserve">
+    <value>エネルギーの異常</value>
+  </data>
   <data name="InvalidExperience" xml:space="preserve">
     <value>経験値の異常</value>
+  </data>
+  <data name="InvalidFillPosition" xml:space="preserve">
+    <value>塗りつぶし座標の異常</value>
+  </data>
+  <data name="InvalidFortPosition" xml:space="preserve">
+    <value>要塞の座標の異常</value>
+  </data>
+  <data name="InvalidIc" xml:space="preserve">
+    <value>ICの異常</value>
   </data>
   <data name="InvalidID" xml:space="preserve">
     <value>IDの異常</value>
@@ -222,20 +258,41 @@
   <data name="InvalidIdeology" xml:space="preserve">
     <value>イデオロギーの異常</value>
   </data>
+  <data name="InvalidInfrastructure" xml:space="preserve">
+    <value>インフラの異常</value>
+  </data>
   <data name="InvalidLoyalty" xml:space="preserve">
     <value>忠誠度の異常</value>
+  </data>
+  <data name="InvalidManpower" xml:space="preserve">
+    <value>労働力の異常</value>
   </data>
   <data name="InvalidMaxSkill" xml:space="preserve">
     <value>最大スキルの異常</value>
   </data>
+  <data name="InvalidMetal" xml:space="preserve">
+    <value>金属の異常</value>
+  </data>
+  <data name="InvalidOil" xml:space="preserve">
+    <value>石油の異常</value>
+  </data>
   <data name="InvalidPersonality" xml:space="preserve">
     <value>閣僚特性の異常</value>
+  </data>
+  <data name="InvalidPort" xml:space="preserve">
+    <value>港の異常</value>
   </data>
   <data name="InvalidPosition" xml:space="preserve">
     <value>閣僚地位の異常</value>
   </data>
   <data name="InvalidRankYear" xml:space="preserve">
     <value>任官年の異常</value>
+  </data>
+  <data name="InvalidRareMaterials" xml:space="preserve">
+    <value>希少資源の異常</value>
+  </data>
+  <data name="InvalidRegion" xml:space="preserve">
+    <value>地方名の異常</value>
   </data>
   <data name="InvalidRetirementYear" xml:space="preserve">
     <value>引退年の異常</value>
@@ -248,6 +305,9 @@
   </data>
   <data name="InvalidStartYear" xml:space="preserve">
     <value>開始年の異常</value>
+  </data>
+  <data name="InvalidTerrain" xml:space="preserve">
+    <value>地形の異常</value>
   </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>無効なトークン</value>
@@ -374,5 +434,17 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>○</value>
+  </data>
+  <data name="InvalidPortSeazone" xml:space="preserve">
+    <value>港の海域の異常</value>
+  </data>
+  <data name="InvalidPortPosition" xml:space="preserve">
+    <value>港の座標の異常</value>
+  </data>
+  <data name="InvalidBeachPosition" xml:space="preserve">
+    <value>砂浜の座標の異常</value>
+  </data>
+  <data name="InvalidBeachIcon" xml:space="preserve">
+    <value>砂浜のアイコンの異常</value>
   </data>
 </root>

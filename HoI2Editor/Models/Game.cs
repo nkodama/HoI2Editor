@@ -22,6 +22,11 @@ namespace HoI2Editor.Models
         public const string ConfigAdditionalPathName = "config\\Additional";
 
         /// <summary>
+        /// データベースフォルダ
+        /// </summary>
+        public const string DatabasePathName = "db";
+
+        /// <summary>
         ///     指揮官フォルダ
         /// </summary>
         public const string LeaderPathName = "db\\leaders";
@@ -75,6 +80,11 @@ namespace HoI2Editor.Models
         ///     ユニットモデル画像フォルダ
         /// </summary>
         public const string ModelPicturePathName = "gfx\\interface\\models";
+
+        /// <summary>
+        /// マップフォルダ名
+        /// </summary>
+        public const string MapPathName = "map";
 
         /// <summary>
         ///     MODフォルダ名(DH)
@@ -150,6 +160,11 @@ namespace HoI2Editor.Models
         ///     国別モデル文字列定義のファイル名
         /// </summary>
         public const string ModelTextFileName = "models.csv";
+
+        /// <summary>
+        /// プロヴィンス定義ファイル名
+        /// </summary>
+        public const string ProvinceFileName = "province.csv";
 
         #endregion
 
@@ -371,6 +386,22 @@ namespace HoI2Editor.Models
         public static string GetTeamFileName(CountryTag countryTag)
         {
             return string.Format("teams_{0}.csv", Country.Strings[(int) countryTag].ToLower());
+        }
+
+        /// <summary>
+        /// マップフォルダ名を取得する
+        /// </summary>
+        /// <returns>マップフォルダ名</returns>
+        public static string GetMapFolderName()
+        {
+            // バニラのマップ
+            if (Type != GameType.DarkestHour || Misc.Map.MapNo == 0)
+            {
+                return DatabasePathName;
+            }
+
+            // DHのマップ拡張
+            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.Map.MapNo));
         }
 
         /// <summary>

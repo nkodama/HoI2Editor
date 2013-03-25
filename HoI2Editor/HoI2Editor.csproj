@@ -67,6 +67,12 @@
     <Compile Include="Forms\MinisterEditorForm.Designer.cs">
       <DependentUpon>MinisterEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProvinceEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProvinceEditorForm.Designer.cs">
+      <DependentUpon>ProvinceEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TeamEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,8 @@
     <Compile Include="Models\Minister.cs" />
     <Compile Include="Models\Ministers.cs" />
     <Compile Include="Models\Misc.cs" />
+    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\Provinces.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Models\Tech.cs" />
@@ -139,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MinisterEditorForm.resx">
       <DependentUpon>MinisterEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProvinceEditorForm.resx">
+      <DependentUpon>ProvinceEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TeamEditorForm.ja.resx">
       <DependentUpon>TeamEditorForm.cs</DependentUpon>

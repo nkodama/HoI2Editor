@@ -408,4 +408,76 @@
   <data name="BrigadeSpRocketArtillery" xml:space="preserve">
     <value>Self-Propelled Rocket Artillery</value>
   </data>
+  <data name="InvalidArea" xml:space="preserve">
+    <value>Invalid area name</value>
+  </data>
+  <data name="InvalidClimate" xml:space="preserve">
+    <value>Invalid climate</value>
+  </data>
+  <data name="InvalidContinent" xml:space="preserve">
+    <value>Invalid continent name</value>
+  </data>
+  <data name="InvalidRegion" xml:space="preserve">
+    <value>Invalid region name</value>
+  </data>
+  <data name="InvalidTerrain" xml:space="preserve">
+    <value>Invalid terrain</value>
+  </data>
+  <data name="InvalidAaPosition" xml:space="preserve">
+    <value>Invalid AA position</value>
+  </data>
+  <data name="InvalidArmyPosition" xml:space="preserve">
+    <value>Invalid army position</value>
+  </data>
+  <data name="InvalidBeach" xml:space="preserve">
+    <value>Invalid beach</value>
+  </data>
+  <data name="InvalidCityPosition" xml:space="preserve">
+    <value>Invalid city position</value>
+  </data>
+  <data name="InvalidCounterPosition" xml:space="preserve">
+    <value>Invalid counter position</value>
+  </data>
+  <data name="InvalidEnergy" xml:space="preserve">
+    <value>Invalid energy</value>
+  </data>
+  <data name="InvalidFillPosition" xml:space="preserve">
+    <value>Invalid filling position</value>
+  </data>
+  <data name="InvalidFortPosition" xml:space="preserve">
+    <value>Invalid fort position</value>
+  </data>
+  <data name="InvalidIc" xml:space="preserve">
+    <value>Invalid IC</value>
+  </data>
+  <data name="InvalidInfrastructure" xml:space="preserve">
+    <value>Invalid infrastructure</value>
+  </data>
+  <data name="InvalidManpower" xml:space="preserve">
+    <value>Invalid manpower</value>
+  </data>
+  <data name="InvalidMetal" xml:space="preserve">
+    <value>Invalid metal</value>
+  </data>
+  <data name="InvalidOil" xml:space="preserve">
+    <value>Invalid oil</value>
+  </data>
+  <data name="InvalidPort" xml:space="preserve">
+    <value>Invalid port</value>
+  </data>
+  <data name="InvalidRareMaterials" xml:space="preserve">
+    <value>Invalid rare materials</value>
+  </data>
+  <data name="InvalidPortSeazone" xml:space="preserve">
+    <value>Invalid port seazone</value>
+  </data>
+  <data name="InvalidPortPosition" xml:space="preserve">
+    <value>Invalid port position</value>
+  </data>
+  <data name="InvalidBeachPosition" xml:space="preserve">
+    <value>Invalid beach position</value>
+  </data>
+  <data name="InvalidBeachIcon" xml:space="preserve">
+    <value>Invalid beach icon</value>
+  </data>
 </root>
