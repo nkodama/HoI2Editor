@@ -1001,7 +1001,7 @@ namespace HoI2Editor.Forms
             if (team != null)
             {
                 // アイコンを描画する
-                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
                     var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
@@ -1047,7 +1047,7 @@ namespace HoI2Editor.Forms
             if (team != null)
             {
                 // アイコンを描画する
-                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
                     var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
@@ -1093,7 +1093,7 @@ namespace HoI2Editor.Forms
             if (team != null)
             {
                 // アイコンを描画する
-                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
                     var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
@@ -1139,7 +1139,7 @@ namespace HoI2Editor.Forms
             if (team != null)
             {
                 // アイコンを描画する
-                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
                     var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
@@ -1185,7 +1185,7 @@ namespace HoI2Editor.Forms
             if (team != null)
             {
                 // アイコンを描画する
-                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
                     var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
@@ -1231,7 +1231,7 @@ namespace HoI2Editor.Forms
             if (team != null)
             {
                 // アイコンを描画する
-                if (e.Index - 1 < Techs.SpecialityImages.Images.Count)
+                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
                     var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
