@@ -129,6 +129,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechEditorFormLoad(object sender, EventArgs e)
         {
+            // 画面解像度が十分に広い場合はツリー画像全体が入るように高さを調整する
+            if (Screen.GetWorkingArea(this).Height > 868)
+            {
+                Height = 868;
+            }
+
             // 研究特性を初期化する
             Techs.InitSpecialities();
 
@@ -1816,7 +1822,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var id = (int)techIdNumericUpDown.Value;
+            var id = (int) techIdNumericUpDown.Value;
             if (id == item.Id)
             {
                 return;
@@ -1854,7 +1860,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var year = (int)techYearNumericUpDown.Value;
+            var year = (int) techYearNumericUpDown.Value;
             if (year == item.Year)
             {
                 return;
@@ -1915,7 +1921,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もしない
-            var x = (int)techXNumericUpDown.Value;
+            var x = (int) techXNumericUpDown.Value;
             if (x == position.X)
             {
                 return;
@@ -1963,7 +1969,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[techPositionListView.SelectedIndices[0]];
 
             // 値に変化がなければ何もしない
-            var y = (int)techYNumericUpDown.Value;
+            var y = (int) techYNumericUpDown.Value;
             if (y == position.Y)
             {
                 return;
@@ -2190,7 +2196,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.AndRequired)
             {
-                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+                var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
                 foreach (var pair in TechIdMap)
                 {
                     if (pair.Key == id)
@@ -2231,7 +2237,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.OrRequired)
             {
-                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+                var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
                 foreach (var pair in TechIdMap)
                 {
                     if (pair.Key == id)
