@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nameColumnHeader.Text" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="seaColumnHeader.Text" xml:space="preserve">
+    <value>海洋</value>
+  </data>
+  <data name="portColumnHeader.Text" xml:space="preserve">
+    <value>港</value>
+  </data>
+  <data name="beachColumnHeader.Text" xml:space="preserve">
+    <value>砂浜</value>
+  </data>
+  <data name="infraColumnHeader.Text" xml:space="preserve">
+    <value>インフラ</value>
+  </data>
+  <data name="manpowerColumnHeader.Text" xml:space="preserve">
+    <value>労働力</value>
+  </data>
+  <data name="energyColumnHeader.Text" xml:space="preserve">
+    <value>石炭</value>
+  </data>
+  <data name="metalColumnHeader.Text" xml:space="preserve">
+    <value>金属</value>
+  </data>
+  <data name="rareMaterialsColumnHeader.Text" xml:space="preserve">
+    <value>希少</value>
+  </data>
+  <data name="oilColumnHeader.Text" xml:space="preserve">
+    <value>石油</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="terrainLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="terrainLabel.Text" xml:space="preserve">
+    <value>地形</value>
+  </data>
+  <data name="climateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="climateLabel.Text" xml:space="preserve">
+    <value>気候</value>
+  </data>
+  <data name="areaLabel.Text" xml:space="preserve">
+    <value>地域</value>
+  </data>
+  <data name="regionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="regionLabel.Text" xml:space="preserve">
+    <value>地方</value>
+  </data>
+  <data name="continentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="continentLabel.Text" xml:space="preserve">
+    <value>大陸</value>
+  </data>
+  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="nameLabel.Text" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="basicGroupBox.Text" xml:space="preserve">
+    <value>基本設定</value>
+  </data>
+  <data name="fillLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="fillLabel.Text" xml:space="preserve">
+    <value>塗りつぶし</value>
+  </data>
+  <data name="counterLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 12</value>
+  </data>
+  <data name="counterLabel.Text" xml:space="preserve">
+    <value>カウンター</value>
+  </data>
+  <data name="aaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="aaLabel.Text" xml:space="preserve">
+    <value>対空砲</value>
+  </data>
+  <data name="fortLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="fortLabel.Text" xml:space="preserve">
+    <value>要塞</value>
+  </data>
+  <data name="beachIconLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
+  </data>
+  <data name="beachIconLabel.Text" xml:space="preserve">
+    <value>アイコン</value>
+  </data>
+  <data name="beachCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="beachCheckBox.Text" xml:space="preserve">
+    <value>砂浜</value>
+  </data>
+  <data name="portSeaZoneLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="portSeaZoneLabel.Text" xml:space="preserve">
+    <value>海域</value>
+  </data>
+  <data name="portCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 16</value>
+  </data>
+  <data name="portCheckBox.Text" xml:space="preserve">
+    <value>港</value>
+  </data>
+  <data name="armyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="armyLabel.Text" xml:space="preserve">
+    <value>軍隊</value>
+  </data>
+  <data name="cityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="cityLabel.Text" xml:space="preserve">
+    <value>都市</value>
+  </data>
+  <data name="positionGroupBox.Text" xml:space="preserve">
+    <value>座標設定</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="oilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="oilLabel.Text" xml:space="preserve">
+    <value>石油</value>
+  </data>
+  <data name="rareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="rareMaterialsLabel.Text" xml:space="preserve">
+    <value>希少資源</value>
+  </data>
+  <data name="metalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="metalLabel.Text" xml:space="preserve">
+    <value>金属</value>
+  </data>
+  <data name="energyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="energyLabel.Text" xml:space="preserve">
+    <value>石炭</value>
+  </data>
+  <data name="manpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="manpowerLabel.Text" xml:space="preserve">
+    <value>労働力</value>
+  </data>
+  <data name="infraLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 12</value>
+  </data>
+  <data name="infraLabel.Text" xml:space="preserve">
+    <value>インフラ</value>
+  </data>
+  <data name="resourceGroupBox.Text" xml:space="preserve">
+    <value>資源設定</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>プロヴィンスエディタ</value>
+  </data>
+</root>

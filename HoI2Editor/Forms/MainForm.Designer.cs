@@ -35,6 +35,7 @@
             this.modLabel = new System.Windows.Forms.Label();
             this.modTextBox = new System.Windows.Forms.TextBox();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.provinceButton = new System.Windows.Forms.Button();
             this.unitButton = new System.Windows.Forms.Button();
             this.techButton = new System.Windows.Forms.Button();
             this.leaderButton = new System.Windows.Forms.Button();
@@ -88,6 +89,7 @@
             // editGroupBox
             // 
             resources.ApplyResources(this.editGroupBox, "editGroupBox");
+            this.editGroupBox.Controls.Add(this.provinceButton);
             this.editGroupBox.Controls.Add(this.unitButton);
             this.editGroupBox.Controls.Add(this.techButton);
             this.editGroupBox.Controls.Add(this.leaderButton);
@@ -95,6 +97,13 @@
             this.editGroupBox.Controls.Add(this.ministerButton);
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
+            // 
+            // provinceButton
+            // 
+            resources.ApplyResources(this.provinceButton, "provinceButton");
+            this.provinceButton.Name = "provinceButton";
+            this.provinceButton.UseVisualStyleBackColor = true;
+            this.provinceButton.Click += new System.EventHandler(this.OnProvinceButtonClick);
             // 
             // unitButton
             // 
@@ -216,5 +225,6 @@
         private System.Windows.Forms.CheckBox logCheckBox;
         private System.Windows.Forms.Button techButton;
         private System.Windows.Forms.Button unitButton;
+        private System.Windows.Forms.Button provinceButton;
     }
 }

@@ -133,6 +133,9 @@
   <data name="modLabel.Text" xml:space="preserve">
     <value>MOD名</value>
   </data>
+  <data name="provinceButton.Text" xml:space="preserve">
+    <value>プロヴィンス</value>
+  </data>
   <data name="unitButton.Text" xml:space="preserve">
     <value>ユニットモデル</value>
   </data>

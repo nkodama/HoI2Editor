@@ -22,7 +22,7 @@ namespace HoI2Editor.Models
         public const string ConfigAdditionalPathName = "config\\Additional";
 
         /// <summary>
-        /// データベースフォルダ
+        ///     データベースフォルダ
         /// </summary>
         public const string DatabasePathName = "db";
 
@@ -82,7 +82,7 @@ namespace HoI2Editor.Models
         public const string ModelPicturePathName = "gfx\\interface\\models";
 
         /// <summary>
-        /// マップフォルダ名
+        ///     マップフォルダ名
         /// </summary>
         public const string MapPathName = "map";
 
@@ -120,6 +120,11 @@ namespace HoI2Editor.Models
         ///     研究機関一覧ファイル名(DH)
         /// </summary>
         public const string DhTeamListPathName = "db\\teams.txt";
+
+        /// <summary>
+        ///     プロヴィンス定義ファイル名
+        /// </summary>
+        public const string ProvinceFileName = "province.csv";
 
         /// <summary>
         ///     師団ユニットクラス定義ファイル名(DH)
@@ -162,9 +167,9 @@ namespace HoI2Editor.Models
         public const string ModelTextFileName = "models.csv";
 
         /// <summary>
-        /// プロヴィンス定義ファイル名
+        ///     プロヴィンス名定義ファイル名
         /// </summary>
-        public const string ProvinceFileName = "province.csv";
+        public const string ProvinceTextFileName = "province_names.csv";
 
         #endregion
 
@@ -389,7 +394,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// マップフォルダ名を取得する
+        ///     マップフォルダ名を取得する
         /// </summary>
         /// <returns>マップフォルダ名</returns>
         public static string GetMapFolderName()

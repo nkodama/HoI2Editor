@@ -151,7 +151,7 @@ namespace HoI2Editor.Forms
                 // 先頭の項目を選択する
                 leaderListView.Items[0].Focused = true;
                 leaderListView.Items[0].Selected = true;
-                
+
                 // 編集項目を有効化する
                 EnableEditableItems();
             }

@@ -685,6 +685,15 @@ namespace HoI2Editor.Models
             // 旅団なし
             AddComplementedText("NAME_NONE", Resources.BrigadeNone);
 
+            // 大陸名
+            AddComplementedText("CON_LAKE", Resources.ContinentLake);
+            AddComplementedText("CON_ATLANTICOCEAN", Resources.ContinentAtlanticOcean);
+            AddComplementedText("CON_PACIFICOCEAN", Resources.ContinentPacificOcean);
+            AddComplementedText("CON_INDIANOCEAN", Resources.ContinentIndianOcean);
+
+            // 地方名
+            AddComplementedText("REG_-", "-");
+
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
                 // ユーザー定義のユニットクラス名

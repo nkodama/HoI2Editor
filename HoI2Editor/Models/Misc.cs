@@ -435,28 +435,28 @@ namespace HoI2Editor.Models
     public class MiscMap
     {
         /// <summary>
-        /// マップの番号 [0:デフォルトマップを使用/その他:map\map_Xを使用]
-        /// </summary>
-        public int MapNo;
-
-        /// <summary>
-        /// 総プロヴィンス数
-        /// </summary>
-        public int TotalProvinces = 2608;
-
-        /// <summary>
-        /// 距離計算モデル [0:従来モデル/1:新モデル]
+        ///     距離計算モデル [0:従来モデル/1:新モデル]
         /// </summary>
         public int DistanceCalculationModel;
 
         /// <summary>
-        /// マップの幅
+        ///     マップの高さ
+        /// </summary>
+        public int MapHeight = 11520;
+
+        /// <summary>
+        ///     マップの番号 [0:デフォルトマップを使用/その他:map\map_Xを使用]
+        /// </summary>
+        public int MapNo;
+
+        /// <summary>
+        ///     マップの幅
         /// </summary>
         public int MapWidth = 29952;
 
         /// <summary>
-        /// マップの高さ
+        ///     総プロヴィンス数
         /// </summary>
-        public int MapHeight = 11520;
+        public int TotalProvinces = 2608;
     }
 }

@@ -232,6 +232,42 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Atlantic Ocean に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ContinentAtlanticOcean {
+            get {
+                return ResourceManager.GetString("ContinentAtlanticOcean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Indian Ocean に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ContinentIndianOcean {
+            get {
+                return ResourceManager.GetString("ContinentIndianOcean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Lake に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ContinentLake {
+            get {
+                return ResourceManager.GetString("ContinentLake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pacific Ocean に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ContinentPacificOcean {
+            get {
+                return ResourceManager.GetString("ContinentPacificOcean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Light Carrier に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DivisionLightCarrier {
@@ -1137,6 +1173,15 @@ namespace HoI2Editor.Properties {
         public static string Stalin {
             get {
                 return ResourceManager.GetString("Stalin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   World に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string World {
+            get {
+                return ResourceManager.GetString("World", resourceCulture);
             }
         }
         

@@ -447,4 +447,19 @@
   <data name="InvalidBeachIcon" xml:space="preserve">
     <value>砂浜のアイコンの異常</value>
   </data>
+  <data name="World" xml:space="preserve">
+    <value>世界</value>
+  </data>
+  <data name="ContinentAtlanticOcean" xml:space="preserve">
+    <value>大西洋</value>
+  </data>
+  <data name="ContinentIndianOcean" xml:space="preserve">
+    <value>インド洋</value>
+  </data>
+  <data name="ContinentLake" xml:space="preserve">
+    <value>湖</value>
+  </data>
+  <data name="ContinentPacificOcean" xml:space="preserve">
+    <value>太平洋</value>
+  </data>
 </root>

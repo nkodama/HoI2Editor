@@ -313,6 +313,18 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     プロヴィンスボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceButtonClick(object sender, EventArgs e)
+        {
+            LoadCommonFiles();
+            var form = new ProvinceEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
         ///     共通ファイルを読み込む
         /// </summary>
         private static void LoadCommonFiles()

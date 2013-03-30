@@ -148,6 +148,9 @@
     <EmbeddedResource Include="Forms\MinisterEditorForm.resx">
       <DependentUpon>MinisterEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProvinceEditorForm.ja.resx">
+      <DependentUpon>ProvinceEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProvinceEditorForm.resx">
       <DependentUpon>ProvinceEditorForm.cs</DependentUpon>
     </EmbeddedResource>
