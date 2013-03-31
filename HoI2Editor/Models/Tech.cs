@@ -49,6 +49,28 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        /// 技術グループ名を取得する
+        /// </summary>
+        /// <returns>技術グループ名</returns>
+        public override string ToString()
+        {
+            return Config.GetText(Name);
+        }
+
+        /// <summary>
+        /// 技術グループ説明を取得する
+        /// </summary>
+        /// <returns>技術グループ説明</returns>
+        public string GetDesc()
+        {
+            return Config.GetText(Desc);
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -80,9 +102,9 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     技術アプリケーション
+    ///     技術項目
     /// </summary>
-    public class TechApplication : ITechItem
+    public class TechItem : ITechItem
     {
         #region フィールド
 
@@ -124,12 +146,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     必要技術リスト(AND条件)
         /// </summary>
-        public List<int> AndRequired { get; private set; }
+        public List<int> AndRequiredTechs { get; private set; }
 
         /// <summary>
         ///     必要技術リスト(OR条件)
         /// </summary>
-        public List<int> OrRequired { get; private set; }
+        public List<int> OrRequiredTechs { get; private set; }
 
         /// <summary>
         ///     技術効果リスト
@@ -148,12 +170,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechApplication()
+        public TechItem()
         {
             Positions = new List<TechPosition>();
             Components = new List<TechComponent>();
-            AndRequired = new List<int>();
-            OrRequired = new List<int>();
+            AndRequiredTechs = new List<int>();
+            OrRequiredTechs = new List<int>();
             Effects = new List<Command>();
         }
 
@@ -163,7 +185,7 @@ namespace HoI2Editor.Models
         /// <returns>複製した技術アプリケーション</returns>
         public ITechItem Clone()
         {
-            var item = new TechApplication
+            var item = new TechItem
                            {
                                Id = Id + 10,
                                Name = Config.GetTempKey(),
@@ -191,8 +213,8 @@ namespace HoI2Editor.Models
             }
 
             // 必要技術リスト
-            item.AndRequired.AddRange(AndRequired);
-            item.OrRequired.AddRange(OrRequired);
+            item.AndRequiredTechs.AddRange(AndRequiredTechs);
+            item.OrRequiredTechs.AddRange(OrRequiredTechs);
 
             // 技術効果リスト
             foreach (Command command in Effects)
@@ -390,12 +412,30 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     文字列を取得する
+        ///     技術名を取得する
         /// </summary>
-        /// <returns>文字列</returns>
+        /// <returns>技術名</returns>
         public override string ToString()
         {
             return Config.GetText(Name);
+        }
+
+        /// <summary>
+        /// 技術短縮名を取得する
+        /// </summary>
+        /// <returns>技術短縮名</returns>
+        public string GetShortName()
+        {
+            return Config.GetText(ShortName);
+        }
+
+        /// <summary>
+        /// 技術説明を取得する
+        /// </summary>
+        /// <returns>技術説明</returns>
+        public string GetDesc()
+        {
+            return Config.GetText(Desc);
         }
 
         #endregion
@@ -496,9 +536,9 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     文字列を取得する
+        ///     技術ラベル名を取得する
         /// </summary>
-        /// <returns>文字列</returns>
+        /// <returns>技術ラベル名</returns>
         public override string ToString()
         {
             string s = Config.GetText(Name);
@@ -593,11 +633,12 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     文字列を取得する
+        ///     技術イベント文字列を取得する
         /// </summary>
-        /// <returns>文字列</returns>
+        /// <returns>技術イベント文字列</returns>
         public override string ToString()
         {
+            // 名前が存在しないので代わりにIDを返す
             return Id.ToString(CultureInfo.InvariantCulture);
         }
 
@@ -712,6 +753,20 @@ namespace HoI2Editor.Models
 
             return component;
         }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     小研究名を取得する
+        /// </summary>
+        /// <returns>小研究名</returns>
+        public override string ToString()
+        {
+            return Config.GetText(Name);
+        }
+
 
         #endregion
     }

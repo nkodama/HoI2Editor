@@ -852,9 +852,7 @@ namespace HoI2Editor.Forms
             specialityComboBox4.Items.Clear();
             specialityComboBox5.Items.Clear();
             maxWidth = specialityComboBox1.DropDownWidth;
-            foreach (string s in Techs.Specialities
-                                      .Select(speciality => Techs.SpecialityNames[(int) speciality])
-                                      .Select(Config.GetText))
+            foreach (string s in Techs.Specialities.Select(Techs.GetSpecialityName))
             {
                 specialityComboBox1.Items.Add(s);
                 specialityComboBox2.Items.Add(s);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
@@ -19,7 +20,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     技術グループリスト
         /// </summary>
-        public static List<TechGroup> List = new List<TechGroup>();
+        public static List<TechGroup> Groups = new List<TechGroup>();
+
+        /// <summary>
+        /// 技術IDリスト
+        /// </summary>
+        public static List<int> TechIds = new List<int>();
+
+        /// <summary>
+        ///     技術IDの対応付けテーブル
+        /// </summary>
+        public static readonly Dictionary<int, TechItem> TechIdMap = new Dictionary<int, TechItem>();
 
         /// <summary>
         ///     研究特性文字列とIDの対応付け
@@ -69,7 +80,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     技術カテゴリ名
         /// </summary>
-        public static readonly string[] TechCategoryNames =
+        public static readonly string[] CategoryNames =
             {
                 "INFANTRY",
                 "ARMOR",
@@ -85,7 +96,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     技術定義ファイル名
         /// </summary>
-        private static readonly string[] TechFileNames =
+        private static readonly string[] FileNames =
             {
                 "infantry_tech.txt",
                 "armor_tech.txt",
@@ -449,7 +460,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究特性名
         /// </summary>
-        public static readonly string[] SpecialityNames =
+        private static readonly string[] SpecialityNames =
             {
                 "",
                 "RT_ARTILLERY",
@@ -647,11 +658,11 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            List.Clear();
+            Groups.Clear();
 
             foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
             {
-                string fileName = Game.GetReadFileName(Game.TechPathName, TechFileNames[(int) category]);
+                string fileName = Game.GetReadFileName(Game.TechPathName, FileNames[(int) category]);
                 try
                 {
                     // 技術定義ファイルを読み込む
@@ -663,6 +674,9 @@ namespace HoI2Editor.Models
                 }
             }
 
+            // 技術IDの対応付けを更新する
+            UpdateTechIdMap();
+
             _loaded = true;
         }
 
@@ -673,7 +687,7 @@ namespace HoI2Editor.Models
         private static void LoadFile(string fileName)
         {
             TechGroup grp = TechParser.Parse(fileName);
-            List.Add(grp);
+            Groups.Add(grp);
             ResetDirty(grp.Category);
         }
 
@@ -692,11 +706,11 @@ namespace HoI2Editor.Models
             {
                 Directory.CreateDirectory(folderName);
             }
-            foreach (TechGroup grp in List)
+            foreach (TechGroup grp in Groups)
             {
                 if (DirtyFlags[(int) grp.Category])
                 {
-                    string fileName = Path.Combine(folderName, TechFileNames[(int) grp.Category]);
+                    string fileName = Path.Combine(folderName, FileNames[(int) grp.Category]);
                     try
                     {
                         // 技術定義ファイルを保存する
@@ -724,20 +738,30 @@ namespace HoI2Editor.Models
         /// <param name="item">追加対象の項目</param>
         public static void AddItem(TechCategory category, ITechItem item)
         {
-            TechGroup grp = List[(int) category];
+            TechGroup grp = Groups[(int) category];
             grp.Items.Add(item);
+
+            if (item is TechItem)
+            {
+                UpdateTechIdMap();
+            }
         }
 
         /// <summary>
-        ///     技術項目リストに項目を追加する
+        ///     技術項目リストに項目を挿入する
         /// </summary>
         /// <param name="category">カテゴリ</param>
         /// <param name="item">挿入対象の項目</param>
         /// <param name="position">挿入位置の直前の項目</param>
         public static void InsertItem(TechCategory category, ITechItem item, ITechItem position)
         {
-            TechGroup grp = List[(int) category];
+            TechGroup grp = Groups[(int) category];
             grp.Items.Insert(grp.Items.IndexOf(position) + 1, item);
+
+            if (item is TechItem)
+            {
+                UpdateTechIdMap();
+            }
         }
 
         /// <summary>
@@ -747,11 +771,18 @@ namespace HoI2Editor.Models
         /// <param name="item">削除対象の項目</param>
         public static void RemoveItem(TechCategory category, ITechItem item)
         {
-            TechGroup grp = List[(int) category];
+            TechGroup grp = Groups[(int) category];
             grp.Items.Remove(item);
 
             // 一時キーを削除する
             item.RemoveTempKey();
+
+            if (item is TechItem)
+            {
+                var techItem = item as TechItem;
+                TechIds.Remove(techItem.Id);
+                TechIdMap.Remove(techItem.Id);
+            }
         }
 
         /// <summary>
@@ -762,7 +793,7 @@ namespace HoI2Editor.Models
         /// <param name="dest">移動先位置の項目</param>
         public static void MoveItem(TechCategory category, ITechItem src, ITechItem dest)
         {
-            TechGroup grp = List[(int) category];
+            TechGroup grp = Groups[(int) category];
             int srcIndex = grp.Items.IndexOf(src);
             int destIndex = grp.Items.IndexOf(dest);
 
@@ -778,6 +809,52 @@ namespace HoI2Editor.Models
                 grp.Items.Insert(destIndex + 1, src);
                 grp.Items.RemoveAt(srcIndex);
             }
+        }
+
+        /// <summary>
+        /// 技術IDを変更する
+        /// </summary>
+        /// <param name="item">技術項目</param>
+        /// <param name="id">技術ID</param>
+        public static void ModifyTechId(TechItem item, int id)
+        {
+            // 値の変更前に技術項目とIDの対応付けを削除する
+            TechIds.Remove(id);
+            TechIdMap.Remove(id);
+
+            // 値を更新する
+            item.Id = id;
+
+            // 技術項目とIDの対応付けを更新する
+            UpdateTechIdMap();
+        }
+
+        /// <summary>
+        ///     技術項目とIDの対応付けを更新する
+        /// </summary>
+        private static void UpdateTechIdMap()
+        {
+            TechIds.Clear();
+            TechIdMap.Clear();
+            foreach (TechItem item in Groups.SelectMany(grp => grp.Items.OfType<TechItem>()))
+            {
+                TechIds.Add(item.Id);
+                TechIdMap.Add(item.Id, item);
+            }
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        /// 研究特性名を取得する
+        /// </summary>
+        /// <param name="speciality">研究特性</param>
+        /// <returns>研究特性名</returns>
+        public static string GetSpecialityName(TechSpeciality speciality)
+        {
+            return Config.GetText(SpecialityNames[(int)speciality]);
         }
 
         #endregion
