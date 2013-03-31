@@ -23,7 +23,7 @@ namespace HoI2Editor.Models
         public static List<TechGroup> Groups = new List<TechGroup>();
 
         /// <summary>
-        /// 技術IDリスト
+        ///     技術IDリスト
         /// </summary>
         public static List<int> TechIds = new List<int>();
 
@@ -812,7 +812,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 技術IDを変更する
+        ///     技術IDを変更する
         /// </summary>
         /// <param name="item">技術項目</param>
         /// <param name="id">技術ID</param>
@@ -838,8 +838,11 @@ namespace HoI2Editor.Models
             TechIdMap.Clear();
             foreach (TechItem item in Groups.SelectMany(grp => grp.Items.OfType<TechItem>()))
             {
-                TechIds.Add(item.Id);
-                TechIdMap.Add(item.Id, item);
+                if (!TechIds.Contains(item.Id))
+                {
+                    TechIds.Add(item.Id);
+                    TechIdMap.Add(item.Id, item);
+                }
             }
         }
 
@@ -848,13 +851,13 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
-        /// 研究特性名を取得する
+        ///     研究特性名を取得する
         /// </summary>
         /// <param name="speciality">研究特性</param>
         /// <returns>研究特性名</returns>
         public static string GetSpecialityName(TechSpeciality speciality)
         {
-            return Config.GetText(SpecialityNames[(int)speciality]);
+            return Config.GetText(SpecialityNames[(int) speciality]);
         }
 
         #endregion

@@ -53,7 +53,7 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
-        /// 技術グループ名を取得する
+        ///     技術グループ名を取得する
         /// </summary>
         /// <returns>技術グループ名</returns>
         public override string ToString()
@@ -62,7 +62,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 技術グループ説明を取得する
+        ///     技術グループ説明を取得する
         /// </summary>
         /// <returns>技術グループ説明</returns>
         public string GetDesc()
@@ -421,7 +421,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 技術短縮名を取得する
+        ///     技術短縮名を取得する
         /// </summary>
         /// <returns>技術短縮名</returns>
         public string GetShortName()
@@ -430,7 +430,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 技術説明を取得する
+        ///     技術説明を取得する
         /// </summary>
         /// <returns>技術説明</returns>
         public string GetDesc()
@@ -766,7 +766,6 @@ namespace HoI2Editor.Models
         {
             return Config.GetText(Name);
         }
-
 
         #endregion
     }
