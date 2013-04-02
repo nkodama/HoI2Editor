@@ -504,7 +504,11 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 必要とする技術群(AND)
-                    application.AndRequiredTechs.AddRange(ids);
+                    foreach (int id in ids)
+                    {
+                        var tech = new RequiredTech {Id = id};
+                        application.AndRequiredTechs.Add(tech);
+                    }
                     continue;
                 }
 
@@ -520,7 +524,11 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 必要とする技術群(OR)
-                    application.OrRequiredTechs.AddRange(ids);
+                    foreach (int id in ids)
+                    {
+                        var tech = new RequiredTech {Id = id};
+                        application.OrRequiredTechs.Add(tech);
+                    }
                     continue;
                 }
 

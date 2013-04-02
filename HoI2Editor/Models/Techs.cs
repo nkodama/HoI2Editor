@@ -48,11 +48,6 @@ namespace HoI2Editor.Models
         public static TechSpeciality[] Specialities;
 
         /// <summary>
-        ///     研究機関編集フラグ
-        /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (TechCategory)).Length];
-
-        /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
@@ -688,7 +683,7 @@ namespace HoI2Editor.Models
         {
             TechGroup grp = TechParser.Parse(fileName);
             Groups.Add(grp);
-            ResetDirty(grp.Category);
+            grp.ResetDirtyAll();
         }
 
         #endregion
@@ -708,7 +703,7 @@ namespace HoI2Editor.Models
             }
             foreach (TechGroup grp in Groups)
             {
-                if (DirtyFlags[(int) grp.Category])
+                if (grp.IsDirty())
                 {
                     string fileName = Path.Combine(folderName, FileNames[(int) grp.Category]);
                     try
@@ -717,7 +712,7 @@ namespace HoI2Editor.Models
                         TechWriter.Write(grp, fileName);
 
                         // 編集済みフラグを解除する
-                        ResetDirty(grp.Category);
+                        grp.ResetDirtyAll();
                     }
                     catch (Exception)
                     {
@@ -858,38 +853,6 @@ namespace HoI2Editor.Models
         public static string GetSpecialityName(TechSpeciality speciality)
         {
             return Config.GetText(SpecialityNames[(int) speciality]);
-        }
-
-        #endregion
-
-        #region 編集済みフラグ操作
-
-        /// <summary>
-        ///     編集済みかどうかを取得する
-        /// </summary>
-        /// <param name="category">技術カテゴリ</param>
-        /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(TechCategory category)
-        {
-            return DirtyFlags[(int) category];
-        }
-
-        /// <summary>
-        ///     編集フラグをセットする
-        /// </summary>
-        /// <param name="category">技術カテゴリ</param>
-        public static void SetDirty(TechCategory category)
-        {
-            DirtyFlags[(int) category] = true;
-        }
-
-        /// <summary>
-        ///     編集フラグをクリアする
-        /// </summary>
-        /// <param name="category">技術カテゴリ</param>
-        public static void ResetDirty(TechCategory category)
-        {
-            DirtyFlags[(int) category] = false;
         }
 
         #endregion

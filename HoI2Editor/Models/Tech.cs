@@ -12,6 +12,16 @@ namespace HoI2Editor.Models
         #region フィールド
 
         /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechGroupItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        /// <summary>
         ///     技術グループID
         /// </summary>
         public int Id { get; set; }
@@ -71,6 +81,62 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     技術グループが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(TechGroupItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(TechGroupItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (TechGroupItemId id in Enum.GetValues(typeof (TechGroupItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            foreach (ITechItem item in Items)
+            {
+                item.ResetDirtyAll();
+            }
+            _dirtyFlag = false;
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -99,6 +165,40 @@ namespace HoI2Editor.Models
         ///     文字列の一時キーを削除する
         /// </summary>
         void RemoveTempKey();
+
+        /// <summary>
+        ///     技術項目データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        bool IsDirty();
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        bool IsDirty(TechItemId id);
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        void SetDirty(TechItemId id);
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        void SetDirty();
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        void SetDirtyAll();
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        void ResetDirtyAll();
     }
 
     /// <summary>
@@ -107,6 +207,16 @@ namespace HoI2Editor.Models
     public class TechItem : ITechItem
     {
         #region フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
 
         /// <summary>
         ///     技術ID
@@ -146,12 +256,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     必要技術リスト(AND条件)
         /// </summary>
-        public List<int> AndRequiredTechs { get; private set; }
+        public List<RequiredTech> AndRequiredTechs { get; private set; }
 
         /// <summary>
         ///     必要技術リスト(OR条件)
         /// </summary>
-        public List<int> OrRequiredTechs { get; private set; }
+        public List<RequiredTech> OrRequiredTechs { get; private set; }
 
         /// <summary>
         ///     技術効果リスト
@@ -173,9 +283,9 @@ namespace HoI2Editor.Models
         public TechItem()
         {
             Positions = new List<TechPosition>();
+            AndRequiredTechs = new List<RequiredTech>();
+            OrRequiredTechs = new List<RequiredTech>();
             Components = new List<TechComponent>();
-            AndRequiredTechs = new List<int>();
-            OrRequiredTechs = new List<int>();
             Effects = new List<Command>();
         }
 
@@ -439,6 +549,111 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     技術項目データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(TechItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(TechItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            foreach (TechPosition position in Positions)
+            {
+                position.SetDirtyAll();
+            }
+            foreach (RequiredTech tech in AndRequiredTechs)
+            {
+                tech.SetDirty();
+            }
+            foreach (RequiredTech tech in OrRequiredTechs)
+            {
+                tech.SetDirty();
+            }
+            foreach (TechComponent component in Components)
+            {
+                component.SetDirtyAll();
+            }
+            foreach (Command command in Effects)
+            {
+                command.SetDirtyAll();
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            foreach (TechPosition position in Positions)
+            {
+                position.ResetDirtyAll();
+            }
+            foreach (RequiredTech tech in AndRequiredTechs)
+            {
+                tech.ResetDirty();
+            }
+            foreach (RequiredTech tech in OrRequiredTechs)
+            {
+                tech.ResetDirty();
+            }
+            foreach (TechComponent component in Components)
+            {
+                component.ResetDirtyAll();
+            }
+            foreach (Command command in Effects)
+            {
+                command.ResetDirtyAll();
+            }
+            _dirtyFlag = false;
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -447,6 +662,16 @@ namespace HoI2Editor.Models
     public class TechLabel : ITechItem
     {
         #region フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
 
         /// <summary>
         ///     ラベル名
@@ -558,6 +783,79 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     技術項目データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(TechItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(TechItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            foreach (TechPosition position in Positions)
+            {
+                position.SetDirtyAll();
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            foreach (TechPosition position in Positions)
+            {
+                position.ResetDirtyAll();
+            }
+            _dirtyFlag = false;
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -566,6 +864,16 @@ namespace HoI2Editor.Models
     public class TechEvent : ITechItem
     {
         #region フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
 
         /// <summary>
         ///     技術イベントID
@@ -643,6 +951,79 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     技術項目データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(TechItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(TechItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            foreach (TechPosition position in Positions)
+            {
+                position.SetDirtyAll();
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            foreach (TechPosition position in Positions)
+            {
+                position.ResetDirtyAll();
+            }
+            _dirtyFlag = false;
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -653,6 +1034,11 @@ namespace HoI2Editor.Models
         #region フィールド
 
         /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechPositionItemId)).Length];
+
+        /// <summary>
         ///     X座標
         /// </summary>
         public int X;
@@ -661,6 +1047,11 @@ namespace HoI2Editor.Models
         ///     Y座標
         /// </summary>
         public int Y;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
 
         #endregion
 
@@ -678,6 +1069,112 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     技術項目データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(TechPositionItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(TechPositionItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (TechPositionItemId id in Enum.GetValues(typeof (TechPositionItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (TechPositionItemId id in Enum.GetValues(typeof (TechPositionItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     必要技術
+    /// </summary>
+    public class RequiredTech
+    {
+        #region フィールド
+
+        /// <summary>
+        ///     技術ID
+        /// </summary>
+        public int Id;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを解除する
+        /// </summary>
+        public void ResetDirty()
+        {
+            _dirtyFlag = false;
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -686,6 +1183,16 @@ namespace HoI2Editor.Models
     public class TechComponent
     {
         #region フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechComponentItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
 
         /// <summary>
         ///     小研究ID
@@ -765,6 +1272,70 @@ namespace HoI2Editor.Models
         public override string ToString()
         {
             return Config.GetText(Name);
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     技術項目データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(TechComponentItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(TechComponentItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (TechComponentItemId id in Enum.GetValues(typeof (TechComponentItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (TechComponentItemId id in Enum.GetValues(typeof (TechComponentItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
         }
 
         #endregion
@@ -905,5 +1476,49 @@ namespace HoI2Editor.Models
         RtUser58,
         RtUser59,
         RtUser60,
+    }
+
+    /// <summary>
+    ///     技術グループ項目ID
+    /// </summary>
+    public enum TechGroupItemId
+    {
+        Name, // 名前
+        Desc, // 説明
+    }
+
+    /// <summary>
+    ///     技術項目ID
+    /// </summary>
+    public enum TechItemId
+    {
+        Id, // ID
+        Name, // 名前
+        ShortName, // 短縮名
+        Desc, // 説明
+        PictureName, // 画像ファイル名
+        Year, // 史実年
+        TechId, // 技術ID
+    }
+
+    /// <summary>
+    ///     技術座標項目ID
+    /// </summary>
+    public enum TechPositionItemId
+    {
+        X, // X座標
+        Y, // Y座標
+    }
+
+    /// <summary>
+    ///     小研究項目ID
+    /// </summary>
+    public enum TechComponentItemId
+    {
+        Id, // 小研究ID
+        Name, // 小研究名
+        Specilaity, // 研究特性
+        Difficulty, // 難易度
+        DoubleTime, // 2倍の時間を要するかどうか
     }
 }

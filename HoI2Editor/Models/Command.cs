@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace HoI2Editor.Models
 {
@@ -7,6 +8,50 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Command
     {
+        #region フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CommandItemId)).Length];
+
+        /// <summary>
+        ///     コマンドトリガー
+        /// </summary>
+        public List<Trigger> Triggers;
+
+        /// <summary>
+        ///     コマンド種類
+        /// </summary>
+        public CommandType Type;
+
+        /// <summary>
+        ///     パラメータ - value
+        /// </summary>
+        public object Value;
+
+        /// <summary>
+        ///     パラメータ - when
+        /// </summary>
+        public object When;
+
+        /// <summary>
+        ///     パラメータ - where
+        /// </summary>
+        public object Where;
+
+        /// <summary>
+        ///     パラメータ - which
+        /// </summary>
+        public object Which;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
         #region 定数
 
         /// <summary>
@@ -300,36 +345,6 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        /// <summary>
-        ///     コマンドトリガー
-        /// </summary>
-        public List<Trigger> Triggers;
-
-        /// <summary>
-        ///     コマンド種類
-        /// </summary>
-        public CommandType Type;
-
-        /// <summary>
-        ///     パラメータ - value
-        /// </summary>
-        public object Value;
-
-        /// <summary>
-        ///     パラメータ - when
-        /// </summary>
-        public object When;
-
-        /// <summary>
-        ///     パラメータ - where
-        /// </summary>
-        public object Where;
-
-        /// <summary>
-        ///     パラメータ - which
-        /// </summary>
-        public object Which;
-
         #region 生成
 
         /// <summary>
@@ -341,6 +356,63 @@ namespace HoI2Editor.Models
             var command = new Command {Type = Type, Which = Which, Value = Value, When = When, Where = Where};
 
             return command;
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     技術項目データが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(CommandItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(CommandItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (CommandItemId id in Enum.GetValues(typeof (CommandItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (CommandItemId id in Enum.GetValues(typeof (CommandItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
         }
 
         #endregion
@@ -639,5 +711,17 @@ namespace HoI2Editor.Models
         Toughness,
         PlainAttack,
         PlainDefense,
+    }
+
+    /// <summary>
+    ///     コマンド項目ID
+    /// </summary>
+    public enum CommandItemId
+    {
+        Type, // コマンドの種類
+        Which, // whichパラメータ
+        Value, // valueパラメータ
+        When, // whenパラメータ
+        Where, // whereパラメータ
     }
 }

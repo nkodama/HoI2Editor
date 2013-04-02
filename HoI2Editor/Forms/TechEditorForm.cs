@@ -122,9 +122,9 @@ namespace HoI2Editor.Forms
         private void OnTechEditorFormLoad(object sender, EventArgs e)
         {
             // 画面解像度が十分に広い場合はツリー画像全体が入るように高さを調整する
-            if (Screen.GetWorkingArea(this).Height > 868)
+            if (Screen.GetWorkingArea(this).Height >= 876)
             {
-                Height = 868;
+                Height = 876;
             }
 
             // 研究特性を初期化する
@@ -322,9 +322,8 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
                 // 変更ありの項目は文字色を変更する
-                brush = Techs.IsDirty((TechCategory) e.Index)
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(categoryListBox.ForeColor);
+                TechGroup grp = Techs.Groups[e.Index];
+                brush = grp.IsDirty() ? new SolidBrush(Color.Red) : new SolidBrush(categoryListBox.ForeColor);
             }
             else
             {
@@ -338,12 +337,12 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     選択中の技術カテゴリを取得する
+        ///     選択中の技術グループを取得する
         /// </summary>
-        /// <returns></returns>
-        private TechCategory GetSelectedCategory()
+        /// <returns>選択中の技術グループ</returns>
+        private TechGroup GetSelectedGroup()
         {
-            return (TechCategory) categoryListBox.SelectedIndex;
+            return Techs.Groups[categoryListBox.SelectedIndex];
         }
 
         #endregion
@@ -515,7 +514,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnNewTechButtonClick(object sender, EventArgs e)
         {
-            TechCategory category = GetSelectedCategory();
+            TechGroup grp = GetSelectedGroup();
 
             // 項目を作成する
             var item = new TechItem
@@ -544,7 +543,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 技術項目リストに項目を挿入する
-                Techs.InsertItem(category, item, selected);
+                Techs.InsertItem(grp.Category, item, selected);
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
@@ -553,7 +552,8 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition());
 
                 // 技術項目リストに項目を追加する
-                Techs.AddItem(category, item);
+                // TODO: grp.AddItem(item)の形式に
+                Techs.AddItem(grp.Category, item);
                 AddTechListItem(item);
             }
 
@@ -566,7 +566,8 @@ namespace HoI2Editor.Forms
             UpdateEventTechListItems();
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
+            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -576,7 +577,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnNewLabelButtonClick(object sender, EventArgs e)
         {
-            TechCategory category = GetSelectedCategory();
+            TechGroup grp = GetSelectedGroup();
 
             // 項目を作成する
             var item = new TechLabel {Name = Config.GetTempKey()};
@@ -590,7 +591,7 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
 
                 // 技術項目リストに項目を挿入する
-                Techs.InsertItem(category, item, selected);
+                Techs.InsertItem(grp.Category, item, selected);
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
@@ -599,7 +600,7 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition());
 
                 // 技術項目リストに項目を追加する
-                Techs.AddItem(category, item);
+                Techs.AddItem(grp.Category, item);
                 AddTechListItem(item);
             }
 
@@ -607,7 +608,8 @@ namespace HoI2Editor.Forms
             AddTechTreeItems(item);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
+            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -617,7 +619,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnNewEventButtonClick(object sender, EventArgs e)
         {
-            TechCategory category = GetSelectedCategory();
+            TechGroup grp = GetSelectedGroup();
 
             // 項目を作成する
             var item = new TechEvent();
@@ -637,7 +639,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 技術項目リストに項目を挿入する
-                Techs.InsertItem(category, item, selected);
+                Techs.InsertItem(grp.Category, item, selected);
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
@@ -646,7 +648,7 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition());
 
                 // 技術項目リストに項目を追加する
-                Techs.AddItem(category, item);
+                Techs.AddItem(grp.Category, item);
                 AddTechListItem(item);
             }
 
@@ -654,7 +656,8 @@ namespace HoI2Editor.Forms
             AddTechTreeItems(item);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
+            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -664,7 +667,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCloneButtonClick(object sender, EventArgs e)
         {
-            TechCategory category = GetSelectedCategory();
+            TechGroup grp = GetSelectedGroup();
 
             // 選択項目がなければ何もしない
             ITechItem selected = GetSelectedItem();
@@ -677,7 +680,7 @@ namespace HoI2Editor.Forms
             ITechItem item = selected.Clone();
 
             // 技術項目リストに項目を挿入する
-            Techs.InsertItem(category, item, selected);
+            Techs.InsertItem(grp.Category, item, selected);
             InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
             // 技術ツリーにラベルを追加する
@@ -692,7 +695,8 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
+            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -702,7 +706,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRemoveButtonClick(object sender, EventArgs e)
         {
-            TechCategory category = GetSelectedCategory();
+            TechGroup grp = GetSelectedGroup();
 
             // 選択項目がなければ何もしない
             ITechItem selected = GetSelectedItem();
@@ -712,7 +716,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術項目リストから項目を削除する
-            Techs.RemoveItem(category, selected);
+            Techs.RemoveItem(grp.Category, selected);
             RemoveTechListItem(techListBox.SelectedIndex);
 
             // 技術ツリーからラベルを削除する
@@ -742,7 +746,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
         }
 
         /// <summary>
@@ -766,15 +770,15 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            TechCategory category = GetSelectedCategory();
-            ITechItem top = Techs.Groups[(int) category].Items[0];
+            TechGroup grp = GetSelectedGroup();
+            ITechItem top = grp.Items[0];
             if (top == null)
             {
                 return;
             }
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(category, selected, top);
+            Techs.MoveItem(grp.Category, selected, top);
             MoveTechListItem(index, 0);
 
             if (selected is TechItem)
@@ -786,7 +790,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
         }
 
         /// <summary>
@@ -810,11 +814,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            TechCategory category = GetSelectedCategory();
-            ITechItem upper = Techs.Groups[(int) category].Items[index - 1];
+            TechGroup grp = GetSelectedGroup();
+            ITechItem upper = grp.Items[index - 1];
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(category, selected, upper);
+            Techs.MoveItem(grp.Category, selected, upper);
             MoveTechListItem(index, index - 1);
 
             if (selected is TechItem)
@@ -826,7 +830,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
         }
 
         /// <summary>
@@ -850,11 +854,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            TechCategory category = GetSelectedCategory();
-            ITechItem lower = Techs.Groups[(int) category].Items[index + 1];
+            TechGroup grp = GetSelectedGroup();
+            ITechItem lower = grp.Items[index + 1];
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(category, selected, lower);
+            Techs.MoveItem(grp.Category, selected, lower);
             MoveTechListItem(index, index + 1);
 
             if (selected is TechItem)
@@ -866,7 +870,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
         }
 
         /// <summary>
@@ -890,11 +894,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var category = (TechCategory) categoryListBox.SelectedIndex;
-            ITechItem bottom = Techs.Groups[(int) category].Items[techListBox.Items.Count - 1];
+            TechGroup grp = GetSelectedGroup();
+            ITechItem bottom = grp.Items[techListBox.Items.Count - 1];
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(category, selected, bottom);
+            Techs.MoveItem(grp.Category, selected, bottom);
             MoveTechListItem(index, techListBox.Items.Count - 1);
 
             if (selected is TechItem)
@@ -906,7 +910,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty();
         }
 
         /// <summary>
@@ -1005,8 +1009,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateTechTreePicture()
         {
-            TechCategory category = GetSelectedCategory();
-            treePictureBox.ImageLocation = Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) category]);
+            TechGroup grp = GetSelectedGroup();
+            treePictureBox.ImageLocation = Game.GetReadFileName(Game.PicturePathName,
+                                                                TechTreeFileNames[(int) grp.Category]);
         }
 
         /// <summary>
@@ -1472,7 +1477,10 @@ namespace HoI2Editor.Forms
             label.Location = p;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            info.Item.SetDirty();
+            info.Position.SetDirtyAll();
         }
 
         /// <summary>
@@ -1501,8 +1509,7 @@ namespace HoI2Editor.Forms
         private void UpdateCategoryItems()
         {
             // カテゴリタブの編集項目
-            TechCategory category = GetSelectedCategory();
-            TechGroup grp = Techs.Groups[(int) category];
+            TechGroup grp = GetSelectedGroup();
             categoryNameTextBox.Text = grp.ToString();
             categoryDescTextBox.Text = grp.GetDesc();
         }
@@ -1514,8 +1521,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCategoryNameTextBoxTextChanged(object sender, EventArgs e)
         {
-            TechCategory category = GetSelectedCategory();
-            TechGroup grp = Techs.Groups[(int) category];
+            TechGroup grp = GetSelectedGroup();
 
             // 値に変化がなければ何もしない
             string name = categoryNameTextBox.Text;
@@ -1530,11 +1536,11 @@ namespace HoI2Editor.Forms
             // カテゴリリストボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
             categoryListBox.SelectedIndexChanged -= OnCategoryListBoxSelectedIndexChanged;
-            categoryListBox.Items[(int) category] = name;
+            categoryListBox.Items[(int) grp.Category] = name;
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty(TechGroupItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1545,8 +1551,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCategoryDescTextBoxTextChanged(object sender, EventArgs e)
         {
-            TechCategory category = GetSelectedCategory();
-            TechGroup grp = Techs.Groups[(int) category];
+            TechGroup grp = GetSelectedGroup();
 
             // 値に変化がなければ何もしない
             string desc = categoryDescTextBox.Text;
@@ -1559,7 +1564,7 @@ namespace HoI2Editor.Forms
             Config.SetText(grp.Desc, desc, Game.TechTextFileName);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(category);
+            grp.SetDirty(TechGroupItemId.Desc);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1729,7 +1734,9 @@ namespace HoI2Editor.Forms
             eventTechComboBox.SelectedIndexChanged += OnEventTechComboBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1768,7 +1775,9 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.ShortName);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -1797,7 +1806,9 @@ namespace HoI2Editor.Forms
             Techs.ModifyTechId(item, id);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.Id);
         }
 
         /// <summary>
@@ -1825,7 +1836,9 @@ namespace HoI2Editor.Forms
             item.Year = year;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.Year);
         }
 
         /// <summary>
@@ -1899,7 +1912,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirty(TechPositionItemId.X);
         }
 
         /// <summary>
@@ -1947,7 +1963,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirty(TechPositionItemId.Y);
         }
 
         /// <summary>
@@ -1985,7 +2004,10 @@ namespace HoI2Editor.Forms
             AddTechTreeItem(item, position);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirtyAll();
         }
 
         /// <summary>
@@ -2037,7 +2059,9 @@ namespace HoI2Editor.Forms
             RemoveTechTreeItem(item, position);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -2096,7 +2120,9 @@ namespace HoI2Editor.Forms
             UpdateTechPicture(item);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.PictureName);
         }
 
         /// <summary>
@@ -2202,7 +2228,7 @@ namespace HoI2Editor.Forms
             andRequiredListView.BeginUpdate();
             andRequiredListView.Items.Clear();
 
-            foreach (int id in item.AndRequiredTechs)
+            foreach (int id in item.AndRequiredTechs.Select(tech => tech.Id))
             {
                 var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
                 if (Techs.TechIdMap.ContainsKey(id))
@@ -2240,7 +2266,7 @@ namespace HoI2Editor.Forms
             orRequiredListView.BeginUpdate();
             orRequiredListView.Items.Clear();
 
-            foreach (int id in item.OrRequiredTechs)
+            foreach (int id in item.OrRequiredTechs.Select(tech => tech.Id))
             {
                 var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
                 if (Techs.TechIdMap.ContainsKey(id))
@@ -2354,7 +2380,7 @@ namespace HoI2Editor.Forms
             }
 
             int index = andRequiredListView.SelectedIndices[0];
-            int id = item.AndRequiredTechs[index];
+            int id = item.AndRequiredTechs[index].Id;
             andIdNumericUpDown.Value = id;
 
             // AND条件必要技術コンボボックスの選択項目を更新する
@@ -2394,7 +2420,7 @@ namespace HoI2Editor.Forms
             }
 
             int index = orRequiredListView.SelectedIndices[0];
-            int id = item.OrRequiredTechs[index];
+            int id = item.OrRequiredTechs[index].Id;
             orIdNumericUpDown.Value = id;
 
             // OR条件必要技術コンボボックスの選択項目を更新する
@@ -2427,11 +2453,15 @@ namespace HoI2Editor.Forms
             }
 
             // AND条件必要技術リストに項目を追加する
-            item.AndRequiredTechs.Add(0);
+            var tech = new RequiredTech();
+            item.AndRequiredTechs.Add(tech);
             AddAndRequiredListItem(0);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
         }
 
         /// <summary>
@@ -2449,11 +2479,15 @@ namespace HoI2Editor.Forms
             }
 
             // OR条件必要技術リストに項目を追加する
-            item.OrRequiredTechs.Add(0);
+            var tech = new RequiredTech();
+            item.OrRequiredTechs.Add(tech);
             AddOrRequiredListItem(0);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
         }
 
         /// <summary>
@@ -2481,7 +2515,9 @@ namespace HoI2Editor.Forms
             item.AndRequiredTechs.RemoveAt(index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -2509,7 +2545,9 @@ namespace HoI2Editor.Forms
             item.OrRequiredTechs.RemoveAt(index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -2533,14 +2571,15 @@ namespace HoI2Editor.Forms
             int index = andRequiredListView.SelectedIndices[0];
 
             // 値に変化がなければ何もしない
+            RequiredTech tech = item.AndRequiredTechs[index];
             var id = (int) andIdNumericUpDown.Value;
-            if (id == item.AndRequiredTechs[index])
+            if (id == tech.Id)
             {
                 return;
             }
 
             // 値を更新する
-            item.AndRequiredTechs[index] = id;
+            tech.Id = id;
 
             // AND条件必要技術コンボボックスの選択項目を更新する
             if (Techs.TechIds.Contains(id))
@@ -2557,7 +2596,10 @@ namespace HoI2Editor.Forms
             ModifyAndRequiredListItem(id, index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
         }
 
         /// <summary>
@@ -2581,14 +2623,15 @@ namespace HoI2Editor.Forms
             int index = orRequiredListView.SelectedIndices[0];
 
             // 値に変化がなければ何もしない
+            RequiredTech tech = item.OrRequiredTechs[index];
             var id = (int) orIdNumericUpDown.Value;
-            if (id == item.OrRequiredTechs[index])
+            if (id == tech.Id)
             {
                 return;
             }
 
             // 値を更新する
-            item.OrRequiredTechs[index] = id;
+            tech.Id = id;
 
             // OR条件必要技術コンボボックスの選択項目を更新する
             orTechComboBox.SelectedIndex = -1;
@@ -2606,7 +2649,10 @@ namespace HoI2Editor.Forms
             ModifyOrRequiredListItem(id, index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
         }
 
         /// <summary>
@@ -2627,21 +2673,22 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int index = andRequiredListView.SelectedIndices[0];
 
             // 値に変化がなければ何もしない
-            if (andTechComboBox.SelectedIndex == -1)
+            int index = andRequiredListView.SelectedIndices[0];
+            if (index == -1)
             {
                 return;
             }
+            RequiredTech tech = item.AndRequiredTechs[index];
             int id = Techs.TechIds[andTechComboBox.SelectedIndex];
-            if (id == item.AndRequiredTechs[index])
+            if (id == tech.Id)
             {
                 return;
             }
 
             // 値を更新する
-            item.AndRequiredTechs[index] = id;
+            tech.Id = id;
 
             // AND条件必要技術数値アップダウンの値を更新する
             andIdNumericUpDown.Value = id;
@@ -2650,7 +2697,10 @@ namespace HoI2Editor.Forms
             ModifyAndRequiredListItem(id, index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
         }
 
         /// <summary>
@@ -2671,21 +2721,22 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int index = orRequiredListView.SelectedIndices[0];
 
             // 値に変化がなければ何もしない
-            if (orTechComboBox.SelectedIndex == -1)
+            int index = orRequiredListView.SelectedIndices[0];
+            if (index == -1)
             {
                 return;
             }
+            RequiredTech tech = item.OrRequiredTechs[index];
             int id = Techs.TechIds[orTechComboBox.SelectedIndex];
-            if (id == item.OrRequiredTechs[index])
+            if (id == tech.Id)
             {
                 return;
             }
 
             // 値を更新する
-            item.OrRequiredTechs[index] = id;
+            tech.Id = id;
 
             // OR条件必要技術数値アップダウンの値を更新する
             orIdNumericUpDown.Value = id;
@@ -2694,7 +2745,10 @@ namespace HoI2Editor.Forms
             ModifyOrRequiredListItem(id, index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
         }
 
         /// <summary>
@@ -3067,7 +3121,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirtyAll();
         }
 
         /// <summary>
@@ -3098,7 +3155,10 @@ namespace HoI2Editor.Forms
             InsertComponentListItem(component, index + 1);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirtyAll();
         }
 
         /// <summary>
@@ -3127,7 +3187,9 @@ namespace HoI2Editor.Forms
             RemoveComponentListItem(index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -3162,7 +3224,9 @@ namespace HoI2Editor.Forms
             MoveComponentListItem(index, index - 1);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -3197,7 +3261,9 @@ namespace HoI2Editor.Forms
             MoveComponentListItem(index, index + 1);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -3241,7 +3307,10 @@ namespace HoI2Editor.Forms
             componentListView.Items[index].Text = id.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirty(TechComponentItemId.Id);
         }
 
         /// <summary>
@@ -3285,7 +3354,10 @@ namespace HoI2Editor.Forms
             componentListView.Items[index].SubItems[1].Text = name;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirty(TechComponentItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -3330,7 +3402,10 @@ namespace HoI2Editor.Forms
             componentListView.Items[index].SubItems[2].Text = Techs.GetSpecialityName(speciality);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirty(TechComponentItemId.Specilaity);
         }
 
         /// <summary>
@@ -3374,7 +3449,10 @@ namespace HoI2Editor.Forms
             componentListView.Items[index].SubItems[3].Text = difficulty.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirty(TechComponentItemId.Difficulty);
         }
 
         /// <summary>
@@ -3418,7 +3496,10 @@ namespace HoI2Editor.Forms
             componentListView.Items[index].SubItems[4].Text = doubleTime ? Resources.Yes : Resources.No;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirty(TechComponentItemId.DoubleTime);
         }
 
         /// <summary>
@@ -3428,13 +3509,13 @@ namespace HoI2Editor.Forms
         /// <returns>小研究リストの項目</returns>
         private static ListViewItem CreateComponentListItem(TechComponent component)
         {
-            var listItem = new ListViewItem {Text = component.Id.ToString(CultureInfo.InvariantCulture)};
-            listItem.SubItems.Add(component.ToString());
-            listItem.SubItems.Add(Techs.GetSpecialityName(component.Speciality));
-            listItem.SubItems.Add(component.Difficulty.ToString(CultureInfo.InvariantCulture));
-            listItem.SubItems.Add(component.DoubleTime ? Resources.Yes : Resources.No);
+            var li = new ListViewItem {Text = component.Id.ToString(CultureInfo.InvariantCulture)};
+            li.SubItems.Add(component.ToString());
+            li.SubItems.Add(Techs.GetSpecialityName(component.Speciality));
+            li.SubItems.Add(component.Difficulty.ToString(CultureInfo.InvariantCulture));
+            li.SubItems.Add(component.DoubleTime ? Resources.Yes : Resources.No);
 
-            return listItem;
+            return li;
         }
 
         /// <summary>
@@ -3465,8 +3546,8 @@ namespace HoI2Editor.Forms
         private void InsertComponentListItem(TechComponent component, int index)
         {
             // リストに項目を追加する
-            ListViewItem listItem = CreateComponentListItem(component);
-            componentListView.Items.Insert(index, listItem);
+            ListViewItem li = CreateComponentListItem(component);
+            componentListView.Items.Insert(index, li);
 
             // 挿入した項目を選択する
             componentListView.Items[index].Focused = true;
@@ -3741,7 +3822,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirtyAll();
         }
 
         /// <summary>
@@ -3772,7 +3856,10 @@ namespace HoI2Editor.Forms
             InsertEffectListItem(command, index + 1);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirtyAll();
         }
 
         /// <summary>
@@ -3801,7 +3888,9 @@ namespace HoI2Editor.Forms
             RemoveEffectListItem(index);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -3836,7 +3925,9 @@ namespace HoI2Editor.Forms
             MoveEffectListItem(index, index - 1);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -3871,7 +3962,9 @@ namespace HoI2Editor.Forms
             MoveEffectListItem(index, index + 1);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>
@@ -3921,7 +4014,10 @@ namespace HoI2Editor.Forms
             effectListView.Items[index].Text = Command.TypeStringTable[(int) type];
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirty(CommandItemId.Type);
         }
 
         /// <summary>
@@ -3965,7 +4061,10 @@ namespace HoI2Editor.Forms
             effectListView.Items[index].SubItems[1].Text = text;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirty(CommandItemId.Which);
         }
 
         /// <summary>
@@ -4009,7 +4108,10 @@ namespace HoI2Editor.Forms
             effectListView.Items[index].SubItems[2].Text = text;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirty(CommandItemId.Value);
         }
 
         /// <summary>
@@ -4053,7 +4155,10 @@ namespace HoI2Editor.Forms
             effectListView.Items[index].SubItems[3].Text = text;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirty(CommandItemId.When);
         }
 
         /// <summary>
@@ -4097,7 +4202,10 @@ namespace HoI2Editor.Forms
             effectListView.Items[index].SubItems[4].Text = newText;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirty(CommandItemId.Where);
         }
 
         /// <summary>
@@ -4364,7 +4472,9 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
         }
 
@@ -4444,7 +4554,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirty(TechPositionItemId.X);
         }
 
         /// <summary>
@@ -4493,7 +4606,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirty(TechPositionItemId.Y);
         }
 
         /// <summary>
@@ -4530,7 +4646,10 @@ namespace HoI2Editor.Forms
             AddTechTreeItem(item, position);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirtyAll();
         }
 
         /// <summary>
@@ -4582,7 +4701,9 @@ namespace HoI2Editor.Forms
             RemoveTechTreeItem(item, position);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         #endregion
@@ -4761,7 +4882,9 @@ namespace HoI2Editor.Forms
             techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.Id);
         }
 
         /// <summary>
@@ -4800,7 +4923,9 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty(TechItemId.TechId);
         }
 
         /// <summary>
@@ -4817,25 +4942,14 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値に変化がなければ何もしない
             if (eventTechComboBox.SelectedIndex == -1)
             {
                 return;
             }
-            int id = Techs.TechIds[eventTechComboBox.SelectedIndex];
-            if (id == item.TechId)
-            {
-                return;
-            }
-
-            // 値を更新する
-            item.TechId = id;
 
             // 技術ID数値アップダウンの値を更新する
+            int id = Techs.TechIds[eventTechComboBox.SelectedIndex];
             eventTechNumericUpDown.Value = id;
-
-            // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
         }
 
         /// <summary>
@@ -4914,7 +5028,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirty(TechPositionItemId.X);
         }
 
         /// <summary>
@@ -4963,7 +5080,10 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirty(TechPositionItemId.Y);
         }
 
         /// <summary>
@@ -5000,7 +5120,10 @@ namespace HoI2Editor.Forms
             AddTechTreeItem(item, position);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirtyAll();
         }
 
         /// <summary>
@@ -5052,7 +5175,9 @@ namespace HoI2Editor.Forms
             RemoveTechTreeItem(item, position);
 
             // 編集済みフラグを設定する
-            Techs.SetDirty(GetSelectedCategory());
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         #endregion

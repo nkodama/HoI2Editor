@@ -148,12 +148,12 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="techs">要求技術IDリスト</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteRequired(IEnumerable<int> techs, StreamWriter writer)
+        private static void WriteRequired(IEnumerable<RequiredTech> techs, StreamWriter writer)
         {
             writer.Write("    required  = {");
-            foreach (int id in techs)
+            foreach (RequiredTech tech in techs)
             {
-                writer.Write(" {0}", id);
+                writer.Write(" {0}", tech.Id);
             }
             writer.WriteLine(" }");
         }
@@ -163,12 +163,12 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="techs">要求技術IDリスト</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteOrRequired(IEnumerable<int> techs, StreamWriter writer)
+        private static void WriteOrRequired(IEnumerable<RequiredTech> techs, StreamWriter writer)
         {
             writer.Write("    or_required = {");
-            foreach (int id in techs)
+            foreach (RequiredTech tech in techs)
             {
-                writer.Write(" {0}", id);
+                writer.Write(" {0}", tech.Id);
             }
             writer.WriteLine(" }");
         }
