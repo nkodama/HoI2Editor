@@ -2897,7 +2897,8 @@ namespace HoI2Editor.Forms
             // 小研究特性
             componentSpecialityComboBox.Items.Clear();
             int maxWidth = componentSpecialityComboBox.DropDownWidth;
-            foreach (string name in Techs.Specialities.Select(Techs.GetSpecialityName))
+            foreach (string name in Techs.Specialities.Where(speciality => speciality != TechSpeciality.None)
+                                         .Select(Techs.GetSpecialityName))
             {
                 componentSpecialityComboBox.Items.Add(name);
                 maxWidth = Math.Max(maxWidth,
