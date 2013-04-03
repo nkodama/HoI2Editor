@@ -554,7 +554,9 @@ namespace HoI2Editor.Forms
                 }
 
                 // 技術項目リストに項目を挿入する
-                Techs.InsertItem(grp.Category, item, selected);
+                grp.InsertItem(item, selected);
+
+                // 項目リストビューに項目を挿入する
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
@@ -563,14 +565,17 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition());
 
                 // 技術項目リストに項目を追加する
-                // TODO: grp.AddItem(item)の形式に
-                Techs.AddItem(grp.Category, item);
+                grp.AddItem(item);
+
+                // 項目リストビューに項目を追加する
                 AddTechListItem(item);
             }
 
             // 技術ツリーにラベルを追加する
             AddTechTreeItems(item);
 
+            // 技術項目とIDの対応付けを更新する
+            Techs.UpdateTechIdMap();
             // 必要技術コンボボックスの項目を更新する
             UpdateRequiredTechListItems();
             // 技術イベントの技術IDコンボボックスの項目を更新する
@@ -602,7 +607,9 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
 
                 // 技術項目リストに項目を挿入する
-                Techs.InsertItem(grp.Category, item, selected);
+                grp.InsertItem(item, selected);
+
+                // 項目リストビューに項目を挿入する
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
@@ -611,7 +618,9 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition());
 
                 // 技術項目リストに項目を追加する
-                Techs.AddItem(grp.Category, item);
+                grp.AddItem(item);
+
+                // 項目リストビューに項目を追加する
                 AddTechListItem(item);
             }
 
@@ -650,7 +659,9 @@ namespace HoI2Editor.Forms
                 }
 
                 // 技術項目リストに項目を挿入する
-                Techs.InsertItem(grp.Category, item, selected);
+                grp.InsertItem(item, selected);
+
+                // 項目リストビューに項目を挿入する
                 InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
@@ -659,7 +670,9 @@ namespace HoI2Editor.Forms
                 item.Positions.Add(new TechPosition());
 
                 // 技術項目リストに項目を追加する
-                Techs.AddItem(grp.Category, item);
+                grp.AddItem(item);
+
+                // 項目リストビューに項目を追加する
                 AddTechListItem(item);
             }
 
@@ -691,7 +704,9 @@ namespace HoI2Editor.Forms
             ITechItem item = selected.Clone();
 
             // 技術項目リストに項目を挿入する
-            Techs.InsertItem(grp.Category, item, selected);
+            grp.InsertItem(item, selected);
+
+            // 項目リストビューに項目を挿入する
             InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
             // 技術ツリーにラベルを追加する
@@ -699,6 +714,8 @@ namespace HoI2Editor.Forms
 
             if (item is TechItem)
             {
+                // 技術項目とIDの対応付けを更新する
+                Techs.UpdateTechIdMap();
                 // 必要技術コンボボックスの項目を更新する
                 UpdateRequiredTechListItems();
                 // 技術イベントの技術IDコンボボックスの項目を更新する
@@ -727,7 +744,9 @@ namespace HoI2Editor.Forms
             }
 
             // 技術項目リストから項目を削除する
-            Techs.RemoveItem(grp.Category, selected);
+            grp.RemoveItem(selected);
+
+            // 項目リストビューから項目を削除する
             RemoveTechListItem(techListBox.SelectedIndex);
 
             // 技術ツリーからラベルを削除する
@@ -735,6 +754,10 @@ namespace HoI2Editor.Forms
 
             if (selected is TechItem)
             {
+                // 技術項目とIDの対応付けを更新する
+                var item = selected as TechItem;
+                Techs.TechIds.Remove(item.Id);
+                Techs.TechIdMap.Remove(item.Id);
                 // 必要技術コンボボックスの項目を更新する
                 UpdateRequiredTechListItems();
                 // 技術イベントの技術IDコンボボックスの項目を更新する
@@ -789,7 +812,9 @@ namespace HoI2Editor.Forms
             }
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(grp.Category, selected, top);
+            grp.MoveItem(selected, top);
+
+            // 項目リストビューの項目を移動する
             MoveTechListItem(index, 0);
 
             if (selected is TechItem)
@@ -829,7 +854,9 @@ namespace HoI2Editor.Forms
             ITechItem upper = grp.Items[index - 1];
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(grp.Category, selected, upper);
+            grp.MoveItem(selected, upper);
+
+            // 項目リストビューの項目を移動する
             MoveTechListItem(index, index - 1);
 
             if (selected is TechItem)
@@ -869,7 +896,9 @@ namespace HoI2Editor.Forms
             ITechItem lower = grp.Items[index + 1];
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(grp.Category, selected, lower);
+            grp.MoveItem(selected, lower);
+
+            // 項目リストビューの項目を移動する
             MoveTechListItem(index, index + 1);
 
             if (selected is TechItem)
@@ -909,7 +938,9 @@ namespace HoI2Editor.Forms
             ITechItem bottom = grp.Items[techListBox.Items.Count - 1];
 
             // 技術項目リストの項目を移動する
-            Techs.MoveItem(grp.Category, selected, bottom);
+            grp.MoveItem(selected, bottom);
+
+            // 項目リストビューの項目を移動する
             MoveTechListItem(index, techListBox.Items.Count - 1);
 
             if (selected is TechItem)
@@ -925,12 +956,12 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術項目リストに項目を追加する
+        ///     項目リストビューに項目を追加する
         /// </summary>
         /// <param name="item">追加対象の項目</param>
         private void AddTechListItem(ITechItem item)
         {
-            // 技術項目リストに項目を追加する
+            // 項目リストビューに項目を追加する
             techListBox.Items.Add(item);
 
             // 追加した項目を選択する
@@ -938,13 +969,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術項目リストに項目を挿入する
+        ///     項目リストビューに項目を挿入する
         /// </summary>
         /// <param name="item">挿入対象の項目</param>
         /// <param name="index">挿入先の位置</param>
         private void InsertTechListItem(object item, int index)
         {
-            // 技術項目リストに項目を挿入する
+            // 項目リストビューに項目を挿入する
             techListBox.Items.Insert(index, item);
 
             // 挿入した項目を選択する
@@ -952,12 +983,12 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術項目リストの項目を削除する
+        ///     項目リストビューの項目を削除する
         /// </summary>
         /// <param name="index">削除対象の位置</param>
         private void RemoveTechListItem(int index)
         {
-            // 技術項目リストから項目を削除する
+            // 項目リストビューから項目を削除する
             techListBox.Items.RemoveAt(index);
 
             if (index < techListBox.Items.Count)
@@ -973,7 +1004,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術項目リストの項目を移動する
+        ///     項目リストビューの項目を移動する
         /// </summary>
         /// <param name="src">移動元の位置</param>
         /// <param name="dest">移動先の位置</param>
@@ -3597,7 +3628,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var speciality = Techs.Specialities[componentSpecialityComboBox.SelectedIndex + 1];
+            TechSpeciality speciality = Techs.Specialities[componentSpecialityComboBox.SelectedIndex + 1];
             if (speciality == component.Speciality)
             {
                 return;

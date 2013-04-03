@@ -60,6 +60,65 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 技術項目リスト操作
+
+        /// <summary>
+        ///     技術項目リストに項目を挿入する
+        /// </summary>
+        /// <param name="item">追加対象の項目</param>
+        public void AddItem(ITechItem item)
+        {
+            Items.Add(item);
+        }
+
+        /// <summary>
+        ///     技術項目リストに項目を挿入する
+        /// </summary>
+        /// <param name="item">挿入対象の項目</param>
+        /// <param name="position">挿入位置の直前の項目</param>
+        public void InsertItem(ITechItem item, ITechItem position)
+        {
+            Items.Insert(Items.IndexOf(position) + 1, item);
+        }
+
+        /// <summary>
+        ///     技術項目リストから項目を削除する
+        /// </summary>
+        /// <param name="item">削除対象の項目</param>
+        public void RemoveItem(ITechItem item)
+        {
+            Items.Remove(item);
+
+            // 一時キーを削除する
+            item.RemoveTempKey();
+        }
+
+        /// <summary>
+        ///     技術項目リストの項目を移動する
+        /// </summary>
+        /// <param name="src">移動対象の項目</param>
+        /// <param name="dest">移動先位置の項目</param>
+        public void MoveItem(ITechItem src, ITechItem dest)
+        {
+            int srcIndex = Items.IndexOf(src);
+            int destIndex = Items.IndexOf(dest);
+
+            if (srcIndex > destIndex)
+            {
+                // 上へ移動する場合
+                Items.Insert(destIndex, src);
+                Items.RemoveAt(srcIndex + 1);
+            }
+            else
+            {
+                // 下へ移動する場合
+                Items.Insert(destIndex + 1, src);
+                Items.RemoveAt(srcIndex);
+            }
+        }
+
+        #endregion
+
         #region 文字列操作
 
         /// <summary>

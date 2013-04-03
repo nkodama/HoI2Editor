@@ -724,87 +724,7 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 技術項目リスト操作
-
-        /// <summary>
-        ///     技術項目リストに項目を挿入する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="item">追加対象の項目</param>
-        public static void AddItem(TechCategory category, ITechItem item)
-        {
-            TechGroup grp = Groups[(int) category];
-            grp.Items.Add(item);
-
-            if (item is TechItem)
-            {
-                UpdateTechIdMap();
-            }
-        }
-
-        /// <summary>
-        ///     技術項目リストに項目を挿入する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="item">挿入対象の項目</param>
-        /// <param name="position">挿入位置の直前の項目</param>
-        public static void InsertItem(TechCategory category, ITechItem item, ITechItem position)
-        {
-            TechGroup grp = Groups[(int) category];
-            grp.Items.Insert(grp.Items.IndexOf(position) + 1, item);
-
-            if (item is TechItem)
-            {
-                UpdateTechIdMap();
-            }
-        }
-
-        /// <summary>
-        ///     技術項目リストから項目を削除する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="item">削除対象の項目</param>
-        public static void RemoveItem(TechCategory category, ITechItem item)
-        {
-            TechGroup grp = Groups[(int) category];
-            grp.Items.Remove(item);
-
-            // 一時キーを削除する
-            item.RemoveTempKey();
-
-            if (item is TechItem)
-            {
-                var techItem = item as TechItem;
-                TechIds.Remove(techItem.Id);
-                TechIdMap.Remove(techItem.Id);
-            }
-        }
-
-        /// <summary>
-        ///     技術項目リストの項目を移動する
-        /// </summary>
-        /// <param name="category">カテゴリ</param>
-        /// <param name="src">移動対象の項目</param>
-        /// <param name="dest">移動先位置の項目</param>
-        public static void MoveItem(TechCategory category, ITechItem src, ITechItem dest)
-        {
-            TechGroup grp = Groups[(int) category];
-            int srcIndex = grp.Items.IndexOf(src);
-            int destIndex = grp.Items.IndexOf(dest);
-
-            if (srcIndex > destIndex)
-            {
-                // 上へ移動する場合
-                grp.Items.Insert(destIndex, src);
-                grp.Items.RemoveAt(srcIndex + 1);
-            }
-            else
-            {
-                // 下へ移動する場合
-                grp.Items.Insert(destIndex + 1, src);
-                grp.Items.RemoveAt(srcIndex);
-            }
-        }
+        #region 技術項目とIDの対応付け
 
         /// <summary>
         ///     技術IDを変更する
@@ -827,7 +747,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     技術項目とIDの対応付けを更新する
         /// </summary>
-        private static void UpdateTechIdMap()
+        public static void UpdateTechIdMap()
         {
             TechIds.Clear();
             TechIdMap.Clear();
