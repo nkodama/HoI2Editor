@@ -498,9 +498,20 @@ namespace HoI2Editor.Forms
             }
 
             // 項目の文字列を描画する
-            Brush brush = new SolidBrush(techListBox.ForeColor);
-            e.Graphics.DrawString(techListBox.Items[e.Index].ToString(), e.Font, brush,
-                                  new RectangleF(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
+            {
+                // 変更ありの項目は文字色を変更する
+                var item = techListBox.Items[e.Index] as ITechItem;
+                brush = (item != null && item.IsDirty())
+                            ? new SolidBrush(Color.Red)
+                            : new SolidBrush(categoryListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            e.Graphics.DrawString(techListBox.Items[e.Index].ToString(), e.Font, brush, e.Bounds);
             brush.Dispose();
 
             // フォーカスを描画する
@@ -1512,6 +1523,10 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
             categoryNameTextBox.Text = grp.ToString();
             categoryDescTextBox.Text = grp.GetDesc();
+
+            // 編集項目の色を更新する
+            categoryNameTextBox.ForeColor = grp.IsDirty(TechGroupItemId.Name) ? Color.Red : SystemColors.WindowText;
+            categoryDescTextBox.ForeColor = grp.IsDirty(TechGroupItemId.Desc) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -1542,6 +1557,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty(TechGroupItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
+
+            // 文字色を変更する
+            categoryNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1566,6 +1584,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty(TechGroupItemId.Desc);
             Config.SetDirty(Game.TechTextFileName, true);
+
+            // 文字色を変更する
+            categoryDescTextBox.ForeColor = Color.Red;
         }
 
         #endregion
@@ -1585,6 +1606,15 @@ namespace HoI2Editor.Forms
             techYearNumericUpDown.Value = item.Year;
             UpdateTechPositionList(item);
             UpdateTechPicture(item);
+
+            // 編集項目の色を更新する
+            techNameTextBox.ForeColor = item.IsDirty(TechItemId.Name) ? Color.Red : SystemColors.WindowText;
+            techShortNameTextBox.ForeColor = item.IsDirty(TechItemId.ShortName) ? Color.Red : SystemColors.WindowText;
+            techIdNumericUpDown.ForeColor = item.IsDirty(TechItemId.Id) ? Color.Red : SystemColors.WindowText;
+            techYearNumericUpDown.ForeColor = item.IsDirty(TechItemId.Year) ? Color.Red : SystemColors.WindowText;
+            techPictureNameTextBox.ForeColor = item.IsDirty(TechItemId.PictureName)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -1738,6 +1768,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty(TechItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
+
+            // 文字色を変更する
+            techNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1779,6 +1812,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty(TechItemId.ShortName);
             Config.SetDirty(Game.TechTextFileName, true);
+
+            // 文字色を変更する
+            techShortNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1809,6 +1845,9 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty(TechItemId.Id);
+
+            // 文字色を変更する
+            techIdNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1839,6 +1878,9 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty(TechItemId.Year);
+
+            // 文字色を変更する
+            techYearNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1855,15 +1897,24 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 技術座標リストの選択項目がなければ編集項目を無効化する
             if (techPositionListView.SelectedIndices.Count == 0)
             {
+                DisableTechPositionItems();
                 return;
             }
 
             // 編集項目を更新する
-            int index = techPositionListView.SelectedIndices[0];
-            techXNumericUpDown.Value = item.Positions[index].X;
-            techYNumericUpDown.Value = item.Positions[index].Y;
+            TechPosition position = item.Positions[techPositionListView.SelectedIndices[0]];
+            techXNumericUpDown.Value = position.X;
+            techYNumericUpDown.Value = position.Y;
+
+            // 編集項目の色を更新する
+            techXNumericUpDown.ForeColor = position.IsDirty(TechPositionItemId.X) ? Color.Red : SystemColors.WindowText;
+            techYNumericUpDown.ForeColor = position.IsDirty(TechPositionItemId.Y) ? Color.Red : SystemColors.WindowText;
+
+            // 編集項目を有効化する
+            EnableTechPositionItems();
         }
 
         /// <summary>
@@ -1916,6 +1967,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             position.SetDirty(TechPositionItemId.X);
+
+            // 文字色を変更する
+            techXNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1967,6 +2021,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             position.SetDirty(TechPositionItemId.Y);
+
+            // 文字色を変更する
+            techYNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1987,6 +2044,12 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirtyAll();
+
             // 座標リストビューの項目を追加する
             var li = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
             li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
@@ -2002,12 +2065,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーにラベルを追加する
             AddTechTreeItem(item, position);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
-            position.SetDirtyAll();
         }
 
         /// <summary>
@@ -2034,6 +2091,11 @@ namespace HoI2Editor.Forms
             // 座標をリストから削除する
             item.Positions.RemoveAt(index);
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+
             // 座標リストビューの項目を削除する
             techPositionListView.Items.RemoveAt(index);
 
@@ -2057,11 +2119,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーからラベルを削除する
             RemoveTechTreeItem(item, position);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
         }
 
         /// <summary>
@@ -2072,6 +2129,11 @@ namespace HoI2Editor.Forms
         {
             // 画像ファイル名テキストボックスの値を更新する
             techPictureNameTextBox.Text = item.PictureName ?? "";
+
+            // 編集項目の色を更新する
+            techPictureNameTextBox.ForeColor = item.IsDirty(TechItemId.PictureName)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
 
             string fileName =
                 Game.GetReadFileName(Game.TechPicturePathName,
@@ -2123,6 +2185,9 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty(TechItemId.PictureName);
+
+            // 文字色を変更する
+            techPictureNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2359,6 +2424,84 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     AND条件必要技術コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAndTechComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && andRequiredListView.SelectedIndices.Count > 0)
+            {
+                RequiredTech tech = item.AndRequiredTechs[andRequiredListView.SelectedIndices[0]];
+                Brush brush;
+                if ((Techs.TechIds[e.Index] == tech.Id) && tech.IsDirty())
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = andTechComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     OR条件必要技術コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOrTechComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && orRequiredListView.SelectedIndices.Count > 0)
+            {
+                RequiredTech tech = item.OrRequiredTechs[orRequiredListView.SelectedIndices[0]];
+                Brush brush;
+                if ((Techs.TechIds[e.Index] == tech.Id) && tech.IsDirty())
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = orTechComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     AND条件必要技術リストの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -2379,9 +2522,16 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = andRequiredListView.SelectedIndices[0];
-            int id = item.AndRequiredTechs[index].Id;
+            // 編集項目を更新する
+            RequiredTech tech = item.AndRequiredTechs[andRequiredListView.SelectedIndices[0]];
+            int id = tech.Id;
             andIdNumericUpDown.Value = id;
+
+            // コンボボックスの色を更新する
+            andTechComboBox.Refresh();
+
+            // 編集項目の色を更新する
+            andIdNumericUpDown.ForeColor = tech.IsDirty() ? Color.Red : SystemColors.WindowText;
 
             // AND条件必要技術コンボボックスの選択項目を更新する
             if (Techs.TechIds.Contains(id))
@@ -2419,9 +2569,16 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int index = orRequiredListView.SelectedIndices[0];
-            int id = item.OrRequiredTechs[index].Id;
+            // 編集項目を更新する
+            RequiredTech tech = item.OrRequiredTechs[orRequiredListView.SelectedIndices[0]];
+            int id = tech.Id;
             orIdNumericUpDown.Value = id;
+
+            // コンボボックスの色を更新する
+            orTechComboBox.Refresh();
+
+            // 編集項目の色を更新する
+            orIdNumericUpDown.ForeColor = tech.IsDirty() ? Color.Red : SystemColors.WindowText;
 
             // OR条件必要技術コンボボックスの選択項目を更新する
             if (Techs.TechIds.Contains(id))
@@ -2455,13 +2612,15 @@ namespace HoI2Editor.Forms
             // AND条件必要技術リストに項目を追加する
             var tech = new RequiredTech();
             item.AndRequiredTechs.Add(tech);
-            AddAndRequiredListItem(0);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
             tech.SetDirty();
+
+            // AND条件必要技術リストビューに項目を追加する
+            AddAndRequiredListItem(0);
         }
 
         /// <summary>
@@ -2481,13 +2640,15 @@ namespace HoI2Editor.Forms
             // OR条件必要技術リストに項目を追加する
             var tech = new RequiredTech();
             item.OrRequiredTechs.Add(tech);
-            AddOrRequiredListItem(0);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
             tech.SetDirty();
+
+            // OR条件必要技術リストビューに項目を追加する
+            AddOrRequiredListItem(0);
         }
 
         /// <summary>
@@ -2512,12 +2673,14 @@ namespace HoI2Editor.Forms
 
             // AND条件必要技術リストから項目を削除する
             RemoveAndRequiredListItem(index);
-            item.AndRequiredTechs.RemoveAt(index);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
+
+            // AND条件必要技術リストビューから項目を削除する
+            item.AndRequiredTechs.RemoveAt(index);
         }
 
         /// <summary>
@@ -2542,12 +2705,14 @@ namespace HoI2Editor.Forms
 
             // OR条件必要技術リストから項目を削除する
             RemoveOrRequiredListItem(index);
-            item.OrRequiredTechs.RemoveAt(index);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
+
+            // OR条件必要技術リストビューから項目を削除する
+            item.OrRequiredTechs.RemoveAt(index);
         }
 
         /// <summary>
@@ -2600,6 +2765,12 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             tech.SetDirty();
+
+            // 文字色を変更する
+            andIdNumericUpDown.ForeColor = Color.Red;
+
+            // AND条件必要技術コンボボックスの項目色を変更するため描画更新する
+            andTechComboBox.Refresh();
         }
 
         /// <summary>
@@ -2637,12 +2808,12 @@ namespace HoI2Editor.Forms
             orTechComboBox.SelectedIndex = -1;
             if (Techs.TechIds.Contains(id))
             {
-                andTechComboBox.SelectedIndex = Techs.TechIds.IndexOf(id);
+                orTechComboBox.SelectedIndex = Techs.TechIds.IndexOf(id);
             }
             else
             {
-                andTechComboBox.SelectedIndex = -1;
-                andTechComboBox.ResetText();
+                orTechComboBox.SelectedIndex = -1;
+                orTechComboBox.ResetText();
             }
 
             // OR条件必要技術リストの項目を更新する
@@ -2653,6 +2824,12 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             tech.SetDirty();
+
+            // 文字色を変更する
+            orIdNumericUpDown.ForeColor = Color.Red;
+
+            // OR条件必要技術コンボボックスの項目色を変更するため描画更新する
+            orTechComboBox.Refresh();
         }
 
         /// <summary>
@@ -2681,26 +2858,18 @@ namespace HoI2Editor.Forms
                 return;
             }
             RequiredTech tech = item.AndRequiredTechs[index];
+            if (andTechComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
             int id = Techs.TechIds[andTechComboBox.SelectedIndex];
             if (id == tech.Id)
             {
                 return;
             }
 
-            // 値を更新する
-            tech.Id = id;
-
-            // AND条件必要技術数値アップダウンの値を更新する
+            // AND条件必要技術IDの値を更新する
             andIdNumericUpDown.Value = id;
-
-            // AND条件必要技術リストの項目を更新する
-            ModifyAndRequiredListItem(id, index);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
-            tech.SetDirty();
         }
 
         /// <summary>
@@ -2729,30 +2898,22 @@ namespace HoI2Editor.Forms
                 return;
             }
             RequiredTech tech = item.OrRequiredTechs[index];
+            if (orTechComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
             int id = Techs.TechIds[orTechComboBox.SelectedIndex];
             if (id == tech.Id)
             {
                 return;
             }
 
-            // 値を更新する
-            tech.Id = id;
-
-            // OR条件必要技術数値アップダウンの値を更新する
+            // OR条件必要技術IDの値を更新する
             orIdNumericUpDown.Value = id;
-
-            // OR条件必要技術リストの項目を更新する
-            ModifyOrRequiredListItem(id, index);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
-            tech.SetDirty();
         }
 
         /// <summary>
-        ///     AND条件必要技術リストに項目を追加する
+        ///     AND条件必要技術リストビューに項目を追加する
         /// </summary>
         /// <param name="id">必要技術ID</param>
         private void AddAndRequiredListItem(int id)
@@ -2776,7 +2937,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     OR条件必要技術リストに項目を追加する
+        ///     OR条件必要技術リストビューに項目を追加する
         /// </summary>
         /// <param name="id">必要技術ID</param>
         private void AddOrRequiredListItem(int id)
@@ -3048,6 +3209,23 @@ namespace HoI2Editor.Forms
             componentDifficultyNumericUpDown.Value = component.Difficulty;
             componentDoubleTimeCheckBox.Checked = component.DoubleTime;
 
+            // コンボボックスの色を更新する
+            componentSpecialityComboBox.Refresh();
+
+            // 編集項目の色を更新する
+            componentIdNumericUpDown.ForeColor = component.IsDirty(TechComponentItemId.Id)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            componentNameTextBox.ForeColor = component.IsDirty(TechComponentItemId.Name)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            componentDifficultyNumericUpDown.ForeColor = component.IsDirty(TechComponentItemId.Difficulty)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+            componentDoubleTimeCheckBox.ForeColor = component.IsDirty(TechComponentItemId.DoubleTime)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+
             // 編集項目を有効化する
             EnableComponentItems();
 
@@ -3079,10 +3257,25 @@ namespace HoI2Editor.Forms
             }
 
             // 項目の文字列を描画する
-            Brush brush = new SolidBrush(componentSpecialityComboBox.ForeColor);
-            e.Graphics.DrawString(componentSpecialityComboBox.Items[e.Index].ToString(), e.Font, brush,
-                                  new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height));
-            brush.Dispose();
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && componentListView.SelectedIndices.Count > 0)
+            {
+                TechComponent component = item.Components[componentListView.SelectedIndices[0]];
+                Brush brush;
+                if ((Techs.Specialities[e.Index + 1] == component.Speciality) &&
+                    component.IsDirty(TechComponentItemId.Specilaity))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                e.Graphics.DrawString(
+                    componentSpecialityComboBox.Items[e.Index].ToString(), e.Font, brush,
+                    new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height));
+                brush.Dispose();
+            }
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
@@ -3104,6 +3297,12 @@ namespace HoI2Editor.Forms
 
             TechComponent component = TechComponent.Create();
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirtyAll();
+
             if (componentListView.SelectedIndices.Count > 0)
             {
                 int index = componentListView.SelectedIndices[0];
@@ -3112,20 +3311,18 @@ namespace HoI2Editor.Forms
 
                 // 項目をリストに挿入する
                 item.InsertComponent(component, index + 1);
+
+                // 小研究リストビューに項目を挿入する
                 InsertComponentListItem(component, index + 1);
             }
             else
             {
                 // 項目をリストに追加する
                 item.AddComponent(component);
+
+                // 小研究リストビューに項目を追加する
                 AddComponentListItem(component);
             }
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
-            component.SetDirtyAll();
         }
 
         /// <summary>
@@ -3151,15 +3348,17 @@ namespace HoI2Editor.Forms
 
             TechComponent component = item.Components[index].Clone();
 
-            // 項目をリストに挿入する
-            item.InsertComponent(component, index + 1);
-            InsertComponentListItem(component, index + 1);
-
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
             component.SetDirtyAll();
+
+            // 項目をリストに挿入する
+            item.InsertComponent(component, index + 1);
+
+            // 小研究リストビューに項目を挿入する
+            InsertComponentListItem(component, index + 1);
         }
 
         /// <summary>
@@ -3183,14 +3382,16 @@ namespace HoI2Editor.Forms
             }
             int index = componentListView.SelectedIndices[0];
 
-            // 項目をリストから削除する
-            item.RemoveComponent(index);
-            RemoveComponentListItem(index);
-
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
+
+            // 項目をリストから削除する
+            item.RemoveComponent(index);
+
+            // 小研究リストビューから項目を削除する
+            RemoveComponentListItem(index);
         }
 
         /// <summary>
@@ -3312,6 +3513,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirty(TechComponentItemId.Id);
+
+            // 文字色を変更する
+            componentIdNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3360,6 +3564,9 @@ namespace HoI2Editor.Forms
             item.SetDirty();
             component.SetDirty(TechComponentItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
+
+            // 文字色を変更する
+            componentNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3407,6 +3614,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirty(TechComponentItemId.Specilaity);
+
+            // 小研究特性コンボボックスの項目色を変更するため描画更新する
+            componentSpecialityComboBox.Refresh();
         }
 
         /// <summary>
@@ -3454,6 +3664,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirty(TechComponentItemId.Difficulty);
+
+            // 文字色を変更する
+            componentDifficultyNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3501,6 +3714,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirty(TechComponentItemId.DoubleTime);
+
+            // 文字色を変更する
+            componentDoubleTimeCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3743,6 +3959,177 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     技術効果種類コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCommandTypeComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && effectListView.SelectedIndices.Count > 0)
+            {
+                Command command = item.Effects[effectListView.SelectedIndices[0]];
+                Brush brush;
+                if ((e.Index == (int) command.Type) && command.IsDirty(CommandItemId.Type))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = commandTypeComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     技術効果whichパラメータコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCommandWhichComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && effectListView.SelectedIndices.Count > 0)
+            {
+                Command command = item.Effects[effectListView.SelectedIndices[0]];
+                Brush brush = command.IsDirty(CommandItemId.Which)
+                                  ? new SolidBrush(Color.Red)
+                                  : new SolidBrush(SystemColors.WindowText);
+                string s = commandWhichComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     技術効果valueパラメータコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCommandValueComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && effectListView.SelectedIndices.Count > 0)
+            {
+                Command command = item.Effects[effectListView.SelectedIndices[0]];
+                Brush brush = command.IsDirty(CommandItemId.Value)
+                                  ? new SolidBrush(Color.Red)
+                                  : new SolidBrush(SystemColors.WindowText);
+                string s = commandValueComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     技術効果whenパラメータコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCommandWhenComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && effectListView.SelectedIndices.Count > 0)
+            {
+                Command command = item.Effects[effectListView.SelectedIndices[0]];
+                Brush brush = command.IsDirty(CommandItemId.When)
+                                  ? new SolidBrush(Color.Red)
+                                  : new SolidBrush(SystemColors.WindowText);
+                string s = commandWhenComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     技術効果whereパラメータコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCommandWhereComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechItem;
+            if (item != null && effectListView.SelectedIndices.Count > 0)
+            {
+                Command command = item.Effects[effectListView.SelectedIndices[0]];
+                Brush brush = command.IsDirty(CommandItemId.Where)
+                                  ? new SolidBrush(Color.Red)
+                                  : new SolidBrush(SystemColors.WindowText);
+                string s = commandWhereComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     技術効果リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -3785,6 +4172,13 @@ namespace HoI2Editor.Forms
             commandWhenComboBox.Text = command.When != null ? command.When.ToString() : "";
             commandWhereComboBox.Text = command.Where != null ? command.Where.ToString() : "";
 
+            // コンボボックスの色を更新する
+            commandTypeComboBox.Refresh();
+            commandWhichComboBox.Refresh();
+            commandValueComboBox.Refresh();
+            commandWhenComboBox.Refresh();
+            commandWhereComboBox.Refresh();
+
             // 編集項目を有効化する
             EnableEffectItems();
 
@@ -3808,25 +4202,29 @@ namespace HoI2Editor.Forms
 
             var command = new Command();
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirtyAll();
+
             if (effectListView.SelectedIndices.Count > 0)
             {
                 // リストに項目を挿入する
                 int index = effectListView.SelectedIndices[0];
                 item.InsertCommand(command, index + 1);
+
+                // 技術効果リストビューに項目を挿入する
                 InsertEffectListItem(command, index + 1);
             }
             else
             {
                 // リストに項目を追加する
                 item.AddCommand(command);
+
+                // 技術効果リストビューに項目を追加する
                 AddEffectListItem(command);
             }
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
-            command.SetDirtyAll();
         }
 
         /// <summary>
@@ -3852,15 +4250,17 @@ namespace HoI2Editor.Forms
 
             Command command = item.Effects[index].Clone();
 
-            // リストに項目を挿入する
-            item.InsertCommand(command, index + 1);
-            InsertEffectListItem(command, index + 1);
-
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
             command.SetDirtyAll();
+
+            // リストに項目を挿入する
+            item.InsertCommand(command, index + 1);
+
+            // 技術効果リストビューに項目を挿入する
+            InsertEffectListItem(command, index + 1);
         }
 
         /// <summary>
@@ -3884,14 +4284,16 @@ namespace HoI2Editor.Forms
             }
             int index = effectListView.SelectedIndices[0];
 
-            // リストから項目を削除する
-            item.RemoveCommand(index);
-            RemoveEffectListItem(index);
-
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty();
+
+            // リストから項目を削除する
+            item.RemoveCommand(index);
+
+            // 技術効果リストビューから項目を削除する
+            RemoveEffectListItem(index);
         }
 
         /// <summary>
@@ -4019,10 +4421,13 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             command.SetDirty(CommandItemId.Type);
+
+            // 技術効果種類コンボボックスの項目色を変更するため描画更新する
+            commandTypeComboBox.Refresh();
         }
 
         /// <summary>
-        ///     技術効果Whichパラメータ変更時の処理
+        ///     技術効果whichパラメータ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4066,10 +4471,13 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             command.SetDirty(CommandItemId.Which);
+
+            // 技術効果whichパラメータコンボボックスの項目色を変更するため描画更新する
+            commandWhichComboBox.Refresh();
         }
 
         /// <summary>
-        ///     技術効果Valueパラメータ変更時の処理
+        ///     技術効果valueパラメータ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4113,10 +4521,13 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             command.SetDirty(CommandItemId.Value);
+
+            // 技術効果valueパラメータコンボボックスの項目色を変更するため描画更新する
+            commandValueComboBox.Refresh();
         }
 
         /// <summary>
-        ///     技術効果Whenパラメータ変更時の処理
+        ///     技術効果whenパラメータ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4160,10 +4571,13 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             command.SetDirty(CommandItemId.When);
+
+            // 技術効果whenパラメータコンボボックスの項目色を変更するため描画更新する
+            commandWhenComboBox.Refresh();
         }
 
         /// <summary>
-        ///     技術効果Whereパラメータ変更時の処理
+        ///     技術効果whereパラメータ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4207,6 +4621,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             command.SetDirty(CommandItemId.Where);
+
+            // 技術効果whereパラメータコンボボックスの項目色を変更するため描画更新する
+            commandWhereComboBox.Refresh();
         }
 
         /// <summary>
@@ -4335,6 +4752,9 @@ namespace HoI2Editor.Forms
             // ラベルタブの編集項目
             labelNameTextBox.Text = item.ToString();
             UpdateLabelPositionList(item);
+
+            // 編集項目の色を更新する
+            labelNameTextBox.ForeColor = item.IsDirty(TechItemId.Name) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -4477,6 +4897,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty(TechItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
+
+            // 文字色を変更する
+            labelNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4501,9 +4924,13 @@ namespace HoI2Editor.Forms
             }
 
             // 編集項目の値を更新する
-            int index = labelPositionListView.SelectedIndices[0];
-            labelXNumericUpDown.Value = item.Positions[index].X;
-            labelYNumericUpDown.Value = item.Positions[index].Y;
+            TechPosition position = item.Positions[labelPositionListView.SelectedIndices[0]];
+            labelXNumericUpDown.Value = position.X;
+            labelYNumericUpDown.Value = position.Y;
+
+            // 編集項目の色を更新する
+            labelXNumericUpDown.ForeColor = position.IsDirty(TechPositionItemId.X) ? Color.Red : SystemColors.WindowText;
+            labelYNumericUpDown.ForeColor = position.IsDirty(TechPositionItemId.Y) ? Color.Red : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableLabelPositionItems();
@@ -4559,6 +4986,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             position.SetDirty(TechPositionItemId.X);
+
+            // 文字色を変更する
+            labelXNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4611,6 +5041,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             position.SetDirty(TechPositionItemId.Y);
+
+            // 文字色を変更する
+            labelYNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4631,6 +5064,12 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirtyAll();
+
             // ラベル座標リストビューの項目を追加する
             var li = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
             li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
@@ -4645,12 +5084,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーにラベルを追加する
             AddTechTreeItem(item, position);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
-            position.SetDirtyAll();
         }
 
         /// <summary>
@@ -4677,6 +5110,11 @@ namespace HoI2Editor.Forms
             // ラベル座標リストから項目を削除する
             item.Positions.RemoveAt(index);
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+
             // ラベル座標リストビューから項目を削除する
             labelPositionListView.Items.RemoveAt(index);
 
@@ -4700,11 +5138,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーからラベルを削除する
             RemoveTechTreeItem(item, position);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
         }
 
         #endregion
@@ -4730,6 +5163,13 @@ namespace HoI2Editor.Forms
                 eventTechComboBox.ResetText();
             }
             UpdateEventPositionList(item);
+
+            // コンボボックスの色を更新する
+            eventTechComboBox.Refresh();
+
+            // 編集項目の色を更新する
+            eventIdNumericUpDown.ForeColor = item.IsDirty(TechItemId.Id) ? Color.Red : SystemColors.WindowText;
+            eventTechNumericUpDown.ForeColor = item.IsDirty(TechItemId.TechId) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -4853,6 +5293,44 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     発明イベント技術コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEventTechComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            var item = GetSelectedItem() as TechEvent;
+            if (item != null)
+            {
+                Brush brush;
+                if ((Techs.TechIds[e.Index] == item.TechId) && item.IsDirty(TechItemId.TechId))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = eventTechComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     発明イベントID変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -4886,6 +5364,9 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty(TechItemId.Id);
+
+            // 文字色を変更する
+            eventIdNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4927,6 +5408,12 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
             item.SetDirty(TechItemId.TechId);
+
+            // 文字色を変更する
+            eventTechNumericUpDown.ForeColor = Color.Red;
+
+            // 発明イベント技術コンボボックスの項目色を変更するため描画更新する
+            eventTechComboBox.Refresh();
         }
 
         /// <summary>
@@ -4948,7 +5435,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 技術ID数値アップダウンの値を更新する
+            // 発明イベント技術IDの値を更新する
             int id = Techs.TechIds[eventTechComboBox.SelectedIndex];
             eventTechNumericUpDown.Value = id;
         }
@@ -4975,9 +5462,13 @@ namespace HoI2Editor.Forms
             }
 
             // 編集項目の値を更新する
-            int index = eventPositionListView.SelectedIndices[0];
-            eventXNumericUpDown.Value = item.Positions[index].X;
-            eventYNumericUpDown.Value = item.Positions[index].Y;
+            TechPosition position = item.Positions[eventPositionListView.SelectedIndices[0]];
+            eventXNumericUpDown.Value = position.X;
+            eventYNumericUpDown.Value = position.Y;
+
+            // 編集項目の色を更新する
+            eventXNumericUpDown.ForeColor = position.IsDirty(TechPositionItemId.X) ? Color.Red : SystemColors.WindowText;
+            eventYNumericUpDown.ForeColor = position.IsDirty(TechPositionItemId.Y) ? Color.Red : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableEventPositionItems();
@@ -5033,6 +5524,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             position.SetDirty(TechPositionItemId.X);
+
+            // 文字色を変更する
+            eventXNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -5085,6 +5579,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             position.SetDirty(TechPositionItemId.Y);
+
+            // 文字色を変更する
+            eventYNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -5105,6 +5602,12 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            position.SetDirtyAll();
+
             // 発明イベント座標リストビューに項目を追加する
             var li = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
             li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
@@ -5119,12 +5622,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーにラベルを追加する
             AddTechTreeItem(item, position);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
-            position.SetDirtyAll();
         }
 
         /// <summary>
@@ -5151,6 +5648,11 @@ namespace HoI2Editor.Forms
             // 発明イベント座標リストから項目を削除する
             item.Positions.RemoveAt(index);
 
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+
             // 発明イベント座標リストビューから項目を削除する
             eventPositionListView.Items.RemoveAt(index);
 
@@ -5174,11 +5676,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーのラベルを削除する
             RemoveTechTreeItem(item, position);
-
-            // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
-            item.SetDirty();
         }
 
         #endregion

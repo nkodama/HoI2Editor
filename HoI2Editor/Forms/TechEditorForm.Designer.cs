@@ -191,9 +191,9 @@
             // 
             // categoryListBox
             // 
-            resources.ApplyResources(this.categoryListBox, "categoryListBox");
             this.categoryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.categoryListBox.FormattingEnabled = true;
+            resources.ApplyResources(this.categoryListBox, "categoryListBox");
             this.categoryListBox.Items.AddRange(new object[] {
             resources.GetString("categoryListBox.Items"),
             resources.GetString("categoryListBox.Items1"),
@@ -231,12 +231,12 @@
             // 
             // categoryTabPage
             // 
-            resources.ApplyResources(this.categoryTabPage, "categoryTabPage");
             this.categoryTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.categoryTabPage.Controls.Add(this.categoryDescTextBox);
             this.categoryTabPage.Controls.Add(this.categoryDescLabel);
             this.categoryTabPage.Controls.Add(this.categoryNameTextBox);
             this.categoryTabPage.Controls.Add(this.categoryNameLabel);
+            resources.ApplyResources(this.categoryTabPage, "categoryTabPage");
             this.categoryTabPage.Name = "categoryTabPage";
             // 
             // categoryDescTextBox
@@ -263,7 +263,6 @@
             // 
             // techTabPage
             // 
-            resources.ApplyResources(this.techTabPage, "techTabPage");
             this.techTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.techTabPage.Controls.Add(this.techPositionRemoveButton);
             this.techTabPage.Controls.Add(this.techPositionAddButton);
@@ -284,6 +283,7 @@
             this.techTabPage.Controls.Add(this.techNameTextBox);
             this.techTabPage.Controls.Add(this.techNameLabel);
             this.techTabPage.Controls.Add(this.techPictureBox);
+            resources.ApplyResources(this.techTabPage, "techTabPage");
             this.techTabPage.Name = "techTabPage";
             // 
             // techPositionRemoveButton
@@ -445,7 +445,6 @@
             // 
             // requiredTabPage
             // 
-            resources.ApplyResources(this.requiredTabPage, "requiredTabPage");
             this.requiredTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.requiredTabPage.Controls.Add(this.orTechComboBox);
             this.requiredTabPage.Controls.Add(this.orIdNumericUpDown);
@@ -461,14 +460,17 @@
             this.requiredTabPage.Controls.Add(this.andRequiredListView);
             this.requiredTabPage.Controls.Add(this.orRequiredLabel);
             this.requiredTabPage.Controls.Add(this.andRequiredLabel);
+            resources.ApplyResources(this.requiredTabPage, "requiredTabPage");
             this.requiredTabPage.Name = "requiredTabPage";
             // 
             // orTechComboBox
             // 
             resources.ApplyResources(this.orTechComboBox, "orTechComboBox");
+            this.orTechComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.orTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.orTechComboBox.FormattingEnabled = true;
             this.orTechComboBox.Name = "orTechComboBox";
+            this.orTechComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnOrTechComboBoxDrawItem);
             this.orTechComboBox.SelectedIndexChanged += new System.EventHandler(this.OnOrTechComboBoxSelectedIndexChanged);
             // 
             // orIdNumericUpDown
@@ -495,9 +497,11 @@
             // andTechComboBox
             // 
             resources.ApplyResources(this.andTechComboBox, "andTechComboBox");
+            this.andTechComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.andTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.andTechComboBox.FormattingEnabled = true;
             this.andTechComboBox.Name = "andTechComboBox";
+            this.andTechComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAndTechComboBoxDrawItem);
             this.andTechComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAndTechComboBoxSelectedIndexChanged);
             // 
             // andIdNumericUpDown
@@ -607,7 +611,6 @@
             // 
             // componentTabPage
             // 
-            resources.ApplyResources(this.componentTabPage, "componentTabPage");
             this.componentTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.componentTabPage.Controls.Add(this.componentDownButton);
             this.componentTabPage.Controls.Add(this.componentUpButton);
@@ -624,6 +627,7 @@
             this.componentTabPage.Controls.Add(this.componentIdNumericUpDown);
             this.componentTabPage.Controls.Add(this.componentIdLabel);
             this.componentTabPage.Controls.Add(this.componentListView);
+            resources.ApplyResources(this.componentTabPage, "componentTabPage");
             this.componentTabPage.Name = "componentTabPage";
             // 
             // componentDownButton
@@ -761,7 +765,6 @@
             // 
             // effectTabPage
             // 
-            resources.ApplyResources(this.effectTabPage, "effectTabPage");
             this.effectTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.effectTabPage.Controls.Add(this.commandValueComboBox);
             this.effectTabPage.Controls.Add(this.commandWhereComboBox);
@@ -779,20 +782,25 @@
             this.effectTabPage.Controls.Add(this.commandValueLabel);
             this.effectTabPage.Controls.Add(this.commandTypeLabel);
             this.effectTabPage.Controls.Add(this.effectListView);
+            resources.ApplyResources(this.effectTabPage, "effectTabPage");
             this.effectTabPage.Name = "effectTabPage";
             // 
             // commandValueComboBox
             // 
             resources.ApplyResources(this.commandValueComboBox, "commandValueComboBox");
+            this.commandValueComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.commandValueComboBox.FormattingEnabled = true;
             this.commandValueComboBox.Name = "commandValueComboBox";
+            this.commandValueComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCommandValueComboBoxDrawItem);
             this.commandValueComboBox.TextUpdate += new System.EventHandler(this.OnCommandValueComboBoxTextUpdate);
             // 
             // commandWhereComboBox
             // 
             resources.ApplyResources(this.commandWhereComboBox, "commandWhereComboBox");
+            this.commandWhereComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.commandWhereComboBox.FormattingEnabled = true;
             this.commandWhereComboBox.Name = "commandWhereComboBox";
+            this.commandWhereComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCommandWhereComboBoxDrawItem);
             this.commandWhereComboBox.TextUpdate += new System.EventHandler(this.OnCommandWhereComboBoxTextUpdate);
             // 
             // commandWhereLabel
@@ -803,15 +811,19 @@
             // commandWhenComboBox
             // 
             resources.ApplyResources(this.commandWhenComboBox, "commandWhenComboBox");
+            this.commandWhenComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.commandWhenComboBox.FormattingEnabled = true;
             this.commandWhenComboBox.Name = "commandWhenComboBox";
+            this.commandWhenComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCommandWhenComboBoxDrawItem);
             this.commandWhenComboBox.TextUpdate += new System.EventHandler(this.OnCommandWhenComboBoxTextUpdate);
             // 
             // commandTypeComboBox
             // 
             resources.ApplyResources(this.commandTypeComboBox, "commandTypeComboBox");
+            this.commandTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.commandTypeComboBox.FormattingEnabled = true;
             this.commandTypeComboBox.Name = "commandTypeComboBox";
+            this.commandTypeComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCommandTypeComboBoxDrawItem);
             this.commandTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.OnCommandTypeComboBoxSelectionChangeCommitted);
             this.commandTypeComboBox.Click += new System.EventHandler(this.OnCommandTypeComboBoxSelectionChangeCommitted);
             // 
@@ -858,8 +870,10 @@
             // commandWhichComboBox
             // 
             resources.ApplyResources(this.commandWhichComboBox, "commandWhichComboBox");
+            this.commandWhichComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.commandWhichComboBox.FormattingEnabled = true;
             this.commandWhichComboBox.Name = "commandWhichComboBox";
+            this.commandWhichComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCommandWhichComboBoxDrawItem);
             this.commandWhichComboBox.TextUpdate += new System.EventHandler(this.OnCommandWhichComboBoxTextUpdate);
             // 
             // commandWhichLabel
@@ -917,7 +931,6 @@
             // 
             // labelTabPage
             // 
-            resources.ApplyResources(this.labelTabPage, "labelTabPage");
             this.labelTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.labelTabPage.Controls.Add(this.labelPositionRemoveButton);
             this.labelTabPage.Controls.Add(this.labelPositionAddButton);
@@ -928,6 +941,7 @@
             this.labelTabPage.Controls.Add(this.labelXLabel);
             this.labelTabPage.Controls.Add(this.labelNameTextBox);
             this.labelTabPage.Controls.Add(this.labelNameLabel);
+            resources.ApplyResources(this.labelTabPage, "labelTabPage");
             this.labelTabPage.Name = "labelTabPage";
             // 
             // labelPositionRemoveButton
@@ -1012,7 +1026,6 @@
             // 
             // eventTabPage
             // 
-            resources.ApplyResources(this.eventTabPage, "eventTabPage");
             this.eventTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.eventTabPage.Controls.Add(this.eventPositionRemoveButton);
             this.eventTabPage.Controls.Add(this.eventPositionAddButton);
@@ -1026,6 +1039,7 @@
             this.eventTabPage.Controls.Add(this.eventTechLabel);
             this.eventTabPage.Controls.Add(this.eventIdNumericUpDown);
             this.eventTabPage.Controls.Add(this.eventTechIdLabel);
+            resources.ApplyResources(this.eventTabPage, "eventTabPage");
             this.eventTabPage.Name = "eventTabPage";
             // 
             // eventPositionRemoveButton
@@ -1067,10 +1081,12 @@
             // 
             // eventTechComboBox
             // 
-            resources.ApplyResources(this.eventTechComboBox, "eventTechComboBox");
+            this.eventTechComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.eventTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.eventTechComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.eventTechComboBox, "eventTechComboBox");
             this.eventTechComboBox.Name = "eventTechComboBox";
+            this.eventTechComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnEventTechComboBoxDrawItem);
             this.eventTechComboBox.SelectedIndexChanged += new System.EventHandler(this.OnEventTechComboBoxSelectedIndexChanged);
             // 
             // eventYNumericUpDown
@@ -1107,12 +1123,12 @@
             // 
             // eventTechNumericUpDown
             // 
-            resources.ApplyResources(this.eventTechNumericUpDown, "eventTechNumericUpDown");
             this.eventTechNumericUpDown.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            resources.ApplyResources(this.eventTechNumericUpDown, "eventTechNumericUpDown");
             this.eventTechNumericUpDown.Maximum = new decimal(new int[] {
             16777210,
             0,
