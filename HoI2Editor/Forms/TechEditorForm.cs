@@ -3597,7 +3597,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var speciality = (TechSpeciality) (componentSpecialityComboBox.SelectedIndex + 1);
+            var speciality = Techs.Specialities[componentSpecialityComboBox.SelectedIndex + 1];
             if (speciality == component.Speciality)
             {
                 return;
