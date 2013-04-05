@@ -313,21 +313,39 @@ namespace HoI2Editor.Models
             var fileList = new List<string>();
             string folderName;
 
-            if (Game.IsModActive)
+            // DHでデフォルト以外のマップを使用する場合、マップフォルダからprovince_names.csvを読み込む
+            if (Game.Type == GameType.DarkestHour && Misc.Map.MapNo != 0)
             {
-                folderName = Path.Combine(Game.ModFolderName, Game.ConfigPathName);
-                if (Directory.Exists(folderName))
+                folderName = Path.Combine(Game.ModFolderName, Game.MapPathName);
+                string fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
+                if (File.Exists(fileName))
                 {
-                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    string name = Path.GetFileName(fileName);
+                    try
+                    {
+                        LoadFile(fileName);
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            fileList.Add(name.ToLower());
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    }
+                }
+
+                folderName = Path.Combine(Game.FolderName, Game.MapPathName);
+                fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
+                if (File.Exists(fileName))
+                {
+                    string name = Path.GetFileName(fileName);
+                    if (!string.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
                     {
                         try
                         {
                             LoadFile(fileName);
-                            string name = Path.GetFileName(fileName);
-                            if (!string.IsNullOrEmpty(name))
-                            {
-                                fileList.Add(name.ToLower());
-                            }
+                            fileList.Add(name.ToLower());
                         }
                         catch (Exception)
                         {
@@ -337,6 +355,32 @@ namespace HoI2Editor.Models
                 }
             }
 
+            // MODフォルダ内の文字列ファイル群を読み込む
+            if (Game.IsModActive)
+            {
+                folderName = Path.Combine(Game.ModFolderName, Game.ConfigPathName);
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        string name = Path.GetFileName(fileName);
+                        if (!string.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
+                        {
+                            try
+                            {
+                                LoadFile(fileName);
+                                fileList.Add(name.ToLower());
+                            }
+                            catch (Exception)
+                            {
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            }
+                        }
+                    }
+                }
+            }
+
+            // バニラフォルダ内の文字列ファイル群を読み込む
             folderName = Path.Combine(Game.FolderName, Game.ConfigPathName);
             if (Directory.Exists(folderName))
             {
@@ -552,7 +596,10 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void SaveFile(string fileName)
         {
-            string folderName = Game.GetWriteFileName(Game.ConfigPathName);
+            // 保存フォルダ名を取得する
+            string folderName = Game.GetWriteFileName(fileName.Equals(Game.ProvinceTextFileName)
+                                                          ? Game.GetMapFolderName()
+                                                          : Game.ConfigPathName);
 
             // 文字列フォルダがなければ作成する
             if (!Directory.Exists(folderName))
