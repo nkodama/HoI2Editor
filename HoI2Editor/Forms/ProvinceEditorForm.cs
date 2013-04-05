@@ -440,7 +440,7 @@ namespace HoI2Editor.Forms
 
             infraNumericUpDown.Value = province.Infrastructure;
             icNumericUpDown.Value = province.Ic;
-            manpowerNumericUpDown.Value = province.Manpower;
+            manpowerNumericUpDown.Value = (decimal) province.Manpower;
             energyNumericUpDown.Value = province.Energy;
             metalNumericUpDown.Value = province.Metal;
             rareMaterialsNumericUpDown.Value = province.RareMaterials;
@@ -1270,8 +1270,8 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var manpower = (int) manpowerNumericUpDown.Value;
-            if (manpower == province.Manpower)
+            var manpower = (double) manpowerNumericUpDown.Value;
+            if (Math.Abs(manpower - province.Manpower) <= 0.00005)
             {
                 return;
             }

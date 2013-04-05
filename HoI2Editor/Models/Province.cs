@@ -95,7 +95,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     労働力
         /// </summary>
-        public int Manpower { get; set; }
+        public double Manpower { get; set; }
 
         /// <summary>
         ///     石油

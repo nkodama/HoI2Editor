@@ -3699,13 +3699,14 @@ namespace HoI2Editor.Models
             index++;
 
             // 労働力
+            double d;
             if (string.IsNullOrEmpty(token[index]))
             {
                 province.Manpower = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (double.TryParse(token[index], out d))
             {
-                province.Manpower = n;
+                province.Manpower = d;
             }
             else
             {
