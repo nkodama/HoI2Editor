@@ -410,6 +410,22 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     プロヴィンス名フォルダ名を取得する
+        /// </summary>
+        /// <returns>プロヴィンス名フォルダ名</returns>
+        public static string GetProvinceNameFolderName()
+        {
+            // バニラのマップ
+            if (Type != GameType.DarkestHour || Misc.Map.MapNo == 0)
+            {
+                return ConfigPathName;
+            }
+
+            // DHのマップ拡張
+            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.Map.MapNo));
+        }
+
+        /// <summary>
         ///     ゲームの種類を自動判別する
         /// </summary>
         private static void DistinguishGameType()

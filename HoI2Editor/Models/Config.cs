@@ -598,7 +598,7 @@ namespace HoI2Editor.Models
         {
             // 保存フォルダ名を取得する
             string folderName = Game.GetWriteFileName(fileName.Equals(Game.ProvinceTextFileName)
-                                                          ? Game.GetMapFolderName()
+                                                          ? Game.GetProvinceNameFolderName()
                                                           : Game.ConfigPathName);
 
             // 文字列フォルダがなければ作成する

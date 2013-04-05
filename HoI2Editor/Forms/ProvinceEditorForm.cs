@@ -52,7 +52,7 @@ namespace HoI2Editor.Forms
             InitEditableItems();
 
             // プロヴィンスファイルを読み込む
-            LoadFile();
+            LoadFiles();
         }
 
         /// <summary>
@@ -76,11 +76,14 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
+            // 文字列定義ファイルの再読み込みを要求する
+            Config.RequireReload();
+
             // プロヴィンスファイルの再読み込みを要求する
             Provinces.RequireReload();
 
             // プロヴィンスファイルを読み込む
-            LoadFile();
+            LoadFiles();
         }
 
         /// <summary>
@@ -90,14 +93,20 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFile();
+            SaveFiles();
         }
 
         /// <summary>
         ///     プロヴィンスファイルを読み込む
         /// </summary>
-        private void LoadFile()
+        private void LoadFiles()
         {
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
             // プロヴィンスファイルを読み込む
             Provinces.Load();
 
@@ -111,13 +120,20 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     プロヴィンスファイルを保存する
         /// </summary>
-        private void SaveFile()
+        private void SaveFiles()
         {
+            // 文字列定義ファイルを保存する
+            Config.Save();
+
             // プロヴィンスファイルを保存する
             Provinces.Save();
 
-            // プロヴィンスリストの表示を更新する
-            UpdateProvinceList();
+            // 編集項目を更新する
+            Province province = GetSelectedProvince();
+            if (province != null)
+            {
+                UpdateEditableItems(province);
+            }
         }
 
         #endregion
@@ -480,90 +496,40 @@ namespace HoI2Editor.Forms
             idNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Id) ? Color.Red : SystemColors.WindowText;
             nameTextBox.ForeColor = province.IsDirty(ProvinceItemId.Name) ? Color.Red : SystemColors.WindowText;
 
-            infraNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Infrastructure)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+            infraNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Infrastructure) ? Color.Red : SystemColors.WindowText;
             icNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Ic) ? Color.Red : SystemColors.WindowText;
-            manpowerNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Manpower)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
-            energyNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Energy)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+            manpowerNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Manpower) ? Color.Red : SystemColors.WindowText;
+            energyNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Energy) ? Color.Red : SystemColors.WindowText;
             metalNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Metal) ? Color.Red : SystemColors.WindowText;
-            rareMaterialsNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.RareMaterials)
-                                                       ? Color.Red
-                                                       : SystemColors.WindowText;
+            rareMaterialsNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.RareMaterials) ? Color.Red : SystemColors.WindowText;
             oilNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Oil) ? Color.Red : SystemColors.WindowText;
 
-            beachXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachXPos)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            beachYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachYPos)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            beachIconNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachIcon)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            portXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            portYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            portSeaZoneNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortSeaZone)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
-            cityXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CityXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            cityYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CityYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            fortXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.FortXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            fortYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.FortYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+            beachCheckBox.ForeColor = province.IsDirty(ProvinceItemId.Beaches) ? Color.Red : SystemColors.WindowText;
+            beachXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachXPos) ? Color.Red : SystemColors.WindowText;
+            beachYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachYPos) ? Color.Red : SystemColors.WindowText;
+            beachIconNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachIcon) ? Color.Red : SystemColors.WindowText;
+            portCheckBox.ForeColor = province.IsDirty(ProvinceItemId.PortAllowed) ? Color.Red : SystemColors.WindowText;
+            portXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortXPos) ? Color.Red : SystemColors.WindowText;
+            portYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortYPos) ? Color.Red : SystemColors.WindowText;
+            portSeaZoneNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortSeaZone) ? Color.Red : SystemColors.WindowText;
+            cityXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CityXPos) ? Color.Red : SystemColors.WindowText;
+            cityYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CityYPos) ? Color.Red : SystemColors.WindowText;
+            fortXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.FortXPos) ? Color.Red : SystemColors.WindowText;
+            fortYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.FortYPos) ? Color.Red : SystemColors.WindowText;
             aaXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.AaXPos) ? Color.Red : SystemColors.WindowText;
             aaYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.AaYPos) ? Color.Red : SystemColors.WindowText;
-            armyXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.ArmyXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            armyYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.ArmyYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            counterXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CounterXPos)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
-            counterYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CounterYPos)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
-            fillXNumericUpDown1.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX1)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            fillYNumericUpDown1.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY1)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            fillXNumericUpDown2.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX2)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            fillYNumericUpDown2.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY2)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            fillXNumericUpDown3.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX3)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            fillYNumericUpDown3.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY3)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            fillXNumericUpDown4.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX4)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            fillYNumericUpDown4.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY4)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+            armyXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.ArmyXPos) ? Color.Red : SystemColors.WindowText;
+            armyYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.ArmyYPos) ? Color.Red : SystemColors.WindowText;
+            counterXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CounterXPos) ? Color.Red : SystemColors.WindowText;
+            counterYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CounterYPos) ? Color.Red : SystemColors.WindowText;
+            fillXNumericUpDown1.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX1) ? Color.Red : SystemColors.WindowText;
+            fillYNumericUpDown1.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY1) ? Color.Red : SystemColors.WindowText;
+            fillXNumericUpDown2.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX2) ? Color.Red : SystemColors.WindowText;
+            fillYNumericUpDown2.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY2) ? Color.Red : SystemColors.WindowText;
+            fillXNumericUpDown3.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX3) ? Color.Red : SystemColors.WindowText;
+            fillYNumericUpDown3.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY3) ? Color.Red : SystemColors.WindowText;
+            fillXNumericUpDown4.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX4) ? Color.Red : SystemColors.WindowText;
+            fillYNumericUpDown4.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY4) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -1480,6 +1446,9 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             province.SetDirty(ProvinceItemId.Beaches);
+
+            // 文字色を変更する
+            beachCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1604,6 +1573,9 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             province.SetDirty(ProvinceItemId.PortAllowed);
+
+            // 文字色を変更する
+            portCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
