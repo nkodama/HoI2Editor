@@ -128,12 +128,14 @@ namespace HoI2Editor.Forms
             // プロヴィンスファイルを保存する
             Provinces.Save();
 
-            // 編集項目を更新する
-            Province province = GetSelectedProvince();
-            if (province != null)
+            // 文字列定義のみ保存の場合、プロヴィンス名の編集済みフラグがクリアされないためここで全クリアする
+            foreach (Province province in Provinces.Items)
             {
-                UpdateEditableItems(province);
+                province.ResetDirtyAll();
             }
+
+            // 編集項目を更新する
+            UpdateEditableItems(GetSelectedProvince());
         }
 
         #endregion
@@ -1031,6 +1033,7 @@ namespace HoI2Editor.Forms
             province.Continent = continent;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Continent);
 
             // 大陸コンボボックスの項目色を変更するため描画更新する
@@ -1066,6 +1069,7 @@ namespace HoI2Editor.Forms
             province.Region = region;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Region);
 
             // 地方コンボボックスの項目色を変更するため描画更新する
@@ -1101,6 +1105,7 @@ namespace HoI2Editor.Forms
             province.Area = area;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Area);
 
             // 地域コンボボックスの項目色を変更するため描画更新する
@@ -1136,6 +1141,7 @@ namespace HoI2Editor.Forms
             province.Climate = climate;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Climate);
 
             // 気候コンボボックスの項目色を変更するため描画更新する
@@ -1171,6 +1177,7 @@ namespace HoI2Editor.Forms
             province.Terrain = terrain;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Terrain);
 
             // 地形コンボボックスの項目色を変更するため描画更新する
@@ -1206,6 +1213,7 @@ namespace HoI2Editor.Forms
                 province.Infrastructure.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Infrastructure);
 
             // 文字色を変更する
@@ -1240,6 +1248,7 @@ namespace HoI2Editor.Forms
             provinceListView.SelectedItems[0].SubItems[6].Text = province.Ic.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Ic);
 
             // 文字色を変更する
@@ -1274,6 +1283,7 @@ namespace HoI2Editor.Forms
             provinceListView.SelectedItems[0].SubItems[7].Text = province.Manpower.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Manpower);
 
             // 文字色を変更する
@@ -1308,6 +1318,7 @@ namespace HoI2Editor.Forms
             provinceListView.SelectedItems[0].SubItems[8].Text = province.Energy.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Energy);
 
             // 文字色を変更する
@@ -1342,6 +1353,7 @@ namespace HoI2Editor.Forms
             provinceListView.SelectedItems[0].SubItems[9].Text = province.Metal.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Metal);
 
             // 文字色を変更する
@@ -1377,6 +1389,7 @@ namespace HoI2Editor.Forms
                 province.RareMaterials.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.RareMaterials);
 
             // 文字色を変更する
@@ -1411,6 +1424,7 @@ namespace HoI2Editor.Forms
             provinceListView.SelectedItems[0].SubItems[11].Text = province.Oil.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Oil);
 
             // 文字色を変更する
@@ -1445,6 +1459,7 @@ namespace HoI2Editor.Forms
             provinceListView.SelectedItems[0].SubItems[4].Text = province.Beaches ? Resources.Yes : Resources.No;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.Beaches);
 
             // 文字色を変更する
@@ -1476,6 +1491,7 @@ namespace HoI2Editor.Forms
             province.BeachXPos = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.BeachXPos);
 
             // 文字色を変更する
@@ -1507,6 +1523,7 @@ namespace HoI2Editor.Forms
             province.BeachYPos = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.BeachYPos);
 
             // 文字色を変更する
@@ -1538,6 +1555,7 @@ namespace HoI2Editor.Forms
             province.BeachIcon = icon;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.BeachIcon);
 
             // 文字色を変更する
@@ -1572,6 +1590,7 @@ namespace HoI2Editor.Forms
             provinceListView.SelectedItems[0].SubItems[3].Text = province.PortAllowed ? Resources.Yes : Resources.No;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.PortAllowed);
 
             // 文字色を変更する
@@ -1603,6 +1622,7 @@ namespace HoI2Editor.Forms
             province.PortXPos = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.PortXPos);
 
             // 文字色を変更する
@@ -1634,6 +1654,7 @@ namespace HoI2Editor.Forms
             province.PortYPos = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.PortYPos);
 
             // 文字色を変更する
@@ -1678,9 +1699,12 @@ namespace HoI2Editor.Forms
                     portSeaZoneComboBox.Text = Config.GetText(seaProvince.Name);
                 }
             }
+            
+            // 港の海域コンボボックスの項目色を変更するため描画更新する
             portSeaZoneComboBox.Refresh();
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.PortSeaZone);
 
             // 文字色を変更する
@@ -1712,18 +1736,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値を更新する
-            province.PortSeaZone = seaZone;
-
-            // 港の海域数値アップダウンの項目を更新する
+            // 港の海域の値を更新する
             portSeaZoneNumericUpDown.Value = seaZone;
-            portSeaZoneNumericUpDown.ForeColor = Color.Red;
-
-            // 編集済みフラグを設定する
-            province.SetDirty(ProvinceItemId.PortSeaZone);
-
-            // 港の海域コンボボックスの項目色を変更するため描画更新する
-            portSeaZoneComboBox.Refresh();
         }
 
         /// <summary>
@@ -1751,6 +1765,7 @@ namespace HoI2Editor.Forms
             province.CityXPos = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.CityXPos);
 
             // 文字色を変更する
@@ -1782,6 +1797,7 @@ namespace HoI2Editor.Forms
             province.CityYPos = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.CityYPos);
 
             // 文字色を変更する
@@ -1813,6 +1829,7 @@ namespace HoI2Editor.Forms
             province.FortXPos = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FortXPos);
 
             // 文字色を変更する
@@ -1844,6 +1861,7 @@ namespace HoI2Editor.Forms
             province.FortYPos = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FortYPos);
 
             // 文字色を変更する
@@ -1875,6 +1893,7 @@ namespace HoI2Editor.Forms
             province.AaXPos = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.AaXPos);
 
             // 文字色を変更する
@@ -1906,6 +1925,7 @@ namespace HoI2Editor.Forms
             province.AaYPos = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.AaYPos);
 
             // 文字色を変更する
@@ -1937,6 +1957,7 @@ namespace HoI2Editor.Forms
             province.ArmyXPos = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.ArmyXPos);
 
             // 文字色を変更する
@@ -1968,6 +1989,7 @@ namespace HoI2Editor.Forms
             province.ArmyYPos = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.ArmyYPos);
 
             // 文字色を変更する
@@ -1999,6 +2021,7 @@ namespace HoI2Editor.Forms
             province.CounterXPos = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.CounterXPos);
 
             // 文字色を変更する
@@ -2030,6 +2053,7 @@ namespace HoI2Editor.Forms
             province.CounterYPos = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.CounterYPos);
 
             // 文字色を変更する
@@ -2061,6 +2085,7 @@ namespace HoI2Editor.Forms
             province.FillCoordX1 = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordX1);
 
             // 文字色を変更する
@@ -2092,6 +2117,7 @@ namespace HoI2Editor.Forms
             province.FillCoordY1 = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordY1);
 
             // 文字色を変更する
@@ -2123,6 +2149,7 @@ namespace HoI2Editor.Forms
             province.FillCoordX2 = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordX2);
 
             // 文字色を変更する
@@ -2154,6 +2181,7 @@ namespace HoI2Editor.Forms
             province.FillCoordY2 = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordY2);
 
             // 文字色を変更する
@@ -2185,6 +2213,7 @@ namespace HoI2Editor.Forms
             province.FillCoordX3 = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordX3);
 
             // 文字色を変更する
@@ -2216,6 +2245,7 @@ namespace HoI2Editor.Forms
             province.FillCoordY3 = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordY3);
 
             // 文字色を変更する
@@ -2247,6 +2277,7 @@ namespace HoI2Editor.Forms
             province.FillCoordX4 = x;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordX4);
 
             // 文字色を変更する
@@ -2278,6 +2309,7 @@ namespace HoI2Editor.Forms
             province.FillCoordY4 = y;
 
             // 編集済みフラグを設定する
+            Provinces.SetDirty();
             province.SetDirty(ProvinceItemId.FillCoordY4);
 
             // 文字色を変更する

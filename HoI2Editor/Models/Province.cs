@@ -293,6 +293,11 @@ namespace HoI2Editor.Models
         public int FillCoordY5 { get; set; }
 
         /// <summary>
+        ///     塗りつぶしX座標6
+        /// </summary>
+        public int FillCoordX6 { get; set; }
+
+        /// <summary>
         ///     プロヴィンス名を取得する
         /// </summary>
         /// <returns>プロヴィンス名</returns>
@@ -331,21 +336,9 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     編集済みフラグを全て設定する
-        /// </summary>
-        public void SetDirty()
-        {
-            foreach (TeamItemId id in Enum.GetValues(typeof (ProvinceItemId)))
-            {
-                _dirtyFlags[(int) id] = true;
-            }
-            _dirtyFlag = true;
-        }
-
-        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirty()
+        public void ResetDirtyAll()
         {
             foreach (TeamItemId id in Enum.GetValues(typeof (ProvinceItemId)))
             {
@@ -1249,5 +1242,6 @@ namespace HoI2Editor.Models
         FillCoordY4, // 塗りつぶしY座標4
         FillCoordX5, // 塗りつぶしX座標5
         FillCoordY5, // 塗りつぶしY座標5
+        FillCoordX6, // 塗りつぶしX座標6
     }
 }
