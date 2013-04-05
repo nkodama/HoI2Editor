@@ -1699,9 +1699,6 @@ namespace HoI2Editor.Forms
                     portSeaZoneComboBox.Text = Config.GetText(seaProvince.Name);
                 }
             }
-            
-            // 港の海域コンボボックスの項目色を変更するため描画更新する
-            portSeaZoneComboBox.Refresh();
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -1709,6 +1706,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             portSeaZoneNumericUpDown.ForeColor = Color.Red;
+            
+            // 港の海域コンボボックスの項目色を変更するため描画更新する
+            portSeaZoneComboBox.Refresh();
         }
 
         /// <summary>
