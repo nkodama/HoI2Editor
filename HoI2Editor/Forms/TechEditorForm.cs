@@ -1586,7 +1586,6 @@ namespace HoI2Editor.Forms
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
-            grp.SetDirty(TechGroupItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
 
             // 文字色を変更する
@@ -1613,7 +1612,6 @@ namespace HoI2Editor.Forms
             Config.SetText(grp.Desc, desc, Game.TechTextFileName);
 
             // 編集済みフラグを設定する
-            grp.SetDirty(TechGroupItemId.Desc);
             Config.SetDirty(Game.TechTextFileName, true);
 
             // 文字色を変更する
@@ -1795,8 +1793,6 @@ namespace HoI2Editor.Forms
             eventTechComboBox.SelectedIndexChanged += OnEventTechComboBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
             item.SetDirty(TechItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
 
@@ -1839,8 +1835,6 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
             item.SetDirty(TechItemId.ShortName);
             Config.SetDirty(Game.TechTextFileName, true);
 
@@ -3590,8 +3584,6 @@ namespace HoI2Editor.Forms
             componentListView.Items[index].SubItems[1].Text = name;
 
             // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
             item.SetDirty();
             component.SetDirty(TechComponentItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
@@ -4924,8 +4916,6 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            TechGroup grp = GetSelectedGroup();
-            grp.SetDirty();
             item.SetDirty(TechItemId.Name);
             Config.SetDirty(Game.TechTextFileName, true);
 
