@@ -31,6 +31,9 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitModelEditorFormLoad(object sender, EventArgs e)
         {
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
             // 各種データを初期化する
             InitData();
 

@@ -47,6 +47,12 @@ namespace HoI2Editor.Forms
             // 研究特性を初期化する
             Techs.InitSpecialities();
 
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
             // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
             teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, 18)};
 
@@ -124,11 +130,9 @@ namespace HoI2Editor.Forms
             // 研究機関ファイルを保存する
             Teams.Save();
 
-            // 研究機関リストの表示を更新する
-            UpdateTeamList();
-
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
+            UpdateEditableItems();
         }
 
         #endregion
@@ -254,51 +258,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ何もしない
-            Team team = GetSelectedTeam();
-            if (team == null)
-            {
-                return;
-            }
-
             // 編集項目を更新する
-            countryComboBox.SelectedIndex = team.Country != CountryTag.None ? (int) team.Country - 1 : -1;
-            idNumericUpDown.Value = team.Id;
-            nameTextBox.Text = team.Name;
-            skillNumericUpDown.Value = team.Skill;
-            startYearNumericUpDown.Value = team.StartYear;
-            endYearNumericUpDown.Value = team.EndYear;
-            specialityComboBox1.SelectedIndex = (int) team.Specialities[0];
-            specialityComboBox2.SelectedIndex = (int) team.Specialities[1];
-            specialityComboBox3.SelectedIndex = (int) team.Specialities[2];
-            specialityComboBox4.SelectedIndex = (int) team.Specialities[3];
-            specialityComboBox5.SelectedIndex = (int) team.Specialities[4];
-            specialityComboBox6.SelectedIndex = (int) team.Specialities[5];
-            pictureNameTextBox.Text = team.PictureName;
-            UpdateTeamPicture(team);
-
-            // コンボボックスの色を更新する
-            countryComboBox.Refresh();
-            specialityComboBox1.Refresh();
-            specialityComboBox2.Refresh();
-            specialityComboBox3.Refresh();
-            specialityComboBox4.Refresh();
-            specialityComboBox5.Refresh();
-            specialityComboBox6.Refresh();
-
-            // 編集項目の色を更新する
-            idNumericUpDown.ForeColor = team.IsDirty(TeamItemId.Id) ? Color.Red : SystemColors.WindowText;
-            nameTextBox.ForeColor = team.IsDirty(TeamItemId.Name) ? Color.Red : SystemColors.WindowText;
-            skillNumericUpDown.ForeColor = team.IsDirty(TeamItemId.Skill) ? Color.Red : SystemColors.WindowText;
-            startYearNumericUpDown.ForeColor = team.IsDirty(TeamItemId.StartYear) ? Color.Red : SystemColors.WindowText;
-            endYearNumericUpDown.ForeColor = team.IsDirty(TeamItemId.EndYear) ? Color.Red : SystemColors.WindowText;
-            pictureNameTextBox.ForeColor = team.IsDirty(TeamItemId.PictureName) ? Color.Red : SystemColors.WindowText;
-
-            // 項目移動ボタンの状態更新
-            topButton.Enabled = teamListView.SelectedIndices[0] != 0;
-            upButton.Enabled = teamListView.SelectedIndices[0] != 0;
-            downButton.Enabled = teamListView.SelectedIndices[0] != teamListView.Items.Count - 1;
-            bottomButton.Enabled = teamListView.SelectedIndices[0] != teamListView.Items.Count - 1;
+            UpdateEditableItems();
         }
 
         /// <summary>
@@ -874,7 +835,78 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集可能な項目を有効化する
+        ///     編集項目を更新する
+        /// </summary>
+        private void UpdateEditableItems()
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateEditableItemsValue(team);
+
+            // 編集項目の色を更新する
+            UpdateEditableItemsColor(team);
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = teamListView.SelectedIndices[0] != 0;
+            upButton.Enabled = teamListView.SelectedIndices[0] != 0;
+            downButton.Enabled = teamListView.SelectedIndices[0] != teamListView.Items.Count - 1;
+            bottomButton.Enabled = teamListView.SelectedIndices[0] != teamListView.Items.Count - 1;
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="team">研究機関データ</param>
+        private void UpdateEditableItemsValue(Team team)
+        {
+            countryComboBox.SelectedIndex = team.Country != CountryTag.None ? (int) team.Country - 1 : -1;
+            idNumericUpDown.Value = team.Id;
+            nameTextBox.Text = team.Name;
+            skillNumericUpDown.Value = team.Skill;
+            startYearNumericUpDown.Value = team.StartYear;
+            endYearNumericUpDown.Value = team.EndYear;
+            specialityComboBox1.SelectedIndex = (int) team.Specialities[0];
+            specialityComboBox2.SelectedIndex = (int) team.Specialities[1];
+            specialityComboBox3.SelectedIndex = (int) team.Specialities[2];
+            specialityComboBox4.SelectedIndex = (int) team.Specialities[3];
+            specialityComboBox5.SelectedIndex = (int) team.Specialities[4];
+            specialityComboBox6.SelectedIndex = (int) team.Specialities[5];
+            pictureNameTextBox.Text = team.PictureName;
+            UpdateTeamPicture(team);
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="team">研究機関データ</param>
+        private void UpdateEditableItemsColor(Team team)
+        {
+            // コンボボックスの色を更新する
+            countryComboBox.Refresh();
+            specialityComboBox1.Refresh();
+            specialityComboBox2.Refresh();
+            specialityComboBox3.Refresh();
+            specialityComboBox4.Refresh();
+            specialityComboBox5.Refresh();
+            specialityComboBox6.Refresh();
+
+            // 編集項目の色を更新する
+            idNumericUpDown.ForeColor = team.IsDirty(TeamItemId.Id) ? Color.Red : SystemColors.WindowText;
+            nameTextBox.ForeColor = team.IsDirty(TeamItemId.Name) ? Color.Red : SystemColors.WindowText;
+            skillNumericUpDown.ForeColor = team.IsDirty(TeamItemId.Skill) ? Color.Red : SystemColors.WindowText;
+            startYearNumericUpDown.ForeColor = team.IsDirty(TeamItemId.StartYear) ? Color.Red : SystemColors.WindowText;
+            endYearNumericUpDown.ForeColor = team.IsDirty(TeamItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            pictureNameTextBox.ForeColor = team.IsDirty(TeamItemId.PictureName) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目を有効化する
         /// </summary>
         private void EnableEditableItems()
         {
@@ -904,7 +936,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集可能な項目を無効化する
+        ///     編集項目を無効化する
         /// </summary>
         private void DisableEditableItems()
         {

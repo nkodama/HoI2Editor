@@ -47,6 +47,12 @@ namespace HoI2Editor.Forms
             // 閣僚特性を初期化する
             Ministers.InitPersonality();
 
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
             // 編集項目を初期化する
             InitEditableItems();
 
@@ -121,11 +127,9 @@ namespace HoI2Editor.Forms
             // 閣僚ファイルを保存する
             Ministers.Save();
 
-            // 閣僚リストの表示を更新する
-            UpdateMinisterList();
-
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
+            UpdateEditableItems();
         }
 
         #endregion
@@ -189,59 +193,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ何もしない
-            Minister minister = GetSelectedMinister();
-            if (minister == null)
-            {
-                return;
-            }
-
             // 編集項目を更新する
-            countryComboBox.SelectedIndex = minister.Country != CountryTag.None ? (int) minister.Country - 1 : -1;
-            idNumericUpDown.Value = minister.Id;
-            nameTextBox.Text = minister.Name;
-            startYearNumericUpDown.Value = minister.StartYear;
-            endYearNumericUpDown.Value = minister.EndYear;
-            retirementYearNumericUpDown.Value = minister.RetirementYear;
-            positionComboBox.SelectedIndex = minister.Position != MinisterPosition.None
-                                                 ? (int) minister.Position - 1
-                                                 : -1;
-            UpdatePersonalityComboBox(minister);
-            ideologyComboBox.SelectedIndex = minister.Ideology != MinisterIdeology.None
-                                                 ? (int) minister.Ideology - 1
-                                                 : -1;
-            loyaltyComboBox.SelectedIndex = minister.Loyalty != MinisterLoyalty.None ? (int) minister.Loyalty - 1 : -1;
-            pictureNameTextBox.Text = minister.PictureName;
-            UpdateMinisterPicture(minister);
-
-            // コンボボックスの色を更新する
-            countryComboBox.Refresh();
-            positionComboBox.Refresh();
-            personalityComboBox.Refresh();
-            ideologyComboBox.Refresh();
-            loyaltyComboBox.Refresh();
-
-            // 編集項目の色を更新する
-            idNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.Id) ? Color.Red : SystemColors.WindowText;
-            nameTextBox.ForeColor = minister.IsDirty(MinisterItemId.Name) ? Color.Red : SystemColors.WindowText;
-            startYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.StartYear)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            endYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.EndYear)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
-            retirementYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.RetirementYear)
-                                                        ? Color.Red
-                                                        : SystemColors.WindowText;
-            pictureNameTextBox.ForeColor = minister.IsDirty(MinisterItemId.PictureName)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-
-            // 項目移動ボタンの状態更新
-            topButton.Enabled = ministerListView.SelectedIndices[0] != 0;
-            upButton.Enabled = ministerListView.SelectedIndices[0] != 0;
-            downButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
-            bottomButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
+            UpdateEditableItems();
         }
 
         /// <summary>
@@ -839,7 +792,86 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集可能な項目を有効化する
+        ///     編集項目を更新する
+        /// </summary>
+        private void UpdateEditableItems()
+        {
+            // 選択項目がなければ何もしない
+            Minister minister = GetSelectedMinister();
+            if (minister == null)
+            {
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateEditableItemsValue(minister);
+
+            // 編集項目の色を更新する
+            UpdateEditableItemsColor(minister);
+
+            // 項目移動ボタンの状態更新
+            topButton.Enabled = ministerListView.SelectedIndices[0] != 0;
+            upButton.Enabled = ministerListView.SelectedIndices[0] != 0;
+            downButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
+            bottomButton.Enabled = ministerListView.SelectedIndices[0] != ministerListView.Items.Count - 1;
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="minister">閣僚データ</param>
+        private void UpdateEditableItemsValue(Minister minister)
+        {
+            countryComboBox.SelectedIndex = minister.Country != CountryTag.None ? (int) minister.Country - 1 : -1;
+            idNumericUpDown.Value = minister.Id;
+            nameTextBox.Text = minister.Name;
+            startYearNumericUpDown.Value = minister.StartYear;
+            endYearNumericUpDown.Value = minister.EndYear;
+            retirementYearNumericUpDown.Value = minister.RetirementYear;
+            positionComboBox.SelectedIndex = minister.Position != MinisterPosition.None
+                                                 ? (int) minister.Position - 1
+                                                 : -1;
+            UpdatePersonalityComboBox(minister);
+            ideologyComboBox.SelectedIndex = minister.Ideology != MinisterIdeology.None
+                                                 ? (int) minister.Ideology - 1
+                                                 : -1;
+            loyaltyComboBox.SelectedIndex = minister.Loyalty != MinisterLoyalty.None ? (int) minister.Loyalty - 1 : -1;
+            pictureNameTextBox.Text = minister.PictureName;
+            UpdateMinisterPicture(minister);
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="minister">閣僚データ</param>
+        private void UpdateEditableItemsColor(Minister minister)
+        {
+            // コンボボックスの色を更新する
+            countryComboBox.Refresh();
+            positionComboBox.Refresh();
+            personalityComboBox.Refresh();
+            ideologyComboBox.Refresh();
+            loyaltyComboBox.Refresh();
+
+            // 編集項目の色を更新する
+            idNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.Id) ? Color.Red : SystemColors.WindowText;
+            nameTextBox.ForeColor = minister.IsDirty(MinisterItemId.Name) ? Color.Red : SystemColors.WindowText;
+            startYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.StartYear)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            endYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.EndYear)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            retirementYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.RetirementYear)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            pictureNameTextBox.ForeColor = minister.IsDirty(MinisterItemId.PictureName)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目を有効化する
         /// </summary>
         private void EnableEditableItems()
         {
@@ -875,7 +907,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集可能な項目を無効化する
+        ///     編集項目を無効化する
         /// </summary>
         private void DisableEditableItems()
         {

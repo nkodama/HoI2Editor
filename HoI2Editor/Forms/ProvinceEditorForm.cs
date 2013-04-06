@@ -135,7 +135,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集項目を更新する
-            UpdateEditableItems(GetSelectedProvince());
+            UpdateEditableItems();
         }
 
         #endregion
@@ -322,15 +322,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ何もしない
-            Province province = GetSelectedProvince();
-            if (province == null)
-            {
-                return;
-            }
-
             // 編集項目を更新する
-            UpdateEditableItems(province);
+            UpdateEditableItems();
         }
 
         /// <summary>
@@ -385,11 +378,112 @@ namespace HoI2Editor.Forms
         #region 編集項目
 
         /// <summary>
+        ///     編集項目を初期化する
+        /// </summary>
+        private void InitEditableItems()
+        {
+            // 大陸
+            continentComboBox.BeginUpdate();
+            continentComboBox.Items.Clear();
+            int maxWidth = continentComboBox.DropDownWidth;
+            foreach (ContinentId continent in Provinces.Continents)
+            {
+                string s = Provinces.GetContinentName(continent);
+                continentComboBox.Items.Add(s);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, continentComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
+            }
+            continentComboBox.DropDownWidth = maxWidth;
+            continentComboBox.EndUpdate();
+
+            // 地方
+            regionComboBox.BeginUpdate();
+            regionComboBox.Items.Clear();
+            maxWidth = regionComboBox.DropDownWidth;
+            foreach (RegionId region in Provinces.Regions)
+            {
+                string s = Provinces.GetRegionName(region);
+                regionComboBox.Items.Add(s);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, regionComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
+            }
+            regionComboBox.DropDownWidth = maxWidth;
+            regionComboBox.EndUpdate();
+
+            // 地域
+            areaComboBox.BeginUpdate();
+            areaComboBox.Items.Clear();
+            maxWidth = areaComboBox.DropDownWidth;
+            foreach (AreaId area in Provinces.Areas)
+            {
+                string s = Provinces.GetAreaName(area);
+                areaComboBox.Items.Add(s);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, areaComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
+            }
+            areaComboBox.DropDownWidth = maxWidth;
+            areaComboBox.EndUpdate();
+
+            // 気候
+            climateComboBox.BeginUpdate();
+            climateComboBox.Items.Clear();
+            maxWidth = climateComboBox.DropDownWidth;
+            foreach (ClimateId climate in Provinces.Climates)
+            {
+                string s = Provinces.GetClimateName(climate);
+                climateComboBox.Items.Add(s);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, climateComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
+            }
+            climateComboBox.DropDownWidth = maxWidth;
+            climateComboBox.EndUpdate();
+
+            // 地形
+            terrainComboBox.BeginUpdate();
+            terrainComboBox.Items.Clear();
+            maxWidth = terrainComboBox.DropDownWidth;
+            foreach (TerrainId terrain in Provinces.Terrains)
+            {
+                string s = Provinces.GetTerrainName(terrain);
+                terrainComboBox.Items.Add(s);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, terrainComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
+            }
+            terrainComboBox.DropDownWidth = maxWidth;
+            terrainComboBox.EndUpdate();
+        }
+
+        /// <summary>
         ///     編集項目を更新する
         /// </summary>
-        /// <param name="province">プロヴィンス</param>
-        private void UpdateEditableItems(Province province)
+        private void UpdateEditableItems()
         {
+            // 選択項目がなければ何もしない
+            Province province = GetSelectedProvince();
+            if (province == null)
+            {
+                return;
+            }
+
+            // 編集項目の値を更新する
+            UpdateEditableItemsValue(province);
+
+            // 編集項目の色を更新する
+            UpdateEditableItemsColor(province);
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="province">プロヴィンスデータ</param>
+        private void UpdateEditableItemsValue(Province province)
+        {
+            // 基本設定
             idNumericUpDown.Value = province.Id;
             nameTextBox.Text = province.GetName();
             if (Provinces.Continents.Contains(province.Continent))
@@ -438,6 +532,7 @@ namespace HoI2Editor.Forms
                 terrainComboBox.Text = Provinces.GetTerrainName(province.Terrain);
             }
 
+            // 資源設定
             infraNumericUpDown.Value = province.Infrastructure;
             icNumericUpDown.Value = province.Ic;
             manpowerNumericUpDown.Value = (decimal) province.Manpower;
@@ -446,6 +541,7 @@ namespace HoI2Editor.Forms
             rareMaterialsNumericUpDown.Value = province.RareMaterials;
             oilNumericUpDown.Value = province.Oil;
 
+            // 座標設定
             beachCheckBox.Checked = province.Beaches;
             beachXNumericUpDown.Value = province.BeachXPos;
             beachYNumericUpDown.Value = province.BeachYPos;
@@ -485,7 +581,14 @@ namespace HoI2Editor.Forms
             fillYNumericUpDown3.Value = province.FillCoordY3;
             fillXNumericUpDown4.Value = province.FillCoordX4;
             fillYNumericUpDown4.Value = province.FillCoordY4;
+        }
 
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="province">プロヴィンスデータ</param>
+        private void UpdateEditableItemsColor(Province province)
+        {
             // コンボボックスの色を更新する
             continentComboBox.Refresh();
             regionComboBox.Refresh();
@@ -584,87 +687,6 @@ namespace HoI2Editor.Forms
             fillYNumericUpDown4.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY4)
                                                 ? Color.Red
                                                 : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     編集項目を初期化する
-        /// </summary>
-        private void InitEditableItems()
-        {
-            // 大陸
-            continentComboBox.BeginUpdate();
-            continentComboBox.Items.Clear();
-            int maxWidth = continentComboBox.DropDownWidth;
-            foreach (ContinentId continent in Provinces.Continents)
-            {
-                string s = Provinces.GetContinentName(continent);
-                continentComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, continentComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
-            }
-            continentComboBox.DropDownWidth = maxWidth;
-            continentComboBox.EndUpdate();
-
-            // 地方
-            regionComboBox.BeginUpdate();
-            regionComboBox.Items.Clear();
-            maxWidth = regionComboBox.DropDownWidth;
-            foreach (RegionId region in Provinces.Regions)
-            {
-                string s = Provinces.GetRegionName(region);
-                regionComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, regionComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
-            }
-            regionComboBox.DropDownWidth = maxWidth;
-            regionComboBox.EndUpdate();
-
-            // 地域
-            areaComboBox.BeginUpdate();
-            areaComboBox.Items.Clear();
-            maxWidth = areaComboBox.DropDownWidth;
-            foreach (AreaId area in Provinces.Areas)
-            {
-                string s = Provinces.GetAreaName(area);
-                areaComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, areaComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
-            }
-            areaComboBox.DropDownWidth = maxWidth;
-            areaComboBox.EndUpdate();
-
-            // 気候
-            climateComboBox.BeginUpdate();
-            climateComboBox.Items.Clear();
-            maxWidth = climateComboBox.DropDownWidth;
-            foreach (ClimateId climate in Provinces.Climates)
-            {
-                string s = Provinces.GetClimateName(climate);
-                climateComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, climateComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
-            }
-            climateComboBox.DropDownWidth = maxWidth;
-            climateComboBox.EndUpdate();
-
-            // 地形
-            terrainComboBox.BeginUpdate();
-            terrainComboBox.Items.Clear();
-            maxWidth = terrainComboBox.DropDownWidth;
-            foreach (TerrainId terrain in Provinces.Terrains)
-            {
-                string s = Provinces.GetTerrainName(terrain);
-                terrainComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, terrainComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
-            }
-            terrainComboBox.DropDownWidth = maxWidth;
-            terrainComboBox.EndUpdate();
         }
 
         /// <summary>

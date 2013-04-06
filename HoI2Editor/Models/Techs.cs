@@ -710,9 +710,6 @@ namespace HoI2Editor.Models
                     {
                         // 技術定義ファイルを保存する
                         TechWriter.Write(grp, fileName);
-
-                        // 編集済みフラグを解除する
-                        grp.ResetDirtyAll();
                     }
                     catch (Exception)
                     {

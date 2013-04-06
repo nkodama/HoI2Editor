@@ -259,7 +259,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderButtonClick(object sender, EventArgs e)
         {
-            LoadCommonFiles();
             var form = new LeaderEditorForm();
             form.Show();
         }
@@ -271,7 +270,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
-            LoadCommonFiles();
             var form = new MinisterEditorForm();
             form.Show();
         }
@@ -283,7 +281,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamButtonClick(object sender, EventArgs e)
         {
-            LoadCommonFiles();
             var form = new TeamEditorForm();
             form.Show();
         }
@@ -295,7 +292,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechButtonClick(object sender, EventArgs e)
         {
-            LoadCommonFiles();
             var form = new TechEditorForm();
             form.Show();
         }
@@ -307,7 +303,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitButtonClick(object sender, EventArgs e)
         {
-            LoadCommonFiles();
             var form = new UnitEditorForm();
             form.Show();
         }
@@ -319,18 +314,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceButtonClick(object sender, EventArgs e)
         {
-            LoadCommonFiles();
             var form = new ProvinceEditorForm();
             form.Show();
-        }
-
-        /// <summary>
-        ///     共通ファイルを読み込む
-        /// </summary>
-        private static void LoadCommonFiles()
-        {
-            Misc.Load();
-            Config.Load();
         }
     }
 }

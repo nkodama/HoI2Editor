@@ -130,11 +130,11 @@ namespace HoI2Editor.Forms
             // 研究特性を初期化する
             Techs.InitSpecialities();
 
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
             // ラベル画像を読み込む
             InitLabelBitmap();
-
-            // 編集項目を初期化する
-            InitEditableItems();
 
             // 技術定義ファイルを読み込む
             LoadFiles();
@@ -176,9 +176,6 @@ namespace HoI2Editor.Forms
             // 文字列定義ファイルの再読み込みを要求する
             Config.RequireReload();
 
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
             // 技術定義ファイルの再読み込みを要求する
             Techs.RequireReload();
 
@@ -201,8 +198,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadFiles()
         {
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
             // 技術定義ファイルを読み込む
             Techs.Load();
+
+            // 編集項目を初期化する
+            InitEditableItems();
 
             // 必要技術タブの技術リストを更新する
             UpdateRequiredTechListItems();
@@ -219,10 +222,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void SaveFiles()
         {
-            // 技術定義ファイルを保存する
-            Techs.Save();
-
-            // 一時キーを保存形式に変更する
+            // 文字列の一時キーを保存形式に変更する
             int no = 1;
             foreach (TechGroup grp in Techs.Groups)
             {
@@ -245,8 +245,19 @@ namespace HoI2Editor.Forms
             // 文字列定義ファイルを保存する
             Config.Save();
 
+            // 技術定義ファイルを保存する
+            Techs.Save();
+
+            // 文字列定義のみ保存の場合、技術名などの編集済みフラグがクリアされないためここで全クリアする
+            foreach (TechGroup grp in Techs.Groups)
+            {
+                grp.ResetDirtyAll();
+            }
+
             // 編集済みフラグがクリアされるため表示を更新する
-            categoryListBox.Update();
+            categoryListBox.Refresh();
+            techListBox.Refresh();
+            UpdateEditableItems();
         }
 
         #endregion
@@ -374,6 +385,15 @@ namespace HoI2Editor.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnTechListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 編集項目を更新する
+            UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目を更新する
+        /// </summary>
+        private void UpdateEditableItems()
         {
             // 選択項目がない場合
             ITechItem item = GetSelectedItem();
@@ -1550,7 +1570,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateCategoryItems()
         {
-            // カテゴリタブの編集項目
+            // 編集項目の値を更新する
             TechGroup grp = GetSelectedGroup();
             categoryNameTextBox.Text = grp.ToString();
             categoryDescTextBox.Text = grp.GetDesc();
@@ -1628,7 +1648,7 @@ namespace HoI2Editor.Forms
         /// <param name="item">技術アプリケーション</param>
         private void UpdateTechItems(TechItem item)
         {
-            // 技術タブの編集項目
+            // 編集項目の値を更新する
             techNameTextBox.Text = item.ToString();
             techShortNameTextBox.Text = item.GetShortName();
             techIdNumericUpDown.Value = item.Id;
@@ -4772,7 +4792,7 @@ namespace HoI2Editor.Forms
         /// <param name="item">技術ラベル</param>
         private void UpdateLabelItems(TechLabel item)
         {
-            // ラベルタブの編集項目
+            // 編集項目の値を更新する
             labelNameTextBox.Text = item.ToString();
             UpdateLabelPositionList(item);
 
@@ -5171,7 +5191,7 @@ namespace HoI2Editor.Forms
         /// <param name="item">技術イベント</param>
         private void UpdateEventItems(TechEvent item)
         {
-            // 発明イベントタブの編集項目
+            // 編集項目の値を更新する
             eventIdNumericUpDown.Value = item.Id;
             eventTechNumericUpDown.Value = item.TechId;
             if (Techs.TechIds.Contains(item.TechId))

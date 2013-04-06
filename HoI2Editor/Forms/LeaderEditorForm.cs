@@ -44,6 +44,12 @@ namespace HoI2Editor.Forms
             // 国家データを初期化する
             Country.Init();
 
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
             // 特性文字列を初期化する
             InitTraitsText();
 
@@ -121,11 +127,9 @@ namespace HoI2Editor.Forms
             // 指揮官ファイルを保存する
             Leaders.Save();
 
-            // 指揮官リストの表示を更新する
-            UpdateLeaderList();
-
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
+            UpdateEditableItems();
         }
 
         #endregion
@@ -250,26 +254,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ何もしない
-            Leader leader = GetSelectedLeader();
-            if (leader == null)
-            {
-                return;
-            }
-
-            Log.Write(string.Format("{0}\n", leader.Id));
-
             // 編集項目を更新する
-            UpdateEditableItemsValue(leader);
-
-            // 編集項目の色を更新する
-            UpdateEditableItemsColor(leader);
-
-            // 項目移動ボタンの状態更新
-            topButton.Enabled = leaderListView.SelectedIndices[0] != 0;
-            upButton.Enabled = leaderListView.SelectedIndices[0] != 0;
-            downButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
-            bottomButton.Enabled = leaderListView.SelectedIndices[0] != leaderListView.Items.Count - 1;
+            UpdateEditableItems();
         }
 
         /// <summary>
@@ -1274,6 +1260,33 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     編集項目を更新する
+        /// </summary>
+        private void UpdateEditableItems()
+        {
+            // 選択項目がなければ何もしない
+            Leader leader = GetSelectedLeader();
+            if (leader == null)
+            {
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateEditableItemsValue(leader);
+
+            // 編集項目の色を更新する
+            UpdateEditableItemsColor(leader);
+
+            // 項目移動ボタンの状態更新
+            int index = leaderListView.SelectedIndices[0];
+            int bottom = leaderListView.Items.Count - 1;
+            topButton.Enabled = (index != 0);
+            upButton.Enabled = (index != 0);
+            downButton.Enabled = (index != bottom);
+            bottomButton.Enabled = (index != bottom);
+        }
+
+        /// <summary>
         ///     編集項目の値を更新する
         /// </summary>
         /// <param name="leader">指揮官データ</param>
@@ -1445,7 +1458,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集可能な項目を有効化する
+        ///     編集項目を有効化する
         /// </summary>
         private void EnableEditableItems()
         {
@@ -1493,7 +1506,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集可能な項目を無効化する
+        ///     編集項目を無効化する
         /// </summary>
         private void DisableEditableItems()
         {
