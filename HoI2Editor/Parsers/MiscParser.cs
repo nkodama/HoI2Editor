@@ -613,7 +613,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.AiSpyDiplomacyLogger = ((int)(double)token.Value == 1);
+                Misc.Mod.AiSpyDiplomacyLogger = ((int) (double) token.Value == 1);
 
                 // 国家の状態をログに記録する
                 token = lexer.GetToken();
@@ -622,7 +622,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.CountryLogger = (int)(double)token.Value;
+                Misc.Mod.CountryLogger = (int) (double) token.Value;
 
                 // AI切り替えをログに記録する
                 token = lexer.GetToken();
@@ -631,7 +631,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.SwitchedAiLogger = ((int)(double)token.Value == 1);
+                Misc.Mod.SwitchedAiLogger = ((int) (double) token.Value == 1);
 
                 // 新しい自動セーブファイル名フォーマットを使用する
                 token = lexer.GetToken();
@@ -640,7 +640,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.NewAutoSaveFileFormat = ((int)(double)token.Value == 1);
+                Misc.Mod.NewAutoSaveFileFormat = ((int) (double) token.Value == 1);
 
                 // マルチプレイで新しいAI設定/切り替えを使用する
                 token = lexer.GetToken();
@@ -649,7 +649,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.LoadNewAiSettingMultiPlayer = ((int)(double)token.Value == 1);
+                Misc.Mod.LoadNewAiSettingMultiPlayer = ((int) (double) token.Value == 1);
 
                 // 新しい貿易システムの計算間隔
                 token = lexer.GetToken();
@@ -658,7 +658,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.TradeEfficiencyCalculationInterval = (int)(double)token.Value;
+                Misc.Mod.TradeEfficiencyCalculationInterval = (int) (double) token.Value;
 
                 // 備蓄庫の統合/再配置の計算間隔
                 token = lexer.GetToken();
@@ -667,7 +667,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.DepotCalculationInterval = (int)(double)token.Value;
+                Misc.Mod.DepotCalculationInterval = (int) (double) token.Value;
 
                 // 損失をログに記録する
                 token = lexer.GetToken();
@@ -676,7 +676,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.LossesLogger = (int)(double)token.Value;
+                Misc.Mod.LossesLogger = (int) (double) token.Value;
 
                 // 自国領土外でも補給が届いていれば旅団の配備を可能にする
                 token = lexer.GetToken();
@@ -685,7 +685,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.AllowBrigadeAttachingInSupply = ((int)(double)token.Value == 1);
+                Misc.Mod.AllowBrigadeAttachingInSupply = ((int) (double) token.Value == 1);
 
                 // 一括配備数(陸軍)
                 token = lexer.GetToken();
@@ -694,7 +694,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.MultipleDeploymentSizeArmy = (int)(double)token.Value;
+                Misc.Mod.MultipleDeploymentSizeArmy = (int) (double) token.Value;
 
                 // 一括配備数(海軍)
                 token = lexer.GetToken();
@@ -703,7 +703,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.MultipleDeploymentSizeFleet = (int)(double)token.Value;
+                Misc.Mod.MultipleDeploymentSizeFleet = (int) (double) token.Value;
 
                 // 一括配備数(空軍)
                 token = lexer.GetToken();
@@ -712,7 +712,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.MultipleDeploymentSizeAir = (int)(double)token.Value;
+                Misc.Mod.MultipleDeploymentSizeAir = (int) (double) token.Value;
 
                 // 全ての陸地プロヴィンスで固有の画像を許可する
                 token = lexer.GetToken();
@@ -721,7 +721,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.AllowUniquePictureAllLandProvinces = ((int)(double)token.Value == 1);
+                Misc.Mod.AllowUniquePictureAllLandProvinces = ((int) (double) token.Value == 1);
 
                 // プレイヤー国のイベントに自動応答する
                 token = lexer.GetToken();
@@ -730,7 +730,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.AutoReplyEvents = ((int)(double)token.Value == 1);
+                Misc.Mod.AutoReplyEvents = ((int) (double) token.Value == 1);
 
                 // 無効なアクションを表示する
                 token = lexer.GetToken();
@@ -739,7 +739,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.ForceActionsToShowNoValidCommands = (int)(double)token.Value;
+                Misc.Mod.ForceActionsToShowNoValidCommands = (int) (double) token.Value;
 
                 // ディシジョンを有効にする
                 token = lexer.GetToken();
@@ -748,7 +748,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.EnableDecisionsPlayer = ((int)(double)token.Value == 1);
+                Misc.Mod.EnableDecisionsPlayer = ((int) (double) token.Value == 1);
 
                 // 反乱軍の構成
                 token = lexer.GetToken();
@@ -757,7 +757,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelArmyComposition = (int)(double)token.Value;
+                Misc.Mod.RebelArmyComposition = (int) (double) token.Value;
 
                 // 反乱軍の技術レベル
                 token = lexer.GetToken();
@@ -766,7 +766,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelArmyTechLevel = (int)(double)token.Value;
+                Misc.Mod.RebelArmyTechLevel = (int) (double) token.Value;
 
                 // 反乱軍の最小戦力
                 token = lexer.GetToken();
@@ -775,7 +775,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelArmyMinStr = (double)token.Value;
+                Misc.Mod.RebelArmyMinStr = (double) token.Value;
 
                 // 反乱軍の最大戦力
                 token = lexer.GetToken();
@@ -784,7 +784,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelArmyMaxStr = (double)token.Value;
+                Misc.Mod.RebelArmyMaxStr = (double) token.Value;
 
                 // 反乱軍の指揮統制率回復
                 token = lexer.GetToken();
@@ -793,7 +793,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelArmyOrgRegain = (double)token.Value;
+                Misc.Mod.RebelArmyOrgRegain = (double) token.Value;
 
                 // 隣接プロヴィンスが反乱軍に支配されている時の反乱危険率増加値
                 token = lexer.GetToken();
@@ -802,7 +802,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusControlledRebel = (double)token.Value;
+                Misc.Mod.RebelBonusControlledRebel = (double) token.Value;
 
                 // 隣接プロヴィンスが敵軍に占領されている時の反乱危険率増加値
                 token = lexer.GetToken();
@@ -811,7 +811,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusOccupiedEnemy = (double)token.Value;
+                Misc.Mod.RebelBonusOccupiedEnemy = (double) token.Value;
 
                 // 山岳プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -820,7 +820,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusMountain = (double)token.Value;
+                Misc.Mod.RebelBonusMountain = (double) token.Value;
 
                 // 丘陵プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -829,7 +829,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusHill = (double)token.Value;
+                Misc.Mod.RebelBonusHill = (double) token.Value;
 
                 // 森林プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -838,7 +838,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusForest = (double)token.Value;
+                Misc.Mod.RebelBonusForest = (double) token.Value;
 
                 // 密林プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -847,7 +847,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusJungle = (double)token.Value;
+                Misc.Mod.RebelBonusJungle = (double) token.Value;
 
                 // 湿地プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -856,7 +856,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusSwamp = (double)token.Value;
+                Misc.Mod.RebelBonusSwamp = (double) token.Value;
 
                 // 砂漠プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -865,7 +865,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusDesert = (double)token.Value;
+                Misc.Mod.RebelBonusDesert = (double) token.Value;
 
                 // 平地プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -874,7 +874,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusPlain = (double)token.Value;
+                Misc.Mod.RebelBonusPlain = (double) token.Value;
 
                 // 都市プロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -883,7 +883,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusUrban = (double)token.Value;
+                Misc.Mod.RebelBonusUrban = (double) token.Value;
 
                 // 海軍/空軍基地のあるプロヴィンスの反乱危険率増加値
                 token = lexer.GetToken();
@@ -892,7 +892,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.RebelBonusBase = (double)token.Value;
+                Misc.Mod.RebelBonusBase = (double) token.Value;
 
                 // 反乱軍消滅後にプロヴィンスが元の所有国に復帰するまでの月数
                 token = lexer.GetToken();
@@ -901,7 +901,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.ReturnMonthNoRebelArmy = (int)(double)token.Value;
+                Misc.Mod.ReturnMonthNoRebelArmy = (int) (double) token.Value;
 
                 // 新閣僚フォーマットを使用する
                 token = lexer.GetToken();
@@ -910,7 +910,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.NewMinisterFormat = ((int)(double)token.Value == 1);
+                Misc.Mod.NewMinisterFormat = ((int) (double) token.Value == 1);
 
                 if (Game.Version >= 103)
                 {
@@ -921,7 +921,7 @@ namespace HoI2Editor.Parsers
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         return false;
                     }
-                    Misc.Mod.RetirementYearMinister = ((int)(double)token.Value == 1);
+                    Misc.Mod.RetirementYearMinister = ((int) (double) token.Value == 1);
 
                     // 指揮官の引退年を有効にする
                     token = lexer.GetToken();
@@ -930,7 +930,7 @@ namespace HoI2Editor.Parsers
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         return false;
                     }
-                    Misc.Mod.RetirementYearLeader = ((int)(double)token.Value == 1);
+                    Misc.Mod.RetirementYearLeader = ((int) (double) token.Value == 1);
                 }
 
                 // スプライトをMODDIRからのみ読み込む
@@ -940,7 +940,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.LoadSpriteModdirOnly = ((int)(double)token.Value == 1);
+                Misc.Mod.LoadSpriteModdirOnly = ((int) (double) token.Value == 1);
 
                 // ユニットアイコンをMODDIRからのみ読み込む
                 token = lexer.GetToken();
@@ -949,7 +949,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.LoadUnitIconModdirOnly = ((int)(double)token.Value == 1);
+                Misc.Mod.LoadUnitIconModdirOnly = ((int) (double) token.Value == 1);
 
                 // ユニット画像をMODDIRからのみ読み込む
                 token = lexer.GetToken();
@@ -958,7 +958,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.LoadUnitPictureModdirOnly = ((int)(double)token.Value == 1);
+                Misc.Mod.LoadUnitPictureModdirOnly = ((int) (double) token.Value == 1);
 
                 // AIをMODDIRからのみ読み込む
                 token = lexer.GetToken();
@@ -967,7 +967,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.LoadAiModdirOnly = ((int)(double)token.Value == 1);
+                Misc.Mod.LoadAiModdirOnly = ((int) (double) token.Value == 1);
 
                 // 移動不可ユニットの判定に速度の値を使用する
                 token = lexer.GetToken();
@@ -976,7 +976,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.UseSpeedGarrisonStatus = ((int)(double)token.Value == 1);
+                Misc.Mod.UseSpeedGarrisonStatus = ((int) (double) token.Value == 1);
 
                 // DH1.02より前のセーブデータフォーマットを使用する
                 token = lexer.GetToken();
@@ -985,7 +985,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Mod.UseOldSaveGameFormat = ((int)(double)token.Value == 1);
+                Misc.Mod.UseOldSaveGameFormat = ((int) (double) token.Value == 1);
 
                 if (Game.Version >= 103)
                 {
@@ -996,7 +996,7 @@ namespace HoI2Editor.Parsers
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         return false;
                     }
-                    Misc.Mod.ProductionPanelStyle = ((int)(double)token.Value == 1);
+                    Misc.Mod.ProductionPanelStyle = ((int) (double) token.Value == 1);
 
                     // ユニット画像のサイズ
                     token = lexer.GetToken();
@@ -1005,7 +1005,7 @@ namespace HoI2Editor.Parsers
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         return false;
                     }
-                    Misc.Mod.UnitPictureSize = ((int)(double)token.Value == 1);
+                    Misc.Mod.UnitPictureSize = ((int) (double) token.Value == 1);
 
                     // 艦船装備に画像を使用する
                     token = lexer.GetToken();
@@ -1014,7 +1014,7 @@ namespace HoI2Editor.Parsers
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         return false;
                     }
-                    Misc.Mod.UsePictureNavalBrigade = ((int)(double)token.Value == 1);
+                    Misc.Mod.UsePictureNavalBrigade = ((int) (double) token.Value == 1);
 
                     // 建物をプロヴィンスからのみ生産可能にする
                     token = lexer.GetToken();
@@ -1023,7 +1023,7 @@ namespace HoI2Editor.Parsers
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         return false;
                     }
-                    Misc.Mod.BuildableOnlyProvince = (int)(double)token.Value;
+                    Misc.Mod.BuildableOnlyProvince = (int) (double) token.Value;
 
                     // ユニット補正の統計ページを新スタイルにする閾値
                     token = lexer.GetToken();
@@ -1032,7 +1032,7 @@ namespace HoI2Editor.Parsers
                         Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                         return false;
                     }
-                    Misc.Mod.UnitModifierStatisticsPage = (int)(double)token.Value;
+                    Misc.Mod.UnitModifierStatisticsPage = (int) (double) token.Value;
                 }
             }
 
@@ -1085,7 +1085,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Map.MapNo = (int)(double)token.Value;
+                Misc.Map.MapNo = (int) (double) token.Value;
 
                 // 総プロヴィンス数
                 token = lexer.GetToken();
@@ -1094,7 +1094,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Map.TotalProvinces = (int)(double)token.Value;
+                Misc.Map.TotalProvinces = (int) (double) token.Value;
 
                 // 距離計算モデル
                 token = lexer.GetToken();
@@ -1103,7 +1103,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Map.DistanceCalculationModel = ((int)(double)token.Value == 1);
+                Misc.Map.DistanceCalculationModel = ((int) (double) token.Value == 1);
 
                 // マップの幅
                 token = lexer.GetToken();
@@ -1112,7 +1112,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Map.MapWidth = (int)(double)token.Value;
+                Misc.Map.MapWidth = (int) (double) token.Value;
 
                 // マップの高さ
                 token = lexer.GetToken();
@@ -1121,7 +1121,7 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                Misc.Map.MapHeight = (int)(double)token.Value;
+                Misc.Map.MapHeight = (int) (double) token.Value;
             }
 
             while (true)

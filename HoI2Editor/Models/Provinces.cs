@@ -4274,13 +4274,27 @@ namespace HoI2Editor.Models
                             province.FillCoordY1,
                             province.FillCoordX2,
                             province.FillCoordY2,
-                            (province.FillCoordX3 != 0) ? province.FillCoordX3.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.FillCoordY3 != 0) ? province.FillCoordY3.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.FillCoordX4 != 0) ? province.FillCoordX4.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.FillCoordY4 != 0) ? province.FillCoordY4.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.FillCoordX5 != 0) ? province.FillCoordX5.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.FillCoordY5 != 0) ? province.FillCoordY5.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.FillCoordX6 != 0) ? province.FillCoordX6.ToString(CultureInfo.InvariantCulture) : "");
+                            (province.FillCoordX3 != 0)
+                                ? province.FillCoordX3.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordY3 != 0)
+                                ? province.FillCoordY3.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordX4 != 0)
+                                ? province.FillCoordX4.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordY4 != 0)
+                                ? province.FillCoordY4.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordX5 != 0)
+                                ? province.FillCoordX5.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordY5 != 0)
+                                ? province.FillCoordY5.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordX6 != 0)
+                                ? province.FillCoordX6.ToString(CultureInfo.InvariantCulture)
+                                : "");
                     }
                     else
                     {
@@ -4288,21 +4302,33 @@ namespace HoI2Editor.Models
                             "{0};{1};{2};{3};{4};{5};{6};;;{7};;{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};;;;;;;;;;;{32};{33};{34};{35}",
                             province.Id,
                             province.Name,
-                            AreaStrings[(int)province.Area],
-                            RegionStrings[(int)province.Region],
-                            ContinentStrings[(int)province.Continent],
-                            ClimateStrings[(int)province.Climate],
-                            TerrainStrings[(int)province.Terrain],
+                            AreaStrings[(int) province.Area],
+                            RegionStrings[(int) province.Region],
+                            ContinentStrings[(int) province.Continent],
+                            ClimateStrings[(int) province.Climate],
+                            TerrainStrings[(int) province.Terrain],
                             province.Infrastructure,
                             province.Beaches ? 1 : 0,
                             province.PortAllowed ? 1 : 0,
                             province.PortSeaZone,
-                            (province.Terrain != TerrainId.Ocean) ? province.Ic.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.Terrain != TerrainId.Ocean) ? province.Manpower.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.Terrain != TerrainId.Ocean) ? province.Oil.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.Terrain != TerrainId.Ocean) ? province.Metal.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.Terrain != TerrainId.Ocean) ? province.Energy.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.Terrain != TerrainId.Ocean) ? province.RareMaterials.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Ic.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Manpower.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Oil.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Metal.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Energy.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.RareMaterials.ToString(CultureInfo.InvariantCulture)
+                                : "",
                             (province.CityXPos != 0) ? province.CityXPos.ToString(CultureInfo.InvariantCulture) : "",
                             (province.CityYPos != 0) ? province.CityYPos.ToString(CultureInfo.InvariantCulture) : "",
                             (province.ArmyXPos != 0) ? province.ArmyXPos.ToString(CultureInfo.InvariantCulture) : "",
@@ -4316,8 +4342,12 @@ namespace HoI2Editor.Models
                             (province.FortYPos != 0) ? province.FortYPos.ToString(CultureInfo.InvariantCulture) : "",
                             (province.AaXPos != 0) ? province.AaXPos.ToString(CultureInfo.InvariantCulture) : "",
                             (province.AaYPos != 0) ? province.AaYPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.CounterXPos != 0) ? province.CounterXPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.CounterYPos != 0) ? province.CounterYPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.CounterXPos != 0)
+                                ? province.CounterXPos.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.CounterYPos != 0)
+                                ? province.CounterYPos.ToString(CultureInfo.InvariantCulture)
+                                : "",
                             province.FillCoordX1,
                             province.FillCoordY1,
                             province.FillCoordX2,
@@ -4333,7 +4363,6 @@ namespace HoI2Editor.Models
                                     ";{0};{1}",
                                     province.FillCoordX4.ToString(CultureInfo.InvariantCulture),
                                     province.FillCoordY4.ToString(CultureInfo.InvariantCulture));
-
                             }
                         }
                         writer.WriteLine();
