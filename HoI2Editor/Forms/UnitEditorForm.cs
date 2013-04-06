@@ -309,7 +309,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirty(Game.UnitTextFileName, true);
+            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirty(Game.UnitTextFileName, true);
+            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -402,7 +402,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             SetDirty();
-            Config.SetDirty(Game.UnitTextFileName, true);
+            Config.SetDirty(Game.UnitTextFileName);
         }
 
         #endregion
@@ -971,7 +971,7 @@ namespace HoI2Editor.Forms
 
 
             // 編集済みフラグを設定する
-            Config.SetDirty(Game.UnitTextFileName, true);
+            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -993,7 +993,7 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.ShortName, classShortNameTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
-            Config.SetDirty(Game.UnitTextFileName, true);
+            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -1015,7 +1015,7 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.Desc, classDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
-            Config.SetDirty(Game.UnitTextFileName, true);
+            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -1037,7 +1037,7 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.ShortDesc, classShortDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
-            Config.SetDirty(Game.UnitTextFileName, true);
+            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -2050,7 +2050,7 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[1].Text = val;
 
             // 編集済みフラグを設定する
-            Config.SetDirty(fileName, true);
+            Config.SetDirty(fileName);
         }
 
         #endregion

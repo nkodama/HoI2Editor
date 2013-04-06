@@ -5,15 +5,19 @@
     /// </summary>
     public class Token
     {
+        #region 公開プロパティ
+
         /// <summary>
         ///     トークンの種類
         /// </summary>
-        public TokenType Type;
+        public TokenType Type { get; set; }
 
         /// <summary>
         ///     トークンの値
         /// </summary>
-        public object Value;
+        public object Value { get; set; }
+
+        #endregion
     }
 
     /// <summary>

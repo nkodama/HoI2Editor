@@ -109,7 +109,7 @@ namespace HoI2Editor.Utilities
     /// </summary>
     public struct IconInfo
     {
-        #region
+        #region fIcon
 
         // ReSharper disable InconsistentNaming
         public bool fIcon;
@@ -117,7 +117,7 @@ namespace HoI2Editor.Utilities
 
         #endregion
 
-        #region
+        #region xHotspot
 
         // ReSharper disable InconsistentNaming
         public int xHotspot;
@@ -125,7 +125,7 @@ namespace HoI2Editor.Utilities
 
         #endregion
 
-        #region
+        #region yHotspot
 
         // ReSharper disable InconsistentNaming
         public int yHotspot;
@@ -133,7 +133,7 @@ namespace HoI2Editor.Utilities
 
         #endregion
 
-        #region
+        #region hbmMask
 
         // ReSharper disable InconsistentNaming
         public IntPtr hbmMask;
@@ -141,12 +141,15 @@ namespace HoI2Editor.Utilities
 
         #endregion
 
-        #region
+        #region hbmColor
 
-        // ReSharper disable InconsistentNaming
         public IntPtr hbmColor;
-        // ReSharper restore InconsistentNaming
 
         #endregion
+
+        // ReSharper disable InconsistentNaming
+        // ReSharperで並び替えられないようにregionで区切る
+
+        // ReSharper restore InconsistentNaming
     }
 }

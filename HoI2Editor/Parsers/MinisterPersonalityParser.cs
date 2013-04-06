@@ -9,6 +9,8 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public static class MinisterPersonalityParser
     {
+        #region 内部定数
+
         /// <summary>
         ///     閣僚特性定義ファイル内の閣僚地位名とIDの対応付け
         /// </summary>
@@ -27,6 +29,10 @@ namespace HoI2Editor.Parsers
                       {"chiefofnavy", (int) MinisterPosition.ChiefOfNavy},
                       {"chiefofair", (int) MinisterPosition.ChiefOfAirForce},
                   };
+
+        #endregion
+
+        #region 構文解析
 
         /// <summary>
         ///     閣僚特性定義ファイルを構文解析する
@@ -262,5 +268,7 @@ namespace HoI2Editor.Parsers
 
             return info;
         }
+
+        #endregion
     }
 }

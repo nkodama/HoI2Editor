@@ -15,7 +15,7 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class TechEditorForm : Form
     {
-        #region フィールド
+        #region 内部フィールド
 
         /// <summary>
         ///     技術ラベルの画像
@@ -60,7 +60,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 定数
+        #region 内部定数
 
         /// <summary>
         ///     技術ラベルの幅
@@ -1606,7 +1606,7 @@ namespace HoI2Editor.Forms
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
-            Config.SetDirty(Game.TechTextFileName, true);
+            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             categoryNameTextBox.ForeColor = Color.Red;
@@ -1632,7 +1632,7 @@ namespace HoI2Editor.Forms
             Config.SetText(grp.Desc, desc, Game.TechTextFileName);
 
             // 編集済みフラグを設定する
-            Config.SetDirty(Game.TechTextFileName, true);
+            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             categoryDescTextBox.ForeColor = Color.Red;
@@ -1814,7 +1814,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.Name);
-            Config.SetDirty(Game.TechTextFileName, true);
+            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             techNameTextBox.ForeColor = Color.Red;
@@ -1856,7 +1856,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.ShortName);
-            Config.SetDirty(Game.TechTextFileName, true);
+            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             techShortNameTextBox.ForeColor = Color.Red;
@@ -3606,7 +3606,7 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             item.SetDirty();
             component.SetDirty(TechComponentItemId.Name);
-            Config.SetDirty(Game.TechTextFileName, true);
+            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             componentNameTextBox.ForeColor = Color.Red;
@@ -4937,7 +4937,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.Name);
-            Config.SetDirty(Game.TechTextFileName, true);
+            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             labelNameTextBox.ForeColor = Color.Red;

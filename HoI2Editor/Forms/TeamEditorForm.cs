@@ -15,12 +15,12 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class TeamEditorForm : Form
     {
-        #region フィールド
+        #region 内部フィールド
 
         /// <summary>
         ///     絞り込み後の閣僚リスト
         /// </summary>
-        private readonly List<Team> _narrowedList = new List<Team>();
+        private readonly List<Team> _list = new List<Team>();
 
         #endregion
 
@@ -148,7 +148,7 @@ namespace HoI2Editor.Forms
             teamListView.Items.Clear();
 
             // 項目を順に登録する
-            foreach (Team team in _narrowedList)
+            foreach (Team team in _list)
             {
                 teamListView.Items.Add(CreateTeamListViewItem(team));
             }
@@ -176,7 +176,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void NarrowTeamList()
         {
-            _narrowedList.Clear();
+            _list.Clear();
 
             // 選択中の国家リストを作成する
             List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
@@ -185,9 +185,9 @@ namespace HoI2Editor.Forms
                                                       select Country.StringMap[countryText]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
-            foreach (Team team in Teams.List.Where(team => selectedTagList.Contains(team.Country)))
+            foreach (Team team in Teams.Items.Where(team => selectedTagList.Contains(team.Country)))
             {
-                _narrowedList.Add(team);
+                _list.Add(team);
             }
         }
 
@@ -284,7 +284,7 @@ namespace HoI2Editor.Forms
                            };
 
                 // 研究機関ごとの編集済みフラグを設定する
-                team.SetDirty();
+                team.SetDirtyAll();
 
                 // 研究機関リストに項目を挿入する
                 Teams.InsertItem(team, selected);
@@ -306,7 +306,7 @@ namespace HoI2Editor.Forms
                            };
 
                 // 研究機関ごとの編集済みフラグを設定する
-                team.SetDirty();
+                team.SetDirtyAll();
 
                 // 研究機関リストに項目を追加する
                 AddListItem(team);
@@ -349,7 +349,7 @@ namespace HoI2Editor.Forms
             }
 
             // 研究機関ごとの編集済みフラグを設定する
-            team.SetDirty();
+            team.SetDirtyAll();
 
             // 研究機関リストに項目を挿入する
             Teams.InsertItem(team, selected);
@@ -534,7 +534,7 @@ namespace HoI2Editor.Forms
         private void AddListItem(Team team)
         {
             // 絞り込みリストに項目を追加する
-            _narrowedList.Add(team);
+            _list.Add(team);
 
             // 研究機関リストビューに項目を追加する
             teamListView.Items.Add(CreateTeamListViewItem(team));
@@ -553,7 +553,7 @@ namespace HoI2Editor.Forms
         private void InsertListItem(Team team, int index)
         {
             // 絞り込みリストに項目を挿入する
-            _narrowedList.Insert(index, team);
+            _list.Insert(index, team);
 
             // 研究機関リストビューに項目を挿入する
             teamListView.Items.Insert(index, CreateTeamListViewItem(team));
@@ -571,7 +571,7 @@ namespace HoI2Editor.Forms
         private void RemoveItem(int index)
         {
             // 絞り込みリストから項目を削除する
-            _narrowedList.RemoveAt(index);
+            _list.RemoveAt(index);
 
             // 閣僚リストビューから項目を削除する
             teamListView.Items.RemoveAt(index);
@@ -597,14 +597,14 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveListItem(int src, int dest)
         {
-            Team team = _narrowedList[src];
+            Team team = _list[src];
 
             if (src > dest)
             {
                 // 上へ移動する場合
                 // 絞り込みリストの項目を移動する
-                _narrowedList.Insert(dest, team);
-                _narrowedList.RemoveAt(src + 1);
+                _list.Insert(dest, team);
+                _list.RemoveAt(src + 1);
 
                 // 閣僚リストビューの項目を移動する
                 teamListView.Items.Insert(dest, CreateTeamListViewItem(team));
@@ -614,8 +614,8 @@ namespace HoI2Editor.Forms
             {
                 // 下へ移動する場合
                 // 絞り込みリストの項目を移動する
-                _narrowedList.Insert(dest + 1, team);
-                _narrowedList.RemoveAt(src);
+                _list.Insert(dest + 1, team);
+                _list.RemoveAt(src);
 
                 // 閣僚リストビューの項目を移動する
                 teamListView.Items.Insert(dest + 1, CreateTeamListViewItem(team));

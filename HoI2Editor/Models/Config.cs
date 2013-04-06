@@ -6,33 +6,17 @@ using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
 {
+    /// <summary>
+    ///     文字列定義クラス
+    /// </summary>
     internal static class Config
     {
-        /// <summary>
-        ///     言語の最大数
-        /// </summary>
-        private const int MaxLanguages = 10;
-
-        /// <summary>
-        ///     言語名文字列
-        /// </summary>
-        public static readonly string[][] LanguageStrings =
-            {
-                new[] {Resources.LanguageJapanese},
-                new[]
-                    {
-                        Resources.LanguageEnglish, Resources.LanguageFrench, Resources.LanguageItalian,
-                        Resources.LanguageSpanish, Resources.LanguageGerman, Resources.LanguagePolish,
-                        Resources.LanguagePortuguese, Resources.LanguageRussian, Resources.LanguageExtra1,
-                        Resources.LanguageExtra2
-                    },
-                new[] {Resources.LanguageJapanese, Resources.LanguageEnglish}
-            };
+        #region 公開プロパティ
 
         /// <summary>
         ///     言語モード
         /// </summary>
-        public static LanguageMode LangMode;
+        public static LanguageMode LangMode { get; set; }
 
         /// <summary>
         ///     言語インデックス
@@ -41,7 +25,11 @@ namespace HoI2Editor.Models
         ///     日本語環境ならば先頭言語が日本語、その次が英語(英語版日本語化の場合)で残りは空
         ///     日本語環境でなければ、英仏伊西独波葡露Extra1/2の順
         /// </remarks>
-        public static int LangIndex = 0;
+        public static int LangIndex { get; set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     文字列変換テーブル
@@ -105,193 +93,53 @@ namespace HoI2Editor.Models
         /// </summary>
         private static int _tempNo = 1;
 
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     言語名文字列
+        /// </summary>
+        public static readonly string[][] LanguageStrings =
+            {
+                new[] {Resources.LanguageJapanese},
+                new[]
+                    {
+                        Resources.LanguageEnglish, Resources.LanguageFrench, Resources.LanguageItalian,
+                        Resources.LanguageSpanish, Resources.LanguageGerman, Resources.LanguagePolish,
+                        Resources.LanguagePortuguese, Resources.LanguageRussian, Resources.LanguageExtra1,
+                        Resources.LanguageExtra2
+                    },
+                new[] {Resources.LanguageJapanese, Resources.LanguageEnglish}
+            };
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     言語の最大数
+        /// </summary>
+        private const int MaxLanguages = 10;
+
         /// <summary>
         ///     CSVファイルの区切り文字
         /// </summary>
         private static readonly char[] CsvSeparator = {';'};
 
-        /// <summary>
-        ///     文字列を取得する
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <returns>取得した文字列</returns>
-        public static string GetText(string key)
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                return "";
-            }
-            key = key.ToUpper();
+        #endregion
 
-            // 置き換え文字列変換テーブルに登録されていれば優先して参照する
-            if (ReplacedText.ContainsKey(key))
-            {
-                return ReplacedText[key][LangIndex];
-            }
-
-            // 文字列変換テーブルに登録されていれば参照する
-            if (Text.ContainsKey(key))
-            {
-                return Text[key][LangIndex];
-            }
-
-            // 補完文字列変換テーブルに登録されていれば参照する
-            if (ComplementedText.ContainsKey(key))
-            {
-                return ComplementedText[key][LangIndex];
-            }
-
-            // テーブルに登録されていなければ定義名を返す
-            return key;
-        }
+        #region ファイル読み込み
 
         /// <summary>
-        ///     文字列を設定する
+        ///     文字列定義ファイルの再読み込みを要求する
         /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <param name="text">登録する文字列</param>
-        /// <param name="fileName">文字列定義ファイル名</param>
         /// <remarks>
-        ///     文字列が登録されていなければ新規追加、登録されていれば値を変更する
+        ///     ゲームフォルダ、MOD名、ゲーム種類、言語の変更があった場合に呼び出す
         /// </remarks>
-        public static void SetText(string key, string text, string fileName)
+        public static void RequireReload()
         {
-            if (string.IsNullOrEmpty(key))
-            {
-                return;
-            }
-            key = key.ToUpper();
-
-            // 文字列変換テーブルに登録されていなければ登録する
-            if (!Text.ContainsKey(key))
-            {
-                // 予約リストがなければ作成する
-                if (!ReservedListTable.ContainsKey(fileName))
-                {
-                    ReservedListTable.Add(fileName, new List<string>());
-                }
-
-                // 予約リストに登録する
-                ReservedListTable[fileName].Add(key);
-
-                // 文字列変換テーブルに登録する
-                Text[key] = new string[MaxLanguages];
-            }
-
-            // 文字列変換テーブルの文字列を変更する
-            Text[key][LangIndex] = text;
-        }
-
-        /// <summary>
-        ///     文字列定義名を変更する
-        /// </summary>
-        /// <param name="oldKey">変更対象の文字列定義名</param>
-        /// <param name="newKey">変更後の文字列定義名</param>
-        /// <param name="fileName">文字列定義ファイル名</param>
-        public static void RenameText(string oldKey, string newKey, string fileName)
-        {
-            if (string.IsNullOrEmpty(oldKey) || string.IsNullOrEmpty(newKey))
-            {
-                return;
-            }
-            oldKey = oldKey.ToUpper();
-            newKey = newKey.ToUpper();
-
-            if (!Text.ContainsKey(oldKey) || Text.ContainsKey(newKey))
-            {
-                return;
-            }
-
-            // 文字列変換テーブルに登録し直す
-            Text.Add(newKey, Text[oldKey]);
-            Text.Remove(oldKey);
-
-            // 予約リストに登録し直す
-            if (ReservedListTable[fileName].Contains(oldKey) && !ReservedListTable[fileName].Contains(newKey))
-            {
-                ReservedListTable[fileName].Remove(oldKey);
-                ReservedListTable[fileName].Add(newKey);
-            }
-        }
-
-        /// <summary>
-        ///     文字列を削除する
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <param name="fileName">文字列定義ファイル名</param>
-        public static void RemoveText(string key, string fileName)
-        {
-            Text.Remove(key);
-            ReservedListTable[fileName].Remove(key);
-        }
-
-        /// <summary>
-        ///     文字列が登録されているかを返す
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <returns>文字列が登録されていればtrueを返す</returns>
-        public static bool ExistsKey(string key)
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                return false;
-            }
-            key = key.ToUpper();
-
-            return Text.ContainsKey(key);
-        }
-
-        /// <summary>
-        ///     予約キーかどうかを判定する
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <param name="fileName">文字列定義ファイル名</param>
-        /// <returns>予約キーかどうか</returns>
-        public static bool IsReservedKey(string key, string fileName)
-        {
-            return (ReservedListTable.ContainsKey(fileName) && ReservedListTable[fileName].Contains(key));
-        }
-
-        /// <summary>
-        ///     一時キーを取得する
-        /// </summary>
-        /// <returns>一時キー名</returns>
-        public static string GetTempKey()
-        {
-            string key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
-            _tempNo++;
-
-            return key;
-        }
-
-        /// <summary>
-        ///     置き換え文字列変換テーブルに登録する
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <param name="text">登録する文字列</param>
-        private static void AddReplacedText(string key, string text)
-        {
-            // 置き換え文字列変換テーブルに登録する
-            ReplacedText[key] = new string[MaxLanguages];
-            ReplacedText[key][LangIndex] = text;
-        }
-
-        /// <summary>
-        ///     補完文字列変換テーブルに登録する
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <param name="text">登録する文字列</param>
-        private static void AddComplementedText(string key, string text)
-        {
-            // 登録文字列があれば何もしない
-            if (Text.ContainsKey(key))
-            {
-                return;
-            }
-
-            // 補完文字列変換テーブルに登録する
-            ComplementedText[key] = new string[MaxLanguages];
-            ComplementedText[key][LangIndex] = text;
+            _loaded = false;
         }
 
         /// <summary>
@@ -569,18 +417,20 @@ namespace HoI2Editor.Models
             OrderListTable.Add(name, orderList);
         }
 
+        #endregion
+
+        #region ファイル書き込み
+
         /// <summary>
         ///     文字列ファイル群を保存する
         /// </summary>
         public static void Save()
         {
-            var list = new List<string>(DirtyFiles);
-            foreach (string fileName in list)
+            foreach (string fileName in DirtyFiles)
             {
                 try
                 {
                     SaveFile(fileName);
-                    SetDirty(fileName, false);
                 }
                 catch (Exception)
                 {
@@ -590,6 +440,9 @@ namespace HoI2Editor.Models
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, pathName));
                 }
             }
+
+            // 編集済みフラグを全て解除する
+            ResetDirtyAll();
         }
 
         /// <summary>
@@ -693,6 +546,194 @@ namespace HoI2Editor.Models
                     writer.WriteLine("{0};;;;;;;;;;;X", key);
                 }
             }
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     文字列を取得する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <returns>取得した文字列</returns>
+        public static string GetText(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return "";
+            }
+            key = key.ToUpper();
+
+            // 置き換え文字列変換テーブルに登録されていれば優先して参照する
+            if (ReplacedText.ContainsKey(key))
+            {
+                return ReplacedText[key][LangIndex];
+            }
+
+            // 文字列変換テーブルに登録されていれば参照する
+            if (Text.ContainsKey(key))
+            {
+                return Text[key][LangIndex];
+            }
+
+            // 補完文字列変換テーブルに登録されていれば参照する
+            if (ComplementedText.ContainsKey(key))
+            {
+                return ComplementedText[key][LangIndex];
+            }
+
+            // テーブルに登録されていなければ定義名を返す
+            return key;
+        }
+
+        /// <summary>
+        ///     文字列を設定する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="text">登録する文字列</param>
+        /// <param name="fileName">文字列定義ファイル名</param>
+        /// <remarks>
+        ///     文字列が登録されていなければ新規追加、登録されていれば値を変更する
+        /// </remarks>
+        public static void SetText(string key, string text, string fileName)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return;
+            }
+            key = key.ToUpper();
+
+            // 文字列変換テーブルに登録されていなければ登録する
+            if (!Text.ContainsKey(key))
+            {
+                // 予約リストがなければ作成する
+                if (!ReservedListTable.ContainsKey(fileName))
+                {
+                    ReservedListTable.Add(fileName, new List<string>());
+                }
+
+                // 予約リストに登録する
+                ReservedListTable[fileName].Add(key);
+
+                // 文字列変換テーブルに登録する
+                Text[key] = new string[MaxLanguages];
+            }
+
+            // 文字列変換テーブルの文字列を変更する
+            Text[key][LangIndex] = text;
+        }
+
+        /// <summary>
+        ///     文字列定義名を変更する
+        /// </summary>
+        /// <param name="oldKey">変更対象の文字列定義名</param>
+        /// <param name="newKey">変更後の文字列定義名</param>
+        /// <param name="fileName">文字列定義ファイル名</param>
+        public static void RenameText(string oldKey, string newKey, string fileName)
+        {
+            if (string.IsNullOrEmpty(oldKey) || string.IsNullOrEmpty(newKey))
+            {
+                return;
+            }
+            oldKey = oldKey.ToUpper();
+            newKey = newKey.ToUpper();
+
+            if (!Text.ContainsKey(oldKey) || Text.ContainsKey(newKey))
+            {
+                return;
+            }
+
+            // 文字列変換テーブルに登録し直す
+            Text.Add(newKey, Text[oldKey]);
+            Text.Remove(oldKey);
+
+            // 予約リストに登録し直す
+            if (ReservedListTable[fileName].Contains(oldKey) && !ReservedListTable[fileName].Contains(newKey))
+            {
+                ReservedListTable[fileName].Remove(oldKey);
+                ReservedListTable[fileName].Add(newKey);
+            }
+        }
+
+        /// <summary>
+        ///     文字列を削除する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="fileName">文字列定義ファイル名</param>
+        public static void RemoveText(string key, string fileName)
+        {
+            Text.Remove(key);
+            ReservedListTable[fileName].Remove(key);
+        }
+
+        /// <summary>
+        ///     文字列が登録されているかを返す
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <returns>文字列が登録されていればtrueを返す</returns>
+        public static bool ExistsKey(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return false;
+            }
+            key = key.ToUpper();
+
+            return Text.ContainsKey(key);
+        }
+
+        /// <summary>
+        ///     予約キーかどうかを判定する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="fileName">文字列定義ファイル名</param>
+        /// <returns>予約キーかどうか</returns>
+        public static bool IsReservedKey(string key, string fileName)
+        {
+            return (ReservedListTable.ContainsKey(fileName) && ReservedListTable[fileName].Contains(key));
+        }
+
+        /// <summary>
+        ///     一時キーを取得する
+        /// </summary>
+        /// <returns>一時キー名</returns>
+        public static string GetTempKey()
+        {
+            string key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
+            _tempNo++;
+
+            return key;
+        }
+
+        /// <summary>
+        ///     置き換え文字列変換テーブルに登録する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="text">登録する文字列</param>
+        private static void AddReplacedText(string key, string text)
+        {
+            // 置き換え文字列変換テーブルに登録する
+            ReplacedText[key] = new string[MaxLanguages];
+            ReplacedText[key][LangIndex] = text;
+        }
+
+        /// <summary>
+        ///     補完文字列変換テーブルに登録する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <param name="text">登録する文字列</param>
+        private static void AddComplementedText(string key, string text)
+        {
+            // 登録文字列があれば何もしない
+            if (Text.ContainsKey(key))
+            {
+                return;
+            }
+
+            // 補完文字列変換テーブルに登録する
+            ComplementedText[key] = new string[MaxLanguages];
+            ComplementedText[key][LangIndex] = text;
         }
 
         /// <summary>
@@ -819,39 +860,31 @@ namespace HoI2Editor.Models
             }
         }
 
-        /// <summary>
-        ///     文字列定義ファイルの再読み込みを要求する
-        /// </summary>
-        /// <remarks>
-        ///     ゲームフォルダ、MOD名、ゲーム種類、言語の変更があった場合に呼び出す
-        /// </remarks>
-        public static void RequireReload()
-        {
-            _loaded = false;
-        }
+        #endregion
+
+        #region 編集済みフラグ操作
 
         /// <summary>
         ///     編集済みフラグを更新する
         /// </summary>
         /// <param name="fileName">文字列定義ファイル名</param>
-        /// <param name="flag">フラグ状態</param>
-        public static void SetDirty(string fileName, bool flag)
+        public static void SetDirty(string fileName)
         {
-            if (flag)
+            if (!DirtyFiles.Contains(fileName))
             {
-                if (!DirtyFiles.Contains(fileName))
-                {
-                    DirtyFiles.Add(fileName);
-                }
-            }
-            else
-            {
-                if (DirtyFiles.Contains(fileName))
-                {
-                    DirtyFiles.Remove(fileName);
-                }
+                DirtyFiles.Add(fileName);
             }
         }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        private static void ResetDirtyAll()
+        {
+            DirtyFiles.Clear();
+        }
+
+        #endregion
     }
 
     /// <summary>

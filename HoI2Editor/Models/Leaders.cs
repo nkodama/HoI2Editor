@@ -13,27 +13,41 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Leaders
     {
-        #region フィールド
+        #region 公開プロパティ
 
         /// <summary>
         ///     マスター指揮官リスト
         /// </summary>
-        public static List<Leader> List = new List<Leader>();
+        public static List<Leader> Items { get; private set; }
 
         /// <summary>
         ///     国タグと指揮官ファイル名の対応付け
         /// </summary>
-        public static readonly Dictionary<CountryTag, string> FileNameMap = new Dictionary<CountryTag, string>();
+        public static Dictionary<CountryTag, string> FileNameMap { get; private set; }
 
         /// <summary>
         ///     兵科名
         /// </summary>
-        public static string[] BranchNames;
+        public static string[] BranchNames { get; private set; }
 
         /// <summary>
         ///     階級名
         /// </summary>
-        public static string[] RankNames;
+        public static string[] RankNames { get; private set; }
+
+        #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        private static bool _loaded;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -45,24 +59,14 @@ namespace HoI2Editor.Models
         /// </summary>
         private static int _currentLineNo;
 
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
-
-        /// <summary>
-        ///     読み込み済みフラグ
-        /// </summary>
-        private static bool _loaded;
-
         #endregion
 
-        #region 定数
+        #region 公開定数
 
         /// <summary>
         ///     指揮官特性値
         /// </summary>
-        public static readonly uint[] TraitsValueTable =
+        public static readonly uint[] TraitsValues =
             {
                 LeaderTraits.LogisticsWizard,
                 LeaderTraits.DefensiveDoctrine,
@@ -135,6 +139,10 @@ namespace HoI2Editor.Models
                 "TRAIT_BREAK"
             };
 
+        #endregion
+
+        #region 内部定数
+
         /// <summary>
         ///     CSVファイルの区切り文字
         /// </summary>
@@ -149,6 +157,12 @@ namespace HoI2Editor.Models
         /// </summary>
         static Leaders()
         {
+            // マスター指揮官リスト
+            Items = new List<Leader>();
+
+            // 国タグと指揮官ファイル名の対応付け
+            FileNameMap = new Dictionary<CountryTag, string>();
+
             // 兵科
             BranchNames = new[] {"", Resources.BranchArmy, Resources.BranchNavy, Resources.BranchAirforce};
 
@@ -179,7 +193,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            List.Clear();
+            Items.Clear();
             FileNameMap.Clear();
 
             switch (Game.Type)
@@ -606,7 +620,7 @@ namespace HoI2Editor.Models
                 leader.RetirementYear = 1999;
             }
 
-            List.Add(leader);
+            Items.Add(leader);
 
             return leader;
         }
@@ -666,7 +680,7 @@ namespace HoI2Editor.Models
                         : "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
 
                 // 指揮官定義行を順に書き込む
-                foreach (Leader leader in List.Where(leader => leader.Country == country))
+                foreach (Leader leader in Items.Where(leader => leader.Country == country))
                 {
                     // 不正な値が設定されている場合は警告をログに出力する
                     if (leader.Branch == LeaderBranch.None)
@@ -738,7 +752,7 @@ namespace HoI2Editor.Models
                     }
 
                     // 編集済みフラグを解除する
-                    leader.ResetDirty();
+                    leader.ResetDirtyAll();
 
                     _currentLineNo++;
                 }
@@ -758,7 +772,7 @@ namespace HoI2Editor.Models
         /// <param name="leader">挿入対象の項目</param>
         public static void AddItem(Leader leader)
         {
-            List.Add(leader);
+            Items.Add(leader);
         }
 
         /// <summary>
@@ -768,8 +782,8 @@ namespace HoI2Editor.Models
         /// <param name="position">挿入先の項目</param>
         public static void InsertItem(Leader leader, Leader position)
         {
-            int index = List.IndexOf(position) + 1;
-            List.Insert(index, leader);
+            int index = Items.IndexOf(position) + 1;
+            Items.Insert(index, leader);
         }
 
         /// <summary>
@@ -778,7 +792,7 @@ namespace HoI2Editor.Models
         /// <param name="leader">削除対象の項目</param>
         public static void RemoveItem(Leader leader)
         {
-            List.Remove(leader);
+            Items.Remove(leader);
         }
 
         /// <summary>
@@ -788,20 +802,20 @@ namespace HoI2Editor.Models
         /// <param name="dest">移動先の項目</param>
         public static void MoveItem(Leader src, Leader dest)
         {
-            int srcIndex = List.IndexOf(src);
-            int destIndex = List.IndexOf(dest);
+            int srcIndex = Items.IndexOf(src);
+            int destIndex = Items.IndexOf(dest);
 
             if (srcIndex > destIndex)
             {
                 // 上へ移動する場合
-                List.Insert(destIndex, src);
-                List.RemoveAt(srcIndex + 1);
+                Items.Insert(destIndex, src);
+                Items.RemoveAt(srcIndex + 1);
             }
             else
             {
                 // 下へ移動する場合
-                List.Insert(destIndex + 1, src);
-                List.RemoveAt(srcIndex);
+                Items.Insert(destIndex + 1, src);
+                Items.RemoveAt(srcIndex);
             }
         }
 

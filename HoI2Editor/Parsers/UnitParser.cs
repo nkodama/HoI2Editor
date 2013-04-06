@@ -11,10 +11,16 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public class UnitParser
     {
+        #region 内部フィールド
+
         /// <summary>
         ///     解析中のファイル名
         /// </summary>
         private static string _fileName;
+
+        #endregion
+
+        #region 構文解析
 
         /// <summary>
         ///     ユニットファイルを構文解析する
@@ -2788,5 +2794,7 @@ namespace HoI2Editor.Parsers
 
             return true;
         }
+
+        #endregion
     }
 }

@@ -8,6 +8,8 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class LogForm : Form
     {
+        #region 初期化
+
         /// <summary>
         ///     コンストラクタ
         /// </summary>
@@ -15,6 +17,20 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Hide();
+        }
+
+        #endregion
+
+        #region ログ操作
 
         /// <summary>
         ///     ログを出力する
@@ -52,14 +68,6 @@ namespace HoI2Editor.Forms
             logRichTextBox.Clear();
         }
 
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Hide();
-        }
+        #endregion
     }
 }

@@ -8,42 +8,46 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Command
     {
-        #region フィールド
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     コマンド種類
+        /// </summary>
+        public CommandType Type { get; set; }
+
+        /// <summary>
+        ///     パラメータ - which
+        /// </summary>
+        public object Which { get; set; }
+
+        /// <summary>
+        ///     パラメータ - value
+        /// </summary>
+        public object Value { get; set; }
+
+        /// <summary>
+        ///     パラメータ - when
+        /// </summary>
+        public object When { get; set; }
+
+        /// <summary>
+        ///     パラメータ - where
+        /// </summary>
+        public object Where { get; set; }
+
+        /// <summary>
+        ///     コマンドトリガー
+        /// </summary>
+        public List<Trigger> Triggers { get; private set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CommandItemId)).Length];
-
-        /// <summary>
-        ///     コマンドトリガー
-        /// </summary>
-        public List<Trigger> Triggers;
-
-        /// <summary>
-        ///     コマンド種類
-        /// </summary>
-        public CommandType Type;
-
-        /// <summary>
-        ///     パラメータ - value
-        /// </summary>
-        public object Value;
-
-        /// <summary>
-        ///     パラメータ - when
-        /// </summary>
-        public object When;
-
-        /// <summary>
-        ///     パラメータ - where
-        /// </summary>
-        public object Where;
-
-        /// <summary>
-        ///     パラメータ - which
-        /// </summary>
-        public object Which;
 
         /// <summary>
         ///     編集済みフラグ
@@ -52,7 +56,7 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 定数
+        #region 公開定数
 
         /// <summary>
         ///     コマンド種類文字列
@@ -345,7 +349,15 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 生成
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public Command()
+        {
+            Triggers = new List<Trigger>();
+        }
 
         /// <summary>
         ///     コマンドを複製する

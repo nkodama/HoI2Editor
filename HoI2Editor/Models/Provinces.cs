@@ -13,65 +13,66 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Provinces
     {
-        #region フィールド
+        #region 公開プロパティ
 
         /// <summary>
         ///     マスタープロヴィンスリスト
         /// </summary>
-        public static List<Province> Items = new List<Province>();
+        public static List<Province> Items { get; private set; }
 
         /// <summary>
         ///     海域リスト
         /// </summary>
-        public static List<int> SeaZones = new List<int>();
+        public static List<int> SeaZones { get; private set; }
 
         /// <summary>
-        ///     海域IDの対応付けテーブル
+        ///     海域とIDの対応付け
         /// </summary>
-        public static Dictionary<int, Province> SeaZoneMap = new Dictionary<int, Province>();
+        public static Dictionary<int, Province> SeaZoneMap { get; private set; }
 
         /// <summary>
         ///     利用可能な大陸ID
         /// </summary>
-        public static List<ContinentId> Continents = new List<ContinentId>();
+        public static List<ContinentId> Continents { get; private set; }
 
         /// <summary>
         ///     利用可能な地方ID
         /// </summary>
-        public static List<RegionId> Regions = new List<RegionId>();
+        public static List<RegionId> Regions { get; private set; }
 
         /// <summary>
         ///     利用可能な地域ID
         /// </summary>
-        public static List<AreaId> Areas = new List<AreaId>();
+        public static List<AreaId> Areas { get; private set; }
 
         /// <summary>
         ///     利用可能な気候ID
         /// </summary>
-        public static List<ClimateId> Climates = new List<ClimateId>();
+        public static List<ClimateId> Climates { get; private set; }
 
         /// <summary>
         ///     利用可能な地形ID
         /// </summary>
-        public static List<TerrainId> Terrains = new List<TerrainId>();
+        public static List<TerrainId> Terrains { get; private set; }
 
         /// <summary>
         ///     大陸と地方の対応付け
         /// </summary>
-        public static readonly Dictionary<ContinentId, List<RegionId>> ContinentRegionMap =
-            new Dictionary<ContinentId, List<RegionId>>();
+        public static Dictionary<ContinentId, List<RegionId>> ContinentRegionMap { get; private set; }
 
         /// <summary>
         ///     地方と地域の対応付け
         /// </summary>
-        public static readonly Dictionary<RegionId, List<AreaId>> RegionAreaMap =
-            new Dictionary<RegionId, List<AreaId>>();
+        public static Dictionary<RegionId, List<AreaId>> RegionAreaMap { get; private set; }
 
         /// <summary>
         ///     地域とプロヴィンスの対応付け
         /// </summary>
-        private static readonly Dictionary<AreaId, List<Province>> AreaProvinceMap =
-            new Dictionary<AreaId, List<Province>>();
+        public static Dictionary<AreaId, List<Province>> AreaProvinceMap { get; private set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     地域文字列とIDの対応付け
@@ -121,7 +122,7 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 定数
+        #region 内部定数
 
         /// <summary>
         ///     地域文字列
@@ -3364,26 +3365,43 @@ namespace HoI2Editor.Models
         /// </summary>
         static Provinces()
         {
+            // マスタープロヴィンスリスト
+            Items = new List<Province>();
+
+            // 海域リスト
+            SeaZones = new List<int>();
+
+            // 海域とIDの対応付け
+            SeaZoneMap = new Dictionary<int, Province>();
+
             // 地域文字列とIDの対応付け
+            AreaStringMap = new Dictionary<string, AreaId>();
             foreach (AreaId area in Enum.GetValues(typeof (AreaId)))
             {
                 AreaStringMap.Add(AreaStrings[(int) area].ToLower(), area);
             }
+
             // 地方文字列とIDの対応付け
+            RegionStringMap = new Dictionary<string, RegionId>();
             foreach (RegionId region in Enum.GetValues(typeof (RegionId)))
             {
                 RegionStringMap.Add(RegionStrings[(int) region].ToLower(), region);
             }
+
             // 大陸文字列とIDの対応付け
+            ContinentStringMap = new Dictionary<string, ContinentId>();
             foreach (ContinentId continent in Enum.GetValues(typeof (ContinentId)))
             {
                 ContinentStringMap.Add(ContinentStrings[(int) continent].ToLower(), continent);
             }
+
             // 気候文字列とIDの対応付け
+            ClimateStringMap = new Dictionary<string, ClimateId>();
             foreach (ClimateId climate in Enum.GetValues(typeof (ClimateId)))
             {
                 ClimateStringMap.Add(ClimateStrings[(int) climate].ToLower(), climate);
             }
+
             // 地形文字列とIDの対応付け
             foreach (TerrainId terrain in Enum.GetValues(typeof (TerrainId)))
             {
@@ -3397,24 +3415,19 @@ namespace HoI2Editor.Models
         public static void Init()
         {
             // 利用可能な大陸IDの初期化
-            Continents.Clear();
-            Continents.AddRange(ContinentsHoI2);
+            Continents = new List<ContinentId>(ContinentsHoI2);
 
             // 利用可能な地方IDの初期化
-            Regions.Clear();
-            Regions.AddRange(Game.Type == GameType.DarkestHour ? RegionsDh : RegionsHoI2);
+            Regions = new List<RegionId>(Game.Type == GameType.DarkestHour ? RegionsDh : RegionsHoI2);
 
             // 利用可能な地域IDの初期化
-            Areas.Clear();
-            Areas.AddRange(Game.Type == GameType.DarkestHour ? AreasDh : AreasHoI2);
+            Areas = new List<AreaId>(Game.Type == GameType.DarkestHour ? AreasDh : AreasHoI2);
 
             // 利用可能な気候IDの初期化
-            Climates.Clear();
-            Climates.AddRange(ClimatesHoI2);
+            Climates = new List<ClimateId>(ClimatesHoI2);
 
             // 利用可能な地形IDの初期化
-            Terrains.Clear();
-            Terrains.AddRange(TerrainsHoI2);
+            Terrains = new List<TerrainId>(TerrainsHoI2);
         }
 
         #endregion
@@ -4567,9 +4580,9 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void AttachProvinces()
         {
-            ContinentRegionMap.Clear();
-            RegionAreaMap.Clear();
-            AreaProvinceMap.Clear();
+            ContinentRegionMap = new Dictionary<ContinentId, List<RegionId>>();
+            RegionAreaMap = new Dictionary<RegionId, List<AreaId>>();
+            AreaProvinceMap = new Dictionary<AreaId, List<Province>>();
 
             foreach (Province province in Items)
             {

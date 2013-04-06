@@ -7,25 +7,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Team
     {
-        /// <summary>
-        ///     研究特性定義の数
-        /// </summary>
-        public const int SpecialityLength = 32;
-
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TeamItemId)).Length];
-
-        /// <summary>
-        ///     研究特性
-        /// </summary>
-        private readonly TechSpeciality[] _specialities = new TechSpeciality[SpecialityLength];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     国タグ
@@ -70,6 +52,38 @@ namespace HoI2Editor.Models
             get { return _specialities; }
         }
 
+        #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TeamItemId)).Length];
+
+        /// <summary>
+        ///     研究特性
+        /// </summary>
+        private readonly TechSpeciality[] _specialities = new TechSpeciality[SpecialityLength];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     研究特性定義の数
+        /// </summary>
+        public const int SpecialityLength = 32;
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
         /// <summary>
         ///     研究機関データが編集済みかどうかを取得する
         /// </summary>
@@ -102,7 +116,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirty()
+        public void SetDirtyAll()
         {
             foreach (TeamItemId id in Enum.GetValues(typeof (TeamItemId)))
             {
@@ -114,7 +128,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirty()
+        public void ResetDirtyAll()
         {
             foreach (TeamItemId id in Enum.GetValues(typeof (TeamItemId)))
             {
@@ -122,6 +136,8 @@ namespace HoI2Editor.Models
             }
             _dirtyFlag = false;
         }
+
+        #endregion
     }
 
     /// <summary>

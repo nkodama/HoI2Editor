@@ -5,7 +5,21 @@
     /// </summary>
     public class Trigger
     {
-        #region 定数
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     トリガーの種類
+        /// </summary>
+        public TriggerType Type { get; set; }
+
+        /// <summary>
+        ///     トリガーの値
+        /// </summary>
+        public object Value { get; set; }
+
+        #endregion
+
+        #region 公開定数
 
         /// <summary>
         ///     トリガー文字列テーブル
@@ -285,16 +299,6 @@
             };
 
         #endregion
-
-        /// <summary>
-        ///     トリガーの種類
-        /// </summary>
-        public TriggerType Type;
-
-        /// <summary>
-        ///     トリガーの値
-        /// </summary>
-        public object Value;
     }
 
     /// <summary>

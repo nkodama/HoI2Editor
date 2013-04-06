@@ -9,17 +9,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechGroup
     {
-        #region フィールド
-
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechGroupItemId)).Length];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     技術グループID
@@ -48,7 +38,21 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 生成
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechGroupItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     コンストラクタ
@@ -265,17 +269,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechItem : ITechItem
     {
-        #region フィールド
-
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     技術ID
@@ -334,7 +328,21 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 生成
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     コンストラクタ
@@ -720,17 +728,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechLabel : ITechItem
     {
-        #region フィールド
-
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     ラベル名
@@ -744,7 +742,21 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 生成
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     コンストラクタ
@@ -922,17 +934,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechEvent : ITechItem
     {
-        #region フィールド
-
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     技術イベントID
@@ -951,7 +953,21 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 生成
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     コンストラクタ
@@ -1090,22 +1106,26 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechPosition
     {
-        #region フィールド
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     X座標
+        /// </summary>
+        public int X { get; set; }
+
+        /// <summary>
+        ///     Y座標
+        /// </summary>
+        public int Y { get; set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechPositionItemId)).Length];
-
-        /// <summary>
-        ///     X座標
-        /// </summary>
-        public int X;
-
-        /// <summary>
-        ///     Y座標
-        /// </summary>
-        public int Y;
 
         /// <summary>
         ///     編集済みフラグ
@@ -1114,7 +1134,7 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 生成
+        #region 初期化
 
         /// <summary>
         ///     座標を複製する
@@ -1192,12 +1212,16 @@ namespace HoI2Editor.Models
     /// </summary>
     public class RequiredTech
     {
-        #region フィールド
+        #region 公開プロパティ
 
         /// <summary>
         ///     技術ID
         /// </summary>
-        public int Id;
+        public int Id { get; set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     編集済みフラグ
@@ -1241,17 +1265,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class TechComponent
     {
-        #region フィールド
-
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechComponentItemId)).Length];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     小研究ID
@@ -1280,7 +1294,21 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 生成
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechComponentItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     小研究を作成する

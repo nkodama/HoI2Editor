@@ -9,6 +9,8 @@ namespace HoI2Editor.Writers
     /// </summary>
     public static class TechWriter
     {
+        #region ファイル書き込み
+
         /// <summary>
         ///     技術グループをファイルへ書き込む
         /// </summary>
@@ -231,5 +233,7 @@ namespace HoI2Editor.Writers
             }
             writer.WriteLine("    }");
         }
+
+        #endregion
     }
 }

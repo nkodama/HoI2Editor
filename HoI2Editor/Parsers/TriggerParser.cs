@@ -10,10 +10,16 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public static class TriggerParser
     {
+        #region 内部フィールド
+
         /// <summary>
         ///     トリガー種類文字列とIDの対応付け
         /// </summary>
         private static readonly Dictionary<string, TriggerType> TypeMap = new Dictionary<string, TriggerType>();
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     静的コンストラクタ
@@ -25,6 +31,10 @@ namespace HoI2Editor.Parsers
                 TypeMap.Add(Trigger.TypeStringTable[(int) type], type);
             }
         }
+
+        #endregion
+
+        #region 構文解析
 
         /// <summary>
         ///     triggerセクションを構文解析する
@@ -134,5 +144,7 @@ namespace HoI2Editor.Parsers
 
             return list.Count > 0 ? list : null;
         }
+
+        #endregion
     }
 }

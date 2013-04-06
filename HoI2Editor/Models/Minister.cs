@@ -7,15 +7,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Minister
     {
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (MinisterItemId)).Length];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     国タグ
@@ -72,6 +64,24 @@ namespace HoI2Editor.Models
         /// </summary>
         public int RetirementYear { get; set; }
 
+        #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (MinisterItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
         /// <summary>
         ///     閣僚データが編集済みかどうかを取得する
         /// </summary>
@@ -104,7 +114,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirty()
+        public void SetDirtyAll()
         {
             foreach (MinisterItemId id in Enum.GetValues(typeof (MinisterItemId)))
             {
@@ -116,7 +126,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirty()
+        public void ResetDirtyAll()
         {
             foreach (MinisterItemId id in Enum.GetValues(typeof (MinisterItemId)))
             {
@@ -124,6 +134,8 @@ namespace HoI2Editor.Models
             }
             _dirtyFlag = false;
         }
+
+        #endregion
     }
 
     /// <summary>

@@ -9,7 +9,131 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Game
     {
-        #region パス定義
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     ゲームの種類
+        /// </summary>
+        public static GameType Type { get; private set; }
+
+        /// <summary>
+        ///     ゲームバージョン
+        /// </summary>
+        public static int Version { get; private set; }
+
+        /// <summary>
+        ///     ファイル読み書き時のコードページ
+        /// </summary>
+        public static int CodePage
+        {
+            get { return _codePage; }
+            set
+            {
+                _codePage = value;
+
+                // ファイルの再読み込みを要求する
+                RequireReload();
+            }
+        }
+
+        /// <summary>
+        ///     ゲームフォルダ名
+        /// </summary>
+        public static string FolderName
+        {
+            get { return _folderName; }
+            set
+            {
+                _folderName = value;
+
+                // ゲームの種類を判別する
+                DistinguishGameType();
+
+                // ゲームのバージョンを判別する
+                DistinguishGameVersion();
+
+                // 言語モードを判別する
+                DistinguishLanguageMode();
+
+                // MODフォルダ名を更新する
+                UpdateModFolderName();
+
+                // ファイルの再読み込みを要求する
+                RequireReload();
+            }
+        }
+
+        /// <summary>
+        ///     ゲームフォルダが有効かどうか
+        /// </summary>
+        public static bool IsGameFolderActive
+        {
+            get { return Type != GameType.None; }
+        }
+
+        /// <summary>
+        ///     MOD名
+        /// </summary>
+        public static string ModName
+        {
+            get { return _modName; }
+            set
+            {
+                _modName = value;
+
+                // MODフォルダ名を更新する
+                UpdateModFolderName();
+
+                // ファイルの再読み込みを要求する
+                RequireReload();
+            }
+        }
+
+        /// <summary>
+        ///     MODが有効かどうか
+        /// </summary>
+        public static bool IsModActive { get; private set; }
+
+        /// <summary>
+        ///     MODフォルダ名
+        /// </summary>
+        public static string ModFolderName
+        {
+            get { return _modFolderName; }
+        }
+
+        #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     ゲームフォルダ名
+        /// </summary>
+        private static string _folderName;
+
+        /// <summary>
+        ///     MOD名
+        /// </summary>
+        private static string _modName;
+
+        /// <summary>
+        ///     MODフォルダ名
+        /// </summary>
+        private static string _modFolderName;
+
+        /// <summary>
+        ///     実行ファイル名
+        /// </summary>
+        private static string _exeFileName;
+
+        /// <summary>
+        ///     ファイル読み書き時のコードページ
+        /// </summary>
+        private static int _codePage;
+
+        #endregion
+
+        #region 公開定数
 
         /// <summary>
         ///     文字列定義フォルダ
@@ -173,30 +297,7 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        /// <summary>
-        ///     ゲームフォルダ名
-        /// </summary>
-        private static string _folderName;
-
-        /// <summary>
-        ///     MOD名
-        /// </summary>
-        private static string _modName;
-
-        /// <summary>
-        ///     MODフォルダ名
-        /// </summary>
-        private static string _modFolderName;
-
-        /// <summary>
-        ///     実行ファイル名
-        /// </summary>
-        private static string _exeFileName;
-
-        /// <summary>
-        ///     ファイル読み書き時のコードページ
-        /// </summary>
-        private static int _codePage;
+        #region 初期化
 
         /// <summary>
         ///     静的コンストラクタ
@@ -207,97 +308,8 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     ゲームの種類
+        ///     ファイルの再読み込みを要求する
         /// </summary>
-        public static GameType Type { get; private set; }
-
-        /// <summary>
-        ///     ゲームバージョン
-        /// </summary>
-        public static int Version { get; private set; }
-
-        /// <summary>
-        ///     ファイル読み書き時のコードページ
-        /// </summary>
-        public static int CodePage
-        {
-            get { return _codePage; }
-            set
-            {
-                _codePage = value;
-
-                // ファイルの再読み込みを要求する
-                RequireReload();
-            }
-        }
-
-        /// <summary>
-        ///     ゲームフォルダ名
-        /// </summary>
-        public static string FolderName
-        {
-            get { return _folderName; }
-            set
-            {
-                _folderName = value;
-
-                // ゲームの種類を判別する
-                DistinguishGameType();
-
-                // ゲームのバージョンを判別する
-                DistinguishGameVersion();
-
-                // 言語モードを判別する
-                DistinguishLanguageMode();
-
-                // MODフォルダ名を更新する
-                UpdateModFolderName();
-
-                // ファイルの再読み込みを要求する
-                RequireReload();
-            }
-        }
-
-        /// <summary>
-        ///     ゲームフォルダが有効かどうか
-        /// </summary>
-        public static bool IsGameFolderActive
-        {
-            get { return Type != GameType.None; }
-        }
-
-        /// <summary>
-        ///     MOD名
-        /// </summary>
-        public static string ModName
-        {
-            get { return _modName; }
-            set
-            {
-                _modName = value;
-
-                // MODフォルダ名を更新する
-                UpdateModFolderName();
-
-                // ファイルの再読み込みを要求する
-                RequireReload();
-            }
-        }
-
-        /// <summary>
-        ///     MODが有効かどうか
-        /// </summary>
-        public static bool IsModActive { get; private set; }
-
-        /// <summary>
-        ///     MODフォルダ名
-        /// </summary>
-        public static string ModFolderName
-        {
-            get { return _modFolderName; }
-        }
-
-        // ファイルの再読み込みを要求する
         private static void RequireReload()
         {
             Misc.RequireReload();
@@ -307,7 +319,12 @@ namespace HoI2Editor.Models
             Teams.RequireReload();
             Techs.RequireReload();
             Units.RequireReload();
+            Provinces.RequireReload();
         }
+
+        #endregion
+
+        #region パス操作
 
         /// <summary>
         ///     MODフォルダを考慮して読み込み用のファイル名を取得する
@@ -426,6 +443,40 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     MODフォルダ名を更新する
+        /// </summary>
+        private static void UpdateModFolderName()
+        {
+            if (!IsGameFolderActive)
+            {
+                IsModActive = false;
+                _modFolderName = "";
+                return;
+            }
+            if (string.IsNullOrEmpty(_modName))
+            {
+                IsModActive = false;
+                _modFolderName = FolderName;
+                return;
+            }
+            IsModActive = true;
+            switch (Type)
+            {
+                case GameType.DarkestHour:
+                    _modFolderName = Path.Combine(Path.Combine(FolderName, ModPathNameDh), ModName);
+                    break;
+
+                default:
+                    _modFolderName = Path.Combine(FolderName, ModName);
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region ゲームの種類/バージョン
+
+        /// <summary>
         ///     ゲームの種類を自動判別する
         /// </summary>
         private static void DistinguishGameType()
@@ -496,6 +547,10 @@ namespace HoI2Editor.Models
                       (info.ProductVersion[3] - '0');
         }
 
+        #endregion
+
+        #region 言語
+
         /// <summary>
         ///     言語モードを自動判別する
         /// </summary>
@@ -538,35 +593,7 @@ namespace HoI2Editor.Models
             Config.LangMode = LanguageMode.English;
         }
 
-        /// <summary>
-        ///     MODフォルダ名を更新する
-        /// </summary>
-        private static void UpdateModFolderName()
-        {
-            if (!IsGameFolderActive)
-            {
-                IsModActive = false;
-                _modFolderName = "";
-                return;
-            }
-            if (string.IsNullOrEmpty(_modName))
-            {
-                IsModActive = false;
-                _modFolderName = FolderName;
-                return;
-            }
-            IsModActive = true;
-            switch (Type)
-            {
-                case GameType.DarkestHour:
-                    _modFolderName = Path.Combine(Path.Combine(FolderName, ModPathNameDh), ModName);
-                    break;
-
-                default:
-                    _modFolderName = Path.Combine(FolderName, ModName);
-                    break;
-            }
-        }
+        #endregion
     }
 
     /// <summary>

@@ -15,12 +15,12 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class LeaderEditorForm : Form
     {
-        #region フィールド
+        #region 内部フィールド
 
         /// <summary>
         ///     絞り込み後の指揮官リスト
         /// </summary>
-        private readonly List<Leader> _narrowedList = new List<Leader>();
+        private readonly List<Leader> _list = new List<Leader>();
 
         #endregion
 
@@ -145,7 +145,7 @@ namespace HoI2Editor.Forms
             leaderListView.Items.Clear();
 
             // 項目を順に登録する
-            foreach (Leader leader in _narrowedList)
+            foreach (Leader leader in _list)
             {
                 leaderListView.Items.Add(CreateLeaderListViewItem(leader));
             }
@@ -173,7 +173,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void NarrowLeaderList()
         {
-            _narrowedList.Clear();
+            _list.Clear();
 
             // 選択中の国家がなければ戻る
             if (countryListBox.SelectedIndices.Count == 0)
@@ -189,7 +189,7 @@ namespace HoI2Editor.Forms
                 (from string name in countryListBox.SelectedItems select Country.StringMap[name]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
-            foreach (Leader leader in Leaders.List.Where(leader => tags.Contains(leader.Country)))
+            foreach (Leader leader in Leaders.Items.Where(leader => tags.Contains(leader.Country)))
             {
                 // 兵科による絞り込み
                 switch (leader.Branch)
@@ -243,7 +243,7 @@ namespace HoI2Editor.Forms
                     }
                 }
 
-                _narrowedList.Add(leader);
+                _list.Add(leader);
             }
         }
 
@@ -286,7 +286,7 @@ namespace HoI2Editor.Forms
                 leader.RankYear[3] = 1990;
 
                 // 指揮官ごとの編集済みフラグを設定する
-                leader.SetDirty();
+                leader.SetDirtyAll();
 
                 // 指揮官リストに項目を挿入する
                 Leaders.InsertItem(leader, selected);
@@ -314,7 +314,7 @@ namespace HoI2Editor.Forms
                 leader.RankYear[3] = 1990;
 
                 // 指揮官ごとの編集済みフラグを設定する
-                leader.SetDirty();
+                leader.SetDirtyAll();
 
                 // 指揮官リストに項目を追加する
                 Leaders.AddItem(leader);
@@ -366,7 +366,7 @@ namespace HoI2Editor.Forms
             leader.RankYear[3] = selected.RankYear[3];
 
             // 指揮官ごとの編集済みフラグを設定する
-            leader.SetDirty();
+            leader.SetDirtyAll();
 
             // 指揮官リストに項目を挿入する
             Leaders.InsertItem(leader, selected);
@@ -551,7 +551,7 @@ namespace HoI2Editor.Forms
         private void AddListItem(Leader leader)
         {
             // 絞り込みリストに項目を追加する
-            _narrowedList.Add(leader);
+            _list.Add(leader);
 
             // 指揮官リストビューに項目を追加する
             leaderListView.Items.Add(CreateLeaderListViewItem(leader));
@@ -570,7 +570,7 @@ namespace HoI2Editor.Forms
         private void InsertListItem(Leader leader, int index)
         {
             // 絞り込みリストに項目を挿入する
-            _narrowedList.Insert(index, leader);
+            _list.Insert(index, leader);
 
             // 指揮官リストビューに項目を挿入する
             ListViewItem item = CreateLeaderListViewItem(leader);
@@ -589,7 +589,7 @@ namespace HoI2Editor.Forms
         private void RemoveItem(int index)
         {
             // 絞り込みリストから項目を削除する
-            _narrowedList.RemoveAt(index);
+            _list.RemoveAt(index);
 
             // 指揮官リストビューから項目を削除する
             leaderListView.Items.RemoveAt(index);
@@ -615,15 +615,15 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveListItem(int src, int dest)
         {
-            Leader leader = _narrowedList[src];
+            Leader leader = _list[src];
             ListViewItem item = CreateLeaderListViewItem(leader);
 
             if (src > dest)
             {
                 // 上へ移動する場合
                 // 絞り込みリストの項目を移動する
-                _narrowedList.Insert(dest, leader);
-                _narrowedList.RemoveAt(src + 1);
+                _list.Insert(dest, leader);
+                _list.RemoveAt(src + 1);
 
                 // 指揮官リストビューの項目を移動する
                 leaderListView.Items.Insert(dest, item);
@@ -633,8 +633,8 @@ namespace HoI2Editor.Forms
             {
                 // 下へ移動する場合
                 // 絞り込みリストの項目を移動する
-                _narrowedList.Insert(dest + 1, leader);
-                _narrowedList.RemoveAt(src);
+                _list.Insert(dest + 1, leader);
+                _list.RemoveAt(src);
 
                 // 指揮官リストビューの項目を移動する
                 leaderListView.Items.Insert(dest + 1, item);
@@ -695,7 +695,7 @@ namespace HoI2Editor.Forms
         {
             string s = Enum.GetValues(typeof (LeaderTraitsId))
                            .Cast<LeaderTraitsId>()
-                           .Where(id => (traits & Leaders.TraitsValueTable[(int) id]) != 0)
+                           .Where(id => (traits & Leaders.TraitsValues[(int) id]) != 0)
                            .Aggregate("",
                                       (current, id) =>
                                       string.Format("{0}, {1}", current, Config.GetText(Leaders.TraitsNames[(int) id])));

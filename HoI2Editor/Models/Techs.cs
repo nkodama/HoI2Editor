@@ -15,37 +15,41 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Techs
     {
-        #region フィールド
+        #region 公開プロパティ
 
         /// <summary>
         ///     技術グループリスト
         /// </summary>
-        public static List<TechGroup> Groups = new List<TechGroup>();
+        public static List<TechGroup> Groups { get; private set; }
 
         /// <summary>
         ///     技術IDリスト
         /// </summary>
-        public static List<int> TechIds = new List<int>();
+        public static List<int> TechIds { get; private set; }
 
         /// <summary>
         ///     技術IDの対応付けテーブル
         /// </summary>
-        public static readonly Dictionary<int, TechItem> TechIdMap = new Dictionary<int, TechItem>();
-
-        /// <summary>
-        ///     研究特性文字列とIDの対応付け
-        /// </summary>
-        public static Dictionary<string, TechSpeciality> SpecialityStringMap = new Dictionary<string, TechSpeciality>();
-
-        /// <summary>
-        ///     研究特性画像リスト
-        /// </summary>
-        public static ImageList SpecialityImages;
+        public static Dictionary<int, TechItem> TechIdMap { get; private set; }
 
         /// <summary>
         ///     研究特性リスト
         /// </summary>
-        public static TechSpeciality[] Specialities;
+        public static TechSpeciality[] Specialities { get; private set; }
+
+        /// <summary>
+        ///     研究特性文字列とIDの対応付け
+        /// </summary>
+        public static Dictionary<string, TechSpeciality> SpecialityStringMap { get; private set; }
+
+        /// <summary>
+        ///     研究特性画像リスト
+        /// </summary>
+        public static ImageList SpecialityImages { get; private set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -54,7 +58,7 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 定数
+        #region 公開定数
 
         /// <summary>
         ///     技術カテゴリ文字列
@@ -87,6 +91,144 @@ namespace HoI2Editor.Models
                 "ND",
                 "AD"
             };
+
+        /// <summary>
+        ///     研究特性文字列
+        /// </summary>
+        public static readonly string[] SpecialityStrings =
+            {
+                "",
+                "artillery",
+                "mechanics",
+                "electronics",
+                "chemistry",
+                "training",
+                "general_equipment",
+                "rocketry",
+                "naval_engineering",
+                "aeronautics",
+                "nuclear_physics",
+                "nuclear_engineering",
+                "management",
+                "industrial_engineering",
+                "mathematics",
+                "small_unit_tactics",
+                "large_unit_tactics",
+                "centralized_execution",
+                "decentralized_execution",
+                "technical_efficiency",
+                "individual_courage",
+                "infantry_focus",
+                "combined_arms_focus",
+                "large_unit_focus",
+                "naval_artillery",
+                "naval_training",
+                "aircraft_testing",
+                "fighter_tactics",
+                "bomber_tactics",
+                "carrier_tactics",
+                "submarine_tactics",
+                "large_taskforce_tactics",
+                "small_taskforce_tactics",
+                "seamanship",
+                "piloting",
+                "avionics",
+                "munitions",
+                "vehicle_engineering",
+                "carrier_design",
+                "submarine_design",
+                "fighter_design",
+                "bomber_design",
+                "mountain_training",
+                "airborne_training",
+                "marine_training",
+                "maneuver_tactics",
+                "blitzkrieg_tactics",
+                "static_defense_tactics",
+                "medicine",
+                "cavalry_tactics",
+                "rt_user_1",
+                "rt_user_2",
+                "rt_user_3",
+                "rt_user_4",
+                "rt_user_5",
+                "rt_user_6",
+                "rt_user_7",
+                "rt_user_8",
+                "rt_user_9",
+                "rt_user_10",
+                "rt_user_11",
+                "rt_user_12",
+                "rt_user_13",
+                "rt_user_14",
+                "rt_user_15",
+                "rt_user_16",
+                "rt_user_17",
+                "rt_user_18",
+                "rt_user_19",
+                "rt_user_20",
+                "rt_user_21",
+                "rt_user_22",
+                "rt_user_23",
+                "rt_user_24",
+                "rt_user_25",
+                "rt_user_26",
+                "rt_user_27",
+                "rt_user_28",
+                "rt_user_29",
+                "rt_user_30",
+                "rt_user_31",
+                "rt_user_32",
+                "rt_user_33",
+                "rt_user_34",
+                "rt_user_35",
+                "rt_user_36",
+                "rt_user_37",
+                "rt_user_38",
+                "rt_user_39",
+                "rt_user_40",
+                "rt_user_41",
+                "rt_user_42",
+                "rt_user_43",
+                "rt_user_44",
+                "rt_user_45",
+                "rt_user_46",
+                "rt_user_47",
+                "rt_user_48",
+                "rt_user_49",
+                "rt_user_50",
+                "rt_user_51",
+                "rt_user_52",
+                "rt_user_53",
+                "rt_user_54",
+                "rt_user_55",
+                "rt_user_56",
+                "rt_user_57",
+                "rt_user_58",
+                "rt_user_59",
+                "rt_user_60"
+            };
+
+        /// <summary>
+        ///     カテゴリ文字列とIDの対応付け
+        /// </summary>
+        public static readonly Dictionary<string, TechCategory> CategoryMap
+            = new Dictionary<string, TechCategory>
+                  {
+                      {"infantry", TechCategory.Infantry},
+                      {"armor", TechCategory.Armor},
+                      {"naval", TechCategory.Naval},
+                      {"aircraft", TechCategory.Aircraft},
+                      {"industry", TechCategory.Industry},
+                      {"land_doctrines", TechCategory.LandDoctrines},
+                      {"secret_weapons", TechCategory.SecretWeapons},
+                      {"naval_doctrines", TechCategory.NavalDoctrines},
+                      {"air_doctrines", TechCategory.AirDoctrines},
+                  };
+
+        #endregion
+
+        #region 内部定数
 
         /// <summary>
         ///     技術定義ファイル名
@@ -336,123 +478,6 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     研究特性文字列
-        /// </summary>
-        public static readonly string[] SpecialityStrings =
-            {
-                "",
-                "artillery",
-                "mechanics",
-                "electronics",
-                "chemistry",
-                "training",
-                "general_equipment",
-                "rocketry",
-                "naval_engineering",
-                "aeronautics",
-                "nuclear_physics",
-                "nuclear_engineering",
-                "management",
-                "industrial_engineering",
-                "mathematics",
-                "small_unit_tactics",
-                "large_unit_tactics",
-                "centralized_execution",
-                "decentralized_execution",
-                "technical_efficiency",
-                "individual_courage",
-                "infantry_focus",
-                "combined_arms_focus",
-                "large_unit_focus",
-                "naval_artillery",
-                "naval_training",
-                "aircraft_testing",
-                "fighter_tactics",
-                "bomber_tactics",
-                "carrier_tactics",
-                "submarine_tactics",
-                "large_taskforce_tactics",
-                "small_taskforce_tactics",
-                "seamanship",
-                "piloting",
-                "avionics",
-                "munitions",
-                "vehicle_engineering",
-                "carrier_design",
-                "submarine_design",
-                "fighter_design",
-                "bomber_design",
-                "mountain_training",
-                "airborne_training",
-                "marine_training",
-                "maneuver_tactics",
-                "blitzkrieg_tactics",
-                "static_defense_tactics",
-                "medicine",
-                "cavalry_tactics",
-                "rt_user_1",
-                "rt_user_2",
-                "rt_user_3",
-                "rt_user_4",
-                "rt_user_5",
-                "rt_user_6",
-                "rt_user_7",
-                "rt_user_8",
-                "rt_user_9",
-                "rt_user_10",
-                "rt_user_11",
-                "rt_user_12",
-                "rt_user_13",
-                "rt_user_14",
-                "rt_user_15",
-                "rt_user_16",
-                "rt_user_17",
-                "rt_user_18",
-                "rt_user_19",
-                "rt_user_20",
-                "rt_user_21",
-                "rt_user_22",
-                "rt_user_23",
-                "rt_user_24",
-                "rt_user_25",
-                "rt_user_26",
-                "rt_user_27",
-                "rt_user_28",
-                "rt_user_29",
-                "rt_user_30",
-                "rt_user_31",
-                "rt_user_32",
-                "rt_user_33",
-                "rt_user_34",
-                "rt_user_35",
-                "rt_user_36",
-                "rt_user_37",
-                "rt_user_38",
-                "rt_user_39",
-                "rt_user_40",
-                "rt_user_41",
-                "rt_user_42",
-                "rt_user_43",
-                "rt_user_44",
-                "rt_user_45",
-                "rt_user_46",
-                "rt_user_47",
-                "rt_user_48",
-                "rt_user_49",
-                "rt_user_50",
-                "rt_user_51",
-                "rt_user_52",
-                "rt_user_53",
-                "rt_user_54",
-                "rt_user_55",
-                "rt_user_56",
-                "rt_user_57",
-                "rt_user_58",
-                "rt_user_59",
-                "rt_user_60"
-            };
-
-        /// <summary>
         ///     研究特性名
         /// </summary>
         private static readonly string[] SpecialityNames =
@@ -569,23 +594,6 @@ namespace HoI2Editor.Models
                 "RT_USER_60"
             };
 
-        /// <summary>
-        ///     カテゴリ文字列とIDの対応付け
-        /// </summary>
-        public static readonly Dictionary<string, TechCategory> CategoryMap
-            = new Dictionary<string, TechCategory>
-                  {
-                      {"infantry", TechCategory.Infantry},
-                      {"armor", TechCategory.Armor},
-                      {"naval", TechCategory.Naval},
-                      {"aircraft", TechCategory.Aircraft},
-                      {"industry", TechCategory.Industry},
-                      {"land_doctrines", TechCategory.LandDoctrines},
-                      {"secret_weapons", TechCategory.SecretWeapons},
-                      {"naval_doctrines", TechCategory.NavalDoctrines},
-                      {"air_doctrines", TechCategory.AirDoctrines},
-                  };
-
         #endregion
 
         #region 初期化
@@ -595,7 +603,17 @@ namespace HoI2Editor.Models
         /// </summary>
         static Techs()
         {
+            // 技術グループリスト
+            Groups = new List<TechGroup>();
+
+            // 技術IDリスト
+            TechIds = new List<int>();
+
+            // 技術IDの対応付け
+            TechIdMap = new Dictionary<int, TechItem>();
+
             // 研究特性文字列とIDの対応付け
+            SpecialityStringMap = new Dictionary<string, TechSpeciality>();
             foreach (TechSpeciality speciality in Enum.GetValues(typeof (TechSpeciality)))
             {
                 SpecialityStringMap.Add(SpecialityStrings[(int) speciality], speciality);

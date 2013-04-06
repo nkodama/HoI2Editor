@@ -10,10 +10,16 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public static class TechParser
     {
+        #region 内部フィールド
+
         /// <summary>
         ///     解析中のファイル名
         /// </summary>
         private static string _fileName;
+
+        #endregion
+
+        #region 構文解析
 
         /// <summary>
         ///     技術ファイルを構文解析する
@@ -1271,5 +1277,7 @@ namespace HoI2Editor.Parsers
 
             return list;
         }
+
+        #endregion
     }
 }

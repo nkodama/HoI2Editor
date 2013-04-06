@@ -12,12 +12,26 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Teams
     {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     マスター研究機関リスト
+        /// </summary>
+        public static List<Team> Items { get; private set; }
+
+        #endregion
+
         #region フィールド
 
         /// <summary>
-        ///     マスター閣僚リスト
+        ///     読み込み済みフラグ
         /// </summary>
-        public static List<Team> List = new List<Team>();
+        private static bool _loaded;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -29,24 +43,27 @@ namespace HoI2Editor.Models
         /// </summary>
         private static int _currentLineNo;
 
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
-
-        /// <summary>
-        ///     読み込み済みフラグ
-        /// </summary>
-        private static bool _loaded;
-
         #endregion
 
-        #region 定数
+        #region 内部定数
 
         /// <summary>
         ///     CSVファイルの区切り文字
         /// </summary>
         private static readonly char[] CsvSeparator = {';'};
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     静的コンストラクタ
+        /// </summary>
+        static Teams()
+        {
+            // マスター研究機関リスト
+            Items = new List<Team>();
+        }
 
         #endregion
 
@@ -71,7 +88,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            List.Clear();
+            Items.Clear();
 
             switch (Game.Type)
             {
@@ -407,7 +424,7 @@ namespace HoI2Editor.Models
                 team.Specialities[i] = speciality;
             }
 
-            List.Add(team);
+            Items.Add(team);
         }
 
         #endregion
@@ -465,7 +482,7 @@ namespace HoI2Editor.Models
                     Country.Strings[(int) country]);
 
                 // 研究機関定義行を順に書き込む
-                foreach (Team team in List.Where(team => team.Country == country))
+                foreach (Team team in Items.Where(team => team.Country == country))
                 {
                     writer.Write(
                         "{0};{1};{2};{3};{4};{5}",
@@ -485,7 +502,7 @@ namespace HoI2Editor.Models
                     writer.WriteLine(";x");
 
                     // 編集済みフラグを解除する
-                    team.ResetDirty();
+                    team.ResetDirtyAll();
 
                     _currentLineNo++;
                 }
@@ -505,7 +522,7 @@ namespace HoI2Editor.Models
         /// <param name="team">追加対象の項目</param>
         public static void AddItem(Team team)
         {
-            List.Add(team);
+            Items.Add(team);
         }
 
         /// <summary>
@@ -515,7 +532,7 @@ namespace HoI2Editor.Models
         /// <param name="position">挿入位置の直前の項目</param>
         public static void InsertItem(Team team, Team position)
         {
-            List.Insert(List.IndexOf(position) + 1, team);
+            Items.Insert(Items.IndexOf(position) + 1, team);
         }
 
         /// <summary>
@@ -524,7 +541,7 @@ namespace HoI2Editor.Models
         /// <param name="team">削除対象の項目</param>
         public static void RemoveItem(Team team)
         {
-            List.Remove(team);
+            Items.Remove(team);
         }
 
         /// <summary>
@@ -534,20 +551,20 @@ namespace HoI2Editor.Models
         /// <param name="dest">移動先の項目</param>
         public static void MoveItem(Team src, Team dest)
         {
-            int srcIndex = List.IndexOf(src);
-            int destIndex = List.IndexOf(dest);
+            int srcIndex = Items.IndexOf(src);
+            int destIndex = Items.IndexOf(dest);
 
             if (srcIndex > destIndex)
             {
                 // 上へ移動する場合
-                List.Insert(destIndex, src);
-                List.RemoveAt(srcIndex + 1);
+                Items.Insert(destIndex, src);
+                Items.RemoveAt(srcIndex + 1);
             }
             else
             {
                 // 下へ移動する場合
-                List.Insert(destIndex + 1, src);
-                List.RemoveAt(srcIndex);
+                Items.Insert(destIndex + 1, src);
+                Items.RemoveAt(srcIndex);
             }
         }
 

@@ -7,10 +7,25 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Log
     {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     ログ出力が有効か
+        /// </summary>
+        public static bool Enabled { get; set; }
+
+        #endregion
+
+        #region 内部フィールド
+
         /// <summary>
         ///     ログ出力フォーム
         /// </summary>
         private static readonly LogForm Form;
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     静的コンストラクタ
@@ -20,10 +35,9 @@ namespace HoI2Editor.Models
             Form = new LogForm();
         }
 
-        /// <summary>
-        ///     ログ出力が有効か
-        /// </summary>
-        public static bool Enabled { get; set; }
+        #endregion
+
+        #region ログ出力
 
         /// <summary>
         ///     ログを出力する
@@ -52,5 +66,7 @@ namespace HoI2Editor.Models
         {
             Form.Hide();
         }
+
+        #endregion
     }
 }

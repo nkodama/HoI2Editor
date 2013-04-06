@@ -7,20 +7,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Leader
     {
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (LeaderItemId)).Length];
-
-        /// <summary>
-        ///     任官年
-        /// </summary>
-        private readonly int[] _rankYear = new int[4];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     国タグ
@@ -100,6 +87,38 @@ namespace HoI2Editor.Models
         /// </summary>
         public LeaderBranch Branch { get; set; }
 
+        #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (LeaderItemId)).Length];
+
+        /// <summary>
+        ///     任官年
+        /// </summary>
+        private readonly int[] _rankYear = new int[RankLength];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     階級の数
+        /// </summary>
+        private const int RankLength = 4;
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
         /// <summary>
         ///     指揮官データが編集済みかどうかを取得する
         /// </summary>
@@ -132,7 +151,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirty()
+        public void SetDirtyAll()
         {
             foreach (LeaderItemId id in Enum.GetValues(typeof (LeaderItemId)))
             {
@@ -144,7 +163,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirty()
+        public void ResetDirtyAll()
         {
             foreach (LeaderItemId id in Enum.GetValues(typeof (LeaderItemId)))
             {
@@ -152,6 +171,8 @@ namespace HoI2Editor.Models
             }
             _dirtyFlag = false;
         }
+
+        #endregion
     }
 
     /// <summary>

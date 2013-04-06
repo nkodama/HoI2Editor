@@ -11,6 +11,8 @@ namespace HoI2Editor.Writers
     /// </summary>
     public static class UnitWriter
     {
+        #region ファイル書き込み
+
         /// <summary>
         ///     ユニットデータをファイルへ書き込む
         /// </summary>
@@ -929,5 +931,7 @@ namespace HoI2Editor.Writers
             writer.WriteLine("#	   must be updated to match the number of currently defined brigade types.");
             writer.WriteLine("########");
         }
+
+        #endregion
     }
 }

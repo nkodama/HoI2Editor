@@ -8,21 +8,21 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Country
     {
-        #region フィールド
+        #region 公開プロパティ
 
         /// <summary>
         ///     国タグ一覧
         /// </summary>
-        public static CountryTag[] Tags;
+        public static CountryTag[] Tags { get; private set; }
 
         /// <summary>
         ///     国タグ文字列とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<string, CountryTag> StringMap = new Dictionary<string, CountryTag>();
+        public static Dictionary<string, CountryTag> StringMap { get; private set; }
 
         #endregion
 
-        #region 定数
+        #region 公開定数
 
         /// <summary>
         ///     国タグ文字列
@@ -372,6 +372,10 @@ namespace HoI2Editor.Models
                 "UF8",
                 "UF9"
             };
+
+        #endregion
+
+        #region 内部定数
 
         /// <summary>
         ///     国タグ一覧 (HoI2)
@@ -1011,11 +1015,14 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 初期化
+
         /// <summary>
         ///     静的コンストラクタ
         /// </summary>
         static Country()
         {
+            StringMap = new Dictionary<string, CountryTag>();
             foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
             {
                 StringMap.Add(Strings[(int) country], country);
@@ -1039,6 +1046,8 @@ namespace HoI2Editor.Models
                     break;
             }
         }
+
+        #endregion
     }
 
     /// <summary>

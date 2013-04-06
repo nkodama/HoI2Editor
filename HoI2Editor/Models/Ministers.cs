@@ -14,23 +14,31 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Ministers
     {
-        #region フィールド
+        #region 公開プロパティ
 
         /// <summary>
         ///     マスター閣僚リスト
         /// </summary>
-        public static List<Minister> List = new List<Minister>();
+        public static List<Minister> Items { get; private set; }
 
         /// <summary>
-        ///     閣僚特性テーブル
+        ///     閣僚特性一覧
         /// </summary>
-        public static MinisterPersonalityInfo[] PersonalityTable;
+        public static MinisterPersonalityInfo[] Personalities { get; private set; }
 
         /// <summary>
         ///     閣僚地位と特性の対応付け
         /// </summary>
-        public static List<int>[] PositionPersonalityTable =
-            new List<int>[Enum.GetValues(typeof (MinisterPosition)).Length];
+        public static List<int>[] PositionPersonalityTable { get; private set; }
+
+        /// <summary>
+        ///     忠誠度名
+        /// </summary>
+        public static string[] LoyaltyNames { get; private set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     閣僚地位文字列とIDの対応付け
@@ -56,9 +64,14 @@ namespace HoI2Editor.Models
             new Dictionary<string, MinisterLoyalty>();
 
         /// <summary>
-        ///     忠誠度名
+        ///     読み込み済みフラグ
         /// </summary>
-        public static string[] LoyaltyNames;
+        private static bool _loaded;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -70,37 +83,9 @@ namespace HoI2Editor.Models
         /// </summary>
         private static int _currentLineNo;
 
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
-
-        /// <summary>
-        ///     読み込み済みフラグ
-        /// </summary>
-        private static bool _loaded;
-
         #endregion
 
-        #region 定数
-
-        /// <summary>
-        ///     閣僚地位文字列
-        /// </summary>
-        private static readonly string[] PositionStrings =
-            {
-                "",
-                "Head of State",
-                "Head of Government",
-                "Foreign Minister",
-                "Minister of Armament",
-                "Minister of Security",
-                "Head of Military Intelligence",
-                "Chief of Staff",
-                "Chief of Army",
-                "Chief of Navy",
-                "Chief of Air Force"
-            };
+        #region 公開定数
 
         /// <summary>
         ///     閣僚地位名
@@ -118,6 +103,46 @@ namespace HoI2Editor.Models
                 "HOIG_CHIEF_OF_ARMY",
                 "HOIG_CHIEF_OF_NAVY",
                 "HOIG_CHIEF_OF_AIR"
+            };
+
+        /// <summary>
+        ///     イデオロギー名
+        /// </summary>
+        public static readonly string[] IdeologyNames =
+            {
+                "",
+                "CATEGORY_NATIONAL_SOCIALIST",
+                "CATEGORY_FASCIST",
+                "CATEGORY_PATERNAL_AUTOCRAT",
+                "CATEGORY_SOCIAL_CONSERVATIVE",
+                "CATEGORY_MARKET_LIBERAL",
+                "CATEGORY_SOCIAL_LIBERAL",
+                "CATEGORY_SOCIAL_DEMOCRAT",
+                "CATEGORY_LEFT_WING_RADICAL",
+                "CATEGORY_LENINIST",
+                "CATEGORY_STALINIST"
+            };
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     閣僚地位文字列
+        /// </summary>
+        private static readonly string[] PositionStrings =
+            {
+                "",
+                "Head of State",
+                "Head of Government",
+                "Foreign Minister",
+                "Minister of Armament",
+                "Minister of Security",
+                "Head of Military Intelligence",
+                "Chief of Staff",
+                "Chief of Army",
+                "Chief of Navy",
+                "Chief of Air Force"
             };
 
         /// <summary>
@@ -210,7 +235,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚特性名(HoI2)
         /// </summary>
-        public static readonly string[] PersonalityNamesHoI2 =
+        private static readonly string[] PersonalityNamesHoI2 =
             {
                 "NPERSONALITY_UNDISTINGUISHED_SUIT",
                 "NPERSONALITY_AUTOCRATIC_CHARMER",
@@ -490,24 +515,6 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     イデオロギー名
-        /// </summary>
-        public static readonly string[] IdeologyNames =
-            {
-                "",
-                "CATEGORY_NATIONAL_SOCIALIST",
-                "CATEGORY_FASCIST",
-                "CATEGORY_PATERNAL_AUTOCRAT",
-                "CATEGORY_SOCIAL_CONSERVATIVE",
-                "CATEGORY_MARKET_LIBERAL",
-                "CATEGORY_SOCIAL_LIBERAL",
-                "CATEGORY_SOCIAL_DEMOCRAT",
-                "CATEGORY_LEFT_WING_RADICAL",
-                "CATEGORY_LENINIST",
-                "CATEGORY_STALINIST"
-            };
-
-        /// <summary>
         ///     忠誠度文字列
         /// </summary>
         private static readonly string[] LoyaltyStrings =
@@ -715,6 +722,12 @@ namespace HoI2Editor.Models
         /// </summary>
         static Ministers()
         {
+            // マスター閣僚リスト
+            Items = new List<Minister>();
+
+            // 閣僚地位と特性の対応付け
+            PositionPersonalityTable = new List<int>[Enum.GetValues(typeof (MinisterPosition)).Length];
+
             // 閣僚地位
             foreach (MinisterPosition position in Enum.GetValues(typeof (MinisterPosition)))
             {
@@ -789,7 +802,7 @@ namespace HoI2Editor.Models
             int personalityCount = Enum.GetValues(typeof (MinisterPersonalityHoI2)).Length;
 
             // 閣僚特性情報を初期化する
-            PersonalityTable = new MinisterPersonalityInfo[personalityCount];
+            Personalities = new MinisterPersonalityInfo[personalityCount];
             PersonalityStringMap.Clear();
             for (int i = 0; i < personalityCount; i++)
             {
@@ -798,7 +811,7 @@ namespace HoI2Editor.Models
                                    String = PersonalityStringsHoI2[i],
                                    Name = PersonalityNamesHoI2[i]
                                };
-                PersonalityTable[i] = info;
+                Personalities[i] = info;
                 PersonalityStringMap.Add(info.String.ToLower(), i);
             }
 
@@ -814,7 +827,7 @@ namespace HoI2Editor.Models
                 PositionPersonalityTable[i] = PositionPersonalityTableHoI2[i].ToList();
                 foreach (int j in PositionPersonalityTable[i])
                 {
-                    PersonalityTable[j].Position[i] = true;
+                    Personalities[j].Position[i] = true;
                 }
             }
         }
@@ -833,16 +846,16 @@ namespace HoI2Editor.Models
             // 閣僚特性ファイルを読み込む
             List<MinisterPersonalityInfo> list =
                 MinisterModifierParser.Parse(Game.GetReadFileName(Game.MinisterPersonalityPathNameAoD));
-            PersonalityTable = list.ToArray();
+            Personalities = list.ToArray();
 
             // 関連テーブルを初期化する
-            for (int i = 0; i < PersonalityTable.Length; i++)
+            for (int i = 0; i < Personalities.Length; i++)
             {
-                PersonalityStringMap.Add(PersonalityTable[i].String.ToLower(), i);
-                PersonalityTable[i].String = GetCasePersonalityString(PersonalityTable[i].String.ToLower());
+                PersonalityStringMap.Add(Personalities[i].String.ToLower(), i);
+                Personalities[i].String = GetCasePersonalityString(Personalities[i].String.ToLower());
                 for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
                 {
-                    if (PersonalityTable[i].Position[j])
+                    if (Personalities[i].Position[j])
                     {
                         PositionPersonalityTable[j].Add(i);
                     }
@@ -864,16 +877,16 @@ namespace HoI2Editor.Models
             // 閣僚特性ファイルを読み込む
             List<MinisterPersonalityInfo> list =
                 MinisterPersonalityParser.Parse(Game.GetReadFileName(Game.MinisterPersonalityPathNameDh));
-            PersonalityTable = list.ToArray();
+            Personalities = list.ToArray();
 
             // 関連テーブルを初期化する
-            for (int i = 0; i < PersonalityTable.Length; i++)
+            for (int i = 0; i < Personalities.Length; i++)
             {
-                PersonalityStringMap.Add(PersonalityTable[i].String.ToLower(), i);
-                PersonalityTable[i].String = GetCasePersonalityString(PersonalityTable[i].String.ToLower());
+                PersonalityStringMap.Add(Personalities[i].String.ToLower(), i);
+                Personalities[i].String = GetCasePersonalityString(Personalities[i].String.ToLower());
                 for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
                 {
-                    if (PersonalityTable[i].Position[j])
+                    if (Personalities[i].Position[j])
                     {
                         PositionPersonalityTable[j].Add(i);
                     }
@@ -922,7 +935,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            List.Clear();
+            Items.Clear();
 
             switch (Game.Type)
             {
@@ -1273,7 +1286,7 @@ namespace HoI2Editor.Models
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.ModifiedPersonality, _currentFileName,
                                             _currentLineNo));
                     Log.Write(String.Format("  {0}: {1} => {2} -> {3}\n", minister.Id, minister.Name, tokens[index],
-                                            PersonalityTable[minister.Personality].String));
+                                            Personalities[minister.Personality].String));
                 }
                 else
                 {
@@ -1302,7 +1315,7 @@ namespace HoI2Editor.Models
             // 画像ファイル名
             minister.PictureName = tokens[index];
 
-            List.Add(minister);
+            Items.Add(minister);
         }
 
         #endregion
@@ -1377,7 +1390,7 @@ namespace HoI2Editor.Models
                 }
 
                 // 閣僚定義行を順に書き込む
-                foreach (Minister minister in List.Where(minister => minister.Country == country))
+                foreach (Minister minister in Items.Where(minister => minister.Country == country))
                 {
                     // 不正な値が設定されている場合は警告をログに出力する
                     if (minister.Position == MinisterPosition.None)
@@ -1411,7 +1424,7 @@ namespace HoI2Editor.Models
                             minister.EndYear,
                             minister.RetirementYear,
                             IdeologyStrings[(int) minister.Ideology],
-                            PersonalityTable[minister.Personality].String,
+                            Personalities[minister.Personality].String,
                             LoyaltyStrings[(int) minister.Loyalty],
                             minister.PictureName);
                     }
@@ -1425,7 +1438,7 @@ namespace HoI2Editor.Models
                             minister.StartYear,
                             minister.EndYear,
                             IdeologyStrings[(int) minister.Ideology],
-                            PersonalityTable[minister.Personality].String,
+                            Personalities[minister.Personality].String,
                             LoyaltyStrings[(int) minister.Loyalty],
                             minister.PictureName);
                     }
@@ -1438,13 +1451,13 @@ namespace HoI2Editor.Models
                             minister.Name,
                             minister.StartYear - 1900,
                             IdeologyStrings[(int) minister.Ideology],
-                            PersonalityTable[minister.Personality].String,
+                            Personalities[minister.Personality].String,
                             LoyaltyStrings[(int) minister.Loyalty],
                             minister.PictureName);
                     }
 
                     // 編集済みフラグを解除する
-                    minister.ResetDirty();
+                    minister.ResetDirtyAll();
 
                     _currentLineNo++;
                 }
@@ -1464,7 +1477,7 @@ namespace HoI2Editor.Models
         /// <param name="minister">挿入対象の項目</param>
         public static void AddItem(Minister minister)
         {
-            List.Add(minister);
+            Items.Add(minister);
         }
 
         /// <summary>
@@ -1474,7 +1487,7 @@ namespace HoI2Editor.Models
         /// <param name="position">挿入位置の直前の項目</param>
         public static void InsertItem(Minister minister, Minister position)
         {
-            List.Insert(List.IndexOf(position) + 1, minister);
+            Items.Insert(Items.IndexOf(position) + 1, minister);
         }
 
         /// <summary>
@@ -1483,7 +1496,7 @@ namespace HoI2Editor.Models
         /// <param name="minister"></param>
         public static void RemoveItem(Minister minister)
         {
-            List.Remove(minister);
+            Items.Remove(minister);
         }
 
         /// <summary>
@@ -1493,20 +1506,20 @@ namespace HoI2Editor.Models
         /// <param name="dest">移動先の項目</param>
         public static void MoveItem(Minister src, Minister dest)
         {
-            int srcIndex = List.IndexOf(src);
-            int destIndex = List.IndexOf(dest);
+            int srcIndex = Items.IndexOf(src);
+            int destIndex = Items.IndexOf(dest);
 
             if (srcIndex > destIndex)
             {
                 // 上へ移動する場合
-                List.Insert(destIndex, src);
-                List.RemoveAt(srcIndex + 1);
+                Items.Insert(destIndex, src);
+                Items.RemoveAt(srcIndex + 1);
             }
             else
             {
                 // 下へ移動する場合
-                List.Insert(destIndex + 1, src);
-                List.RemoveAt(srcIndex);
+                Items.Insert(destIndex + 1, src);
+                Items.RemoveAt(srcIndex);
             }
         }
 

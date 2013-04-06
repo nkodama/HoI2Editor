@@ -8,6 +8,8 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public static class MiscParser
     {
+        #region 構文解析
+
         /// <summary>
         ///     miscファイルを構文解析する
         /// </summary>
@@ -1139,5 +1141,7 @@ namespace HoI2Editor.Parsers
 
             return true;
         }
+
+        #endregion
     }
 }

@@ -7,15 +7,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class Province
     {
-        /// <summary>
-        ///     項目の編集済みフラグ
-        /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ProvinceItemId)).Length];
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        private bool _dirtyFlag;
+        #region 公開プロパティ
 
         /// <summary>
         ///     プロヴィンスID
@@ -297,6 +289,24 @@ namespace HoI2Editor.Models
         /// </summary>
         public int FillCoordX6 { get; set; }
 
+        #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ProvinceItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 文字列操作
+
         /// <summary>
         ///     プロヴィンス名を取得する
         /// </summary>
@@ -306,8 +316,12 @@ namespace HoI2Editor.Models
             return Config.GetText(Name);
         }
 
+        #endregion
+
+        #region 編集済みフラグ操作
+
         /// <summary>
-        ///     研究機関データが編集済みかどうかを取得する
+        ///     プロヴィンスデータが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
         public bool IsDirty()
@@ -346,6 +360,8 @@ namespace HoI2Editor.Models
             }
             _dirtyFlag = false;
         }
+
+        #endregion
     }
 
     /// <summary>

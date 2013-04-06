@@ -15,12 +15,12 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class MinisterEditorForm : Form
     {
-        #region フィールド
+        #region 内部フィールド
 
         /// <summary>
         ///     絞り込み後の閣僚リスト
         /// </summary>
-        private readonly List<Minister> _narrowedList = new List<Minister>();
+        private readonly List<Minister> _list = new List<Minister>();
 
         #endregion
 
@@ -145,7 +145,7 @@ namespace HoI2Editor.Forms
             ministerListView.Items.Clear();
 
             // 項目を順に登録する
-            foreach (Minister minister in _narrowedList)
+            foreach (Minister minister in _list)
             {
                 ministerListView.Items.Add(CreateMinisterListViewItem(minister));
             }
@@ -173,16 +173,16 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void NarrowMinisterList()
         {
-            _narrowedList.Clear();
+            _list.Clear();
 
             // 選択中の国家リストを作成する
             List<CountryTag> tags =
                 (from string name in countryListBox.SelectedItems select Country.StringMap[name]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
-            foreach (Minister minister in Ministers.List.Where(minister => tags.Contains(minister.Country)))
+            foreach (Minister minister in Ministers.Items.Where(minister => tags.Contains(minister.Country)))
             {
-                _narrowedList.Add(minister);
+                _list.Add(minister);
             }
         }
 
@@ -223,7 +223,7 @@ namespace HoI2Editor.Forms
                                };
 
                 // 閣僚ごとの編集済みフラグを設定する
-                minister.SetDirty();
+                minister.SetDirtyAll();
 
                 // 閣僚リストに項目を挿入する
                 Ministers.InsertItem(minister, selected);
@@ -249,7 +249,7 @@ namespace HoI2Editor.Forms
                                };
 
                 // 閣僚ごとの編集済みフラグを設定する
-                minister.SetDirty();
+                minister.SetDirtyAll();
 
                 // 閣僚リストに項目を追加する
                 Ministers.AddItem(minister);
@@ -294,7 +294,7 @@ namespace HoI2Editor.Forms
                                };
 
             // 閣僚ごとの編集済みフラグを設定する
-            minister.SetDirty();
+            minister.SetDirtyAll();
 
             // 閣僚リストに項目を挿入する
             Ministers.InsertItem(minister, selected);
@@ -480,7 +480,7 @@ namespace HoI2Editor.Forms
         private void AddListItem(Minister minister)
         {
             // 絞り込みリストに項目を追加する
-            _narrowedList.Add(minister);
+            _list.Add(minister);
 
             // 閣僚リストビューに項目を追加する
             ministerListView.Items.Add(CreateMinisterListViewItem(minister));
@@ -499,7 +499,7 @@ namespace HoI2Editor.Forms
         private void InsertListItem(Minister minister, int index)
         {
             // 絞り込みリストに項目を挿入する
-            _narrowedList.Insert(index, minister);
+            _list.Insert(index, minister);
 
             // 閣僚リストビューに項目を挿入する
             ministerListView.Items.Insert(index, CreateMinisterListViewItem(minister));
@@ -517,7 +517,7 @@ namespace HoI2Editor.Forms
         private void RemoveItem(int index)
         {
             // 絞り込みリストから項目を削除する
-            _narrowedList.RemoveAt(index);
+            _list.RemoveAt(index);
 
             // 閣僚リストビューから項目を削除する
             ministerListView.Items.RemoveAt(index);
@@ -543,14 +543,14 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveListItem(int src, int dest)
         {
-            Minister minister = _narrowedList[src];
+            Minister minister = _list[src];
 
             if (src > dest)
             {
                 // 上へ移動する場合
                 // 絞り込みリストの項目を移動する
-                _narrowedList.Insert(dest, minister);
-                _narrowedList.RemoveAt(src + 1);
+                _list.Insert(dest, minister);
+                _list.RemoveAt(src + 1);
 
                 // 閣僚リストビューの項目を移動する
                 ministerListView.Items.Insert(dest, CreateMinisterListViewItem(minister));
@@ -560,8 +560,8 @@ namespace HoI2Editor.Forms
             {
                 // 下へ移動する場合
                 // 絞り込みリストの項目を移動する
-                _narrowedList.Insert(dest + 1, minister);
-                _narrowedList.RemoveAt(src);
+                _list.Insert(dest + 1, minister);
+                _list.RemoveAt(src);
 
                 // 閣僚リストビューの項目を移動する
                 ministerListView.Items.Insert(dest + 1, CreateMinisterListViewItem(minister));
@@ -596,7 +596,7 @@ namespace HoI2Editor.Forms
             item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(Misc.Mod.NewMinisterFormat ? minister.EndYear.ToString(CultureInfo.InvariantCulture) : "");
             item.SubItems.Add(Config.GetText(Ministers.PositionNames[(int) minister.Position]));
-            item.SubItems.Add(Config.GetText(Ministers.PersonalityTable[minister.Personality].Name));
+            item.SubItems.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
             item.SubItems.Add(Config.GetText(Ministers.IdeologyNames[(int) minister.Ideology]));
 
             return item;
@@ -764,7 +764,7 @@ namespace HoI2Editor.Forms
 
             // 特性
             personalityComboBox.DropDownWidth =
-                Ministers.PersonalityTable.Select(info => Config.GetText(info.Name))
+                Ministers.Personalities.Select(info => Config.GetText(info.Name))
                          .Select(s => TextRenderer.MeasureText(s, personalityComboBox.Font).Width)
                          .Concat(new[] {personalityComboBox.DropDownWidth})
                          .Max();
@@ -954,19 +954,19 @@ namespace HoI2Editor.Forms
             if (minister.Position == MinisterPosition.None)
             {
                 // 閣僚地位の値が不正な場合は、現在の閣僚特性のみ登録する
-                personalityComboBox.Items.Add(Config.GetText(Ministers.PersonalityTable[minister.Personality].Name));
+                personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
                 personalityComboBox.SelectedIndex = 0;
             }
             else if (!Ministers.PositionPersonalityTable[(int) minister.Position].Contains(minister.Personality))
             {
                 // 閣僚特性が閣僚地位とマッチしない場合、ワンショットで候補に登録する
-                personalityComboBox.Items.Add(Config.GetText(Ministers.PersonalityTable[minister.Personality].Name));
+                personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
                 personalityComboBox.SelectedIndex = 0;
 
                 // 閣僚地位と対応する閣僚特性を順に登録する
                 foreach (int personality in Ministers.PositionPersonalityTable[(int) minister.Position])
                 {
-                    personalityComboBox.Items.Add(Config.GetText(Ministers.PersonalityTable[personality].Name));
+                    personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[personality].Name));
                 }
             }
             else
@@ -974,7 +974,7 @@ namespace HoI2Editor.Forms
                 // 閣僚地位と対応する閣僚特性を順に登録する
                 foreach (int personality in Ministers.PositionPersonalityTable[(int) minister.Position])
                 {
-                    personalityComboBox.Items.Add(Config.GetText(Ministers.PersonalityTable[personality].Name));
+                    personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[personality].Name));
                     if (personality == minister.Personality)
                     {
                         personalityComboBox.SelectedIndex = personalityComboBox.Items.Count - 1;
@@ -1513,7 +1513,7 @@ namespace HoI2Editor.Forms
 
             // 閣僚リストビューの項目を更新する
             ministerListView.SelectedItems[0].SubItems[6].Text =
-                Config.GetText(Ministers.PersonalityTable[minister.Personality].Name);
+                Config.GetText(Ministers.Personalities[minister.Personality].Name);
 
             // 編集済みフラグを設定する
             minister.SetDirty(MinisterItemId.Personality);

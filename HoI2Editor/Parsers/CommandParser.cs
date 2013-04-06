@@ -10,10 +10,16 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public static class CommandParser
     {
+        #region 内部フィールド
+
         /// <summary>
         ///     コマンド種類文字列とIDの対応付け
         /// </summary>
         private static readonly Dictionary<string, CommandType> TypeMap = new Dictionary<string, CommandType>();
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     静的コンストラクタ
@@ -25,6 +31,10 @@ namespace HoI2Editor.Parsers
                 TypeMap.Add(Command.TypeStringTable[(int) type], type);
             }
         }
+
+        #endregion
+
+        #region 構文解析
 
         /// <summary>
         ///     commandセクションを構文解析する
@@ -236,7 +246,7 @@ namespace HoI2Editor.Parsers
                     List<Trigger> triggers = TriggerParser.Parse(lexer);
                     if (triggers != null)
                     {
-                        command.Triggers = triggers;
+                        command.Triggers.AddRange(triggers);
                     }
                     continue;
                 }
@@ -248,5 +258,7 @@ namespace HoI2Editor.Parsers
 
             return command;
         }
+
+        #endregion
     }
 }

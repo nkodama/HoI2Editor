@@ -15,6 +15,8 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class MainForm : Form
     {
+        #region 初期化
+
         /// <summary>
         ///     コンストラクタ
         /// </summary>
@@ -65,22 +67,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     言語リストを更新する
-        /// </summary>
-        private void UpdateLanguage()
-        {
-            // 言語文字列を登録する
-            languageComboBox.BeginUpdate();
-            languageComboBox.Items.Clear();
-            foreach (string s in Config.LanguageStrings[(int) Config.LangMode])
-            {
-                languageComboBox.Items.Add(s);
-            }
-            languageComboBox.EndUpdate();
-            languageComboBox.SelectedIndex = 0;
-        }
-
-        /// <summary>
         ///     終了ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -89,6 +75,80 @@ namespace HoI2Editor.Forms
         {
             Application.Exit();
         }
+
+        #endregion
+
+        #region 個別エディタ呼び出し
+
+        /// <summary>
+        ///     指揮官ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderButtonClick(object sender, EventArgs e)
+        {
+            var form = new LeaderEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
+        ///     閣僚ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterButtonClick(object sender, EventArgs e)
+        {
+            var form = new MinisterEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
+        ///     研究機関ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamButtonClick(object sender, EventArgs e)
+        {
+            var form = new TeamEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
+        ///     プロヴィンスボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceButtonClick(object sender, EventArgs e)
+        {
+            var form = new ProvinceEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
+        ///     技術ツリーボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechButtonClick(object sender, EventArgs e)
+        {
+            var form = new TechEditorForm();
+            form.Show();
+        }
+
+        /// <summary>
+        ///     ユニットモデルボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitButtonClick(object sender, EventArgs e)
+        {
+            var form = new UnitEditorForm();
+            form.Show();
+        }
+
+        #endregion
+
+        #region ゲームフォルダ/MOD名
 
         /// <summary>
         ///     ゲームフォルダ参照ボタン押下時の処理
@@ -212,6 +272,26 @@ namespace HoI2Editor.Forms
                                          : folderName;
         }
 
+        #endregion
+
+        #region 言語
+
+        /// <summary>
+        ///     言語リストを更新する
+        /// </summary>
+        private void UpdateLanguage()
+        {
+            // 言語文字列を登録する
+            languageComboBox.BeginUpdate();
+            languageComboBox.Items.Clear();
+            foreach (string s in Config.LanguageStrings[(int) Config.LangMode])
+            {
+                languageComboBox.Items.Add(s);
+            }
+            languageComboBox.EndUpdate();
+            languageComboBox.SelectedIndex = 0;
+        }
+
         /// <summary>
         ///     言語変更時の処理
         /// </summary>
@@ -242,6 +322,10 @@ namespace HoI2Editor.Forms
             }
         }
 
+        #endregion
+
+        #region オプション設定
+
         /// <summary>
         ///     エラーログ出力チェックボックスのチェック状態変化時の処理
         /// </summary>
@@ -252,70 +336,6 @@ namespace HoI2Editor.Forms
             Log.Enabled = logCheckBox.Checked;
         }
 
-        /// <summary>
-        ///     指揮官ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnLeaderButtonClick(object sender, EventArgs e)
-        {
-            var form = new LeaderEditorForm();
-            form.Show();
-        }
-
-        /// <summary>
-        ///     閣僚ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterButtonClick(object sender, EventArgs e)
-        {
-            var form = new MinisterEditorForm();
-            form.Show();
-        }
-
-        /// <summary>
-        ///     研究機関ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTeamButtonClick(object sender, EventArgs e)
-        {
-            var form = new TeamEditorForm();
-            form.Show();
-        }
-
-        /// <summary>
-        ///     技術ツリーボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechButtonClick(object sender, EventArgs e)
-        {
-            var form = new TechEditorForm();
-            form.Show();
-        }
-
-        /// <summary>
-        ///     ユニットモデルボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUnitButtonClick(object sender, EventArgs e)
-        {
-            var form = new UnitEditorForm();
-            form.Show();
-        }
-
-        /// <summary>
-        ///     プロヴィンスボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnProvinceButtonClick(object sender, EventArgs e)
-        {
-            var form = new ProvinceEditorForm();
-            form.Show();
-        }
+        #endregion
     }
 }

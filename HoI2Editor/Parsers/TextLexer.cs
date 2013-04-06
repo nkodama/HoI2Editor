@@ -10,6 +10,8 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public class TextLexer : IDisposable
     {
+        #region 内部フィールド
+
         /// <summary>
         ///     テキストファイルの読み込み用
         /// </summary>
@@ -19,6 +21,10 @@ namespace HoI2Editor.Parsers
         ///     保留中のトークン
         /// </summary>
         private Token _token;
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     コンストラクタ
@@ -58,6 +64,10 @@ namespace HoI2Editor.Parsers
         {
             _reader.Close();
         }
+
+        #endregion
+
+        #region 字句解析
 
         /// <summary>
         ///     字句解析
@@ -413,5 +423,7 @@ namespace HoI2Editor.Parsers
                 }
             }
         }
+
+        #endregion
     }
 }
