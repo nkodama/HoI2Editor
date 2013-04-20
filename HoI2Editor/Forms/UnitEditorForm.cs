@@ -69,8 +69,8 @@ namespace HoI2Editor.Forms
             branchComboBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
 
             // 付属可能旅団リストビュー
-            int maxWidth = 60;
             allowedBrigadesListView.Items.Clear();
+            int maxWidth = 60;
             foreach (UnitType type in Units.BrigadeTypes)
             {
                 string s = Config.GetText(Units.Items[(int) type].Name);
@@ -83,7 +83,6 @@ namespace HoI2Editor.Forms
             // 実ユニット種類コンボボックス
             realUnitTypeComboBox.Items.Clear();
             maxWidth = realUnitTypeComboBox.DropDownWidth;
-            realUnitTypeComboBox.Items.Clear();
             foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
             {
                 string s = Config.GetText(Units.RealNames[(int) type]);
@@ -97,7 +96,6 @@ namespace HoI2Editor.Forms
             // スプライト種類コンボボックス
             spriteTypeComboBox.Items.Clear();
             maxWidth = spriteTypeComboBox.DropDownWidth;
-            spriteTypeComboBox.Items.Clear();
             foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
             {
                 string s = Config.GetText(Units.SpriteNames[(int) type]);
@@ -111,7 +109,6 @@ namespace HoI2Editor.Forms
             // 代替ユニット種類コンボボックス
             transmuteComboBox.Items.Clear();
             maxWidth = transmuteComboBox.DropDownWidth;
-            transmuteComboBox.Items.Clear();
             foreach (UnitType type in Units.DivisionTypes)
             {
                 string s = Config.GetText(Units.Items[(int) type].Name);
@@ -125,7 +122,6 @@ namespace HoI2Editor.Forms
             // 更新ユニット種類コンボボックス
             upgradeTypeComboBox.Items.Clear();
             maxWidth = upgradeTypeComboBox.DropDownWidth;
-            upgradeTypeComboBox.Items.Clear();
             foreach (UnitType type in Units.DivisionTypes)
             {
                 string s = Config.GetText(Units.Items[(int) type].Name);
@@ -135,6 +131,19 @@ namespace HoI2Editor.Forms
                                     SystemInformation.VerticalScrollBarWidth);
             }
             upgradeTypeComboBox.DropDownWidth = maxWidth;
+
+            // 資源コンボボックス
+            resourceComboBox.Items.Clear();
+            maxWidth = resourceComboBox.DropDownWidth;
+            foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
+            {
+                string s = Config.GetText(Units.EquipmentNames[(int) type]);
+                resourceComboBox.Items.Add(s);
+                maxWidth = Math.Max(maxWidth,
+                                    TextRenderer.MeasureText(s, resourceComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth);
+            }
+            resourceComboBox.DropDownWidth = maxWidth;
 
             // チェックボックスの文字列
             cagCheckBox.Text = Config.GetText("NAME_CAG");
@@ -5308,6 +5317,63 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     資源コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnResourceComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[no];
+
+            // 選択項目がなければ何もしない
+            if (equipmentListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = equipmentListView.SelectedIndices[0];
+            UnitEquipment equipment = model.Equipments[index];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == (int) equipment.Resource) && equipment.IsDirty(UnitEquipmentItemId.Resource))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = resourceComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     装備リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -5338,7 +5404,7 @@ namespace HoI2Editor.Forms
             UnitEquipment equipment = model.Equipments[index];
 
             // 編集項目の値を更新する
-            resourceComboBox.Text = equipment.Resource;
+            resourceComboBox.SelectedIndex = (int) equipment.Resource;
             quantityTextBox.Text = equipment.Quantity.ToString(CultureInfo.InvariantCulture);
 
             // 編集項目の色を更新する
@@ -5351,11 +5417,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     資源コンボボックスのフォーカス移動後の処理
+        ///     資源コンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnResourceComboBoxValidated(object sender, EventArgs e)
+        private void OnResourceComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
             if (classListBox.SelectedIndex < 0)
@@ -5381,16 +5447,17 @@ namespace HoI2Editor.Forms
             UnitEquipment equipment = model.Equipments[index];
 
             // 値に変化がなければ何もしない
-            if (resourceComboBox.Text.Equals(equipment.Resource))
+            var type = (EquipmentType) resourceComboBox.SelectedIndex;
+            if (type == equipment.Resource)
             {
                 return;
             }
 
             // 値を更新する
-            equipment.Resource = resourceComboBox.Text;
+            equipment.Resource = type;
 
             // 装備リストビューの項目を更新する
-            equipmentListView.Items[index].Text = resourceComboBox.Text;
+            equipmentListView.Items[index].Text = Config.GetText(Units.EquipmentNames[(int) type]);
 
             // 編集済みフラグを設定する
             equipment.SetDirty(UnitEquipmentItemId.Resource);
@@ -5636,7 +5703,7 @@ namespace HoI2Editor.Forms
         /// <returns>装備リストの項目</returns>
         private static ListViewItem CreateEquipmentListItem(UnitEquipment equipment)
         {
-            var item = new ListViewItem {Text = equipment.Resource};
+            var item = new ListViewItem {Text = Config.GetText(Units.EquipmentNames[(int) equipment.Resource])};
             item.SubItems.Add(equipment.Quantity.ToString(CultureInfo.InvariantCulture));
 
             return item;

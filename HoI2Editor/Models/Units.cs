@@ -35,6 +35,11 @@ namespace HoI2Editor.Models
         public static Dictionary<string, SpriteType> SpriteStringMap { get; private set; }
 
         /// <summary>
+        ///     装備文字列とIDの対応付け
+        /// </summary>
+        public static Dictionary<string, EquipmentType> EquipmentStringMap { get; private set; }
+
+        /// <summary>
         ///     利用可能なユニット種類
         /// </summary>
         public static List<UnitType> UnitTypes { get; private set; }
@@ -91,7 +96,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット種類文字列テーブル
         /// </summary>
-        public static readonly string[] StringTable =
+        public static readonly string[] Strings =
             {
                 "infantry",
                 "cavalry",
@@ -400,9 +405,9 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     実ユニット文字列テーブル
+        ///     実ユニット文字列
         /// </summary>
-        public static readonly string[] RealStringTable =
+        public static readonly string[] RealStrings =
             {
                 "infantry",
                 "cavalry",
@@ -438,9 +443,9 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     スプライト種類文字列テーブル
+        ///     スプライト種類文字列
         /// </summary>
-        public static readonly string[] SpriteStringTable =
+        public static readonly string[] SpriteStrings =
             {
                 "infantry",
                 "cavalry",
@@ -583,6 +588,50 @@ namespace HoI2Editor.Models
                 "d_97",
                 "d_98",
                 "d_99"
+            };
+
+        /// <summary>
+        ///     装備文字列
+        /// </summary>
+        public static readonly string[] EquipmentStrings =
+            {
+                "manpower",
+                "equipment",
+                "artillery",
+                "heavy_artillery",
+                "anti_air",
+                "anti_tank",
+                "horses",
+                "trucks",
+                "halftracks",
+                "armored_car",
+                "light_armor",
+                "medium_armor",
+                "heavy_armor",
+                "tank_destroyer",
+                "sp_artillery",
+                "fighter",
+                "heavy_fighter",
+                "rocket_interceptor",
+                "bomber",
+                "heavy_bomber",
+                "transport_plane",
+                "floatplane",
+                "helicopter",
+                "rocket",
+                "balloon",
+                "transports",
+                "escorts",
+                "transport",
+                "battleship",
+                "battlecruiser",
+                "heavy_cruiser",
+                "carrier",
+                "escort_carrier",
+                "light_cruiser",
+                "destroyer",
+                "submarine",
+                "nuclear_submarine"
             };
 
         /// <summary>
@@ -769,6 +818,50 @@ namespace HoI2Editor.Models
                 "NAME_D_97",
                 "NAME_D_98",
                 "NAME_D_99"
+            };
+
+        /// <summary>
+        ///     装備名
+        /// </summary>
+        public static readonly string[] EquipmentNames =
+            {
+                "EQ_MANPOWER",
+                "EQ_EQUIPMENT",
+                "EQ_ARTILLERY",
+                "EQ_ANTI_AIR",
+                "EQ_ANTI_TANK",
+                "EQ_HEAVY_ARTILLERY",
+                "EQ_HORSES",
+                "EQ_TRUCKS",
+                "EQ_HALFTRACKS",
+                "EQ_ARMORED_CARS",
+                "EQ_LIGHT_ARMOR",
+                "EQ_MEDIUM_ARMOR",
+                "EQ_HEAVY_ARMOR",
+                "EQ_TANK_DESTROYER",
+                "EQ_SP_ARTILLERY",
+                "EQ_FIGHTERS",
+                "EQ_HEAVY_FIGHTERS",
+                "EQ_ROCKET_INTERCEPTORS",
+                "EQ_BOMBERS",
+                "EQ_HEAVY_BOMBERS",
+                "EQ_TRANSPORT_PLANES",
+                "EQ_FLOATPLANE",
+                "EQ_HELICOPTERS",
+                "EQ_ROCKETS",
+                "EQ_BALLOONS",
+                "EQ_CONV_TRANS",
+                "EQ_CONV_ESC",
+                "EQ_TRANSPORT",
+                "EQ_BATTLESHIP",
+                "EQ_BATTLECRUISER",
+                "EQ_HEAVY_CRUISER",
+                "EQ_CARRIER",
+                "EQ_ESCORT_CARRIER",
+                "EQ_LIGHT_CRUISER",
+                "EQ_DESTROYER",
+                "EQ_SUBMARINE",
+                "EQ_NUCLEAR_SUBMARINE"
             };
 
         /// <summary>
@@ -2846,21 +2939,28 @@ namespace HoI2Editor.Models
             StringMap = new Dictionary<string, UnitType>();
             foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
-                StringMap.Add(StringTable[(int) type], type);
+                StringMap.Add(Strings[(int) type], type);
             }
 
             // 実ユニット種類文字列とIDの対応付けを初期化
             RealStringMap = new Dictionary<string, RealUnitType>();
             foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
             {
-                RealStringMap.Add(RealStringTable[(int) type], type);
+                RealStringMap.Add(RealStrings[(int) type], type);
             }
 
             // スプライト種類文字列とIDの対応付けを初期化
             SpriteStringMap = new Dictionary<string, SpriteType>();
             foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
             {
-                SpriteStringMap.Add(SpriteStringTable[(int) type], type);
+                SpriteStringMap.Add(SpriteStrings[(int) type], type);
+            }
+
+            // 装備文字列とIDの対応付けを初期化
+            EquipmentStringMap = new Dictionary<string, EquipmentType>();
+            foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
+            {
+                EquipmentStringMap.Add(EquipmentStrings[(int) type], type);
             }
         }
 

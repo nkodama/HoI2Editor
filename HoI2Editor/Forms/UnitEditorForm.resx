@@ -471,18 +471,6 @@
   <data name="editTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="eyrNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 237</value>
-  </data>
-  <data name="eyrNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="eyrNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="eyrNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
   <data name="&gt;&gt;eyrNumericUpDown.Name" xml:space="preserve">
     <value>eyrNumericUpDown</value>
   </data>
@@ -494,24 +482,6 @@
   </data>
   <data name="&gt;&gt;eyrNumericUpDown.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="eyrLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="eyrLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="eyrLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 239</value>
-  </data>
-  <data name="eyrLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 12</value>
-  </data>
-  <data name="eyrLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="eyrLabel.Text" xml:space="preserve">
-    <value>Eyr</value>
   </data>
   <data name="&gt;&gt;eyrLabel.Name" xml:space="preserve">
     <value>eyrLabel</value>
@@ -525,21 +495,6 @@
   <data name="&gt;&gt;eyrLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="defaultTypeCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="defaultTypeCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 314</value>
-  </data>
-  <data name="defaultTypeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 16</value>
-  </data>
-  <data name="defaultTypeCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="defaultTypeCheckBox.Text" xml:space="preserve">
-    <value>Default Type</value>
-  </data>
   <data name="&gt;&gt;defaultTypeCheckBox.Name" xml:space="preserve">
     <value>defaultTypeCheckBox</value>
   </data>
@@ -551,24 +506,6 @@
   </data>
   <data name="&gt;&gt;defaultTypeCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="engineerCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="engineerCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="engineerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 288</value>
-  </data>
-  <data name="engineerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 16</value>
-  </data>
-  <data name="engineerCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="engineerCheckBox.Text" xml:space="preserve">
-    <value>Engineer</value>
   </data>
   <data name="&gt;&gt;engineerCheckBox.Name" xml:space="preserve">
     <value>engineerCheckBox</value>
@@ -582,24 +519,6 @@
   <data name="&gt;&gt;engineerCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="cagCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cagCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cagCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 238</value>
-  </data>
-  <data name="cagCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="cagCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="cagCheckBox.Text" xml:space="preserve">
-    <value>CAG</value>
-  </data>
   <data name="&gt;&gt;cagCheckBox.Name" xml:space="preserve">
     <value>cagCheckBox</value>
   </data>
@@ -611,24 +530,6 @@
   </data>
   <data name="&gt;&gt;cagCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="escortCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="escortCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="escortCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 263</value>
-  </data>
-  <data name="escortCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 16</value>
-  </data>
-  <data name="escortCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="escortCheckBox.Text" xml:space="preserve">
-    <value>Escort Fighter</value>
   </data>
   <data name="&gt;&gt;escortCheckBox.Name" xml:space="preserve">
     <value>escortCheckBox</value>
@@ -642,15 +543,6 @@
   <data name="&gt;&gt;escortCheckBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="allowedBrigadesListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>349, 35</value>
-  </data>
-  <data name="allowedBrigadesListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>398, 170</value>
-  </data>
-  <data name="allowedBrigadesListView.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
   <data name="&gt;&gt;allowedBrigadesListView.Name" xml:space="preserve">
     <value>allowedBrigadesListView</value>
   </data>
@@ -662,18 +554,6 @@
   </data>
   <data name="&gt;&gt;allowedBrigadesListView.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="maxAllowedBrigadesNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 10</value>
-  </data>
-  <data name="maxAllowedBrigadesNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="maxAllowedBrigadesNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="maxAllowedBrigadesNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
   </data>
   <data name="&gt;&gt;maxAllowedBrigadesNumericUpDown.Name" xml:space="preserve">
     <value>maxAllowedBrigadesNumericUpDown</value>
@@ -687,18 +567,6 @@
   <data name="&gt;&gt;maxAllowedBrigadesNumericUpDown.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="militaryValueTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 389</value>
-  </data>
-  <data name="militaryValueTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="militaryValueTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="militaryValueTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
   <data name="&gt;&gt;militaryValueTextBox.Name" xml:space="preserve">
     <value>militaryValueTextBox</value>
   </data>
@@ -710,18 +578,6 @@
   </data>
   <data name="&gt;&gt;militaryValueTextBox.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="listPrioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 287</value>
-  </data>
-  <data name="listPrioNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="listPrioNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="listPrioNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
   </data>
   <data name="&gt;&gt;listPrioNumericUpDown.Name" xml:space="preserve">
     <value>listPrioNumericUpDown</value>
@@ -735,21 +591,6 @@
   <data name="&gt;&gt;listPrioNumericUpDown.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="listPrioLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="listPrioLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 289</value>
-  </data>
-  <data name="listPrioLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="listPrioLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="listPrioLabel.Text" xml:space="preserve">
-    <value>List Priority</value>
-  </data>
   <data name="&gt;&gt;listPrioLabel.Name" xml:space="preserve">
     <value>listPrioLabel</value>
   </data>
@@ -761,237 +602,6 @@
   </data>
   <data name="&gt;&gt;listPrioLabel.ZOrder" xml:space="preserve">
     <value>10</value>
-  </data>
-  <data name="upgradeTimeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 165</value>
-  </data>
-  <data name="upgradeTimeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="upgradeTimeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="upgradeTimeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeTextBox.Name" xml:space="preserve">
-    <value>upgradeTimeTextBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeTextBox.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="upgradeTimeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="upgradeTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 168</value>
-  </data>
-  <data name="upgradeTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 12</value>
-  </data>
-  <data name="upgradeTimeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="upgradeTimeLabel.Text" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeLabel.Name" xml:space="preserve">
-    <value>upgradeTimeLabel</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeLabel.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="upgradeCostTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 141</value>
-  </data>
-  <data name="upgradeCostTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="upgradeCostTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="upgradeCostTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostTextBox.Name" xml:space="preserve">
-    <value>upgradeCostTextBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostTextBox.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="upgradeCostLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="upgradeCostLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 144</value>
-  </data>
-  <data name="upgradeCostLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
-  <data name="upgradeCostLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="upgradeCostLabel.Text" xml:space="preserve">
-    <value>Cost</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostLabel.Name" xml:space="preserve">
-    <value>upgradeCostLabel</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostLabel.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="upgradeTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 115</value>
-  </data>
-  <data name="upgradeTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="upgradeTypeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeComboBox.Name" xml:space="preserve">
-    <value>upgradeTypeComboBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeComboBox.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="upgradeTypeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="upgradeTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 118</value>
-  </data>
-  <data name="upgradeTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 12</value>
-  </data>
-  <data name="upgradeTypeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="upgradeTypeLabel.Text" xml:space="preserve">
-    <value>Unit Type</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeLabel.Name" xml:space="preserve">
-    <value>upgradeTypeLabel</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeLabel.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="upgradeRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 144</value>
-  </data>
-  <data name="upgradeRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="upgradeRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="upgradeRemoveButton.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="&gt;&gt;upgradeRemoveButton.Name" xml:space="preserve">
-    <value>upgradeRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;upgradeRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeRemoveButton.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeRemoveButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="upgradeAddButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 113</value>
-  </data>
-  <data name="upgradeAddButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="upgradeAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="upgradeAddButton.Text" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="&gt;&gt;upgradeAddButton.Name" xml:space="preserve">
-    <value>upgradeAddButton</value>
-  </data>
-  <data name="&gt;&gt;upgradeAddButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeAddButton.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeAddButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="upgradeListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 18</value>
-  </data>
-  <data name="upgradeListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 91</value>
-  </data>
-  <data name="upgradeListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;upgradeListView.Name" xml:space="preserve">
-    <value>upgradeListView</value>
-  </data>
-  <data name="&gt;&gt;upgradeListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeListView.Parent" xml:space="preserve">
-    <value>upgradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeListView.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="upgradeGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>385, 214</value>
-  </data>
-  <data name="upgradeGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>362, 196</value>
-  </data>
-  <data name="upgradeGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="upgradeGroupBox.Text" xml:space="preserve">
-    <value>Upgrade</value>
   </data>
   <data name="&gt;&gt;upgradeGroupBox.Name" xml:space="preserve">
     <value>upgradeGroupBox</value>
@@ -1005,21 +615,6 @@
   <data name="&gt;&gt;upgradeGroupBox.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="militaryValueLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="militaryValueLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 392</value>
-  </data>
-  <data name="militaryValueLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 12</value>
-  </data>
-  <data name="militaryValueLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="militaryValueLabel.Text" xml:space="preserve">
-    <value>Military Value</value>
-  </data>
   <data name="&gt;&gt;militaryValueLabel.Name" xml:space="preserve">
     <value>militaryValueLabel</value>
   </data>
@@ -1031,15 +626,6 @@
   </data>
   <data name="&gt;&gt;militaryValueLabel.ZOrder" xml:space="preserve">
     <value>12</value>
-  </data>
-  <data name="transmuteComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 363</value>
-  </data>
-  <data name="transmuteComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="transmuteComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
   </data>
   <data name="&gt;&gt;transmuteComboBox.Name" xml:space="preserve">
     <value>transmuteComboBox</value>
@@ -1053,21 +639,6 @@
   <data name="&gt;&gt;transmuteComboBox.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="transmuteLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="transmuteLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 366</value>
-  </data>
-  <data name="transmuteLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 12</value>
-  </data>
-  <data name="transmuteLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="transmuteLabel.Text" xml:space="preserve">
-    <value>Transmute Unit</value>
-  </data>
   <data name="&gt;&gt;transmuteLabel.Name" xml:space="preserve">
     <value>transmuteLabel</value>
   </data>
@@ -1079,15 +650,6 @@
   </data>
   <data name="&gt;&gt;transmuteLabel.ZOrder" xml:space="preserve">
     <value>14</value>
-  </data>
-  <data name="spriteTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 337</value>
-  </data>
-  <data name="spriteTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="spriteTypeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
   </data>
   <data name="&gt;&gt;spriteTypeComboBox.Name" xml:space="preserve">
     <value>spriteTypeComboBox</value>
@@ -1101,21 +663,6 @@
   <data name="&gt;&gt;spriteTypeComboBox.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="spriteTypeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="spriteTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 340</value>
-  </data>
-  <data name="spriteTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 12</value>
-  </data>
-  <data name="spriteTypeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="spriteTypeLabel.Text" xml:space="preserve">
-    <value>Sprite Type</value>
-  </data>
   <data name="&gt;&gt;spriteTypeLabel.Name" xml:space="preserve">
     <value>spriteTypeLabel</value>
   </data>
@@ -1127,15 +674,6 @@
   </data>
   <data name="&gt;&gt;spriteTypeLabel.ZOrder" xml:space="preserve">
     <value>16</value>
-  </data>
-  <data name="realUnitTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 312</value>
-  </data>
-  <data name="realUnitTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="realUnitTypeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
   </data>
   <data name="&gt;&gt;realUnitTypeComboBox.Name" xml:space="preserve">
     <value>realUnitTypeComboBox</value>
@@ -1149,21 +687,6 @@
   <data name="&gt;&gt;realUnitTypeComboBox.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="realUnitTypeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="realUnitTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 315</value>
-  </data>
-  <data name="realUnitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 12</value>
-  </data>
-  <data name="realUnitTypeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="realUnitTypeLabel.Text" xml:space="preserve">
-    <value>Real Unit Type</value>
-  </data>
   <data name="&gt;&gt;realUnitTypeLabel.Name" xml:space="preserve">
     <value>realUnitTypeLabel</value>
   </data>
@@ -1175,21 +698,6 @@
   </data>
   <data name="&gt;&gt;realUnitTypeLabel.ZOrder" xml:space="preserve">
     <value>18</value>
-  </data>
-  <data name="productableCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="productableCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 339</value>
-  </data>
-  <data name="productableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 16</value>
-  </data>
-  <data name="productableCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="productableCheckBox.Text" xml:space="preserve">
-    <value>Initial Productable</value>
   </data>
   <data name="&gt;&gt;productableCheckBox.Name" xml:space="preserve">
     <value>productableCheckBox</value>
@@ -1203,18 +711,6 @@
   <data name="&gt;&gt;productableCheckBox.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="gfxPrioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 262</value>
-  </data>
-  <data name="gfxPrioNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="gfxPrioNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="gfxPrioNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
   <data name="&gt;&gt;gfxPrioNumericUpDown.Name" xml:space="preserve">
     <value>gfxPrioNumericUpDown</value>
   </data>
@@ -1226,21 +722,6 @@
   </data>
   <data name="&gt;&gt;gfxPrioNumericUpDown.ZOrder" xml:space="preserve">
     <value>20</value>
-  </data>
-  <data name="gfxPrioLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="gfxPrioLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 264</value>
-  </data>
-  <data name="gfxPrioLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 12</value>
-  </data>
-  <data name="gfxPrioLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="gfxPrioLabel.Text" xml:space="preserve">
-    <value>Graphics Priority</value>
   </data>
   <data name="&gt;&gt;gfxPrioLabel.Name" xml:space="preserve">
     <value>gfxPrioLabel</value>
@@ -1254,21 +735,6 @@
   <data name="&gt;&gt;gfxPrioLabel.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
-  <data name="detachableCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="detachableCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 213</value>
-  </data>
-  <data name="detachableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 16</value>
-  </data>
-  <data name="detachableCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="detachableCheckBox.Text" xml:space="preserve">
-    <value>Detachable</value>
-  </data>
   <data name="&gt;&gt;detachableCheckBox.Name" xml:space="preserve">
     <value>detachableCheckBox</value>
   </data>
@@ -1280,21 +746,6 @@
   </data>
   <data name="&gt;&gt;detachableCheckBox.ZOrder" xml:space="preserve">
     <value>22</value>
-  </data>
-  <data name="maxAllowedBrigadesLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="maxAllowedBrigadesLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 13</value>
-  </data>
-  <data name="maxAllowedBrigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 12</value>
-  </data>
-  <data name="maxAllowedBrigadesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="maxAllowedBrigadesLabel.Text" xml:space="preserve">
-    <value>Max Allowed Brigades</value>
   </data>
   <data name="&gt;&gt;maxAllowedBrigadesLabel.Name" xml:space="preserve">
     <value>maxAllowedBrigadesLabel</value>
@@ -1308,21 +759,6 @@
   <data name="&gt;&gt;maxAllowedBrigadesLabel.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
-  <data name="branchLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="branchLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 214</value>
-  </data>
-  <data name="branchLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="branchLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="branchLabel.Text" xml:space="preserve">
-    <value>Branch</value>
-  </data>
   <data name="&gt;&gt;branchLabel.Name" xml:space="preserve">
     <value>branchLabel</value>
   </data>
@@ -1334,15 +770,6 @@
   </data>
   <data name="&gt;&gt;branchLabel.ZOrder" xml:space="preserve">
     <value>24</value>
-  </data>
-  <data name="branchComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 211</value>
-  </data>
-  <data name="branchComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="branchComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
   </data>
   <data name="&gt;&gt;branchComboBox.Name" xml:space="preserve">
     <value>branchComboBox</value>
@@ -1356,15 +783,6 @@
   <data name="&gt;&gt;branchComboBox.ZOrder" xml:space="preserve">
     <value>25</value>
   </data>
-  <data name="classShortDescTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 186</value>
-  </data>
-  <data name="classShortDescTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 19</value>
-  </data>
-  <data name="classShortDescTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="&gt;&gt;classShortDescTextBox.Name" xml:space="preserve">
     <value>classShortDescTextBox</value>
   </data>
@@ -1376,21 +794,6 @@
   </data>
   <data name="&gt;&gt;classShortDescTextBox.ZOrder" xml:space="preserve">
     <value>26</value>
-  </data>
-  <data name="classShortDescLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="classShortDescLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 189</value>
-  </data>
-  <data name="classShortDescLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 12</value>
-  </data>
-  <data name="classShortDescLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="classShortDescLabel.Text" xml:space="preserve">
-    <value>Short Desc</value>
   </data>
   <data name="&gt;&gt;classShortDescLabel.Name" xml:space="preserve">
     <value>classShortDescLabel</value>
@@ -1404,18 +807,6 @@
   <data name="&gt;&gt;classShortDescLabel.ZOrder" xml:space="preserve">
     <value>27</value>
   </data>
-  <data name="classDescTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 63</value>
-  </data>
-  <data name="classDescTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="classDescTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 117</value>
-  </data>
-  <data name="classDescTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
   <data name="&gt;&gt;classDescTextBox.Name" xml:space="preserve">
     <value>classDescTextBox</value>
   </data>
@@ -1427,21 +818,6 @@
   </data>
   <data name="&gt;&gt;classDescTextBox.ZOrder" xml:space="preserve">
     <value>28</value>
-  </data>
-  <data name="classDescLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="classDescLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 66</value>
-  </data>
-  <data name="classDescLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 12</value>
-  </data>
-  <data name="classDescLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="classDescLabel.Text" xml:space="preserve">
-    <value>Description</value>
   </data>
   <data name="&gt;&gt;classDescLabel.Name" xml:space="preserve">
     <value>classDescLabel</value>
@@ -1455,15 +831,6 @@
   <data name="&gt;&gt;classDescLabel.ZOrder" xml:space="preserve">
     <value>29</value>
   </data>
-  <data name="classShortNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 38</value>
-  </data>
-  <data name="classShortNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 19</value>
-  </data>
-  <data name="classShortNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
   <data name="&gt;&gt;classShortNameTextBox.Name" xml:space="preserve">
     <value>classShortNameTextBox</value>
   </data>
@@ -1475,21 +842,6 @@
   </data>
   <data name="&gt;&gt;classShortNameTextBox.ZOrder" xml:space="preserve">
     <value>30</value>
-  </data>
-  <data name="classShortNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="classShortNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 41</value>
-  </data>
-  <data name="classShortNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="classShortNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="classShortNameLabel.Text" xml:space="preserve">
-    <value>Short Name</value>
   </data>
   <data name="&gt;&gt;classShortNameLabel.Name" xml:space="preserve">
     <value>classShortNameLabel</value>
@@ -1503,15 +855,6 @@
   <data name="&gt;&gt;classShortNameLabel.ZOrder" xml:space="preserve">
     <value>31</value>
   </data>
-  <data name="classNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 10</value>
-  </data>
-  <data name="classNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 19</value>
-  </data>
-  <data name="classNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
   <data name="&gt;&gt;classNameTextBox.Name" xml:space="preserve">
     <value>classNameTextBox</value>
   </data>
@@ -1523,21 +866,6 @@
   </data>
   <data name="&gt;&gt;classNameTextBox.ZOrder" xml:space="preserve">
     <value>32</value>
-  </data>
-  <data name="classNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="classNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 13</value>
-  </data>
-  <data name="classNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="classNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="classNameLabel.Text" xml:space="preserve">
-    <value>Name</value>
   </data>
   <data name="&gt;&gt;classNameLabel.Name" xml:space="preserve">
     <value>classNameLabel</value>
@@ -1578,174 +906,6 @@
   <data name="&gt;&gt;classTabPage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;modelNameTextBox.Name" xml:space="preserve">
-    <value>modelNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;modelNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelNameTextBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;modelNameTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.Name" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;productionGroupBox.Name" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;productionGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;productionGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;productionGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;speedGroupBox.Name" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;speedGroupBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;battleGroupBox.Name" xml:space="preserve">
-    <value>battleGroupBox</value>
-  </data>
-  <data name="&gt;&gt;battleGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;battleGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;battleGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.Name" xml:space="preserve">
-    <value>modelIconPictureBox</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.Name" xml:space="preserve">
-    <value>modelImagePictureBox</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="modelTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="modelTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="modelTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>766, 425</value>
-  </data>
-  <data name="modelTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="modelTabPage.Text" xml:space="preserve">
-    <value>Unit Model</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.Name" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.Parent" xml:space="preserve">
-    <value>editTabControl</value>
-  </data>
-  <data name="&gt;&gt;modelTabPage.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="editTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>198, 189</value>
-  </data>
-  <data name="editTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>774, 451</value>
-  </data>
-  <data name="editTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Name" xml:space="preserve">
-    <value>editTabControl</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="upgradeTypeColumnHeader.Text" xml:space="preserve">
-    <value>Unit Type</value>
-  </data>
-  <data name="upgradeTypeColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>225</value>
-  </data>
-  <data name="upgradeCostColumnHeader.Text" xml:space="preserve">
-    <value>Cost</value>
-  </data>
-  <data name="upgradeCostColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="upgradeCostColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="upgradeTimeColumnHeader.Text" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="upgradeTimeColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="upgradeTimeColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
   <data name="modelNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 116</value>
   </data>
@@ -1766,138 +926,6 @@
   </data>
   <data name="&gt;&gt;modelNameTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;quantityTextBox.Name" xml:space="preserve">
-    <value>quantityTextBox</value>
-  </data>
-  <data name="&gt;&gt;quantityTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;quantityTextBox.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;quantityTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;equipmentDownButton.Name" xml:space="preserve">
-    <value>equipmentDownButton</value>
-  </data>
-  <data name="&gt;&gt;equipmentDownButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;equipmentDownButton.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;equipmentDownButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;equipmentUpButton.Name" xml:space="preserve">
-    <value>equipmentUpButton</value>
-  </data>
-  <data name="&gt;&gt;equipmentUpButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;equipmentUpButton.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;equipmentUpButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;quantityLabel.Name" xml:space="preserve">
-    <value>quantityLabel</value>
-  </data>
-  <data name="&gt;&gt;quantityLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;quantityLabel.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;quantityLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;resourceComboBox.Name" xml:space="preserve">
-    <value>resourceComboBox</value>
-  </data>
-  <data name="&gt;&gt;resourceComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resourceComboBox.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;resourceComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;resourceLabel.Name" xml:space="preserve">
-    <value>resourceLabel</value>
-  </data>
-  <data name="&gt;&gt;resourceLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resourceLabel.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;resourceLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;equipmentRemoveButton.Name" xml:space="preserve">
-    <value>equipmentRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;equipmentRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;equipmentRemoveButton.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;equipmentRemoveButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;equipmentAddButton.Name" xml:space="preserve">
-    <value>equipmentAddButton</value>
-  </data>
-  <data name="&gt;&gt;equipmentAddButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;equipmentAddButton.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;equipmentAddButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;equipmentListView.Name" xml:space="preserve">
-    <value>equipmentListView</value>
-  </data>
-  <data name="&gt;&gt;equipmentListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;equipmentListView.Parent" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;equipmentListView.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="equipmentGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 312</value>
-  </data>
-  <data name="equipmentGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 107</value>
-  </data>
-  <data name="equipmentGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="equipmentGroupBox.Text" xml:space="preserve">
-    <value>Equipment</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.Name" xml:space="preserve">
-    <value>equipmentGroupBox</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;equipmentGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="quantityTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>342, 78</value>
@@ -2115,17 +1143,29 @@
   <data name="&gt;&gt;equipmentListView.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="resourceColumnHeader.Text" xml:space="preserve">
-    <value>Resource</value>
+  <data name="equipmentGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 312</value>
   </data>
-  <data name="resourceColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>100</value>
+  <data name="equipmentGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>448, 107</value>
   </data>
-  <data name="quantityColumnHeader.Text" xml:space="preserve">
-    <value>Quantity</value>
+  <data name="equipmentGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="quantityColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="equipmentGroupBox.Text" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Name" xml:space="preserve">
+    <value>equipmentGroupBox</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;equipmentGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;reinforceCostTextBox.Name" xml:space="preserve">
     <value>reinforceCostTextBox</value>
@@ -2319,363 +1359,6 @@
   <data name="&gt;&gt;productionGroupBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="reinforceCostTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 67</value>
-  </data>
-  <data name="reinforceCostTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="reinforceCostTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="reinforceCostTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostTextBox.Name" xml:space="preserve">
-    <value>reinforceCostTextBox</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostTextBox.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="costTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 18</value>
-  </data>
-  <data name="costTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="costTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="costTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;costTextBox.Name" xml:space="preserve">
-    <value>costTextBox</value>
-  </data>
-  <data name="&gt;&gt;costTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;costTextBox.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;costTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="reinforceCostLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="reinforceCostLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 70</value>
-  </data>
-  <data name="reinforceCostLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 12</value>
-  </data>
-  <data name="reinforceCostLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="reinforceCostLabel.Text" xml:space="preserve">
-    <value>Reinforce Cost</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostLabel.Name" xml:space="preserve">
-    <value>reinforceCostLabel</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostLabel.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;reinforceCostLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="costLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="costLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 21</value>
-  </data>
-  <data name="costLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
-  </data>
-  <data name="costLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="costLabel.Text" xml:space="preserve">
-    <value>Build Cost</value>
-  </data>
-  <data name="&gt;&gt;costLabel.Name" xml:space="preserve">
-    <value>costLabel</value>
-  </data>
-  <data name="&gt;&gt;costLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;costLabel.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;costLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="reinforceTimeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 92</value>
-  </data>
-  <data name="reinforceTimeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="reinforceTimeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="reinforceTimeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeTextBox.Name" xml:space="preserve">
-    <value>reinforceTimeTextBox</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeTextBox.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buildTimeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="buildTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 45</value>
-  </data>
-  <data name="buildTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 12</value>
-  </data>
-  <data name="buildTimeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="buildTimeLabel.Text" xml:space="preserve">
-    <value>Build Time</value>
-  </data>
-  <data name="&gt;&gt;buildTimeLabel.Name" xml:space="preserve">
-    <value>buildTimeLabel</value>
-  </data>
-  <data name="&gt;&gt;buildTimeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buildTimeLabel.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;buildTimeLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="reinforceTimeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="reinforceTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 95</value>
-  </data>
-  <data name="reinforceTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 12</value>
-  </data>
-  <data name="reinforceTimeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="reinforceTimeLabel.Text" xml:space="preserve">
-    <value>Reinforce Time</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeLabel.Name" xml:space="preserve">
-    <value>reinforceTimeLabel</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeLabel.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;reinforceTimeLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="buildTimeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 43</value>
-  </data>
-  <data name="buildTimeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="buildTimeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="buildTimeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;buildTimeTextBox.Name" xml:space="preserve">
-    <value>buildTimeTextBox</value>
-  </data>
-  <data name="&gt;&gt;buildTimeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buildTimeTextBox.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;buildTimeTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="manPowerTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 68</value>
-  </data>
-  <data name="manPowerTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="manPowerTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="manPowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;manPowerTextBox.Name" xml:space="preserve">
-    <value>manPowerTextBox</value>
-  </data>
-  <data name="&gt;&gt;manPowerTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;manPowerTextBox.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;manPowerTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="manPowerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="manPowerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 70</value>
-  </data>
-  <data name="manPowerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 12</value>
-  </data>
-  <data name="manPowerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="manPowerLabel.Text" xml:space="preserve">
-    <value>Manpower</value>
-  </data>
-  <data name="&gt;&gt;manPowerLabel.Name" xml:space="preserve">
-    <value>manPowerLabel</value>
-  </data>
-  <data name="&gt;&gt;manPowerLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;manPowerLabel.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;manPowerLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="upgradeTimeFactorTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 43</value>
-  </data>
-  <data name="upgradeTimeFactorTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="upgradeTimeFactorTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="upgradeTimeFactorTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorTextBox.Name" xml:space="preserve">
-    <value>upgradeTimeFactorTextBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorTextBox.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="upgradeTimeFactorLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="upgradeTimeFactorLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 46</value>
-  </data>
-  <data name="upgradeTimeFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 12</value>
-  </data>
-  <data name="upgradeTimeFactorLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="upgradeTimeFactorLabel.Text" xml:space="preserve">
-    <value>Upgrade Time</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorLabel.Name" xml:space="preserve">
-    <value>upgradeTimeFactorLabel</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorLabel.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeFactorLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="upgradeCostFactorLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="upgradeCostFactorLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 21</value>
-  </data>
-  <data name="upgradeCostFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 12</value>
-  </data>
-  <data name="upgradeCostFactorLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="upgradeCostFactorLabel.Text" xml:space="preserve">
-    <value>Upgrade Cost</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorLabel.Name" xml:space="preserve">
-    <value>upgradeCostFactorLabel</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorLabel.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="upgradeCostFactorTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 18</value>
-  </data>
-  <data name="upgradeCostFactorTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="upgradeCostFactorTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="upgradeCostFactorTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorTextBox.Name" xml:space="preserve">
-    <value>upgradeCostFactorTextBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorTextBox.Parent" xml:space="preserve">
-    <value>productionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostFactorTextBox.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <data name="&gt;&gt;speedCapAaTextBox.Name" xml:space="preserve">
     <value>speedCapAaTextBox</value>
   </data>
@@ -2843,312 +1526,6 @@
   </data>
   <data name="&gt;&gt;speedGroupBox.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="speedCapAaTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 43</value>
-  </data>
-  <data name="speedCapAaTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="speedCapAaTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="speedCapAaTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaTextBox.Name" xml:space="preserve">
-    <value>speedCapAaTextBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaTextBox.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="maxSpeedTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 18</value>
-  </data>
-  <data name="maxSpeedTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="maxSpeedTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="maxSpeedTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedTextBox.Name" xml:space="preserve">
-    <value>maxSpeedTextBox</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedTextBox.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="speedCapAaLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="speedCapAaLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 46</value>
-  </data>
-  <data name="speedCapAaLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 12</value>
-  </data>
-  <data name="speedCapAaLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="speedCapAaLabel.Text" xml:space="preserve">
-    <value>AA Cap</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaLabel.Name" xml:space="preserve">
-    <value>speedCapAaLabel</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaLabel.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAaLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="maxSpeedLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="maxSpeedLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="maxSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 12</value>
-  </data>
-  <data name="maxSpeedLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="maxSpeedLabel.Text" xml:space="preserve">
-    <value>Max Speed</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedLabel.Name" xml:space="preserve">
-    <value>maxSpeedLabel</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedLabel.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxSpeedLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="speedCapAtTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 18</value>
-  </data>
-  <data name="speedCapAtTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="speedCapAtTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="speedCapAtTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtTextBox.Name" xml:space="preserve">
-    <value>speedCapAtTextBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtTextBox.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="speedCapAtLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="speedCapAtLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 21</value>
-  </data>
-  <data name="speedCapAtLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 12</value>
-  </data>
-  <data name="speedCapAtLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="speedCapAtLabel.Text" xml:space="preserve">
-    <value>AT Cap</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtLabel.Name" xml:space="preserve">
-    <value>speedCapAtLabel</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtLabel.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAtLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="speedCapEngTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 43</value>
-  </data>
-  <data name="speedCapEngTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="speedCapEngTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="speedCapEngTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngTextBox.Name" xml:space="preserve">
-    <value>speedCapEngTextBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngTextBox.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngTextBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="speedCapAllTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 43</value>
-  </data>
-  <data name="speedCapAllTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="speedCapAllTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="speedCapAllTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllTextBox.Name" xml:space="preserve">
-    <value>speedCapAllTextBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllTextBox.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="speedCapEngLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="speedCapEngLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 46</value>
-  </data>
-  <data name="speedCapEngLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 12</value>
-  </data>
-  <data name="speedCapEngLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="speedCapEngLabel.Text" xml:space="preserve">
-    <value>Eng. Cap</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngLabel.Name" xml:space="preserve">
-    <value>speedCapEngLabel</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngLabel.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapEngLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="speedCapAllLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="speedCapAllLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 46</value>
-  </data>
-  <data name="speedCapAllLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 12</value>
-  </data>
-  <data name="speedCapAllLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="speedCapAllLabel.Text" xml:space="preserve">
-    <value>Speed Cap</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllLabel.Name" xml:space="preserve">
-    <value>speedCapAllLabel</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllLabel.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapAllLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="speedCapArtTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 17</value>
-  </data>
-  <data name="speedCapArtTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="speedCapArtTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="speedCapArtTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtTextBox.Name" xml:space="preserve">
-    <value>speedCapArtTextBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtTextBox.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="speedCapArtLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="speedCapArtLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 21</value>
-  </data>
-  <data name="speedCapArtLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 12</value>
-  </data>
-  <data name="speedCapArtLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="speedCapArtLabel.Text" xml:space="preserve">
-    <value>Art. Cap</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtLabel.Name" xml:space="preserve">
-    <value>speedCapArtLabel</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtLabel.Parent" xml:space="preserve">
-    <value>speedGroupBox</value>
-  </data>
-  <data name="&gt;&gt;speedCapArtLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
   </data>
   <data name="&gt;&gt;artilleryBombardmentTextBox.Name" xml:space="preserve">
     <value>artilleryBombardmentTextBox</value>
@@ -3701,6 +2078,2247 @@
   </data>
   <data name="&gt;&gt;battleGroupBox.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="&gt;&gt;transportWeightTextBox.Name" xml:space="preserve">
+    <value>transportWeightTextBox</value>
+  </data>
+  <data name="&gt;&gt;transportWeightTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transportWeightTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportWeightTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.Name" xml:space="preserve">
+    <value>rangeLabel</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rangeLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.Name" xml:space="preserve">
+    <value>transportWeightLabel</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportWeightLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.Name" xml:space="preserve">
+    <value>maxOilStockTextBox</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.Name" xml:space="preserve">
+    <value>rangeTextBox</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rangeTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.Name" xml:space="preserve">
+    <value>transportCapabilityLabel</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.Name" xml:space="preserve">
+    <value>maxOilStockLabel</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxOilStockLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.Name" xml:space="preserve">
+    <value>transportCapabilityTextBox</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;transportCapabilityTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.Name" xml:space="preserve">
+    <value>maxSupplyStockTextBox</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.Name" xml:space="preserve">
+    <value>maxSupplyStockLabel</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSupplyStockLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.Name" xml:space="preserve">
+    <value>fuelConsumptionTextBox</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.Name" xml:space="preserve">
+    <value>fuelConsumptionLabel</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fuelConsumptionLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.Name" xml:space="preserve">
+    <value>supplyConsumptionTextBox</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionTextBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.Name" xml:space="preserve">
+    <value>supplyConsumptionLabel</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;supplyConsumptionLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.Name" xml:space="preserve">
+    <value>suppressionTextBox</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;suppressionTextBox.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;suppressionLabel.Name" xml:space="preserve">
+    <value>suppressionLabel</value>
+  </data>
+  <data name="&gt;&gt;suppressionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;suppressionLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;suppressionLabel.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.Name" xml:space="preserve">
+    <value>moraleTextBox</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;moraleTextBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.Name" xml:space="preserve">
+    <value>moraleLabel</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;moraleLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.Name" xml:space="preserve">
+    <value>defaultOrganisationTextBox</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationTextBox.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.Name" xml:space="preserve">
+    <value>defaultOrganisationLabel</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;defaultOrganisationLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="basicGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 141</value>
+  </data>
+  <data name="basicGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>291, 143</value>
+  </data>
+  <data name="basicGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="basicGroupBox.Text" xml:space="preserve">
+    <value>Basic Status</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="modelIconPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 6</value>
+  </data>
+  <data name="modelIconPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 44</value>
+  </data>
+  <data name="modelIconPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.Name" xml:space="preserve">
+    <value>modelIconPictureBox</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;modelIconPictureBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="modelImagePictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 6</value>
+  </data>
+  <data name="modelImagePictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 104</value>
+  </data>
+  <data name="modelImagePictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.Name" xml:space="preserve">
+    <value>modelImagePictureBox</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.Parent" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;modelImagePictureBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="modelTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="modelTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="modelTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>766, 425</value>
+  </data>
+  <data name="modelTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="modelTabPage.Text" xml:space="preserve">
+    <value>Unit Model</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.Name" xml:space="preserve">
+    <value>modelTabPage</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.Parent" xml:space="preserve">
+    <value>editTabControl</value>
+  </data>
+  <data name="&gt;&gt;modelTabPage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="editTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 189</value>
+  </data>
+  <data name="editTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>774, 451</value>
+  </data>
+  <data name="editTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Name" xml:space="preserve">
+    <value>editTabControl</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="eyrNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 237</value>
+  </data>
+  <data name="eyrNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="eyrNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="eyrNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;eyrNumericUpDown.Name" xml:space="preserve">
+    <value>eyrNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;eyrNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eyrNumericUpDown.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;eyrNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="eyrLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="eyrLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="eyrLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 239</value>
+  </data>
+  <data name="eyrLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 12</value>
+  </data>
+  <data name="eyrLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="eyrLabel.Text" xml:space="preserve">
+    <value>Eyr</value>
+  </data>
+  <data name="&gt;&gt;eyrLabel.Name" xml:space="preserve">
+    <value>eyrLabel</value>
+  </data>
+  <data name="&gt;&gt;eyrLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eyrLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;eyrLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="defaultTypeCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="defaultTypeCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 314</value>
+  </data>
+  <data name="defaultTypeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 16</value>
+  </data>
+  <data name="defaultTypeCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="defaultTypeCheckBox.Text" xml:space="preserve">
+    <value>Default Type</value>
+  </data>
+  <data name="&gt;&gt;defaultTypeCheckBox.Name" xml:space="preserve">
+    <value>defaultTypeCheckBox</value>
+  </data>
+  <data name="&gt;&gt;defaultTypeCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defaultTypeCheckBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;defaultTypeCheckBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="engineerCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="engineerCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="engineerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 288</value>
+  </data>
+  <data name="engineerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 16</value>
+  </data>
+  <data name="engineerCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="engineerCheckBox.Text" xml:space="preserve">
+    <value>Engineer</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.Name" xml:space="preserve">
+    <value>engineerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;engineerCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cagCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cagCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cagCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 238</value>
+  </data>
+  <data name="cagCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="cagCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="cagCheckBox.Text" xml:space="preserve">
+    <value>CAG</value>
+  </data>
+  <data name="&gt;&gt;cagCheckBox.Name" xml:space="preserve">
+    <value>cagCheckBox</value>
+  </data>
+  <data name="&gt;&gt;cagCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cagCheckBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;cagCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="escortCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="escortCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="escortCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 263</value>
+  </data>
+  <data name="escortCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 16</value>
+  </data>
+  <data name="escortCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="escortCheckBox.Text" xml:space="preserve">
+    <value>Escort Fighter</value>
+  </data>
+  <data name="&gt;&gt;escortCheckBox.Name" xml:space="preserve">
+    <value>escortCheckBox</value>
+  </data>
+  <data name="&gt;&gt;escortCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;escortCheckBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;escortCheckBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="allowedBrigadesListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 35</value>
+  </data>
+  <data name="allowedBrigadesListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>398, 170</value>
+  </data>
+  <data name="allowedBrigadesListView.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;allowedBrigadesListView.Name" xml:space="preserve">
+    <value>allowedBrigadesListView</value>
+  </data>
+  <data name="&gt;&gt;allowedBrigadesListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allowedBrigadesListView.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;allowedBrigadesListView.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="maxAllowedBrigadesNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 10</value>
+  </data>
+  <data name="maxAllowedBrigadesNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="maxAllowedBrigadesNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="maxAllowedBrigadesNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesNumericUpDown.Name" xml:space="preserve">
+    <value>maxAllowedBrigadesNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesNumericUpDown.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesNumericUpDown.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="militaryValueTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 389</value>
+  </data>
+  <data name="militaryValueTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="militaryValueTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="militaryValueTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;militaryValueTextBox.Name" xml:space="preserve">
+    <value>militaryValueTextBox</value>
+  </data>
+  <data name="&gt;&gt;militaryValueTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;militaryValueTextBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;militaryValueTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="listPrioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 287</value>
+  </data>
+  <data name="listPrioNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="listPrioNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="listPrioNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;listPrioNumericUpDown.Name" xml:space="preserve">
+    <value>listPrioNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;listPrioNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listPrioNumericUpDown.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;listPrioNumericUpDown.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="listPrioLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="listPrioLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 289</value>
+  </data>
+  <data name="listPrioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="listPrioLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="listPrioLabel.Text" xml:space="preserve">
+    <value>List Priority</value>
+  </data>
+  <data name="&gt;&gt;listPrioLabel.Name" xml:space="preserve">
+    <value>listPrioLabel</value>
+  </data>
+  <data name="&gt;&gt;listPrioLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listPrioLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;listPrioLabel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.Name" xml:space="preserve">
+    <value>upgradeTimeTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.Name" xml:space="preserve">
+    <value>upgradeTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.Name" xml:space="preserve">
+    <value>upgradeCostTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.Name" xml:space="preserve">
+    <value>upgradeCostLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.Name" xml:space="preserve">
+    <value>upgradeTypeComboBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.Name" xml:space="preserve">
+    <value>upgradeTypeLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.Name" xml:space="preserve">
+    <value>upgradeRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.Name" xml:space="preserve">
+    <value>upgradeAddButton</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.Name" xml:space="preserve">
+    <value>upgradeListView</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="upgradeGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>385, 214</value>
+  </data>
+  <data name="upgradeGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>362, 196</value>
+  </data>
+  <data name="upgradeGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="upgradeGroupBox.Text" xml:space="preserve">
+    <value>Upgrade</value>
+  </data>
+  <data name="&gt;&gt;upgradeGroupBox.Name" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeGroupBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;upgradeGroupBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="upgradeTimeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 165</value>
+  </data>
+  <data name="upgradeTimeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="upgradeTimeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="upgradeTimeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.Name" xml:space="preserve">
+    <value>upgradeTimeTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="upgradeTimeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="upgradeTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 168</value>
+  </data>
+  <data name="upgradeTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 12</value>
+  </data>
+  <data name="upgradeTimeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="upgradeTimeLabel.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.Name" xml:space="preserve">
+    <value>upgradeTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="upgradeCostTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 141</value>
+  </data>
+  <data name="upgradeCostTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="upgradeCostTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="upgradeCostTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.Name" xml:space="preserve">
+    <value>upgradeCostTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="upgradeCostLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="upgradeCostLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 144</value>
+  </data>
+  <data name="upgradeCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="upgradeCostLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="upgradeCostLabel.Text" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.Name" xml:space="preserve">
+    <value>upgradeCostLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="upgradeTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 115</value>
+  </data>
+  <data name="upgradeTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="upgradeTypeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.Name" xml:space="preserve">
+    <value>upgradeTypeComboBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeComboBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="upgradeTypeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="upgradeTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 118</value>
+  </data>
+  <data name="upgradeTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 12</value>
+  </data>
+  <data name="upgradeTypeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="upgradeTypeLabel.Text" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.Name" xml:space="preserve">
+    <value>upgradeTypeLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="upgradeRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 144</value>
+  </data>
+  <data name="upgradeRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="upgradeRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="upgradeRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.Name" xml:space="preserve">
+    <value>upgradeRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeRemoveButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="upgradeAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 113</value>
+  </data>
+  <data name="upgradeAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="upgradeAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="upgradeAddButton.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.Name" xml:space="preserve">
+    <value>upgradeAddButton</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeAddButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="upgradeListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 18</value>
+  </data>
+  <data name="upgradeListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 91</value>
+  </data>
+  <data name="upgradeListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.Name" xml:space="preserve">
+    <value>upgradeListView</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.Parent" xml:space="preserve">
+    <value>upgradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeListView.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="upgradeTypeColumnHeader.Text" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="upgradeTypeColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>225</value>
+  </data>
+  <data name="upgradeCostColumnHeader.Text" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="upgradeCostColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="upgradeCostColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="upgradeTimeColumnHeader.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="upgradeTimeColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="upgradeTimeColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="militaryValueLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="militaryValueLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 392</value>
+  </data>
+  <data name="militaryValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 12</value>
+  </data>
+  <data name="militaryValueLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="militaryValueLabel.Text" xml:space="preserve">
+    <value>Military Value</value>
+  </data>
+  <data name="&gt;&gt;militaryValueLabel.Name" xml:space="preserve">
+    <value>militaryValueLabel</value>
+  </data>
+  <data name="&gt;&gt;militaryValueLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;militaryValueLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;militaryValueLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="transmuteComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 363</value>
+  </data>
+  <data name="transmuteComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="transmuteComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;transmuteComboBox.Name" xml:space="preserve">
+    <value>transmuteComboBox</value>
+  </data>
+  <data name="&gt;&gt;transmuteComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transmuteComboBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;transmuteComboBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="transmuteLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="transmuteLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 366</value>
+  </data>
+  <data name="transmuteLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 12</value>
+  </data>
+  <data name="transmuteLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="transmuteLabel.Text" xml:space="preserve">
+    <value>Transmute Unit</value>
+  </data>
+  <data name="&gt;&gt;transmuteLabel.Name" xml:space="preserve">
+    <value>transmuteLabel</value>
+  </data>
+  <data name="&gt;&gt;transmuteLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transmuteLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;transmuteLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="spriteTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 337</value>
+  </data>
+  <data name="spriteTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="spriteTypeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeComboBox.Name" xml:space="preserve">
+    <value>spriteTypeComboBox</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeComboBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeComboBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="spriteTypeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="spriteTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 340</value>
+  </data>
+  <data name="spriteTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 12</value>
+  </data>
+  <data name="spriteTypeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="spriteTypeLabel.Text" xml:space="preserve">
+    <value>Sprite Type</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeLabel.Name" xml:space="preserve">
+    <value>spriteTypeLabel</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;spriteTypeLabel.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="realUnitTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 312</value>
+  </data>
+  <data name="realUnitTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="realUnitTypeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeComboBox.Name" xml:space="preserve">
+    <value>realUnitTypeComboBox</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeComboBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeComboBox.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="realUnitTypeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="realUnitTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 315</value>
+  </data>
+  <data name="realUnitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 12</value>
+  </data>
+  <data name="realUnitTypeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="realUnitTypeLabel.Text" xml:space="preserve">
+    <value>Real Unit Type</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeLabel.Name" xml:space="preserve">
+    <value>realUnitTypeLabel</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;realUnitTypeLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="productableCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="productableCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 339</value>
+  </data>
+  <data name="productableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 16</value>
+  </data>
+  <data name="productableCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="productableCheckBox.Text" xml:space="preserve">
+    <value>Initial Productable</value>
+  </data>
+  <data name="&gt;&gt;productableCheckBox.Name" xml:space="preserve">
+    <value>productableCheckBox</value>
+  </data>
+  <data name="&gt;&gt;productableCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;productableCheckBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;productableCheckBox.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="gfxPrioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 262</value>
+  </data>
+  <data name="gfxPrioNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="gfxPrioNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="gfxPrioNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioNumericUpDown.Name" xml:space="preserve">
+    <value>gfxPrioNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioNumericUpDown.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioNumericUpDown.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="gfxPrioLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="gfxPrioLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 264</value>
+  </data>
+  <data name="gfxPrioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 12</value>
+  </data>
+  <data name="gfxPrioLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="gfxPrioLabel.Text" xml:space="preserve">
+    <value>Graphics Priority</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioLabel.Name" xml:space="preserve">
+    <value>gfxPrioLabel</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;gfxPrioLabel.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="detachableCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="detachableCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 213</value>
+  </data>
+  <data name="detachableCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 16</value>
+  </data>
+  <data name="detachableCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="detachableCheckBox.Text" xml:space="preserve">
+    <value>Detachable</value>
+  </data>
+  <data name="&gt;&gt;detachableCheckBox.Name" xml:space="preserve">
+    <value>detachableCheckBox</value>
+  </data>
+  <data name="&gt;&gt;detachableCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;detachableCheckBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;detachableCheckBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="maxAllowedBrigadesLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="maxAllowedBrigadesLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>347, 13</value>
+  </data>
+  <data name="maxAllowedBrigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 12</value>
+  </data>
+  <data name="maxAllowedBrigadesLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="maxAllowedBrigadesLabel.Text" xml:space="preserve">
+    <value>Max Allowed Brigades</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesLabel.Name" xml:space="preserve">
+    <value>maxAllowedBrigadesLabel</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;maxAllowedBrigadesLabel.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="branchLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="branchLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 214</value>
+  </data>
+  <data name="branchLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="branchLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="branchLabel.Text" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="&gt;&gt;branchLabel.Name" xml:space="preserve">
+    <value>branchLabel</value>
+  </data>
+  <data name="&gt;&gt;branchLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;branchLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;branchLabel.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="branchComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 211</value>
+  </data>
+  <data name="branchComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="branchComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;branchComboBox.Name" xml:space="preserve">
+    <value>branchComboBox</value>
+  </data>
+  <data name="&gt;&gt;branchComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;branchComboBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;branchComboBox.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="classShortDescTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 186</value>
+  </data>
+  <data name="classShortDescTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 19</value>
+  </data>
+  <data name="classShortDescTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;classShortDescTextBox.Name" xml:space="preserve">
+    <value>classShortDescTextBox</value>
+  </data>
+  <data name="&gt;&gt;classShortDescTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classShortDescTextBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classShortDescTextBox.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="classShortDescLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="classShortDescLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 189</value>
+  </data>
+  <data name="classShortDescLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 12</value>
+  </data>
+  <data name="classShortDescLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="classShortDescLabel.Text" xml:space="preserve">
+    <value>Short Desc</value>
+  </data>
+  <data name="&gt;&gt;classShortDescLabel.Name" xml:space="preserve">
+    <value>classShortDescLabel</value>
+  </data>
+  <data name="&gt;&gt;classShortDescLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classShortDescLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classShortDescLabel.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="classDescTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 63</value>
+  </data>
+  <data name="classDescTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="classDescTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 117</value>
+  </data>
+  <data name="classDescTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;classDescTextBox.Name" xml:space="preserve">
+    <value>classDescTextBox</value>
+  </data>
+  <data name="&gt;&gt;classDescTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classDescTextBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classDescTextBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="classDescLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="classDescLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 66</value>
+  </data>
+  <data name="classDescLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="classDescLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="classDescLabel.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="&gt;&gt;classDescLabel.Name" xml:space="preserve">
+    <value>classDescLabel</value>
+  </data>
+  <data name="&gt;&gt;classDescLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classDescLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classDescLabel.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="classShortNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 38</value>
+  </data>
+  <data name="classShortNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 19</value>
+  </data>
+  <data name="classShortNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;classShortNameTextBox.Name" xml:space="preserve">
+    <value>classShortNameTextBox</value>
+  </data>
+  <data name="&gt;&gt;classShortNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classShortNameTextBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classShortNameTextBox.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="classShortNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="classShortNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 41</value>
+  </data>
+  <data name="classShortNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="classShortNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="classShortNameLabel.Text" xml:space="preserve">
+    <value>Short Name</value>
+  </data>
+  <data name="&gt;&gt;classShortNameLabel.Name" xml:space="preserve">
+    <value>classShortNameLabel</value>
+  </data>
+  <data name="&gt;&gt;classShortNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classShortNameLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classShortNameLabel.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="classNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 10</value>
+  </data>
+  <data name="classNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 19</value>
+  </data>
+  <data name="classNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;classNameTextBox.Name" xml:space="preserve">
+    <value>classNameTextBox</value>
+  </data>
+  <data name="&gt;&gt;classNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classNameTextBox.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classNameTextBox.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="classNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="classNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="classNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="classNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="classNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;classNameLabel.Name" xml:space="preserve">
+    <value>classNameLabel</value>
+  </data>
+  <data name="&gt;&gt;classNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classNameLabel.Parent" xml:space="preserve">
+    <value>classTabPage</value>
+  </data>
+  <data name="&gt;&gt;classNameLabel.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="resourceColumnHeader.Text" xml:space="preserve">
+    <value>Resource</value>
+  </data>
+  <data name="resourceColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="quantityColumnHeader.Text" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="quantityColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="reinforceCostTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 67</value>
+  </data>
+  <data name="reinforceCostTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="reinforceCostTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="reinforceCostTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostTextBox.Name" xml:space="preserve">
+    <value>reinforceCostTextBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="costTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 18</value>
+  </data>
+  <data name="costTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="costTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="costTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.Name" xml:space="preserve">
+    <value>costTextBox</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;costTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="reinforceCostLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="reinforceCostLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 70</value>
+  </data>
+  <data name="reinforceCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 12</value>
+  </data>
+  <data name="reinforceCostLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="reinforceCostLabel.Text" xml:space="preserve">
+    <value>Reinforce Cost</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.Name" xml:space="preserve">
+    <value>reinforceCostLabel</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceCostLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="costLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="costLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 21</value>
+  </data>
+  <data name="costLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="costLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="costLabel.Text" xml:space="preserve">
+    <value>Build Cost</value>
+  </data>
+  <data name="&gt;&gt;costLabel.Name" xml:space="preserve">
+    <value>costLabel</value>
+  </data>
+  <data name="&gt;&gt;costLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;costLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;costLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="reinforceTimeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 92</value>
+  </data>
+  <data name="reinforceTimeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="reinforceTimeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="reinforceTimeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.Name" xml:space="preserve">
+    <value>reinforceTimeTextBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="buildTimeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buildTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 45</value>
+  </data>
+  <data name="buildTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 12</value>
+  </data>
+  <data name="buildTimeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buildTimeLabel.Text" xml:space="preserve">
+    <value>Build Time</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.Name" xml:space="preserve">
+    <value>buildTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;buildTimeLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="reinforceTimeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="reinforceTimeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 95</value>
+  </data>
+  <data name="reinforceTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 12</value>
+  </data>
+  <data name="reinforceTimeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="reinforceTimeLabel.Text" xml:space="preserve">
+    <value>Reinforce Time</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.Name" xml:space="preserve">
+    <value>reinforceTimeLabel</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;reinforceTimeLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="buildTimeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 43</value>
+  </data>
+  <data name="buildTimeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="buildTimeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="buildTimeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.Name" xml:space="preserve">
+    <value>buildTimeTextBox</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;buildTimeTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="manPowerTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 68</value>
+  </data>
+  <data name="manPowerTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="manPowerTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="manPowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.Name" xml:space="preserve">
+    <value>manPowerTextBox</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;manPowerTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="manPowerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="manPowerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 70</value>
+  </data>
+  <data name="manPowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 12</value>
+  </data>
+  <data name="manPowerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="manPowerLabel.Text" xml:space="preserve">
+    <value>Manpower</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.Name" xml:space="preserve">
+    <value>manPowerLabel</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;manPowerLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="upgradeTimeFactorTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 43</value>
+  </data>
+  <data name="upgradeTimeFactorTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="upgradeTimeFactorTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="upgradeTimeFactorTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.Name" xml:space="preserve">
+    <value>upgradeTimeFactorTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="upgradeTimeFactorLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="upgradeTimeFactorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 46</value>
+  </data>
+  <data name="upgradeTimeFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 12</value>
+  </data>
+  <data name="upgradeTimeFactorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="upgradeTimeFactorLabel.Text" xml:space="preserve">
+    <value>Upgrade Time</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.Name" xml:space="preserve">
+    <value>upgradeTimeFactorLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeFactorLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="upgradeCostFactorLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="upgradeCostFactorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="upgradeCostFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 12</value>
+  </data>
+  <data name="upgradeCostFactorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="upgradeCostFactorLabel.Text" xml:space="preserve">
+    <value>Upgrade Cost</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.Name" xml:space="preserve">
+    <value>upgradeCostFactorLabel</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="upgradeCostFactorTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 18</value>
+  </data>
+  <data name="upgradeCostFactorTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="upgradeCostFactorTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="upgradeCostFactorTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.Name" xml:space="preserve">
+    <value>upgradeCostFactorTextBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.Parent" xml:space="preserve">
+    <value>productionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostFactorTextBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="speedCapAaTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>387, 43</value>
+  </data>
+  <data name="speedCapAaTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="speedCapAaTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="speedCapAaTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaTextBox.Name" xml:space="preserve">
+    <value>speedCapAaTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="maxSpeedTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 18</value>
+  </data>
+  <data name="maxSpeedTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="maxSpeedTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="maxSpeedTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedTextBox.Name" xml:space="preserve">
+    <value>maxSpeedTextBox</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="speedCapAaLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="speedCapAaLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 46</value>
+  </data>
+  <data name="speedCapAaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
+  </data>
+  <data name="speedCapAaLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="speedCapAaLabel.Text" xml:space="preserve">
+    <value>AA Cap</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.Name" xml:space="preserve">
+    <value>speedCapAaLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAaLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="maxSpeedLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="maxSpeedLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="maxSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 12</value>
+  </data>
+  <data name="maxSpeedLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="maxSpeedLabel.Text" xml:space="preserve">
+    <value>Max Speed</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.Name" xml:space="preserve">
+    <value>maxSpeedLabel</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxSpeedLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="speedCapAtTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>387, 18</value>
+  </data>
+  <data name="speedCapAtTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="speedCapAtTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="speedCapAtTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.Name" xml:space="preserve">
+    <value>speedCapAtTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="speedCapAtLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="speedCapAtLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 21</value>
+  </data>
+  <data name="speedCapAtLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 12</value>
+  </data>
+  <data name="speedCapAtLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="speedCapAtLabel.Text" xml:space="preserve">
+    <value>AT Cap</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.Name" xml:space="preserve">
+    <value>speedCapAtLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAtLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="speedCapEngTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 43</value>
+  </data>
+  <data name="speedCapEngTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="speedCapEngTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="speedCapEngTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.Name" xml:space="preserve">
+    <value>speedCapEngTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="speedCapAllTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 43</value>
+  </data>
+  <data name="speedCapAllTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="speedCapAllTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="speedCapAllTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.Name" xml:space="preserve">
+    <value>speedCapAllTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="speedCapEngLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="speedCapEngLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 46</value>
+  </data>
+  <data name="speedCapEngLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 12</value>
+  </data>
+  <data name="speedCapEngLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="speedCapEngLabel.Text" xml:space="preserve">
+    <value>Eng. Cap</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.Name" xml:space="preserve">
+    <value>speedCapEngLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapEngLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="speedCapAllLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="speedCapAllLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 46</value>
+  </data>
+  <data name="speedCapAllLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 12</value>
+  </data>
+  <data name="speedCapAllLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="speedCapAllLabel.Text" xml:space="preserve">
+    <value>Speed Cap</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.Name" xml:space="preserve">
+    <value>speedCapAllLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapAllLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="speedCapArtTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 17</value>
+  </data>
+  <data name="speedCapArtTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="speedCapArtTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="speedCapArtTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.Name" xml:space="preserve">
+    <value>speedCapArtTextBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="speedCapArtLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="speedCapArtLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 21</value>
+  </data>
+  <data name="speedCapArtLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="speedCapArtLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="speedCapArtLabel.Text" xml:space="preserve">
+    <value>Art. Cap</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.Name" xml:space="preserve">
+    <value>speedCapArtLabel</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.Parent" xml:space="preserve">
+    <value>speedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;speedCapArtLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="artilleryBombardmentTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>244, 193</value>
@@ -4824,270 +5442,6 @@
   <data name="&gt;&gt;defensivenessLabel.ZOrder" xml:space="preserve">
     <value>43</value>
   </data>
-  <data name="&gt;&gt;transportWeightTextBox.Name" xml:space="preserve">
-    <value>transportWeightTextBox</value>
-  </data>
-  <data name="&gt;&gt;transportWeightTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;transportWeightTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;transportWeightTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;rangeLabel.Name" xml:space="preserve">
-    <value>rangeLabel</value>
-  </data>
-  <data name="&gt;&gt;rangeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rangeLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rangeLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;transportWeightLabel.Name" xml:space="preserve">
-    <value>transportWeightLabel</value>
-  </data>
-  <data name="&gt;&gt;transportWeightLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;transportWeightLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;transportWeightLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockTextBox.Name" xml:space="preserve">
-    <value>maxOilStockTextBox</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;rangeTextBox.Name" xml:space="preserve">
-    <value>rangeTextBox</value>
-  </data>
-  <data name="&gt;&gt;rangeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rangeTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rangeTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityLabel.Name" xml:space="preserve">
-    <value>transportCapabilityLabel</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockLabel.Name" xml:space="preserve">
-    <value>maxOilStockLabel</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxOilStockLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityTextBox.Name" xml:space="preserve">
-    <value>transportCapabilityTextBox</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;transportCapabilityTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockTextBox.Name" xml:space="preserve">
-    <value>maxSupplyStockTextBox</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockLabel.Name" xml:space="preserve">
-    <value>maxSupplyStockLabel</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxSupplyStockLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionTextBox.Name" xml:space="preserve">
-    <value>fuelConsumptionTextBox</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionLabel.Name" xml:space="preserve">
-    <value>fuelConsumptionLabel</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fuelConsumptionLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionTextBox.Name" xml:space="preserve">
-    <value>supplyConsumptionTextBox</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionTextBox.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionLabel.Name" xml:space="preserve">
-    <value>supplyConsumptionLabel</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;supplyConsumptionLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;suppressionTextBox.Name" xml:space="preserve">
-    <value>suppressionTextBox</value>
-  </data>
-  <data name="&gt;&gt;suppressionTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;suppressionTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;suppressionTextBox.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;suppressionLabel.Name" xml:space="preserve">
-    <value>suppressionLabel</value>
-  </data>
-  <data name="&gt;&gt;suppressionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;suppressionLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;suppressionLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;moraleTextBox.Name" xml:space="preserve">
-    <value>moraleTextBox</value>
-  </data>
-  <data name="&gt;&gt;moraleTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;moraleTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;moraleTextBox.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;moraleLabel.Name" xml:space="preserve">
-    <value>moraleLabel</value>
-  </data>
-  <data name="&gt;&gt;moraleLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;moraleLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;moraleLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationTextBox.Name" xml:space="preserve">
-    <value>defaultOrganisationTextBox</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationTextBox.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationLabel.Name" xml:space="preserve">
-    <value>defaultOrganisationLabel</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;defaultOrganisationLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="basicGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 141</value>
-  </data>
-  <data name="basicGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>291, 143</value>
-  </data>
-  <data name="basicGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="basicGroupBox.Text" xml:space="preserve">
-    <value>Basic Status</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="transportWeightTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 93</value>
   </data>
@@ -5597,48 +5951,6 @@
   </data>
   <data name="&gt;&gt;defaultOrganisationLabel.ZOrder" xml:space="preserve">
     <value>19</value>
-  </data>
-  <data name="modelIconPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 6</value>
-  </data>
-  <data name="modelIconPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 44</value>
-  </data>
-  <data name="modelIconPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.Name" xml:space="preserve">
-    <value>modelIconPictureBox</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;modelIconPictureBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="modelImagePictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 6</value>
-  </data>
-  <data name="modelImagePictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 104</value>
-  </data>
-  <data name="modelImagePictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.Name" xml:space="preserve">
-    <value>modelImagePictureBox</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.Parent" xml:space="preserve">
-    <value>modelTabPage</value>
-  </data>
-  <data name="&gt;&gt;modelImagePictureBox.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>

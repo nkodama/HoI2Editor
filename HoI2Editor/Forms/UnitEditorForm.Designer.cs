@@ -780,10 +780,13 @@
             // 
             // resourceComboBox
             // 
+            this.resourceComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.resourceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.resourceComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.resourceComboBox, "resourceComboBox");
             this.resourceComboBox.Name = "resourceComboBox";
-            this.resourceComboBox.Validated += new System.EventHandler(this.OnResourceComboBoxValidated);
+            this.resourceComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnResourceComboBoxDrawItem);
+            this.resourceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnResourceComboBoxSelectedIndexChanged);
             // 
             // resourceLabel
             // 

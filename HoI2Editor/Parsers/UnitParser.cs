@@ -1700,12 +1700,19 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var resource = token.Value as string;
-                if (string.IsNullOrEmpty(resource))
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
                 }
-                resource = resource.ToLower();
+                keyword = keyword.ToLower();
+
+                if (!Units.EquipmentStringMap.ContainsKey(keyword))
+                {
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    continue;
+                }
+                EquipmentType resource = Units.EquipmentStringMap[keyword];
 
                 // =
                 token = lexer.GetToken();

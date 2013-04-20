@@ -763,7 +763,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     資源
         /// </summary>
-        public string Resource { get; set; }
+        public EquipmentType Resource { get; set; }
 
         /// <summary>
         ///     量
@@ -1335,7 +1335,7 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     スプライトの種類
+    ///     スプライトの種類 (DH1.03以降用)
     /// </summary>
     public enum SpriteType
     {
@@ -1480,6 +1480,50 @@ namespace HoI2Editor.Models
         Division97,
         Division98,
         Division99,
+    }
+
+    /// <summary>
+    ///     装備の種類 (DH1.03以降用)
+    /// </summary>
+    public enum EquipmentType
+    {
+        Manpower,
+        Equipment,
+        Artillery,
+        HeavyArtillery,
+        AntiAir,
+        AntiTank,
+        Horses,
+        Trucks,
+        Halftracks,
+        ArmoredCar,
+        LightArmor,
+        MediumArmor,
+        HeavyArmor,
+        TankDestroyer,
+        SpArtillery,
+        Fighter,
+        HeavyFighter,
+        RocketInterceptor,
+        Bomber,
+        HeavyBomber,
+        TransportPlane,
+        Floatplane,
+        Helicopter,
+        Rocket,
+        Balloon,
+        Transports,
+        Escorts,
+        Transport,
+        Battleship,
+        BattleCruiser,
+        HeavyCruiser,
+        Carrier,
+        EscortCarrier,
+        LightCruiser,
+        Destroyer,
+        Submarine,
+        NuclearSubmarine,
     }
 
     /// <summary>

@@ -53,7 +53,7 @@ namespace HoI2Editor.Writers
                 {
                     foreach (UnitType brigade in unit.AllowedBrigades)
                     {
-                        writer.WriteLine("allowed_brigades = {0}", Units.StringTable[(int) brigade]);
+                        writer.WriteLine("allowed_brigades = {0}", Units.Strings[(int) brigade]);
                     }
                     // max_allowed_brigades
                     if (Game.Type == GameType.DarkestHour && unit.MaxAllowedBrigades != 0)
@@ -70,7 +70,7 @@ namespace HoI2Editor.Writers
                     {
                         writer.WriteLine(
                             "upgrade = {{ type = {0} upgrade_time_factor = {1} upgrade_cost_factor = {2} }}",
-                            Units.StringTable[(int) upgrade.Type],
+                            Units.Strings[(int) upgrade.Type],
                             upgrade.UpgradeTimeFactor,
                             upgrade.UpgradeCostFactor);
                     }
@@ -142,7 +142,7 @@ namespace HoI2Editor.Writers
                 writer.Write("\tequipment = {");
                 foreach (UnitEquipment equipment in model.Equipments)
                 {
-                    writer.Write(" {0} = {1}", equipment.Resource, equipment.Quantity);
+                    writer.Write(" {0} = {1}", Units.EquipmentNames[(int) equipment.Resource], equipment.Quantity);
                 }
                 writer.WriteLine(" }");
             }
@@ -557,27 +557,27 @@ namespace HoI2Editor.Writers
             writer.WriteLine();
             if (unit.Type < UnitType.ReserveDivision33 || unit.Type > UnitType.ReserveDivision40)
             {
-                writer.WriteLine("{0} = {{", Units.StringTable[(int) unit.Type]);
+                writer.WriteLine("{0} = {{", Units.Strings[(int) unit.Type]);
             }
             else
             {
-                writer.WriteLine("{0} = {{\t# Reserved for use by Darkest Hour Full", Units.StringTable[(int) unit.Type]);
+                writer.WriteLine("{0} = {{\t# Reserved for use by Darkest Hour Full", Units.Strings[(int) unit.Type]);
             }
             writer.WriteLine("\t#ID\t\t\t{0}", Units.UnitNumbers[(int) unit.Type]);
             if (unit.ListPrio != -1)
             {
-                writer.WriteLine("\ttype\t\t= {0}", Units.RealStringTable[(int) unit.RealType]);
+                writer.WriteLine("\ttype\t\t= {0}", Units.RealStrings[(int) unit.RealType]);
                 writer.WriteLine("\tname\t\t= {0}", unit.Name);
                 writer.WriteLine("\tshort_name\t= {0}", unit.ShortName);
                 writer.WriteLine("\tdesc\t\t= {0}", unit.Desc);
                 writer.WriteLine("\tshort_desc\t= {0}", unit.ShortDesc);
                 writer.WriteLine("\teyr\t\t\t= {0}", unit.Eyr);
-                writer.WriteLine("\tsprite\t\t= {0}", Units.SpriteStringTable[(int) unit.Sprite]);
-                writer.WriteLine("\ttransmute\t= {0}", Units.StringTable[(int) unit.Transmute]);
+                writer.WriteLine("\tsprite\t\t= {0}", Units.SpriteStrings[(int) unit.Sprite]);
+                writer.WriteLine("\ttransmute\t= {0}", Units.Strings[(int) unit.Transmute]);
                 writer.WriteLine("\tgfx_prio\t= {0}", unit.GfxPrio);
                 if (unit.DefaultType)
                 {
-                    string s = Units.RealStringTable[(int) unit.RealType];
+                    string s = Units.RealStrings[(int) unit.RealType];
                     int len = s.Length;
                     if (len < 4)
                     {
@@ -810,15 +810,15 @@ namespace HoI2Editor.Writers
             writer.WriteLine();
             if (unit.Type == UnitType.None)
             {
-                writer.WriteLine("{0} = {{\t#DO NOT CHANGE!!!", Units.StringTable[(int) unit.Type]);
+                writer.WriteLine("{0} = {{\t#DO NOT CHANGE!!!", Units.Strings[(int) unit.Type]);
             }
             else if (unit.Type >= UnitType.ReserveBrigade36 && unit.Type <= UnitType.ReserveBrigade40)
             {
-                writer.WriteLine("{0} = {{\t# Reserved for use by Darkest Hour Full", Units.StringTable[(int) unit.Type]);
+                writer.WriteLine("{0} = {{\t# Reserved for use by Darkest Hour Full", Units.Strings[(int) unit.Type]);
             }
             else
             {
-                writer.WriteLine("{0} = {{", Units.StringTable[(int) unit.Type]);
+                writer.WriteLine("{0} = {{", Units.Strings[(int) unit.Type]);
             }
             writer.WriteLine("\t#ID\t\t\t{0}", Units.UnitNumbers[(int) unit.Type]);
             if (unit.ListPrio != -1)
