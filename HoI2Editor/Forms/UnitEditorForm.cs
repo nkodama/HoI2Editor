@@ -229,6 +229,8 @@ namespace HoI2Editor.Forms
                     gfxPrioNumericUpDown.Enabled = true;
                     listPrioLabel.Enabled = true;
                     listPrioNumericUpDown.Enabled = true;
+                    uiPrioLabel.Enabled = true;
+                    uiPrioNumericUpDown.Enabled = true;
                     realUnitTypeLabel.Enabled = true;
                     realUnitTypeComboBox.Enabled = true;
                     defaultTypeCheckBox.Enabled = true;
@@ -255,6 +257,8 @@ namespace HoI2Editor.Forms
                     gfxPrioNumericUpDown.Enabled = false;
                     listPrioLabel.Enabled = false;
                     listPrioNumericUpDown.Enabled = false;
+                    uiPrioLabel.Enabled = false;
+                    uiPrioNumericUpDown.Enabled = false;
                     realUnitTypeLabel.Enabled = false;
                     realUnitTypeComboBox.Enabled = false;
                     defaultTypeCheckBox.Enabled = false;
@@ -276,6 +280,7 @@ namespace HoI2Editor.Forms
                     eyrNumericUpDown.ResetText();
                     gfxPrioNumericUpDown.ResetText();
                     listPrioNumericUpDown.ResetText();
+                    uiPrioNumericUpDown.ResetText();
                     realUnitTypeComboBox.SelectedIndex = -1;
                     realUnitTypeComboBox.ResetText();
                     defaultTypeCheckBox.ResetText();
@@ -956,69 +961,107 @@ namespace HoI2Editor.Forms
             classShortDescTextBox.Text = Config.GetText(unit.ShortDesc);
             branchComboBox.SelectedIndex = (int) unit.Branch;
 
-            bool isDivision = (unit.Organization == UnitOrganization.Division);
-            allowedBrigadesListView.Enabled = isDivision;
-            for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
+            // 師団
+            if (unit.Organization == UnitOrganization.Division)
             {
-                UnitType type = Units.BrigadeTypes[i];
-                allowedBrigadesListView.Items[i].Checked = unit.AllowedBrigades.Contains(type);
+                allowedBrigadesListView.Enabled = true;
+                for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
+                {
+                    UnitType type = Units.BrigadeTypes[i];
+                    allowedBrigadesListView.Items[i].Checked = unit.AllowedBrigades.Contains(type);
+                }
+            }
+            else
+            {
+                allowedBrigadesListView.Enabled = false;
+                for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
+                {
+                    allowedBrigadesListView.Items[i].Checked = false;
+                }
             }
 
+            // DH
             if (Game.Type == GameType.DarkestHour)
             {
-                maxAllowedBrigadesLabel.Enabled = isDivision;
-                maxAllowedBrigadesNumericUpDown.Enabled = isDivision;
-                upgradeGroupBox.Enabled = isDivision;
-
-                if (isDivision)
+                // 師団
+                if (unit.Organization == UnitOrganization.Division)
                 {
+                    maxAllowedBrigadesLabel.Enabled = true;
+                    maxAllowedBrigadesNumericUpDown.Enabled = true;
+                    upgradeGroupBox.Enabled = true;
+
                     maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
                     maxAllowedBrigadesNumericUpDown.Text =
                         maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
                 }
                 else
                 {
+                    maxAllowedBrigadesLabel.Enabled = false;
+                    maxAllowedBrigadesNumericUpDown.Enabled = false;
+                    upgradeGroupBox.Enabled = false;
+
                     maxAllowedBrigadesNumericUpDown.ResetText();
                 }
+
                 UpdateUpgradeList(unit);
 
+                // DH1.03以降
                 if (Game.Version >= 103)
                 {
-                    eyrLabel.Enabled = isDivision;
-                    eyrNumericUpDown.Enabled = isDivision;
-                    gfxPrioLabel.Enabled = isDivision;
-                    gfxPrioNumericUpDown.Enabled = isDivision;
-                    realUnitTypeLabel.Enabled = isDivision;
-                    realUnitTypeComboBox.Enabled = isDivision;
-                    spriteTypeLabel.Enabled = isDivision;
-                    spriteTypeComboBox.Enabled = isDivision;
-                    transmuteLabel.Enabled = isDivision;
-                    transmuteComboBox.Enabled = isDivision;
-                    detachableCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.Navy));
-                    cagCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.Navy));
-                    escortCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.AirForce));
-                    engineerCheckBox.Enabled = (!isDivision && (unit.Branch == UnitBranch.Army));
-                    defaultTypeCheckBox.Enabled = isDivision;
-                    productableCheckBox.Enabled = isDivision;
+                    listPrioNumericUpDown.Value = unit.ListPrio;
+                    listPrioNumericUpDown.Text = listPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
 
-                    if (isDivision)
+                    // 師団
+                    if (unit.Organization == UnitOrganization.Division)
                     {
+                        eyrLabel.Enabled = true;
+                        eyrNumericUpDown.Enabled = true;
+                        gfxPrioLabel.Enabled = true;
+                        gfxPrioNumericUpDown.Enabled = true;
+                        uiPrioLabel.Enabled = true;
+                        uiPrioNumericUpDown.Enabled = true;
+                        realUnitTypeLabel.Enabled = true;
+                        realUnitTypeComboBox.Enabled = true;
+                        spriteTypeLabel.Enabled = true;
+                        spriteTypeComboBox.Enabled = true;
+                        transmuteLabel.Enabled = true;
+                        transmuteComboBox.Enabled = true;
+                        defaultTypeCheckBox.Enabled = true;
+                        productableCheckBox.Enabled = true;
+
                         eyrNumericUpDown.Value = unit.Eyr;
                         eyrNumericUpDown.Text = eyrNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
                         gfxPrioNumericUpDown.Value = unit.GfxPrio;
                         gfxPrioNumericUpDown.Text = gfxPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-                        listPrioNumericUpDown.Value = unit.ListPrio;
-                        listPrioNumericUpDown.Text = listPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                        uiPrioNumericUpDown.Value = unit.UiPrio;
+                        uiPrioNumericUpDown.Text = uiPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
                         realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
                         spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
                         transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
                         militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                        defaultTypeCheckBox.Checked = unit.DefaultType;
+                        productableCheckBox.Checked = unit.Productable;
                     }
                     else
                     {
+                        eyrLabel.Enabled = false;
+                        eyrNumericUpDown.Enabled = false;
+                        gfxPrioLabel.Enabled = false;
+                        gfxPrioNumericUpDown.Enabled = false;
+                        uiPrioLabel.Enabled = false;
+                        uiPrioNumericUpDown.Enabled = false;
+                        realUnitTypeLabel.Enabled = false;
+                        realUnitTypeComboBox.Enabled = false;
+                        spriteTypeLabel.Enabled = false;
+                        spriteTypeComboBox.Enabled = false;
+                        transmuteLabel.Enabled = false;
+                        transmuteComboBox.Enabled = false;
+                        defaultTypeCheckBox.Enabled = false;
+                        productableCheckBox.Enabled = false;
+
                         eyrNumericUpDown.ResetText();
                         gfxPrioNumericUpDown.ResetText();
-                        listPrioNumericUpDown.ResetText();
+                        uiPrioNumericUpDown.ResetText();
                         realUnitTypeComboBox.SelectedIndex = -1;
                         realUnitTypeComboBox.ResetText();
                         spriteTypeComboBox.SelectedIndex = -1;
@@ -1026,14 +1069,55 @@ namespace HoI2Editor.Forms
                         transmuteComboBox.SelectedIndex = -1;
                         transmuteComboBox.ResetText();
                         militaryValueTextBox.ResetText();
+                        defaultTypeCheckBox.Checked = false;
+                        productableCheckBox.Checked = false;
                     }
 
-                    detachableCheckBox.Checked = unit.Detachable;
-                    cagCheckBox.Checked = unit.Cag;
-                    escortCheckBox.Checked = unit.Escort;
-                    engineerCheckBox.Checked = unit.Engineer;
-                    defaultTypeCheckBox.Checked = unit.DefaultType;
-                    productableCheckBox.Checked = unit.Productable;
+                    // 陸軍旅団
+                    if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
+                    {
+                        engineerCheckBox.Enabled = true;
+
+                        engineerCheckBox.Checked = unit.Engineer;
+                    }
+                    else
+                    {
+                        engineerCheckBox.Enabled = false;
+
+                        engineerCheckBox.Checked = false;
+                    }
+
+                    // 海軍旅団
+                    if (unit.Branch == UnitBranch.Navy && unit.Organization == UnitOrganization.Brigade)
+                    {
+                        detachableCheckBox.Enabled = true;
+                        cagCheckBox.Enabled = true;
+
+                        detachableCheckBox.Checked = unit.Detachable;
+                        cagCheckBox.Checked = unit.Cag;
+                    }
+                    else
+                    {
+                        detachableCheckBox.Enabled = false;
+                        cagCheckBox.Enabled = false;
+
+                        detachableCheckBox.Checked = false;
+                        cagCheckBox.Checked = false;
+                    }
+
+                    // 空軍旅団
+                    if (unit.Branch == UnitBranch.AirForce && unit.Organization == UnitOrganization.Brigade)
+                    {
+                        escortCheckBox.Enabled = true;
+
+                        escortCheckBox.Checked = unit.Escort;
+                    }
+                    else
+                    {
+                        escortCheckBox.Enabled = false;
+
+                        escortCheckBox.Checked = false;
+                    }
                 }
             }
 
@@ -1051,6 +1135,7 @@ namespace HoI2Editor.Forms
             listPrioNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.ListPrio)
                                                   ? Color.Red
                                                   : SystemColors.WindowText;
+            uiPrioNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.UiPrio) ? Color.Red : SystemColors.WindowText;
             militaryValueTextBox.ForeColor = unit.IsDirty(UnitClassItemId.Vaule) ? Color.Red : SystemColors.WindowText;
             detachableCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Detachable)
                                                ? Color.Red
@@ -1563,6 +1648,38 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             listPrioNumericUpDown.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     UI優先度変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUiPrioNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 値に変化がなければ何もしない
+            var prio = (int) uiPrioNumericUpDown.Value;
+            if (prio == unit.UiPrio)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.UiPrio = prio;
+
+            // 編集済みフラグを設定する
+            unit.SetDirty(UnitClassItemId.UiPrio);
+            Units.SetDirtyDivisionTypes();
+
+            // 文字色を変更する
+            uiPrioNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>

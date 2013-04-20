@@ -76,6 +76,11 @@ namespace HoI2Editor.Models
         public int ListPrio { get; set; }
 
         /// <summary>
+        ///     UI優先度
+        /// </summary>
+        public int UiPrio { get; set; }
+
+        /// <summary>
         ///     実ユニット種類
         /// </summary>
         public RealUnitType RealType { get; set; }
@@ -1544,6 +1549,7 @@ namespace HoI2Editor.Models
         GfxPrio, // 画像の優先度
         Vaule, // 軍事力
         ListPrio, // リストの優先度
+        UiPrio, // UI優先度
         RealType, // 実ユニット種類
         Productable, // 初期状態で生産可能かどうか
         Cag, // 空母航空隊かどうか

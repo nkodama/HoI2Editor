@@ -142,7 +142,7 @@ namespace HoI2Editor.Writers
                 writer.Write("\tequipment = {");
                 foreach (UnitEquipment equipment in model.Equipments)
                 {
-                    writer.Write(" {0} = {1}", Units.EquipmentNames[(int) equipment.Resource], equipment.Quantity);
+                    writer.Write(" {0} = {1}", Units.EquipmentStrings[(int) equipment.Resource], equipment.Quantity);
                 }
                 writer.WriteLine(" }");
             }
@@ -603,6 +603,7 @@ namespace HoI2Editor.Writers
                 }
             }
             writer.WriteLine("\tlist_prio\t= {0}", unit.ListPrio);
+            writer.WriteLine("\tui_prio\t\t= {0}", unit.UiPrio);
             writer.WriteLine("}");
         }
 
@@ -651,8 +652,9 @@ namespace HoI2Editor.Writers
                 "#	value		= X.X(Number)			# Unit military value. Used in military power and other calculations.");
             writer.WriteLine("#	list_prio	= X(Number)				# Priority in lists (tech overview and production pages).");
             writer.WriteLine("#										# Units are sorted by groups (land/air/naval).");
-            writer.WriteLine("#										# -1 - do not list that type, 0+ - priority in lists (lowest are first)");
+            writer.WriteLine("#										# -1 - do not list that type, 0+ - priority in lists (lowest first)");
             writer.WriteLine("#	### OPTIONAL PARAMETERS ###");
+            writer.WriteLine("#	ui_prio		= Number				# Sort priority for divisions in unit UI (highest first)");
             writer.WriteLine(
                 "#	RealUnitType= yes					# Sets this UnitType as default RealUnitType. There can be only one definition for every RealUnitType. ");
             writer.WriteLine("#										# 	Used by production AI (militia, infantry), rebels (militia, infantry) ");

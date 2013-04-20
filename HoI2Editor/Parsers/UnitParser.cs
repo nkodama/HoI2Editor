@@ -2554,6 +2554,32 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // ui_prio
+                if (keyword.Equals("ui_prio"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // UI優先度
+                    unit.UiPrio = (int) (double) token.Value;
+                    continue;
+                }
+
                 // production
                 if (keyword.Equals("production"))
                 {
