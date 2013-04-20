@@ -2932,6 +2932,14 @@ namespace HoI2Editor.Models
         #region データ操作
 
         /// <summary>
+        ///     ユニット定義ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequireReload()
+        {
+            _loaded = false;
+        }
+
+        /// <summary>
         ///     ユニット定義ファイル群を読み込む
         /// </summary>
         public static void Load()
@@ -3159,14 +3167,6 @@ namespace HoI2Editor.Models
             {
                 Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
             }
-        }
-
-        /// <summary>
-        ///     ファイルの再読み込みを要求する
-        /// </summary>
-        public static void RequireReload()
-        {
-            _loaded = false;
         }
 
         /// <summary>

@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
-using HoI2Editor.Properties;
 
 namespace HoI2Editor.Forms
 {
@@ -39,18 +38,6 @@ namespace HoI2Editor.Forms
 
             // 各種ファイルを読み込む
             LoadFiles();
-
-            // 編集可能な項目を初期化する
-            InitEditableItems();
-
-            // ユニットモデルの編集項目を無効化する
-            DisableModelEditableItems();
-
-            // ゲームの種類により編集項目を有効化/無効化する
-            ActivateEditableItems();
-
-            // ユニットリストボックスを更新する
-            UpdateUnitListBox();
         }
 
         /// <summary>
@@ -66,7 +53,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集可能な項目を初期化する
+        ///     編集項目を初期化する
         /// </summary>
         private void InitEditableItems()
         {
@@ -77,9 +64,9 @@ namespace HoI2Editor.Forms
             }
 
             // 兵科コンボボックス
-            branchComboBox.Items.Add(Resources.BranchArmy);
-            branchComboBox.Items.Add(Resources.BranchNavy);
-            branchComboBox.Items.Add(Resources.BranchAirforce);
+            branchComboBox.Items.Add(Config.GetText("EYR_ARMY"));
+            branchComboBox.Items.Add(Config.GetText("EYR_NAVY"));
+            branchComboBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
 
             // 付属可能旅団リストビュー
             int maxWidth = 60;
@@ -156,61 +143,165 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ゲームの種類により編集項目を有効化/無効化する
+        ///     ゲームの種類により編集項目を制限する
         /// </summary>
-        private void ActivateEditableItems()
+        private void RestrictEditableItems()
         {
             // AoD
-            bool flag = (Game.Type == GameType.ArsenalOfDemocracy);
-            maxSupplyStockLabel.Enabled = flag;
-            maxSupplyStockTextBox.Enabled = flag;
-            maxOilStockLabel.Enabled = flag;
-            maxOilStockTextBox.Enabled = flag;
-            artilleryBombardmentLabel.Enabled = flag;
-            artilleryBombardmentTextBox.Enabled = flag;
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                maxSupplyStockLabel.Enabled = true;
+                maxSupplyStockTextBox.Enabled = true;
+                maxOilStockLabel.Enabled = true;
+                maxOilStockTextBox.Enabled = true;
+                artilleryBombardmentLabel.Enabled = true;
+                artilleryBombardmentTextBox.Enabled = true;
+            }
+            else
+            {
+                maxSupplyStockLabel.Enabled = false;
+                maxSupplyStockTextBox.Enabled = false;
+                maxOilStockLabel.Enabled = false;
+                maxOilStockTextBox.Enabled = false;
+                artilleryBombardmentLabel.Enabled = false;
+                artilleryBombardmentTextBox.Enabled = false;
+
+                maxSupplyStockTextBox.ResetText();
+                maxOilStockTextBox.ResetText();
+                artilleryBombardmentTextBox.ResetText();
+            }
 
             // DH
-            flag = (Game.Type == GameType.DarkestHour);
-            maxAllowedBrigadesLabel.Enabled = flag;
-            maxAllowedBrigadesNumericUpDown.Enabled = flag;
-            upgradeGroupBox.Enabled = flag;
-            reinforceCostLabel.Enabled = flag;
-            reinforceCostTextBox.Enabled = flag;
-            reinforceTimeLabel.Enabled = flag;
-            reinforceTimeTextBox.Enabled = flag;
-            noFuelCombatModLabel.Enabled = flag;
-            noFuelCombatModTextBox.Enabled = flag;
+            if (Game.Type == GameType.DarkestHour)
+            {
+                maxAllowedBrigadesLabel.Enabled = true;
+                maxAllowedBrigadesNumericUpDown.Enabled = true;
+                upgradeGroupBox.Enabled = true;
+                reinforceCostLabel.Enabled = true;
+                reinforceCostTextBox.Enabled = true;
+                reinforceTimeLabel.Enabled = true;
+                reinforceTimeTextBox.Enabled = true;
+                noFuelCombatModLabel.Enabled = true;
+                noFuelCombatModTextBox.Enabled = true;
+            }
+            else
+            {
+                maxAllowedBrigadesLabel.Enabled = false;
+                maxAllowedBrigadesNumericUpDown.Enabled = false;
+                reinforceCostLabel.Enabled = false;
+                reinforceCostTextBox.Enabled = false;
+                reinforceTimeLabel.Enabled = false;
+                reinforceTimeTextBox.Enabled = false;
+                noFuelCombatModLabel.Enabled = false;
+                noFuelCombatModTextBox.Enabled = false;
+                upgradeGroupBox.Enabled = false;
 
-            // DH1.03以降
-            flag = (Game.Type == GameType.DarkestHour && Game.Version >= 103);
-            productableCheckBox.Enabled = flag;
-            detachableCheckBox.Enabled = flag;
-            cagCheckBox.Enabled = flag;
-            escortCheckBox.Enabled = flag;
-            engineerCheckBox.Enabled = flag;
-            eyrLabel.Enabled = flag;
-            eyrNumericUpDown.Enabled = flag;
-            gfxPrioLabel.Enabled = flag;
-            gfxPrioNumericUpDown.Enabled = flag;
-            listPrioLabel.Enabled = flag;
-            listPrioNumericUpDown.Enabled = flag;
-            realUnitTypeLabel.Enabled = flag;
-            realUnitTypeComboBox.Enabled = flag;
-            defaultTypeCheckBox.Enabled = flag;
-            spriteTypeLabel.Enabled = flag;
-            spriteTypeComboBox.Enabled = flag;
-            transmuteLabel.Enabled = flag;
-            transmuteComboBox.Enabled = flag;
-            militaryValueLabel.Enabled = flag;
-            militaryValueTextBox.Enabled = flag;
-            speedCapAllLabel.Enabled = flag;
-            speedCapAllTextBox.Enabled = flag;
-            equipmentGroupBox.Enabled = flag;
+                maxAllowedBrigadesNumericUpDown.ResetText();
+                reinforceCostTextBox.ResetText();
+                reinforceTimeTextBox.ResetText();
+                noFuelCombatModTextBox.ResetText();
+                upgradeListView.Items.Clear();
+                upgradeTypeComboBox.SelectedIndex = -1;
+                upgradeTypeComboBox.ResetText();
+                upgradeCostTextBox.ResetText();
+                upgradeTimeTextBox.ResetText();
+
+                // DH1.03以降
+                if (Game.Version >= 103)
+                {
+                    productableCheckBox.Enabled = true;
+                    detachableCheckBox.Enabled = true;
+                    cagCheckBox.Enabled = true;
+                    escortCheckBox.Enabled = true;
+                    engineerCheckBox.Enabled = true;
+                    eyrLabel.Enabled = true;
+                    eyrNumericUpDown.Enabled = true;
+                    gfxPrioLabel.Enabled = true;
+                    gfxPrioNumericUpDown.Enabled = true;
+                    listPrioLabel.Enabled = true;
+                    listPrioNumericUpDown.Enabled = true;
+                    realUnitTypeLabel.Enabled = true;
+                    realUnitTypeComboBox.Enabled = true;
+                    defaultTypeCheckBox.Enabled = true;
+                    spriteTypeLabel.Enabled = true;
+                    spriteTypeComboBox.Enabled = true;
+                    transmuteLabel.Enabled = true;
+                    transmuteComboBox.Enabled = true;
+                    militaryValueLabel.Enabled = true;
+                    militaryValueTextBox.Enabled = true;
+                    speedCapAllLabel.Enabled = true;
+                    speedCapAllTextBox.Enabled = true;
+                    equipmentGroupBox.Enabled = true;
+                }
+                else
+                {
+                    productableCheckBox.Enabled = false;
+                    detachableCheckBox.Enabled = false;
+                    cagCheckBox.Enabled = false;
+                    escortCheckBox.Enabled = false;
+                    engineerCheckBox.Enabled = false;
+                    eyrLabel.Enabled = false;
+                    eyrNumericUpDown.Enabled = false;
+                    gfxPrioLabel.Enabled = false;
+                    gfxPrioNumericUpDown.Enabled = false;
+                    listPrioLabel.Enabled = false;
+                    listPrioNumericUpDown.Enabled = false;
+                    realUnitTypeLabel.Enabled = false;
+                    realUnitTypeComboBox.Enabled = false;
+                    defaultTypeCheckBox.Enabled = false;
+                    spriteTypeLabel.Enabled = false;
+                    spriteTypeComboBox.Enabled = false;
+                    transmuteLabel.Enabled = false;
+                    transmuteComboBox.Enabled = false;
+                    militaryValueLabel.Enabled = false;
+                    militaryValueTextBox.Enabled = false;
+                    speedCapAllLabel.Enabled = false;
+                    speedCapAllTextBox.Enabled = false;
+                    equipmentGroupBox.Enabled = false;
+
+                    productableCheckBox.Checked = false;
+                    detachableCheckBox.Checked = false;
+                    cagCheckBox.Checked = false;
+                    escortCheckBox.Checked = false;
+                    engineerCheckBox.Checked = false;
+                    eyrNumericUpDown.ResetText();
+                    gfxPrioNumericUpDown.ResetText();
+                    listPrioNumericUpDown.ResetText();
+                    realUnitTypeComboBox.SelectedIndex = -1;
+                    realUnitTypeComboBox.ResetText();
+                    defaultTypeCheckBox.ResetText();
+                    spriteTypeComboBox.SelectedIndex = -1;
+                    spriteTypeComboBox.ResetText();
+                    transmuteComboBox.SelectedIndex = -1;
+                    transmuteComboBox.ResetText();
+                    militaryValueTextBox.ResetText();
+                    speedCapAllTextBox.ResetText();
+                    equipmentListView.Items.Clear();
+                    resourceComboBox.SelectedIndex = -1;
+                    resourceComboBox.ResetText();
+                    quantityTextBox.ResetText();
+                }
+            }
 
             // AoDまたはDH1.03以降
-            flag = (Game.Type == GameType.ArsenalOfDemocracy ||
-                    (Game.Type == GameType.DarkestHour && Game.Version >= 103));
-            branchComboBox.Enabled = flag;
+            if (Game.Type == GameType.ArsenalOfDemocracy || (Game.Type == GameType.DarkestHour && Game.Version >= 103))
+            {
+                branchComboBox.Enabled = true;
+            }
+            else
+            {
+                branchComboBox.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         #endregion
@@ -218,64 +309,458 @@ namespace HoI2Editor.Forms
         #region データ処理
 
         /// <summary>
+        ///     再読み込みボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnReloadButtonClick(object sender, EventArgs e)
+        {
+            // 文字列定義ファイルの再読み込みを要求する
+            Config.RequireReload();
+
+            // ユニット定義ファイルの再読み込みを要求する
+            Units.RequireReload();
+
+            // 各種ファイルを読み込む
+            LoadFiles();
+        }
+
+        /// <summary>
+        ///     保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            SaveFiles();
+        }
+
+        /// <summary>
         ///     各種ファイルを読み込む
         /// </summary>
-        private static void LoadFiles()
+        private void LoadFiles()
         {
             // 文字列定義ファイルを読み込む
             Config.Load();
 
             // ユニットデータを読み込む
             Units.Load();
-        }
 
-        /// <summary>
-        ///     各種ファイルを再読み込みする
-        /// </summary>
-        private static void ReloadFiles()
-        {
-            // 文字列定義ファイルを読み込む
-            Config.Load();
+            // 編集項目を初期化する
+            InitEditableItems();
 
-            // ユニットデータを読み込む
-            Units.Reload();
+            // ゲームの種類により編集項目を制限する
+            RestrictEditableItems();
+
+            // ユニットリストを更新する
+            UpdateUnitList();
         }
 
         /// <summary>
         ///     各種ファイルを保存する
         /// </summary>
-        private static void SaveFiles()
+        private void SaveFiles()
         {
             // 文字列定義ファイルを保存する
             Config.Save();
 
             // ユニットデータを保存する
             Units.Save();
+
+            // 編集済みフラグがクリアされるため表示を更新する
+            classListBox.Refresh();
+            modelListView.Refresh();
+            UpdateClassEditableItems();
+            UpdateModelEditableItems();
         }
 
-        /// <summary>
-        ///     編集済みフラグを設定する
-        /// </summary>
-        private void SetDirty()
-        {
-            UnitType type = Units.UnitTypes[classListBox.SelectedIndex];
-            Units.SetDirty(type, true);
-        }
+        #endregion
+
+        #region ユニットクラスリスト
 
         /// <summary>
-        ///     ユニットクラス定義の編集済みフラグを設定する
+        ///     ユニットクラスリストを更新する
         /// </summary>
-        private void SetDirtyTypes()
+        private void UpdateUnitList()
         {
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            if (unit.Organization == UnitOrganization.Division)
+            // リストボックスに項目を登録する
+            classListBox.BeginUpdate();
+            classListBox.Items.Clear();
+            foreach (UnitType type in Units.UnitTypes)
             {
-                Units.SetDirtyDivisionTypes(true);
+                Unit unit = Units.List[(int) type];
+                classListBox.Items.Add(Config.GetText(unit.Name));
+            }
+            classListBox.EndUpdate();
+
+            // 先頭の項目を選択する
+            if (classListBox.Items.Count > 0)
+            {
+                classListBox.SelectedIndex = 0;
+            }
+        }
+
+        /// <summary>
+        ///     ユニットクラスリストの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnClassListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            Unit unit = Units.List[(int) Units.UnitTypes[e.Index]];
+
+            // 背景を描画する
+            e.DrawBackground();
+            if (((e.State & DrawItemState.Selected) == 0) && (unit.Models.Count > 0))
+            {
+                e.Graphics.FillRectangle(
+                    unit.Organization == UnitOrganization.Division ? Brushes.AliceBlue : Brushes.Honeydew,
+                    new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+            }
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = Units.DirtyFlags[(int) unit.Type]
+                            ? new SolidBrush(Color.Red)
+                            : new SolidBrush(classListBox.ForeColor);
             }
             else
             {
-                Units.SetDirtyBrigadeTypes(true);
+                brush = new SolidBrush(SystemColors.HighlightText);
             }
+            string s = classListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     ユニットクラスリストの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnClassListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // ユニットモデルリストを更新する
+            UpdateModelList();
+
+            // ユニットクラスの編集項目を更新する
+            UpdateClassEditableItems();
+
+            // ユニットモデル編集中の場合
+            if (editTabControl.SelectedIndex == (int) UnitEditorTab.Model)
+            {
+                if (modelListView.Items.Count > 0)
+                {
+                    // 先頭の項目を選択する
+                    modelListView.Items[0].Focused = true;
+                    modelListView.Items[0].Selected = true;
+                }
+                else
+                {
+                    // ユニットクラスタブを選択する
+                    editTabControl.SelectedIndex = (int) UnitEditorTab.Class;
+
+                    // ユニットモデルの編集項目を無効化する
+                    DisableModelEditableItems();
+                }
+            }
+        }
+
+        #endregion
+
+        #region ユニットモデルリスト
+
+        /// <summary>
+        ///     ユニットモデルリストの表示を更新する
+        /// </summary>
+        private void UpdateModelList()
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // リストビューに項目を登録する
+            modelListView.BeginUpdate();
+            modelListView.Items.Clear();
+            for (int no = 0; no < unit.Models.Count; no++)
+            {
+                ListViewItem item = CreateModelListItem(unit, no);
+                modelListView.Items.Add(item);
+            }
+            modelListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     ユニットモデルリストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択中のユニットモデルがない場合
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                // 編集項目を無効化する
+                DisableModelEditableItems();
+                return;
+            }
+
+            // ユニットモデルの編集項目を有効化する
+            EnableModelEditableItems();
+
+            // ユニットモデルの編集項目の値を更新する
+            UpdateModelEditableItems();
+
+            // ユニットモデルタブを選択する
+            editTabControl.SelectedIndex = (int) UnitEditorTab.Model;
+
+            // 項目移動ボタンの状態更新
+            int index = modelListView.SelectedIndices[0];
+            topButton.Enabled = (index != 0);
+            upButton.Enabled = (index != 0);
+            downButton.Enabled = (index != modelListView.Items.Count - 1);
+            bottomButton.Enabled = (index != modelListView.Items.Count - 1);
+        }
+
+        /// <summary>
+        ///     ユニットモデルリストビューの項目を作成する
+        /// </summary>
+        /// <param name="unit">ユニットクラス</param>
+        /// <param name="no">ユニットモデル番号</param>
+        /// <returns>ユニットモデルリストビューの項目</returns>
+        private static ListViewItem CreateModelListItem(Unit unit, int no)
+        {
+            UnitModel model = unit.Models[no];
+
+            var item = new ListViewItem {Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture))};
+            item.SubItems.Add(Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
+            item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.Morale.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
+
+            return item;
+        }
+
+        /// <summary>
+        ///     新規ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNewButtonClick(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // ユニットモデルを挿入する
+            var model = new UnitModel();
+            if (modelListView.SelectedIndices.Count > 0)
+            {
+                int no = modelListView.SelectedIndices[0];
+                InsertModel(unit, model, no + 1, "");
+            }
+            else
+            {
+                InsertModel(unit, model, 0, "");
+            }
+        }
+
+        /// <summary>
+        ///     複製ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloneButtonClick(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+
+            // ユニットモデルを挿入する
+            var model = new UnitModel(unit.Models[no]);
+            InsertModel(unit, model, no + 1, Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
+        }
+
+        /// <summary>
+        ///     削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRemoveButtonClick(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+
+            // ユニットモデルを削除する
+            RemoveModel(unit, no);
+        }
+
+        /// <summary>
+        ///     先頭へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTopButtonClick(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+
+            // リストの先頭ならば何もしない
+            if (no == 0)
+            {
+                return;
+            }
+
+            // ユニットモデルを移動する
+            MoveModel(unit, no, 0);
+        }
+
+        /// <summary>
+        ///     上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpButtonClick(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+
+            // リストの先頭ならば何もしない
+            if (no == 0)
+            {
+                return;
+            }
+
+            // ユニットモデルを移動する
+            MoveModel(unit, no, no - 1);
+        }
+
+        /// <summary>
+        ///     下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDownButtonClick(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+
+            // リストの末尾ならば何もしない
+            if (no == unit.Models.Count - 1)
+            {
+                return;
+            }
+
+            // ユニットモデルを移動する
+            MoveModel(unit, no, no + 1);
+        }
+
+        /// <summary>
+        ///     末尾へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBottonButtonClick(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+
+            // リストの末尾ならば何もしない
+            if (no == unit.Models.Count - 1)
+            {
+                return;
+            }
+
+            // ユニットモデルを移動する
+            MoveModel(unit, no, unit.Models.Count - 1);
         }
 
         /// <summary>
@@ -300,8 +785,8 @@ namespace HoI2Editor.Forms
             // 挿入位置のユニットモデル名を変更する
             Config.SetText(UnitModel.GetName(unit, index, CountryTag.None), name, Game.UnitTextFileName);
 
-            // ユニットモデルリストビューの表示を更新する
-            UpdateModelListView(unit);
+            // ユニットモデルリストの表示を更新する
+            UpdateModelList();
 
             // 挿入した項目を選択する
             modelListView.Items[index].Focused = true;
@@ -336,10 +821,10 @@ namespace HoI2Editor.Forms
             // 末尾のユニットモデル名を削除する
             Config.RemoveText(UnitModel.GetName(unit, unit.Models.Count, CountryTag.None), Game.UnitTextFileName);
 
-            // ユニットモデルリストビューの表示を更新する
-            UpdateModelListView(unit);
+            // ユニットモデルリストの表示を更新する
+            UpdateModelList();
 
-            // 次の項目を選択する
+            // 削除した項目の次の項目を選択する
             if (index < modelListView.Items.Count - 1)
             {
                 modelListView.Items[index].Focused = true;
@@ -393,8 +878,8 @@ namespace HoI2Editor.Forms
             // 移動先のユニットモデル名を変更する
             Config.SetText(UnitModel.GetName(unit, dest, CountryTag.None), name, Game.UnitTextFileName);
 
-            // ユニットモデルリストビューの表示を更新する
-            UpdateModelListView(unit);
+            // ユニットモデルリストの表示を更新する
+            UpdateModelList();
 
             // 移動先の項目を選択する
             modelListView.Items[dest].Focused = true;
@@ -403,395 +888,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             SetDirty();
             Config.SetDirty(Game.UnitTextFileName);
-        }
-
-        #endregion
-
-        #region フォーム直下のボタン
-
-        /// <summary>
-        ///     新規ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnNewButtonClick(object sender, EventArgs e)
-        {
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-
-            // ユニットモデルを挿入する
-            var model = new UnitModel();
-            if (modelListView.SelectedIndices.Count > 0)
-            {
-                int no = modelListView.SelectedIndices[0];
-                InsertModel(unit, model, no + 1, "");
-            }
-            else
-            {
-                InsertModel(unit, model, 0, "");
-            }
-        }
-
-        /// <summary>
-        ///     複製ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloneButtonClick(object sender, EventArgs e)
-        {
-            // ユニットモデルリストビューの選択項目がなければ何もしない
-            if (modelListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            int no = modelListView.SelectedIndices[0];
-
-            // ユニットモデルを挿入する
-            var model = new UnitModel(unit.Models[no]);
-            InsertModel(unit, model, no + 1, Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
-        }
-
-        /// <summary>
-        ///     削除ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRemoveButtonClick(object sender, EventArgs e)
-        {
-            // ユニットモデルリストビューの選択項目がなければ何もしない
-            if (modelListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            int no = modelListView.SelectedIndices[0];
-
-            // ユニットモデルを削除する
-            RemoveModel(unit, no);
-        }
-
-        /// <summary>
-        ///     先頭へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTopButtonClick(object sender, EventArgs e)
-        {
-            // ユニットモデルリストビューの選択項目がなければ何もしない
-            if (modelListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-
-            // リストの先頭ならば何もしない
-            int no = modelListView.SelectedIndices[0];
-            if (no == 0)
-            {
-                return;
-            }
-
-            // ユニットモデルを移動する
-            MoveModel(unit, no, 0);
-        }
-
-        /// <summary>
-        ///     上へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUpButtonClick(object sender, EventArgs e)
-        {
-            // ユニットモデルリストビューの選択項目がなければ何もしない
-            if (modelListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-
-            // リストの先頭ならば何もしない
-            int no = modelListView.SelectedIndices[0];
-            if (no == 0)
-            {
-                return;
-            }
-
-            // ユニットモデルを移動する
-            MoveModel(unit, no, no - 1);
-        }
-
-        /// <summary>
-        ///     下へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDownButtonClick(object sender, EventArgs e)
-        {
-            // ユニットモデルリストビューの選択項目がなければ何もしない
-            if (modelListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-
-            // リストの末尾ならば何もしない
-            int no = modelListView.SelectedIndices[0];
-            if (no == unit.Models.Count - 1)
-            {
-                return;
-            }
-
-            // ユニットモデルを移動する
-            MoveModel(unit, no, no + 1);
-        }
-
-        /// <summary>
-        ///     末尾へボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnBottonButtonClick(object sender, EventArgs e)
-        {
-            // ユニットモデルリストビューの選択項目がなければ何もしない
-            if (modelListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-
-            // リストの末尾ならば何もしない
-            int no = modelListView.SelectedIndices[0];
-            if (no == unit.Models.Count - 1)
-            {
-                return;
-            }
-
-            // ユニットモデルを移動する
-            MoveModel(unit, no, unit.Models.Count - 1);
-        }
-
-        /// <summary>
-        ///     再読み込みボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnReloadButtonClick(object sender, EventArgs e)
-        {
-            ReloadFiles();
-        }
-
-        /// <summary>
-        ///     保存ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSaveButtonClick(object sender, EventArgs e)
-        {
-            SaveFiles();
-        }
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        #endregion
-
-        #region ユニットクラスリストボックス
-
-        /// <summary>
-        ///     ユニットクラスリストボックスの表示を更新する
-        /// </summary>
-        private void UpdateUnitListBox()
-        {
-            // リストボックスに項目を登録する
-            classListBox.BeginUpdate();
-            classListBox.Items.Clear();
-            foreach (UnitType type in Units.UnitTypes)
-            {
-                Unit unit = Units.List[(int) type];
-                classListBox.Items.Add(Config.GetText(unit.Name));
-            }
-            classListBox.EndUpdate();
-
-            // 先頭の項目を選択する
-            if (classListBox.Items.Count > 0)
-            {
-                classListBox.SelectedIndex = 0;
-            }
-        }
-
-        /// <summary>
-        ///     ユニットクラスリストボックスの項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnClassListBoxDrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index == -1)
-            {
-                return;
-            }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[e.Index]];
-
-            // 背景を描画する
-            e.DrawBackground();
-            if ((e.State & DrawItemState.Selected) == 0)
-            {
-                if (unit.Models.Count > 0)
-                {
-                    e.Graphics.FillRectangle(
-                        unit.Organization == UnitOrganization.Division ? Brushes.AliceBlue : Brushes.Honeydew,
-                        new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
-                }
-            }
-
-            // 項目を描画する
-            Brush brush;
-            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
-            {
-                // 変更ありの項目は文字色を変更する
-                brush = Units.DirtyFlags[(int) unit.Type]
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(classListBox.ForeColor);
-            }
-            else
-            {
-                brush = new SolidBrush(SystemColors.HighlightText);
-            }
-            var listbox = sender as ListBox;
-            if (listbox != null)
-            {
-                string s = listbox.Items[e.Index].ToString();
-                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            }
-            brush.Dispose();
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     ユニットクラスリストボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnClassListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // ユニットモデルリストビューの表示を更新する
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            UpdateModelListView(unit);
-
-            // ユニットクラスタブの表示を更新する
-            UpdateClassEditableItems();
-
-            // ユニットモデル編集中の場合
-            if (editTabControl.SelectedIndex == 1)
-            {
-                if (modelListView.Items.Count > 0)
-                {
-                    // 先頭の項目を選択する
-                    modelListView.Items[0].Focused = true;
-                    modelListView.Items[0].Selected = true;
-                }
-                else
-                {
-                    // ユニットクラスタブを選択する
-                    editTabControl.SelectedIndex = 0;
-
-                    // ユニットモデルの編集項目を無効化する
-                    DisableModelEditableItems();
-                }
-            }
-        }
-
-        #endregion
-
-        #region ユニットモデルリストビュー
-
-        /// <summary>
-        ///     ユニットモデルリストビューの表示を更新する
-        /// </summary>
-        /// <param name="unit">選択中のユニットクラス</param>
-        private void UpdateModelListView(Unit unit)
-        {
-            // リストビューに項目を登録する
-            modelListView.BeginUpdate();
-            modelListView.Items.Clear();
-            for (int no = 0; no < unit.Models.Count; no++)
-            {
-                ListViewItem item = CreateModelListItem(unit, no);
-                modelListView.Items.Add(item);
-            }
-            modelListView.EndUpdate();
-        }
-
-        /// <summary>
-        ///     ユニットモデルリストビューの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnModelListViewSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 未選択の場合
-            if (modelListView.SelectedIndices.Count == 0)
-            {
-                // 編集項目を無効化する
-                DisableModelEditableItems();
-                return;
-            }
-
-            // ユニットモデルタブを選択する
-            editTabControl.SelectedIndex = 1;
-
-            // 編集項目を有効化する
-            EnableModelEditableItems();
-
-            // 編集項目の値を更新する
-            UpdateModelEditableItems();
-
-            // 項目移動ボタンの状態更新
-            topButton.Enabled = modelListView.SelectedIndices[0] != 0;
-            upButton.Enabled = modelListView.SelectedIndices[0] != 0;
-            downButton.Enabled = modelListView.SelectedIndices[0] != modelListView.Items.Count - 1;
-            bottomButton.Enabled = modelListView.SelectedIndices[0] != modelListView.Items.Count - 1;
-        }
-
-        /// <summary>
-        ///     ユニットモデルリストビューの項目を作成する
-        /// </summary>
-        /// <param name="unit">ユニットクラス</param>
-        /// <param name="no">ユニットモデル番号</param>
-        /// <returns>ユニットモデルリストビューの項目</returns>
-        private static ListViewItem CreateModelListItem(Unit unit, int no)
-        {
-            UnitModel model = unit.Models[no];
-
-            var item = new ListViewItem {Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture))};
-            item.SubItems.Add(Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
-            item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.Morale.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
-
-            return item;
         }
 
         #endregion
@@ -805,14 +901,20 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // モデルリストビューの選択項目がなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
+
             CountryTag country = (countryListView.SelectedIndices.Count == 0
                                       ? CountryTag.None
                                       : (CountryTag) (countryListView.SelectedIndices[0] + 1));
@@ -833,28 +935,43 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateClassEditableItems()
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            bool isDivision = (unit.Organization == UnitOrganization.Division);
-
-            allowedBrigadesListView.Enabled = isDivision;
 
             classNameTextBox.Text = Config.GetText(unit.Name);
             classShortNameTextBox.Text = Config.GetText(unit.ShortName);
             classDescTextBox.Text = Config.GetText(unit.Desc);
             classShortDescTextBox.Text = Config.GetText(unit.ShortDesc);
             branchComboBox.SelectedIndex = (int) unit.Branch;
+
+            bool isDivision = (unit.Organization == UnitOrganization.Division);
+            allowedBrigadesListView.Enabled = isDivision;
             for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
             {
                 UnitType type = Units.BrigadeTypes[i];
                 allowedBrigadesListView.Items[i].Checked = unit.AllowedBrigades.Contains(type);
             }
+
             if (Game.Type == GameType.DarkestHour)
             {
                 maxAllowedBrigadesLabel.Enabled = isDivision;
                 maxAllowedBrigadesNumericUpDown.Enabled = isDivision;
                 upgradeGroupBox.Enabled = isDivision;
 
-                maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
+                if (isDivision)
+                {
+                    maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
+                    maxAllowedBrigadesNumericUpDown.Text =
+                        maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    maxAllowedBrigadesNumericUpDown.ResetText();
+                }
                 UpdateUpgradeList(unit);
 
                 if (Game.Version >= 103)
@@ -876,13 +993,33 @@ namespace HoI2Editor.Forms
                     defaultTypeCheckBox.Enabled = isDivision;
                     productableCheckBox.Enabled = isDivision;
 
-                    eyrNumericUpDown.Value = unit.Eyr;
-                    gfxPrioNumericUpDown.Value = unit.GfxPrio;
-                    listPrioNumericUpDown.Value = unit.ListPrio;
-                    realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
-                    spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
-                    transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
-                    militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                    if (isDivision)
+                    {
+                        eyrNumericUpDown.Value = unit.Eyr;
+                        eyrNumericUpDown.Text = eyrNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                        gfxPrioNumericUpDown.Value = unit.GfxPrio;
+                        gfxPrioNumericUpDown.Text = gfxPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                        listPrioNumericUpDown.Value = unit.ListPrio;
+                        listPrioNumericUpDown.Text = listPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                        realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
+                        spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
+                        transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
+                        militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        eyrNumericUpDown.ResetText();
+                        gfxPrioNumericUpDown.ResetText();
+                        listPrioNumericUpDown.ResetText();
+                        realUnitTypeComboBox.SelectedIndex = -1;
+                        realUnitTypeComboBox.ResetText();
+                        spriteTypeComboBox.SelectedIndex = -1;
+                        spriteTypeComboBox.ResetText();
+                        transmuteComboBox.SelectedIndex = -1;
+                        transmuteComboBox.ResetText();
+                        militaryValueTextBox.ResetText();
+                    }
+
                     detachableCheckBox.Checked = unit.Detachable;
                     cagCheckBox.Checked = unit.Cag;
                     escortCheckBox.Checked = unit.Escort;
@@ -900,6 +1037,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassNameTextBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -917,32 +1059,33 @@ namespace HoI2Editor.Forms
             classListBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
             classListBox.SelectedIndexChanged += OnClassListBoxSelectedIndexChanged;
 
-            // 実ユニットコンボボックスの項目を更新する
-            int index = Array.IndexOf(Units.RealNames, unit.Name);
-            if (index >= 0)
-            {
-                realUnitTypeComboBox.Items[index] = classNameTextBox.Text;
-                // ドロップダウン幅を更新する
-                realUnitTypeComboBox.DropDownWidth =
-                    Math.Max(realUnitTypeComboBox.DropDownWidth,
-                             TextRenderer.MeasureText(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
-                             SystemInformation.VerticalScrollBarWidth);
-            }
-
-            // スプライトコンボボックスの項目を更新する
-            index = Array.IndexOf(Units.SpriteNames, unit.Name);
-            if (index >= 0)
-            {
-                spriteTypeComboBox.Items[index] = classNameTextBox.Text;
-                // ドロップダウン幅を更新する
-                spriteTypeComboBox.DropDownWidth =
-                    Math.Max(spriteTypeComboBox.DropDownWidth,
-                             TextRenderer.MeasureText(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
-                             SystemInformation.VerticalScrollBarWidth);
-            }
 
             if (unit.Organization == UnitOrganization.Division)
             {
+                // 実ユニットコンボボックスの項目を更新する
+                int index = Array.IndexOf(Units.RealNames, unit.Name);
+                if (index >= 0)
+                {
+                    realUnitTypeComboBox.Items[index] = classNameTextBox.Text;
+                    // ドロップダウン幅を更新する
+                    realUnitTypeComboBox.DropDownWidth =
+                        Math.Max(realUnitTypeComboBox.DropDownWidth,
+                                 TextRenderer.MeasureText(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
+                                 SystemInformation.VerticalScrollBarWidth);
+                }
+
+                // スプライトコンボボックスの項目を更新する
+                index = Array.IndexOf(Units.SpriteNames, unit.Name);
+                if (index >= 0)
+                {
+                    spriteTypeComboBox.Items[index] = classNameTextBox.Text;
+                    // ドロップダウン幅を更新する
+                    spriteTypeComboBox.DropDownWidth =
+                        Math.Max(spriteTypeComboBox.DropDownWidth,
+                                 TextRenderer.MeasureText(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
+                                 SystemInformation.VerticalScrollBarWidth);
+                }
+
                 // 代替ユニットコンボボックスの項目を更新する
                 transmuteComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
                 // ドロップダウン幅を更新する
@@ -962,7 +1105,7 @@ namespace HoI2Editor.Forms
             else
             {
                 // 付属旅団リストビューの項目を更新する
-                index = Array.IndexOf(Units.BrigadeTypes, unit.Type);
+                int index = Array.IndexOf(Units.BrigadeTypes, unit.Type);
                 if (index >= 0)
                 {
                     allowedBrigadesListView.Items[index].Text = classNameTextBox.Text;
@@ -981,6 +1124,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassShortNameTextBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1003,6 +1151,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassDescTextBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1025,6 +1178,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnClassShortDescTextBox(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1047,17 +1205,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBranchComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var val = (UnitBranch) branchComboBox.SelectedIndex;
-            if (val == unit.Branch)
+            var branch = (UnitBranch) branchComboBox.SelectedIndex;
+            if (branch == unit.Branch)
             {
                 return;
             }
 
             // 値を更新する
-            unit.Branch = val;
+            unit.Branch = branch;
 
             // 編集済みフラグを設定する
             if (Game.Type == GameType.ArsenalOfDemocracy)
@@ -1077,17 +1240,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEyrNumericUpDownValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var val = (int) eyrNumericUpDown.Value;
-            if (val == unit.Eyr)
+            var eyr = (int) eyrNumericUpDown.Value;
+            if (eyr == unit.Eyr)
             {
                 return;
             }
 
             // 値を更新する
-            unit.Eyr = val;
+            unit.Eyr = eyr;
 
             // 編集済みフラグを設定する
             SetDirtyTypes();
@@ -1100,17 +1268,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGraphicsPriorityNumericUpDownValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var val = (int) gfxPrioNumericUpDown.Value;
-            if (val == unit.GfxPrio)
+            var prio = (int) gfxPrioNumericUpDown.Value;
+            if (prio == unit.GfxPrio)
             {
                 return;
             }
 
             // 値を更新する
-            unit.GfxPrio = val;
+            unit.GfxPrio = prio;
 
             // 編集済みフラグを設定する
             SetDirtyTypes();
@@ -1123,17 +1296,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnListPrioNumericUpDownValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var val = (int) listPrioNumericUpDown.Value;
-            if (val == unit.ListPrio)
+            var prio = (int) listPrioNumericUpDown.Value;
+            if (prio == unit.ListPrio)
             {
                 return;
             }
 
             // 値を更新する
-            unit.ListPrio = val;
+            unit.ListPrio = prio;
 
             // 編集済みフラグを設定する
             SetDirtyTypes();
@@ -1146,17 +1324,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRealUnitTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var val = (RealUnitType) realUnitTypeComboBox.SelectedIndex;
-            if (val == unit.RealType)
+            var type = (RealUnitType) realUnitTypeComboBox.SelectedIndex;
+            if (type == unit.RealType)
             {
                 return;
             }
 
             // 値を更新する
-            unit.RealType = val;
+            unit.RealType = type;
 
             // 編集済みフラグを設定する
             SetDirtyTypes();
@@ -1169,6 +1352,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDefaultTypeCheckBoxCheckedChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1191,17 +1379,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpriteTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var val = (SpriteType) spriteTypeComboBox.SelectedIndex;
-            if (val == unit.Sprite)
+            var type = (SpriteType) spriteTypeComboBox.SelectedIndex;
+            if (type == unit.Sprite)
             {
                 return;
             }
 
             // 値を更新する
-            unit.Sprite = val;
+            unit.Sprite = type;
 
             // 編集済みフラグを設定する
             SetDirtyTypes();
@@ -1214,17 +1407,22 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTransmuteComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var val = (UnitType) transmuteComboBox.SelectedIndex;
-            if (val == unit.Transmute)
+            var type = (UnitType) transmuteComboBox.SelectedIndex;
+            if (type == unit.Transmute)
             {
                 return;
             }
 
             // 値を更新する
-            unit.Transmute = val;
+            unit.Transmute = type;
 
             // 編集済みフラグを設定する
             SetDirtyTypes();
@@ -1237,6 +1435,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMilitaryValueTextBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
@@ -1267,6 +1470,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProductableCheckBoxCheckedChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1289,6 +1497,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDetachableCheckBoxCheckedChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1311,6 +1524,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCagCheckBoxCheckedChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1333,6 +1551,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEscortCheckBoxCheckedChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1355,6 +1578,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEngineerCheckBoxCheckedChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1377,6 +1605,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMaxAllowedBrigadesNumericUpDownValueChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
@@ -1399,12 +1632,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAllowedBrigadesListViewItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            // ユニットクラスリストボックスの選択項目がなければ何もしない
-            if (classListBox.SelectedIndex == -1)
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
             {
                 return;
             }
-
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             UnitType type = Units.BrigadeTypes[e.Item.Index];
 
@@ -1435,7 +1667,9 @@ namespace HoI2Editor.Forms
             SetDirty();
         }
 
-        #region ユニット改良
+        #endregion
+
+        #region ユニットクラスタブ - 改良
 
         /// <summary>
         ///     改良リストビューの項目を更新する
@@ -1452,7 +1686,7 @@ namespace HoI2Editor.Forms
             }
             upgradeListView.EndUpdate();
 
-            // 改良情報が登録されていなければ編集項目を無効化して戻る
+            // 改良情報が登録されていなければ編集項目を無効化する
             if (unit.Upgrades.Count == 0)
             {
                 DisableUpgradeItems();
@@ -1484,13 +1718,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void DisableUpgradeItems()
         {
-            upgradeTypeComboBox.Text = "";
-            upgradeCostTextBox.Text = "";
-            upgradeTimeTextBox.Text = "";
-
             upgradeTypeComboBox.Enabled = false;
             upgradeCostTextBox.Enabled = false;
             upgradeTimeTextBox.Enabled = false;
+
+            upgradeTypeComboBox.SelectedIndex = -1;
+            upgradeTypeComboBox.ResetText();
+            upgradeCostTextBox.ResetText();
+            upgradeTimeTextBox.ResetText();
 
             upgradeRemoveButton.Enabled = false;
         }
@@ -1502,14 +1737,19 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeListViewSelectedIndexChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
             // 選択項目がなければ編集を禁止する
             if (upgradeListView.SelectedIndices.Count == 0)
             {
                 DisableUpgradeItems();
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
 
             upgradeTypeComboBox.SelectedIndex = (int) upgrade.Type;
@@ -1527,28 +1767,33 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
             UnitUpgrade upgrade = unit.Upgrades[index];
 
             // 値に変化がなければ何もしない
-            var val = (UnitType) upgradeTypeComboBox.SelectedIndex;
-            if (val == upgrade.Type)
+            var type = (UnitType) upgradeTypeComboBox.SelectedIndex;
+            if (type == upgrade.Type)
             {
                 return;
             }
 
             // 値を更新する
-            upgrade.Type = val;
+            upgrade.Type = type;
 
             // 改良リストビューの項目を更新する
-            upgradeListView.Items[index].Text = Config.GetText(Units.List[(int) val].Name);
+            upgradeListView.Items[index].Text = Config.GetText(Units.List[(int) type].Name);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -1561,13 +1806,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeCostTextBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
             UnitUpgrade upgrade = unit.Upgrades[index];
 
@@ -1602,13 +1852,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeTimeTextBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
             UnitUpgrade upgrade = unit.Upgrades[index];
 
@@ -1643,13 +1898,21 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeAddButtonClick(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
+            // 改良情報を追加する
             var upgrade = new UnitUpgrade();
             unit.Upgrades.Add(upgrade);
 
+            // 改良リストビューに項目を追加する
             AddUpgradeListItem(upgrade);
 
+            // 編集済みフラグを設定する
             SetDirty();
         }
 
@@ -1660,18 +1923,25 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeRemoveButtonClick(object sender, EventArgs e)
         {
-            // 選択中の項目がなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int index = upgradeListView.SelectedIndices[0];
 
-            RemoveUpgradeListItem(index);
-
+            // 改良情報を削除する
             unit.Upgrades.RemoveAt(index);
+
+            // 改良リストビューから項目を削除する
+            RemoveUpgradeListItem(index);
 
             SetDirty();
         }
@@ -1739,81 +2009,31 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #endregion
-
         #region ユニットモデルタブ
-
-        #region 編集項目操作
 
         /// <summary>
         ///     ユニットモデルタブの編集項目の値を更新する
         /// </summary>
         private void UpdateModelEditableItems()
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
             Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
+
             CountryTag country = (countryListView.SelectedIndices.Count == 0
                                       ? CountryTag.None
                                       : (CountryTag) (countryListView.SelectedIndices[0] + 1));
-
-            bool isDivision = (unit.Organization == UnitOrganization.Division);
-            bool isArmy = (unit.Branch == UnitBranch.Army);
-            bool isNavy = (unit.Branch == UnitBranch.Navy);
-            bool isAirForce = (unit.Branch == UnitBranch.AirForce);
-
-            rangeLabel.Enabled = !isArmy;
-            rangeTextBox.Enabled = !isArmy;
-            transportWeightLabel.Enabled = isArmy;
-            transportWeightTextBox.Enabled = isArmy;
-            transportCapabilityLabel.Enabled = !isArmy;
-            transportCapabilityTextBox.Enabled = !isArmy;
-            suppressionLabel.Enabled = isArmy;
-            suppressionTextBox.Enabled = isDivision && isArmy;
-            speedCapArtLabel.Enabled = isDivision && isArmy;
-            speedCapArtTextBox.Enabled = isDivision && isArmy;
-            speedCapEngLabel.Enabled = isDivision && isArmy;
-            speedCapEngTextBox.Enabled = isDivision && isArmy;
-            speedCapAtLabel.Enabled = isDivision && isArmy;
-            speedCapAtTextBox.Enabled = isDivision && isArmy;
-            speedCapAaLabel.Enabled = isDivision && isArmy;
-            speedCapAaTextBox.Enabled = isDivision && isArmy;
-            defensivenessLabel.Enabled = isArmy;
-            defensivenessTextBox.Enabled = isArmy;
-            seaDefenceLabel.Enabled = isNavy;
-            seaAttackTextBox.Enabled = isNavy;
-            surfaceDefenceLabel.Enabled = isAirForce;
-            surfaceDefenceTextBox.Enabled = isAirForce;
-            toughnessLabel.Enabled = isArmy;
-            toughnessTextBox.Enabled = isArmy;
-            softnessLabel.Enabled = isArmy;
-            softnessTextBox.Enabled = isArmy;
-            softAttackLabel.Enabled = !isNavy;
-            softAttackTextBox.Enabled = !isNavy;
-            hardAttackLabel.Enabled = !isNavy;
-            hardAttackTextBox.Enabled = !isNavy;
-            seaAttackLabel.Enabled = isNavy;
-            seaAttackTextBox.Enabled = isNavy;
-            subAttackLabel.Enabled = isNavy;
-            subAttackTextBox.Enabled = isNavy;
-            convoyAttackLabel.Enabled = isNavy;
-            convoyAttackTextBox.Enabled = isNavy;
-            shoreBombardmentLabel.Enabled = isNavy;
-            shoreBombardmentTextBox.Enabled = isNavy;
-            navalAttackLabel.Enabled = isAirForce;
-            navalAttackTextBox.Enabled = isAirForce;
-            strategicAttackLabel.Enabled = isAirForce;
-            strategicAttackTextBox.Enabled = isAirForce;
-            distanceLabel.Enabled = isNavy;
-            distanceTextBox.Enabled = isNavy;
-            visibilityLabel.Enabled = isNavy;
-            visibilityTextBox.Enabled = isNavy;
-            surfaceDetectionCapabilityLabel.Enabled = !isArmy;
-            surfaceDetectionCapabilityTextBox.Enabled = !isArmy;
-            subDetectionCapabilityLabel.Enabled = !isArmy;
-            subDetectionCapabilityTextBox.Enabled = !isArmy;
-            airDetectionCapabilityLabel.Enabled = !isArmy;
-            airDetectionCapabilityTextBox.Enabled = !isArmy;
 
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
             modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, no);
@@ -1858,38 +2078,279 @@ namespace HoI2Editor.Forms
             subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
             airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
 
+            // 陸軍
+            if (unit.Branch == UnitBranch.Army)
+            {
+                transportWeightLabel.Enabled = true;
+                transportWeightTextBox.Enabled = true;
+                defensivenessLabel.Enabled = true;
+                defensivenessTextBox.Enabled = true;
+                toughnessLabel.Enabled = true;
+                toughnessTextBox.Enabled = true;
+                softnessLabel.Enabled = true;
+                softnessTextBox.Enabled = true;
+
+                rangeLabel.Enabled = false;
+                rangeTextBox.Enabled = false;
+                transportCapabilityLabel.Enabled = false;
+                transportCapabilityTextBox.Enabled = false;
+                surfaceDetectionCapabilityLabel.Enabled = false;
+                surfaceDetectionCapabilityTextBox.Enabled = false;
+                subDetectionCapabilityLabel.Enabled = false;
+                subDetectionCapabilityTextBox.Enabled = false;
+                airDetectionCapabilityLabel.Enabled = false;
+                airDetectionCapabilityTextBox.Enabled = false;
+
+                rangeTextBox.ResetText();
+                transportCapabilityTextBox.ResetText();
+                surfaceDetectionCapabilityTextBox.ResetText();
+                subDetectionCapabilityTextBox.ResetText();
+                airDetectionCapabilityTextBox.ResetText();
+            }
+            else
+            {
+                rangeLabel.Enabled = true;
+                rangeTextBox.Enabled = true;
+                transportCapabilityLabel.Enabled = true;
+                transportCapabilityTextBox.Enabled = true;
+                surfaceDetectionCapabilityLabel.Enabled = true;
+                surfaceDetectionCapabilityTextBox.Enabled = true;
+                subDetectionCapabilityLabel.Enabled = true;
+                subDetectionCapabilityTextBox.Enabled = true;
+                airDetectionCapabilityLabel.Enabled = true;
+                airDetectionCapabilityTextBox.Enabled = true;
+
+                transportWeightLabel.Enabled = false;
+                transportWeightTextBox.Enabled = false;
+                defensivenessLabel.Enabled = false;
+                defensivenessTextBox.Enabled = false;
+                toughnessLabel.Enabled = false;
+                toughnessTextBox.Enabled = false;
+                softnessLabel.Enabled = false;
+                softnessTextBox.Enabled = false;
+
+                transportWeightTextBox.ResetText();
+                defensivenessTextBox.ResetText();
+                toughnessTextBox.ResetText();
+                softnessTextBox.ResetText();
+            }
+
+            // 陸軍師団
+            if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Division)
+            {
+                suppressionLabel.Enabled = true;
+                suppressionTextBox.Enabled = true;
+                speedCapArtLabel.Enabled = true;
+                speedCapArtTextBox.Enabled = true;
+                speedCapEngLabel.Enabled = true;
+                speedCapEngTextBox.Enabled = true;
+                speedCapAtLabel.Enabled = true;
+                speedCapAtTextBox.Enabled = true;
+                speedCapAaLabel.Enabled = true;
+                speedCapAaTextBox.Enabled = true;
+            }
+            else
+            {
+                suppressionLabel.Enabled = false;
+                suppressionTextBox.Enabled = false;
+                speedCapArtLabel.Enabled = false;
+                speedCapArtTextBox.Enabled = false;
+                speedCapEngLabel.Enabled = false;
+                speedCapEngTextBox.Enabled = false;
+                speedCapAtLabel.Enabled = false;
+                speedCapAtTextBox.Enabled = false;
+                speedCapAaLabel.Enabled = false;
+                speedCapAaTextBox.Enabled = false;
+
+                suppressionTextBox.ResetText();
+                speedCapArtTextBox.ResetText();
+                speedCapEngTextBox.ResetText();
+                speedCapAtTextBox.ResetText();
+                speedCapAaTextBox.ResetText();
+            }
+
+            // 海軍
+            if (unit.Branch == UnitBranch.Navy)
+            {
+                seaDefenceLabel.Enabled = true;
+                seaAttackTextBox.Enabled = true;
+                seaAttackLabel.Enabled = true;
+                seaAttackTextBox.Enabled = true;
+                subAttackLabel.Enabled = true;
+                subAttackTextBox.Enabled = true;
+                convoyAttackLabel.Enabled = true;
+                convoyAttackTextBox.Enabled = true;
+                shoreBombardmentLabel.Enabled = true;
+                shoreBombardmentTextBox.Enabled = true;
+                distanceLabel.Enabled = true;
+                distanceTextBox.Enabled = true;
+                visibilityLabel.Enabled = true;
+                visibilityTextBox.Enabled = true;
+
+                softAttackLabel.Enabled = false;
+                softAttackTextBox.Enabled = false;
+                hardAttackLabel.Enabled = false;
+                hardAttackTextBox.Enabled = false;
+
+                softAttackTextBox.ResetText();
+                hardAttackTextBox.ResetText();
+            }
+            else
+            {
+                softAttackLabel.Enabled = true;
+                softAttackTextBox.Enabled = true;
+                hardAttackLabel.Enabled = true;
+                hardAttackTextBox.Enabled = true;
+
+                seaDefenceLabel.Enabled = false;
+                seaAttackTextBox.Enabled = false;
+                seaAttackLabel.Enabled = false;
+                seaAttackTextBox.Enabled = false;
+                subAttackLabel.Enabled = false;
+                subAttackTextBox.Enabled = false;
+                convoyAttackLabel.Enabled = false;
+                convoyAttackTextBox.Enabled = false;
+                shoreBombardmentLabel.Enabled = false;
+                shoreBombardmentTextBox.Enabled = false;
+                distanceLabel.Enabled = false;
+                distanceTextBox.Enabled = false;
+                visibilityLabel.Enabled = false;
+                visibilityTextBox.Enabled = false;
+
+                seaAttackTextBox.ResetText();
+                seaAttackTextBox.ResetText();
+                subAttackTextBox.ResetText();
+                convoyAttackTextBox.ResetText();
+                shoreBombardmentTextBox.ResetText();
+                distanceTextBox.ResetText();
+                visibilityTextBox.ResetText();
+            }
+
+            // 空軍
+            if (unit.Branch == UnitBranch.AirForce)
+            {
+                surfaceDefenceLabel.Enabled = true;
+                surfaceDefenceTextBox.Enabled = true;
+                navalAttackLabel.Enabled = true;
+                navalAttackTextBox.Enabled = true;
+                strategicAttackLabel.Enabled = true;
+                strategicAttackTextBox.Enabled = true;
+            }
+            else
+            {
+                surfaceDefenceLabel.Enabled = false;
+                surfaceDefenceTextBox.Enabled = false;
+                navalAttackLabel.Enabled = false;
+                navalAttackTextBox.Enabled = false;
+                strategicAttackLabel.Enabled = false;
+                strategicAttackTextBox.Enabled = false;
+
+                surfaceDefenceTextBox.ResetText();
+                navalAttackTextBox.ResetText();
+                strategicAttackTextBox.ResetText();
+            }
+
+            // AoD
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                maxSupplyStockLabel.Enabled = isDivision && isArmy;
-                maxSupplyStockTextBox.Enabled = isDivision && isArmy;
-                maxOilStockLabel.Enabled = isDivision && isArmy;
-                maxOilStockTextBox.Enabled = isDivision && isArmy;
-                artilleryBombardmentLabel.Enabled = !isDivision && isArmy;
-                artilleryBombardmentTextBox.Enabled = !isDivision && isArmy;
-
                 maxSupplyStockTextBox.Text = model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture);
                 maxOilStockTextBox.Text = model.MaxOilStock.ToString(CultureInfo.InvariantCulture);
                 artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
+
+                // 陸軍師団
+                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Division)
+                {
+                    maxSupplyStockLabel.Enabled = true;
+                    maxSupplyStockTextBox.Enabled = true;
+                    maxOilStockLabel.Enabled = true;
+                    maxOilStockTextBox.Enabled = true;
+                }
+                else
+                {
+                    maxSupplyStockLabel.Enabled = false;
+                    maxSupplyStockTextBox.Enabled = false;
+                    maxOilStockLabel.Enabled = false;
+                    maxOilStockTextBox.Enabled = false;
+
+                    maxSupplyStockTextBox.ResetText();
+                    maxOilStockTextBox.ResetText();
+                }
+
+                // 陸軍旅団
+                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
+                {
+                    artilleryBombardmentLabel.Enabled = true;
+                    artilleryBombardmentTextBox.Enabled = true;
+                }
+                else
+                {
+                    artilleryBombardmentLabel.Enabled = false;
+                    artilleryBombardmentTextBox.Enabled = false;
+
+                    artilleryBombardmentTextBox.ResetText();
+                }
             }
 
+            // DH
             if (Game.Type == GameType.DarkestHour)
             {
-                reinforceCostLabel.Enabled = isDivision;
-                reinforceCostTextBox.Enabled = isDivision;
-                reinforceTimeLabel.Enabled = isDivision;
-                reinforceTimeTextBox.Enabled = isDivision;
-                noFuelCombatModLabel.Enabled = isDivision && isArmy;
-                noFuelCombatModTextBox.Enabled = isDivision && isArmy;
-
                 reinforceCostTextBox.Text = model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture);
                 reinforceTimeTextBox.Text = model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture);
                 noFuelCombatModTextBox.Text = model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture);
+
+                // 師団
+                if (unit.Organization == UnitOrganization.Division)
+                {
+                    reinforceCostLabel.Enabled = true;
+                    reinforceCostTextBox.Enabled = true;
+                    reinforceTimeLabel.Enabled = true;
+                    reinforceTimeTextBox.Enabled = true;
+                }
+                else
+                {
+                    reinforceCostLabel.Enabled = false;
+                    reinforceCostTextBox.Enabled = false;
+                    reinforceTimeLabel.Enabled = false;
+                    reinforceTimeTextBox.Enabled = false;
+
+                    reinforceCostTextBox.ResetText();
+                    reinforceTimeTextBox.ResetText();
+                }
+
+                // 陸軍師団
+                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Division)
+                {
+                    noFuelCombatModLabel.Enabled = true;
+                    noFuelCombatModTextBox.Enabled = true;
+                }
+                else
+                {
+                    noFuelCombatModLabel.Enabled = false;
+                    noFuelCombatModTextBox.Enabled = false;
+
+                    noFuelCombatModTextBox.ResetText();
+                }
+
+                // DH1.03以降
                 if (Game.Version >= 103)
                 {
-                    speedCapAllLabel.Enabled = !isDivision && isArmy;
-                    speedCapAllTextBox.Enabled = !isDivision && isArmy;
-
                     speedCapAllTextBox.Text = model.SpeedCap.ToString(CultureInfo.InvariantCulture);
+
+                    // 陸軍旅団
+                    if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
+                    {
+                        speedCapAllLabel.Enabled = true;
+                        speedCapAllTextBox.Enabled = true;
+                    }
+                    else
+                    {
+                        speedCapAllLabel.Enabled = false;
+                        speedCapAllTextBox.Enabled = false;
+
+                        speedCapAllTextBox.ResetText();
+                    }
+
+                    // 装備リストを更新する
                     UpdateEquipmentList(model);
                 }
             }
@@ -1909,7 +2370,7 @@ namespace HoI2Editor.Forms
             cloneButton.Enabled = true;
             removeButton.Enabled = true;
 
-            // ゲームの種類依存の項目
+            // AoD
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
                 maxSupplyStockLabel.Enabled = true;
@@ -1919,7 +2380,9 @@ namespace HoI2Editor.Forms
                 artilleryBombardmentLabel.Enabled = true;
                 artilleryBombardmentTextBox.Enabled = true;
             }
-            else if (Game.Type == GameType.DarkestHour)
+
+            // DH
+            if (Game.Type == GameType.DarkestHour)
             {
                 reinforceCostLabel.Enabled = true;
                 reinforceCostTextBox.Enabled = true;
@@ -1928,6 +2391,7 @@ namespace HoI2Editor.Forms
                 noFuelCombatModLabel.Enabled = true;
                 noFuelCombatModTextBox.Enabled = true;
 
+                // DH1.03以降
                 if (Game.Version >= 103)
                 {
                     speedCapAllLabel.Enabled = true;
@@ -1942,64 +2406,69 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void DisableModelEditableItems()
         {
-            modelImagePictureBox.ImageLocation = "";
-            modelIconPictureBox.ImageLocation = "";
-            modelNameTextBox.Text = "";
-            defaultOrganisationTextBox.Text = "";
-            moraleTextBox.Text = "";
-            rangeTextBox.Text = "";
-            transportWeightTextBox.Text = "";
-            transportCapabilityTextBox.Text = "";
-            suppressionTextBox.Text = "";
-            supplyConsumptionTextBox.Text = "";
-            fuelConsumptionTextBox.Text = "";
-            maxSupplyStockTextBox.Text = "";
-            maxOilStockTextBox.Text = "";
-            costTextBox.Text = "";
-            buildTimeTextBox.Text = "";
-            manPowerTextBox.Text = "";
-            upgradeCostFactorTextBox.Text = "";
-            upgradeTimeFactorTextBox.Text = "";
-            reinforceCostTextBox.Text = "";
-            reinforceTimeTextBox.Text = "";
-            maxSpeedTextBox.Text = "";
-            speedCapAllTextBox.Text = "";
-            speedCapArtTextBox.Text = "";
-            speedCapEngTextBox.Text = "";
-            speedCapAtTextBox.Text = "";
-            speedCapAaTextBox.Text = "";
-            defensivenessTextBox.Text = "";
-            seaDefenceTextBox.Text = "";
-            airDefenceTextBox.Text = "";
-            surfaceDefenceTextBox.Text = "";
-            toughnessTextBox.Text = "";
-            softnessTextBox.Text = "";
-            softAttackTextBox.Text = "";
-            hardAttackTextBox.Text = "";
-            seaAttackTextBox.Text = "";
-            subAttackTextBox.Text = "";
-            convoyAttackTextBox.Text = "";
-            shoreBombardmentTextBox.Text = "";
-            airAttackTextBox.Text = "";
-            navalAttackTextBox.Text = "";
-            strategicAttackTextBox.Text = "";
-            artilleryBombardmentTextBox.Text = "";
-            distanceTextBox.Text = "";
-            visibilityTextBox.Text = "";
-            surfaceDetectionCapabilityTextBox.Text = "";
-            subDetectionCapabilityTextBox.Text = "";
-            airDetectionCapabilityTextBox.Text = "";
-            noFuelCombatModTextBox.Text = "";
-            equipmentListView.Items.Clear();
-            resourceComboBox.Text = "";
-            quantityTextBox.Text = "";
-
             modelNameTextBox.Enabled = false;
             basicGroupBox.Enabled = false;
             productionGroupBox.Enabled = false;
             speedGroupBox.Enabled = false;
             battleGroupBox.Enabled = false;
             equipmentGroupBox.Enabled = false;
+
+            modelImagePictureBox.ImageLocation = "";
+            modelIconPictureBox.ImageLocation = "";
+            modelNameTextBox.ResetText();
+
+            defaultOrganisationTextBox.ResetText();
+            moraleTextBox.ResetText();
+            rangeTextBox.ResetText();
+            transportWeightTextBox.ResetText();
+            transportCapabilityTextBox.ResetText();
+            suppressionTextBox.ResetText();
+            supplyConsumptionTextBox.ResetText();
+            fuelConsumptionTextBox.ResetText();
+            maxSupplyStockTextBox.ResetText();
+            maxOilStockTextBox.ResetText();
+
+            costTextBox.ResetText();
+            buildTimeTextBox.ResetText();
+            manPowerTextBox.ResetText();
+            upgradeCostFactorTextBox.ResetText();
+            upgradeTimeFactorTextBox.ResetText();
+            reinforceCostTextBox.ResetText();
+            reinforceTimeTextBox.ResetText();
+
+            maxSpeedTextBox.ResetText();
+            speedCapAllTextBox.ResetText();
+            speedCapArtTextBox.ResetText();
+            speedCapEngTextBox.ResetText();
+            speedCapAtTextBox.ResetText();
+            speedCapAaTextBox.ResetText();
+
+            defensivenessTextBox.ResetText();
+            seaDefenceTextBox.ResetText();
+            airDefenceTextBox.ResetText();
+            surfaceDefenceTextBox.ResetText();
+            toughnessTextBox.ResetText();
+            softnessTextBox.ResetText();
+            softAttackTextBox.ResetText();
+            hardAttackTextBox.ResetText();
+            seaAttackTextBox.ResetText();
+            subAttackTextBox.ResetText();
+            convoyAttackTextBox.ResetText();
+            shoreBombardmentTextBox.ResetText();
+            airAttackTextBox.ResetText();
+            navalAttackTextBox.ResetText();
+            strategicAttackTextBox.ResetText();
+            artilleryBombardmentTextBox.ResetText();
+            distanceTextBox.ResetText();
+            visibilityTextBox.ResetText();
+            surfaceDetectionCapabilityTextBox.ResetText();
+            subDetectionCapabilityTextBox.ResetText();
+            airDetectionCapabilityTextBox.ResetText();
+            noFuelCombatModTextBox.ResetText();
+
+            equipmentListView.Items.Clear();
+            resourceComboBox.ResetText();
+            quantityTextBox.ResetText();
 
             cloneButton.Enabled = false;
             removeButton.Enabled = false;
@@ -2009,10 +2478,6 @@ namespace HoI2Editor.Forms
             bottomButton.Enabled = false;
         }
 
-        #endregion
-
-        #region ユニットモデル名
-
         /// <summary>
         ///     ユニットモデル名変更時の処理
         /// </summary>
@@ -2020,22 +2485,26 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnModelNameTextBoxTextChanged(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
 
             // 値に変化がなければ何もしない
-            string val = modelNameTextBox.Text;
             string name = UnitModel.GetName(unit, no,
                                             countryListView.SelectedIndices.Count == 0
                                                 ? CountryTag.None
                                                 : (CountryTag) (countryListView.SelectedIndices[0] + 1));
-            if (val.Equals(Config.GetText(name)))
+            if (modelNameTextBox.Text.Equals(Config.GetText(name)))
             {
                 return;
             }
@@ -2044,18 +2513,14 @@ namespace HoI2Editor.Forms
             string fileName = (countryListView.SelectedIndices.Count == 0
                                    ? Game.UnitTextFileName
                                    : Game.ModelTextFileName);
-            Config.SetText(name, val, fileName);
+            Config.SetText(name, modelNameTextBox.Text, fileName);
 
-            // モデルリストビューの項目を変更する
-            modelListView.Items[no].SubItems[1].Text = val;
+            // ユニットモデルリストの項目を更新する
+            modelListView.Items[no].SubItems[1].Text = modelNameTextBox.Text;
 
             // 編集済みフラグを設定する
             Config.SetDirty(fileName);
         }
-
-        #endregion
-
-        #region ユニットモデルの画像
 
         /// <summary>
         ///     ユニットモデル画像のファイル名を取得する
@@ -2129,7 +2594,7 @@ namespace HoI2Editor.Forms
         /// <returns>ユニットモデルアイコンのファイル名</returns>
         private static string GetModelIconFileName(Unit unit, int no)
         {
-            // 旅団にはアイコンが存在しないので戻る
+            // 旅団にはアイコンが存在しないので空文字列を返す
             if (unit.Organization == UnitOrganization.Brigade)
             {
                 return string.Empty;
@@ -2142,7 +2607,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 基本ステータス
+        #region ユニットモデルタブ - 基本ステータス
 
         /// <summary>
         ///     組織率テキストボックスフォーカス移動後の処理
@@ -2151,13 +2616,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDefaultOrganizationTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2178,7 +2648,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.DefaultOrganization = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[7].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2192,13 +2662,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMoraleTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2219,7 +2694,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.Morale = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[8].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2233,13 +2708,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRangeTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2271,13 +2751,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTransportWeightTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2309,13 +2794,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTransportCapabilityTextBoxTextChanged(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2347,13 +2837,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSuppressionTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2385,13 +2880,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSupplyConsumptionTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2412,7 +2912,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.SupplyConsumption = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[5].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2426,13 +2926,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFuelConsumptionTextBox(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2453,7 +2958,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.FuelConsumption = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[6].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2467,13 +2972,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMaxSupplyStockTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2505,13 +3015,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMaxOilStockTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2538,7 +3053,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 生産ステータス
+        #region ユニットモデルタブ - 生産ステータス
 
         /// <summary>
         ///     必要ICテキストボックスフォーカス移動後の処理
@@ -2547,13 +3062,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCostTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2574,7 +3094,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.Cost = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2588,13 +3108,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBuildTimeTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2615,7 +3140,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.BuildTime = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[3].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2629,13 +3154,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnManPowerTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2656,7 +3186,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.ManPower = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[4].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2670,13 +3200,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeCostFactorTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2708,13 +3243,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUpgradeTimeFactorTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2746,13 +3286,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReinforceCostTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2784,13 +3329,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReinforceTimeTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2816,7 +3366,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 速度ステータス
+        #region ユニットモデルタブ - 速度ステータス
 
         /// <summary>
         ///     最大速度テキストボックスフォーカス移動後の処理
@@ -2825,13 +3375,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMaxSpeedTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2852,7 +3407,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.MaxSpeed = val;
 
-            // モデルリストビューの項目を変更する
+            // ユニットモデルリストの項目を更新する
             modelListView.Items[no].SubItems[9].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
@@ -2866,13 +3421,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpeedCapTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2904,13 +3464,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpeedCapArtTextBox(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2942,13 +3507,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpeedCapEngTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -2980,13 +3550,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpeedCapAtTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3018,13 +3593,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSpeedCapAaTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3051,7 +3631,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 戦闘ステータス
+        #region ユニットモデルタブ - 戦闘ステータス
 
         /// <summary>
         ///     防御力テキストボックスフォーカス移動後の処理
@@ -3060,13 +3640,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDefensivenessTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3098,13 +3683,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSeaDefenceTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3136,13 +3726,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAirDefenceTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3174,13 +3769,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSurfaceDefenceTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3212,13 +3812,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnToughnessTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3250,13 +3855,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSoftnessTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3288,13 +3898,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSoftAttackTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3326,13 +3941,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnHardAttackTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3364,13 +3984,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSeaAttackTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3402,13 +4027,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSubAttackTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3440,13 +4070,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnShoreBombardmentTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3478,13 +4113,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAirAttackTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3516,13 +4156,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnNavalAttackTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3554,13 +4199,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnStrategicAttackTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3592,13 +4242,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnArtilleryBombardmentTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3630,13 +4285,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDistanceTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3668,13 +4328,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnVisibilityTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3706,13 +4371,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSurfaceDetectionCapabilityTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3745,13 +4415,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSubDetectionCapabilityTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3783,13 +4458,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAirDetectionCapabilityTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3821,13 +4501,18 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnNoFuelCombatModTextBoxValidated(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
@@ -3854,7 +4539,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 装備
+        #region ユニットモデルタブ - 装備
 
         /// <summary>
         ///     装備リストビューの項目を更新する
@@ -3871,7 +4556,7 @@ namespace HoI2Editor.Forms
             }
             equipmentListView.EndUpdate();
 
-            // 項目がなければ編集項目を無効化して戻る
+            // 項目がなければ編集項目を無効化する
             if (model.Equipments.Count == 0)
             {
                 DisableEquipmentItems();
@@ -3907,6 +4592,10 @@ namespace HoI2Editor.Forms
             resourceComboBox.Enabled = false;
             quantityTextBox.Enabled = false;
 
+            resourceComboBox.SelectedIndex = -1;
+            resourceComboBox.ResetText();
+            quantityTextBox.ResetText();
+
             equipmentRemoveButton.Enabled = false;
             equipmentUpButton.Enabled = false;
             equipmentDownButton.Enabled = false;
@@ -3919,23 +4608,28 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEquipmentListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ編集項目を無効化する
-            if (equipmentListView.SelectedIndices.Count == 0)
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
             {
-                DisableEquipmentItems();
                 return;
             }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
-            UnitEquipment equipment = model.Equipments[equipmentListView.SelectedIndices[0]];
+
+            // 選択項目がなければ何もしない
+            if (equipmentListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = equipmentListView.SelectedIndices[0];
+            UnitEquipment equipment = model.Equipments[index];
 
             resourceComboBox.Text = equipment.Resource;
             quantityTextBox.Text = equipment.Quantity.ToString(CultureInfo.InvariantCulture);
@@ -3951,15 +4645,26 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnResourceComboBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[no];
+
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
             int index = equipmentListView.SelectedIndices[0];
             UnitEquipment equipment = model.Equipments[index];
 
@@ -3986,16 +4691,27 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnQuantityTextBoxValidated(object sender, EventArgs e)
         {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int no = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[no];
+
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
-            int index = modelListView.SelectedIndices[0];
+            int index = equipmentListView.SelectedIndices[0];
             UnitEquipment equipment = model.Equipments[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
@@ -4029,21 +4745,29 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEquipmentAddButtonClick(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
+            // 装備リストに項目を追加する
             var equipment = new UnitEquipment();
             model.Equipments.Add(equipment);
 
+            // 装備リストビューに項目を追加する
             AddEquipmentListItem(equipment);
 
+            // 編集済みフラグを設定する
             SetDirty();
         }
 
@@ -4054,27 +4778,35 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEquipmentRemoveButtonClick(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
-            // 選択中の項目がなければ何もしない
+            // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
             {
                 return;
             }
             int index = equipmentListView.SelectedIndices[0];
 
+            // 装備リストから項目を削除する
             RemoveEquipmentListItem(index);
 
+            // 装備リストビューから項目を削除する
             model.Equipments.RemoveAt(index);
 
+            // 編集済みフラグを設定する
             SetDirty();
         }
 
@@ -4085,27 +4817,41 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEquipmentUpButtonClick(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
-            // リストの先頭ならば何もしない
+            // 選択項目がなければ何もしない
+            if (equipmentListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
             int index = equipmentListView.SelectedIndices[0];
+
+            // リストの先頭ならば何もしない
             if (index == 0)
             {
                 return;
             }
 
+            // 装備リストの項目を移動する
             model.MoveEquipment(index, index - 1);
 
+            // 装備リストビューの項目を移動する
             MoveEquipmentListItem(index, index - 1);
 
+            // 編集済みフラグを設定する
             SetDirty();
         }
 
@@ -4116,27 +4862,41 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnEquipmentDownButtonClick(object sender, EventArgs e)
         {
-            // 選択中のモデルがなければ何もしない
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
                 return;
             }
-
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
-            // リストの先頭ならば何もしない
+            // 選択項目がなければ何もしない
+            if (equipmentListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
             int index = equipmentListView.SelectedIndices[0];
-            if (index == 0)
+
+            // リストの末尾ならば何もしない
+            if (index == equipmentListView.Items.Count - 1)
             {
                 return;
             }
 
+            // 装備リストの項目を移動する
             model.MoveEquipment(index, index + 1);
 
+            // 装備リストビューの項目を移動する
             MoveEquipmentListItem(index, index + 1);
 
+            // 編集済みフラグを設定する
             SetDirty();
         }
 
@@ -4154,20 +4914,51 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     装備リストの項目を追加する
+        ///     装備リストビューの項目を追加する
         /// </summary>
         /// <param name="equipment">追加対象の装備</param>
         private void AddEquipmentListItem(UnitEquipment equipment)
         {
+            // 装備リストビューに項目を追加する
             ListViewItem item = CreateEquipmentListItem(equipment);
             equipmentListView.Items.Add(item);
 
+            // 追加した項目を選択する
             int index = equipmentListView.Items.Count - 1;
             equipmentListView.Items[index].Focused = true;
             equipmentListView.Items[index].Selected = true;
             equipmentListView.EnsureVisible(index);
 
+            // 編集項目を有効化する
             EnableEquipmentItems();
+        }
+
+        /// <summary>
+        ///     装備リストビューから項目を削除する
+        /// </summary>
+        /// <param name="index">削除する項目の位置</param>
+        private void RemoveEquipmentListItem(int index)
+        {
+            // 装備リストビューから項目を削除する
+            equipmentListView.Items.RemoveAt(index);
+
+            if (index < equipmentListView.Items.Count)
+            {
+                // 削除した項目の次を選択する
+                equipmentListView.Items[index].Focused = true;
+                equipmentListView.Items[index].Selected = true;
+            }
+            else if (index > 0)
+            {
+                // 末尾の項目を選択する
+                equipmentListView.Items[equipmentListView.Items.Count - 1].Focused = true;
+                equipmentListView.Items[equipmentListView.Items.Count - 1].Selected = true;
+            }
+            else
+            {
+                // 項目がなくなれば編集項目を無効化する
+                DisableEquipmentItems();
+            }
         }
 
         /// <summary>
@@ -4196,37 +4987,50 @@ namespace HoI2Editor.Forms
                 equipmentListView.Items.RemoveAt(src);
             }
 
+            // 移動先の項目を選択する
             equipmentListView.Items[dest].Focused = true;
             equipmentListView.Items[dest].Selected = true;
             equipmentListView.EnsureVisible(dest);
         }
 
-        /// <summary>
-        ///     装備リストから項目を削除する
-        /// </summary>
-        /// <param name="index">削除する項目の位置</param>
-        private void RemoveEquipmentListItem(int index)
-        {
-            equipmentListView.Items.RemoveAt(index);
+        #endregion
 
-            if (index < equipmentListView.Items.Count)
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        private void SetDirty()
+        {
+            UnitType type = Units.UnitTypes[classListBox.SelectedIndex];
+            Units.SetDirty(type, true);
+        }
+
+        /// <summary>
+        ///     ユニットクラス定義の編集済みフラグを設定する
+        /// </summary>
+        private void SetDirtyTypes()
+        {
+            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            if (unit.Organization == UnitOrganization.Division)
             {
-                equipmentListView.Items[index].Focused = true;
-                equipmentListView.Items[index].Selected = true;
-            }
-            else if (index > 0)
-            {
-                equipmentListView.Items[equipmentListView.Items.Count - 1].Focused = true;
-                equipmentListView.Items[equipmentListView.Items.Count - 1].Selected = true;
+                Units.SetDirtyDivisionTypes(true);
             }
             else
             {
-                DisableEquipmentItems();
+                Units.SetDirtyBrigadeTypes(true);
             }
         }
 
         #endregion
+    }
 
-        #endregion
+    /// <summary>
+    ///     ユニットエディタのタブ番号
+    /// </summary>
+    public enum UnitEditorTab
+    {
+        Class, // ユニットクラス
+        Model, // ユニットモデル
     }
 }
