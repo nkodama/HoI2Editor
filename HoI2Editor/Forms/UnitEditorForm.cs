@@ -73,7 +73,7 @@ namespace HoI2Editor.Forms
             allowedBrigadesListView.Items.Clear();
             foreach (UnitType type in Units.BrigadeTypes)
             {
-                string s = Config.GetText(Units.List[(int) type].Name);
+                string s = Config.GetText(Units.Items[(int) type].Name);
                 allowedBrigadesListView.Items.Add(s);
                 // +16はチェックボックスの分
                 maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, allowedBrigadesListView.Font).Width + 16);
@@ -114,7 +114,7 @@ namespace HoI2Editor.Forms
             transmuteComboBox.Items.Clear();
             foreach (UnitType type in Units.DivisionTypes)
             {
-                string s = Config.GetText(Units.List[(int) type].Name);
+                string s = Config.GetText(Units.Items[(int) type].Name);
                 transmuteComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
                                     TextRenderer.MeasureText(s, transmuteComboBox.Font).Width +
@@ -128,7 +128,7 @@ namespace HoI2Editor.Forms
             upgradeTypeComboBox.Items.Clear();
             foreach (UnitType type in Units.DivisionTypes)
             {
-                string s = Config.GetText(Units.List[(int) type].Name);
+                string s = Config.GetText(Units.Items[(int) type].Name);
                 upgradeTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
                                     TextRenderer.MeasureText(s, upgradeTypeComboBox.Font).Width +
@@ -388,7 +388,7 @@ namespace HoI2Editor.Forms
             classListBox.Items.Clear();
             foreach (UnitType type in Units.UnitTypes)
             {
-                Unit unit = Units.List[(int) type];
+                Unit unit = Units.Items[(int) type];
                 classListBox.Items.Add(Config.GetText(unit.Name));
             }
             classListBox.EndUpdate();
@@ -413,7 +413,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = Units.List[(int) Units.UnitTypes[e.Index]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[e.Index]];
 
             // 背景を描画する
             e.DrawBackground();
@@ -429,9 +429,7 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) == 0)
             {
                 // 変更ありの項目は文字色を変更する
-                brush = Units.DirtyFlags[(int) unit.Type]
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(classListBox.ForeColor);
+                brush = unit.IsDirty() ? new SolidBrush(Color.Red) : new SolidBrush(classListBox.ForeColor);
             }
             else
             {
@@ -492,7 +490,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストビューに項目を登録する
             modelListView.BeginUpdate();
@@ -573,7 +571,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // ユニットモデルを挿入する
             var model = new UnitModel();
@@ -600,7 +598,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -626,7 +624,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -651,7 +649,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -682,7 +680,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -713,7 +711,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -744,7 +742,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -793,7 +791,8 @@ namespace HoI2Editor.Forms
             modelListView.Items[index].Selected = true;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirtyAll();
+            unit.SetDirty();
             Config.SetDirty(Game.UnitTextFileName);
         }
 
@@ -837,7 +836,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            SetDirty();
+            unit.SetDirty();
             Config.SetDirty(Game.UnitTextFileName);
         }
 
@@ -886,7 +885,7 @@ namespace HoI2Editor.Forms
             modelListView.Items[dest].Selected = true;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            unit.SetDirty();
             Config.SetDirty(Game.UnitTextFileName);
         }
 
@@ -906,7 +905,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -940,7 +939,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             classNameTextBox.Text = Config.GetText(unit.Name);
             classShortNameTextBox.Text = Config.GetText(unit.ShortName);
@@ -1042,7 +1041,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classNameTextBox.Text.Equals(Config.GetText(unit.Name)))
@@ -1114,6 +1113,7 @@ namespace HoI2Editor.Forms
 
 
             // 編集済みフラグを設定する
+            unit.SetDirty(UnitClassItemId.Name);
             Config.SetDirty(Game.UnitTextFileName);
         }
 
@@ -1129,7 +1129,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classShortNameTextBox.Text.Equals(Config.GetText(unit.ShortName)))
@@ -1141,6 +1141,7 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.ShortName, classShortNameTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
+            unit.SetDirty(UnitClassItemId.ShortName);
             Config.SetDirty(Game.UnitTextFileName);
         }
 
@@ -1156,7 +1157,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classDescTextBox.Text.Equals(Config.GetText(unit.Desc)))
@@ -1168,6 +1169,7 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.Desc, classDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
+            unit.SetDirty(UnitClassItemId.Desc);
             Config.SetDirty(Game.UnitTextFileName);
         }
 
@@ -1183,7 +1185,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classShortDescTextBox.Text.Equals(Config.GetText(unit.ShortDesc)))
@@ -1195,6 +1197,7 @@ namespace HoI2Editor.Forms
             Config.SetText(unit.ShortDesc, classShortDescTextBox.Text, Game.UnitTextFileName);
 
             // 編集済みフラグを設定する
+            unit.SetDirty(UnitClassItemId.ShortDesc);
             Config.SetDirty(Game.UnitTextFileName);
         }
 
@@ -1210,7 +1213,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var branch = (UnitBranch) branchComboBox.SelectedIndex;
@@ -1223,13 +1226,21 @@ namespace HoI2Editor.Forms
             unit.Branch = branch;
 
             // 編集済みフラグを設定する
+            unit.SetDirty(UnitClassItemId.Branch);
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                SetDirty();
+                unit.SetDirty();
             }
             else if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
-                SetDirtyTypes();
+                if (unit.Organization == UnitOrganization.Division)
+                {
+                    Units.SetDirtyDivisionTypes();
+                }
+                else
+                {
+                    Units.SetDirtyBrigadeTypes();
+                }
             }
         }
 
@@ -1245,7 +1256,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var eyr = (int) eyrNumericUpDown.Value;
@@ -1258,7 +1269,8 @@ namespace HoI2Editor.Forms
             unit.Eyr = eyr;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Eyr);
+            Units.SetDirtyDivisionTypes();
         }
 
         /// <summary>
@@ -1273,7 +1285,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var prio = (int) gfxPrioNumericUpDown.Value;
@@ -1286,7 +1298,8 @@ namespace HoI2Editor.Forms
             unit.GfxPrio = prio;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.GfxPrio);
+            Units.SetDirtyDivisionTypes();
         }
 
         /// <summary>
@@ -1301,7 +1314,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var prio = (int) listPrioNumericUpDown.Value;
@@ -1314,7 +1327,15 @@ namespace HoI2Editor.Forms
             unit.ListPrio = prio;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.ListPrio);
+            if (unit.Organization == UnitOrganization.Division)
+            {
+                Units.SetDirtyDivisionTypes();
+            }
+            else
+            {
+                Units.SetDirtyBrigadeTypes();
+            }
         }
 
         /// <summary>
@@ -1329,7 +1350,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var type = (RealUnitType) realUnitTypeComboBox.SelectedIndex;
@@ -1342,7 +1363,8 @@ namespace HoI2Editor.Forms
             unit.RealType = type;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.RealType);
+            Units.SetDirtyDivisionTypes();
         }
 
         /// <summary>
@@ -1357,7 +1379,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (defaultTypeCheckBox.Checked == unit.DefaultType)
@@ -1369,7 +1391,8 @@ namespace HoI2Editor.Forms
             unit.DefaultType = defaultTypeCheckBox.Checked;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.DefaultType);
+            Units.SetDirtyDivisionTypes();
         }
 
         /// <summary>
@@ -1384,7 +1407,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var type = (SpriteType) spriteTypeComboBox.SelectedIndex;
@@ -1397,7 +1420,8 @@ namespace HoI2Editor.Forms
             unit.Sprite = type;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Sprite);
+            Units.SetDirtyDivisionTypes();
         }
 
         /// <summary>
@@ -1412,7 +1436,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var type = (UnitType) transmuteComboBox.SelectedIndex;
@@ -1425,7 +1449,8 @@ namespace HoI2Editor.Forms
             unit.Transmute = type;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Transmute);
+            Units.SetDirtyDivisionTypes();
         }
 
         /// <summary>
@@ -1440,7 +1465,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -1460,7 +1485,15 @@ namespace HoI2Editor.Forms
             unit.Value = val;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Vaule);
+            if (unit.Organization == UnitOrganization.Division)
+            {
+                Units.SetDirtyDivisionTypes();
+            }
+            else
+            {
+                Units.SetDirtyBrigadeTypes();
+            }
         }
 
         /// <summary>
@@ -1475,7 +1508,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (productableCheckBox.Checked == unit.Productable)
@@ -1487,7 +1520,8 @@ namespace HoI2Editor.Forms
             unit.Productable = productableCheckBox.Checked;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Productable);
+            Units.SetDirtyDivisionTypes();
         }
 
         /// <summary>
@@ -1502,7 +1536,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (detachableCheckBox.Checked == unit.Detachable)
@@ -1514,7 +1548,8 @@ namespace HoI2Editor.Forms
             unit.Detachable = detachableCheckBox.Checked;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Detachable);
+            Units.SetDirtyBrigadeTypes();
         }
 
         /// <summary>
@@ -1529,7 +1564,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (cagCheckBox.Checked == unit.Cag)
@@ -1541,7 +1576,8 @@ namespace HoI2Editor.Forms
             unit.Cag = cagCheckBox.Checked;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Cag);
+            Units.SetDirtyBrigadeTypes();
         }
 
         /// <summary>
@@ -1556,7 +1592,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (escortCheckBox.Checked == unit.Escort)
@@ -1568,7 +1604,8 @@ namespace HoI2Editor.Forms
             unit.Escort = escortCheckBox.Checked;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Escort);
+            Units.SetDirtyBrigadeTypes();
         }
 
         /// <summary>
@@ -1583,7 +1620,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (engineerCheckBox.Checked == unit.Engineer)
@@ -1595,7 +1632,8 @@ namespace HoI2Editor.Forms
             unit.Engineer = engineerCheckBox.Checked;
 
             // 編集済みフラグを設定する
-            SetDirtyTypes();
+            unit.SetDirty(UnitClassItemId.Engineer);
+            Units.SetDirtyBrigadeTypes();
         }
 
         /// <summary>
@@ -1610,7 +1648,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (maxAllowedBrigadesNumericUpDown.Value == unit.MaxAllowedBrigades)
@@ -1622,7 +1660,8 @@ namespace HoI2Editor.Forms
             unit.MaxAllowedBrigades = (int) maxAllowedBrigadesNumericUpDown.Value;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            unit.SetDirty(UnitClassItemId.MaxAllowedBrigades);
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -1637,7 +1676,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             UnitType type = Units.BrigadeTypes[e.Item.Index];
 
             if (e.Item.Checked)
@@ -1664,7 +1703,8 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            SetDirty();
+            unit.SetDirtyAllowedBrigades(type);
+            unit.SetDirty();
         }
 
         #endregion
@@ -1742,7 +1782,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ編集を禁止する
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -1772,7 +1812,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -1793,10 +1833,12 @@ namespace HoI2Editor.Forms
             upgrade.Type = type;
 
             // 改良リストビューの項目を更新する
-            upgradeListView.Items[index].Text = Config.GetText(Units.List[(int) type].Name);
+            upgradeListView.Items[index].Text = Config.GetText(Units.Items[(int) type].Name);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            upgrade.SetDirty(UnitUpgradeItemId.Type);
+            upgrade.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -1811,7 +1853,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -1842,7 +1884,9 @@ namespace HoI2Editor.Forms
             upgradeListView.Items[index].SubItems[1].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            upgrade.SetDirty(UnitUpgradeItemId.UpgradeCostFactor);
+            upgrade.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -1857,7 +1901,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -1888,7 +1932,9 @@ namespace HoI2Editor.Forms
             upgradeListView.Items[index].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            upgrade.SetDirty(UnitUpgradeItemId.UpgradeTimeFactor);
+            upgrade.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -1903,7 +1949,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 改良情報を追加する
             var upgrade = new UnitUpgrade();
@@ -1913,7 +1959,8 @@ namespace HoI2Editor.Forms
             AddUpgradeListItem(upgrade);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            upgrade.SetDirtyAll();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -1928,7 +1975,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -1943,7 +1990,8 @@ namespace HoI2Editor.Forms
             // 改良リストビューから項目を削除する
             RemoveUpgradeListItem(index);
 
-            SetDirty();
+            // 編集済みフラグを設定する
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -1953,7 +2001,7 @@ namespace HoI2Editor.Forms
         /// <returns>改良リストの項目</returns>
         private static ListViewItem CreateUpgradeListItem(UnitUpgrade upgrade)
         {
-            var item = new ListViewItem {Text = Config.GetText(Units.List[(int) upgrade.Type].Name)};
+            var item = new ListViewItem {Text = Config.GetText(Units.Items[(int) upgrade.Type].Name)};
             item.SubItems.Add(upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
 
@@ -2021,7 +2069,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2490,7 +2538,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2498,6 +2546,7 @@ namespace HoI2Editor.Forms
                 return;
             }
             int no = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[no];
 
             // 値に変化がなければ何もしない
             string name = UnitModel.GetName(unit, no,
@@ -2519,6 +2568,7 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[1].Text = modelNameTextBox.Text;
 
             // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.Name);
             Config.SetDirty(fileName);
         }
 
@@ -2621,7 +2671,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2652,7 +2702,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[7].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.DefaultOrganization);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2667,7 +2719,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2698,7 +2750,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[8].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Morale);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2713,7 +2767,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2741,7 +2795,9 @@ namespace HoI2Editor.Forms
             model.Range = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Range);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2756,7 +2812,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2784,7 +2840,9 @@ namespace HoI2Editor.Forms
             model.TransportWeight = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.TransportWeight);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2799,7 +2857,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2827,7 +2885,9 @@ namespace HoI2Editor.Forms
             model.TransportCapability = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.DefaultOrganization);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2842,7 +2902,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2870,7 +2930,9 @@ namespace HoI2Editor.Forms
             model.Suppression = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Suppression);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2885,7 +2947,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2916,7 +2978,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[5].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SupplyConsumption);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2931,7 +2995,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2962,7 +3026,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[6].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.FuelConsumption);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -2977,7 +3043,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3005,7 +3071,9 @@ namespace HoI2Editor.Forms
             model.MaxSupplyStock = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.MaxSupplyStock);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3020,7 +3088,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3048,7 +3116,9 @@ namespace HoI2Editor.Forms
             model.MaxOilStock = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.MaxOilStock);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         #endregion
@@ -3067,7 +3137,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3098,7 +3168,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Cost);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3113,7 +3185,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3144,7 +3216,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[3].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.BuildTime);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3159,7 +3233,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3190,7 +3264,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[4].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.ManPower);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3205,7 +3281,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3233,7 +3309,9 @@ namespace HoI2Editor.Forms
             model.UpgradeCostFactor = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.UpgradeCostFactor);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3248,7 +3326,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3276,7 +3354,9 @@ namespace HoI2Editor.Forms
             model.UpgradeTimeFactor = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.UpgradeTimeFactor);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3291,7 +3371,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3319,7 +3399,9 @@ namespace HoI2Editor.Forms
             model.ReinforceCostFactor = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.ReinforceCostFactor);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3334,7 +3416,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3361,7 +3443,10 @@ namespace HoI2Editor.Forms
             // 値を更新する
             model.ReinforceTimeFactor = val;
 
-            SetDirty();
+            // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.ReinforceTimeFactor);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         #endregion
@@ -3380,7 +3465,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3411,7 +3496,9 @@ namespace HoI2Editor.Forms
             modelListView.Items[no].SubItems[9].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.MaxSpeed);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3426,7 +3513,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3454,7 +3541,9 @@ namespace HoI2Editor.Forms
             model.SpeedCap = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SpeedCap);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3469,7 +3558,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3497,7 +3586,9 @@ namespace HoI2Editor.Forms
             model.SpeedCapArt = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SpeedCapArt);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3512,7 +3603,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3540,7 +3631,9 @@ namespace HoI2Editor.Forms
             model.SpeedCapEng = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SpeedCapEng);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3555,7 +3648,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3583,7 +3676,9 @@ namespace HoI2Editor.Forms
             model.SpeedCapAt = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SpeedCapAt);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3598,7 +3693,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3626,7 +3721,9 @@ namespace HoI2Editor.Forms
             model.SpeedCapAa = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SpeedCapAa);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         #endregion
@@ -3645,7 +3742,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3673,7 +3770,9 @@ namespace HoI2Editor.Forms
             model.Defensiveness = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Defensiveness);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3688,7 +3787,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3716,7 +3815,9 @@ namespace HoI2Editor.Forms
             model.SeaDefense = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SeaDefense);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3731,7 +3832,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3759,7 +3860,9 @@ namespace HoI2Editor.Forms
             model.AirDefense = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.AirDefense);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3774,7 +3877,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3802,7 +3905,9 @@ namespace HoI2Editor.Forms
             model.SurfaceDefense = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SurfaceDefense);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3817,7 +3922,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3845,7 +3950,9 @@ namespace HoI2Editor.Forms
             model.Toughness = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Toughness);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3860,7 +3967,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3888,7 +3995,9 @@ namespace HoI2Editor.Forms
             model.Softness = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Softness);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3903,7 +4012,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3931,7 +4040,9 @@ namespace HoI2Editor.Forms
             model.SoftAttack = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SoftAttack);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3946,7 +4057,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3974,7 +4085,9 @@ namespace HoI2Editor.Forms
             model.HardAttack = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.HardAttack);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -3989,7 +4102,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4017,7 +4130,9 @@ namespace HoI2Editor.Forms
             model.SeaAttack = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SeaAttack);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4032,7 +4147,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4060,7 +4175,9 @@ namespace HoI2Editor.Forms
             model.SubAttack = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SubAttack);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4075,7 +4192,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4103,7 +4220,9 @@ namespace HoI2Editor.Forms
             model.ShoreBombardment = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.ShoreBombardment);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4118,7 +4237,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4146,7 +4265,9 @@ namespace HoI2Editor.Forms
             model.AirAttack = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.AirAttack);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4161,7 +4282,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4189,7 +4310,9 @@ namespace HoI2Editor.Forms
             model.NavalAttack = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.NavalAttack);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4204,7 +4327,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4232,7 +4355,9 @@ namespace HoI2Editor.Forms
             model.StrategicAttack = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.StrategicAttack);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4247,7 +4372,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4275,7 +4400,9 @@ namespace HoI2Editor.Forms
             model.ArtilleryBombardment = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.ArtilleryBombardment);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4290,7 +4417,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4318,7 +4445,9 @@ namespace HoI2Editor.Forms
             model.Distance = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Distance);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4333,7 +4462,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4361,7 +4490,9 @@ namespace HoI2Editor.Forms
             model.Visibility = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.Visibility);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4376,7 +4507,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4405,7 +4536,9 @@ namespace HoI2Editor.Forms
             model.SurfaceDetectionCapability = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SurfaceDetectionCapability);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4420,7 +4553,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4448,7 +4581,9 @@ namespace HoI2Editor.Forms
             model.SubDetectionCapability = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.SubDetectionCapability);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4463,7 +4598,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4491,7 +4626,9 @@ namespace HoI2Editor.Forms
             model.AirDetectionCapability = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.AirDetectionCapability);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4506,7 +4643,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4534,7 +4671,9 @@ namespace HoI2Editor.Forms
             model.NoFuelCombatMod = val;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty(UnitModelItemId.NoFuelCombatMod);
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         #endregion
@@ -4613,7 +4752,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4650,7 +4789,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4681,7 +4820,10 @@ namespace HoI2Editor.Forms
             equipmentListView.Items[index].Text = resourceComboBox.Text;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            equipment.SetDirty(UnitEquipmentItemId.Resource);
+            equipment.SetDirty();
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4696,7 +4838,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4735,7 +4877,10 @@ namespace HoI2Editor.Forms
             equipmentListView.Items[index].SubItems[1].Text = quantityTextBox.Text;
 
             // 編集済みフラグを設定する
-            SetDirty();
+            equipment.SetDirty(UnitEquipmentItemId.Quantity);
+            equipment.SetDirty();
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4750,7 +4895,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4768,7 +4913,9 @@ namespace HoI2Editor.Forms
             AddEquipmentListItem(equipment);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            equipment.SetDirtyAll();
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4783,7 +4930,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4807,7 +4954,8 @@ namespace HoI2Editor.Forms
             model.Equipments.RemoveAt(index);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4822,7 +4970,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4852,7 +5000,8 @@ namespace HoI2Editor.Forms
             MoveEquipmentListItem(index, index - 1);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4867,7 +5016,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4897,7 +5046,8 @@ namespace HoI2Editor.Forms
             MoveEquipmentListItem(index, index + 1);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            model.SetDirty();
+            unit.SetDirty();
         }
 
         /// <summary>
@@ -4991,35 +5141,6 @@ namespace HoI2Editor.Forms
             equipmentListView.Items[dest].Focused = true;
             equipmentListView.Items[dest].Selected = true;
             equipmentListView.EnsureVisible(dest);
-        }
-
-        #endregion
-
-        #region 編集済みフラグ操作
-
-        /// <summary>
-        ///     編集済みフラグを設定する
-        /// </summary>
-        private void SetDirty()
-        {
-            UnitType type = Units.UnitTypes[classListBox.SelectedIndex];
-            Units.SetDirty(type, true);
-        }
-
-        /// <summary>
-        ///     ユニットクラス定義の編集済みフラグを設定する
-        /// </summary>
-        private void SetDirtyTypes()
-        {
-            Unit unit = Units.List[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-            if (unit.Organization == UnitOrganization.Division)
-            {
-                Units.SetDirtyDivisionTypes(true);
-            }
-            else
-            {
-                Units.SetDirtyBrigadeTypes(true);
-            }
         }
 
         #endregion

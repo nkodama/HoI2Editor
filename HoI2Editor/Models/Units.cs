@@ -12,82 +12,81 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Units
     {
-        #region フィールド
+        #region 公開プロパティ
 
         /// <summary>
         ///     ユニット一覧
         /// </summary>
-        public static List<Unit> List = new List<Unit>();
+        public static List<Unit> Items { get; private set; }
 
         /// <summary>
         ///     ユニット種類文字列とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<string, UnitType> StringMap = new Dictionary<string, UnitType>();
+        public static Dictionary<string, UnitType> StringMap { get; private set; }
 
         /// <summary>
         ///     実ユニット種類文字列とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<string, RealUnitType> RealStringMap = new Dictionary<string, RealUnitType>();
+        public static Dictionary<string, RealUnitType> RealStringMap { get; private set; }
 
         /// <summary>
         ///     スプライト種類文字列とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<string, SpriteType> SpriteStringMap = new Dictionary<string, SpriteType>();
+        public static Dictionary<string, SpriteType> SpriteStringMap { get; private set; }
 
         /// <summary>
         ///     利用可能なユニット種類
         /// </summary>
-        public static List<UnitType> UnitTypes = new List<UnitType>();
+        public static List<UnitType> UnitTypes { get; private set; }
 
         /// <summary>
         ///     利用可能な師団ユニット種類
         /// </summary>
-        public static UnitType[] DivisionTypes;
+        public static UnitType[] DivisionTypes { get; private set; }
 
         /// <summary>
         ///     利用可能な旅団ユニット種類
         /// </summary>
-        public static UnitType[] BrigadeTypes;
+        public static UnitType[] BrigadeTypes { get; private set; }
+
+        #endregion
+
+        #region 内部フィールド
 
         /// <summary>
         ///     ユニット定義ファイル名とIDの対応付け
         /// </summary>
-        public static Dictionary<UnitType, string> FileNameMap = new Dictionary<UnitType, string>();
+        private static readonly Dictionary<UnitType, string> FileNameMap = new Dictionary<UnitType, string>();
 
         /// <summary>
         ///     ユニットの兵科とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<UnitType, UnitBranch> BranchMap = new Dictionary<UnitType, UnitBranch>();
+        private static readonly Dictionary<UnitType, UnitBranch> BranchMap = new Dictionary<UnitType, UnitBranch>();
 
         /// <summary>
         ///     ユニットの編成とIDの対応付け
         /// </summary>
-        public static readonly Dictionary<UnitType, UnitOrganization> OrganizationMap =
+        private static readonly Dictionary<UnitType, UnitOrganization> OrganizationMap =
             new Dictionary<UnitType, UnitOrganization>();
-
-        /// <summary>
-        ///     編集済みフラグ
-        /// </summary>
-        public static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (UnitType)).Length];
-
-        /// <summary>
-        ///     師団ユニットクラス定義ファイルの編集済みフラグ
-        /// </summary>
-        private static bool _isDivisionTypesDirty;
-
-        /// <summary>
-        ///     旅団ユニットクラス定義ファイルの編集済みフラグ
-        /// </summary>
-        private static bool _isBrigadeTypesDirty;
 
         /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
 
+        /// <summary>
+        ///     師団ユニットクラス定義ファイルの編集済みフラグ
+        /// </summary>
+        private static bool _divisionTypesDirty;
+
+        /// <summary>
+        ///     旅団ユニットクラス定義ファイルの編集済みフラグ
+        /// </summary>
+        private static bool _brigadeTypesDirty;
+
         #endregion
 
-        #region 定数
+        #region 公開定数
 
         /// <summary>
         ///     ユニット種類文字列テーブル
@@ -585,6 +584,507 @@ namespace HoI2Editor.Models
                 "d_98",
                 "d_99"
             };
+
+        /// <summary>
+        ///     実ユニット名
+        /// </summary>
+        public static readonly string[] RealNames =
+            {
+                "NAME_INFANTRY",
+                "NAME_CAVALRY",
+                "NAME_MOTORIZED",
+                "NAME_MECHANIZED",
+                "NAME_LIGHT_ARMOR",
+                "NAME_ARMOR",
+                "NAME_GARRISON",
+                "NAME_HQ",
+                "NAME_PARATROOPER",
+                "NAME_MARINE",
+                "NAME_BERGSJAEGER",
+                "NAME_CAS",
+                "NAME_MULTI_ROLE",
+                "NAME_INTERCEPTOR",
+                "NAME_STRATEGIC_BOMBER",
+                "NAME_TACTICAL_BOMBER",
+                "NAME_NAVAL_BOMBER",
+                "NAME_TRANSPORT_PLANE",
+                "NAME_BATTLESHIP",
+                "NAME_BATTLECRUISER",
+                "NAME_HEAVY_CRUISER",
+                "NAME_LIGHT_CRUISER",
+                "NAME_DESTROYER",
+                "NAME_CARRIER",
+                "NAME_SUBMARINE",
+                "NAME_TRANSPORT",
+                "NAME_FLYING_BOMB",
+                "NAME_FLYING_ROCKET",
+                "NAME_MILITIA",
+                "NAME_ESCORT_CARRIER",
+                "NAME_NUCLEAR_SUBMARINE"
+            };
+
+        /// <summary>
+        ///     スプライト種類名
+        /// </summary>
+        public static readonly string[] SpriteNames =
+            {
+                "NAME_INFANTRY",
+                "NAME_CAVALRY",
+                "NAME_MOTORIZED",
+                "NAME_MECHANIZED",
+                "NAME_LIGHT_ARMOR",
+                "NAME_ARMOR",
+                "NAME_PARATROOPER",
+                "NAME_MARINE",
+                "NAME_BERGSJAEGER",
+                "NAME_MULTI_ROLE",
+                "NAME_ESCORT",
+                "NAME_INTERCEPTOR",
+                "NAME_STRATEGIC_BOMBER",
+                "NAME_TACTICAL_BOMBER",
+                "NAME_CAS",
+                "NAME_NAVAL_BOMBER",
+                "NAME_TRANSPORT_PLANE",
+                "NAME_BATTLESHIP",
+                "NAME_BATTLECRUISER",
+                "NAME_HEAVY_CRUISER",
+                "NAME_LIGHT_CRUISER",
+                "NAME_DESTROYER",
+                "NAME_CARRIER",
+                "NAME_SUBMARINE",
+                "NAME_TRANSPORT",
+                "NAME_MILITIA",
+                "NAME_GARRISON",
+                "NAME_HQ",
+                "NAME_FLYING_BOMB",
+                "NAME_FLYING_ROCKET",
+                "NAME_NUCLEAR_SUBMARINE",
+                "NAME_ESCORT_CARRIER",
+                "NAME_LIGHT_CARRIER",
+                "NAME_ROCKET_INTERCEPTOR",
+                "NAME_D_RSV_33",
+                "NAME_D_RSV_34",
+                "NAME_D_RSV_35",
+                "NAME_D_RSV_36",
+                "NAME_D_RSV_37",
+                "NAME_D_RSV_38",
+                "NAME_D_RSV_39",
+                "NAME_D_RSV_40",
+                "NAME_D_01",
+                "NAME_D_02",
+                "NAME_D_03",
+                "NAME_D_04",
+                "NAME_D_05",
+                "NAME_D_06",
+                "NAME_D_07",
+                "NAME_D_08",
+                "NAME_D_09",
+                "NAME_D_10",
+                "NAME_D_11",
+                "NAME_D_12",
+                "NAME_D_13",
+                "NAME_D_14",
+                "NAME_D_15",
+                "NAME_D_16",
+                "NAME_D_17",
+                "NAME_D_18",
+                "NAME_D_19",
+                "NAME_D_20",
+                "NAME_D_21",
+                "NAME_D_22",
+                "NAME_D_23",
+                "NAME_D_24",
+                "NAME_D_25",
+                "NAME_D_26",
+                "NAME_D_27",
+                "NAME_D_28",
+                "NAME_D_29",
+                "NAME_D_30",
+                "NAME_D_31",
+                "NAME_D_32",
+                "NAME_D_33",
+                "NAME_D_34",
+                "NAME_D_35",
+                "NAME_D_36",
+                "NAME_D_37",
+                "NAME_D_38",
+                "NAME_D_39",
+                "NAME_D_40",
+                "NAME_D_41",
+                "NAME_D_42",
+                "NAME_D_43",
+                "NAME_D_44",
+                "NAME_D_45",
+                "NAME_D_46",
+                "NAME_D_47",
+                "NAME_D_48",
+                "NAME_D_49",
+                "NAME_D_50",
+                "NAME_D_51",
+                "NAME_D_52",
+                "NAME_D_53",
+                "NAME_D_54",
+                "NAME_D_55",
+                "NAME_D_56",
+                "NAME_D_57",
+                "NAME_D_58",
+                "NAME_D_59",
+                "NAME_D_60",
+                "NAME_D_61",
+                "NAME_D_62",
+                "NAME_D_63",
+                "NAME_D_64",
+                "NAME_D_65",
+                "NAME_D_66",
+                "NAME_D_67",
+                "NAME_D_68",
+                "NAME_D_69",
+                "NAME_D_70",
+                "NAME_D_71",
+                "NAME_D_72",
+                "NAME_D_73",
+                "NAME_D_74",
+                "NAME_D_75",
+                "NAME_D_76",
+                "NAME_D_77",
+                "NAME_D_78",
+                "NAME_D_79",
+                "NAME_D_80",
+                "NAME_D_81",
+                "NAME_D_82",
+                "NAME_D_83",
+                "NAME_D_84",
+                "NAME_D_85",
+                "NAME_D_86",
+                "NAME_D_87",
+                "NAME_D_88",
+                "NAME_D_89",
+                "NAME_D_90",
+                "NAME_D_91",
+                "NAME_D_92",
+                "NAME_D_93",
+                "NAME_D_94",
+                "NAME_D_95",
+                "NAME_D_96",
+                "NAME_D_97",
+                "NAME_D_98",
+                "NAME_D_99"
+            };
+
+        /// <summary>
+        ///     ユニット番号の初期設定値
+        /// </summary>
+        public static readonly int[] UnitNumbers =
+            {
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87,
+                88,
+                89,
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99,
+                100,
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120,
+                121,
+                122,
+                123,
+                124,
+                125,
+                126,
+                127,
+                128,
+                129,
+                130,
+                131,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137,
+                138,
+                139,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87,
+                88,
+                89,
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99,
+                100,
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120,
+                121,
+                122,
+                123,
+                124,
+                125,
+                126,
+                127,
+                128,
+                129,
+                130,
+                131,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137,
+                138,
+                139
+            };
+
+        #endregion
+
+        #region 内部定数
 
         /// <summary>
         ///     利用可能な師団ユニット種類 (HoI2)
@@ -1673,7 +2173,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編成の初期設定値
         /// </summary>
-        public static readonly UnitOrganization[] DefaultOrganizations =
+        private static readonly UnitOrganization[] DefaultOrganizations =
             {
                 UnitOrganization.Division,
                 UnitOrganization.Division,
@@ -1979,44 +2479,6 @@ namespace HoI2Editor.Models
                 UnitOrganization.Brigade,
                 UnitOrganization.Brigade,
                 UnitOrganization.Brigade
-            };
-
-        /// <summary>
-        ///     実ユニット種類に対応する兵科
-        /// </summary>
-        public static readonly UnitBranch[] RealBranchTable =
-            {
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.Army,
-                UnitBranch.Navy,
-                UnitBranch.Navy
             };
 
         /// <summary>
@@ -2331,500 +2793,41 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     実ユニット名
+        ///     実ユニット種類に対応する兵科
         /// </summary>
-        public static readonly string[] RealNames =
+        public static readonly UnitBranch[] RealBranchTable =
             {
-                "NAME_INFANTRY",
-                "NAME_CAVALRY",
-                "NAME_MOTORIZED",
-                "NAME_MECHANIZED",
-                "NAME_LIGHT_ARMOR",
-                "NAME_ARMOR",
-                "NAME_GARRISON",
-                "NAME_HQ",
-                "NAME_PARATROOPER",
-                "NAME_MARINE",
-                "NAME_BERGSJAEGER",
-                "NAME_CAS",
-                "NAME_MULTI_ROLE",
-                "NAME_INTERCEPTOR",
-                "NAME_STRATEGIC_BOMBER",
-                "NAME_TACTICAL_BOMBER",
-                "NAME_NAVAL_BOMBER",
-                "NAME_TRANSPORT_PLANE",
-                "NAME_BATTLESHIP",
-                "NAME_BATTLECRUISER",
-                "NAME_HEAVY_CRUISER",
-                "NAME_LIGHT_CRUISER",
-                "NAME_DESTROYER",
-                "NAME_CARRIER",
-                "NAME_SUBMARINE",
-                "NAME_TRANSPORT",
-                "NAME_FLYING_BOMB",
-                "NAME_FLYING_ROCKET",
-                "NAME_MILITIA",
-                "NAME_ESCORT_CARRIER",
-                "NAME_NUCLEAR_SUBMARINE"
-            };
-
-        /// <summary>
-        ///     スプライト種類名
-        /// </summary>
-        public static readonly string[] SpriteNames =
-            {
-                "NAME_INFANTRY",
-                "NAME_CAVALRY",
-                "NAME_MOTORIZED",
-                "NAME_MECHANIZED",
-                "NAME_LIGHT_ARMOR",
-                "NAME_ARMOR",
-                "NAME_PARATROOPER",
-                "NAME_MARINE",
-                "NAME_BERGSJAEGER",
-                "NAME_MULTI_ROLE",
-                "NAME_ESCORT",
-                "NAME_INTERCEPTOR",
-                "NAME_STRATEGIC_BOMBER",
-                "NAME_TACTICAL_BOMBER",
-                "NAME_CAS",
-                "NAME_NAVAL_BOMBER",
-                "NAME_TRANSPORT_PLANE",
-                "NAME_BATTLESHIP",
-                "NAME_BATTLECRUISER",
-                "NAME_HEAVY_CRUISER",
-                "NAME_LIGHT_CRUISER",
-                "NAME_DESTROYER",
-                "NAME_CARRIER",
-                "NAME_SUBMARINE",
-                "NAME_TRANSPORT",
-                "NAME_MILITIA",
-                "NAME_GARRISON",
-                "NAME_HQ",
-                "NAME_FLYING_BOMB",
-                "NAME_FLYING_ROCKET",
-                "NAME_NUCLEAR_SUBMARINE",
-                "NAME_ESCORT_CARRIER",
-                "NAME_LIGHT_CARRIER",
-                "NAME_ROCKET_INTERCEPTOR",
-                "NAME_D_RSV_33",
-                "NAME_D_RSV_34",
-                "NAME_D_RSV_35",
-                "NAME_D_RSV_36",
-                "NAME_D_RSV_37",
-                "NAME_D_RSV_38",
-                "NAME_D_RSV_39",
-                "NAME_D_RSV_40",
-                "NAME_D_01",
-                "NAME_D_02",
-                "NAME_D_03",
-                "NAME_D_04",
-                "NAME_D_05",
-                "NAME_D_06",
-                "NAME_D_07",
-                "NAME_D_08",
-                "NAME_D_09",
-                "NAME_D_10",
-                "NAME_D_11",
-                "NAME_D_12",
-                "NAME_D_13",
-                "NAME_D_14",
-                "NAME_D_15",
-                "NAME_D_16",
-                "NAME_D_17",
-                "NAME_D_18",
-                "NAME_D_19",
-                "NAME_D_20",
-                "NAME_D_21",
-                "NAME_D_22",
-                "NAME_D_23",
-                "NAME_D_24",
-                "NAME_D_25",
-                "NAME_D_26",
-                "NAME_D_27",
-                "NAME_D_28",
-                "NAME_D_29",
-                "NAME_D_30",
-                "NAME_D_31",
-                "NAME_D_32",
-                "NAME_D_33",
-                "NAME_D_34",
-                "NAME_D_35",
-                "NAME_D_36",
-                "NAME_D_37",
-                "NAME_D_38",
-                "NAME_D_39",
-                "NAME_D_40",
-                "NAME_D_41",
-                "NAME_D_42",
-                "NAME_D_43",
-                "NAME_D_44",
-                "NAME_D_45",
-                "NAME_D_46",
-                "NAME_D_47",
-                "NAME_D_48",
-                "NAME_D_49",
-                "NAME_D_50",
-                "NAME_D_51",
-                "NAME_D_52",
-                "NAME_D_53",
-                "NAME_D_54",
-                "NAME_D_55",
-                "NAME_D_56",
-                "NAME_D_57",
-                "NAME_D_58",
-                "NAME_D_59",
-                "NAME_D_60",
-                "NAME_D_61",
-                "NAME_D_62",
-                "NAME_D_63",
-                "NAME_D_64",
-                "NAME_D_65",
-                "NAME_D_66",
-                "NAME_D_67",
-                "NAME_D_68",
-                "NAME_D_69",
-                "NAME_D_70",
-                "NAME_D_71",
-                "NAME_D_72",
-                "NAME_D_73",
-                "NAME_D_74",
-                "NAME_D_75",
-                "NAME_D_76",
-                "NAME_D_77",
-                "NAME_D_78",
-                "NAME_D_79",
-                "NAME_D_80",
-                "NAME_D_81",
-                "NAME_D_82",
-                "NAME_D_83",
-                "NAME_D_84",
-                "NAME_D_85",
-                "NAME_D_86",
-                "NAME_D_87",
-                "NAME_D_88",
-                "NAME_D_89",
-                "NAME_D_90",
-                "NAME_D_91",
-                "NAME_D_92",
-                "NAME_D_93",
-                "NAME_D_94",
-                "NAME_D_95",
-                "NAME_D_96",
-                "NAME_D_97",
-                "NAME_D_98",
-                "NAME_D_99"
-            };
-
-        /// <summary>
-        ///     ユニット番号の初期設定値
-        /// </summary>
-        public static readonly int[] UnitNumbers =
-            {
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-                11,
-                12,
-                13,
-                14,
-                15,
-                16,
-                17,
-                18,
-                19,
-                20,
-                21,
-                22,
-                23,
-                24,
-                25,
-                26,
-                27,
-                28,
-                29,
-                30,
-                31,
-                32,
-                33,
-                34,
-                35,
-                36,
-                37,
-                38,
-                39,
-                40,
-                41,
-                42,
-                43,
-                44,
-                45,
-                46,
-                47,
-                48,
-                49,
-                50,
-                51,
-                52,
-                53,
-                54,
-                55,
-                56,
-                57,
-                58,
-                59,
-                60,
-                61,
-                62,
-                63,
-                64,
-                65,
-                66,
-                67,
-                68,
-                69,
-                70,
-                71,
-                72,
-                73,
-                74,
-                75,
-                76,
-                77,
-                78,
-                79,
-                80,
-                81,
-                82,
-                83,
-                84,
-                85,
-                86,
-                87,
-                88,
-                89,
-                90,
-                91,
-                92,
-                93,
-                94,
-                95,
-                96,
-                97,
-                98,
-                99,
-                100,
-                101,
-                102,
-                103,
-                104,
-                105,
-                106,
-                107,
-                108,
-                109,
-                110,
-                111,
-                112,
-                113,
-                114,
-                115,
-                116,
-                117,
-                118,
-                119,
-                120,
-                121,
-                122,
-                123,
-                124,
-                125,
-                126,
-                127,
-                128,
-                129,
-                130,
-                131,
-                132,
-                133,
-                134,
-                135,
-                136,
-                137,
-                138,
-                139,
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-                11,
-                12,
-                13,
-                14,
-                15,
-                16,
-                17,
-                18,
-                19,
-                20,
-                21,
-                22,
-                23,
-                24,
-                25,
-                26,
-                27,
-                28,
-                29,
-                30,
-                31,
-                32,
-                33,
-                34,
-                35,
-                36,
-                37,
-                38,
-                39,
-                40,
-                41,
-                42,
-                43,
-                44,
-                45,
-                46,
-                47,
-                48,
-                49,
-                50,
-                27,
-                28,
-                29,
-                30,
-                31,
-                32,
-                33,
-                34,
-                35,
-                36,
-                37,
-                38,
-                39,
-                40,
-                41,
-                42,
-                43,
-                44,
-                45,
-                46,
-                47,
-                48,
-                49,
-                50,
-                51,
-                52,
-                53,
-                54,
-                55,
-                56,
-                57,
-                58,
-                59,
-                60,
-                61,
-                62,
-                63,
-                64,
-                65,
-                66,
-                67,
-                68,
-                69,
-                70,
-                71,
-                72,
-                73,
-                74,
-                75,
-                76,
-                77,
-                78,
-                79,
-                80,
-                81,
-                82,
-                83,
-                84,
-                85,
-                86,
-                87,
-                88,
-                89,
-                90,
-                91,
-                92,
-                93,
-                94,
-                95,
-                96,
-                97,
-                98,
-                99,
-                100,
-                101,
-                102,
-                103,
-                104,
-                105,
-                106,
-                107,
-                108,
-                109,
-                110,
-                111,
-                112,
-                113,
-                114,
-                115,
-                116,
-                117,
-                118,
-                119,
-                120,
-                121,
-                122,
-                123,
-                124,
-                125,
-                126,
-                127,
-                128,
-                129,
-                130,
-                131,
-                132,
-                133,
-                134,
-                135,
-                136,
-                137,
-                138,
-                139
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Army,
+                UnitBranch.Navy,
+                UnitBranch.Navy
             };
 
         #endregion
@@ -2836,19 +2839,25 @@ namespace HoI2Editor.Models
         /// </summary>
         static Units()
         {
-            // ユニット文字列とIDの対応付けを初期化
+            // ユニット一覧
+            Items = new List<Unit>();
+
+            // ユニット種類文字列とIDの対応付けを初期化
+            StringMap = new Dictionary<string, UnitType>();
             foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
                 StringMap.Add(StringTable[(int) type], type);
             }
 
             // 実ユニット種類文字列とIDの対応付けを初期化
+            RealStringMap = new Dictionary<string, RealUnitType>();
             foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
             {
                 RealStringMap.Add(RealStringTable[(int) type], type);
             }
 
             // スプライト種類文字列とIDの対応付けを初期化
+            SpriteStringMap = new Dictionary<string, SpriteType>();
             foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
             {
                 SpriteStringMap.Add(SpriteStringTable[(int) type], type);
@@ -2887,6 +2896,7 @@ namespace HoI2Editor.Models
                 BrigadeTypes = BrigadeTypesHoI2;
             }
 
+            UnitTypes = new List<UnitType>();
             UnitTypes.AddRange(DivisionTypes);
             UnitTypes.AddRange(BrigadeTypes);
         }
@@ -2929,10 +2939,10 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region データ操作
+        #region ファイル読み込み
 
         /// <summary>
-        ///     ユニット定義ファイルの再読み込みを要求する
+        ///     ファイルの再読み込みを要求する
         /// </summary>
         public static void RequireReload()
         {
@@ -2954,21 +2964,11 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     ユニット定義ファイル群を再読み込みする
-        /// </summary>
-        public static void Reload()
-        {
-            _loaded = false;
-
-            LoadFiles();
-        }
-
-        /// <summary>
         ///     ユニット定義ファイル群を読み込む
         /// </summary>
         private static void LoadFiles()
         {
-            List.Clear();
+            Items.Clear();
 
             // ユニットクラスデータの初期値を設定する
             foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
@@ -2986,8 +2986,7 @@ namespace HoI2Editor.Models
                 unit.Desc = "LDESC_" + s;
                 unit.ShortDesc = "SDESC_" + s;
 
-                List.Add(unit);
-                SetDirty(type, false);
+                Items.Add(unit);
             }
 
             // ユニットクラス定義ファイルを読み込む(DH1.03以降)
@@ -2996,8 +2995,8 @@ namespace HoI2Editor.Models
                 LoadDivisionTypes();
                 LoadBrigadeTypes();
 
-                SetDirtyDivisionTypes(false);
-                SetDirtyBrigadeTypes(false);
+                ResetDirtyDivisionTypes();
+                ResetDirtyBrigadeTypes();
             }
 
             // ユニット定義ファイルを順に読み込む
@@ -3009,7 +3008,7 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    Unit unit = List[(int) type];
+                    Unit unit = Items[(int) type];
                     string fileName =
                         Game.GetReadFileName(
                             unit.Organization == UnitOrganization.Division
@@ -3029,7 +3028,7 @@ namespace HoI2Editor.Models
         private static void LoadFile(UnitType type)
         {
             // ユニット定義ファイルを解析する
-            Unit unit = List[(int) type];
+            Unit unit = Items[(int) type];
             string fileName =
                 Game.GetReadFileName(
                     unit.Organization == UnitOrganization.Division ? Game.DivisionPathName : Game.BrigadePathName,
@@ -3054,7 +3053,7 @@ namespace HoI2Editor.Models
             }
 
             // ファイルを解析する
-            UnitParser.ParseDivisionTypes(fileName, List);
+            UnitParser.ParseDivisionTypes(fileName, Items);
         }
 
         /// <summary>
@@ -3070,8 +3069,12 @@ namespace HoI2Editor.Models
             }
 
             // ファイルを解析する
-            UnitParser.ParseBrigadeTypes(fileName, List);
+            UnitParser.ParseBrigadeTypes(fileName, Items);
         }
+
+        #endregion
+
+        #region ファイル書き込み
 
         /// <summary>
         ///     ユニット定義ファイル群を保存する
@@ -3093,9 +3096,9 @@ namespace HoI2Editor.Models
             }
 
             // ユニット定義ファイルへ順に保存する
-            foreach (Unit unit in List)
+            foreach (Unit unit in Items)
             {
-                if (DirtyFlags[(int) unit.Type])
+                if (unit.IsDirty())
                 {
                     // 師団/旅団定義フォルダがなければ作成する
                     folderName =
@@ -3111,7 +3114,6 @@ namespace HoI2Editor.Models
                     try
                     {
                         UnitWriter.Write(unit, fileName);
-                        SetDirty(unit.Type, false);
                     }
                     catch (Exception)
                     {
@@ -3127,7 +3129,7 @@ namespace HoI2Editor.Models
         private static void SaveDivisionTypes()
         {
             // 変更がなければ何もしない
-            if (!_isDivisionTypesDirty)
+            if (!IsDirtyBrigadeTypes())
             {
                 return;
             }
@@ -3136,8 +3138,8 @@ namespace HoI2Editor.Models
             string fileName = Game.GetWriteFileName(Game.DhDivisionTypePathName);
             try
             {
-                UnitWriter.WriteDivisionTypes(List, fileName);
-                SetDirtyDivisionTypes(false);
+                UnitWriter.WriteDivisionTypes(Items, fileName);
+                ResetDirtyDivisionTypes();
             }
             catch (Exception)
             {
@@ -3151,7 +3153,7 @@ namespace HoI2Editor.Models
         private static void SaveBrigadeTypes()
         {
             // 変更がなければ何もしない
-            if (!_isBrigadeTypesDirty)
+            if (!IsDirtyBrigadeTypes())
             {
                 return;
             }
@@ -3160,8 +3162,8 @@ namespace HoI2Editor.Models
             string fileName = Game.GetWriteFileName(Game.DhBrigadeTypePathName);
             try
             {
-                UnitWriter.WriteBrigadeTypes(List, fileName);
-                SetDirtyBrigadeTypes(false);
+                UnitWriter.WriteBrigadeTypes(Items, fileName);
+                ResetDirtyBrigadeTypes();
             }
             catch (Exception)
             {
@@ -3169,32 +3171,58 @@ namespace HoI2Editor.Models
             }
         }
 
+        #endregion
+
+        #region 編集済みフラグ操作
+
         /// <summary>
-        ///     ユニットクラスの編集済みフラグを更新する
+        ///     師団ユニットクラス定義が編集済みかどうかを取得する
         /// </summary>
-        /// <param name="type">ユニットの種類</param>
-        /// <param name="flag">フラグ状態</param>
-        public static void SetDirty(UnitType type, bool flag)
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirtyDivisionTypes()
         {
-            DirtyFlags[(int) type] = flag;
+            return _divisionTypesDirty;
         }
 
         /// <summary>
-        ///     師団ユニットクラス定義の編集済みフラグを更新する
+        ///     旅団ユニットクラス定義が編集済みかどうかを取得する
         /// </summary>
-        /// <param name="flag">フラグ状態</param>
-        public static void SetDirtyDivisionTypes(bool flag)
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirtyBrigadeTypes()
         {
-            _isDivisionTypesDirty = flag;
+            return _brigadeTypesDirty;
         }
 
         /// <summary>
-        ///     旅団ユニットクラス定義の編集済みフラグを更新する
+        ///     師団ユニットクラス定義の編集済みフラグを設定する
         /// </summary>
-        /// <param name="flag">フラグ状態</param>
-        public static void SetDirtyBrigadeTypes(bool flag)
+        public static void SetDirtyDivisionTypes()
         {
-            _isBrigadeTypesDirty = flag;
+            _divisionTypesDirty = true;
+        }
+
+        /// <summary>
+        ///     旅団ユニットクラス定義の編集済みフラグを設定する
+        /// </summary>
+        public static void SetDirtyBrigadeTypes()
+        {
+            _brigadeTypesDirty = true;
+        }
+
+        /// <summary>
+        ///     師団ユニットクラス定義の編集済みフラグを解除する
+        /// </summary>
+        public static void ResetDirtyDivisionTypes()
+        {
+            _divisionTypesDirty = true;
+        }
+
+        /// <summary>
+        ///     旅団ユニットクラス定義の編集済みフラグを解除する
+        /// </summary>
+        public static void ResetDirtyBrigadeTypes()
+        {
+            _brigadeTypesDirty = true;
         }
 
         #endregion
