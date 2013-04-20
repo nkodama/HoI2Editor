@@ -1027,6 +1027,200 @@ namespace HoI2Editor.Forms
                     productableCheckBox.Checked = unit.Productable;
                 }
             }
+
+            // 編集項目の色を設定する
+            classNameTextBox.ForeColor = unit.IsDirty(UnitClassItemId.Name) ? Color.Red : SystemColors.WindowText;
+            classShortNameTextBox.ForeColor = unit.IsDirty(UnitClassItemId.ShortName)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+            classDescTextBox.ForeColor = unit.IsDirty(UnitClassItemId.Desc) ? Color.Red : SystemColors.WindowText;
+            classShortDescTextBox.ForeColor = unit.IsDirty(UnitClassItemId.ShortDesc)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+            eyrNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.Eyr) ? Color.Red : SystemColors.WindowText;
+            gfxPrioNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.GfxPrio) ? Color.Red : SystemColors.WindowText;
+            listPrioNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.ListPrio)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+            militaryValueTextBox.ForeColor = unit.IsDirty(UnitClassItemId.Vaule) ? Color.Red : SystemColors.WindowText;
+            detachableCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Detachable)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+            cagCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Cag) ? Color.Red : SystemColors.WindowText;
+            escortCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Escort) ? Color.Red : SystemColors.WindowText;
+            engineerCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Engineer) ? Color.Red : SystemColors.WindowText;
+            defaultTypeCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.DefaultType)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+            productableCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Productable)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+            maxAllowedBrigadesNumericUpDown.ForeColor =
+                unit.IsDirty(UnitClassItemId.MaxAllowedBrigades) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     兵科コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBranchComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == (int) unit.Branch) && unit.IsDirty(UnitClassItemId.Branch))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = branchComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     実ユニット種類コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRealUnitTypeComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == (int) unit.RealType) && unit.IsDirty(UnitClassItemId.RealType))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = realUnitTypeComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     スプライト種類コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSpriteTypeComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == (int) unit.Sprite) && unit.IsDirty(UnitClassItemId.Sprite))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = spriteTypeComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     代替ユニットコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTransmuteComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == (int) unit.Transmute) && unit.IsDirty(UnitClassItemId.Transmute))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = transmuteComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
         }
 
         /// <summary>
@@ -1115,6 +1309,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Name);
             Config.SetDirty(Game.UnitTextFileName);
+
+            // 文字色を変更する
+            classNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1143,6 +1340,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.ShortName);
             Config.SetDirty(Game.UnitTextFileName);
+
+            // 文字色を変更する
+            classShortNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1171,6 +1371,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Desc);
             Config.SetDirty(Game.UnitTextFileName);
+
+            // 文字色を変更する
+            classDescTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1199,6 +1402,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.ShortDesc);
             Config.SetDirty(Game.UnitTextFileName);
+
+            // 文字色を変更する
+            classShortDescTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1242,14 +1448,17 @@ namespace HoI2Editor.Forms
                     Units.SetDirtyBrigadeTypes();
                 }
             }
+
+            // 兵科コンボボックスの項目色を変更するために描画更新する
+            branchComboBox.Refresh();
         }
 
         /// <summary>
-        ///     統計グループ数値アップダウンフォーカス移動後の処理
+        ///     統計グループ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnEyrNumericUpDownValidated(object sender, EventArgs e)
+        private void OnEyrNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
             if (classListBox.SelectedIndex < 0)
@@ -1271,14 +1480,17 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Eyr);
             Units.SetDirtyDivisionTypes();
+
+            // 文字色を変更する
+            eyrNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
-        ///     画像優先度数値アップダウンフォーカス移動後の処理
+        ///     画像優先度変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnGraphicsPriorityNumericUpDownValidated(object sender, EventArgs e)
+        private void OnGraphicsPriorityNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
             if (classListBox.SelectedIndex < 0)
@@ -1300,14 +1512,17 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.GfxPrio);
             Units.SetDirtyDivisionTypes();
+
+            // 文字色を変更する
+            gfxPrioNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
-        ///     リスト優先度数値アップダウンフォーカス移動後の処理
+        ///     リスト優先度変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnListPrioNumericUpDownValidated(object sender, EventArgs e)
+        private void OnListPrioNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
             if (classListBox.SelectedIndex < 0)
@@ -1336,6 +1551,9 @@ namespace HoI2Editor.Forms
             {
                 Units.SetDirtyBrigadeTypes();
             }
+
+            // 文字色を変更する
+            listPrioNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1365,6 +1583,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.RealType);
             Units.SetDirtyDivisionTypes();
+
+            // 実ユニット種類コンボボックスの項目色を変更するために描画更新する
+            realUnitTypeComboBox.Refresh();
         }
 
         /// <summary>
@@ -1393,6 +1614,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.DefaultType);
             Units.SetDirtyDivisionTypes();
+
+            // 文字色を変更する
+            defaultTypeCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1422,6 +1646,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Sprite);
             Units.SetDirtyDivisionTypes();
+
+            // スプライト種類コンボボックスの項目色を変更するために描画更新する
+            spriteTypeComboBox.Refresh();
         }
 
         /// <summary>
@@ -1451,6 +1678,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Transmute);
             Units.SetDirtyDivisionTypes();
+
+            // 代替ユニットコンボボックスの項目色を変更するために描画更新する
+            transmuteComboBox.Refresh();
         }
 
         /// <summary>
@@ -1494,6 +1724,9 @@ namespace HoI2Editor.Forms
             {
                 Units.SetDirtyBrigadeTypes();
             }
+
+            // 文字色を変更する
+            militaryValueTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1522,6 +1755,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Productable);
             Units.SetDirtyDivisionTypes();
+
+            // 文字色を変更する
+            productableCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1550,6 +1786,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Detachable);
             Units.SetDirtyBrigadeTypes();
+
+            // 文字色を変更する
+            detachableCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1578,6 +1817,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Cag);
             Units.SetDirtyBrigadeTypes();
+
+            // 文字色を変更する
+            cagCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1606,6 +1848,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Escort);
             Units.SetDirtyBrigadeTypes();
+
+            // 文字色を変更する
+            escortCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1634,6 +1879,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Engineer);
             Units.SetDirtyBrigadeTypes();
+
+            // 文字色を変更する
+            engineerCheckBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1662,6 +1910,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.MaxAllowedBrigades);
             unit.SetDirty();
+
+            // 文字色を変更する
+            maxAllowedBrigadesNumericUpDown.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1705,6 +1956,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             unit.SetDirtyAllowedBrigades(type);
             unit.SetDirty();
+
+            // 文字色を変更する
+            e.Item.ForeColor = Color.Red;
         }
 
         #endregion
@@ -1771,6 +2025,54 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     改良ユニット種類コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeTypeComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中の項目がなければ何もしない
+            if (upgradeListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == (int) upgrade.Type) && upgrade.IsDirty(UnitUpgradeItemId.Type))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = upgradeTypeComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     改良リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1792,9 +2094,18 @@ namespace HoI2Editor.Forms
             }
             UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
 
+            // 編集項目の値を更新する
             upgradeTypeComboBox.SelectedIndex = (int) upgrade.Type;
             upgradeCostTextBox.Text = upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
             upgradeTimeTextBox.Text = upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+
+            // 編集項目の色を更新する
+            upgradeCostTextBox.ForeColor = upgrade.IsDirty(UnitUpgradeItemId.UpgradeCostFactor)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+            upgradeTimeTextBox.ForeColor = upgrade.IsDirty(UnitUpgradeItemId.UpgradeTimeFactor)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableUpgradeItems();
@@ -1839,6 +2150,9 @@ namespace HoI2Editor.Forms
             upgrade.SetDirty(UnitUpgradeItemId.Type);
             upgrade.SetDirty();
             unit.SetDirty();
+
+            // 改良ユニット種類コンボボックスの項目色を変更するために描画更新する
+            upgradeTypeComboBox.Refresh();
         }
 
         /// <summary>
@@ -1887,6 +2201,9 @@ namespace HoI2Editor.Forms
             upgrade.SetDirty(UnitUpgradeItemId.UpgradeCostFactor);
             upgrade.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            upgradeCostTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1935,6 +2252,9 @@ namespace HoI2Editor.Forms
             upgrade.SetDirty(UnitUpgradeItemId.UpgradeTimeFactor);
             upgrade.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            upgradeTimeTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2221,7 +2541,7 @@ namespace HoI2Editor.Forms
             if (unit.Branch == UnitBranch.Navy)
             {
                 seaDefenceLabel.Enabled = true;
-                seaAttackTextBox.Enabled = true;
+                seaDefenceTextBox.Enabled = true;
                 seaAttackLabel.Enabled = true;
                 seaAttackTextBox.Enabled = true;
                 subAttackLabel.Enabled = true;
@@ -2251,7 +2571,7 @@ namespace HoI2Editor.Forms
                 hardAttackTextBox.Enabled = true;
 
                 seaDefenceLabel.Enabled = false;
-                seaAttackTextBox.Enabled = false;
+                seaDefenceTextBox.Enabled = false;
                 seaAttackLabel.Enabled = false;
                 seaAttackTextBox.Enabled = false;
                 subAttackLabel.Enabled = false;
@@ -2265,7 +2585,7 @@ namespace HoI2Editor.Forms
                 visibilityLabel.Enabled = false;
                 visibilityTextBox.Enabled = false;
 
-                seaAttackTextBox.ResetText();
+                seaDefenceTextBox.ResetText();
                 seaAttackTextBox.ResetText();
                 subAttackTextBox.ResetText();
                 convoyAttackTextBox.ResetText();
@@ -2402,6 +2722,118 @@ namespace HoI2Editor.Forms
                     UpdateEquipmentList(model);
                 }
             }
+
+            // 編集項目の色を更新する
+            modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name) ? Color.Red : SystemColors.WindowText;
+            defaultOrganisationTextBox.ForeColor = model.IsDirty(UnitModelItemId.DefaultOrganization)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+            moraleTextBox.ForeColor = model.IsDirty(UnitModelItemId.Morale) ? Color.Red : SystemColors.WindowText;
+            rangeTextBox.ForeColor = model.IsDirty(UnitModelItemId.Range) ? Color.Red : SystemColors.WindowText;
+            transportWeightTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportWeight)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            transportCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportCapability)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+            suppressionTextBox.ForeColor = model.IsDirty(UnitModelItemId.Suppression)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+            supplyConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.SupplyConsumption)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            fuelConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.FuelConsumption)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            maxSupplyStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSupplyStock)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+            maxOilStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxOilStock)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+            costTextBox.ForeColor = model.IsDirty(UnitModelItemId.Cost) ? Color.Red : SystemColors.WindowText;
+            buildTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.BuildTime) ? Color.Red : SystemColors.WindowText;
+            manPowerTextBox.ForeColor = model.IsDirty(UnitModelItemId.ManPower) ? Color.Red : SystemColors.WindowText;
+            upgradeCostFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeCostFactor)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            upgradeTimeFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeFactor)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            reinforceCostTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceCostFactor)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            reinforceTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceTimeFactor)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            maxSpeedTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSpeed) ? Color.Red : SystemColors.WindowText;
+            speedCapAllTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCap) ? Color.Red : SystemColors.WindowText;
+            speedCapArtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapArt)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+            speedCapEngTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapEng)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+            speedCapAtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAt)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            speedCapAaTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAa)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            defensivenessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Defensiveness)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            seaDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaDefense)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            airDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDefense)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            surfaceDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDefense)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+            toughnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Toughness) ? Color.Red : SystemColors.WindowText;
+            softnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Softness) ? Color.Red : SystemColors.WindowText;
+            softAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SoftAttack)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            hardAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.HardAttack)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            seaAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaAttack) ? Color.Red : SystemColors.WindowText;
+            subAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubAttack) ? Color.Red : SystemColors.WindowText;
+            convoyAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.ConvoyAttack)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+            shoreBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ShoreBombardment)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            airAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirAttack) ? Color.Red : SystemColors.WindowText;
+            navalAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.NavalAttack)
+                                               ? Color.Red
+                                               : SystemColors.WindowText;
+            strategicAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.StrategicAttack)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            artilleryBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ArtilleryBombardment)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            distanceTextBox.ForeColor = model.IsDirty(UnitModelItemId.Distance) ? Color.Red : SystemColors.WindowText;
+            visibilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.Visibility)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            surfaceDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDetectionCapability)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+            subDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubDetectionCapability)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+            airDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDetectionCapability)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+            noFuelCombatModTextBox.ForeColor = model.IsDirty(UnitModelItemId.NoFuelCombatMod)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -2570,6 +3002,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.Name);
             Config.SetDirty(fileName);
+
+            // 文字色を変更する
+            modelNameTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2705,6 +3140,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.DefaultOrganization);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            defaultOrganisationTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2753,6 +3191,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Morale);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            moraleTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2798,6 +3239,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Range);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            rangeTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2843,6 +3287,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.TransportWeight);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            transportWeightTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2888,6 +3335,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.DefaultOrganization);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            transportCapabilityTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2933,6 +3383,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Suppression);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            suppressionTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -2981,6 +3434,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SupplyConsumption);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            supplyConsumptionTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3029,6 +3485,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.FuelConsumption);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            fuelConsumptionTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3074,6 +3533,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.MaxSupplyStock);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            maxSupplyStockTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3119,6 +3581,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.MaxOilStock);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            maxOilStockTextBox.ForeColor = Color.Red;
         }
 
         #endregion
@@ -3171,6 +3636,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Cost);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            costTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3199,7 +3667,7 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(buildTimeTextBox.Text, out val))
             {
-                costTextBox.Text = model.BuildTime.ToString(CultureInfo.InvariantCulture);
+                buildTimeTextBox.Text = model.BuildTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
@@ -3219,6 +3687,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.BuildTime);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            buildTimeTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3267,6 +3738,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.ManPower);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            manPowerTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3312,6 +3786,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.UpgradeCostFactor);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            upgradeCostFactorTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3357,6 +3834,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.UpgradeTimeFactor);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            upgradeTimeFactorTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3402,6 +3882,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.ReinforceCostFactor);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            reinforceCostTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3447,6 +3930,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.ReinforceTimeFactor);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            reinforceTimeTextBox.ForeColor = Color.Red;
         }
 
         #endregion
@@ -3499,6 +3985,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.MaxSpeed);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            maxSpeedTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3544,6 +4033,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SpeedCap);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            speedCapAllTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3589,6 +4081,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SpeedCapArt);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            speedCapArtTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3634,6 +4129,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SpeedCapEng);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            speedCapEngTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3679,6 +4177,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SpeedCapAt);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            speedCapAtTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3724,6 +4225,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SpeedCapAa);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            speedCapAaTextBox.ForeColor = Color.Red;
         }
 
         #endregion
@@ -3773,6 +4277,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Defensiveness);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            defensivenessTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3818,6 +4325,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SeaDefense);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            seaDefenceTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3863,6 +4373,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.AirDefense);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            airDefenceTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3908,6 +4421,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SurfaceDefense);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            surfaceDefenceTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3953,6 +4469,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Toughness);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            toughnessTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -3998,6 +4517,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Softness);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            softnessTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4043,6 +4565,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SoftAttack);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            softAttackTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4088,6 +4613,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.HardAttack);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            hardAttackTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4133,6 +4661,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SeaAttack);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            seaAttackTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4178,6 +4709,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SubAttack);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            subAttackTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4223,6 +4757,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.ShoreBombardment);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            shoreBombardmentTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4268,6 +4805,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.AirAttack);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            airAttackTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4313,6 +4853,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.NavalAttack);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            navalAttackTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4358,6 +4901,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.StrategicAttack);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            strategicAttackTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4403,6 +4949,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.ArtilleryBombardment);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            artilleryBombardmentTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4448,6 +4997,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Distance);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            distanceTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4493,6 +5045,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.Visibility);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            visibilityTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4539,6 +5094,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SurfaceDetectionCapability);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            surfaceDetectionCapabilityTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4584,6 +5142,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.SubDetectionCapability);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            subDetectionCapabilityTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4629,6 +5190,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.AirDetectionCapability);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            airDetectionCapabilityTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -4674,6 +5238,9 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.NoFuelCombatMod);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            noFuelCombatModTextBox.ForeColor = Color.Red;
         }
 
         #endregion
@@ -4770,8 +5337,14 @@ namespace HoI2Editor.Forms
             int index = equipmentListView.SelectedIndices[0];
             UnitEquipment equipment = model.Equipments[index];
 
+            // 編集項目の値を更新する
             resourceComboBox.Text = equipment.Resource;
             quantityTextBox.Text = equipment.Quantity.ToString(CultureInfo.InvariantCulture);
+
+            // 編集項目の色を更新する
+            quantityTextBox.ForeColor = equipment.IsDirty(UnitEquipmentItemId.Quantity)
+                                            ? Color.Red
+                                            : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableEquipmentItems();
@@ -4824,6 +5397,9 @@ namespace HoI2Editor.Forms
             equipment.SetDirty();
             model.SetDirty();
             unit.SetDirty();
+
+            // 資源コンボボックスの項目色を変更するために描画更新する
+            resourceComboBox.Refresh();
         }
 
         /// <summary>
@@ -4881,6 +5457,9 @@ namespace HoI2Editor.Forms
             equipment.SetDirty();
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            quantityTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>

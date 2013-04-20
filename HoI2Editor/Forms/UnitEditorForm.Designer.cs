@@ -401,7 +401,7 @@
             // 
             resources.ApplyResources(this.eyrNumericUpDown, "eyrNumericUpDown");
             this.eyrNumericUpDown.Name = "eyrNumericUpDown";
-            this.eyrNumericUpDown.Validated += new System.EventHandler(this.OnEyrNumericUpDownValidated);
+            this.eyrNumericUpDown.ValueChanged += new System.EventHandler(this.OnEyrNumericUpDownValueChanged);
             // 
             // eyrLabel
             // 
@@ -474,7 +474,7 @@
             0,
             -2147483648});
             this.listPrioNumericUpDown.Name = "listPrioNumericUpDown";
-            this.listPrioNumericUpDown.Validated += new System.EventHandler(this.OnListPrioNumericUpDownValidated);
+            this.listPrioNumericUpDown.ValueChanged += new System.EventHandler(this.OnListPrioNumericUpDownValueChanged);
             // 
             // listPrioLabel
             // 
@@ -520,10 +520,12 @@
             // 
             // upgradeTypeComboBox
             // 
+            this.upgradeTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.upgradeTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.upgradeTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.upgradeTypeComboBox, "upgradeTypeComboBox");
             this.upgradeTypeComboBox.Name = "upgradeTypeComboBox";
+            this.upgradeTypeComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnUpgradeTypeComboBoxDrawItem);
             this.upgradeTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnUpgradeTypeComboBoxSelectedIndexChanged);
             // 
             // upgradeTypeLabel
@@ -579,10 +581,12 @@
             // 
             // transmuteComboBox
             // 
+            this.transmuteComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.transmuteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.transmuteComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.transmuteComboBox, "transmuteComboBox");
             this.transmuteComboBox.Name = "transmuteComboBox";
+            this.transmuteComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTransmuteComboBoxDrawItem);
             this.transmuteComboBox.SelectedIndexChanged += new System.EventHandler(this.OnTransmuteComboBoxSelectedIndexChanged);
             // 
             // transmuteLabel
@@ -592,10 +596,12 @@
             // 
             // spriteTypeComboBox
             // 
+            this.spriteTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.spriteTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.spriteTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.spriteTypeComboBox, "spriteTypeComboBox");
             this.spriteTypeComboBox.Name = "spriteTypeComboBox";
+            this.spriteTypeComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpriteTypeComboBoxDrawItem);
             this.spriteTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnSpriteTypeComboBoxSelectedIndexChanged);
             // 
             // spriteTypeLabel
@@ -605,10 +611,12 @@
             // 
             // realUnitTypeComboBox
             // 
+            this.realUnitTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.realUnitTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.realUnitTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.realUnitTypeComboBox, "realUnitTypeComboBox");
             this.realUnitTypeComboBox.Name = "realUnitTypeComboBox";
+            this.realUnitTypeComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnRealUnitTypeComboBoxDrawItem);
             this.realUnitTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRealUnitTypeComboBoxSelectedIndexChanged);
             // 
             // realUnitTypeLabel
@@ -632,7 +640,7 @@
             0,
             0});
             this.gfxPrioNumericUpDown.Name = "gfxPrioNumericUpDown";
-            this.gfxPrioNumericUpDown.Validated += new System.EventHandler(this.OnGraphicsPriorityNumericUpDownValidated);
+            this.gfxPrioNumericUpDown.ValueChanged += new System.EventHandler(this.OnGraphicsPriorityNumericUpDownValueChanged);
             // 
             // gfxPrioLabel
             // 
@@ -658,10 +666,12 @@
             // 
             // branchComboBox
             // 
+            this.branchComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.branchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.branchComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.branchComboBox, "branchComboBox");
             this.branchComboBox.Name = "branchComboBox";
+            this.branchComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnBranchComboBoxDrawItem);
             this.branchComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchComboBoxSelectedIndexChanged);
             // 
             // classShortDescTextBox
