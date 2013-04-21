@@ -235,7 +235,7 @@
     <value>760, 188</value>
   </data>
   <data name="provinceListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;provinceListView.Name" xml:space="preserve">
     <value>provinceListView</value>
@@ -256,7 +256,7 @@
     <value>264, 328</value>
   </data>
   <data name="worldTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;worldTreeView.Name" xml:space="preserve">
     <value>worldTreeView</value>
@@ -640,7 +640,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillYNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
+    <value>34</value>
   </data>
   <data name="fillYNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -664,7 +664,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillXNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>33</value>
   </data>
   <data name="fillXNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -688,7 +688,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillYNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>32</value>
   </data>
   <data name="fillYNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -712,7 +712,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillXNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>31</value>
   </data>
   <data name="fillXNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -736,7 +736,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillYNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>30</value>
   </data>
   <data name="fillYNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -760,7 +760,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillXNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>29</value>
   </data>
   <data name="fillXNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -784,7 +784,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillYNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>28</value>
   </data>
   <data name="fillYNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -808,7 +808,7 @@
     <value>60, 19</value>
   </data>
   <data name="fillXNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>27</value>
   </data>
   <data name="fillXNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -835,7 +835,7 @@
     <value>21, 12</value>
   </data>
   <data name="fillLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>26</value>
   </data>
   <data name="fillLabel.Text" xml:space="preserve">
     <value>Fill</value>
@@ -859,7 +859,7 @@
     <value>60, 19</value>
   </data>
   <data name="counterYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>25</value>
   </data>
   <data name="counterYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -883,7 +883,7 @@
     <value>60, 19</value>
   </data>
   <data name="counterXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>24</value>
   </data>
   <data name="counterXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -910,7 +910,7 @@
     <value>45, 12</value>
   </data>
   <data name="counterLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>23</value>
   </data>
   <data name="counterLabel.Text" xml:space="preserve">
     <value>Counter</value>
@@ -934,7 +934,7 @@
     <value>60, 19</value>
   </data>
   <data name="aaYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>19</value>
   </data>
   <data name="aaYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -958,7 +958,7 @@
     <value>60, 19</value>
   </data>
   <data name="aaXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>18</value>
   </data>
   <data name="aaXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -985,7 +985,7 @@
     <value>45, 12</value>
   </data>
   <data name="aaLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>17</value>
   </data>
   <data name="aaLabel.Text" xml:space="preserve">
     <value>Anti Air</value>
@@ -1009,7 +1009,7 @@
     <value>60, 19</value>
   </data>
   <data name="fortYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>16</value>
   </data>
   <data name="fortYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1033,7 +1033,7 @@
     <value>60, 19</value>
   </data>
   <data name="fortXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+    <value>15</value>
   </data>
   <data name="fortXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1060,7 +1060,7 @@
     <value>48, 12</value>
   </data>
   <data name="fortLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>14</value>
   </data>
   <data name="fortLabel.Text" xml:space="preserve">
     <value>Fortress</value>
@@ -1084,7 +1084,7 @@
     <value>60, 19</value>
   </data>
   <data name="beachIconNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>4</value>
   </data>
   <data name="beachIconNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1111,7 +1111,7 @@
     <value>26, 12</value>
   </data>
   <data name="beachIconLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>3</value>
   </data>
   <data name="beachIconLabel.Text" xml:space="preserve">
     <value>Icon</value>
@@ -1135,7 +1135,7 @@
     <value>60, 19</value>
   </data>
   <data name="beachYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>2</value>
   </data>
   <data name="beachYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1159,7 +1159,7 @@
     <value>60, 19</value>
   </data>
   <data name="beachXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>1</value>
   </data>
   <data name="beachXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1186,7 +1186,7 @@
     <value>56, 16</value>
   </data>
   <data name="beachCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>0</value>
   </data>
   <data name="beachCheckBox.Text" xml:space="preserve">
     <value>Beach</value>
@@ -1210,7 +1210,7 @@
     <value>160, 20</value>
   </data>
   <data name="portSeaZoneComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;portSeaZoneComboBox.Name" xml:space="preserve">
     <value>portSeaZoneComboBox</value>
@@ -1231,7 +1231,7 @@
     <value>60, 19</value>
   </data>
   <data name="portSeaZoneNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>9</value>
   </data>
   <data name="portSeaZoneNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1258,7 +1258,7 @@
     <value>53, 12</value>
   </data>
   <data name="portSeaZoneLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>8</value>
   </data>
   <data name="portSeaZoneLabel.Text" xml:space="preserve">
     <value>Sea Zone</value>
@@ -1282,7 +1282,7 @@
     <value>60, 19</value>
   </data>
   <data name="portYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>7</value>
   </data>
   <data name="portYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1306,7 +1306,7 @@
     <value>60, 19</value>
   </data>
   <data name="portXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>6</value>
   </data>
   <data name="portXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1333,7 +1333,7 @@
     <value>45, 16</value>
   </data>
   <data name="portCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>5</value>
   </data>
   <data name="portCheckBox.Text" xml:space="preserve">
     <value>Port</value>
@@ -1357,7 +1357,7 @@
     <value>60, 19</value>
   </data>
   <data name="armyYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>22</value>
   </data>
   <data name="armyYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1381,7 +1381,7 @@
     <value>60, 19</value>
   </data>
   <data name="armyXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>21</value>
   </data>
   <data name="armyXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1408,7 +1408,7 @@
     <value>32, 12</value>
   </data>
   <data name="armyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>20</value>
   </data>
   <data name="armyLabel.Text" xml:space="preserve">
     <value>Army</value>
@@ -1432,7 +1432,7 @@
     <value>60, 19</value>
   </data>
   <data name="cityYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="cityYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1456,7 +1456,7 @@
     <value>60, 19</value>
   </data>
   <data name="cityXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="cityXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1483,7 +1483,7 @@
     <value>26, 12</value>
   </data>
   <data name="cityLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="cityLabel.Text" xml:space="preserve">
     <value>City</value>
@@ -1507,7 +1507,7 @@
     <value>436, 206</value>
   </data>
   <data name="positionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="positionGroupBox.Text" xml:space="preserve">
     <value>Position Settings</value>
@@ -1537,7 +1537,7 @@
     <value>75, 23</value>
   </data>
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+    <value>7</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -1567,7 +1567,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>6</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -1597,7 +1597,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>5</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -1621,7 +1621,7 @@
     <value>60, 19</value>
   </data>
   <data name="oilNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>13</value>
   </data>
   <data name="oilNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1648,7 +1648,7 @@
     <value>19, 12</value>
   </data>
   <data name="oilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>12</value>
   </data>
   <data name="oilLabel.Text" xml:space="preserve">
     <value>Oil</value>
@@ -1672,7 +1672,7 @@
     <value>60, 19</value>
   </data>
   <data name="rareMaterialsNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>11</value>
   </data>
   <data name="rareMaterialsNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1699,7 +1699,7 @@
     <value>80, 12</value>
   </data>
   <data name="rareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>10</value>
   </data>
   <data name="rareMaterialsLabel.Text" xml:space="preserve">
     <value>Rare Materials</value>
@@ -1723,7 +1723,7 @@
     <value>60, 19</value>
   </data>
   <data name="metalNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>9</value>
   </data>
   <data name="metalNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1750,7 +1750,7 @@
     <value>33, 12</value>
   </data>
   <data name="metalLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>8</value>
   </data>
   <data name="metalLabel.Text" xml:space="preserve">
     <value>Metal</value>
@@ -1774,7 +1774,7 @@
     <value>60, 19</value>
   </data>
   <data name="energyNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>7</value>
   </data>
   <data name="energyNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1801,7 +1801,7 @@
     <value>40, 12</value>
   </data>
   <data name="energyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>6</value>
   </data>
   <data name="energyLabel.Text" xml:space="preserve">
     <value>Energy</value>
@@ -1825,7 +1825,7 @@
     <value>60, 19</value>
   </data>
   <data name="manpowerNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>5</value>
   </data>
   <data name="manpowerNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1852,7 +1852,7 @@
     <value>56, 12</value>
   </data>
   <data name="manpowerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>4</value>
   </data>
   <data name="manpowerLabel.Text" xml:space="preserve">
     <value>Manpower</value>
@@ -1876,7 +1876,7 @@
     <value>60, 19</value>
   </data>
   <data name="icNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>3</value>
   </data>
   <data name="icNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1903,7 +1903,7 @@
     <value>16, 12</value>
   </data>
   <data name="icLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>2</value>
   </data>
   <data name="icLabel.Text" xml:space="preserve">
     <value>IC</value>
@@ -1927,7 +1927,7 @@
     <value>60, 19</value>
   </data>
   <data name="infraNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>1</value>
   </data>
   <data name="infraNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1954,7 +1954,7 @@
     <value>28, 12</value>
   </data>
   <data name="infraLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>0</value>
   </data>
   <data name="infraLabel.Text" xml:space="preserve">
     <value>Infra</value>
@@ -1978,7 +1978,7 @@
     <value>196, 212</value>
   </data>
   <data name="resourceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>3</value>
   </data>
   <data name="resourceGroupBox.Text" xml:space="preserve">
     <value>Resource Settings</value>
