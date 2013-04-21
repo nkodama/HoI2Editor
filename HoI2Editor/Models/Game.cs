@@ -211,6 +211,11 @@ namespace HoI2Editor.Models
         public const string MapPathName = "map";
 
         /// <summary>
+        ///     マップフォルダ内の画像フォルダ名
+        /// </summary>
+        public const string MapImagePathName = "gfx";
+
+        /// <summary>
         ///     MODフォルダ名(DH)
         /// </summary>
         public const string ModPathNameDh = "Mods";
@@ -440,6 +445,29 @@ namespace HoI2Editor.Models
 
             // DHのマップ拡張
             return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.Map.MapNo));
+        }
+
+        /// <summary>
+        ///     プロヴィンス画像フォルダ名を取得する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <returns>プロヴィンス画像フォルダ名</returns>
+        public static string GetProvinceImageFileName(int id)
+        {
+            string folderName;
+            if (Type != GameType.DarkestHour || Misc.Map.MapNo == 0)
+            {
+                // バニラのプロヴィンス画像フォルダ
+                folderName = PicturePathName;
+            }
+            else
+            {
+                // DHのマップ拡張
+                folderName = Path.Combine(MapPathName, string.Format("Map_{0}", Misc.Map.MapNo));
+                folderName = Path.Combine(folderName, MapImagePathName);
+            }
+
+            return Path.Combine(folderName, string.Format("ill_prov_{0}.bmp", id));
         }
 
         /// <summary>

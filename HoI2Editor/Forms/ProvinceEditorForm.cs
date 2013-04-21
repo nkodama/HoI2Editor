@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
@@ -475,6 +476,9 @@ namespace HoI2Editor.Forms
 
             // 編集項目の色を更新する
             UpdateEditableItemsColor(province);
+
+            // プロヴィンス画像を更新する
+            UpdateProvinceImage(province);
         }
 
         /// <summary>
@@ -812,6 +816,16 @@ namespace HoI2Editor.Forms
             }
             portSeaZoneComboBox.DropDownWidth = maxWidth;
             portSeaZoneComboBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     プロヴィンス画像を更新する
+        /// </summary>
+        /// <param name="province">プロヴィンス</param>
+        private void UpdateProvinceImage(Province province)
+        {
+            string fileName = Game.GetReadFileName(Game.GetProvinceImageFileName(province.Id));
+            provincePictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
         }
 
         /// <summary>

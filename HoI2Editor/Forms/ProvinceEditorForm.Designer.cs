@@ -112,6 +112,7 @@
             this.icLabel = new System.Windows.Forms.Label();
             this.infraNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.infraLabel = new System.Windows.Forms.Label();
+            this.provincePictureBox = new System.Windows.Forms.PictureBox();
             this.basicGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             this.positionGroupBox.SuspendLayout();
@@ -147,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.manpowerNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.icNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infraNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.provincePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // provinceListView
@@ -908,10 +910,17 @@
             resources.ApplyResources(this.infraLabel, "infraLabel");
             this.infraLabel.Name = "infraLabel";
             // 
+            // provincePictureBox
+            // 
+            resources.ApplyResources(this.provincePictureBox, "provincePictureBox");
+            this.provincePictureBox.Name = "provincePictureBox";
+            this.provincePictureBox.TabStop = false;
+            // 
             // ProvinceEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.provincePictureBox);
             this.Controls.Add(this.resourceGroupBox);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
@@ -960,6 +969,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.manpowerNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.icNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infraNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.provincePictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1049,5 +1059,6 @@
         private System.Windows.Forms.ColumnHeader metalColumnHeader;
         private System.Windows.Forms.ColumnHeader rareMaterialsColumnHeader;
         private System.Windows.Forms.ColumnHeader oilColumnHeader;
+        private System.Windows.Forms.PictureBox provincePictureBox;
     }
 }
