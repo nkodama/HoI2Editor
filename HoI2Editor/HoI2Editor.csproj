@@ -185,6 +185,10 @@
     <EmbeddedResource Include="Properties\Resources.ja.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Documents\commands.xlsx" />
+    <None Include="Documents\misc.xlsx" />
+    <None Include="Documents\provinces.xlsx" />
+    <None Include="Documents\units.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
