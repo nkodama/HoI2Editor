@@ -203,7 +203,7 @@ namespace HoI2Editor.Writers
                 {
                     writer.Write("      command = {");
                 }
-                if (command.Triggers != null)
+                if (Game.Type == GameType.DarkestHour && command.Triggers != null && command.Triggers.Count > 0)
                 {
                     writer.Write(" trigger = {");
                     foreach (Trigger trigger in command.Triggers)
