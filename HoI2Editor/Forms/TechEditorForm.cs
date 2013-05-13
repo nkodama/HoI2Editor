@@ -549,12 +549,12 @@ namespace HoI2Editor.Forms
 
             // 項目を作成する
             var item = new TechItem
-                           {
-                               Name = Config.GetTempKey(),
-                               ShortName = Config.GetTempKey(),
-                               Desc = Config.GetTempKey(),
-                               Year = 1936,
-                           };
+                {
+                    Name = Config.GetTempKey(),
+                    ShortName = Config.GetTempKey(),
+                    Desc = Config.GetTempKey(),
+                    Year = 1936,
+                };
             Config.SetText(item.Name, "", Game.TechTextFileName);
             Config.SetText(item.ShortName, "", Game.TechTextFileName);
             Config.SetText(item.Desc, "", Game.TechTextFileName);
@@ -1096,11 +1096,11 @@ namespace HoI2Editor.Forms
         private void AddTechTreeItem(ITechItem item, TechPosition position)
         {
             var label = new Label
-                            {
-                                Location = new Point(position.X, position.Y),
-                                BackColor = Color.Transparent,
-                                Tag = new TechLabelInfo {Item = item, Position = position}
-                            };
+                {
+                    Location = new Point(position.X, position.Y),
+                    BackColor = Color.Transparent,
+                    Tag = new TechLabelInfo {Item = item, Position = position}
+                };
 
             if (item is TechItem)
             {
@@ -2250,11 +2250,11 @@ namespace HoI2Editor.Forms
             }
 
             var dialog = new OpenFileDialog
-                             {
-                                 InitialDirectory = Path.Combine(Game.FolderName, Game.TechPicturePathName),
-                                 FileName = item.PictureName,
-                                 Filter = Resources.OpenBitmapFileDialogFilter
-                             };
+                {
+                    InitialDirectory = Path.Combine(Game.FolderName, Game.TechPicturePathName),
+                    FileName = item.PictureName,
+                    Filter = Resources.OpenBitmapFileDialogFilter
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 // 画像ファイル名テキストボックスの値を更新する

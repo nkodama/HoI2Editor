@@ -158,11 +158,11 @@ namespace HoI2Editor.Forms
         private void OnLoadButtonClick(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog
-                             {
-                                 SelectedPath = Game.FolderName,
-                                 ShowNewFolderButton = false,
-                                 Description = Resources.OpenGameFolderDialogDescription
-                             };
+                {
+                    SelectedPath = Game.FolderName,
+                    ShowNewFolderButton = false,
+                    Description = Resources.OpenGameFolderDialogDescription
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 gameFolderTextBox.Text = dialog.SelectedPath;
@@ -200,11 +200,11 @@ namespace HoI2Editor.Forms
         private void OnModFolderReferButtonClick(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog
-                             {
-                                 SelectedPath = Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                 ShowNewFolderButton = false,
-                                 Description = Resources.OpenModFolderDialogDescription
-                             };
+                {
+                    SelectedPath = Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                    ShowNewFolderButton = false,
+                    Description = Resources.OpenModFolderDialogDescription
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 modTextBox.Text = Path.GetFileName(dialog.SelectedPath);

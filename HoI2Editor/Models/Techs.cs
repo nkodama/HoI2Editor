@@ -214,17 +214,17 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly Dictionary<string, TechCategory> CategoryMap
             = new Dictionary<string, TechCategory>
-                  {
-                      {"infantry", TechCategory.Infantry},
-                      {"armor", TechCategory.Armor},
-                      {"naval", TechCategory.Naval},
-                      {"aircraft", TechCategory.Aircraft},
-                      {"industry", TechCategory.Industry},
-                      {"land_doctrines", TechCategory.LandDoctrines},
-                      {"secret_weapons", TechCategory.SecretWeapons},
-                      {"naval_doctrines", TechCategory.NavalDoctrines},
-                      {"air_doctrines", TechCategory.AirDoctrines},
-                  };
+                {
+                    {"infantry", TechCategory.Infantry},
+                    {"armor", TechCategory.Armor},
+                    {"naval", TechCategory.Naval},
+                    {"aircraft", TechCategory.Aircraft},
+                    {"industry", TechCategory.Industry},
+                    {"land_doctrines", TechCategory.LandDoctrines},
+                    {"secret_weapons", TechCategory.SecretWeapons},
+                    {"naval_doctrines", TechCategory.NavalDoctrines},
+                    {"air_doctrines", TechCategory.AirDoctrines},
+                };
 
         #endregion
 
@@ -641,10 +641,10 @@ namespace HoI2Editor.Models
             // 研究特性画像リストを作成する
             var bitmap = new Bitmap(Game.GetReadFileName(Game.TechIconPathName));
             SpecialityImages = new ImageList
-                                   {
-                                       ImageSize = new Size(24, 24),
-                                       TransparentColor = bitmap.GetPixel(0, 0)
-                                   };
+                {
+                    ImageSize = new Size(24, 24),
+                    TransparentColor = bitmap.GetPixel(0, 0)
+                };
             SpecialityImages.Images.AddStrip(bitmap);
         }
 

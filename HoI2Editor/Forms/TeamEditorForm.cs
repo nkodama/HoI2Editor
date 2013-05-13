@@ -275,13 +275,13 @@ namespace HoI2Editor.Forms
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
                 team = new Team
-                           {
-                               Country = selected.Country,
-                               Id = selected.Id + 1,
-                               Skill = 1,
-                               StartYear = 1930,
-                               EndYear = 1970,
-                           };
+                    {
+                        Country = selected.Country,
+                        Id = selected.Id + 1,
+                        Skill = 1,
+                        StartYear = 1930,
+                        EndYear = 1970,
+                    };
 
                 // 研究機関ごとの編集済みフラグを設定する
                 team.SetDirtyAll();
@@ -294,16 +294,16 @@ namespace HoI2Editor.Forms
             {
                 // 新規項目を作成する
                 team = new Team
-                           {
-                               Country =
-                                   countryListBox.SelectedItems.Count > 0
-                                       ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                       : CountryTag.None,
-                               Id = 0,
-                               Skill = 1,
-                               StartYear = 1930,
-                               EndYear = 1970,
-                           };
+                    {
+                        Country =
+                            countryListBox.SelectedItems.Count > 0
+                                ? (CountryTag) (countryListBox.SelectedIndex + 1)
+                                : CountryTag.None,
+                        Id = 0,
+                        Skill = 1,
+                        StartYear = 1930,
+                        EndYear = 1970,
+                    };
 
                 // 研究機関ごとの編集済みフラグを設定する
                 team.SetDirtyAll();
@@ -335,14 +335,14 @@ namespace HoI2Editor.Forms
 
             // 選択項目を引き継いで項目を作成する
             var team = new Team
-                           {
-                               Country = selected.Country,
-                               Id = selected.Id + 1,
-                               Name = selected.Name,
-                               StartYear = selected.StartYear,
-                               EndYear = selected.EndYear,
-                               PictureName = selected.PictureName,
-                           };
+                {
+                    Country = selected.Country,
+                    Id = selected.Id + 1,
+                    Name = selected.Name,
+                    StartYear = selected.StartYear,
+                    EndYear = selected.EndYear,
+                    PictureName = selected.PictureName,
+                };
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
                 team.Specialities[i] = selected.Specialities[i];
@@ -641,10 +641,10 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-                           {
-                               Text = Country.Strings[(int) team.Country],
-                               Tag = team
-                           };
+                {
+                    Text = Country.Strings[(int) team.Country],
+                    Tag = team
+                };
             item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(team.Name);
             item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
@@ -1786,11 +1786,11 @@ namespace HoI2Editor.Forms
             }
 
             var dialog = new OpenFileDialog
-                             {
-                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
-                                 FileName = team.PictureName,
-                                 Filter = Resources.OpenBitmapFileDialogFilter
-                             };
+                {
+                    InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
+                    FileName = team.PictureName,
+                    Filter = Resources.OpenBitmapFileDialogFilter
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);

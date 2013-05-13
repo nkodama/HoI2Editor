@@ -3074,12 +3074,12 @@ namespace HoI2Editor.Models
             foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
                 var unit = new Unit
-                               {
-                                   Type = type,
-                                   Branch = BranchMap[type],
-                                   Organization = OrganizationMap[type],
-                                   ListPrio = -1
-                               };
+                    {
+                        Type = type,
+                        Branch = BranchMap[type],
+                        Organization = OrganizationMap[type],
+                        ListPrio = -1
+                    };
                 string s = DefaultNames[(int) unit.Type];
                 unit.Name = "NAME_" + s;
                 unit.ShortName = "SNAME_" + s;

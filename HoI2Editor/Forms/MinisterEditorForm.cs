@@ -210,17 +210,17 @@ namespace HoI2Editor.Forms
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
                 minister = new Minister
-                               {
-                                   Country = selected.Country,
-                                   Id = selected.Id + 1,
-                                   StartYear = 1936,
-                                   EndYear = 1970,
-                                   RetirementYear = 1999,
-                                   Position = MinisterPosition.None,
-                                   Personality = 0,
-                                   Ideology = MinisterIdeology.None,
-                                   Loyalty = MinisterLoyalty.None,
-                               };
+                    {
+                        Country = selected.Country,
+                        Id = selected.Id + 1,
+                        StartYear = 1936,
+                        EndYear = 1970,
+                        RetirementYear = 1999,
+                        Position = MinisterPosition.None,
+                        Personality = 0,
+                        Ideology = MinisterIdeology.None,
+                        Loyalty = MinisterLoyalty.None,
+                    };
 
                 // 閣僚ごとの編集済みフラグを設定する
                 minister.SetDirtyAll();
@@ -233,20 +233,20 @@ namespace HoI2Editor.Forms
             {
                 // 新規項目を作成する
                 minister = new Minister
-                               {
-                                   Country =
-                                       countryListBox.SelectedItems.Count > 0
-                                           ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                           : CountryTag.None,
-                                   Id = 0,
-                                   StartYear = 1930,
-                                   EndYear = 1970,
-                                   RetirementYear = 1999,
-                                   Position = MinisterPosition.None,
-                                   Personality = 0,
-                                   Ideology = MinisterIdeology.None,
-                                   Loyalty = MinisterLoyalty.None,
-                               };
+                    {
+                        Country =
+                            countryListBox.SelectedItems.Count > 0
+                                ? (CountryTag) (countryListBox.SelectedIndex + 1)
+                                : CountryTag.None,
+                        Id = 0,
+                        StartYear = 1930,
+                        EndYear = 1970,
+                        RetirementYear = 1999,
+                        Position = MinisterPosition.None,
+                        Personality = 0,
+                        Ideology = MinisterIdeology.None,
+                        Loyalty = MinisterLoyalty.None,
+                    };
 
                 // 閣僚ごとの編集済みフラグを設定する
                 minister.SetDirtyAll();
@@ -279,19 +279,19 @@ namespace HoI2Editor.Forms
 
             // 選択項目を引き継いで項目を作成する
             var minister = new Minister
-                               {
-                                   Country = selected.Country,
-                                   Id = selected.Id + 1,
-                                   Name = selected.Name,
-                                   StartYear = selected.StartYear,
-                                   EndYear = selected.EndYear,
-                                   RetirementYear = selected.RetirementYear,
-                                   Position = selected.Position,
-                                   Personality = selected.Personality,
-                                   Ideology = selected.Ideology,
-                                   Loyalty = selected.Loyalty,
-                                   PictureName = selected.PictureName
-                               };
+                {
+                    Country = selected.Country,
+                    Id = selected.Id + 1,
+                    Name = selected.Name,
+                    StartYear = selected.StartYear,
+                    EndYear = selected.EndYear,
+                    RetirementYear = selected.RetirementYear,
+                    Position = selected.Position,
+                    Personality = selected.Personality,
+                    Ideology = selected.Ideology,
+                    Loyalty = selected.Loyalty,
+                    PictureName = selected.PictureName
+                };
 
             // 閣僚ごとの編集済みフラグを設定する
             minister.SetDirtyAll();
@@ -587,10 +587,10 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-                           {
-                               Text = Country.Strings[(int) minister.Country],
-                               Tag = minister
-                           };
+                {
+                    Text = Country.Strings[(int) minister.Country],
+                    Tag = minister
+                };
             item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(minister.Name);
             item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
@@ -1646,11 +1646,11 @@ namespace HoI2Editor.Forms
 
             // ファイル選択ダイアログを開く
             var dialog = new OpenFileDialog
-                             {
-                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
-                                 FileName = minister.PictureName,
-                                 Filter = Resources.OpenBitmapFileDialogFilter
-                             };
+                {
+                    InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
+                    FileName = minister.PictureName,
+                    Filter = Resources.OpenBitmapFileDialogFilter
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);

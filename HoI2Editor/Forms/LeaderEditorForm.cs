@@ -271,15 +271,15 @@ namespace HoI2Editor.Forms
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
                 leader = new Leader
-                             {
-                                 Country = selected.Country,
-                                 Id = selected.Id + 1,
-                                 Branch = LeaderBranch.None,
-                                 IdealRank = LeaderRank.None,
-                                 StartYear = 1930,
-                                 EndYear = 1990,
-                                 RetirementYear = 1999,
-                             };
+                    {
+                        Country = selected.Country,
+                        Id = selected.Id + 1,
+                        Branch = LeaderBranch.None,
+                        IdealRank = LeaderRank.None,
+                        StartYear = 1930,
+                        EndYear = 1990,
+                        RetirementYear = 1999,
+                    };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
                 leader.RankYear[2] = 1990;
@@ -296,18 +296,18 @@ namespace HoI2Editor.Forms
             {
                 // 新規項目を作成する
                 leader = new Leader
-                             {
-                                 Country =
-                                     countryListBox.SelectedItems.Count > 0
-                                         ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                         : CountryTag.None,
-                                 Id = 0,
-                                 Branch = LeaderBranch.None,
-                                 IdealRank = LeaderRank.None,
-                                 StartYear = 1930,
-                                 EndYear = 1990,
-                                 RetirementYear = 1999,
-                             };
+                    {
+                        Country =
+                            countryListBox.SelectedItems.Count > 0
+                                ? (CountryTag) (countryListBox.SelectedIndex + 1)
+                                : CountryTag.None,
+                        Id = 0,
+                        Branch = LeaderBranch.None,
+                        IdealRank = LeaderRank.None,
+                        StartYear = 1930,
+                        EndYear = 1990,
+                        RetirementYear = 1999,
+                    };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
                 leader.RankYear[2] = 1990;
@@ -344,22 +344,22 @@ namespace HoI2Editor.Forms
 
             // 選択項目を引き継いで項目を作成する
             var leader = new Leader
-                             {
-                                 Country = selected.Country,
-                                 Id = selected.Id + 1,
-                                 Name = selected.Name,
-                                 Branch = selected.Branch,
-                                 IdealRank = selected.IdealRank,
-                                 Skill = selected.Skill,
-                                 MaxSkill = selected.MaxSkill,
-                                 Experience = selected.Experience,
-                                 Loyalty = selected.Loyalty,
-                                 StartYear = selected.StartYear,
-                                 EndYear = selected.EndYear,
-                                 RetirementYear = selected.RetirementYear,
-                                 PictureName = selected.PictureName,
-                                 Traits = selected.Traits
-                             };
+                {
+                    Country = selected.Country,
+                    Id = selected.Id + 1,
+                    Name = selected.Name,
+                    Branch = selected.Branch,
+                    IdealRank = selected.IdealRank,
+                    Skill = selected.Skill,
+                    MaxSkill = selected.MaxSkill,
+                    Experience = selected.Experience,
+                    Loyalty = selected.Loyalty,
+                    StartYear = selected.StartYear,
+                    EndYear = selected.EndYear,
+                    RetirementYear = selected.RetirementYear,
+                    PictureName = selected.PictureName,
+                    Traits = selected.Traits
+                };
             leader.RankYear[0] = selected.RankYear[0];
             leader.RankYear[1] = selected.RankYear[1];
             leader.RankYear[2] = selected.RankYear[2];
@@ -655,10 +655,10 @@ namespace HoI2Editor.Forms
         private static ListViewItem CreateLeaderListViewItem(Leader leader)
         {
             var item = new ListViewItem
-                           {
-                               Text = Country.Strings[(int) leader.Country],
-                               Tag = leader
-                           };
+                {
+                    Text = Country.Strings[(int) leader.Country],
+                    Tag = leader
+                };
             item.SubItems.Add(leader.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.Name);
             item.SubItems.Add(Leaders.BranchNames[(int) leader.Branch]);
@@ -2288,11 +2288,11 @@ namespace HoI2Editor.Forms
 
             // ファイル選択ダイアログを開く
             var dialog = new OpenFileDialog
-                             {
-                                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
-                                 FileName = leader.PictureName,
-                                 Filter = Resources.OpenBitmapFileDialogFilter
-                             };
+                {
+                    InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
+                    FileName = leader.PictureName,
+                    Filter = Resources.OpenBitmapFileDialogFilter
+                };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);

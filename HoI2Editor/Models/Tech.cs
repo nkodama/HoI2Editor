@@ -363,14 +363,14 @@ namespace HoI2Editor.Models
         public ITechItem Clone()
         {
             var item = new TechItem
-                           {
-                               Id = Id + 10,
-                               Name = Config.GetTempKey(),
-                               ShortName = Config.GetTempKey(),
-                               Desc = Config.GetTempKey(),
-                               PictureName = PictureName,
-                               Year = Year,
-                           };
+                {
+                    Id = Id + 10,
+                    Name = Config.GetTempKey(),
+                    ShortName = Config.GetTempKey(),
+                    Desc = Config.GetTempKey(),
+                    PictureName = PictureName,
+                    Year = Year,
+                };
 
             // 文字列設定
             Config.SetText(item.Name, Config.GetText(Name), Game.TechTextFileName);
@@ -1317,10 +1317,10 @@ namespace HoI2Editor.Models
         public static TechComponent Create()
         {
             var component = new TechComponent
-                                {
-                                    Name = Config.GetTempKey(),
-                                    Difficulty = 1,
-                                };
+                {
+                    Name = Config.GetTempKey(),
+                    Difficulty = 1,
+                };
 
             // 文字列設定
             Config.SetText(component.Name, "", Game.TechTextFileName);
@@ -1335,13 +1335,13 @@ namespace HoI2Editor.Models
         public TechComponent Clone()
         {
             var component = new TechComponent
-                                {
-                                    Id = Id + 1,
-                                    Name = Config.GetTempKey(),
-                                    Speciality = Speciality,
-                                    Difficulty = Difficulty,
-                                    DoubleTime = DoubleTime,
-                                };
+                {
+                    Id = Id + 1,
+                    Name = Config.GetTempKey(),
+                    Speciality = Speciality,
+                    Difficulty = Difficulty,
+                    DoubleTime = DoubleTime,
+                };
 
             Config.SetText(component.Name, Config.GetText(Name), Game.TechTextFileName);
 

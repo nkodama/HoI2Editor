@@ -49,6 +49,12 @@ namespace HoI2Editor.Forms
             // プロヴィンスデータを初期化する
             Provinces.Init();
 
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
             // 編集項目を初期化する
             InitEditableItems();
 
@@ -83,6 +89,9 @@ namespace HoI2Editor.Forms
             // プロヴィンスファイルの再読み込みを要求する
             Provinces.RequireReload();
 
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
             // プロヴィンスファイルを読み込む
             LoadFiles();
         }
@@ -102,12 +111,6 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadFiles()
         {
-            // ゲーム設定ファイルを読み込む
-            Misc.Load();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
             // プロヴィンスファイルを読み込む
             Provinces.Load();
 
@@ -340,10 +343,10 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-                           {
-                               Text = province.GetName(),
-                               Tag = province
-                           };
+                {
+                    Text = province.GetName(),
+                    Tag = province
+                };
             item.SubItems.Add(province.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(province.Terrain == TerrainId.Ocean ? Resources.Yes : Resources.No);
             item.SubItems.Add(province.PortAllowed ? Resources.Yes : Resources.No);
