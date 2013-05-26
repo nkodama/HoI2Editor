@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using HoI2Editor.Models;
 
 namespace HoI2Editor.Writers
@@ -18,7 +19,7 @@ namespace HoI2Editor.Writers
         /// <param name="fileName">ファイル名</param>
         public static void Write(TechGroup grp, string fileName)
         {
-            using (var writer = new StreamWriter(fileName))
+            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 writer.WriteLine("technology =");
                 writer.WriteLine("{{ id          = {0}", grp.Id);
