@@ -710,7 +710,7 @@ namespace HoI2Editor.Models
         SecedeRegion,
         AddClaim,
         RemoveClaim,
-        Stokepile,
+        Stockpile,
         LandFortEff, // ICで存在するがDataWikiに記載がないもの
         CoastFortEff, // ICで存在するがDataWikiに記載がないもの
         Strength,
