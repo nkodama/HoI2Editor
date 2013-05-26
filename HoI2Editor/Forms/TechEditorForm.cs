@@ -4203,7 +4203,7 @@ namespace HoI2Editor.Forms
             // 編集項目の値を更新する
             if (command.Type != CommandType.None)
             {
-                commandTypeComboBox.SelectedIndex = (int) command.Type - 1;
+                commandTypeComboBox.SelectedIndex = (int) command.Type;
             }
             else
             {
@@ -4447,7 +4447,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            CommandType type = (CommandType) commandTypeComboBox.SelectedIndex + 1;
+            var type = (CommandType) commandTypeComboBox.SelectedIndex;
             if (type == command.Type)
             {
                 return;
