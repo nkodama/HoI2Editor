@@ -821,6 +821,7 @@
             // 
             resources.ApplyResources(this.commandTypeComboBox, "commandTypeComboBox");
             this.commandTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.commandTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.commandTypeComboBox.FormattingEnabled = true;
             this.commandTypeComboBox.Name = "commandTypeComboBox";
             this.commandTypeComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCommandTypeComboBoxDrawItem);
