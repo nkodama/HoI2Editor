@@ -279,7 +279,7 @@
             // 
             resources.ApplyResources(this.idNumericUpDown, "idNumericUpDown");
             this.idNumericUpDown.Maximum = new decimal(new int[] {
-            16777215,
+            2147483647,
             0,
             0,
             0});

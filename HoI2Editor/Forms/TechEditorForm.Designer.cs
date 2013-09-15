@@ -403,7 +403,7 @@
             0,
             0});
             this.techIdNumericUpDown.Maximum = new decimal(new int[] {
-            16777210,
+            2147483640,
             0,
             0,
             0});
@@ -482,7 +482,7 @@
             0,
             0});
             this.orIdNumericUpDown.Maximum = new decimal(new int[] {
-            16777210,
+            2147483640,
             0,
             0,
             0});
@@ -513,7 +513,7 @@
             0,
             0});
             this.andIdNumericUpDown.Maximum = new decimal(new int[] {
-            16777210,
+            2147483640,
             0,
             0,
             0});
@@ -713,7 +713,7 @@
             // 
             resources.ApplyResources(this.componentIdNumericUpDown, "componentIdNumericUpDown");
             this.componentIdNumericUpDown.Maximum = new decimal(new int[] {
-            16777215,
+            2147483647,
             0,
             0,
             0});
@@ -1131,7 +1131,7 @@
             0});
             resources.ApplyResources(this.eventTechNumericUpDown, "eventTechNumericUpDown");
             this.eventTechNumericUpDown.Maximum = new decimal(new int[] {
-            16777210,
+            2147483640,
             0,
             0,
             0});
@@ -1147,7 +1147,7 @@
             // 
             resources.ApplyResources(this.eventIdNumericUpDown, "eventIdNumericUpDown");
             this.eventIdNumericUpDown.Maximum = new decimal(new int[] {
-            16777215,
+            2147483647,
             0,
             0,
             0});
