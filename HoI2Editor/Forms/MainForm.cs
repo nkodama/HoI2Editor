@@ -208,7 +208,7 @@ namespace HoI2Editor.Forms
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 modTextBox.Text = Path.GetFileName(dialog.SelectedPath);
-                string folderName = Path.GetDirectoryName(Path.GetFileName(dialog.SelectedPath));
+                string folderName = Path.GetDirectoryName(dialog.SelectedPath);
                 gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
                                              ? Path.GetDirectoryName(folderName)
                                              : folderName;
