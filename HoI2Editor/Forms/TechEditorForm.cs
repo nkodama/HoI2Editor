@@ -1465,7 +1465,9 @@ namespace HoI2Editor.Forms
             // 技術ツリー画像の範囲外ならばドロップを禁止する
             var dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
             Point p = treePictureBox.PointToClient(new Point(e.X, e.Y));
-            e.Effect = dragRect.Contains(p) ? DragDropEffects.Move : DragDropEffects.None;
+            var r = new Rectangle(label.Left + p.X - _dragPoint.X, label.Top + p.Y - _dragPoint.Y, label.Width,
+                                  label.Height);
+            e.Effect = dragRect.Contains(r) ? DragDropEffects.Move : DragDropEffects.None;
         }
 
         /// <summary>
