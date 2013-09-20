@@ -1372,17 +1372,17 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // ドラッグ判定サイズを超えていなければ何もしない
-            Size dragSize = SystemInformation.DragSize;
-            var dragRect = new Rectangle(_dragPoint.X - dragSize.Width/2, _dragPoint.Y - dragSize.Height/2,
-                                         dragSize.Width, dragSize.Height);
-            if (dragRect.Contains(e.X, e.Y))
+            var label = sender as Label;
+            if (label == null)
             {
                 return;
             }
 
-            var label = sender as Label;
-            if (label == null)
+            // ドラッグ判定サイズを超えていなければ何もしない
+            Size dragSize = SystemInformation.DragSize;
+            var dragRect = new Rectangle(_dragPoint.X - dragSize.Width / 2, _dragPoint.Y - dragSize.Height / 2,
+                                         dragSize.Width, dragSize.Height);
+            if (dragRect.Contains(label.Left + e.X, label.Top + e.Y))
             {
                 return;
             }
