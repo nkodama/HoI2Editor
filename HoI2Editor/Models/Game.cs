@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 
 namespace HoI2Editor.Models
 {
@@ -557,22 +559,165 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void DistinguishGameVersion()
         {
-            // DH以外では必要がないので判別しない
-            if (Type != GameType.DarkestHour)
+            if (Type == GameType.None)
             {
                 Version = 100;
                 return;
             }
+            
+            // 実行ファイルのバイナリ列を読み込む
+            var info = new FileInfo(_exeFileName);
+            long size = info.Length;
+            var data = new byte[size];
 
-            FileVersionInfo info = FileVersionInfo.GetVersionInfo(_exeFileName);
+            FileStream s = info.OpenRead();
+            s.Read(data, 0, (int)size);
+            s.Close();
 
-            if (info.ProductVersion.Length < 4)
+            // バージョン文字列を検索する
+            byte[] pattern;
+            List<uint> l;
+            uint offset;
+            switch (Type)
             {
-                Version = 100;
-                return;
+                case GameType.HeartsOfIron2:
+                    // Doomsday Armageddon v X.X
+                    pattern = new byte[]
+                                  {
+                                      0x44, 0x6F, 0x6F, 0x6D, 0x73, 0x64, 0x61, 0x79,
+                                      0x20, 0x41, 0x72, 0x6D, 0x61, 0x67, 0x65, 0x64,
+                                      0x64, 0x6F, 0x6E, 0x20, 0x76, 0x20
+                                  };
+                    l = BinaryScan(data, pattern, 0, (uint)size);
+                    if (l.Count == 0)
+                    {
+                        // Iron Cross Armageddon X.XX
+                        pattern = new byte[]
+                                      {
+                                          0x49, 0x72, 0x6F, 0x6E, 0x20, 0x43, 0x72, 0x6F,
+                                          0x73, 0x73, 0x20, 0x41, 0x72, 0x6D, 0x61, 0x67,
+                                          0x65, 0x64, 0x64, 0x6F, 0x6E, 0x20
+                                      };
+                        l = BinaryScan(data, pattern, 0, (uint)size);
+                        if (l.Count == 0)
+                        {
+                            Version = 100;
+                            return;
+                        }
+                        offset = l[0] + (uint)pattern.Length;
+                        Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 +
+                                       (data[offset + 3] - '0');
+                    }
+                    else
+                    {
+                        offset = l[0] + (uint)pattern.Length;
+                        Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10;
+                    }
+                    break;
+
+                case GameType.ArsenalOfDemocracy:
+                    // Arsenal of Democracy X.XX
+                    pattern = new byte[]
+                                  {
+                                      0x41, 0x72, 0x73, 0x65, 0x6E, 0x61, 0x6C, 0x20,
+                                      0x6F, 0x66, 0x20, 0x44, 0x65, 0x6D, 0x6F, 0x63,
+                                      0x72, 0x61, 0x63, 0x79, 0x20
+                                  };
+                    l = BinaryScan(data, pattern, 0, (uint)size);
+                    if (l.Count == 0)
+                    {
+                        // Arsenal Of Democracy v X.XX
+                        pattern = new byte[]
+                                      {
+                                          0x41, 0x72, 0x73, 0x65, 0x6E, 0x61, 0x6C, 0x20,
+                                          0x4F, 0x66, 0x20, 0x44, 0x65, 0x6D, 0x6F, 0x63,
+                                          0x72, 0x61, 0x63, 0x79, 0x20, 0x76, 0x20
+                                      };
+                        l = BinaryScan(data, pattern, 0, (uint)size);
+                        if (l.Count == 0)
+                        {
+                            Version = 100;
+                            return;
+                        }
+                    }
+                    offset = l[0] + (uint)pattern.Length;
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 + (data[offset + 3] - '0');
+                    break;
+
+                case GameType.DarkestHour:
+                    // Darkest Hour v X.XX
+                    pattern = new byte[]
+                                  {
+                                      0x44, 0x61, 0x72, 0x6B, 0x65, 0x73, 0x74, 0x20,
+                                      0x48, 0x6F, 0x75, 0x72, 0x20, 0x76, 0x20
+                                  };
+                    l = BinaryScan(data, pattern, 0, (uint)size);
+                    if (l.Count == 0)
+                    {
+                        Version = 100;
+                        return;
+                    }
+                    offset = l[0] + (uint)pattern.Length;
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 + (data[offset + 3] - '0');
+                    break;
+
+                default:
+                    // Doomsday Armageddon v X.X
+                    pattern = new byte[]
+                                  {
+                                      0x44, 0x6F, 0x6F, 0x6D, 0x73, 0x64, 0x61, 0x79,
+                                      0x20, 0x41, 0x72, 0x6D, 0x61, 0x67, 0x65, 0x64,
+                                      0x64, 0x6F, 0x6E, 0x20, 0x76, 0x20
+                                  };
+                    l = BinaryScan(data, pattern, 0, (uint)size);
+                    if (l.Count == 0)
+                    {
+                        Version = 100;
+                        return;
+                    }
+                    offset = l[0] + (uint)pattern.Length;
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10;
+                    break;
             }
-            Version = (info.ProductVersion[0] - '0')*100 + (info.ProductVersion[2] - '0')*10 +
-                      (info.ProductVersion[3] - '0');
+        }
+
+        /// <summary>
+        ///     バイナリ列を探索する
+        /// </summary>
+        /// <param name="target">探索対象のデータ</param>
+        /// <param name="pattern">探索するバイトパターン</param>
+        /// <param name="start">開始位置</param>
+        /// <param name="size">探索するバイトサイズ</param>
+        /// <returns>探索に成功すればtrueを返す</returns>
+        private static List<uint> BinaryScan(byte[] target, byte[] pattern, uint start, uint size)
+        {
+            var result = new List<uint>();
+            for (uint offset = start; offset <= start + size - pattern.Length; offset++)
+            {
+                if (IsBinaryMatch(target, pattern, offset))
+                {
+                    result.Add(offset);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        ///     バイナリ列が一致しているかを判定する
+        /// </summary>
+        /// <param name="target">探索対象のデータ</param>
+        /// <param name="pattern">探索するバイトパターン</param>
+        /// <param name="offset">判定する位置</param>
+        /// <returns>バイナリ列が一致していればtrueを返す</returns>
+        private static bool IsBinaryMatch(byte[] target, byte[] pattern, uint offset)
+        {
+            int i;
+            for (i = 0; i < pattern.Length; i++)
+            {
+                if (target[offset + i] != pattern[i])
+                    return false;
+            }
+            return true;
         }
 
         #endregion

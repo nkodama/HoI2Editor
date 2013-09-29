@@ -67,6 +67,12 @@
     <Compile Include="Forms\MinisterEditorForm.Designer.cs">
       <DependentUpon>MinisterEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MiscEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MiscEditorForm.Designer.cs">
+      <DependentUpon>MiscEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProvinceEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MinisterEditorForm.resx">
       <DependentUpon>MinisterEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MiscEditorForm.ja.resx">
+      <DependentUpon>MiscEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MiscEditorForm.resx">
+      <DependentUpon>MiscEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProvinceEditorForm.ja.resx">
       <DependentUpon>ProvinceEditorForm.cs</DependentUpon>

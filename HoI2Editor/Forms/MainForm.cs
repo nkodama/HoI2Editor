@@ -146,6 +146,17 @@ namespace HoI2Editor.Forms
             form.Show();
         }
 
+        /// <summary>
+        ///     ゲーム設定ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMiscButtonClick(object sender, EventArgs e)
+        {
+            var form = new MiscEditorForm();
+            form.Show();
+        }
+
         #endregion
 
         #region ゲームフォルダ/MOD名

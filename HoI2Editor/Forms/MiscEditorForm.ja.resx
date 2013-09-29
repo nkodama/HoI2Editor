@@ -1,0 +1,1633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="aiPeacetimeSpyMissionsComboBox.Items" xml:space="preserve">
+    <value>0: すべて</value>
+  </data>
+  <data name="aiPeacetimeSpyMissionsComboBox.Items1" xml:space="preserve">
+    <value>1: レベル1</value>
+  </data>
+  <data name="aiPeacetimeSpyMissionsComboBox.Items2" xml:space="preserve">
+    <value>2: レベル2</value>
+  </data>
+  <data name="showThirdCountrySpyReportsComboBox.Items" xml:space="preserve">
+    <value>0: 報告しない</value>
+  </data>
+  <data name="showThirdCountrySpyReportsComboBox.Items1" xml:space="preserve">
+    <value>1: 検出分</value>
+  </data>
+  <data name="showThirdCountrySpyReportsComboBox.Items2" xml:space="preserve">
+    <value>2: 検出分+成功分</value>
+  </data>
+  <data name="showThirdCountrySpyReportsComboBox.Items3" xml:space="preserve">
+    <value>3: すべて</value>
+  </data>
+  <data name="canChangeIdeasComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="canChangeIdeasComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="canUnitSendNonAlliedComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="canUnitSendNonAlliedComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="canChangeIdeasLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 12</value>
+  </data>
+  <data name="canChangeIdeasLabel.Text" xml:space="preserve">
+    <value>プレイヤーの国策変更を許可</value>
+  </data>
+  <data name="cvMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 12</value>
+  </data>
+  <data name="cvMaxAttachLabel.Text" xml:space="preserve">
+    <value>空母最大付属装備数</value>
+  </data>
+  <data name="cvlMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="cvlMaxAttachLabel.Text" xml:space="preserve">
+    <value>軽空母最大付属装備数</value>
+  </data>
+  <data name="bbMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 12</value>
+  </data>
+  <data name="bbMaxAttachLabel.Text" xml:space="preserve">
+    <value>戦艦最大付属装備数</value>
+  </data>
+  <data name="bcMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 12</value>
+  </data>
+  <data name="bcMaxAttachLabel.Text" xml:space="preserve">
+    <value>巡洋戦艦最大付属装備数</value>
+  </data>
+  <data name="caMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 12</value>
+  </data>
+  <data name="caMaxAttachLabel.Text" xml:space="preserve">
+    <value>重巡洋艦最大付属装備数</value>
+  </data>
+  <data name="clMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 12</value>
+  </data>
+  <data name="clMaxAttachLabel.Text" xml:space="preserve">
+    <value>軽巡洋艦最大付属装備数</value>
+  </data>
+  <data name="ddMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="ddMaxAttachLabel.Text" xml:space="preserve">
+    <value>駆逐艦最大付属装備数</value>
+  </data>
+  <data name="ssnMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="ssnMaxAttachLabel.Text" xml:space="preserve">
+    <value>原子力潜水艦最大付属装備数</value>
+  </data>
+  <data name="ssMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="ssMaxAttachLabel.Text" xml:space="preserve">
+    <value>潜水艦最大付属装備数</value>
+  </data>
+  <data name="tpMaxAttachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="tpMaxAttachLabel.Text" xml:space="preserve">
+    <value>輸送艦最大付属装備数</value>
+  </data>
+  <data name="escortDutyConversionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="escortDutyConversionLabel.Text" xml:space="preserve">
+    <value>護衛船団変換係数</value>
+  </data>
+  <data name="convoyDutyConversionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="convoyDutyConversionLabel.Text" xml:space="preserve">
+    <value>輸送船団変換係数</value>
+  </data>
+  <data name="spyCoupDissentModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 12</value>
+  </data>
+  <data name="spyCoupDissentModifierLabel.Text" xml:space="preserve">
+    <value>不満度によるクーデター成功率修正</value>
+  </data>
+  <data name="restockSpeedNavalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="restockSpeedNavalLabel.Text" xml:space="preserve">
+    <value>海軍の物資再備蓄速度</value>
+  </data>
+  <data name="restockSpeedAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="restockSpeedAirLabel.Text" xml:space="preserve">
+    <value>空軍の物資再備蓄速度</value>
+  </data>
+  <data name="restockSpeedLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="restockSpeedLandLabel.Text" xml:space="preserve">
+    <value>陸軍の物資再備蓄速度</value>
+  </data>
+  <data name="coreProvinceEfficiencyRiseTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 12</value>
+  </data>
+  <data name="coreProvinceEfficiencyRiseTimeLabel.Text" xml:space="preserve">
+    <value>中核プロヴィンス効率上昇時間</value>
+  </data>
+  <data name="nationalismPerManpowerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 12</value>
+  </data>
+  <data name="nationalismPerManpowerAoDLabel.Text" xml:space="preserve">
+    <value>人的資源によるナショナリズムの補正値</value>
+  </data>
+  <data name="aiInfluenceModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 12</value>
+  </data>
+  <data name="aiInfluenceModifierLabel.Text" xml:space="preserve">
+    <value>AIの外交影響度補正</value>
+  </data>
+  <data name="aiDiplomacyCostModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="aiDiplomacyCostModifierLabel.Text" xml:space="preserve">
+    <value>AIの外交コスト補正</value>
+  </data>
+  <data name="aiSpyMissionsCostModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="aiSpyMissionsCostModifierLabel.Text" xml:space="preserve">
+    <value>AIの諜報コスト補正</value>
+  </data>
+  <data name="maxIcCostModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="maxIcCostModifierLabel.Text" xml:space="preserve">
+    <value>諜報コスト補正の最大IC</value>
+  </data>
+  <data name="aiPeacetimeSpyMissionsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 12</value>
+  </data>
+  <data name="aiPeacetimeSpyMissionsLabel.Text" xml:space="preserve">
+    <value>AIの平時の攻撃的諜報活動</value>
+  </data>
+  <data name="spyInformationAccuracyModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 12</value>
+  </data>
+  <data name="spyInformationAccuracyModifierLabel.Text" xml:space="preserve">
+    <value>情報の正確さ補正</value>
+  </data>
+  <data name="distanceModifierNeighboursLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="distanceModifierNeighboursLabel.Text" xml:space="preserve">
+    <value>諜報任務の近隣国補正</value>
+  </data>
+  <data name="showThirdCountrySpyReportsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="showThirdCountrySpyReportsLabel.Text" xml:space="preserve">
+    <value>第三国の諜報活動を報告するか</value>
+  </data>
+  <data name="relationshipsHitDetectedMissionsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 12</value>
+  </data>
+  <data name="relationshipsHitDetectedMissionsLabel.Text" xml:space="preserve">
+    <value>諜報任務発覚時の友好度低下量</value>
+  </data>
+  <data name="chanceDetectSpyMissionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 12</value>
+  </data>
+  <data name="chanceDetectSpyMissionLabel.Text" xml:space="preserve">
+    <value>国内の諜報活動を発見する確率</value>
+  </data>
+  <data name="increateIntelligenceLevelDaysLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 12</value>
+  </data>
+  <data name="increateIntelligenceLevelDaysLabel.Text" xml:space="preserve">
+    <value>諜報レベルの増加間隔</value>
+  </data>
+  <data name="spyMissionDaysLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 12</value>
+  </data>
+  <data name="spyMissionDaysLabel.Text" xml:space="preserve">
+    <value>諜報任務の間隔</value>
+  </data>
+  <data name="canUnitSendNonAlliedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 12</value>
+  </data>
+  <data name="canUnitSendNonAlliedLabel.Text" xml:space="preserve">
+    <value>非同盟国に師団を譲渡できるかどうか</value>
+  </data>
+  <data name="tcLoadUndeployedBrigadeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 12</value>
+  </data>
+  <data name="tcLoadUndeployedBrigadeLabel.Text" xml:space="preserve">
+    <value>未配備旅団のTC負荷</value>
+  </data>
+  <data name="sendDivisionDaysLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 12</value>
+  </data>
+  <data name="sendDivisionDaysLabel.Text" xml:space="preserve">
+    <value>師団譲渡後配備可能になるまでの時間</value>
+  </data>
+  <data name="monthlyNationalismReductionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 12</value>
+  </data>
+  <data name="monthlyNationalismReductionLabel.Text" xml:space="preserve">
+    <value>月ごとのナショナリズムの減少値</value>
+  </data>
+  <data name="nationalismStartingValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 12</value>
+  </data>
+  <data name="nationalismStartingValueLabel.Text" xml:space="preserve">
+    <value>ナショナリズムの初期値</value>
+  </data>
+  <data name="upgradeTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 12</value>
+  </data>
+  <data name="upgradeTimeLabel.Text" xml:space="preserve">
+    <value>改良に必要な時間の比率</value>
+  </data>
+  <data name="upgradeCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 12</value>
+  </data>
+  <data name="upgradeCostLabel.Text" xml:space="preserve">
+    <value>改良に必要なICの比率</value>
+  </data>
+  <data name="reinforceTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 12</value>
+  </data>
+  <data name="reinforceTimeLabel.Text" xml:space="preserve">
+    <value>補充に必要な時間の比率</value>
+  </data>
+  <data name="reinforceCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 12</value>
+  </data>
+  <data name="reinforceCostLabel.Text" xml:space="preserve">
+    <value>補充に必要なICの比率</value>
+  </data>
+  <data name="reinforceManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 12</value>
+  </data>
+  <data name="reinforceManpowerLabel.Text" xml:space="preserve">
+    <value>補充に必要な人的資源の比率</value>
+  </data>
+  <data name="trickleBackFactorManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 12</value>
+  </data>
+  <data name="trickleBackFactorManpowerLabel.Text" xml:space="preserve">
+    <value>戦闘による損失からの復帰係数</value>
+  </data>
+  <data name="requirementAffectSliderLabel.Text" xml:space="preserve">
+    <value>政策スライダーに影響を与えるためのIC比率</value>
+  </data>
+  <data name="manpowerMultiplierColonyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="manpowerMultiplierColonyLabel.Text" xml:space="preserve">
+    <value>海外州の人的資源補正</value>
+  </data>
+  <data name="manpowerMultiplierNonNationalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 12</value>
+  </data>
+  <data name="manpowerMultiplierNonNationalLabel.Text" xml:space="preserve">
+    <value>非中核州の人的資源補正</value>
+  </data>
+  <data name="manpowerMultiplierNationalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="manpowerMultiplierNationalLabel.Text" xml:space="preserve">
+    <value>中核州の人的資源補正</value>
+  </data>
+  <data name="tcLoadBaseLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 12</value>
+  </data>
+  <data name="tcLoadBaseLabel.Text" xml:space="preserve">
+    <value>未配備の基地のTC負荷</value>
+  </data>
+  <data name="tcLoadProvinceDevelopmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 12</value>
+  </data>
+  <data name="tcLoadProvinceDevelopmentLabel.Text" xml:space="preserve">
+    <value>プロヴィンス開発のTC負荷</value>
+  </data>
+  <data name="tcLoadFactorOffensiveLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 12</value>
+  </data>
+  <data name="tcLoadFactorOffensiveLabel.Text" xml:space="preserve">
+    <value>攻勢時のTC負荷係数</value>
+  </data>
+  <data name="closeButton1.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton1.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton1.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="tcLoadPartisanLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 12</value>
+  </data>
+  <data name="tcLoadPartisanLabel.Text" xml:space="preserve">
+    <value>パルチザンのTC負荷</value>
+  </data>
+  <data name="tcLoadMultiplierNavalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="tcLoadMultiplierNavalLabel.Text" xml:space="preserve">
+    <value>海軍師団のTC負荷補正</value>
+  </data>
+  <data name="tcLoadMultiplierAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="tcLoadMultiplierAirLabel.Text" xml:space="preserve">
+    <value>空軍師団のTC負荷補正</value>
+  </data>
+  <data name="tcLoadMultiplierLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="tcLoadMultiplierLandLabel.Text" xml:space="preserve">
+    <value>陸軍師団のTC負荷補正</value>
+  </data>
+  <data name="tcLoadOccupiedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 12</value>
+  </data>
+  <data name="tcLoadOccupiedLabel.Text" xml:space="preserve">
+    <value>占領地のTC負荷</value>
+  </data>
+  <data name="tcLoadUndeployedDivisionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 12</value>
+  </data>
+  <data name="tcLoadUndeployedDivisionLabel.Text" xml:space="preserve">
+    <value>未配備師団のTC負荷</value>
+  </data>
+  <data name="icMultiplierNonOwnedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 12</value>
+  </data>
+  <data name="icMultiplierNonOwnedLabel.Text" xml:space="preserve">
+    <value>占領地のIC補正</value>
+  </data>
+  <data name="icMultiplierNonNationalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 12</value>
+  </data>
+  <data name="icMultiplierNonNationalLabel.Text" xml:space="preserve">
+    <value>非中核州のIC補正</value>
+  </data>
+  <data name="gearingBonusIncrementLabel.Text" xml:space="preserve">
+    <value>ギアリングボーナスの増加値</value>
+  </data>
+  <data name="maxGearingBonusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 12</value>
+  </data>
+  <data name="maxGearingBonusLabel.Text" xml:space="preserve">
+    <value>最大ギアリングボーナス</value>
+  </data>
+  <data name="icToMoneyRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="icToMoneyRatioLabel.Text" xml:space="preserve">
+    <value>ICから資金への変換効率</value>
+  </data>
+  <data name="icToConsumerGoodsRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="icToConsumerGoodsRatioLabel.Text" xml:space="preserve">
+    <value>ICから消費財への変換効率</value>
+  </data>
+  <data name="icToSuppliesRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="icToSuppliesRatioLabel.Text" xml:space="preserve">
+    <value>ICから物資への変換効率</value>
+  </data>
+  <data name="icToTcRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 12</value>
+  </data>
+  <data name="icToTcRatioLabel.Text" xml:space="preserve">
+    <value>ICからTCへの変換効率</value>
+  </data>
+  <data name="economyTabPage1.Text" xml:space="preserve">
+    <value>経済1</value>
+  </data>
+  <data name="dissentRevoltMultiplierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 12</value>
+  </data>
+  <data name="dissentRevoltMultiplierLabel.Text" xml:space="preserve">
+    <value>不満度による反乱軍発生率係数</value>
+  </data>
+  <data name="minDissentRevoltLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 12</value>
+  </data>
+  <data name="minDissentRevoltLabel.Text" xml:space="preserve">
+    <value>反乱が発生する最低不満度</value>
+  </data>
+  <data name="changeMinisterDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 12</value>
+  </data>
+  <data name="changeMinisterDissentLabel.Text" xml:space="preserve">
+    <value>閣僚変更時の不満度上昇量</value>
+  </data>
+  <data name="changeIdeaDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 12</value>
+  </data>
+  <data name="changeIdeaDissentLabel.Text" xml:space="preserve">
+    <value>国策変更時の不満度上昇量</value>
+  </data>
+  <data name="leaderChangeDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 12</value>
+  </data>
+  <data name="leaderChangeDelayLabel.Text" xml:space="preserve">
+    <value>指揮官変更遅延日数</value>
+  </data>
+  <data name="ideaChangeEventDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 12</value>
+  </data>
+  <data name="ideaChangeEventDelayLabel.Text" xml:space="preserve">
+    <value>国策変更遅延日数(イベント)</value>
+  </data>
+  <data name="ideaChangeDelayLabel.Text" xml:space="preserve">
+    <value>国策変更遅延日数</value>
+  </data>
+  <data name="ministerChangeEventDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 12</value>
+  </data>
+  <data name="ministerChangeEventDelayLabel.Text" xml:space="preserve">
+    <value>閣僚変更遅延日数(イベント)</value>
+  </data>
+  <data name="ministerChangeDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="ministerChangeDelayLabel.Text" xml:space="preserve">
+    <value>閣僚変更遅延日数</value>
+  </data>
+  <data name="transportConversionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="transportConversionLabel.Text" xml:space="preserve">
+    <value>輸送艦変換係数</value>
+  </data>
+  <data name="icConcentrationBonusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 12</value>
+  </data>
+  <data name="icConcentrationBonusLabel.Text" xml:space="preserve">
+    <value>工場集中ボーナス</value>
+  </data>
+  <data name="maxDissentSliderMoveLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 12</value>
+  </data>
+  <data name="maxDissentSliderMoveLabel.Text" xml:space="preserve">
+    <value>スライダー移動可能な最大不満度</value>
+  </data>
+  <data name="minSliderDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 12</value>
+  </data>
+  <data name="minSliderDissentLabel.Text" xml:space="preserve">
+    <value>スライダー移動時の最小不満度</value>
+  </data>
+  <data name="maxSliderDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 12</value>
+  </data>
+  <data name="maxSliderDissentLabel.Text" xml:space="preserve">
+    <value>スライダー移動時の最大不満度</value>
+  </data>
+  <data name="freeInfraRepairLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 12</value>
+  </data>
+  <data name="freeInfraRepairLabel.Text" xml:space="preserve">
+    <value>インフラの自然回復率</value>
+  </data>
+  <data name="nuclearPowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="nuclearPowerLabel.Text" xml:space="preserve">
+    <value>原子力発電量</value>
+  </data>
+  <data name="minimalPlacementIcLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 12</value>
+  </data>
+  <data name="minimalPlacementIcLabel.Text" xml:space="preserve">
+    <value>海外プロヴィンスへの配置の必要IC</value>
+  </data>
+  <data name="timeBetweenSliderChangesAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 12</value>
+  </data>
+  <data name="timeBetweenSliderChangesAoDLabel.Text" xml:space="preserve">
+    <value>スライダー移動の間隔</value>
+  </data>
+  <data name="manpowerToConsumerGoodsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 12</value>
+  </data>
+  <data name="manpowerToConsumerGoodsLabel.Text" xml:space="preserve">
+    <value>人的資源の消費財生産補正</value>
+  </data>
+  <data name="infraEfficiencyModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 12</value>
+  </data>
+  <data name="infraEfficiencyModifierLabel.Text" xml:space="preserve">
+    <value>インフラによるプロヴィンス効率補正</value>
+  </data>
+  <data name="spyDetectionChanceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 12</value>
+  </data>
+  <data name="spyDetectionChanceLabel.Text" xml:space="preserve">
+    <value>スパイ発見確率</value>
+  </data>
+  <data name="spyUpkeepCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 12</value>
+  </data>
+  <data name="spyUpkeepCostLabel.Text" xml:space="preserve">
+    <value>諜報維持コスト</value>
+  </data>
+  <data name="autoTradeConvoyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 12</value>
+  </data>
+  <data name="autoTradeConvoyLabel.Text" xml:space="preserve">
+    <value>自動貿易に必要な輸送船団割合</value>
+  </data>
+  <data name="convoyProvinceBlockedTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="convoyProvinceBlockedTimeLabel.Text" xml:space="preserve">
+    <value>船団攻撃妨害時間</value>
+  </data>
+  <data name="convoyProvinceHostileTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="convoyProvinceHostileTimeLabel.Text" xml:space="preserve">
+    <value>船団攻撃回避時間</value>
+  </data>
+  <data name="durationDetectionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="durationDetectionLabel.Text" xml:space="preserve">
+    <value>海軍情報の存続期間</value>
+  </data>
+  <data name="syntheticRaresSiteUpkeepCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="syntheticRaresSiteUpkeepCostLabel.Text" xml:space="preserve">
+    <value>合成希少資源工場維持コスト</value>
+  </data>
+  <data name="syntheticOilSiteUpkeepCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="syntheticOilSiteUpkeepCostLabel.Text" xml:space="preserve">
+    <value>合成石油工場維持コスト</value>
+  </data>
+  <data name="nuclearPowerUpkeepCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="nuclearPowerUpkeepCostLabel.Text" xml:space="preserve">
+    <value>原子力発電所維持コスト</value>
+  </data>
+  <data name="nuclearSiteUpkeepCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 12</value>
+  </data>
+  <data name="nuclearSiteUpkeepCostLabel.Text" xml:space="preserve">
+    <value>原子炉維持コスト</value>
+  </data>
+  <data name="militarySalaryDissentModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 12</value>
+  </data>
+  <data name="militarySalaryDissentModifierLabel.Text" xml:space="preserve">
+    <value>軍隊の給料不足時の不満度補正</value>
+  </data>
+  <data name="militarySalaryAttrictionModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 12</value>
+  </data>
+  <data name="militarySalaryAttrictionModifierLabel.Text" xml:space="preserve">
+    <value>軍隊の給料不足時の消耗補正</value>
+  </data>
+  <data name="maxResearchExpenditureLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="maxResearchExpenditureLabel.Text" xml:space="preserve">
+    <value>最大研究費比率</value>
+  </data>
+  <data name="maxIntelligenceExpenditureLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="maxIntelligenceExpenditureLabel.Text" xml:space="preserve">
+    <value>最大諜報費比率</value>
+  </data>
+  <data name="militarySalaryLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="militarySalaryLabel.Text" xml:space="preserve">
+    <value>軍隊の給料</value>
+  </data>
+  <data name="syntheticRaresConversionMultiplierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="syntheticRaresConversionMultiplierLabel.Text" xml:space="preserve">
+    <value>合成希少資源変換係数</value>
+  </data>
+  <data name="syntheticOilConversionMultiplierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="syntheticOilConversionMultiplierLabel.Text" xml:space="preserve">
+    <value>合成石油変換係数</value>
+  </data>
+  <data name="supplyStockNavalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="supplyStockNavalLabel.Text" xml:space="preserve">
+    <value>海軍の物資備蓄量</value>
+  </data>
+  <data name="supplyStockAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="supplyStockAirLabel.Text" xml:space="preserve">
+    <value>空軍の物資備蓄量</value>
+  </data>
+  <data name="supplyStockLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="supplyStockLandLabel.Text" xml:space="preserve">
+    <value>陸軍の物資備蓄量</value>
+  </data>
+  <data name="supplyLandBombingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyLandBombingLabel.Text" xml:space="preserve">
+    <value>陸軍の砲撃時物資使用量補正</value>
+  </data>
+  <data name="supplyLandBattleAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyLandBattleAoDLabel.Text" xml:space="preserve">
+    <value>陸軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="closeButton2.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton2.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton2.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="supplyLandMovingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyLandMovingLabel.Text" xml:space="preserve">
+    <value>陸軍の移動時物資使用量補正</value>
+  </data>
+  <data name="supplyLandStaticAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyLandStaticAoDLabel.Text" xml:space="preserve">
+    <value>陸軍の待機時物資使用量補正</value>
+  </data>
+  <data name="supplyAirBombingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyAirBombingLabel.Text" xml:space="preserve">
+    <value>空軍の爆撃時物資使用量補正</value>
+  </data>
+  <data name="supplyAirBattleAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyAirBattleAoDLabel.Text" xml:space="preserve">
+    <value>空軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="supplyAirMovingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyAirMovingLabel.Text" xml:space="preserve">
+    <value>空軍の移動時物資使用量補正</value>
+  </data>
+  <data name="supplyAirStaticAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyAirStaticAoDLabel.Text" xml:space="preserve">
+    <value>空軍の待機時物資使用量補正</value>
+  </data>
+  <data name="supplyNavalBattleAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyNavalBattleAoDLabel.Text" xml:space="preserve">
+    <value>海軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="supplyNavalMovingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyNavalMovingLabel.Text" xml:space="preserve">
+    <value>海軍の移動時物資使用量補正</value>
+  </data>
+  <data name="supplyNavalStaticAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyNavalStaticAoDLabel.Text" xml:space="preserve">
+    <value>海軍の待機時物資使用量補正</value>
+  </data>
+  <data name="supplyConvoyHuntLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="supplyConvoyHuntLabel.Text" xml:space="preserve">
+    <value>船団襲撃時物資使用量補正</value>
+  </data>
+  <data name="dailyAgingManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="dailyAgingManpowerLabel.Text" xml:space="preserve">
+    <value>人的資源老化補正</value>
+  </data>
+  <data name="retoolingResourceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 12</value>
+  </data>
+  <data name="retoolingResourceLabel.Text" xml:space="preserve">
+    <value>ライン調整資源補正</value>
+  </data>
+  <data name="retoolingCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 12</value>
+  </data>
+  <data name="retoolingCostLabel.Text" xml:space="preserve">
+    <value>ライン調整コスト補正</value>
+  </data>
+  <data name="lineUpgradeTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 12</value>
+  </data>
+  <data name="lineUpgradeTimeLabel.Text" xml:space="preserve">
+    <value>ライン改良時間</value>
+  </data>
+  <data name="lineStartupTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 12</value>
+  </data>
+  <data name="lineStartupTimeLabel.Text" xml:space="preserve">
+    <value>ライン開始時間</value>
+  </data>
+  <data name="lineUpkeepLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 12</value>
+  </data>
+  <data name="lineUpkeepLabel.Text" xml:space="preserve">
+    <value>ライン維持コスト補正</value>
+  </data>
+  <data name="provinceEfficiencyRiseTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 12</value>
+  </data>
+  <data name="provinceEfficiencyRiseTimeLabel.Text" xml:space="preserve">
+    <value>プロヴィンス効率上昇時間</value>
+  </data>
+  <data name="timeRepairBuildingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="timeRepairBuildingLabel.Text" xml:space="preserve">
+    <value>建物修復時間補正</value>
+  </data>
+  <data name="costRepairBuildingsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 12</value>
+  </data>
+  <data name="costRepairBuildingsLabel.Text" xml:space="preserve">
+    <value>建物修復コスト補正</value>
+  </data>
+  <data name="gearingLossNoIcLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 12</value>
+  </data>
+  <data name="gearingLossNoIcLabel.Text" xml:space="preserve">
+    <value>IC不足時のギアリングボーナス減少値</value>
+  </data>
+  <data name="gearingResourceIncrementLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 12</value>
+  </data>
+  <data name="gearingResourceIncrementLabel.Text" xml:space="preserve">
+    <value>連続生産時の資源消費増加</value>
+  </data>
+  <data name="dissentChangeSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="dissentChangeSpeedLabel.Text" xml:space="preserve">
+    <value>不満度変化速度</value>
+  </data>
+  <data name="economyTabPage2.Text" xml:space="preserve">
+    <value>経済2</value>
+  </data>
+  <data name="convoySystemOptionsAlliedComboBox.Items" xml:space="preserve">
+    <value>0: タイプ0</value>
+  </data>
+  <data name="convoySystemOptionsAlliedComboBox.Items1" xml:space="preserve">
+    <value>1: タイプ1</value>
+  </data>
+  <data name="convoySystemOptionsAlliedComboBox.Items2" xml:space="preserve">
+    <value>2: タイプ2</value>
+  </data>
+  <data name="productionLineEditComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="productionLineEditComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="transferAlliedCoreProvincesComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="transferAlliedCoreProvincesComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="provinceCanSoldNonAlliedComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="provinceCanSoldNonAlliedComboBox.Items1" xml:space="preserve">
+    <value>1: 売却のみ</value>
+  </data>
+  <data name="provinceCanSoldNonAlliedComboBox.Items2" xml:space="preserve">
+    <value>2: 許可</value>
+  </data>
+  <data name="bluePrintsCanSoldNonAlliedComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="bluePrintsCanSoldNonAlliedComboBox.Items1" xml:space="preserve">
+    <value>1: 売却のみ</value>
+  </data>
+  <data name="bluePrintsCanSoldNonAlliedComboBox.Items2" xml:space="preserve">
+    <value>2: 許可</value>
+  </data>
+  <data name="canUnitSendNonAlliedDhComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="canUnitSendNonAlliedDhComboBox.Items1" xml:space="preserve">
+    <value>1: 売却のみ</value>
+  </data>
+  <data name="canUnitSendNonAlliedDhComboBox.Items2" xml:space="preserve">
+    <value>2: 許可</value>
+  </data>
+  <data name="closeButton3.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton3.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton3.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="resourceConvoysBackUnneededLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 12</value>
+  </data>
+  <data name="resourceConvoysBackUnneededLabel.Text" xml:space="preserve">
+    <value>不要な資源/燃料の回収比率</value>
+  </data>
+  <data name="convoySystemOptionsAlliedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 12</value>
+  </data>
+  <data name="convoySystemOptionsAlliedLabel.Text" xml:space="preserve">
+    <value>同盟国に対する船団システム</value>
+  </data>
+  <data name="nukesProductionModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="nukesProductionModifierLabel.Text" xml:space="preserve">
+    <value>核兵器生産補正</value>
+  </data>
+  <data name="maxDailyDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 12</value>
+  </data>
+  <data name="maxDailyDissentLabel.Text" xml:space="preserve">
+    <value>物資/消費財不足時の最大不満度上昇値</value>
+  </data>
+  <data name="dissentNukesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 12</value>
+  </data>
+  <data name="dissentNukesLabel.Text" xml:space="preserve">
+    <value>中核州核攻撃時の不満度上昇係数</value>
+  </data>
+  <data name="gearingBonusLossUpgradeBrigadeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 12</value>
+  </data>
+  <data name="gearingBonusLossUpgradeBrigadeLabel.Text" xml:space="preserve">
+    <value>旅団改良時のギアリングボーナス減少比率</value>
+  </data>
+  <data name="gearingBonusLossUpgradeUnitLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 12</value>
+  </data>
+  <data name="gearingBonusLossUpgradeUnitLabel.Text" xml:space="preserve">
+    <value>ユニット改良時のギアリングボーナス減少比率</value>
+  </data>
+  <data name="productionLineEditLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="productionLineEditLabel.Text" xml:space="preserve">
+    <value>生産ラインの編集</value>
+  </data>
+  <data name="cvlEscortsConversionRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="cvlEscortsConversionRatioLabel.Text" xml:space="preserve">
+    <value>軽空母の護衛船団への変換比率</value>
+  </data>
+  <data name="clEscortsConversionRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 12</value>
+  </data>
+  <data name="clEscortsConversionRatioLabel.Text" xml:space="preserve">
+    <value>軽巡洋艦の護衛船団への変換比率</value>
+  </data>
+  <data name="ddEscortsConversionRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="ddEscortsConversionRatioLabel.Text" xml:space="preserve">
+    <value>駆逐艦の護衛船団への変換比率</value>
+  </data>
+  <data name="tpTransportsConversionRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="tpTransportsConversionRatioLabel.Text" xml:space="preserve">
+    <value>輸送艦の輸送船団への変換比率</value>
+  </data>
+  <data name="fuelNavalBattleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="fuelNavalBattleLabel.Text" xml:space="preserve">
+    <value>海軍の戦闘時燃料使用量補正</value>
+  </data>
+  <data name="fuelNavalNotMovingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 12</value>
+  </data>
+  <data name="fuelNavalNotMovingLabel.Text" xml:space="preserve">
+    <value>海軍の非移動時燃料使用量補正</value>
+  </data>
+  <data name="supplyNavalBattleDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyNavalBattleDhLabel.Text" xml:space="preserve">
+    <value>海軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="supplyNavalStaticDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyNavalStaticDhLabel.Text" xml:space="preserve">
+    <value>海軍の待機時物資使用量補正</value>
+  </data>
+  <data name="fuelAirBattleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="fuelAirBattleLabel.Text" xml:space="preserve">
+    <value>空軍の戦闘時燃料使用量補正</value>
+  </data>
+  <data name="fuelAirNavalStaticLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 12</value>
+  </data>
+  <data name="fuelAirNavalStaticLabel.Text" xml:space="preserve">
+    <value>空軍/海軍の待機時燃料使用量補正</value>
+  </data>
+  <data name="supplyAirBattleDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyAirBattleDhLabel.Text" xml:space="preserve">
+    <value>空軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="supplyAirStaticDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyAirStaticDhLabel.Text" xml:space="preserve">
+    <value>空軍の待機時物資使用量補正</value>
+  </data>
+  <data name="fuelLandBattleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="fuelLandBattleLabel.Text" xml:space="preserve">
+    <value>陸軍の戦闘時燃料使用量補正</value>
+  </data>
+  <data name="fuelLandStaticLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="fuelLandStaticLabel.Text" xml:space="preserve">
+    <value>陸軍の待機時燃料使用量補正</value>
+  </data>
+  <data name="supplyLandBattleDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="supplyLandBattleDhLabel.Text" xml:space="preserve">
+    <value>陸軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="suppyLandStaticDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="suppyLandStaticDhLabel.Text" xml:space="preserve">
+    <value>陸軍の待機時物資使用量補正</value>
+  </data>
+  <data name="convoyTransportsCapacityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="convoyTransportsCapacityLabel.Text" xml:space="preserve">
+    <value>船団輸送能力</value>
+  </data>
+  <data name="maxManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="maxManpowerLabel.Text" xml:space="preserve">
+    <value>最大人的資源</value>
+  </data>
+  <data name="desiredStockPilesSuppliesOilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 12</value>
+  </data>
+  <data name="desiredStockPilesSuppliesOilLabel.Text" xml:space="preserve">
+    <value>理想物資/燃料備蓄比率</value>
+  </data>
+  <data name="maxSuppliesOilDepotSizeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 12</value>
+  </data>
+  <data name="maxSuppliesOilDepotSizeLabel.Text" xml:space="preserve">
+    <value>物資/燃料備蓄上限値</value>
+  </data>
+  <data name="maxResourceDepotSizeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="maxResourceDepotSizeLabel.Text" xml:space="preserve">
+    <value>資源備蓄上限値</value>
+  </data>
+  <data name="overStockpileLimitDailyLossLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="overStockpileLimitDailyLossLabel.Text" xml:space="preserve">
+    <value>超過備蓄損失割合</value>
+  </data>
+  <data name="stockpileLimitMultiplierSuppliesOilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 12</value>
+  </data>
+  <data name="stockpileLimitMultiplierSuppliesOilLabel.Text" xml:space="preserve">
+    <value>物資/燃料備蓄上限補正</value>
+  </data>
+  <data name="stockpileLimitMultiplierResourceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="stockpileLimitMultiplierResourceLabel.Text" xml:space="preserve">
+    <value>資源備蓄上限補正</value>
+  </data>
+  <data name="provinceResourceRepairModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="provinceResourceRepairModifierLabel.Text" xml:space="preserve">
+    <value>資源回復速度補正</value>
+  </data>
+  <data name="provinceBuildingsRepairModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="provinceBuildingsRepairModifierLabel.Text" xml:space="preserve">
+    <value>建物修復速度補正</value>
+  </data>
+  <data name="transferAlliedCoreProvincesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 12</value>
+  </data>
+  <data name="transferAlliedCoreProvincesLabel.Text" xml:space="preserve">
+    <value>占領中の同盟国の中核州返還を許可</value>
+  </data>
+  <data name="provinceCanSoldNonAlliedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 12</value>
+  </data>
+  <data name="provinceCanSoldNonAlliedLabel.Text" xml:space="preserve">
+    <value>非同盟国にプロヴィンスの売却/譲渡を許可</value>
+  </data>
+  <data name="bluePrintsCanSoldNonAlliedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 12</value>
+  </data>
+  <data name="bluePrintsCanSoldNonAlliedLabel.Text" xml:space="preserve">
+    <value>非同盟国に青写真の売却を許可</value>
+  </data>
+  <data name="canUnitSendNonAlliedDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 12</value>
+  </data>
+  <data name="canUnitSendNonAlliedDhLabel.Text" xml:space="preserve">
+    <value>非同盟国に師団を譲渡できるかどうか</value>
+  </data>
+  <data name="maxRevoltRiskLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="maxRevoltRiskLabel.Text" xml:space="preserve">
+    <value>最大反乱率</value>
+  </data>
+  <data name="maxNationalismLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 12</value>
+  </data>
+  <data name="maxNationalismLabel.Text" xml:space="preserve">
+    <value>ナショナリズム最大値</value>
+  </data>
+  <data name="nationalismPerManpowerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 12</value>
+  </data>
+  <data name="nationalismPerManpowerDhLabel.Text" xml:space="preserve">
+    <value>人的資源によるナショナリズムの補正値</value>
+  </data>
+  <data name="reinforceToUpdateModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 12</value>
+  </data>
+  <data name="reinforceToUpdateModifierLabel.Text" xml:space="preserve">
+    <value>改良のための補充係数</value>
+  </data>
+  <data name="dailyRetiredManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="dailyRetiredManpowerLabel.Text" xml:space="preserve">
+    <value>人的資源の老化率</value>
+  </data>
+  <data name="manpowerMultiplierWartimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="manpowerMultiplierWartimeLabel.Text" xml:space="preserve">
+    <value>戦時の人的資源補正</value>
+  </data>
+  <data name="manpowerMultiplierPeacetimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="manpowerMultiplierPeacetimeLabel.Text" xml:space="preserve">
+    <value>平時の人的資源補正</value>
+  </data>
+  <data name="manpowerMultiplierWartimeOverseaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 12</value>
+  </data>
+  <data name="manpowerMultiplierWartimeOverseaLabel.Text" xml:space="preserve">
+    <value>戦時の海外州の人的資源補正</value>
+  </data>
+  <data name="manpowerMultiplierPuppetLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="manpowerMultiplierPuppetLabel.Text" xml:space="preserve">
+    <value>属国の人的資源補正</value>
+  </data>
+  <data name="resourceMultiplierPuppetLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 12</value>
+  </data>
+  <data name="resourceMultiplierPuppetLabel.Text" xml:space="preserve">
+    <value>属国の資源補正</value>
+  </data>
+  <data name="resourceMultiplierNonNationalAiLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 12</value>
+  </data>
+  <data name="resourceMultiplierNonNationalAiLabel.Text" xml:space="preserve">
+    <value>非中核州の資源補正(AI)</value>
+  </data>
+  <data name="resourceMultiplierNonOwnedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="resourceMultiplierNonOwnedLabel.Text" xml:space="preserve">
+    <value>占領地の資源補正</value>
+  </data>
+  <data name="resourceMultiplierNonNationalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="resourceMultiplierNonNationalLabel.Text" xml:space="preserve">
+    <value>非中核州の資源補正</value>
+  </data>
+  <data name="icMultiplierPuppetLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 12</value>
+  </data>
+  <data name="icMultiplierPuppetLabel.Text" xml:space="preserve">
+    <value>属国のIC補正</value>
+  </data>
+  <data name="dissentReductionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="dissentReductionLabel.Text" xml:space="preserve">
+    <value>不満度低下補正</value>
+  </data>
+  <data name="minFinalIcLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 12</value>
+  </data>
+  <data name="minFinalIcLabel.Text" xml:space="preserve">
+    <value>最小実効IC</value>
+  </data>
+  <data name="minAvailableIcLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 12</value>
+  </data>
+  <data name="minAvailableIcLabel.Text" xml:space="preserve">
+    <value>最小実効ICの比率</value>
+  </data>
+  <data name="economyTabPage3.Text" xml:space="preserve">
+    <value>経済3</value>
+  </data>
+  <data name="showThirdCountrySpyReportsDhComboBox.Items" xml:space="preserve">
+    <value>0: 報告しない</value>
+  </data>
+  <data name="showThirdCountrySpyReportsDhComboBox.Items1" xml:space="preserve">
+    <value>1: 検出分</value>
+  </data>
+  <data name="showThirdCountrySpyReportsDhComboBox.Items2" xml:space="preserve">
+    <value>2: 検出分+成功分</value>
+  </data>
+  <data name="showThirdCountrySpyReportsDhComboBox.Items3" xml:space="preserve">
+    <value>3: すべて</value>
+  </data>
+  <data name="closeButton4.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton4.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton4.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="spiesMoneyModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 12</value>
+  </data>
+  <data name="spiesMoneyModifierLabel.Text" xml:space="preserve">
+    <value>諜報資金割り当て補正</value>
+  </data>
+  <data name="showThirdCountrySpyReportsDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="showThirdCountrySpyReportsDhLabel.Text" xml:space="preserve">
+    <value>第三国の諜報活動を報告するか</value>
+  </data>
+  <data name="extraCostIncreasingAboveTenLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 12</value>
+  </data>
+  <data name="extraCostIncreasingAboveTenLabel.Text" xml:space="preserve">
+    <value>諜報レベル10超過時増加コスト</value>
+  </data>
+  <data name="extraMaintenanceCostAboveTenLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 12</value>
+  </data>
+  <data name="extraMaintenanceCostAboveTenLabel.Text" xml:space="preserve">
+    <value>諜報レベル10超過時追加維持コスト</value>
+  </data>
+  <data name="maxIcCostModifierDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="maxIcCostModifierDhLabel.Text" xml:space="preserve">
+    <value>諜報コスト補正の最大IC</value>
+  </data>
+  <data name="minIcCostModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="minIcCostModifierLabel.Text" xml:space="preserve">
+    <value>諜報コスト補正の最小IC</value>
+  </data>
+  <data name="icModifierCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 12</value>
+  </data>
+  <data name="icModifierCostLabel.Text" xml:space="preserve">
+    <value>諜報コストのIC補正</value>
+  </data>
+  <data name="spyInformationAccuracyModifierDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 12</value>
+  </data>
+  <data name="spyInformationAccuracyModifierDhLabel.Text" xml:space="preserve">
+    <value>情報の正確さ補正</value>
+  </data>
+  <data name="spyLevelBonusDistanceModifierAboveTenLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 12</value>
+  </data>
+  <data name="spyLevelBonusDistanceModifierAboveTenLabel.Text" xml:space="preserve">
+    <value>諜報レベル10超過時の距離補正</value>
+  </data>
+  <data name="spyLevelBonusDistanceModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 12</value>
+  </data>
+  <data name="spyLevelBonusDistanceModifierLabel.Text" xml:space="preserve">
+    <value>諜報レベルの距離補正</value>
+  </data>
+  <data name="distanceModifierNeighboursDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="distanceModifierNeighboursDhLabel.Text" xml:space="preserve">
+    <value>諜報任務の近隣国補正</value>
+  </data>
+  <data name="distanceModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="distanceModifierLabel.Text" xml:space="preserve">
+    <value>諜報任務の距離補正</value>
+  </data>
+  <data name="relationshipsHitDetectedMissionsDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 12</value>
+  </data>
+  <data name="relationshipsHitDetectedMissionsDhLabel.Text" xml:space="preserve">
+    <value>諜報任務発覚時の友好度低下量</value>
+  </data>
+  <data name="chanceDetectSpyMissionDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 12</value>
+  </data>
+  <data name="chanceDetectSpyMissionDhLabel.Text" xml:space="preserve">
+    <value>国内の諜報活動を発見する確率</value>
+  </data>
+  <data name="increateIntelligenceLevelDaysDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 12</value>
+  </data>
+  <data name="increateIntelligenceLevelDaysDhLabel.Text" xml:space="preserve">
+    <value>諜報レベルの増加間隔</value>
+  </data>
+  <data name="spyMissionDaysDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 12</value>
+  </data>
+  <data name="spyMissionDaysDhLabel.Text" xml:space="preserve">
+    <value>諜報任務の間隔</value>
+  </data>
+  <data name="intelligenceTabPage.Text" xml:space="preserve">
+    <value>諜報</value>
+  </data>
+  <data name="filterReleaseCountriesComboBox.Items" xml:space="preserve">
+    <value>0: タイプ0</value>
+  </data>
+  <data name="filterReleaseCountriesComboBox.Items1" xml:space="preserve">
+    <value>1: タイプ1</value>
+  </data>
+  <data name="filterReleaseCountriesComboBox.Items2" xml:space="preserve">
+    <value>2: タイプ2</value>
+  </data>
+  <data name="filterReleaseCountriesComboBox.Items3" xml:space="preserve">
+    <value>3: タイプ3</value>
+  </data>
+  <data name="changeTagCoupComboBox.Items" xml:space="preserve">
+    <value>0: オリジナル</value>
+  </data>
+  <data name="allowChangeHosHogComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="allowChangeHosHogComboBox.Items1" xml:space="preserve">
+    <value>1: 政府首班のみ</value>
+  </data>
+  <data name="allowChangeHosHogComboBox.Items2" xml:space="preserve">
+    <value>2: 国家元首のみ</value>
+  </data>
+  <data name="allowChangeHosHogComboBox.Items3" xml:space="preserve">
+    <value>3: 許可</value>
+  </data>
+  <data name="joinAutomaticallyAllesAxisComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="joinAutomaticallyAllesAxisComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="allowManualClaimsChangeComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="allowManualClaimsChangeComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="mastersBecomePuppetsPuppetsComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="mastersBecomePuppetsPuppetsComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="puppetsJoinMastersAllianceComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="puppetsJoinMastersAllianceComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="useMinisterPersonalityReplacingComboBox.Items" xml:space="preserve">
+    <value>0: 禁止</value>
+  </data>
+  <data name="useMinisterPersonalityReplacingComboBox.Items1" xml:space="preserve">
+    <value>1: 許可</value>
+  </data>
+  <data name="filterReleaseCountriesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="filterReleaseCountriesLabel.Text" xml:space="preserve">
+    <value>独立可能国設定</value>
+  </data>
+  <data name="changeTagCoupLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 12</value>
+  </data>
+  <data name="changeTagCoupLabel.Text" xml:space="preserve">
+    <value>クーデター発生時に兄弟国へ変更</value>
+  </data>
+  <data name="allowChangeHosHogLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 12</value>
+  </data>
+  <data name="allowChangeHosHogLabel.Text" xml:space="preserve">
+    <value>国家元首/政府首班の交代</value>
+  </data>
+  <data name="joinAutomaticallyAllesAxisLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 12</value>
+  </data>
+  <data name="joinAutomaticallyAllesAxisLabel.Text" xml:space="preserve">
+    <value>宣戦布告された時に対抗陣営へ自動加盟</value>
+  </data>
+  <data name="belligerenceClaimsRemovalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="belligerenceClaimsRemovalLabel.Text" xml:space="preserve">
+    <value>領有権撤回時の好戦性減少値</value>
+  </data>
+  <data name="belligerenceClaimedProvinceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="belligerenceClaimedProvinceLabel.Text" xml:space="preserve">
+    <value>領有権主張時の好戦性上昇値</value>
+  </data>
+  <data name="allowManualClaimsChangeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 12</value>
+  </data>
+  <data name="allowManualClaimsChangeLabel.Text" xml:space="preserve">
+    <value>領有権主張の変更を許可</value>
+  </data>
+  <data name="mastersBecomePuppetsPuppetsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 12</value>
+  </data>
+  <data name="mastersBecomePuppetsPuppetsLabel.Text" xml:space="preserve">
+    <value>属国の属国が設立できるか</value>
+  </data>
+  <data name="puppetsJoinMastersAllianceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 12</value>
+  </data>
+  <data name="puppetsJoinMastersAllianceLabel.Text" xml:space="preserve">
+    <value>属国が宗主国の同盟に強制参加する</value>
+  </data>
+  <data name="relationshipHitCancelPermanentTradeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 12</value>
+  </data>
+  <data name="relationshipHitCancelPermanentTradeLabel.Text" xml:space="preserve">
+    <value>永久貿易キャンセル時の友好度低下</value>
+  </data>
+  <data name="relationshipHitCancelTradeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 12</value>
+  </data>
+  <data name="relationshipHitCancelTradeLabel.Text" xml:space="preserve">
+    <value>貿易キャンセル時の友好度低下</value>
+  </data>
+  <data name="useMinisterPersonalityReplacingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 12</value>
+  </data>
+  <data name="useMinisterPersonalityReplacingLabel.Text" xml:space="preserve">
+    <value>閣僚交代時に閣僚特性を適用する</value>
+  </data>
+  <data name="requirementAffectSliderDhLabel.Text" xml:space="preserve">
+    <value>政策スライダーに影響を与えるためのIC比率</value>
+  </data>
+  <data name="timeBetweenSliderChangesDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 12</value>
+  </data>
+  <data name="timeBetweenSliderChangesDhLabel.Text" xml:space="preserve">
+    <value>スライダー移動の間隔</value>
+  </data>
+  <data name="daysBetweenDiplomaticMissionsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="daysBetweenDiplomaticMissionsLabel.Text" xml:space="preserve">
+    <value>外交官派遣間隔</value>
+  </data>
+  <data name="closeButton5.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton5.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton5.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="diplomacyTabPage.Text" xml:space="preserve">
+    <value>外交</value>
+  </data>
+  <data name="combatTabPage1.Text" xml:space="preserve">
+    <value>戦闘1</value>
+  </data>
+  <data name="combatTabPage2.Text" xml:space="preserve">
+    <value>戦闘2</value>
+  </data>
+  <data name="combatTabPage3.Text" xml:space="preserve">
+    <value>戦闘3</value>
+  </data>
+  <data name="combatTabPage4.Text" xml:space="preserve">
+    <value>戦闘4</value>
+  </data>
+  <data name="combatTabPage5.Text" xml:space="preserve">
+    <value>戦闘5</value>
+  </data>
+  <data name="missionTabPage1.Text" xml:space="preserve">
+    <value>任務1</value>
+  </data>
+  <data name="missionTabPage2.Text" xml:space="preserve">
+    <value>任務2</value>
+  </data>
+  <data name="countryTabPage.Text" xml:space="preserve">
+    <value>国家</value>
+  </data>
+  <data name="researchTabPage.Text" xml:space="preserve">
+    <value>研究</value>
+  </data>
+  <data name="tradeTabPage.Text" xml:space="preserve">
+    <value>貿易</value>
+  </data>
+  <data name="mapTabPage.Text" xml:space="preserve">
+    <value>マップ</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ゲーム設定エディタ</value>
+  </data>
+</root>
