@@ -219,6 +219,7 @@
             this.teamListView.OwnerDraw = true;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
+            this.teamListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
             this.teamListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.OnTeamListViewDrawColumnHeader);
             this.teamListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.OnTeamListViewDrawSubItem);
             this.teamListView.SelectedIndexChanged += new System.EventHandler(this.OnTeamListViewSelectedIndexChanged);

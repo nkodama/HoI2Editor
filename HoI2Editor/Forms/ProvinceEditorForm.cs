@@ -27,6 +27,45 @@ namespace HoI2Editor.Forms
         /// </summary>
         private readonly TreeNode _worldNode = new TreeNode {Text = Resources.World};
 
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private SortKey _key = SortKey.None;
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private SortOrder _order = SortOrder.Ascendant;
+
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private enum SortKey
+        {
+            None,
+            Name,
+            Id,
+            Sea,
+            Port,
+            Beach,
+            Infrastructure,
+            Ic,
+            Manpower,
+            Energy,
+            Metal,
+            RareMaterials,
+            Oil,
+        }
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private enum SortOrder
+        {
+            Ascendant,
+            Decendant,
+        }
+
         #endregion
 
         #region 初期化
@@ -320,6 +359,216 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     プロヴィンスリストをソートする
+        /// </summary>
+        private void SortProvinceList()
+        {
+            switch (_key)
+            {
+                case SortKey.None: // ソートなし
+                    break;
+
+                case SortKey.Name: // 名前
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => string.CompareOrdinal(province1.Name, province2.Name));
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => string.CompareOrdinal(province2.Name, province1.Name));
+                    }
+                    break;
+
+                case SortKey.Id: // ID
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => province1.Id - province2.Id);
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => province2.Id - province1.Id);
+                    }
+                    break;
+
+                case SortKey.Sea: // 海洋プロヴィンスかどうか
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) =>
+                            {
+                                if (province1.Terrain == TerrainId.Ocean && province2.Terrain != TerrainId.Ocean)
+                                {
+                                    return 1;
+                                }
+                                if (province2.Terrain == TerrainId.Ocean && province1.Terrain != TerrainId.Ocean)
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) =>
+                            {
+                                if (province2.Terrain == TerrainId.Ocean && province1.Terrain != TerrainId.Ocean)
+                                {
+                                    return 1;
+                                }
+                                if (province1.Terrain == TerrainId.Ocean && province2.Terrain != TerrainId.Ocean)
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    break;
+
+                case SortKey.Port: // 港の有無
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) =>
+                            {
+                                if (province1.PortAllowed && !province2.PortAllowed)
+                                {
+                                    return 1;
+                                }
+                                if (!province1.PortAllowed && province2.PortAllowed)
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) =>
+                            {
+                                if (province2.PortAllowed && !province1.PortAllowed)
+                                {
+                                    return 1;
+                                }
+                                if (!province2.PortAllowed && province1.PortAllowed)
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    break;
+
+                case SortKey.Beach: // 砂浜の有無
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) =>
+                            {
+                                if (province1.Beaches && !province2.Beaches)
+                                {
+                                    return 1;
+                                }
+                                if (!province1.Beaches && province2.Beaches)
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) =>
+                            {
+                                if (province2.Beaches && !province1.Beaches)
+                                {
+                                    return 1;
+                                }
+                                if (!province2.Beaches && province1.Beaches)
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    break;
+
+                case SortKey.Infrastructure: // インフラ
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => province1.Infrastructure - province2.Infrastructure);
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => province2.Infrastructure - province1.Infrastructure);
+                    }
+                    break;
+
+                case SortKey.Ic: // IC
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => province1.Ic - province2.Ic);
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => province2.Ic - province1.Ic);
+                    }
+                    break;
+
+                case SortKey.Manpower: // 労働力
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => Math.Sign(province1.Manpower - province2.Manpower));
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => Math.Sign(province2.Manpower - province1.Manpower));
+                    }
+                    break;
+
+                case SortKey.Energy: // エネルギー
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => province1.Energy - province2.Energy);
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => province2.Energy - province1.Energy);
+                    }
+                    break;
+
+                case SortKey.Metal: // 金属
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => province1.Metal - province2.Metal);
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => province2.Metal - province1.Metal);
+                    }
+                    break;
+
+                case SortKey.RareMaterials: // 希少資源
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => province1.RareMaterials - province2.RareMaterials);
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => province2.RareMaterials - province1.RareMaterials);
+                    }
+                    break;
+
+                case SortKey.Oil: // 石油
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((province1, province2) => province1.Oil - province2.Oil);
+                    }
+                    else
+                    {
+                        _list.Sort((province1, province2) => province2.Oil - province1.Oil);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     プロヴィンスリストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -328,6 +577,159 @@ namespace HoI2Editor.Forms
         {
             // 編集項目を更新する
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     閣僚リストビューのカラムクリック時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderListViewColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 名前
+                    if (_key == SortKey.Name)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Name;
+                    }
+                    break;
+
+                case 1: // ID
+                    if (_key == SortKey.Id)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Id;
+                    }
+                    break;
+
+                case 2: // 海洋プロヴィンスかどうか
+                    if (_key == SortKey.Sea)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Sea;
+                    }
+                    break;
+
+                case 3: // 港の有無
+                    if (_key == SortKey.Port)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Port;
+                    }
+                    break;
+
+                case 4: // 砂浜の有無
+                    if (_key == SortKey.Beach)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Beach;
+                    }
+                    break;
+
+                case 5: // インフラ
+                    if (_key == SortKey.Infrastructure)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Infrastructure;
+                    }
+                    break;
+
+                case 6: // IC
+                    if (_key == SortKey.Ic)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Ic;
+                    }
+                    break;
+
+                case 7: // 労働力
+                    if (_key == SortKey.Manpower)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Manpower;
+                    }
+                    break;
+
+                case 8: // エネルギー
+                    if (_key == SortKey.Energy)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Energy;
+                    }
+                    break;
+
+                case 9: // 金属
+                    if (_key == SortKey.Metal)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Metal;
+                    }
+                    break;
+
+                case 10: // 希少資源
+                    if (_key == SortKey.RareMaterials)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.RareMaterials;
+                    }
+                    break;
+
+                case 11: // 石油
+                    if (_key == SortKey.Oil)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Oil;
+                    }
+                    break;
+
+                default:
+                    // 項目のない列をクリックした時には何もしない
+                    return;
+            }
+
+            // プロヴィンスリストをソートする
+            SortProvinceList();
+
+            // プロヴィンスリストを更新する
+            UpdateProvinceList();
         }
 
         /// <summary>

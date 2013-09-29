@@ -173,6 +173,7 @@
             this.provinceListView.Name = "provinceListView";
             this.provinceListView.UseCompatibleStateImageBehavior = false;
             this.provinceListView.View = System.Windows.Forms.View.Details;
+            this.provinceListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
             this.provinceListView.SelectedIndexChanged += new System.EventHandler(this.OnProvinceListViewSelectedIndexChanged);
             // 
             // nameColumnHeader
@@ -344,6 +345,11 @@
             0,
             0,
             0});
+            this.idNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.idNumericUpDown.Name = "idNumericUpDown";
             this.idNumericUpDown.ReadOnly = true;
             // 

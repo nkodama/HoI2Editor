@@ -22,6 +22,40 @@ namespace HoI2Editor.Forms
         /// </summary>
         private readonly List<Team> _list = new List<Team>();
 
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private SortKey _key = SortKey.None;
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private SortOrder _order = SortOrder.Ascendant;
+
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private enum SortKey
+        {
+            None,
+            Tag,
+            Id,
+            Name,
+            Skill,
+            StartYear,
+            EndYear,
+            Speciality,
+        }
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private enum SortOrder
+        {
+            Ascendant,
+            Decendant,
+        }
+
         #endregion
 
         #region 初期化
@@ -115,6 +149,9 @@ namespace HoI2Editor.Forms
             // 研究機関リストを絞り込む
             NarrowTeamList();
 
+            // 研究機関リストをソートする
+            SortTeamList();
+
             // 研究機関リストの表示を更新する
             UpdateTeamList();
 
@@ -192,6 +229,213 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     研究機関リストをソートする
+        /// </summary>
+        private void SortTeamList()
+        {
+            switch (_key)
+            {
+                case SortKey.None: // ソートなし
+                    break;
+
+                case SortKey.Tag: // 国タグ
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((team1, team2) => team1.Country - team2.Country);
+                    }
+                    else
+                    {
+                        _list.Sort((team1, team2) => team2.Country - team1.Country);
+                    }
+                    break;
+
+                case SortKey.Id: // ID
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((team1, team2) => team1.Id - team2.Id);
+                    }
+                    else
+                    {
+                        _list.Sort((team1, team2) => team2.Id - team1.Id);
+                    }
+                    break;
+
+                case SortKey.Name: // 名前
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((team1, team2) => string.CompareOrdinal(team1.Name, team2.Name));
+                    }
+                    else
+                    {
+                        _list.Sort((team1, team2) => string.CompareOrdinal(team2.Name, team1.Name));
+                    }
+                    break;
+
+                case SortKey.Skill: // スキル
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((team1, team2) => team1.Skill - team2.Skill);
+                    }
+                    else
+                    {
+                        _list.Sort((team1, team2) => team2.Skill - team1.Skill);
+                    }
+                    break;
+
+                case SortKey.StartYear: // 開始年
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((team1, team2) => team1.StartYear - team2.StartYear);
+                    }
+                    else
+                    {
+                        _list.Sort((team1, team2) => team2.StartYear - team1.StartYear);
+                    }
+                    break;
+
+                case SortKey.EndYear: // 終了年
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((team1, team2) => team1.EndYear - team2.EndYear);
+                    }
+                    else
+                    {
+                        _list.Sort((team1, team2) => team2.EndYear - team1.EndYear);
+                    }
+                    break;
+
+                case SortKey.Speciality: // 特性
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((team1, team2) =>
+                            {
+                                if (team1.Specialities[0] > team2.Specialities[0])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[0] < team2.Specialities[0])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[1] > team2.Specialities[1])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[1] < team2.Specialities[1])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[2] > team2.Specialities[2])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[2] < team2.Specialities[2])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[3] > team2.Specialities[3])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[3] < team2.Specialities[3])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[4] > team2.Specialities[4])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[4] < team2.Specialities[4])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[5] > team2.Specialities[5])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[5] < team2.Specialities[5])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[6] > team2.Specialities[6])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[6] < team2.Specialities[6])
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    else
+                    {
+                        _list.Sort((team1, team2) =>
+                            {
+                                if (team1.Specialities[0] < team2.Specialities[0])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[0] > team2.Specialities[0])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[1] < team2.Specialities[1])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[1] > team2.Specialities[1])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[2] < team2.Specialities[2])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[2] > team2.Specialities[2])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[3] < team2.Specialities[3])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[3] > team2.Specialities[3])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[4] < team2.Specialities[4])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[4] > team2.Specialities[4])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[5] < team2.Specialities[5])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[5] > team2.Specialities[5])
+                                {
+                                    return -1;
+                                }
+                                if (team1.Specialities[6] < team2.Specialities[6])
+                                {
+                                    return 1;
+                                }
+                                if (team1.Specialities[6] > team2.Specialities[6])
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     研究機関リストビューのサブ項目描画処理
         /// </summary>
         /// <param name="sender"></param>
@@ -260,6 +504,104 @@ namespace HoI2Editor.Forms
         {
             // 編集項目を更新する
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     研究機関リストビューのカラムクリック時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderListViewColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 国タグ
+                    if (_key == SortKey.Tag)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Tag;
+                    }
+                    break;
+
+                case 1: // ID
+                    if (_key == SortKey.Id)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Id;
+                    }
+                    break;
+
+                case 2: // 名前
+                    if (_key == SortKey.Name)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Name;
+                    }
+                    break;
+
+                case 3: // スキル
+                    if (_key == SortKey.Skill)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Skill;
+                    }
+                    break;
+
+                case 4: // 開始年
+                    if (_key == SortKey.StartYear)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.StartYear;
+                    }
+                    break;
+
+                case 5: // 終了年
+                    if (_key == SortKey.EndYear)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.EndYear;
+                    }
+                    break;
+
+                case 6: // 特性
+                    if (_key == SortKey.Speciality)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Speciality;
+                    }
+                    break;
+
+                default:
+                    // 項目のない列をクリックした時には何もしない
+                    return;
+            }
+
+            // 研究機関リストをソートする
+            SortTeamList();
+
+            // 研究機関リストを更新する
+            UpdateTeamList();
         }
 
         /// <summary>

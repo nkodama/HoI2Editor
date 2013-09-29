@@ -22,6 +22,42 @@ namespace HoI2Editor.Forms
         /// </summary>
         private readonly List<Leader> _list = new List<Leader>();
 
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private SortKey _key = SortKey.None;
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private SortOrder _order = SortOrder.Ascendant;
+
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private enum SortKey
+        {
+            None,
+            Tag,
+            Id,
+            Name,
+            Branch,
+            Skill,
+            MaxSkill,
+            StartYear,
+            EndYear,
+            Traits,
+        }
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private enum SortOrder
+        {
+            Ascendant,
+            Decendant,
+        }
+
         #endregion
 
         #region 初期化
@@ -111,6 +147,9 @@ namespace HoI2Editor.Forms
 
             // 指揮官リストを絞り込む
             NarrowLeaderList();
+
+            // 指揮官リストをソートする
+            SortLeaderList();
 
             // 指揮官リストの表示を更新する
             UpdateLeaderList();
@@ -248,6 +287,117 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     指揮官リストをソートする
+        /// </summary>
+        private void SortLeaderList()
+        {
+            switch (_key)
+            {
+                case SortKey.None: // ソートなし
+                    break;
+
+                case SortKey.Tag: // 国タグ
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => leader1.Country - leader2.Country);
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => leader2.Country - leader1.Country);
+                    }
+                    break;
+
+                case SortKey.Id: // ID
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => leader1.Id - leader2.Id);
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => leader2.Id - leader1.Id);
+                    }
+                    break;
+
+                case SortKey.Name: // 名前
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => string.CompareOrdinal(leader1.Name, leader2.Name));
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => string.CompareOrdinal(leader2.Name, leader1.Name));
+                    }
+                    break;
+
+                case SortKey.Branch: // 兵科
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => leader1.Branch - leader2.Branch);
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => leader2.Branch - leader1.Branch);
+                    }
+                    break;
+
+                case SortKey.Skill: // スキル
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => leader1.Skill - leader2.Skill);
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => leader2.Skill - leader1.Skill);
+                    }
+                    break;
+
+                case SortKey.MaxSkill: // 最大スキル
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => leader1.MaxSkill - leader2.MaxSkill);
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => leader2.MaxSkill - leader1.MaxSkill);
+                    }
+                    break;
+
+                case SortKey.StartYear: // 開始年
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => leader1.StartYear - leader2.StartYear);
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => leader2.StartYear - leader1.StartYear);
+                    }
+                    break;
+
+                case SortKey.EndYear: // 終了年
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => leader1.EndYear - leader2.EndYear);
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => leader2.EndYear - leader1.EndYear);
+                    }
+                    break;
+
+                case SortKey.Traits: // 特性
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((leader1, leader2) => (int) ((long) leader1.Traits - (long) leader2.Traits));
+                    }
+                    else
+                    {
+                        _list.Sort((leader1, leader2) => (int) ((long) leader2.Traits - (long) leader1.Traits));
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     指揮官リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -256,6 +406,126 @@ namespace HoI2Editor.Forms
         {
             // 編集項目を更新する
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     指揮官リストビューのカラムクリック時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderListViewColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 国タグ
+                    if (_key == SortKey.Tag)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Tag;
+                    }
+                    break;
+
+                case 1: // ID
+                    if (_key == SortKey.Id)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Id;
+                    }
+                    break;
+
+                case 2: // 名前
+                    if (_key == SortKey.Name)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Name;
+                    }
+                    break;
+
+                case 3: // 兵科
+                    if (_key == SortKey.Branch)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Branch;
+                    }
+                    break;
+
+                case 4: // スキル
+                    if (_key == SortKey.Skill)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Skill;
+                    }
+                    break;
+
+                case 5: // 最大スキル
+                    if (_key == SortKey.MaxSkill)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.MaxSkill;
+                    }
+                    break;
+
+                case 6: // 開始年
+                    if (_key == SortKey.StartYear)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.StartYear;
+                    }
+                    break;
+
+                case 7: // 終了年
+                    if (_key == SortKey.EndYear)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.EndYear;
+                    }
+                    break;
+
+                case 8: // 特性
+                    if (_key == SortKey.Traits)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Traits;
+                    }
+                    break;
+
+                default:
+                    // 項目のない列をクリックした時には何もしない
+                    return;
+            }
+
+            // 指揮官リストをソートする
+            SortLeaderList();
+
+            // 指揮官リストを更新する
+            UpdateLeaderList();
         }
 
         /// <summary>

@@ -633,6 +633,450 @@
   <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.Name" xml:space="preserve">
+    <value>fillYNumericUpDown4</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown4.Name" xml:space="preserve">
+    <value>fillXNumericUpDown4</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown4.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.Name" xml:space="preserve">
+    <value>fillYNumericUpDown3</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown3.Name" xml:space="preserve">
+    <value>fillXNumericUpDown3</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown3.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.Name" xml:space="preserve">
+    <value>fillYNumericUpDown2</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.Name" xml:space="preserve">
+    <value>fillXNumericUpDown2</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown1.Name" xml:space="preserve">
+    <value>fillYNumericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown1.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown1.Name" xml:space="preserve">
+    <value>fillXNumericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown1.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.Name" xml:space="preserve">
+    <value>fillLabel</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;counterYNumericUpDown.Name" xml:space="preserve">
+    <value>counterYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;counterYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;counterYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;counterYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.Name" xml:space="preserve">
+    <value>counterXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.Name" xml:space="preserve">
+    <value>counterLabel</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;aaYNumericUpDown.Name" xml:space="preserve">
+    <value>aaYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;aaYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;aaYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;aaYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.Name" xml:space="preserve">
+    <value>aaXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.Name" xml:space="preserve">
+    <value>aaLabel</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.Name" xml:space="preserve">
+    <value>fortYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.Name" xml:space="preserve">
+    <value>fortXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;fortLabel.Name" xml:space="preserve">
+    <value>fortLabel</value>
+  </data>
+  <data name="&gt;&gt;fortLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fortLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fortLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;beachIconNumericUpDown.Name" xml:space="preserve">
+    <value>beachIconNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;beachIconNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;beachIconNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;beachIconNumericUpDown.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;beachIconLabel.Name" xml:space="preserve">
+    <value>beachIconLabel</value>
+  </data>
+  <data name="&gt;&gt;beachIconLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;beachIconLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;beachIconLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;beachYNumericUpDown.Name" xml:space="preserve">
+    <value>beachYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;beachYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;beachYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;beachYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;beachXNumericUpDown.Name" xml:space="preserve">
+    <value>beachXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;beachXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;beachXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;beachXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;beachCheckBox.Name" xml:space="preserve">
+    <value>beachCheckBox</value>
+  </data>
+  <data name="&gt;&gt;beachCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;beachCheckBox.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;beachCheckBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneComboBox.Name" xml:space="preserve">
+    <value>portSeaZoneComboBox</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneComboBox.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneComboBox.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.Name" xml:space="preserve">
+    <value>portSeaZoneNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneLabel.Name" xml:space="preserve">
+    <value>portSeaZoneLabel</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneLabel.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.Name" xml:space="preserve">
+    <value>portYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;portXNumericUpDown.Name" xml:space="preserve">
+    <value>portXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;portXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.Name" xml:space="preserve">
+    <value>portCheckBox</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;armyYNumericUpDown.Name" xml:space="preserve">
+    <value>armyYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;armyYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;armyYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;armyYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;armyXNumericUpDown.Name" xml:space="preserve">
+    <value>armyXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;armyXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;armyXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;armyXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.Name" xml:space="preserve">
+    <value>armyLabel</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;cityYNumericUpDown.Name" xml:space="preserve">
+    <value>cityYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;cityYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cityYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;cityYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;cityXNumericUpDown.Name" xml:space="preserve">
+    <value>cityXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;cityXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cityXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;cityXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;cityLabel.Name" xml:space="preserve">
+    <value>cityLabel</value>
+  </data>
+  <data name="&gt;&gt;cityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cityLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;cityLabel.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="positionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>291, 427</value>
+  </data>
+  <data name="positionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 206</value>
+  </data>
+  <data name="positionGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="positionGroupBox.Text" xml:space="preserve">
+    <value>Position Settings</value>
+  </data>
+  <data name="&gt;&gt;positionGroupBox.Name" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;positionGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;positionGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;positionGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="fillYNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
     <value>351, 173</value>
   </data>
@@ -1500,30 +1944,6 @@
   <data name="&gt;&gt;cityLabel.ZOrder" xml:space="preserve">
     <value>34</value>
   </data>
-  <data name="positionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 427</value>
-  </data>
-  <data name="positionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 206</value>
-  </data>
-  <data name="positionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="positionGroupBox.Text" xml:space="preserve">
-    <value>Position Settings</value>
-  </data>
-  <data name="&gt;&gt;positionGroupBox.Name" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;positionGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;positionGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;positionGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -1613,6 +2033,198 @@
   </data>
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="&gt;&gt;oilNumericUpDown.Name" xml:space="preserve">
+    <value>oilNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;oilNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oilNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oilNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.Name" xml:space="preserve">
+    <value>oilLabel</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.Name" xml:space="preserve">
+    <value>rareMaterialsNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsLabel.Name" xml:space="preserve">
+    <value>rareMaterialsLabel</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.Name" xml:space="preserve">
+    <value>metalNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;metalLabel.Name" xml:space="preserve">
+    <value>metalLabel</value>
+  </data>
+  <data name="&gt;&gt;metalLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;metalLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;metalLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;energyNumericUpDown.Name" xml:space="preserve">
+    <value>energyNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;energyNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;energyNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;energyNumericUpDown.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;energyLabel.Name" xml:space="preserve">
+    <value>energyLabel</value>
+  </data>
+  <data name="&gt;&gt;energyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;energyLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;energyLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;manpowerNumericUpDown.Name" xml:space="preserve">
+    <value>manpowerNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;manpowerNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;manpowerNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;manpowerNumericUpDown.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;manpowerLabel.Name" xml:space="preserve">
+    <value>manpowerLabel</value>
+  </data>
+  <data name="&gt;&gt;manpowerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;manpowerLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;manpowerLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.Name" xml:space="preserve">
+    <value>icNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;icLabel.Name" xml:space="preserve">
+    <value>icLabel</value>
+  </data>
+  <data name="&gt;&gt;icLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;icLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;icLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;infraNumericUpDown.Name" xml:space="preserve">
+    <value>infraNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;infraNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;infraNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;infraNumericUpDown.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;infraLabel.Name" xml:space="preserve">
+    <value>infraLabel</value>
+  </data>
+  <data name="&gt;&gt;infraLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;infraLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;infraLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="resourceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>563, 206</value>
+  </data>
+  <data name="resourceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 212</value>
+  </data>
+  <data name="resourceGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="resourceGroupBox.Text" xml:space="preserve">
+    <value>Resource Settings</value>
+  </data>
+  <data name="&gt;&gt;resourceGroupBox.Name" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;resourceGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resourceGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;resourceGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="oilNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 175</value>
@@ -1970,30 +2582,6 @@
   </data>
   <data name="&gt;&gt;infraLabel.ZOrder" xml:space="preserve">
     <value>13</value>
-  </data>
-  <data name="resourceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>563, 206</value>
-  </data>
-  <data name="resourceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 212</value>
-  </data>
-  <data name="resourceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="resourceGroupBox.Text" xml:space="preserve">
-    <value>Resource Settings</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.Name" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="provincePictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 213</value>

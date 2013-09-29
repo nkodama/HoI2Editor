@@ -22,6 +22,41 @@ namespace HoI2Editor.Forms
         /// </summary>
         private readonly List<Minister> _list = new List<Minister>();
 
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private SortKey _key = SortKey.None;
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private SortOrder _order = SortOrder.Ascendant;
+
+        /// <summary>
+        ///     ソート対象
+        /// </summary>
+        private enum SortKey
+        {
+            None,
+            Tag,
+            Id,
+            Name,
+            StartYear,
+            EndYear,
+            Position,
+            Personality,
+            Ideology,
+        }
+
+        /// <summary>
+        ///     ソート順
+        /// </summary>
+        private enum SortOrder
+        {
+            Ascendant,
+            Decendant,
+        }
+
         #endregion
 
         #region 初期化
@@ -112,6 +147,9 @@ namespace HoI2Editor.Forms
             // 閣僚リストを絞り込む
             NarrowMinisterList();
 
+            // 閣僚リストをソートする
+            SortMinisterList();
+
             // 閣僚リストの表示を更新する
             UpdateMinisterList();
 
@@ -187,6 +225,106 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     閣僚リストをソートする
+        /// </summary>
+        private void SortMinisterList()
+        {
+            switch (_key)
+            {
+                case SortKey.None: // ソートなし
+                    break;
+
+                case SortKey.Tag: // 国タグ
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => minister1.Country - minister2.Country);
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => minister2.Country - minister1.Country);
+                    }
+                    break;
+
+                case SortKey.Id: // ID
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => minister1.Id - minister2.Id);
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => minister2.Id - minister1.Id);
+                    }
+                    break;
+
+                case SortKey.Name: // 名前
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => string.CompareOrdinal(minister1.Name, minister2.Name));
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => string.CompareOrdinal(minister2.Name, minister1.Name));
+                    }
+                    break;
+
+                case SortKey.StartYear: // 開始年
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => minister1.StartYear - minister2.StartYear);
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => minister2.StartYear - minister1.StartYear);
+                    }
+                    break;
+
+                case SortKey.EndYear: // 終了年
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => minister1.EndYear - minister2.EndYear);
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => minister2.EndYear - minister1.EndYear);
+                    }
+                    break;
+
+                case SortKey.Position: // 地位
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => minister1.Position - minister2.Position);
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => minister2.Position - minister1.Position);
+                    }
+                    break;
+
+                case SortKey.Personality: // 特性
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => minister1.Personality - minister2.Personality);
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => minister2.Personality - minister1.Personality);
+                    }
+                    break;
+
+                case SortKey.Ideology: // イデオロギー
+                    if (_order == SortOrder.Ascendant)
+                    {
+                        _list.Sort((minister1, minister2) => minister1.Ideology - minister2.Ideology);
+                    }
+                    else
+                    {
+                        _list.Sort((minister1, minister2) => minister2.Ideology - minister1.Ideology);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     閣僚リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -195,6 +333,115 @@ namespace HoI2Editor.Forms
         {
             // 編集項目を更新する
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     閣僚リストビューのカラムクリック時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderListViewColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 国タグ
+                    if (_key == SortKey.Tag)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Tag;
+                    }
+                    break;
+
+                case 1: // ID
+                    if (_key == SortKey.Id)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Id;
+                    }
+                    break;
+
+                case 2: // 名前
+                    if (_key == SortKey.Name)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Name;
+                    }
+                    break;
+
+                case 3: // 開始年
+                    if (_key == SortKey.StartYear)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.StartYear;
+                    }
+                    break;
+
+                case 4: // 終了年
+                    if (_key == SortKey.EndYear)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.EndYear;
+                    }
+                    break;
+
+                case 5: // 地位
+                    if (_key == SortKey.Position)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Position;
+                    }
+                    break;
+
+                case 6: // 特性
+                    if (_key == SortKey.Personality)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Personality;
+                    }
+                    break;
+
+                case 7: // イデオロギー
+                    if (_key == SortKey.Ideology)
+                    {
+                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                    }
+                    else
+                    {
+                        _key = SortKey.Ideology;
+                    }
+                    break;
+
+                default:
+                    // 項目のない列をクリックした時には何もしない
+                    return;
+            }
+
+            // 閣僚リストをソートする
+            SortMinisterList();
+
+            // 閣僚リストを更新する
+            UpdateMinisterList();
         }
 
         /// <summary>

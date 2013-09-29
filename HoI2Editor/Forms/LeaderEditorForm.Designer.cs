@@ -417,6 +417,7 @@
             this.leaderListView.Name = "leaderListView";
             this.leaderListView.UseCompatibleStateImageBehavior = false;
             this.leaderListView.View = System.Windows.Forms.View.Details;
+            this.leaderListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
             this.leaderListView.SelectedIndexChanged += new System.EventHandler(this.OnLeaderListViewSelectedIndexChanged);
             // 
             // branchColumnHeader
