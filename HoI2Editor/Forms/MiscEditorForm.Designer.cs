@@ -477,6 +477,141 @@
             this.saveButton5 = new System.Windows.Forms.Button();
             this.reloadButton5 = new System.Windows.Forms.Button();
             this.combatTabPage1 = new System.Windows.Forms.TabPage();
+            this.subStacksDetectionModifierTextBox = new System.Windows.Forms.TextBox();
+            this.subStacksDetectionModifierLabel = new System.Windows.Forms.Label();
+            this.subsStrDamageTextBox = new System.Windows.Forms.TextBox();
+            this.subsStrDamageLabel = new System.Windows.Forms.Label();
+            this.subsOrgDamageTextBox = new System.Windows.Forms.TextBox();
+            this.subsOrgDamageLabel = new System.Windows.Forms.Label();
+            this.airStrDamageTextBox = new System.Windows.Forms.TextBox();
+            this.airStrDamageLabel = new System.Windows.Forms.Label();
+            this.airStrDamageOrgTextBox = new System.Windows.Forms.TextBox();
+            this.airStrDamageOrgLabel = new System.Windows.Forms.Label();
+            this.airOrgDamageTextBox = new System.Windows.Forms.TextBox();
+            this.airOrgDamageLabel = new System.Windows.Forms.Label();
+            this.chanceLeaderDyingTextBox = new System.Windows.Forms.TextBox();
+            this.chanceLeaderDyingLabel = new System.Windows.Forms.Label();
+            this.bonusEventTraitTextBox = new System.Windows.Forms.TextBox();
+            this.bonusEventTraitLabel = new System.Windows.Forms.Label();
+            this.bonusTerrainTraitTextBox = new System.Windows.Forms.TextBox();
+            this.bonusTerrainTraitLabel = new System.Windows.Forms.Label();
+            this.chanceGetEventTraitTextBox = new System.Windows.Forms.TextBox();
+            this.chanceGetEventTraitLabel = new System.Windows.Forms.Label();
+            this.chanceGetTerrainTraitTextBox = new System.Windows.Forms.TextBox();
+            this.chanceGetTerrainTraitLabel = new System.Windows.Forms.Label();
+            this.chanceAvoidNoDefencesTextBox = new System.Windows.Forms.TextBox();
+            this.chanceAvoidNoDefencesLabel = new System.Windows.Forms.Label();
+            this.chanceAvoidDefencesLeftTextBox = new System.Windows.Forms.TextBox();
+            this.chanceAvoidDefencesLeftLabel = new System.Windows.Forms.Label();
+            this.howEffectiveGroundDefTextBox = new System.Windows.Forms.TextBox();
+            this.howEffectiveGroundDefLabel = new System.Windows.Forms.Label();
+            this.damageResourcesBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageResourcesBombingLabel = new System.Windows.Forms.Label();
+            this.damageIcBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageIcBombingLabel = new System.Windows.Forms.Label();
+            this.damageInfraBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageInfraBombingLabel = new System.Windows.Forms.Label();
+            this.damageRadarBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageRadarBombingLabel = new System.Windows.Forms.Label();
+            this.damageNukeBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageNukeBombingLabel = new System.Windows.Forms.Label();
+            this.damageRocketBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageRocketBombingLabel = new System.Windows.Forms.Label();
+            this.damageAaBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageAaBombingLabel = new System.Windows.Forms.Label();
+            this.damageAirBaseBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageAirBaseBombingLabel = new System.Windows.Forms.Label();
+            this.damageNavalBasesBombingTextBox = new System.Windows.Forms.TextBox();
+            this.damageNavalBasesBombingLabel = new System.Windows.Forms.Label();
+            this.effectExperienceCombatTextBox = new System.Windows.Forms.TextBox();
+            this.effectExperienceCombatLabel = new System.Windows.Forms.Label();
+            this.maximumSizesAirStacksTextBox = new System.Windows.Forms.TextBox();
+            this.maximumSizesAirStacksLabel = new System.Windows.Forms.Label();
+            this.delayAfterCombatEndsTextBox = new System.Windows.Forms.TextBox();
+            this.delayAfterCombatEndsLabel = new System.Windows.Forms.Label();
+            this.convoyProtectionFactorTextBox = new System.Windows.Forms.TextBox();
+            this.convoyProtectionFactorLabel = new System.Windows.Forms.Label();
+            this.hqCommandLimitFactorTextBox = new System.Windows.Forms.TextBox();
+            this.hqCommandLimitFactorLabel = new System.Windows.Forms.Label();
+            this.navalLeaderCommandLimitRank3TextBox = new System.Windows.Forms.TextBox();
+            this.navalLeaderCommandLimitRank3Label = new System.Windows.Forms.Label();
+            this.navalLeaderCommandLimitRank2TextBox = new System.Windows.Forms.TextBox();
+            this.navalLeaderCommandLimitRank2Label = new System.Windows.Forms.Label();
+            this.navalLeaderCommandLimitRank1TextBox = new System.Windows.Forms.TextBox();
+            this.navalLeaderCommandLimitRank1Label = new System.Windows.Forms.Label();
+            this.navalLeaderCommandLimitRank0TextBox = new System.Windows.Forms.TextBox();
+            this.navalLeaderCommandLimitRank0Label = new System.Windows.Forms.Label();
+            this.airLeaderCommandLimitRank3TextBox = new System.Windows.Forms.TextBox();
+            this.airLeaderCommandLimitRank3Label = new System.Windows.Forms.Label();
+            this.airLeaderCommandLimitRank2TextBox = new System.Windows.Forms.TextBox();
+            this.airLeaderCommandLimitRank2Label = new System.Windows.Forms.Label();
+            this.airLeaderCommandLimitRank1TextBox = new System.Windows.Forms.TextBox();
+            this.airLeaderCommandLimitRank1Label = new System.Windows.Forms.Label();
+            this.airLeaderCommandLimitRank0TextBox = new System.Windows.Forms.TextBox();
+            this.airLeaderCommandLimitRank0Label = new System.Windows.Forms.Label();
+            this.landLeaderCommandLimitRank3TextBox = new System.Windows.Forms.TextBox();
+            this.landLeaderCommandLimitRank3Label = new System.Windows.Forms.Label();
+            this.landLeaderCommandLimitRank2TextBox = new System.Windows.Forms.TextBox();
+            this.landLeaderCommandLimitRank2Label = new System.Windows.Forms.Label();
+            this.landLeaderCommandLimitRank1TextBox = new System.Windows.Forms.TextBox();
+            this.landLeaderCommandLimitRank1Label = new System.Windows.Forms.Label();
+            this.landLeaderCommandLimitRank0TextBox = new System.Windows.Forms.TextBox();
+            this.landLeaderCommandLimitRank0Label = new System.Windows.Forms.Label();
+            this.navalOverstackingModifierTextBox = new System.Windows.Forms.TextBox();
+            this.navalOverstackingModifierLabel = new System.Windows.Forms.Label();
+            this.airOverstackingModifierTextBox = new System.Windows.Forms.TextBox();
+            this.airOverstackingModifierLabel = new System.Windows.Forms.Label();
+            this.interceptorBomberModifierTextBox = new System.Windows.Forms.TextBox();
+            this.interceptorBomberModifierLabel = new System.Windows.Forms.Label();
+            this.raderStationMultiplierTextBox = new System.Windows.Forms.TextBox();
+            this.raderStationMultiplierLabel = new System.Windows.Forms.Label();
+            this.supplyProblemsModifierTextBox = new System.Windows.Forms.TextBox();
+            this.supplyProblemsModifierLabel = new System.Windows.Forms.Label();
+            this.dissentMultiplierTextBox = new System.Windows.Forms.TextBox();
+            this.dissentMultiplierLabel = new System.Windows.Forms.Label();
+            this.coastalFortMultiplierTextBox = new System.Windows.Forms.TextBox();
+            this.coastalFortMultiplierLabel = new System.Windows.Forms.Label();
+            this.landFortMultiplierTextBox = new System.Windows.Forms.TextBox();
+            this.landFortMultiplierLabel = new System.Windows.Forms.Label();
+            this.encircledModifierTextBox = new System.Windows.Forms.TextBox();
+            this.encircledModifierLabel = new System.Windows.Forms.Label();
+            this.envelopmentModifierTextBox = new System.Windows.Forms.TextBox();
+            this.envelopmentModifierLabel = new System.Windows.Forms.Label();
+            this.navalCommandLimitModifierTextBox = new System.Windows.Forms.TextBox();
+            this.navalCommandLimitModifierLabel = new System.Windows.Forms.Label();
+            this.airCommandLimitModifierTextBox = new System.Windows.Forms.TextBox();
+            this.airCommandLimitModifierLabel = new System.Windows.Forms.Label();
+            this.landCommandLimitModifierTextBox = new System.Windows.Forms.TextBox();
+            this.landCommandLimitModifierLabel = new System.Windows.Forms.Label();
+            this.surpriseModifierTextBox = new System.Windows.Forms.TextBox();
+            this.surpriseModifierLabel = new System.Windows.Forms.Label();
+            this.defensiveCombinedArmsBonusTextBox = new System.Windows.Forms.TextBox();
+            this.defensiveCombinedArmsBonusLabel = new System.Windows.Forms.Label();
+            this.offensiveCombinedArmsBonusTextBox = new System.Windows.Forms.TextBox();
+            this.offensiveCombinedArmsBonusLabel = new System.Windows.Forms.Label();
+            this.multipleCombatModifierTextBox = new System.Windows.Forms.TextBox();
+            this.multipleCombatModifierLabel = new System.Windows.Forms.Label();
+            this.invasionModifierTextBox = new System.Windows.Forms.TextBox();
+            this.invasionModifierLabel = new System.Windows.Forms.Label();
+            this.shoreBombardmentModifierTextBox = new System.Windows.Forms.TextBox();
+            this.shoreBombardmentModifierLabel = new System.Windows.Forms.Label();
+            this.baseProximityTextBox = new System.Windows.Forms.TextBox();
+            this.baseProximityLabel = new System.Windows.Forms.Label();
+            this.attritionSeverityModifierTextBox = new System.Windows.Forms.TextBox();
+            this.attritionSeverityModifierLabel = new System.Windows.Forms.Label();
+            this.leaderXpGainFactorTextBox = new System.Windows.Forms.TextBox();
+            this.leaderXpGainFactorLabel = new System.Windows.Forms.Label();
+            this.divisionXpGainFactorTextBox = new System.Windows.Forms.TextBox();
+            this.divisionXpGainFactorLabel = new System.Windows.Forms.Label();
+            this.airXpGainFactorTextBox = new System.Windows.Forms.TextBox();
+            this.airXpGainFactorLabel = new System.Windows.Forms.Label();
+            this.navalXpGainFactorTextBox = new System.Windows.Forms.TextBox();
+            this.navalXpGainFactorLabel = new System.Windows.Forms.Label();
+            this.landXpGainFactorTextBox = new System.Windows.Forms.TextBox();
+            this.landXpGainFactorLabel = new System.Windows.Forms.Label();
+            this.closeButton6 = new System.Windows.Forms.Button();
+            this.saveButton6 = new System.Windows.Forms.Button();
+            this.reloadButton6 = new System.Windows.Forms.Button();
             this.combatTabPage2 = new System.Windows.Forms.TabPage();
             this.combatTabPage3 = new System.Windows.Forms.TabPage();
             this.combatTabPage4 = new System.Windows.Forms.TabPage();
@@ -495,10 +630,12 @@
             this.economyTabPage3.SuspendLayout();
             this.intelligenceTabPage.SuspendLayout();
             this.diplomacyTabPage.SuspendLayout();
+            this.combatTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // miscTabControl
             // 
+            resources.ApplyResources(this.miscTabControl, "miscTabControl");
             this.miscTabControl.Controls.Add(this.economyTabPage1);
             this.miscTabControl.Controls.Add(this.economyTabPage2);
             this.miscTabControl.Controls.Add(this.economyTabPage3);
@@ -517,12 +654,12 @@
             this.miscTabControl.Controls.Add(this.aiTabPage);
             this.miscTabControl.Controls.Add(this.modTabPage);
             this.miscTabControl.Controls.Add(this.mapTabPage);
-            resources.ApplyResources(this.miscTabControl, "miscTabControl");
             this.miscTabControl.Name = "miscTabControl";
             this.miscTabControl.SelectedIndex = 0;
             // 
             // economyTabPage1
             // 
+            resources.ApplyResources(this.economyTabPage1, "economyTabPage1");
             this.economyTabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.economyTabPage1.Controls.Add(this.aiPeacetimeSpyMissionsComboBox);
             this.economyTabPage1.Controls.Add(this.showThirdCountrySpyReportsComboBox);
@@ -653,11 +790,11 @@
             this.economyTabPage1.Controls.Add(this.icToSuppliesRatioLabel);
             this.economyTabPage1.Controls.Add(this.icToTcRatioTextBox);
             this.economyTabPage1.Controls.Add(this.icToTcRatioLabel);
-            resources.ApplyResources(this.economyTabPage1, "economyTabPage1");
             this.economyTabPage1.Name = "economyTabPage1";
             // 
             // aiPeacetimeSpyMissionsComboBox
             // 
+            resources.ApplyResources(this.aiPeacetimeSpyMissionsComboBox, "aiPeacetimeSpyMissionsComboBox");
             this.aiPeacetimeSpyMissionsComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.aiPeacetimeSpyMissionsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.aiPeacetimeSpyMissionsComboBox.FormattingEnabled = true;
@@ -665,13 +802,13 @@
             resources.GetString("aiPeacetimeSpyMissionsComboBox.Items"),
             resources.GetString("aiPeacetimeSpyMissionsComboBox.Items1"),
             resources.GetString("aiPeacetimeSpyMissionsComboBox.Items2")});
-            resources.ApplyResources(this.aiPeacetimeSpyMissionsComboBox, "aiPeacetimeSpyMissionsComboBox");
             this.aiPeacetimeSpyMissionsComboBox.Name = "aiPeacetimeSpyMissionsComboBox";
             this.aiPeacetimeSpyMissionsComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAiPeacetimeSpyMissionsComboBoxDrawItem);
             this.aiPeacetimeSpyMissionsComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAiPeacetimeSpyMissionsComboBoxSelectedIndexChanged);
             // 
             // showThirdCountrySpyReportsComboBox
             // 
+            resources.ApplyResources(this.showThirdCountrySpyReportsComboBox, "showThirdCountrySpyReportsComboBox");
             this.showThirdCountrySpyReportsComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.showThirdCountrySpyReportsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.showThirdCountrySpyReportsComboBox.FormattingEnabled = true;
@@ -680,33 +817,32 @@
             resources.GetString("showThirdCountrySpyReportsComboBox.Items1"),
             resources.GetString("showThirdCountrySpyReportsComboBox.Items2"),
             resources.GetString("showThirdCountrySpyReportsComboBox.Items3")});
-            resources.ApplyResources(this.showThirdCountrySpyReportsComboBox, "showThirdCountrySpyReportsComboBox");
             this.showThirdCountrySpyReportsComboBox.Name = "showThirdCountrySpyReportsComboBox";
             this.showThirdCountrySpyReportsComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnShowThirdCountrySpyReportsComboBoxDrawItem);
             this.showThirdCountrySpyReportsComboBox.SelectedIndexChanged += new System.EventHandler(this.OnShowThirdCountrySpyReportsComboBoxSelectedIndexChanged);
             // 
             // canChangeIdeasComboBox
             // 
+            resources.ApplyResources(this.canChangeIdeasComboBox, "canChangeIdeasComboBox");
             this.canChangeIdeasComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.canChangeIdeasComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.canChangeIdeasComboBox.FormattingEnabled = true;
             this.canChangeIdeasComboBox.Items.AddRange(new object[] {
             resources.GetString("canChangeIdeasComboBox.Items"),
             resources.GetString("canChangeIdeasComboBox.Items1")});
-            resources.ApplyResources(this.canChangeIdeasComboBox, "canChangeIdeasComboBox");
             this.canChangeIdeasComboBox.Name = "canChangeIdeasComboBox";
             this.canChangeIdeasComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCanChangeIdeasComboBoxDrawItem);
             this.canChangeIdeasComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCanChangeIdeasComboBoxSelectedIndexChanged);
             // 
             // canUnitSendNonAlliedComboBox
             // 
+            resources.ApplyResources(this.canUnitSendNonAlliedComboBox, "canUnitSendNonAlliedComboBox");
             this.canUnitSendNonAlliedComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.canUnitSendNonAlliedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.canUnitSendNonAlliedComboBox.FormattingEnabled = true;
             this.canUnitSendNonAlliedComboBox.Items.AddRange(new object[] {
             resources.GetString("canUnitSendNonAlliedComboBox.Items"),
             resources.GetString("canUnitSendNonAlliedComboBox.Items1")});
-            resources.ApplyResources(this.canUnitSendNonAlliedComboBox, "canUnitSendNonAlliedComboBox");
             this.canUnitSendNonAlliedComboBox.Name = "canUnitSendNonAlliedComboBox";
             this.canUnitSendNonAlliedComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCanUnitSendNonAlliedComboBoxDrawItem);
             this.canUnitSendNonAlliedComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCanUnitSendNonAlliedComboBoxSelectedIndexChanged);
@@ -1403,6 +1539,7 @@
             // 
             // economyTabPage2
             // 
+            resources.ApplyResources(this.economyTabPage2, "economyTabPage2");
             this.economyTabPage2.BackColor = System.Drawing.SystemColors.Control;
             this.economyTabPage2.Controls.Add(this.dissentRevoltMultiplierTextBox);
             this.economyTabPage2.Controls.Add(this.dissentRevoltMultiplierLabel);
@@ -1535,7 +1672,6 @@
             this.economyTabPage2.Controls.Add(this.gearingResourceIncrementLabel);
             this.economyTabPage2.Controls.Add(this.dissentChangeSpeedTextBox);
             this.economyTabPage2.Controls.Add(this.dissentChangeSpeedLabel);
-            resources.ApplyResources(this.economyTabPage2, "economyTabPage2");
             this.economyTabPage2.Name = "economyTabPage2";
             // 
             // dissentRevoltMultiplierTextBox
@@ -2265,6 +2401,7 @@
             // 
             // economyTabPage3
             // 
+            resources.ApplyResources(this.economyTabPage3, "economyTabPage3");
             this.economyTabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.economyTabPage3.Controls.Add(this.convoySystemOptionsAlliedComboBox);
             this.economyTabPage3.Controls.Add(this.productionLineEditComboBox);
@@ -2379,11 +2516,11 @@
             this.economyTabPage3.Controls.Add(this.minFinalIcLabel);
             this.economyTabPage3.Controls.Add(this.minAvailableIcTextBox);
             this.economyTabPage3.Controls.Add(this.minAvailableIcLabel);
-            resources.ApplyResources(this.economyTabPage3, "economyTabPage3");
             this.economyTabPage3.Name = "economyTabPage3";
             // 
             // convoySystemOptionsAlliedComboBox
             // 
+            resources.ApplyResources(this.convoySystemOptionsAlliedComboBox, "convoySystemOptionsAlliedComboBox");
             this.convoySystemOptionsAlliedComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.convoySystemOptionsAlliedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.convoySystemOptionsAlliedComboBox.FormattingEnabled = true;
@@ -2391,39 +2528,39 @@
             resources.GetString("convoySystemOptionsAlliedComboBox.Items"),
             resources.GetString("convoySystemOptionsAlliedComboBox.Items1"),
             resources.GetString("convoySystemOptionsAlliedComboBox.Items2")});
-            resources.ApplyResources(this.convoySystemOptionsAlliedComboBox, "convoySystemOptionsAlliedComboBox");
             this.convoySystemOptionsAlliedComboBox.Name = "convoySystemOptionsAlliedComboBox";
             this.convoySystemOptionsAlliedComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnConvoySystemOptionsAlliedComboBoxDrawItem);
             this.convoySystemOptionsAlliedComboBox.SelectedIndexChanged += new System.EventHandler(this.OnConvoySystemOptionsAlliedComboBoxSelectedIndexChanged);
             // 
             // productionLineEditComboBox
             // 
+            resources.ApplyResources(this.productionLineEditComboBox, "productionLineEditComboBox");
             this.productionLineEditComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.productionLineEditComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.productionLineEditComboBox.FormattingEnabled = true;
             this.productionLineEditComboBox.Items.AddRange(new object[] {
             resources.GetString("productionLineEditComboBox.Items"),
             resources.GetString("productionLineEditComboBox.Items1")});
-            resources.ApplyResources(this.productionLineEditComboBox, "productionLineEditComboBox");
             this.productionLineEditComboBox.Name = "productionLineEditComboBox";
             this.productionLineEditComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnProductionLineEditComboBoxDrawItem);
             this.productionLineEditComboBox.SelectedIndexChanged += new System.EventHandler(this.OnProductionLineEditComboBoxSelectedIndexChanged);
             // 
             // transferAlliedCoreProvincesComboBox
             // 
+            resources.ApplyResources(this.transferAlliedCoreProvincesComboBox, "transferAlliedCoreProvincesComboBox");
             this.transferAlliedCoreProvincesComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.transferAlliedCoreProvincesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.transferAlliedCoreProvincesComboBox.FormattingEnabled = true;
             this.transferAlliedCoreProvincesComboBox.Items.AddRange(new object[] {
             resources.GetString("transferAlliedCoreProvincesComboBox.Items"),
             resources.GetString("transferAlliedCoreProvincesComboBox.Items1")});
-            resources.ApplyResources(this.transferAlliedCoreProvincesComboBox, "transferAlliedCoreProvincesComboBox");
             this.transferAlliedCoreProvincesComboBox.Name = "transferAlliedCoreProvincesComboBox";
             this.transferAlliedCoreProvincesComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTransferAlliedCoreProvincesComboBoxDrawItem);
             this.transferAlliedCoreProvincesComboBox.SelectedIndexChanged += new System.EventHandler(this.OnTransferAlliedCoreProvincesComboBoxSelectedIndexChanged);
             // 
             // provinceCanSoldNonAlliedComboBox
             // 
+            resources.ApplyResources(this.provinceCanSoldNonAlliedComboBox, "provinceCanSoldNonAlliedComboBox");
             this.provinceCanSoldNonAlliedComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.provinceCanSoldNonAlliedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.provinceCanSoldNonAlliedComboBox.FormattingEnabled = true;
@@ -2431,13 +2568,13 @@
             resources.GetString("provinceCanSoldNonAlliedComboBox.Items"),
             resources.GetString("provinceCanSoldNonAlliedComboBox.Items1"),
             resources.GetString("provinceCanSoldNonAlliedComboBox.Items2")});
-            resources.ApplyResources(this.provinceCanSoldNonAlliedComboBox, "provinceCanSoldNonAlliedComboBox");
             this.provinceCanSoldNonAlliedComboBox.Name = "provinceCanSoldNonAlliedComboBox";
             this.provinceCanSoldNonAlliedComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnProvinceCanSoldNonAlliedComboBoxDrawItem);
             this.provinceCanSoldNonAlliedComboBox.SelectedIndexChanged += new System.EventHandler(this.OnProvinceCanSoldNonAllieddComboBoxSelectedIndexChanged);
             // 
             // bluePrintsCanSoldNonAlliedComboBox
             // 
+            resources.ApplyResources(this.bluePrintsCanSoldNonAlliedComboBox, "bluePrintsCanSoldNonAlliedComboBox");
             this.bluePrintsCanSoldNonAlliedComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.bluePrintsCanSoldNonAlliedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bluePrintsCanSoldNonAlliedComboBox.FormattingEnabled = true;
@@ -2445,13 +2582,13 @@
             resources.GetString("bluePrintsCanSoldNonAlliedComboBox.Items"),
             resources.GetString("bluePrintsCanSoldNonAlliedComboBox.Items1"),
             resources.GetString("bluePrintsCanSoldNonAlliedComboBox.Items2")});
-            resources.ApplyResources(this.bluePrintsCanSoldNonAlliedComboBox, "bluePrintsCanSoldNonAlliedComboBox");
             this.bluePrintsCanSoldNonAlliedComboBox.Name = "bluePrintsCanSoldNonAlliedComboBox";
             this.bluePrintsCanSoldNonAlliedComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnBluePrintsCanSoldNonAlliedComboBoxDrawItem);
             this.bluePrintsCanSoldNonAlliedComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBluePrintsCanSoldNonAlliedComboBoxSelectedIndexChanged);
             // 
             // canUnitSendNonAlliedDhComboBox
             // 
+            resources.ApplyResources(this.canUnitSendNonAlliedDhComboBox, "canUnitSendNonAlliedDhComboBox");
             this.canUnitSendNonAlliedDhComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.canUnitSendNonAlliedDhComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.canUnitSendNonAlliedDhComboBox.FormattingEnabled = true;
@@ -2459,7 +2596,6 @@
             resources.GetString("canUnitSendNonAlliedDhComboBox.Items"),
             resources.GetString("canUnitSendNonAlliedDhComboBox.Items1"),
             resources.GetString("canUnitSendNonAlliedDhComboBox.Items2")});
-            resources.ApplyResources(this.canUnitSendNonAlliedDhComboBox, "canUnitSendNonAlliedDhComboBox");
             this.canUnitSendNonAlliedDhComboBox.Name = "canUnitSendNonAlliedDhComboBox";
             this.canUnitSendNonAlliedDhComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCanUnitSendNonAlliedDhComboBoxDrawItem);
             this.canUnitSendNonAlliedDhComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCanUnitSendNonAlliedDhComboBoxSelectedIndexChanged);
@@ -3056,6 +3192,7 @@
             // 
             // intelligenceTabPage
             // 
+            resources.ApplyResources(this.intelligenceTabPage, "intelligenceTabPage");
             this.intelligenceTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.intelligenceTabPage.Controls.Add(this.showThirdCountrySpyReportsDhComboBox);
             this.intelligenceTabPage.Controls.Add(this.closeButton4);
@@ -3092,11 +3229,11 @@
             this.intelligenceTabPage.Controls.Add(this.increateIntelligenceLevelDaysDhLabel);
             this.intelligenceTabPage.Controls.Add(this.spyMissionDaysDhTextBox);
             this.intelligenceTabPage.Controls.Add(this.spyMissionDaysDhLabel);
-            resources.ApplyResources(this.intelligenceTabPage, "intelligenceTabPage");
             this.intelligenceTabPage.Name = "intelligenceTabPage";
             // 
             // showThirdCountrySpyReportsDhComboBox
             // 
+            resources.ApplyResources(this.showThirdCountrySpyReportsDhComboBox, "showThirdCountrySpyReportsDhComboBox");
             this.showThirdCountrySpyReportsDhComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.showThirdCountrySpyReportsDhComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.showThirdCountrySpyReportsDhComboBox.FormattingEnabled = true;
@@ -3105,7 +3242,6 @@
             resources.GetString("showThirdCountrySpyReportsDhComboBox.Items1"),
             resources.GetString("showThirdCountrySpyReportsDhComboBox.Items2"),
             resources.GetString("showThirdCountrySpyReportsDhComboBox.Items3")});
-            resources.ApplyResources(this.showThirdCountrySpyReportsDhComboBox, "showThirdCountrySpyReportsDhComboBox");
             this.showThirdCountrySpyReportsDhComboBox.Name = "showThirdCountrySpyReportsDhComboBox";
             this.showThirdCountrySpyReportsDhComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnShowThirdCountrySpyReportsDhComboBoxDrawItem);
             this.showThirdCountrySpyReportsDhComboBox.SelectedIndexChanged += new System.EventHandler(this.OnShowThirdCountrySpyReportsDhComboBoxSelectedIndexChanged);
@@ -3303,6 +3439,7 @@
             // 
             // diplomacyTabPage
             // 
+            resources.ApplyResources(this.diplomacyTabPage, "diplomacyTabPage");
             this.diplomacyTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.diplomacyTabPage.Controls.Add(this.filterReleaseCountriesComboBox);
             this.diplomacyTabPage.Controls.Add(this.changeTagCoupComboBox);
@@ -3337,11 +3474,11 @@
             this.diplomacyTabPage.Controls.Add(this.closeButton5);
             this.diplomacyTabPage.Controls.Add(this.saveButton5);
             this.diplomacyTabPage.Controls.Add(this.reloadButton5);
-            resources.ApplyResources(this.diplomacyTabPage, "diplomacyTabPage");
             this.diplomacyTabPage.Name = "diplomacyTabPage";
             // 
             // filterReleaseCountriesComboBox
             // 
+            resources.ApplyResources(this.filterReleaseCountriesComboBox, "filterReleaseCountriesComboBox");
             this.filterReleaseCountriesComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.filterReleaseCountriesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterReleaseCountriesComboBox.FormattingEnabled = true;
@@ -3350,26 +3487,26 @@
             resources.GetString("filterReleaseCountriesComboBox.Items1"),
             resources.GetString("filterReleaseCountriesComboBox.Items2"),
             resources.GetString("filterReleaseCountriesComboBox.Items3")});
-            resources.ApplyResources(this.filterReleaseCountriesComboBox, "filterReleaseCountriesComboBox");
             this.filterReleaseCountriesComboBox.Name = "filterReleaseCountriesComboBox";
             this.filterReleaseCountriesComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnFilterReleaseCountriesComboBoxDrawItem);
             this.filterReleaseCountriesComboBox.SelectedIndexChanged += new System.EventHandler(this.OnFilterReleaseCountriesComboBoxSelectedIndexChanged);
             // 
             // changeTagCoupComboBox
             // 
+            resources.ApplyResources(this.changeTagCoupComboBox, "changeTagCoupComboBox");
             this.changeTagCoupComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.changeTagCoupComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.changeTagCoupComboBox.FormattingEnabled = true;
             this.changeTagCoupComboBox.Items.AddRange(new object[] {
             resources.GetString("changeTagCoupComboBox.Items"),
             resources.GetString("changeTagCoupComboBox.Items1")});
-            resources.ApplyResources(this.changeTagCoupComboBox, "changeTagCoupComboBox");
             this.changeTagCoupComboBox.Name = "changeTagCoupComboBox";
             this.changeTagCoupComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChangeTagCoupComboBoxDrawItem);
             this.changeTagCoupComboBox.SelectedIndexChanged += new System.EventHandler(this.OnJChangeTagCoupComboBoxSelectedIndexChanged);
             // 
             // allowChangeHosHogComboBox
             // 
+            resources.ApplyResources(this.allowChangeHosHogComboBox, "allowChangeHosHogComboBox");
             this.allowChangeHosHogComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.allowChangeHosHogComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.allowChangeHosHogComboBox.FormattingEnabled = true;
@@ -3378,72 +3515,71 @@
             resources.GetString("allowChangeHosHogComboBox.Items1"),
             resources.GetString("allowChangeHosHogComboBox.Items2"),
             resources.GetString("allowChangeHosHogComboBox.Items3")});
-            resources.ApplyResources(this.allowChangeHosHogComboBox, "allowChangeHosHogComboBox");
             this.allowChangeHosHogComboBox.Name = "allowChangeHosHogComboBox";
             this.allowChangeHosHogComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAllowChangeHosHogComboBoxDrawItem);
             this.allowChangeHosHogComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAllowChangeHosHogComboBoxSelectedIndexChanged);
             // 
             // joinAutomaticallyAllesAxisComboBox
             // 
+            resources.ApplyResources(this.joinAutomaticallyAllesAxisComboBox, "joinAutomaticallyAllesAxisComboBox");
             this.joinAutomaticallyAllesAxisComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.joinAutomaticallyAllesAxisComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.joinAutomaticallyAllesAxisComboBox.FormattingEnabled = true;
             this.joinAutomaticallyAllesAxisComboBox.Items.AddRange(new object[] {
             resources.GetString("joinAutomaticallyAllesAxisComboBox.Items"),
             resources.GetString("joinAutomaticallyAllesAxisComboBox.Items1")});
-            resources.ApplyResources(this.joinAutomaticallyAllesAxisComboBox, "joinAutomaticallyAllesAxisComboBox");
             this.joinAutomaticallyAllesAxisComboBox.Name = "joinAutomaticallyAllesAxisComboBox";
             this.joinAutomaticallyAllesAxisComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnJoinAutomaticallyAllesAxisComboBoxDrawItem);
             this.joinAutomaticallyAllesAxisComboBox.SelectedIndexChanged += new System.EventHandler(this.OnJoinAutomaticallyAllesAxisComboBoxSelectedIndexChanged);
             // 
             // allowManualClaimsChangeComboBox
             // 
+            resources.ApplyResources(this.allowManualClaimsChangeComboBox, "allowManualClaimsChangeComboBox");
             this.allowManualClaimsChangeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.allowManualClaimsChangeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.allowManualClaimsChangeComboBox.FormattingEnabled = true;
             this.allowManualClaimsChangeComboBox.Items.AddRange(new object[] {
             resources.GetString("allowManualClaimsChangeComboBox.Items"),
             resources.GetString("allowManualClaimsChangeComboBox.Items1")});
-            resources.ApplyResources(this.allowManualClaimsChangeComboBox, "allowManualClaimsChangeComboBox");
             this.allowManualClaimsChangeComboBox.Name = "allowManualClaimsChangeComboBox";
             this.allowManualClaimsChangeComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAllowManualClaimsChangeComboBoxDrawItem);
             this.allowManualClaimsChangeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAllowManualClaimsChangeComboBoxSelectedIndexChanged);
             // 
             // mastersBecomePuppetsPuppetsComboBox
             // 
+            resources.ApplyResources(this.mastersBecomePuppetsPuppetsComboBox, "mastersBecomePuppetsPuppetsComboBox");
             this.mastersBecomePuppetsPuppetsComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.mastersBecomePuppetsPuppetsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mastersBecomePuppetsPuppetsComboBox.FormattingEnabled = true;
             this.mastersBecomePuppetsPuppetsComboBox.Items.AddRange(new object[] {
             resources.GetString("mastersBecomePuppetsPuppetsComboBox.Items"),
             resources.GetString("mastersBecomePuppetsPuppetsComboBox.Items1")});
-            resources.ApplyResources(this.mastersBecomePuppetsPuppetsComboBox, "mastersBecomePuppetsPuppetsComboBox");
             this.mastersBecomePuppetsPuppetsComboBox.Name = "mastersBecomePuppetsPuppetsComboBox";
             this.mastersBecomePuppetsPuppetsComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMastersBecomePuppetsPuppetsComboBoxDrawItem);
             this.mastersBecomePuppetsPuppetsComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMastersBecomePuppetsPuppetsComboBoxSelectedIndexChanged);
             // 
             // puppetsJoinMastersAllianceComboBox
             // 
+            resources.ApplyResources(this.puppetsJoinMastersAllianceComboBox, "puppetsJoinMastersAllianceComboBox");
             this.puppetsJoinMastersAllianceComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.puppetsJoinMastersAllianceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.puppetsJoinMastersAllianceComboBox.FormattingEnabled = true;
             this.puppetsJoinMastersAllianceComboBox.Items.AddRange(new object[] {
             resources.GetString("puppetsJoinMastersAllianceComboBox.Items"),
             resources.GetString("puppetsJoinMastersAllianceComboBox.Items1")});
-            resources.ApplyResources(this.puppetsJoinMastersAllianceComboBox, "puppetsJoinMastersAllianceComboBox");
             this.puppetsJoinMastersAllianceComboBox.Name = "puppetsJoinMastersAllianceComboBox";
             this.puppetsJoinMastersAllianceComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnPuppetsJoinMastersAllianceComboBoxDrawItem);
             this.puppetsJoinMastersAllianceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnPuppetsJoinMastersAllianceComboBoxSelectedIndexChanged);
             // 
             // useMinisterPersonalityReplacingComboBox
             // 
+            resources.ApplyResources(this.useMinisterPersonalityReplacingComboBox, "useMinisterPersonalityReplacingComboBox");
             this.useMinisterPersonalityReplacingComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.useMinisterPersonalityReplacingComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.useMinisterPersonalityReplacingComboBox.FormattingEnabled = true;
             this.useMinisterPersonalityReplacingComboBox.Items.AddRange(new object[] {
             resources.GetString("useMinisterPersonalityReplacingComboBox.Items"),
             resources.GetString("useMinisterPersonalityReplacingComboBox.Items1")});
-            resources.ApplyResources(this.useMinisterPersonalityReplacingComboBox, "useMinisterPersonalityReplacingComboBox");
             this.useMinisterPersonalityReplacingComboBox.Name = "useMinisterPersonalityReplacingComboBox";
             this.useMinisterPersonalityReplacingComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnUseMinisterPersonalityReplacingComboBoxDrawItem);
             this.useMinisterPersonalityReplacingComboBox.SelectedIndexChanged += new System.EventHandler(this.OnUseMinisterPersonalityReplacingComboBoxSelectedIndexChanged);
@@ -3588,80 +3724,962 @@
             // 
             // combatTabPage1
             // 
-            this.combatTabPage1.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.combatTabPage1, "combatTabPage1");
+            this.combatTabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.combatTabPage1.Controls.Add(this.subStacksDetectionModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.subStacksDetectionModifierLabel);
+            this.combatTabPage1.Controls.Add(this.subsStrDamageTextBox);
+            this.combatTabPage1.Controls.Add(this.subsStrDamageLabel);
+            this.combatTabPage1.Controls.Add(this.subsOrgDamageTextBox);
+            this.combatTabPage1.Controls.Add(this.subsOrgDamageLabel);
+            this.combatTabPage1.Controls.Add(this.airStrDamageTextBox);
+            this.combatTabPage1.Controls.Add(this.airStrDamageLabel);
+            this.combatTabPage1.Controls.Add(this.airStrDamageOrgTextBox);
+            this.combatTabPage1.Controls.Add(this.airStrDamageOrgLabel);
+            this.combatTabPage1.Controls.Add(this.airOrgDamageTextBox);
+            this.combatTabPage1.Controls.Add(this.airOrgDamageLabel);
+            this.combatTabPage1.Controls.Add(this.chanceLeaderDyingTextBox);
+            this.combatTabPage1.Controls.Add(this.chanceLeaderDyingLabel);
+            this.combatTabPage1.Controls.Add(this.bonusEventTraitTextBox);
+            this.combatTabPage1.Controls.Add(this.bonusEventTraitLabel);
+            this.combatTabPage1.Controls.Add(this.bonusTerrainTraitTextBox);
+            this.combatTabPage1.Controls.Add(this.bonusTerrainTraitLabel);
+            this.combatTabPage1.Controls.Add(this.chanceGetEventTraitTextBox);
+            this.combatTabPage1.Controls.Add(this.chanceGetEventTraitLabel);
+            this.combatTabPage1.Controls.Add(this.chanceGetTerrainTraitTextBox);
+            this.combatTabPage1.Controls.Add(this.chanceGetTerrainTraitLabel);
+            this.combatTabPage1.Controls.Add(this.chanceAvoidNoDefencesTextBox);
+            this.combatTabPage1.Controls.Add(this.chanceAvoidNoDefencesLabel);
+            this.combatTabPage1.Controls.Add(this.chanceAvoidDefencesLeftTextBox);
+            this.combatTabPage1.Controls.Add(this.chanceAvoidDefencesLeftLabel);
+            this.combatTabPage1.Controls.Add(this.howEffectiveGroundDefTextBox);
+            this.combatTabPage1.Controls.Add(this.howEffectiveGroundDefLabel);
+            this.combatTabPage1.Controls.Add(this.damageResourcesBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageResourcesBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageIcBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageIcBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageInfraBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageInfraBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageRadarBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageRadarBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageNukeBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageNukeBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageRocketBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageRocketBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageAaBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageAaBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageAirBaseBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageAirBaseBombingLabel);
+            this.combatTabPage1.Controls.Add(this.damageNavalBasesBombingTextBox);
+            this.combatTabPage1.Controls.Add(this.damageNavalBasesBombingLabel);
+            this.combatTabPage1.Controls.Add(this.effectExperienceCombatTextBox);
+            this.combatTabPage1.Controls.Add(this.effectExperienceCombatLabel);
+            this.combatTabPage1.Controls.Add(this.maximumSizesAirStacksTextBox);
+            this.combatTabPage1.Controls.Add(this.maximumSizesAirStacksLabel);
+            this.combatTabPage1.Controls.Add(this.delayAfterCombatEndsTextBox);
+            this.combatTabPage1.Controls.Add(this.delayAfterCombatEndsLabel);
+            this.combatTabPage1.Controls.Add(this.convoyProtectionFactorTextBox);
+            this.combatTabPage1.Controls.Add(this.convoyProtectionFactorLabel);
+            this.combatTabPage1.Controls.Add(this.hqCommandLimitFactorTextBox);
+            this.combatTabPage1.Controls.Add(this.hqCommandLimitFactorLabel);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank3TextBox);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank3Label);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank2TextBox);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank2Label);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank1TextBox);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank1Label);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank0TextBox);
+            this.combatTabPage1.Controls.Add(this.navalLeaderCommandLimitRank0Label);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank3TextBox);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank3Label);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank2TextBox);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank2Label);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank1TextBox);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank1Label);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank0TextBox);
+            this.combatTabPage1.Controls.Add(this.airLeaderCommandLimitRank0Label);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank3TextBox);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank3Label);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank2TextBox);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank2Label);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank1TextBox);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank1Label);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank0TextBox);
+            this.combatTabPage1.Controls.Add(this.landLeaderCommandLimitRank0Label);
+            this.combatTabPage1.Controls.Add(this.navalOverstackingModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.navalOverstackingModifierLabel);
+            this.combatTabPage1.Controls.Add(this.airOverstackingModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.airOverstackingModifierLabel);
+            this.combatTabPage1.Controls.Add(this.interceptorBomberModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.interceptorBomberModifierLabel);
+            this.combatTabPage1.Controls.Add(this.raderStationMultiplierTextBox);
+            this.combatTabPage1.Controls.Add(this.raderStationMultiplierLabel);
+            this.combatTabPage1.Controls.Add(this.supplyProblemsModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.supplyProblemsModifierLabel);
+            this.combatTabPage1.Controls.Add(this.dissentMultiplierTextBox);
+            this.combatTabPage1.Controls.Add(this.dissentMultiplierLabel);
+            this.combatTabPage1.Controls.Add(this.coastalFortMultiplierTextBox);
+            this.combatTabPage1.Controls.Add(this.coastalFortMultiplierLabel);
+            this.combatTabPage1.Controls.Add(this.landFortMultiplierTextBox);
+            this.combatTabPage1.Controls.Add(this.landFortMultiplierLabel);
+            this.combatTabPage1.Controls.Add(this.encircledModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.encircledModifierLabel);
+            this.combatTabPage1.Controls.Add(this.envelopmentModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.envelopmentModifierLabel);
+            this.combatTabPage1.Controls.Add(this.navalCommandLimitModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.navalCommandLimitModifierLabel);
+            this.combatTabPage1.Controls.Add(this.airCommandLimitModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.airCommandLimitModifierLabel);
+            this.combatTabPage1.Controls.Add(this.landCommandLimitModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.landCommandLimitModifierLabel);
+            this.combatTabPage1.Controls.Add(this.surpriseModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.surpriseModifierLabel);
+            this.combatTabPage1.Controls.Add(this.defensiveCombinedArmsBonusTextBox);
+            this.combatTabPage1.Controls.Add(this.defensiveCombinedArmsBonusLabel);
+            this.combatTabPage1.Controls.Add(this.offensiveCombinedArmsBonusTextBox);
+            this.combatTabPage1.Controls.Add(this.offensiveCombinedArmsBonusLabel);
+            this.combatTabPage1.Controls.Add(this.multipleCombatModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.multipleCombatModifierLabel);
+            this.combatTabPage1.Controls.Add(this.invasionModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.invasionModifierLabel);
+            this.combatTabPage1.Controls.Add(this.shoreBombardmentModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.shoreBombardmentModifierLabel);
+            this.combatTabPage1.Controls.Add(this.baseProximityTextBox);
+            this.combatTabPage1.Controls.Add(this.baseProximityLabel);
+            this.combatTabPage1.Controls.Add(this.attritionSeverityModifierTextBox);
+            this.combatTabPage1.Controls.Add(this.attritionSeverityModifierLabel);
+            this.combatTabPage1.Controls.Add(this.leaderXpGainFactorTextBox);
+            this.combatTabPage1.Controls.Add(this.leaderXpGainFactorLabel);
+            this.combatTabPage1.Controls.Add(this.divisionXpGainFactorTextBox);
+            this.combatTabPage1.Controls.Add(this.divisionXpGainFactorLabel);
+            this.combatTabPage1.Controls.Add(this.airXpGainFactorTextBox);
+            this.combatTabPage1.Controls.Add(this.airXpGainFactorLabel);
+            this.combatTabPage1.Controls.Add(this.navalXpGainFactorTextBox);
+            this.combatTabPage1.Controls.Add(this.navalXpGainFactorLabel);
+            this.combatTabPage1.Controls.Add(this.landXpGainFactorTextBox);
+            this.combatTabPage1.Controls.Add(this.landXpGainFactorLabel);
+            this.combatTabPage1.Controls.Add(this.closeButton6);
+            this.combatTabPage1.Controls.Add(this.saveButton6);
+            this.combatTabPage1.Controls.Add(this.reloadButton6);
             this.combatTabPage1.Name = "combatTabPage1";
+            // 
+            // subStacksDetectionModifierTextBox
+            // 
+            resources.ApplyResources(this.subStacksDetectionModifierTextBox, "subStacksDetectionModifierTextBox");
+            this.subStacksDetectionModifierTextBox.Name = "subStacksDetectionModifierTextBox";
+            this.subStacksDetectionModifierTextBox.Validated += new System.EventHandler(this.OnSubStacksDetectionModifierTextBoxValidated);
+            // 
+            // subStacksDetectionModifierLabel
+            // 
+            resources.ApplyResources(this.subStacksDetectionModifierLabel, "subStacksDetectionModifierLabel");
+            this.subStacksDetectionModifierLabel.Name = "subStacksDetectionModifierLabel";
+            // 
+            // subsStrDamageTextBox
+            // 
+            resources.ApplyResources(this.subsStrDamageTextBox, "subsStrDamageTextBox");
+            this.subsStrDamageTextBox.Name = "subsStrDamageTextBox";
+            this.subsStrDamageTextBox.Validated += new System.EventHandler(this.OnSubsStrDamageTextBoxValidated);
+            // 
+            // subsStrDamageLabel
+            // 
+            resources.ApplyResources(this.subsStrDamageLabel, "subsStrDamageLabel");
+            this.subsStrDamageLabel.Name = "subsStrDamageLabel";
+            // 
+            // subsOrgDamageTextBox
+            // 
+            resources.ApplyResources(this.subsOrgDamageTextBox, "subsOrgDamageTextBox");
+            this.subsOrgDamageTextBox.Name = "subsOrgDamageTextBox";
+            this.subsOrgDamageTextBox.Validated += new System.EventHandler(this.OnSubsOrgDamageTextBoxValidated);
+            // 
+            // subsOrgDamageLabel
+            // 
+            resources.ApplyResources(this.subsOrgDamageLabel, "subsOrgDamageLabel");
+            this.subsOrgDamageLabel.Name = "subsOrgDamageLabel";
+            // 
+            // airStrDamageTextBox
+            // 
+            resources.ApplyResources(this.airStrDamageTextBox, "airStrDamageTextBox");
+            this.airStrDamageTextBox.Name = "airStrDamageTextBox";
+            this.airStrDamageTextBox.Validated += new System.EventHandler(this.OnAirStrDamageTextBoxValidated);
+            // 
+            // airStrDamageLabel
+            // 
+            resources.ApplyResources(this.airStrDamageLabel, "airStrDamageLabel");
+            this.airStrDamageLabel.Name = "airStrDamageLabel";
+            // 
+            // airStrDamageOrgTextBox
+            // 
+            resources.ApplyResources(this.airStrDamageOrgTextBox, "airStrDamageOrgTextBox");
+            this.airStrDamageOrgTextBox.Name = "airStrDamageOrgTextBox";
+            this.airStrDamageOrgTextBox.Validated += new System.EventHandler(this.OnAirStrDamageOrgTextBoxValidated);
+            // 
+            // airStrDamageOrgLabel
+            // 
+            resources.ApplyResources(this.airStrDamageOrgLabel, "airStrDamageOrgLabel");
+            this.airStrDamageOrgLabel.Name = "airStrDamageOrgLabel";
+            // 
+            // airOrgDamageTextBox
+            // 
+            resources.ApplyResources(this.airOrgDamageTextBox, "airOrgDamageTextBox");
+            this.airOrgDamageTextBox.Name = "airOrgDamageTextBox";
+            this.airOrgDamageTextBox.Validated += new System.EventHandler(this.OnAirOrgDamageTextBoxValidated);
+            // 
+            // airOrgDamageLabel
+            // 
+            resources.ApplyResources(this.airOrgDamageLabel, "airOrgDamageLabel");
+            this.airOrgDamageLabel.Name = "airOrgDamageLabel";
+            // 
+            // chanceLeaderDyingTextBox
+            // 
+            resources.ApplyResources(this.chanceLeaderDyingTextBox, "chanceLeaderDyingTextBox");
+            this.chanceLeaderDyingTextBox.Name = "chanceLeaderDyingTextBox";
+            this.chanceLeaderDyingTextBox.Validated += new System.EventHandler(this.OnChanceLeaderDyingTextBoxValidated);
+            // 
+            // chanceLeaderDyingLabel
+            // 
+            resources.ApplyResources(this.chanceLeaderDyingLabel, "chanceLeaderDyingLabel");
+            this.chanceLeaderDyingLabel.Name = "chanceLeaderDyingLabel";
+            // 
+            // bonusEventTraitTextBox
+            // 
+            resources.ApplyResources(this.bonusEventTraitTextBox, "bonusEventTraitTextBox");
+            this.bonusEventTraitTextBox.Name = "bonusEventTraitTextBox";
+            this.bonusEventTraitTextBox.Validated += new System.EventHandler(this.OnBonusEventTraitTextBoxValidated);
+            // 
+            // bonusEventTraitLabel
+            // 
+            resources.ApplyResources(this.bonusEventTraitLabel, "bonusEventTraitLabel");
+            this.bonusEventTraitLabel.Name = "bonusEventTraitLabel";
+            // 
+            // bonusTerrainTraitTextBox
+            // 
+            resources.ApplyResources(this.bonusTerrainTraitTextBox, "bonusTerrainTraitTextBox");
+            this.bonusTerrainTraitTextBox.Name = "bonusTerrainTraitTextBox";
+            this.bonusTerrainTraitTextBox.Validated += new System.EventHandler(this.OnBonusTerrainTraitTextBoxValidated);
+            // 
+            // bonusTerrainTraitLabel
+            // 
+            resources.ApplyResources(this.bonusTerrainTraitLabel, "bonusTerrainTraitLabel");
+            this.bonusTerrainTraitLabel.Name = "bonusTerrainTraitLabel";
+            // 
+            // chanceGetEventTraitTextBox
+            // 
+            resources.ApplyResources(this.chanceGetEventTraitTextBox, "chanceGetEventTraitTextBox");
+            this.chanceGetEventTraitTextBox.Name = "chanceGetEventTraitTextBox";
+            this.chanceGetEventTraitTextBox.Validated += new System.EventHandler(this.OnChanceGetEventTraitTextBoxValidated);
+            // 
+            // chanceGetEventTraitLabel
+            // 
+            resources.ApplyResources(this.chanceGetEventTraitLabel, "chanceGetEventTraitLabel");
+            this.chanceGetEventTraitLabel.Name = "chanceGetEventTraitLabel";
+            // 
+            // chanceGetTerrainTraitTextBox
+            // 
+            resources.ApplyResources(this.chanceGetTerrainTraitTextBox, "chanceGetTerrainTraitTextBox");
+            this.chanceGetTerrainTraitTextBox.Name = "chanceGetTerrainTraitTextBox";
+            this.chanceGetTerrainTraitTextBox.Validated += new System.EventHandler(this.OnChanceGetTerrainTraitTextBoxValidated);
+            // 
+            // chanceGetTerrainTraitLabel
+            // 
+            resources.ApplyResources(this.chanceGetTerrainTraitLabel, "chanceGetTerrainTraitLabel");
+            this.chanceGetTerrainTraitLabel.Name = "chanceGetTerrainTraitLabel";
+            // 
+            // chanceAvoidNoDefencesTextBox
+            // 
+            resources.ApplyResources(this.chanceAvoidNoDefencesTextBox, "chanceAvoidNoDefencesTextBox");
+            this.chanceAvoidNoDefencesTextBox.Name = "chanceAvoidNoDefencesTextBox";
+            this.chanceAvoidNoDefencesTextBox.Validated += new System.EventHandler(this.OnChanceAvoidNoDefencesTextBoxValidated);
+            // 
+            // chanceAvoidNoDefencesLabel
+            // 
+            resources.ApplyResources(this.chanceAvoidNoDefencesLabel, "chanceAvoidNoDefencesLabel");
+            this.chanceAvoidNoDefencesLabel.Name = "chanceAvoidNoDefencesLabel";
+            // 
+            // chanceAvoidDefencesLeftTextBox
+            // 
+            resources.ApplyResources(this.chanceAvoidDefencesLeftTextBox, "chanceAvoidDefencesLeftTextBox");
+            this.chanceAvoidDefencesLeftTextBox.Name = "chanceAvoidDefencesLeftTextBox";
+            this.chanceAvoidDefencesLeftTextBox.Validated += new System.EventHandler(this.OnChanceAvoidDefencesLeftTextBoxValidated);
+            // 
+            // chanceAvoidDefencesLeftLabel
+            // 
+            resources.ApplyResources(this.chanceAvoidDefencesLeftLabel, "chanceAvoidDefencesLeftLabel");
+            this.chanceAvoidDefencesLeftLabel.Name = "chanceAvoidDefencesLeftLabel";
+            // 
+            // howEffectiveGroundDefTextBox
+            // 
+            resources.ApplyResources(this.howEffectiveGroundDefTextBox, "howEffectiveGroundDefTextBox");
+            this.howEffectiveGroundDefTextBox.Name = "howEffectiveGroundDefTextBox";
+            this.howEffectiveGroundDefTextBox.Validated += new System.EventHandler(this.OnHowEffectiveGroundDefTextBoxValidated);
+            // 
+            // howEffectiveGroundDefLabel
+            // 
+            resources.ApplyResources(this.howEffectiveGroundDefLabel, "howEffectiveGroundDefLabel");
+            this.howEffectiveGroundDefLabel.Name = "howEffectiveGroundDefLabel";
+            // 
+            // damageResourcesBombingTextBox
+            // 
+            resources.ApplyResources(this.damageResourcesBombingTextBox, "damageResourcesBombingTextBox");
+            this.damageResourcesBombingTextBox.Name = "damageResourcesBombingTextBox";
+            this.damageResourcesBombingTextBox.Validated += new System.EventHandler(this.OnDamageResourcesBombingTextBoxValidated);
+            // 
+            // damageResourcesBombingLabel
+            // 
+            resources.ApplyResources(this.damageResourcesBombingLabel, "damageResourcesBombingLabel");
+            this.damageResourcesBombingLabel.Name = "damageResourcesBombingLabel";
+            // 
+            // damageIcBombingTextBox
+            // 
+            resources.ApplyResources(this.damageIcBombingTextBox, "damageIcBombingTextBox");
+            this.damageIcBombingTextBox.Name = "damageIcBombingTextBox";
+            this.damageIcBombingTextBox.Validated += new System.EventHandler(this.OnDamageIcBombingTextBoxValidated);
+            // 
+            // damageIcBombingLabel
+            // 
+            resources.ApplyResources(this.damageIcBombingLabel, "damageIcBombingLabel");
+            this.damageIcBombingLabel.Name = "damageIcBombingLabel";
+            // 
+            // damageInfraBombingTextBox
+            // 
+            resources.ApplyResources(this.damageInfraBombingTextBox, "damageInfraBombingTextBox");
+            this.damageInfraBombingTextBox.Name = "damageInfraBombingTextBox";
+            this.damageInfraBombingTextBox.Validated += new System.EventHandler(this.OnDamageInfraBombingTextBoxValidated);
+            // 
+            // damageInfraBombingLabel
+            // 
+            resources.ApplyResources(this.damageInfraBombingLabel, "damageInfraBombingLabel");
+            this.damageInfraBombingLabel.Name = "damageInfraBombingLabel";
+            // 
+            // damageRadarBombingTextBox
+            // 
+            resources.ApplyResources(this.damageRadarBombingTextBox, "damageRadarBombingTextBox");
+            this.damageRadarBombingTextBox.Name = "damageRadarBombingTextBox";
+            this.damageRadarBombingTextBox.Validated += new System.EventHandler(this.OnDamageRadarBombingTextBoxValidated);
+            // 
+            // damageRadarBombingLabel
+            // 
+            resources.ApplyResources(this.damageRadarBombingLabel, "damageRadarBombingLabel");
+            this.damageRadarBombingLabel.Name = "damageRadarBombingLabel";
+            // 
+            // damageNukeBombingTextBox
+            // 
+            resources.ApplyResources(this.damageNukeBombingTextBox, "damageNukeBombingTextBox");
+            this.damageNukeBombingTextBox.Name = "damageNukeBombingTextBox";
+            this.damageNukeBombingTextBox.Validated += new System.EventHandler(this.OnDamageNukeBombingTextBoxValidated);
+            // 
+            // damageNukeBombingLabel
+            // 
+            resources.ApplyResources(this.damageNukeBombingLabel, "damageNukeBombingLabel");
+            this.damageNukeBombingLabel.Name = "damageNukeBombingLabel";
+            // 
+            // damageRocketBombingTextBox
+            // 
+            resources.ApplyResources(this.damageRocketBombingTextBox, "damageRocketBombingTextBox");
+            this.damageRocketBombingTextBox.Name = "damageRocketBombingTextBox";
+            this.damageRocketBombingTextBox.Validated += new System.EventHandler(this.OnDamageRocketBombingTextBoxValidated);
+            // 
+            // damageRocketBombingLabel
+            // 
+            resources.ApplyResources(this.damageRocketBombingLabel, "damageRocketBombingLabel");
+            this.damageRocketBombingLabel.Name = "damageRocketBombingLabel";
+            // 
+            // damageAaBombingTextBox
+            // 
+            resources.ApplyResources(this.damageAaBombingTextBox, "damageAaBombingTextBox");
+            this.damageAaBombingTextBox.Name = "damageAaBombingTextBox";
+            this.damageAaBombingTextBox.Validated += new System.EventHandler(this.OnDamageAaBombingTextBoxValidated);
+            // 
+            // damageAaBombingLabel
+            // 
+            resources.ApplyResources(this.damageAaBombingLabel, "damageAaBombingLabel");
+            this.damageAaBombingLabel.Name = "damageAaBombingLabel";
+            // 
+            // damageAirBaseBombingTextBox
+            // 
+            resources.ApplyResources(this.damageAirBaseBombingTextBox, "damageAirBaseBombingTextBox");
+            this.damageAirBaseBombingTextBox.Name = "damageAirBaseBombingTextBox";
+            this.damageAirBaseBombingTextBox.Validated += new System.EventHandler(this.OnDamageAirBaseBombingTextBoxValidated);
+            // 
+            // damageAirBaseBombingLabel
+            // 
+            resources.ApplyResources(this.damageAirBaseBombingLabel, "damageAirBaseBombingLabel");
+            this.damageAirBaseBombingLabel.Name = "damageAirBaseBombingLabel";
+            // 
+            // damageNavalBasesBombingTextBox
+            // 
+            resources.ApplyResources(this.damageNavalBasesBombingTextBox, "damageNavalBasesBombingTextBox");
+            this.damageNavalBasesBombingTextBox.Name = "damageNavalBasesBombingTextBox";
+            this.damageNavalBasesBombingTextBox.Validated += new System.EventHandler(this.OnDamageNavalBasesBombingTextBoxValidated);
+            // 
+            // damageNavalBasesBombingLabel
+            // 
+            resources.ApplyResources(this.damageNavalBasesBombingLabel, "damageNavalBasesBombingLabel");
+            this.damageNavalBasesBombingLabel.Name = "damageNavalBasesBombingLabel";
+            // 
+            // effectExperienceCombatTextBox
+            // 
+            resources.ApplyResources(this.effectExperienceCombatTextBox, "effectExperienceCombatTextBox");
+            this.effectExperienceCombatTextBox.Name = "effectExperienceCombatTextBox";
+            this.effectExperienceCombatTextBox.Validated += new System.EventHandler(this.OnEffectExperienceCombatTextBoxValidated);
+            // 
+            // effectExperienceCombatLabel
+            // 
+            resources.ApplyResources(this.effectExperienceCombatLabel, "effectExperienceCombatLabel");
+            this.effectExperienceCombatLabel.Name = "effectExperienceCombatLabel";
+            // 
+            // maximumSizesAirStacksTextBox
+            // 
+            resources.ApplyResources(this.maximumSizesAirStacksTextBox, "maximumSizesAirStacksTextBox");
+            this.maximumSizesAirStacksTextBox.Name = "maximumSizesAirStacksTextBox";
+            this.maximumSizesAirStacksTextBox.Validated += new System.EventHandler(this.OnMaximumSizesAirStacksTextBoxValidated);
+            // 
+            // maximumSizesAirStacksLabel
+            // 
+            resources.ApplyResources(this.maximumSizesAirStacksLabel, "maximumSizesAirStacksLabel");
+            this.maximumSizesAirStacksLabel.Name = "maximumSizesAirStacksLabel";
+            // 
+            // delayAfterCombatEndsTextBox
+            // 
+            resources.ApplyResources(this.delayAfterCombatEndsTextBox, "delayAfterCombatEndsTextBox");
+            this.delayAfterCombatEndsTextBox.Name = "delayAfterCombatEndsTextBox";
+            this.delayAfterCombatEndsTextBox.Validated += new System.EventHandler(this.OnDelayAfterCombatEndsTextBoxValidated);
+            // 
+            // delayAfterCombatEndsLabel
+            // 
+            resources.ApplyResources(this.delayAfterCombatEndsLabel, "delayAfterCombatEndsLabel");
+            this.delayAfterCombatEndsLabel.Name = "delayAfterCombatEndsLabel";
+            // 
+            // convoyProtectionFactorTextBox
+            // 
+            resources.ApplyResources(this.convoyProtectionFactorTextBox, "convoyProtectionFactorTextBox");
+            this.convoyProtectionFactorTextBox.Name = "convoyProtectionFactorTextBox";
+            this.convoyProtectionFactorTextBox.Validated += new System.EventHandler(this.OnConvoyProtectionFactorTextBoxValidated);
+            // 
+            // convoyProtectionFactorLabel
+            // 
+            resources.ApplyResources(this.convoyProtectionFactorLabel, "convoyProtectionFactorLabel");
+            this.convoyProtectionFactorLabel.Name = "convoyProtectionFactorLabel";
+            // 
+            // hqCommandLimitFactorTextBox
+            // 
+            resources.ApplyResources(this.hqCommandLimitFactorTextBox, "hqCommandLimitFactorTextBox");
+            this.hqCommandLimitFactorTextBox.Name = "hqCommandLimitFactorTextBox";
+            this.hqCommandLimitFactorTextBox.Validated += new System.EventHandler(this.OnHqCommandLimitFactorTextBoxValidated);
+            // 
+            // hqCommandLimitFactorLabel
+            // 
+            resources.ApplyResources(this.hqCommandLimitFactorLabel, "hqCommandLimitFactorLabel");
+            this.hqCommandLimitFactorLabel.Name = "hqCommandLimitFactorLabel";
+            // 
+            // navalLeaderCommandLimitRank3TextBox
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank3TextBox, "navalLeaderCommandLimitRank3TextBox");
+            this.navalLeaderCommandLimitRank3TextBox.Name = "navalLeaderCommandLimitRank3TextBox";
+            this.navalLeaderCommandLimitRank3TextBox.Validated += new System.EventHandler(this.OnNavalLeaderCommandLimitRank3TextBoxValidated);
+            // 
+            // navalLeaderCommandLimitRank3Label
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank3Label, "navalLeaderCommandLimitRank3Label");
+            this.navalLeaderCommandLimitRank3Label.Name = "navalLeaderCommandLimitRank3Label";
+            // 
+            // navalLeaderCommandLimitRank2TextBox
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank2TextBox, "navalLeaderCommandLimitRank2TextBox");
+            this.navalLeaderCommandLimitRank2TextBox.Name = "navalLeaderCommandLimitRank2TextBox";
+            this.navalLeaderCommandLimitRank2TextBox.Validated += new System.EventHandler(this.OnNavalLeaderCommandLimitRank2TextBoxValidated);
+            // 
+            // navalLeaderCommandLimitRank2Label
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank2Label, "navalLeaderCommandLimitRank2Label");
+            this.navalLeaderCommandLimitRank2Label.Name = "navalLeaderCommandLimitRank2Label";
+            // 
+            // navalLeaderCommandLimitRank1TextBox
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank1TextBox, "navalLeaderCommandLimitRank1TextBox");
+            this.navalLeaderCommandLimitRank1TextBox.Name = "navalLeaderCommandLimitRank1TextBox";
+            this.navalLeaderCommandLimitRank1TextBox.Validated += new System.EventHandler(this.OnNavalLeaderCommandLimitRank1TextBoxValidated);
+            // 
+            // navalLeaderCommandLimitRank1Label
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank1Label, "navalLeaderCommandLimitRank1Label");
+            this.navalLeaderCommandLimitRank1Label.Name = "navalLeaderCommandLimitRank1Label";
+            // 
+            // navalLeaderCommandLimitRank0TextBox
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank0TextBox, "navalLeaderCommandLimitRank0TextBox");
+            this.navalLeaderCommandLimitRank0TextBox.Name = "navalLeaderCommandLimitRank0TextBox";
+            this.navalLeaderCommandLimitRank0TextBox.Validated += new System.EventHandler(this.OnNavalLeaderCommandLimitRank0TextBoxValidated);
+            // 
+            // navalLeaderCommandLimitRank0Label
+            // 
+            resources.ApplyResources(this.navalLeaderCommandLimitRank0Label, "navalLeaderCommandLimitRank0Label");
+            this.navalLeaderCommandLimitRank0Label.Name = "navalLeaderCommandLimitRank0Label";
+            // 
+            // airLeaderCommandLimitRank3TextBox
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank3TextBox, "airLeaderCommandLimitRank3TextBox");
+            this.airLeaderCommandLimitRank3TextBox.Name = "airLeaderCommandLimitRank3TextBox";
+            this.airLeaderCommandLimitRank3TextBox.Validated += new System.EventHandler(this.OnAirLeaderCommandLimitRank3TextBoxValidated);
+            // 
+            // airLeaderCommandLimitRank3Label
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank3Label, "airLeaderCommandLimitRank3Label");
+            this.airLeaderCommandLimitRank3Label.Name = "airLeaderCommandLimitRank3Label";
+            // 
+            // airLeaderCommandLimitRank2TextBox
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank2TextBox, "airLeaderCommandLimitRank2TextBox");
+            this.airLeaderCommandLimitRank2TextBox.Name = "airLeaderCommandLimitRank2TextBox";
+            this.airLeaderCommandLimitRank2TextBox.Validated += new System.EventHandler(this.OnAirLeaderCommandLimitRank2TextBoxValidated);
+            // 
+            // airLeaderCommandLimitRank2Label
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank2Label, "airLeaderCommandLimitRank2Label");
+            this.airLeaderCommandLimitRank2Label.Name = "airLeaderCommandLimitRank2Label";
+            // 
+            // airLeaderCommandLimitRank1TextBox
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank1TextBox, "airLeaderCommandLimitRank1TextBox");
+            this.airLeaderCommandLimitRank1TextBox.Name = "airLeaderCommandLimitRank1TextBox";
+            this.airLeaderCommandLimitRank1TextBox.Validated += new System.EventHandler(this.OnAirLeaderCommandLimitRank1TextBoxValidated);
+            // 
+            // airLeaderCommandLimitRank1Label
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank1Label, "airLeaderCommandLimitRank1Label");
+            this.airLeaderCommandLimitRank1Label.Name = "airLeaderCommandLimitRank1Label";
+            // 
+            // airLeaderCommandLimitRank0TextBox
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank0TextBox, "airLeaderCommandLimitRank0TextBox");
+            this.airLeaderCommandLimitRank0TextBox.Name = "airLeaderCommandLimitRank0TextBox";
+            this.airLeaderCommandLimitRank0TextBox.Validated += new System.EventHandler(this.OnAirLeaderCommandLimitRank0TextBoxValidated);
+            // 
+            // airLeaderCommandLimitRank0Label
+            // 
+            resources.ApplyResources(this.airLeaderCommandLimitRank0Label, "airLeaderCommandLimitRank0Label");
+            this.airLeaderCommandLimitRank0Label.Name = "airLeaderCommandLimitRank0Label";
+            // 
+            // landLeaderCommandLimitRank3TextBox
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank3TextBox, "landLeaderCommandLimitRank3TextBox");
+            this.landLeaderCommandLimitRank3TextBox.Name = "landLeaderCommandLimitRank3TextBox";
+            this.landLeaderCommandLimitRank3TextBox.Validated += new System.EventHandler(this.OnLandLeaderCommandLimitRank3TextBoxValidated);
+            // 
+            // landLeaderCommandLimitRank3Label
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank3Label, "landLeaderCommandLimitRank3Label");
+            this.landLeaderCommandLimitRank3Label.Name = "landLeaderCommandLimitRank3Label";
+            // 
+            // landLeaderCommandLimitRank2TextBox
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank2TextBox, "landLeaderCommandLimitRank2TextBox");
+            this.landLeaderCommandLimitRank2TextBox.Name = "landLeaderCommandLimitRank2TextBox";
+            this.landLeaderCommandLimitRank2TextBox.Validated += new System.EventHandler(this.OnLandLeaderCommandLimitRank2TextBoxValidated);
+            // 
+            // landLeaderCommandLimitRank2Label
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank2Label, "landLeaderCommandLimitRank2Label");
+            this.landLeaderCommandLimitRank2Label.Name = "landLeaderCommandLimitRank2Label";
+            // 
+            // landLeaderCommandLimitRank1TextBox
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank1TextBox, "landLeaderCommandLimitRank1TextBox");
+            this.landLeaderCommandLimitRank1TextBox.Name = "landLeaderCommandLimitRank1TextBox";
+            this.landLeaderCommandLimitRank1TextBox.Validated += new System.EventHandler(this.OnLandLeaderCommandLimitRank1TextBoxValidated);
+            // 
+            // landLeaderCommandLimitRank1Label
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank1Label, "landLeaderCommandLimitRank1Label");
+            this.landLeaderCommandLimitRank1Label.Name = "landLeaderCommandLimitRank1Label";
+            // 
+            // landLeaderCommandLimitRank0TextBox
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank0TextBox, "landLeaderCommandLimitRank0TextBox");
+            this.landLeaderCommandLimitRank0TextBox.Name = "landLeaderCommandLimitRank0TextBox";
+            this.landLeaderCommandLimitRank0TextBox.Validated += new System.EventHandler(this.OnLandLeaderCommandLimitRank0TextBoxValidated);
+            // 
+            // landLeaderCommandLimitRank0Label
+            // 
+            resources.ApplyResources(this.landLeaderCommandLimitRank0Label, "landLeaderCommandLimitRank0Label");
+            this.landLeaderCommandLimitRank0Label.Name = "landLeaderCommandLimitRank0Label";
+            // 
+            // navalOverstackingModifierTextBox
+            // 
+            resources.ApplyResources(this.navalOverstackingModifierTextBox, "navalOverstackingModifierTextBox");
+            this.navalOverstackingModifierTextBox.Name = "navalOverstackingModifierTextBox";
+            this.navalOverstackingModifierTextBox.Validated += new System.EventHandler(this.OnNavalOverstackingModifierTextBoxValidated);
+            // 
+            // navalOverstackingModifierLabel
+            // 
+            resources.ApplyResources(this.navalOverstackingModifierLabel, "navalOverstackingModifierLabel");
+            this.navalOverstackingModifierLabel.Name = "navalOverstackingModifierLabel";
+            // 
+            // airOverstackingModifierTextBox
+            // 
+            resources.ApplyResources(this.airOverstackingModifierTextBox, "airOverstackingModifierTextBox");
+            this.airOverstackingModifierTextBox.Name = "airOverstackingModifierTextBox";
+            this.airOverstackingModifierTextBox.Validated += new System.EventHandler(this.OnAirOverstackingModifierTextBoxValidated);
+            // 
+            // airOverstackingModifierLabel
+            // 
+            resources.ApplyResources(this.airOverstackingModifierLabel, "airOverstackingModifierLabel");
+            this.airOverstackingModifierLabel.Name = "airOverstackingModifierLabel";
+            // 
+            // interceptorBomberModifierTextBox
+            // 
+            resources.ApplyResources(this.interceptorBomberModifierTextBox, "interceptorBomberModifierTextBox");
+            this.interceptorBomberModifierTextBox.Name = "interceptorBomberModifierTextBox";
+            this.interceptorBomberModifierTextBox.Validated += new System.EventHandler(this.OnInterceptorBomberModifierTextBoxValidated);
+            // 
+            // interceptorBomberModifierLabel
+            // 
+            resources.ApplyResources(this.interceptorBomberModifierLabel, "interceptorBomberModifierLabel");
+            this.interceptorBomberModifierLabel.Name = "interceptorBomberModifierLabel";
+            // 
+            // raderStationMultiplierTextBox
+            // 
+            resources.ApplyResources(this.raderStationMultiplierTextBox, "raderStationMultiplierTextBox");
+            this.raderStationMultiplierTextBox.Name = "raderStationMultiplierTextBox";
+            this.raderStationMultiplierTextBox.Validated += new System.EventHandler(this.OnRaderStationMultiplierTextBoxValidated);
+            // 
+            // raderStationMultiplierLabel
+            // 
+            resources.ApplyResources(this.raderStationMultiplierLabel, "raderStationMultiplierLabel");
+            this.raderStationMultiplierLabel.Name = "raderStationMultiplierLabel";
+            // 
+            // supplyProblemsModifierTextBox
+            // 
+            resources.ApplyResources(this.supplyProblemsModifierTextBox, "supplyProblemsModifierTextBox");
+            this.supplyProblemsModifierTextBox.Name = "supplyProblemsModifierTextBox";
+            this.supplyProblemsModifierTextBox.Validated += new System.EventHandler(this.OnSupplyProblemsModifierTextBoxValidated);
+            // 
+            // supplyProblemsModifierLabel
+            // 
+            resources.ApplyResources(this.supplyProblemsModifierLabel, "supplyProblemsModifierLabel");
+            this.supplyProblemsModifierLabel.Name = "supplyProblemsModifierLabel";
+            // 
+            // dissentMultiplierTextBox
+            // 
+            resources.ApplyResources(this.dissentMultiplierTextBox, "dissentMultiplierTextBox");
+            this.dissentMultiplierTextBox.Name = "dissentMultiplierTextBox";
+            this.dissentMultiplierTextBox.Validated += new System.EventHandler(this.OnDissentMultiplierTextBoxValidated);
+            // 
+            // dissentMultiplierLabel
+            // 
+            resources.ApplyResources(this.dissentMultiplierLabel, "dissentMultiplierLabel");
+            this.dissentMultiplierLabel.Name = "dissentMultiplierLabel";
+            // 
+            // coastalFortMultiplierTextBox
+            // 
+            resources.ApplyResources(this.coastalFortMultiplierTextBox, "coastalFortMultiplierTextBox");
+            this.coastalFortMultiplierTextBox.Name = "coastalFortMultiplierTextBox";
+            this.coastalFortMultiplierTextBox.Validated += new System.EventHandler(this.OnCoastalFortMultiplierTextBoxValidated);
+            // 
+            // coastalFortMultiplierLabel
+            // 
+            resources.ApplyResources(this.coastalFortMultiplierLabel, "coastalFortMultiplierLabel");
+            this.coastalFortMultiplierLabel.Name = "coastalFortMultiplierLabel";
+            // 
+            // landFortMultiplierTextBox
+            // 
+            resources.ApplyResources(this.landFortMultiplierTextBox, "landFortMultiplierTextBox");
+            this.landFortMultiplierTextBox.Name = "landFortMultiplierTextBox";
+            this.landFortMultiplierTextBox.Validated += new System.EventHandler(this.OnLandFortMultiplierTextBoxValidated);
+            // 
+            // landFortMultiplierLabel
+            // 
+            resources.ApplyResources(this.landFortMultiplierLabel, "landFortMultiplierLabel");
+            this.landFortMultiplierLabel.Name = "landFortMultiplierLabel";
+            // 
+            // encircledModifierTextBox
+            // 
+            resources.ApplyResources(this.encircledModifierTextBox, "encircledModifierTextBox");
+            this.encircledModifierTextBox.Name = "encircledModifierTextBox";
+            this.encircledModifierTextBox.Validated += new System.EventHandler(this.OnEncircledModifierTextBoxValidated);
+            // 
+            // encircledModifierLabel
+            // 
+            resources.ApplyResources(this.encircledModifierLabel, "encircledModifierLabel");
+            this.encircledModifierLabel.Name = "encircledModifierLabel";
+            // 
+            // envelopmentModifierTextBox
+            // 
+            resources.ApplyResources(this.envelopmentModifierTextBox, "envelopmentModifierTextBox");
+            this.envelopmentModifierTextBox.Name = "envelopmentModifierTextBox";
+            this.envelopmentModifierTextBox.Validated += new System.EventHandler(this.OnEnvelopmentModifierTextBoxValidated);
+            // 
+            // envelopmentModifierLabel
+            // 
+            resources.ApplyResources(this.envelopmentModifierLabel, "envelopmentModifierLabel");
+            this.envelopmentModifierLabel.Name = "envelopmentModifierLabel";
+            // 
+            // navalCommandLimitModifierTextBox
+            // 
+            resources.ApplyResources(this.navalCommandLimitModifierTextBox, "navalCommandLimitModifierTextBox");
+            this.navalCommandLimitModifierTextBox.Name = "navalCommandLimitModifierTextBox";
+            this.navalCommandLimitModifierTextBox.Validated += new System.EventHandler(this.OnNavalCommandLimitModifierTextBoxValidated);
+            // 
+            // navalCommandLimitModifierLabel
+            // 
+            resources.ApplyResources(this.navalCommandLimitModifierLabel, "navalCommandLimitModifierLabel");
+            this.navalCommandLimitModifierLabel.Name = "navalCommandLimitModifierLabel";
+            // 
+            // airCommandLimitModifierTextBox
+            // 
+            resources.ApplyResources(this.airCommandLimitModifierTextBox, "airCommandLimitModifierTextBox");
+            this.airCommandLimitModifierTextBox.Name = "airCommandLimitModifierTextBox";
+            this.airCommandLimitModifierTextBox.Validated += new System.EventHandler(this.OnAirCommandLimitModifierTextBoxValidated);
+            // 
+            // airCommandLimitModifierLabel
+            // 
+            resources.ApplyResources(this.airCommandLimitModifierLabel, "airCommandLimitModifierLabel");
+            this.airCommandLimitModifierLabel.Name = "airCommandLimitModifierLabel";
+            // 
+            // landCommandLimitModifierTextBox
+            // 
+            resources.ApplyResources(this.landCommandLimitModifierTextBox, "landCommandLimitModifierTextBox");
+            this.landCommandLimitModifierTextBox.Name = "landCommandLimitModifierTextBox";
+            this.landCommandLimitModifierTextBox.Validated += new System.EventHandler(this.OnLandCommandLimitModifierTextBoxValidated);
+            // 
+            // landCommandLimitModifierLabel
+            // 
+            resources.ApplyResources(this.landCommandLimitModifierLabel, "landCommandLimitModifierLabel");
+            this.landCommandLimitModifierLabel.Name = "landCommandLimitModifierLabel";
+            // 
+            // surpriseModifierTextBox
+            // 
+            resources.ApplyResources(this.surpriseModifierTextBox, "surpriseModifierTextBox");
+            this.surpriseModifierTextBox.Name = "surpriseModifierTextBox";
+            this.surpriseModifierTextBox.Validated += new System.EventHandler(this.OnSurpriseModifierTextBoxValidated);
+            // 
+            // surpriseModifierLabel
+            // 
+            resources.ApplyResources(this.surpriseModifierLabel, "surpriseModifierLabel");
+            this.surpriseModifierLabel.Name = "surpriseModifierLabel";
+            // 
+            // defensiveCombinedArmsBonusTextBox
+            // 
+            resources.ApplyResources(this.defensiveCombinedArmsBonusTextBox, "defensiveCombinedArmsBonusTextBox");
+            this.defensiveCombinedArmsBonusTextBox.Name = "defensiveCombinedArmsBonusTextBox";
+            this.defensiveCombinedArmsBonusTextBox.Validated += new System.EventHandler(this.OnDefensiveCombinedArmsBonusTextBoxValidated);
+            // 
+            // defensiveCombinedArmsBonusLabel
+            // 
+            resources.ApplyResources(this.defensiveCombinedArmsBonusLabel, "defensiveCombinedArmsBonusLabel");
+            this.defensiveCombinedArmsBonusLabel.Name = "defensiveCombinedArmsBonusLabel";
+            // 
+            // offensiveCombinedArmsBonusTextBox
+            // 
+            resources.ApplyResources(this.offensiveCombinedArmsBonusTextBox, "offensiveCombinedArmsBonusTextBox");
+            this.offensiveCombinedArmsBonusTextBox.Name = "offensiveCombinedArmsBonusTextBox";
+            this.offensiveCombinedArmsBonusTextBox.Validated += new System.EventHandler(this.OnOffensiveCombinedArmsBonusTextBoxValidated);
+            // 
+            // offensiveCombinedArmsBonusLabel
+            // 
+            resources.ApplyResources(this.offensiveCombinedArmsBonusLabel, "offensiveCombinedArmsBonusLabel");
+            this.offensiveCombinedArmsBonusLabel.Name = "offensiveCombinedArmsBonusLabel";
+            // 
+            // multipleCombatModifierTextBox
+            // 
+            resources.ApplyResources(this.multipleCombatModifierTextBox, "multipleCombatModifierTextBox");
+            this.multipleCombatModifierTextBox.Name = "multipleCombatModifierTextBox";
+            this.multipleCombatModifierTextBox.Validated += new System.EventHandler(this.OnMultipleCombatModifierTextBoxValidated);
+            // 
+            // multipleCombatModifierLabel
+            // 
+            resources.ApplyResources(this.multipleCombatModifierLabel, "multipleCombatModifierLabel");
+            this.multipleCombatModifierLabel.Name = "multipleCombatModifierLabel";
+            // 
+            // invasionModifierTextBox
+            // 
+            resources.ApplyResources(this.invasionModifierTextBox, "invasionModifierTextBox");
+            this.invasionModifierTextBox.Name = "invasionModifierTextBox";
+            this.invasionModifierTextBox.Validated += new System.EventHandler(this.OnInvasionModifierTextBoxValidated);
+            // 
+            // invasionModifierLabel
+            // 
+            resources.ApplyResources(this.invasionModifierLabel, "invasionModifierLabel");
+            this.invasionModifierLabel.Name = "invasionModifierLabel";
+            // 
+            // shoreBombardmentModifierTextBox
+            // 
+            resources.ApplyResources(this.shoreBombardmentModifierTextBox, "shoreBombardmentModifierTextBox");
+            this.shoreBombardmentModifierTextBox.Name = "shoreBombardmentModifierTextBox";
+            this.shoreBombardmentModifierTextBox.Validated += new System.EventHandler(this.OnShoreBombardmentModifierTextBoxValidated);
+            // 
+            // shoreBombardmentModifierLabel
+            // 
+            resources.ApplyResources(this.shoreBombardmentModifierLabel, "shoreBombardmentModifierLabel");
+            this.shoreBombardmentModifierLabel.Name = "shoreBombardmentModifierLabel";
+            // 
+            // baseProximityTextBox
+            // 
+            resources.ApplyResources(this.baseProximityTextBox, "baseProximityTextBox");
+            this.baseProximityTextBox.Name = "baseProximityTextBox";
+            this.baseProximityTextBox.Validated += new System.EventHandler(this.OnBaseProximityTextBoxValidated);
+            // 
+            // baseProximityLabel
+            // 
+            resources.ApplyResources(this.baseProximityLabel, "baseProximityLabel");
+            this.baseProximityLabel.Name = "baseProximityLabel";
+            // 
+            // attritionSeverityModifierTextBox
+            // 
+            resources.ApplyResources(this.attritionSeverityModifierTextBox, "attritionSeverityModifierTextBox");
+            this.attritionSeverityModifierTextBox.Name = "attritionSeverityModifierTextBox";
+            this.attritionSeverityModifierTextBox.Validated += new System.EventHandler(this.OnAttritionSeverityModifierTextBoxValidated);
+            // 
+            // attritionSeverityModifierLabel
+            // 
+            resources.ApplyResources(this.attritionSeverityModifierLabel, "attritionSeverityModifierLabel");
+            this.attritionSeverityModifierLabel.Name = "attritionSeverityModifierLabel";
+            // 
+            // leaderXpGainFactorTextBox
+            // 
+            resources.ApplyResources(this.leaderXpGainFactorTextBox, "leaderXpGainFactorTextBox");
+            this.leaderXpGainFactorTextBox.Name = "leaderXpGainFactorTextBox";
+            this.leaderXpGainFactorTextBox.Validated += new System.EventHandler(this.OnLeaderXpGainFactorTextBoxValidated);
+            // 
+            // leaderXpGainFactorLabel
+            // 
+            resources.ApplyResources(this.leaderXpGainFactorLabel, "leaderXpGainFactorLabel");
+            this.leaderXpGainFactorLabel.Name = "leaderXpGainFactorLabel";
+            // 
+            // divisionXpGainFactorTextBox
+            // 
+            resources.ApplyResources(this.divisionXpGainFactorTextBox, "divisionXpGainFactorTextBox");
+            this.divisionXpGainFactorTextBox.Name = "divisionXpGainFactorTextBox";
+            this.divisionXpGainFactorTextBox.Validated += new System.EventHandler(this.OnDivisionXpGainFactorTextBoxValidated);
+            // 
+            // divisionXpGainFactorLabel
+            // 
+            resources.ApplyResources(this.divisionXpGainFactorLabel, "divisionXpGainFactorLabel");
+            this.divisionXpGainFactorLabel.Name = "divisionXpGainFactorLabel";
+            // 
+            // airXpGainFactorTextBox
+            // 
+            resources.ApplyResources(this.airXpGainFactorTextBox, "airXpGainFactorTextBox");
+            this.airXpGainFactorTextBox.Name = "airXpGainFactorTextBox";
+            this.airXpGainFactorTextBox.Validated += new System.EventHandler(this.OnAirXpGainFactorTextBoxValidated);
+            // 
+            // airXpGainFactorLabel
+            // 
+            resources.ApplyResources(this.airXpGainFactorLabel, "airXpGainFactorLabel");
+            this.airXpGainFactorLabel.Name = "airXpGainFactorLabel";
+            // 
+            // navalXpGainFactorTextBox
+            // 
+            resources.ApplyResources(this.navalXpGainFactorTextBox, "navalXpGainFactorTextBox");
+            this.navalXpGainFactorTextBox.Name = "navalXpGainFactorTextBox";
+            this.navalXpGainFactorTextBox.Validated += new System.EventHandler(this.OnNavalXpGainFactorTextBoxValidated);
+            // 
+            // navalXpGainFactorLabel
+            // 
+            resources.ApplyResources(this.navalXpGainFactorLabel, "navalXpGainFactorLabel");
+            this.navalXpGainFactorLabel.Name = "navalXpGainFactorLabel";
+            // 
+            // landXpGainFactorTextBox
+            // 
+            resources.ApplyResources(this.landXpGainFactorTextBox, "landXpGainFactorTextBox");
+            this.landXpGainFactorTextBox.Name = "landXpGainFactorTextBox";
+            this.landXpGainFactorTextBox.Validated += new System.EventHandler(this.OnLandXpGainFactorTextBoxValidated);
+            // 
+            // landXpGainFactorLabel
+            // 
+            resources.ApplyResources(this.landXpGainFactorLabel, "landXpGainFactorLabel");
+            this.landXpGainFactorLabel.Name = "landXpGainFactorLabel";
+            // 
+            // closeButton6
+            // 
+            resources.ApplyResources(this.closeButton6, "closeButton6");
+            this.closeButton6.Name = "closeButton6";
+            this.closeButton6.UseVisualStyleBackColor = true;
+            this.closeButton6.Click += new System.EventHandler(this.OnCloseButtonClick);
+            // 
+            // saveButton6
+            // 
+            resources.ApplyResources(this.saveButton6, "saveButton6");
+            this.saveButton6.Name = "saveButton6";
+            this.saveButton6.UseVisualStyleBackColor = true;
+            this.saveButton6.Click += new System.EventHandler(this.OnSaveButtonClick);
+            // 
+            // reloadButton6
+            // 
+            resources.ApplyResources(this.reloadButton6, "reloadButton6");
+            this.reloadButton6.Name = "reloadButton6";
+            this.reloadButton6.UseVisualStyleBackColor = true;
+            this.reloadButton6.Click += new System.EventHandler(this.OnReloadButtonClick);
             // 
             // combatTabPage2
             // 
-            this.combatTabPage2.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.combatTabPage2, "combatTabPage2");
+            this.combatTabPage2.BackColor = System.Drawing.SystemColors.Control;
             this.combatTabPage2.Name = "combatTabPage2";
             // 
             // combatTabPage3
             // 
-            this.combatTabPage3.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.combatTabPage3, "combatTabPage3");
+            this.combatTabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.combatTabPage3.Name = "combatTabPage3";
             // 
             // combatTabPage4
             // 
-            this.combatTabPage4.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.combatTabPage4, "combatTabPage4");
+            this.combatTabPage4.BackColor = System.Drawing.SystemColors.Control;
             this.combatTabPage4.Name = "combatTabPage4";
             // 
             // combatTabPage5
             // 
-            this.combatTabPage5.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.combatTabPage5, "combatTabPage5");
+            this.combatTabPage5.BackColor = System.Drawing.SystemColors.Control;
             this.combatTabPage5.Name = "combatTabPage5";
             // 
             // missionTabPage1
             // 
-            this.missionTabPage1.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.missionTabPage1, "missionTabPage1");
+            this.missionTabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.missionTabPage1.Name = "missionTabPage1";
             // 
             // missionTabPage2
             // 
-            this.missionTabPage2.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.missionTabPage2, "missionTabPage2");
+            this.missionTabPage2.BackColor = System.Drawing.SystemColors.Control;
             this.missionTabPage2.Name = "missionTabPage2";
             // 
             // countryTabPage
             // 
-            this.countryTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.countryTabPage, "countryTabPage");
+            this.countryTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.countryTabPage.Name = "countryTabPage";
             // 
             // researchTabPage
             // 
-            this.researchTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.researchTabPage, "researchTabPage");
+            this.researchTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.researchTabPage.Name = "researchTabPage";
             // 
             // tradeTabPage
             // 
-            this.tradeTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.tradeTabPage, "tradeTabPage");
+            this.tradeTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.tradeTabPage.Name = "tradeTabPage";
             // 
             // aiTabPage
             // 
-            this.aiTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.aiTabPage, "aiTabPage");
+            this.aiTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.aiTabPage.Name = "aiTabPage";
             // 
             // modTabPage
             // 
-            this.modTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.modTabPage, "modTabPage");
+            this.modTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.modTabPage.Name = "modTabPage";
             // 
             // mapTabPage
             // 
-            this.mapTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.mapTabPage, "mapTabPage");
+            this.mapTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.mapTabPage.Name = "mapTabPage";
             // 
             // MiscEditorForm
@@ -3682,6 +4700,8 @@
             this.intelligenceTabPage.PerformLayout();
             this.diplomacyTabPage.ResumeLayout(false);
             this.diplomacyTabPage.PerformLayout();
+            this.combatTabPage1.ResumeLayout(false);
+            this.combatTabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4148,5 +5168,140 @@
         private System.Windows.Forms.Label timeBetweenSliderChangesDhLabel;
         private System.Windows.Forms.TextBox daysBetweenDiplomaticMissionsTextBox;
         private System.Windows.Forms.Label daysBetweenDiplomaticMissionsLabel;
+        private System.Windows.Forms.TextBox landXpGainFactorTextBox;
+        private System.Windows.Forms.Label landXpGainFactorLabel;
+        private System.Windows.Forms.Button closeButton6;
+        private System.Windows.Forms.Button saveButton6;
+        private System.Windows.Forms.Button reloadButton6;
+        private System.Windows.Forms.TextBox interceptorBomberModifierTextBox;
+        private System.Windows.Forms.Label interceptorBomberModifierLabel;
+        private System.Windows.Forms.TextBox raderStationMultiplierTextBox;
+        private System.Windows.Forms.Label raderStationMultiplierLabel;
+        private System.Windows.Forms.TextBox supplyProblemsModifierTextBox;
+        private System.Windows.Forms.Label supplyProblemsModifierLabel;
+        private System.Windows.Forms.TextBox dissentMultiplierTextBox;
+        private System.Windows.Forms.Label dissentMultiplierLabel;
+        private System.Windows.Forms.TextBox coastalFortMultiplierTextBox;
+        private System.Windows.Forms.Label coastalFortMultiplierLabel;
+        private System.Windows.Forms.TextBox landFortMultiplierTextBox;
+        private System.Windows.Forms.Label landFortMultiplierLabel;
+        private System.Windows.Forms.TextBox encircledModifierTextBox;
+        private System.Windows.Forms.Label encircledModifierLabel;
+        private System.Windows.Forms.TextBox envelopmentModifierTextBox;
+        private System.Windows.Forms.Label envelopmentModifierLabel;
+        private System.Windows.Forms.TextBox navalCommandLimitModifierTextBox;
+        private System.Windows.Forms.Label navalCommandLimitModifierLabel;
+        private System.Windows.Forms.TextBox airCommandLimitModifierTextBox;
+        private System.Windows.Forms.Label airCommandLimitModifierLabel;
+        private System.Windows.Forms.TextBox landCommandLimitModifierTextBox;
+        private System.Windows.Forms.Label landCommandLimitModifierLabel;
+        private System.Windows.Forms.TextBox surpriseModifierTextBox;
+        private System.Windows.Forms.Label surpriseModifierLabel;
+        private System.Windows.Forms.TextBox defensiveCombinedArmsBonusTextBox;
+        private System.Windows.Forms.Label defensiveCombinedArmsBonusLabel;
+        private System.Windows.Forms.TextBox offensiveCombinedArmsBonusTextBox;
+        private System.Windows.Forms.Label offensiveCombinedArmsBonusLabel;
+        private System.Windows.Forms.TextBox multipleCombatModifierTextBox;
+        private System.Windows.Forms.Label multipleCombatModifierLabel;
+        private System.Windows.Forms.TextBox invasionModifierTextBox;
+        private System.Windows.Forms.Label invasionModifierLabel;
+        private System.Windows.Forms.TextBox shoreBombardmentModifierTextBox;
+        private System.Windows.Forms.Label shoreBombardmentModifierLabel;
+        private System.Windows.Forms.TextBox baseProximityTextBox;
+        private System.Windows.Forms.Label baseProximityLabel;
+        private System.Windows.Forms.TextBox attritionSeverityModifierTextBox;
+        private System.Windows.Forms.Label attritionSeverityModifierLabel;
+        private System.Windows.Forms.TextBox leaderXpGainFactorTextBox;
+        private System.Windows.Forms.Label leaderXpGainFactorLabel;
+        private System.Windows.Forms.TextBox divisionXpGainFactorTextBox;
+        private System.Windows.Forms.Label divisionXpGainFactorLabel;
+        private System.Windows.Forms.TextBox airXpGainFactorTextBox;
+        private System.Windows.Forms.Label airXpGainFactorLabel;
+        private System.Windows.Forms.TextBox navalXpGainFactorTextBox;
+        private System.Windows.Forms.Label navalXpGainFactorLabel;
+        private System.Windows.Forms.TextBox damageNukeBombingTextBox;
+        private System.Windows.Forms.Label damageNukeBombingLabel;
+        private System.Windows.Forms.TextBox damageRocketBombingTextBox;
+        private System.Windows.Forms.Label damageRocketBombingLabel;
+        private System.Windows.Forms.TextBox damageAaBombingTextBox;
+        private System.Windows.Forms.Label damageAaBombingLabel;
+        private System.Windows.Forms.TextBox damageAirBaseBombingTextBox;
+        private System.Windows.Forms.Label damageAirBaseBombingLabel;
+        private System.Windows.Forms.TextBox damageNavalBasesBombingTextBox;
+        private System.Windows.Forms.Label damageNavalBasesBombingLabel;
+        private System.Windows.Forms.TextBox effectExperienceCombatTextBox;
+        private System.Windows.Forms.Label effectExperienceCombatLabel;
+        private System.Windows.Forms.TextBox maximumSizesAirStacksTextBox;
+        private System.Windows.Forms.Label maximumSizesAirStacksLabel;
+        private System.Windows.Forms.TextBox delayAfterCombatEndsTextBox;
+        private System.Windows.Forms.Label delayAfterCombatEndsLabel;
+        private System.Windows.Forms.TextBox convoyProtectionFactorTextBox;
+        private System.Windows.Forms.Label convoyProtectionFactorLabel;
+        private System.Windows.Forms.TextBox hqCommandLimitFactorTextBox;
+        private System.Windows.Forms.Label hqCommandLimitFactorLabel;
+        private System.Windows.Forms.TextBox navalLeaderCommandLimitRank3TextBox;
+        private System.Windows.Forms.Label navalLeaderCommandLimitRank3Label;
+        private System.Windows.Forms.TextBox navalLeaderCommandLimitRank2TextBox;
+        private System.Windows.Forms.Label navalLeaderCommandLimitRank2Label;
+        private System.Windows.Forms.TextBox navalLeaderCommandLimitRank1TextBox;
+        private System.Windows.Forms.Label navalLeaderCommandLimitRank1Label;
+        private System.Windows.Forms.TextBox navalLeaderCommandLimitRank0TextBox;
+        private System.Windows.Forms.Label navalLeaderCommandLimitRank0Label;
+        private System.Windows.Forms.TextBox airLeaderCommandLimitRank3TextBox;
+        private System.Windows.Forms.Label airLeaderCommandLimitRank3Label;
+        private System.Windows.Forms.TextBox airLeaderCommandLimitRank2TextBox;
+        private System.Windows.Forms.Label airLeaderCommandLimitRank2Label;
+        private System.Windows.Forms.TextBox airLeaderCommandLimitRank1TextBox;
+        private System.Windows.Forms.Label airLeaderCommandLimitRank1Label;
+        private System.Windows.Forms.TextBox airLeaderCommandLimitRank0TextBox;
+        private System.Windows.Forms.Label airLeaderCommandLimitRank0Label;
+        private System.Windows.Forms.TextBox landLeaderCommandLimitRank3TextBox;
+        private System.Windows.Forms.Label landLeaderCommandLimitRank3Label;
+        private System.Windows.Forms.TextBox landLeaderCommandLimitRank2TextBox;
+        private System.Windows.Forms.Label landLeaderCommandLimitRank2Label;
+        private System.Windows.Forms.TextBox landLeaderCommandLimitRank1TextBox;
+        private System.Windows.Forms.Label landLeaderCommandLimitRank1Label;
+        private System.Windows.Forms.TextBox landLeaderCommandLimitRank0TextBox;
+        private System.Windows.Forms.Label landLeaderCommandLimitRank0Label;
+        private System.Windows.Forms.TextBox navalOverstackingModifierTextBox;
+        private System.Windows.Forms.Label navalOverstackingModifierLabel;
+        private System.Windows.Forms.TextBox airOverstackingModifierTextBox;
+        private System.Windows.Forms.Label airOverstackingModifierLabel;
+        private System.Windows.Forms.TextBox airStrDamageTextBox;
+        private System.Windows.Forms.Label airStrDamageLabel;
+        private System.Windows.Forms.TextBox airStrDamageOrgTextBox;
+        private System.Windows.Forms.Label airStrDamageOrgLabel;
+        private System.Windows.Forms.TextBox airOrgDamageTextBox;
+        private System.Windows.Forms.Label airOrgDamageLabel;
+        private System.Windows.Forms.TextBox chanceLeaderDyingTextBox;
+        private System.Windows.Forms.Label chanceLeaderDyingLabel;
+        private System.Windows.Forms.TextBox bonusEventTraitTextBox;
+        private System.Windows.Forms.Label bonusEventTraitLabel;
+        private System.Windows.Forms.TextBox bonusTerrainTraitTextBox;
+        private System.Windows.Forms.Label bonusTerrainTraitLabel;
+        private System.Windows.Forms.TextBox chanceGetEventTraitTextBox;
+        private System.Windows.Forms.Label chanceGetEventTraitLabel;
+        private System.Windows.Forms.TextBox chanceGetTerrainTraitTextBox;
+        private System.Windows.Forms.Label chanceGetTerrainTraitLabel;
+        private System.Windows.Forms.TextBox chanceAvoidNoDefencesTextBox;
+        private System.Windows.Forms.Label chanceAvoidNoDefencesLabel;
+        private System.Windows.Forms.TextBox chanceAvoidDefencesLeftTextBox;
+        private System.Windows.Forms.Label chanceAvoidDefencesLeftLabel;
+        private System.Windows.Forms.TextBox howEffectiveGroundDefTextBox;
+        private System.Windows.Forms.Label howEffectiveGroundDefLabel;
+        private System.Windows.Forms.TextBox damageResourcesBombingTextBox;
+        private System.Windows.Forms.Label damageResourcesBombingLabel;
+        private System.Windows.Forms.TextBox damageIcBombingTextBox;
+        private System.Windows.Forms.Label damageIcBombingLabel;
+        private System.Windows.Forms.TextBox damageInfraBombingTextBox;
+        private System.Windows.Forms.Label damageInfraBombingLabel;
+        private System.Windows.Forms.TextBox damageRadarBombingTextBox;
+        private System.Windows.Forms.Label damageRadarBombingLabel;
+        private System.Windows.Forms.TextBox subStacksDetectionModifierTextBox;
+        private System.Windows.Forms.Label subStacksDetectionModifierLabel;
+        private System.Windows.Forms.TextBox subsStrDamageTextBox;
+        private System.Windows.Forms.Label subsStrDamageLabel;
+        private System.Windows.Forms.TextBox subsOrgDamageTextBox;
+        private System.Windows.Forms.Label subsOrgDamageLabel;
     }
 }

@@ -67,6 +67,2647 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 公開プロパティ - economy
+
+        /// <summary>
+        ///     ICからTCへの変換効率
+        /// </summary>
+        public static double IcToTcRatio;
+
+        /// <summary>
+        ///     ICから物資への変換効率
+        /// </summary>
+        public static double IcToSuppliesRatio;
+
+        /// <summary>
+        ///     ICから消費財への変換効率
+        /// </summary>
+        public static double IcToConsumerGoodsRatio;
+
+        /// <summary>
+        ///     ICから資金への変換効率
+        /// </summary>
+        public static double IcToMoneyRatio;
+
+        /// <summary>
+        ///     不満度変化速度
+        /// </summary>
+        public static double DissentChangeSpeed;
+
+        /// <summary>
+        ///     最小実効ICの比率
+        /// </summary>
+        public static double MinAvailableIc;
+
+        /// <summary>
+        ///     最小実効IC
+        /// </summary>
+        public static double MinFinalIc;
+
+        /// <summary>
+        ///     不満度低下補正
+        /// </summary>
+        public static double DissentReduction;
+
+        /// <summary>
+        ///     最大ギアリングボーナス
+        /// </summary>
+        public static double MaxGearingBonus;
+
+        /// <summary>
+        ///     ギアリングボーナスの増加値
+        /// </summary>
+        public static double GearingBonusIncrement;
+
+        /// <summary>
+        ///     連続生産時の資源消費増加
+        /// </summary>
+        public static double GearingResourceIncrement;
+
+        /// <summary>
+        ///     IC不足時のギアリングボーナス減少値
+        /// </summary>
+        public static double GearingLossNoIc;
+
+        /// <summary>
+        ///     非中核州のIC補正
+        /// </summary>
+        public static double IcMultiplierNonNational;
+
+        /// <summary>
+        ///     占領地のIC補正
+        /// </summary>
+        public static double IcMultiplierNonOwned;
+
+        /// <summary>
+        ///     属国のIC補正
+        /// </summary>
+        public static double IcMultiplierPuppet;
+
+        /// <summary>
+        ///     非中核州の資源補正
+        /// </summary>
+        public static double ResourceMultiplierNonNational;
+
+        /// <summary>
+        ///     占領地の資源補正
+        /// </summary>
+        public static double ResourceMultiplierNonOwned;
+
+        /// <summary>
+        ///     非中核州の資源補正(AI)
+        /// </summary>
+        public static double ResourceMultiplierNonNationalAi;
+
+        /// <summary>
+        ///     属国の資源補正
+        /// </summary>
+        public static double ResourceMultiplierPuppet;
+
+        /// <summary>
+        ///     未配備師団のTC負荷
+        /// </summary>
+        public static double TcLoadUndeployedDivision;
+
+        /// <summary>
+        ///     占領地のTC負荷
+        /// </summary>
+        public static double TcLoadOccupied;
+
+        /// <summary>
+        ///     陸軍師団のTC負荷補正
+        /// </summary>
+        public static double TcLoadMultiplierLand;
+
+        /// <summary>
+        ///     空軍師団のTC負荷補正
+        /// </summary>
+        public static double TcLoadMultiplierAir;
+
+        /// <summary>
+        ///     海軍師団のTC負荷補正
+        /// </summary>
+        public static double TcLoadMultiplierNaval;
+
+        /// <summary>
+        ///     パルチザンのTC負荷
+        /// </summary>
+        public static double TcLoadPartisan;
+
+        /// <summary>
+        ///     攻勢時のTC負荷係数
+        /// </summary>
+        public static double TcLoadFactorOffensive;
+
+        /// <summary>
+        ///     プロヴィンス開発のTC負荷
+        /// </summary>
+        public static double TcLoadProvinceDevelopment;
+
+        /// <summary>
+        ///     未配備の基地のTC負荷
+        /// </summary>
+        public static double TcLoadBase;
+
+        /// <summary>
+        ///     中核州の人的資源補正
+        /// </summary>
+        public static double ManpowerMultiplierNational;
+
+        /// <summary>
+        ///     非中核州の人的資源補正
+        /// </summary>
+        public static double ManpowerMultiplierNonNational;
+
+        /// <summary>
+        ///     海外州の人的資源補正
+        /// </summary>
+        public static double ManpowerMultiplierColony;
+
+        /// <summary>
+        ///     属国の人的資源補正
+        /// </summary>
+        public static double ManpowerMultiplierPuppet;
+
+        /// <summary>
+        ///     戦時の海外州の人的資源補正
+        /// </summary>
+        public static double ManpowerMultiplierWartimeOversea;
+
+        /// <summary>
+        ///     平時の人的資源補正
+        /// </summary>
+        public static double ManpowerMultiplierPeacetime;
+
+        /// <summary>
+        ///     戦時の人的資源補正
+        /// </summary>
+        public static double ManpowerMultiplierWartime;
+
+        /// <summary>
+        ///     人的資源の老化率
+        /// </summary>
+        public static double DailyRetiredManpower;
+
+        /// <summary>
+        ///     政策スライダーに影響を与えるためのIC比率
+        /// </summary>
+        public static double RequirementAffectSlider;
+
+        /// <summary>
+        ///     戦闘による損失からの復帰係数
+        /// </summary>
+        public static double TrickleBackFactorManpower;
+
+        /// <summary>
+        ///     補充に必要な人的資源の比率
+        /// </summary>
+        public static double ReinforceManpower;
+
+        /// <summary>
+        ///     補充に必要なICの比率
+        /// </summary>
+        public static double ReinforceCost;
+
+        /// <summary>
+        ///     補充に必要な時間の比率
+        /// </summary>
+        public static double ReinforceTime;
+
+        /// <summary>
+        ///     改良に必要なICの比率
+        /// </summary>
+        public static double UpgradeCost;
+
+        /// <summary>
+        ///     改良に必要な時間の比率
+        /// </summary>
+        public static double UpgradeTime;
+
+        /// <summary>
+        ///     改良のための補充係数
+        /// </summary>
+        public static double ReinforceToUpdateModifier;
+
+        /// <summary>
+        ///     ナショナリズムの初期値
+        /// </summary>
+        public static double NationalismStartingValue;
+
+        /// <summary>
+        ///     人的資源によるナショナリズムの補正値
+        /// </summary>
+        public static double NationalismPerManpowerAoD;
+
+        /// <summary>
+        ///     人的資源によるナショナリズムの補正値
+        /// </summary>
+        public static double NationalismPerManpowerDh;
+
+        /// <summary>
+        ///     ナショナリズム最大値
+        /// </summary>
+        public static double MaxNationalism;
+
+        /// <summary>
+        ///     最大反乱率
+        /// </summary>
+        public static double MaxRevoltRisk;
+
+        /// <summary>
+        ///     月ごとのナショナリズムの減少値
+        /// </summary>
+        public static double MonthlyNationalismReduction;
+
+        /// <summary>
+        ///     師団譲渡後配備可能になるまでの時間
+        /// </summary>
+        public static int SendDivisionDays;
+
+        /// <summary>
+        ///     未配備旅団のTC負荷
+        /// </summary>
+        public static double TcLoadUndeployedBrigade;
+
+        /// <summary>
+        ///     非同盟国に師団を譲渡できるかどうか
+        /// </summary>
+        public static bool CanUnitSendNonAllied;
+
+        /// <summary>
+        ///     諜報任務の間隔
+        /// </summary>
+        public static int SpyMissionDays;
+
+        /// <summary>
+        ///     諜報レベルの増加間隔
+        /// </summary>
+        public static int IncreateIntelligenceLevelDays;
+
+        /// <summary>
+        ///     国内の諜報活動を発見する確率
+        /// </summary>
+        public static int ChanceDetectSpyMission;
+
+        /// <summary>
+        ///     諜報任務発覚時の友好度低下量
+        /// </summary>
+        public static double RelationshipsHitDetectedMissions;
+
+        /// <summary>
+        ///     第三国の諜報活動を報告するか
+        /// </summary>
+        public static int ShowThirdCountrySpyReports;
+
+        /// <summary>
+        ///     諜報任務の近隣国補正
+        /// </summary>
+        public static double DistanceModifierNeighbours;
+
+        /// <summary>
+        ///     情報の正確さ補正
+        /// </summary>
+        public static double SpyInformationAccuracyModifier;
+
+        /// <summary>
+        ///     AIの平時の攻撃的諜報活動
+        /// </summary>
+        public static int AiPeacetimeSpyMissions;
+
+        /// <summary>
+        ///     諜報コスト補正の最大IC
+        /// </summary>
+        public static double MaxIcCostModifier;
+
+        /// <summary>
+        ///     AIの諜報コスト補正
+        /// </summary>
+        public static double AiSpyMissionsCostModifier;
+
+        /// <summary>
+        ///     AIの外交コスト補正
+        /// </summary>
+        public static double AiDiplomacyCostModifier;
+
+        /// <summary>
+        ///     AIの外交影響度補正
+        /// </summary>
+        public static double AiInfluenceModifier;
+
+        /// <summary>
+        ///     建物修復コスト補正
+        /// </summary>
+        public static double CostRepairBuildings;
+
+        /// <summary>
+        ///     建物修復時間補正
+        /// </summary>
+        public static double TimeRepairBuilding;
+
+        /// <summary>
+        ///     プロヴィンス効率上昇時間
+        /// </summary>
+        public static int ProvinceEfficiencyRiseTime;
+
+        /// <summary>
+        ///     中核プロヴィンス効率上昇時間
+        /// </summary>
+        public static int CoreProvinceEfficiencyRiseTime;
+
+        /// <summary>
+        ///     ライン維持コスト補正
+        /// </summary>
+        public static double LineUpkeep;
+
+        /// <summary>
+        ///     ライン開始時間
+        /// </summary>
+        public static int LineStartupTime;
+
+        /// <summary>
+        ///     ライン改良時間
+        /// </summary>
+        public static int LineUpgradeTime;
+
+        /// <summary>
+        ///     ライン調整コスト補正
+        /// </summary>
+        public static double RetoolingCost;
+
+        /// <summary>
+        ///     ライン調整資源補正
+        /// </summary>
+        public static double RetoolingResource;
+
+        /// <summary>
+        ///     人的資源老化補正
+        /// </summary>
+        public static double DailyAgingManpower;
+
+        /// <summary>
+        ///     船団襲撃時物資使用量補正
+        /// </summary>
+        public static double SupplyConvoyHunt;
+
+        /// <summary>
+        ///     海軍の待機時物資使用量補正
+        /// </summary>
+        public static double SupplyNavalStaticAoD;
+
+        /// <summary>
+        ///     海軍の移動時物資使用量補正
+        /// </summary>
+        public static double SupplyNavalMoving;
+
+        /// <summary>
+        ///     海軍の戦闘時物資使用量補正
+        /// </summary>
+        public static double SupplyNavalBattleAoD;
+
+        /// <summary>
+        ///     空軍の待機時物資使用量補正
+        /// </summary>
+        public static double SupplyAirStaticAoD;
+
+        /// <summary>
+        ///     空軍の移動時物資使用量補正
+        /// </summary>
+        public static double SupplyAirMoving;
+
+        /// <summary>
+        ///     空軍の戦闘時物資使用量補正
+        /// </summary>
+        public static double SupplyAirBattleAoD;
+
+        /// <summary>
+        ///     空軍の爆撃時物資使用量補正
+        /// </summary>
+        public static double SupplyAirBombing;
+
+        /// <summary>
+        ///     陸軍の待機時物資使用量補正
+        /// </summary>
+        public static double SupplyLandStaticAoD;
+
+        /// <summary>
+        ///     陸軍の移動時物資使用量補正
+        /// </summary>
+        public static double SupplyLandMoving;
+
+        /// <summary>
+        ///     陸軍の戦闘時物資使用量補正
+        /// </summary>
+        public static double SupplyLandBattleAoD;
+
+        /// <summary>
+        ///     陸軍の砲撃時物資使用量補正
+        /// </summary>
+        public static double SupplyLandBombing;
+
+        /// <summary>
+        ///     陸軍の物資備蓄量
+        /// </summary>
+        public static double SupplyStockLand;
+
+        /// <summary>
+        ///     空軍の物資備蓄量
+        /// </summary>
+        public static double SupplyStockAir;
+
+        /// <summary>
+        ///     海軍の物資備蓄量
+        /// </summary>
+        public static double SupplyStockNaval;
+
+        /// <summary>
+        ///     陸軍の物資再備蓄速度
+        /// </summary>
+        public static double RestockSpeedLand;
+
+        /// <summary>
+        ///     空軍の物資再備蓄速度
+        /// </summary>
+        public static double RestockSpeedAir;
+
+        /// <summary>
+        ///     海軍の物資再備蓄速度
+        /// </summary>
+        public static double RestockSpeedNaval;
+
+        /// <summary>
+        ///     合成石油変換係数
+        /// </summary>
+        public static double SyntheticOilConversionMultiplier;
+
+        /// <summary>
+        ///     合成希少資源変換係数
+        /// </summary>
+        public static double SyntheticRaresConversionMultiplier;
+
+        /// <summary>
+        ///     軍隊の給料
+        /// </summary>
+        public static double MilitarySalary;
+
+        /// <summary>
+        ///     最大諜報費比率
+        /// </summary>
+        public static double MaxIntelligenceExpenditure;
+
+        /// <summary>
+        ///     最大研究費比率
+        /// </summary>
+        public static double MaxResearchExpenditure;
+
+        /// <summary>
+        ///     軍隊の給料不足時の消耗補正
+        /// </summary>
+        public static double MilitarySalaryAttrictionModifier;
+
+        /// <summary>
+        ///     軍隊の給料不足時の不満度補正
+        /// </summary>
+        public static double MilitarySalaryDissentModifier;
+
+        /// <summary>
+        ///     原子炉維持コスト
+        /// </summary>
+        public static double NuclearSiteUpkeepCost;
+
+        /// <summary>
+        ///     原子力発電所維持コスト
+        /// </summary>
+        public static double NuclearPowerUpkeepCost;
+
+        /// <summary>
+        ///     合成石油工場維持コスト
+        /// </summary>
+        public static double SyntheticOilSiteUpkeepCost;
+
+        /// <summary>
+        ///     合成希少資源工場維持コスト
+        /// </summary>
+        public static double SyntheticRaresSiteUpkeepCost;
+
+        /// <summary>
+        ///     海軍情報の存続期間
+        /// </summary>
+        public static int DurationDetection;
+
+        /// <summary>
+        ///     船団攻撃回避時間
+        /// </summary>
+        public static int ConvoyProvinceHostileTime;
+
+        /// <summary>
+        ///     船団攻撃妨害時間
+        /// </summary>
+        public static int ConvoyProvinceBlockedTime;
+
+        /// <summary>
+        ///     自動貿易に必要な輸送船団割合
+        /// </summary>
+        public static double AutoTradeConvoy;
+
+        /// <summary>
+        ///     諜報維持コスト
+        /// </summary>
+        public static double SpyUpkeepCost;
+
+        /// <summary>
+        ///     スパイ発見確率
+        /// </summary>
+        public static double SpyDetectionChance;
+
+        /// <summary>
+        ///     不満度によるクーデター成功率修正
+        /// </summary>
+        public static double SpyCoupDissentModifier;
+
+        /// <summary>
+        ///     インフラによるプロヴィンス効率補正
+        /// </summary>
+        public static double InfraEfficiencyModifier;
+
+        /// <summary>
+        ///     人的資源の消費財生産補正
+        /// </summary>
+        public static double ManpowerToConsumerGoods;
+
+        /// <summary>
+        ///     スライダー移動の間隔
+        /// </summary>
+        public static int TimeBetweenSliderChangesAoD;
+
+        /// <summary>
+        ///     海外プロヴィンスへの配置の必要IC
+        /// </summary>
+        public static double MinimalPlacementIc;
+
+        /// <summary>
+        ///     原子力発電量
+        /// </summary>
+        public static double NuclearPower;
+
+        /// <summary>
+        ///     インフラの自然回復率
+        /// </summary>
+        public static double FreeInfraRepair;
+
+        /// <summary>
+        ///     スライダー移動時の最大不満度
+        /// </summary>
+        public static double MaxSliderDissent;
+
+        /// <summary>
+        ///     スライダー移動時の最小不満度
+        /// </summary>
+        public static double MinSliderDissent;
+
+        /// <summary>
+        ///     スライダー移動可能な最大不満度
+        /// </summary>
+        public static double MaxDissentSliderMove;
+
+        /// <summary>
+        ///     工場集中ボーナス
+        /// </summary>
+        public static double IcConcentrationBonus;
+
+        /// <summary>
+        ///     輸送艦変換係数
+        /// </summary>
+        public static double TransportConversion;
+
+        /// <summary>
+        ///     輸送船団変換係数
+        /// </summary>
+        public static double ConvoyDutyConversion;
+
+        /// <summary>
+        ///     護衛船団変換係数
+        /// </summary>
+        public static double EscortDutyConversion;
+
+        /// <summary>
+        ///     閣僚変更遅延日数
+        /// </summary>
+        public static int MinisterChangeDelay;
+
+        /// <summary>
+        ///     閣僚変更遅延日数(イベント)
+        /// </summary>
+        public static int MinisterChangeEventDelay;
+
+        /// <summary>
+        ///     国策変更遅延日数
+        /// </summary>
+        public static int IdeaChangeDelay;
+
+        /// <summary>
+        ///     国策変更遅延日数(イベント)
+        /// </summary>
+        public static int IdeaChangeEventDelay;
+
+        /// <summary>
+        ///     指揮官変更遅延日数
+        /// </summary>
+        public static int LeaderChangeDelay;
+
+        /// <summary>
+        ///     国策変更時の不満度上昇量
+        /// </summary>
+        public static double ChangeIdeaDissent;
+
+        /// <summary>
+        ///     閣僚変更時の不満度上昇量
+        /// </summary>
+        public static double ChangeMinisterDissent;
+
+        /// <summary>
+        ///     反乱が発生する最低不満度
+        /// </summary>
+        public static double MinDissentRevolt;
+
+        /// <summary>
+        ///     不満度による反乱軍発生率係数
+        /// </summary>
+        public static double DissentRevoltMultiplier;
+
+        /// <summary>
+        ///     輸送艦最大付属装備数
+        /// </summary>
+        public static int TpMaxAttach;
+
+        /// <summary>
+        ///     潜水艦最大付属装備数
+        /// </summary>
+        public static int SsMaxAttach;
+
+        /// <summary>
+        ///     原子力潜水艦最大付属装備数
+        /// </summary>
+        public static int SsnMaxAttach;
+
+        /// <summary>
+        ///     駆逐艦最大付属装備数
+        /// </summary>
+        public static int DdMaxAttach;
+
+        /// <summary>
+        ///     軽巡洋艦最大付属装備数
+        /// </summary>
+        public static int ClMaxAttach;
+
+        /// <summary>
+        ///     重巡洋艦最大付属装備数
+        /// </summary>
+        public static int CaMaxAttach;
+
+        /// <summary>
+        ///     巡洋戦艦最大付属装備数
+        /// </summary>
+        public static int BcMaxAttach;
+
+        /// <summary>
+        ///     戦艦最大付属装備数
+        /// </summary>
+        public static int BbMaxAttach;
+
+        /// <summary>
+        ///     軽空母最大付属装備数
+        /// </summary>
+        public static int CvlMaxAttach;
+
+        /// <summary>
+        ///     空母最大付属装備数
+        /// </summary>
+        public static int CvMaxAttach;
+
+        /// <summary>
+        ///     プレイヤーの国策変更を許可
+        /// </summary>
+        public static bool CanChangeIdeas;
+
+        /// <summary>
+        ///     非同盟国に師団を譲渡できるかどうか
+        /// </summary>
+        public static int CanUnitSendNonAlliedDh;
+
+        /// <summary>
+        ///     非同盟国に青写真の売却を許可
+        /// </summary>
+        public static int BluePrintsCanSoldNonAllied;
+
+        /// <summary>
+        ///     非同盟国にプロヴィンスの売却/譲渡を許可
+        /// </summary>
+        public static int ProvinceCanSoldNonAllied;
+
+        /// <summary>
+        ///     占領中の同盟国の中核州返還を許可
+        /// </summary>
+        public static bool TransferAlliedCoreProvinces;
+
+        /// <summary>
+        ///     建物修復速度補正
+        /// </summary>
+        public static double ProvinceBuildingsRepairModifier;
+
+        /// <summary>
+        ///     資源回復速度補正
+        /// </summary>
+        public static double ProvinceResourceRepairModifier;
+
+        /// <summary>
+        ///     資源備蓄上限補正
+        /// </summary>
+        public static double StockpileLimitMultiplierResource;
+
+        /// <summary>
+        ///     物資/燃料備蓄上限補正
+        /// </summary>
+        public static double StockpileLimitMultiplierSuppliesOil;
+
+        /// <summary>
+        ///     超過備蓄損失割合
+        /// </summary>
+        public static double OverStockpileLimitDailyLoss;
+
+        /// <summary>
+        ///     資源備蓄上限値
+        /// </summary>
+        public static double MaxResourceDepotSize;
+
+        /// <summary>
+        ///     物資/燃料備蓄上限値
+        /// </summary>
+        public static double MaxSuppliesOilDepotSize;
+
+        /// <summary>
+        ///     理想物資/燃料備蓄比率
+        /// </summary>
+        public static double DesiredStockPilesSuppliesOil;
+
+        /// <summary>
+        ///     最大人的資源
+        /// </summary>
+        public static double MaxManpower;
+
+        /// <summary>
+        ///     船団輸送能力
+        /// </summary>
+        public static double ConvoyTransportsCapacity;
+
+        /// <summary>
+        ///     陸軍の待機時物資使用量補正
+        /// </summary>
+        public static double SuppyLandStaticDh;
+
+        /// <summary>
+        ///     陸軍の戦闘時物資使用量補正
+        /// </summary>
+        public static double SupplyLandBattleDh;
+
+        /// <summary>
+        ///     陸軍の待機時燃料使用量補正
+        /// </summary>
+        public static double FuelLandStatic;
+
+        /// <summary>
+        ///     陸軍の戦闘時燃料使用量補正
+        /// </summary>
+        public static double FuelLandBattle;
+
+        /// <summary>
+        ///     空軍の待機時物資使用量補正
+        /// </summary>
+        public static double SupplyAirStaticDh;
+
+        /// <summary>
+        ///     空軍の戦闘時物資使用量補正
+        /// </summary>
+        public static double SupplyAirBattleDh;
+
+        /// <summary>
+        ///     空軍/海軍の待機時燃料使用量補正
+        /// </summary>
+        public static double FuelAirNavalStatic;
+
+        /// <summary>
+        ///     空軍の戦闘時燃料使用量補正
+        /// </summary>
+        public static double FuelAirBattle;
+
+        /// <summary>
+        ///     海軍の待機時物資使用量補正
+        /// </summary>
+        public static double SupplyNavalStaticDh;
+
+        /// <summary>
+        ///     海軍の戦闘時物資使用量補正
+        /// </summary>
+        public static double SupplyNavalBattleDh;
+
+        /// <summary>
+        ///     海軍の非移動時燃料使用量補正
+        /// </summary>
+        public static double FuelNavalNotMoving;
+
+        /// <summary>
+        ///     海軍の戦闘時燃料使用量補正
+        /// </summary>
+        public static double FuelNavalBattle;
+
+        /// <summary>
+        ///     輸送艦の輸送船団への変換比率
+        /// </summary>
+        public static double TpTransportsConversionRatio;
+
+        /// <summary>
+        ///     駆逐艦の護衛船団への変換比率
+        /// </summary>
+        public static double DdEscortsConversionRatio;
+
+        /// <summary>
+        ///     軽巡洋艦の護衛船団への変換比率
+        /// </summary>
+        public static double ClEscortsConversionRatio;
+
+        /// <summary>
+        ///     軽空母の護衛船団への変換比率
+        /// </summary>
+        public static double CvlEscortsConversionRatio;
+
+        /// <summary>
+        ///     生産ラインの編集
+        /// </summary>
+        public static bool ProductionLineEdit;
+
+        /// <summary>
+        ///     ユニット改良時のギアリングボーナス減少比率
+        /// </summary>
+        public static double GearingBonusLossUpgradeUnit;
+
+        /// <summary>
+        ///     旅団改良時のギアリングボーナス減少比率
+        /// </summary>
+        public static double GearingBonusLossUpgradeBrigade;
+
+        /// <summary>
+        ///     中核州核攻撃時の不満度上昇係数
+        /// </summary>
+        public static double DissentNukes;
+
+        /// <summary>
+        ///     物資/消費財不足時の最大不満度上昇値
+        /// </summary>
+        public static double MaxDailyDissent;
+
+        /// <summary>
+        ///     核兵器生産補正
+        /// </summary>
+        public static double NukesProductionModifier;
+
+        /// <summary>
+        ///     同盟国に対する船団システム
+        /// </summary>
+        public static int ConvoySystemOptionsAllied;
+
+        /// <summary>
+        ///     不要な資源/燃料の回収比率
+        /// </summary>
+        public static double ResourceConvoysBackUnneeded;
+
+        #endregion
+
+        #region 公開プロパティ - intelligence
+
+        /// <summary>
+        ///     諜報任務の間隔
+        /// </summary>
+        public static int SpyMissionDaysDh;
+
+        /// <summary>
+        ///     諜報レベルの増加間隔
+        /// </summary>
+        public static int IncreateIntelligenceLevelDaysDh;
+
+        /// <summary>
+        ///     国内の諜報活動を発見する確率
+        /// </summary>
+        public static double ChanceDetectSpyMissionDh;
+
+        /// <summary>
+        ///     諜報任務発覚時の友好度低下量
+        /// </summary>
+        public static double RelationshipsHitDetectedMissionsDh;
+
+        /// <summary>
+        ///     諜報任務の距離補正
+        /// </summary>
+        public static double DistanceModifier;
+
+        /// <summary>
+        ///     諜報任務の近隣国補正
+        /// </summary>
+        public static double DistanceModifierNeighboursDh;
+
+        /// <summary>
+        ///     諜報レベルの距離補正
+        /// </summary>
+        public static double SpyLevelBonusDistanceModifier;
+
+        /// <summary>
+        ///     諜報レベル10超過時の距離補正
+        /// </summary>
+        public static double SpyLevelBonusDistanceModifierAboveTen;
+
+        /// <summary>
+        ///     情報の正確さ補正
+        /// </summary>
+        public static double SpyInformationAccuracyModifierDh;
+
+        /// <summary>
+        ///     諜報コストのIC補正
+        /// </summary>
+        public static double IcModifierCost;
+
+        /// <summary>
+        ///     諜報コスト補正の最小IC
+        /// </summary>
+        public static double MinIcCostModifier;
+
+        /// <summary>
+        ///     諜報コスト補正の最大IC
+        /// </summary>
+        public static double MaxIcCostModifierDh;
+
+        /// <summary>
+        ///     諜報レベル10超過時追加維持コスト
+        /// </summary>
+        public static double ExtraMaintenanceCostAboveTen;
+
+        /// <summary>
+        ///     諜報レベル10超過時増加コスト
+        /// </summary>
+        public static double ExtraCostIncreasingAboveTen;
+
+        /// <summary>
+        ///     第三国の諜報活動を報告するか
+        /// </summary>
+        public static int ShowThirdCountrySpyReportsDh;
+
+        /// <summary>
+        ///     諜報資金割り当て補正
+        /// </summary>
+        public static double SpiesMoneyModifier;
+
+        #endregion
+
+        #region 公開プロパティ - diplomacy
+
+        /// <summary>
+        ///     外交官派遣間隔
+        /// </summary>
+        public static int DaysBetweenDiplomaticMissions;
+
+        /// <summary>
+        ///     スライダー移動の間隔
+        /// </summary>
+        public static int TimeBetweenSliderChangesDh;
+
+        /// <summary>
+        ///     政策スライダーに影響を与えるためのIC比率
+        /// </summary>
+        public static double RequirementAffectSliderDh;
+
+        /// <summary>
+        ///     閣僚交代時に閣僚特性を適用する
+        /// </summary>
+        public static bool UseMinisterPersonalityReplacing;
+
+        /// <summary>
+        ///     貿易キャンセル時の友好度低下
+        /// </summary>
+        public static double RelationshipHitCancelTrade;
+
+        /// <summary>
+        ///     永久貿易キャンセル時の友好度低下
+        /// </summary>
+        public static double RelationshipHitCancelPermanentTrade;
+
+        /// <summary>
+        ///     属国が宗主国の同盟に強制参加する
+        /// </summary>
+        public static bool PuppetsJoinMastersAlliance;
+
+        /// <summary>
+        ///     属国の属国が設立できるか
+        /// </summary>
+        public static bool MastersBecomePuppetsPuppets;
+
+        /// <summary>
+        ///     領有権主張の変更
+        /// </summary>
+        public static bool AllowManualClaimsChange;
+
+        /// <summary>
+        ///     領有権主張時の好戦性上昇値
+        /// </summary>
+        public static double BelligerenceClaimedProvince;
+
+        /// <summary>
+        ///     領有権撤回時の好戦性減少値
+        /// </summary>
+        public static double BelligerenceClaimsRemoval;
+
+        /// <summary>
+        ///     宣戦布告された時に対抗陣営へ自動加盟
+        /// </summary>
+        public static bool JoinAutomaticallyAllesAxis;
+
+        /// <summary>
+        ///     国家元首/政府首班の交代
+        /// </summary>
+        public static int AllowChangeHosHog;
+
+        /// <summary>
+        ///     クーデター発生時に兄弟国へ変更
+        /// </summary>
+        public static bool ChangeTagCoup;
+
+        /// <summary>
+        ///     独立可能国設定
+        /// </summary>
+        public static int FilterReleaseCountries;
+
+        #endregion
+
+        #region 公開プロパティ - combat
+
+        /// <summary>
+        ///     陸軍経験値入手係数
+        /// </summary>
+        public static double LandXpGainFactor;
+
+        /// <summary>
+        ///     海軍経験値入手係数
+        /// </summary>
+        public static double NavalXpGainFactor;
+
+        /// <summary>
+        ///     空軍経験値入手係数
+        /// </summary>
+        public static double AirXpGainFactor;
+
+        /// <summary>
+        ///     空軍空戦時経験値入手係数
+        /// </summary>
+        public static double AirDogfightXpGainFactor;
+
+        /// <summary>
+        ///     師団経験値入手係数
+        /// </summary>
+        public static double DivisionXpGainFactor;
+
+        /// <summary>
+        ///     指揮官経験値入手係数
+        /// </summary>
+        public static double LeaderXpGainFactor;
+
+        /// <summary>
+        ///     消耗係数
+        /// </summary>
+        public static double AttritionSeverityModifier;
+
+        /// <summary>
+        ///     無補給時の自然条件消耗係数
+        /// </summary>
+        public static double NoSupplyAttritionSeverity;
+
+        /// <summary>
+        ///     無補給時の消耗係数
+        /// </summary>
+        public static double NoSupplyMinimunAttrition;
+
+        /// <summary>
+        ///     基地戦闘補正
+        /// </summary>
+        public static double BaseProximity;
+
+        /// <summary>
+        ///     艦砲射撃戦闘補正
+        /// </summary>
+        public static double ShoreBombardmentModifier;
+
+        /// <summary>
+        ///     艦砲射撃戦闘効率上限
+        /// </summary>
+        public static double ShoreBombardmentCap;
+
+        /// <summary>
+        ///     強襲上陸ペナルティ
+        /// </summary>
+        public static double InvasionModifier;
+
+        /// <summary>
+        ///     側面攻撃ペナルティ
+        /// </summary>
+        public static double MultipleCombatModifier;
+
+        /// <summary>
+        ///     攻撃側諸兵科連合ボーナス
+        /// </summary>
+        public static double OffensiveCombinedArmsBonus;
+
+        /// <summary>
+        ///     防御側諸兵科連合ボーナス
+        /// </summary>
+        public static double DefensiveCombinedArmsBonus;
+
+        /// <summary>
+        ///     奇襲攻撃ペナルティ
+        /// </summary>
+        public static double SurpriseModifier;
+
+        /// <summary>
+        ///     陸軍指揮上限ペナルティ
+        /// </summary>
+        public static double LandCommandLimitModifier;
+
+        /// <summary>
+        ///     空軍指揮上限ペナルティ
+        /// </summary>
+        public static double AirCommandLimitModifier;
+
+        /// <summary>
+        ///     海軍指揮上限ペナルティ
+        /// </summary>
+        public static double NavalCommandLimitModifier;
+
+        /// <summary>
+        ///     多方面攻撃補正
+        /// </summary>
+        public static double EnvelopmentModifier;
+
+        /// <summary>
+        ///     包囲攻撃ペナルティ
+        /// </summary>
+        public static double EncircledModifier;
+
+        /// <summary>
+        ///     要塞攻撃ペナルティ
+        /// </summary>
+        public static double LandFortMultiplier;
+
+        /// <summary>
+        ///     沿岸要塞攻撃ペナルティ
+        /// </summary>
+        public static double CoastalFortMultiplier;
+
+        /// <summary>
+        ///     装甲ユニットの都市攻撃ペナルティ
+        /// </summary>
+        public static double HardUnitsAttackingUrbanPenalty;
+
+        /// <summary>
+        ///     国民不満度ペナルティ
+        /// </summary>
+        public static double DissentMultiplier;
+
+        /// <summary>
+        ///     補給不足ペナルティ
+        /// </summary>
+        public static double SupplyProblemsModifier;
+
+        /// <summary>
+        ///     陸軍物資不足ペナルティ
+        /// </summary>
+        public static double SupplyProblemsModifierLand;
+
+        /// <summary>
+        ///     空軍物資不足ペナルティ
+        /// </summary>
+        public static double SupplyProblemsModifierAir;
+
+        /// <summary>
+        ///     海軍物資不足ペナルティ
+        /// </summary>
+        public static double SupplyProblemsModifierNaval;
+
+        /// <summary>
+        ///     陸軍燃料不足ペナルティ
+        /// </summary>
+        public static double FuelProblemsModifierLand;
+
+        /// <summary>
+        ///     空軍燃料不足ペナルティ
+        /// </summary>
+        public static double FuelProblemsModifierAir;
+
+        /// <summary>
+        ///     海軍燃料不足ペナルティ
+        /// </summary>
+        public static double FuelProblemsModifierNaval;
+
+        /// <summary>
+        ///     レーダー補正
+        /// </summary>
+        public static double RaderStationMultiplier;
+
+        /// <summary>
+        ///     レーダー/対空砲複合補正
+        /// </summary>
+        public static double RaderStationAaMultiplier;
+
+        /// <summary>
+        ///     爆撃機迎撃ボーナス
+        /// </summary>
+        public static double InterceptorBomberModifier;
+
+        /// <summary>
+        ///     空軍スタックペナルティ
+        /// </summary>
+        public static double AirOverstackingModifier;
+
+        /// <summary>
+        ///     空軍スタックペナルティ
+        /// </summary>
+        public static double AirOverstackingModifierAoD;
+
+        /// <summary>
+        ///     海軍スタックペナルティ
+        /// </summary>
+        public static double NavalOverstackingModifier;
+
+        /// <summary>
+        ///     陸軍元帥指揮上限
+        /// </summary>
+        public static int LandLeaderCommandLimitRank0;
+
+        /// <summary>
+        ///     陸軍大将指揮上限
+        /// </summary>
+        public static int LandLeaderCommandLimitRank1;
+
+        /// <summary>
+        ///     陸軍中将指揮上限
+        /// </summary>
+        public static int LandLeaderCommandLimitRank2;
+
+        /// <summary>
+        ///     陸軍少将指揮上限
+        /// </summary>
+        public static int LandLeaderCommandLimitRank3;
+
+        /// <summary>
+        ///     空軍元帥指揮上限
+        /// </summary>
+        public static int AirLeaderCommandLimitRank0;
+
+        /// <summary>
+        ///     空軍大将指揮上限
+        /// </summary>
+        public static int AirLeaderCommandLimitRank1;
+
+        /// <summary>
+        ///     空軍中将指揮上限
+        /// </summary>
+        public static int AirLeaderCommandLimitRank2;
+
+        /// <summary>
+        ///     空軍少将指揮上限
+        /// </summary>
+        public static int AirLeaderCommandLimitRank3;
+
+        /// <summary>
+        ///     海軍元帥指揮上限
+        /// </summary>
+        public static int NavalLeaderCommandLimitRank0;
+
+        /// <summary>
+        ///     海軍大将指揮上限
+        /// </summary>
+        public static int NavalLeaderCommandLimitRank1;
+
+        /// <summary>
+        ///     海軍中将指揮上限
+        /// </summary>
+        public static int NavalLeaderCommandLimitRank2;
+
+        /// <summary>
+        ///     海軍少将指揮上限
+        /// </summary>
+        public static int NavalLeaderCommandLimitRank3;
+
+        /// <summary>
+        ///     司令部指揮上限係数
+        /// </summary>
+        public static double HqCommandLimitFactor;
+
+        /// <summary>
+        ///     輸送船団護衛係数
+        /// </summary>
+        public static double ConvoyProtectionFactor;
+
+        /// <summary>
+        ///     輸送船団護衛モデル
+        /// </summary>
+        public static int ConvoyEscortsModel;
+
+        /// <summary>
+        ///     戦闘後命令遅延時間
+        /// </summary>
+        public static int DelayAfterCombatEnds;
+
+        /// <summary>
+        ///     陸軍命令遅延時間
+        /// </summary>
+        public static int LandDelayBeforeOrders;
+
+        /// <summary>
+        ///     海軍命令遅延時間
+        /// </summary>
+        public static int NavalDelayBeforeOrders;
+
+        /// <summary>
+        ///     空軍命令遅延時間
+        /// </summary>
+        public static int AirDelayBeforeOrders;
+
+        /// <summary>
+        ///     空軍最大スタックサイズ
+        /// </summary>
+        public static int MaximumSizesAirStacks;
+
+        /// <summary>
+        ///     空戦最小戦闘時間
+        /// </summary>
+        public static int DurationAirToAirBattles;
+
+        /// <summary>
+        ///     港湾攻撃最小戦闘時間
+        /// </summary>
+        public static int DurationNavalPortBombing;
+
+        /// <summary>
+        ///     戦略爆撃最小戦闘時間
+        /// </summary>
+        public static int DurationStrategicBombing;
+
+        /// <summary>
+        ///     地上爆撃最小戦闘時間
+        /// </summary>
+        public static int DurationGroundAttackBombing;
+
+        /// <summary>
+        ///     経験値補正
+        /// </summary>
+        public static double EffectExperienceCombat;
+
+        /// <summary>
+        ///     海軍基地戦略爆撃係数
+        /// </summary>
+        public static double DamageNavalBasesBombing;
+
+        /// <summary>
+        ///     空軍基地戦略爆撃係数
+        /// </summary>
+        public static double DamageAirBaseBombing;
+
+        /// <summary>
+        ///     対空砲戦略爆撃係数
+        /// </summary>
+        public static double DamageAaBombing;
+
+        /// <summary>
+        ///     ロケット試験場戦略爆撃係数
+        /// </summary>
+        public static double DamageRocketBombing;
+
+        /// <summary>
+        ///     原子炉戦略爆撃係数
+        /// </summary>
+        public static double DamageNukeBombing;
+
+        /// <summary>
+        ///     レーダー戦略爆撃係数
+        /// </summary>
+        public static double DamageRadarBombing;
+
+        /// <summary>
+        ///     インフラ戦略爆撃係数
+        /// </summary>
+        public static double DamageInfraBombing;
+
+        /// <summary>
+        ///     IC戦略爆撃係数
+        /// </summary>
+        public static double DamageIcBombing;
+
+        /// <summary>
+        ///     資源戦略爆撃係数
+        /// </summary>
+        public static double DamageResourcesBombing;
+
+        /// <summary>
+        ///     合成石油工場戦略爆撃係数
+        /// </summary>
+        public static double DamageSyntheticOilBombing;
+
+        /// <summary>
+        ///     対地防御効率補正
+        /// </summary>
+        public static double HowEffectiveGroundDef;
+
+        /// <summary>
+        ///     基本回避率(防御回数あり)
+        /// </summary>
+        public static double ChanceAvoidDefencesLeft;
+
+        /// <summary>
+        ///     基本回避率(防御回数なし)
+        /// </summary>
+        public static double ChanceAvoidNoDefences;
+
+        /// <summary>
+        ///     陸軍基本回避率(防御回数あり)
+        /// </summary>
+        public static double LandChanceAvoidDefencesLeft;
+
+        /// <summary>
+        ///     空軍基本回避率(防御回数あり)
+        /// </summary>
+        public static double AirChanceAvoidDefencesLeft;
+
+        /// <summary>
+        ///     海軍基本回避率(防御回数あり)
+        /// </summary>
+        public static double NavalChanceAvoidDefencesLeft;
+
+        /// <summary>
+        ///     陸軍基本回避率(防御回数あり)
+        /// </summary>
+        public static double LandChanceAvoidNoDefences;
+
+        /// <summary>
+        ///     空軍基本回避率(防御回数あり)
+        /// </summary>
+        public static double AirChanceAvoidNoDefences;
+
+        /// <summary>
+        ///     海軍基本回避率(防御回数あり)
+        /// </summary>
+        public static double NavalChanceAvoidNoDefences;
+
+        /// <summary>
+        ///     地形特性獲得可能性
+        /// </summary>
+        public static double ChanceGetTerrainTrait;
+
+        /// <summary>
+        ///     戦闘特性獲得可能性
+        /// </summary>
+        public static double ChanceGetEventTrait;
+
+        /// <summary>
+        ///     地形特性補正
+        /// </summary>
+        public static double BonusTerrainTrait;
+
+        /// <summary>
+        ///     戦闘特性補正
+        /// </summary>
+        public static double BonusEventTrait;
+
+        /// <summary>
+        ///     陸軍指揮官スキル補正
+        /// </summary>
+        public static double BonusLeaderSkillPointLand;
+
+        /// <summary>
+        ///     空軍指揮官スキル補正
+        /// </summary>
+        public static double BonusLeaderSkillPointAir;
+
+        /// <summary>
+        ///     海軍指揮官スキル補正
+        /// </summary>
+        public static double BonusLeaderSkillPointNaval;
+
+        /// <summary>
+        ///     指揮官死亡確率
+        /// </summary>
+        public static double ChanceLeaderDying;
+
+        /// <summary>
+        ///     空軍組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamage;
+
+        /// <summary>
+        ///     空軍戦力被ダメージ(組織力)
+        /// </summary>
+        public static double AirStrDamageOrg;
+
+        /// <summary>
+        ///     空軍戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamage;
+
+        /// <summary>
+        ///     陸軍最小組織率被ダメージ
+        /// </summary>
+        public static double LandMinOrgDamage;
+
+        /// <summary>
+        ///     陸軍組織率被ダメージ(装甲/非装甲同士)
+        /// </summary>
+        public static int LandOrgDamageHardSoftEach;
+
+        /// <summary>
+        ///     陸軍組織率被ダメージ(装甲対非装甲)
+        /// </summary>
+        public static int LandOrgDamageHardVsSoft;
+
+        /// <summary>
+        ///     陸軍最小戦力被ダメージ
+        /// </summary>
+        public static double LandMinStrDamage;
+
+        /// <summary>
+        ///     陸軍戦力被ダメージ(装甲/非装甲同士)
+        /// </summary>
+        public static int LandStrDamageHardSoftEach;
+
+        /// <summary>
+        ///     陸軍戦力被ダメージ(装甲対非装甲)
+        /// </summary>
+        public static int LandStrDamageHardVsSoft;
+
+        /// <summary>
+        ///     空軍最小組織率被ダメージ
+        /// </summary>
+        public static double AirMinOrgDamage;
+
+        /// <summary>
+        ///     空軍追加組織率被ダメージ
+        /// </summary>
+        public static int AirAdditionalOrgDamage;
+
+        /// <summary>
+        ///     空軍最小戦力被ダメージ
+        /// </summary>
+        public static double AirMinStrDamage;
+
+        /// <summary>
+        ///     空軍追加戦力被ダメージ
+        /// </summary>
+        public static int AirAdditionalStrDamage;
+
+        /// <summary>
+        ///     空軍戦力被ダメージ(対塹壕)
+        /// </summary>
+        public static double AirStrDamageEntrenced;
+
+        /// <summary>
+        ///     海軍最小組織率被ダメージ
+        /// </summary>
+        public static double NavalMinOrgDamage;
+
+        /// <summary>
+        ///     海軍追加組織率被ダメージ
+        /// </summary>
+        public static int NavalAdditionalOrgDamage;
+
+        /// <summary>
+        ///     海軍最小戦力被ダメージ
+        /// </summary>
+        public static double NavalMinStrDamage;
+
+        /// <summary>
+        ///     海軍追加戦力被ダメージ
+        /// </summary>
+        public static int NavalAdditionalStrDamage;
+
+        /// <summary>
+        ///     空軍対陸軍戦力被ダメージ(組織率)
+        /// </summary>
+        public static double AirStrDamageLandOrg;
+
+        /// <summary>
+        ///     空軍対陸軍組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamageLandDh;
+
+        /// <summary>
+        ///     空軍対陸軍戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamageLandDh;
+
+        /// <summary>
+        ///     陸軍対陸軍組織率被ダメージ(組織率)
+        /// </summary>
+        public static double LandOrgDamageLandOrg;
+
+        /// <summary>
+        ///     陸軍対陸軍組織率被ダメージ(都市)
+        /// </summary>
+        public static double LandOrgDamageLandUrban;
+
+        /// <summary>
+        ///     陸軍対陸軍組織率被ダメージ(要塞)
+        /// </summary>
+        public static double LandOrgDamageLandFort;
+
+        /// <summary>
+        ///     必要要塞規模
+        /// </summary>
+        public static double RequiredLandFortSize;
+
+        /// <summary>
+        ///     陸軍対陸軍戦力被ダメージ
+        /// </summary>
+        public static double LandStrDamageLandDh;
+
+        /// <summary>
+        ///     空軍対空軍組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamageAirDh;
+
+        /// <summary>
+        ///     空軍対空軍戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamageAirDh;
+
+        /// <summary>
+        ///     陸軍対空軍組織率被ダメージ
+        /// </summary>
+        public static double LandOrgDamageAirDh;
+
+        /// <summary>
+        ///     陸軍対空軍戦力被ダメージ
+        /// </summary>
+        public static double LandStrDamageAirDh;
+
+        /// <summary>
+        ///     海軍対空軍組織率被ダメージ
+        /// </summary>
+        public static double NavalOrgDamageAirDh;
+
+        /// <summary>
+        ///     海軍対空軍戦力被ダメージ
+        /// </summary>
+        public static double NavalStrDamageAirDh;
+
+        /// <summary>
+        ///     潜水艦対空軍組織率被ダメージ
+        /// </summary>
+        public static int SubsOrgDamageAir;
+
+        /// <summary>
+        ///     潜水艦対空軍戦力被ダメージ
+        /// </summary>
+        public static int SubsStrDamageAir;
+
+        /// <summary>
+        ///     空軍対海軍組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamageNavyDh;
+
+        /// <summary>
+        ///     空軍対海軍戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamageNavyDh;
+
+        /// <summary>
+        ///     海軍対海軍組織率被ダメージ
+        /// </summary>
+        public static double NavalOrgDamageNavyDh;
+
+        /// <summary>
+        ///     海軍対海軍戦力被ダメージ
+        /// </summary>
+        public static double NavalStrDamageNavyDh;
+
+        /// <summary>
+        ///     潜水艦対海軍組織率被ダメージ
+        /// </summary>
+        public static double SubsOrgDamageNavy;
+
+        /// <summary>
+        ///     潜水艦対海軍戦力被ダメージ
+        /// </summary>
+        public static double SubsStrDamageNavy;
+
+        /// <summary>
+        ///     潜水艦組織率被ダメージ
+        /// </summary>
+        public static double SubsOrgDamage;
+
+        /// <summary>
+        ///     潜水艦戦力被ダメージ
+        /// </summary>
+        public static double SubsStrDamage;
+
+        /// <summary>
+        ///     潜水艦発見補正
+        /// </summary>
+        public static double SubStacksDetectionModifier;
+
+        /// <summary>
+        ///     空軍対陸軍組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamageLandAoD;
+
+        /// <summary>
+        ///     空軍対陸軍戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamageLandAoD;
+
+        /// <summary>
+        ///     砲撃ダメージ補正(陸上部隊)
+        /// </summary>
+        public static double LandDamageArtilleryBombardment;
+
+        /// <summary>
+        ///     砲撃ダメージ補正(インフラ)
+        /// </summary>
+        public static double InfraDamageArtilleryBombardment;
+
+        /// <summary>
+        ///     砲撃ダメージ補正(IC)
+        /// </summary>
+        public static double IcDamageArtilleryBombardment;
+
+        /// <summary>
+        ///     砲撃ダメージ補正(資源)
+        /// </summary>
+        public static double ResourcesDamageArtilleryBombardment;
+
+        /// <summary>
+        ///     砲撃中の被攻撃ペナルティ
+        /// </summary>
+        public static double PenaltyArtilleryBombardment;
+
+        /// <summary>
+        ///     砲撃戦力ダメージ
+        /// </summary>
+        public static double ArtilleryStrDamage;
+
+        /// <summary>
+        ///     砲撃組織率ダメージ
+        /// </summary>
+        public static double ArtilleryOrgDamage;
+
+        /// <summary>
+        ///     陸軍対陸軍戦力被ダメージ
+        /// </summary>
+        public static double LandStrDamageLandAoD;
+
+        /// <summary>
+        ///     陸軍対陸軍組織率被ダメージ
+        /// </summary>
+        public static double LandOrgDamageLand;
+
+        /// <summary>
+        ///     陸軍対空軍戦力被ダメージ
+        /// </summary>
+        public static double LandStrDamageAirAoD;
+
+        /// <summary>
+        ///     陸軍対空軍組織率被ダメージ
+        /// </summary>
+        public static double LandOrgDamageAirAoD;
+
+        /// <summary>
+        ///     海軍対空軍戦力被ダメージ
+        /// </summary>
+        public static double NavalStrDamageAirAoD;
+
+        /// <summary>
+        ///     海軍対空軍組織率被ダメージ
+        /// </summary>
+        public static double NavalOrgDamageAirAoD;
+
+        /// <summary>
+        ///     空軍対空軍戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamageAirAoD;
+
+        /// <summary>
+        ///     空軍対空軍組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamageAirAoD;
+
+        /// <summary>
+        ///     海軍対海軍戦力被ダメージ
+        /// </summary>
+        public static double NavalStrDamageNavyAoD;
+
+        /// <summary>
+        ///     海軍対海軍組織率被ダメージ
+        /// </summary>
+        public static double NavalOrgDamageNavyAoD;
+
+        /// <summary>
+        ///     空軍対海軍戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamageNavyAoD;
+
+        /// <summary>
+        ///     空軍対海軍組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamageNavyAoD;
+
+        /// <summary>
+        ///     給料不足時の戦闘補正
+        /// </summary>
+        public static double MilitaryExpenseAttritionModifier;
+
+        /// <summary>
+        ///     海軍最小戦闘時間
+        /// </summary>
+        public static double NavalMinCombatTime;
+
+        /// <summary>
+        ///     陸軍最小戦闘時間
+        /// </summary>
+        public static double LandMinCombatTime;
+
+        /// <summary>
+        ///     空軍最小戦闘時間
+        /// </summary>
+        public static double AirMinCombatTime;
+
+        /// <summary>
+        ///     陸軍スタックペナルティ
+        /// </summary>
+        public static double LandOverstackingModifier;
+
+        /// <summary>
+        ///     陸軍移動時組織率減少係数
+        /// </summary>
+        public static double LandOrgLossMoving;
+
+        /// <summary>
+        ///     空軍移動時組織率減少係数
+        /// </summary>
+        public static double AirOrgLossMoving;
+
+        /// <summary>
+        ///     海軍移動時組織率減少係数
+        /// </summary>
+        public static double NavalOrgLossMoving;
+
+        /// <summary>
+        ///     遠隔地補給係数
+        /// </summary>
+        public static double SupplyDistanceSeverity;
+
+        /// <summary>
+        ///     基礎補給効率
+        /// </summary>
+        public static double SupplyBase;
+
+        /// <summary>
+        ///     陸軍組織率補正
+        /// </summary>
+        public static double LandOrgGain;
+
+        /// <summary>
+        ///     空軍組織率補正
+        /// </summary>
+        public static double AirOrgGain;
+
+        /// <summary>
+        ///     海軍組織率補正
+        /// </summary>
+        public static double NavalOrgGain;
+
+        /// <summary>
+        ///     核攻撃不満度係数(人的資源)
+        /// </summary>
+        public static double NukeManpowerDissent;
+
+        /// <summary>
+        ///     核攻撃不満度係数(IC)
+        /// </summary>
+        public static double NukeIcDissent;
+
+        /// <summary>
+        ///     核攻撃不満度係数(トータル)
+        /// </summary>
+        public static double NukeTotalDissent;
+
+        /// <summary>
+        ///     陸軍友好地組織率補正
+        /// </summary>
+        public static double LandFriendlyOrgGain;
+
+        /// <summary>
+        ///     阻止攻撃備蓄補正
+        /// </summary>
+        public static double AirLandStockModifier;
+
+        /// <summary>
+        ///     焦土命令ダメージ
+        /// </summary>
+        public static double ScorchDamage;
+
+        /// <summary>
+        ///     死守命令不満度上昇
+        /// </summary>
+        public static double StandGroundDissent;
+
+        /// <summary>
+        ///     焦土命令好戦性上昇
+        /// </summary>
+        public static double ScorchGroundBelligerence;
+
+        /// <summary>
+        ///     陸軍デフォルトスタック数
+        /// </summary>
+        public static double DefaultLandStack;
+
+        /// <summary>
+        ///     海軍デフォルトスタック数
+        /// </summary>
+        public static double DefaultNavalStack;
+
+        /// <summary>
+        ///     空軍デフォルトスタック数
+        /// </summary>
+        public static double DefaultAirStack;
+
+        /// <summary>
+        ///     ロケットデフォルトスタック数
+        /// </summary>
+        public static double DefaultRocketStack;
+
+        /// <summary>
+        ///     要塞砲撃ダメージ補正
+        /// </summary>
+        public static double FortDamageArtilleryBombardment;
+
+        /// <summary>
+        ///     砲撃組織率減少
+        /// </summary>
+        public static double ArtilleryBombardmentOrgCost;
+
+        /// <summary>
+        ///     陸軍対要塞ダメージ係数
+        /// </summary>
+        public static double LandDamageFort;
+
+        /// <summary>
+        ///     空軍基地移動組織率減少係数
+        /// </summary>
+        public static double AirRebaseFactor;
+
+        /// <summary>
+        ///     空港占領時ペナルティ
+        /// </summary>
+        public static double AirMaxDisorganized;
+
+        /// <summary>
+        ///     対空砲戦力ダメージ補正
+        /// </summary>
+        public static double AaInflictedStrDamage;
+
+        /// <summary>
+        ///     対空砲組織率ダメージ補正
+        /// </summary>
+        public static double AaInflictedOrgDamage;
+
+        /// <summary>
+        ///     対空砲上空通過ダメージ補正
+        /// </summary>
+        public static double AaInflictedFlyingDamage;
+
+        /// <summary>
+        ///     対空砲爆撃中ダメージ補正
+        /// </summary>
+        public static double AaInflictedBombingDamage;
+
+        /// <summary>
+        ///     装甲ユニット戦力ダメージ補正
+        /// </summary>
+        public static double HardAttackStrDamage;
+
+        /// <summary>
+        ///     装甲ユニット組織率ダメージ補正
+        /// </summary>
+        public static double HardAttackOrgDamage;
+
+        /// <summary>
+        ///     戦車対人最小突破係数
+        /// </summary>
+        public static double ArmorSoftBreakthroughMin;
+
+        /// <summary>
+        ///     戦車対人最大突破係数
+        /// </summary>
+        public static double ArmorSoftBreakthroughMax;
+
+        /// <summary>
+        ///     海軍クリティカルヒット確率
+        /// </summary>
+        public static double NavalCriticalHitChance;
+
+        /// <summary>
+        ///     海軍クリティカルヒット効果
+        /// </summary>
+        public static double NavalCriticalHitEffect;
+
+        /// <summary>
+        ///     要塞ダメージ補正
+        /// </summary>
+        public static double LandFortDamage;
+
+        /// <summary>
+        ///     日中港湾攻撃奇襲確率
+        /// </summary>
+        public static double PortAttackSurpriseChanceDay;
+
+        /// <summary>
+        ///     夜間港湾攻撃奇襲確率
+        /// </summary>
+        public static double PortAttackSurpriseChanceNight;
+
+        /// <summary>
+        ///     港湾攻撃奇襲補正
+        /// </summary>
+        public static double PortAttackSurpriseModifier;
+
+        /// <summary>
+        ///     レーダー奇襲確率減少値
+        /// </summary>
+        public static double RadarAntiSurpriseChance;
+
+        /// <summary>
+        ///     レーダー奇襲効果減少値
+        /// </summary>
+        public static double RadarAntiSurpriseModifier;
+
+        /// <summary>
+        ///     反撃イベント防御側戦力補正
+        /// </summary>
+        public static double CounterAttackStrDefenderAoD;
+
+        /// <summary>
+        ///     反撃イベント防御側組織率補正
+        /// </summary>
+        public static double CounterAttackOrgDefenderAoD;
+
+        /// <summary>
+        ///     反撃イベント攻撃側戦力補正
+        /// </summary>
+        public static double CounterAttackStrAttackerAoD;
+
+        /// <summary>
+        ///     反撃イベント攻撃側組織率補正
+        /// </summary>
+        public static double CounterAttackOrgAttackerAoD;
+
+        /// <summary>
+        ///     強襲イベント防御側戦力補正
+        /// </summary>
+        public static double AssaultStrDefenderAoD;
+
+        /// <summary>
+        ///     強襲イベント防御側組織率補正
+        /// </summary>
+        public static double AssaultOrgDefenderAoD;
+
+        /// <summary>
+        ///     強襲イベント攻撃側戦力補正
+        /// </summary>
+        public static double AssaultStrAttackerAoD;
+
+        /// <summary>
+        ///     強襲イベント攻撃側組織率補正
+        /// </summary>
+        public static double AssaultOrgAttackerAoD;
+
+        /// <summary>
+        ///     包囲イベント防御側戦力補正
+        /// </summary>
+        public static double EncirclementStrDefenderAoD;
+
+        /// <summary>
+        ///     包囲イベント防御側組織率補正
+        /// </summary>
+        public static double EncirclementOrgDefenderAoD;
+
+        /// <summary>
+        ///     包囲イベント攻撃側戦力補正
+        /// </summary>
+        public static double EncirclementStrAttackerAoD;
+
+        /// <summary>
+        ///     包囲イベント攻撃側組織率補正
+        /// </summary>
+        public static double EncirclementOrgAttackerAoD;
+
+        /// <summary>
+        ///     待伏イベント防御側戦力補正
+        /// </summary>
+        public static double AmbushStrDefenderAoD;
+
+        /// <summary>
+        ///     待伏イベント防御側組織率補正
+        /// </summary>
+        public static double AmbushOrgDefenderAoD;
+
+        /// <summary>
+        ///     待伏イベント攻撃側戦力補正
+        /// </summary>
+        public static double AmbushStrAttackerAoD;
+
+        /// <summary>
+        ///     待伏イベント攻撃側組織率補正
+        /// </summary>
+        public static double AmbushOrgAttackerAoD;
+
+        /// <summary>
+        ///     遅延イベント防御側戦力補正
+        /// </summary>
+        public static double DelayStrDefenderAoD;
+
+        /// <summary>
+        ///     遅延イベント防御側組織率補正
+        /// </summary>
+        public static double DelayOrgDefenderAoD;
+
+        /// <summary>
+        ///     遅延イベント攻撃側戦力補正
+        /// </summary>
+        public static double DelayStrAttackerAoD;
+
+        /// <summary>
+        ///     遅延イベント攻撃側組織率補正
+        /// </summary>
+        public static double DelayOrgAttackerAoD;
+
+        /// <summary>
+        ///     後退イベント防御側戦力補正
+        /// </summary>
+        public static double TacticalWithdrawStrDefenderAoD;
+
+        /// <summary>
+        ///     後退イベント防御側組織率補正
+        /// </summary>
+        public static double TacticalWithdrawOrgDefenderAoD;
+
+        /// <summary>
+        ///     後退イベント攻撃側戦力補正
+        /// </summary>
+        public static double TacticalWithdrawStrAttackerAoD;
+
+        /// <summary>
+        ///     後退イベント攻撃側組織率補正
+        /// </summary>
+        public static double TacticalWithdrawOrgAttackerAoD;
+
+        /// <summary>
+        ///     突破イベント防御側戦力補正
+        /// </summary>
+        public static double BreakthroughStrDefenderAoD;
+
+        /// <summary>
+        ///     突破イベント防御側組織率補正
+        /// </summary>
+        public static double BreakthroughOrgDefenderAoD;
+
+        /// <summary>
+        ///     突破イベント攻撃側戦力補正
+        /// </summary>
+        public static double BreakthroughStrAttackerAoD;
+
+        /// <summary>
+        ///     突破イベント攻撃側組織率補正
+        /// </summary>
+        public static double BreakthroughOrgAttackerAoD;
+
+        /// <summary>
+        ///     海軍対空砲組織率被ダメージ
+        /// </summary>
+        public static double NavalOrgDamageAa;
+
+        /// <summary>
+        ///     空軍対空砲組織率被ダメージ
+        /// </summary>
+        public static double AirOrgDamageAa;
+
+        /// <summary>
+        ///     空軍対空砲戦力被ダメージ
+        /// </summary>
+        public static double AirStrDamageAa;
+
+        /// <summary>
+        ///     対空砲攻撃ルール
+        /// </summary>
+        public static int AaAirFiringRules;
+
+        /// <summary>
+        ///     対空砲夜間攻撃補正
+        /// </summary>
+        public static double AaAirNightModifier;
+
+        /// <summary>
+        ///     対空砲攻撃レーダーボーナス
+        /// </summary>
+        public static double AaAirBonusRadars;
+
+        /// <summary>
+        ///     地形適正移動ボーナス
+        /// </summary>
+        public static double MovementBonusTerrainTrait;
+
+        /// <summary>
+        ///     類似地形適正移動ボーナス
+        /// </summary>
+        public static double MovementBonusSimilarTerrainTrait;
+
+        /// <summary>
+        ///     兵站管理の補給効率ボーナス
+        /// </summary>
+        public static double LogisticsWizardEseBonus;
+
+        /// <summary>
+        ///     攻勢継続日数
+        /// </summary>
+        public static int DaysOffensiveSupply;
+
+        /// <summary>
+        ///     閣僚ボーナス適用方法
+        /// </summary>
+        public static double MinisterBonuses;
+
+        /// <summary>
+        ///     友好地組織率回復ボーナス
+        /// </summary>
+        public static double OrgRegainBonusFriendly;
+
+        /// <summary>
+        ///     友好地組織率回復ボーナス上限
+        /// </summary>
+        public static double OrgRegainBonusFriendlyCap;
+
+        /// <summary>
+        ///     海上任務中の船団妨害
+        /// </summary>
+        public static int ConvoyInterceptionMissions;
+
+        /// <summary>
+        ///     輸送艦隊の自動帰還
+        /// </summary>
+        public static int AutoReturnTransportFleets;
+
+        /// <summary>
+        ///     単一プロヴィンス/地域指定任務
+        /// </summary>
+        public static bool AllowProvinceRegionTargeting;
+
+        /// <summary>
+        ///     冬季夜間時間
+        /// </summary>
+        public static double NightHoursWinter;
+
+        /// <summary>
+        ///     春季/秋季夜間時間
+        /// </summary>
+        public static double NightHoursSpringFall;
+
+        /// <summary>
+        ///     夏季夜間時間
+        /// </summary>
+        public static double NightHoursSummer;
+
+        /// <summary>
+        ///     陸上部隊到着時刻再計算間隔
+        /// </summary>
+        public static int RecalculateLandArrivalTimes;
+
+        /// <summary>
+        ///     同時到着補正(プレイヤー)
+        /// </summary>
+        public static double SynchronizeArrivalTimePlayer;
+
+        /// <summary>
+        ///     同時到着補正(AI)
+        /// </summary>
+        public static double SynchronizeArrivalTimeAi;
+
+        /// <summary>
+        ///     戦闘後到着時刻再計算
+        /// </summary>
+        public static double RecalculateArrivalTimesCombat;
+
+        /// <summary>
+        ///     戦闘時陸軍移動速度補正
+        /// </summary>
+        public static double LandSpeedModifierCombat;
+
+        /// <summary>
+        ///     沿岸砲撃時陸軍移動速度補正
+        /// </summary>
+        public static double LandSpeedModifierBombardment;
+
+        /// <summary>
+        ///     物資切れ時陸軍移動速度補正
+        /// </summary>
+        public static double LandSpeedModifierSupply;
+
+        /// <summary>
+        ///     組織率低下時陸軍移動速度補正
+        /// </summary>
+        public static double LandSpeedModifierOrg;
+
+        /// <summary>
+        ///     燃料切れ時陸軍/空軍移動速度補正
+        /// </summary>
+        public static double LandAirSpeedModifierFuel;
+
+        /// <summary>
+        ///     燃料切れ時デフォルト移動速度
+        /// </summary>
+        public static double DefaultSpeedFuel;
+
+        /// <summary>
+        ///     艦隊規模航続距離ペナルティ割合
+        /// </summary>
+        public static double FleetSizeRangePenaltyRatio;
+
+        /// <summary>
+        ///     艦隊規模航続距離ペナルティ閾値
+        /// </summary>
+        public static double FleetSizeRangePenaltyThrethold;
+
+        /// <summary>
+        ///     艦隊規模航続距離ペナルティ上限
+        /// </summary>
+        public static double FleetSizeRangePenaltyMax;
+
+        /// <summary>
+        ///     地方/地域内での距離制限適用
+        /// </summary>
+        public static int ApplyRangeLimitsAreasRegions;
+
+        /// <summary>
+        ///     レーダー航空機発見ボーナス
+        /// </summary>
+        public static double RadarBonusDetection;
+
+        /// <summary>
+        ///     友好地航空機発見ボーナス
+        /// </summary>
+        public static double BonusDetectionFriendly;
+
+        /// <summary>
+        ///     主力艦/補助艦割合修正
+        /// </summary>
+        public static double ScreensCapitalRatioModifier;
+
+        /// <summary>
+        ///     陸軍組織率不足ユニット標的確率
+        /// </summary>
+        public static double ChanceTargetNoOrgLand;
+
+        /// <summary>
+        ///     主力艦/補助艦標的ポジション値
+        /// </summary>
+        public static double ScreenCapitalShipsTargeting;
+
+        /// <summary>
+        ///     海戦ポジション値日中ボーナス
+        /// </summary>
+        public static double FleetPositioningDaytime;
+
+        /// <summary>
+        ///     海戦ポジション値スキル補正
+        /// </summary>
+        public static double FleetPositioningLeaderSkill;
+
+        /// <summary>
+        ///     海戦ポジション値艦隊規模補正
+        /// </summary>
+        public static double FleetPositioningFleetSize;
+
+        /// <summary>
+        ///     海戦ポジション値艦隊構成補正
+        /// </summary>
+        public static double FleetPositioningFleetComposition;
+
+        /// <summary>
+        ///     要塞被ダメージ補正
+        /// </summary>
+        public static double LandCoastalFortsDamage;
+
+        /// <summary>
+        ///     要塞最大被ダメージ
+        /// </summary>
+        public static double LandCoastalFortsMaxDamage;
+
+        /// <summary>
+        ///     付属旅団による最小脆弱性
+        /// </summary>
+        public static double MinSoftnessBrigades;
+
+        /// <summary>
+        ///     自動撤退組織率
+        /// </summary>
+        public static double AutoRetreatOrg;
+
+        /// <summary>
+        ///     陸軍海上輸送後組織率補正
+        /// </summary>
+        public static double LandOrgNavalTransportation;
+
+        /// <summary>
+        ///     最大塹壕値
+        /// </summary>
+        public static int MaxLandDig;
+
+        /// <summary>
+        ///     1日の塹壕増加量
+        /// </summary>
+        public static double DigIncreaseDay;
+
+        /// <summary>
+        ///     突破/包囲最小速度
+        /// </summary>
+        public static double BreakthroughEncirclementMinSpeed;
+
+        /// <summary>
+        ///     突破/包囲最大確率
+        /// </summary>
+        public static double BreakthroughEncirclementMaxChance;
+
+        /// <summary>
+        ///     突破/包囲確率補正
+        /// </summary>
+        public static double BreakthroughEncirclementChanceModifier;
+
+        /// <summary>
+        ///     コンバットイベント継続時間
+        /// </summary>
+        public static int CombatEventDuration;
+
+        /// <summary>
+        ///     反撃イベント攻撃側組織率補正
+        /// </summary>
+        public static double CounterAttackOrgAttackerDh;
+
+        /// <summary>
+        ///     反撃イベント攻撃側戦力補正
+        /// </summary>
+        public static double CounterAttackStrAttackerDh;
+
+        /// <summary>
+        ///     反撃イベント防御側組織率補正
+        /// </summary>
+        public static double CounterAttackOrgDefenderDh;
+
+        /// <summary>
+        ///     反撃イベント防御側戦力補正
+        /// </summary>
+        public static double CounterAttackStrDefenderDh;
+
+        /// <summary>
+        ///     強襲イベント攻撃側組織率補正
+        /// </summary>
+        public static double AssaultOrgAttackerDh;
+
+        /// <summary>
+        ///     強襲イベント攻撃側戦力補正
+        /// </summary>
+        public static double AssaultStrAttackerDh;
+
+        /// <summary>
+        ///     強襲イベント防御側組織率補正
+        /// </summary>
+        public static double AssaultOrgDefenderDh;
+
+        /// <summary>
+        ///     強襲イベント防御側戦力補正
+        /// </summary>
+        public static double AssaultStrDefenderDh;
+
+        /// <summary>
+        ///     包囲イベント攻撃側組織率補正
+        /// </summary>
+        public static double EncirclementOrgAttackerDh;
+
+        /// <summary>
+        ///     包囲イベント攻撃側戦力補正
+        /// </summary>
+        public static double EncirclementStrAttackerDh;
+
+        /// <summary>
+        ///     包囲イベント防御側組織率補正
+        /// </summary>
+        public static double EncirclementOrgDefenderDh;
+
+        /// <summary>
+        ///     包囲イベント防御側戦力補正
+        /// </summary>
+        public static double EncirclementStrDefenderDh;
+
+        /// <summary>
+        ///     待伏イベント攻撃側組織率補正
+        /// </summary>
+        public static double AmbushOrgAttackerDh;
+
+        /// <summary>
+        ///     待伏イベント攻撃側戦力補正
+        /// </summary>
+        public static double AmbushStrAttackerDh;
+
+        /// <summary>
+        ///     待伏イベント防御側組織率補正
+        /// </summary>
+        public static double AmbushOrgDefenderDh;
+
+        /// <summary>
+        ///     待伏イベント防御側戦力補正
+        /// </summary>
+        public static double AmbushStrDefenderDh;
+
+        /// <summary>
+        ///     遅延イベント攻撃側組織率補正
+        /// </summary>
+        public static double DelayOrgAttackerDh;
+
+        /// <summary>
+        ///     遅延イベント攻撃側戦力補正
+        /// </summary>
+        public static double DelayStrAttackerDh;
+
+        /// <summary>
+        ///     遅延イベント防御側組織率補正
+        /// </summary>
+        public static double DelayOrgDefenderDh;
+
+        /// <summary>
+        ///     遅延イベント防御側戦力補正
+        /// </summary>
+        public static double DelayStrDefenderDh;
+
+        /// <summary>
+        ///     後退イベント攻撃側組織率補正
+        /// </summary>
+        public static double TacticalWithdrawOrgAttackerDh;
+
+        /// <summary>
+        ///     後退イベント攻撃側戦力補正
+        /// </summary>
+        public static double TacticalWithdrawStrAttackerDh;
+
+        /// <summary>
+        ///     後退イベント防御側組織率補正
+        /// </summary>
+        public static double TacticalWithdrawOrgDefenderDh;
+
+        /// <summary>
+        ///     後退イベント防御側戦力補正
+        /// </summary>
+        public static double TacticalWithdrawStrDefenderDh;
+
+        /// <summary>
+        ///     突破イベント攻撃側組織率補正
+        /// </summary>
+        public static double BreakthroughOrgAttackerDh;
+
+        /// <summary>
+        ///     突破イベント攻撃側戦力補正
+        /// </summary>
+        public static double BreakthroughStrAttackerDh;
+
+        /// <summary>
+        ///     突破イベント防御側組織率補正
+        /// </summary>
+        public static double BreakthroughOrgDefenderDh;
+
+        /// <summary>
+        ///     突破イベント防御側戦力補正
+        /// </summary>
+        public static double BreakthroughStrDefenderDh;
+
+        /// <summary>
+        ///     司令部は突破イベント時のみ戦力ダメージ
+        /// </summary>
+        public static bool HqStrDamageBreakthrough;
+
+        /// <summary>
+        ///     戦闘モード
+        /// </summary>
+        public static int CombatMode;
+
+        #endregion
+
         #region 内部フィールド
 
         /// <summary>
@@ -187,921 +2828,12 @@ namespace HoI2Editor.Models
         #endregion
     }
 
-
     /// <summary>
     ///     economyセクション
     /// </summary>
     public class MiscEconomy
     {
-        /// <summary>
-        ///     AIの外交コスト補正
-        /// </summary>
-        public double AiDiplomacyCostModifier;
-
-        /// <summary>
-        ///     AIの外交影響度補正
-        /// </summary>
-        public double AiInfluenceModifier;
-
-        /// <summary>
-        ///     AIの諜報コスト補正
-        /// </summary>
-        public double AiSpyMissionsCostModifier;
-
-        /// <summary>
-        ///     自動貿易に必要な輸送船団割合
-        /// </summary>
-        public double AutoTradeConvoy;
-
-        /// <summary>
-        ///     戦艦最大付属装備数
-        /// </summary>
-        public int BbMaxAttach;
-
-        /// <summary>
-        ///     巡洋戦艦最大付属装備数
-        /// </summary>
-        public int BcMaxAttach;
-
-        /// <summary>
-        ///     非同盟国に青写真の売却を許可
-        /// </summary>
-        public int BluePrintsCanSoldNonAllied;
-
-        /// <summary>
-        ///     重巡洋艦最大付属装備数
-        /// </summary>
-        public int CaMaxAttach;
-
-        /// <summary>
-        ///     プレイヤーの国策変更を許可
-        /// </summary>
-        public bool CanChangeIdeas;
-
-        /// <summary>
-        ///     非同盟国に師団を譲渡できるかどうか
-        /// </summary>
-        public bool CanUnitSendNonAllied;
-
-        /// <summary>
-        ///     非同盟国に師団を譲渡できるかどうか
-        /// </summary>
-        public int CanUnitSendNonAlliedDh;
-
-        /// <summary>
-        ///     国内の諜報活動を発見する確率
-        /// </summary>
-        public int ChanceDetectSpyMission;
-
-        /// <summary>
-        ///     国策変更時の不満度上昇量
-        /// </summary>
-        public double ChangeIdeaDissent;
-
-        /// <summary>
-        ///     閣僚変更時の不満度上昇量
-        /// </summary>
-        public double ChangeMinisterDissent;
-
-        /// <summary>
-        ///     軽巡洋艦の護衛船団への変換比率
-        /// </summary>
-        public double ClEscortsConversionRatio;
-
-        /// <summary>
-        ///     軽巡洋艦最大付属装備数
-        /// </summary>
-        public int ClMaxAttach;
-
-        /// <summary>
-        ///     輸送船団変換係数
-        /// </summary>
-        public double ConvoyDutyConversion;
-
-        /// <summary>
-        ///     船団攻撃妨害時間
-        /// </summary>
-        public int ConvoyProvinceBlockedTime;
-
-        /// <summary>
-        ///     船団攻撃回避時間
-        /// </summary>
-        public int ConvoyProvinceHostileTime;
-
-        /// <summary>
-        ///     同盟国に対する船団システム
-        /// </summary>
-        public int ConvoySystemOptionsAllied;
-
-        /// <summary>
-        ///     船団輸送能力
-        /// </summary>
-        public double ConvoyTransportsCapacity;
-
-        /// <summary>
-        ///     中核プロヴィンス効率上昇時間
-        /// </summary>
-        public int CoreProvinceEfficiencyRiseTime;
-
-        /// <summary>
-        ///     建物修復コスト補正
-        /// </summary>
-        public double CostRepairBuildings;
-
-        /// <summary>
-        ///     空母最大付属装備数
-        /// </summary>
-        public int CvMaxAttach;
-
-        /// <summary>
-        ///     軽空母の護衛船団への変換比率
-        /// </summary>
-        public double CvlEscortsConversionRatio;
-
-        /// <summary>
-        ///     軽空母最大付属装備数
-        /// </summary>
-        public int CvlMaxAttach;
-
-        /// <summary>
-        ///     人的資源老化補正
-        /// </summary>
-        public double DailyAgingManpower;
-
-        /// <summary>
-        ///     人的資源の老化率
-        /// </summary>
-        public double DailyRetiredManpower;
-
-        /// <summary>
-        ///     駆逐艦の護衛船団への変換比率
-        /// </summary>
-        public double DdEscortsConversionRatio;
-
-        /// <summary>
-        ///     駆逐艦最大付属装備数
-        /// </summary>
-        public int DdMaxAttach;
-
-        /// <summary>
-        ///     理想物資/燃料備蓄比率
-        /// </summary>
-        public double DesiredStockPilesSuppliesOil;
-
-        /// <summary>
-        ///     AIの平時の攻撃的諜報活動
-        /// </summary>
-        public int AiPeacetimeSpyMissions;
-
-        /// <summary>
-        ///     不満度変化速度
-        /// </summary>
-        public double DissentChangeSpeed;
-
-        /// <summary>
-        ///     中核州核攻撃時の不満度上昇係数
-        /// </summary>
-        public double DissentNukes;
-
-        /// <summary>
-        ///     不満度低下補正
-        /// </summary>
-        public double DissentReduction;
-
-        /// <summary>
-        ///     不満度による反乱軍発生率係数
-        /// </summary>
-        public double DissentRevoltMultiplier;
-
-        /// <summary>
-        ///     諜報任務の近隣国補正
-        /// </summary>
-        public double DistanceModifierNeighbours;
-
-        /// <summary>
-        ///     海軍情報の存続期間
-        /// </summary>
-        public int DurationDetection;
-
-        /// <summary>
-        ///     護衛船団変換係数
-        /// </summary>
-        public double EscortDutyConversion;
-
-        /// <summary>
-        ///     インフラの自然回復率
-        /// </summary>
-        public double FreeInfraRepair;
-
-        /// <summary>
-        ///     空軍の戦闘時燃料使用量補正
-        /// </summary>
-        public double FuelAirBattle;
-
-        /// <summary>
-        ///     空軍/海軍の待機時燃料使用量補正
-        /// </summary>
-        public double FuelAirNavalStatic;
-
-        /// <summary>
-        ///     陸軍の戦闘時燃料使用量補正
-        /// </summary>
-        public double FuelLandBattle;
-
-        /// <summary>
-        ///     陸軍の待機時燃料使用量補正
-        /// </summary>
-        public double FuelLandStatic;
-
-        /// <summary>
-        ///     海軍の戦闘時燃料使用量補正
-        /// </summary>
-        public double FuelNavalBattle;
-
-        /// <summary>
-        ///     海軍の非移動時燃料使用量補正
-        /// </summary>
-        public double FuelNavalNotMoving;
-
-        /// <summary>
-        ///     ギアリングボーナスの増加値
-        /// </summary>
-        public double GearingBonusIncrement;
-
-        /// <summary>
-        ///     旅団改良時のギアリングボーナス減少比率
-        /// </summary>
-        public double GearingBonusLossUpgradeBrigade;
-
-        /// <summary>
-        ///     ユニット改良時のギアリングボーナス減少比率
-        /// </summary>
-        public double GearingBonusLossUpgradeUnit;
-
-        /// <summary>
-        ///     IC不足時のギアリングボーナス減少値
-        /// </summary>
-        public double GearingLossNoIc;
-
-        /// <summary>
-        ///     連続生産時の資源消費増加
-        /// </summary>
-        public double GearingResourceIncrement;
-
-        /// <summary>
-        ///     工場集中ボーナス
-        /// </summary>
-        public double IcConcentrationBonus;
-
-        /// <summary>
-        ///     非中核州のIC補正
-        /// </summary>
-        public double IcMultiplierNonNational;
-
-        /// <summary>
-        ///     占領地のIC補正
-        /// </summary>
-        public double IcMultiplierNonOwned;
-
-        /// <summary>
-        ///     属国のIC補正
-        /// </summary>
-        public double IcMultiplierPuppet;
-
-        /// <summary>
-        ///     ICから消費財への変換効率
-        /// </summary>
-        public double IcToConsumerGoodsRatio;
-
-        /// <summary>
-        ///     ICから資金への変換効率
-        /// </summary>
-        public double IcToMoneyRatio;
-
-        /// <summary>
-        ///     ICから物資への変換効率
-        /// </summary>
-        public double IcToSuppliesRatio;
-
-        /// <summary>
-        ///     ICからTCへの変換効率
-        /// </summary>
-        public double IcToTcRatio;
-
-        /// <summary>
-        ///     国策変更遅延日数
-        /// </summary>
-        public int IdeaChangeDelay;
-
-        /// <summary>
-        ///     国策変更遅延日数(イベント)
-        /// </summary>
-        public int IdeaChangeEventDelay;
-
-        /// <summary>
-        ///     諜報レベルの増加間隔
-        /// </summary>
-        public int IncreateIntelligenceLevelDays;
-
-        /// <summary>
-        ///     インフラによるプロヴィンス効率補正
-        /// </summary>
-        public double InfraEfficiencyModifier;
-
-        /// <summary>
-        ///     指揮官変更遅延日数
-        /// </summary>
-        public int LeaderChangeDelay;
-
-        /// <summary>
-        ///     ライン開始時間
-        /// </summary>
-        public int LineStartupTime;
-
-        /// <summary>
-        ///     ライン改良時間
-        /// </summary>
-        public int LineUpgradeTime;
-
-        /// <summary>
-        ///     ライン維持コスト補正
-        /// </summary>
-        public double LineUpkeep;
-
-        /// <summary>
-        ///     海外州の人的資源補正
-        /// </summary>
-        public double ManpowerMultiplierColony;
-
-        /// <summary>
-        ///     中核州の人的資源補正
-        /// </summary>
-        public double ManpowerMultiplierNational;
-
-        /// <summary>
-        ///     非中核州の人的資源補正
-        /// </summary>
-        public double ManpowerMultiplierNonNational;
-
-        /// <summary>
-        ///     平時の人的資源補正
-        /// </summary>
-        public double ManpowerMultiplierPeacetime;
-
-        /// <summary>
-        ///     属国の人的資源補正
-        /// </summary>
-        public double ManpowerMultiplierPuppet;
-
-        /// <summary>
-        ///     戦時の人的資源補正
-        /// </summary>
-        public double ManpowerMultiplierWartime;
-
-        /// <summary>
-        ///     戦時の海外州の人的資源補正
-        /// </summary>
-        public double ManpowerMultiplierWartimeOversea;
-
-        /// <summary>
-        ///     人的資源の消費財生産補正
-        /// </summary>
-        public double ManpowerToConsumerGoods;
-
-        /// <summary>
-        ///     物資/消費財不足時の最大不満度上昇値
-        /// </summary>
-        public double MaxDailyDissent;
-
-        /// <summary>
-        ///     スライダー移動可能な最大不満度
-        /// </summary>
-        public double MaxDissentSliderMove;
-
-        /// <summary>
-        ///     最大ギアリングボーナス
-        /// </summary>
-        public double MaxGearingBonus;
-
-        /// <summary>
-        ///     諜報コスト補正の最大IC
-        /// </summary>
-        public double MaxIcCostModifier;
-
-        /// <summary>
-        ///     最大諜報費比率
-        /// </summary>
-        public double MaxIntelligenceExpenditure;
-
-        /// <summary>
-        ///     最大人的資源
-        /// </summary>
-        public double MaxManpower;
-
-        /// <summary>
-        ///     ナショナリズム最大値
-        /// </summary>
-        public double MaxNationalism;
-
-        /// <summary>
-        ///     最大研究費比率
-        /// </summary>
-        public double MaxResearchExpenditure;
-
-        /// <summary>
-        ///     資源備蓄上限値
-        /// </summary>
-        public double MaxResourceDepotSize;
-
-        /// <summary>
-        ///     最大反乱率
-        /// </summary>
-        public double MaxRevoltRisk;
-
-        /// <summary>
-        ///     スライダー移動時の最大不満度
-        /// </summary>
-        public double MaxSliderDissent;
-
-        /// <summary>
-        ///     物資/燃料備蓄上限値
-        /// </summary>
-        public double MaxSuppliesOilDepotSize;
-
-        /// <summary>
-        ///     軍隊の給料
-        /// </summary>
-        public double MilitarySalary;
-
-        /// <summary>
-        ///     軍隊の給料不足時の消耗補正
-        /// </summary>
-        public double MilitarySalaryAttrictionModifier;
-
-        /// <summary>
-        ///     軍隊の給料不足時の不満度補正
-        /// </summary>
-        public double MilitarySalaryDissentModifier;
-
-        /// <summary>
-        ///     最小実効ICの比率
-        /// </summary>
-        public double MinAvailableIc;
-
-        /// <summary>
-        ///     反乱が発生する最低不満度
-        /// </summary>
-        public double MinDissentRevolt;
-
-        /// <summary>
-        ///     最小実効IC
-        /// </summary>
-        public double MinFinalIc;
-
-        /// <summary>
-        ///     スライダー移動時の最小不満度
-        /// </summary>
-        public double MinSliderDissent;
-
-        /// <summary>
-        ///     海外プロヴィンスへの配置の必要IC
-        /// </summary>
-        public double MinimalPlacementIc;
-
-        /// <summary>
-        ///     閣僚変更遅延日数
-        /// </summary>
-        public int MinisterChangeDelay;
-
-        /// <summary>
-        ///     閣僚変更遅延日数(イベント)
-        /// </summary>
-        public int MinisterChangeEventDelay;
-
-        /// <summary>
-        ///     月ごとのナショナリズムの減少値
-        /// </summary>
-        public double MonthlyNationalismReduction;
-
-        /// <summary>
-        ///     人的資源によるナショナリズムの補正値
-        /// </summary>
-        public double NationalismPerManpowerAoD;
-
-        /// <summary>
-        ///     人的資源によるナショナリズムの補正値
-        /// </summary>
-        public double NationalismPerManpowerDh;
-
-        /// <summary>
-        ///     ナショナリズムの初期値
-        /// </summary>
-        public double NationalismStartingValue;
-
-        /// <summary>
-        ///     原子力発電量
-        /// </summary>
-        public double NuclearPower;
-
-        /// <summary>
-        ///     原子力発電所維持コスト
-        /// </summary>
-        public double NuclearPowerUpkeepCost;
-
-        /// <summary>
-        ///     原子炉維持コスト
-        /// </summary>
-        public double NuclearSiteUpkeepCost;
-
-        /// <summary>
-        ///     核兵器生産補正
-        /// </summary>
-        public double NukesProductionModifier;
-
-        /// <summary>
-        ///     超過備蓄損失割合
-        /// </summary>
-        public double OverStockpileLimitDailyLoss;
-
-        /// <summary>
-        ///     生産ラインの編集
-        /// </summary>
-        public bool ProductionLineEdit;
-
-        /// <summary>
-        ///     建物修復速度補正
-        /// </summary>
-        public double ProvinceBuildingsRepairModifier;
-
-        /// <summary>
-        ///     非同盟国にプロヴィンスの売却/譲渡を許可
-        /// </summary>
-        public int ProvinceCanSoldNonAllied;
-
-        /// <summary>
-        ///     プロヴィンス効率上昇時間
-        /// </summary>
-        public int ProvinceEfficiencyRiseTime;
-
-        /// <summary>
-        ///     資源回復速度補正
-        /// </summary>
-        public double ProvinceResourceRepairModifier;
-
-        /// <summary>
-        ///     補充に必要なICの比率
-        /// </summary>
-        public double ReinforceCost;
-
-        /// <summary>
-        ///     補充に必要な人的資源の比率
-        /// </summary>
-        public double ReinforceManpower;
-
-        /// <summary>
-        ///     補充に必要な時間の比率
-        /// </summary>
-        public double ReinforceTime;
-
-        /// <summary>
-        ///     改良のための補充係数
-        /// </summary>
-        public double ReinforceToUpdateModifier;
-
-        /// <summary>
-        ///     諜報任務発覚時の友好度低下量
-        /// </summary>
-        public double RelationshipsHitDetectedMissions;
-
-        /// <summary>
-        ///     政策スライダーに影響を与えるためのIC比率
-        /// </summary>
-        public double RequirementAffectSlider;
-
-        /// <summary>
-        ///     不要な資源/燃料の回収比率
-        /// </summary>
-        public double ResourceConvoysBackUnneeded;
-
-        /// <summary>
-        ///     非中核州の資源補正
-        /// </summary>
-        public double ResourceMultiplierNonNational;
-
-        /// <summary>
-        ///     非中核州の資源補正(AI)
-        /// </summary>
-        public double ResourceMultiplierNonNationalAi;
-
-        /// <summary>
-        ///     占領地の資源補正
-        /// </summary>
-        public double ResourceMultiplierNonOwned;
-
-        /// <summary>
-        ///     属国の資源補正
-        /// </summary>
-        public double ResourceMultiplierPuppet;
-
-        /// <summary>
-        ///     空軍の物資再備蓄速度
-        /// </summary>
-        public double RestockSpeedAir;
-
-        /// <summary>
-        ///     陸軍の物資再備蓄速度
-        /// </summary>
-        public double RestockSpeedLand;
-
-        /// <summary>
-        ///     海軍の物資再備蓄速度
-        /// </summary>
-        public double RestockSpeedNaval;
-
-        /// <summary>
-        ///     ライン調整コスト補正
-        /// </summary>
-        public double RetoolingCost;
-
-        /// <summary>
-        ///     ライン調整資源補正
-        /// </summary>
-        public double RetoolingResource;
-
-        /// <summary>
-        ///     師団譲渡後配備可能になるまでの時間
-        /// </summary>
-        public int SendDivisionDays;
-
-        /// <summary>
-        ///     第三国の諜報活動を報告するか
-        /// </summary>
-        public int ShowThirdCountrySpyReports;
-
-        /// <summary>
-        ///     不満度によるクーデター成功率修正
-        /// </summary>
-        public double SpyCoupDissentModifier;
-
-        /// <summary>
-        ///     スパイ発見確率
-        /// </summary>
-        public double SpyDetectionChance;
-
-        /// <summary>
-        ///     情報の正確さ補正
-        /// </summary>
-        public double SpyInformationAccuracyModifier;
-
-        /// <summary>
-        ///     諜報任務の間隔
-        /// </summary>
-        public int SpyMissionDays;
-
-        /// <summary>
-        ///     諜報維持コスト
-        /// </summary>
-        public double SpyUpkeepCost;
-
-        /// <summary>
-        ///     潜水艦最大付属装備数
-        /// </summary>
-        public int SsMaxAttach;
-
-        /// <summary>
-        ///     原子力潜水艦最大付属装備数
-        /// </summary>
-        public int SsnMaxAttach;
-
-        /// <summary>
-        ///     資源備蓄上限補正
-        /// </summary>
-        public double StockpileLimitMultiplierResource;
-
-        /// <summary>
-        ///     物資/燃料備蓄上限補正
-        /// </summary>
-        public double StockpileLimitMultiplierSuppliesOil;
-
-        /// <summary>
-        ///     空軍の戦闘時物資使用量補正
-        /// </summary>
-        public double SupplyAirBattleAoD;
-
-        /// <summary>
-        ///     空軍の戦闘時物資使用量補正
-        /// </summary>
-        public double SupplyAirBattleDh;
-
-        /// <summary>
-        ///     空軍の爆撃時物資使用量補正
-        /// </summary>
-        public double SupplyAirBombing;
-
-        /// <summary>
-        ///     空軍の移動時物資使用量補正
-        /// </summary>
-        public double SupplyAirMoving;
-
-        /// <summary>
-        ///     空軍の待機時物資使用量補正
-        /// </summary>
-        public double SupplyAirStaticAoD;
-
-        /// <summary>
-        ///     空軍の待機時物資使用量補正
-        /// </summary>
-        public double SupplyAirStaticDh;
-
-        /// <summary>
-        ///     船団襲撃時物資使用量補正
-        /// </summary>
-        public double SupplyConvoyHunt;
-
-        /// <summary>
-        ///     陸軍の戦闘時物資使用量補正
-        /// </summary>
-        public double SupplyLandBattleAoD;
-
-        /// <summary>
-        ///     陸軍の戦闘時物資使用量補正
-        /// </summary>
-        public double SupplyLandBattleDh;
-
-        /// <summary>
-        ///     陸軍の砲撃時物資使用量補正
-        /// </summary>
-        public double SupplyLandBombing;
-
-        /// <summary>
-        ///     陸軍の移動時物資使用量補正
-        /// </summary>
-        public double SupplyLandMoving;
-
-        /// <summary>
-        ///     陸軍の待機時物資使用量補正
-        /// </summary>
-        public double SupplyLandStaticAoD;
-
-        /// <summary>
-        ///     海軍の戦闘時物資使用量補正
-        /// </summary>
-        public double SupplyNavalBattleAoD;
-
-        /// <summary>
-        ///     海軍の戦闘時物資使用量補正
-        /// </summary>
-        public double SupplyNavalBattleDh;
-
-        /// <summary>
-        ///     海軍の移動時物資使用量補正
-        /// </summary>
-        public double SupplyNavalMoving;
-
-        /// <summary>
-        ///     海軍の待機時物資使用量補正
-        /// </summary>
-        public double SupplyNavalStaticAoD;
-
-        /// <summary>
-        ///     海軍の待機時物資使用量補正
-        /// </summary>
-        public double SupplyNavalStaticDh;
-
-        /// <summary>
-        ///     空軍の物資備蓄量
-        /// </summary>
-        public double SupplyStockAir;
-
-        /// <summary>
-        ///     陸軍の物資備蓄量
-        /// </summary>
-        public double SupplyStockLand;
-
-        /// <summary>
-        ///     海軍の物資備蓄量
-        /// </summary>
-        public double SupplyStockNaval;
-
-        /// <summary>
-        ///     陸軍の待機時物資使用量補正
-        /// </summary>
-        public double SuppyLandStaticDh;
-
-        /// <summary>
-        ///     合成石油変換係数
-        /// </summary>
-        public double SyntheticOilConversionMultiplier;
-
-        /// <summary>
-        ///     合成石油工場維持コスト
-        /// </summary>
-        public double SyntheticOilSiteUpkeepCost;
-
-        /// <summary>
-        ///     合成希少資源変換係数
-        /// </summary>
-        public double SyntheticRaresConversionMultiplier;
-
-        /// <summary>
-        ///     合成希少資源工場維持コスト
-        /// </summary>
-        public double SyntheticRaresSiteUpkeepCost;
-
-        /// <summary>
-        ///     未配備の基地のTC負荷
-        /// </summary>
-        public double TcLoadBase;
-
-        /// <summary>
-        ///     攻勢時のTC負荷係数
-        /// </summary>
-        public double TcLoadFactorOffensive;
-
-        /// <summary>
-        ///     空軍師団のTC負荷補正
-        /// </summary>
-        public double TcLoadMultiplierAir;
-
-        /// <summary>
-        ///     陸軍師団のTC負荷補正
-        /// </summary>
-        public double TcLoadMultiplierLand;
-
-        /// <summary>
-        ///     海軍師団のTC負荷補正
-        /// </summary>
-        public double TcLoadMultiplierNaval;
-
-        /// <summary>
-        ///     占領地のTC負荷
-        /// </summary>
-        public double TcLoadOccupied;
-
-        /// <summary>
-        ///     パルチザンのTC負荷
-        /// </summary>
-        public double TcLoadPartisan;
-
-        /// <summary>
-        ///     プロヴィンス開発のTC負荷
-        /// </summary>
-        public double TcLoadProvinceDevelopment;
-
-        /// <summary>
-        ///     未配備旅団のTC負荷
-        /// </summary>
-        public double TcLoadUndeployedBrigade;
-
-        /// <summary>
-        ///     未配備師団のTC負荷
-        /// </summary>
-        public double TcLoadUndeployedDivision;
-
-        /// <summary>
-        ///     スライダー移動の間隔
-        /// </summary>
-        public int TimeBetweenSliderChangesAoD;
-
-        /// <summary>
-        ///     建物修復時間補正
-        /// </summary>
-        public double TimeRepairBuilding;
-
-        /// <summary>
-        ///     輸送艦最大付属装備数
-        /// </summary>
-        public int TpMaxAttach;
-
-        /// <summary>
-        ///     輸送艦の輸送船団への変換比率
-        /// </summary>
-        public double TpTransportsConversionRatio;
-
-        /// <summary>
-        ///     占領中の同盟国の中核州返還を許可
-        /// </summary>
-        public bool TransferAlliedCoreProvinces;
-
-        /// <summary>
-        ///     輸送艦変換係数
-        /// </summary>
-        public double TransportConversion;
-
-        /// <summary>
-        ///     戦闘による損失からの復帰係数
-        /// </summary>
-        public double TrickleBackFactorManpower;
-
-        /// <summary>
-        ///     改良に必要なICの比率
-        /// </summary>
-        public double UpgradeCost;
-
-        /// <summary>
-        ///     改良に必要な時間の比率
-        /// </summary>
-        public double UpgradeTime;
+        // NOT IMPLEMENTED
     }
 
     /// <summary>
@@ -1109,85 +2841,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class MiscIntelligence
     {
-        /// <summary>
-        /// 諜報任務の間隔
-        /// </summary>
-        public int SpyMissionDaysDh;
-
-        /// <summary>
-        /// 諜報レベルの増加間隔
-        /// </summary>
-        public int IncreateIntelligenceLevelDaysDh;
-
-        /// <summary>
-        /// 国内の諜報活動を発見する確率
-        /// </summary>
-        public double ChanceDetectSpyMissionDh;
-
-        /// <summary>
-        /// 諜報任務発覚時の友好度低下量
-        /// </summary>
-        public double RelationshipsHitDetectedMissionsDh;
-
-        /// <summary>
-        /// 諜報任務の距離補正
-        /// </summary>
-        public double DistanceModifier;
-
-        /// <summary>
-        /// 諜報任務の近隣国補正
-        /// </summary>
-        public double DistanceModifierNeighboursDh;
-
-        /// <summary>
-        /// 諜報レベルの距離補正
-        /// </summary>
-        public double SpyLevelBonusDistanceModifier;
-
-        /// <summary>
-        /// 諜報レベル10超過時の距離補正
-        /// </summary>
-        public double SpyLevelBonusDistanceModifierAboveTen;
-
-        /// <summary>
-        /// 情報の正確さ補正
-        /// </summary>
-        public double SpyInformationAccuracyModifierDh;
-
-        /// <summary>
-        /// 諜報コストのIC補正
-        /// </summary>
-        public double IcModifierCost;
-
-        /// <summary>
-        /// 諜報コスト補正の最小IC
-        /// </summary>
-        public double MinIcCostModifier;
-
-        /// <summary>
-        /// 諜報コスト補正の最大IC
-        /// </summary>
-        public double MaxIcCostModifierDh;
-
-        /// <summary>
-        /// 諜報レベル10超過時追加維持コスト
-        /// </summary>
-        public double ExtraMaintenanceCostAboveTen;
-
-        /// <summary>
-        /// 諜報レベル10超過時増加コスト
-        /// </summary>
-        public double ExtraCostIncreasingAboveTen;
-
-        /// <summary>
-        /// 第三国の諜報活動を報告するか
-        /// </summary>
-        public int ShowThirdCountrySpyReportsDh;
-
-        /// <summary>
-        /// 諜報資金割り当て補正
-        /// </summary>
-        public double SpiesMoneyModifier;
+        // NOT IMPLEMENTED
     }
 
     /// <summary>
@@ -1195,80 +2849,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public class MiscDiplomacy
     {
-        /// <summary>
-        /// 外交官派遣間隔
-        /// </summary>
-        public int DaysBetweenDiplomaticMissions;
-
-        /// <summary>
-        /// スライダー移動の間隔
-        /// </summary>
-        public int TimeBetweenSliderChangesDh;
-
-        /// <summary>
-        /// 政策スライダーに影響を与えるためのIC比率
-        /// </summary>
-        public double RequirementAffectSliderDh;
-
-        /// <summary>
-        /// 閣僚交代時に閣僚特性を適用する
-        /// </summary>
-        public bool UseMinisterPersonalityReplacing;
-
-        /// <summary>
-        /// 貿易キャンセル時の友好度低下
-        /// </summary>
-        public double RelationshipHitCancelTrade;
-
-        /// <summary>
-        /// 永久貿易キャンセル次の友好度低下
-        /// </summary>
-        public double RelationshipHitCancelPermanentTrade;
-
-        /// <summary>
-        /// 属国が宗主国の同盟に強制参加する
-        /// </summary>
-        public bool PuppetsJoinMastersAlliance;
-
-        /// <summary>
-        /// 属国の属国が設立できるか
-        /// </summary>
-        public bool MastersBecomePuppetsPuppets;
-
-        /// <summary>
-        /// 領有権主張の変更
-        /// </summary>
-        public bool AllowManualClaimsChange;
-
-        /// <summary>
-        /// 領有権主張時の好戦性上昇値
-        /// </summary>
-        public double BelligerenceClaimedProvince;
-
-        /// <summary>
-        /// 領有権撤回時の好戦性減少値
-        /// </summary>
-        public double BelligerenceClaimsRemoval;
-
-        /// <summary>
-        /// 宣戦布告された時に対抗陣営へ自動加盟
-        /// </summary>
-        public bool JoinAutomaticallyAllesAxis;
-
-        /// <summary>
-        /// 国家元首/政府首班の交代
-        /// </summary>
-        public int AllowChangeHosHog;
-
-        /// <summary>
-        /// クーデター発生時に兄弟国へ変更
-        /// </summary>
-        public bool ChangeTagCoup;
-
-        /// <summary>
-        /// 独立可能国設定
-        /// </summary>
-        public int FilterReleaseCountries;
+        // NOT IMPLEMENTED
     }
 
     /// <summary>
@@ -1879,5 +3460,319 @@ namespace HoI2Editor.Models
         AllowChangeHosHog, // 国家元首/政府首班の交代
         ChangeTagCoup, // クーデター発生時に兄弟国へ変更
         FilterReleaseCountries, // 独立可能国設定
+
+        // combat
+        LandXpGainFactor, // 陸軍経験値入手係数
+        NavalXpGainFactor, // 海軍経験値入手係数
+        AirXpGainFactor, // 空軍経験値入手係数
+        AirDogfightXpGainFactor, // 空軍空戦時経験値入手係数
+        DivisionXpGainFactor, // 師団経験値入手係数
+        LeaderXpGainFactor, // 指揮官経験値入手係数
+        AttritionSeverityModifier, // 消耗係数
+        NoSupplyAttritionSeverity, // 無補給時の自然条件消耗係数
+        NoSupplyMinimunAttrition, // 無補給時の消耗係数
+        BaseProximity, // 基地戦闘補正
+        ShoreBombardmentModifier, // 艦砲射撃戦闘補正
+        ShoreBombardmentCap, // 艦砲射撃戦闘効率上限
+        InvasionModifier, // 強襲上陸ペナルティ
+        MultipleCombatModifier, // 側面攻撃ペナルティ
+        OffensiveCombinedArmsBonus, // 攻撃側諸兵科連合ボーナス
+        DefensiveCombinedArmsBonus, // 防御側諸兵科連合ボーナス
+        SurpriseModifier, // 奇襲攻撃ペナルティ
+        LandCommandLimitModifier, // 陸軍指揮上限ペナルティ
+        AirCommandLimitModifier, // 空軍指揮上限ペナルティ
+        NavalCommandLimitModifier, // 海軍指揮上限ペナルティ
+        EnvelopmentModifier, // 多方面攻撃補正
+        EncircledModifier, // 包囲攻撃ペナルティ
+        LandFortMultiplier, // 要塞攻撃ペナルティ
+        CoastalFortMultiplier, // 沿岸要塞攻撃ペナルティ
+        HardUnitsAttackingUrbanPenalty, // 装甲ユニットの都市攻撃ペナルティ
+        DissentMultiplier, // 国民不満度ペナルティ
+        SupplyProblemsModifier, // 補給不足ペナルティ
+        SupplyProblemsModifierLand, // 陸軍物資不足ペナルティ
+        SupplyProblemsModifierAir, // 空軍物資不足ペナルティ
+        SupplyProblemsModifierNaval, // 海軍物資不足ペナルティ
+        FuelProblemsModifierLand, // 陸軍燃料不足ペナルティ
+        FuelProblemsModifierAir, // 空軍燃料不足ペナルティ
+        FuelProblemsModifierNaval, // 海軍燃料不足ペナルティ
+        RaderStationMultiplier, // レーダー補正
+        RaderStationAaMultiplier, // レーダー/対空砲複合補正
+        InterceptorBomberModifier, // 爆撃機迎撃ボーナス
+        AirOverstackingModifier, // 空軍スタックペナルティ
+        AirOverstackingModifierAoD, // 空軍スタックペナルティ
+        NavalOverstackingModifier, // 海軍スタックペナルティ
+        LandLeaderCommandLimitRank0, // 陸軍元帥指揮上限
+        LandLeaderCommandLimitRank1, // 陸軍大将指揮上限
+        LandLeaderCommandLimitRank2, // 陸軍中将指揮上限
+        LandLeaderCommandLimitRank3, // 陸軍少将指揮上限
+        AirLeaderCommandLimitRank0, // 空軍元帥指揮上限
+        AirLeaderCommandLimitRank1, // 空軍大将指揮上限
+        AirLeaderCommandLimitRank2, // 空軍中将指揮上限
+        AirLeaderCommandLimitRank3, // 空軍少将指揮上限
+        NavalLeaderCommandLimitRank0, // 海軍元帥指揮上限
+        NavalLeaderCommandLimitRank1, // 海軍大将指揮上限
+        NavalLeaderCommandLimitRank2, // 海軍中将指揮上限
+        NavalLeaderCommandLimitRank3, // 海軍少将指揮上限
+        HqCommandLimitFactor, // 司令部指揮上限係数
+        ConvoyProtectionFactor, // 輸送船団護衛係数
+        ConvoyEscortsModel, // 輸送船団護衛モデル
+        DelayAfterCombatEnds, // 戦闘後命令遅延時間
+        LandDelayBeforeOrders, // 陸軍命令遅延時間
+        NavalDelayBeforeOrders, // 海軍命令遅延時間
+        AirDelayBeforeOrders, // 空軍命令遅延時間
+        MaximumSizesAirStacks, // 空軍最大スタックサイズ
+        DurationAirToAirBattles, // 空戦最小戦闘時間
+        DurationNavalPortBombing, // 港湾攻撃最小戦闘時間
+        DurationStrategicBombing, // 戦略爆撃最小戦闘時間
+        DurationGroundAttackBombing, // 地上爆撃最小戦闘時間
+        EffectExperienceCombat, // 経験値補正
+        DamageNavalBasesBombing, // 海軍基地戦略爆撃係数
+        DamageAirBaseBombing, // 空軍基地戦略爆撃係数
+        DamageAaBombing, // 対空砲戦略爆撃係数
+        DamageRocketBombing, // ロケット試験場戦略爆撃係数
+        DamageNukeBombing, // 原子炉戦略爆撃係数
+        DamageRadarBombing, // レーダー戦略爆撃係数
+        DamageInfraBombing, // インフラ戦略爆撃係数
+        DamageIcBombing, // IC戦略爆撃係数
+        DamageResourcesBombing, // 資源戦略爆撃係数
+        DamageSyntheticOilBombing, // 合成石油工場戦略爆撃係数
+        HowEffectiveGroundDef, // 対地防御効率補正
+        ChanceAvoidDefencesLeft, // 基本回避率(防御回数あり)
+        ChanceAvoidNoDefences, // 基本回避率(防御回数なし)
+        LandChanceAvoidDefencesLeft, // 陸軍基本回避率(防御回数あり)
+        AirChanceAvoidDefencesLeft, // 空軍基本回避率(防御回数あり)
+        NavalChanceAvoidDefencesLeft, // 海軍基本回避率(防御回数あり)
+        LandChanceAvoidNoDefences, // 陸軍基本回避率(防御回数あり)
+        AirChanceAvoidNoDefences, // 空軍基本回避率(防御回数あり)
+        NavalChanceAvoidNoDefences, // 海軍基本回避率(防御回数あり)
+        ChanceGetTerrainTrait, // 地形特性獲得可能性
+        ChanceGetEventTrait, // 戦闘特性獲得可能性
+        BonusTerrainTrait, // 地形特性補正
+        BonusEventTrait, // 戦闘特性補正
+        BonusLeaderSkillPointLand, // 陸軍指揮官スキル補正
+        BonusLeaderSkillPointAir, // 空軍指揮官スキル補正
+        BonusLeaderSkillPointNaval, // 海軍指揮官スキル補正
+        ChanceLeaderDying, // 指揮官死亡確率
+        AirOrgDamage, // 空軍組織率被ダメージ
+        AirStrDamageOrg, // 空軍戦力被ダメージ(組織力)
+        AirStrDamage, // 空軍戦力被ダメージ
+        LandMinOrgDamage, // 陸軍最小組織率被ダメージ
+        LandOrgDamageHardSoftEach, // 陸軍組織率被ダメージ(装甲/非装甲同士)
+        LandOrgDamageHardVsSoft, // 陸軍組織率被ダメージ(装甲対非装甲)
+        LandMinStrDamage, // 陸軍最小戦力被ダメージ
+        LandStrDamageHardSoftEach, // 陸軍戦力被ダメージ(装甲/非装甲同士)
+        LandStrDamageHardVsSoft, // 陸軍戦力被ダメージ(装甲対非装甲)
+        AirMinOrgDamage, // 空軍最小組織率被ダメージ
+        AirAdditionalOrgDamage, // 空軍追加組織率被ダメージ
+        AirMinStrDamage, // 空軍最小戦力被ダメージ
+        AirAdditionalStrDamage, // 空軍追加戦力被ダメージ
+        AirStrDamageEntrenced, // 空軍戦力被ダメージ(対塹壕)
+        NavalMinOrgDamage, // 海軍最小組織率被ダメージ
+        NavalAdditionalOrgDamage, // 海軍追加組織率被ダメージ
+        NavalMinStrDamage, // 海軍最小戦力被ダメージ
+        NavalAdditionalStrDamage, // 海軍追加戦力被ダメージ
+        AirStrDamageLandOrg, // 空軍対陸軍戦力被ダメージ(組織率)
+        AirOrgDamageLandDh, // 空軍対陸軍組織率被ダメージ
+        AirStrDamageLandDh, // 空軍対陸軍戦力被ダメージ
+        LandOrgDamageLandOrg, // 陸軍対陸軍組織率被ダメージ(組織率)
+        LandOrgDamageLandUrban, // 陸軍対陸軍組織率被ダメージ(都市)
+        LandOrgDamageLandFort, // 陸軍対陸軍組織率被ダメージ(要塞)
+        RequiredLandFortSize, // 必要要塞規模
+        LandStrDamageLandDh, // 陸軍対陸軍戦力被ダメージ
+        AirOrgDamageAirDh, // 空軍対空軍組織率被ダメージ
+        AirStrDamageAirDh, // 空軍対空軍戦力被ダメージ
+        LandOrgDamageAirDh, // 陸軍対空軍組織率被ダメージ
+        LandStrDamageAirDh, // 陸軍対空軍戦力被ダメージ
+        NavalOrgDamageAirDh, // 海軍対空軍組織率被ダメージ
+        NavalStrDamageAirDh, // 海軍対空軍戦力被ダメージ
+        SubsOrgDamageAir, // 潜水艦対空軍組織率被ダメージ
+        SubsStrDamageAir, // 潜水艦対空軍戦力被ダメージ
+        AirOrgDamageNavyDh, // 空軍対海軍組織率被ダメージ
+        AirStrDamageNavyDh, // 空軍対海軍戦力被ダメージ
+        NavalOrgDamageNavyDh, // 海軍対海軍組織率被ダメージ
+        NavalStrDamageNavyDh, // 海軍対海軍戦力被ダメージ
+        SubsOrgDamageNavy, // 潜水艦対海軍組織率被ダメージ
+        SubsStrDamageNavy, // 潜水艦対海軍戦力被ダメージ
+        SubsOrgDamage, // 潜水艦組織率被ダメージ
+        SubsStrDamage, // 潜水艦戦力被ダメージ
+        SubStacksDetectionModifier, // 潜水艦発見補正
+        AirOrgDamageLandAoD, // 空軍対陸軍組織率被ダメージ
+        AirStrDamageLandAoD, // 空軍対陸軍戦力被ダメージ
+        LandDamageArtilleryBombardment, // 砲撃ダメージ補正(陸上部隊)
+        InfraDamageArtilleryBombardment, // 砲撃ダメージ補正(インフラ)
+        IcDamageArtilleryBombardment, // 砲撃ダメージ補正(IC)
+        ResourcesDamageArtilleryBombardment, // 砲撃ダメージ補正(資源)
+        PenaltyArtilleryBombardment, // 砲撃中の被攻撃ペナルティ
+        ArtilleryStrDamage, // 砲撃戦力ダメージ
+        ArtilleryOrgDamage, // 砲撃組織率ダメージ
+        LandStrDamageLandAoD, // 陸軍対陸軍戦力被ダメージ
+        LandOrgDamageLand, // 陸軍対陸軍組織率被ダメージ
+        LandStrDamageAirAoD, // 陸軍対空軍戦力被ダメージ
+        LandOrgDamageAirAoD, // 陸軍対空軍組織率被ダメージ
+        NavalStrDamageAirAoD, // 海軍対空軍戦力被ダメージ
+        NavalOrgDamageAirAoD, // 海軍対空軍組織率被ダメージ
+        AirStrDamageAirAoD, // 空軍対空軍戦力被ダメージ
+        AirOrgDamageAirAoD, // 空軍対空軍組織率被ダメージ
+        NavalStrDamageNavyAoD, // 海軍対海軍戦力被ダメージ
+        NavalOrgDamageNavyAoD, // 海軍対海軍組織率被ダメージ
+        AirStrDamageNavyAoD, // 空軍対海軍戦力被ダメージ
+        AirOrgDamageNavyAoD, // 空軍対海軍組織率被ダメージ
+        MilitaryExpenseAttritionModifier, // 給料不足時の戦闘補正
+        NavalMinCombatTime, // 海軍最小戦闘時間
+        LandMinCombatTime, // 陸軍最小戦闘時間
+        AirMinCombatTime, // 空軍最小戦闘時間
+        LandOverstackingModifier, // 陸軍スタックペナルティ
+        LandOrgLossMoving, // 陸軍移動時組織率減少係数
+        AirOrgLossMoving, // 空軍移動時組織率減少係数
+        NavalOrgLossMoving, // 海軍移動時組織率減少係数
+        SupplyDistanceSeverity, // 遠隔地補給係数
+        SupplyBase, // 基礎補給効率
+        LandOrgGain, // 陸軍組織率補正
+        AirOrgGain, // 空軍組織率補正
+        NavalOrgGain, // 海軍組織率補正
+        NukeManpowerDissent, // 核攻撃不満度係数(人的資源)
+        NukeIcDissent, // 核攻撃不満度係数(IC)
+        NukeTotalDissent, // 核攻撃不満度係数(トータル)
+        LandFriendlyOrgGain, // 陸軍友好地組織率補正
+        AirLandStockModifier, // 阻止攻撃備蓄補正
+        ScorchDamage, // 焦土命令ダメージ
+        StandGroundDissent, // 死守命令不満度上昇
+        ScorchGroundBelligerence, // 焦土命令好戦性上昇
+        DefaultLandStack, // 陸軍デフォルトスタック数
+        DefaultNavalStack, // 海軍デフォルトスタック数
+        DefaultAirStack, // 空軍デフォルトスタック数
+        DefaultRocketStack, // ロケットデフォルトスタック数
+        FortDamageArtilleryBombardment, // 要塞砲撃ダメージ補正
+        ArtilleryBombardmentOrgCost, // 砲撃組織率減少
+        LandDamageFort, // 陸軍対要塞ダメージ係数
+        AirRebaseFactor, // 空軍基地移動組織率減少係数
+        AirMaxDisorganized, // 空港占領時ペナルティ
+        AaInflictedStrDamage, // 対空砲戦力ダメージ補正
+        AaInflictedOrgDamage, // 対空砲組織率ダメージ補正
+        AaInflictedFlyingDamage, // 対空砲上空通過ダメージ補正
+        AaInflictedBombingDamage, // 対空砲爆撃中ダメージ補正
+        HardAttackStrDamage, // 装甲ユニット戦力ダメージ補正
+        HardAttackOrgDamage, // 装甲ユニット組織率ダメージ補正
+        ArmorSoftBreakthroughMin, // 戦車対人最小突破係数
+        ArmorSoftBreakthroughMax, // 戦車対人最大突破係数
+        NavalCriticalHitChance, // 海軍クリティカルヒット確率
+        NavalCriticalHitEffect, // 海軍クリティカルヒット効果
+        LandFortDamage, // 要塞ダメージ補正
+        PortAttackSurpriseChanceDay, // 日中港湾攻撃奇襲確率
+        PortAttackSurpriseChanceNight, // 夜間港湾攻撃奇襲確率
+        PortAttackSurpriseModifier, // 港湾攻撃奇襲補正
+        RadarAntiSurpriseChance, // レーダー奇襲確率減少値
+        RadarAntiSurpriseModifier, // レーダー奇襲効果減少値
+        CounterAttackStrDefenderAoD, // 反撃イベント防御側戦力補正
+        CounterAttackOrgDefenderAoD, // 反撃イベント防御側組織率補正
+        CounterAttackStrAttackerAoD, // 反撃イベント攻撃側戦力補正
+        CounterAttackOrgAttackerAoD, // 反撃イベント攻撃側組織率補正
+        AssaultStrDefenderAoD, // 強襲イベント防御側戦力補正
+        AssaultOrgDefenderAoD, // 強襲イベント防御側組織率補正
+        AssaultStrAttackerAoD, // 強襲イベント攻撃側戦力補正
+        AssaultOrgAttackerAoD, // 強襲イベント攻撃側組織率補正
+        EncirclementStrDefenderAoD, // 包囲イベント防御側戦力補正
+        EncirclementOrgDefenderAoD, // 包囲イベント防御側組織率補正
+        EncirclementStrAttackerAoD, // 包囲イベント攻撃側戦力補正
+        EncirclementOrgAttackerAoD, // 包囲イベント攻撃側組織率補正
+        AmbushStrDefenderAoD, // 待伏イベント防御側戦力補正
+        AmbushOrgDefenderAoD, // 待伏イベント防御側組織率補正
+        AmbushStrAttackerAoD, // 待伏イベント攻撃側戦力補正
+        AmbushOrgAttackerAoD, // 待伏イベント攻撃側組織率補正
+        DelayStrDefenderAoD, // 遅延イベント防御側戦力補正
+        DelayOrgDefenderAoD, // 遅延イベント防御側組織率補正
+        DelayStrAttackerAoD, // 遅延イベント攻撃側戦力補正
+        DelayOrgAttackerAoD, // 遅延イベント攻撃側組織率補正
+        TacticalWithdrawStrDefenderAoD, // 後退イベント防御側戦力補正
+        TacticalWithdrawOrgDefenderAoD, // 後退イベント防御側組織率補正
+        TacticalWithdrawStrAttackerAoD, // 後退イベント攻撃側戦力補正
+        TacticalWithdrawOrgAttackerAoD, // 後退イベント攻撃側組織率補正
+        BreakthroughStrDefenderAoD, // 突破イベント防御側戦力補正
+        BreakthroughOrgDefenderAoD, // 突破イベント防御側組織率補正
+        BreakthroughStrAttackerAoD, // 突破イベント攻撃側戦力補正
+        BreakthroughOrgAttackerAoD, // 突破イベント攻撃側組織率補正
+        NavalOrgDamageAa, // 海軍対空砲組織率被ダメージ
+        AirOrgDamageAa, // 空軍対空砲組織率被ダメージ
+        AirStrDamageAa, // 空軍対空砲戦力被ダメージ
+        AaAirFiringRules, // 対空砲攻撃ルール
+        AaAirNightModifier, // 対空砲夜間攻撃補正
+        AaAirBonusRadars, // 対空砲攻撃レーダーボーナス
+        MovementBonusTerrainTrait, // 地形適正移動ボーナス
+        MovementBonusSimilarTerrainTrait, // 類似地形適正移動ボーナス
+        LogisticsWizardEseBonus, // 兵站管理の補給効率ボーナス
+        DaysOffensiveSupply, // 攻勢継続日数
+        MinisterBonuses, // 閣僚ボーナス適用方法
+        OrgRegainBonusFriendly, // 友好地組織率回復ボーナス
+        OrgRegainBonusFriendlyCap, // 友好地組織率回復ボーナス上限
+        ConvoyInterceptionMissions, // 海上任務中の船団妨害
+        AutoReturnTransportFleets, // 輸送艦隊の自動帰還
+        AllowProvinceRegionTargeting, // 単一プロヴィンス/地域指定任務
+        NightHoursWinter, // 冬季夜間時間
+        NightHoursSpringFall, // 春季/秋季夜間時間
+        NightHoursSummer, // 夏季夜間時間
+        RecalculateLandArrivalTimes, // 陸上部隊到着時刻再計算間隔
+        SynchronizeArrivalTimePlayer, // 同時到着補正(プレイヤー)
+        SynchronizeArrivalTimeAi, // 同時到着補正(AI)
+        RecalculateArrivalTimesCombat, // 戦闘後到着時刻再計算
+        LandSpeedModifierCombat, // 戦闘時陸軍移動速度補正
+        LandSpeedModifierBombardment, // 沿岸砲撃時陸軍移動速度補正
+        LandSpeedModifierSupply, // 物資切れ時陸軍移動速度補正
+        LandSpeedModifierOrg, // 組織率低下時陸軍移動速度補正
+        LandAirSpeedModifierFuel, // 燃料切れ時陸軍/空軍移動速度補正
+        DefaultSpeedFuel, // 燃料切れ時デフォルト移動速度
+        FleetSizeRangePenaltyRatio, // 艦隊規模航続距離ペナルティ割合
+        FleetSizeRangePenaltyThrethold, // 艦隊規模航続距離ペナルティ閾値
+        FleetSizeRangePenaltyMax, // 艦隊規模航続距離ペナルティ上限
+        ApplyRangeLimitsAreasRegions, // 地方/地域内での距離制限適用
+        RadarBonusDetection, // レーダー航空機発見ボーナス
+        BonusDetectionFriendly, // 友好地航空機発見ボーナス
+        ScreensCapitalRatioModifier, // 主力艦/補助艦割合修正
+        ChanceTargetNoOrgLand, // 陸軍組織率不足ユニット標的確率
+        ScreenCapitalShipsTargeting, // 主力艦/補助艦標的ポジション値
+        FleetPositioningDaytime, // 海戦ポジション値日中ボーナス
+        FleetPositioningLeaderSkill, // 海戦ポジション値スキル補正
+        FleetPositioningFleetSize, // 海戦ポジション値艦隊規模補正
+        FleetPositioningFleetComposition, // 海戦ポジション値艦隊構成補正
+        LandCoastalFortsDamage, // 要塞被ダメージ補正
+        LandCoastalFortsMaxDamage, // 要塞最大被ダメージ
+        MinSoftnessBrigades, // 付属旅団による最小脆弱性
+        AutoRetreatOrg, // 自動撤退組織率
+        LandOrgNavalTransportation, // 陸軍海上輸送後組織率補正
+        MaxLandDig, // 最大塹壕値
+        DigIncreaseDay, // 1日の塹壕増加量
+        BreakthroughEncirclementMinSpeed, // 突破/包囲最小速度
+        BreakthroughEncirclementMaxChance, // 突破/包囲最大確率
+        BreakthroughEncirclementChanceModifier, // 突破/包囲確率補正
+        CombatEventDuration, // コンバットイベント継続時間
+        CounterAttackOrgAttackerDh, // 反撃イベント攻撃側組織率補正
+        CounterAttackStrAttackerDh, // 反撃イベント攻撃側戦力補正
+        CounterAttackOrgDefenderDh, // 反撃イベント防御側組織率補正
+        CounterAttackStrDefenderDh, // 反撃イベント防御側戦力補正
+        AssaultOrgAttackerDh, // 強襲イベント攻撃側組織率補正
+        AssaultStrAttackerDh, // 強襲イベント攻撃側戦力補正
+        AssaultOrgDefenderDh, // 強襲イベント防御側組織率補正
+        AssaultStrDefenderDh, // 強襲イベント防御側戦力補正
+        EncirclementOrgAttackerDh, // 包囲イベント攻撃側組織率補正
+        EncirclementStrAttackerDh, // 包囲イベント攻撃側戦力補正
+        EncirclementOrgDefenderDh, // 包囲イベント防御側組織率補正
+        EncirclementStrDefenderDh, // 包囲イベント防御側戦力補正
+        AmbushOrgAttackerDh, // 待伏イベント攻撃側組織率補正
+        AmbushStrAttackerDh, // 待伏イベント攻撃側戦力補正
+        AmbushOrgDefenderDh, // 待伏イベント防御側組織率補正
+        AmbushStrDefenderDh, // 待伏イベント防御側戦力補正
+        DelayOrgAttackerDh, // 遅延イベント攻撃側組織率補正
+        DelayStrAttackerDh, // 遅延イベント攻撃側戦力補正
+        DelayOrgDefenderDh, // 遅延イベント防御側組織率補正
+        DelayStrDefenderDh, // 遅延イベント防御側戦力補正
+        TacticalWithdrawOrgAttackerDh, // 後退イベント攻撃側組織率補正
+        TacticalWithdrawStrAttackerDh, // 後退イベント攻撃側戦力補正
+        TacticalWithdrawOrgDefenderDh, // 後退イベント防御側組織率補正
+        TacticalWithdrawStrDefenderDh, // 後退イベント防御側戦力補正
+        BreakthroughOrgAttackerDh, // 突破イベント攻撃側組織率補正
+        BreakthroughStrAttackerDh, // 突破イベント攻撃側戦力補正
+        BreakthroughOrgDefenderDh, // 突破イベント防御側組織率補正
+        BreakthroughStrDefenderDh, // 突破イベント防御側戦力補正
+        HqStrDamageBreakthrough, // 司令部は突破イベント時のみ戦力ダメージ
+        CombatMode, // 戦闘モード
     }
 }

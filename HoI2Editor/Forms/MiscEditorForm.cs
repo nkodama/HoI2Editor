@@ -42,6 +42,7 @@ namespace HoI2Editor.Forms
             InitEconomy3Items();
             InitIntelligenceItems();
             InitDiplomacyItems();
+            InitCombat1Items();
         }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace HoI2Editor.Forms
             UpdateEconomy3Items();
             UpdateIntelligenceItems();
             UpdateDiplomacyItems();
+            UpdateCombat1Items();
         }
 
         /// <summary>
@@ -285,101 +287,101 @@ namespace HoI2Editor.Forms
         private void UpdateEconomy1Items()
         {
             // 編集項目の値を更新する
-            icToTcRatioTextBox.Text = Misc.Economy.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
-            icToTcRatioTextBox.Text = Misc.Economy.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
-            icToSuppliesRatioTextBox.Text = Misc.Economy.IcToSuppliesRatio.ToString(CultureInfo.InvariantCulture);
+            icToTcRatioTextBox.Text = Misc.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
+            icToTcRatioTextBox.Text = Misc.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
+            icToSuppliesRatioTextBox.Text = Misc.IcToSuppliesRatio.ToString(CultureInfo.InvariantCulture);
             icToConsumerGoodsRatioTextBox.Text =
-                Misc.Economy.IcToConsumerGoodsRatio.ToString(CultureInfo.InvariantCulture);
-            icToMoneyRatioTextBox.Text = Misc.Economy.IcToMoneyRatio.ToString(CultureInfo.InvariantCulture);
-            maxGearingBonusTextBox.Text = Misc.Economy.MaxGearingBonus.ToString(CultureInfo.InvariantCulture);
-            gearingBonusIncrementTextBox.Text = Misc.Economy.GearingBonusIncrement.ToString(CultureInfo.InvariantCulture);
+                Misc.IcToConsumerGoodsRatio.ToString(CultureInfo.InvariantCulture);
+            icToMoneyRatioTextBox.Text = Misc.IcToMoneyRatio.ToString(CultureInfo.InvariantCulture);
+            maxGearingBonusTextBox.Text = Misc.MaxGearingBonus.ToString(CultureInfo.InvariantCulture);
+            gearingBonusIncrementTextBox.Text = Misc.GearingBonusIncrement.ToString(CultureInfo.InvariantCulture);
             icMultiplierNonNationalTextBox.Text =
-                Misc.Economy.IcMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
-            icMultiplierNonOwnedTextBox.Text = Misc.Economy.IcMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
+                Misc.IcMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+            icMultiplierNonOwnedTextBox.Text = Misc.IcMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
             tcLoadUndeployedDivisionTextBox.Text =
-                Misc.Economy.TcLoadUndeployedDivision.ToString(CultureInfo.InvariantCulture);
-            tcLoadOccupiedTextBox.Text = Misc.Economy.TcLoadOccupied.ToString(CultureInfo.InvariantCulture);
-            tcLoadMultiplierLandTextBox.Text = Misc.Economy.TcLoadMultiplierLand.ToString(CultureInfo.InvariantCulture);
-            tcLoadMultiplierAirTextBox.Text = Misc.Economy.TcLoadMultiplierAir.ToString(CultureInfo.InvariantCulture);
-            tcLoadMultiplierNavalTextBox.Text = Misc.Economy.TcLoadMultiplierNaval.ToString(CultureInfo.InvariantCulture);
-            tcLoadPartisanTextBox.Text = Misc.Economy.TcLoadPartisan.ToString(CultureInfo.InvariantCulture);
-            tcLoadFactorOffensiveTextBox.Text = Misc.Economy.TcLoadFactorOffensive.ToString(CultureInfo.InvariantCulture);
+                Misc.TcLoadUndeployedDivision.ToString(CultureInfo.InvariantCulture);
+            tcLoadOccupiedTextBox.Text = Misc.TcLoadOccupied.ToString(CultureInfo.InvariantCulture);
+            tcLoadMultiplierLandTextBox.Text = Misc.TcLoadMultiplierLand.ToString(CultureInfo.InvariantCulture);
+            tcLoadMultiplierAirTextBox.Text = Misc.TcLoadMultiplierAir.ToString(CultureInfo.InvariantCulture);
+            tcLoadMultiplierNavalTextBox.Text = Misc.TcLoadMultiplierNaval.ToString(CultureInfo.InvariantCulture);
+            tcLoadPartisanTextBox.Text = Misc.TcLoadPartisan.ToString(CultureInfo.InvariantCulture);
+            tcLoadFactorOffensiveTextBox.Text = Misc.TcLoadFactorOffensive.ToString(CultureInfo.InvariantCulture);
             tcLoadProvinceDevelopmentTextBox.Text =
-                Misc.Economy.TcLoadProvinceDevelopment.ToString(CultureInfo.InvariantCulture);
-            tcLoadBaseTextBox.Text = Misc.Economy.TcLoadBase.ToString(CultureInfo.InvariantCulture);
+                Misc.TcLoadProvinceDevelopment.ToString(CultureInfo.InvariantCulture);
+            tcLoadBaseTextBox.Text = Misc.TcLoadBase.ToString(CultureInfo.InvariantCulture);
             manpowerMultiplierNationalTextBox.Text =
-                Misc.Economy.ManpowerMultiplierNational.ToString(CultureInfo.InvariantCulture);
+                Misc.ManpowerMultiplierNational.ToString(CultureInfo.InvariantCulture);
             manpowerMultiplierNonNationalTextBox.Text =
-                Misc.Economy.ManpowerMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                Misc.ManpowerMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
             manpowerMultiplierColonyTextBox.Text =
-                Misc.Economy.ManpowerMultiplierColony.ToString(CultureInfo.InvariantCulture);
+                Misc.ManpowerMultiplierColony.ToString(CultureInfo.InvariantCulture);
             requirementAffectSliderTextBox.Text =
-                Misc.Economy.RequirementAffectSlider.ToString(CultureInfo.InvariantCulture);
+                Misc.RequirementAffectSlider.ToString(CultureInfo.InvariantCulture);
             trickleBackFactorManpowerTextBox.Text =
-                Misc.Economy.TrickleBackFactorManpower.ToString(CultureInfo.InvariantCulture);
-            reinforceManpowerTextBox.Text = Misc.Economy.ReinforceManpower.ToString(CultureInfo.InvariantCulture);
-            reinforceCostTextBox.Text = Misc.Economy.ReinforceCost.ToString(CultureInfo.InvariantCulture);
-            reinforceTimeTextBox.Text = Misc.Economy.ReinforceTime.ToString(CultureInfo.InvariantCulture);
-            upgradeCostTextBox.Text = Misc.Economy.UpgradeCost.ToString(CultureInfo.InvariantCulture);
-            upgradeTimeTextBox.Text = Misc.Economy.UpgradeTime.ToString(CultureInfo.InvariantCulture);
+                Misc.TrickleBackFactorManpower.ToString(CultureInfo.InvariantCulture);
+            reinforceManpowerTextBox.Text = Misc.ReinforceManpower.ToString(CultureInfo.InvariantCulture);
+            reinforceCostTextBox.Text = Misc.ReinforceCost.ToString(CultureInfo.InvariantCulture);
+            reinforceTimeTextBox.Text = Misc.ReinforceTime.ToString(CultureInfo.InvariantCulture);
+            upgradeCostTextBox.Text = Misc.UpgradeCost.ToString(CultureInfo.InvariantCulture);
+            upgradeTimeTextBox.Text = Misc.UpgradeTime.ToString(CultureInfo.InvariantCulture);
             nationalismStartingValueTextBox.Text =
-                Misc.Economy.NationalismStartingValue.ToString(CultureInfo.InvariantCulture);
+                Misc.NationalismStartingValue.ToString(CultureInfo.InvariantCulture);
             monthlyNationalismReductionTextBox.Text =
-                Misc.Economy.MonthlyNationalismReduction.ToString(CultureInfo.InvariantCulture);
-            sendDivisionDaysTextBox.Text = Misc.Economy.SendDivisionDays.ToString(CultureInfo.InvariantCulture);
+                Misc.MonthlyNationalismReduction.ToString(CultureInfo.InvariantCulture);
+            sendDivisionDaysTextBox.Text = Misc.SendDivisionDays.ToString(CultureInfo.InvariantCulture);
             tcLoadUndeployedBrigadeTextBox.Text =
-                Misc.Economy.TcLoadUndeployedBrigade.ToString(CultureInfo.InvariantCulture);
-            canUnitSendNonAlliedComboBox.SelectedIndex = Misc.Economy.CanUnitSendNonAllied ? 1 : 0;
+                Misc.TcLoadUndeployedBrigade.ToString(CultureInfo.InvariantCulture);
+            canUnitSendNonAlliedComboBox.SelectedIndex = Misc.CanUnitSendNonAllied ? 1 : 0;
 
             if (Game.Type == GameType.HeartsOfIron2 && Game.Version >= 130)
             {
-                spyMissionDaysTextBox.Text = Misc.Economy.SpyMissionDays.ToString(CultureInfo.InvariantCulture);
+                spyMissionDaysTextBox.Text = Misc.SpyMissionDays.ToString(CultureInfo.InvariantCulture);
                 increateIntelligenceLevelDaysTextBox.Text =
-                    Misc.Economy.IncreateIntelligenceLevelDays.ToString(CultureInfo.InvariantCulture);
+                    Misc.IncreateIntelligenceLevelDays.ToString(CultureInfo.InvariantCulture);
                 chanceDetectSpyMissionTextBox.Text =
-                    Misc.Economy.ChanceDetectSpyMission.ToString(CultureInfo.InvariantCulture);
+                    Misc.ChanceDetectSpyMission.ToString(CultureInfo.InvariantCulture);
                 relationshipsHitDetectedMissionsTextBox.Text =
-                    Misc.Economy.RelationshipsHitDetectedMissions.ToString(CultureInfo.InvariantCulture);
-                showThirdCountrySpyReportsComboBox.SelectedIndex = Misc.Economy.ShowThirdCountrySpyReports;
+                    Misc.RelationshipsHitDetectedMissions.ToString(CultureInfo.InvariantCulture);
+                showThirdCountrySpyReportsComboBox.SelectedIndex = Misc.ShowThirdCountrySpyReports;
                 distanceModifierNeighboursTextBox.Text =
-                    Misc.Economy.DistanceModifierNeighbours.ToString(CultureInfo.InvariantCulture);
+                    Misc.DistanceModifierNeighbours.ToString(CultureInfo.InvariantCulture);
                 spyInformationAccuracyModifierTextBox.Text =
-                    Misc.Economy.SpyInformationAccuracyModifier.ToString(CultureInfo.InvariantCulture);
-                aiPeacetimeSpyMissionsComboBox.SelectedIndex = Misc.Economy.AiPeacetimeSpyMissions;
-                maxIcCostModifierTextBox.Text = Misc.Economy.MaxIcCostModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.SpyInformationAccuracyModifier.ToString(CultureInfo.InvariantCulture);
+                aiPeacetimeSpyMissionsComboBox.SelectedIndex = Misc.AiPeacetimeSpyMissions;
+                maxIcCostModifierTextBox.Text = Misc.MaxIcCostModifier.ToString(CultureInfo.InvariantCulture);
                 aiSpyMissionsCostModifierTextBox.Text =
-                    Misc.Economy.AiSpyMissionsCostModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.AiSpyMissionsCostModifier.ToString(CultureInfo.InvariantCulture);
                 aiDiplomacyCostModifierTextBox.Text =
-                    Misc.Economy.AiDiplomacyCostModifier.ToString(CultureInfo.InvariantCulture);
-                aiInfluenceModifierTextBox.Text = Misc.Economy.AiInfluenceModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.AiDiplomacyCostModifier.ToString(CultureInfo.InvariantCulture);
+                aiInfluenceModifierTextBox.Text = Misc.AiInfluenceModifier.ToString(CultureInfo.InvariantCulture);
             }
 
             if (Game.Type == GameType.ArsenalOfDemocracy && Game.Version >= 107)
             {
                 nationalismPerManpowerAoDTextBox.Text =
-                    Misc.Economy.NationalismPerManpowerAoD.ToString(CultureInfo.InvariantCulture);
+                    Misc.NationalismPerManpowerAoD.ToString(CultureInfo.InvariantCulture);
                 coreProvinceEfficiencyRiseTimeTextBox.Text =
-                    Misc.Economy.CoreProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
-                restockSpeedLandTextBox.Text = Misc.Economy.RestockSpeedLand.ToString(CultureInfo.InvariantCulture);
-                restockSpeedAirTextBox.Text = Misc.Economy.RestockSpeedAir.ToString(CultureInfo.InvariantCulture);
-                restockSpeedNavalTextBox.Text = Misc.Economy.RestockSpeedNaval.ToString(CultureInfo.InvariantCulture);
+                    Misc.CoreProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
+                restockSpeedLandTextBox.Text = Misc.RestockSpeedLand.ToString(CultureInfo.InvariantCulture);
+                restockSpeedAirTextBox.Text = Misc.RestockSpeedAir.ToString(CultureInfo.InvariantCulture);
+                restockSpeedNavalTextBox.Text = Misc.RestockSpeedNaval.ToString(CultureInfo.InvariantCulture);
                 spyCoupDissentModifierTextBox.Text =
-                    Misc.Economy.SpyCoupDissentModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.SpyCoupDissentModifier.ToString(CultureInfo.InvariantCulture);
                 convoyDutyConversionTextBox.Text =
-                    Misc.Economy.ConvoyDutyConversion.ToString(CultureInfo.InvariantCulture);
+                    Misc.ConvoyDutyConversion.ToString(CultureInfo.InvariantCulture);
                 escortDutyConversionTextBox.Text =
-                    Misc.Economy.EscortDutyConversion.ToString(CultureInfo.InvariantCulture);
-                tpMaxAttachTextBox.Text = Misc.Economy.TpMaxAttach.ToString(CultureInfo.InvariantCulture);
-                ssMaxAttachTextBox.Text = Misc.Economy.SsMaxAttach.ToString(CultureInfo.InvariantCulture);
-                ssnMaxAttachTextBox.Text = Misc.Economy.SsnMaxAttach.ToString(CultureInfo.InvariantCulture);
-                ddMaxAttachTextBox.Text = Misc.Economy.DdMaxAttach.ToString(CultureInfo.InvariantCulture);
-                clMaxAttachTextBox.Text = Misc.Economy.ClMaxAttach.ToString(CultureInfo.InvariantCulture);
-                caMaxAttachTextBox.Text = Misc.Economy.CaMaxAttach.ToString(CultureInfo.InvariantCulture);
-                bcMaxAttachTextBox.Text = Misc.Economy.BcMaxAttach.ToString(CultureInfo.InvariantCulture);
-                bbMaxAttachTextBox.Text = Misc.Economy.BbMaxAttach.ToString(CultureInfo.InvariantCulture);
-                cvlMaxAttachTextBox.Text = Misc.Economy.CvlMaxAttach.ToString(CultureInfo.InvariantCulture);
-                cvMaxAttachTextBox.Text = Misc.Economy.CvMaxAttach.ToString(CultureInfo.InvariantCulture);
-                canChangeIdeasComboBox.SelectedIndex = Misc.Economy.CanChangeIdeas ? 1 : 0;
+                    Misc.EscortDutyConversion.ToString(CultureInfo.InvariantCulture);
+                tpMaxAttachTextBox.Text = Misc.TpMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ssMaxAttachTextBox.Text = Misc.SsMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ssnMaxAttachTextBox.Text = Misc.SsnMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ddMaxAttachTextBox.Text = Misc.DdMaxAttach.ToString(CultureInfo.InvariantCulture);
+                clMaxAttachTextBox.Text = Misc.ClMaxAttach.ToString(CultureInfo.InvariantCulture);
+                caMaxAttachTextBox.Text = Misc.CaMaxAttach.ToString(CultureInfo.InvariantCulture);
+                bcMaxAttachTextBox.Text = Misc.BcMaxAttach.ToString(CultureInfo.InvariantCulture);
+                bbMaxAttachTextBox.Text = Misc.BbMaxAttach.ToString(CultureInfo.InvariantCulture);
+                cvlMaxAttachTextBox.Text = Misc.CvlMaxAttach.ToString(CultureInfo.InvariantCulture);
+                cvMaxAttachTextBox.Text = Misc.CvMaxAttach.ToString(CultureInfo.InvariantCulture);
+                canChangeIdeasComboBox.SelectedIndex = Misc.CanChangeIdeas ? 1 : 0;
             }
 
             // 編集項目の色を更新する
@@ -572,25 +574,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(icToTcRatioTextBox.Text, out val))
             {
-                icToTcRatioTextBox.Text = Misc.Economy.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
+                icToTcRatioTextBox.Text = Misc.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icToTcRatioTextBox.Text = Misc.Economy.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
+                icToTcRatioTextBox.Text = Misc.IcToTcRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcToTcRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.IcToTcRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcToTcRatio = val;
+            Misc.IcToTcRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcToTcRatio);
@@ -611,25 +613,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(icToSuppliesRatioTextBox.Text, out val))
             {
-                icToSuppliesRatioTextBox.Text = Misc.Economy.IcToSuppliesRatio.ToString(CultureInfo.InvariantCulture);
+                icToSuppliesRatioTextBox.Text = Misc.IcToSuppliesRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icToSuppliesRatioTextBox.Text = Misc.Economy.IcToSuppliesRatio.ToString(CultureInfo.InvariantCulture);
+                icToSuppliesRatioTextBox.Text = Misc.IcToSuppliesRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcToSuppliesRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.IcToSuppliesRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcToSuppliesRatio = val;
+            Misc.IcToSuppliesRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcToSuppliesRatio);
@@ -651,25 +653,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(icToConsumerGoodsRatioTextBox.Text, out val))
             {
                 icToConsumerGoodsRatioTextBox.Text =
-                    Misc.Economy.IcToConsumerGoodsRatio.ToString(CultureInfo.InvariantCulture);
+                    Misc.IcToConsumerGoodsRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icToConsumerGoodsRatioTextBox.Text = Misc.Economy.IcToConsumerGoodsRatio.ToString(CultureInfo.InvariantCulture);
+                icToConsumerGoodsRatioTextBox.Text =
+                    Misc.IcToConsumerGoodsRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcToConsumerGoodsRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.IcToConsumerGoodsRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcToConsumerGoodsRatio = val;
+            Misc.IcToConsumerGoodsRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcToConsumerGoodsRatio);
@@ -690,25 +693,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(icToMoneyRatioTextBox.Text, out val))
             {
-                icToMoneyRatioTextBox.Text = Misc.Economy.IcToMoneyRatio.ToString(CultureInfo.InvariantCulture);
+                icToMoneyRatioTextBox.Text = Misc.IcToMoneyRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icToMoneyRatioTextBox.Text = Misc.Economy.IcToMoneyRatio.ToString(CultureInfo.InvariantCulture);
+                icToMoneyRatioTextBox.Text = Misc.IcToMoneyRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcToMoneyRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.IcToMoneyRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcToMoneyRatio = val;
+            Misc.IcToMoneyRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcToMoneyRatio);
@@ -729,25 +732,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxGearingBonusTextBox.Text, out val))
             {
-                maxGearingBonusTextBox.Text = Misc.Economy.MaxGearingBonus.ToString(CultureInfo.InvariantCulture);
+                maxGearingBonusTextBox.Text = Misc.MaxGearingBonus.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxGearingBonusTextBox.Text = Misc.Economy.MaxGearingBonus.ToString(CultureInfo.InvariantCulture);
+                maxGearingBonusTextBox.Text = Misc.MaxGearingBonus.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxGearingBonus) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxGearingBonus) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxGearingBonus = val;
+            Misc.MaxGearingBonus = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxGearingBonus);
@@ -769,25 +772,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(gearingBonusIncrementTextBox.Text, out val))
             {
                 gearingBonusIncrementTextBox.Text =
-                    Misc.Economy.GearingBonusIncrement.ToString(CultureInfo.InvariantCulture);
+                    Misc.GearingBonusIncrement.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                gearingBonusIncrementTextBox.Text = Misc.Economy.GearingBonusIncrement.ToString(CultureInfo.InvariantCulture);
+                gearingBonusIncrementTextBox.Text =
+                    Misc.GearingBonusIncrement.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.GearingBonusIncrement) <= 0.00005)
+            if (Math.Abs(val - Misc.GearingBonusIncrement) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.GearingBonusIncrement = val;
+            Misc.GearingBonusIncrement = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.GearingBonusIncrement);
@@ -809,25 +813,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(icMultiplierNonNationalTextBox.Text, out val))
             {
                 icMultiplierNonNationalTextBox.Text =
-                    Misc.Economy.IcMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                    Misc.IcMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icMultiplierNonNationalTextBox.Text = Misc.Economy.IcMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                icMultiplierNonNationalTextBox.Text =
+                    Misc.IcMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcMultiplierNonNational) <= 0.00005)
+            if (Math.Abs(val - Misc.IcMultiplierNonNational) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcMultiplierNonNational = val;
+            Misc.IcMultiplierNonNational = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcMultiplierNonNational);
@@ -849,25 +854,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(icMultiplierNonOwnedTextBox.Text, out val))
             {
                 icMultiplierNonOwnedTextBox.Text =
-                    Misc.Economy.IcMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
+                    Misc.IcMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icMultiplierNonOwnedTextBox.Text = Misc.Economy.IcMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
+                icMultiplierNonOwnedTextBox.Text =
+                    Misc.IcMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcMultiplierNonOwned) <= 0.00005)
+            if (Math.Abs(val - Misc.IcMultiplierNonOwned) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcMultiplierNonOwned = val;
+            Misc.IcMultiplierNonOwned = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcMultiplierNonOwned);
@@ -889,25 +895,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(tcLoadUndeployedDivisionTextBox.Text, out val))
             {
                 tcLoadUndeployedDivisionTextBox.Text =
-                    Misc.Economy.TcLoadUndeployedDivision.ToString(CultureInfo.InvariantCulture);
+                    Misc.TcLoadUndeployedDivision.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadUndeployedDivisionTextBox.Text = Misc.Economy.TcLoadUndeployedDivision.ToString(CultureInfo.InvariantCulture);
+                tcLoadUndeployedDivisionTextBox.Text =
+                    Misc.TcLoadUndeployedDivision.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadUndeployedDivision) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadUndeployedDivision) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadUndeployedDivision = val;
+            Misc.TcLoadUndeployedDivision = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadUndeployedDivision);
@@ -928,25 +935,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(tcLoadOccupiedTextBox.Text, out val))
             {
-                tcLoadOccupiedTextBox.Text = Misc.Economy.TcLoadOccupied.ToString(CultureInfo.InvariantCulture);
+                tcLoadOccupiedTextBox.Text = Misc.TcLoadOccupied.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadOccupiedTextBox.Text = Misc.Economy.TcLoadOccupied.ToString(CultureInfo.InvariantCulture);
+                tcLoadOccupiedTextBox.Text = Misc.TcLoadOccupied.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadOccupied) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadOccupied) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadOccupied = val;
+            Misc.TcLoadOccupied = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadOccupied);
@@ -968,25 +975,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(tcLoadMultiplierLandTextBox.Text, out val))
             {
                 tcLoadMultiplierLandTextBox.Text =
-                    Misc.Economy.TcLoadMultiplierLand.ToString(CultureInfo.InvariantCulture);
+                    Misc.TcLoadMultiplierLand.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadMultiplierLandTextBox.Text = Misc.Economy.TcLoadMultiplierLand.ToString(CultureInfo.InvariantCulture);
+                tcLoadMultiplierLandTextBox.Text =
+                    Misc.TcLoadMultiplierLand.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadMultiplierLand) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadMultiplierLand) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadMultiplierLand = val;
+            Misc.TcLoadMultiplierLand = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadMultiplierLand);
@@ -1007,25 +1015,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(tcLoadMultiplierAirTextBox.Text, out val))
             {
-                tcLoadMultiplierAirTextBox.Text = Misc.Economy.TcLoadMultiplierAir.ToString(CultureInfo.InvariantCulture);
+                tcLoadMultiplierAirTextBox.Text = Misc.TcLoadMultiplierAir.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadMultiplierAirTextBox.Text = Misc.Economy.TcLoadMultiplierAir.ToString(CultureInfo.InvariantCulture);
+                tcLoadMultiplierAirTextBox.Text = Misc.TcLoadMultiplierAir.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadMultiplierAir) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadMultiplierAir) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadMultiplierAir = val;
+            Misc.TcLoadMultiplierAir = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadMultiplierAir);
@@ -1047,25 +1055,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(tcLoadMultiplierNavalTextBox.Text, out val))
             {
                 tcLoadMultiplierNavalTextBox.Text =
-                    Misc.Economy.TcLoadMultiplierNaval.ToString(CultureInfo.InvariantCulture);
+                    Misc.TcLoadMultiplierNaval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadMultiplierNavalTextBox.Text = Misc.Economy.TcLoadMultiplierNaval.ToString(CultureInfo.InvariantCulture);
+                tcLoadMultiplierNavalTextBox.Text =
+                    Misc.TcLoadMultiplierNaval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadMultiplierNaval) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadMultiplierNaval) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadMultiplierNaval = val;
+            Misc.TcLoadMultiplierNaval = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadMultiplierNaval);
@@ -1086,25 +1095,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(tcLoadPartisanTextBox.Text, out val))
             {
-                tcLoadPartisanTextBox.Text = Misc.Economy.TcLoadPartisan.ToString(CultureInfo.InvariantCulture);
+                tcLoadPartisanTextBox.Text = Misc.TcLoadPartisan.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadPartisanTextBox.Text = Misc.Economy.TcLoadPartisan.ToString(CultureInfo.InvariantCulture);
+                tcLoadPartisanTextBox.Text = Misc.TcLoadPartisan.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadPartisan) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadPartisan) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadPartisan = val;
+            Misc.TcLoadPartisan = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadPartisan);
@@ -1126,25 +1135,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(tcLoadFactorOffensiveTextBox.Text, out val))
             {
                 tcLoadFactorOffensiveTextBox.Text =
-                    Misc.Economy.TcLoadFactorOffensive.ToString(CultureInfo.InvariantCulture);
+                    Misc.TcLoadFactorOffensive.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadFactorOffensiveTextBox.Text = Misc.Economy.TcLoadFactorOffensive.ToString(CultureInfo.InvariantCulture);
+                tcLoadFactorOffensiveTextBox.Text =
+                    Misc.TcLoadFactorOffensive.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadFactorOffensive) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadFactorOffensive) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadFactorOffensive = val;
+            Misc.TcLoadFactorOffensive = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadFactorOffensive);
@@ -1166,25 +1176,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(tcLoadProvinceDevelopmentTextBox.Text, out val))
             {
                 tcLoadProvinceDevelopmentTextBox.Text =
-                    Misc.Economy.TcLoadProvinceDevelopment.ToString(CultureInfo.InvariantCulture);
+                    Misc.TcLoadProvinceDevelopment.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadProvinceDevelopmentTextBox.Text = Misc.Economy.TcLoadProvinceDevelopment.ToString(CultureInfo.InvariantCulture);
+                tcLoadProvinceDevelopmentTextBox.Text =
+                    Misc.TcLoadProvinceDevelopment.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadProvinceDevelopment) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadProvinceDevelopment) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadProvinceDevelopment = val;
+            Misc.TcLoadProvinceDevelopment = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadProvinceDevelopment);
@@ -1205,25 +1216,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(tcLoadBaseTextBox.Text, out val))
             {
-                tcLoadBaseTextBox.Text = Misc.Economy.TcLoadBase.ToString(CultureInfo.InvariantCulture);
+                tcLoadBaseTextBox.Text = Misc.TcLoadBase.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadBaseTextBox.Text = Misc.Economy.TcLoadBase.ToString(CultureInfo.InvariantCulture);
+                tcLoadBaseTextBox.Text = Misc.TcLoadBase.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadBase) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadBase) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadBase = val;
+            Misc.TcLoadBase = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadBase);
@@ -1245,25 +1256,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(manpowerMultiplierNationalTextBox.Text, out val))
             {
                 manpowerMultiplierNationalTextBox.Text =
-                    Misc.Economy.ManpowerMultiplierNational.ToString(CultureInfo.InvariantCulture);
+                    Misc.ManpowerMultiplierNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerMultiplierNationalTextBox.Text = Misc.Economy.ManpowerMultiplierNational.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierNationalTextBox.Text =
+                    Misc.ManpowerMultiplierNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerMultiplierNational) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerMultiplierNational) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerMultiplierNational = val;
+            Misc.ManpowerMultiplierNational = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerMultiplierNational);
@@ -1285,25 +1297,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(manpowerMultiplierNonNationalTextBox.Text, out val))
             {
                 manpowerMultiplierNonNationalTextBox.Text =
-                    Misc.Economy.ManpowerMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                    Misc.ManpowerMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerMultiplierNonNationalTextBox.Text = Misc.Economy.ManpowerMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierNonNationalTextBox.Text =
+                    Misc.ManpowerMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerMultiplierNonNational) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerMultiplierNonNational) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerMultiplierNonNational = val;
+            Misc.ManpowerMultiplierNonNational = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerMultiplierNonNational);
@@ -1325,25 +1338,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(manpowerMultiplierColonyTextBox.Text, out val))
             {
                 manpowerMultiplierColonyTextBox.Text =
-                    Misc.Economy.ManpowerMultiplierColony.ToString(CultureInfo.InvariantCulture);
+                    Misc.ManpowerMultiplierColony.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerMultiplierColonyTextBox.Text = Misc.Economy.ManpowerMultiplierColony.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierColonyTextBox.Text =
+                    Misc.ManpowerMultiplierColony.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerMultiplierColony) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerMultiplierColony) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerMultiplierColony = val;
+            Misc.ManpowerMultiplierColony = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerMultiplierColony);
@@ -1365,25 +1379,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(requirementAffectSliderTextBox.Text, out val))
             {
                 requirementAffectSliderTextBox.Text =
-                    Misc.Economy.RequirementAffectSlider.ToString(CultureInfo.InvariantCulture);
+                    Misc.RequirementAffectSlider.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                requirementAffectSliderTextBox.Text = Misc.Economy.RequirementAffectSlider.ToString(CultureInfo.InvariantCulture);
+                requirementAffectSliderTextBox.Text =
+                    Misc.RequirementAffectSlider.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.RequirementAffectSlider) <= 0.00005)
+            if (Math.Abs(val - Misc.RequirementAffectSlider) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.RequirementAffectSlider = val;
+            Misc.RequirementAffectSlider = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RequirementAffectSlider);
@@ -1405,25 +1420,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(trickleBackFactorManpowerTextBox.Text, out val))
             {
                 trickleBackFactorManpowerTextBox.Text =
-                    Misc.Economy.TrickleBackFactorManpower.ToString(CultureInfo.InvariantCulture);
+                    Misc.TrickleBackFactorManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                trickleBackFactorManpowerTextBox.Text = Misc.Economy.TrickleBackFactorManpower.ToString(CultureInfo.InvariantCulture);
+                trickleBackFactorManpowerTextBox.Text =
+                    Misc.TrickleBackFactorManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TrickleBackFactorManpower) <= 0.00005)
+            if (Math.Abs(val - Misc.TrickleBackFactorManpower) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TrickleBackFactorManpower = val;
+            Misc.TrickleBackFactorManpower = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TrickleBackFactorManpower);
@@ -1444,25 +1460,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(reinforceManpowerTextBox.Text, out val))
             {
-                reinforceManpowerTextBox.Text = Misc.Economy.ReinforceManpower.ToString(CultureInfo.InvariantCulture);
+                reinforceManpowerTextBox.Text = Misc.ReinforceManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                reinforceManpowerTextBox.Text = Misc.Economy.ReinforceManpower.ToString(CultureInfo.InvariantCulture);
+                reinforceManpowerTextBox.Text = Misc.ReinforceManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ReinforceManpower) <= 0.00005)
+            if (Math.Abs(val - Misc.ReinforceManpower) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ReinforceManpower = val;
+            Misc.ReinforceManpower = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ReinforceManpower);
@@ -1483,25 +1499,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(reinforceCostTextBox.Text, out val))
             {
-                reinforceCostTextBox.Text = Misc.Economy.ReinforceCost.ToString(CultureInfo.InvariantCulture);
+                reinforceCostTextBox.Text = Misc.ReinforceCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                reinforceCostTextBox.Text = Misc.Economy.ReinforceCost.ToString(CultureInfo.InvariantCulture);
+                reinforceCostTextBox.Text = Misc.ReinforceCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ReinforceCost) <= 0.00005)
+            if (Math.Abs(val - Misc.ReinforceCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ReinforceCost = val;
+            Misc.ReinforceCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ReinforceCost);
@@ -1522,25 +1538,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(reinforceTimeTextBox.Text, out val))
             {
-                reinforceTimeTextBox.Text = Misc.Economy.ReinforceTime.ToString(CultureInfo.InvariantCulture);
+                reinforceTimeTextBox.Text = Misc.ReinforceTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                reinforceTimeTextBox.Text = Misc.Economy.ReinforceTime.ToString(CultureInfo.InvariantCulture);
+                reinforceTimeTextBox.Text = Misc.ReinforceTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ReinforceTime) <= 0.00005)
+            if (Math.Abs(val - Misc.ReinforceTime) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ReinforceTime = val;
+            Misc.ReinforceTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ReinforceTime);
@@ -1561,25 +1577,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(upgradeCostTextBox.Text, out val))
             {
-                upgradeCostTextBox.Text = Misc.Economy.UpgradeCost.ToString(CultureInfo.InvariantCulture);
+                upgradeCostTextBox.Text = Misc.UpgradeCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                upgradeCostTextBox.Text = Misc.Economy.UpgradeCost.ToString(CultureInfo.InvariantCulture);
+                upgradeCostTextBox.Text = Misc.UpgradeCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.UpgradeCost) <= 0.00005)
+            if (Math.Abs(val - Misc.UpgradeCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.UpgradeCost = val;
+            Misc.UpgradeCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.UpgradeCost);
@@ -1600,25 +1616,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(upgradeTimeTextBox.Text, out val))
             {
-                upgradeTimeTextBox.Text = Misc.Economy.UpgradeTime.ToString(CultureInfo.InvariantCulture);
+                upgradeTimeTextBox.Text = Misc.UpgradeTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                upgradeTimeTextBox.Text = Misc.Economy.UpgradeTime.ToString(CultureInfo.InvariantCulture);
+                upgradeTimeTextBox.Text = Misc.UpgradeTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.UpgradeTime) <= 0.00005)
+            if (Math.Abs(val - Misc.UpgradeTime) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.UpgradeTime = val;
+            Misc.UpgradeTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.UpgradeTime);
@@ -1640,25 +1656,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(nationalismStartingValueTextBox.Text, out val))
             {
                 nationalismStartingValueTextBox.Text =
-                    Misc.Economy.NationalismStartingValue.ToString(CultureInfo.InvariantCulture);
+                    Misc.NationalismStartingValue.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                nationalismStartingValueTextBox.Text = Misc.Economy.NationalismStartingValue.ToString(CultureInfo.InvariantCulture);
+                nationalismStartingValueTextBox.Text =
+                    Misc.NationalismStartingValue.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.NationalismStartingValue) <= 0.00005)
+            if (Math.Abs(val - Misc.NationalismStartingValue) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.NationalismStartingValue = val;
+            Misc.NationalismStartingValue = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.NationalismStartingValue);
@@ -1680,25 +1697,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(monthlyNationalismReductionTextBox.Text, out val))
             {
                 monthlyNationalismReductionTextBox.Text =
-                    Misc.Economy.MonthlyNationalismReduction.ToString(CultureInfo.InvariantCulture);
+                    Misc.MonthlyNationalismReduction.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                monthlyNationalismReductionTextBox.Text = Misc.Economy.MonthlyNationalismReduction.ToString(CultureInfo.InvariantCulture);
+                monthlyNationalismReductionTextBox.Text =
+                    Misc.MonthlyNationalismReduction.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MonthlyNationalismReduction) <= 0.00005)
+            if (Math.Abs(val - Misc.MonthlyNationalismReduction) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MonthlyNationalismReduction = val;
+            Misc.MonthlyNationalismReduction = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MonthlyNationalismReduction);
@@ -1719,25 +1737,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(sendDivisionDaysTextBox.Text, out val))
             {
-                sendDivisionDaysTextBox.Text = Misc.Economy.SendDivisionDays.ToString(CultureInfo.InvariantCulture);
+                sendDivisionDaysTextBox.Text = Misc.SendDivisionDays.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                sendDivisionDaysTextBox.Text = Misc.Economy.SendDivisionDays.ToString(CultureInfo.InvariantCulture);
+                sendDivisionDaysTextBox.Text = Misc.SendDivisionDays.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.SendDivisionDays)
+            if (val == Misc.SendDivisionDays)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SendDivisionDays = val;
+            Misc.SendDivisionDays = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SendDivisionDays);
@@ -1759,25 +1777,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(tcLoadUndeployedBrigadeTextBox.Text, out val))
             {
                 tcLoadUndeployedBrigadeTextBox.Text =
-                    Misc.Economy.TcLoadUndeployedBrigade.ToString(CultureInfo.InvariantCulture);
+                    Misc.TcLoadUndeployedBrigade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tcLoadUndeployedBrigadeTextBox.Text = Misc.Economy.TcLoadUndeployedBrigade.ToString(CultureInfo.InvariantCulture);
+                tcLoadUndeployedBrigadeTextBox.Text =
+                    Misc.TcLoadUndeployedBrigade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TcLoadUndeployedBrigade) <= 0.00005)
+            if (Math.Abs(val - Misc.TcLoadUndeployedBrigade) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TcLoadUndeployedBrigade = val;
+            Misc.TcLoadUndeployedBrigade = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TcLoadUndeployedBrigade);
@@ -1805,7 +1824,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.CanUnitSendNonAllied ? 1 : 0;
+            int val = Misc.CanUnitSendNonAllied ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.CanUnitSendNonAllied))
             {
                 brush = new SolidBrush(Color.Red);
@@ -1835,13 +1854,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (canUnitSendNonAlliedComboBox.SelectedIndex == 1);
-            if (val == Misc.Economy.CanUnitSendNonAllied)
+            if (val == Misc.CanUnitSendNonAllied)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CanUnitSendNonAllied = val;
+            Misc.CanUnitSendNonAllied = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CanUnitSendNonAllied);
@@ -1862,25 +1881,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(spyMissionDaysTextBox.Text, out val))
             {
-                spyMissionDaysTextBox.Text = Misc.Economy.SpyMissionDays.ToString(CultureInfo.InvariantCulture);
+                spyMissionDaysTextBox.Text = Misc.SpyMissionDays.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyMissionDaysTextBox.Text = Misc.Economy.SpyMissionDays.ToString(CultureInfo.InvariantCulture);
+                spyMissionDaysTextBox.Text = Misc.SpyMissionDays.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.SpyMissionDays)
+            if (val == Misc.SpyMissionDays)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SpyMissionDays = val;
+            Misc.SpyMissionDays = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyMissionDays);
@@ -1902,25 +1921,26 @@ namespace HoI2Editor.Forms
             if (!int.TryParse(increateIntelligenceLevelDaysTextBox.Text, out val))
             {
                 increateIntelligenceLevelDaysTextBox.Text =
-                    Misc.Economy.IncreateIntelligenceLevelDays.ToString(CultureInfo.InvariantCulture);
+                    Misc.IncreateIntelligenceLevelDays.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                increateIntelligenceLevelDaysTextBox.Text = Misc.Economy.IncreateIntelligenceLevelDays.ToString(CultureInfo.InvariantCulture);
+                increateIntelligenceLevelDaysTextBox.Text =
+                    Misc.IncreateIntelligenceLevelDays.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.IncreateIntelligenceLevelDays)
+            if (val == Misc.IncreateIntelligenceLevelDays)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IncreateIntelligenceLevelDays = val;
+            Misc.IncreateIntelligenceLevelDays = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IncreateIntelligenceLevelDays);
@@ -1942,25 +1962,26 @@ namespace HoI2Editor.Forms
             if (!int.TryParse(chanceDetectSpyMissionTextBox.Text, out val))
             {
                 chanceDetectSpyMissionTextBox.Text =
-                    Misc.Economy.ChanceDetectSpyMission.ToString(CultureInfo.InvariantCulture);
+                    Misc.ChanceDetectSpyMission.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0 || val > 100)
             {
-                chanceDetectSpyMissionTextBox.Text = Misc.Economy.ChanceDetectSpyMission.ToString(CultureInfo.InvariantCulture);
+                chanceDetectSpyMissionTextBox.Text =
+                    Misc.ChanceDetectSpyMission.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.ChanceDetectSpyMission)
+            if (val == Misc.ChanceDetectSpyMission)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ChanceDetectSpyMission = val;
+            Misc.ChanceDetectSpyMission = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ChanceDetectSpyMission);
@@ -1982,25 +2003,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(relationshipsHitDetectedMissionsTextBox.Text, out val))
             {
                 relationshipsHitDetectedMissionsTextBox.Text =
-                    Misc.Economy.RelationshipsHitDetectedMissions.ToString(CultureInfo.InvariantCulture);
+                    Misc.RelationshipsHitDetectedMissions.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0 || val > 400)
             {
-                relationshipsHitDetectedMissionsTextBox.Text = Misc.Economy.RelationshipsHitDetectedMissions.ToString(CultureInfo.InvariantCulture);
+                relationshipsHitDetectedMissionsTextBox.Text =
+                    Misc.RelationshipsHitDetectedMissions.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.RelationshipsHitDetectedMissions) <= 0.00005)
+            if (Math.Abs(val - Misc.RelationshipsHitDetectedMissions) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.RelationshipsHitDetectedMissions = val;
+            Misc.RelationshipsHitDetectedMissions = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RelationshipsHitDetectedMissions);
@@ -2028,7 +2050,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.ShowThirdCountrySpyReports;
+            int val = Misc.ShowThirdCountrySpyReports;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.ShowThirdCountrySpyReports))
             {
                 brush = new SolidBrush(Color.Red);
@@ -2058,13 +2080,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = showThirdCountrySpyReportsComboBox.SelectedIndex;
-            if (val == Misc.Economy.ShowThirdCountrySpyReports)
+            if (val == Misc.ShowThirdCountrySpyReports)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ShowThirdCountrySpyReports = val;
+            Misc.ShowThirdCountrySpyReports = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ShowThirdCountrySpyReports);
@@ -2086,25 +2108,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(distanceModifierNeighboursTextBox.Text, out val))
             {
                 distanceModifierNeighboursTextBox.Text =
-                    Misc.Economy.DistanceModifierNeighbours.ToString(CultureInfo.InvariantCulture);
+                    Misc.DistanceModifierNeighbours.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0 || val > 1)
             {
-                distanceModifierNeighboursTextBox.Text = Misc.Economy.DistanceModifierNeighbours.ToString(CultureInfo.InvariantCulture);
+                distanceModifierNeighboursTextBox.Text =
+                    Misc.DistanceModifierNeighbours.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DistanceModifierNeighbours) <= 0.00005)
+            if (Math.Abs(val - Misc.DistanceModifierNeighbours) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DistanceModifierNeighbours = val;
+            Misc.DistanceModifierNeighbours = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DistanceModifierNeighbours);
@@ -2126,25 +2149,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(spyInformationAccuracyModifierTextBox.Text, out val))
             {
                 spyInformationAccuracyModifierTextBox.Text =
-                    Misc.Economy.SpyInformationAccuracyModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.SpyInformationAccuracyModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < -10 || val > 10)
             {
-                spyInformationAccuracyModifierTextBox.Text = Misc.Economy.SpyInformationAccuracyModifier.ToString(CultureInfo.InvariantCulture);
+                spyInformationAccuracyModifierTextBox.Text =
+                    Misc.SpyInformationAccuracyModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SpyInformationAccuracyModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.SpyInformationAccuracyModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SpyInformationAccuracyModifier = val;
+            Misc.SpyInformationAccuracyModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyInformationAccuracyModifier);
@@ -2172,7 +2196,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.AiPeacetimeSpyMissions;
+            int val = Misc.AiPeacetimeSpyMissions;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.AiPeacetimeSpyMissions))
             {
                 brush = new SolidBrush(Color.Red);
@@ -2202,13 +2226,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = aiPeacetimeSpyMissionsComboBox.SelectedIndex;
-            if (val == Misc.Economy.AiPeacetimeSpyMissions)
+            if (val == Misc.AiPeacetimeSpyMissions)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.AiPeacetimeSpyMissions = val;
+            Misc.AiPeacetimeSpyMissions = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.AiPeacetimeSpyMissions);
@@ -2229,25 +2253,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxIcCostModifierTextBox.Text, out val))
             {
-                maxIcCostModifierTextBox.Text = Misc.Economy.MaxIcCostModifier.ToString(CultureInfo.InvariantCulture);
+                maxIcCostModifierTextBox.Text = Misc.MaxIcCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
-            if (val <0)
+            if (val < 0)
             {
-                maxIcCostModifierTextBox.Text = Misc.Economy.MaxIcCostModifier.ToString(CultureInfo.InvariantCulture);
+                maxIcCostModifierTextBox.Text = Misc.MaxIcCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxIcCostModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxIcCostModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxIcCostModifier = val;
+            Misc.MaxIcCostModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxIcCostModifier);
@@ -2269,25 +2293,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(aiSpyMissionsCostModifierTextBox.Text, out val))
             {
                 aiSpyMissionsCostModifierTextBox.Text =
-                    Misc.Economy.AiSpyMissionsCostModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.AiSpyMissionsCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                aiSpyMissionsCostModifierTextBox.Text = Misc.Economy.AiSpyMissionsCostModifier.ToString(CultureInfo.InvariantCulture);
+                aiSpyMissionsCostModifierTextBox.Text =
+                    Misc.AiSpyMissionsCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.AiSpyMissionsCostModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.AiSpyMissionsCostModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.AiSpyMissionsCostModifier = val;
+            Misc.AiSpyMissionsCostModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.AiSpyMissionsCostModifier);
@@ -2309,25 +2334,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(aiDiplomacyCostModifierTextBox.Text, out val))
             {
                 aiDiplomacyCostModifierTextBox.Text =
-                    Misc.Economy.AiDiplomacyCostModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.AiDiplomacyCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                aiDiplomacyCostModifierTextBox.Text = Misc.Economy.AiDiplomacyCostModifier.ToString(CultureInfo.InvariantCulture);
+                aiDiplomacyCostModifierTextBox.Text =
+                    Misc.AiDiplomacyCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.AiDiplomacyCostModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.AiDiplomacyCostModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.AiDiplomacyCostModifier = val;
+            Misc.AiDiplomacyCostModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.AiDiplomacyCostModifier);
@@ -2348,25 +2374,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(aiInfluenceModifierTextBox.Text, out val))
             {
-                aiInfluenceModifierTextBox.Text = Misc.Economy.AiInfluenceModifier.ToString(CultureInfo.InvariantCulture);
+                aiInfluenceModifierTextBox.Text = Misc.AiInfluenceModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                aiInfluenceModifierTextBox.Text = Misc.Economy.AiInfluenceModifier.ToString(CultureInfo.InvariantCulture);
+                aiInfluenceModifierTextBox.Text = Misc.AiInfluenceModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.AiInfluenceModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.AiInfluenceModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.AiInfluenceModifier = val;
+            Misc.AiInfluenceModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.AiInfluenceModifier);
@@ -2388,25 +2414,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(nationalismPerManpowerAoDTextBox.Text, out val))
             {
                 nationalismPerManpowerAoDTextBox.Text =
-                    Misc.Economy.NationalismPerManpowerAoD.ToString(CultureInfo.InvariantCulture);
+                    Misc.NationalismPerManpowerAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                nationalismPerManpowerAoDTextBox.Text = Misc.Economy.NationalismPerManpowerAoD.ToString(CultureInfo.InvariantCulture);
+                nationalismPerManpowerAoDTextBox.Text =
+                    Misc.NationalismPerManpowerAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.NationalismPerManpowerAoD) <= 0.00005)
+            if (Math.Abs(val - Misc.NationalismPerManpowerAoD) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.NationalismPerManpowerAoD = val;
+            Misc.NationalismPerManpowerAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.NationalismPerManpowerAoD);
@@ -2428,25 +2455,26 @@ namespace HoI2Editor.Forms
             if (!int.TryParse(coreProvinceEfficiencyRiseTimeTextBox.Text, out val))
             {
                 coreProvinceEfficiencyRiseTimeTextBox.Text =
-                    Misc.Economy.CoreProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
+                    Misc.CoreProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                coreProvinceEfficiencyRiseTimeTextBox.Text = Misc.Economy.CoreProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
+                coreProvinceEfficiencyRiseTimeTextBox.Text =
+                    Misc.CoreProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.CoreProvinceEfficiencyRiseTime)
+            if (val == Misc.CoreProvinceEfficiencyRiseTime)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CoreProvinceEfficiencyRiseTime = val;
+            Misc.CoreProvinceEfficiencyRiseTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CoreProvinceEfficiencyRiseTime);
@@ -2467,25 +2495,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(restockSpeedLandTextBox.Text, out val))
             {
-                restockSpeedLandTextBox.Text = Misc.Economy.RestockSpeedLand.ToString(CultureInfo.InvariantCulture);
+                restockSpeedLandTextBox.Text = Misc.RestockSpeedLand.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                restockSpeedLandTextBox.Text = Misc.Economy.RestockSpeedLand.ToString(CultureInfo.InvariantCulture);
+                restockSpeedLandTextBox.Text = Misc.RestockSpeedLand.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.RestockSpeedLand) <= 0.00005)
+            if (Math.Abs(val - Misc.RestockSpeedLand) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.RestockSpeedLand = val;
+            Misc.RestockSpeedLand = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RestockSpeedLand);
@@ -2506,25 +2534,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(restockSpeedAirTextBox.Text, out val))
             {
-                restockSpeedAirTextBox.Text = Misc.Economy.RestockSpeedAir.ToString(CultureInfo.InvariantCulture);
+                restockSpeedAirTextBox.Text = Misc.RestockSpeedAir.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                restockSpeedAirTextBox.Text = Misc.Economy.RestockSpeedAir.ToString(CultureInfo.InvariantCulture);
+                restockSpeedAirTextBox.Text = Misc.RestockSpeedAir.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.RestockSpeedAir) <= 0.00005)
+            if (Math.Abs(val - Misc.RestockSpeedAir) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.RestockSpeedAir = val;
+            Misc.RestockSpeedAir = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RestockSpeedAir);
@@ -2545,25 +2573,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(restockSpeedNavalTextBox.Text, out val))
             {
-                restockSpeedNavalTextBox.Text = Misc.Economy.RestockSpeedNaval.ToString(CultureInfo.InvariantCulture);
+                restockSpeedNavalTextBox.Text = Misc.RestockSpeedNaval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                restockSpeedNavalTextBox.Text = Misc.Economy.RestockSpeedNaval.ToString(CultureInfo.InvariantCulture);
+                restockSpeedNavalTextBox.Text = Misc.RestockSpeedNaval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.RestockSpeedNaval) <= 0.00005)
+            if (Math.Abs(val - Misc.RestockSpeedNaval) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.RestockSpeedNaval = val;
+            Misc.RestockSpeedNaval = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RestockSpeedNaval);
@@ -2585,25 +2613,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(spyCoupDissentModifierTextBox.Text, out val))
             {
                 spyCoupDissentModifierTextBox.Text =
-                    Misc.Economy.SpyCoupDissentModifier.ToString(CultureInfo.InvariantCulture);
+                    Misc.SpyCoupDissentModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyCoupDissentModifierTextBox.Text = Misc.Economy.SpyCoupDissentModifier.ToString(CultureInfo.InvariantCulture);
+                spyCoupDissentModifierTextBox.Text =
+                    Misc.SpyCoupDissentModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SpyCoupDissentModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.SpyCoupDissentModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SpyCoupDissentModifier = val;
+            Misc.SpyCoupDissentModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyCoupDissentModifier);
@@ -2625,25 +2654,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(convoyDutyConversionTextBox.Text, out val))
             {
                 convoyDutyConversionTextBox.Text =
-                    Misc.Economy.ConvoyDutyConversion.ToString(CultureInfo.InvariantCulture);
+                    Misc.ConvoyDutyConversion.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                convoyDutyConversionTextBox.Text = Misc.Economy.ConvoyDutyConversion.ToString(CultureInfo.InvariantCulture);
+                convoyDutyConversionTextBox.Text =
+                    Misc.ConvoyDutyConversion.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ConvoyDutyConversion) <= 0.00005)
+            if (Math.Abs(val - Misc.ConvoyDutyConversion) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ConvoyDutyConversion = val;
+            Misc.ConvoyDutyConversion = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ConvoyDutyConversion);
@@ -2665,25 +2695,26 @@ namespace HoI2Editor.Forms
             if (!double.TryParse(escortDutyConversionTextBox.Text, out val))
             {
                 escortDutyConversionTextBox.Text =
-                    Misc.Economy.EscortDutyConversion.ToString(CultureInfo.InvariantCulture);
+                    Misc.EscortDutyConversion.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                escortDutyConversionTextBox.Text = Misc.Economy.EscortDutyConversion.ToString(CultureInfo.InvariantCulture);
+                escortDutyConversionTextBox.Text =
+                    Misc.EscortDutyConversion.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.EscortDutyConversion) <= 0.00005)
+            if (Math.Abs(val - Misc.EscortDutyConversion) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.EscortDutyConversion = val;
+            Misc.EscortDutyConversion = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.EscortDutyConversion);
@@ -2704,25 +2735,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(tpMaxAttachTextBox.Text, out val))
             {
-                tpMaxAttachTextBox.Text = Misc.Economy.TpMaxAttach.ToString(CultureInfo.InvariantCulture);
+                tpMaxAttachTextBox.Text = Misc.TpMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tpMaxAttachTextBox.Text = Misc.Economy.TpMaxAttach.ToString(CultureInfo.InvariantCulture);
+                tpMaxAttachTextBox.Text = Misc.TpMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.TpMaxAttach)
+            if (val == Misc.TpMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TpMaxAttach = val;
+            Misc.TpMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TpMaxAttach);
@@ -2743,25 +2774,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(ssMaxAttachTextBox.Text, out val))
             {
-                ssMaxAttachTextBox.Text = Misc.Economy.SsMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ssMaxAttachTextBox.Text = Misc.SsMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ssMaxAttachTextBox.Text = Misc.Economy.SsMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ssMaxAttachTextBox.Text = Misc.SsMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.SsMaxAttach)
+            if (val == Misc.SsMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SsMaxAttach = val;
+            Misc.SsMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SsMaxAttach);
@@ -2782,25 +2813,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(ssnMaxAttachTextBox.Text, out val))
             {
-                ssnMaxAttachTextBox.Text = Misc.Economy.SsnMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ssnMaxAttachTextBox.Text = Misc.SsnMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ssnMaxAttachTextBox.Text = Misc.Economy.SsnMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ssnMaxAttachTextBox.Text = Misc.SsnMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.SsnMaxAttach)
+            if (val == Misc.SsnMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SsnMaxAttach = val;
+            Misc.SsnMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SsnMaxAttach);
@@ -2821,25 +2852,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(ddMaxAttachTextBox.Text, out val))
             {
-                ddMaxAttachTextBox.Text = Misc.Economy.DdMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ddMaxAttachTextBox.Text = Misc.DdMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ddMaxAttachTextBox.Text = Misc.Economy.DdMaxAttach.ToString(CultureInfo.InvariantCulture);
+                ddMaxAttachTextBox.Text = Misc.DdMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.DdMaxAttach)
+            if (val == Misc.DdMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DdMaxAttach = val;
+            Misc.DdMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DdMaxAttach);
@@ -2860,25 +2891,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(clMaxAttachTextBox.Text, out val))
             {
-                clMaxAttachTextBox.Text = Misc.Economy.ClMaxAttach.ToString(CultureInfo.InvariantCulture);
+                clMaxAttachTextBox.Text = Misc.ClMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                clMaxAttachTextBox.Text = Misc.Economy.ClMaxAttach.ToString(CultureInfo.InvariantCulture);
+                clMaxAttachTextBox.Text = Misc.ClMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.ClMaxAttach)
+            if (val == Misc.ClMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ClMaxAttach = val;
+            Misc.ClMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ClMaxAttach);
@@ -2899,25 +2930,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(caMaxAttachTextBox.Text, out val))
             {
-                caMaxAttachTextBox.Text = Misc.Economy.CaMaxAttach.ToString(CultureInfo.InvariantCulture);
+                caMaxAttachTextBox.Text = Misc.CaMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                caMaxAttachTextBox.Text = Misc.Economy.CaMaxAttach.ToString(CultureInfo.InvariantCulture);
+                caMaxAttachTextBox.Text = Misc.CaMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.CaMaxAttach)
+            if (val == Misc.CaMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CaMaxAttach = val;
+            Misc.CaMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CaMaxAttach);
@@ -2938,25 +2969,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(bcMaxAttachTextBox.Text, out val))
             {
-                bcMaxAttachTextBox.Text = Misc.Economy.BcMaxAttach.ToString(CultureInfo.InvariantCulture);
+                bcMaxAttachTextBox.Text = Misc.BcMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                bcMaxAttachTextBox.Text = Misc.Economy.BcMaxAttach.ToString(CultureInfo.InvariantCulture);
+                bcMaxAttachTextBox.Text = Misc.BcMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.BcMaxAttach)
+            if (val == Misc.BcMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.BcMaxAttach = val;
+            Misc.BcMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.BcMaxAttach);
@@ -2977,25 +3008,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(bbMaxAttachTextBox.Text, out val))
             {
-                bbMaxAttachTextBox.Text = Misc.Economy.BbMaxAttach.ToString(CultureInfo.InvariantCulture);
+                bbMaxAttachTextBox.Text = Misc.BbMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                bbMaxAttachTextBox.Text = Misc.Economy.BbMaxAttach.ToString(CultureInfo.InvariantCulture);
+                bbMaxAttachTextBox.Text = Misc.BbMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.BbMaxAttach)
+            if (val == Misc.BbMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.BbMaxAttach = val;
+            Misc.BbMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.BbMaxAttach);
@@ -3016,25 +3047,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(cvlMaxAttachTextBox.Text, out val))
             {
-                cvlMaxAttachTextBox.Text = Misc.Economy.CvlMaxAttach.ToString(CultureInfo.InvariantCulture);
+                cvlMaxAttachTextBox.Text = Misc.CvlMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                cvlMaxAttachTextBox.Text = Misc.Economy.CvlMaxAttach.ToString(CultureInfo.InvariantCulture);
+                cvlMaxAttachTextBox.Text = Misc.CvlMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.CvlMaxAttach)
+            if (val == Misc.CvlMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CvlMaxAttach = val;
+            Misc.CvlMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CvlMaxAttach);
@@ -3055,25 +3086,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(cvMaxAttachTextBox.Text, out val))
             {
-                cvMaxAttachTextBox.Text = Misc.Economy.CvMaxAttach.ToString(CultureInfo.InvariantCulture);
+                cvMaxAttachTextBox.Text = Misc.CvMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                cvMaxAttachTextBox.Text = Misc.Economy.CvMaxAttach.ToString(CultureInfo.InvariantCulture);
+                cvMaxAttachTextBox.Text = Misc.CvMaxAttach.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.CvMaxAttach)
+            if (val == Misc.CvMaxAttach)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CvMaxAttach = val;
+            Misc.CvMaxAttach = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CvMaxAttach);
@@ -3101,7 +3132,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.CanChangeIdeas ? 1 : 0;
+            int val = Misc.CanChangeIdeas ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.CanChangeIdeas))
             {
                 brush = new SolidBrush(Color.Red);
@@ -3131,13 +3162,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (canChangeIdeasComboBox.SelectedIndex == 1);
-            if (val == Misc.Economy.CanChangeIdeas)
+            if (val == Misc.CanChangeIdeas)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CanChangeIdeas = val;
+            Misc.CanChangeIdeas = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CanChangeIdeas);
@@ -3431,144 +3462,292 @@ namespace HoI2Editor.Forms
             // 編集項目の値を更新する
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                dissentChangeSpeedTextBox.Text = Misc.Economy.DissentChangeSpeed.ToString(CultureInfo.InvariantCulture);
-                gearingResourceIncrementTextBox.Text = Misc.Economy.GearingResourceIncrement.ToString(CultureInfo.InvariantCulture);
-                gearingLossNoIcTextBox.Text = Misc.Economy.GearingLossNoIc.ToString(CultureInfo.InvariantCulture);
-                costRepairBuildingsTextBox.Text = Misc.Economy.CostRepairBuildings.ToString(CultureInfo.InvariantCulture);
-                timeRepairBuildingTextBox.Text = Misc.Economy.TimeRepairBuilding.ToString(CultureInfo.InvariantCulture);
-                provinceEfficiencyRiseTimeTextBox.Text = Misc.Economy.ProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
-                lineUpkeepTextBox.Text = Misc.Economy.LineUpkeep.ToString(CultureInfo.InvariantCulture);
-                lineStartupTimeTextBox.Text = Misc.Economy.LineStartupTime.ToString(CultureInfo.InvariantCulture);
-                lineUpgradeTimeTextBox.Text = Misc.Economy.LineUpgradeTime.ToString(CultureInfo.InvariantCulture);
-                retoolingCostTextBox.Text = Misc.Economy.RetoolingCost.ToString(CultureInfo.InvariantCulture);
-                retoolingResourceTextBox.Text = Misc.Economy.RetoolingResource.ToString(CultureInfo.InvariantCulture);
-                dailyAgingManpowerTextBox.Text = Misc.Economy.DailyAgingManpower.ToString(CultureInfo.InvariantCulture);
-                supplyConvoyHuntTextBox.Text = Misc.Economy.SupplyConvoyHunt.ToString(CultureInfo.InvariantCulture);
-                supplyNavalStaticAoDTextBox.Text = Misc.Economy.SupplyNavalStaticAoD.ToString(CultureInfo.InvariantCulture);
-                supplyNavalMovingTextBox.Text = Misc.Economy.SupplyNavalMoving.ToString(CultureInfo.InvariantCulture);
-                supplyNavalBattleAoDTextBox.Text = Misc.Economy.SupplyNavalBattleAoD.ToString(CultureInfo.InvariantCulture);
-                supplyAirStaticAoDTextBox.Text = Misc.Economy.SupplyAirStaticAoD.ToString(CultureInfo.InvariantCulture);
-                supplyAirMovingTextBox.Text = Misc.Economy.SupplyAirMoving.ToString(CultureInfo.InvariantCulture);
-                supplyAirBattleAoDTextBox.Text = Misc.Economy.SupplyAirBattleAoD.ToString(CultureInfo.InvariantCulture);
-                supplyAirBombingTextBox.Text = Misc.Economy.SupplyAirBombing.ToString(CultureInfo.InvariantCulture);
-                supplyLandStaticAoDTextBox.Text = Misc.Economy.SupplyLandStaticAoD.ToString(CultureInfo.InvariantCulture);
-                supplyLandMovingTextBox.Text = Misc.Economy.SupplyLandMoving.ToString(CultureInfo.InvariantCulture);
-                supplyLandBattleAoDTextBox.Text = Misc.Economy.SupplyLandBattleAoD.ToString(CultureInfo.InvariantCulture);
-                supplyLandBombingTextBox.Text = Misc.Economy.SupplyLandBombing.ToString(CultureInfo.InvariantCulture);
-                supplyStockLandTextBox.Text = Misc.Economy.SupplyStockLand.ToString(CultureInfo.InvariantCulture);
-                supplyStockAirTextBox.Text = Misc.Economy.SupplyStockAir.ToString(CultureInfo.InvariantCulture);
-                supplyStockNavalTextBox.Text = Misc.Economy.SupplyStockNaval.ToString(CultureInfo.InvariantCulture);
-                syntheticOilConversionMultiplierTextBox.Text = Misc.Economy.SyntheticOilConversionMultiplier.ToString(CultureInfo.InvariantCulture);
-                syntheticRaresConversionMultiplierTextBox.Text = Misc.Economy.SyntheticRaresConversionMultiplier.ToString(CultureInfo.InvariantCulture);
-                militarySalaryTextBox.Text = Misc.Economy.MilitarySalary.ToString(CultureInfo.InvariantCulture);
-                maxIntelligenceExpenditureTextBox.Text = Misc.Economy.MaxIntelligenceExpenditure.ToString(CultureInfo.InvariantCulture);
-                maxResearchExpenditureTextBox.Text = Misc.Economy.MaxResearchExpenditure.ToString(CultureInfo.InvariantCulture);
-                militarySalaryAttrictionModifierTextBox.Text = Misc.Economy.MilitarySalaryAttrictionModifier.ToString(CultureInfo.InvariantCulture);
-                militarySalaryDissentModifierTextBox.Text = Misc.Economy.MilitarySalaryDissentModifier.ToString(CultureInfo.InvariantCulture);
-                nuclearSiteUpkeepCostTextBox.Text = Misc.Economy.NuclearSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
-                nuclearPowerUpkeepCostTextBox.Text = Misc.Economy.NuclearPowerUpkeepCost.ToString(CultureInfo.InvariantCulture);
-                syntheticOilSiteUpkeepCostTextBox.Text = Misc.Economy.SyntheticOilSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
-                syntheticRaresSiteUpkeepCostTextBox.Text = Misc.Economy.SyntheticRaresSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
-                durationDetectionTextBox.Text = Misc.Economy.DurationDetection.ToString(CultureInfo.InvariantCulture);
-                convoyProvinceHostileTimeTextBox.Text = Misc.Economy.ConvoyProvinceHostileTime.ToString(CultureInfo.InvariantCulture);
-                convoyProvinceBlockedTimeTextBox.Text = Misc.Economy.ConvoyProvinceBlockedTime.ToString(CultureInfo.InvariantCulture);
-                autoTradeConvoyTextBox.Text = Misc.Economy.AutoTradeConvoy.ToString(CultureInfo.InvariantCulture);
-                spyUpkeepCostTextBox.Text = Misc.Economy.SpyUpkeepCost.ToString(CultureInfo.InvariantCulture);
-                spyDetectionChanceTextBox.Text = Misc.Economy.SpyDetectionChance.ToString(CultureInfo.InvariantCulture);
-                infraEfficiencyModifierTextBox.Text = Misc.Economy.InfraEfficiencyModifier.ToString(CultureInfo.InvariantCulture);
-                manpowerToConsumerGoodsTextBox.Text = Misc.Economy.ManpowerToConsumerGoods.ToString(CultureInfo.InvariantCulture);
-                timeBetweenSliderChangesAoDTextBox.Text = Misc.Economy.TimeBetweenSliderChangesAoD.ToString(CultureInfo.InvariantCulture);
-                minimalPlacementIcTextBox.Text = Misc.Economy.MinimalPlacementIc.ToString(CultureInfo.InvariantCulture);
-                nuclearPowerTextBox.Text = Misc.Economy.NuclearPower.ToString(CultureInfo.InvariantCulture);
-                freeInfraRepairTextBox.Text = Misc.Economy.FreeInfraRepair.ToString(CultureInfo.InvariantCulture);
-                maxSliderDissentTextBox.Text = Misc.Economy.MaxSliderDissent.ToString(CultureInfo.InvariantCulture);
-                minSliderDissentTextBox.Text = Misc.Economy.MinSliderDissent.ToString(CultureInfo.InvariantCulture);
-                maxDissentSliderMoveTextBox.Text = Misc.Economy.MaxDissentSliderMove.ToString(CultureInfo.InvariantCulture);
-                icConcentrationBonusTextBox.Text = Misc.Economy.IcConcentrationBonus.ToString(CultureInfo.InvariantCulture);
-                transportConversionTextBox.Text = Misc.Economy.TransportConversion.ToString(CultureInfo.InvariantCulture);
-                ministerChangeDelayTextBox.Text = Misc.Economy.MinisterChangeDelay.ToString(CultureInfo.InvariantCulture);
-                ministerChangeEventDelayTextBox.Text = Misc.Economy.MinisterChangeEventDelay.ToString(CultureInfo.InvariantCulture);
-                ideaChangeDelayTextBox.Text = Misc.Economy.IdeaChangeDelay.ToString(CultureInfo.InvariantCulture);
-                ideaChangeEventDelayTextBox.Text = Misc.Economy.IdeaChangeEventDelay.ToString(CultureInfo.InvariantCulture);
-                leaderChangeDelayTextBox.Text = Misc.Economy.LeaderChangeDelay.ToString(CultureInfo.InvariantCulture);
-                changeIdeaDissentTextBox.Text = Misc.Economy.ChangeIdeaDissent.ToString(CultureInfo.InvariantCulture);
-                changeMinisterDissentTextBox.Text = Misc.Economy.ChangeMinisterDissent.ToString(CultureInfo.InvariantCulture);
-                minDissentRevoltTextBox.Text = Misc.Economy.MinDissentRevolt.ToString(CultureInfo.InvariantCulture);
-                dissentRevoltMultiplierTextBox.Text = Misc.Economy.DissentRevoltMultiplier.ToString(CultureInfo.InvariantCulture);
+                dissentChangeSpeedTextBox.Text = Misc.DissentChangeSpeed.ToString(CultureInfo.InvariantCulture);
+                gearingResourceIncrementTextBox.Text =
+                    Misc.GearingResourceIncrement.ToString(CultureInfo.InvariantCulture);
+                gearingLossNoIcTextBox.Text = Misc.GearingLossNoIc.ToString(CultureInfo.InvariantCulture);
+                costRepairBuildingsTextBox.Text = Misc.CostRepairBuildings.ToString(CultureInfo.InvariantCulture);
+                timeRepairBuildingTextBox.Text = Misc.TimeRepairBuilding.ToString(CultureInfo.InvariantCulture);
+                provinceEfficiencyRiseTimeTextBox.Text =
+                    Misc.ProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
+                lineUpkeepTextBox.Text = Misc.LineUpkeep.ToString(CultureInfo.InvariantCulture);
+                lineStartupTimeTextBox.Text = Misc.LineStartupTime.ToString(CultureInfo.InvariantCulture);
+                lineUpgradeTimeTextBox.Text = Misc.LineUpgradeTime.ToString(CultureInfo.InvariantCulture);
+                retoolingCostTextBox.Text = Misc.RetoolingCost.ToString(CultureInfo.InvariantCulture);
+                retoolingResourceTextBox.Text = Misc.RetoolingResource.ToString(CultureInfo.InvariantCulture);
+                dailyAgingManpowerTextBox.Text = Misc.DailyAgingManpower.ToString(CultureInfo.InvariantCulture);
+                supplyConvoyHuntTextBox.Text = Misc.SupplyConvoyHunt.ToString(CultureInfo.InvariantCulture);
+                supplyNavalStaticAoDTextBox.Text =
+                    Misc.SupplyNavalStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyNavalMovingTextBox.Text = Misc.SupplyNavalMoving.ToString(CultureInfo.InvariantCulture);
+                supplyNavalBattleAoDTextBox.Text =
+                    Misc.SupplyNavalBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyAirStaticAoDTextBox.Text = Misc.SupplyAirStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyAirMovingTextBox.Text = Misc.SupplyAirMoving.ToString(CultureInfo.InvariantCulture);
+                supplyAirBattleAoDTextBox.Text = Misc.SupplyAirBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyAirBombingTextBox.Text = Misc.SupplyAirBombing.ToString(CultureInfo.InvariantCulture);
+                supplyLandStaticAoDTextBox.Text = Misc.SupplyLandStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyLandMovingTextBox.Text = Misc.SupplyLandMoving.ToString(CultureInfo.InvariantCulture);
+                supplyLandBattleAoDTextBox.Text = Misc.SupplyLandBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyLandBombingTextBox.Text = Misc.SupplyLandBombing.ToString(CultureInfo.InvariantCulture);
+                supplyStockLandTextBox.Text = Misc.SupplyStockLand.ToString(CultureInfo.InvariantCulture);
+                supplyStockAirTextBox.Text = Misc.SupplyStockAir.ToString(CultureInfo.InvariantCulture);
+                supplyStockNavalTextBox.Text = Misc.SupplyStockNaval.ToString(CultureInfo.InvariantCulture);
+                syntheticOilConversionMultiplierTextBox.Text =
+                    Misc.SyntheticOilConversionMultiplier.ToString(CultureInfo.InvariantCulture);
+                syntheticRaresConversionMultiplierTextBox.Text =
+                    Misc.SyntheticRaresConversionMultiplier.ToString(CultureInfo.InvariantCulture);
+                militarySalaryTextBox.Text = Misc.MilitarySalary.ToString(CultureInfo.InvariantCulture);
+                maxIntelligenceExpenditureTextBox.Text =
+                    Misc.MaxIntelligenceExpenditure.ToString(CultureInfo.InvariantCulture);
+                maxResearchExpenditureTextBox.Text =
+                    Misc.MaxResearchExpenditure.ToString(CultureInfo.InvariantCulture);
+                militarySalaryAttrictionModifierTextBox.Text =
+                    Misc.MilitarySalaryAttrictionModifier.ToString(CultureInfo.InvariantCulture);
+                militarySalaryDissentModifierTextBox.Text =
+                    Misc.MilitarySalaryDissentModifier.ToString(CultureInfo.InvariantCulture);
+                nuclearSiteUpkeepCostTextBox.Text =
+                    Misc.NuclearSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                nuclearPowerUpkeepCostTextBox.Text =
+                    Misc.NuclearPowerUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                syntheticOilSiteUpkeepCostTextBox.Text =
+                    Misc.SyntheticOilSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                syntheticRaresSiteUpkeepCostTextBox.Text =
+                    Misc.SyntheticRaresSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                durationDetectionTextBox.Text = Misc.DurationDetection.ToString(CultureInfo.InvariantCulture);
+                convoyProvinceHostileTimeTextBox.Text =
+                    Misc.ConvoyProvinceHostileTime.ToString(CultureInfo.InvariantCulture);
+                convoyProvinceBlockedTimeTextBox.Text =
+                    Misc.ConvoyProvinceBlockedTime.ToString(CultureInfo.InvariantCulture);
+                autoTradeConvoyTextBox.Text = Misc.AutoTradeConvoy.ToString(CultureInfo.InvariantCulture);
+                spyUpkeepCostTextBox.Text = Misc.SpyUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                spyDetectionChanceTextBox.Text = Misc.SpyDetectionChance.ToString(CultureInfo.InvariantCulture);
+                infraEfficiencyModifierTextBox.Text =
+                    Misc.InfraEfficiencyModifier.ToString(CultureInfo.InvariantCulture);
+                manpowerToConsumerGoodsTextBox.Text =
+                    Misc.ManpowerToConsumerGoods.ToString(CultureInfo.InvariantCulture);
+                timeBetweenSliderChangesAoDTextBox.Text =
+                    Misc.TimeBetweenSliderChangesAoD.ToString(CultureInfo.InvariantCulture);
+                minimalPlacementIcTextBox.Text = Misc.MinimalPlacementIc.ToString(CultureInfo.InvariantCulture);
+                nuclearPowerTextBox.Text = Misc.NuclearPower.ToString(CultureInfo.InvariantCulture);
+                freeInfraRepairTextBox.Text = Misc.FreeInfraRepair.ToString(CultureInfo.InvariantCulture);
+                maxSliderDissentTextBox.Text = Misc.MaxSliderDissent.ToString(CultureInfo.InvariantCulture);
+                minSliderDissentTextBox.Text = Misc.MinSliderDissent.ToString(CultureInfo.InvariantCulture);
+                maxDissentSliderMoveTextBox.Text =
+                    Misc.MaxDissentSliderMove.ToString(CultureInfo.InvariantCulture);
+                icConcentrationBonusTextBox.Text =
+                    Misc.IcConcentrationBonus.ToString(CultureInfo.InvariantCulture);
+                transportConversionTextBox.Text = Misc.TransportConversion.ToString(CultureInfo.InvariantCulture);
+                ministerChangeDelayTextBox.Text = Misc.MinisterChangeDelay.ToString(CultureInfo.InvariantCulture);
+                ministerChangeEventDelayTextBox.Text =
+                    Misc.MinisterChangeEventDelay.ToString(CultureInfo.InvariantCulture);
+                ideaChangeDelayTextBox.Text = Misc.IdeaChangeDelay.ToString(CultureInfo.InvariantCulture);
+                ideaChangeEventDelayTextBox.Text =
+                    Misc.IdeaChangeEventDelay.ToString(CultureInfo.InvariantCulture);
+                leaderChangeDelayTextBox.Text = Misc.LeaderChangeDelay.ToString(CultureInfo.InvariantCulture);
+                changeIdeaDissentTextBox.Text = Misc.ChangeIdeaDissent.ToString(CultureInfo.InvariantCulture);
+                changeMinisterDissentTextBox.Text =
+                    Misc.ChangeMinisterDissent.ToString(CultureInfo.InvariantCulture);
+                minDissentRevoltTextBox.Text = Misc.MinDissentRevolt.ToString(CultureInfo.InvariantCulture);
+                dissentRevoltMultiplierTextBox.Text =
+                    Misc.DissentRevoltMultiplier.ToString(CultureInfo.InvariantCulture);
             }
 
             // 編集項目の色を更新する
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                dissentChangeSpeedTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentChangeSpeed) ? Color.Red : SystemColors.WindowText;
-                gearingResourceIncrementTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingResourceIncrement) ? Color.Red : SystemColors.WindowText;
-                gearingLossNoIcTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingLossNoIc) ? Color.Red : SystemColors.WindowText;
-                costRepairBuildingsTextBox.ForeColor = Misc.IsDirty(MiscItemId.CostRepairBuildings) ? Color.Red : SystemColors.WindowText;
-                timeRepairBuildingTextBox.ForeColor = Misc.IsDirty(MiscItemId.TimeRepairBuilding) ? Color.Red : SystemColors.WindowText;
-                provinceEfficiencyRiseTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ProvinceEfficiencyRiseTime) ? Color.Red : SystemColors.WindowText;
+                dissentChangeSpeedTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentChangeSpeed)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                gearingResourceIncrementTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingResourceIncrement)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                gearingLossNoIcTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingLossNoIc)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                costRepairBuildingsTextBox.ForeColor = Misc.IsDirty(MiscItemId.CostRepairBuildings)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                timeRepairBuildingTextBox.ForeColor = Misc.IsDirty(MiscItemId.TimeRepairBuilding)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                provinceEfficiencyRiseTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ProvinceEfficiencyRiseTime)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
                 lineUpkeepTextBox.ForeColor = Misc.IsDirty(MiscItemId.LineUpkeep) ? Color.Red : SystemColors.WindowText;
-                lineStartupTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.LineStartupTime) ? Color.Red : SystemColors.WindowText;
-                lineUpgradeTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.LineUpgradeTime) ? Color.Red : SystemColors.WindowText;
-                retoolingCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.RetoolingCost) ? Color.Red : SystemColors.WindowText;
-                retoolingResourceTextBox.ForeColor = Misc.IsDirty(MiscItemId.RetoolingResource) ? Color.Red : SystemColors.WindowText;
-                dailyAgingManpowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.DailyAgingManpower) ? Color.Red : SystemColors.WindowText;
-                supplyConvoyHuntTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyConvoyHunt) ? Color.Red : SystemColors.WindowText;
-                supplyNavalStaticAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalStaticAoD) ? Color.Red : SystemColors.WindowText;
-                supplyNavalMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalMoving) ? Color.Red : SystemColors.WindowText;
-                supplyNavalBattleAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalBattleAoD) ? Color.Red : SystemColors.WindowText;
-                supplyAirStaticAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirStaticAoD) ? Color.Red : SystemColors.WindowText;
-                supplyAirMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirMoving) ? Color.Red : SystemColors.WindowText;
-                supplyAirBattleAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirBattleAoD) ? Color.Red : SystemColors.WindowText;
-                supplyAirBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirBombing) ? Color.Red : SystemColors.WindowText;
-                supplyLandStaticAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandStaticAoD) ? Color.Red : SystemColors.WindowText;
-                supplyLandMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandMoving) ? Color.Red : SystemColors.WindowText;
-                supplyLandBattleAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandBattleAoD) ? Color.Red : SystemColors.WindowText;
-                supplyLandBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandBombing) ? Color.Red : SystemColors.WindowText;
-                supplyStockLandTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyStockLand) ? Color.Red : SystemColors.WindowText;
-                supplyStockAirTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyStockAir) ? Color.Red : SystemColors.WindowText;
-                supplyStockNavalTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyStockNaval) ? Color.Red : SystemColors.WindowText;
-                syntheticOilConversionMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SyntheticOilConversionMultiplier) ? Color.Red : SystemColors.WindowText;
-                syntheticRaresConversionMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SyntheticRaresConversionMultiplier) ? Color.Red : SystemColors.WindowText;
-                militarySalaryTextBox.ForeColor = Misc.IsDirty(MiscItemId.MilitarySalary) ? Color.Red : SystemColors.WindowText;
-                maxIntelligenceExpenditureTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxIntelligenceExpenditure) ? Color.Red : SystemColors.WindowText;
-                maxResearchExpenditureTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxResearchExpenditure) ? Color.Red : SystemColors.WindowText;
-                militarySalaryAttrictionModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.MilitarySalaryAttrictionModifier) ? Color.Red : SystemColors.WindowText;
-                militarySalaryDissentModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.MilitarySalaryDissentModifier) ? Color.Red : SystemColors.WindowText;
-                nuclearSiteUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.NuclearSiteUpkeepCost) ? Color.Red : SystemColors.WindowText;
-                nuclearPowerUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.NuclearPowerUpkeepCost) ? Color.Red : SystemColors.WindowText;
-                syntheticOilSiteUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.SyntheticOilSiteUpkeepCost) ? Color.Red : SystemColors.WindowText;
-                syntheticRaresSiteUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.SyntheticRaresSiteUpkeepCost) ? Color.Red : SystemColors.WindowText;
-                durationDetectionTextBox.ForeColor = Misc.IsDirty(MiscItemId.DurationDetection) ? Color.Red : SystemColors.WindowText;
-                convoyProvinceHostileTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ConvoyProvinceHostileTime) ? Color.Red : SystemColors.WindowText;
-                convoyProvinceBlockedTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ConvoyProvinceBlockedTime) ? Color.Red : SystemColors.WindowText;
-                autoTradeConvoyTextBox.ForeColor = Misc.IsDirty(MiscItemId.AutoTradeConvoy) ? Color.Red : SystemColors.WindowText;
-                spyUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyUpkeepCost) ? Color.Red : SystemColors.WindowText;
-                spyDetectionChanceTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyDetectionChance) ? Color.Red : SystemColors.WindowText;
-                infraEfficiencyModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.InfraEfficiencyModifier) ? Color.Red : SystemColors.WindowText;
-                manpowerToConsumerGoodsTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerToConsumerGoods) ? Color.Red : SystemColors.WindowText;
-                timeBetweenSliderChangesAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.TimeBetweenSliderChangesAoD) ? Color.Red : SystemColors.WindowText;
-                minimalPlacementIcTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinimalPlacementIc) ? Color.Red : SystemColors.WindowText;
-                nuclearPowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.NuclearPower) ? Color.Red : SystemColors.WindowText;
-                freeInfraRepairTextBox.ForeColor = Misc.IsDirty(MiscItemId.FreeInfraRepair) ? Color.Red : SystemColors.WindowText;
-                maxSliderDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxSliderDissent) ? Color.Red : SystemColors.WindowText;
-                minSliderDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinSliderDissent) ? Color.Red : SystemColors.WindowText;
-                maxDissentSliderMoveTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxDissentSliderMove) ? Color.Red : SystemColors.WindowText;
-                icConcentrationBonusTextBox.ForeColor = Misc.IsDirty(MiscItemId.IcConcentrationBonus) ? Color.Red : SystemColors.WindowText;
-                transportConversionTextBox.ForeColor = Misc.IsDirty(MiscItemId.TransportConversion) ? Color.Red : SystemColors.WindowText;
-                ministerChangeDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinisterChangeDelay) ? Color.Red : SystemColors.WindowText;
-                ministerChangeEventDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinisterChangeEventDelay) ? Color.Red : SystemColors.WindowText;
-                ideaChangeDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.IdeaChangeDelay) ? Color.Red : SystemColors.WindowText;
-                ideaChangeEventDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.IdeaChangeEventDelay) ? Color.Red : SystemColors.WindowText;
-                leaderChangeDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.LeaderChangeDelay) ? Color.Red : SystemColors.WindowText;
-                changeIdeaDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChangeIdeaDissent) ? Color.Red : SystemColors.WindowText;
-                changeMinisterDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChangeMinisterDissent) ? Color.Red : SystemColors.WindowText;
-                minDissentRevoltTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinDissentRevolt) ? Color.Red : SystemColors.WindowText;
-                dissentRevoltMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentRevoltMultiplier) ? Color.Red : SystemColors.WindowText;
+                lineStartupTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.LineStartupTime)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                lineUpgradeTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.LineUpgradeTime)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                retoolingCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.RetoolingCost)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                retoolingResourceTextBox.ForeColor = Misc.IsDirty(MiscItemId.RetoolingResource)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                dailyAgingManpowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.DailyAgingManpower)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                supplyConvoyHuntTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyConvoyHunt)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                supplyNavalStaticAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalStaticAoD)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+                supplyNavalMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalMoving)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                supplyNavalBattleAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalBattleAoD)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+                supplyAirStaticAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirStaticAoD)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                supplyAirMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirMoving)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                supplyAirBattleAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirBattleAoD)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                supplyAirBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirBombing)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                supplyLandStaticAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandStaticAoD)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                supplyLandMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandMoving)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                supplyLandBattleAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandBattleAoD)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                supplyLandBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandBombing)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                supplyStockLandTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyStockLand)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                supplyStockAirTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyStockAir)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                supplyStockNavalTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyStockNaval)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                syntheticOilConversionMultiplierTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.SyntheticOilConversionMultiplier) ? Color.Red : SystemColors.WindowText;
+                syntheticRaresConversionMultiplierTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.SyntheticRaresConversionMultiplier) ? Color.Red : SystemColors.WindowText;
+                militarySalaryTextBox.ForeColor = Misc.IsDirty(MiscItemId.MilitarySalary)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                maxIntelligenceExpenditureTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxIntelligenceExpenditure)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
+                maxResearchExpenditureTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxResearchExpenditure)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+                militarySalaryAttrictionModifierTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.MilitarySalaryAttrictionModifier) ? Color.Red : SystemColors.WindowText;
+                militarySalaryDissentModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.MilitarySalaryDissentModifier)
+                                                                     ? Color.Red
+                                                                     : SystemColors.WindowText;
+                nuclearSiteUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.NuclearSiteUpkeepCost)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+                nuclearPowerUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.NuclearPowerUpkeepCost)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+                syntheticOilSiteUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.SyntheticOilSiteUpkeepCost)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
+                syntheticRaresSiteUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.SyntheticRaresSiteUpkeepCost)
+                                                                    ? Color.Red
+                                                                    : SystemColors.WindowText;
+                durationDetectionTextBox.ForeColor = Misc.IsDirty(MiscItemId.DurationDetection)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                convoyProvinceHostileTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ConvoyProvinceHostileTime)
+                                                                 ? Color.Red
+                                                                 : SystemColors.WindowText;
+                convoyProvinceBlockedTimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ConvoyProvinceBlockedTime)
+                                                                 ? Color.Red
+                                                                 : SystemColors.WindowText;
+                autoTradeConvoyTextBox.ForeColor = Misc.IsDirty(MiscItemId.AutoTradeConvoy)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                spyUpkeepCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyUpkeepCost)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                spyDetectionChanceTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyDetectionChance)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                infraEfficiencyModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.InfraEfficiencyModifier)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+                manpowerToConsumerGoodsTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerToConsumerGoods)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+                timeBetweenSliderChangesAoDTextBox.ForeColor = Misc.IsDirty(MiscItemId.TimeBetweenSliderChangesAoD)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
+                minimalPlacementIcTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinimalPlacementIc)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                nuclearPowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.NuclearPower)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+                freeInfraRepairTextBox.ForeColor = Misc.IsDirty(MiscItemId.FreeInfraRepair)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                maxSliderDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxSliderDissent)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                minSliderDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinSliderDissent)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                maxDissentSliderMoveTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxDissentSliderMove)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+                icConcentrationBonusTextBox.ForeColor = Misc.IsDirty(MiscItemId.IcConcentrationBonus)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+                transportConversionTextBox.ForeColor = Misc.IsDirty(MiscItemId.TransportConversion)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                ministerChangeDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinisterChangeDelay)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                ministerChangeEventDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinisterChangeEventDelay)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                ideaChangeDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.IdeaChangeDelay)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                ideaChangeEventDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.IdeaChangeEventDelay)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+                leaderChangeDelayTextBox.ForeColor = Misc.IsDirty(MiscItemId.LeaderChangeDelay)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                changeIdeaDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChangeIdeaDissent)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                changeMinisterDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChangeMinisterDissent)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+                minDissentRevoltTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinDissentRevolt)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                dissentRevoltMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentRevoltMultiplier)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
             }
         }
 
         /// <summary>
-        /// [不満度変化速度]テキストボックスフォーカス移動後の処理
+        ///     [不満度変化速度]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3578,25 +3757,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(dissentChangeSpeedTextBox.Text, out val))
             {
-                dissentChangeSpeedTextBox.Text = Misc.Economy.DissentChangeSpeed.ToString(CultureInfo.InvariantCulture);
+                dissentChangeSpeedTextBox.Text = Misc.DissentChangeSpeed.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                dissentChangeSpeedTextBox.Text = Misc.Economy.DissentChangeSpeed.ToString(CultureInfo.InvariantCulture);
+                dissentChangeSpeedTextBox.Text = Misc.DissentChangeSpeed.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DissentChangeSpeed) <= 0.00005)
+            if (Math.Abs(val - Misc.DissentChangeSpeed) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DissentChangeSpeed = val;
+            Misc.DissentChangeSpeed = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DissentChangeSpeed);
@@ -3607,7 +3786,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [連続生産時の資源消費増加]テキストボックスフォーカス移動後の処理
+        ///     [連続生産時の資源消費増加]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3617,25 +3796,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(gearingResourceIncrementTextBox.Text, out val))
             {
-                gearingResourceIncrementTextBox.Text = Misc.Economy.GearingResourceIncrement.ToString(CultureInfo.InvariantCulture);
+                gearingResourceIncrementTextBox.Text =
+                    Misc.GearingResourceIncrement.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                gearingResourceIncrementTextBox.Text = Misc.Economy.GearingResourceIncrement.ToString(CultureInfo.InvariantCulture);
+                gearingResourceIncrementTextBox.Text =
+                    Misc.GearingResourceIncrement.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.GearingResourceIncrement) <= 0.00005)
+            if (Math.Abs(val - Misc.GearingResourceIncrement) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.GearingResourceIncrement = val;
+            Misc.GearingResourceIncrement = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.GearingResourceIncrement);
@@ -3646,7 +3827,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [IC不足時のギアリングボーナス減少値]テキストボックスフォーカス移動後の処理
+        ///     [IC不足時のギアリングボーナス減少値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3656,25 +3837,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(gearingLossNoIcTextBox.Text, out val))
             {
-                gearingLossNoIcTextBox.Text = Misc.Economy.GearingLossNoIc.ToString(CultureInfo.InvariantCulture);
+                gearingLossNoIcTextBox.Text = Misc.GearingLossNoIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                gearingLossNoIcTextBox.Text = Misc.Economy.GearingLossNoIc.ToString(CultureInfo.InvariantCulture);
+                gearingLossNoIcTextBox.Text = Misc.GearingLossNoIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.GearingLossNoIc) <= 0.00005)
+            if (Math.Abs(val - Misc.GearingLossNoIc) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.GearingLossNoIc = val;
+            Misc.GearingLossNoIc = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.GearingLossNoIc);
@@ -3685,7 +3866,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [建物修復コスト補正]テキストボックスフォーカス移動後の処理
+        ///     [建物修復コスト補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3695,25 +3876,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(costRepairBuildingsTextBox.Text, out val))
             {
-                costRepairBuildingsTextBox.Text = Misc.Economy.CostRepairBuildings.ToString(CultureInfo.InvariantCulture);
+                costRepairBuildingsTextBox.Text = Misc.CostRepairBuildings.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                costRepairBuildingsTextBox.Text = Misc.Economy.CostRepairBuildings.ToString(CultureInfo.InvariantCulture);
+                costRepairBuildingsTextBox.Text = Misc.CostRepairBuildings.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.CostRepairBuildings) <= 0.00005)
+            if (Math.Abs(val - Misc.CostRepairBuildings) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CostRepairBuildings = val;
+            Misc.CostRepairBuildings = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CostRepairBuildings);
@@ -3724,7 +3905,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [建物修復時間補正]テキストボックスフォーカス移動後の処理
+        ///     [建物修復時間補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3734,25 +3915,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(timeRepairBuildingTextBox.Text, out val))
             {
-                timeRepairBuildingTextBox.Text = Misc.Economy.TimeRepairBuilding.ToString(CultureInfo.InvariantCulture);
+                timeRepairBuildingTextBox.Text = Misc.TimeRepairBuilding.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                timeRepairBuildingTextBox.Text = Misc.Economy.TimeRepairBuilding.ToString(CultureInfo.InvariantCulture);
+                timeRepairBuildingTextBox.Text = Misc.TimeRepairBuilding.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TimeRepairBuilding) <= 0.00005)
+            if (Math.Abs(val - Misc.TimeRepairBuilding) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TimeRepairBuilding = val;
+            Misc.TimeRepairBuilding = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TimeRepairBuilding);
@@ -3763,7 +3944,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [プロヴィンス効率上昇時間]テキストボックスフォーカス移動後の処理
+        ///     [プロヴィンス効率上昇時間]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3773,25 +3954,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(provinceEfficiencyRiseTimeTextBox.Text, out val))
             {
-                provinceEfficiencyRiseTimeTextBox.Text = Misc.Economy.ProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
+                provinceEfficiencyRiseTimeTextBox.Text =
+                    Misc.ProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                provinceEfficiencyRiseTimeTextBox.Text = Misc.Economy.ProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
+                provinceEfficiencyRiseTimeTextBox.Text =
+                    Misc.ProvinceEfficiencyRiseTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.ProvinceEfficiencyRiseTime)
+            if (val == Misc.ProvinceEfficiencyRiseTime)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ProvinceEfficiencyRiseTime = val;
+            Misc.ProvinceEfficiencyRiseTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ProvinceEfficiencyRiseTime);
@@ -3802,7 +3985,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [ライン維持コスト補正]テキストボックスフォーカス移動後の処理
+        ///     [ライン維持コスト補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3812,25 +3995,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(lineUpkeepTextBox.Text, out val))
             {
-                lineUpkeepTextBox.Text = Misc.Economy.LineUpkeep.ToString(CultureInfo.InvariantCulture);
+                lineUpkeepTextBox.Text = Misc.LineUpkeep.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                lineUpkeepTextBox.Text = Misc.Economy.LineUpkeep.ToString(CultureInfo.InvariantCulture);
+                lineUpkeepTextBox.Text = Misc.LineUpkeep.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.LineUpkeep) <= 0.00005)
+            if (Math.Abs(val - Misc.LineUpkeep) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.LineUpkeep = val;
+            Misc.LineUpkeep = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.LineUpkeep);
@@ -3841,7 +4024,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [ライン開始時間]テキストボックスフォーカス移動後の処理
+        ///     [ライン開始時間]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3851,25 +4034,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(lineStartupTimeTextBox.Text, out val))
             {
-                lineStartupTimeTextBox.Text = Misc.Economy.LineStartupTime.ToString(CultureInfo.InvariantCulture);
+                lineStartupTimeTextBox.Text = Misc.LineStartupTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                lineStartupTimeTextBox.Text = Misc.Economy.LineStartupTime.ToString(CultureInfo.InvariantCulture);
+                lineStartupTimeTextBox.Text = Misc.LineStartupTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.LineStartupTime)
+            if (val == Misc.LineStartupTime)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.LineStartupTime = val;
+            Misc.LineStartupTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.LineStartupTime);
@@ -3880,7 +4063,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [ライン改良時間]テキストボックスフォーカス移動後の処理
+        ///     [ライン改良時間]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3890,25 +4073,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(lineUpgradeTimeTextBox.Text, out val))
             {
-                lineUpgradeTimeTextBox.Text = Misc.Economy.LineUpgradeTime.ToString(CultureInfo.InvariantCulture);
+                lineUpgradeTimeTextBox.Text = Misc.LineUpgradeTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                lineUpgradeTimeTextBox.Text = Misc.Economy.LineUpgradeTime.ToString(CultureInfo.InvariantCulture);
+                lineUpgradeTimeTextBox.Text = Misc.LineUpgradeTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.LineUpgradeTime)
+            if (val == Misc.LineUpgradeTime)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.LineUpgradeTime = val;
+            Misc.LineUpgradeTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.LineUpgradeTime);
@@ -3919,7 +4102,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [ライン調整コスト補正]テキストボックスフォーカス移動後の処理
+        ///     [ライン調整コスト補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3929,25 +4112,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(retoolingCostTextBox.Text, out val))
             {
-                retoolingCostTextBox.Text = Misc.Economy.RetoolingCost.ToString(CultureInfo.InvariantCulture);
+                retoolingCostTextBox.Text = Misc.RetoolingCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                retoolingCostTextBox.Text = Misc.Economy.RetoolingCost.ToString(CultureInfo.InvariantCulture);
+                retoolingCostTextBox.Text = Misc.RetoolingCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.RetoolingCost) <= 0.00005)
+            if (Math.Abs(val - Misc.RetoolingCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.RetoolingCost = val;
+            Misc.RetoolingCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RetoolingCost);
@@ -3958,7 +4141,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [ライン調整資源補正]テキストボックスフォーカス移動後の処理
+        ///     [ライン調整資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3968,25 +4151,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(retoolingResourceTextBox.Text, out val))
             {
-                retoolingResourceTextBox.Text = Misc.Economy.RetoolingResource.ToString(CultureInfo.InvariantCulture);
+                retoolingResourceTextBox.Text = Misc.RetoolingResource.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                retoolingResourceTextBox.Text = Misc.Economy.RetoolingResource.ToString(CultureInfo.InvariantCulture);
+                retoolingResourceTextBox.Text = Misc.RetoolingResource.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.RetoolingResource) <= 0.00005)
+            if (Math.Abs(val - Misc.RetoolingResource) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.RetoolingResource = val;
+            Misc.RetoolingResource = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RetoolingResource);
@@ -3997,7 +4180,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [人的資源老化補正]テキストボックスフォーカス移動後の処理
+        ///     [人的資源老化補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4007,25 +4190,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(dailyAgingManpowerTextBox.Text, out val))
             {
-                dailyAgingManpowerTextBox.Text = Misc.Economy.DailyAgingManpower.ToString(CultureInfo.InvariantCulture);
+                dailyAgingManpowerTextBox.Text = Misc.DailyAgingManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                dailyAgingManpowerTextBox.Text = Misc.Economy.DailyAgingManpower.ToString(CultureInfo.InvariantCulture);
+                dailyAgingManpowerTextBox.Text = Misc.DailyAgingManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DailyAgingManpower) <= 0.00005)
+            if (Math.Abs(val - Misc.DailyAgingManpower) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DailyAgingManpower = val;
+            Misc.DailyAgingManpower = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DailyAgingManpower);
@@ -4036,7 +4219,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [船団襲撃時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [船団襲撃時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4046,25 +4229,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyConvoyHuntTextBox.Text, out val))
             {
-                supplyConvoyHuntTextBox.Text = Misc.Economy.SupplyConvoyHunt.ToString(CultureInfo.InvariantCulture);
+                supplyConvoyHuntTextBox.Text = Misc.SupplyConvoyHunt.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyConvoyHuntTextBox.Text = Misc.Economy.SupplyConvoyHunt.ToString(CultureInfo.InvariantCulture);
+                supplyConvoyHuntTextBox.Text = Misc.SupplyConvoyHunt.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyConvoyHunt) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyConvoyHunt) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyConvoyHunt = val;
+            Misc.SupplyConvoyHunt = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyConvoyHunt);
@@ -4075,7 +4258,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [海軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4085,25 +4268,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyNavalStaticAoDTextBox.Text, out val))
             {
-                supplyNavalStaticAoDTextBox.Text = Misc.Economy.SupplyNavalStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyNavalStaticAoDTextBox.Text =
+                    Misc.SupplyNavalStaticAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyNavalStaticAoDTextBox.Text = Misc.Economy.SupplyNavalStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyNavalStaticAoDTextBox.Text =
+                    Misc.SupplyNavalStaticAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyNavalStaticAoD) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyNavalStaticAoD) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyNavalStaticAoD = val;
+            Misc.SupplyNavalStaticAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyNavalStaticAoD);
@@ -4114,7 +4299,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の移動時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [海軍の移動時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4124,25 +4309,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyNavalMovingTextBox.Text, out val))
             {
-                supplyNavalMovingTextBox.Text = Misc.Economy.SupplyNavalMoving.ToString(CultureInfo.InvariantCulture);
+                supplyNavalMovingTextBox.Text = Misc.SupplyNavalMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyNavalMovingTextBox.Text = Misc.Economy.SupplyNavalMoving.ToString(CultureInfo.InvariantCulture);
+                supplyNavalMovingTextBox.Text = Misc.SupplyNavalMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyNavalMoving) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyNavalMoving) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyNavalMoving = val;
+            Misc.SupplyNavalMoving = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyNavalMoving);
@@ -4153,7 +4338,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [海軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4163,25 +4348,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyNavalBattleAoDTextBox.Text, out val))
             {
-                supplyNavalBattleAoDTextBox.Text = Misc.Economy.SupplyNavalBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyNavalBattleAoDTextBox.Text =
+                    Misc.SupplyNavalBattleAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyNavalBattleAoDTextBox.Text = Misc.Economy.SupplyNavalBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyNavalBattleAoDTextBox.Text =
+                    Misc.SupplyNavalBattleAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyNavalBattleAoD) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyNavalBattleAoD) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyNavalBattleAoD = val;
+            Misc.SupplyNavalBattleAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyNavalBattleAoD);
@@ -4192,7 +4379,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4202,25 +4389,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyAirStaticAoDTextBox.Text, out val))
             {
-                supplyAirStaticAoDTextBox.Text = Misc.Economy.SupplyAirStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyAirStaticAoDTextBox.Text = Misc.SupplyAirStaticAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyAirStaticAoDTextBox.Text = Misc.Economy.SupplyAirStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyAirStaticAoDTextBox.Text = Misc.SupplyAirStaticAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyAirStaticAoD) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyAirStaticAoD) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyAirStaticAoD = val;
+            Misc.SupplyAirStaticAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyAirStaticAoD);
@@ -4231,7 +4418,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の移動時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍の移動時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4241,25 +4428,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyAirMovingTextBox.Text, out val))
             {
-                supplyAirMovingTextBox.Text = Misc.Economy.SupplyAirMoving.ToString(CultureInfo.InvariantCulture);
+                supplyAirMovingTextBox.Text = Misc.SupplyAirMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyAirMovingTextBox.Text = Misc.Economy.SupplyAirMoving.ToString(CultureInfo.InvariantCulture);
+                supplyAirMovingTextBox.Text = Misc.SupplyAirMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyAirMoving) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyAirMoving) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyAirMoving = val;
+            Misc.SupplyAirMoving = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyAirMoving);
@@ -4270,7 +4457,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4280,25 +4467,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyAirBattleAoDTextBox.Text, out val))
             {
-                supplyAirBattleAoDTextBox.Text = Misc.Economy.SupplyAirBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyAirBattleAoDTextBox.Text = Misc.SupplyAirBattleAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyAirBattleAoDTextBox.Text = Misc.Economy.SupplyAirBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyAirBattleAoDTextBox.Text = Misc.SupplyAirBattleAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyAirBattleAoD) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyAirBattleAoD) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyAirBattleAoD = val;
+            Misc.SupplyAirBattleAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyAirBattleAoD);
@@ -4309,7 +4496,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の爆撃時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍の爆撃時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4319,25 +4506,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyAirBombingTextBox.Text, out val))
             {
-                supplyAirBombingTextBox.Text = Misc.Economy.SupplyAirBombing.ToString(CultureInfo.InvariantCulture);
+                supplyAirBombingTextBox.Text = Misc.SupplyAirBombing.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyAirBombingTextBox.Text = Misc.Economy.SupplyAirBombing.ToString(CultureInfo.InvariantCulture);
+                supplyAirBombingTextBox.Text = Misc.SupplyAirBombing.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyAirBombing) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyAirBombing) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyAirBombing = val;
+            Misc.SupplyAirBombing = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyAirBombing);
@@ -4348,7 +4535,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4358,25 +4545,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyLandStaticAoDTextBox.Text, out val))
             {
-                supplyLandStaticAoDTextBox.Text = Misc.Economy.SupplyLandStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyLandStaticAoDTextBox.Text = Misc.SupplyLandStaticAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyLandStaticAoDTextBox.Text = Misc.Economy.SupplyLandStaticAoD.ToString(CultureInfo.InvariantCulture);
+                supplyLandStaticAoDTextBox.Text = Misc.SupplyLandStaticAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyLandStaticAoD) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyLandStaticAoD) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyLandStaticAoD = val;
+            Misc.SupplyLandStaticAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyLandStaticAoD);
@@ -4387,7 +4574,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の移動時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の移動時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4397,25 +4584,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyLandMovingTextBox.Text, out val))
             {
-                supplyLandMovingTextBox.Text = Misc.Economy.SupplyLandMoving.ToString(CultureInfo.InvariantCulture);
+                supplyLandMovingTextBox.Text = Misc.SupplyLandMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyLandMovingTextBox.Text = Misc.Economy.SupplyLandMoving.ToString(CultureInfo.InvariantCulture);
+                supplyLandMovingTextBox.Text = Misc.SupplyLandMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyLandMoving) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyLandMoving) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyLandMoving = val;
+            Misc.SupplyLandMoving = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyLandMoving);
@@ -4426,7 +4613,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4436,25 +4623,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyLandBattleAoDTextBox.Text, out val))
             {
-                supplyLandBattleAoDTextBox.Text = Misc.Economy.SupplyLandBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyLandBattleAoDTextBox.Text = Misc.SupplyLandBattleAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyLandBattleAoDTextBox.Text = Misc.Economy.SupplyLandBattleAoD.ToString(CultureInfo.InvariantCulture);
+                supplyLandBattleAoDTextBox.Text = Misc.SupplyLandBattleAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyLandBattleAoD) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyLandBattleAoD) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyLandBattleAoD = val;
+            Misc.SupplyLandBattleAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyLandBattleAoD);
@@ -4465,7 +4652,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の砲撃時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の砲撃時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4475,25 +4662,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyLandBombingTextBox.Text, out val))
             {
-                supplyLandBombingTextBox.Text = Misc.Economy.SupplyLandBombing.ToString(CultureInfo.InvariantCulture);
+                supplyLandBombingTextBox.Text = Misc.SupplyLandBombing.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyLandBombingTextBox.Text = Misc.Economy.SupplyLandBombing.ToString(CultureInfo.InvariantCulture);
+                supplyLandBombingTextBox.Text = Misc.SupplyLandBombing.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyLandBombing) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyLandBombing) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyLandBombing = val;
+            Misc.SupplyLandBombing = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyLandBombing);
@@ -4504,7 +4691,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の物資備蓄量]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の物資備蓄量]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4514,25 +4701,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyStockLandTextBox.Text, out val))
             {
-                supplyStockLandTextBox.Text = Misc.Economy.SupplyStockLand.ToString(CultureInfo.InvariantCulture);
+                supplyStockLandTextBox.Text = Misc.SupplyStockLand.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyStockLandTextBox.Text = Misc.Economy.SupplyStockLand.ToString(CultureInfo.InvariantCulture);
+                supplyStockLandTextBox.Text = Misc.SupplyStockLand.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyStockLand) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyStockLand) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyStockLand = val;
+            Misc.SupplyStockLand = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyStockLand);
@@ -4543,7 +4730,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の物資備蓄量]テキストボックスフォーカス移動後の処理
+        ///     [空軍の物資備蓄量]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4553,25 +4740,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyStockAirTextBox.Text, out val))
             {
-                supplyStockAirTextBox.Text = Misc.Economy.SupplyStockAir.ToString(CultureInfo.InvariantCulture);
+                supplyStockAirTextBox.Text = Misc.SupplyStockAir.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyStockAirTextBox.Text = Misc.Economy.SupplyStockAir.ToString(CultureInfo.InvariantCulture);
+                supplyStockAirTextBox.Text = Misc.SupplyStockAir.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyStockAir) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyStockAir) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyStockAir = val;
+            Misc.SupplyStockAir = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyStockAir);
@@ -4582,7 +4769,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の物資備蓄量]テキストボックスフォーカス移動後の処理
+        ///     [海軍の物資備蓄量]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4592,25 +4779,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyStockNavalTextBox.Text, out val))
             {
-                supplyStockNavalTextBox.Text = Misc.Economy.SupplyStockNaval.ToString(CultureInfo.InvariantCulture);
+                supplyStockNavalTextBox.Text = Misc.SupplyStockNaval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyStockNavalTextBox.Text = Misc.Economy.SupplyStockNaval.ToString(CultureInfo.InvariantCulture);
+                supplyStockNavalTextBox.Text = Misc.SupplyStockNaval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyStockNaval) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyStockNaval) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyStockNaval = val;
+            Misc.SupplyStockNaval = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyStockNaval);
@@ -4621,7 +4808,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [合成石油変換係数]テキストボックスフォーカス移動後の処理
+        ///     [合成石油変換係数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4631,25 +4818,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(syntheticOilConversionMultiplierTextBox.Text, out val))
             {
-                syntheticOilConversionMultiplierTextBox.Text = Misc.Economy.SyntheticOilConversionMultiplier.ToString(CultureInfo.InvariantCulture);
+                syntheticOilConversionMultiplierTextBox.Text =
+                    Misc.SyntheticOilConversionMultiplier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                syntheticOilConversionMultiplierTextBox.Text = Misc.Economy.SyntheticOilConversionMultiplier.ToString(CultureInfo.InvariantCulture);
+                syntheticOilConversionMultiplierTextBox.Text =
+                    Misc.SyntheticOilConversionMultiplier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SyntheticOilConversionMultiplier) <= 0.00005)
+            if (Math.Abs(val - Misc.SyntheticOilConversionMultiplier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SyntheticOilConversionMultiplier = val;
+            Misc.SyntheticOilConversionMultiplier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SyntheticOilConversionMultiplier);
@@ -4660,7 +4849,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [合成希少資源変換係数]テキストボックスフォーカス移動後の処理
+        ///     [合成希少資源変換係数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4670,25 +4859,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(syntheticRaresConversionMultiplierTextBox.Text, out val))
             {
-                syntheticRaresConversionMultiplierTextBox.Text = Misc.Economy.SyntheticRaresConversionMultiplier.ToString(CultureInfo.InvariantCulture);
+                syntheticRaresConversionMultiplierTextBox.Text =
+                    Misc.SyntheticRaresConversionMultiplier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                syntheticRaresConversionMultiplierTextBox.Text = Misc.Economy.SyntheticRaresConversionMultiplier.ToString(CultureInfo.InvariantCulture);
+                syntheticRaresConversionMultiplierTextBox.Text =
+                    Misc.SyntheticRaresConversionMultiplier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SyntheticRaresConversionMultiplier) <= 0.00005)
+            if (Math.Abs(val - Misc.SyntheticRaresConversionMultiplier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SyntheticRaresConversionMultiplier = val;
+            Misc.SyntheticRaresConversionMultiplier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SyntheticRaresConversionMultiplier);
@@ -4699,7 +4890,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [軍隊の給料]テキストボックスフォーカス移動後の処理
+        ///     [軍隊の給料]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4709,25 +4900,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(militarySalaryTextBox.Text, out val))
             {
-                militarySalaryTextBox.Text = Misc.Economy.MilitarySalary.ToString(CultureInfo.InvariantCulture);
+                militarySalaryTextBox.Text = Misc.MilitarySalary.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                militarySalaryTextBox.Text = Misc.Economy.MilitarySalary.ToString(CultureInfo.InvariantCulture);
+                militarySalaryTextBox.Text = Misc.MilitarySalary.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MilitarySalary) <= 0.00005)
+            if (Math.Abs(val - Misc.MilitarySalary) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MilitarySalary = val;
+            Misc.MilitarySalary = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MilitarySalary);
@@ -4738,7 +4929,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [最大諜報費比率]テキストボックスフォーカス移動後の処理
+        ///     [最大諜報費比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4748,25 +4939,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxIntelligenceExpenditureTextBox.Text, out val))
             {
-                maxIntelligenceExpenditureTextBox.Text = Misc.Economy.MaxIntelligenceExpenditure.ToString(CultureInfo.InvariantCulture);
+                maxIntelligenceExpenditureTextBox.Text =
+                    Misc.MaxIntelligenceExpenditure.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxIntelligenceExpenditureTextBox.Text = Misc.Economy.MaxIntelligenceExpenditure.ToString(CultureInfo.InvariantCulture);
+                maxIntelligenceExpenditureTextBox.Text =
+                    Misc.MaxIntelligenceExpenditure.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxIntelligenceExpenditure) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxIntelligenceExpenditure) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxIntelligenceExpenditure = val;
+            Misc.MaxIntelligenceExpenditure = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxIntelligenceExpenditure);
@@ -4777,7 +4970,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [最大研究費比率]テキストボックスフォーカス移動後の処理
+        ///     [最大研究費比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4787,25 +4980,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxResearchExpenditureTextBox.Text, out val))
             {
-                maxResearchExpenditureTextBox.Text = Misc.Economy.MaxResearchExpenditure.ToString(CultureInfo.InvariantCulture);
+                maxResearchExpenditureTextBox.Text =
+                    Misc.MaxResearchExpenditure.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxResearchExpenditureTextBox.Text = Misc.Economy.MaxResearchExpenditure.ToString(CultureInfo.InvariantCulture);
+                maxResearchExpenditureTextBox.Text =
+                    Misc.MaxResearchExpenditure.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxResearchExpenditure) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxResearchExpenditure) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxResearchExpenditure = val;
+            Misc.MaxResearchExpenditure = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxResearchExpenditure);
@@ -4816,7 +5011,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [軍隊の給料不足時の消耗補正]テキストボックスフォーカス移動後の処理
+        ///     [軍隊の給料不足時の消耗補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4826,25 +5021,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(militarySalaryAttrictionModifierTextBox.Text, out val))
             {
-                militarySalaryAttrictionModifierTextBox.Text = Misc.Economy.MilitarySalaryAttrictionModifier.ToString(CultureInfo.InvariantCulture);
+                militarySalaryAttrictionModifierTextBox.Text =
+                    Misc.MilitarySalaryAttrictionModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                militarySalaryAttrictionModifierTextBox.Text = Misc.Economy.MilitarySalaryAttrictionModifier.ToString(CultureInfo.InvariantCulture);
+                militarySalaryAttrictionModifierTextBox.Text =
+                    Misc.MilitarySalaryAttrictionModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MilitarySalaryAttrictionModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.MilitarySalaryAttrictionModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MilitarySalaryAttrictionModifier = val;
+            Misc.MilitarySalaryAttrictionModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MilitarySalaryAttrictionModifier);
@@ -4855,7 +5052,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [軍隊の給料不足時の不満度補正]テキストボックスフォーカス移動後の処理
+        ///     [軍隊の給料不足時の不満度補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4865,25 +5062,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(militarySalaryDissentModifierTextBox.Text, out val))
             {
-                militarySalaryDissentModifierTextBox.Text = Misc.Economy.MilitarySalaryDissentModifier.ToString(CultureInfo.InvariantCulture);
+                militarySalaryDissentModifierTextBox.Text =
+                    Misc.MilitarySalaryDissentModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                militarySalaryDissentModifierTextBox.Text = Misc.Economy.MilitarySalaryDissentModifier.ToString(CultureInfo.InvariantCulture);
+                militarySalaryDissentModifierTextBox.Text =
+                    Misc.MilitarySalaryDissentModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MilitarySalaryDissentModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.MilitarySalaryDissentModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MilitarySalaryDissentModifier = val;
+            Misc.MilitarySalaryDissentModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MilitarySalaryDissentModifier);
@@ -4894,7 +5093,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [原子炉維持コスト]テキストボックスフォーカス移動後の処理
+        ///     [原子炉維持コスト]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4904,25 +5103,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(nuclearSiteUpkeepCostTextBox.Text, out val))
             {
-                nuclearSiteUpkeepCostTextBox.Text = Misc.Economy.NuclearSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                nuclearSiteUpkeepCostTextBox.Text =
+                    Misc.NuclearSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                nuclearSiteUpkeepCostTextBox.Text = Misc.Economy.NuclearSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                nuclearSiteUpkeepCostTextBox.Text =
+                    Misc.NuclearSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.NuclearSiteUpkeepCost) <= 0.00005)
+            if (Math.Abs(val - Misc.NuclearSiteUpkeepCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.NuclearSiteUpkeepCost = val;
+            Misc.NuclearSiteUpkeepCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.NuclearSiteUpkeepCost);
@@ -4933,7 +5134,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [原子力発電所維持コスト]テキストボックスフォーカス移動後の処理
+        ///     [原子力発電所維持コスト]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4943,25 +5144,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(nuclearPowerUpkeepCostTextBox.Text, out val))
             {
-                nuclearPowerUpkeepCostTextBox.Text = Misc.Economy.NuclearPowerUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                nuclearPowerUpkeepCostTextBox.Text =
+                    Misc.NuclearPowerUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                nuclearPowerUpkeepCostTextBox.Text = Misc.Economy.NuclearPowerUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                nuclearPowerUpkeepCostTextBox.Text =
+                    Misc.NuclearPowerUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.NuclearPowerUpkeepCost) <= 0.00005)
+            if (Math.Abs(val - Misc.NuclearPowerUpkeepCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.NuclearPowerUpkeepCost = val;
+            Misc.NuclearPowerUpkeepCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.NuclearPowerUpkeepCost);
@@ -4972,7 +5175,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [合成石油工場維持コスト]テキストボックスフォーカス移動後の処理
+        ///     [合成石油工場維持コスト]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4982,25 +5185,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(syntheticOilSiteUpkeepCostTextBox.Text, out val))
             {
-                syntheticOilSiteUpkeepCostTextBox.Text = Misc.Economy.SyntheticOilSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                syntheticOilSiteUpkeepCostTextBox.Text =
+                    Misc.SyntheticOilSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                syntheticOilSiteUpkeepCostTextBox.Text = Misc.Economy.SyntheticOilSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                syntheticOilSiteUpkeepCostTextBox.Text =
+                    Misc.SyntheticOilSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SyntheticOilSiteUpkeepCost) <= 0.00005)
+            if (Math.Abs(val - Misc.SyntheticOilSiteUpkeepCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SyntheticOilSiteUpkeepCost = val;
+            Misc.SyntheticOilSiteUpkeepCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SyntheticOilSiteUpkeepCost);
@@ -5011,7 +5216,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [合成希少資源工場維持コスト]テキストボックスフォーカス移動後の処理
+        ///     [合成希少資源工場維持コスト]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5021,25 +5226,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(syntheticRaresSiteUpkeepCostTextBox.Text, out val))
             {
-                syntheticRaresSiteUpkeepCostTextBox.Text = Misc.Economy.SyntheticRaresSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                syntheticRaresSiteUpkeepCostTextBox.Text =
+                    Misc.SyntheticRaresSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                syntheticRaresSiteUpkeepCostTextBox.Text = Misc.Economy.SyntheticRaresSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                syntheticRaresSiteUpkeepCostTextBox.Text =
+                    Misc.SyntheticRaresSiteUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SyntheticRaresSiteUpkeepCost) <= 0.00005)
+            if (Math.Abs(val - Misc.SyntheticRaresSiteUpkeepCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SyntheticRaresSiteUpkeepCost = val;
+            Misc.SyntheticRaresSiteUpkeepCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SyntheticRaresSiteUpkeepCost);
@@ -5050,7 +5257,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍情報の存続期間]テキストボックスフォーカス移動後の処理
+        ///     [海軍情報の存続期間]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5060,25 +5267,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(durationDetectionTextBox.Text, out val))
             {
-                durationDetectionTextBox.Text = Misc.Economy.DurationDetection.ToString(CultureInfo.InvariantCulture);
+                durationDetectionTextBox.Text = Misc.DurationDetection.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                durationDetectionTextBox.Text = Misc.Economy.DurationDetection.ToString(CultureInfo.InvariantCulture);
+                durationDetectionTextBox.Text = Misc.DurationDetection.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.DurationDetection)
+            if (val == Misc.DurationDetection)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DurationDetection = val;
+            Misc.DurationDetection = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DurationDetection);
@@ -5089,7 +5296,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [船団攻撃回避時間]テキストボックスフォーカス移動後の処理
+        ///     [船団攻撃回避時間]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5099,25 +5306,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(convoyProvinceHostileTimeTextBox.Text, out val))
             {
-                convoyProvinceHostileTimeTextBox.Text = Misc.Economy.ConvoyProvinceHostileTime.ToString(CultureInfo.InvariantCulture);
+                convoyProvinceHostileTimeTextBox.Text =
+                    Misc.ConvoyProvinceHostileTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                convoyProvinceHostileTimeTextBox.Text = Misc.Economy.ConvoyProvinceHostileTime.ToString(CultureInfo.InvariantCulture);
+                convoyProvinceHostileTimeTextBox.Text =
+                    Misc.ConvoyProvinceHostileTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.ConvoyProvinceHostileTime)
+            if (val == Misc.ConvoyProvinceHostileTime)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ConvoyProvinceHostileTime = val;
+            Misc.ConvoyProvinceHostileTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ConvoyProvinceHostileTime);
@@ -5128,7 +5337,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [船団攻撃妨害時間]テキストボックスフォーカス移動後の処理
+        ///     [船団攻撃妨害時間]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5138,25 +5347,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(convoyProvinceBlockedTimeTextBox.Text, out val))
             {
-                convoyProvinceBlockedTimeTextBox.Text = Misc.Economy.ConvoyProvinceBlockedTime.ToString(CultureInfo.InvariantCulture);
+                convoyProvinceBlockedTimeTextBox.Text =
+                    Misc.ConvoyProvinceBlockedTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                convoyProvinceBlockedTimeTextBox.Text = Misc.Economy.ConvoyProvinceBlockedTime.ToString(CultureInfo.InvariantCulture);
+                convoyProvinceBlockedTimeTextBox.Text =
+                    Misc.ConvoyProvinceBlockedTime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.ConvoyProvinceBlockedTime)
+            if (val == Misc.ConvoyProvinceBlockedTime)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ConvoyProvinceBlockedTime = val;
+            Misc.ConvoyProvinceBlockedTime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ConvoyProvinceBlockedTime);
@@ -5167,7 +5378,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [自動貿易に必要な輸送船団割合]テキストボックスフォーカス移動後の処理
+        ///     [自動貿易に必要な輸送船団割合]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5177,25 +5388,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(autoTradeConvoyTextBox.Text, out val))
             {
-                autoTradeConvoyTextBox.Text = Misc.Economy.AutoTradeConvoy.ToString(CultureInfo.InvariantCulture);
+                autoTradeConvoyTextBox.Text = Misc.AutoTradeConvoy.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                autoTradeConvoyTextBox.Text = Misc.Economy.AutoTradeConvoy.ToString(CultureInfo.InvariantCulture);
+                autoTradeConvoyTextBox.Text = Misc.AutoTradeConvoy.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.AutoTradeConvoy) <= 0.00005)
+            if (Math.Abs(val - Misc.AutoTradeConvoy) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.AutoTradeConvoy = val;
+            Misc.AutoTradeConvoy = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.AutoTradeConvoy);
@@ -5206,7 +5417,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報維持コスト]テキストボックスフォーカス移動後の処理
+        ///     [諜報維持コスト]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5216,25 +5427,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(spyUpkeepCostTextBox.Text, out val))
             {
-                spyUpkeepCostTextBox.Text = Misc.Economy.SpyUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                spyUpkeepCostTextBox.Text = Misc.SpyUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyUpkeepCostTextBox.Text = Misc.Economy.SpyUpkeepCost.ToString(CultureInfo.InvariantCulture);
+                spyUpkeepCostTextBox.Text = Misc.SpyUpkeepCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SpyUpkeepCost) <= 0.00005)
+            if (Math.Abs(val - Misc.SpyUpkeepCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SpyUpkeepCost = val;
+            Misc.SpyUpkeepCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyUpkeepCost);
@@ -5245,7 +5456,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [スパイ発見確率]テキストボックスフォーカス移動後の処理
+        ///     [スパイ発見確率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5255,25 +5466,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(spyDetectionChanceTextBox.Text, out val))
             {
-                spyDetectionChanceTextBox.Text = Misc.Economy.SpyDetectionChance.ToString(CultureInfo.InvariantCulture);
+                spyDetectionChanceTextBox.Text = Misc.SpyDetectionChance.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyDetectionChanceTextBox.Text = Misc.Economy.SpyDetectionChance.ToString(CultureInfo.InvariantCulture);
+                spyDetectionChanceTextBox.Text = Misc.SpyDetectionChance.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SpyDetectionChance) <= 0.00005)
+            if (Math.Abs(val - Misc.SpyDetectionChance) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SpyDetectionChance = val;
+            Misc.SpyDetectionChance = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyDetectionChance);
@@ -5284,7 +5495,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [インフラによるプロヴィンス効率補正]テキストボックスフォーカス移動後の処理
+        ///     [インフラによるプロヴィンス効率補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5294,25 +5505,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(infraEfficiencyModifierTextBox.Text, out val))
             {
-                infraEfficiencyModifierTextBox.Text = Misc.Economy.InfraEfficiencyModifier.ToString(CultureInfo.InvariantCulture);
+                infraEfficiencyModifierTextBox.Text =
+                    Misc.InfraEfficiencyModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                infraEfficiencyModifierTextBox.Text = Misc.Economy.InfraEfficiencyModifier.ToString(CultureInfo.InvariantCulture);
+                infraEfficiencyModifierTextBox.Text =
+                    Misc.InfraEfficiencyModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.InfraEfficiencyModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.InfraEfficiencyModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.InfraEfficiencyModifier = val;
+            Misc.InfraEfficiencyModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.InfraEfficiencyModifier);
@@ -5323,7 +5536,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [人的資源の消費財生産補正]テキストボックスフォーカス移動後の処理
+        ///     [人的資源の消費財生産補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5333,25 +5546,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(manpowerToConsumerGoodsTextBox.Text, out val))
             {
-                manpowerToConsumerGoodsTextBox.Text = Misc.Economy.ManpowerToConsumerGoods.ToString(CultureInfo.InvariantCulture);
+                manpowerToConsumerGoodsTextBox.Text =
+                    Misc.ManpowerToConsumerGoods.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerToConsumerGoodsTextBox.Text = Misc.Economy.ManpowerToConsumerGoods.ToString(CultureInfo.InvariantCulture);
+                manpowerToConsumerGoodsTextBox.Text =
+                    Misc.ManpowerToConsumerGoods.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerToConsumerGoods) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerToConsumerGoods) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerToConsumerGoods = val;
+            Misc.ManpowerToConsumerGoods = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerToConsumerGoods);
@@ -5362,7 +5577,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [スライダー移動の間隔]テキストボックスフォーカス移動後の処理
+        ///     [スライダー移動の間隔]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5372,25 +5587,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(timeBetweenSliderChangesAoDTextBox.Text, out val))
             {
-                timeBetweenSliderChangesAoDTextBox.Text = Misc.Economy.TimeBetweenSliderChangesAoD.ToString(CultureInfo.InvariantCulture);
+                timeBetweenSliderChangesAoDTextBox.Text =
+                    Misc.TimeBetweenSliderChangesAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                timeBetweenSliderChangesAoDTextBox.Text = Misc.Economy.TimeBetweenSliderChangesAoD.ToString(CultureInfo.InvariantCulture);
+                timeBetweenSliderChangesAoDTextBox.Text =
+                    Misc.TimeBetweenSliderChangesAoD.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.TimeBetweenSliderChangesAoD)
+            if (val == Misc.TimeBetweenSliderChangesAoD)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TimeBetweenSliderChangesAoD = val;
+            Misc.TimeBetweenSliderChangesAoD = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TimeBetweenSliderChangesAoD);
@@ -5401,7 +5618,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海外プロヴィンスへの配置の必要IC]テキストボックスフォーカス移動後の処理
+        ///     [海外プロヴィンスへの配置の必要IC]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5411,25 +5628,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(minimalPlacementIcTextBox.Text, out val))
             {
-                minimalPlacementIcTextBox.Text = Misc.Economy.MinimalPlacementIc.ToString(CultureInfo.InvariantCulture);
+                minimalPlacementIcTextBox.Text = Misc.MinimalPlacementIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                minimalPlacementIcTextBox.Text = Misc.Economy.MinimalPlacementIc.ToString(CultureInfo.InvariantCulture);
+                minimalPlacementIcTextBox.Text = Misc.MinimalPlacementIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MinimalPlacementIc) <= 0.00005)
+            if (Math.Abs(val - Misc.MinimalPlacementIc) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MinimalPlacementIc = val;
+            Misc.MinimalPlacementIc = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinimalPlacementIc);
@@ -5440,7 +5657,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [原子力発電量]テキストボックスフォーカス移動後の処理
+        ///     [原子力発電量]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5450,25 +5667,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(nuclearPowerTextBox.Text, out val))
             {
-                nuclearPowerTextBox.Text = Misc.Economy.NuclearPower.ToString(CultureInfo.InvariantCulture);
+                nuclearPowerTextBox.Text = Misc.NuclearPower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                nuclearPowerTextBox.Text = Misc.Economy.NuclearPower.ToString(CultureInfo.InvariantCulture);
+                nuclearPowerTextBox.Text = Misc.NuclearPower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.NuclearPower) <= 0.00005)
+            if (Math.Abs(val - Misc.NuclearPower) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.NuclearPower = val;
+            Misc.NuclearPower = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.NuclearPower);
@@ -5479,7 +5696,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [インフラの自然回復率]テキストボックスフォーカス移動後の処理
+        ///     [インフラの自然回復率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5489,25 +5706,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(freeInfraRepairTextBox.Text, out val))
             {
-                freeInfraRepairTextBox.Text = Misc.Economy.FreeInfraRepair.ToString(CultureInfo.InvariantCulture);
+                freeInfraRepairTextBox.Text = Misc.FreeInfraRepair.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                freeInfraRepairTextBox.Text = Misc.Economy.FreeInfraRepair.ToString(CultureInfo.InvariantCulture);
+                freeInfraRepairTextBox.Text = Misc.FreeInfraRepair.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.FreeInfraRepair) <= 0.00005)
+            if (Math.Abs(val - Misc.FreeInfraRepair) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.FreeInfraRepair = val;
+            Misc.FreeInfraRepair = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FreeInfraRepair);
@@ -5518,7 +5735,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [スライダー移動時の最大不満度]テキストボックスフォーカス移動後の処理
+        ///     [スライダー移動時の最大不満度]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5528,25 +5745,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxSliderDissentTextBox.Text, out val))
             {
-                maxSliderDissentTextBox.Text = Misc.Economy.MaxSliderDissent.ToString(CultureInfo.InvariantCulture);
+                maxSliderDissentTextBox.Text = Misc.MaxSliderDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxSliderDissentTextBox.Text = Misc.Economy.MaxSliderDissent.ToString(CultureInfo.InvariantCulture);
+                maxSliderDissentTextBox.Text = Misc.MaxSliderDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxSliderDissent) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxSliderDissent) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxSliderDissent = val;
+            Misc.MaxSliderDissent = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxSliderDissent);
@@ -5557,7 +5774,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [スライダー移動時の最小不満度]テキストボックスフォーカス移動後の処理
+        ///     [スライダー移動時の最小不満度]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5567,25 +5784,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(minSliderDissentTextBox.Text, out val))
             {
-                minSliderDissentTextBox.Text = Misc.Economy.MinSliderDissent.ToString(CultureInfo.InvariantCulture);
+                minSliderDissentTextBox.Text = Misc.MinSliderDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                minSliderDissentTextBox.Text = Misc.Economy.MinSliderDissent.ToString(CultureInfo.InvariantCulture);
+                minSliderDissentTextBox.Text = Misc.MinSliderDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MinSliderDissent) <= 0.00005)
+            if (Math.Abs(val - Misc.MinSliderDissent) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MinSliderDissent = val;
+            Misc.MinSliderDissent = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinSliderDissent);
@@ -5596,7 +5813,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [スライダー移動可能な最大不満度]テキストボックスフォーカス移動後の処理
+        ///     [スライダー移動可能な最大不満度]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5606,25 +5823,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxDissentSliderMoveTextBox.Text, out val))
             {
-                maxDissentSliderMoveTextBox.Text = Misc.Economy.MaxDissentSliderMove.ToString(CultureInfo.InvariantCulture);
+                maxDissentSliderMoveTextBox.Text =
+                    Misc.MaxDissentSliderMove.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxDissentSliderMoveTextBox.Text = Misc.Economy.MaxDissentSliderMove.ToString(CultureInfo.InvariantCulture);
+                maxDissentSliderMoveTextBox.Text =
+                    Misc.MaxDissentSliderMove.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxDissentSliderMove) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxDissentSliderMove) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxDissentSliderMove = val;
+            Misc.MaxDissentSliderMove = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxDissentSliderMove);
@@ -5635,7 +5854,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [工場集中ボーナス]テキストボックスフォーカス移動後の処理
+        ///     [工場集中ボーナス]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5645,25 +5864,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(icConcentrationBonusTextBox.Text, out val))
             {
-                icConcentrationBonusTextBox.Text = Misc.Economy.IcConcentrationBonus.ToString(CultureInfo.InvariantCulture);
+                icConcentrationBonusTextBox.Text =
+                    Misc.IcConcentrationBonus.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icConcentrationBonusTextBox.Text = Misc.Economy.IcConcentrationBonus.ToString(CultureInfo.InvariantCulture);
+                icConcentrationBonusTextBox.Text =
+                    Misc.IcConcentrationBonus.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcConcentrationBonus) <= 0.00005)
+            if (Math.Abs(val - Misc.IcConcentrationBonus) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcConcentrationBonus = val;
+            Misc.IcConcentrationBonus = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcConcentrationBonus);
@@ -5674,7 +5895,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [輸送艦変換係数]テキストボックスフォーカス移動後の処理
+        ///     [輸送艦変換係数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5684,25 +5905,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(transportConversionTextBox.Text, out val))
             {
-                transportConversionTextBox.Text = Misc.Economy.TransportConversion.ToString(CultureInfo.InvariantCulture);
+                transportConversionTextBox.Text = Misc.TransportConversion.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                transportConversionTextBox.Text = Misc.Economy.TransportConversion.ToString(CultureInfo.InvariantCulture);
+                transportConversionTextBox.Text = Misc.TransportConversion.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TransportConversion) <= 0.00005)
+            if (Math.Abs(val - Misc.TransportConversion) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TransportConversion = val;
+            Misc.TransportConversion = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TransportConversion);
@@ -5713,7 +5934,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [閣僚変更遅延日数]テキストボックスフォーカス移動後の処理
+        ///     [閣僚変更遅延日数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5723,25 +5944,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(ministerChangeDelayTextBox.Text, out val))
             {
-                ministerChangeDelayTextBox.Text = Misc.Economy.MinisterChangeDelay.ToString(CultureInfo.InvariantCulture);
+                ministerChangeDelayTextBox.Text = Misc.MinisterChangeDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ministerChangeDelayTextBox.Text = Misc.Economy.MinisterChangeDelay.ToString(CultureInfo.InvariantCulture);
+                ministerChangeDelayTextBox.Text = Misc.MinisterChangeDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.MinisterChangeDelay)
+            if (val == Misc.MinisterChangeDelay)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MinisterChangeDelay = val;
+            Misc.MinisterChangeDelay = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinisterChangeDelay);
@@ -5752,7 +5973,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [閣僚変更遅延日数(イベント)]テキストボックスフォーカス移動後の処理
+        ///     [閣僚変更遅延日数(イベント)]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5762,25 +5983,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(ministerChangeEventDelayTextBox.Text, out val))
             {
-                ministerChangeEventDelayTextBox.Text = Misc.Economy.MinisterChangeEventDelay.ToString(CultureInfo.InvariantCulture);
+                ministerChangeEventDelayTextBox.Text =
+                    Misc.MinisterChangeEventDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ministerChangeEventDelayTextBox.Text = Misc.Economy.MinisterChangeEventDelay.ToString(CultureInfo.InvariantCulture);
+                ministerChangeEventDelayTextBox.Text =
+                    Misc.MinisterChangeEventDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.MinisterChangeEventDelay)
+            if (val == Misc.MinisterChangeEventDelay)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MinisterChangeEventDelay = val;
+            Misc.MinisterChangeEventDelay = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinisterChangeEventDelay);
@@ -5791,7 +6014,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [国策変更遅延日数]テキストボックスフォーカス移動後の処理
+        ///     [国策変更遅延日数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5801,25 +6024,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(ideaChangeDelayTextBox.Text, out val))
             {
-                ideaChangeDelayTextBox.Text = Misc.Economy.IdeaChangeDelay.ToString(CultureInfo.InvariantCulture);
+                ideaChangeDelayTextBox.Text = Misc.IdeaChangeDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ideaChangeDelayTextBox.Text = Misc.Economy.IdeaChangeDelay.ToString(CultureInfo.InvariantCulture);
+                ideaChangeDelayTextBox.Text = Misc.IdeaChangeDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.IdeaChangeDelay)
+            if (val == Misc.IdeaChangeDelay)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IdeaChangeDelay = val;
+            Misc.IdeaChangeDelay = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IdeaChangeDelay);
@@ -5830,7 +6053,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [国策変更遅延日数(イベント)]テキストボックスフォーカス移動後の処理
+        ///     [国策変更遅延日数(イベント)]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5840,25 +6063,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(ideaChangeEventDelayTextBox.Text, out val))
             {
-                ideaChangeEventDelayTextBox.Text = Misc.Economy.IdeaChangeEventDelay.ToString(CultureInfo.InvariantCulture);
+                ideaChangeEventDelayTextBox.Text =
+                    Misc.IdeaChangeEventDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ideaChangeEventDelayTextBox.Text = Misc.Economy.IdeaChangeEventDelay.ToString(CultureInfo.InvariantCulture);
+                ideaChangeEventDelayTextBox.Text =
+                    Misc.IdeaChangeEventDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.IdeaChangeEventDelay)
+            if (val == Misc.IdeaChangeEventDelay)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IdeaChangeEventDelay = val;
+            Misc.IdeaChangeEventDelay = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IdeaChangeEventDelay);
@@ -5869,7 +6094,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [指揮官変更遅延日数]テキストボックスフォーカス移動後の処理
+        ///     [指揮官変更遅延日数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5879,25 +6104,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(leaderChangeDelayTextBox.Text, out val))
             {
-                leaderChangeDelayTextBox.Text = Misc.Economy.LeaderChangeDelay.ToString(CultureInfo.InvariantCulture);
+                leaderChangeDelayTextBox.Text = Misc.LeaderChangeDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                leaderChangeDelayTextBox.Text = Misc.Economy.LeaderChangeDelay.ToString(CultureInfo.InvariantCulture);
+                leaderChangeDelayTextBox.Text = Misc.LeaderChangeDelay.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Economy.LeaderChangeDelay)
+            if (val == Misc.LeaderChangeDelay)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.LeaderChangeDelay = val;
+            Misc.LeaderChangeDelay = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.LeaderChangeDelay);
@@ -5908,7 +6133,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [国策変更時の不満度上昇量]テキストボックスフォーカス移動後の処理
+        ///     [国策変更時の不満度上昇量]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5918,25 +6143,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(changeIdeaDissentTextBox.Text, out val))
             {
-                changeIdeaDissentTextBox.Text = Misc.Economy.ChangeIdeaDissent.ToString(CultureInfo.InvariantCulture);
+                changeIdeaDissentTextBox.Text = Misc.ChangeIdeaDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                changeIdeaDissentTextBox.Text = Misc.Economy.ChangeIdeaDissent.ToString(CultureInfo.InvariantCulture);
+                changeIdeaDissentTextBox.Text = Misc.ChangeIdeaDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ChangeIdeaDissent) <= 0.00005)
+            if (Math.Abs(val - Misc.ChangeIdeaDissent) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ChangeIdeaDissent = val;
+            Misc.ChangeIdeaDissent = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ChangeIdeaDissent);
@@ -5947,7 +6172,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [閣僚変更時の不満度上昇量]テキストボックスフォーカス移動後の処理
+        ///     [閣僚変更時の不満度上昇量]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5957,25 +6182,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(changeMinisterDissentTextBox.Text, out val))
             {
-                changeMinisterDissentTextBox.Text = Misc.Economy.ChangeMinisterDissent.ToString(CultureInfo.InvariantCulture);
+                changeMinisterDissentTextBox.Text =
+                    Misc.ChangeMinisterDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                changeMinisterDissentTextBox.Text = Misc.Economy.ChangeMinisterDissent.ToString(CultureInfo.InvariantCulture);
+                changeMinisterDissentTextBox.Text =
+                    Misc.ChangeMinisterDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ChangeMinisterDissent) <= 0.00005)
+            if (Math.Abs(val - Misc.ChangeMinisterDissent) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ChangeMinisterDissent = val;
+            Misc.ChangeMinisterDissent = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ChangeMinisterDissent);
@@ -5986,7 +6213,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [反乱が発生する最低不満度]テキストボックスフォーカス移動後の処理
+        ///     [反乱が発生する最低不満度]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5996,25 +6223,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(minDissentRevoltTextBox.Text, out val))
             {
-                minDissentRevoltTextBox.Text = Misc.Economy.MinDissentRevolt.ToString(CultureInfo.InvariantCulture);
+                minDissentRevoltTextBox.Text = Misc.MinDissentRevolt.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                minDissentRevoltTextBox.Text = Misc.Economy.MinDissentRevolt.ToString(CultureInfo.InvariantCulture);
+                minDissentRevoltTextBox.Text = Misc.MinDissentRevolt.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MinDissentRevolt) <= 0.00005)
+            if (Math.Abs(val - Misc.MinDissentRevolt) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MinDissentRevolt = val;
+            Misc.MinDissentRevolt = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinDissentRevolt);
@@ -6025,7 +6252,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [不満度による反乱軍発生率係数]テキストボックスフォーカス移動後の処理
+        ///     [不満度による反乱軍発生率係数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6035,25 +6262,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(dissentRevoltMultiplierTextBox.Text, out val))
             {
-                dissentRevoltMultiplierTextBox.Text = Misc.Economy.DissentRevoltMultiplier.ToString(CultureInfo.InvariantCulture);
+                dissentRevoltMultiplierTextBox.Text =
+                    Misc.DissentRevoltMultiplier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                dissentRevoltMultiplierTextBox.Text = Misc.Economy.DissentRevoltMultiplier.ToString(CultureInfo.InvariantCulture);
+                dissentRevoltMultiplierTextBox.Text =
+                    Misc.DissentRevoltMultiplier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DissentRevoltMultiplier) <= 0.00005)
+            if (Math.Abs(val - Misc.DissentRevoltMultiplier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DissentRevoltMultiplier = val;
+            Misc.DissentRevoltMultiplier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DissentRevoltMultiplier);
@@ -6307,7 +6536,7 @@ namespace HoI2Editor.Forms
                 nukesProductionModifierLabel.Enabled = true;
                 convoySystemOptionsAlliedLabel.Enabled = true;
                 resourceConvoysBackUnneededLabel.Enabled = true;
-            
+
                 nukesProductionModifierTextBox.Enabled = true;
                 convoySystemOptionsAlliedComboBox.Enabled = true;
                 resourceConvoysBackUnneededTextBox.Enabled = true;
@@ -6335,128 +6564,247 @@ namespace HoI2Editor.Forms
             // 編集項目の値を更新する
             if (Game.Type == GameType.DarkestHour)
             {
-                minAvailableIcTextBox.Text = Misc.Economy.MinAvailableIc.ToString(CultureInfo.InvariantCulture);
-                minFinalIcTextBox.Text = Misc.Economy.MinFinalIc.ToString(CultureInfo.InvariantCulture);
-                dissentReductionTextBox.Text = Misc.Economy.DissentReduction.ToString(CultureInfo.InvariantCulture);
-                icMultiplierPuppetTextBox.Text = Misc.Economy.IcMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
-                resourceMultiplierNonNationalTextBox.Text = Misc.Economy.ResourceMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
-                resourceMultiplierNonOwnedTextBox.Text = Misc.Economy.ResourceMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
-                resourceMultiplierNonNationalAiTextBox.Text = Misc.Economy.ResourceMultiplierNonNationalAi.ToString(CultureInfo.InvariantCulture);
-                resourceMultiplierPuppetTextBox.Text = Misc.Economy.ResourceMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
-                manpowerMultiplierPuppetTextBox.Text = Misc.Economy.ManpowerMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
-                manpowerMultiplierWartimeOverseaTextBox.Text = Misc.Economy.ManpowerMultiplierWartimeOversea.ToString(CultureInfo.InvariantCulture);
-                manpowerMultiplierPeacetimeTextBox.Text = Misc.Economy.ManpowerMultiplierPeacetime.ToString(CultureInfo.InvariantCulture);
-                manpowerMultiplierWartimeTextBox.Text = Misc.Economy.ManpowerMultiplierWartime.ToString(CultureInfo.InvariantCulture);
-                dailyRetiredManpowerTextBox.Text = Misc.Economy.DailyRetiredManpower.ToString(CultureInfo.InvariantCulture);
-                reinforceToUpdateModifierTextBox.Text = Misc.Economy.ReinforceToUpdateModifier.ToString(CultureInfo.InvariantCulture);
-                nationalismPerManpowerDhTextBox.Text = Misc.Economy.NationalismPerManpowerDh.ToString(CultureInfo.InvariantCulture);
-                maxNationalismTextBox.Text = Misc.Economy.MaxNationalism.ToString(CultureInfo.InvariantCulture);
-                maxRevoltRiskTextBox.Text = Misc.Economy.MaxRevoltRisk.ToString(CultureInfo.InvariantCulture);
-                canUnitSendNonAlliedDhComboBox.SelectedIndex = Misc.Economy.CanUnitSendNonAlliedDh;
-                bluePrintsCanSoldNonAlliedComboBox.SelectedIndex = Misc.Economy.BluePrintsCanSoldNonAllied;
-                provinceCanSoldNonAlliedComboBox.SelectedIndex = Misc.Economy.ProvinceCanSoldNonAllied;
-                transferAlliedCoreProvincesComboBox.SelectedIndex = Misc.Economy.TransferAlliedCoreProvinces ? 1 : 0;
-                provinceBuildingsRepairModifierTextBox.Text = Misc.Economy.ProvinceBuildingsRepairModifier.ToString(CultureInfo.InvariantCulture);
-                provinceResourceRepairModifierTextBox.Text = Misc.Economy.ProvinceResourceRepairModifier.ToString(CultureInfo.InvariantCulture);
-                stockpileLimitMultiplierResourceTextBox.Text = Misc.Economy.StockpileLimitMultiplierResource.ToString(CultureInfo.InvariantCulture);
-                stockpileLimitMultiplierSuppliesOilTextBox.Text = Misc.Economy.StockpileLimitMultiplierSuppliesOil.ToString(CultureInfo.InvariantCulture);
-                overStockpileLimitDailyLossTextBox.Text = Misc.Economy.OverStockpileLimitDailyLoss.ToString(CultureInfo.InvariantCulture);
-                maxResourceDepotSizeTextBox.Text = Misc.Economy.MaxResourceDepotSize.ToString(CultureInfo.InvariantCulture);
-                maxSuppliesOilDepotSizeTextBox.Text = Misc.Economy.MaxSuppliesOilDepotSize.ToString(CultureInfo.InvariantCulture);
-                desiredStockPilesSuppliesOilTextBox.Text = Misc.Economy.DesiredStockPilesSuppliesOil.ToString(CultureInfo.InvariantCulture);
-                maxManpowerTextBox.Text = Misc.Economy.MaxManpower.ToString(CultureInfo.InvariantCulture);
-                convoyTransportsCapacityTextBox.Text = Misc.Economy.ConvoyTransportsCapacity.ToString(CultureInfo.InvariantCulture);
-                suppyLandStaticDhTextBox.Text = Misc.Economy.SuppyLandStaticDh.ToString(CultureInfo.InvariantCulture);
-                supplyLandBattleDhTextBox.Text = Misc.Economy.SupplyLandBattleDh.ToString(CultureInfo.InvariantCulture);
-                fuelLandStaticTextBox.Text = Misc.Economy.FuelLandStatic.ToString(CultureInfo.InvariantCulture);
-                fuelLandBattleTextBox.Text = Misc.Economy.FuelLandBattle.ToString(CultureInfo.InvariantCulture);
-                supplyAirStaticDhTextBox.Text = Misc.Economy.SupplyAirStaticDh.ToString(CultureInfo.InvariantCulture);
-                supplyAirBattleDhTextBox.Text = Misc.Economy.SupplyAirBattleDh.ToString(CultureInfo.InvariantCulture);
-                fuelAirNavalStaticTextBox.Text = Misc.Economy.FuelAirNavalStatic.ToString(CultureInfo.InvariantCulture);
-                fuelAirBattleTextBox.Text = Misc.Economy.FuelAirBattle.ToString(CultureInfo.InvariantCulture);
-                supplyNavalStaticDhTextBox.Text = Misc.Economy.SupplyNavalStaticDh.ToString(CultureInfo.InvariantCulture);
-                supplyNavalBattleDhTextBox.Text = Misc.Economy.SupplyNavalBattleDh.ToString(CultureInfo.InvariantCulture);
-                fuelNavalNotMovingTextBox.Text = Misc.Economy.FuelNavalNotMoving.ToString(CultureInfo.InvariantCulture);
-                fuelNavalBattleTextBox.Text = Misc.Economy.FuelNavalBattle.ToString(CultureInfo.InvariantCulture);
-                tpTransportsConversionRatioTextBox.Text = Misc.Economy.TpTransportsConversionRatio.ToString(CultureInfo.InvariantCulture);
-                ddEscortsConversionRatioTextBox.Text = Misc.Economy.DdEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
-                clEscortsConversionRatioTextBox.Text = Misc.Economy.ClEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
-                cvlEscortsConversionRatioTextBox.Text = Misc.Economy.CvlEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
-                productionLineEditComboBox.SelectedIndex = Misc.Economy.ProductionLineEdit ? 1 : 0;
-                gearingBonusLossUpgradeUnitTextBox.Text = Misc.Economy.GearingBonusLossUpgradeUnit.ToString(CultureInfo.InvariantCulture);
-                gearingBonusLossUpgradeBrigadeTextBox.Text = Misc.Economy.GearingBonusLossUpgradeBrigade.ToString(CultureInfo.InvariantCulture);
-                dissentNukesTextBox.Text = Misc.Economy.DissentNukes.ToString(CultureInfo.InvariantCulture);
-                maxDailyDissentTextBox.Text = Misc.Economy.MaxDailyDissent.ToString(CultureInfo.InvariantCulture);
+                minAvailableIcTextBox.Text = Misc.MinAvailableIc.ToString(CultureInfo.InvariantCulture);
+                minFinalIcTextBox.Text = Misc.MinFinalIc.ToString(CultureInfo.InvariantCulture);
+                dissentReductionTextBox.Text = Misc.DissentReduction.ToString(CultureInfo.InvariantCulture);
+                icMultiplierPuppetTextBox.Text = Misc.IcMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonNationalTextBox.Text =
+                    Misc.ResourceMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonOwnedTextBox.Text =
+                    Misc.ResourceMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonNationalAiTextBox.Text =
+                    Misc.ResourceMultiplierNonNationalAi.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierPuppetTextBox.Text =
+                    Misc.ResourceMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierPuppetTextBox.Text =
+                    Misc.ManpowerMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierWartimeOverseaTextBox.Text =
+                    Misc.ManpowerMultiplierWartimeOversea.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierPeacetimeTextBox.Text =
+                    Misc.ManpowerMultiplierPeacetime.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierWartimeTextBox.Text =
+                    Misc.ManpowerMultiplierWartime.ToString(CultureInfo.InvariantCulture);
+                dailyRetiredManpowerTextBox.Text =
+                    Misc.DailyRetiredManpower.ToString(CultureInfo.InvariantCulture);
+                reinforceToUpdateModifierTextBox.Text =
+                    Misc.ReinforceToUpdateModifier.ToString(CultureInfo.InvariantCulture);
+                nationalismPerManpowerDhTextBox.Text =
+                    Misc.NationalismPerManpowerDh.ToString(CultureInfo.InvariantCulture);
+                maxNationalismTextBox.Text = Misc.MaxNationalism.ToString(CultureInfo.InvariantCulture);
+                maxRevoltRiskTextBox.Text = Misc.MaxRevoltRisk.ToString(CultureInfo.InvariantCulture);
+                canUnitSendNonAlliedDhComboBox.SelectedIndex = Misc.CanUnitSendNonAlliedDh;
+                bluePrintsCanSoldNonAlliedComboBox.SelectedIndex = Misc.BluePrintsCanSoldNonAllied;
+                provinceCanSoldNonAlliedComboBox.SelectedIndex = Misc.ProvinceCanSoldNonAllied;
+                transferAlliedCoreProvincesComboBox.SelectedIndex = Misc.TransferAlliedCoreProvinces ? 1 : 0;
+                provinceBuildingsRepairModifierTextBox.Text =
+                    Misc.ProvinceBuildingsRepairModifier.ToString(CultureInfo.InvariantCulture);
+                provinceResourceRepairModifierTextBox.Text =
+                    Misc.ProvinceResourceRepairModifier.ToString(CultureInfo.InvariantCulture);
+                stockpileLimitMultiplierResourceTextBox.Text =
+                    Misc.StockpileLimitMultiplierResource.ToString(CultureInfo.InvariantCulture);
+                stockpileLimitMultiplierSuppliesOilTextBox.Text =
+                    Misc.StockpileLimitMultiplierSuppliesOil.ToString(CultureInfo.InvariantCulture);
+                overStockpileLimitDailyLossTextBox.Text =
+                    Misc.OverStockpileLimitDailyLoss.ToString(CultureInfo.InvariantCulture);
+                maxResourceDepotSizeTextBox.Text =
+                    Misc.MaxResourceDepotSize.ToString(CultureInfo.InvariantCulture);
+                maxSuppliesOilDepotSizeTextBox.Text =
+                    Misc.MaxSuppliesOilDepotSize.ToString(CultureInfo.InvariantCulture);
+                desiredStockPilesSuppliesOilTextBox.Text =
+                    Misc.DesiredStockPilesSuppliesOil.ToString(CultureInfo.InvariantCulture);
+                maxManpowerTextBox.Text = Misc.MaxManpower.ToString(CultureInfo.InvariantCulture);
+                convoyTransportsCapacityTextBox.Text =
+                    Misc.ConvoyTransportsCapacity.ToString(CultureInfo.InvariantCulture);
+                suppyLandStaticDhTextBox.Text = Misc.SuppyLandStaticDh.ToString(CultureInfo.InvariantCulture);
+                supplyLandBattleDhTextBox.Text = Misc.SupplyLandBattleDh.ToString(CultureInfo.InvariantCulture);
+                fuelLandStaticTextBox.Text = Misc.FuelLandStatic.ToString(CultureInfo.InvariantCulture);
+                fuelLandBattleTextBox.Text = Misc.FuelLandBattle.ToString(CultureInfo.InvariantCulture);
+                supplyAirStaticDhTextBox.Text = Misc.SupplyAirStaticDh.ToString(CultureInfo.InvariantCulture);
+                supplyAirBattleDhTextBox.Text = Misc.SupplyAirBattleDh.ToString(CultureInfo.InvariantCulture);
+                fuelAirNavalStaticTextBox.Text = Misc.FuelAirNavalStatic.ToString(CultureInfo.InvariantCulture);
+                fuelAirBattleTextBox.Text = Misc.FuelAirBattle.ToString(CultureInfo.InvariantCulture);
+                supplyNavalStaticDhTextBox.Text = Misc.SupplyNavalStaticDh.ToString(CultureInfo.InvariantCulture);
+                supplyNavalBattleDhTextBox.Text = Misc.SupplyNavalBattleDh.ToString(CultureInfo.InvariantCulture);
+                fuelNavalNotMovingTextBox.Text = Misc.FuelNavalNotMoving.ToString(CultureInfo.InvariantCulture);
+                fuelNavalBattleTextBox.Text = Misc.FuelNavalBattle.ToString(CultureInfo.InvariantCulture);
+                tpTransportsConversionRatioTextBox.Text =
+                    Misc.TpTransportsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                ddEscortsConversionRatioTextBox.Text =
+                    Misc.DdEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                clEscortsConversionRatioTextBox.Text =
+                    Misc.ClEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                cvlEscortsConversionRatioTextBox.Text =
+                    Misc.CvlEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                productionLineEditComboBox.SelectedIndex = Misc.ProductionLineEdit ? 1 : 0;
+                gearingBonusLossUpgradeUnitTextBox.Text =
+                    Misc.GearingBonusLossUpgradeUnit.ToString(CultureInfo.InvariantCulture);
+                gearingBonusLossUpgradeBrigadeTextBox.Text =
+                    Misc.GearingBonusLossUpgradeBrigade.ToString(CultureInfo.InvariantCulture);
+                dissentNukesTextBox.Text = Misc.DissentNukes.ToString(CultureInfo.InvariantCulture);
+                maxDailyDissentTextBox.Text = Misc.MaxDailyDissent.ToString(CultureInfo.InvariantCulture);
             }
 
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
-                nukesProductionModifierTextBox.Text = Misc.Economy.NukesProductionModifier.ToString(CultureInfo.InvariantCulture);
-                convoySystemOptionsAlliedComboBox.SelectedIndex = Misc.Economy.ConvoySystemOptionsAllied;
-                resourceConvoysBackUnneededTextBox.Text = Misc.Economy.ResourceConvoysBackUnneeded.ToString(CultureInfo.InvariantCulture);
+                nukesProductionModifierTextBox.Text =
+                    Misc.NukesProductionModifier.ToString(CultureInfo.InvariantCulture);
+                convoySystemOptionsAlliedComboBox.SelectedIndex = Misc.ConvoySystemOptionsAllied;
+                resourceConvoysBackUnneededTextBox.Text =
+                    Misc.ResourceConvoysBackUnneeded.ToString(CultureInfo.InvariantCulture);
             }
 
             // 編集項目の色を更新する
             if (Game.Type == GameType.DarkestHour)
             {
-                minAvailableIcTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinAvailableIc) ? Color.Red : SystemColors.WindowText;
+                minAvailableIcTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinAvailableIc)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
                 minFinalIcTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinFinalIc) ? Color.Red : SystemColors.WindowText;
-                dissentReductionTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentReduction) ? Color.Red : SystemColors.WindowText;
-                icMultiplierPuppetTextBox.ForeColor = Misc.IsDirty(MiscItemId.IcMultiplierPuppet) ? Color.Red : SystemColors.WindowText;
-                resourceMultiplierNonNationalTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceMultiplierNonNational) ? Color.Red : SystemColors.WindowText;
-                resourceMultiplierNonOwnedTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceMultiplierNonOwned) ? Color.Red : SystemColors.WindowText;
-                resourceMultiplierNonNationalAiTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceMultiplierNonNationalAi) ? Color.Red : SystemColors.WindowText;
-                resourceMultiplierPuppetTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceMultiplierPuppet) ? Color.Red : SystemColors.WindowText;
-                manpowerMultiplierPuppetTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerMultiplierPuppet) ? Color.Red : SystemColors.WindowText;
-                manpowerMultiplierWartimeOverseaTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerMultiplierWartimeOversea) ? Color.Red : SystemColors.WindowText;
-                manpowerMultiplierPeacetimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerMultiplierPeacetime) ? Color.Red : SystemColors.WindowText;
-                manpowerMultiplierWartimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerMultiplierWartime) ? Color.Red : SystemColors.WindowText;
-                dailyRetiredManpowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.DailyRetiredManpower) ? Color.Red : SystemColors.WindowText;
-                reinforceToUpdateModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.ReinforceToUpdateModifier) ? Color.Red : SystemColors.WindowText;
-                nationalismPerManpowerDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.NationalismPerManpowerDh) ? Color.Red : SystemColors.WindowText;
-                maxNationalismTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxNationalism) ? Color.Red : SystemColors.WindowText;
-                maxRevoltRiskTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxRevoltRisk) ? Color.Red : SystemColors.WindowText;
-                provinceBuildingsRepairModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.ProvinceBuildingsRepairModifier) ? Color.Red : SystemColors.WindowText;
-                provinceResourceRepairModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.ProvinceResourceRepairModifier) ? Color.Red : SystemColors.WindowText;
-                stockpileLimitMultiplierResourceTextBox.ForeColor = Misc.IsDirty(MiscItemId.StockpileLimitMultiplierResource) ? Color.Red : SystemColors.WindowText;
-                stockpileLimitMultiplierSuppliesOilTextBox.ForeColor = Misc.IsDirty(MiscItemId.StockpileLimitMultiplierSuppliesOil) ? Color.Red : SystemColors.WindowText;
-                overStockpileLimitDailyLossTextBox.ForeColor = Misc.IsDirty(MiscItemId.OverStockpileLimitDailyLoss) ? Color.Red : SystemColors.WindowText;
-                maxResourceDepotSizeTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxResourceDepotSize) ? Color.Red : SystemColors.WindowText;
-                maxSuppliesOilDepotSizeTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxSuppliesOilDepotSize) ? Color.Red : SystemColors.WindowText;
-                desiredStockPilesSuppliesOilTextBox.ForeColor = Misc.IsDirty(MiscItemId.DesiredStockPilesSuppliesOil) ? Color.Red : SystemColors.WindowText;
-                maxManpowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxManpower) ? Color.Red : SystemColors.WindowText;
-                convoyTransportsCapacityTextBox.ForeColor = Misc.IsDirty(MiscItemId.ConvoyTransportsCapacity) ? Color.Red : SystemColors.WindowText;
-                suppyLandStaticDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SuppyLandStaticDh) ? Color.Red : SystemColors.WindowText;
-                supplyLandBattleDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandBattleDh) ? Color.Red : SystemColors.WindowText;
-                fuelLandStaticTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelLandStatic) ? Color.Red : SystemColors.WindowText;
-                fuelLandBattleTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelLandBattle) ? Color.Red : SystemColors.WindowText;
-                supplyAirStaticDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirStaticDh) ? Color.Red : SystemColors.WindowText;
-                supplyAirBattleDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirBattleDh) ? Color.Red : SystemColors.WindowText;
-                fuelAirNavalStaticTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelAirNavalStatic) ? Color.Red : SystemColors.WindowText;
-                fuelAirBattleTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelAirBattle) ? Color.Red : SystemColors.WindowText;
-                supplyNavalStaticDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalStaticDh) ? Color.Red : SystemColors.WindowText;
-                supplyNavalBattleDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalBattleDh) ? Color.Red : SystemColors.WindowText;
-                fuelNavalNotMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelNavalNotMoving) ? Color.Red : SystemColors.WindowText;
-                fuelNavalBattleTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelNavalBattle) ? Color.Red : SystemColors.WindowText;
-                tpTransportsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.TpTransportsConversionRatio) ? Color.Red : SystemColors.WindowText;
-                ddEscortsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.DdEscortsConversionRatio) ? Color.Red : SystemColors.WindowText;
-                clEscortsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.ClEscortsConversionRatio) ? Color.Red : SystemColors.WindowText;
-                cvlEscortsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.CvlEscortsConversionRatio) ? Color.Red : SystemColors.WindowText;
-                gearingBonusLossUpgradeUnitTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingBonusLossUpgradeUnit) ? Color.Red : SystemColors.WindowText;
-                gearingBonusLossUpgradeBrigadeTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingBonusLossUpgradeBrigade) ? Color.Red : SystemColors.WindowText;
-                dissentNukesTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentNukes) ? Color.Red : SystemColors.WindowText;
-                maxDailyDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxDailyDissent) ? Color.Red : SystemColors.WindowText;
+                dissentReductionTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentReduction)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                icMultiplierPuppetTextBox.ForeColor = Misc.IsDirty(MiscItemId.IcMultiplierPuppet)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                resourceMultiplierNonNationalTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceMultiplierNonNational)
+                                                                     ? Color.Red
+                                                                     : SystemColors.WindowText;
+                resourceMultiplierNonOwnedTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceMultiplierNonOwned)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
+                resourceMultiplierNonNationalAiTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.ResourceMultiplierNonNationalAi) ? Color.Red : SystemColors.WindowText;
+                resourceMultiplierPuppetTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceMultiplierPuppet)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                manpowerMultiplierPuppetTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerMultiplierPuppet)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                manpowerMultiplierWartimeOverseaTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.ManpowerMultiplierWartimeOversea) ? Color.Red : SystemColors.WindowText;
+                manpowerMultiplierPeacetimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerMultiplierPeacetime)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
+                manpowerMultiplierWartimeTextBox.ForeColor = Misc.IsDirty(MiscItemId.ManpowerMultiplierWartime)
+                                                                 ? Color.Red
+                                                                 : SystemColors.WindowText;
+                dailyRetiredManpowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.DailyRetiredManpower)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+                reinforceToUpdateModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.ReinforceToUpdateModifier)
+                                                                 ? Color.Red
+                                                                 : SystemColors.WindowText;
+                nationalismPerManpowerDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.NationalismPerManpowerDh)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                maxNationalismTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxNationalism)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                maxRevoltRiskTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxRevoltRisk)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                provinceBuildingsRepairModifierTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.ProvinceBuildingsRepairModifier) ? Color.Red : SystemColors.WindowText;
+                provinceResourceRepairModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.ProvinceResourceRepairModifier)
+                                                                      ? Color.Red
+                                                                      : SystemColors.WindowText;
+                stockpileLimitMultiplierResourceTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.StockpileLimitMultiplierResource) ? Color.Red : SystemColors.WindowText;
+                stockpileLimitMultiplierSuppliesOilTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.StockpileLimitMultiplierSuppliesOil) ? Color.Red : SystemColors.WindowText;
+                overStockpileLimitDailyLossTextBox.ForeColor = Misc.IsDirty(MiscItemId.OverStockpileLimitDailyLoss)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
+                maxResourceDepotSizeTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxResourceDepotSize)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+                maxSuppliesOilDepotSizeTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxSuppliesOilDepotSize)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+                desiredStockPilesSuppliesOilTextBox.ForeColor = Misc.IsDirty(MiscItemId.DesiredStockPilesSuppliesOil)
+                                                                    ? Color.Red
+                                                                    : SystemColors.WindowText;
+                maxManpowerTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxManpower)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+                convoyTransportsCapacityTextBox.ForeColor = Misc.IsDirty(MiscItemId.ConvoyTransportsCapacity)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                suppyLandStaticDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SuppyLandStaticDh)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                supplyLandBattleDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyLandBattleDh)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                fuelLandStaticTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelLandStatic)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                fuelLandBattleTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelLandBattle)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                supplyAirStaticDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirStaticDh)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                supplyAirBattleDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyAirBattleDh)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                fuelAirNavalStaticTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelAirNavalStatic)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                fuelAirBattleTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelAirBattle)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                supplyNavalStaticDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalStaticDh)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                supplyNavalBattleDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyNavalBattleDh)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                fuelNavalNotMovingTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelNavalNotMoving)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+                fuelNavalBattleTextBox.ForeColor = Misc.IsDirty(MiscItemId.FuelNavalBattle)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                tpTransportsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.TpTransportsConversionRatio)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
+                ddEscortsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.DdEscortsConversionRatio)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                clEscortsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.ClEscortsConversionRatio)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                cvlEscortsConversionRatioTextBox.ForeColor = Misc.IsDirty(MiscItemId.CvlEscortsConversionRatio)
+                                                                 ? Color.Red
+                                                                 : SystemColors.WindowText;
+                gearingBonusLossUpgradeUnitTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingBonusLossUpgradeUnit)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
+                gearingBonusLossUpgradeBrigadeTextBox.ForeColor = Misc.IsDirty(MiscItemId.GearingBonusLossUpgradeBrigade)
+                                                                      ? Color.Red
+                                                                      : SystemColors.WindowText;
+                dissentNukesTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentNukes)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+                maxDailyDissentTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxDailyDissent)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
             }
 
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
-                nukesProductionModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.NukesProductionModifier) ? Color.Red : SystemColors.WindowText;
-                resourceConvoysBackUnneededTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceConvoysBackUnneeded) ? Color.Red : SystemColors.WindowText;
+                nukesProductionModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.NukesProductionModifier)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+                resourceConvoysBackUnneededTextBox.ForeColor = Misc.IsDirty(MiscItemId.ResourceConvoysBackUnneeded)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
             }
         }
 
         /// <summary>
-        /// [最小実効ICの比率]テキストボックスフォーカス移動後の処理
+        ///     [最小実効ICの比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6466,25 +6814,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(minAvailableIcTextBox.Text, out val))
             {
-                minAvailableIcTextBox.Text = Misc.Economy.MinAvailableIc.ToString(CultureInfo.InvariantCulture);
+                minAvailableIcTextBox.Text = Misc.MinAvailableIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                minAvailableIcTextBox.Text = Misc.Economy.MinAvailableIc.ToString(CultureInfo.InvariantCulture);
+                minAvailableIcTextBox.Text = Misc.MinAvailableIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MinAvailableIc) <= 0.00005)
+            if (Math.Abs(val - Misc.MinAvailableIc) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MinAvailableIc = val;
+            Misc.MinAvailableIc = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinAvailableIc);
@@ -6495,7 +6843,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [最小実効IC]テキストボックスフォーカス移動後の処理
+        ///     [最小実効IC]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6505,25 +6853,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(minFinalIcTextBox.Text, out val))
             {
-                minFinalIcTextBox.Text = Misc.Economy.MinFinalIc.ToString(CultureInfo.InvariantCulture);
+                minFinalIcTextBox.Text = Misc.MinFinalIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                minFinalIcTextBox.Text = Misc.Economy.MinFinalIc.ToString(CultureInfo.InvariantCulture);
+                minFinalIcTextBox.Text = Misc.MinFinalIc.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MinFinalIc) <= 0.00005)
+            if (Math.Abs(val - Misc.MinFinalIc) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MinFinalIc = val;
+            Misc.MinFinalIc = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinFinalIc);
@@ -6534,7 +6882,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [不満度低下補正]テキストボックスフォーカス移動後の処理
+        ///     [不満度低下補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6544,25 +6892,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(dissentReductionTextBox.Text, out val))
             {
-                dissentReductionTextBox.Text = Misc.Economy.DissentReduction.ToString(CultureInfo.InvariantCulture);
+                dissentReductionTextBox.Text = Misc.DissentReduction.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                dissentReductionTextBox.Text = Misc.Economy.DissentReduction.ToString(CultureInfo.InvariantCulture);
+                dissentReductionTextBox.Text = Misc.DissentReduction.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DissentReduction) <= 0.00005)
+            if (Math.Abs(val - Misc.DissentReduction) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DissentReduction = val;
+            Misc.DissentReduction = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DissentReduction);
@@ -6573,7 +6921,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [属国のIC補正]テキストボックスフォーカス移動後の処理
+        ///     [属国のIC補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6583,25 +6931,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(icMultiplierPuppetTextBox.Text, out val))
             {
-                icMultiplierPuppetTextBox.Text = Misc.Economy.IcMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                icMultiplierPuppetTextBox.Text = Misc.IcMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icMultiplierPuppetTextBox.Text = Misc.Economy.IcMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                icMultiplierPuppetTextBox.Text = Misc.IcMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.IcMultiplierPuppet) <= 0.00005)
+            if (Math.Abs(val - Misc.IcMultiplierPuppet) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.IcMultiplierPuppet = val;
+            Misc.IcMultiplierPuppet = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcMultiplierPuppet);
@@ -6612,7 +6960,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [非中核州の資源補正]テキストボックスフォーカス移動後の処理
+        ///     [非中核州の資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6622,25 +6970,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(resourceMultiplierNonNationalTextBox.Text, out val))
             {
-                resourceMultiplierNonNationalTextBox.Text = Misc.Economy.ResourceMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonNationalTextBox.Text =
+                    Misc.ResourceMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                resourceMultiplierNonNationalTextBox.Text = Misc.Economy.ResourceMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonNationalTextBox.Text =
+                    Misc.ResourceMultiplierNonNational.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ResourceMultiplierNonNational) <= 0.00005)
+            if (Math.Abs(val - Misc.ResourceMultiplierNonNational) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ResourceMultiplierNonNational = val;
+            Misc.ResourceMultiplierNonNational = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ResourceMultiplierNonNational);
@@ -6651,7 +7001,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [占領地の資源補正]テキストボックスフォーカス移動後の処理
+        ///     [占領地の資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6661,25 +7011,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(resourceMultiplierNonOwnedTextBox.Text, out val))
             {
-                resourceMultiplierNonOwnedTextBox.Text = Misc.Economy.ResourceMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonOwnedTextBox.Text =
+                    Misc.ResourceMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                resourceMultiplierNonOwnedTextBox.Text = Misc.Economy.ResourceMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonOwnedTextBox.Text =
+                    Misc.ResourceMultiplierNonOwned.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ResourceMultiplierNonOwned) <= 0.00005)
+            if (Math.Abs(val - Misc.ResourceMultiplierNonOwned) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ResourceMultiplierNonOwned = val;
+            Misc.ResourceMultiplierNonOwned = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ResourceMultiplierNonOwned);
@@ -6690,7 +7042,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [非中核州の資源補正(AI)]テキストボックスフォーカス移動後の処理
+        ///     [非中核州の資源補正(AI)]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6700,25 +7052,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(resourceMultiplierNonNationalAiTextBox.Text, out val))
             {
-                resourceMultiplierNonNationalAiTextBox.Text = Misc.Economy.ResourceMultiplierNonNationalAi.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonNationalAiTextBox.Text =
+                    Misc.ResourceMultiplierNonNationalAi.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                resourceMultiplierNonNationalAiTextBox.Text = Misc.Economy.ResourceMultiplierNonNationalAi.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierNonNationalAiTextBox.Text =
+                    Misc.ResourceMultiplierNonNationalAi.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ResourceMultiplierNonNationalAi) <= 0.00005)
+            if (Math.Abs(val - Misc.ResourceMultiplierNonNationalAi) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ResourceMultiplierNonNationalAi = val;
+            Misc.ResourceMultiplierNonNationalAi = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ResourceMultiplierNonNationalAi);
@@ -6729,7 +7083,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [属国の資源補正]テキストボックスフォーカス移動後の処理
+        ///     [属国の資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6739,25 +7093,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(resourceMultiplierPuppetTextBox.Text, out val))
             {
-                resourceMultiplierPuppetTextBox.Text = Misc.Economy.ResourceMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierPuppetTextBox.Text =
+                    Misc.ResourceMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                resourceMultiplierPuppetTextBox.Text = Misc.Economy.ResourceMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                resourceMultiplierPuppetTextBox.Text =
+                    Misc.ResourceMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ResourceMultiplierPuppet) <= 0.00005)
+            if (Math.Abs(val - Misc.ResourceMultiplierPuppet) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ResourceMultiplierPuppet = val;
+            Misc.ResourceMultiplierPuppet = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ResourceMultiplierPuppet);
@@ -6768,7 +7124,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [属国の人的資源補正]テキストボックスフォーカス移動後の処理
+        ///     [属国の人的資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6778,25 +7134,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(manpowerMultiplierPuppetTextBox.Text, out val))
             {
-                manpowerMultiplierPuppetTextBox.Text = Misc.Economy.ManpowerMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierPuppetTextBox.Text =
+                    Misc.ManpowerMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerMultiplierPuppetTextBox.Text = Misc.Economy.ManpowerMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierPuppetTextBox.Text =
+                    Misc.ManpowerMultiplierPuppet.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerMultiplierPuppet) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerMultiplierPuppet) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerMultiplierPuppet = val;
+            Misc.ManpowerMultiplierPuppet = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerMultiplierPuppet);
@@ -6807,7 +7165,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [戦時の海外州の人的資源補正]テキストボックスフォーカス移動後の処理
+        ///     [戦時の海外州の人的資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6817,25 +7175,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(manpowerMultiplierWartimeOverseaTextBox.Text, out val))
             {
-                manpowerMultiplierWartimeOverseaTextBox.Text = Misc.Economy.ManpowerMultiplierWartimeOversea.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierWartimeOverseaTextBox.Text =
+                    Misc.ManpowerMultiplierWartimeOversea.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerMultiplierWartimeOverseaTextBox.Text = Misc.Economy.ManpowerMultiplierWartimeOversea.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierWartimeOverseaTextBox.Text =
+                    Misc.ManpowerMultiplierWartimeOversea.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerMultiplierWartimeOversea) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerMultiplierWartimeOversea) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerMultiplierWartimeOversea = val;
+            Misc.ManpowerMultiplierWartimeOversea = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerMultiplierWartimeOversea);
@@ -6846,7 +7206,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [平時の人的資源補正]テキストボックスフォーカス移動後の処理
+        ///     [平時の人的資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6856,25 +7216,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(manpowerMultiplierPeacetimeTextBox.Text, out val))
             {
-                manpowerMultiplierPeacetimeTextBox.Text = Misc.Economy.ManpowerMultiplierPeacetime.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierPeacetimeTextBox.Text =
+                    Misc.ManpowerMultiplierPeacetime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerMultiplierPeacetimeTextBox.Text = Misc.Economy.ManpowerMultiplierPeacetime.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierPeacetimeTextBox.Text =
+                    Misc.ManpowerMultiplierPeacetime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerMultiplierPeacetime) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerMultiplierPeacetime) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerMultiplierPeacetime = val;
+            Misc.ManpowerMultiplierPeacetime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerMultiplierPeacetime);
@@ -6885,7 +7247,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [戦時の人的資源補正]テキストボックスフォーカス移動後の処理
+        ///     [戦時の人的資源補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6895,25 +7257,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(manpowerMultiplierWartimeTextBox.Text, out val))
             {
-                manpowerMultiplierWartimeTextBox.Text = Misc.Economy.ManpowerMultiplierWartime.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierWartimeTextBox.Text =
+                    Misc.ManpowerMultiplierWartime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                manpowerMultiplierWartimeTextBox.Text = Misc.Economy.ManpowerMultiplierWartime.ToString(CultureInfo.InvariantCulture);
+                manpowerMultiplierWartimeTextBox.Text =
+                    Misc.ManpowerMultiplierWartime.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ManpowerMultiplierWartime) <= 0.00005)
+            if (Math.Abs(val - Misc.ManpowerMultiplierWartime) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ManpowerMultiplierWartime = val;
+            Misc.ManpowerMultiplierWartime = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ManpowerMultiplierWartime);
@@ -6924,7 +7288,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [人的資源の老化率]テキストボックスフォーカス移動後の処理
+        ///     [人的資源の老化率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6934,25 +7298,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(dailyRetiredManpowerTextBox.Text, out val))
             {
-                dailyRetiredManpowerTextBox.Text = Misc.Economy.DailyRetiredManpower.ToString(CultureInfo.InvariantCulture);
+                dailyRetiredManpowerTextBox.Text =
+                    Misc.DailyRetiredManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                dailyRetiredManpowerTextBox.Text = Misc.Economy.DailyRetiredManpower.ToString(CultureInfo.InvariantCulture);
+                dailyRetiredManpowerTextBox.Text =
+                    Misc.DailyRetiredManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DailyRetiredManpower) <= 0.00005)
+            if (Math.Abs(val - Misc.DailyRetiredManpower) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DailyRetiredManpower = val;
+            Misc.DailyRetiredManpower = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DailyRetiredManpower);
@@ -6963,7 +7329,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [改良のための補充係数]テキストボックスフォーカス移動後の処理
+        ///     [改良のための補充係数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -6973,25 +7339,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(reinforceToUpdateModifierTextBox.Text, out val))
             {
-                reinforceToUpdateModifierTextBox.Text = Misc.Economy.ReinforceToUpdateModifier.ToString(CultureInfo.InvariantCulture);
+                reinforceToUpdateModifierTextBox.Text =
+                    Misc.ReinforceToUpdateModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                reinforceToUpdateModifierTextBox.Text = Misc.Economy.ReinforceToUpdateModifier.ToString(CultureInfo.InvariantCulture);
+                reinforceToUpdateModifierTextBox.Text =
+                    Misc.ReinforceToUpdateModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ReinforceToUpdateModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.ReinforceToUpdateModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ReinforceToUpdateModifier = val;
+            Misc.ReinforceToUpdateModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ReinforceToUpdateModifier);
@@ -7002,7 +7370,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [人的資源によるナショナリズムの補正値]テキストボックスフォーカス移動後の処理
+        ///     [人的資源によるナショナリズムの補正値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7012,25 +7380,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(nationalismPerManpowerDhTextBox.Text, out val))
             {
-                nationalismPerManpowerDhTextBox.Text = Misc.Economy.NationalismPerManpowerDh.ToString(CultureInfo.InvariantCulture);
+                nationalismPerManpowerDhTextBox.Text =
+                    Misc.NationalismPerManpowerDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                nationalismPerManpowerDhTextBox.Text = Misc.Economy.NationalismPerManpowerDh.ToString(CultureInfo.InvariantCulture);
+                nationalismPerManpowerDhTextBox.Text =
+                    Misc.NationalismPerManpowerDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.NationalismPerManpowerDh) <= 0.00005)
+            if (Math.Abs(val - Misc.NationalismPerManpowerDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.NationalismPerManpowerDh = val;
+            Misc.NationalismPerManpowerDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.NationalismPerManpowerDh);
@@ -7041,7 +7411,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [ナショナリズム最大値]テキストボックスフォーカス移動後の処理
+        ///     [ナショナリズム最大値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7051,25 +7421,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxNationalismTextBox.Text, out val))
             {
-                maxNationalismTextBox.Text = Misc.Economy.MaxNationalism.ToString(CultureInfo.InvariantCulture);
+                maxNationalismTextBox.Text = Misc.MaxNationalism.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxNationalismTextBox.Text = Misc.Economy.MaxNationalism.ToString(CultureInfo.InvariantCulture);
+                maxNationalismTextBox.Text = Misc.MaxNationalism.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxNationalism) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxNationalism) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxNationalism = val;
+            Misc.MaxNationalism = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxNationalism);
@@ -7080,7 +7450,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [最大反乱率]テキストボックスフォーカス移動後の処理
+        ///     [最大反乱率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7090,25 +7460,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxRevoltRiskTextBox.Text, out val))
             {
-                maxRevoltRiskTextBox.Text = Misc.Economy.MaxRevoltRisk.ToString(CultureInfo.InvariantCulture);
+                maxRevoltRiskTextBox.Text = Misc.MaxRevoltRisk.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxRevoltRiskTextBox.Text = Misc.Economy.MaxRevoltRisk.ToString(CultureInfo.InvariantCulture);
+                maxRevoltRiskTextBox.Text = Misc.MaxRevoltRisk.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxRevoltRisk) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxRevoltRisk) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxRevoltRisk = val;
+            Misc.MaxRevoltRisk = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxRevoltRisk);
@@ -7136,7 +7506,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.CanUnitSendNonAlliedDh;
+            int val = Misc.CanUnitSendNonAlliedDh;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.CanUnitSendNonAlliedDh))
             {
                 brush = new SolidBrush(Color.Red);
@@ -7166,13 +7536,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = canUnitSendNonAlliedDhComboBox.SelectedIndex;
-            if (val == Misc.Economy.CanUnitSendNonAlliedDh)
+            if (val == Misc.CanUnitSendNonAlliedDh)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CanUnitSendNonAlliedDh = val;
+            Misc.CanUnitSendNonAlliedDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CanUnitSendNonAlliedDh);
@@ -7200,7 +7570,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.BluePrintsCanSoldNonAllied;
+            int val = Misc.BluePrintsCanSoldNonAllied;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.BluePrintsCanSoldNonAllied))
             {
                 brush = new SolidBrush(Color.Red);
@@ -7230,13 +7600,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = bluePrintsCanSoldNonAlliedComboBox.SelectedIndex;
-            if (val == Misc.Economy.BluePrintsCanSoldNonAllied)
+            if (val == Misc.BluePrintsCanSoldNonAllied)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.BluePrintsCanSoldNonAllied = val;
+            Misc.BluePrintsCanSoldNonAllied = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.BluePrintsCanSoldNonAllied);
@@ -7264,7 +7634,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.ProvinceCanSoldNonAllied;
+            int val = Misc.ProvinceCanSoldNonAllied;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.ProvinceCanSoldNonAllied))
             {
                 brush = new SolidBrush(Color.Red);
@@ -7294,13 +7664,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = provinceCanSoldNonAlliedComboBox.SelectedIndex;
-            if (val == Misc.Economy.ProvinceCanSoldNonAllied)
+            if (val == Misc.ProvinceCanSoldNonAllied)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ProvinceCanSoldNonAllied = val;
+            Misc.ProvinceCanSoldNonAllied = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ProvinceCanSoldNonAllied);
@@ -7328,7 +7698,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.TransferAlliedCoreProvinces ? 1 : 0;
+            int val = Misc.TransferAlliedCoreProvinces ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.TransferAlliedCoreProvinces))
             {
                 brush = new SolidBrush(Color.Red);
@@ -7358,13 +7728,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (transferAlliedCoreProvincesComboBox.SelectedIndex == 1);
-            if (val == Misc.Economy.TransferAlliedCoreProvinces)
+            if (val == Misc.TransferAlliedCoreProvinces)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TransferAlliedCoreProvinces = val;
+            Misc.TransferAlliedCoreProvinces = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TransferAlliedCoreProvinces);
@@ -7375,7 +7745,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [建物修復速度補正]テキストボックスフォーカス移動後の処理
+        ///     [建物修復速度補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7385,25 +7755,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(provinceBuildingsRepairModifierTextBox.Text, out val))
             {
-                provinceBuildingsRepairModifierTextBox.Text = Misc.Economy.ProvinceBuildingsRepairModifier.ToString(CultureInfo.InvariantCulture);
+                provinceBuildingsRepairModifierTextBox.Text =
+                    Misc.ProvinceBuildingsRepairModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                provinceBuildingsRepairModifierTextBox.Text = Misc.Economy.ProvinceBuildingsRepairModifier.ToString(CultureInfo.InvariantCulture);
+                provinceBuildingsRepairModifierTextBox.Text =
+                    Misc.ProvinceBuildingsRepairModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ProvinceBuildingsRepairModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.ProvinceBuildingsRepairModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ProvinceBuildingsRepairModifier = val;
+            Misc.ProvinceBuildingsRepairModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ProvinceBuildingsRepairModifier);
@@ -7414,7 +7786,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [資源回復速度補正]テキストボックスフォーカス移動後の処理
+        ///     [資源回復速度補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7424,25 +7796,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(provinceResourceRepairModifierTextBox.Text, out val))
             {
-                provinceResourceRepairModifierTextBox.Text = Misc.Economy.ProvinceResourceRepairModifier.ToString(CultureInfo.InvariantCulture);
+                provinceResourceRepairModifierTextBox.Text =
+                    Misc.ProvinceResourceRepairModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                provinceResourceRepairModifierTextBox.Text = Misc.Economy.ProvinceResourceRepairModifier.ToString(CultureInfo.InvariantCulture);
+                provinceResourceRepairModifierTextBox.Text =
+                    Misc.ProvinceResourceRepairModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ProvinceResourceRepairModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.ProvinceResourceRepairModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ProvinceResourceRepairModifier = val;
+            Misc.ProvinceResourceRepairModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ProvinceResourceRepairModifier);
@@ -7453,7 +7827,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [資源備蓄上限補正]テキストボックスフォーカス移動後の処理
+        ///     [資源備蓄上限補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7463,25 +7837,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(stockpileLimitMultiplierResourceTextBox.Text, out val))
             {
-                stockpileLimitMultiplierResourceTextBox.Text = Misc.Economy.StockpileLimitMultiplierResource.ToString(CultureInfo.InvariantCulture);
+                stockpileLimitMultiplierResourceTextBox.Text =
+                    Misc.StockpileLimitMultiplierResource.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                stockpileLimitMultiplierResourceTextBox.Text = Misc.Economy.StockpileLimitMultiplierResource.ToString(CultureInfo.InvariantCulture);
+                stockpileLimitMultiplierResourceTextBox.Text =
+                    Misc.StockpileLimitMultiplierResource.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.StockpileLimitMultiplierResource) <= 0.00005)
+            if (Math.Abs(val - Misc.StockpileLimitMultiplierResource) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.StockpileLimitMultiplierResource = val;
+            Misc.StockpileLimitMultiplierResource = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.StockpileLimitMultiplierResource);
@@ -7492,7 +7868,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [物資/燃料備蓄上限補正]テキストボックスフォーカス移動後の処理
+        ///     [物資/燃料備蓄上限補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7502,25 +7878,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(stockpileLimitMultiplierSuppliesOilTextBox.Text, out val))
             {
-                stockpileLimitMultiplierSuppliesOilTextBox.Text = Misc.Economy.StockpileLimitMultiplierSuppliesOil.ToString(CultureInfo.InvariantCulture);
+                stockpileLimitMultiplierSuppliesOilTextBox.Text =
+                    Misc.StockpileLimitMultiplierSuppliesOil.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                stockpileLimitMultiplierSuppliesOilTextBox.Text = Misc.Economy.StockpileLimitMultiplierSuppliesOil.ToString(CultureInfo.InvariantCulture);
+                stockpileLimitMultiplierSuppliesOilTextBox.Text =
+                    Misc.StockpileLimitMultiplierSuppliesOil.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.StockpileLimitMultiplierSuppliesOil) <= 0.00005)
+            if (Math.Abs(val - Misc.StockpileLimitMultiplierSuppliesOil) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.StockpileLimitMultiplierSuppliesOil = val;
+            Misc.StockpileLimitMultiplierSuppliesOil = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.StockpileLimitMultiplierSuppliesOil);
@@ -7531,7 +7909,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [超過備蓄損失割合]テキストボックスフォーカス移動後の処理
+        ///     [超過備蓄損失割合]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7541,25 +7919,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(overStockpileLimitDailyLossTextBox.Text, out val))
             {
-                overStockpileLimitDailyLossTextBox.Text = Misc.Economy.OverStockpileLimitDailyLoss.ToString(CultureInfo.InvariantCulture);
+                overStockpileLimitDailyLossTextBox.Text =
+                    Misc.OverStockpileLimitDailyLoss.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                overStockpileLimitDailyLossTextBox.Text = Misc.Economy.OverStockpileLimitDailyLoss.ToString(CultureInfo.InvariantCulture);
+                overStockpileLimitDailyLossTextBox.Text =
+                    Misc.OverStockpileLimitDailyLoss.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.OverStockpileLimitDailyLoss) <= 0.00005)
+            if (Math.Abs(val - Misc.OverStockpileLimitDailyLoss) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.OverStockpileLimitDailyLoss = val;
+            Misc.OverStockpileLimitDailyLoss = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.OverStockpileLimitDailyLoss);
@@ -7570,7 +7950,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [資源備蓄上限値]テキストボックスフォーカス移動後の処理
+        ///     [資源備蓄上限値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7580,25 +7960,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxResourceDepotSizeTextBox.Text, out val))
             {
-                maxResourceDepotSizeTextBox.Text = Misc.Economy.MaxResourceDepotSize.ToString(CultureInfo.InvariantCulture);
+                maxResourceDepotSizeTextBox.Text =
+                    Misc.MaxResourceDepotSize.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxResourceDepotSizeTextBox.Text = Misc.Economy.MaxResourceDepotSize.ToString(CultureInfo.InvariantCulture);
+                maxResourceDepotSizeTextBox.Text =
+                    Misc.MaxResourceDepotSize.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxResourceDepotSize) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxResourceDepotSize) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxResourceDepotSize = val;
+            Misc.MaxResourceDepotSize = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxResourceDepotSize);
@@ -7609,7 +7991,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [物資/燃料備蓄上限値]テキストボックスフォーカス移動後の処理
+        ///     [物資/燃料備蓄上限値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7619,25 +8001,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxSuppliesOilDepotSizeTextBox.Text, out val))
             {
-                maxSuppliesOilDepotSizeTextBox.Text = Misc.Economy.MaxSuppliesOilDepotSize.ToString(CultureInfo.InvariantCulture);
+                maxSuppliesOilDepotSizeTextBox.Text =
+                    Misc.MaxSuppliesOilDepotSize.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxSuppliesOilDepotSizeTextBox.Text = Misc.Economy.MaxSuppliesOilDepotSize.ToString(CultureInfo.InvariantCulture);
+                maxSuppliesOilDepotSizeTextBox.Text =
+                    Misc.MaxSuppliesOilDepotSize.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxSuppliesOilDepotSize) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxSuppliesOilDepotSize) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxSuppliesOilDepotSize = val;
+            Misc.MaxSuppliesOilDepotSize = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxSuppliesOilDepotSize);
@@ -7648,7 +8032,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [理想物資/燃料備蓄比率]テキストボックスフォーカス移動後の処理
+        ///     [理想物資/燃料備蓄比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7658,25 +8042,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(desiredStockPilesSuppliesOilTextBox.Text, out val))
             {
-                desiredStockPilesSuppliesOilTextBox.Text = Misc.Economy.DesiredStockPilesSuppliesOil.ToString(CultureInfo.InvariantCulture);
+                desiredStockPilesSuppliesOilTextBox.Text =
+                    Misc.DesiredStockPilesSuppliesOil.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                desiredStockPilesSuppliesOilTextBox.Text = Misc.Economy.DesiredStockPilesSuppliesOil.ToString(CultureInfo.InvariantCulture);
+                desiredStockPilesSuppliesOilTextBox.Text =
+                    Misc.DesiredStockPilesSuppliesOil.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DesiredStockPilesSuppliesOil) <= 0.00005)
+            if (Math.Abs(val - Misc.DesiredStockPilesSuppliesOil) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DesiredStockPilesSuppliesOil = val;
+            Misc.DesiredStockPilesSuppliesOil = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DesiredStockPilesSuppliesOil);
@@ -7687,7 +8073,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [最大人的資源]テキストボックスフォーカス移動後の処理
+        ///     [最大人的資源]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7697,25 +8083,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxManpowerTextBox.Text, out val))
             {
-                maxManpowerTextBox.Text = Misc.Economy.MaxManpower.ToString(CultureInfo.InvariantCulture);
+                maxManpowerTextBox.Text = Misc.MaxManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxManpowerTextBox.Text = Misc.Economy.MaxManpower.ToString(CultureInfo.InvariantCulture);
+                maxManpowerTextBox.Text = Misc.MaxManpower.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxManpower) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxManpower) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxManpower = val;
+            Misc.MaxManpower = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxManpower);
@@ -7726,7 +8112,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [船団輸送能力]テキストボックスフォーカス移動後の処理
+        ///     [船団輸送能力]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7736,25 +8122,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(convoyTransportsCapacityTextBox.Text, out val))
             {
-                convoyTransportsCapacityTextBox.Text = Misc.Economy.ConvoyTransportsCapacity.ToString(CultureInfo.InvariantCulture);
+                convoyTransportsCapacityTextBox.Text =
+                    Misc.ConvoyTransportsCapacity.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                convoyTransportsCapacityTextBox.Text = Misc.Economy.ConvoyTransportsCapacity.ToString(CultureInfo.InvariantCulture);
+                convoyTransportsCapacityTextBox.Text =
+                    Misc.ConvoyTransportsCapacity.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ConvoyTransportsCapacity) <= 0.00005)
+            if (Math.Abs(val - Misc.ConvoyTransportsCapacity) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ConvoyTransportsCapacity = val;
+            Misc.ConvoyTransportsCapacity = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ConvoyTransportsCapacity);
@@ -7765,7 +8153,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7775,25 +8163,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(suppyLandStaticDhTextBox.Text, out val))
             {
-                suppyLandStaticDhTextBox.Text = Misc.Economy.SuppyLandStaticDh.ToString(CultureInfo.InvariantCulture);
+                suppyLandStaticDhTextBox.Text = Misc.SuppyLandStaticDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                suppyLandStaticDhTextBox.Text = Misc.Economy.SuppyLandStaticDh.ToString(CultureInfo.InvariantCulture);
+                suppyLandStaticDhTextBox.Text = Misc.SuppyLandStaticDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SuppyLandStaticDh) <= 0.00005)
+            if (Math.Abs(val - Misc.SuppyLandStaticDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SuppyLandStaticDh = val;
+            Misc.SuppyLandStaticDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SuppyLandStaticDh);
@@ -7804,7 +8192,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7814,25 +8202,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyLandBattleDhTextBox.Text, out val))
             {
-                supplyLandBattleDhTextBox.Text = Misc.Economy.SupplyLandBattleDh.ToString(CultureInfo.InvariantCulture);
+                supplyLandBattleDhTextBox.Text = Misc.SupplyLandBattleDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyLandBattleDhTextBox.Text = Misc.Economy.SupplyLandBattleDh.ToString(CultureInfo.InvariantCulture);
+                supplyLandBattleDhTextBox.Text = Misc.SupplyLandBattleDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyLandBattleDh) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyLandBattleDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyLandBattleDh = val;
+            Misc.SupplyLandBattleDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyLandBattleDh);
@@ -7843,7 +8231,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の待機時燃料使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の待機時燃料使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7853,25 +8241,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(fuelLandStaticTextBox.Text, out val))
             {
-                fuelLandStaticTextBox.Text = Misc.Economy.FuelLandStatic.ToString(CultureInfo.InvariantCulture);
+                fuelLandStaticTextBox.Text = Misc.FuelLandStatic.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                fuelLandStaticTextBox.Text = Misc.Economy.FuelLandStatic.ToString(CultureInfo.InvariantCulture);
+                fuelLandStaticTextBox.Text = Misc.FuelLandStatic.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.FuelLandStatic) <= 0.00005)
+            if (Math.Abs(val - Misc.FuelLandStatic) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.FuelLandStatic = val;
+            Misc.FuelLandStatic = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FuelLandStatic);
@@ -7882,7 +8270,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [陸軍の戦闘時燃料使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [陸軍の戦闘時燃料使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7892,25 +8280,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(fuelLandBattleTextBox.Text, out val))
             {
-                fuelLandBattleTextBox.Text = Misc.Economy.FuelLandBattle.ToString(CultureInfo.InvariantCulture);
+                fuelLandBattleTextBox.Text = Misc.FuelLandBattle.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                fuelLandBattleTextBox.Text = Misc.Economy.FuelLandBattle.ToString(CultureInfo.InvariantCulture);
+                fuelLandBattleTextBox.Text = Misc.FuelLandBattle.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.FuelLandBattle) <= 0.00005)
+            if (Math.Abs(val - Misc.FuelLandBattle) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.FuelLandBattle = val;
+            Misc.FuelLandBattle = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FuelLandBattle);
@@ -7921,7 +8309,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7931,25 +8319,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyAirStaticDhTextBox.Text, out val))
             {
-                supplyAirStaticDhTextBox.Text = Misc.Economy.SupplyAirStaticDh.ToString(CultureInfo.InvariantCulture);
+                supplyAirStaticDhTextBox.Text = Misc.SupplyAirStaticDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyAirStaticDhTextBox.Text = Misc.Economy.SupplyAirStaticDh.ToString(CultureInfo.InvariantCulture);
+                supplyAirStaticDhTextBox.Text = Misc.SupplyAirStaticDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyAirStaticDh) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyAirStaticDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyAirStaticDh = val;
+            Misc.SupplyAirStaticDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyAirStaticDh);
@@ -7960,7 +8348,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -7970,25 +8358,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyAirBattleDhTextBox.Text, out val))
             {
-                supplyAirBattleDhTextBox.Text = Misc.Economy.SupplyAirBattleDh.ToString(CultureInfo.InvariantCulture);
+                supplyAirBattleDhTextBox.Text = Misc.SupplyAirBattleDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyAirBattleDhTextBox.Text = Misc.Economy.SupplyAirBattleDh.ToString(CultureInfo.InvariantCulture);
+                supplyAirBattleDhTextBox.Text = Misc.SupplyAirBattleDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyAirBattleDh) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyAirBattleDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyAirBattleDh = val;
+            Misc.SupplyAirBattleDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyAirBattleDh);
@@ -7999,7 +8387,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍/海軍の待機時燃料使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍/海軍の待機時燃料使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8009,25 +8397,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(fuelAirNavalStaticTextBox.Text, out val))
             {
-                fuelAirNavalStaticTextBox.Text = Misc.Economy.FuelAirNavalStatic.ToString(CultureInfo.InvariantCulture);
+                fuelAirNavalStaticTextBox.Text = Misc.FuelAirNavalStatic.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                fuelAirNavalStaticTextBox.Text = Misc.Economy.FuelAirNavalStatic.ToString(CultureInfo.InvariantCulture);
+                fuelAirNavalStaticTextBox.Text = Misc.FuelAirNavalStatic.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.FuelAirNavalStatic) <= 0.00005)
+            if (Math.Abs(val - Misc.FuelAirNavalStatic) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.FuelAirNavalStatic = val;
+            Misc.FuelAirNavalStatic = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FuelAirNavalStatic);
@@ -8038,7 +8426,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [空軍の戦闘時燃料使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [空軍の戦闘時燃料使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8048,25 +8436,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(fuelAirBattleTextBox.Text, out val))
             {
-                fuelAirBattleTextBox.Text = Misc.Economy.FuelAirBattle.ToString(CultureInfo.InvariantCulture);
+                fuelAirBattleTextBox.Text = Misc.FuelAirBattle.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                fuelAirBattleTextBox.Text = Misc.Economy.FuelAirBattle.ToString(CultureInfo.InvariantCulture);
+                fuelAirBattleTextBox.Text = Misc.FuelAirBattle.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.FuelAirBattle) <= 0.00005)
+            if (Math.Abs(val - Misc.FuelAirBattle) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.FuelAirBattle = val;
+            Misc.FuelAirBattle = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FuelAirBattle);
@@ -8077,7 +8465,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [海軍の待機時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8087,25 +8475,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyNavalStaticDhTextBox.Text, out val))
             {
-                supplyNavalStaticDhTextBox.Text = Misc.Economy.SupplyNavalStaticDh.ToString(CultureInfo.InvariantCulture);
+                supplyNavalStaticDhTextBox.Text = Misc.SupplyNavalStaticDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyNavalStaticDhTextBox.Text = Misc.Economy.SupplyNavalStaticDh.ToString(CultureInfo.InvariantCulture);
+                supplyNavalStaticDhTextBox.Text = Misc.SupplyNavalStaticDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyNavalStaticDh) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyNavalStaticDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyNavalStaticDh = val;
+            Misc.SupplyNavalStaticDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyNavalStaticDh);
@@ -8116,7 +8504,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [海軍の戦闘時物資使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8126,25 +8514,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(supplyNavalBattleDhTextBox.Text, out val))
             {
-                supplyNavalBattleDhTextBox.Text = Misc.Economy.SupplyNavalBattleDh.ToString(CultureInfo.InvariantCulture);
+                supplyNavalBattleDhTextBox.Text = Misc.SupplyNavalBattleDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                supplyNavalBattleDhTextBox.Text = Misc.Economy.SupplyNavalBattleDh.ToString(CultureInfo.InvariantCulture);
+                supplyNavalBattleDhTextBox.Text = Misc.SupplyNavalBattleDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.SupplyNavalBattleDh) <= 0.00005)
+            if (Math.Abs(val - Misc.SupplyNavalBattleDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.SupplyNavalBattleDh = val;
+            Misc.SupplyNavalBattleDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SupplyNavalBattleDh);
@@ -8155,7 +8543,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の非移動時燃料使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [海軍の非移動時燃料使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8165,25 +8553,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(fuelNavalNotMovingTextBox.Text, out val))
             {
-                fuelNavalNotMovingTextBox.Text = Misc.Economy.FuelNavalNotMoving.ToString(CultureInfo.InvariantCulture);
+                fuelNavalNotMovingTextBox.Text = Misc.FuelNavalNotMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                fuelNavalNotMovingTextBox.Text = Misc.Economy.FuelNavalNotMoving.ToString(CultureInfo.InvariantCulture);
+                fuelNavalNotMovingTextBox.Text = Misc.FuelNavalNotMoving.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.FuelNavalNotMoving) <= 0.00005)
+            if (Math.Abs(val - Misc.FuelNavalNotMoving) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.FuelNavalNotMoving = val;
+            Misc.FuelNavalNotMoving = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FuelNavalNotMoving);
@@ -8194,7 +8582,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [海軍の戦闘時燃料使用量補正]テキストボックスフォーカス移動後の処理
+        ///     [海軍の戦闘時燃料使用量補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8204,25 +8592,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(fuelNavalBattleTextBox.Text, out val))
             {
-                fuelNavalBattleTextBox.Text = Misc.Economy.FuelNavalBattle.ToString(CultureInfo.InvariantCulture);
+                fuelNavalBattleTextBox.Text = Misc.FuelNavalBattle.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                fuelNavalBattleTextBox.Text = Misc.Economy.FuelNavalBattle.ToString(CultureInfo.InvariantCulture);
+                fuelNavalBattleTextBox.Text = Misc.FuelNavalBattle.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.FuelNavalBattle) <= 0.00005)
+            if (Math.Abs(val - Misc.FuelNavalBattle) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.FuelNavalBattle = val;
+            Misc.FuelNavalBattle = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FuelNavalBattle);
@@ -8233,7 +8621,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [輸送艦の輸送船団への変換比率]テキストボックスフォーカス移動後の処理
+        ///     [輸送艦の輸送船団への変換比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8243,25 +8631,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(tpTransportsConversionRatioTextBox.Text, out val))
             {
-                tpTransportsConversionRatioTextBox.Text = Misc.Economy.TpTransportsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                tpTransportsConversionRatioTextBox.Text =
+                    Misc.TpTransportsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                tpTransportsConversionRatioTextBox.Text = Misc.Economy.TpTransportsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                tpTransportsConversionRatioTextBox.Text =
+                    Misc.TpTransportsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.TpTransportsConversionRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.TpTransportsConversionRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.TpTransportsConversionRatio = val;
+            Misc.TpTransportsConversionRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TpTransportsConversionRatio);
@@ -8272,7 +8662,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [駆逐艦の護衛船団への変換比率]テキストボックスフォーカス移動後の処理
+        ///     [駆逐艦の護衛船団への変換比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8282,25 +8672,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(ddEscortsConversionRatioTextBox.Text, out val))
             {
-                ddEscortsConversionRatioTextBox.Text = Misc.Economy.DdEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                ddEscortsConversionRatioTextBox.Text =
+                    Misc.DdEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                ddEscortsConversionRatioTextBox.Text = Misc.Economy.DdEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                ddEscortsConversionRatioTextBox.Text =
+                    Misc.DdEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DdEscortsConversionRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.DdEscortsConversionRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DdEscortsConversionRatio = val;
+            Misc.DdEscortsConversionRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DdEscortsConversionRatio);
@@ -8311,7 +8703,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [軽巡洋艦の護衛船団への変換比率]テキストボックスフォーカス移動後の処理
+        ///     [軽巡洋艦の護衛船団への変換比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8321,25 +8713,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(clEscortsConversionRatioTextBox.Text, out val))
             {
-                clEscortsConversionRatioTextBox.Text = Misc.Economy.ClEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                clEscortsConversionRatioTextBox.Text =
+                    Misc.ClEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                clEscortsConversionRatioTextBox.Text = Misc.Economy.ClEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                clEscortsConversionRatioTextBox.Text =
+                    Misc.ClEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ClEscortsConversionRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.ClEscortsConversionRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ClEscortsConversionRatio = val;
+            Misc.ClEscortsConversionRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ClEscortsConversionRatio);
@@ -8350,7 +8744,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [軽空母の護衛船団への変換比率]テキストボックスフォーカス移動後の処理
+        ///     [軽空母の護衛船団への変換比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8360,25 +8754,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(cvlEscortsConversionRatioTextBox.Text, out val))
             {
-                cvlEscortsConversionRatioTextBox.Text = Misc.Economy.CvlEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                cvlEscortsConversionRatioTextBox.Text =
+                    Misc.CvlEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                cvlEscortsConversionRatioTextBox.Text = Misc.Economy.CvlEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
+                cvlEscortsConversionRatioTextBox.Text =
+                    Misc.CvlEscortsConversionRatio.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.CvlEscortsConversionRatio) <= 0.00005)
+            if (Math.Abs(val - Misc.CvlEscortsConversionRatio) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.CvlEscortsConversionRatio = val;
+            Misc.CvlEscortsConversionRatio = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.CvlEscortsConversionRatio);
@@ -8406,7 +8802,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.ProductionLineEdit ? 1 : 0;
+            int val = Misc.ProductionLineEdit ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.ProductionLineEdit))
             {
                 brush = new SolidBrush(Color.Red);
@@ -8436,13 +8832,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (productionLineEditComboBox.SelectedIndex == 1);
-            if (val == Misc.Economy.ProductionLineEdit)
+            if (val == Misc.ProductionLineEdit)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ProductionLineEdit = val;
+            Misc.ProductionLineEdit = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ProductionLineEdit);
@@ -8453,7 +8849,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [ユニット改良時のギアリングボーナス減少比率]テキストボックスフォーカス移動後の処理
+        ///     [ユニット改良時のギアリングボーナス減少比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8463,25 +8859,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(gearingBonusLossUpgradeUnitTextBox.Text, out val))
             {
-                gearingBonusLossUpgradeUnitTextBox.Text = Misc.Economy.GearingBonusLossUpgradeUnit.ToString(CultureInfo.InvariantCulture);
+                gearingBonusLossUpgradeUnitTextBox.Text =
+                    Misc.GearingBonusLossUpgradeUnit.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                gearingBonusLossUpgradeUnitTextBox.Text = Misc.Economy.GearingBonusLossUpgradeUnit.ToString(CultureInfo.InvariantCulture);
+                gearingBonusLossUpgradeUnitTextBox.Text =
+                    Misc.GearingBonusLossUpgradeUnit.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.GearingBonusLossUpgradeUnit) <= 0.00005)
+            if (Math.Abs(val - Misc.GearingBonusLossUpgradeUnit) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.GearingBonusLossUpgradeUnit = val;
+            Misc.GearingBonusLossUpgradeUnit = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.GearingBonusLossUpgradeUnit);
@@ -8492,7 +8890,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [旅団改良時のギアリングボーナス減少比率]テキストボックスフォーカス移動後の処理
+        ///     [旅団改良時のギアリングボーナス減少比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8502,25 +8900,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(gearingBonusLossUpgradeBrigadeTextBox.Text, out val))
             {
-                gearingBonusLossUpgradeBrigadeTextBox.Text = Misc.Economy.GearingBonusLossUpgradeBrigade.ToString(CultureInfo.InvariantCulture);
+                gearingBonusLossUpgradeBrigadeTextBox.Text =
+                    Misc.GearingBonusLossUpgradeBrigade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                gearingBonusLossUpgradeBrigadeTextBox.Text = Misc.Economy.GearingBonusLossUpgradeBrigade.ToString(CultureInfo.InvariantCulture);
+                gearingBonusLossUpgradeBrigadeTextBox.Text =
+                    Misc.GearingBonusLossUpgradeBrigade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.GearingBonusLossUpgradeBrigade) <= 0.00005)
+            if (Math.Abs(val - Misc.GearingBonusLossUpgradeBrigade) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.GearingBonusLossUpgradeBrigade = val;
+            Misc.GearingBonusLossUpgradeBrigade = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.GearingBonusLossUpgradeBrigade);
@@ -8531,7 +8931,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [中核州核攻撃時の不満度上昇係数]テキストボックスフォーカス移動後の処理
+        ///     [中核州核攻撃時の不満度上昇係数]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8541,25 +8941,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(dissentNukesTextBox.Text, out val))
             {
-                dissentNukesTextBox.Text = Misc.Economy.DissentNukes.ToString(CultureInfo.InvariantCulture);
+                dissentNukesTextBox.Text = Misc.DissentNukes.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                dissentNukesTextBox.Text = Misc.Economy.DissentNukes.ToString(CultureInfo.InvariantCulture);
+                dissentNukesTextBox.Text = Misc.DissentNukes.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.DissentNukes) <= 0.00005)
+            if (Math.Abs(val - Misc.DissentNukes) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.DissentNukes = val;
+            Misc.DissentNukes = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DissentNukes);
@@ -8570,7 +8970,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [物資/消費財不足時の最大不満度上昇値]テキストボックスフォーカス移動後の処理
+        ///     [物資/消費財不足時の最大不満度上昇値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8580,25 +8980,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxDailyDissentTextBox.Text, out val))
             {
-                maxDailyDissentTextBox.Text = Misc.Economy.MaxDailyDissent.ToString(CultureInfo.InvariantCulture);
+                maxDailyDissentTextBox.Text = Misc.MaxDailyDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxDailyDissentTextBox.Text = Misc.Economy.MaxDailyDissent.ToString(CultureInfo.InvariantCulture);
+                maxDailyDissentTextBox.Text = Misc.MaxDailyDissent.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.MaxDailyDissent) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxDailyDissent) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.MaxDailyDissent = val;
+            Misc.MaxDailyDissent = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxDailyDissent);
@@ -8609,7 +9009,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [核兵器生産補正]テキストボックスフォーカス移動後の処理
+        ///     [核兵器生産補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8619,25 +9019,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(nukesProductionModifierTextBox.Text, out val))
             {
-                nukesProductionModifierTextBox.Text = Misc.Economy.NukesProductionModifier.ToString(CultureInfo.InvariantCulture);
+                nukesProductionModifierTextBox.Text =
+                    Misc.NukesProductionModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                nukesProductionModifierTextBox.Text = Misc.Economy.NukesProductionModifier.ToString(CultureInfo.InvariantCulture);
+                nukesProductionModifierTextBox.Text =
+                    Misc.NukesProductionModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.NukesProductionModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.NukesProductionModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.NukesProductionModifier = val;
+            Misc.NukesProductionModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.NukesProductionModifier);
@@ -8665,7 +9067,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Economy.ConvoySystemOptionsAllied;
+            int val = Misc.ConvoySystemOptionsAllied;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.ConvoySystemOptionsAllied))
             {
                 brush = new SolidBrush(Color.Red);
@@ -8695,13 +9097,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = convoySystemOptionsAlliedComboBox.SelectedIndex;
-            if (val == Misc.Economy.ConvoySystemOptionsAllied)
+            if (val == Misc.ConvoySystemOptionsAllied)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ConvoySystemOptionsAllied = val;
+            Misc.ConvoySystemOptionsAllied = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ConvoySystemOptionsAllied);
@@ -8712,7 +9114,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [不要な資源/燃料の回収比率]テキストボックスフォーカス移動後の処理
+        ///     [不要な資源/燃料の回収比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8722,25 +9124,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(resourceConvoysBackUnneededTextBox.Text, out val))
             {
-                resourceConvoysBackUnneededTextBox.Text = Misc.Economy.ResourceConvoysBackUnneeded.ToString(CultureInfo.InvariantCulture);
+                resourceConvoysBackUnneededTextBox.Text =
+                    Misc.ResourceConvoysBackUnneeded.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                resourceConvoysBackUnneededTextBox.Text = Misc.Economy.ResourceConvoysBackUnneeded.ToString(CultureInfo.InvariantCulture);
+                resourceConvoysBackUnneededTextBox.Text =
+                    Misc.ResourceConvoysBackUnneeded.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Economy.ResourceConvoysBackUnneeded) <= 0.00005)
+            if (Math.Abs(val - Misc.ResourceConvoysBackUnneeded) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Economy.ResourceConvoysBackUnneeded = val;
+            Misc.ResourceConvoysBackUnneeded = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ResourceConvoysBackUnneeded);
@@ -8842,47 +9246,85 @@ namespace HoI2Editor.Forms
             // 編集項目の値を更新する
             if (Game.Type == GameType.DarkestHour)
             {
-                spyMissionDaysDhTextBox.Text = Misc.Intelligence.SpyMissionDaysDh.ToString(CultureInfo.InvariantCulture);
-                increateIntelligenceLevelDaysDhTextBox.Text = Misc.Intelligence.IncreateIntelligenceLevelDaysDh.ToString(CultureInfo.InvariantCulture);
-                chanceDetectSpyMissionDhTextBox.Text = Misc.Intelligence.ChanceDetectSpyMissionDh.ToString(CultureInfo.InvariantCulture);
-                relationshipsHitDetectedMissionsDhTextBox.Text = Misc.Intelligence.RelationshipsHitDetectedMissionsDh.ToString(CultureInfo.InvariantCulture);
-                distanceModifierTextBox.Text = Misc.Intelligence.DistanceModifier.ToString(CultureInfo.InvariantCulture);
-                distanceModifierNeighboursDhTextBox.Text = Misc.Intelligence.DistanceModifierNeighboursDh.ToString(CultureInfo.InvariantCulture);
-                spyLevelBonusDistanceModifierTextBox.Text = Misc.Intelligence.SpyLevelBonusDistanceModifier.ToString(CultureInfo.InvariantCulture);
-                spyLevelBonusDistanceModifierAboveTenTextBox.Text = Misc.Intelligence.SpyLevelBonusDistanceModifierAboveTen.ToString(CultureInfo.InvariantCulture);
-                spyInformationAccuracyModifierDhTextBox.Text = Misc.Intelligence.SpyInformationAccuracyModifierDh.ToString(CultureInfo.InvariantCulture);
-                icModifierCostTextBox.Text = Misc.Intelligence.IcModifierCost.ToString(CultureInfo.InvariantCulture);
-                minIcCostModifierTextBox.Text = Misc.Intelligence.MinIcCostModifier.ToString(CultureInfo.InvariantCulture);
-                maxIcCostModifierDhTextBox.Text = Misc.Intelligence.MaxIcCostModifierDh.ToString(CultureInfo.InvariantCulture);
-                extraMaintenanceCostAboveTenTextBox.Text = Misc.Intelligence.ExtraMaintenanceCostAboveTen.ToString(CultureInfo.InvariantCulture);
-                extraCostIncreasingAboveTenTextBox.Text = Misc.Intelligence.ExtraCostIncreasingAboveTen.ToString(CultureInfo.InvariantCulture);
-                showThirdCountrySpyReportsDhComboBox.SelectedIndex = Misc.Intelligence.ShowThirdCountrySpyReportsDh;
-                spiesMoneyModifierTextBox.Text = Misc.Intelligence.SpiesMoneyModifier.ToString(CultureInfo.InvariantCulture);
+                spyMissionDaysDhTextBox.Text = Misc.SpyMissionDaysDh.ToString(CultureInfo.InvariantCulture);
+                increateIntelligenceLevelDaysDhTextBox.Text =
+                    Misc.IncreateIntelligenceLevelDaysDh.ToString(CultureInfo.InvariantCulture);
+                chanceDetectSpyMissionDhTextBox.Text =
+                    Misc.ChanceDetectSpyMissionDh.ToString(CultureInfo.InvariantCulture);
+                relationshipsHitDetectedMissionsDhTextBox.Text =
+                    Misc.RelationshipsHitDetectedMissionsDh.ToString(CultureInfo.InvariantCulture);
+                distanceModifierTextBox.Text = Misc.DistanceModifier.ToString(CultureInfo.InvariantCulture);
+                distanceModifierNeighboursDhTextBox.Text =
+                    Misc.DistanceModifierNeighboursDh.ToString(CultureInfo.InvariantCulture);
+                spyLevelBonusDistanceModifierTextBox.Text =
+                    Misc.SpyLevelBonusDistanceModifier.ToString(CultureInfo.InvariantCulture);
+                spyLevelBonusDistanceModifierAboveTenTextBox.Text =
+                    Misc.SpyLevelBonusDistanceModifierAboveTen.ToString(CultureInfo.InvariantCulture);
+                spyInformationAccuracyModifierDhTextBox.Text =
+                    Misc.SpyInformationAccuracyModifierDh.ToString(CultureInfo.InvariantCulture);
+                icModifierCostTextBox.Text = Misc.IcModifierCost.ToString(CultureInfo.InvariantCulture);
+                minIcCostModifierTextBox.Text =
+                    Misc.MinIcCostModifier.ToString(CultureInfo.InvariantCulture);
+                maxIcCostModifierDhTextBox.Text =
+                    Misc.MaxIcCostModifierDh.ToString(CultureInfo.InvariantCulture);
+                extraMaintenanceCostAboveTenTextBox.Text =
+                    Misc.ExtraMaintenanceCostAboveTen.ToString(CultureInfo.InvariantCulture);
+                extraCostIncreasingAboveTenTextBox.Text =
+                    Misc.ExtraCostIncreasingAboveTen.ToString(CultureInfo.InvariantCulture);
+                showThirdCountrySpyReportsDhComboBox.SelectedIndex = Misc.ShowThirdCountrySpyReportsDh;
+                spiesMoneyModifierTextBox.Text =
+                    Misc.SpiesMoneyModifier.ToString(CultureInfo.InvariantCulture);
             }
 
             // 編集項目の色を更新する
             if (Game.Type == GameType.DarkestHour)
             {
-                spyMissionDaysDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyMissionDaysDh) ? Color.Red : SystemColors.WindowText;
-                increateIntelligenceLevelDaysDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.IncreateIntelligenceLevelDaysDh) ? Color.Red : SystemColors.WindowText;
-                chanceDetectSpyMissionDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChanceDetectSpyMissionDh) ? Color.Red : SystemColors.WindowText;
-                relationshipsHitDetectedMissionsDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.RelationshipsHitDetectedMissionsDh) ? Color.Red : SystemColors.WindowText;
-                distanceModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.DistanceModifier) ? Color.Red : SystemColors.WindowText;
-                distanceModifierNeighboursDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.DistanceModifierNeighboursDh) ? Color.Red : SystemColors.WindowText;
-                spyLevelBonusDistanceModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyLevelBonusDistanceModifier) ? Color.Red : SystemColors.WindowText;
-                spyLevelBonusDistanceModifierAboveTenTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyLevelBonusDistanceModifierAboveTen) ? Color.Red : SystemColors.WindowText;
-                spyInformationAccuracyModifierDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyInformationAccuracyModifierDh) ? Color.Red : SystemColors.WindowText;
-                icModifierCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.IcModifierCost) ? Color.Red : SystemColors.WindowText;
-                minIcCostModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinIcCostModifier) ? Color.Red : SystemColors.WindowText;
-                maxIcCostModifierDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxIcCostModifierDh) ? Color.Red : SystemColors.WindowText;
-                extraMaintenanceCostAboveTenTextBox.ForeColor = Misc.IsDirty(MiscItemId.ExtraMaintenanceCostAboveTen) ? Color.Red : SystemColors.WindowText;
-                extraCostIncreasingAboveTenTextBox.ForeColor = Misc.IsDirty(MiscItemId.ExtraCostIncreasingAboveTen) ? Color.Red : SystemColors.WindowText;
-                spiesMoneyModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpiesMoneyModifier) ? Color.Red : SystemColors.WindowText;
+                spyMissionDaysDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyMissionDaysDh)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                increateIntelligenceLevelDaysDhTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.IncreateIntelligenceLevelDaysDh) ? Color.Red : SystemColors.WindowText;
+                chanceDetectSpyMissionDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChanceDetectSpyMissionDh)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                relationshipsHitDetectedMissionsDhTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.RelationshipsHitDetectedMissionsDh) ? Color.Red : SystemColors.WindowText;
+                distanceModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.DistanceModifier)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                distanceModifierNeighboursDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.DistanceModifierNeighboursDh)
+                                                                    ? Color.Red
+                                                                    : SystemColors.WindowText;
+                spyLevelBonusDistanceModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpyLevelBonusDistanceModifier)
+                                                                     ? Color.Red
+                                                                     : SystemColors.WindowText;
+                spyLevelBonusDistanceModifierAboveTenTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.SpyLevelBonusDistanceModifierAboveTen) ? Color.Red : SystemColors.WindowText;
+                spyInformationAccuracyModifierDhTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.SpyInformationAccuracyModifierDh) ? Color.Red : SystemColors.WindowText;
+                icModifierCostTextBox.ForeColor = Misc.IsDirty(MiscItemId.IcModifierCost)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                minIcCostModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.MinIcCostModifier)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                maxIcCostModifierDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaxIcCostModifierDh)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                extraMaintenanceCostAboveTenTextBox.ForeColor = Misc.IsDirty(MiscItemId.ExtraMaintenanceCostAboveTen)
+                                                                    ? Color.Red
+                                                                    : SystemColors.WindowText;
+                extraCostIncreasingAboveTenTextBox.ForeColor = Misc.IsDirty(MiscItemId.ExtraCostIncreasingAboveTen)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
+                spiesMoneyModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SpiesMoneyModifier)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
             }
         }
 
         /// <summary>
-        /// [諜報任務の間隔]テキストボックスフォーカス移動後の処理
+        ///     [諜報任務の間隔]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8892,25 +9334,25 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(spyMissionDaysDhTextBox.Text, out val))
             {
-                spyMissionDaysDhTextBox.Text = Misc.Intelligence.SpyMissionDaysDh.ToString(CultureInfo.InvariantCulture);
+                spyMissionDaysDhTextBox.Text = Misc.SpyMissionDaysDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyMissionDaysDhTextBox.Text = Misc.Intelligence.SpyMissionDaysDh.ToString(CultureInfo.InvariantCulture);
+                spyMissionDaysDhTextBox.Text = Misc.SpyMissionDaysDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Intelligence.SpyMissionDaysDh)
+            if (val == Misc.SpyMissionDaysDh)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.SpyMissionDaysDh = val;
+            Misc.SpyMissionDaysDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyMissionDaysDh);
@@ -8921,7 +9363,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報レベルの増加間隔]テキストボックスフォーカス移動後の処理
+        ///     [諜報レベルの増加間隔]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8931,25 +9373,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(increateIntelligenceLevelDaysDhTextBox.Text, out val))
             {
-                increateIntelligenceLevelDaysDhTextBox.Text = Misc.Intelligence.IncreateIntelligenceLevelDaysDh.ToString(CultureInfo.InvariantCulture);
+                increateIntelligenceLevelDaysDhTextBox.Text =
+                    Misc.IncreateIntelligenceLevelDaysDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                increateIntelligenceLevelDaysDhTextBox.Text = Misc.Intelligence.IncreateIntelligenceLevelDaysDh.ToString(CultureInfo.InvariantCulture);
+                increateIntelligenceLevelDaysDhTextBox.Text =
+                    Misc.IncreateIntelligenceLevelDaysDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Intelligence.IncreateIntelligenceLevelDaysDh)
+            if (val == Misc.IncreateIntelligenceLevelDaysDh)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.IncreateIntelligenceLevelDaysDh = val;
+            Misc.IncreateIntelligenceLevelDaysDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IncreateIntelligenceLevelDaysDh);
@@ -8960,7 +9404,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [国内の諜報活動を発見する確率]テキストボックスフォーカス移動後の処理
+        ///     [国内の諜報活動を発見する確率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -8970,25 +9414,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(chanceDetectSpyMissionDhTextBox.Text, out val))
             {
-                chanceDetectSpyMissionDhTextBox.Text = Misc.Intelligence.ChanceDetectSpyMissionDh.ToString(CultureInfo.InvariantCulture);
+                chanceDetectSpyMissionDhTextBox.Text =
+                    Misc.ChanceDetectSpyMissionDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                chanceDetectSpyMissionDhTextBox.Text = Misc.Intelligence.ChanceDetectSpyMissionDh.ToString(CultureInfo.InvariantCulture);
+                chanceDetectSpyMissionDhTextBox.Text =
+                    Misc.ChanceDetectSpyMissionDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.ChanceDetectSpyMissionDh) <= 0.00005)
+            if (Math.Abs(val - Misc.ChanceDetectSpyMissionDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.ChanceDetectSpyMissionDh = val;
+            Misc.ChanceDetectSpyMissionDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ChanceDetectSpyMissionDh);
@@ -8999,7 +9445,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報任務発覚時の友好度低下量]テキストボックスフォーカス移動後の処理
+        ///     [諜報任務発覚時の友好度低下量]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9009,25 +9455,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(relationshipsHitDetectedMissionsDhTextBox.Text, out val))
             {
-                relationshipsHitDetectedMissionsDhTextBox.Text = Misc.Intelligence.RelationshipsHitDetectedMissionsDh.ToString(CultureInfo.InvariantCulture);
+                relationshipsHitDetectedMissionsDhTextBox.Text =
+                    Misc.RelationshipsHitDetectedMissionsDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                relationshipsHitDetectedMissionsDhTextBox.Text = Misc.Intelligence.RelationshipsHitDetectedMissionsDh.ToString(CultureInfo.InvariantCulture);
+                relationshipsHitDetectedMissionsDhTextBox.Text =
+                    Misc.RelationshipsHitDetectedMissionsDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.RelationshipsHitDetectedMissionsDh) <= 0.00005)
+            if (Math.Abs(val - Misc.RelationshipsHitDetectedMissionsDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.RelationshipsHitDetectedMissionsDh = val;
+            Misc.RelationshipsHitDetectedMissionsDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RelationshipsHitDetectedMissionsDh);
@@ -9038,7 +9486,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報任務の距離補正]テキストボックスフォーカス移動後の処理
+        ///     [諜報任務の距離補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9048,25 +9496,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(distanceModifierTextBox.Text, out val))
             {
-                distanceModifierTextBox.Text = Misc.Intelligence.DistanceModifier.ToString(CultureInfo.InvariantCulture);
+                distanceModifierTextBox.Text = Misc.DistanceModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                distanceModifierTextBox.Text = Misc.Intelligence.DistanceModifier.ToString(CultureInfo.InvariantCulture);
+                distanceModifierTextBox.Text = Misc.DistanceModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.DistanceModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.DistanceModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.DistanceModifier = val;
+            Misc.DistanceModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DistanceModifier);
@@ -9077,7 +9525,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報任務の近隣国補正]テキストボックスフォーカス移動後の処理
+        ///     [諜報任務の近隣国補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9087,25 +9535,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(distanceModifierNeighboursDhTextBox.Text, out val))
             {
-                distanceModifierNeighboursDhTextBox.Text = Misc.Intelligence.DistanceModifierNeighboursDh.ToString(CultureInfo.InvariantCulture);
+                distanceModifierNeighboursDhTextBox.Text =
+                    Misc.DistanceModifierNeighboursDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                distanceModifierNeighboursDhTextBox.Text = Misc.Intelligence.DistanceModifierNeighboursDh.ToString(CultureInfo.InvariantCulture);
+                distanceModifierNeighboursDhTextBox.Text =
+                    Misc.DistanceModifierNeighboursDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.DistanceModifierNeighboursDh) <= 0.00005)
+            if (Math.Abs(val - Misc.DistanceModifierNeighboursDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.DistanceModifierNeighboursDh = val;
+            Misc.DistanceModifierNeighboursDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DistanceModifierNeighboursDh);
@@ -9116,7 +9566,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報レベルの距離補正]テキストボックスフォーカス移動後の処理
+        ///     [諜報レベルの距離補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9126,25 +9576,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(spyLevelBonusDistanceModifierTextBox.Text, out val))
             {
-                spyLevelBonusDistanceModifierTextBox.Text = Misc.Intelligence.SpyLevelBonusDistanceModifier.ToString(CultureInfo.InvariantCulture);
+                spyLevelBonusDistanceModifierTextBox.Text =
+                    Misc.SpyLevelBonusDistanceModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyLevelBonusDistanceModifierTextBox.Text = Misc.Intelligence.SpyLevelBonusDistanceModifier.ToString(CultureInfo.InvariantCulture);
+                spyLevelBonusDistanceModifierTextBox.Text =
+                    Misc.SpyLevelBonusDistanceModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.SpyLevelBonusDistanceModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.SpyLevelBonusDistanceModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.SpyLevelBonusDistanceModifier = val;
+            Misc.SpyLevelBonusDistanceModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyLevelBonusDistanceModifier);
@@ -9155,7 +9607,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報レベル10超過時の距離補正]テキストボックスフォーカス移動後の処理
+        ///     [諜報レベル10超過時の距離補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9165,25 +9617,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(spyLevelBonusDistanceModifierAboveTenTextBox.Text, out val))
             {
-                spyLevelBonusDistanceModifierAboveTenTextBox.Text = Misc.Intelligence.SpyLevelBonusDistanceModifierAboveTen.ToString(CultureInfo.InvariantCulture);
+                spyLevelBonusDistanceModifierAboveTenTextBox.Text =
+                    Misc.SpyLevelBonusDistanceModifierAboveTen.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyLevelBonusDistanceModifierAboveTenTextBox.Text = Misc.Intelligence.SpyLevelBonusDistanceModifierAboveTen.ToString(CultureInfo.InvariantCulture);
+                spyLevelBonusDistanceModifierAboveTenTextBox.Text =
+                    Misc.SpyLevelBonusDistanceModifierAboveTen.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.SpyLevelBonusDistanceModifierAboveTen) <= 0.00005)
+            if (Math.Abs(val - Misc.SpyLevelBonusDistanceModifierAboveTen) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.SpyLevelBonusDistanceModifierAboveTen = val;
+            Misc.SpyLevelBonusDistanceModifierAboveTen = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyLevelBonusDistanceModifierAboveTen);
@@ -9194,7 +9648,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [情報の正確さ補正]テキストボックスフォーカス移動後の処理
+        ///     [情報の正確さ補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9204,25 +9658,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(spyInformationAccuracyModifierDhTextBox.Text, out val))
             {
-                spyInformationAccuracyModifierDhTextBox.Text = Misc.Intelligence.SpyInformationAccuracyModifierDh.ToString(CultureInfo.InvariantCulture);
+                spyInformationAccuracyModifierDhTextBox.Text =
+                    Misc.SpyInformationAccuracyModifierDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spyInformationAccuracyModifierDhTextBox.Text = Misc.Intelligence.SpyInformationAccuracyModifierDh.ToString(CultureInfo.InvariantCulture);
+                spyInformationAccuracyModifierDhTextBox.Text =
+                    Misc.SpyInformationAccuracyModifierDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.SpyInformationAccuracyModifierDh) <= 0.00005)
+            if (Math.Abs(val - Misc.SpyInformationAccuracyModifierDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.SpyInformationAccuracyModifierDh = val;
+            Misc.SpyInformationAccuracyModifierDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpyInformationAccuracyModifierDh);
@@ -9233,7 +9689,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報コストのIC補正]テキストボックスフォーカス移動後の処理
+        ///     [諜報コストのIC補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9243,25 +9699,25 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(icModifierCostTextBox.Text, out val))
             {
-                icModifierCostTextBox.Text = Misc.Intelligence.IcModifierCost.ToString(CultureInfo.InvariantCulture);
+                icModifierCostTextBox.Text = Misc.IcModifierCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                icModifierCostTextBox.Text = Misc.Intelligence.IcModifierCost.ToString(CultureInfo.InvariantCulture);
+                icModifierCostTextBox.Text = Misc.IcModifierCost.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.IcModifierCost) <= 0.00005)
+            if (Math.Abs(val - Misc.IcModifierCost) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.IcModifierCost = val;
+            Misc.IcModifierCost = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.IcModifierCost);
@@ -9272,7 +9728,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報コスト補正の最小IC]テキストボックスフォーカス移動後の処理
+        ///     [諜報コスト補正の最小IC]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9282,25 +9738,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(minIcCostModifierTextBox.Text, out val))
             {
-                minIcCostModifierTextBox.Text = Misc.Intelligence.MinIcCostModifier.ToString(CultureInfo.InvariantCulture);
+                minIcCostModifierTextBox.Text =
+                    Misc.MinIcCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                minIcCostModifierTextBox.Text = Misc.Intelligence.MinIcCostModifier.ToString(CultureInfo.InvariantCulture);
+                minIcCostModifierTextBox.Text =
+                    Misc.MinIcCostModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.MinIcCostModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.MinIcCostModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.MinIcCostModifier = val;
+            Misc.MinIcCostModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MinIcCostModifier);
@@ -9311,7 +9769,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報コスト補正の最大IC]テキストボックスフォーカス移動後の処理
+        ///     [諜報コスト補正の最大IC]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9321,25 +9779,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(maxIcCostModifierDhTextBox.Text, out val))
             {
-                maxIcCostModifierDhTextBox.Text = Misc.Intelligence.MaxIcCostModifierDh.ToString(CultureInfo.InvariantCulture);
+                maxIcCostModifierDhTextBox.Text =
+                    Misc.MaxIcCostModifierDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                maxIcCostModifierDhTextBox.Text = Misc.Intelligence.MaxIcCostModifierDh.ToString(CultureInfo.InvariantCulture);
+                maxIcCostModifierDhTextBox.Text =
+                    Misc.MaxIcCostModifierDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.MaxIcCostModifierDh) <= 0.00005)
+            if (Math.Abs(val - Misc.MaxIcCostModifierDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.MaxIcCostModifierDh = val;
+            Misc.MaxIcCostModifierDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MaxIcCostModifierDh);
@@ -9350,7 +9810,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報レベル10超過時追加維持コスト]テキストボックスフォーカス移動後の処理
+        ///     [諜報レベル10超過時追加維持コスト]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9360,25 +9820,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(extraMaintenanceCostAboveTenTextBox.Text, out val))
             {
-                extraMaintenanceCostAboveTenTextBox.Text = Misc.Intelligence.ExtraMaintenanceCostAboveTen.ToString(CultureInfo.InvariantCulture);
+                extraMaintenanceCostAboveTenTextBox.Text =
+                    Misc.ExtraMaintenanceCostAboveTen.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                extraMaintenanceCostAboveTenTextBox.Text = Misc.Intelligence.ExtraMaintenanceCostAboveTen.ToString(CultureInfo.InvariantCulture);
+                extraMaintenanceCostAboveTenTextBox.Text =
+                    Misc.ExtraMaintenanceCostAboveTen.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.ExtraMaintenanceCostAboveTen) <= 0.00005)
+            if (Math.Abs(val - Misc.ExtraMaintenanceCostAboveTen) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.ExtraMaintenanceCostAboveTen = val;
+            Misc.ExtraMaintenanceCostAboveTen = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ExtraMaintenanceCostAboveTen);
@@ -9389,7 +9851,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報レベル10超過時増加コスト]テキストボックスフォーカス移動後の処理
+        ///     [諜報レベル10超過時増加コスト]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9399,25 +9861,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(extraCostIncreasingAboveTenTextBox.Text, out val))
             {
-                extraCostIncreasingAboveTenTextBox.Text = Misc.Intelligence.ExtraCostIncreasingAboveTen.ToString(CultureInfo.InvariantCulture);
+                extraCostIncreasingAboveTenTextBox.Text =
+                    Misc.ExtraCostIncreasingAboveTen.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                extraCostIncreasingAboveTenTextBox.Text = Misc.Intelligence.ExtraCostIncreasingAboveTen.ToString(CultureInfo.InvariantCulture);
+                extraCostIncreasingAboveTenTextBox.Text =
+                    Misc.ExtraCostIncreasingAboveTen.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.ExtraCostIncreasingAboveTen) <= 0.00005)
+            if (Math.Abs(val - Misc.ExtraCostIncreasingAboveTen) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.ExtraCostIncreasingAboveTen = val;
+            Misc.ExtraCostIncreasingAboveTen = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ExtraCostIncreasingAboveTen);
@@ -9445,7 +9909,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Intelligence.ShowThirdCountrySpyReportsDh;
+            int val = Misc.ShowThirdCountrySpyReportsDh;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.ShowThirdCountrySpyReportsDh))
             {
                 brush = new SolidBrush(Color.Red);
@@ -9475,13 +9939,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = showThirdCountrySpyReportsDhComboBox.SelectedIndex;
-            if (val == Misc.Intelligence.ShowThirdCountrySpyReportsDh)
+            if (val == Misc.ShowThirdCountrySpyReportsDh)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.ShowThirdCountrySpyReportsDh = val;
+            Misc.ShowThirdCountrySpyReportsDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ShowThirdCountrySpyReportsDh);
@@ -9492,7 +9956,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [諜報資金割り当て補正]テキストボックスフォーカス移動後の処理
+        ///     [諜報資金割り当て補正]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9502,25 +9966,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(spiesMoneyModifierTextBox.Text, out val))
             {
-                spiesMoneyModifierTextBox.Text = Misc.Intelligence.SpiesMoneyModifier.ToString(CultureInfo.InvariantCulture);
+                spiesMoneyModifierTextBox.Text =
+                    Misc.SpiesMoneyModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                spiesMoneyModifierTextBox.Text = Misc.Intelligence.SpiesMoneyModifier.ToString(CultureInfo.InvariantCulture);
+                spiesMoneyModifierTextBox.Text =
+                    Misc.SpiesMoneyModifier.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Intelligence.SpiesMoneyModifier) <= 0.00005)
+            if (Math.Abs(val - Misc.SpiesMoneyModifier) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Intelligence.SpiesMoneyModifier = val;
+            Misc.SpiesMoneyModifier = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.SpiesMoneyModifier);
@@ -9618,38 +10084,60 @@ namespace HoI2Editor.Forms
             // 編集項目の値を更新する
             if (Game.Type == GameType.DarkestHour)
             {
-                daysBetweenDiplomaticMissionsTextBox.Text = Misc.Diplomacy.DaysBetweenDiplomaticMissions.ToString(CultureInfo.InvariantCulture);
-                timeBetweenSliderChangesDhTextBox.Text = Misc.Diplomacy.TimeBetweenSliderChangesDh.ToString(CultureInfo.InvariantCulture);
-                requirementAffectSliderDhTextBox.Text = Misc.Diplomacy.RequirementAffectSliderDh.ToString(CultureInfo.InvariantCulture);
-                useMinisterPersonalityReplacingComboBox.SelectedIndex = Misc.Diplomacy.UseMinisterPersonalityReplacing ? 1 : 0;
-                relationshipHitCancelTradeTextBox.Text = Misc.Diplomacy.RelationshipHitCancelTrade.ToString(CultureInfo.InvariantCulture);
-                relationshipHitCancelPermanentTradeTextBox.Text = Misc.Diplomacy.RelationshipHitCancelPermanentTrade.ToString(CultureInfo.InvariantCulture);
-                puppetsJoinMastersAllianceComboBox.SelectedIndex = Misc.Diplomacy.PuppetsJoinMastersAlliance ? 1 : 0;
-                mastersBecomePuppetsPuppetsComboBox.SelectedIndex = Misc.Diplomacy.MastersBecomePuppetsPuppets ? 1 : 0;
-                allowManualClaimsChangeComboBox.SelectedIndex = Misc.Diplomacy.AllowManualClaimsChange ? 1 : 0;
-                belligerenceClaimedProvinceTextBox.Text = Misc.Diplomacy.BelligerenceClaimedProvince.ToString(CultureInfo.InvariantCulture);
-                belligerenceClaimsRemovalTextBox.Text = Misc.Diplomacy.BelligerenceClaimsRemoval.ToString(CultureInfo.InvariantCulture);
-                joinAutomaticallyAllesAxisComboBox.SelectedIndex = Misc.Diplomacy.JoinAutomaticallyAllesAxis ? 1 : 0;
-                allowChangeHosHogComboBox.SelectedIndex = Misc.Diplomacy.AllowChangeHosHog;
-                changeTagCoupComboBox.SelectedIndex = Misc.Diplomacy.ChangeTagCoup ? 1 : 0;
-                filterReleaseCountriesComboBox.SelectedIndex = Misc.Diplomacy.FilterReleaseCountries;
+                daysBetweenDiplomaticMissionsTextBox.Text =
+                    Misc.DaysBetweenDiplomaticMissions.ToString(CultureInfo.InvariantCulture);
+                timeBetweenSliderChangesDhTextBox.Text =
+                    Misc.TimeBetweenSliderChangesDh.ToString(CultureInfo.InvariantCulture);
+                requirementAffectSliderDhTextBox.Text =
+                    Misc.RequirementAffectSliderDh.ToString(CultureInfo.InvariantCulture);
+                useMinisterPersonalityReplacingComboBox.SelectedIndex = Misc.UseMinisterPersonalityReplacing
+                                                                            ? 1
+                                                                            : 0;
+                relationshipHitCancelTradeTextBox.Text =
+                    Misc.RelationshipHitCancelTrade.ToString(CultureInfo.InvariantCulture);
+                relationshipHitCancelPermanentTradeTextBox.Text =
+                    Misc.RelationshipHitCancelPermanentTrade.ToString(CultureInfo.InvariantCulture);
+                puppetsJoinMastersAllianceComboBox.SelectedIndex = Misc.PuppetsJoinMastersAlliance ? 1 : 0;
+                mastersBecomePuppetsPuppetsComboBox.SelectedIndex = Misc.MastersBecomePuppetsPuppets ? 1 : 0;
+                allowManualClaimsChangeComboBox.SelectedIndex = Misc.AllowManualClaimsChange ? 1 : 0;
+                belligerenceClaimedProvinceTextBox.Text =
+                    Misc.BelligerenceClaimedProvince.ToString(CultureInfo.InvariantCulture);
+                belligerenceClaimsRemovalTextBox.Text =
+                    Misc.BelligerenceClaimsRemoval.ToString(CultureInfo.InvariantCulture);
+                joinAutomaticallyAllesAxisComboBox.SelectedIndex = Misc.JoinAutomaticallyAllesAxis ? 1 : 0;
+                allowChangeHosHogComboBox.SelectedIndex = Misc.AllowChangeHosHog;
+                changeTagCoupComboBox.SelectedIndex = Misc.ChangeTagCoup ? 1 : 0;
+                filterReleaseCountriesComboBox.SelectedIndex = Misc.FilterReleaseCountries;
             }
 
             // 編集項目の色を更新する
             if (Game.Type == GameType.DarkestHour)
             {
-                daysBetweenDiplomaticMissionsTextBox.ForeColor = Misc.IsDirty(MiscItemId.DaysBetweenDiplomaticMissions) ? Color.Red : SystemColors.WindowText;
-                timeBetweenSliderChangesDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.TimeBetweenSliderChangesDh) ? Color.Red : SystemColors.WindowText;
-                requirementAffectSliderDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.RequirementAffectSliderDh) ? Color.Red : SystemColors.WindowText;
-                relationshipHitCancelTradeTextBox.ForeColor = Misc.IsDirty(MiscItemId.RelationshipHitCancelTrade) ? Color.Red : SystemColors.WindowText;
-                relationshipHitCancelPermanentTradeTextBox.ForeColor = Misc.IsDirty(MiscItemId.RelationshipHitCancelPermanentTrade) ? Color.Red : SystemColors.WindowText;
-                belligerenceClaimedProvinceTextBox.ForeColor = Misc.IsDirty(MiscItemId.BelligerenceClaimedProvince) ? Color.Red : SystemColors.WindowText;
-                belligerenceClaimsRemovalTextBox.ForeColor = Misc.IsDirty(MiscItemId.BelligerenceClaimsRemoval) ? Color.Red : SystemColors.WindowText;
+                daysBetweenDiplomaticMissionsTextBox.ForeColor = Misc.IsDirty(MiscItemId.DaysBetweenDiplomaticMissions)
+                                                                     ? Color.Red
+                                                                     : SystemColors.WindowText;
+                timeBetweenSliderChangesDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.TimeBetweenSliderChangesDh)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
+                requirementAffectSliderDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.RequirementAffectSliderDh)
+                                                                 ? Color.Red
+                                                                 : SystemColors.WindowText;
+                relationshipHitCancelTradeTextBox.ForeColor = Misc.IsDirty(MiscItemId.RelationshipHitCancelTrade)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
+                relationshipHitCancelPermanentTradeTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.RelationshipHitCancelPermanentTrade) ? Color.Red : SystemColors.WindowText;
+                belligerenceClaimedProvinceTextBox.ForeColor = Misc.IsDirty(MiscItemId.BelligerenceClaimedProvince)
+                                                                   ? Color.Red
+                                                                   : SystemColors.WindowText;
+                belligerenceClaimsRemovalTextBox.ForeColor = Misc.IsDirty(MiscItemId.BelligerenceClaimsRemoval)
+                                                                 ? Color.Red
+                                                                 : SystemColors.WindowText;
             }
         }
 
         /// <summary>
-        /// [外交官派遣間隔]テキストボックスフォーカス移動後の処理
+        ///     [外交官派遣間隔]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9659,25 +10147,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(daysBetweenDiplomaticMissionsTextBox.Text, out val))
             {
-                daysBetweenDiplomaticMissionsTextBox.Text = Misc.Diplomacy.DaysBetweenDiplomaticMissions.ToString(CultureInfo.InvariantCulture);
+                daysBetweenDiplomaticMissionsTextBox.Text =
+                    Misc.DaysBetweenDiplomaticMissions.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                daysBetweenDiplomaticMissionsTextBox.Text = Misc.Diplomacy.DaysBetweenDiplomaticMissions.ToString(CultureInfo.InvariantCulture);
+                daysBetweenDiplomaticMissionsTextBox.Text =
+                    Misc.DaysBetweenDiplomaticMissions.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Diplomacy.DaysBetweenDiplomaticMissions)
+            if (val == Misc.DaysBetweenDiplomaticMissions)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.DaysBetweenDiplomaticMissions = val;
+            Misc.DaysBetweenDiplomaticMissions = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.DaysBetweenDiplomaticMissions);
@@ -9688,7 +10178,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [スライダー移動の間隔]テキストボックスフォーカス移動後の処理
+        ///     [スライダー移動の間隔]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9698,25 +10188,27 @@ namespace HoI2Editor.Forms
             int val;
             if (!int.TryParse(timeBetweenSliderChangesDhTextBox.Text, out val))
             {
-                timeBetweenSliderChangesDhTextBox.Text = Misc.Diplomacy.TimeBetweenSliderChangesDh.ToString(CultureInfo.InvariantCulture);
+                timeBetweenSliderChangesDhTextBox.Text =
+                    Misc.TimeBetweenSliderChangesDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                timeBetweenSliderChangesDhTextBox.Text = Misc.Diplomacy.TimeBetweenSliderChangesDh.ToString(CultureInfo.InvariantCulture);
+                timeBetweenSliderChangesDhTextBox.Text =
+                    Misc.TimeBetweenSliderChangesDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val == Misc.Diplomacy.TimeBetweenSliderChangesDh)
+            if (val == Misc.TimeBetweenSliderChangesDh)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.TimeBetweenSliderChangesDh = val;
+            Misc.TimeBetweenSliderChangesDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.TimeBetweenSliderChangesDh);
@@ -9727,7 +10219,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [政策スライダーに影響を与えるためのIC比率]テキストボックスフォーカス移動後の処理
+        ///     [政策スライダーに影響を与えるためのIC比率]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9737,25 +10229,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(requirementAffectSliderDhTextBox.Text, out val))
             {
-                requirementAffectSliderDhTextBox.Text = Misc.Diplomacy.RequirementAffectSliderDh.ToString(CultureInfo.InvariantCulture);
+                requirementAffectSliderDhTextBox.Text =
+                    Misc.RequirementAffectSliderDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                requirementAffectSliderDhTextBox.Text = Misc.Diplomacy.RequirementAffectSliderDh.ToString(CultureInfo.InvariantCulture);
+                requirementAffectSliderDhTextBox.Text =
+                    Misc.RequirementAffectSliderDh.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Diplomacy.RequirementAffectSliderDh) <= 0.00005)
+            if (Math.Abs(val - Misc.RequirementAffectSliderDh) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.RequirementAffectSliderDh = val;
+            Misc.RequirementAffectSliderDh = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RequirementAffectSliderDh);
@@ -9783,7 +10277,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.UseMinisterPersonalityReplacing ? 1 : 0;
+            int val = Misc.UseMinisterPersonalityReplacing ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.UseMinisterPersonalityReplacing))
             {
                 brush = new SolidBrush(Color.Red);
@@ -9813,13 +10307,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (useMinisterPersonalityReplacingComboBox.SelectedIndex == 1);
-            if (val == Misc.Diplomacy.UseMinisterPersonalityReplacing)
+            if (val == Misc.UseMinisterPersonalityReplacing)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.UseMinisterPersonalityReplacing = val;
+            Misc.UseMinisterPersonalityReplacing = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.UseMinisterPersonalityReplacing);
@@ -9830,7 +10324,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [貿易キャンセル時の友好度低下]テキストボックスフォーカス移動後の処理
+        ///     [貿易キャンセル時の友好度低下]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9840,25 +10334,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(relationshipHitCancelTradeTextBox.Text, out val))
             {
-                relationshipHitCancelTradeTextBox.Text = Misc.Diplomacy.RelationshipHitCancelTrade.ToString(CultureInfo.InvariantCulture);
+                relationshipHitCancelTradeTextBox.Text =
+                    Misc.RelationshipHitCancelTrade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0 || val > 400)
             {
-                relationshipHitCancelTradeTextBox.Text = Misc.Diplomacy.RelationshipHitCancelTrade.ToString(CultureInfo.InvariantCulture);
+                relationshipHitCancelTradeTextBox.Text =
+                    Misc.RelationshipHitCancelTrade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Diplomacy.RelationshipHitCancelTrade) <= 0.00005)
+            if (Math.Abs(val - Misc.RelationshipHitCancelTrade) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.RelationshipHitCancelTrade = val;
+            Misc.RelationshipHitCancelTrade = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RelationshipHitCancelTrade);
@@ -9869,7 +10365,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [永久貿易キャンセル時の友好度低下]テキストボックスフォーカス移動後の処理
+        ///     [永久貿易キャンセル時の友好度低下]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9879,25 +10375,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(relationshipHitCancelPermanentTradeTextBox.Text, out val))
             {
-                relationshipHitCancelPermanentTradeTextBox.Text = Misc.Diplomacy.RelationshipHitCancelPermanentTrade.ToString(CultureInfo.InvariantCulture);
+                relationshipHitCancelPermanentTradeTextBox.Text =
+                    Misc.RelationshipHitCancelPermanentTrade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if ((val < 0 && Math.Abs(val - 0.1) > 0.00005) || val > 100)
             {
-                relationshipHitCancelPermanentTradeTextBox.Text = Misc.Diplomacy.RelationshipHitCancelPermanentTrade.ToString(CultureInfo.InvariantCulture);
+                relationshipHitCancelPermanentTradeTextBox.Text =
+                    Misc.RelationshipHitCancelPermanentTrade.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Diplomacy.RelationshipHitCancelPermanentTrade) <= 0.00005)
+            if (Math.Abs(val - Misc.RelationshipHitCancelPermanentTrade) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.RelationshipHitCancelPermanentTrade = val;
+            Misc.RelationshipHitCancelPermanentTrade = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.RelationshipHitCancelPermanentTrade);
@@ -9925,7 +10423,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.PuppetsJoinMastersAlliance ? 1 : 0;
+            int val = Misc.PuppetsJoinMastersAlliance ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.PuppetsJoinMastersAlliance))
             {
                 brush = new SolidBrush(Color.Red);
@@ -9955,13 +10453,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (puppetsJoinMastersAllianceComboBox.SelectedIndex == 1);
-            if (val == Misc.Diplomacy.PuppetsJoinMastersAlliance)
+            if (val == Misc.PuppetsJoinMastersAlliance)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.PuppetsJoinMastersAlliance = val;
+            Misc.PuppetsJoinMastersAlliance = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.PuppetsJoinMastersAlliance);
@@ -9989,7 +10487,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.MastersBecomePuppetsPuppets ? 1 : 0;
+            int val = Misc.MastersBecomePuppetsPuppets ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.MastersBecomePuppetsPuppets))
             {
                 brush = new SolidBrush(Color.Red);
@@ -10019,13 +10517,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (mastersBecomePuppetsPuppetsComboBox.SelectedIndex == 1);
-            if (val == Misc.Diplomacy.MastersBecomePuppetsPuppets)
+            if (val == Misc.MastersBecomePuppetsPuppets)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.MastersBecomePuppetsPuppets = val;
+            Misc.MastersBecomePuppetsPuppets = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.MastersBecomePuppetsPuppets);
@@ -10053,7 +10551,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.AllowManualClaimsChange ? 1 : 0;
+            int val = Misc.AllowManualClaimsChange ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.AllowManualClaimsChange))
             {
                 brush = new SolidBrush(Color.Red);
@@ -10083,13 +10581,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (allowManualClaimsChangeComboBox.SelectedIndex == 1);
-            if (val == Misc.Diplomacy.AllowManualClaimsChange)
+            if (val == Misc.AllowManualClaimsChange)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.AllowManualClaimsChange = val;
+            Misc.AllowManualClaimsChange = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.AllowManualClaimsChange);
@@ -10100,7 +10598,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [領有権主張時の好戦性上昇値]テキストボックスフォーカス移動後の処理
+        ///     [領有権主張時の好戦性上昇値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -10110,25 +10608,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(belligerenceClaimedProvinceTextBox.Text, out val))
             {
-                belligerenceClaimedProvinceTextBox.Text = Misc.Diplomacy.BelligerenceClaimedProvince.ToString(CultureInfo.InvariantCulture);
+                belligerenceClaimedProvinceTextBox.Text =
+                    Misc.BelligerenceClaimedProvince.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val < 0)
             {
-                belligerenceClaimedProvinceTextBox.Text = Misc.Diplomacy.BelligerenceClaimedProvince.ToString(CultureInfo.InvariantCulture);
+                belligerenceClaimedProvinceTextBox.Text =
+                    Misc.BelligerenceClaimedProvince.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Diplomacy.BelligerenceClaimedProvince) <= 0.00005)
+            if (Math.Abs(val - Misc.BelligerenceClaimedProvince) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.BelligerenceClaimedProvince = val;
+            Misc.BelligerenceClaimedProvince = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.BelligerenceClaimedProvince);
@@ -10139,7 +10639,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// [領有権撤回時の好戦性減少値]テキストボックスフォーカス移動後の処理
+        ///     [領有権撤回時の好戦性減少値]テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -10149,25 +10649,27 @@ namespace HoI2Editor.Forms
             double val;
             if (!double.TryParse(belligerenceClaimsRemovalTextBox.Text, out val))
             {
-                belligerenceClaimsRemovalTextBox.Text = Misc.Diplomacy.BelligerenceClaimsRemoval.ToString(CultureInfo.InvariantCulture);
+                belligerenceClaimsRemovalTextBox.Text =
+                    Misc.BelligerenceClaimsRemoval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 設定範囲外の値ならば戻す
             if (val > 0)
             {
-                belligerenceClaimsRemovalTextBox.Text = Misc.Diplomacy.BelligerenceClaimsRemoval.ToString(CultureInfo.InvariantCulture);
+                belligerenceClaimsRemovalTextBox.Text =
+                    Misc.BelligerenceClaimsRemoval.ToString(CultureInfo.InvariantCulture);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - Misc.Diplomacy.BelligerenceClaimsRemoval) <= 0.00005)
+            if (Math.Abs(val - Misc.BelligerenceClaimsRemoval) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.BelligerenceClaimsRemoval = val;
+            Misc.BelligerenceClaimsRemoval = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.BelligerenceClaimsRemoval);
@@ -10195,7 +10697,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.JoinAutomaticallyAllesAxis ? 1 : 0;
+            int val = Misc.JoinAutomaticallyAllesAxis ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.JoinAutomaticallyAllesAxis))
             {
                 brush = new SolidBrush(Color.Red);
@@ -10225,13 +10727,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (joinAutomaticallyAllesAxisComboBox.SelectedIndex == 1);
-            if (val == Misc.Diplomacy.JoinAutomaticallyAllesAxis)
+            if (val == Misc.JoinAutomaticallyAllesAxis)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.JoinAutomaticallyAllesAxis = val;
+            Misc.JoinAutomaticallyAllesAxis = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.JoinAutomaticallyAllesAxis);
@@ -10259,7 +10761,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.AllowChangeHosHog;
+            int val = Misc.AllowChangeHosHog;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.AllowChangeHosHog))
             {
                 brush = new SolidBrush(Color.Red);
@@ -10289,13 +10791,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = allowChangeHosHogComboBox.SelectedIndex;
-            if (val == Misc.Diplomacy.AllowChangeHosHog)
+            if (val == Misc.AllowChangeHosHog)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.AllowChangeHosHog = val;
+            Misc.AllowChangeHosHog = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.AllowChangeHosHog);
@@ -10323,7 +10825,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.ChangeTagCoup ? 1 : 0;
+            int val = Misc.ChangeTagCoup ? 1 : 0;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.ChangeTagCoup))
             {
                 brush = new SolidBrush(Color.Red);
@@ -10353,13 +10855,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             bool val = (changeTagCoupComboBox.SelectedIndex == 1);
-            if (val == Misc.Diplomacy.ChangeTagCoup)
+            if (val == Misc.ChangeTagCoup)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.ChangeTagCoup = val;
+            Misc.ChangeTagCoup = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.ChangeTagCoup);
@@ -10387,7 +10889,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            int val = Misc.Diplomacy.FilterReleaseCountries;
+            int val = Misc.FilterReleaseCountries;
             if ((e.Index == val) && Misc.IsDirty(MiscItemId.FilterReleaseCountries))
             {
                 brush = new SolidBrush(Color.Red);
@@ -10417,13 +10919,13 @@ namespace HoI2Editor.Forms
                 return;
             }
             int val = filterReleaseCountriesComboBox.SelectedIndex;
-            if (val == Misc.Diplomacy.FilterReleaseCountries)
+            if (val == Misc.FilterReleaseCountries)
             {
                 return;
             }
 
             // 値を更新する
-            Misc.Diplomacy.FilterReleaseCountries = val;
+            Misc.FilterReleaseCountries = val;
 
             // 編集済みフラグを設定する
             Misc.SetDirty(MiscItemId.FilterReleaseCountries);
@@ -10431,6 +10933,2990 @@ namespace HoI2Editor.Forms
 
             // 項目色を変更するために描画更新する
             filterReleaseCountriesComboBox.Refresh();
+        }
+
+        #endregion
+
+        #region 戦闘1タブ
+
+        /// <summary>
+        ///     戦闘1タブの項目を初期化する
+        /// </summary>
+        private void InitCombat1Items()
+        {
+            // DHに存在しない項目
+            if (Game.Type != GameType.DarkestHour)
+            {
+                shoreBombardmentModifierLabel.Enabled = true;
+                supplyProblemsModifierLabel.Enabled = true;
+                airOrgDamageLabel.Enabled = true;
+                airStrDamageOrgLabel.Enabled = true;
+                airStrDamageLabel.Enabled = true;
+
+                shoreBombardmentModifierTextBox.Enabled = true;
+                supplyProblemsModifierTextBox.Enabled = true;
+                airOrgDamageTextBox.Enabled = true;
+                airStrDamageOrgTextBox.Enabled = true;
+                airStrDamageTextBox.Enabled = true;
+            }
+            else
+            {
+                shoreBombardmentModifierLabel.Enabled = false;
+                supplyProblemsModifierLabel.Enabled = false;
+                airOrgDamageLabel.Enabled = false;
+                airStrDamageOrgLabel.Enabled = false;
+                airStrDamageLabel.Enabled = false;
+
+                shoreBombardmentModifierTextBox.Enabled = false;
+                supplyProblemsModifierTextBox.Enabled = false;
+                airOrgDamageTextBox.Enabled = false;
+                airStrDamageOrgTextBox.Enabled = false;
+                airStrDamageTextBox.Enabled = false;
+            }
+
+            // DDA1.3固有項目
+            if (Game.Type == GameType.HeartsOfIron2 && Game.Version >= 130)
+            {
+                subsOrgDamageLabel.Enabled = true;
+                subsStrDamageLabel.Enabled = true;
+                subStacksDetectionModifierLabel.Enabled = true;
+
+                subsOrgDamageTextBox.Enabled = true;
+                subsStrDamageTextBox.Enabled = true;
+                subStacksDetectionModifierTextBox.Enabled = true;
+            }
+            else
+            {
+                subsOrgDamageLabel.Enabled = false;
+                subsStrDamageLabel.Enabled = false;
+                subStacksDetectionModifierLabel.Enabled = false;
+
+                subsOrgDamageTextBox.Enabled = false;
+                subsStrDamageTextBox.Enabled = false;
+                subStacksDetectionModifierTextBox.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        ///     戦闘1タブの項目を更新する
+        /// </summary>
+        private void UpdateCombat1Items()
+        {
+            // 編集項目の値を更新する
+            landXpGainFactorTextBox.Text = Misc.LandXpGainFactor.ToString(CultureInfo.InvariantCulture);
+            navalXpGainFactorTextBox.Text = Misc.NavalXpGainFactor.ToString(CultureInfo.InvariantCulture);
+            airXpGainFactorTextBox.Text = Misc.AirXpGainFactor.ToString(CultureInfo.InvariantCulture);
+            divisionXpGainFactorTextBox.Text = Misc.DivisionXpGainFactor.ToString(CultureInfo.InvariantCulture);
+            leaderXpGainFactorTextBox.Text = Misc.LeaderXpGainFactor.ToString(CultureInfo.InvariantCulture);
+            attritionSeverityModifierTextBox.Text = Misc.AttritionSeverityModifier.ToString(CultureInfo.InvariantCulture);
+            baseProximityTextBox.Text = Misc.BaseProximity.ToString(CultureInfo.InvariantCulture);
+            invasionModifierTextBox.Text = Misc.InvasionModifier.ToString(CultureInfo.InvariantCulture);
+            multipleCombatModifierTextBox.Text = Misc.MultipleCombatModifier.ToString(CultureInfo.InvariantCulture);
+            offensiveCombinedArmsBonusTextBox.Text =
+                Misc.OffensiveCombinedArmsBonus.ToString(CultureInfo.InvariantCulture);
+            defensiveCombinedArmsBonusTextBox.Text =
+                Misc.DefensiveCombinedArmsBonus.ToString(CultureInfo.InvariantCulture);
+            surpriseModifierTextBox.Text = Misc.SurpriseModifier.ToString(CultureInfo.InvariantCulture);
+            landCommandLimitModifierTextBox.Text = Misc.LandCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+            airCommandLimitModifierTextBox.Text = Misc.AirCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+            navalCommandLimitModifierTextBox.Text = Misc.NavalCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+            envelopmentModifierTextBox.Text = Misc.EnvelopmentModifier.ToString(CultureInfo.InvariantCulture);
+            encircledModifierTextBox.Text = Misc.EncircledModifier.ToString(CultureInfo.InvariantCulture);
+            landFortMultiplierTextBox.Text = Misc.LandFortMultiplier.ToString(CultureInfo.InvariantCulture);
+            coastalFortMultiplierTextBox.Text = Misc.CoastalFortMultiplier.ToString(CultureInfo.InvariantCulture);
+            dissentMultiplierTextBox.Text = Misc.DissentMultiplier.ToString(CultureInfo.InvariantCulture);
+            raderStationMultiplierTextBox.Text = Misc.RaderStationMultiplier.ToString(CultureInfo.InvariantCulture);
+            interceptorBomberModifierTextBox.Text = Misc.InterceptorBomberModifier.ToString(CultureInfo.InvariantCulture);
+            airOverstackingModifierTextBox.Text = Misc.AirOverstackingModifier.ToString(CultureInfo.InvariantCulture);
+            navalOverstackingModifierTextBox.Text = Misc.NavalOverstackingModifier.ToString(CultureInfo.InvariantCulture);
+            landLeaderCommandLimitRank0TextBox.Text =
+                Misc.LandLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+            landLeaderCommandLimitRank1TextBox.Text =
+                Misc.LandLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+            landLeaderCommandLimitRank2TextBox.Text =
+                Misc.LandLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+            landLeaderCommandLimitRank3TextBox.Text =
+                Misc.LandLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+            airLeaderCommandLimitRank0TextBox.Text =
+                Misc.AirLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+            airLeaderCommandLimitRank1TextBox.Text =
+                Misc.AirLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+            airLeaderCommandLimitRank2TextBox.Text =
+                Misc.AirLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+            airLeaderCommandLimitRank3TextBox.Text =
+                Misc.AirLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+            navalLeaderCommandLimitRank0TextBox.Text =
+                Misc.NavalLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+            navalLeaderCommandLimitRank1TextBox.Text =
+                Misc.NavalLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+            navalLeaderCommandLimitRank2TextBox.Text =
+                Misc.NavalLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+            navalLeaderCommandLimitRank3TextBox.Text =
+                Misc.NavalLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+            hqCommandLimitFactorTextBox.Text = Misc.HqCommandLimitFactor.ToString(CultureInfo.InvariantCulture);
+            convoyProtectionFactorTextBox.Text = Misc.ConvoyProtectionFactor.ToString(CultureInfo.InvariantCulture);
+            delayAfterCombatEndsTextBox.Text = Misc.DelayAfterCombatEnds.ToString(CultureInfo.InvariantCulture);
+            maximumSizesAirStacksTextBox.Text = Misc.MaximumSizesAirStacks.ToString(CultureInfo.InvariantCulture);
+            effectExperienceCombatTextBox.Text = Misc.EffectExperienceCombat.ToString(CultureInfo.InvariantCulture);
+            damageNavalBasesBombingTextBox.Text = Misc.DamageNavalBasesBombing.ToString(CultureInfo.InvariantCulture);
+            damageAirBaseBombingTextBox.Text = Misc.DamageAirBaseBombing.ToString(CultureInfo.InvariantCulture);
+            damageAaBombingTextBox.Text = Misc.DamageAaBombing.ToString(CultureInfo.InvariantCulture);
+            damageRocketBombingTextBox.Text = Misc.DamageRocketBombing.ToString(CultureInfo.InvariantCulture);
+            damageNukeBombingTextBox.Text = Misc.DamageNukeBombing.ToString(CultureInfo.InvariantCulture);
+            damageRadarBombingTextBox.Text = Misc.DamageRadarBombing.ToString(CultureInfo.InvariantCulture);
+            damageInfraBombingTextBox.Text = Misc.DamageInfraBombing.ToString(CultureInfo.InvariantCulture);
+            damageIcBombingTextBox.Text = Misc.DamageIcBombing.ToString(CultureInfo.InvariantCulture);
+            damageResourcesBombingTextBox.Text = Misc.DamageResourcesBombing.ToString(CultureInfo.InvariantCulture);
+            howEffectiveGroundDefTextBox.Text = Misc.HowEffectiveGroundDef.ToString(CultureInfo.InvariantCulture);
+            chanceAvoidDefencesLeftTextBox.Text = Misc.ChanceAvoidDefencesLeft.ToString(CultureInfo.InvariantCulture);
+            chanceAvoidNoDefencesTextBox.Text = Misc.ChanceAvoidNoDefences.ToString(CultureInfo.InvariantCulture);
+            chanceGetTerrainTraitTextBox.Text = Misc.ChanceGetTerrainTrait.ToString(CultureInfo.InvariantCulture);
+            chanceGetEventTraitTextBox.Text = Misc.ChanceGetEventTrait.ToString(CultureInfo.InvariantCulture);
+            bonusTerrainTraitTextBox.Text = Misc.BonusTerrainTrait.ToString(CultureInfo.InvariantCulture);
+            bonusEventTraitTextBox.Text = Misc.BonusEventTrait.ToString(CultureInfo.InvariantCulture);
+            chanceLeaderDyingTextBox.Text = Misc.ChanceLeaderDying.ToString(CultureInfo.InvariantCulture);
+
+            if (Game.Type != GameType.DarkestHour)
+            {
+                shoreBombardmentModifierTextBox.Text =
+                    Misc.ShoreBombardmentModifier.ToString(CultureInfo.InvariantCulture);
+                supplyProblemsModifierTextBox.Text = Misc.SupplyProblemsModifier.ToString(CultureInfo.InvariantCulture);
+                airOrgDamageTextBox.Text = Misc.AirOrgDamage.ToString(CultureInfo.InvariantCulture);
+                airStrDamageOrgTextBox.Text = Misc.AirStrDamageOrg.ToString(CultureInfo.InvariantCulture);
+                airStrDamageTextBox.Text = Misc.AirStrDamage.ToString(CultureInfo.InvariantCulture);
+            }
+
+            if (Game.Type == GameType.HeartsOfIron2 && Game.Version >= 130)
+            {
+                subsOrgDamageTextBox.Text = Misc.SubsOrgDamage.ToString(CultureInfo.InvariantCulture);
+                subsStrDamageTextBox.Text = Misc.SubsStrDamage.ToString(CultureInfo.InvariantCulture);
+                subStacksDetectionModifierTextBox.Text =
+                    Misc.SubStacksDetectionModifier.ToString(CultureInfo.InvariantCulture);
+            }
+
+            // 編集項目の色を更新する
+            landXpGainFactorTextBox.ForeColor = Misc.IsDirty(MiscItemId.LandXpGainFactor)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            navalXpGainFactorTextBox.ForeColor = Misc.IsDirty(MiscItemId.NavalXpGainFactor)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            airXpGainFactorTextBox.ForeColor = Misc.IsDirty(MiscItemId.AirXpGainFactor)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            divisionXpGainFactorTextBox.ForeColor = Misc.IsDirty(MiscItemId.DivisionXpGainFactor)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            leaderXpGainFactorTextBox.ForeColor = Misc.IsDirty(MiscItemId.LeaderXpGainFactor)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            attritionSeverityModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.AttritionSeverityModifier)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+            baseProximityTextBox.ForeColor = Misc.IsDirty(MiscItemId.BaseProximity)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+            invasionModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.InvasionModifier)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            multipleCombatModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.MultipleCombatModifier)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+            offensiveCombinedArmsBonusTextBox.ForeColor = Misc.IsDirty(MiscItemId.OffensiveCombinedArmsBonus)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+            defensiveCombinedArmsBonusTextBox.ForeColor = Misc.IsDirty(MiscItemId.DefensiveCombinedArmsBonus)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+            surpriseModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SurpriseModifier)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            landCommandLimitModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.LandCommandLimitModifier)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+            airCommandLimitModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.AirCommandLimitModifier)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+            navalCommandLimitModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.NavalCommandLimitModifier)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+            envelopmentModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.EnvelopmentModifier)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+            encircledModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.EncircledModifier)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            landFortMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.LandFortMultiplier)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            coastalFortMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.CoastalFortMultiplier)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+            dissentMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.DissentMultiplier)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            raderStationMultiplierTextBox.ForeColor = Misc.IsDirty(MiscItemId.RaderStationMultiplier)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+            interceptorBomberModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.InterceptorBomberModifier)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+            airOverstackingModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.AirOverstackingModifier)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+            navalOverstackingModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.NavalOverstackingModifier)
+                                                             ? Color.Red
+                                                             : SystemColors.WindowText;
+            landLeaderCommandLimitRank0TextBox.ForeColor = Misc.IsDirty(MiscItemId.LandLeaderCommandLimitRank0)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+            landLeaderCommandLimitRank1TextBox.ForeColor = Misc.IsDirty(MiscItemId.LandLeaderCommandLimitRank1)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+            landLeaderCommandLimitRank2TextBox.ForeColor = Misc.IsDirty(MiscItemId.LandLeaderCommandLimitRank2)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+            landLeaderCommandLimitRank3TextBox.ForeColor = Misc.IsDirty(MiscItemId.LandLeaderCommandLimitRank3)
+                                                               ? Color.Red
+                                                               : SystemColors.WindowText;
+            airLeaderCommandLimitRank0TextBox.ForeColor = Misc.IsDirty(MiscItemId.AirLeaderCommandLimitRank0)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+            airLeaderCommandLimitRank1TextBox.ForeColor = Misc.IsDirty(MiscItemId.AirLeaderCommandLimitRank1)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+            airLeaderCommandLimitRank2TextBox.ForeColor = Misc.IsDirty(MiscItemId.AirLeaderCommandLimitRank2)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+            airLeaderCommandLimitRank3TextBox.ForeColor = Misc.IsDirty(MiscItemId.AirLeaderCommandLimitRank3)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+            navalLeaderCommandLimitRank0TextBox.ForeColor = Misc.IsDirty(MiscItemId.NavalLeaderCommandLimitRank0)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+            navalLeaderCommandLimitRank1TextBox.ForeColor = Misc.IsDirty(MiscItemId.NavalLeaderCommandLimitRank1)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+            navalLeaderCommandLimitRank2TextBox.ForeColor = Misc.IsDirty(MiscItemId.NavalLeaderCommandLimitRank2)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+            navalLeaderCommandLimitRank3TextBox.ForeColor = Misc.IsDirty(MiscItemId.NavalLeaderCommandLimitRank3)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+            hqCommandLimitFactorTextBox.ForeColor = Misc.IsDirty(MiscItemId.HqCommandLimitFactor)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            convoyProtectionFactorTextBox.ForeColor = Misc.IsDirty(MiscItemId.ConvoyProtectionFactor)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+            delayAfterCombatEndsTextBox.ForeColor = Misc.IsDirty(MiscItemId.DelayAfterCombatEnds)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            maximumSizesAirStacksTextBox.ForeColor = Misc.IsDirty(MiscItemId.MaximumSizesAirStacks)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+            effectExperienceCombatTextBox.ForeColor = Misc.IsDirty(MiscItemId.EffectExperienceCombat)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+            damageNavalBasesBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageNavalBasesBombing)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+            damageAirBaseBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageAirBaseBombing)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+            damageAaBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageAaBombing)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            damageRocketBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageRocketBombing)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+            damageNukeBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageNukeBombing)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            damageRadarBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageRadarBombing)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            damageInfraBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageInfraBombing)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+            damageIcBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageIcBombing)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            damageResourcesBombingTextBox.ForeColor = Misc.IsDirty(MiscItemId.DamageResourcesBombing)
+                                                          ? Color.Red
+                                                          : SystemColors.WindowText;
+            howEffectiveGroundDefTextBox.ForeColor = Misc.IsDirty(MiscItemId.HowEffectiveGroundDef)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+            chanceAvoidDefencesLeftTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChanceAvoidDefencesLeft)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+            chanceAvoidNoDefencesTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChanceAvoidNoDefences)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+            chanceGetTerrainTraitTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChanceGetTerrainTrait)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+            chanceGetEventTraitTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChanceGetEventTrait)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+            bonusTerrainTraitTextBox.ForeColor = Misc.IsDirty(MiscItemId.BonusTerrainTrait)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            bonusEventTraitTextBox.ForeColor = Misc.IsDirty(MiscItemId.BonusEventTrait)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            chanceLeaderDyingTextBox.ForeColor = Misc.IsDirty(MiscItemId.ChanceLeaderDying)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+
+            if (Game.Type != GameType.DarkestHour)
+            {
+                shoreBombardmentModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.ShoreBombardmentModifier)
+                                                                ? Color.Red
+                                                                : SystemColors.WindowText;
+                supplyProblemsModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SupplyProblemsModifier)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
+                airOrgDamageTextBox.ForeColor = Misc.IsDirty(MiscItemId.AirOrgDamage)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+                airStrDamageOrgTextBox.ForeColor = Misc.IsDirty(MiscItemId.AirStrDamageOrg)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                airStrDamageTextBox.ForeColor = Misc.IsDirty(MiscItemId.AirStrDamage)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+            }
+
+            if (Game.Type == GameType.HeartsOfIron2 && Game.Version >= 130)
+            {
+                subsOrgDamageTextBox.ForeColor = Misc.IsDirty(MiscItemId.SubsOrgDamage)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                subsStrDamageTextBox.ForeColor = Misc.IsDirty(MiscItemId.SubsStrDamage)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                subStacksDetectionModifierTextBox.ForeColor = Misc.IsDirty(MiscItemId.SubStacksDetectionModifier)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
+            }
+        }
+
+        /// <summary>
+        ///     [陸軍経験値入手係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLandXpGainFactorTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(landXpGainFactorTextBox.Text, out val))
+            {
+                landXpGainFactorTextBox.Text = Misc.LandXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                landXpGainFactorTextBox.Text = Misc.LandXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.LandXpGainFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LandXpGainFactor = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LandXpGainFactor);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            landXpGainFactorTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍経験値入手係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNavalXpGainFactorTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(navalXpGainFactorTextBox.Text, out val))
+            {
+                navalXpGainFactorTextBox.Text = Misc.NavalXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                navalXpGainFactorTextBox.Text = Misc.NavalXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.NavalXpGainFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.NavalXpGainFactor = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.NavalXpGainFactor);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            navalXpGainFactorTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍経験値入手係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirXpGainFactorTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(airXpGainFactorTextBox.Text, out val))
+            {
+                airXpGainFactorTextBox.Text = Misc.AirXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                airXpGainFactorTextBox.Text = Misc.AirXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.AirXpGainFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirXpGainFactor = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirXpGainFactor);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airXpGainFactorTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [師団経験値入手係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionXpGainFactorTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(divisionXpGainFactorTextBox.Text, out val))
+            {
+                divisionXpGainFactorTextBox.Text = Misc.DivisionXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                divisionXpGainFactorTextBox.Text = Misc.DivisionXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DivisionXpGainFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DivisionXpGainFactor = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DivisionXpGainFactor);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            divisionXpGainFactorTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [指揮官経験値入手係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderXpGainFactorTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(leaderXpGainFactorTextBox.Text, out val))
+            {
+                leaderXpGainFactorTextBox.Text = Misc.LeaderXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                leaderXpGainFactorTextBox.Text = Misc.LeaderXpGainFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.LeaderXpGainFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LeaderXpGainFactor = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LeaderXpGainFactor);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            leaderXpGainFactorTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [消耗係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAttritionSeverityModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(attritionSeverityModifierTextBox.Text, out val))
+            {
+                attritionSeverityModifierTextBox.Text =
+                    Misc.AttritionSeverityModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                attritionSeverityModifierTextBox.Text =
+                    Misc.AttritionSeverityModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.AttritionSeverityModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AttritionSeverityModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AttritionSeverityModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            attritionSeverityModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [基地戦闘補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBaseProximityTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(baseProximityTextBox.Text, out val))
+            {
+                baseProximityTextBox.Text = Misc.BaseProximity.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                baseProximityTextBox.Text = Misc.BaseProximity.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.BaseProximity) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.BaseProximity = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.BaseProximity);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            baseProximityTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [艦砲射撃戦闘補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnShoreBombardmentModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(shoreBombardmentModifierTextBox.Text, out val))
+            {
+                shoreBombardmentModifierTextBox.Text =
+                    Misc.ShoreBombardmentModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                shoreBombardmentModifierTextBox.Text =
+                    Misc.ShoreBombardmentModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.ShoreBombardmentModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.ShoreBombardmentModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.ShoreBombardmentModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            shoreBombardmentModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [強襲上陸ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnInvasionModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(invasionModifierTextBox.Text, out val))
+            {
+                invasionModifierTextBox.Text = Misc.InvasionModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                invasionModifierTextBox.Text = Misc.InvasionModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.InvasionModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.InvasionModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.InvasionModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            invasionModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [側面攻撃ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMultipleCombatModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(multipleCombatModifierTextBox.Text, out val))
+            {
+                multipleCombatModifierTextBox.Text = Misc.MultipleCombatModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                multipleCombatModifierTextBox.Text = Misc.MultipleCombatModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.MultipleCombatModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.MultipleCombatModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.MultipleCombatModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            multipleCombatModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [攻撃側諸兵科連合ボーナス]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffensiveCombinedArmsBonusTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(offensiveCombinedArmsBonusTextBox.Text, out val))
+            {
+                offensiveCombinedArmsBonusTextBox.Text =
+                    Misc.OffensiveCombinedArmsBonus.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                offensiveCombinedArmsBonusTextBox.Text =
+                    Misc.OffensiveCombinedArmsBonus.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.OffensiveCombinedArmsBonus) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.OffensiveCombinedArmsBonus = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.OffensiveCombinedArmsBonus);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            offensiveCombinedArmsBonusTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [防御側諸兵科連合ボーナス]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDefensiveCombinedArmsBonusTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(defensiveCombinedArmsBonusTextBox.Text, out val))
+            {
+                defensiveCombinedArmsBonusTextBox.Text =
+                    Misc.DefensiveCombinedArmsBonus.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                defensiveCombinedArmsBonusTextBox.Text =
+                    Misc.DefensiveCombinedArmsBonus.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DefensiveCombinedArmsBonus) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DefensiveCombinedArmsBonus = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DefensiveCombinedArmsBonus);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            defensiveCombinedArmsBonusTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [奇襲攻撃ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSurpriseModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(surpriseModifierTextBox.Text, out val))
+            {
+                surpriseModifierTextBox.Text = Misc.SurpriseModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                surpriseModifierTextBox.Text = Misc.SurpriseModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.SurpriseModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.SurpriseModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.SurpriseModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            surpriseModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [陸軍指揮上限ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLandCommandLimitModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(landCommandLimitModifierTextBox.Text, out val))
+            {
+                landCommandLimitModifierTextBox.Text =
+                    Misc.LandCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                landCommandLimitModifierTextBox.Text =
+                    Misc.LandCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.LandCommandLimitModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LandCommandLimitModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LandCommandLimitModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            landCommandLimitModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍指揮上限ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirCommandLimitModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(airCommandLimitModifierTextBox.Text, out val))
+            {
+                airCommandLimitModifierTextBox.Text = Misc.AirCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                airCommandLimitModifierTextBox.Text = Misc.AirCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.AirCommandLimitModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirCommandLimitModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirCommandLimitModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airCommandLimitModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍指揮上限ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNavalCommandLimitModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(navalCommandLimitModifierTextBox.Text, out val))
+            {
+                navalCommandLimitModifierTextBox.Text =
+                    Misc.NavalCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                navalCommandLimitModifierTextBox.Text =
+                    Misc.NavalCommandLimitModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.NavalCommandLimitModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.NavalCommandLimitModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.NavalCommandLimitModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            navalCommandLimitModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [多方面攻撃補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEnvelopmentModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(envelopmentModifierTextBox.Text, out val))
+            {
+                envelopmentModifierTextBox.Text = Misc.EnvelopmentModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                envelopmentModifierTextBox.Text = Misc.EnvelopmentModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.EnvelopmentModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.EnvelopmentModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.EnvelopmentModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            envelopmentModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [包囲攻撃ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEncircledModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(encircledModifierTextBox.Text, out val))
+            {
+                encircledModifierTextBox.Text = Misc.EncircledModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                encircledModifierTextBox.Text = Misc.EncircledModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.EncircledModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.EncircledModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.EncircledModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            encircledModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [要塞攻撃ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLandFortMultiplierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(landFortMultiplierTextBox.Text, out val))
+            {
+                landFortMultiplierTextBox.Text = Misc.LandFortMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                landFortMultiplierTextBox.Text = Misc.LandFortMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.LandFortMultiplier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LandFortMultiplier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LandFortMultiplier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            landFortMultiplierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [沿岸要塞攻撃ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCoastalFortMultiplierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(coastalFortMultiplierTextBox.Text, out val))
+            {
+                coastalFortMultiplierTextBox.Text = Misc.CoastalFortMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                coastalFortMultiplierTextBox.Text = Misc.CoastalFortMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.CoastalFortMultiplier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.CoastalFortMultiplier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.CoastalFortMultiplier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            coastalFortMultiplierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [国民不満度ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDissentMultiplierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(dissentMultiplierTextBox.Text, out val))
+            {
+                dissentMultiplierTextBox.Text = Misc.DissentMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                dissentMultiplierTextBox.Text = Misc.DissentMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DissentMultiplier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DissentMultiplier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DissentMultiplier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            dissentMultiplierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [補給不足ペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSupplyProblemsModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(supplyProblemsModifierTextBox.Text, out val))
+            {
+                supplyProblemsModifierTextBox.Text = Misc.SupplyProblemsModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                supplyProblemsModifierTextBox.Text = Misc.SupplyProblemsModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.SupplyProblemsModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.SupplyProblemsModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.SupplyProblemsModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            supplyProblemsModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [レーダー補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRaderStationMultiplierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(raderStationMultiplierTextBox.Text, out val))
+            {
+                raderStationMultiplierTextBox.Text = Misc.RaderStationMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                raderStationMultiplierTextBox.Text = Misc.RaderStationMultiplier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.RaderStationMultiplier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.RaderStationMultiplier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.RaderStationMultiplier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            raderStationMultiplierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [爆撃機迎撃ボーナス]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnInterceptorBomberModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(interceptorBomberModifierTextBox.Text, out val))
+            {
+                interceptorBomberModifierTextBox.Text =
+                    Misc.InterceptorBomberModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                interceptorBomberModifierTextBox.Text =
+                    Misc.InterceptorBomberModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.InterceptorBomberModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.InterceptorBomberModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.InterceptorBomberModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            interceptorBomberModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍スタックペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirOverstackingModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(airOverstackingModifierTextBox.Text, out val))
+            {
+                airOverstackingModifierTextBox.Text = Misc.AirOverstackingModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                airOverstackingModifierTextBox.Text = Misc.AirOverstackingModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.AirOverstackingModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirOverstackingModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirOverstackingModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airOverstackingModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍スタックペナルティ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNavalOverstackingModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(navalOverstackingModifierTextBox.Text, out val))
+            {
+                navalOverstackingModifierTextBox.Text =
+                    Misc.NavalOverstackingModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val > 0)
+            {
+                navalOverstackingModifierTextBox.Text =
+                    Misc.NavalOverstackingModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.NavalOverstackingModifier) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.NavalOverstackingModifier = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.NavalOverstackingModifier);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            navalOverstackingModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [陸軍元帥指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLandLeaderCommandLimitRank0TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(landLeaderCommandLimitRank0TextBox.Text, out val))
+            {
+                landLeaderCommandLimitRank0TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                landLeaderCommandLimitRank0TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.LandLeaderCommandLimitRank0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LandLeaderCommandLimitRank0 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LandLeaderCommandLimitRank0);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            landLeaderCommandLimitRank0TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [陸軍大将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLandLeaderCommandLimitRank1TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(landLeaderCommandLimitRank1TextBox.Text, out val))
+            {
+                landLeaderCommandLimitRank1TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                landLeaderCommandLimitRank1TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.LandLeaderCommandLimitRank1)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LandLeaderCommandLimitRank1 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LandLeaderCommandLimitRank1);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            landLeaderCommandLimitRank1TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [陸軍中将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLandLeaderCommandLimitRank2TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(landLeaderCommandLimitRank2TextBox.Text, out val))
+            {
+                landLeaderCommandLimitRank2TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                landLeaderCommandLimitRank2TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.LandLeaderCommandLimitRank2)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LandLeaderCommandLimitRank2 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LandLeaderCommandLimitRank2);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            landLeaderCommandLimitRank2TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [陸軍少将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLandLeaderCommandLimitRank3TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(landLeaderCommandLimitRank3TextBox.Text, out val))
+            {
+                landLeaderCommandLimitRank3TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                landLeaderCommandLimitRank3TextBox.Text =
+                    Misc.LandLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.LandLeaderCommandLimitRank3)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.LandLeaderCommandLimitRank3 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.LandLeaderCommandLimitRank3);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            landLeaderCommandLimitRank3TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍元帥指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirLeaderCommandLimitRank0TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(airLeaderCommandLimitRank0TextBox.Text, out val))
+            {
+                airLeaderCommandLimitRank0TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                airLeaderCommandLimitRank0TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.AirLeaderCommandLimitRank0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirLeaderCommandLimitRank0 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirLeaderCommandLimitRank0);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airLeaderCommandLimitRank0TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍大将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirLeaderCommandLimitRank1TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(airLeaderCommandLimitRank1TextBox.Text, out val))
+            {
+                airLeaderCommandLimitRank1TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                airLeaderCommandLimitRank1TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.AirLeaderCommandLimitRank1)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirLeaderCommandLimitRank1 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirLeaderCommandLimitRank1);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airLeaderCommandLimitRank1TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍中将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirLeaderCommandLimitRank2TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(airLeaderCommandLimitRank2TextBox.Text, out val))
+            {
+                airLeaderCommandLimitRank2TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                airLeaderCommandLimitRank2TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.AirLeaderCommandLimitRank2)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirLeaderCommandLimitRank2 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirLeaderCommandLimitRank2);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airLeaderCommandLimitRank2TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍少将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirLeaderCommandLimitRank3TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(airLeaderCommandLimitRank3TextBox.Text, out val))
+            {
+                airLeaderCommandLimitRank3TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                airLeaderCommandLimitRank3TextBox.Text =
+                    Misc.AirLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.AirLeaderCommandLimitRank3)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirLeaderCommandLimitRank3 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirLeaderCommandLimitRank3);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airLeaderCommandLimitRank3TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍元帥指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNavalLeaderCommandLimitRank0TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(navalLeaderCommandLimitRank0TextBox.Text, out val))
+            {
+                navalLeaderCommandLimitRank0TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                navalLeaderCommandLimitRank0TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank0.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.NavalLeaderCommandLimitRank0)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.NavalLeaderCommandLimitRank0 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.NavalLeaderCommandLimitRank0);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            navalLeaderCommandLimitRank0TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍大将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNavalLeaderCommandLimitRank1TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(navalLeaderCommandLimitRank1TextBox.Text, out val))
+            {
+                navalLeaderCommandLimitRank1TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                navalLeaderCommandLimitRank1TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank1.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.NavalLeaderCommandLimitRank1)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.NavalLeaderCommandLimitRank1 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.NavalLeaderCommandLimitRank1);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            navalLeaderCommandLimitRank1TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍中将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNavalLeaderCommandLimitRank2TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(navalLeaderCommandLimitRank2TextBox.Text, out val))
+            {
+                navalLeaderCommandLimitRank2TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                navalLeaderCommandLimitRank2TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank2.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.NavalLeaderCommandLimitRank2)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.NavalLeaderCommandLimitRank2 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.NavalLeaderCommandLimitRank2);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            navalLeaderCommandLimitRank2TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍少将指揮上限]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNavalLeaderCommandLimitRank3TextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(navalLeaderCommandLimitRank3TextBox.Text, out val))
+            {
+                navalLeaderCommandLimitRank3TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                navalLeaderCommandLimitRank3TextBox.Text =
+                    Misc.NavalLeaderCommandLimitRank3.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.NavalLeaderCommandLimitRank3)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.NavalLeaderCommandLimitRank3 = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.NavalLeaderCommandLimitRank3);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            navalLeaderCommandLimitRank3TextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [司令部指揮上限係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHqCommandLimitFactorTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(hqCommandLimitFactorTextBox.Text, out val))
+            {
+                hqCommandLimitFactorTextBox.Text = Misc.HqCommandLimitFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                hqCommandLimitFactorTextBox.Text = Misc.HqCommandLimitFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.HqCommandLimitFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.HqCommandLimitFactor = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.HqCommandLimitFactor);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            hqCommandLimitFactorTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [輸送船団護衛係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnConvoyProtectionFactorTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(convoyProtectionFactorTextBox.Text, out val))
+            {
+                convoyProtectionFactorTextBox.Text = Misc.ConvoyProtectionFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                convoyProtectionFactorTextBox.Text = Misc.ConvoyProtectionFactor.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.ConvoyProtectionFactor) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.ConvoyProtectionFactor = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.ConvoyProtectionFactor);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            convoyProtectionFactorTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [戦闘後命令遅延時間]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDelayAfterCombatEndsTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(delayAfterCombatEndsTextBox.Text, out val))
+            {
+                delayAfterCombatEndsTextBox.Text = Misc.DelayAfterCombatEnds.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                delayAfterCombatEndsTextBox.Text = Misc.DelayAfterCombatEnds.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.DelayAfterCombatEnds)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DelayAfterCombatEnds = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DelayAfterCombatEnds);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            delayAfterCombatEndsTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍最大スタックサイズ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaximumSizesAirStacksTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(maximumSizesAirStacksTextBox.Text, out val))
+            {
+                maximumSizesAirStacksTextBox.Text = Misc.MaximumSizesAirStacks.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val <= 0)
+            {
+                maximumSizesAirStacksTextBox.Text = Misc.MaximumSizesAirStacks.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == Misc.MaximumSizesAirStacks)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.MaximumSizesAirStacks = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.MaximumSizesAirStacks);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            maximumSizesAirStacksTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [経験値補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEffectExperienceCombatTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(effectExperienceCombatTextBox.Text, out val))
+            {
+                effectExperienceCombatTextBox.Text = Misc.EffectExperienceCombat.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                effectExperienceCombatTextBox.Text = Misc.EffectExperienceCombat.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.EffectExperienceCombat) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.EffectExperienceCombat = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.EffectExperienceCombat);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            effectExperienceCombatTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [海軍基地戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageNavalBasesBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageNavalBasesBombingTextBox.Text, out val))
+            {
+                damageNavalBasesBombingTextBox.Text = Misc.DamageNavalBasesBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageNavalBasesBombingTextBox.Text = Misc.DamageNavalBasesBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageNavalBasesBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageNavalBasesBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageNavalBasesBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageNavalBasesBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍基地戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageAirBaseBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageAirBaseBombingTextBox.Text, out val))
+            {
+                damageAirBaseBombingTextBox.Text = Misc.DamageAirBaseBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageAirBaseBombingTextBox.Text = Misc.DamageAirBaseBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageAirBaseBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageAirBaseBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageAirBaseBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageAirBaseBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [対空砲戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageAaBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageAaBombingTextBox.Text, out val))
+            {
+                damageAaBombingTextBox.Text = Misc.DamageAaBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageAaBombingTextBox.Text = Misc.DamageAaBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageAaBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageAaBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageAaBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageAaBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [ロケット試験場戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageRocketBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageRocketBombingTextBox.Text, out val))
+            {
+                damageRocketBombingTextBox.Text = Misc.DamageRocketBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageRocketBombingTextBox.Text = Misc.DamageRocketBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageRocketBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageRocketBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageRocketBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageRocketBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [原子炉戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageNukeBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageNukeBombingTextBox.Text, out val))
+            {
+                damageNukeBombingTextBox.Text = Misc.DamageNukeBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageNukeBombingTextBox.Text = Misc.DamageNukeBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageNukeBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageNukeBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageNukeBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageNukeBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [レーダー戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageRadarBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageRadarBombingTextBox.Text, out val))
+            {
+                damageRadarBombingTextBox.Text = Misc.DamageRadarBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageRadarBombingTextBox.Text = Misc.DamageRadarBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageRadarBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageRadarBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageRadarBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageRadarBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [インフラ戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageInfraBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageInfraBombingTextBox.Text, out val))
+            {
+                damageInfraBombingTextBox.Text = Misc.DamageInfraBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageInfraBombingTextBox.Text = Misc.DamageInfraBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageInfraBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageInfraBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageInfraBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageInfraBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [IC戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageIcBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageIcBombingTextBox.Text, out val))
+            {
+                damageIcBombingTextBox.Text = Misc.DamageIcBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageIcBombingTextBox.Text = Misc.DamageIcBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageIcBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageIcBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageIcBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageIcBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [資源戦略爆撃係数]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDamageResourcesBombingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(damageResourcesBombingTextBox.Text, out val))
+            {
+                damageResourcesBombingTextBox.Text = Misc.DamageResourcesBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                damageResourcesBombingTextBox.Text = Misc.DamageResourcesBombing.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.DamageResourcesBombing) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.DamageResourcesBombing = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.DamageResourcesBombing);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            damageResourcesBombingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [対地防御効率補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHowEffectiveGroundDefTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(howEffectiveGroundDefTextBox.Text, out val))
+            {
+                howEffectiveGroundDefTextBox.Text = Misc.HowEffectiveGroundDef.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                howEffectiveGroundDefTextBox.Text = Misc.HowEffectiveGroundDef.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.HowEffectiveGroundDef) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.HowEffectiveGroundDef = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.HowEffectiveGroundDef);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            howEffectiveGroundDefTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [基本回避率(防御回数あり)]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChanceAvoidDefencesLeftTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(chanceAvoidDefencesLeftTextBox.Text, out val))
+            {
+                chanceAvoidDefencesLeftTextBox.Text = Misc.ChanceAvoidDefencesLeft.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                chanceAvoidDefencesLeftTextBox.Text = Misc.ChanceAvoidDefencesLeft.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.ChanceAvoidDefencesLeft) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.ChanceAvoidDefencesLeft = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.ChanceAvoidDefencesLeft);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            chanceAvoidDefencesLeftTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [基本回避率(防御回数なし)]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChanceAvoidNoDefencesTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(chanceAvoidNoDefencesTextBox.Text, out val))
+            {
+                chanceAvoidNoDefencesTextBox.Text = Misc.ChanceAvoidNoDefences.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                chanceAvoidNoDefencesTextBox.Text = Misc.ChanceAvoidNoDefences.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.ChanceAvoidNoDefences) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.ChanceAvoidNoDefences = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.ChanceAvoidNoDefences);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            chanceAvoidNoDefencesTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [地形特性獲得可能性]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChanceGetTerrainTraitTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(chanceGetTerrainTraitTextBox.Text, out val))
+            {
+                chanceGetTerrainTraitTextBox.Text = Misc.ChanceGetTerrainTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                chanceGetTerrainTraitTextBox.Text = Misc.ChanceGetTerrainTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.ChanceGetTerrainTrait) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.ChanceGetTerrainTrait = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.ChanceGetTerrainTrait);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            chanceGetTerrainTraitTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [戦闘特性獲得可能性]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChanceGetEventTraitTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(chanceGetEventTraitTextBox.Text, out val))
+            {
+                chanceGetEventTraitTextBox.Text = Misc.ChanceGetEventTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                chanceGetEventTraitTextBox.Text = Misc.ChanceGetEventTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.ChanceGetEventTrait) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.ChanceGetEventTrait = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.ChanceGetEventTrait);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            chanceGetEventTraitTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [地形特性補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBonusTerrainTraitTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(bonusTerrainTraitTextBox.Text, out val))
+            {
+                bonusTerrainTraitTextBox.Text = Misc.BonusTerrainTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                bonusTerrainTraitTextBox.Text = Misc.BonusTerrainTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.BonusTerrainTrait) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.BonusTerrainTrait = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.BonusTerrainTrait);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            bonusTerrainTraitTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [戦闘特性補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBonusEventTraitTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(bonusEventTraitTextBox.Text, out val))
+            {
+                bonusEventTraitTextBox.Text = Misc.BonusEventTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                bonusEventTraitTextBox.Text = Misc.BonusEventTrait.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.BonusEventTrait) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.BonusEventTrait = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.BonusEventTrait);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            bonusEventTraitTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [指揮官死亡確率]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChanceLeaderDyingTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(chanceLeaderDyingTextBox.Text, out val))
+            {
+                chanceLeaderDyingTextBox.Text = Misc.ChanceLeaderDying.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                chanceLeaderDyingTextBox.Text = Misc.ChanceLeaderDying.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.ChanceLeaderDying) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.ChanceLeaderDying = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.ChanceLeaderDying);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            chanceLeaderDyingTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍組織率被ダメージ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirOrgDamageTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(airOrgDamageTextBox.Text, out val))
+            {
+                airOrgDamageTextBox.Text = Misc.AirOrgDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                airOrgDamageTextBox.Text = Misc.AirOrgDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.AirOrgDamage) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirOrgDamage = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirOrgDamage);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airOrgDamageTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍戦力被ダメージ(組織力)]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirStrDamageOrgTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(airStrDamageOrgTextBox.Text, out val))
+            {
+                airStrDamageOrgTextBox.Text = Misc.AirStrDamageOrg.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                airStrDamageOrgTextBox.Text = Misc.AirStrDamageOrg.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.AirStrDamageOrg) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirStrDamageOrg = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirStrDamageOrg);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airStrDamageOrgTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [空軍戦力被ダメージ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAirStrDamageTextBoxValidated(object sender, EventArgs e)
+        {
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(airStrDamageTextBox.Text, out val))
+            {
+                airStrDamageTextBox.Text = Misc.AirStrDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                airStrDamageTextBox.Text = Misc.AirStrDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.AirStrDamage) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            Misc.AirStrDamage = val;
+
+            // 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.AirStrDamage);
+            Misc.SetDirty();
+
+            // 文字色を変更する
+            airStrDamageTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [潜水艦組織率被ダメージ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSubsOrgDamageTextBoxValidated(object sender, EventArgs e)
+        {
+// 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(subsOrgDamageTextBox.Text, out val))
+            {
+                subsOrgDamageTextBox.Text = Misc.SubsOrgDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+// 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                subsOrgDamageTextBox.Text = Misc.SubsOrgDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+// 値に変化がなければ何もしない
+            if (val == Misc.SubsOrgDamage)
+            {
+                return;
+            }
+
+// 値を更新する
+            Misc.SubsOrgDamage = val;
+
+// 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.SubsOrgDamage);
+            Misc.SetDirty();
+
+// 文字色を変更する
+            subsOrgDamageTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [潜水艦戦力被ダメージ]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSubsStrDamageTextBoxValidated(object sender, EventArgs e)
+        {
+// 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(subsStrDamageTextBox.Text, out val))
+            {
+                subsStrDamageTextBox.Text = Misc.SubsStrDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+// 設定範囲外の値ならば戻す
+            if (val < 0)
+            {
+                subsStrDamageTextBox.Text = Misc.SubsStrDamage.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+// 値に変化がなければ何もしない
+            if (val == Misc.SubsStrDamage)
+            {
+                return;
+            }
+
+// 値を更新する
+            Misc.SubsStrDamage = val;
+
+// 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.SubsStrDamage);
+            Misc.SetDirty();
+
+// 文字色を変更する
+            subsStrDamageTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     [潜水艦発見補正]テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSubStacksDetectionModifierTextBoxValidated(object sender, EventArgs e)
+        {
+// 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(subStacksDetectionModifierTextBox.Text, out val))
+            {
+                subStacksDetectionModifierTextBox.Text =
+                    Misc.SubStacksDetectionModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+// 設定範囲外の値ならば戻す
+            if (val < 0 || val > 1)
+            {
+                subStacksDetectionModifierTextBox.Text =
+                    Misc.SubStacksDetectionModifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+// 値に変化がなければ何もしない
+            if (Math.Abs(val - Misc.SubStacksDetectionModifier) <= 0.00005)
+            {
+                return;
+            }
+
+// 値を更新する
+            Misc.SubStacksDetectionModifier = val;
+
+// 編集済みフラグを設定する
+            Misc.SetDirty(MiscItemId.SubStacksDetectionModifier);
+            Misc.SetDirty();
+
+// 文字色を変更する
+            subStacksDetectionModifierTextBox.ForeColor = Color.Red;
         }
 
         #endregion
