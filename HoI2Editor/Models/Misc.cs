@@ -1804,12 +1804,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     潜水艦組織率被ダメージ
         /// </summary>
-        public static double SubsOrgDamage;
+        public static int SubsOrgDamage;
 
         /// <summary>
         ///     潜水艦戦力被ダメージ
         /// </summary>
-        public static double SubsStrDamage;
+        public static int SubsStrDamage;
 
         /// <summary>
         ///     潜水艦発見補正
@@ -2029,22 +2029,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     陸軍デフォルトスタック数
         /// </summary>
-        public static double DefaultLandStack;
+        public static int DefaultLandStack;
 
         /// <summary>
         ///     海軍デフォルトスタック数
         /// </summary>
-        public static double DefaultNavalStack;
+        public static int DefaultNavalStack;
 
         /// <summary>
         ///     空軍デフォルトスタック数
         /// </summary>
-        public static double DefaultAirStack;
+        public static int DefaultAirStack;
 
         /// <summary>
         ///     ロケットデフォルトスタック数
         /// </summary>
-        public static double DefaultRocketStack;
+        public static int DefaultRocketStack;
 
         /// <summary>
         ///     要塞砲撃ダメージ補正
@@ -2344,7 +2344,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ボーナス適用方法
         /// </summary>
-        public static double MinisterBonuses;
+        public static int MinisterBonuses;
 
         /// <summary>
         ///     友好地組織率回復ボーナス
@@ -2404,7 +2404,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     戦闘後到着時刻再計算
         /// </summary>
-        public static double RecalculateArrivalTimesCombat;
+        public static int RecalculateArrivalTimesCombat;
 
         /// <summary>
         ///     戦闘時陸軍移動速度補正
@@ -2711,6 +2711,11 @@ namespace HoI2Editor.Models
         #region 内部フィールド
 
         /// <summary>
+        /// 項目の値
+        /// </summary>
+        private static readonly object[] Items = new object[Enum.GetValues(typeof (MiscItemId)).Length];
+
+        /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
@@ -2724,6 +2729,200 @@ namespace HoI2Editor.Models
         ///     項目の編集済みフラグ
         /// </summary>
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (MiscItemId)).Length];
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        /// 項目の型
+        /// </summary>
+        public static MiscItemType[] ItemTypes =
+            {
+                // economy
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDblMinusOne,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosDbl,
+                MiscItemType.Bool,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.RangedInt,
+                MiscItemType.RangedDbl,
+                MiscItemType.Enum,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.Enum,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Enum,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDblMinusOne,
+                MiscItemType.PosDblMinusOne,
+                MiscItemType.RangedDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.Enum,
+                MiscItemType.PosDblMinusOne,
+            };
 
         #endregion
 
@@ -2771,6 +2970,43 @@ namespace HoI2Editor.Models
             }
 
             _loaded = true;
+        }
+
+        #endregion
+
+        #region 設定項目操作
+
+        /// <summary>
+        /// 項目の値を取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>項目の値</returns>
+        public static object GetItem(MiscItemId id)
+        {
+            return Items[(int) id];
+        }
+
+        /// <summary>
+        /// 項目の値を設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <param name="o">項目の値</param>
+        public static void SetItem(MiscItemId id, object o)
+        {
+            Items[(int) id] = o;
+        }
+
+        /// <summary>
+        /// 項目の値が範囲内かどうかを判定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <param name="o">項目の値</param>
+        /// <returns>範囲内ならばtrueを返す</returns>
+        public static bool IsInRange(MiscItemId id, object o)
+        {
+            throw new NotImplementedException();
+
+            return false;
         }
 
         #endregion
@@ -3774,5 +4010,19 @@ namespace HoI2Editor.Models
         BreakthroughStrDefenderDh, // 突破イベント防御側戦力補正
         HqStrDamageBreakthrough, // 司令部は突破イベント時のみ戦力ダメージ
         CombatMode, // 戦闘モード
+    }
+
+    /// <summary>
+    /// ゲーム設定項目の型
+    /// </summary>
+    public enum MiscItemType
+    {
+        Bool, // Yes/No
+        Enum, // 選択肢
+        PosInt, // 非負の整数
+        RangedInt, // 範囲あり整数
+        PosDbl, // 非負の実数
+        PosDblMinusOne, // 非負の実数 or -1
+        RangedDbl, // 範囲あり実数
     }
 }

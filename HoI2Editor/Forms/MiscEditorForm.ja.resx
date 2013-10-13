@@ -2002,14 +2002,1505 @@
   <data name="combatTabPage1.Text" xml:space="preserve">
     <value>戦闘1</value>
   </data>
+  <data name="portAttackSurpriseChanceNightLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="portAttackSurpriseChanceNightLabel.Text" xml:space="preserve">
+    <value>夜間港湾攻撃奇襲確率</value>
+  </data>
+  <data name="portAttackSurpriseChanceDayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="portAttackSurpriseChanceDayLabel.Text" xml:space="preserve">
+    <value>日中港湾攻撃奇襲確率</value>
+  </data>
+  <data name="landFortDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 12</value>
+  </data>
+  <data name="landFortDamageLabel.Text" xml:space="preserve">
+    <value>要塞ダメージ補正</value>
+  </data>
+  <data name="navalCriticalHitEffectLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="navalCriticalHitEffectLabel.Text" xml:space="preserve">
+    <value>海軍クリティカルヒット効果</value>
+  </data>
+  <data name="navalCriticalHitChanceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="navalCriticalHitChanceLabel.Text" xml:space="preserve">
+    <value>海軍クリティカルヒット確率</value>
+  </data>
+  <data name="armorSoftBreakthroughMaxLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="armorSoftBreakthroughMaxLabel.Text" xml:space="preserve">
+    <value>戦車対人最大突破係数</value>
+  </data>
+  <data name="armorSoftBreakthroughMinLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="armorSoftBreakthroughMinLabel.Text" xml:space="preserve">
+    <value>戦車対人最小突破係数</value>
+  </data>
+  <data name="hardAttackOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 12</value>
+  </data>
+  <data name="hardAttackOrgDamageLabel.Text" xml:space="preserve">
+    <value>装甲ユニット組織率ダメージ補正</value>
+  </data>
+  <data name="hardAttackStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 12</value>
+  </data>
+  <data name="hardAttackStrDamageLabel.Text" xml:space="preserve">
+    <value>装甲ユニット戦力ダメージ補正</value>
+  </data>
+  <data name="aaInflictedBombingDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="aaInflictedBombingDamageLabel.Text" xml:space="preserve">
+    <value>対空砲爆撃中ダメージ補正</value>
+  </data>
+  <data name="aaInflictedFlyingDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="aaInflictedFlyingDamageLabel.Text" xml:space="preserve">
+    <value>対空砲上空通過ダメージ補正</value>
+  </data>
+  <data name="aaInflictedOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="aaInflictedOrgDamageLabel.Text" xml:space="preserve">
+    <value>対空砲組織率ダメージ補正</value>
+  </data>
+  <data name="aaInflictedStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="aaInflictedStrDamageLabel.Text" xml:space="preserve">
+    <value>対空砲戦力ダメージ補正</value>
+  </data>
+  <data name="airMaxDisorganizedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="airMaxDisorganizedLabel.Text" xml:space="preserve">
+    <value>空港占領時ペナルティ</value>
+  </data>
+  <data name="airRebaseFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="airRebaseFactorLabel.Text" xml:space="preserve">
+    <value>空軍基地移動組織率減少係数</value>
+  </data>
+  <data name="landDamageFortLabel.Text" xml:space="preserve">
+    <value>陸軍対要塞ダメージ係数</value>
+  </data>
+  <data name="artilleryBombardmentOrgCostLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="artilleryBombardmentOrgCostLabel.Text" xml:space="preserve">
+    <value>砲撃組織率減少</value>
+  </data>
+  <data name="fortDamageArtilleryBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 12</value>
+  </data>
+  <data name="fortDamageArtilleryBombardmentLabel.Text" xml:space="preserve">
+    <value>要塞砲撃ダメージ補正</value>
+  </data>
+  <data name="defaultRocketStackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="defaultRocketStackLabel.Text" xml:space="preserve">
+    <value>ロケットデフォルトスタック数</value>
+  </data>
+  <data name="defaultAirStackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 12</value>
+  </data>
+  <data name="defaultAirStackLabel.Text" xml:space="preserve">
+    <value>空軍デフォルトスタック数</value>
+  </data>
+  <data name="defaultNavalStackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 12</value>
+  </data>
+  <data name="defaultNavalStackLabel.Text" xml:space="preserve">
+    <value>海軍デフォルトスタック数</value>
+  </data>
+  <data name="defaultLandStackLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 12</value>
+  </data>
+  <data name="defaultLandStackLabel.Text" xml:space="preserve">
+    <value>陸軍デフォルトスタック数</value>
+  </data>
+  <data name="scorchGroundBelligerenceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 12</value>
+  </data>
+  <data name="scorchGroundBelligerenceLabel.Text" xml:space="preserve">
+    <value>焦土命令好戦性上昇</value>
+  </data>
+  <data name="standGroundDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 12</value>
+  </data>
+  <data name="standGroundDissentLabel.Text" xml:space="preserve">
+    <value>死守命令不満度上昇</value>
+  </data>
+  <data name="scorchDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 12</value>
+  </data>
+  <data name="scorchDamageLabel.Text" xml:space="preserve">
+    <value>焦土命令ダメージ</value>
+  </data>
+  <data name="airLandStockModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="airLandStockModifierLabel.Text" xml:space="preserve">
+    <value>阻止攻撃備蓄補正</value>
+  </data>
+  <data name="landFriendlyOrgGainLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="landFriendlyOrgGainLabel.Text" xml:space="preserve">
+    <value>陸軍友好地組織率補正</value>
+  </data>
+  <data name="nukeTotalDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 12</value>
+  </data>
+  <data name="nukeTotalDissentLabel.Text" xml:space="preserve">
+    <value>核攻撃不満度係数(トータル)</value>
+  </data>
+  <data name="nukeIcDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 12</value>
+  </data>
+  <data name="nukeIcDissentLabel.Text" xml:space="preserve">
+    <value>核攻撃不満度係数(IC)</value>
+  </data>
+  <data name="nukeManpowerDissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 12</value>
+  </data>
+  <data name="nukeManpowerDissentLabel.Text" xml:space="preserve">
+    <value>核攻撃不満度係数(人的資源)</value>
+  </data>
+  <data name="navalOrgGainLabel.Text" xml:space="preserve">
+    <value>海軍組織率補正</value>
+  </data>
+  <data name="airOrgGainLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="airOrgGainLabel.Text" xml:space="preserve">
+    <value>空軍組織率補正</value>
+  </data>
+  <data name="landOrgGainLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="landOrgGainLabel.Text" xml:space="preserve">
+    <value>陸軍組織率補正</value>
+  </data>
+  <data name="supplyBaseLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="supplyBaseLabel.Text" xml:space="preserve">
+    <value>基礎補給効率</value>
+  </data>
+  <data name="supplyDistanceSeverityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="supplyDistanceSeverityLabel.Text" xml:space="preserve">
+    <value>遠隔地補給係数</value>
+  </data>
+  <data name="navalOrgLossMovingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="navalOrgLossMovingLabel.Text" xml:space="preserve">
+    <value>海軍移動時組織率減少係数</value>
+  </data>
+  <data name="airOrgLossMovingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="airOrgLossMovingLabel.Text" xml:space="preserve">
+    <value>空軍移動時組織率減少係数</value>
+  </data>
+  <data name="landOrgLossMovingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="landOrgLossMovingLabel.Text" xml:space="preserve">
+    <value>陸軍移動時組織率減少係数</value>
+  </data>
+  <data name="landOverstackingModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 12</value>
+  </data>
+  <data name="landOverstackingModifierLabel.Text" xml:space="preserve">
+    <value>陸軍スタックペナルティ</value>
+  </data>
+  <data name="airMinCombatTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="airMinCombatTimeLabel.Text" xml:space="preserve">
+    <value>空軍最小戦闘時間</value>
+  </data>
+  <data name="landMinCombatTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="landMinCombatTimeLabel.Text" xml:space="preserve">
+    <value>陸軍最小戦闘時間</value>
+  </data>
+  <data name="navalMinCombatTimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="navalMinCombatTimeLabel.Text" xml:space="preserve">
+    <value>海軍最小戦闘時間</value>
+  </data>
+  <data name="militaryExpenseAttritionModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="militaryExpenseAttritionModifierLabel.Text" xml:space="preserve">
+    <value>給料不足時の戦闘補正</value>
+  </data>
+  <data name="airOrgDamageNavyAoDLabel.Text" xml:space="preserve">
+    <value>空軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="airStrDamageNavyAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airStrDamageNavyAoDLabel.Text" xml:space="preserve">
+    <value>空軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="navalOrgDamageNavyAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="navalOrgDamageNavyAoDLabel.Text" xml:space="preserve">
+    <value>海軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="navalStrDamageNavyAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="navalStrDamageNavyAoDLabel.Text" xml:space="preserve">
+    <value>海軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="airOrgDamageAirAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="airOrgDamageAirAoDLabel.Text" xml:space="preserve">
+    <value>空軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="airStrDamageAirAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airStrDamageAirAoDLabel.Text" xml:space="preserve">
+    <value>空軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="navalOrgDamageAirAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="navalOrgDamageAirAoDLabel.Text" xml:space="preserve">
+    <value>海軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="navalStrDamageAirAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="navalStrDamageAirAoDLabel.Text" xml:space="preserve">
+    <value>海軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="landOrgDamageAirAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="landOrgDamageAirAoDLabel.Text" xml:space="preserve">
+    <value>陸軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="landStrDamageAirAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="landStrDamageAirAoDLabel.Text" xml:space="preserve">
+    <value>陸軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="landOrgDamageLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="landOrgDamageLandLabel.Text" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ</value>
+  </data>
+  <data name="landStrDamageLandAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="landStrDamageLandAoDLabel.Text" xml:space="preserve">
+    <value>陸軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="artilleryOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 12</value>
+  </data>
+  <data name="artilleryOrgDamageLabel.Text" xml:space="preserve">
+    <value>砲撃組織率ダメージ</value>
+  </data>
+  <data name="artilleryStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 12</value>
+  </data>
+  <data name="artilleryStrDamageLabel.Text" xml:space="preserve">
+    <value>砲撃戦力ダメージ</value>
+  </data>
+  <data name="penaltyArtilleryBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 12</value>
+  </data>
+  <data name="penaltyArtilleryBombardmentLabel.Text" xml:space="preserve">
+    <value>砲撃中の被攻撃ペナルティ</value>
+  </data>
+  <data name="resourcesDamageArtilleryBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 12</value>
+  </data>
+  <data name="resourcesDamageArtilleryBombardmentLabel.Text" xml:space="preserve">
+    <value>砲撃ダメージ補正(資源)</value>
+  </data>
+  <data name="icDamageArtilleryBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 12</value>
+  </data>
+  <data name="icDamageArtilleryBombardmentLabel.Text" xml:space="preserve">
+    <value>砲撃ダメージ補正(IC)</value>
+  </data>
+  <data name="infraDamageArtilleryBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 12</value>
+  </data>
+  <data name="infraDamageArtilleryBombardmentLabel.Text" xml:space="preserve">
+    <value>砲撃ダメージ補正(インフラ)</value>
+  </data>
+  <data name="landDamageArtilleryBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 12</value>
+  </data>
+  <data name="landDamageArtilleryBombardmentLabel.Text" xml:space="preserve">
+    <value>砲撃ダメージ補正(陸上部隊)</value>
+  </data>
+  <data name="airStrDamageLandAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airStrDamageLandAoDLabel.Text" xml:space="preserve">
+    <value>空軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="airOrgDamageLandAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="airOrgDamageLandAoDLabel.Text" xml:space="preserve">
+    <value>空軍対陸軍組織率被ダメージ</value>
+  </data>
+  <data name="damageSyntheticOilBombingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="damageSyntheticOilBombingLabel.Text" xml:space="preserve">
+    <value>合成石油工場戦略爆撃係数</value>
+  </data>
+  <data name="airDelayBeforeOrdersLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="airDelayBeforeOrdersLabel.Text" xml:space="preserve">
+    <value>空軍命令遅延時間</value>
+  </data>
+  <data name="navalDelayBeforeOrdersLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="navalDelayBeforeOrdersLabel.Text" xml:space="preserve">
+    <value>海軍命令遅延時間</value>
+  </data>
+  <data name="landDelayBeforeOrdersLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="landDelayBeforeOrdersLabel.Text" xml:space="preserve">
+    <value>陸軍命令遅延時間</value>
+  </data>
+  <data name="airOverstackingModifierAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 12</value>
+  </data>
+  <data name="airOverstackingModifierAoDLabel.Text" xml:space="preserve">
+    <value>空軍スタックペナルティ</value>
+  </data>
+  <data name="raderStationAaMultiplierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 12</value>
+  </data>
+  <data name="raderStationAaMultiplierLabel.Text" xml:space="preserve">
+    <value>レーダー/対空砲複合補正</value>
+  </data>
+  <data name="noSupplyMinimunAttritionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="noSupplyMinimunAttritionLabel.Text" xml:space="preserve">
+    <value>無補給時の消耗係数</value>
+  </data>
+  <data name="noSupplyAttritionSeverityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="noSupplyAttritionSeverityLabel.Text" xml:space="preserve">
+    <value>無補給時の自然条件消耗係数</value>
+  </data>
+  <data name="closeButton7.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton7.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton7.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
   <data name="combatTabPage2.Text" xml:space="preserve">
     <value>戦闘2</value>
+  </data>
+  <data name="breakthroughOrgAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="breakthroughOrgAttackerAoDLabel.Text" xml:space="preserve">
+    <value>突破イベント攻撃側組織率補正</value>
+  </data>
+  <data name="breakthroughStrAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="breakthroughStrAttackerAoDLabel.Text" xml:space="preserve">
+    <value>突破イベント攻撃側戦力補正</value>
+  </data>
+  <data name="breakthroughOrgDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="breakthroughOrgDefenderAoDLabel.Text" xml:space="preserve">
+    <value>突破イベント防御側組織率補正</value>
+  </data>
+  <data name="breakthroughStrDefenderAoDLabel.Text" xml:space="preserve">
+    <value>突破イベント防御側戦力補正</value>
+  </data>
+  <data name="tacticalWithdrawOrgAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="tacticalWithdrawOrgAttackerAoDLabel.Text" xml:space="preserve">
+    <value>後退イベント攻撃側組織率補正</value>
+  </data>
+  <data name="tacticalWithdrawStrAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="tacticalWithdrawStrAttackerAoDLabel.Text" xml:space="preserve">
+    <value>後退イベント攻撃側戦力補正</value>
+  </data>
+  <data name="tacticalWithdrawOrgDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="tacticalWithdrawOrgDefenderAoDLabel.Text" xml:space="preserve">
+    <value>後退イベント防御側組織率補正</value>
+  </data>
+  <data name="tacticalWithdrawStrDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="tacticalWithdrawStrDefenderAoDLabel.Text" xml:space="preserve">
+    <value>後退イベント防御側戦力補正</value>
+  </data>
+  <data name="delayOrgAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="delayOrgAttackerAoDLabel.Text" xml:space="preserve">
+    <value>遅延イベント攻撃側組織率補正</value>
+  </data>
+  <data name="delayStrAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="delayStrAttackerAoDLabel.Text" xml:space="preserve">
+    <value>遅延イベント攻撃側戦力補正</value>
+  </data>
+  <data name="delayOrgDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="delayOrgDefenderAoDLabel.Text" xml:space="preserve">
+    <value>遅延イベント防御側組織率補正</value>
+  </data>
+  <data name="delayStrDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="delayStrDefenderAoDLabel.Text" xml:space="preserve">
+    <value>遅延イベント防御側戦力補正</value>
+  </data>
+  <data name="ambushOrgAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="ambushOrgAttackerAoDLabel.Text" xml:space="preserve">
+    <value>待伏イベント攻撃側組織率補正</value>
+  </data>
+  <data name="ambushStrAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="ambushStrAttackerAoDLabel.Text" xml:space="preserve">
+    <value>待伏イベント攻撃側戦力補正</value>
+  </data>
+  <data name="ambushOrgDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="ambushOrgDefenderAoDLabel.Text" xml:space="preserve">
+    <value>待伏イベント防御側組織率補正</value>
+  </data>
+  <data name="ambushStrDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="ambushStrDefenderAoDLabel.Text" xml:space="preserve">
+    <value>待伏イベント防御側戦力補正</value>
+  </data>
+  <data name="encirclementOrgAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="encirclementOrgAttackerAoDLabel.Text" xml:space="preserve">
+    <value>包囲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="encirclementStrAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="encirclementStrAttackerAoDLabel.Text" xml:space="preserve">
+    <value>包囲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="encirclementOrgDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="encirclementOrgDefenderAoDLabel.Text" xml:space="preserve">
+    <value>包囲イベント防御側組織率補正</value>
+  </data>
+  <data name="encirclementStrDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="encirclementStrDefenderAoDLabel.Text" xml:space="preserve">
+    <value>包囲イベント防御側戦力補正</value>
+  </data>
+  <data name="assaultOrgAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="assaultOrgAttackerAoDLabel.Text" xml:space="preserve">
+    <value>強襲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="assaultStrAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="assaultStrAttackerAoDLabel.Text" xml:space="preserve">
+    <value>強襲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="assaultOrgDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="assaultOrgDefenderAoDLabel.Text" xml:space="preserve">
+    <value>強襲イベント防御側組織率補正</value>
+  </data>
+  <data name="assaultStrDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="assaultStrDefenderAoDLabel.Text" xml:space="preserve">
+    <value>強襲イベント防御側戦力補正</value>
+  </data>
+  <data name="counterAttackOrgAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="counterAttackOrgAttackerAoDLabel.Text" xml:space="preserve">
+    <value>反撃イベント攻撃側組織率補正</value>
+  </data>
+  <data name="counterAttackStrAttackerAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="counterAttackStrAttackerAoDLabel.Text" xml:space="preserve">
+    <value>反撃イベント攻撃側戦力補正</value>
+  </data>
+  <data name="counterAttackOrgDefenderAoDLabel.Text" xml:space="preserve">
+    <value>反撃イベント防御側組織率補正</value>
+  </data>
+  <data name="counterAttackStrDefenderAoDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="counterAttackStrDefenderAoDLabel.Text" xml:space="preserve">
+    <value>反撃イベント防御側戦力補正</value>
+  </data>
+  <data name="shoreBombardmentCapLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="shoreBombardmentCapLabel.Text" xml:space="preserve">
+    <value>艦砲射撃戦闘効率上限</value>
+  </data>
+  <data name="radarAntiSurpriseModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 12</value>
+  </data>
+  <data name="radarAntiSurpriseModifierLabel.Text" xml:space="preserve">
+    <value>レーダー奇襲効果減少値</value>
+  </data>
+  <data name="radarAntiSurpriseChanceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 12</value>
+  </data>
+  <data name="radarAntiSurpriseChanceLabel.Text" xml:space="preserve">
+    <value>レーダー奇襲確率減少値</value>
+  </data>
+  <data name="portAttackSurpriseModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="portAttackSurpriseModifierLabel.Text" xml:space="preserve">
+    <value>港湾攻撃奇襲補正</value>
+  </data>
+  <data name="closeButton8.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton8.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton8.Text" xml:space="preserve">
+    <value>再読み込み</value>
   </data>
   <data name="combatTabPage3.Text" xml:space="preserve">
     <value>戦闘3</value>
   </data>
+  <data name="screenCapitalShipsTargetingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 12</value>
+  </data>
+  <data name="screenCapitalShipsTargetingLabel.Text" xml:space="preserve">
+    <value>主力艦/補助艦標的ポジション値</value>
+  </data>
+  <data name="chanceTargetNoOrgLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 12</value>
+  </data>
+  <data name="chanceTargetNoOrgLandLabel.Text" xml:space="preserve">
+    <value>陸軍組織率不足ユニット標的確率</value>
+  </data>
+  <data name="screensCapitalRatioModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 12</value>
+  </data>
+  <data name="screensCapitalRatioModifierLabel.Text" xml:space="preserve">
+    <value>主力艦/補助艦割合修正</value>
+  </data>
+  <data name="bonusDetectionFriendlyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 12</value>
+  </data>
+  <data name="bonusDetectionFriendlyLabel.Text" xml:space="preserve">
+    <value>友好地航空機発見ボーナス</value>
+  </data>
+  <data name="radarBonusDetectionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 12</value>
+  </data>
+  <data name="radarBonusDetectionLabel.Text" xml:space="preserve">
+    <value>レーダー航空機発見ボーナス</value>
+  </data>
+  <data name="applyRangeLimitsAreasRegionsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 12</value>
+  </data>
+  <data name="applyRangeLimitsAreasRegionsLabel.Text" xml:space="preserve">
+    <value>地方/地域内での距離制限適用</value>
+  </data>
+  <data name="fleetSizeRangePenaltyMaxLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 12</value>
+  </data>
+  <data name="fleetSizeRangePenaltyMaxLabel.Text" xml:space="preserve">
+    <value>艦隊規模航続距離ペナルティ上限</value>
+  </data>
+  <data name="fleetSizeRangePenaltyThretholdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 12</value>
+  </data>
+  <data name="fleetSizeRangePenaltyThretholdLabel.Text" xml:space="preserve">
+    <value>艦隊規模航続距離ペナルティ閾値</value>
+  </data>
+  <data name="fleetSizeRangePenaltyRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 12</value>
+  </data>
+  <data name="fleetSizeRangePenaltyRatioLabel.Text" xml:space="preserve">
+    <value>艦隊規模航続距離ペナルティ割合</value>
+  </data>
+  <data name="defaultSpeedFuelLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 12</value>
+  </data>
+  <data name="defaultSpeedFuelLabel.Text" xml:space="preserve">
+    <value>燃料切れ時デフォルト移動速度</value>
+  </data>
+  <data name="landAirSpeedModifierFuelLabel.Text" xml:space="preserve">
+    <value>燃料切れ時陸軍/空軍移動速度補正</value>
+  </data>
+  <data name="landSpeedModifierOrgLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 12</value>
+  </data>
+  <data name="landSpeedModifierOrgLabel.Text" xml:space="preserve">
+    <value>組織率低下時陸軍移動速度補正</value>
+  </data>
+  <data name="landSpeedModifierSupplyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 12</value>
+  </data>
+  <data name="landSpeedModifierSupplyLabel.Text" xml:space="preserve">
+    <value>物資切れ時陸軍移動速度補正</value>
+  </data>
+  <data name="landSpeedModifierBombardmentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="landSpeedModifierBombardmentLabel.Text" xml:space="preserve">
+    <value>沿岸砲撃時陸軍移動速度補正</value>
+  </data>
+  <data name="landSpeedModifierCombatLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 12</value>
+  </data>
+  <data name="landSpeedModifierCombatLabel.Text" xml:space="preserve">
+    <value>戦闘時陸軍移動速度補正</value>
+  </data>
+  <data name="recalculateArrivalTimesCombatLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="recalculateArrivalTimesCombatLabel.Text" xml:space="preserve">
+    <value>戦闘後到着時刻再計算</value>
+  </data>
+  <data name="synchronizeArrivalTimeAiLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 12</value>
+  </data>
+  <data name="synchronizeArrivalTimeAiLabel.Text" xml:space="preserve">
+    <value>同時到着補正(AI)</value>
+  </data>
+  <data name="synchronizeArrivalTimePlayerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 12</value>
+  </data>
+  <data name="synchronizeArrivalTimePlayerLabel.Text" xml:space="preserve">
+    <value>同時到着補正(プレイヤー)</value>
+  </data>
+  <data name="recalculateLandArrivalTimesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="recalculateLandArrivalTimesLabel.Text" xml:space="preserve">
+    <value>陸上部隊到着時刻再計算間隔</value>
+  </data>
+  <data name="nightHoursSummerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="nightHoursSummerLabel.Text" xml:space="preserve">
+    <value>夏季夜間時間</value>
+  </data>
+  <data name="nightHoursSpringFallLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 12</value>
+  </data>
+  <data name="nightHoursSpringFallLabel.Text" xml:space="preserve">
+    <value>春季/秋季夜間時間</value>
+  </data>
+  <data name="nightHoursWinterLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="nightHoursWinterLabel.Text" xml:space="preserve">
+    <value>冬季夜間時間</value>
+  </data>
+  <data name="allowProvinceRegionTargetingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 12</value>
+  </data>
+  <data name="allowProvinceRegionTargetingLabel.Text" xml:space="preserve">
+    <value>単一プロヴィンス/地域指定任務</value>
+  </data>
+  <data name="autoReturnTransportFleetsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="autoReturnTransportFleetsLabel.Text" xml:space="preserve">
+    <value>輸送艦隊の自動帰還</value>
+  </data>
+  <data name="convoyInterceptionMissionsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="convoyInterceptionMissionsLabel.Text" xml:space="preserve">
+    <value>海上任務中の船団妨害</value>
+  </data>
+  <data name="orgRegainBonusFriendlyCapLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 12</value>
+  </data>
+  <data name="orgRegainBonusFriendlyCapLabel.Text" xml:space="preserve">
+    <value>友好地組織率回復ボーナス上限</value>
+  </data>
+  <data name="orgRegainBonusFriendlyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 12</value>
+  </data>
+  <data name="orgRegainBonusFriendlyLabel.Text" xml:space="preserve">
+    <value>友好地組織率回復ボーナス</value>
+  </data>
+  <data name="ministerBonusesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 12</value>
+  </data>
+  <data name="ministerBonusesLabel.Text" xml:space="preserve">
+    <value>閣僚ボーナス適用方法</value>
+  </data>
+  <data name="daysOffensiveSupplyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="daysOffensiveSupplyLabel.Text" xml:space="preserve">
+    <value>攻勢継続日数</value>
+  </data>
+  <data name="logisticsWizardEseBonusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="logisticsWizardEseBonusLabel.Text" xml:space="preserve">
+    <value>兵站管理の補給効率ボーナス</value>
+  </data>
+  <data name="movementBonusSimilarTerrainTraitLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 12</value>
+  </data>
+  <data name="movementBonusSimilarTerrainTraitLabel.Text" xml:space="preserve">
+    <value>類似地形適正移動ボーナス</value>
+  </data>
+  <data name="movementBonusTerrainTraitLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 12</value>
+  </data>
+  <data name="movementBonusTerrainTraitLabel.Text" xml:space="preserve">
+    <value>地形適正移動ボーナス</value>
+  </data>
+  <data name="aaAirBonusRadarsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 12</value>
+  </data>
+  <data name="aaAirBonusRadarsLabel.Text" xml:space="preserve">
+    <value>対空砲攻撃レーダーボーナス</value>
+  </data>
+  <data name="aaAirNightModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 12</value>
+  </data>
+  <data name="aaAirNightModifierLabel.Text" xml:space="preserve">
+    <value>対空砲夜間攻撃補正</value>
+  </data>
+  <data name="aaAirFiringRulesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 12</value>
+  </data>
+  <data name="aaAirFiringRulesLabel.Text" xml:space="preserve">
+    <value>対空砲攻撃ルール</value>
+  </data>
+  <data name="airStrDamageAaLabel.Text" xml:space="preserve">
+    <value>空軍対空砲戦力被ダメージ</value>
+  </data>
+  <data name="airOrgDamageAaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="airOrgDamageAaLabel.Text" xml:space="preserve">
+    <value>空軍対空砲組織率被ダメージ</value>
+  </data>
+  <data name="navalOrgDamageAaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="navalOrgDamageAaLabel.Text" xml:space="preserve">
+    <value>海軍対空砲組織率被ダメージ</value>
+  </data>
+  <data name="subsStrDamageNavyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="subsStrDamageNavyLabel.Text" xml:space="preserve">
+    <value>潜水艦対海軍戦力被ダメージ</value>
+  </data>
+  <data name="subsOrgDamageNavyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 12</value>
+  </data>
+  <data name="subsOrgDamageNavyLabel.Text" xml:space="preserve">
+    <value>潜水艦対海軍組織率被ダメージ</value>
+  </data>
+  <data name="navalStrDamageNavyDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="navalStrDamageNavyDhLabel.Text" xml:space="preserve">
+    <value>海軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="navalOrgDamageNavyDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="navalOrgDamageNavyDhLabel.Text" xml:space="preserve">
+    <value>海軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="airStrDamageNavyDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airStrDamageNavyDhLabel.Text" xml:space="preserve">
+    <value>空軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="airOrgDamageNavyDhLabel.Text" xml:space="preserve">
+    <value>空軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="subsStrDamageAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="subsStrDamageAirLabel.Text" xml:space="preserve">
+    <value>潜水艦対空軍戦力被ダメージ</value>
+  </data>
+  <data name="subsOrgDamageAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 12</value>
+  </data>
+  <data name="subsOrgDamageAirLabel.Text" xml:space="preserve">
+    <value>潜水艦対空軍組織率被ダメージ</value>
+  </data>
+  <data name="navalStrDamageAirDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="navalStrDamageAirDhLabel.Text" xml:space="preserve">
+    <value>海軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="navalOrgDamageAirDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="navalOrgDamageAirDhLabel.Text" xml:space="preserve">
+    <value>海軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="landStrDamageAirDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="landStrDamageAirDhLabel.Text" xml:space="preserve">
+    <value>陸軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="landOrgDamageAirDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="landOrgDamageAirDhLabel.Text" xml:space="preserve">
+    <value>陸軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="airStrDamageAirDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airStrDamageAirDhLabel.Text" xml:space="preserve">
+    <value>空軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="airOrgDamageAirDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="airOrgDamageAirDhLabel.Text" xml:space="preserve">
+    <value>空軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="landStrDamageLandDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="landStrDamageLandDhLabel.Text" xml:space="preserve">
+    <value>陸軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="landOrgDamageLandOrgLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 12</value>
+  </data>
+  <data name="landOrgDamageLandOrgLabel.Text" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ(組織率)</value>
+  </data>
+  <data name="airStrDamageLandDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airStrDamageLandDhLabel.Text" xml:space="preserve">
+    <value>空軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="airOrgDamageLandDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 12</value>
+  </data>
+  <data name="airOrgDamageLandDhLabel.Text" xml:space="preserve">
+    <value>空軍対陸軍組織率被ダメージ</value>
+  </data>
+  <data name="airStrDamageLandOrgLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 12</value>
+  </data>
+  <data name="airStrDamageLandOrgLabel.Text" xml:space="preserve">
+    <value>空軍対陸軍戦力被ダメージ(組織率)</value>
+  </data>
+  <data name="durationGroundAttackBombingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="durationGroundAttackBombingLabel.Text" xml:space="preserve">
+    <value>地上爆撃最小戦闘時間</value>
+  </data>
+  <data name="durationStrategicBombingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="durationStrategicBombingLabel.Text" xml:space="preserve">
+    <value>戦略爆撃最小戦闘時間</value>
+  </data>
+  <data name="durationNavalPortBombingLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="durationNavalPortBombingLabel.Text" xml:space="preserve">
+    <value>港湾攻撃最小戦闘時間</value>
+  </data>
+  <data name="durationAirToAirBattlesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="durationAirToAirBattlesLabel.Text" xml:space="preserve">
+    <value>空戦最小戦闘時間</value>
+  </data>
+  <data name="convoyEscortsModelLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 12</value>
+  </data>
+  <data name="convoyEscortsModelLabel.Text" xml:space="preserve">
+    <value>輸送船団護衛モデル</value>
+  </data>
+  <data name="fuelProblemsModifierNavalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="fuelProblemsModifierNavalLabel.Text" xml:space="preserve">
+    <value>海軍燃料不足ペナルティ</value>
+  </data>
+  <data name="fuelProblemsModifierAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="fuelProblemsModifierAirLabel.Text" xml:space="preserve">
+    <value>空軍燃料不足ペナルティ</value>
+  </data>
+  <data name="fuelProblemsModifierLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="fuelProblemsModifierLandLabel.Text" xml:space="preserve">
+    <value>陸軍燃料不足ペナルティ</value>
+  </data>
+  <data name="supplyProblemsModifierNavalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="supplyProblemsModifierNavalLabel.Text" xml:space="preserve">
+    <value>海軍物資不足ペナルティ</value>
+  </data>
+  <data name="supplyProblemsModifierAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="supplyProblemsModifierAirLabel.Text" xml:space="preserve">
+    <value>空軍物資不足ペナルティ</value>
+  </data>
+  <data name="supplyProblemsModifierLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 12</value>
+  </data>
+  <data name="supplyProblemsModifierLandLabel.Text" xml:space="preserve">
+    <value>陸軍物資不足ペナルティ</value>
+  </data>
+  <data name="hardUnitsAttackingUrbanPenaltyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="hardUnitsAttackingUrbanPenaltyLabel.Text" xml:space="preserve">
+    <value>装甲ユニットの都市攻撃ペナルティ</value>
+  </data>
+  <data name="airDogfightXpGainFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="airDogfightXpGainFactorLabel.Text" xml:space="preserve">
+    <value>空軍空戦時経験値入手係数</value>
+  </data>
+  <data name="closeButton9.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton9.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton9.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
   <data name="combatTabPage4.Text" xml:space="preserve">
     <value>戦闘4</value>
+  </data>
+  <data name="combatModeComboBox.Items" xml:space="preserve">
+    <value>0: 旧</value>
+  </data>
+  <data name="combatModeComboBox.Items1" xml:space="preserve">
+    <value>1: 新</value>
+  </data>
+  <data name="hqStrDamageBreakthroughComboBox.Items" xml:space="preserve">
+    <value>0: いいえ</value>
+  </data>
+  <data name="hqStrDamageBreakthroughComboBox.Items1" xml:space="preserve">
+    <value>1: はい</value>
+  </data>
+  <data name="combatModeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 12</value>
+  </data>
+  <data name="combatModeLabel.Text" xml:space="preserve">
+    <value>戦闘モード</value>
+  </data>
+  <data name="hqStrDamageBreakthroughLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 12</value>
+  </data>
+  <data name="hqStrDamageBreakthroughLabel.Text" xml:space="preserve">
+    <value>司令部は突破イベント時のみ戦力ダメージ</value>
+  </data>
+  <data name="breakthroughStrDefenderDhLabel.Text" xml:space="preserve">
+    <value>突破イベント防御側戦力補正</value>
+  </data>
+  <data name="breakthroughOrgDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="breakthroughOrgDefenderDhLabel.Text" xml:space="preserve">
+    <value>突破イベント防御側組織率補正</value>
+  </data>
+  <data name="breakthroughStrAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="breakthroughStrAttackerDhLabel.Text" xml:space="preserve">
+    <value>突破イベント攻撃側戦力補正</value>
+  </data>
+  <data name="breakthroughOrgAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="breakthroughOrgAttackerDhLabel.Text" xml:space="preserve">
+    <value>突破イベント攻撃側組織率補正</value>
+  </data>
+  <data name="tacticalWithdrawStrDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="tacticalWithdrawStrDefenderDhLabel.Text" xml:space="preserve">
+    <value>後退イベント防御側戦力補正</value>
+  </data>
+  <data name="tacticalWithdrawOrgDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="tacticalWithdrawOrgDefenderDhLabel.Text" xml:space="preserve">
+    <value>後退イベント防御側組織率補正</value>
+  </data>
+  <data name="tacticalWithdrawStrAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="tacticalWithdrawStrAttackerDhLabel.Text" xml:space="preserve">
+    <value>後退イベント攻撃側戦力補正</value>
+  </data>
+  <data name="tacticalWithdrawOrgAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="tacticalWithdrawOrgAttackerDhLabel.Text" xml:space="preserve">
+    <value>後退イベント攻撃側組織率補正</value>
+  </data>
+  <data name="delayStrDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="delayStrDefenderDhLabel.Text" xml:space="preserve">
+    <value>遅延イベント防御側戦力補正</value>
+  </data>
+  <data name="delayOrgDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="delayOrgDefenderDhLabel.Text" xml:space="preserve">
+    <value>遅延イベント防御側組織率補正</value>
+  </data>
+  <data name="delayStrAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="delayStrAttackerDhLabel.Text" xml:space="preserve">
+    <value>遅延イベント攻撃側戦力補正</value>
+  </data>
+  <data name="delayOrgAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="delayOrgAttackerDhLabel.Text" xml:space="preserve">
+    <value>遅延イベント攻撃側組織率補正</value>
+  </data>
+  <data name="ambushStrDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="ambushStrDefenderDhLabel.Text" xml:space="preserve">
+    <value>待伏イベント防御側戦力補正</value>
+  </data>
+  <data name="ambushOrgDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="ambushOrgDefenderDhLabel.Text" xml:space="preserve">
+    <value>待伏イベント防御側組織率補正</value>
+  </data>
+  <data name="ambushStrAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="ambushStrAttackerDhLabel.Text" xml:space="preserve">
+    <value>待伏イベント攻撃側戦力補正</value>
+  </data>
+  <data name="ambushOrgAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="ambushOrgAttackerDhLabel.Text" xml:space="preserve">
+    <value>待伏イベント攻撃側組織率補正</value>
+  </data>
+  <data name="encirclementStrDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="encirclementStrDefenderDhLabel.Text" xml:space="preserve">
+    <value>包囲イベント防御側戦力補正</value>
+  </data>
+  <data name="encirclementOrgDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="encirclementOrgDefenderDhLabel.Text" xml:space="preserve">
+    <value>包囲イベント防御側組織率補正</value>
+  </data>
+  <data name="encirclementStrAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="encirclementStrAttackerDhLabel.Text" xml:space="preserve">
+    <value>包囲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="encirclementOrgAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="encirclementOrgAttackerDhLabel.Text" xml:space="preserve">
+    <value>包囲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="assaultStrDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="assaultStrDefenderDhLabel.Text" xml:space="preserve">
+    <value>強襲イベント防御側戦力補正</value>
+  </data>
+  <data name="assaultOrgDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="assaultOrgDefenderDhLabel.Text" xml:space="preserve">
+    <value>強襲イベント防御側組織率補正</value>
+  </data>
+  <data name="assaultStrAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="assaultStrAttackerDhLabel.Text" xml:space="preserve">
+    <value>強襲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="assaultOrgAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="assaultOrgAttackerDhLabel.Text" xml:space="preserve">
+    <value>強襲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="counterAttackStrDefenderDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="counterAttackStrDefenderDhLabel.Text" xml:space="preserve">
+    <value>反撃イベント防御側戦力補正</value>
+  </data>
+  <data name="counterAttackOrgDefenderDhLabel.Text" xml:space="preserve">
+    <value>反撃イベント防御側組織率補正</value>
+  </data>
+  <data name="counterAttackStrAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="counterAttackStrAttackerDhLabel.Text" xml:space="preserve">
+    <value>反撃イベント攻撃側戦力補正</value>
+  </data>
+  <data name="counterAttackOrgAttackerDhLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 12</value>
+  </data>
+  <data name="counterAttackOrgAttackerDhLabel.Text" xml:space="preserve">
+    <value>反撃イベント攻撃側組織率補正</value>
+  </data>
+  <data name="combatEventDurationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 12</value>
+  </data>
+  <data name="combatEventDurationLabel.Text" xml:space="preserve">
+    <value>コンバットイベント継続時間</value>
+  </data>
+  <data name="breakthroughEncirclementChanceModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 12</value>
+  </data>
+  <data name="breakthroughEncirclementChanceModifierLabel.Text" xml:space="preserve">
+    <value>突破/包囲確率補正</value>
+  </data>
+  <data name="breakthroughEncirclementMaxChanceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 12</value>
+  </data>
+  <data name="breakthroughEncirclementMaxChanceLabel.Text" xml:space="preserve">
+    <value>突破/包囲最大確率</value>
+  </data>
+  <data name="breakthroughEncirclementMinSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 12</value>
+  </data>
+  <data name="breakthroughEncirclementMinSpeedLabel.Text" xml:space="preserve">
+    <value>突破/包囲最小速度</value>
+  </data>
+  <data name="digIncreaseDayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 12</value>
+  </data>
+  <data name="digIncreaseDayLabel.Text" xml:space="preserve">
+    <value>1日の塹壕増加量</value>
+  </data>
+  <data name="maxLandDigLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="maxLandDigLabel.Text" xml:space="preserve">
+    <value>最大塹壕値</value>
+  </data>
+  <data name="landOrgNavalTransportationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="landOrgNavalTransportationLabel.Text" xml:space="preserve">
+    <value>陸軍海上輸送後組織率補正</value>
+  </data>
+  <data name="autoRetreatOrgLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="autoRetreatOrgLabel.Text" xml:space="preserve">
+    <value>自動撤退組織率</value>
+  </data>
+  <data name="minSoftnessBrigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 12</value>
+  </data>
+  <data name="minSoftnessBrigadesLabel.Text" xml:space="preserve">
+    <value>付属旅団による最小脆弱性</value>
+  </data>
+  <data name="landCoastalFortsMaxDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 12</value>
+  </data>
+  <data name="landCoastalFortsMaxDamageLabel.Text" xml:space="preserve">
+    <value>要塞最大被ダメージ</value>
+  </data>
+  <data name="landCoastalFortsDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 12</value>
+  </data>
+  <data name="landCoastalFortsDamageLabel.Text" xml:space="preserve">
+    <value>要塞被ダメージ補正</value>
+  </data>
+  <data name="fleetPositioningFleetCompositionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 12</value>
+  </data>
+  <data name="fleetPositioningFleetCompositionLabel.Text" xml:space="preserve">
+    <value>海戦ポジション値艦隊構成補正</value>
+  </data>
+  <data name="fleetPositioningFleetSizeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 12</value>
+  </data>
+  <data name="fleetPositioningFleetSizeLabel.Text" xml:space="preserve">
+    <value>海戦ポジション値艦隊規模補正</value>
+  </data>
+  <data name="fleetPositioningLeaderSkillLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 12</value>
+  </data>
+  <data name="fleetPositioningLeaderSkillLabel.Text" xml:space="preserve">
+    <value>海戦ポジション値スキル補正</value>
+  </data>
+  <data name="fleetPositioningDaytimeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 12</value>
+  </data>
+  <data name="fleetPositioningDaytimeLabel.Text" xml:space="preserve">
+    <value>海戦ポジション値日中ボーナス</value>
+  </data>
+  <data name="requiredLandFortSizeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="requiredLandFortSizeLabel.Text" xml:space="preserve">
+    <value>必要要塞規模</value>
+  </data>
+  <data name="landOrgDamageLandFortLabel.Text" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ(要塞)</value>
+  </data>
+  <data name="landOrgDamageLandUrbanLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 12</value>
+  </data>
+  <data name="landOrgDamageLandUrbanLabel.Text" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ(都市)</value>
+  </data>
+  <data name="navalAdditionalStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="navalAdditionalStrDamageLabel.Text" xml:space="preserve">
+    <value>海軍追加戦力被ダメージ</value>
+  </data>
+  <data name="navalMinStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="navalMinStrDamageLabel.Text" xml:space="preserve">
+    <value>海軍最小戦力被ダメージ</value>
+  </data>
+  <data name="navalAdditionalOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="navalAdditionalOrgDamageLabel.Text" xml:space="preserve">
+    <value>海軍追加組織率被ダメージ</value>
+  </data>
+  <data name="navalMinOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="navalMinOrgDamageLabel.Text" xml:space="preserve">
+    <value>海軍最小組織率被ダメージ</value>
+  </data>
+  <data name="airStrDamageEntrencedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 12</value>
+  </data>
+  <data name="airStrDamageEntrencedLabel.Text" xml:space="preserve">
+    <value>空軍戦力被ダメージ(対塹壕)</value>
+  </data>
+  <data name="airAdditionalStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="airAdditionalStrDamageLabel.Text" xml:space="preserve">
+    <value>空軍追加戦力被ダメージ</value>
+  </data>
+  <data name="airMinStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="airMinStrDamageLabel.Text" xml:space="preserve">
+    <value>空軍最小戦力被ダメージ</value>
+  </data>
+  <data name="airAdditionalOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airAdditionalOrgDamageLabel.Text" xml:space="preserve">
+    <value>空軍追加組織率被ダメージ</value>
+  </data>
+  <data name="airMinOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="airMinOrgDamageLabel.Text" xml:space="preserve">
+    <value>空軍最小組織率被ダメージ</value>
+  </data>
+  <data name="landStrDamageHardVsSoftLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 12</value>
+  </data>
+  <data name="landStrDamageHardVsSoftLabel.Text" xml:space="preserve">
+    <value>陸軍戦力被ダメージ(装甲対非装甲)</value>
+  </data>
+  <data name="landStrDamageHardSoftEachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 12</value>
+  </data>
+  <data name="landStrDamageHardSoftEachLabel.Text" xml:space="preserve">
+    <value>陸軍戦力被ダメージ(装甲/非装甲同士)</value>
+  </data>
+  <data name="landMinStrDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 12</value>
+  </data>
+  <data name="landMinStrDamageLabel.Text" xml:space="preserve">
+    <value>陸軍最小戦力被ダメージ</value>
+  </data>
+  <data name="landOrgDamageHardVsSoftLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 12</value>
+  </data>
+  <data name="landOrgDamageHardVsSoftLabel.Text" xml:space="preserve">
+    <value>陸軍組織率被ダメージ(装甲対非装甲)</value>
+  </data>
+  <data name="landOrgDamageHardSoftEachLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 12</value>
+  </data>
+  <data name="landOrgDamageHardSoftEachLabel.Text" xml:space="preserve">
+    <value>陸軍組織率被ダメージ(装甲/非装甲同士)</value>
+  </data>
+  <data name="landMinOrgDamageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 12</value>
+  </data>
+  <data name="landMinOrgDamageLabel.Text" xml:space="preserve">
+    <value>陸軍最小組織率被ダメージ</value>
+  </data>
+  <data name="bonusLeaderSkillPointNavalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 12</value>
+  </data>
+  <data name="bonusLeaderSkillPointNavalLabel.Text" xml:space="preserve">
+    <value>海軍指揮官スキル補正</value>
+  </data>
+  <data name="bonusLeaderSkillPointAirLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 12</value>
+  </data>
+  <data name="bonusLeaderSkillPointAirLabel.Text" xml:space="preserve">
+    <value>空軍指揮官スキル補正</value>
+  </data>
+  <data name="bonusLeaderSkillPointLandLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 12</value>
+  </data>
+  <data name="bonusLeaderSkillPointLandLabel.Text" xml:space="preserve">
+    <value>陸軍指揮官スキル補正</value>
+  </data>
+  <data name="navalChanceAvoidNoDefencesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 12</value>
+  </data>
+  <data name="navalChanceAvoidNoDefencesLabel.Text" xml:space="preserve">
+    <value>海軍基本回避率(防御回数なし)</value>
+  </data>
+  <data name="airChanceAvoidNoDefencesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 12</value>
+  </data>
+  <data name="airChanceAvoidNoDefencesLabel.Text" xml:space="preserve">
+    <value>空軍基本回避率(防御回数なし)</value>
+  </data>
+  <data name="landChanceAvoidNoDefencesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 12</value>
+  </data>
+  <data name="landChanceAvoidNoDefencesLabel.Text" xml:space="preserve">
+    <value>陸軍基本回避率(防御回数なし)</value>
+  </data>
+  <data name="navalChanceAvoidDefencesLeftLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 12</value>
+  </data>
+  <data name="navalChanceAvoidDefencesLeftLabel.Text" xml:space="preserve">
+    <value>海軍基本回避率(防御回数あり)</value>
+  </data>
+  <data name="airChanceAvoidDefencesLeftLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 12</value>
+  </data>
+  <data name="airChanceAvoidDefencesLeftLabel.Text" xml:space="preserve">
+    <value>空軍基本回避率(防御回数あり)</value>
+  </data>
+  <data name="landChanceAvoidDefencesLeftLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 12</value>
+  </data>
+  <data name="landChanceAvoidDefencesLeftLabel.Text" xml:space="preserve">
+    <value>陸軍基本回避率(防御回数あり)</value>
+  </data>
+  <data name="closeButton10.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton10.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton10.Text" xml:space="preserve">
+    <value>再読み込み</value>
   </data>
   <data name="combatTabPage5.Text" xml:space="preserve">
     <value>戦闘5</value>
