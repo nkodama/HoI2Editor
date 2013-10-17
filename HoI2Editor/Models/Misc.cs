@@ -11,2709 +11,57 @@ namespace HoI2Editor.Models
         #region 公開プロパティ
 
         /// <summary>
-        ///     economyセクション
-        /// </summary>
-        public static MiscEconomy Economy { get; private set; }
-
-        /// <summary>
-        ///     intelligenceセクション
-        /// </summary>
-        public static MiscIntelligence Intelligence { get; private set; }
-
-        /// <summary>
-        ///     diplomacyセクション
-        /// </summary>
-        public static MiscDiplomacy Diplomacy { get; private set; }
-
-        /// <summary>
-        ///     combatセクション
-        /// </summary>
-        public static MiscCombat Combat { get; private set; }
-
-        /// <summary>
-        ///     missionセクション
-        /// </summary>
-        public static MiscMission Mission { get; private set; }
-
-        /// <summary>
-        ///     countryセクション
-        /// </summary>
-        public static MiscCountry Country { get; private set; }
-
-        /// <summary>
-        ///     researchセクション
-        /// </summary>
-        public static MiscResearch Research { get; private set; }
-
-        /// <summary>
-        ///     tradeセクション
-        /// </summary>
-        public static MiscTrade Trade { get; private set; }
-
-        /// <summary>
-        ///     aiセクション
-        /// </summary>
-        public static MiscAi Ai { get; private set; }
-
-        /// <summary>
-        ///     modセクション
-        /// </summary>
-        public static MiscMod Mod { get; private set; }
-
-        /// <summary>
-        ///     mapセクション
-        /// </summary>
-        public static MiscMap Map { get; private set; }
-
-        #endregion
-
-        #region 公開プロパティ - economy
-
-        /// <summary>
-        ///     ICからTCへの変換効率
-        /// </summary>
-        public static double IcToTcRatio;
-
-        /// <summary>
-        ///     ICから物資への変換効率
-        /// </summary>
-        public static double IcToSuppliesRatio;
-
-        /// <summary>
-        ///     ICから消費財への変換効率
-        /// </summary>
-        public static double IcToConsumerGoodsRatio;
-
-        /// <summary>
-        ///     ICから資金への変換効率
-        /// </summary>
-        public static double IcToMoneyRatio;
-
-        /// <summary>
-        ///     不満度変化速度
-        /// </summary>
-        public static double DissentChangeSpeed;
-
-        /// <summary>
-        ///     最小実効ICの比率
-        /// </summary>
-        public static double MinAvailableIc;
-
-        /// <summary>
-        ///     最小実効IC
-        /// </summary>
-        public static double MinFinalIc;
-
-        /// <summary>
-        ///     不満度低下補正
-        /// </summary>
-        public static double DissentReduction;
-
-        /// <summary>
-        ///     最大ギアリングボーナス
-        /// </summary>
-        public static double MaxGearingBonus;
-
-        /// <summary>
-        ///     ギアリングボーナスの増加値
-        /// </summary>
-        public static double GearingBonusIncrement;
-
-        /// <summary>
-        ///     連続生産時の資源消費増加
-        /// </summary>
-        public static double GearingResourceIncrement;
-
-        /// <summary>
-        ///     IC不足時のギアリングボーナス減少値
-        /// </summary>
-        public static double GearingLossNoIc;
-
-        /// <summary>
-        ///     非中核州のIC補正
-        /// </summary>
-        public static double IcMultiplierNonNational;
-
-        /// <summary>
-        ///     占領地のIC補正
-        /// </summary>
-        public static double IcMultiplierNonOwned;
-
-        /// <summary>
-        ///     属国のIC補正
-        /// </summary>
-        public static double IcMultiplierPuppet;
-
-        /// <summary>
-        ///     非中核州の資源補正
-        /// </summary>
-        public static double ResourceMultiplierNonNational;
-
-        /// <summary>
-        ///     占領地の資源補正
-        /// </summary>
-        public static double ResourceMultiplierNonOwned;
-
-        /// <summary>
-        ///     非中核州の資源補正(AI)
-        /// </summary>
-        public static double ResourceMultiplierNonNationalAi;
-
-        /// <summary>
-        ///     属国の資源補正
-        /// </summary>
-        public static double ResourceMultiplierPuppet;
-
-        /// <summary>
-        ///     未配備師団のTC負荷
-        /// </summary>
-        public static double TcLoadUndeployedDivision;
-
-        /// <summary>
-        ///     占領地のTC負荷
-        /// </summary>
-        public static double TcLoadOccupied;
-
-        /// <summary>
-        ///     陸軍師団のTC負荷補正
-        /// </summary>
-        public static double TcLoadMultiplierLand;
-
-        /// <summary>
-        ///     空軍師団のTC負荷補正
-        /// </summary>
-        public static double TcLoadMultiplierAir;
-
-        /// <summary>
-        ///     海軍師団のTC負荷補正
-        /// </summary>
-        public static double TcLoadMultiplierNaval;
-
-        /// <summary>
-        ///     パルチザンのTC負荷
-        /// </summary>
-        public static double TcLoadPartisan;
-
-        /// <summary>
-        ///     攻勢時のTC負荷係数
-        /// </summary>
-        public static double TcLoadFactorOffensive;
-
-        /// <summary>
-        ///     プロヴィンス開発のTC負荷
-        /// </summary>
-        public static double TcLoadProvinceDevelopment;
-
-        /// <summary>
-        ///     未配備の基地のTC負荷
-        /// </summary>
-        public static double TcLoadBase;
-
-        /// <summary>
-        ///     中核州の人的資源補正
-        /// </summary>
-        public static double ManpowerMultiplierNational;
-
-        /// <summary>
-        ///     非中核州の人的資源補正
-        /// </summary>
-        public static double ManpowerMultiplierNonNational;
-
-        /// <summary>
-        ///     海外州の人的資源補正
-        /// </summary>
-        public static double ManpowerMultiplierColony;
-
-        /// <summary>
-        ///     属国の人的資源補正
-        /// </summary>
-        public static double ManpowerMultiplierPuppet;
-
-        /// <summary>
-        ///     戦時の海外州の人的資源補正
-        /// </summary>
-        public static double ManpowerMultiplierWartimeOversea;
-
-        /// <summary>
-        ///     平時の人的資源補正
-        /// </summary>
-        public static double ManpowerMultiplierPeacetime;
-
-        /// <summary>
-        ///     戦時の人的資源補正
-        /// </summary>
-        public static double ManpowerMultiplierWartime;
-
-        /// <summary>
-        ///     人的資源の老化率
-        /// </summary>
-        public static double DailyRetiredManpower;
-
-        /// <summary>
-        ///     政策スライダーに影響を与えるためのIC比率
-        /// </summary>
-        public static double RequirementAffectSlider;
-
-        /// <summary>
-        ///     戦闘による損失からの復帰係数
-        /// </summary>
-        public static double TrickleBackFactorManpower;
-
-        /// <summary>
-        ///     補充に必要な人的資源の比率
-        /// </summary>
-        public static double ReinforceManpower;
-
-        /// <summary>
-        ///     補充に必要なICの比率
-        /// </summary>
-        public static double ReinforceCost;
-
-        /// <summary>
-        ///     補充に必要な時間の比率
-        /// </summary>
-        public static double ReinforceTime;
-
-        /// <summary>
-        ///     改良に必要なICの比率
-        /// </summary>
-        public static double UpgradeCost;
-
-        /// <summary>
-        ///     改良に必要な時間の比率
-        /// </summary>
-        public static double UpgradeTime;
-
-        /// <summary>
-        ///     改良のための補充係数
-        /// </summary>
-        public static double ReinforceToUpdateModifier;
-
-        /// <summary>
-        ///     ナショナリズムの初期値
-        /// </summary>
-        public static double NationalismStartingValue;
-
-        /// <summary>
-        ///     人的資源によるナショナリズムの補正値
-        /// </summary>
-        public static double NationalismPerManpowerAoD;
-
-        /// <summary>
-        ///     人的資源によるナショナリズムの補正値
-        /// </summary>
-        public static double NationalismPerManpowerDh;
-
-        /// <summary>
-        ///     ナショナリズム最大値
-        /// </summary>
-        public static double MaxNationalism;
-
-        /// <summary>
-        ///     最大反乱率
-        /// </summary>
-        public static double MaxRevoltRisk;
-
-        /// <summary>
-        ///     月ごとのナショナリズムの減少値
-        /// </summary>
-        public static double MonthlyNationalismReduction;
-
-        /// <summary>
-        ///     師団譲渡後配備可能になるまでの時間
-        /// </summary>
-        public static int SendDivisionDays;
-
-        /// <summary>
-        ///     未配備旅団のTC負荷
-        /// </summary>
-        public static double TcLoadUndeployedBrigade;
-
-        /// <summary>
-        ///     非同盟国に師団を譲渡できるかどうか
-        /// </summary>
-        public static bool CanUnitSendNonAllied;
-
-        /// <summary>
-        ///     諜報任務の間隔
-        /// </summary>
-        public static int SpyMissionDays;
-
-        /// <summary>
-        ///     諜報レベルの増加間隔
-        /// </summary>
-        public static int IncreateIntelligenceLevelDays;
-
-        /// <summary>
-        ///     国内の諜報活動を発見する確率
-        /// </summary>
-        public static int ChanceDetectSpyMission;
-
-        /// <summary>
-        ///     諜報任務発覚時の友好度低下量
-        /// </summary>
-        public static double RelationshipsHitDetectedMissions;
-
-        /// <summary>
-        ///     第三国の諜報活動を報告するか
-        /// </summary>
-        public static int ShowThirdCountrySpyReports;
-
-        /// <summary>
-        ///     諜報任務の近隣国補正
-        /// </summary>
-        public static double DistanceModifierNeighbours;
-
-        /// <summary>
-        ///     情報の正確さ補正
-        /// </summary>
-        public static double SpyInformationAccuracyModifier;
-
-        /// <summary>
-        ///     AIの平時の攻撃的諜報活動
-        /// </summary>
-        public static int AiPeacetimeSpyMissions;
-
-        /// <summary>
-        ///     諜報コスト補正の最大IC
-        /// </summary>
-        public static double MaxIcCostModifier;
-
-        /// <summary>
-        ///     AIの諜報コスト補正
-        /// </summary>
-        public static double AiSpyMissionsCostModifier;
-
-        /// <summary>
-        ///     AIの外交コスト補正
-        /// </summary>
-        public static double AiDiplomacyCostModifier;
-
-        /// <summary>
-        ///     AIの外交影響度補正
-        /// </summary>
-        public static double AiInfluenceModifier;
-
-        /// <summary>
-        ///     建物修復コスト補正
-        /// </summary>
-        public static double CostRepairBuildings;
-
-        /// <summary>
-        ///     建物修復時間補正
-        /// </summary>
-        public static double TimeRepairBuilding;
-
-        /// <summary>
-        ///     プロヴィンス効率上昇時間
-        /// </summary>
-        public static int ProvinceEfficiencyRiseTime;
-
-        /// <summary>
-        ///     中核プロヴィンス効率上昇時間
-        /// </summary>
-        public static int CoreProvinceEfficiencyRiseTime;
-
-        /// <summary>
-        ///     ライン維持コスト補正
-        /// </summary>
-        public static double LineUpkeep;
-
-        /// <summary>
-        ///     ライン開始時間
-        /// </summary>
-        public static int LineStartupTime;
-
-        /// <summary>
-        ///     ライン改良時間
-        /// </summary>
-        public static int LineUpgradeTime;
-
-        /// <summary>
-        ///     ライン調整コスト補正
-        /// </summary>
-        public static double RetoolingCost;
-
-        /// <summary>
-        ///     ライン調整資源補正
-        /// </summary>
-        public static double RetoolingResource;
-
-        /// <summary>
-        ///     人的資源老化補正
-        /// </summary>
-        public static double DailyAgingManpower;
-
-        /// <summary>
-        ///     船団襲撃時物資使用量補正
-        /// </summary>
-        public static double SupplyConvoyHunt;
-
-        /// <summary>
-        ///     海軍の待機時物資使用量補正
-        /// </summary>
-        public static double SupplyNavalStaticAoD;
-
-        /// <summary>
-        ///     海軍の移動時物資使用量補正
-        /// </summary>
-        public static double SupplyNavalMoving;
-
-        /// <summary>
-        ///     海軍の戦闘時物資使用量補正
-        /// </summary>
-        public static double SupplyNavalBattleAoD;
-
-        /// <summary>
-        ///     空軍の待機時物資使用量補正
-        /// </summary>
-        public static double SupplyAirStaticAoD;
-
-        /// <summary>
-        ///     空軍の移動時物資使用量補正
-        /// </summary>
-        public static double SupplyAirMoving;
-
-        /// <summary>
-        ///     空軍の戦闘時物資使用量補正
-        /// </summary>
-        public static double SupplyAirBattleAoD;
-
-        /// <summary>
-        ///     空軍の爆撃時物資使用量補正
-        /// </summary>
-        public static double SupplyAirBombing;
-
-        /// <summary>
-        ///     陸軍の待機時物資使用量補正
-        /// </summary>
-        public static double SupplyLandStaticAoD;
-
-        /// <summary>
-        ///     陸軍の移動時物資使用量補正
-        /// </summary>
-        public static double SupplyLandMoving;
-
-        /// <summary>
-        ///     陸軍の戦闘時物資使用量補正
-        /// </summary>
-        public static double SupplyLandBattleAoD;
-
-        /// <summary>
-        ///     陸軍の砲撃時物資使用量補正
-        /// </summary>
-        public static double SupplyLandBombing;
-
-        /// <summary>
-        ///     陸軍の物資備蓄量
-        /// </summary>
-        public static double SupplyStockLand;
-
-        /// <summary>
-        ///     空軍の物資備蓄量
-        /// </summary>
-        public static double SupplyStockAir;
-
-        /// <summary>
-        ///     海軍の物資備蓄量
-        /// </summary>
-        public static double SupplyStockNaval;
-
-        /// <summary>
-        ///     陸軍の物資再備蓄速度
-        /// </summary>
-        public static double RestockSpeedLand;
-
-        /// <summary>
-        ///     空軍の物資再備蓄速度
-        /// </summary>
-        public static double RestockSpeedAir;
-
-        /// <summary>
-        ///     海軍の物資再備蓄速度
-        /// </summary>
-        public static double RestockSpeedNaval;
-
-        /// <summary>
-        ///     合成石油変換係数
-        /// </summary>
-        public static double SyntheticOilConversionMultiplier;
-
-        /// <summary>
-        ///     合成希少資源変換係数
-        /// </summary>
-        public static double SyntheticRaresConversionMultiplier;
-
-        /// <summary>
-        ///     軍隊の給料
-        /// </summary>
-        public static double MilitarySalary;
-
-        /// <summary>
-        ///     最大諜報費比率
-        /// </summary>
-        public static double MaxIntelligenceExpenditure;
-
-        /// <summary>
-        ///     最大研究費比率
-        /// </summary>
-        public static double MaxResearchExpenditure;
-
-        /// <summary>
-        ///     軍隊の給料不足時の消耗補正
-        /// </summary>
-        public static double MilitarySalaryAttrictionModifier;
-
-        /// <summary>
-        ///     軍隊の給料不足時の不満度補正
-        /// </summary>
-        public static double MilitarySalaryDissentModifier;
-
-        /// <summary>
-        ///     原子炉維持コスト
-        /// </summary>
-        public static double NuclearSiteUpkeepCost;
-
-        /// <summary>
-        ///     原子力発電所維持コスト
-        /// </summary>
-        public static double NuclearPowerUpkeepCost;
-
-        /// <summary>
-        ///     合成石油工場維持コスト
-        /// </summary>
-        public static double SyntheticOilSiteUpkeepCost;
-
-        /// <summary>
-        ///     合成希少資源工場維持コスト
-        /// </summary>
-        public static double SyntheticRaresSiteUpkeepCost;
-
-        /// <summary>
-        ///     海軍情報の存続期間
-        /// </summary>
-        public static int DurationDetection;
-
-        /// <summary>
-        ///     船団攻撃回避時間
-        /// </summary>
-        public static int ConvoyProvinceHostileTime;
-
-        /// <summary>
-        ///     船団攻撃妨害時間
-        /// </summary>
-        public static int ConvoyProvinceBlockedTime;
-
-        /// <summary>
-        ///     自動貿易に必要な輸送船団割合
-        /// </summary>
-        public static double AutoTradeConvoy;
-
-        /// <summary>
-        ///     諜報維持コスト
-        /// </summary>
-        public static double SpyUpkeepCost;
-
-        /// <summary>
-        ///     スパイ発見確率
-        /// </summary>
-        public static double SpyDetectionChance;
-
-        /// <summary>
-        ///     不満度によるクーデター成功率修正
-        /// </summary>
-        public static double SpyCoupDissentModifier;
-
-        /// <summary>
-        ///     インフラによるプロヴィンス効率補正
-        /// </summary>
-        public static double InfraEfficiencyModifier;
-
-        /// <summary>
-        ///     人的資源の消費財生産補正
-        /// </summary>
-        public static double ManpowerToConsumerGoods;
-
-        /// <summary>
-        ///     スライダー移動の間隔
-        /// </summary>
-        public static int TimeBetweenSliderChangesAoD;
-
-        /// <summary>
-        ///     海外プロヴィンスへの配置の必要IC
-        /// </summary>
-        public static double MinimalPlacementIc;
-
-        /// <summary>
-        ///     原子力発電量
-        /// </summary>
-        public static double NuclearPower;
-
-        /// <summary>
-        ///     インフラの自然回復率
-        /// </summary>
-        public static double FreeInfraRepair;
-
-        /// <summary>
-        ///     スライダー移動時の最大不満度
-        /// </summary>
-        public static double MaxSliderDissent;
-
-        /// <summary>
-        ///     スライダー移動時の最小不満度
-        /// </summary>
-        public static double MinSliderDissent;
-
-        /// <summary>
-        ///     スライダー移動可能な最大不満度
-        /// </summary>
-        public static double MaxDissentSliderMove;
-
-        /// <summary>
-        ///     工場集中ボーナス
-        /// </summary>
-        public static double IcConcentrationBonus;
-
-        /// <summary>
-        ///     輸送艦変換係数
-        /// </summary>
-        public static double TransportConversion;
-
-        /// <summary>
-        ///     輸送船団変換係数
-        /// </summary>
-        public static double ConvoyDutyConversion;
-
-        /// <summary>
-        ///     護衛船団変換係数
-        /// </summary>
-        public static double EscortDutyConversion;
-
-        /// <summary>
-        ///     閣僚変更遅延日数
-        /// </summary>
-        public static int MinisterChangeDelay;
-
-        /// <summary>
-        ///     閣僚変更遅延日数(イベント)
-        /// </summary>
-        public static int MinisterChangeEventDelay;
-
-        /// <summary>
-        ///     国策変更遅延日数
-        /// </summary>
-        public static int IdeaChangeDelay;
-
-        /// <summary>
-        ///     国策変更遅延日数(イベント)
-        /// </summary>
-        public static int IdeaChangeEventDelay;
-
-        /// <summary>
-        ///     指揮官変更遅延日数
-        /// </summary>
-        public static int LeaderChangeDelay;
-
-        /// <summary>
-        ///     国策変更時の不満度上昇量
-        /// </summary>
-        public static double ChangeIdeaDissent;
-
-        /// <summary>
-        ///     閣僚変更時の不満度上昇量
-        /// </summary>
-        public static double ChangeMinisterDissent;
-
-        /// <summary>
-        ///     反乱が発生する最低不満度
-        /// </summary>
-        public static double MinDissentRevolt;
-
-        /// <summary>
-        ///     不満度による反乱軍発生率係数
-        /// </summary>
-        public static double DissentRevoltMultiplier;
-
-        /// <summary>
-        ///     輸送艦最大付属装備数
-        /// </summary>
-        public static int TpMaxAttach;
-
-        /// <summary>
-        ///     潜水艦最大付属装備数
-        /// </summary>
-        public static int SsMaxAttach;
-
-        /// <summary>
-        ///     原子力潜水艦最大付属装備数
-        /// </summary>
-        public static int SsnMaxAttach;
-
-        /// <summary>
-        ///     駆逐艦最大付属装備数
-        /// </summary>
-        public static int DdMaxAttach;
-
-        /// <summary>
-        ///     軽巡洋艦最大付属装備数
-        /// </summary>
-        public static int ClMaxAttach;
-
-        /// <summary>
-        ///     重巡洋艦最大付属装備数
-        /// </summary>
-        public static int CaMaxAttach;
-
-        /// <summary>
-        ///     巡洋戦艦最大付属装備数
-        /// </summary>
-        public static int BcMaxAttach;
-
-        /// <summary>
-        ///     戦艦最大付属装備数
-        /// </summary>
-        public static int BbMaxAttach;
-
-        /// <summary>
-        ///     軽空母最大付属装備数
-        /// </summary>
-        public static int CvlMaxAttach;
-
-        /// <summary>
-        ///     空母最大付属装備数
-        /// </summary>
-        public static int CvMaxAttach;
-
-        /// <summary>
-        ///     プレイヤーの国策変更を許可
-        /// </summary>
-        public static bool CanChangeIdeas;
-
-        /// <summary>
-        ///     非同盟国に師団を譲渡できるかどうか
-        /// </summary>
-        public static int CanUnitSendNonAlliedDh;
-
-        /// <summary>
-        ///     非同盟国に青写真の売却を許可
-        /// </summary>
-        public static int BluePrintsCanSoldNonAllied;
-
-        /// <summary>
-        ///     非同盟国にプロヴィンスの売却/譲渡を許可
-        /// </summary>
-        public static int ProvinceCanSoldNonAllied;
-
-        /// <summary>
-        ///     占領中の同盟国の中核州返還を許可
-        /// </summary>
-        public static bool TransferAlliedCoreProvinces;
-
-        /// <summary>
-        ///     建物修復速度補正
-        /// </summary>
-        public static double ProvinceBuildingsRepairModifier;
-
-        /// <summary>
-        ///     資源回復速度補正
-        /// </summary>
-        public static double ProvinceResourceRepairModifier;
-
-        /// <summary>
-        ///     資源備蓄上限補正
-        /// </summary>
-        public static double StockpileLimitMultiplierResource;
-
-        /// <summary>
-        ///     物資/燃料備蓄上限補正
-        /// </summary>
-        public static double StockpileLimitMultiplierSuppliesOil;
-
-        /// <summary>
-        ///     超過備蓄損失割合
-        /// </summary>
-        public static double OverStockpileLimitDailyLoss;
-
-        /// <summary>
-        ///     資源備蓄上限値
-        /// </summary>
-        public static double MaxResourceDepotSize;
-
-        /// <summary>
-        ///     物資/燃料備蓄上限値
-        /// </summary>
-        public static double MaxSuppliesOilDepotSize;
-
-        /// <summary>
-        ///     理想物資/燃料備蓄比率
-        /// </summary>
-        public static double DesiredStockPilesSuppliesOil;
-
-        /// <summary>
-        ///     最大人的資源
-        /// </summary>
-        public static double MaxManpower;
-
-        /// <summary>
-        ///     船団輸送能力
-        /// </summary>
-        public static double ConvoyTransportsCapacity;
-
-        /// <summary>
-        ///     陸軍の待機時物資使用量補正
-        /// </summary>
-        public static double SuppyLandStaticDh;
-
-        /// <summary>
-        ///     陸軍の戦闘時物資使用量補正
-        /// </summary>
-        public static double SupplyLandBattleDh;
-
-        /// <summary>
-        ///     陸軍の待機時燃料使用量補正
-        /// </summary>
-        public static double FuelLandStatic;
-
-        /// <summary>
-        ///     陸軍の戦闘時燃料使用量補正
-        /// </summary>
-        public static double FuelLandBattle;
-
-        /// <summary>
-        ///     空軍の待機時物資使用量補正
-        /// </summary>
-        public static double SupplyAirStaticDh;
-
-        /// <summary>
-        ///     空軍の戦闘時物資使用量補正
-        /// </summary>
-        public static double SupplyAirBattleDh;
-
-        /// <summary>
-        ///     空軍/海軍の待機時燃料使用量補正
-        /// </summary>
-        public static double FuelAirNavalStatic;
-
-        /// <summary>
-        ///     空軍の戦闘時燃料使用量補正
-        /// </summary>
-        public static double FuelAirBattle;
-
-        /// <summary>
-        ///     海軍の待機時物資使用量補正
-        /// </summary>
-        public static double SupplyNavalStaticDh;
-
-        /// <summary>
-        ///     海軍の戦闘時物資使用量補正
-        /// </summary>
-        public static double SupplyNavalBattleDh;
-
-        /// <summary>
-        ///     海軍の非移動時燃料使用量補正
-        /// </summary>
-        public static double FuelNavalNotMoving;
-
-        /// <summary>
-        ///     海軍の戦闘時燃料使用量補正
-        /// </summary>
-        public static double FuelNavalBattle;
-
-        /// <summary>
-        ///     輸送艦の輸送船団への変換比率
-        /// </summary>
-        public static double TpTransportsConversionRatio;
-
-        /// <summary>
-        ///     駆逐艦の護衛船団への変換比率
-        /// </summary>
-        public static double DdEscortsConversionRatio;
-
-        /// <summary>
-        ///     軽巡洋艦の護衛船団への変換比率
-        /// </summary>
-        public static double ClEscortsConversionRatio;
-
-        /// <summary>
-        ///     軽空母の護衛船団への変換比率
-        /// </summary>
-        public static double CvlEscortsConversionRatio;
-
-        /// <summary>
-        ///     生産ラインの編集
-        /// </summary>
-        public static bool ProductionLineEdit;
-
-        /// <summary>
-        ///     ユニット改良時のギアリングボーナス減少比率
-        /// </summary>
-        public static double GearingBonusLossUpgradeUnit;
-
-        /// <summary>
-        ///     旅団改良時のギアリングボーナス減少比率
-        /// </summary>
-        public static double GearingBonusLossUpgradeBrigade;
-
-        /// <summary>
-        ///     中核州核攻撃時の不満度上昇係数
-        /// </summary>
-        public static double DissentNukes;
-
-        /// <summary>
-        ///     物資/消費財不足時の最大不満度上昇値
-        /// </summary>
-        public static double MaxDailyDissent;
-
-        /// <summary>
-        ///     核兵器生産補正
-        /// </summary>
-        public static double NukesProductionModifier;
-
-        /// <summary>
-        ///     同盟国に対する船団システム
-        /// </summary>
-        public static int ConvoySystemOptionsAllied;
-
-        /// <summary>
-        ///     不要な資源/燃料の回収比率
-        /// </summary>
-        public static double ResourceConvoysBackUnneeded;
-
-        #endregion
-
-        #region 公開プロパティ - intelligence
-
-        /// <summary>
-        ///     諜報任務の間隔
-        /// </summary>
-        public static int SpyMissionDaysDh;
-
-        /// <summary>
-        ///     諜報レベルの増加間隔
-        /// </summary>
-        public static int IncreateIntelligenceLevelDaysDh;
-
-        /// <summary>
-        ///     国内の諜報活動を発見する確率
-        /// </summary>
-        public static double ChanceDetectSpyMissionDh;
-
-        /// <summary>
-        ///     諜報任務発覚時の友好度低下量
-        /// </summary>
-        public static double RelationshipsHitDetectedMissionsDh;
-
-        /// <summary>
-        ///     諜報任務の距離補正
-        /// </summary>
-        public static double DistanceModifier;
-
-        /// <summary>
-        ///     諜報任務の近隣国補正
-        /// </summary>
-        public static double DistanceModifierNeighboursDh;
-
-        /// <summary>
-        ///     諜報レベルの距離補正
-        /// </summary>
-        public static double SpyLevelBonusDistanceModifier;
-
-        /// <summary>
-        ///     諜報レベル10超過時の距離補正
-        /// </summary>
-        public static double SpyLevelBonusDistanceModifierAboveTen;
-
-        /// <summary>
-        ///     情報の正確さ補正
-        /// </summary>
-        public static double SpyInformationAccuracyModifierDh;
-
-        /// <summary>
-        ///     諜報コストのIC補正
-        /// </summary>
-        public static double IcModifierCost;
-
-        /// <summary>
-        ///     諜報コスト補正の最小IC
-        /// </summary>
-        public static double MinIcCostModifier;
-
-        /// <summary>
-        ///     諜報コスト補正の最大IC
-        /// </summary>
-        public static double MaxIcCostModifierDh;
-
-        /// <summary>
-        ///     諜報レベル10超過時追加維持コスト
-        /// </summary>
-        public static double ExtraMaintenanceCostAboveTen;
-
-        /// <summary>
-        ///     諜報レベル10超過時増加コスト
-        /// </summary>
-        public static double ExtraCostIncreasingAboveTen;
-
-        /// <summary>
-        ///     第三国の諜報活動を報告するか
-        /// </summary>
-        public static int ShowThirdCountrySpyReportsDh;
-
-        /// <summary>
-        ///     諜報資金割り当て補正
-        /// </summary>
-        public static double SpiesMoneyModifier;
-
-        #endregion
-
-        #region 公開プロパティ - diplomacy
-
-        /// <summary>
-        ///     外交官派遣間隔
-        /// </summary>
-        public static int DaysBetweenDiplomaticMissions;
-
-        /// <summary>
-        ///     スライダー移動の間隔
-        /// </summary>
-        public static int TimeBetweenSliderChangesDh;
-
-        /// <summary>
-        ///     政策スライダーに影響を与えるためのIC比率
-        /// </summary>
-        public static double RequirementAffectSliderDh;
-
-        /// <summary>
-        ///     閣僚交代時に閣僚特性を適用する
-        /// </summary>
-        public static bool UseMinisterPersonalityReplacing;
-
-        /// <summary>
-        ///     貿易キャンセル時の友好度低下
-        /// </summary>
-        public static double RelationshipHitCancelTrade;
-
-        /// <summary>
-        ///     永久貿易キャンセル時の友好度低下
-        /// </summary>
-        public static double RelationshipHitCancelPermanentTrade;
-
-        /// <summary>
-        ///     属国が宗主国の同盟に強制参加する
-        /// </summary>
-        public static bool PuppetsJoinMastersAlliance;
-
-        /// <summary>
-        ///     属国の属国が設立できるか
-        /// </summary>
-        public static bool MastersBecomePuppetsPuppets;
-
-        /// <summary>
-        ///     領有権主張の変更
-        /// </summary>
-        public static bool AllowManualClaimsChange;
-
-        /// <summary>
-        ///     領有権主張時の好戦性上昇値
-        /// </summary>
-        public static double BelligerenceClaimedProvince;
-
-        /// <summary>
-        ///     領有権撤回時の好戦性減少値
-        /// </summary>
-        public static double BelligerenceClaimsRemoval;
-
-        /// <summary>
-        ///     宣戦布告された時に対抗陣営へ自動加盟
-        /// </summary>
-        public static bool JoinAutomaticallyAllesAxis;
-
-        /// <summary>
-        ///     国家元首/政府首班の交代
-        /// </summary>
-        public static int AllowChangeHosHog;
-
-        /// <summary>
-        ///     クーデター発生時に兄弟国へ変更
-        /// </summary>
-        public static bool ChangeTagCoup;
-
-        /// <summary>
-        ///     独立可能国設定
-        /// </summary>
-        public static int FilterReleaseCountries;
-
-        #endregion
-
-        #region 公開プロパティ - combat
-
-        /// <summary>
-        ///     陸軍経験値入手係数
-        /// </summary>
-        public static double LandXpGainFactor;
-
-        /// <summary>
-        ///     海軍経験値入手係数
-        /// </summary>
-        public static double NavalXpGainFactor;
-
-        /// <summary>
-        ///     空軍経験値入手係数
-        /// </summary>
-        public static double AirXpGainFactor;
-
-        /// <summary>
-        ///     空軍空戦時経験値入手係数
-        /// </summary>
-        public static double AirDogfightXpGainFactor;
-
-        /// <summary>
-        ///     師団経験値入手係数
-        /// </summary>
-        public static double DivisionXpGainFactor;
-
-        /// <summary>
-        ///     指揮官経験値入手係数
-        /// </summary>
-        public static double LeaderXpGainFactor;
-
-        /// <summary>
-        ///     消耗係数
-        /// </summary>
-        public static double AttritionSeverityModifier;
-
-        /// <summary>
-        ///     無補給時の自然条件消耗係数
-        /// </summary>
-        public static double NoSupplyAttritionSeverity;
-
-        /// <summary>
-        ///     無補給時の消耗係数
-        /// </summary>
-        public static double NoSupplyMinimunAttrition;
-
-        /// <summary>
-        ///     基地戦闘補正
-        /// </summary>
-        public static double BaseProximity;
-
-        /// <summary>
-        ///     艦砲射撃戦闘補正
-        /// </summary>
-        public static double ShoreBombardmentModifier;
-
-        /// <summary>
-        ///     艦砲射撃戦闘効率上限
-        /// </summary>
-        public static double ShoreBombardmentCap;
-
-        /// <summary>
-        ///     強襲上陸ペナルティ
-        /// </summary>
-        public static double InvasionModifier;
-
-        /// <summary>
-        ///     側面攻撃ペナルティ
-        /// </summary>
-        public static double MultipleCombatModifier;
-
-        /// <summary>
-        ///     攻撃側諸兵科連合ボーナス
-        /// </summary>
-        public static double OffensiveCombinedArmsBonus;
-
-        /// <summary>
-        ///     防御側諸兵科連合ボーナス
-        /// </summary>
-        public static double DefensiveCombinedArmsBonus;
-
-        /// <summary>
-        ///     奇襲攻撃ペナルティ
-        /// </summary>
-        public static double SurpriseModifier;
-
-        /// <summary>
-        ///     陸軍指揮上限ペナルティ
-        /// </summary>
-        public static double LandCommandLimitModifier;
-
-        /// <summary>
-        ///     空軍指揮上限ペナルティ
-        /// </summary>
-        public static double AirCommandLimitModifier;
-
-        /// <summary>
-        ///     海軍指揮上限ペナルティ
-        /// </summary>
-        public static double NavalCommandLimitModifier;
-
-        /// <summary>
-        ///     多方面攻撃補正
-        /// </summary>
-        public static double EnvelopmentModifier;
-
-        /// <summary>
-        ///     包囲攻撃ペナルティ
-        /// </summary>
-        public static double EncircledModifier;
-
-        /// <summary>
-        ///     要塞攻撃ペナルティ
-        /// </summary>
-        public static double LandFortMultiplier;
-
-        /// <summary>
-        ///     沿岸要塞攻撃ペナルティ
-        /// </summary>
-        public static double CoastalFortMultiplier;
-
-        /// <summary>
-        ///     装甲ユニットの都市攻撃ペナルティ
-        /// </summary>
-        public static double HardUnitsAttackingUrbanPenalty;
-
-        /// <summary>
-        ///     国民不満度ペナルティ
-        /// </summary>
-        public static double DissentMultiplier;
-
-        /// <summary>
-        ///     補給不足ペナルティ
-        /// </summary>
-        public static double SupplyProblemsModifier;
-
-        /// <summary>
-        ///     陸軍物資不足ペナルティ
-        /// </summary>
-        public static double SupplyProblemsModifierLand;
-
-        /// <summary>
-        ///     空軍物資不足ペナルティ
-        /// </summary>
-        public static double SupplyProblemsModifierAir;
-
-        /// <summary>
-        ///     海軍物資不足ペナルティ
-        /// </summary>
-        public static double SupplyProblemsModifierNaval;
-
-        /// <summary>
-        ///     陸軍燃料不足ペナルティ
-        /// </summary>
-        public static double FuelProblemsModifierLand;
-
-        /// <summary>
-        ///     空軍燃料不足ペナルティ
-        /// </summary>
-        public static double FuelProblemsModifierAir;
-
-        /// <summary>
-        ///     海軍燃料不足ペナルティ
-        /// </summary>
-        public static double FuelProblemsModifierNaval;
-
-        /// <summary>
-        ///     レーダー補正
-        /// </summary>
-        public static double RaderStationMultiplier;
-
-        /// <summary>
-        ///     レーダー/対空砲複合補正
-        /// </summary>
-        public static double RaderStationAaMultiplier;
-
-        /// <summary>
-        ///     爆撃機迎撃ボーナス
-        /// </summary>
-        public static double InterceptorBomberModifier;
-
-        /// <summary>
-        ///     空軍スタックペナルティ
-        /// </summary>
-        public static double AirOverstackingModifier;
-
-        /// <summary>
-        ///     空軍スタックペナルティ
-        /// </summary>
-        public static double AirOverstackingModifierAoD;
-
-        /// <summary>
-        ///     海軍スタックペナルティ
-        /// </summary>
-        public static double NavalOverstackingModifier;
-
-        /// <summary>
-        ///     陸軍元帥指揮上限
-        /// </summary>
-        public static int LandLeaderCommandLimitRank0;
-
-        /// <summary>
-        ///     陸軍大将指揮上限
-        /// </summary>
-        public static int LandLeaderCommandLimitRank1;
-
-        /// <summary>
-        ///     陸軍中将指揮上限
-        /// </summary>
-        public static int LandLeaderCommandLimitRank2;
-
-        /// <summary>
-        ///     陸軍少将指揮上限
-        /// </summary>
-        public static int LandLeaderCommandLimitRank3;
-
-        /// <summary>
-        ///     空軍元帥指揮上限
-        /// </summary>
-        public static int AirLeaderCommandLimitRank0;
-
-        /// <summary>
-        ///     空軍大将指揮上限
-        /// </summary>
-        public static int AirLeaderCommandLimitRank1;
-
-        /// <summary>
-        ///     空軍中将指揮上限
-        /// </summary>
-        public static int AirLeaderCommandLimitRank2;
-
-        /// <summary>
-        ///     空軍少将指揮上限
-        /// </summary>
-        public static int AirLeaderCommandLimitRank3;
-
-        /// <summary>
-        ///     海軍元帥指揮上限
-        /// </summary>
-        public static int NavalLeaderCommandLimitRank0;
-
-        /// <summary>
-        ///     海軍大将指揮上限
-        /// </summary>
-        public static int NavalLeaderCommandLimitRank1;
-
-        /// <summary>
-        ///     海軍中将指揮上限
-        /// </summary>
-        public static int NavalLeaderCommandLimitRank2;
-
-        /// <summary>
-        ///     海軍少将指揮上限
-        /// </summary>
-        public static int NavalLeaderCommandLimitRank3;
-
-        /// <summary>
-        ///     司令部指揮上限係数
-        /// </summary>
-        public static double HqCommandLimitFactor;
-
-        /// <summary>
-        ///     輸送船団護衛係数
-        /// </summary>
-        public static double ConvoyProtectionFactor;
-
-        /// <summary>
-        ///     輸送船団護衛モデル
-        /// </summary>
-        public static int ConvoyEscortsModel;
-
-        /// <summary>
-        ///     戦闘後命令遅延時間
-        /// </summary>
-        public static int DelayAfterCombatEnds;
-
-        /// <summary>
-        ///     陸軍命令遅延時間
-        /// </summary>
-        public static int LandDelayBeforeOrders;
-
-        /// <summary>
-        ///     海軍命令遅延時間
-        /// </summary>
-        public static int NavalDelayBeforeOrders;
-
-        /// <summary>
-        ///     空軍命令遅延時間
-        /// </summary>
-        public static int AirDelayBeforeOrders;
-
-        /// <summary>
-        ///     空軍最大スタックサイズ
-        /// </summary>
-        public static int MaximumSizesAirStacks;
-
-        /// <summary>
-        ///     空戦最小戦闘時間
-        /// </summary>
-        public static int DurationAirToAirBattles;
-
-        /// <summary>
-        ///     港湾攻撃最小戦闘時間
-        /// </summary>
-        public static int DurationNavalPortBombing;
-
-        /// <summary>
-        ///     戦略爆撃最小戦闘時間
-        /// </summary>
-        public static int DurationStrategicBombing;
-
-        /// <summary>
-        ///     地上爆撃最小戦闘時間
-        /// </summary>
-        public static int DurationGroundAttackBombing;
-
-        /// <summary>
-        ///     経験値補正
-        /// </summary>
-        public static double EffectExperienceCombat;
-
-        /// <summary>
-        ///     海軍基地戦略爆撃係数
-        /// </summary>
-        public static double DamageNavalBasesBombing;
-
-        /// <summary>
-        ///     空軍基地戦略爆撃係数
-        /// </summary>
-        public static double DamageAirBaseBombing;
-
-        /// <summary>
-        ///     対空砲戦略爆撃係数
-        /// </summary>
-        public static double DamageAaBombing;
-
-        /// <summary>
-        ///     ロケット試験場戦略爆撃係数
-        /// </summary>
-        public static double DamageRocketBombing;
-
-        /// <summary>
-        ///     原子炉戦略爆撃係数
-        /// </summary>
-        public static double DamageNukeBombing;
-
-        /// <summary>
-        ///     レーダー戦略爆撃係数
-        /// </summary>
-        public static double DamageRadarBombing;
-
-        /// <summary>
-        ///     インフラ戦略爆撃係数
-        /// </summary>
-        public static double DamageInfraBombing;
-
-        /// <summary>
-        ///     IC戦略爆撃係数
-        /// </summary>
-        public static double DamageIcBombing;
-
-        /// <summary>
-        ///     資源戦略爆撃係数
-        /// </summary>
-        public static double DamageResourcesBombing;
-
-        /// <summary>
-        ///     合成石油工場戦略爆撃係数
-        /// </summary>
-        public static double DamageSyntheticOilBombing;
-
-        /// <summary>
-        ///     対地防御効率補正
-        /// </summary>
-        public static double HowEffectiveGroundDef;
-
-        /// <summary>
-        ///     基本回避率(防御回数あり)
-        /// </summary>
-        public static double ChanceAvoidDefencesLeft;
-
-        /// <summary>
-        ///     基本回避率(防御回数なし)
-        /// </summary>
-        public static double ChanceAvoidNoDefences;
-
-        /// <summary>
-        ///     陸軍基本回避率(防御回数あり)
-        /// </summary>
-        public static double LandChanceAvoidDefencesLeft;
-
-        /// <summary>
-        ///     空軍基本回避率(防御回数あり)
-        /// </summary>
-        public static double AirChanceAvoidDefencesLeft;
-
-        /// <summary>
-        ///     海軍基本回避率(防御回数あり)
-        /// </summary>
-        public static double NavalChanceAvoidDefencesLeft;
-
-        /// <summary>
-        ///     陸軍基本回避率(防御回数あり)
-        /// </summary>
-        public static double LandChanceAvoidNoDefences;
-
-        /// <summary>
-        ///     空軍基本回避率(防御回数あり)
-        /// </summary>
-        public static double AirChanceAvoidNoDefences;
-
-        /// <summary>
-        ///     海軍基本回避率(防御回数あり)
-        /// </summary>
-        public static double NavalChanceAvoidNoDefences;
-
-        /// <summary>
-        ///     地形特性獲得可能性
-        /// </summary>
-        public static double ChanceGetTerrainTrait;
-
-        /// <summary>
-        ///     戦闘特性獲得可能性
-        /// </summary>
-        public static double ChanceGetEventTrait;
-
-        /// <summary>
-        ///     地形特性補正
-        /// </summary>
-        public static double BonusTerrainTrait;
-
-        /// <summary>
-        ///     戦闘特性補正
-        /// </summary>
-        public static double BonusEventTrait;
-
-        /// <summary>
-        ///     陸軍指揮官スキル補正
-        /// </summary>
-        public static double BonusLeaderSkillPointLand;
-
-        /// <summary>
-        ///     空軍指揮官スキル補正
-        /// </summary>
-        public static double BonusLeaderSkillPointAir;
-
-        /// <summary>
-        ///     海軍指揮官スキル補正
-        /// </summary>
-        public static double BonusLeaderSkillPointNaval;
-
-        /// <summary>
-        ///     指揮官死亡確率
-        /// </summary>
-        public static double ChanceLeaderDying;
-
-        /// <summary>
-        ///     空軍組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamage;
-
-        /// <summary>
-        ///     空軍戦力被ダメージ(組織力)
-        /// </summary>
-        public static double AirStrDamageOrg;
-
-        /// <summary>
-        ///     空軍戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamage;
-
-        /// <summary>
-        ///     陸軍最小組織率被ダメージ
-        /// </summary>
-        public static double LandMinOrgDamage;
-
-        /// <summary>
-        ///     陸軍組織率被ダメージ(装甲/非装甲同士)
-        /// </summary>
-        public static int LandOrgDamageHardSoftEach;
-
-        /// <summary>
-        ///     陸軍組織率被ダメージ(装甲対非装甲)
-        /// </summary>
-        public static int LandOrgDamageHardVsSoft;
-
-        /// <summary>
-        ///     陸軍最小戦力被ダメージ
-        /// </summary>
-        public static double LandMinStrDamage;
-
-        /// <summary>
-        ///     陸軍戦力被ダメージ(装甲/非装甲同士)
-        /// </summary>
-        public static int LandStrDamageHardSoftEach;
-
-        /// <summary>
-        ///     陸軍戦力被ダメージ(装甲対非装甲)
-        /// </summary>
-        public static int LandStrDamageHardVsSoft;
-
-        /// <summary>
-        ///     空軍最小組織率被ダメージ
-        /// </summary>
-        public static double AirMinOrgDamage;
-
-        /// <summary>
-        ///     空軍追加組織率被ダメージ
-        /// </summary>
-        public static int AirAdditionalOrgDamage;
-
-        /// <summary>
-        ///     空軍最小戦力被ダメージ
-        /// </summary>
-        public static double AirMinStrDamage;
-
-        /// <summary>
-        ///     空軍追加戦力被ダメージ
-        /// </summary>
-        public static int AirAdditionalStrDamage;
-
-        /// <summary>
-        ///     空軍戦力被ダメージ(対塹壕)
-        /// </summary>
-        public static double AirStrDamageEntrenced;
-
-        /// <summary>
-        ///     海軍最小組織率被ダメージ
-        /// </summary>
-        public static double NavalMinOrgDamage;
-
-        /// <summary>
-        ///     海軍追加組織率被ダメージ
-        /// </summary>
-        public static int NavalAdditionalOrgDamage;
-
-        /// <summary>
-        ///     海軍最小戦力被ダメージ
-        /// </summary>
-        public static double NavalMinStrDamage;
-
-        /// <summary>
-        ///     海軍追加戦力被ダメージ
-        /// </summary>
-        public static int NavalAdditionalStrDamage;
-
-        /// <summary>
-        ///     空軍対陸軍戦力被ダメージ(組織率)
-        /// </summary>
-        public static double AirStrDamageLandOrg;
-
-        /// <summary>
-        ///     空軍対陸軍組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamageLandDh;
-
-        /// <summary>
-        ///     空軍対陸軍戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamageLandDh;
-
-        /// <summary>
-        ///     陸軍対陸軍組織率被ダメージ(組織率)
-        /// </summary>
-        public static double LandOrgDamageLandOrg;
-
-        /// <summary>
-        ///     陸軍対陸軍組織率被ダメージ(都市)
-        /// </summary>
-        public static double LandOrgDamageLandUrban;
-
-        /// <summary>
-        ///     陸軍対陸軍組織率被ダメージ(要塞)
-        /// </summary>
-        public static double LandOrgDamageLandFort;
-
-        /// <summary>
-        ///     必要要塞規模
-        /// </summary>
-        public static double RequiredLandFortSize;
-
-        /// <summary>
-        ///     陸軍対陸軍戦力被ダメージ
-        /// </summary>
-        public static double LandStrDamageLandDh;
-
-        /// <summary>
-        ///     空軍対空軍組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamageAirDh;
-
-        /// <summary>
-        ///     空軍対空軍戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamageAirDh;
-
-        /// <summary>
-        ///     陸軍対空軍組織率被ダメージ
-        /// </summary>
-        public static double LandOrgDamageAirDh;
-
-        /// <summary>
-        ///     陸軍対空軍戦力被ダメージ
-        /// </summary>
-        public static double LandStrDamageAirDh;
-
-        /// <summary>
-        ///     海軍対空軍組織率被ダメージ
-        /// </summary>
-        public static double NavalOrgDamageAirDh;
-
-        /// <summary>
-        ///     海軍対空軍戦力被ダメージ
-        /// </summary>
-        public static double NavalStrDamageAirDh;
-
-        /// <summary>
-        ///     潜水艦対空軍組織率被ダメージ
-        /// </summary>
-        public static int SubsOrgDamageAir;
-
-        /// <summary>
-        ///     潜水艦対空軍戦力被ダメージ
-        /// </summary>
-        public static int SubsStrDamageAir;
-
-        /// <summary>
-        ///     空軍対海軍組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamageNavyDh;
-
-        /// <summary>
-        ///     空軍対海軍戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamageNavyDh;
-
-        /// <summary>
-        ///     海軍対海軍組織率被ダメージ
-        /// </summary>
-        public static double NavalOrgDamageNavyDh;
-
-        /// <summary>
-        ///     海軍対海軍戦力被ダメージ
-        /// </summary>
-        public static double NavalStrDamageNavyDh;
-
-        /// <summary>
-        ///     潜水艦対海軍組織率被ダメージ
-        /// </summary>
-        public static double SubsOrgDamageNavy;
-
-        /// <summary>
-        ///     潜水艦対海軍戦力被ダメージ
-        /// </summary>
-        public static double SubsStrDamageNavy;
-
-        /// <summary>
-        ///     潜水艦組織率被ダメージ
-        /// </summary>
-        public static int SubsOrgDamage;
-
-        /// <summary>
-        ///     潜水艦戦力被ダメージ
-        /// </summary>
-        public static int SubsStrDamage;
-
-        /// <summary>
-        ///     潜水艦発見補正
-        /// </summary>
-        public static double SubStacksDetectionModifier;
-
-        /// <summary>
-        ///     空軍対陸軍組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamageLandAoD;
-
-        /// <summary>
-        ///     空軍対陸軍戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamageLandAoD;
-
-        /// <summary>
-        ///     砲撃ダメージ補正(陸上部隊)
-        /// </summary>
-        public static double LandDamageArtilleryBombardment;
-
-        /// <summary>
-        ///     砲撃ダメージ補正(インフラ)
-        /// </summary>
-        public static double InfraDamageArtilleryBombardment;
-
-        /// <summary>
-        ///     砲撃ダメージ補正(IC)
-        /// </summary>
-        public static double IcDamageArtilleryBombardment;
-
-        /// <summary>
-        ///     砲撃ダメージ補正(資源)
-        /// </summary>
-        public static double ResourcesDamageArtilleryBombardment;
-
-        /// <summary>
-        ///     砲撃中の被攻撃ペナルティ
-        /// </summary>
-        public static double PenaltyArtilleryBombardment;
-
-        /// <summary>
-        ///     砲撃戦力ダメージ
-        /// </summary>
-        public static double ArtilleryStrDamage;
-
-        /// <summary>
-        ///     砲撃組織率ダメージ
-        /// </summary>
-        public static double ArtilleryOrgDamage;
-
-        /// <summary>
-        ///     陸軍対陸軍戦力被ダメージ
-        /// </summary>
-        public static double LandStrDamageLandAoD;
-
-        /// <summary>
-        ///     陸軍対陸軍組織率被ダメージ
-        /// </summary>
-        public static double LandOrgDamageLand;
-
-        /// <summary>
-        ///     陸軍対空軍戦力被ダメージ
-        /// </summary>
-        public static double LandStrDamageAirAoD;
-
-        /// <summary>
-        ///     陸軍対空軍組織率被ダメージ
-        /// </summary>
-        public static double LandOrgDamageAirAoD;
-
-        /// <summary>
-        ///     海軍対空軍戦力被ダメージ
-        /// </summary>
-        public static double NavalStrDamageAirAoD;
-
-        /// <summary>
-        ///     海軍対空軍組織率被ダメージ
-        /// </summary>
-        public static double NavalOrgDamageAirAoD;
-
-        /// <summary>
-        ///     空軍対空軍戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamageAirAoD;
-
-        /// <summary>
-        ///     空軍対空軍組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamageAirAoD;
-
-        /// <summary>
-        ///     海軍対海軍戦力被ダメージ
-        /// </summary>
-        public static double NavalStrDamageNavyAoD;
-
-        /// <summary>
-        ///     海軍対海軍組織率被ダメージ
-        /// </summary>
-        public static double NavalOrgDamageNavyAoD;
-
-        /// <summary>
-        ///     空軍対海軍戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamageNavyAoD;
-
-        /// <summary>
-        ///     空軍対海軍組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamageNavyAoD;
-
-        /// <summary>
-        ///     給料不足時の戦闘補正
-        /// </summary>
-        public static double MilitaryExpenseAttritionModifier;
-
-        /// <summary>
-        ///     海軍最小戦闘時間
-        /// </summary>
-        public static double NavalMinCombatTime;
-
-        /// <summary>
-        ///     陸軍最小戦闘時間
-        /// </summary>
-        public static double LandMinCombatTime;
-
-        /// <summary>
-        ///     空軍最小戦闘時間
-        /// </summary>
-        public static double AirMinCombatTime;
-
-        /// <summary>
-        ///     陸軍スタックペナルティ
-        /// </summary>
-        public static double LandOverstackingModifier;
-
-        /// <summary>
-        ///     陸軍移動時組織率減少係数
-        /// </summary>
-        public static double LandOrgLossMoving;
-
-        /// <summary>
-        ///     空軍移動時組織率減少係数
-        /// </summary>
-        public static double AirOrgLossMoving;
-
-        /// <summary>
-        ///     海軍移動時組織率減少係数
-        /// </summary>
-        public static double NavalOrgLossMoving;
-
-        /// <summary>
-        ///     遠隔地補給係数
-        /// </summary>
-        public static double SupplyDistanceSeverity;
-
-        /// <summary>
-        ///     基礎補給効率
-        /// </summary>
-        public static double SupplyBase;
-
-        /// <summary>
-        ///     陸軍組織率補正
-        /// </summary>
-        public static double LandOrgGain;
-
-        /// <summary>
-        ///     空軍組織率補正
-        /// </summary>
-        public static double AirOrgGain;
-
-        /// <summary>
-        ///     海軍組織率補正
-        /// </summary>
-        public static double NavalOrgGain;
-
-        /// <summary>
-        ///     核攻撃不満度係数(人的資源)
-        /// </summary>
-        public static double NukeManpowerDissent;
-
-        /// <summary>
-        ///     核攻撃不満度係数(IC)
-        /// </summary>
-        public static double NukeIcDissent;
-
-        /// <summary>
-        ///     核攻撃不満度係数(トータル)
-        /// </summary>
-        public static double NukeTotalDissent;
-
-        /// <summary>
-        ///     陸軍友好地組織率補正
-        /// </summary>
-        public static double LandFriendlyOrgGain;
-
-        /// <summary>
-        ///     阻止攻撃備蓄補正
-        /// </summary>
-        public static double AirLandStockModifier;
-
-        /// <summary>
-        ///     焦土命令ダメージ
-        /// </summary>
-        public static double ScorchDamage;
-
-        /// <summary>
-        ///     死守命令不満度上昇
-        /// </summary>
-        public static double StandGroundDissent;
-
-        /// <summary>
-        ///     焦土命令好戦性上昇
-        /// </summary>
-        public static double ScorchGroundBelligerence;
-
-        /// <summary>
-        ///     陸軍デフォルトスタック数
-        /// </summary>
-        public static int DefaultLandStack;
-
-        /// <summary>
-        ///     海軍デフォルトスタック数
-        /// </summary>
-        public static int DefaultNavalStack;
-
-        /// <summary>
-        ///     空軍デフォルトスタック数
-        /// </summary>
-        public static int DefaultAirStack;
-
-        /// <summary>
-        ///     ロケットデフォルトスタック数
-        /// </summary>
-        public static int DefaultRocketStack;
-
-        /// <summary>
-        ///     要塞砲撃ダメージ補正
-        /// </summary>
-        public static double FortDamageArtilleryBombardment;
-
-        /// <summary>
-        ///     砲撃組織率減少
-        /// </summary>
-        public static double ArtilleryBombardmentOrgCost;
-
-        /// <summary>
-        ///     陸軍対要塞ダメージ係数
-        /// </summary>
-        public static double LandDamageFort;
-
-        /// <summary>
-        ///     空軍基地移動組織率減少係数
-        /// </summary>
-        public static double AirRebaseFactor;
-
-        /// <summary>
-        ///     空港占領時ペナルティ
-        /// </summary>
-        public static double AirMaxDisorganized;
-
-        /// <summary>
-        ///     対空砲戦力ダメージ補正
-        /// </summary>
-        public static double AaInflictedStrDamage;
-
-        /// <summary>
-        ///     対空砲組織率ダメージ補正
-        /// </summary>
-        public static double AaInflictedOrgDamage;
-
-        /// <summary>
-        ///     対空砲上空通過ダメージ補正
-        /// </summary>
-        public static double AaInflictedFlyingDamage;
-
-        /// <summary>
-        ///     対空砲爆撃中ダメージ補正
-        /// </summary>
-        public static double AaInflictedBombingDamage;
-
-        /// <summary>
-        ///     装甲ユニット戦力ダメージ補正
-        /// </summary>
-        public static double HardAttackStrDamage;
-
-        /// <summary>
-        ///     装甲ユニット組織率ダメージ補正
-        /// </summary>
-        public static double HardAttackOrgDamage;
-
-        /// <summary>
-        ///     戦車対人最小突破係数
-        /// </summary>
-        public static double ArmorSoftBreakthroughMin;
-
-        /// <summary>
-        ///     戦車対人最大突破係数
-        /// </summary>
-        public static double ArmorSoftBreakthroughMax;
-
-        /// <summary>
-        ///     海軍クリティカルヒット確率
-        /// </summary>
-        public static double NavalCriticalHitChance;
-
-        /// <summary>
-        ///     海軍クリティカルヒット効果
-        /// </summary>
-        public static double NavalCriticalHitEffect;
-
-        /// <summary>
-        ///     要塞ダメージ補正
-        /// </summary>
-        public static double LandFortDamage;
-
-        /// <summary>
-        ///     日中港湾攻撃奇襲確率
-        /// </summary>
-        public static double PortAttackSurpriseChanceDay;
-
-        /// <summary>
-        ///     夜間港湾攻撃奇襲確率
-        /// </summary>
-        public static double PortAttackSurpriseChanceNight;
-
-        /// <summary>
-        ///     港湾攻撃奇襲補正
-        /// </summary>
-        public static double PortAttackSurpriseModifier;
-
-        /// <summary>
-        ///     レーダー奇襲確率減少値
-        /// </summary>
-        public static double RadarAntiSurpriseChance;
-
-        /// <summary>
-        ///     レーダー奇襲効果減少値
-        /// </summary>
-        public static double RadarAntiSurpriseModifier;
-
-        /// <summary>
-        ///     反撃イベント防御側戦力補正
-        /// </summary>
-        public static double CounterAttackStrDefenderAoD;
-
-        /// <summary>
-        ///     反撃イベント防御側組織率補正
-        /// </summary>
-        public static double CounterAttackOrgDefenderAoD;
-
-        /// <summary>
-        ///     反撃イベント攻撃側戦力補正
-        /// </summary>
-        public static double CounterAttackStrAttackerAoD;
-
-        /// <summary>
-        ///     反撃イベント攻撃側組織率補正
-        /// </summary>
-        public static double CounterAttackOrgAttackerAoD;
-
-        /// <summary>
-        ///     強襲イベント防御側戦力補正
-        /// </summary>
-        public static double AssaultStrDefenderAoD;
-
-        /// <summary>
-        ///     強襲イベント防御側組織率補正
-        /// </summary>
-        public static double AssaultOrgDefenderAoD;
-
-        /// <summary>
-        ///     強襲イベント攻撃側戦力補正
-        /// </summary>
-        public static double AssaultStrAttackerAoD;
-
-        /// <summary>
-        ///     強襲イベント攻撃側組織率補正
-        /// </summary>
-        public static double AssaultOrgAttackerAoD;
-
-        /// <summary>
-        ///     包囲イベント防御側戦力補正
-        /// </summary>
-        public static double EncirclementStrDefenderAoD;
-
-        /// <summary>
-        ///     包囲イベント防御側組織率補正
-        /// </summary>
-        public static double EncirclementOrgDefenderAoD;
-
-        /// <summary>
-        ///     包囲イベント攻撃側戦力補正
-        /// </summary>
-        public static double EncirclementStrAttackerAoD;
-
-        /// <summary>
-        ///     包囲イベント攻撃側組織率補正
-        /// </summary>
-        public static double EncirclementOrgAttackerAoD;
-
-        /// <summary>
-        ///     待伏イベント防御側戦力補正
-        /// </summary>
-        public static double AmbushStrDefenderAoD;
-
-        /// <summary>
-        ///     待伏イベント防御側組織率補正
-        /// </summary>
-        public static double AmbushOrgDefenderAoD;
-
-        /// <summary>
-        ///     待伏イベント攻撃側戦力補正
-        /// </summary>
-        public static double AmbushStrAttackerAoD;
-
-        /// <summary>
-        ///     待伏イベント攻撃側組織率補正
-        /// </summary>
-        public static double AmbushOrgAttackerAoD;
-
-        /// <summary>
-        ///     遅延イベント防御側戦力補正
-        /// </summary>
-        public static double DelayStrDefenderAoD;
-
-        /// <summary>
-        ///     遅延イベント防御側組織率補正
-        /// </summary>
-        public static double DelayOrgDefenderAoD;
-
-        /// <summary>
-        ///     遅延イベント攻撃側戦力補正
-        /// </summary>
-        public static double DelayStrAttackerAoD;
-
-        /// <summary>
-        ///     遅延イベント攻撃側組織率補正
-        /// </summary>
-        public static double DelayOrgAttackerAoD;
-
-        /// <summary>
-        ///     後退イベント防御側戦力補正
-        /// </summary>
-        public static double TacticalWithdrawStrDefenderAoD;
-
-        /// <summary>
-        ///     後退イベント防御側組織率補正
-        /// </summary>
-        public static double TacticalWithdrawOrgDefenderAoD;
-
-        /// <summary>
-        ///     後退イベント攻撃側戦力補正
-        /// </summary>
-        public static double TacticalWithdrawStrAttackerAoD;
-
-        /// <summary>
-        ///     後退イベント攻撃側組織率補正
-        /// </summary>
-        public static double TacticalWithdrawOrgAttackerAoD;
-
-        /// <summary>
-        ///     突破イベント防御側戦力補正
-        /// </summary>
-        public static double BreakthroughStrDefenderAoD;
-
-        /// <summary>
-        ///     突破イベント防御側組織率補正
-        /// </summary>
-        public static double BreakthroughOrgDefenderAoD;
-
-        /// <summary>
-        ///     突破イベント攻撃側戦力補正
-        /// </summary>
-        public static double BreakthroughStrAttackerAoD;
-
-        /// <summary>
-        ///     突破イベント攻撃側組織率補正
-        /// </summary>
-        public static double BreakthroughOrgAttackerAoD;
-
-        /// <summary>
-        ///     海軍対空砲組織率被ダメージ
-        /// </summary>
-        public static double NavalOrgDamageAa;
-
-        /// <summary>
-        ///     空軍対空砲組織率被ダメージ
-        /// </summary>
-        public static double AirOrgDamageAa;
-
-        /// <summary>
-        ///     空軍対空砲戦力被ダメージ
-        /// </summary>
-        public static double AirStrDamageAa;
-
-        /// <summary>
-        ///     対空砲攻撃ルール
-        /// </summary>
-        public static int AaAirFiringRules;
-
-        /// <summary>
-        ///     対空砲夜間攻撃補正
-        /// </summary>
-        public static double AaAirNightModifier;
-
-        /// <summary>
-        ///     対空砲攻撃レーダーボーナス
-        /// </summary>
-        public static double AaAirBonusRadars;
-
-        /// <summary>
-        ///     地形適正移動ボーナス
-        /// </summary>
-        public static double MovementBonusTerrainTrait;
-
-        /// <summary>
-        ///     類似地形適正移動ボーナス
-        /// </summary>
-        public static double MovementBonusSimilarTerrainTrait;
-
-        /// <summary>
-        ///     兵站管理の補給効率ボーナス
-        /// </summary>
-        public static double LogisticsWizardEseBonus;
-
-        /// <summary>
-        ///     攻勢継続日数
-        /// </summary>
-        public static int DaysOffensiveSupply;
-
-        /// <summary>
-        ///     閣僚ボーナス適用方法
-        /// </summary>
-        public static int MinisterBonuses;
-
-        /// <summary>
-        ///     友好地組織率回復ボーナス
-        /// </summary>
-        public static double OrgRegainBonusFriendly;
-
-        /// <summary>
-        ///     友好地組織率回復ボーナス上限
-        /// </summary>
-        public static double OrgRegainBonusFriendlyCap;
-
-        /// <summary>
-        ///     海上任務中の船団妨害
-        /// </summary>
-        public static int ConvoyInterceptionMissions;
-
-        /// <summary>
-        ///     輸送艦隊の自動帰還
-        /// </summary>
-        public static int AutoReturnTransportFleets;
-
-        /// <summary>
-        ///     単一プロヴィンス/地域指定任務
-        /// </summary>
-        public static bool AllowProvinceRegionTargeting;
-
-        /// <summary>
-        ///     冬季夜間時間
-        /// </summary>
-        public static double NightHoursWinter;
-
-        /// <summary>
-        ///     春季/秋季夜間時間
-        /// </summary>
-        public static double NightHoursSpringFall;
-
-        /// <summary>
-        ///     夏季夜間時間
-        /// </summary>
-        public static double NightHoursSummer;
-
-        /// <summary>
-        ///     陸上部隊到着時刻再計算間隔
-        /// </summary>
-        public static int RecalculateLandArrivalTimes;
-
-        /// <summary>
-        ///     同時到着補正(プレイヤー)
-        /// </summary>
-        public static double SynchronizeArrivalTimePlayer;
-
-        /// <summary>
-        ///     同時到着補正(AI)
-        /// </summary>
-        public static double SynchronizeArrivalTimeAi;
-
-        /// <summary>
-        ///     戦闘後到着時刻再計算
-        /// </summary>
-        public static int RecalculateArrivalTimesCombat;
-
-        /// <summary>
-        ///     戦闘時陸軍移動速度補正
-        /// </summary>
-        public static double LandSpeedModifierCombat;
-
-        /// <summary>
-        ///     沿岸砲撃時陸軍移動速度補正
-        /// </summary>
-        public static double LandSpeedModifierBombardment;
-
-        /// <summary>
-        ///     物資切れ時陸軍移動速度補正
-        /// </summary>
-        public static double LandSpeedModifierSupply;
-
-        /// <summary>
-        ///     組織率低下時陸軍移動速度補正
-        /// </summary>
-        public static double LandSpeedModifierOrg;
-
-        /// <summary>
-        ///     燃料切れ時陸軍/空軍移動速度補正
-        /// </summary>
-        public static double LandAirSpeedModifierFuel;
-
-        /// <summary>
-        ///     燃料切れ時デフォルト移動速度
-        /// </summary>
-        public static double DefaultSpeedFuel;
-
-        /// <summary>
-        ///     艦隊規模航続距離ペナルティ割合
-        /// </summary>
-        public static double FleetSizeRangePenaltyRatio;
-
-        /// <summary>
-        ///     艦隊規模航続距離ペナルティ閾値
-        /// </summary>
-        public static double FleetSizeRangePenaltyThrethold;
-
-        /// <summary>
-        ///     艦隊規模航続距離ペナルティ上限
-        /// </summary>
-        public static double FleetSizeRangePenaltyMax;
-
-        /// <summary>
-        ///     地方/地域内での距離制限適用
-        /// </summary>
-        public static int ApplyRangeLimitsAreasRegions;
-
-        /// <summary>
-        ///     レーダー航空機発見ボーナス
-        /// </summary>
-        public static double RadarBonusDetection;
-
-        /// <summary>
-        ///     友好地航空機発見ボーナス
-        /// </summary>
-        public static double BonusDetectionFriendly;
-
-        /// <summary>
-        ///     主力艦/補助艦割合修正
-        /// </summary>
-        public static double ScreensCapitalRatioModifier;
-
-        /// <summary>
-        ///     陸軍組織率不足ユニット標的確率
-        /// </summary>
-        public static double ChanceTargetNoOrgLand;
-
-        /// <summary>
-        ///     主力艦/補助艦標的ポジション値
-        /// </summary>
-        public static double ScreenCapitalShipsTargeting;
-
-        /// <summary>
-        ///     海戦ポジション値日中ボーナス
-        /// </summary>
-        public static double FleetPositioningDaytime;
-
-        /// <summary>
-        ///     海戦ポジション値スキル補正
-        /// </summary>
-        public static double FleetPositioningLeaderSkill;
-
-        /// <summary>
-        ///     海戦ポジション値艦隊規模補正
-        /// </summary>
-        public static double FleetPositioningFleetSize;
-
-        /// <summary>
-        ///     海戦ポジション値艦隊構成補正
-        /// </summary>
-        public static double FleetPositioningFleetComposition;
-
-        /// <summary>
-        ///     要塞被ダメージ補正
-        /// </summary>
-        public static double LandCoastalFortsDamage;
-
-        /// <summary>
-        ///     要塞最大被ダメージ
-        /// </summary>
-        public static double LandCoastalFortsMaxDamage;
-
-        /// <summary>
-        ///     付属旅団による最小脆弱性
-        /// </summary>
-        public static double MinSoftnessBrigades;
-
-        /// <summary>
-        ///     自動撤退組織率
-        /// </summary>
-        public static double AutoRetreatOrg;
-
-        /// <summary>
-        ///     陸軍海上輸送後組織率補正
-        /// </summary>
-        public static double LandOrgNavalTransportation;
-
-        /// <summary>
-        ///     最大塹壕値
-        /// </summary>
-        public static int MaxLandDig;
-
-        /// <summary>
-        ///     1日の塹壕増加量
-        /// </summary>
-        public static double DigIncreaseDay;
-
-        /// <summary>
-        ///     突破/包囲最小速度
-        /// </summary>
-        public static double BreakthroughEncirclementMinSpeed;
-
-        /// <summary>
-        ///     突破/包囲最大確率
-        /// </summary>
-        public static double BreakthroughEncirclementMaxChance;
-
-        /// <summary>
-        ///     突破/包囲確率補正
-        /// </summary>
-        public static double BreakthroughEncirclementChanceModifier;
-
-        /// <summary>
-        ///     コンバットイベント継続時間
-        /// </summary>
-        public static int CombatEventDuration;
-
-        /// <summary>
-        ///     反撃イベント攻撃側組織率補正
-        /// </summary>
-        public static double CounterAttackOrgAttackerDh;
-
-        /// <summary>
-        ///     反撃イベント攻撃側戦力補正
-        /// </summary>
-        public static double CounterAttackStrAttackerDh;
-
-        /// <summary>
-        ///     反撃イベント防御側組織率補正
-        /// </summary>
-        public static double CounterAttackOrgDefenderDh;
-
-        /// <summary>
-        ///     反撃イベント防御側戦力補正
-        /// </summary>
-        public static double CounterAttackStrDefenderDh;
-
-        /// <summary>
-        ///     強襲イベント攻撃側組織率補正
-        /// </summary>
-        public static double AssaultOrgAttackerDh;
-
-        /// <summary>
-        ///     強襲イベント攻撃側戦力補正
-        /// </summary>
-        public static double AssaultStrAttackerDh;
-
-        /// <summary>
-        ///     強襲イベント防御側組織率補正
-        /// </summary>
-        public static double AssaultOrgDefenderDh;
-
-        /// <summary>
-        ///     強襲イベント防御側戦力補正
-        /// </summary>
-        public static double AssaultStrDefenderDh;
-
-        /// <summary>
-        ///     包囲イベント攻撃側組織率補正
-        /// </summary>
-        public static double EncirclementOrgAttackerDh;
-
-        /// <summary>
-        ///     包囲イベント攻撃側戦力補正
-        /// </summary>
-        public static double EncirclementStrAttackerDh;
-
-        /// <summary>
-        ///     包囲イベント防御側組織率補正
-        /// </summary>
-        public static double EncirclementOrgDefenderDh;
-
-        /// <summary>
-        ///     包囲イベント防御側戦力補正
-        /// </summary>
-        public static double EncirclementStrDefenderDh;
-
-        /// <summary>
-        ///     待伏イベント攻撃側組織率補正
-        /// </summary>
-        public static double AmbushOrgAttackerDh;
-
-        /// <summary>
-        ///     待伏イベント攻撃側戦力補正
-        /// </summary>
-        public static double AmbushStrAttackerDh;
-
-        /// <summary>
-        ///     待伏イベント防御側組織率補正
-        /// </summary>
-        public static double AmbushOrgDefenderDh;
-
-        /// <summary>
-        ///     待伏イベント防御側戦力補正
-        /// </summary>
-        public static double AmbushStrDefenderDh;
-
-        /// <summary>
-        ///     遅延イベント攻撃側組織率補正
-        /// </summary>
-        public static double DelayOrgAttackerDh;
-
-        /// <summary>
-        ///     遅延イベント攻撃側戦力補正
-        /// </summary>
-        public static double DelayStrAttackerDh;
-
-        /// <summary>
-        ///     遅延イベント防御側組織率補正
-        /// </summary>
-        public static double DelayOrgDefenderDh;
-
-        /// <summary>
-        ///     遅延イベント防御側戦力補正
-        /// </summary>
-        public static double DelayStrDefenderDh;
-
-        /// <summary>
-        ///     後退イベント攻撃側組織率補正
-        /// </summary>
-        public static double TacticalWithdrawOrgAttackerDh;
-
-        /// <summary>
-        ///     後退イベント攻撃側戦力補正
-        /// </summary>
-        public static double TacticalWithdrawStrAttackerDh;
-
-        /// <summary>
-        ///     後退イベント防御側組織率補正
-        /// </summary>
-        public static double TacticalWithdrawOrgDefenderDh;
-
-        /// <summary>
-        ///     後退イベント防御側戦力補正
-        /// </summary>
-        public static double TacticalWithdrawStrDefenderDh;
-
-        /// <summary>
-        ///     突破イベント攻撃側組織率補正
-        /// </summary>
-        public static double BreakthroughOrgAttackerDh;
-
-        /// <summary>
-        ///     突破イベント攻撃側戦力補正
-        /// </summary>
-        public static double BreakthroughStrAttackerDh;
-
-        /// <summary>
-        ///     突破イベント防御側組織率補正
-        /// </summary>
-        public static double BreakthroughOrgDefenderDh;
-
-        /// <summary>
-        ///     突破イベント防御側戦力補正
-        /// </summary>
-        public static double BreakthroughStrDefenderDh;
-
-        /// <summary>
-        ///     司令部は突破イベント時のみ戦力ダメージ
-        /// </summary>
-        public static bool HqStrDamageBreakthrough;
-
-        /// <summary>
-        ///     戦闘モード
-        /// </summary>
-        public static int CombatMode;
+        ///     新形式閣僚ファイルフォーマット
+        /// </summary>
+        public static bool UseNewMinisterFilesFormat
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.UseNewMinisterFilesFormat] != null) &&
+                       (bool) _items[(int) MiscItemId.UseNewMinisterFilesFormat];
+            }
+        }
+
+        /// <summary>
+        ///     閣僚引退年を使用
+        /// </summary>
+        public static bool EnableRetirementYearMinisters
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.EnableRetirementYearMinisters] != null) &&
+                       (bool) _items[(int) MiscItemId.EnableRetirementYearMinisters];
+            }
+        }
+
+        /// <summary>
+        ///     指揮官引退年を使用
+        /// </summary>
+        public static bool EnableRetirementYearLeaders
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.EnableRetirementYearLeaders] != null) &&
+                       (bool) _items[(int) MiscItemId.EnableRetirementYearLeaders];
+            }
+        }
+
+        /// <summary>
+        ///     マップ番号
+        /// </summary>
+        public static int MapNumber
+        {
+            get { return (_items[(int) MiscItemId.MapNumber] != null) ? (int) _items[(int) MiscItemId.MapNumber] : 0; }
+        }
 
         #endregion
 
         #region 内部フィールド
 
         /// <summary>
-        /// 項目の値
+        ///     項目の値
         /// </summary>
-        private static readonly object[] Items = new object[Enum.GetValues(typeof (MiscItemId)).Length];
+        private static object[] _items = new object[Enum.GetValues(typeof (MiscItemId)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -2735,193 +83,4048 @@ namespace HoI2Editor.Models
         #region 公開定数
 
         /// <summary>
-        /// 項目の型
+        ///     セクション名
+        /// </summary>
+        public static readonly string[] SectionNames =
+            {
+                "economy",
+                "intelligence",
+                "diplomacy",
+                "combat",
+                "mission",
+                "country",
+                "research",
+                "trade",
+                "ai",
+                "mod",
+                "map"
+            };
+
+        /// <summary>
+        ///     セクションごとの項目
+        /// </summary>
+        public static MiscItemId[][] SectionItems =
+            {
+                new[]
+                    {
+                        MiscItemId.IcToTcRatio,
+                        MiscItemId.IcToSuppliesRatio,
+                        MiscItemId.IcToConsumerGoodsRatio,
+                        MiscItemId.IcToMoneyRatio,
+                        MiscItemId.DissentChangeSpeed,
+                        MiscItemId.MinAvailableIc,
+                        MiscItemId.MinFinalIc,
+                        MiscItemId.DissentReduction,
+                        MiscItemId.MaxGearingBonus,
+                        MiscItemId.GearingBonusIncrement,
+                        MiscItemId.GearingResourceIncrement,
+                        MiscItemId.GearingLossNoIc,
+                        MiscItemId.IcMultiplierNonNational,
+                        MiscItemId.IcMultiplierNonOwned,
+                        MiscItemId.IcMultiplierPuppet,
+                        MiscItemId.ResourceMultiplierNonNational,
+                        MiscItemId.ResourceMultiplierNonOwned,
+                        MiscItemId.ResourceMultiplierNonNationalAi,
+                        MiscItemId.ResourceMultiplierPuppet,
+                        MiscItemId.TcLoadUndeployedDivision,
+                        MiscItemId.TcLoadOccupied,
+                        MiscItemId.TcLoadMultiplierLand,
+                        MiscItemId.TcLoadMultiplierAir,
+                        MiscItemId.TcLoadMultiplierNaval,
+                        MiscItemId.TcLoadPartisan,
+                        MiscItemId.TcLoadFactorOffensive,
+                        MiscItemId.TcLoadProvinceDevelopment,
+                        MiscItemId.TcLoadBase,
+                        MiscItemId.ManpowerMultiplierNational,
+                        MiscItemId.ManpowerMultiplierNonNational,
+                        MiscItemId.ManpowerMultiplierColony,
+                        MiscItemId.ManpowerMultiplierPuppet,
+                        MiscItemId.ManpowerMultiplierWartimeOversea,
+                        MiscItemId.ManpowerMultiplierPeacetime,
+                        MiscItemId.ManpowerMultiplierWartime,
+                        MiscItemId.DailyRetiredManpower,
+                        MiscItemId.RequirementAffectSlider,
+                        MiscItemId.TrickleBackFactorManpower,
+                        MiscItemId.ReinforceManpower,
+                        MiscItemId.ReinforceCost,
+                        MiscItemId.ReinforceTime,
+                        MiscItemId.UpgradeCost,
+                        MiscItemId.UpgradeTime,
+                        MiscItemId.ReinforceToUpdateModifier,
+                        MiscItemId.NationalismStartingValue,
+                        MiscItemId.NationalismPerManpowerAoD,
+                        MiscItemId.NationalismPerManpowerDh,
+                        MiscItemId.MaxNationalism,
+                        MiscItemId.MaxRevoltRisk,
+                        MiscItemId.MonthlyNationalismReduction,
+                        MiscItemId.SendDivisionDays,
+                        MiscItemId.TcLoadUndeployedBrigade,
+                        MiscItemId.CanUnitSendNonAllied,
+                        MiscItemId.SpyMissionDays,
+                        MiscItemId.IncreateIntelligenceLevelDays,
+                        MiscItemId.ChanceDetectSpyMission,
+                        MiscItemId.RelationshipsHitDetectedMissions,
+                        MiscItemId.ShowThirdCountrySpyReports,
+                        MiscItemId.DistanceModifierNeighbours,
+                        MiscItemId.SpyInformationAccuracyModifier,
+                        MiscItemId.AiPeacetimeSpyMissions,
+                        MiscItemId.MaxIcCostModifier,
+                        MiscItemId.AiSpyMissionsCostModifier,
+                        MiscItemId.AiDiplomacyCostModifier,
+                        MiscItemId.AiInfluenceModifier,
+                        MiscItemId.CostRepairBuildings,
+                        MiscItemId.TimeRepairBuilding,
+                        MiscItemId.ProvinceEfficiencyRiseTime,
+                        MiscItemId.CoreProvinceEfficiencyRiseTime,
+                        MiscItemId.LineUpkeep,
+                        MiscItemId.LineStartupTime,
+                        MiscItemId.LineUpgradeTime,
+                        MiscItemId.RetoolingCost,
+                        MiscItemId.RetoolingResource,
+                        MiscItemId.DailyAgingManpower,
+                        MiscItemId.SupplyConvoyHunt,
+                        MiscItemId.SupplyNavalStaticAoD,
+                        MiscItemId.SupplyNavalMoving,
+                        MiscItemId.SupplyNavalBattleAoD,
+                        MiscItemId.SupplyAirStaticAoD,
+                        MiscItemId.SupplyAirMoving,
+                        MiscItemId.SupplyAirBattleAoD,
+                        MiscItemId.SupplyAirBombing,
+                        MiscItemId.SupplyLandStaticAoD,
+                        MiscItemId.SupplyLandMoving,
+                        MiscItemId.SupplyLandBattleAoD,
+                        MiscItemId.SupplyLandBombing,
+                        MiscItemId.SupplyStockLand,
+                        MiscItemId.SupplyStockAir,
+                        MiscItemId.SupplyStockNaval,
+                        MiscItemId.RestockSpeedLand,
+                        MiscItemId.RestockSpeedAir,
+                        MiscItemId.RestockSpeedNaval,
+                        MiscItemId.SyntheticOilConversionMultiplier,
+                        MiscItemId.SyntheticRaresConversionMultiplier,
+                        MiscItemId.MilitarySalary,
+                        MiscItemId.MaxIntelligenceExpenditure,
+                        MiscItemId.MaxResearchExpenditure,
+                        MiscItemId.MilitarySalaryAttrictionModifier,
+                        MiscItemId.MilitarySalaryDissentModifier,
+                        MiscItemId.NuclearSiteUpkeepCost,
+                        MiscItemId.NuclearPowerUpkeepCost,
+                        MiscItemId.SyntheticOilSiteUpkeepCost,
+                        MiscItemId.SyntheticRaresSiteUpkeepCost,
+                        MiscItemId.DurationDetection,
+                        MiscItemId.ConvoyProvinceHostileTime,
+                        MiscItemId.ConvoyProvinceBlockedTime,
+                        MiscItemId.AutoTradeConvoy,
+                        MiscItemId.SpyUpkeepCost,
+                        MiscItemId.SpyDetectionChance,
+                        MiscItemId.SpyCoupDissentModifier,
+                        MiscItemId.InfraEfficiencyModifier,
+                        MiscItemId.ManpowerToConsumerGoods,
+                        MiscItemId.TimeBetweenSliderChangesAoD,
+                        MiscItemId.MinimalPlacementIc,
+                        MiscItemId.NuclearPower,
+                        MiscItemId.FreeInfraRepair,
+                        MiscItemId.MaxSliderDissent,
+                        MiscItemId.MinSliderDissent,
+                        MiscItemId.MaxDissentSliderMove,
+                        MiscItemId.IcConcentrationBonus,
+                        MiscItemId.TransportConversion,
+                        MiscItemId.ConvoyDutyConversion,
+                        MiscItemId.EscortDutyConversion,
+                        MiscItemId.MinisterChangeDelay,
+                        MiscItemId.MinisterChangeEventDelay,
+                        MiscItemId.IdeaChangeDelay,
+                        MiscItemId.IdeaChangeEventDelay,
+                        MiscItemId.LeaderChangeDelay,
+                        MiscItemId.ChangeIdeaDissent,
+                        MiscItemId.ChangeMinisterDissent,
+                        MiscItemId.MinDissentRevolt,
+                        MiscItemId.DissentRevoltMultiplier,
+                        MiscItemId.TpMaxAttach,
+                        MiscItemId.SsMaxAttach,
+                        MiscItemId.SsnMaxAttach,
+                        MiscItemId.DdMaxAttach,
+                        MiscItemId.ClMaxAttach,
+                        MiscItemId.CaMaxAttach,
+                        MiscItemId.BcMaxAttach,
+                        MiscItemId.BbMaxAttach,
+                        MiscItemId.CvlMaxAttach,
+                        MiscItemId.CvMaxAttach,
+                        MiscItemId.CanChangeIdeas,
+                        MiscItemId.CanUnitSendNonAlliedDh,
+                        MiscItemId.BluePrintsCanSoldNonAllied,
+                        MiscItemId.ProvinceCanSoldNonAllied,
+                        MiscItemId.TransferAlliedCoreProvinces,
+                        MiscItemId.ProvinceBuildingsRepairModifier,
+                        MiscItemId.ProvinceResourceRepairModifier,
+                        MiscItemId.StockpileLimitMultiplierResource,
+                        MiscItemId.StockpileLimitMultiplierSuppliesOil,
+                        MiscItemId.OverStockpileLimitDailyLoss,
+                        MiscItemId.MaxResourceDepotSize,
+                        MiscItemId.MaxSuppliesOilDepotSize,
+                        MiscItemId.DesiredStockPilesSuppliesOil,
+                        MiscItemId.MaxManpower,
+                        MiscItemId.ConvoyTransportsCapacity,
+                        MiscItemId.SuppyLandStaticDh,
+                        MiscItemId.SupplyLandBattleDh,
+                        MiscItemId.FuelLandStatic,
+                        MiscItemId.FuelLandBattle,
+                        MiscItemId.SupplyAirStaticDh,
+                        MiscItemId.SupplyAirBattleDh,
+                        MiscItemId.FuelAirNavalStatic,
+                        MiscItemId.FuelAirBattle,
+                        MiscItemId.SupplyNavalStaticDh,
+                        MiscItemId.SupplyNavalBattleDh,
+                        MiscItemId.FuelNavalNotMoving,
+                        MiscItemId.FuelNavalBattle,
+                        MiscItemId.TpTransportsConversionRatio,
+                        MiscItemId.DdEscortsConversionRatio,
+                        MiscItemId.ClEscortsConversionRatio,
+                        MiscItemId.CvlEscortsConversionRatio,
+                        MiscItemId.ProductionLineEdit,
+                        MiscItemId.GearingBonusLossUpgradeUnit,
+                        MiscItemId.GearingBonusLossUpgradeBrigade,
+                        MiscItemId.DissentNukes,
+                        MiscItemId.MaxDailyDissent,
+                        MiscItemId.NukesProductionModifier,
+                        MiscItemId.ConvoySystemOptionsAllied,
+                        MiscItemId.ResourceConvoysBackUnneeded
+                    },
+                new[]
+                    {
+                        MiscItemId.SpyMissionDaysDh,
+                        MiscItemId.IncreateIntelligenceLevelDaysDh,
+                        MiscItemId.ChanceDetectSpyMissionDh,
+                        MiscItemId.RelationshipsHitDetectedMissionsDh,
+                        MiscItemId.DistanceModifier,
+                        MiscItemId.DistanceModifierNeighboursDh,
+                        MiscItemId.SpyLevelBonusDistanceModifier,
+                        MiscItemId.SpyLevelBonusDistanceModifierAboveTen,
+                        MiscItemId.SpyInformationAccuracyModifierDh,
+                        MiscItemId.IcModifierCost,
+                        MiscItemId.MinIcCostModifier,
+                        MiscItemId.MaxIcCostModifierDh,
+                        MiscItemId.ExtraMaintenanceCostAboveTen,
+                        MiscItemId.ExtraCostIncreasingAboveTen,
+                        MiscItemId.ShowThirdCountrySpyReportsDh,
+                        MiscItemId.SpiesMoneyModifier
+                    },
+                new[]
+                    {
+                        MiscItemId.DaysBetweenDiplomaticMissions,
+                        MiscItemId.TimeBetweenSliderChangesDh,
+                        MiscItemId.RequirementAffectSliderDh,
+                        MiscItemId.UseMinisterPersonalityReplacing,
+                        MiscItemId.RelationshipHitCancelTrade,
+                        MiscItemId.RelationshipHitCancelPermanentTrade,
+                        MiscItemId.PuppetsJoinMastersAlliance,
+                        MiscItemId.MastersBecomePuppetsPuppets,
+                        MiscItemId.AllowManualClaimsChange,
+                        MiscItemId.BelligerenceClaimedProvince,
+                        MiscItemId.BelligerenceClaimsRemoval,
+                        MiscItemId.JoinAutomaticallyAllesAxis,
+                        MiscItemId.AllowChangeHosHog,
+                        MiscItemId.ChangeTagCoup,
+                        MiscItemId.FilterReleaseCountries
+                    },
+                new[]
+                    {
+                        MiscItemId.LandXpGainFactor,
+                        MiscItemId.NavalXpGainFactor,
+                        MiscItemId.AirXpGainFactor,
+                        MiscItemId.AirDogfightXpGainFactor,
+                        MiscItemId.DivisionXpGainFactor,
+                        MiscItemId.LeaderXpGainFactor,
+                        MiscItemId.AttritionSeverityModifier,
+                        MiscItemId.NoSupplyAttritionSeverity,
+                        MiscItemId.NoSupplyMinimunAttrition,
+                        MiscItemId.BaseProximity,
+                        MiscItemId.ShoreBombardmentModifier,
+                        MiscItemId.ShoreBombardmentCap,
+                        MiscItemId.InvasionModifier,
+                        MiscItemId.MultipleCombatModifier,
+                        MiscItemId.OffensiveCombinedArmsBonus,
+                        MiscItemId.DefensiveCombinedArmsBonus,
+                        MiscItemId.SurpriseModifier,
+                        MiscItemId.LandCommandLimitModifier,
+                        MiscItemId.AirCommandLimitModifier,
+                        MiscItemId.NavalCommandLimitModifier,
+                        MiscItemId.EnvelopmentModifier,
+                        MiscItemId.EncircledModifier,
+                        MiscItemId.LandFortMultiplier,
+                        MiscItemId.CoastalFortMultiplier,
+                        MiscItemId.HardUnitsAttackingUrbanPenalty,
+                        MiscItemId.DissentMultiplier,
+                        MiscItemId.SupplyProblemsModifier,
+                        MiscItemId.SupplyProblemsModifierLand,
+                        MiscItemId.SupplyProblemsModifierAir,
+                        MiscItemId.SupplyProblemsModifierNaval,
+                        MiscItemId.FuelProblemsModifierLand,
+                        MiscItemId.FuelProblemsModifierAir,
+                        MiscItemId.FuelProblemsModifierNaval,
+                        MiscItemId.RaderStationMultiplier,
+                        MiscItemId.RaderStationAaMultiplier,
+                        MiscItemId.InterceptorBomberModifier,
+                        MiscItemId.AirOverstackingModifier,
+                        MiscItemId.AirOverstackingModifierAoD,
+                        MiscItemId.NavalOverstackingModifier,
+                        MiscItemId.LandLeaderCommandLimitRank0,
+                        MiscItemId.LandLeaderCommandLimitRank1,
+                        MiscItemId.LandLeaderCommandLimitRank2,
+                        MiscItemId.LandLeaderCommandLimitRank3,
+                        MiscItemId.AirLeaderCommandLimitRank0,
+                        MiscItemId.AirLeaderCommandLimitRank1,
+                        MiscItemId.AirLeaderCommandLimitRank2,
+                        MiscItemId.AirLeaderCommandLimitRank3,
+                        MiscItemId.NavalLeaderCommandLimitRank0,
+                        MiscItemId.NavalLeaderCommandLimitRank1,
+                        MiscItemId.NavalLeaderCommandLimitRank2,
+                        MiscItemId.NavalLeaderCommandLimitRank3,
+                        MiscItemId.HqCommandLimitFactor,
+                        MiscItemId.ConvoyProtectionFactor,
+                        MiscItemId.ConvoyEscortsModel,
+                        MiscItemId.DelayAfterCombatEnds,
+                        MiscItemId.LandDelayBeforeOrders,
+                        MiscItemId.NavalDelayBeforeOrders,
+                        MiscItemId.AirDelayBeforeOrders,
+                        MiscItemId.MaximumSizesAirStacks,
+                        MiscItemId.DurationAirToAirBattles,
+                        MiscItemId.DurationNavalPortBombing,
+                        MiscItemId.DurationStrategicBombing,
+                        MiscItemId.DurationGroundAttackBombing,
+                        MiscItemId.EffectExperienceCombat,
+                        MiscItemId.DamageNavalBasesBombing,
+                        MiscItemId.DamageAirBaseBombing,
+                        MiscItemId.DamageAaBombing,
+                        MiscItemId.DamageRocketBombing,
+                        MiscItemId.DamageNukeBombing,
+                        MiscItemId.DamageRadarBombing,
+                        MiscItemId.DamageInfraBombing,
+                        MiscItemId.DamageIcBombing,
+                        MiscItemId.DamageResourcesBombing,
+                        MiscItemId.DamageSyntheticOilBombing,
+                        MiscItemId.HowEffectiveGroundDef,
+                        MiscItemId.ChanceAvoidDefencesLeft,
+                        MiscItemId.ChanceAvoidNoDefences,
+                        MiscItemId.LandChanceAvoidDefencesLeft,
+                        MiscItemId.AirChanceAvoidDefencesLeft,
+                        MiscItemId.NavalChanceAvoidDefencesLeft,
+                        MiscItemId.LandChanceAvoidNoDefences,
+                        MiscItemId.AirChanceAvoidNoDefences,
+                        MiscItemId.NavalChanceAvoidNoDefences,
+                        MiscItemId.ChanceGetTerrainTrait,
+                        MiscItemId.ChanceGetEventTrait,
+                        MiscItemId.BonusTerrainTrait,
+                        MiscItemId.BonusSimilarTerrainTrait,
+                        MiscItemId.BonusEventTrait,
+                        MiscItemId.BonusLeaderSkillPointLand,
+                        MiscItemId.BonusLeaderSkillPointAir,
+                        MiscItemId.BonusLeaderSkillPointNaval,
+                        MiscItemId.ChanceLeaderDying,
+                        MiscItemId.AirOrgDamage,
+                        MiscItemId.AirStrDamageOrg,
+                        MiscItemId.AirStrDamage,
+                        MiscItemId.LandMinOrgDamage,
+                        MiscItemId.LandOrgDamageHardSoftEach,
+                        MiscItemId.LandOrgDamageHardVsSoft,
+                        MiscItemId.LandMinStrDamage,
+                        MiscItemId.LandStrDamageHardSoftEach,
+                        MiscItemId.LandStrDamageHardVsSoft,
+                        MiscItemId.AirMinOrgDamage,
+                        MiscItemId.AirAdditionalOrgDamage,
+                        MiscItemId.AirMinStrDamage,
+                        MiscItemId.AirAdditionalStrDamage,
+                        MiscItemId.AirStrDamageEntrenced,
+                        MiscItemId.NavalMinOrgDamage,
+                        MiscItemId.NavalAdditionalOrgDamage,
+                        MiscItemId.NavalMinStrDamage,
+                        MiscItemId.NavalAdditionalStrDamage,
+                        MiscItemId.AirStrDamageLandOrg,
+                        MiscItemId.AirOrgDamageLandDh,
+                        MiscItemId.AirStrDamageLandDh,
+                        MiscItemId.LandOrgDamageLandOrg,
+                        MiscItemId.LandOrgDamageLandUrban,
+                        MiscItemId.LandOrgDamageLandFort,
+                        MiscItemId.RequiredLandFortSize,
+                        MiscItemId.LandStrDamageLandDh,
+                        MiscItemId.AirOrgDamageAirDh,
+                        MiscItemId.AirStrDamageAirDh,
+                        MiscItemId.LandOrgDamageAirDh,
+                        MiscItemId.LandStrDamageAirDh,
+                        MiscItemId.NavalOrgDamageAirDh,
+                        MiscItemId.NavalStrDamageAirDh,
+                        MiscItemId.SubsOrgDamageAir,
+                        MiscItemId.SubsStrDamageAir,
+                        MiscItemId.AirOrgDamageNavyDh,
+                        MiscItemId.AirStrDamageNavyDh,
+                        MiscItemId.NavalOrgDamageNavyDh,
+                        MiscItemId.NavalStrDamageNavyDh,
+                        MiscItemId.SubsOrgDamageNavy,
+                        MiscItemId.SubsStrDamageNavy,
+                        MiscItemId.SubsOrgDamage,
+                        MiscItemId.SubsStrDamage,
+                        MiscItemId.SubStacksDetectionModifier,
+                        MiscItemId.AirOrgDamageLandAoD,
+                        MiscItemId.AirStrDamageLandAoD,
+                        MiscItemId.LandDamageArtilleryBombardment,
+                        MiscItemId.InfraDamageArtilleryBombardment,
+                        MiscItemId.IcDamageArtilleryBombardment,
+                        MiscItemId.ResourcesDamageArtilleryBombardment,
+                        MiscItemId.PenaltyArtilleryBombardment,
+                        MiscItemId.ArtilleryStrDamage,
+                        MiscItemId.ArtilleryOrgDamage,
+                        MiscItemId.LandStrDamageLandAoD,
+                        MiscItemId.LandOrgDamageLand,
+                        MiscItemId.LandStrDamageAirAoD,
+                        MiscItemId.LandOrgDamageAirAoD,
+                        MiscItemId.NavalStrDamageAirAoD,
+                        MiscItemId.NavalOrgDamageAirAoD,
+                        MiscItemId.AirStrDamageAirAoD,
+                        MiscItemId.AirOrgDamageAirAoD,
+                        MiscItemId.NavalStrDamageNavyAoD,
+                        MiscItemId.NavalOrgDamageNavyAoD,
+                        MiscItemId.AirStrDamageNavyAoD,
+                        MiscItemId.AirOrgDamageNavyAoD,
+                        MiscItemId.MilitaryExpenseAttritionModifier,
+                        MiscItemId.NavalMinCombatTime,
+                        MiscItemId.LandMinCombatTime,
+                        MiscItemId.AirMinCombatTime,
+                        MiscItemId.LandOverstackingModifier,
+                        MiscItemId.LandOrgLossMoving,
+                        MiscItemId.AirOrgLossMoving,
+                        MiscItemId.NavalOrgLossMoving,
+                        MiscItemId.SupplyDistanceSeverity,
+                        MiscItemId.SupplyBase,
+                        MiscItemId.LandOrgGain,
+                        MiscItemId.AirOrgGain,
+                        MiscItemId.NavalOrgGain,
+                        MiscItemId.NukeManpowerDissent,
+                        MiscItemId.NukeIcDissent,
+                        MiscItemId.NukeTotalDissent,
+                        MiscItemId.LandFriendlyOrgGain,
+                        MiscItemId.AirLandStockModifier,
+                        MiscItemId.ScorchDamage,
+                        MiscItemId.StandGroundDissent,
+                        MiscItemId.ScorchGroundBelligerence,
+                        MiscItemId.DefaultLandStack,
+                        MiscItemId.DefaultNavalStack,
+                        MiscItemId.DefaultAirStack,
+                        MiscItemId.DefaultRocketStack,
+                        MiscItemId.FortDamageArtilleryBombardment,
+                        MiscItemId.ArtilleryBombardmentOrgCost,
+                        MiscItemId.LandDamageFort,
+                        MiscItemId.AirRebaseFactor,
+                        MiscItemId.AirMaxDisorganized,
+                        MiscItemId.AaInflictedStrDamage,
+                        MiscItemId.AaInflictedOrgDamage,
+                        MiscItemId.AaInflictedFlyingDamage,
+                        MiscItemId.AaInflictedBombingDamage,
+                        MiscItemId.HardAttackStrDamage,
+                        MiscItemId.HardAttackOrgDamage,
+                        MiscItemId.ArmorSoftBreakthroughMin,
+                        MiscItemId.ArmorSoftBreakthroughMax,
+                        MiscItemId.NavalCriticalHitChance,
+                        MiscItemId.NavalCriticalHitEffect,
+                        MiscItemId.LandFortDamage,
+                        MiscItemId.PortAttackSurpriseChanceDay,
+                        MiscItemId.PortAttackSurpriseChanceNight,
+                        MiscItemId.PortAttackSurpriseModifier,
+                        MiscItemId.RadarAntiSurpriseChance,
+                        MiscItemId.RadarAntiSurpriseModifier,
+                        MiscItemId.CounterAttackStrDefenderAoD,
+                        MiscItemId.CounterAttackOrgDefenderAoD,
+                        MiscItemId.CounterAttackStrAttackerAoD,
+                        MiscItemId.CounterAttackOrgAttackerAoD,
+                        MiscItemId.AssaultStrDefenderAoD,
+                        MiscItemId.AssaultOrgDefenderAoD,
+                        MiscItemId.AssaultStrAttackerAoD,
+                        MiscItemId.AssaultOrgAttackerAoD,
+                        MiscItemId.EncirclementStrDefenderAoD,
+                        MiscItemId.EncirclementOrgDefenderAoD,
+                        MiscItemId.EncirclementStrAttackerAoD,
+                        MiscItemId.EncirclementOrgAttackerAoD,
+                        MiscItemId.AmbushStrDefenderAoD,
+                        MiscItemId.AmbushOrgDefenderAoD,
+                        MiscItemId.AmbushStrAttackerAoD,
+                        MiscItemId.AmbushOrgAttackerAoD,
+                        MiscItemId.DelayStrDefenderAoD,
+                        MiscItemId.DelayOrgDefenderAoD,
+                        MiscItemId.DelayStrAttackerAoD,
+                        MiscItemId.DelayOrgAttackerAoD,
+                        MiscItemId.TacticalWithdrawStrDefenderAoD,
+                        MiscItemId.TacticalWithdrawOrgDefenderAoD,
+                        MiscItemId.TacticalWithdrawStrAttackerAoD,
+                        MiscItemId.TacticalWithdrawOrgAttackerAoD,
+                        MiscItemId.BreakthroughStrDefenderAoD,
+                        MiscItemId.BreakthroughOrgDefenderAoD,
+                        MiscItemId.BreakthroughStrAttackerAoD,
+                        MiscItemId.BreakthroughOrgAttackerAoD,
+                        MiscItemId.NavalOrgDamageAa,
+                        MiscItemId.AirOrgDamageAa,
+                        MiscItemId.AirStrDamageAa,
+                        MiscItemId.AaAirFiringRules,
+                        MiscItemId.AaAirNightModifier,
+                        MiscItemId.AaAirBonusRadars,
+                        MiscItemId.MovementBonusTerrainTrait,
+                        MiscItemId.MovementBonusSimilarTerrainTrait,
+                        MiscItemId.LogisticsWizardEseBonus,
+                        MiscItemId.DaysOffensiveSupply,
+                        MiscItemId.MinisterBonuses,
+                        MiscItemId.OrgRegainBonusFriendly,
+                        MiscItemId.OrgRegainBonusFriendlyCap,
+                        MiscItemId.ConvoyInterceptionMissions,
+                        MiscItemId.AutoReturnTransportFleets,
+                        MiscItemId.AllowProvinceRegionTargeting,
+                        MiscItemId.NightHoursWinter,
+                        MiscItemId.NightHoursSpringFall,
+                        MiscItemId.NightHoursSummer,
+                        MiscItemId.RecalculateLandArrivalTimes,
+                        MiscItemId.SynchronizeArrivalTimePlayer,
+                        MiscItemId.SynchronizeArrivalTimeAi,
+                        MiscItemId.RecalculateArrivalTimesCombat,
+                        MiscItemId.LandSpeedModifierCombat,
+                        MiscItemId.LandSpeedModifierBombardment,
+                        MiscItemId.LandSpeedModifierSupply,
+                        MiscItemId.LandSpeedModifierOrg,
+                        MiscItemId.LandAirSpeedModifierFuel,
+                        MiscItemId.DefaultSpeedFuel,
+                        MiscItemId.FleetSizeRangePenaltyRatio,
+                        MiscItemId.FleetSizeRangePenaltyThrethold,
+                        MiscItemId.FleetSizeRangePenaltyMax,
+                        MiscItemId.ApplyRangeLimitsAreasRegions,
+                        MiscItemId.RadarBonusDetection,
+                        MiscItemId.BonusDetectionFriendly,
+                        MiscItemId.ScreensCapitalRatioModifier,
+                        MiscItemId.ChanceTargetNoOrgLand,
+                        MiscItemId.ScreenCapitalShipsTargeting,
+                        MiscItemId.FleetPositioningDaytime,
+                        MiscItemId.FleetPositioningLeaderSkill,
+                        MiscItemId.FleetPositioningFleetSize,
+                        MiscItemId.FleetPositioningFleetComposition,
+                        MiscItemId.LandCoastalFortsDamage,
+                        MiscItemId.LandCoastalFortsMaxDamage,
+                        MiscItemId.MinSoftnessBrigades,
+                        MiscItemId.AutoRetreatOrg,
+                        MiscItemId.LandOrgNavalTransportation,
+                        MiscItemId.MaxLandDig,
+                        MiscItemId.DigIncreaseDay,
+                        MiscItemId.BreakthroughEncirclementMinSpeed,
+                        MiscItemId.BreakthroughEncirclementMaxChance,
+                        MiscItemId.BreakthroughEncirclementChanceModifier,
+                        MiscItemId.CombatEventDuration,
+                        MiscItemId.CounterAttackOrgAttackerDh,
+                        MiscItemId.CounterAttackStrAttackerDh,
+                        MiscItemId.CounterAttackOrgDefenderDh,
+                        MiscItemId.CounterAttackStrDefenderDh,
+                        MiscItemId.AssaultOrgAttackerDh,
+                        MiscItemId.AssaultStrAttackerDh,
+                        MiscItemId.AssaultOrgDefenderDh,
+                        MiscItemId.AssaultStrDefenderDh,
+                        MiscItemId.EncirclementOrgAttackerDh,
+                        MiscItemId.EncirclementStrAttackerDh,
+                        MiscItemId.EncirclementOrgDefenderDh,
+                        MiscItemId.EncirclementStrDefenderDh,
+                        MiscItemId.AmbushOrgAttackerDh,
+                        MiscItemId.AmbushStrAttackerDh,
+                        MiscItemId.AmbushOrgDefenderDh,
+                        MiscItemId.AmbushStrDefenderDh,
+                        MiscItemId.DelayOrgAttackerDh,
+                        MiscItemId.DelayStrAttackerDh,
+                        MiscItemId.DelayOrgDefenderDh,
+                        MiscItemId.DelayStrDefenderDh,
+                        MiscItemId.TacticalWithdrawOrgAttackerDh,
+                        MiscItemId.TacticalWithdrawStrAttackerDh,
+                        MiscItemId.TacticalWithdrawOrgDefenderDh,
+                        MiscItemId.TacticalWithdrawStrDefenderDh,
+                        MiscItemId.BreakthroughOrgAttackerDh,
+                        MiscItemId.BreakthroughStrAttackerDh,
+                        MiscItemId.BreakthroughOrgDefenderDh,
+                        MiscItemId.BreakthroughStrDefenderDh,
+                        MiscItemId.HqStrDamageBreakthrough,
+                        MiscItemId.CombatMode
+                    }
+                ,
+                new[]
+                    {
+                        MiscItemId.AttackMission,
+                        MiscItemId.AttackStartingEfficiency,
+                        MiscItemId.AttackSpeedBonus,
+                        MiscItemId.RebaseMission,
+                        MiscItemId.RebaseStartingEfficiency,
+                        MiscItemId.RebaseChanceDetected,
+                        MiscItemId.StratRedeployMission,
+                        MiscItemId.StratRedeployStartingEfficiency,
+                        MiscItemId.StratRedeployAddedValue,
+                        MiscItemId.StratRedeployDistanceMultiplier,
+                        MiscItemId.SupportAttackMission,
+                        MiscItemId.SupportAttackStartingEfficiency,
+                        MiscItemId.SupportAttackSpeedBonus,
+                        MiscItemId.SupportDefenseMission,
+                        MiscItemId.SupportDefenseStartingEfficiency,
+                        MiscItemId.SupportDefenseSpeedBonus,
+                        MiscItemId.ReservesMission,
+                        MiscItemId.ReservesStartingEfficiency,
+                        MiscItemId.ReservesSpeedBonus,
+                        MiscItemId.AntiPartisanDutyMission,
+                        MiscItemId.AntiPartisanDutyStartingEfficiency,
+                        MiscItemId.AntiPartisanDutySuppression,
+                        MiscItemId.PlannedDefenseMission,
+                        MiscItemId.PlannedDefenseStartingEfficiency,
+                        MiscItemId.AirSuperiorityMission,
+                        MiscItemId.AirSuperiorityStartingEfficiency,
+                        MiscItemId.AirSuperiorityDetection,
+                        MiscItemId.AirSuperiorityMinRequired,
+                        MiscItemId.GroundAttackMission,
+                        MiscItemId.GroundAttackStartingEfficiency,
+                        MiscItemId.GroundAttackOrgDamage,
+                        MiscItemId.GroundAttackStrDamage,
+                        MiscItemId.InterdictionMission,
+                        MiscItemId.InterdictionStartingEfficiency,
+                        MiscItemId.InterdictionOrgDamage,
+                        MiscItemId.InterdictionStrDamage,
+                        MiscItemId.StrategicBombardmentMission,
+                        MiscItemId.StrategicBombardmentStartingEfficiency,
+                        MiscItemId.LogisticalStrikeMission,
+                        MiscItemId.LogisticalStrikeStartingEfficiency,
+                        MiscItemId.RunwayCrateringMission,
+                        MiscItemId.RunwayCrateringStartingEfficiency,
+                        MiscItemId.InstallationStrikeMission,
+                        MiscItemId.InstallationStrikeStartingEfficiency,
+                        MiscItemId.NavalStrikeMission,
+                        MiscItemId.NavalStrikeStartingEfficiency,
+                        MiscItemId.PortStrikeMission,
+                        MiscItemId.PortStrikeStartingEfficiency,
+                        MiscItemId.ConvoyAirRaidingMission,
+                        MiscItemId.ConvoyAirRaidingStartingEfficiency,
+                        MiscItemId.AirSupplyMission,
+                        MiscItemId.AirSupplyStartingEfficiency,
+                        MiscItemId.AirborneAssaultMission,
+                        MiscItemId.AirborneAssaultStartingEfficiency,
+                        MiscItemId.NukeMission,
+                        MiscItemId.NukeStartingEfficiency,
+                        MiscItemId.AirScrambleMission,
+                        MiscItemId.AirScrambleStartingEfficiency,
+                        MiscItemId.AirScrambleDetection,
+                        MiscItemId.AirScrambleMinRequired,
+                        MiscItemId.ConvoyRadingMission,
+                        MiscItemId.ConvoyRadingStartingEfficiency,
+                        MiscItemId.ConvoyRadingRangeModifier,
+                        MiscItemId.ConvoyRadingChanceDetected,
+                        MiscItemId.AswMission,
+                        MiscItemId.AswStartingEfficiency,
+                        MiscItemId.NavalInterdictionMission,
+                        MiscItemId.NavalInterdictionStartingEfficiency,
+                        MiscItemId.ShoreBombardmentMission,
+                        MiscItemId.ShoreBombardmentStartingEfficiency,
+                        MiscItemId.ShoreBombardmentModifierDh,
+                        MiscItemId.AmphibousAssaultMission,
+                        MiscItemId.AmphibousAssaultStartingEfficiency,
+                        MiscItemId.SeaTransportMission,
+                        MiscItemId.SeaTransportStartingEfficiency,
+                        MiscItemId.SeaTransportRangeModifier,
+                        MiscItemId.SeaTransportChanceDetected,
+                        MiscItemId.NavalCombatPatrolMission,
+                        MiscItemId.NavalCombatPatrolStartingEfficiency,
+                        MiscItemId.NavalPortStrikeMission,
+                        MiscItemId.NavalPortStrikeStartingEfficiency,
+                        MiscItemId.NavalAirbaseStrikeMission,
+                        MiscItemId.NavalAirbaseStrikeStartingEfficiency,
+                        MiscItemId.SneakMoveMission,
+                        MiscItemId.SneakMoveStartingEfficiency,
+                        MiscItemId.SneakMoveRangeModifier,
+                        MiscItemId.SneakMoveChanceDetected,
+                        MiscItemId.NavalScrambleMission,
+                        MiscItemId.NavalScrambleStartingEfficiency,
+                        MiscItemId.NavalScrambleSpeedBonus,
+                        MiscItemId.UseAttackEfficiencyCombatModifier
+                    },
+                new[]
+                    {
+                        MiscItemId.LandFortEfficiency,
+                        MiscItemId.CoastalFortEfficiency,
+                        MiscItemId.GroundDefenseEfficiency,
+                        MiscItemId.ConvoyDefenseEfficiency,
+                        MiscItemId.ManpowerBoost,
+                        MiscItemId.TransportCapacityModifier,
+                        MiscItemId.OccupiedTransportCapacityModifier,
+                        MiscItemId.AttritionModifier,
+                        MiscItemId.ManpowerTrickleBackModifier,
+                        MiscItemId.SupplyDistanceModifier,
+                        MiscItemId.RepairModifier,
+                        MiscItemId.ResearchModifier,
+                        MiscItemId.RadarEfficiency,
+                        MiscItemId.HqSupplyEfficiencyBonus,
+                        MiscItemId.HqCombatEventsBonus,
+                        MiscItemId.CombatEventChances,
+                        MiscItemId.FriendlyArmyDetectionChance,
+                        MiscItemId.EnemyArmyDetectionChance,
+                        MiscItemId.FriendlyIntelligenceChance,
+                        MiscItemId.EnemyIntelligenceChance,
+                        MiscItemId.MaxAmphibiousArmySize,
+                        MiscItemId.EnergyToOil,
+                        MiscItemId.TotalProductionEfficiency,
+                        MiscItemId.SupplyProductionEfficiency,
+                        MiscItemId.AaPower,
+                        MiscItemId.AirSurpriseChance,
+                        MiscItemId.LandSurpriseChance,
+                        MiscItemId.NavalSurpriseChance,
+                        MiscItemId.PeacetimeIcModifier,
+                        MiscItemId.WartimeIcModifier,
+                        MiscItemId.BuildingsProductionModifier,
+                        MiscItemId.ConvoysProductionModifier,
+                        MiscItemId.MinShipsPositioningBattle,
+                        MiscItemId.MaxShipsPositioningBattle,
+                        MiscItemId.PeacetimeStockpilesResources,
+                        MiscItemId.WartimeStockpilesResources,
+                        MiscItemId.PeacetimeStockpilesOilSupplies,
+                        MiscItemId.WartimeStockpilesOilSupplies
+                    },
+                new[]
+                    {
+                        MiscItemId.BlueprintBonus,
+                        MiscItemId.PreHistoricalDateModifier,
+                        MiscItemId.PostHistoricalDateModifierDh,
+                        MiscItemId.CostSkillLevel,
+                        MiscItemId.MeanNumberInventionEventsYear,
+                        MiscItemId.PostHistoricalDateModifierAoD,
+                        MiscItemId.TechSpeedModifier,
+                        MiscItemId.PreHistoricalPenaltyLimit,
+                        MiscItemId.PostHistoricalBonusLimit,
+                        MiscItemId.MaxActiveTechTeamsAoD,
+                        MiscItemId.RequiredIcEachTechTeamAoD,
+                        MiscItemId.MaximumRandomModifier,
+                        MiscItemId.UseNewTechnologyPageLayout,
+                        MiscItemId.TechOverviewPanelStyle,
+                        MiscItemId.MaxActiveTechTeamsDh,
+                        MiscItemId.MinActiveTechTeams,
+                        MiscItemId.RequiredIcEachTechTeamDh,
+                        MiscItemId.NewCountryRocketryComponent,
+                        MiscItemId.NewCountryNuclearPhysicsComponent,
+                        MiscItemId.NewCountryNuclearEngineeringComponent,
+                        MiscItemId.NewCountrySecretTechs,
+                        MiscItemId.MaxTechTeamSkill
+                    },
+                new[]
+                    {
+                        MiscItemId.DaysTradeOffers,
+                        MiscItemId.DelayGameStartNewTrades,
+                        MiscItemId.LimitAiNewTradesGameStart,
+                        MiscItemId.DesiredOilStockpile,
+                        MiscItemId.CriticalOilStockpile,
+                        MiscItemId.DesiredSuppliesStockpile,
+                        MiscItemId.CriticalSuppliesStockpile,
+                        MiscItemId.DesiredResourcesStockpile,
+                        MiscItemId.CriticalResourceStockpile,
+                        MiscItemId.WartimeDesiredStockpileMultiplier,
+                        MiscItemId.PeacetimeExtraOilImport,
+                        MiscItemId.WartimeExtraOilImport,
+                        MiscItemId.ExtraImportBelowDesired,
+                        MiscItemId.PercentageProducedSupplies,
+                        MiscItemId.PercentageProducedMoney,
+                        MiscItemId.ExtraImportStockpileSelected,
+                        MiscItemId.DaysDeliverResourcesTrades,
+                        MiscItemId.MergeTradeDeals,
+                        MiscItemId.ManualTradeDeals,
+                        MiscItemId.PuppetsSendSuppliesMoney,
+                        MiscItemId.PuppetsCriticalSupplyStockpile,
+                        MiscItemId.PuppetsMaxPoolResources,
+                        MiscItemId.NewTradeDealsMinEffectiveness,
+                        MiscItemId.CancelTradeDealsEffectiveness,
+                        MiscItemId.AutoTradeAiTradeDeals
+                    },
+                new[]
+                    {
+                        MiscItemId.OverproduceSuppliesBelowDesired,
+                        MiscItemId.MultiplierOverproduceSuppliesWar,
+                        MiscItemId.NotProduceSuppliesStockpileOver,
+                        MiscItemId.MaxSerialLineProductionGarrisonMilitia,
+                        MiscItemId.MinIcSerialProductionNavalAir,
+                        MiscItemId.NotProduceNewUnitsManpowerRatio,
+                        MiscItemId.NotProduceNewUnitsManpowerValue,
+                        MiscItemId.NotProduceNewUnitsSupply,
+                        MiscItemId.MilitaryStrengthTotalIcRatioPeacetime,
+                        MiscItemId.MilitaryStrengthTotalIcRatioWartime,
+                        MiscItemId.MilitaryStrengthTotalIcRatioMajor,
+                        MiscItemId.NotUseOffensiveSupplyStockpile,
+                        MiscItemId.NotUseOffensiveOilStockpile,
+                        MiscItemId.NotUseOffensiveEse,
+                        MiscItemId.NotUseOffensiveOrgStrDamage,
+                        MiscItemId.AiPeacetimeSpyMissionsDh,
+                        MiscItemId.AiSpyMissionsCostModifierDh,
+                        MiscItemId.AiDiplomacyCostModifierDh,
+                        MiscItemId.AiInfluenceModifierDh,
+                        MiscItemId.NewDowRules,
+                        MiscItemId.NewDowRules2,
+                        MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality,
+                        MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality2,
+                        MiscItemId.NewAiReleaseRules,
+                        MiscItemId.AiEventsActionSelectionRules,
+                        MiscItemId.ForceStrategicRedeploymentHour,
+                        MiscItemId.MaxRedeploymentDaysAi,
+                        MiscItemId.UseQuickAreaCheckGarrisonAi,
+                        MiscItemId.AiMastersGetProvincesConquredPuppets,
+                        MiscItemId.MinDaysRequiredAiReleaseCountry,
+                        MiscItemId.MinDaysRequiredAiAllied,
+                        MiscItemId.MinDaysRequiredAiAlliedSupplyBase,
+                        MiscItemId.MinRequiredRelationsAlliedClaimed
+                    },
+                new[]
+                    {
+                        MiscItemId.AiSpyDiplomaticMissionLogger,
+                        MiscItemId.CountryLogger,
+                        MiscItemId.SwitchedAiFilesLogger,
+                        MiscItemId.UseNewAutoSaveFileFormat,
+                        MiscItemId.LoadNewAiSwitchingAllClients,
+                        MiscItemId.TradeEfficiencyCalculationSystem,
+                        MiscItemId.MergeRelocateProvincialDepots,
+                        MiscItemId.InGameLossesLogging,
+                        MiscItemId.InGameLossLogging2,
+                        MiscItemId.AllowBrigadeAttachingInSupply,
+                        MiscItemId.MultipleDeploymentSizeArmies,
+                        MiscItemId.MultipleDeploymentSizeFleets,
+                        MiscItemId.MultipleDeploymentSizeAir,
+                        MiscItemId.AllowUniquePicturesAllLandProvinces,
+                        MiscItemId.AutoReplyEvents,
+                        MiscItemId.ForceActionsShow,
+                        MiscItemId.EnableDicisionsPlayers,
+                        MiscItemId.RebelsArmyComposition,
+                        MiscItemId.RebelsArmyTechLevel,
+                        MiscItemId.RebelsArmyMinStr,
+                        MiscItemId.RebelsArmyMaxStr,
+                        MiscItemId.RebelsOrgRegain,
+                        MiscItemId.ExtraRebelBonusNeighboringProvince,
+                        MiscItemId.ExtraRebelBonusOccupied,
+                        MiscItemId.ExtraRebelBonusMountain,
+                        MiscItemId.ExtraRebelBonusHill,
+                        MiscItemId.ExtraRebelBonusForest,
+                        MiscItemId.ExtraRebelBonusJungle,
+                        MiscItemId.ExtraRebelBonusSwamp,
+                        MiscItemId.ExtraRebelBonusDesert,
+                        MiscItemId.ExtraRebelBonusPlain,
+                        MiscItemId.ExtraRebelBonusUrban,
+                        MiscItemId.ExtraRebelBonusAirNavalBases,
+                        MiscItemId.ReturnRebelliousProvince,
+                        MiscItemId.UseNewMinisterFilesFormat,
+                        MiscItemId.EnableRetirementYearMinisters,
+                        MiscItemId.EnableRetirementYearLeaders,
+                        MiscItemId.LoadSpritesModdirOnly,
+                        MiscItemId.LoadUnitIconsModdirOnly,
+                        MiscItemId.LoadUnitPicturesModdirOnly,
+                        MiscItemId.LoadAiFilesModdirOnly,
+                        MiscItemId.UseSpeedSetGarrisonStatus,
+                        MiscItemId.UseOldSaveGameFormat,
+                        MiscItemId.ProductionPanelUiStyle,
+                        MiscItemId.UnitPicturesSize,
+                        MiscItemId.EnablePicturesNavalBrigades,
+                        MiscItemId.BuildingsBuildableOnlyProvinces,
+                        MiscItemId.UnitModifiersStatisticsPages
+                    },
+                new[]
+                    {
+                        MiscItemId.MapNumber,
+                        MiscItemId.TotalProvinces,
+                        MiscItemId.DistanceCalculationModel,
+                        MiscItemId.MapWidth,
+                        MiscItemId.MapHeight
+                    }
+            };
+
+        /// <summary>
+        ///     ゲームごとのセクションの有無
+        /// </summary>
+        public static bool[,] SectionTable =
+            {
+                {true, true, true, true, true, true, true}, // economy
+                {false, false, false, false, false, true, true}, // intelligence
+                {false, false, false, false, false, true, true}, // diplomacy
+                {true, true, true, true, true, true, true}, // combat
+                {false, false, false, false, false, true, true}, // mission
+                {false, false, false, false, false, true, true}, // country
+                {true, true, true, true, true, true, true}, // research
+                {false, false, false, false, false, true, true}, // trade
+                {false, false, false, false, false, true, true}, // ai
+                {false, false, false, false, false, true, true}, // mod
+                {false, false, false, false, false, true, true} // map
+            };
+
+        /// <summary>
+        ///     ゲームごとの項目の有無
+        /// </summary>
+        public static bool[,] ItemTable =
+            {
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, true, true, true, false, false},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, false, false},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, true, true, false, false},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, false, false, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, false, false},
+                {false, false, false, false, true, false, false},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, false, false},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, true, true, true, false, false},
+                {true, true, true, true, true, true, true},
+                {true, true, false, false, false, true, true},
+                {false, false, true, true, true, false, false},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, true, true, true, false, false},
+                {true, true, true, true, true, true, false},
+                {true, true, true, true, true, true, false},
+                {true, true, true, true, true, true, false},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, false, false},
+                {true, true, false, false, false, false, false},
+                {true, true, false, false, false, false, false},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, false, false},
+                {false, true, false, false, false, true, true},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {true, true, true, true, true, true, true},
+                {true, true, true, true, true, true, true},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, true, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, true, true, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, false},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, false},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, false},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true}
+            };
+
+        /// <summary>
+        ///     項目の型
         /// </summary>
         public static MiscItemType[] ItemTypes =
             {
-                // economy
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDblMinusOne,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
                 MiscItemType.RangedDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosInt,
-                MiscItemType.PosDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.RangedInt,
                 MiscItemType.RangedDbl,
                 MiscItemType.Enum,
                 MiscItemType.RangedDbl,
                 MiscItemType.RangedDbl,
                 MiscItemType.Enum,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosDbl,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosInt,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.Bool,
                 MiscItemType.Enum,
                 MiscItemType.Enum,
                 MiscItemType.Enum,
                 MiscItemType.Bool,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDblMinusOne,
-                MiscItemType.PosDblMinusOne,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.NonNegDblMinusOne,
                 MiscItemType.RangedDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
-                MiscItemType.PosDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.RangedDbl,
-                MiscItemType.PosDbl,
+                MiscItemType.NonNegDbl,
                 MiscItemType.RangedDbl,
-                MiscItemType.PosDbl,
+                MiscItemType.NonNegDbl,
                 MiscItemType.Enum,
-                MiscItemType.PosDblMinusOne,
+                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.Dbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Enum,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDblMinusOne,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.Dbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.PosInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Enum,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.Enum,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Enum,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Enum,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.RangedDbl,
+                MiscItemType.Enum,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedInt,
+                MiscItemType.PosInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Enum,
+                MiscItemType.Enum,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.RangedPosInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.NonNegDbl,
+                MiscItemType.PosDbl,
+                MiscItemType.Dbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.RangedDblMinusOne,
+                MiscItemType.RangedDblMinusOne,
+                MiscItemType.PosDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.RangedDbl,
+                MiscItemType.Enum,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Enum,
+                MiscItemType.Enum,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDblMinusThree,
+                MiscItemType.NonNegIntMinusOne,
+                MiscItemType.Int,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.Int,
+                MiscItemType.Bool,
+                MiscItemType.NonNegIntMinusOne,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Int,
+                MiscItemType.NonNegInt,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegIntMinusOne,
+                MiscItemType.RangedInt,
+                MiscItemType.RangedInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.PosInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.RangedInt,
+                MiscItemType.Enum,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt
+            };
+
+        /// <summary>
+        ///     編集項目の最小値
+        /// </summary>
+        public static double[] ItemMinValues =
+            {
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -10,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -10,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                1,
+                0,
+                0.05,
+                0,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                1,
+                0,
+                0.05,
+                0,
+                0,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0.05,
+                0,
+                0,
+                0,
+                0.05,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                1,
+                1
+            };
+
+        /// <summary>
+        ///     編集項目の最大値
+        /// </summary>
+        public static double[] ItemMaxValues =
+            {
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                100,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                100,
+                400,
+                3,
+                1,
+                10,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                2,
+                2,
+                2,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                0,
+                2,
+                0,
+                0,
+                0,
+                100,
+                400,
+                0,
+                1,
+                0,
+                0,
+                10,
+                0,
+                0,
+                0,
+                0,
+                0,
+                3,
+                0,
+                0,
+                0,
+                0,
+                1,
+                400,
+                100,
+                1,
+                1,
+                1,
+                0,
+                0,
+                1,
+                3,
+                1,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                5,
+                0,
+                0,
+                2,
+                2,
+                1,
+                24,
+                24,
+                24,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                2,
+                0,
+                0,
+                0,
+                100,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                10,
+                0,
+                1,
+                10,
+                0,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                0,
+                1,
+                10,
+                0,
+                1,
+                10,
+                0,
+                1,
+                10,
+                0,
+                1,
+                10,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                0,
+                1,
+                10,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                20,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                100,
+                100,
+                100,
+                0,
+                0,
+                0,
+                99,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                2,
+                0,
+                0,
+                0,
+                1,
+                2,
+                0,
+                0,
+                1,
+                100,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                1,
+                4,
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                2,
+                1,
+                100,
+                0,
+                100,
+                100,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                2,
+                0,
+                0,
+                10000,
+                1,
+                0,
+                0
             };
 
         #endregion
@@ -2951,17 +4154,7 @@ namespace HoI2Editor.Models
             }
 
             // 設定値を初期化する
-            Economy = new MiscEconomy();
-            Intelligence = new MiscIntelligence();
-            Diplomacy = new MiscDiplomacy();
-            Combat = new MiscCombat();
-            Mission = new MiscMission();
-            Country = new MiscCountry();
-            Research = new MiscResearch();
-            Trade = new MiscTrade();
-            Ai = new MiscAi();
-            Mod = new MiscMod();
-            Map = new MiscMap();
+            _items = new object[Enum.GetValues(typeof (MiscItemId)).Length];
 
             // miscファイルを解釈する
             if (!MiscParser.Parse(Game.GetReadFileName(Game.MiscPathName)))
@@ -2969,6 +4162,10 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // 編集済みフラグを全て解除する
+            ResetDirtyAll();
+
+            // 読み込み済みフラグを設定する
             _loaded = true;
         }
 
@@ -2977,36 +4174,23 @@ namespace HoI2Editor.Models
         #region 設定項目操作
 
         /// <summary>
-        /// 項目の値を取得する
+        ///     項目の値を取得する
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>項目の値</returns>
         public static object GetItem(MiscItemId id)
         {
-            return Items[(int) id];
+            return _items[(int) id];
         }
 
         /// <summary>
-        /// 項目の値を設定する
+        ///     項目の値を設定する
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <param name="o">項目の値</param>
         public static void SetItem(MiscItemId id, object o)
         {
-            Items[(int) id] = o;
-        }
-
-        /// <summary>
-        /// 項目の値が範囲内かどうかを判定する
-        /// </summary>
-        /// <param name="id">項目ID</param>
-        /// <param name="o">項目の値</param>
-        /// <returns>範囲内ならばtrueを返す</returns>
-        public static bool IsInRange(MiscItemId id, object o)
-        {
-            throw new NotImplementedException();
-
-            return false;
+            _items[(int) id] = o;
         }
 
         #endregion
@@ -3065,416 +4249,7 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     economyセクション
-    /// </summary>
-    public class MiscEconomy
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     intelligenceセクション
-    /// </summary>
-    public class MiscIntelligence
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     diplomacyセクション
-    /// </summary>
-    public class MiscDiplomacy
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     combatセクション
-    /// </summary>
-    public class MiscCombat
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     missionセクション
-    /// </summary>
-    public class MiscMission
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     countryセクション
-    /// </summary>
-    public class MiscCountry
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     researchセクション
-    /// </summary>
-    public class MiscResearch
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     tradeセクション
-    /// </summary>
-    public class MiscTrade
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     aiセクション
-    /// </summary>
-    public class MiscAi
-    {
-        // NOT IMPLEMENTED
-    }
-
-    /// <summary>
-    ///     modセクション
-    /// </summary>
-    public class MiscMod
-    {
-        #region 公開プロパティ
-
-        #region DH
-
-        /// <summary>
-        ///     AIのスパイ/外交活動をログに記録する [0:無効/1:有効]
-        /// </summary>
-        public bool AiSpyDiplomacyLogger { get; set; }
-
-        /// <summary>
-        ///     国家の状態をログに記録する [0:無効/>0:指定日数毎に記録/-1:プレイヤー国のみ]
-        /// </summary>
-        public int CountryLogger { get; set; }
-
-        /// <summary>
-        ///     AI切り替えをログに記録する [0:無効/1:有効]
-        /// </summary>
-        public bool SwitchedAiLogger { get; set; }
-
-        /// <summary>
-        ///     新しい自動セーブファイル名フォーマットを使用する [0:無効/1:有効]
-        /// </summary>
-        public bool NewAutoSaveFileFormat { get; set; }
-
-        /// <summary>
-        ///     マルチプレイで新しいAI設定/切り替えを使用する [0:無効/1:有効]
-        /// </summary>
-        public bool LoadNewAiSettingMultiPlayer { get; set; }
-
-        /// <summary>
-        ///     新しい貿易システムの計算間隔 [0:DDAのシステムを使用/>0:指定日数毎に計算]
-        /// </summary>
-        public int TradeEfficiencyCalculationInterval { get; set; }
-
-        /// <summary>
-        ///     備蓄庫の統合/再配置の計算間隔 [0:DDAのシステムを使用/>0:指定日数毎に計算]
-        /// </summary>
-        public int DepotCalculationInterval { get; set; }
-
-        /// <summary>
-        ///     損失をログに記録する
-        ///     [0:無効/1:有効(艦船/輸送船団)/2:装備の損失も含む]
-        ///     [3:捕獲されたユニットの装備の損失も含む/4:消耗も含む]
-        /// </summary>
-        public int LossesLogger { get; set; }
-
-        /// <summary>
-        ///     自国領土外でも補給が届いていれば旅団の配備を可能にする [0:無効/1:有効]
-        /// </summary>
-        public bool AllowBrigadeAttachingInSupply { get; set; }
-
-        /// <summary>
-        ///     一括配備数(陸軍)
-        /// </summary>
-        public int MultipleDeploymentSizeArmy { get; set; }
-
-        /// <summary>
-        ///     一括配備数(海軍)
-        /// </summary>
-        public int MultipleDeploymentSizeFleet { get; set; }
-
-        /// <summary>
-        ///     一括配備数(空軍)
-        /// </summary>
-        public int MultipleDeploymentSizeAir { get; set; }
-
-        /// <summary>
-        ///     全ての陸地プロヴィンスで固有の画像を許可する [0:無効/1:有効]
-        /// </summary>
-        public bool AllowUniquePictureAllLandProvinces { get; set; }
-
-        /// <summary>
-        ///     プレイヤー国のイベントに自動応答する [0:無効/1:有効]
-        /// </summary>
-        public bool AutoReplyEvents { get; set; }
-
-        /// <summary>
-        ///     無効なアクションを表示する [0:無効/1:有効なトリガーがあれば表示/2:常に表示]
-        /// </summary>
-        public int ForceActionsToShowNoValidCommands { get; set; }
-
-        /// <summary>
-        ///     ディシジョンを有効にする [0:無効/1:有効]
-        /// </summary>
-        public bool EnableDecisionsPlayer { get; set; }
-
-        /// <summary>
-        ///     反乱軍の構成 [0:民兵のみ/100:歩兵のみ]
-        /// </summary>
-        public int RebelArmyComposition { get; set; }
-
-        /// <summary>
-        ///     反乱軍の技術レベル [-1:モデル1/0:最新モデル/>0:最新モデルから指定数幅のランダム]
-        /// </summary>
-        public int RebelArmyTechLevel { get; set; }
-
-        /// <summary>
-        ///     反乱軍の最小戦力 [1-100]
-        /// </summary>
-        public double RebelArmyMinStr { get; set; }
-
-        /// <summary>
-        ///     反乱軍の最大戦力 [1-100]
-        /// </summary>
-        public double RebelArmyMaxStr { get; set; }
-
-        /// <summary>
-        ///     反乱軍の指揮統制率回復
-        /// </summary>
-        public double RebelArmyOrgRegain { get; set; }
-
-        /// <summary>
-        ///     隣接プロヴィンスが反乱軍に支配されている時の反乱危険率増加値
-        /// </summary>
-        public double RebelBonusControlledRebel { get; set; }
-
-        /// <summary>
-        ///     隣接プロヴィンスが敵軍に占領されている時の反乱危険率増加値
-        /// </summary>
-        public double RebelBonusOccupiedEnemy { get; set; }
-
-        /// <summary>
-        ///     山岳プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusMountain { get; set; }
-
-        /// <summary>
-        ///     丘陵プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusHill { get; set; }
-
-        /// <summary>
-        ///     森林プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusForest { get; set; }
-
-        /// <summary>
-        ///     密林プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusJungle { get; set; }
-
-        /// <summary>
-        ///     湿地プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusSwamp { get; set; }
-
-        /// <summary>
-        ///     砂漠プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusDesert { get; set; }
-
-        /// <summary>
-        ///     平地プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusPlain { get; set; }
-
-        /// <summary>
-        ///     都市プロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusUrban { get; set; }
-
-        /// <summary>
-        ///     海軍/空軍基地のあるプロヴィンスの反乱危険率増加値
-        /// </summary>
-        public double RebelBonusBase { get; set; }
-
-        /// <summary>
-        ///     反乱軍消滅後にプロヴィンスが元の所有国に復帰するまでの月数 [100000:復帰しない]
-        /// </summary>
-        public int ReturnMonthNoRebelArmy { get; set; }
-
-        /// <summary>
-        ///     新閣僚フォーマットを使用する [0:無効/1:有効]
-        /// </summary>
-        public bool NewMinisterFormat { get; set; }
-
-        #endregion
-
-        #region DH1.03
-
-        /// <summary>
-        ///     閣僚の引退年を有効にする [0:無効/1:有効]
-        /// </summary>
-        public bool RetirementYearMinister { get; set; }
-
-        /// <summary>
-        ///     指揮官の引退年を有効にする [0:無効/1:有効]
-        /// </summary>
-        public bool RetirementYearLeader { get; set; }
-
-        #endregion
-
-        #region DH
-
-        /// <summary>
-        ///     スプライトをMODDIRからのみ読み込む [0:無効/有効]
-        /// </summary>
-        public bool LoadSpriteModdirOnly { get; set; }
-
-        /// <summary>
-        ///     ユニットアイコンをMODDIRからのみ読み込む [0:無効/有効]
-        /// </summary>
-        public bool LoadUnitIconModdirOnly { get; set; }
-
-        /// <summary>
-        ///     ユニット画像をMODDIRからのみ読み込む [0:無効/有効]
-        /// </summary>
-        public bool LoadUnitPictureModdirOnly { get; set; }
-
-        /// <summary>
-        ///     AIをMODDIRからのみ読み込む [0:無効/有効]
-        /// </summary>
-        public bool LoadAiModdirOnly { get; set; }
-
-        /// <summary>
-        ///     移動不可ユニットの判定に速度の値を使用する [0:守備隊のみ移動不可/1:速度0ならば移動不可]
-        /// </summary>
-        public bool UseSpeedGarrisonStatus { get; set; }
-
-        /// <summary>
-        ///     DH1.02より前のセーブデータフォーマットを使用する [0:無効/1:有効]
-        /// </summary>
-        public bool UseOldSaveGameFormat { get; set; }
-
-        #endregion
-
-        #region DH1.03以降
-
-        /// <summary>
-        ///     生産画面のUIスタイル [0:従来スタイル/1:新スタイル]
-        /// </summary>
-        public bool ProductionPanelStyle { get; set; }
-
-        /// <summary>
-        ///     ユニット画像のサイズ [0:従来サイズ(192x104)/1:新サイズ(360x160)]
-        /// </summary>
-        public bool UnitPictureSize { get; set; }
-
-        /// <summary>
-        ///     艦船装備に画像を使用する [0:アイコンを使用/1:画像を使用]
-        /// </summary>
-        public bool UsePictureNavalBrigade { get; set; }
-
-        /// <summary>
-        ///     建物をプロヴィンスからのみ生産可能にする
-        ///     [0:無効/1:有効(港/飛行場/原子炉/ロケット試験所)/2:1に加えて対空砲/レーダーも]
-        /// </summary>
-        public int BuildableOnlyProvince { get; set; }
-
-        /// <summary>
-        ///     ユニット補正の統計ページを新スタイルにする閾値
-        /// </summary>
-        public int UnitModifierStatisticsPage { get; set; }
-
-        #endregion
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public MiscMod()
-        {
-            MultipleDeploymentSizeArmy = 3;
-            MultipleDeploymentSizeFleet = 6;
-            MultipleDeploymentSizeAir = 2;
-            RebelArmyTechLevel = -1;
-            RebelArmyMinStr = 100;
-            RebelArmyMaxStr = 100;
-            RebelArmyOrgRegain = 0.2;
-            ReturnMonthNoRebelArmy = 100000;
-            UnitModifierStatisticsPage = 15;
-        }
-
-        #endregion
-    }
-
-    /// <summary>
-    ///     mapセクション
-    /// </summary>
-    public class MiscMap
-    {
-        #region 公開プロパティ
-
-        #region DH
-
-        /// <summary>
-        ///     マップの番号 [0:デフォルトマップを使用/その他:map\map_Xを使用]
-        /// </summary>
-        public int MapNo { get; set; }
-
-        /// <summary>
-        ///     総プロヴィンス数
-        /// </summary>
-        public int TotalProvinces { get; set; }
-
-        /// <summary>
-        ///     距離計算モデル [0:従来モデル/1:新モデル]
-        /// </summary>
-        public bool DistanceCalculationModel { get; set; }
-
-        /// <summary>
-        ///     マップの幅
-        /// </summary>
-        public int MapWidth { get; set; }
-
-        /// <summary>
-        ///     マップの高さ
-        /// </summary>
-        public int MapHeight { get; set; }
-
-        #endregion
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public MiscMap()
-        {
-            TotalProvinces = 2608;
-            MapWidth = 29952;
-            MapHeight = 11520;
-        }
-
-        #endregion
-    }
-
-    /// <summary>
-    ///     Miscの項目ID
+    ///     misc項目ID
     /// </summary>
     public enum MiscItemId
     {
@@ -3531,7 +4306,7 @@ namespace HoI2Editor.Models
         MonthlyNationalismReduction, // 月ごとのナショナリズムの減少値
         SendDivisionDays, // 師団譲渡後配備可能になるまでの時間
         TcLoadUndeployedBrigade, // 未配備旅団のTC負荷
-        CanUnitSendNonAllied, // 非同盟国に師団を譲渡できるかどうか
+        CanUnitSendNonAllied, // 非同盟国に師団を売却
         SpyMissionDays, // 諜報任務の間隔
         IncreateIntelligenceLevelDays, // 諜報レベルの増加間隔
         ChanceDetectSpyMission, // 国内の諜報活動を発見する確率
@@ -3623,10 +4398,10 @@ namespace HoI2Editor.Models
         CvlMaxAttach, // 軽空母最大付属装備数
         CvMaxAttach, // 空母最大付属装備数
         CanChangeIdeas, // プレイヤーの国策変更を許可
-        CanUnitSendNonAlliedDh, // 非同盟国に師団を譲渡できるかどうか
-        BluePrintsCanSoldNonAllied, // 非同盟国に青写真の売却を許可
-        ProvinceCanSoldNonAllied, // 非同盟国にプロヴィンスの売却/譲渡を許可
-        TransferAlliedCoreProvinces, // 占領中の同盟国の中核州返還を許可
+        CanUnitSendNonAlliedDh, // 非同盟国に師団を売却
+        BluePrintsCanSoldNonAllied, // 非同盟国に青写真を売却
+        ProvinceCanSoldNonAllied, // 非同盟国にプロヴィンスを売却
+        TransferAlliedCoreProvinces, // 占領中の同盟国の中核州返還
         ProvinceBuildingsRepairModifier, // 建物修復速度補正
         ProvinceResourceRepairModifier, // 資源回復速度補正
         StockpileLimitMultiplierResource, // 資源備蓄上限補正
@@ -3784,6 +4559,7 @@ namespace HoI2Editor.Models
         ChanceGetTerrainTrait, // 地形特性獲得可能性
         ChanceGetEventTrait, // 戦闘特性獲得可能性
         BonusTerrainTrait, // 地形特性補正
+        BonusSimilarTerrainTrait, // 類似地形特性補正
         BonusEventTrait, // 戦闘特性補正
         BonusLeaderSkillPointLand, // 陸軍指揮官スキル補正
         BonusLeaderSkillPointAir, // 空軍指揮官スキル補正
@@ -4010,19 +4786,342 @@ namespace HoI2Editor.Models
         BreakthroughStrDefenderDh, // 突破イベント防御側戦力補正
         HqStrDamageBreakthrough, // 司令部は突破イベント時のみ戦力ダメージ
         CombatMode, // 戦闘モード
+
+        // mission
+        AttackMission, // 攻撃任務
+        AttackStartingEfficiency, // 攻撃初期効率
+        AttackSpeedBonus, // 攻撃速度ボーナス
+        RebaseMission, // 基地移動任務
+        RebaseStartingEfficiency, // 基地移動初期効率
+        RebaseChanceDetected, // 基地移動被発見確率
+        StratRedeployMission, // 戦略的再配置任務
+        StratRedeployStartingEfficiency, // 戦略的再配置初期効率
+        StratRedeployAddedValue, // 戦略的再配置加算値
+        StratRedeployDistanceMultiplier, // 戦略的再配置距離補正
+        SupportAttackMission, // 支援攻撃任務
+        SupportAttackStartingEfficiency, // 支援攻撃初期効率
+        SupportAttackSpeedBonus, // 支援攻撃速度ボーナス
+        SupportDefenseMission, // 防衛支援任務
+        SupportDefenseStartingEfficiency, // 防衛支援初期効率
+        SupportDefenseSpeedBonus, // 防衛支援速度ボーナス
+        ReservesMission, // 待機任務
+        ReservesStartingEfficiency, // 待機初期効率
+        ReservesSpeedBonus, // 待機速度ボーナス
+        AntiPartisanDutyMission, // パルチザン掃討任務
+        AntiPartisanDutyStartingEfficiency, // パルチザン掃討初期効率
+        AntiPartisanDutySuppression, // パルチザン掃討制圧力補正
+        PlannedDefenseMission, // 防衛計画任務
+        PlannedDefenseStartingEfficiency, // 防衛計画初期効率
+        AirSuperiorityMission, // 制空権任務
+        AirSuperiorityStartingEfficiency, // 制空権初期効率
+        AirSuperiorityDetection, // 制空権敵機発見補正
+        AirSuperiorityMinRequired, // 制空権最小ユニット数
+        GroundAttackMission, // 地上攻撃任務
+        GroundAttackStartingEfficiency, // 地上攻撃初期効率
+        GroundAttackOrgDamage, // 地上攻撃組織率ダメージ補正
+        GroundAttackStrDamage, // 地上攻撃戦力ダメージ補正
+        InterdictionMission, // 阻止攻撃任務
+        InterdictionStartingEfficiency, // 阻止攻撃初期効率
+        InterdictionOrgDamage, // 阻止攻撃組織率ダメージ補正
+        InterdictionStrDamage, // 阻止攻撃戦力ダメージ補正
+        StrategicBombardmentMission, // 戦略爆撃任務
+        StrategicBombardmentStartingEfficiency, // 戦略爆撃初期効率
+        LogisticalStrikeMission, // 兵站攻撃任務
+        LogisticalStrikeStartingEfficiency, // 兵站攻撃初期効率
+        RunwayCrateringMission, // 空港空爆任務
+        RunwayCrateringStartingEfficiency, // 空港空爆初期効率
+        InstallationStrikeMission, // 軍事施設攻撃任務
+        InstallationStrikeStartingEfficiency, // 軍事施設攻撃初期効率
+        NavalStrikeMission, // 艦船攻撃任務
+        NavalStrikeStartingEfficiency, // 艦船攻撃初期効率
+        PortStrikeMission, // 港湾攻撃任務
+        PortStrikeStartingEfficiency, // 港湾攻撃初期効率
+        ConvoyAirRaidingMission, // 航空船団爆撃任務
+        ConvoyAirRaidingStartingEfficiency, // 航空船団爆撃初期効率
+        AirSupplyMission, // 空輸補給任務
+        AirSupplyStartingEfficiency, // 空輸補給初期効率
+        AirborneAssaultMission, // 空挺強襲任務
+        AirborneAssaultStartingEfficiency, // 空挺強襲初期効率
+        NukeMission, // 核攻撃任務
+        NukeStartingEfficiency, // 核攻撃初期効率
+        AirScrambleMission, // 航空緊急出撃任務
+        AirScrambleStartingEfficiency, // 航空緊急出撃初期効率
+        AirScrambleDetection, // 航空緊急出撃敵機発見補正
+        AirScrambleMinRequired, // 航空緊急出撃最小ユニット数
+        ConvoyRadingMission, // 船団襲撃任務
+        ConvoyRadingStartingEfficiency, // 船団襲撃初期効率
+        ConvoyRadingRangeModifier, // 船団襲撃航続距離補正
+        ConvoyRadingChanceDetected, // 船団襲撃被発見確率
+        AswMission, // 対潜作戦任務
+        AswStartingEfficiency, // 対潜作戦初期効率
+        NavalInterdictionMission, // 海上阻止任務
+        NavalInterdictionStartingEfficiency, // 海上阻止初期効率
+        ShoreBombardmentMission, // 沿岸砲撃任務
+        ShoreBombardmentStartingEfficiency, // 沿岸砲撃初期効率
+        ShoreBombardmentModifierDh, // 沿岸砲撃補正
+        AmphibousAssaultMission, // 強襲上陸任務
+        AmphibousAssaultStartingEfficiency, // 強襲上陸初期効率
+        SeaTransportMission, // 海上輸送任務
+        SeaTransportStartingEfficiency, // 海上輸送初期効率
+        SeaTransportRangeModifier, // 海上輸送航続距離補正
+        SeaTransportChanceDetected, // 海上輸送被発見確率
+        NavalCombatPatrolMission, // 海上戦闘哨戒任務
+        NavalCombatPatrolStartingEfficiency, // 海上戦闘哨戒初期効率
+        NavalPortStrikeMission, // 空母による港湾攻撃任務
+        NavalPortStrikeStartingEfficiency, // 空母による港湾攻撃初期効率
+        NavalAirbaseStrikeMission, // 空母による航空基地攻撃任務
+        NavalAirbaseStrikeStartingEfficiency, // 空母による航空基地攻撃初期効率
+        SneakMoveMission, // 隠密移動任務
+        SneakMoveStartingEfficiency, // 隠密移動初期効率
+        SneakMoveRangeModifier, // 隠密移動航続距離補正
+        SneakMoveChanceDetected, // 隠密移動被発見確率
+        NavalScrambleMission, // 海上緊急出撃任務
+        NavalScrambleStartingEfficiency, // 海上緊急出撃初期効率
+        NavalScrambleSpeedBonus, // 海上緊急出撃速度ボーナス
+        UseAttackEfficiencyCombatModifier, // 攻撃/支援攻撃効率を戦闘補正として使用
+
+        // country
+        LandFortEfficiency, // 陸上要塞効率
+        CoastalFortEfficiency, // 沿岸要塞効率
+        GroundDefenseEfficiency, // 対地防御効率
+        ConvoyDefenseEfficiency, // 船団防衛効率
+        ManpowerBoost, // 人的資源増加
+        TransportCapacityModifier, // TC補正
+        OccupiedTransportCapacityModifier, // 占領地TC補正
+        AttritionModifier, // 消耗補正
+        ManpowerTrickleBackModifier, // 人的資源復帰補正
+        SupplyDistanceModifier, // 遠隔地補給補正
+        RepairModifier, // 修理補正
+        ResearchModifier, // 研究補正
+        RadarEfficiency, // レーダー効率
+        HqSupplyEfficiencyBonus, // 司令部補給効率ボーナス
+        HqCombatEventsBonus, // 司令部コンバットイベントボーナス
+        CombatEventChances, // コンバットイベント発生確率
+        FriendlyArmyDetectionChance, // 友軍発見確率
+        EnemyArmyDetectionChance, // 敵軍発見確率
+        FriendlyIntelligenceChance, // 友好国諜報確率
+        EnemyIntelligenceChance, // 敵国諜報確率
+        MaxAmphibiousArmySize, // 最大強襲上陸規模
+        EnergyToOil, // エネルギー/石油変換効率
+        TotalProductionEfficiency, // 総合生産効率
+        SupplyProductionEfficiency, // 物資生産効率
+        AaPower, // 対空砲攻撃力
+        AirSurpriseChance, // 空軍奇襲確率
+        LandSurpriseChance, // 陸軍奇襲確率
+        NavalSurpriseChance, // 海軍奇襲確率
+        PeacetimeIcModifier, // 平時IC補正
+        WartimeIcModifier, // 戦時IC補正
+        BuildingsProductionModifier, // 建造物生産補正
+        ConvoysProductionModifier, // 輸送船団生産補正
+        MinShipsPositioningBattle, // 最小艦船ポジション値
+        MaxShipsPositioningBattle, // 最大艦船ポジション値
+        PeacetimeStockpilesResources, // 平時資源備蓄補正
+        WartimeStockpilesResources, // 戦時資源備蓄補正
+        PeacetimeStockpilesOilSupplies, // 平時物資/燃料備蓄補正
+        WartimeStockpilesOilSupplies, // 戦時物資/燃料備蓄補正
+
+        // research
+        BlueprintBonus, // 青写真ボーナス
+        PreHistoricalDateModifier, // 史実年度以前研究ペナルティ
+        PostHistoricalDateModifierDh, // 史実年度以降研究ボーナス
+        CostSkillLevel, // 研究機関レベル毎のコスト
+        MeanNumberInventionEventsYear, // 1年毎の発明イベント平均回数
+        PostHistoricalDateModifierAoD, // 史実年度以降研究ボーナス
+        TechSpeedModifier, // 研究速度補正
+        PreHistoricalPenaltyLimit, // 史実年度以前研究ペナルティ上限
+        PostHistoricalBonusLimit, // 史実年度以降研究ボーナス上限
+        MaxActiveTechTeamsAoD, // 研究スロット上限
+        RequiredIcEachTechTeamAoD, // 研究スロット毎の必要IC
+        MaximumRandomModifier, // 最大ランダム補正
+        UseNewTechnologyPageLayout, // 研究ページのレイアウト
+        TechOverviewPanelStyle, // 研究概要パネルのスタイル
+        MaxActiveTechTeamsDh, // 研究スロット上限
+        MinActiveTechTeams, // 研究スロット下限
+        RequiredIcEachTechTeamDh, // 研究スロット毎の必要IC
+        NewCountryRocketryComponent, // 新規国家でロケット技術を継承
+        NewCountryNuclearPhysicsComponent, // 新規国家で核物理学技術を継承
+        NewCountryNuclearEngineeringComponent, // 新規国家で核工学技術を継承
+        NewCountrySecretTechs, // 新規国家で秘密兵器技術を継承
+        MaxTechTeamSkill, // 最大研究機関スキル
+
+        // trade
+        DaysTradeOffers, // 貿易交渉間隔
+        DelayGameStartNewTrades, // ゲーム開始直後の貿易交渉遅延日数
+        LimitAiNewTradesGameStart, // ゲーム開始直後のAI友好国貿易交渉遅延日数
+        DesiredOilStockpile, // 理想石油備蓄
+        CriticalOilStockpile, // 危険水準石油備蓄
+        DesiredSuppliesStockpile, // 理想物資備蓄
+        CriticalSuppliesStockpile, // 危険水準物資備蓄
+        DesiredResourcesStockpile, // 理想資源備蓄
+        CriticalResourceStockpile, // 危険水準資源備蓄
+        WartimeDesiredStockpileMultiplier, // 戦時理想備蓄係数
+        PeacetimeExtraOilImport, // 平時石油臨時輸入割合
+        WartimeExtraOilImport, // 戦時石油臨時輸入割合
+        ExtraImportBelowDesired, // 理想備蓄未到達時の臨時輸入割合
+        PercentageProducedSupplies, // 物資生産割合
+        PercentageProducedMoney, // 資金生産割合
+        ExtraImportStockpileSelected, // 備蓄選択時の臨時輸入割合
+        DaysDeliverResourcesTrades, // 貿易協定資源輸送日数
+        MergeTradeDeals, // 貿易協定の統合
+        ManualTradeDeals, // 手動貿易協定
+        PuppetsSendSuppliesMoney, // 傀儡国上納物資/資金
+        PuppetsCriticalSupplyStockpile, // 傀儡国物資危険水準
+        PuppetsMaxPoolResources, // 傀儡国最大資源備蓄
+        NewTradeDealsMinEffectiveness, // 新規貿易協定最小効率
+        CancelTradeDealsEffectiveness, // 貿易協定破棄効率
+        AutoTradeAiTradeDeals, // 自動/AIの貿易協定最小効率
+
+        // ai
+        OverproduceSuppliesBelowDesired, // 理想備蓄未達時の余剰物資生産比率
+        MultiplierOverproduceSuppliesWar, // 戦時余剰物資生産係数
+        NotProduceSuppliesStockpileOver, // 備蓄余裕時の物資生産禁止係数
+        MaxSerialLineProductionGarrisonMilitia, // 守備隊/民兵の最大連続生産数
+        MinIcSerialProductionNavalAir, // 海軍/空軍連続生産最小IC
+        NotProduceNewUnitsManpowerRatio, // 新規生産禁止人的資源比率
+        NotProduceNewUnitsManpowerValue, // 新規生産禁止人的資源値
+        NotProduceNewUnitsSupply, // 新規生産禁止物資比率
+        MilitaryStrengthTotalIcRatioPeacetime, // 総ICに対する軍事力比率(平時)
+        MilitaryStrengthTotalIcRatioWartime, // 総ICに対する軍事力比率(戦時)
+        MilitaryStrengthTotalIcRatioMajor, // 総ICに対する軍事力比率(主要国)
+        NotUseOffensiveSupplyStockpile, // 攻勢中止物資備蓄
+        NotUseOffensiveOilStockpile, // 攻勢中止燃料備蓄
+        NotUseOffensiveEse, // 攻勢中止補給効率
+        NotUseOffensiveOrgStrDamage, // 攻勢中止組織率/戦力ダメージ
+        AiPeacetimeSpyMissionsDh, // AIの平時の攻撃的諜報活動
+        AiSpyMissionsCostModifierDh, // AIの諜報コスト補正
+        AiDiplomacyCostModifierDh, // AIの外交コスト補正
+        AiInfluenceModifierDh, // AIの外交影響度補正
+        NewDowRules, // AIの新宣戦布告ルール
+        NewDowRules2, // AIの新宣戦布告ルール
+        ForcePuppetsJoinMastersAllianceNeutrality, // 傀儡国が宗主国の同盟に強制加入する中立性
+        ForcePuppetsJoinMastersAllianceNeutrality2, // 傀儡国が宗主国の同盟に強制加入する中立性
+        NewAiReleaseRules, // 新AI占領地解放ルール
+        AiEventsActionSelectionRules, // AIイベント選択ルール
+        ForceStrategicRedeploymentHour, // 強制戦略的再配置時間
+        MaxRedeploymentDaysAi, // AI最大再配置日数
+        UseQuickAreaCheckGarrisonAi, // 守備隊AIの簡易チェック
+        AiMastersGetProvincesConquredPuppets, // AI宗主国が傀儡国の占領地を支配
+        MinDaysRequiredAiReleaseCountry, // AI占領地解放最小日数
+        MinDaysRequiredAiAllied, // AI占領地返還最小日数
+        MinDaysRequiredAiAlliedSupplyBase, // AI占領地返還最小日数(物資補給基地)
+        MinRequiredRelationsAlliedClaimed, // 被領有権主張時連合加盟最小友好度
+
+        // mod
+        AiSpyDiplomaticMissionLogger, // AIの諜報/外交をログに記録
+        CountryLogger, // 国家情報をログに記録
+        SwitchedAiFilesLogger, // AI切り替えをログに記録
+        UseNewAutoSaveFileFormat, // 新自動セーブファイル名
+        LoadNewAiSwitchingAllClients, // マルチプレイでAI切替時に新しい設定を読み込む
+        TradeEfficiencyCalculationSystem, // 貿易効率算出間隔
+        MergeRelocateProvincialDepots, // 備蓄庫の再計算間隔
+        InGameLossesLogging, // 損失を記録
+        InGameLossLogging2, // 損失を記録
+        AllowBrigadeAttachingInSupply, // 占領地で旅団付属を許可
+        MultipleDeploymentSizeArmies, // 陸軍の一括配置数
+        MultipleDeploymentSizeFleets, // 海軍の一括配置数
+        MultipleDeploymentSizeAir, // 空軍の一括配置数
+        AllowUniquePicturesAllLandProvinces, // すべての陸地プロヴィンスに固有画像を許可
+        AutoReplyEvents, // イベント選択肢を委任
+        ForceActionsShow, // イベント選択肢強制表示
+        EnableDicisionsPlayers, // ディシジョンを使用する
+        RebelsArmyComposition, // パルチザンの歩兵構成割合
+        RebelsArmyTechLevel, // パルチザンの技術レベル
+        RebelsArmyMinStr, // パルチザン最小戦力
+        RebelsArmyMaxStr, // パルチザン最大戦力
+        RebelsOrgRegain, // パルチザン組織率回復速度
+        ExtraRebelBonusNeighboringProvince, // パルチザンボーナス(隣接地占領)
+        ExtraRebelBonusOccupied, // パルチザンボーナス(占領地)
+        ExtraRebelBonusMountain, // パルチザンボーナス(山岳)
+        ExtraRebelBonusHill, // パルチザンボーナス(丘陵)
+        ExtraRebelBonusForest, // パルチザンボーナス(森林)
+        ExtraRebelBonusJungle, // パルチザンボーナス(密林)
+        ExtraRebelBonusSwamp, // パルチザンボーナス(湿地)
+        ExtraRebelBonusDesert, // パルチザンボーナス(砂漠)
+        ExtraRebelBonusPlain, // パルチザンボーナス(平地)
+        ExtraRebelBonusUrban, // パルチザンボーナス(都市)
+        ExtraRebelBonusAirNavalBases, // パルチザンボーナス(航空/海軍基地)
+        ReturnRebelliousProvince, // パルチザン占領プロヴィンス返却時間
+        UseNewMinisterFilesFormat, // 新形式閣僚ファイルフォーマット
+        EnableRetirementYearMinisters, // 閣僚引退年を使用
+        EnableRetirementYearLeaders, // 指揮官引退年を使用
+        LoadSpritesModdirOnly, // スプライトをMODDIRのみから読み込む
+        LoadUnitIconsModdirOnly, // ユニットアイコンをMODDIRのみから読み込む
+        LoadUnitPicturesModdirOnly, // ユニット画像をMODDIRのみから読み込む
+        LoadAiFilesModdirOnly, // AIファイルをMODDIRのみから読み込む
+        UseSpeedSetGarrisonStatus, // 守備隊判定ルール
+        UseOldSaveGameFormat, // 旧セーブフォーマットを使用
+        ProductionPanelUiStyle, // 生産パネルのUIスタイル
+        UnitPicturesSize, // ユニット画像のサイズ
+        EnablePicturesNavalBrigades, // 艦艇付属装備に画像を使用
+        BuildingsBuildableOnlyProvinces, // 建物をプロヴィンスでのみ建造
+        UnitModifiersStatisticsPages, // ユニット補正ページの新スタイル移行閾値
+
+        // map
+        MapNumber, // マップ番号
+        TotalProvinces, // 総プロヴィンス数
+        DistanceCalculationModel, // 距離算出方法
+        MapWidth, // マップの幅
+        MapHeight, // マップの高さ
     }
 
     /// <summary>
-    /// ゲーム設定項目の型
+    ///     miscセクションID
+    /// </summary>
+    public enum MiscSectionId
+    {
+        Economy,
+        Intelligence,
+        Diplomacy,
+        Combat,
+        Mission,
+        Country,
+        Research,
+        Trade,
+        Ai,
+        Mod,
+        Map,
+    }
+
+    /// <summary>
+    ///     miscファイルの種類
+    /// </summary>
+    public enum MiscGameType
+    {
+        Dda12, // DDA1.2
+        Dda13, // DDA1.3
+        Aod104, // AoD1.04
+        Aod107, // AoD1.07
+        Aod108, // AoD1.08-
+        Dh102, // DH1.02
+        Dh103, // DH1.03-
+    }
+
+    /// <summary>
+    ///     misc項目の型
     /// </summary>
     public enum MiscItemType
     {
-        Bool, // Yes/No
+        Bool, // ブール値
         Enum, // 選択肢
-        PosInt, // 非負の整数
+        Int, // 整数
+        PosInt, // 正の整数
+        NegInt, // 負の整数
+        NonNegInt, // 非負の整数
+        NonPosInt, // 非正の整数
+        NonNegIntMinusOne, // 非負の整数 or -1
         RangedInt, // 範囲あり整数
-        PosDbl, // 非負の実数
-        PosDblMinusOne, // 非負の実数 or -1
+        RangedPosInt, // 範囲あり正の整数
+        RangedNegInt, // 範囲あり負の整数
+        Dbl, // 実数
+        PosDbl, // 正の実数
+        NegDbl, // 負の実数
+        NonNegDbl, // 非負の実数
+        NonPosDbl, // 非正の実数
+        NonNegDblMinusOne, // 非負の実数 or -1
         RangedDbl, // 範囲あり実数
+        RangedPosDbl, // 範囲あり正の実数
+        RangedNegDbl, // 範囲あり負の実数
+        RangedDblMinusOne, // 範囲あり実数 or -1
+        RangedDblMinusThree, // 範囲あり実数 or -1 or -2 or -3
     }
 }

@@ -1,4 +1,5 @@
-﻿using HoI2Editor.Models;
+﻿using System.Linq;
+using HoI2Editor.Models;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Parsers
@@ -17,6 +18,29 @@ namespace HoI2Editor.Parsers
         /// <returns>構文解析の成否</returns>
         public static bool Parse(string fileName)
         {
+            // ゲームの種類を設定する
+            MiscGameType gameType;
+            switch (Game.Type)
+            {
+                case GameType.HeartsOfIron2:
+                    gameType = (Game.Version >= 130) ? MiscGameType.Dda13 : MiscGameType.Dda12;
+                    break;
+
+                case GameType.ArsenalOfDemocracy:
+                    gameType = (Game.Version >= 108)
+                                   ? MiscGameType.Aod108
+                                   : ((Game.Version <= 104) ? MiscGameType.Aod104 : MiscGameType.Aod107);
+                    break;
+
+                case GameType.DarkestHour:
+                    gameType = (Game.Version >= 103) ? MiscGameType.Dh103 : MiscGameType.Dh102;
+                    break;
+
+                default:
+                    gameType = MiscGameType.Dda12;
+                    break;
+            }
+
             using (var lexer = new TextLexer(fileName))
             {
                 while (true)
@@ -45,7 +69,7 @@ namespace HoI2Editor.Parsers
                     // economyセクション
                     if (keyword.Equals("economy"))
                     {
-                        if (!ParseEconomy(lexer))
+                        if (!ParseSection(MiscSectionId.Economy, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "economy",
                                                     Resources.Section, "misc.txt"));
@@ -56,7 +80,7 @@ namespace HoI2Editor.Parsers
                     // intelligenceセクション
                     if (keyword.Equals("intelligence"))
                     {
-                        if (!ParseIntelligence(lexer))
+                        if (!ParseSection(MiscSectionId.Intelligence, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "intelligence",
                                                     Resources.Section, "misc.txt"));
@@ -67,7 +91,7 @@ namespace HoI2Editor.Parsers
                     // diplomacyセクション
                     if (keyword.Equals("diplomacy"))
                     {
-                        if (!ParseDiplomacy(lexer))
+                        if (!ParseSection(MiscSectionId.Diplomacy, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "diplomacy",
                                                     Resources.Section, "misc.txt"));
@@ -78,7 +102,7 @@ namespace HoI2Editor.Parsers
                     // combatセクション
                     if (keyword.Equals("combat"))
                     {
-                        if (!ParseCombat(lexer))
+                        if (!ParseSection(MiscSectionId.Combat, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "combat",
                                                     Resources.Section, "misc.txt"));
@@ -89,7 +113,7 @@ namespace HoI2Editor.Parsers
                     // missionセクション
                     if (keyword.Equals("mission"))
                     {
-                        if (!ParseMission(lexer))
+                        if (!ParseSection(MiscSectionId.Mission, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mission",
                                                     Resources.Section, "misc.txt"));
@@ -100,7 +124,7 @@ namespace HoI2Editor.Parsers
                     // countryセクション
                     if (keyword.Equals("country"))
                     {
-                        if (!ParseCountry(lexer))
+                        if (!ParseSection(MiscSectionId.Country, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "country",
                                                     Resources.Section, "misc.txt"));
@@ -111,7 +135,7 @@ namespace HoI2Editor.Parsers
                     // researchセクション
                     if (keyword.Equals("research"))
                     {
-                        if (!ParseResearch(lexer))
+                        if (!ParseSection(MiscSectionId.Research, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "research",
                                                     Resources.Section, "misc.txt"));
@@ -122,7 +146,7 @@ namespace HoI2Editor.Parsers
                     // tradeセクション
                     if (keyword.Equals("trade"))
                     {
-                        if (!ParseTrade(lexer))
+                        if (!ParseSection(MiscSectionId.Trade, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "trade",
                                                     Resources.Section, "misc.txt"));
@@ -133,7 +157,7 @@ namespace HoI2Editor.Parsers
                     // aiセクション
                     if (keyword.Equals("ai"))
                     {
-                        if (!ParseAi(lexer))
+                        if (!ParseSection(MiscSectionId.Ai, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "ai",
                                                     Resources.Section, "misc.txt"));
@@ -144,7 +168,7 @@ namespace HoI2Editor.Parsers
                     // modセクション
                     if (keyword.Equals("mod"))
                     {
-                        if (!ParseMod(lexer))
+                        if (!ParseSection(MiscSectionId.Mod, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mod",
                                                     Resources.Section, "misc.txt"));
@@ -155,7 +179,7 @@ namespace HoI2Editor.Parsers
                     // mapセクション
                     if (keyword.Equals("map"))
                     {
-                        if (!ParseMap(lexer))
+                        if (!ParseSection(MiscSectionId.Map, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "map",
                                                     Resources.Section, "misc.txt"));
@@ -170,11 +194,13 @@ namespace HoI2Editor.Parsers
         }
 
         /// <summary>
-        ///     economyセクションを構文解析する
+        ///     セクションを構文解析する
         /// </summary>
+        /// <param name="sectionId">セクションID</param>
+        /// <param name="gameType">ゲームの種類</param>
         /// <param name="lexer">字句解析器</param>
         /// <returns>構文解析の成否</returns>
-        private static bool ParseEconomy(TextLexer lexer)
+        private static bool ParseSection(MiscSectionId sectionId, MiscGameType gameType, TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -192,949 +218,61 @@ namespace HoI2Editor.Parsers
                 return false;
             }
 
-            while (true)
+            MiscItemId[] itemIds
+                = Misc.SectionItems[(int) sectionId].Where(id => Misc.ItemTable[(int) id, (int) gameType]).ToArray();
+            int index = 0;
+
+            while (index < itemIds.Length)
             {
-                // 暫定: 数字を読み飛ばす
+                // 設定値
                 token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
+                if (token.Type != TokenType.Number)
                 {
-                    continue;
+                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    return false;
                 }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
+                MiscItemId itemId = itemIds[index];
+                switch (Misc.ItemTypes[(int) itemId])
                 {
-                    break;
-                }
+                    case MiscItemType.Bool:
+                        Misc.SetItem(itemId, (int) (double) token.Value != 0);
+                        break;
 
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
+                    case MiscItemType.Enum:
+                    case MiscItemType.Int:
+                    case MiscItemType.PosInt:
+                    case MiscItemType.NegInt:
+                    case MiscItemType.NonNegInt:
+                    case MiscItemType.NonPosInt:
+                    case MiscItemType.NonNegIntMinusOne:
+                    case MiscItemType.RangedInt:
+                    case MiscItemType.RangedPosInt:
+                    case MiscItemType.RangedNegInt:
+                        Misc.SetItem(itemId, (int) (double) token.Value);
+                        break;
+
+                    case MiscItemType.Dbl:
+                    case MiscItemType.PosDbl:
+                    case MiscItemType.NegDbl:
+                    case MiscItemType.NonNegDbl:
+                    case MiscItemType.NonPosDbl:
+                    case MiscItemType.NonNegDblMinusOne:
+                    case MiscItemType.RangedDbl:
+                    case MiscItemType.RangedPosDbl:
+                    case MiscItemType.RangedNegDbl:
+                    case MiscItemType.RangedDblMinusOne:
+                    case MiscItemType.RangedDblMinusThree:
+                        Misc.SetItem(itemId, (double) token.Value);
+                        break;
+                }
+                //Log.Write(string.Format("{0}: {1}\n", itemId, token.Value));
+                index++;
             }
 
-            return true;
-        }
-
-        /// <summary>
-        ///     intelligenceセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseIntelligence(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
+            // } (セクション終端)
             token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
+            if (token.Type != TokenType.CloseBrace)
             {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     diplomacyセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseDiplomacy(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     combatセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseCombat(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     missionセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseMission(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     countryセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseCountry(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     researchセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseResearch(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     tradeセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseTrade(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     aiセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseAi(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            while (true)
-            {
-                // 暫定: 数字を読み飛ばす
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    continue;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     modセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseMod(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            if (Game.Type == GameType.DarkestHour)
-            {
-                // AIのスパイ/外交活動をログに記録する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.AiSpyDiplomacyLogger = ((int) (double) token.Value == 1);
-
-                // 国家の状態をログに記録する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.CountryLogger = (int) (double) token.Value;
-
-                // AI切り替えをログに記録する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.SwitchedAiLogger = ((int) (double) token.Value == 1);
-
-                // 新しい自動セーブファイル名フォーマットを使用する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.NewAutoSaveFileFormat = ((int) (double) token.Value == 1);
-
-                // マルチプレイで新しいAI設定/切り替えを使用する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.LoadNewAiSettingMultiPlayer = ((int) (double) token.Value == 1);
-
-                // 新しい貿易システムの計算間隔
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.TradeEfficiencyCalculationInterval = (int) (double) token.Value;
-
-                // 備蓄庫の統合/再配置の計算間隔
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.DepotCalculationInterval = (int) (double) token.Value;
-
-                // 損失をログに記録する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.LossesLogger = (int) (double) token.Value;
-
-                // 自国領土外でも補給が届いていれば旅団の配備を可能にする
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.AllowBrigadeAttachingInSupply = ((int) (double) token.Value == 1);
-
-                // 一括配備数(陸軍)
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.MultipleDeploymentSizeArmy = (int) (double) token.Value;
-
-                // 一括配備数(海軍)
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.MultipleDeploymentSizeFleet = (int) (double) token.Value;
-
-                // 一括配備数(空軍)
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.MultipleDeploymentSizeAir = (int) (double) token.Value;
-
-                // 全ての陸地プロヴィンスで固有の画像を許可する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.AllowUniquePictureAllLandProvinces = ((int) (double) token.Value == 1);
-
-                // プレイヤー国のイベントに自動応答する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.AutoReplyEvents = ((int) (double) token.Value == 1);
-
-                // 無効なアクションを表示する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.ForceActionsToShowNoValidCommands = (int) (double) token.Value;
-
-                // ディシジョンを有効にする
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.EnableDecisionsPlayer = ((int) (double) token.Value == 1);
-
-                // 反乱軍の構成
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelArmyComposition = (int) (double) token.Value;
-
-                // 反乱軍の技術レベル
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelArmyTechLevel = (int) (double) token.Value;
-
-                // 反乱軍の最小戦力
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelArmyMinStr = (double) token.Value;
-
-                // 反乱軍の最大戦力
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelArmyMaxStr = (double) token.Value;
-
-                // 反乱軍の指揮統制率回復
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelArmyOrgRegain = (double) token.Value;
-
-                // 隣接プロヴィンスが反乱軍に支配されている時の反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusControlledRebel = (double) token.Value;
-
-                // 隣接プロヴィンスが敵軍に占領されている時の反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusOccupiedEnemy = (double) token.Value;
-
-                // 山岳プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusMountain = (double) token.Value;
-
-                // 丘陵プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusHill = (double) token.Value;
-
-                // 森林プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusForest = (double) token.Value;
-
-                // 密林プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusJungle = (double) token.Value;
-
-                // 湿地プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusSwamp = (double) token.Value;
-
-                // 砂漠プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusDesert = (double) token.Value;
-
-                // 平地プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusPlain = (double) token.Value;
-
-                // 都市プロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusUrban = (double) token.Value;
-
-                // 海軍/空軍基地のあるプロヴィンスの反乱危険率増加値
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.RebelBonusBase = (double) token.Value;
-
-                // 反乱軍消滅後にプロヴィンスが元の所有国に復帰するまでの月数
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.ReturnMonthNoRebelArmy = (int) (double) token.Value;
-
-                // 新閣僚フォーマットを使用する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.NewMinisterFormat = ((int) (double) token.Value == 1);
-
-                if (Game.Version >= 103)
-                {
-                    // 閣僚の引退年を有効にする
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Number)
-                    {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                        return false;
-                    }
-                    Misc.Mod.RetirementYearMinister = ((int) (double) token.Value == 1);
-
-                    // 指揮官の引退年を有効にする
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Number)
-                    {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                        return false;
-                    }
-                    Misc.Mod.RetirementYearLeader = ((int) (double) token.Value == 1);
-                }
-
-                // スプライトをMODDIRからのみ読み込む
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.LoadSpriteModdirOnly = ((int) (double) token.Value == 1);
-
-                // ユニットアイコンをMODDIRからのみ読み込む
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.LoadUnitIconModdirOnly = ((int) (double) token.Value == 1);
-
-                // ユニット画像をMODDIRからのみ読み込む
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.LoadUnitPictureModdirOnly = ((int) (double) token.Value == 1);
-
-                // AIをMODDIRからのみ読み込む
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.LoadAiModdirOnly = ((int) (double) token.Value == 1);
-
-                // 移動不可ユニットの判定に速度の値を使用する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.UseSpeedGarrisonStatus = ((int) (double) token.Value == 1);
-
-                // DH1.02より前のセーブデータフォーマットを使用する
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Mod.UseOldSaveGameFormat = ((int) (double) token.Value == 1);
-
-                if (Game.Version >= 103)
-                {
-                    // 生産画面のUIスタイル
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Number)
-                    {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                        return false;
-                    }
-                    Misc.Mod.ProductionPanelStyle = ((int) (double) token.Value == 1);
-
-                    // ユニット画像のサイズ
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Number)
-                    {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                        return false;
-                    }
-                    Misc.Mod.UnitPictureSize = ((int) (double) token.Value == 1);
-
-                    // 艦船装備に画像を使用する
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Number)
-                    {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                        return false;
-                    }
-                    Misc.Mod.UsePictureNavalBrigade = ((int) (double) token.Value == 1);
-
-                    // 建物をプロヴィンスからのみ生産可能にする
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Number)
-                    {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                        return false;
-                    }
-                    Misc.Mod.BuildableOnlyProvince = (int) (double) token.Value;
-
-                    // ユニット補正の統計ページを新スタイルにする閾値
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Number)
-                    {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                        return false;
-                    }
-                    Misc.Mod.UnitModifierStatisticsPage = (int) (double) token.Value;
-                }
-            }
-
-            while (true)
-            {
-                // } (セクション終端)
-                token = lexer.GetToken();
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     mapセクションを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>構文解析の成否</returns>
-        private static bool ParseMap(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                return false;
-            }
-
-            if (Game.Type == GameType.DarkestHour)
-            {
-                // マップの番号
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Map.MapNo = (int) (double) token.Value;
-
-                // 総プロヴィンス数
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Map.TotalProvinces = (int) (double) token.Value;
-
-                // 距離計算モデル
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Map.DistanceCalculationModel = ((int) (double) token.Value == 1);
-
-                // マップの幅
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Map.MapWidth = (int) (double) token.Value;
-
-                // マップの高さ
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Number)
-                {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
-                    return false;
-                }
-                Misc.Map.MapHeight = (int) (double) token.Value;
-            }
-
-            while (true)
-            {
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
                 Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                 return false;
             }

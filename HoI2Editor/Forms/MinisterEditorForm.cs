@@ -594,7 +594,9 @@ namespace HoI2Editor.Forms
             item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(minister.Name);
             item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(Misc.Mod.NewMinisterFormat ? minister.EndYear.ToString(CultureInfo.InvariantCulture) : "");
+            item.SubItems.Add(Misc.UseNewMinisterFilesFormat
+                                  ? minister.EndYear.ToString(CultureInfo.InvariantCulture)
+                                  : "");
             item.SubItems.Add(Config.GetText(Ministers.PositionNames[(int) minister.Position]));
             item.SubItems.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
             item.SubItems.Add(Config.GetText(Ministers.IdeologyNames[(int) minister.Ideology]));
@@ -890,12 +892,12 @@ namespace HoI2Editor.Forms
             idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
             startYearNumericUpDown.Text = startYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
 
-            if (Misc.Mod.NewMinisterFormat)
+            if (Misc.UseNewMinisterFilesFormat)
             {
                 endYearNumericUpDown.Enabled = true;
                 endYearNumericUpDown.Text = endYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
             }
-            if (Misc.Mod.RetirementYearMinister)
+            if (Misc.EnableRetirementYearMinisters)
             {
                 retirementYearNumericUpDown.Enabled = true;
                 retirementYearNumericUpDown.Text =

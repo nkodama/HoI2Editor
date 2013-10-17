@@ -406,12 +406,12 @@ namespace HoI2Editor.Models
             string[] tokens = line.Split(CsvSeparator);
 
             // トークン数が足りない行は読み飛ばす
-            if (tokens.Length != (Misc.Mod.RetirementYearLeader ? 19 : 18))
+            if (tokens.Length != (Misc.EnableRetirementYearLeaders ? 19 : 18))
             {
                 Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
-                if (tokens.Length < (Misc.Mod.RetirementYearLeader ? 18 : 17))
+                if (tokens.Length < (Misc.EnableRetirementYearLeaders ? 18 : 17))
                 {
                     return null;
                 }
@@ -600,7 +600,7 @@ namespace HoI2Editor.Models
             index++;
 
             // 引退年
-            if (Misc.Mod.RetirementYearLeader)
+            if (Misc.EnableRetirementYearLeaders)
             {
                 int retirementYear;
                 if (int.TryParse(tokens[index], out retirementYear))
@@ -675,7 +675,7 @@ namespace HoI2Editor.Models
 
                 // ヘッダ行を書き込む
                 writer.WriteLine(
-                    Misc.Mod.RetirementYearLeader
+                    Misc.EnableRetirementYearLeaders
                         ? "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;Retirement Year;x"
                         : "Name;ID;Country;Rank 3 Year;Rank 2 Year;Rank 1 Year;Rank 0 Year;Ideal Rank;Max Skill;Traits;Skill;Experience;Loyalty;Type;Picture;Start Year;End Year;x");
 
@@ -697,7 +697,7 @@ namespace HoI2Editor.Models
                     }
 
                     // 指揮官定義行を書き込む
-                    if (Misc.Mod.RetirementYearLeader)
+                    if (Misc.EnableRetirementYearLeaders)
                     {
                         writer.WriteLine(
                             "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};x",

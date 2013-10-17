@@ -162,10 +162,10 @@ namespace HoI2Editor.Models
             string folderName;
 
             // DHでデフォルト以外のマップを使用する場合、マップフォルダからprovince_names.csvを読み込む
-            if (Game.Type == GameType.DarkestHour && Misc.Map.MapNo != 0)
+            if (Game.Type == GameType.DarkestHour && Misc.MapNumber != 0)
             {
                 folderName = Path.Combine(Path.Combine(Game.ModFolderName, Game.MapPathName),
-                                          string.Format("Map_{0}", Misc.Map.MapNo));
+                                          string.Format("Map_{0}", Misc.MapNumber));
                 string fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
                 if (File.Exists(fileName))
                 {
@@ -185,7 +185,7 @@ namespace HoI2Editor.Models
                 }
 
                 folderName = Path.Combine(Path.Combine(Game.FolderName, Game.MapPathName),
-                                          string.Format("Map_{0}", Misc.Map.MapNo));
+                                          string.Format("Map_{0}", Misc.MapNumber));
                 fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
                 if (File.Exists(fileName))
                 {

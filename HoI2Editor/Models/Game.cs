@@ -422,13 +422,13 @@ namespace HoI2Editor.Models
         public static string GetMapFolderName()
         {
             // バニラのマップ
-            if (Type != GameType.DarkestHour || Misc.Map.MapNo == 0)
+            if (Type != GameType.DarkestHour || Misc.MapNumber == 0)
             {
                 return DatabasePathName;
             }
 
             // DHのマップ拡張
-            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.Map.MapNo));
+            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
         }
 
         /// <summary>
@@ -438,13 +438,13 @@ namespace HoI2Editor.Models
         public static string GetProvinceNameFolderName()
         {
             // バニラのマップ
-            if (Type != GameType.DarkestHour || Misc.Map.MapNo == 0)
+            if (Type != GameType.DarkestHour || Misc.MapNumber == 0)
             {
                 return ConfigPathName;
             }
 
             // DHのマップ拡張
-            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.Map.MapNo));
+            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
         }
 
         /// <summary>
@@ -455,7 +455,7 @@ namespace HoI2Editor.Models
         public static string GetProvinceImageFileName(int id)
         {
             string folderName;
-            if (Type != GameType.DarkestHour || Misc.Map.MapNo == 0)
+            if (Type != GameType.DarkestHour || Misc.MapNumber == 0)
             {
                 // バニラのプロヴィンス画像フォルダ
                 folderName = PicturePathName;
@@ -463,7 +463,7 @@ namespace HoI2Editor.Models
             else
             {
                 // DHのマップ拡張
-                folderName = Path.Combine(MapPathName, string.Format("Map_{0}", Misc.Map.MapNo));
+                folderName = Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
                 folderName = Path.Combine(folderName, MapImagePathName);
             }
 
