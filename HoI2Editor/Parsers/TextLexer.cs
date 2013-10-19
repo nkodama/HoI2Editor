@@ -22,6 +22,11 @@ namespace HoI2Editor.Parsers
         /// </summary>
         private Token _token;
 
+        /// <summary>
+        /// 空白文字をスキップするかどうか
+        /// </summary>
+        private bool _skipWhiteSpace;
+
         #endregion
 
         #region 初期化
@@ -30,8 +35,11 @@ namespace HoI2Editor.Parsers
         ///     コンストラクタ
         /// </summary>
         /// <param name="fileName">解析対象のファイル名</param>
-        public TextLexer(string fileName)
+        /// <param name="skipWhiteSpace">空白文字をスキップするかどうか</param>
+        public TextLexer(string fileName, bool skipWhiteSpace)
         {
+            _skipWhiteSpace = skipWhiteSpace;
+
             Open(fileName);
         }
 
@@ -153,35 +161,44 @@ namespace HoI2Editor.Parsers
         /// <returns>トークン</returns>
         private Token Parse()
         {
-            int c;
+            int c = _reader.Peek();
+
+            // ファイルの末尾ならばnullを返す
+            if (c == -1)
+            {
+                return null;
+            }
 
             // 空白文字とコメントを読み飛ばす
-            while (true)
+            if (_skipWhiteSpace)
             {
-                c = _reader.Peek();
-
-                // ファイルの末尾ならばnullを返す
-                if (c == -1)
+                while (true)
                 {
-                    return null;
-                }
+                    // ファイルの末尾ならばnullを返す
+                    if (c == -1)
+                    {
+                        return null;
+                    }
 
-                // 空白文字を読み飛ばす
-                if (char.IsWhiteSpace((char) c))
-                {
-                    _reader.Read();
-                    continue;
-                }
+                    // 空白文字を読み飛ばす
+                    if (char.IsWhiteSpace((char)c))
+                    {
+                        _reader.Read();
+                        c = _reader.Peek();
+                        continue;
+                    }
 
-                // #の後は行コメントとみなす
-                if (c == '#')
-                {
-                    _reader.ReadLine();
-                    continue;
-                }
+                    // #の後は行コメントとみなす
+                    if (c == '#')
+                    {
+                        _reader.ReadLine();
+                        c = _reader.Peek();
+                        continue;
+                    }
 
-                // 空白文字とコメント以外ならばトークンの先頭と解釈する
-                break;
+                    // 空白文字とコメント以外ならばトークンの先頭と解釈する
+                    break;
+                }
             }
 
             // 数字
@@ -222,6 +239,21 @@ namespace HoI2Editor.Parsers
             {
                 _reader.Read();
                 return new Token {Type = TokenType.CloseBrace};
+            }
+
+            if (!_skipWhiteSpace)
+            {
+                // 空白文字
+                if (char.IsWhiteSpace((char)c))
+                {
+                    return ParseWhiteSpace();
+                }
+
+                // コメント開始
+                if (c == '#')
+                {
+                    return ParseComment();
+                }
             }
 
             // 無効な文字列
@@ -355,6 +387,70 @@ namespace HoI2Editor.Parsers
             }
 
             return new Token {Type = TokenType.String, Value = sb.ToString()};
+        }
+
+        /// <summary>
+        ///     空白文字を解析する
+        /// </summary>
+        /// <returns>トークン</returns>
+        private Token ParseWhiteSpace()
+        {
+            var sb = new StringBuilder();
+
+            while (true)
+            {
+                int c = _reader.Peek();
+
+                // ファイルの末尾ならば読み込み終了
+                if (c == -1)
+                {
+                    break;
+                }
+
+                // 空白ならば読み進める
+                if (char.IsWhiteSpace((char)c))
+                {
+                    _reader.Read();
+                    sb.Append((char)c);
+                    continue;
+                }
+
+                // 対象外の文字ならば抜ける
+                break;
+            }
+
+            return new Token { Type = TokenType.WhiteSpace, Value = sb.ToString() };
+        }
+
+        /// <summary>
+        ///     コメントを解析する
+        /// </summary>
+        /// <returns>トークン</returns>
+        private Token ParseComment()
+        {
+            var sb = new StringBuilder();
+
+            while (true)
+            {
+                int c = _reader.Peek();
+
+                // ファイルの末尾ならば読み込み終了
+                if (c == -1)
+                {
+                    break;
+                }
+
+                // 改行ならば読み込み終了
+                if (c == '\r' || c == '\n')
+                {
+                    break;
+                }
+
+                _reader.Read();
+                sb.Append((char)c);
+            }
+
+            return new Token { Type = TokenType.Comment, Value = sb.ToString() };
         }
 
         /// <summary>

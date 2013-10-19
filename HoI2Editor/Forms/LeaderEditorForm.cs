@@ -1764,7 +1764,7 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown3.Text = rankYearNumericUpDown3.Value.ToString(CultureInfo.InvariantCulture);
             rankYearNumericUpDown4.Text = rankYearNumericUpDown4.Value.ToString(CultureInfo.InvariantCulture);
 
-            if (Misc.Mod.RetirementYearLeader)
+            if (Misc.EnableRetirementYearLeaders)
             {
                 retirementYearNumericUpDown.Enabled = true;
                 retirementYearNumericUpDown.Text =

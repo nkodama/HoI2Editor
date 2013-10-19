@@ -1156,12 +1156,12 @@ namespace HoI2Editor.Models
             }
 
             // トークン数が足りない行は読み飛ばす
-            if (tokens.Length != (Misc.Mod.RetirementYearMinister ? 11 : (Misc.Mod.NewMinisterFormat ? 10 : 9)))
+            if (tokens.Length != (Misc.EnableRetirementYearMinisters ? 11 : (Misc.UseNewMinisterFilesFormat ? 10 : 9)))
             {
                 Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}\n", line));
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
-                if (tokens.Length < (Misc.Mod.RetirementYearMinister ? 10 : (Misc.Mod.NewMinisterFormat ? 9 : 8)))
+                if (tokens.Length < (Misc.EnableRetirementYearMinisters ? 10 : (Misc.UseNewMinisterFilesFormat ? 9 : 8)))
                 {
                     return;
                 }
@@ -1203,7 +1203,7 @@ namespace HoI2Editor.Models
             int startYear;
             if (Int32.TryParse(tokens[index], out startYear))
             {
-                minister.StartYear = startYear + (Misc.Mod.NewMinisterFormat ? 0 : 1900);
+                minister.StartYear = startYear + (Misc.UseNewMinisterFilesFormat ? 0 : 1900);
             }
             else
             {
@@ -1214,7 +1214,7 @@ namespace HoI2Editor.Models
             index++;
 
             // 終了年
-            if (Misc.Mod.NewMinisterFormat)
+            if (Misc.UseNewMinisterFilesFormat)
             {
                 int endYear;
                 if (Int32.TryParse(tokens[index], out endYear))
@@ -1236,7 +1236,7 @@ namespace HoI2Editor.Models
             }
 
             // 引退年
-            if (Misc.Mod.RetirementYearMinister)
+            if (Misc.EnableRetirementYearMinisters)
             {
                 int retirementYear;
                 if (Int32.TryParse(tokens[index], out retirementYear))
@@ -1368,14 +1368,14 @@ namespace HoI2Editor.Models
                 _currentLineNo = 3;
 
                 // ヘッダ行を書き込む
-                if (Misc.Mod.RetirementYearMinister)
+                if (Misc.EnableRetirementYearMinisters)
                 {
                     writer.WriteLine(
                         "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Retirement Year;Ideology;Personality;Loyalty;Picturename;X",
                         Country.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;;;X");
                 }
-                else if (Misc.Mod.NewMinisterFormat)
+                else if (Misc.UseNewMinisterFilesFormat)
                 {
                     writer.WriteLine(
                         "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Ideology;Personality;Loyalty;Picturename;X",
@@ -1413,7 +1413,7 @@ namespace HoI2Editor.Models
                     }
 
                     // 閣僚定義行を書き込む
-                    if (Misc.Mod.RetirementYearMinister)
+                    if (Misc.EnableRetirementYearMinisters)
                     {
                         writer.WriteLine(
                             "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};X",
@@ -1428,7 +1428,7 @@ namespace HoI2Editor.Models
                             LoyaltyStrings[(int) minister.Loyalty],
                             minister.PictureName);
                     }
-                    else if (Misc.Mod.NewMinisterFormat)
+                    else if (Misc.UseNewMinisterFilesFormat)
                     {
                         writer.WriteLine(
                             "{0};{1};{2};{3};{4};{5};{6};{7};{8};X",

@@ -138,6 +138,9 @@
     <value>32, 71</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="miscButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
   <data name="gameFolderTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -156,26 +159,29 @@
   <data name="&gt;&gt;modTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="optionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="logCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;optionGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;exitButton.Name" xml:space="preserve">
-    <value>exitButton</value>
+  <data name="&gt;&gt;miscButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="teamButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="gameFolderLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;modLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;techButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;provinceButton.Name" xml:space="preserve">
     <value>provinceButton</value>
+  </data>
+  <data name="&gt;&gt;provinceButton.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
   </data>
   <data name="languageLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -189,6 +195,12 @@
   <data name="modLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="editGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 109</value>
+  </data>
+  <data name="&gt;&gt;techButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;editGroupBox.Name" xml:space="preserve">
     <value>editGroupBox</value>
   </data>
@@ -198,11 +210,17 @@
   <data name="languageLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="optionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>359, 48</value>
+  </data>
   <data name="logCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
-  <data name="modFolderReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="miscButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="miscButton.Text" xml:space="preserve">
+    <value>Misc</value>
   </data>
   <data name="modLabel.Text" xml:space="preserve">
     <value>MOD Name</value>
@@ -283,10 +301,10 @@
     <value>4</value>
   </data>
   <data name="&gt;&gt;leaderButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
-  <data name="editGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 109</value>
+  <data name="&gt;&gt;modFolderReferButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="logCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -300,11 +318,17 @@
   <data name="&gt;&gt;modTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
+    <value>optionGroupBox</value>
+  </data>
   <data name="&gt;&gt;languageLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="editGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="modFolderReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="gameFolderReferButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -315,8 +339,8 @@
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
   </data>
-  <data name="&gt;&gt;gameFolderTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="teamButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;gameFolderReferButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -333,8 +357,14 @@
   <data name="provinceButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
+  <data name="&gt;&gt;exitButton.Name" xml:space="preserve">
+    <value>exitButton</value>
+  </data>
   <data name="&gt;&gt;gameFolderTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;miscButton.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
   </data>
   <data name="exitButton.Text" xml:space="preserve">
     <value>Exit</value>
@@ -353,6 +383,9 @@
   </data>
   <data name="ministerButton.Text" xml:space="preserve">
     <value>Minister</value>
+  </data>
+  <data name="&gt;&gt;miscButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="languageLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -385,7 +418,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;provinceButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;unitButton.Parent" xml:space="preserve">
     <value>editGroupBox</value>
@@ -399,17 +432,14 @@
   <data name="exitButton.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="optionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>359, 48</value>
-  </data>
-  <data name="&gt;&gt;modFolderReferButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;logCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="modFolderReferButton.Text" xml:space="preserve">
+    <value>Browse</value>
   </data>
   <data name="provinceButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>325, 18</value>
+  </data>
+  <data name="&gt;&gt;logCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;ministerButton.Parent" xml:space="preserve">
     <value>editGroupBox</value>
@@ -423,17 +453,20 @@
   <data name="gameFolderLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 12</value>
   </data>
+  <data name="editGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="optionGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
   <data name="ministerButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 18</value>
   </data>
   <data name="&gt;&gt;techButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;ministerButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;exitButton.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -463,13 +496,10 @@
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;teamButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="logCheckBox.Text" xml:space="preserve">
     <value>Show error logs</value>
-  </data>
-  <data name="modFolderReferButton.Text" xml:space="preserve">
-    <value>Browse</value>
   </data>
   <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>72, 18</value>
@@ -480,14 +510,17 @@
   <data name="&gt;&gt;unitButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="miscButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
   <data name="&gt;&gt;optionGroupBox.Name" xml:space="preserve">
     <value>optionGroupBox</value>
   </data>
   <data name="editGroupBox.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="&gt;&gt;provinceButton.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+  <data name="gameFolderReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="editGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 160</value>
@@ -506,9 +539,6 @@
   </data>
   <data name="gameFolderLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="gameFolderLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;exitButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -540,8 +570,8 @@
   <data name="&gt;&gt;leaderButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="editGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="&gt;&gt;miscButton.Name" xml:space="preserve">
+    <value>miscButton</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>464, 281</value>
@@ -562,13 +592,13 @@
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;unitButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;logCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
-    <value>optionGroupBox</value>
+  <data name="&gt;&gt;gameFolderTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="modTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>339, 19</value>
@@ -585,17 +615,14 @@
   <data name="leaderButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 18</value>
   </data>
-  <data name="logCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="miscButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 47</value>
   </data>
   <data name="optionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 106</value>
   </data>
   <data name="&gt;&gt;teamButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gameFolderReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
