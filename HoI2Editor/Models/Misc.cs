@@ -80,7 +80,7 @@ namespace HoI2Editor.Models
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (MiscItemId)).Length];
 
         /// <summary>
-        /// 項目のコメント
+        ///     項目のコメント
         /// </summary>
         private static string[] _comments = new string[Enum.GetValues(typeof (MiscItemId)).Length];
 
@@ -4233,7 +4233,7 @@ namespace HoI2Editor.Models
         #region ファイル書き込み
 
         /// <summary>
-        /// miscファイルを保存する
+        ///     miscファイルを保存する
         /// </summary>
         public static void Save()
         {
@@ -4280,13 +4280,13 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 項目のコメントを追加する
+        ///     項目のコメントを追加する
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <param name="s">追加する文字列</param>
         public static void AppendComment(MiscItemId id, string s)
         {
-            _comments[(int)id] += s;
+            _comments[(int) id] += s;
         }
 
         #endregion

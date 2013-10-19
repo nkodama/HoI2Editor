@@ -13,6 +13,11 @@ namespace HoI2Editor.Parsers
         #region 内部フィールド
 
         /// <summary>
+        ///     空白文字をスキップするかどうか
+        /// </summary>
+        private readonly bool _skipWhiteSpace;
+
+        /// <summary>
         ///     テキストファイルの読み込み用
         /// </summary>
         private StreamReader _reader;
@@ -21,11 +26,6 @@ namespace HoI2Editor.Parsers
         ///     保留中のトークン
         /// </summary>
         private Token _token;
-
-        /// <summary>
-        /// 空白文字をスキップするかどうか
-        /// </summary>
-        private bool _skipWhiteSpace;
 
         #endregion
 
@@ -181,7 +181,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空白文字を読み飛ばす
-                    if (char.IsWhiteSpace((char)c))
+                    if (char.IsWhiteSpace((char) c))
                     {
                         _reader.Read();
                         c = _reader.Peek();
@@ -244,7 +244,7 @@ namespace HoI2Editor.Parsers
             if (!_skipWhiteSpace)
             {
                 // 空白文字
-                if (char.IsWhiteSpace((char)c))
+                if (char.IsWhiteSpace((char) c))
                 {
                     return ParseWhiteSpace();
                 }
@@ -408,10 +408,10 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 空白ならば読み進める
-                if (char.IsWhiteSpace((char)c))
+                if (char.IsWhiteSpace((char) c))
                 {
                     _reader.Read();
-                    sb.Append((char)c);
+                    sb.Append((char) c);
                     continue;
                 }
 
@@ -419,7 +419,7 @@ namespace HoI2Editor.Parsers
                 break;
             }
 
-            return new Token { Type = TokenType.WhiteSpace, Value = sb.ToString() };
+            return new Token {Type = TokenType.WhiteSpace, Value = sb.ToString()};
         }
 
         /// <summary>
@@ -447,10 +447,10 @@ namespace HoI2Editor.Parsers
                 }
 
                 _reader.Read();
-                sb.Append((char)c);
+                sb.Append((char) c);
             }
 
-            return new Token { Type = TokenType.Comment, Value = sb.ToString() };
+            return new Token {Type = TokenType.Comment, Value = sb.ToString()};
         }
 
         /// <summary>

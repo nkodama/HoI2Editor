@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 

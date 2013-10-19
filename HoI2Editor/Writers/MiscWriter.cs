@@ -67,7 +67,7 @@ namespace HoI2Editor.Writers
                 = Misc.SectionItems[(int) sectionId].Where(id => Misc.ItemTable[(int) id, (int) gameType]).ToArray();
 
             writer.WriteLine();
-            writer.Write("{0} = {{", Misc.SectionNames[(int)sectionId]);
+            writer.Write("{0} = {{", Misc.SectionNames[(int) sectionId]);
 
             // 項目のコメントと値を順に書き出す
             int index;
@@ -108,11 +108,11 @@ namespace HoI2Editor.Writers
                         var d = (double) Misc.GetItem(id);
                         if ((d < 0.0001 && d > 0) || (d > -0.0001 && d < 0))
                         {
-                            writer.Write(((double)Misc.GetItem(id)).ToString("F6"));
+                            writer.Write(((double) Misc.GetItem(id)).ToString("F6"));
                         }
                         else
                         {
-                            writer.Write(((double)Misc.GetItem(id)).ToString("G"));
+                            writer.Write(((double) Misc.GetItem(id)).ToString("G"));
                         }
                         break;
                 }

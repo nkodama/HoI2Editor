@@ -3884,7 +3884,7 @@ namespace HoI2Editor.Forms
                 aiInfluenceModifierDhTextBox.Text = Misc.GetItem(MiscItemId.AiInfluenceModifierDh).ToString();
                 forcePuppetsJoinMastersAllianceNeutralityTextBox.Text =
                     Misc.GetItem(MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality).ToString();
-                newAiReleaseRulesComboBox.SelectedIndex = (bool)Misc.GetItem(MiscItemId.NewAiReleaseRules) ? 1 : 0;
+                newAiReleaseRulesComboBox.SelectedIndex = (bool) Misc.GetItem(MiscItemId.NewAiReleaseRules) ? 1 : 0;
                 aiEventsActionSelectionRulesTextBox.Text =
                     Misc.GetItem(MiscItemId.AiEventsActionSelectionRules).ToString();
                 forceStrategicRedeploymentHourTextBox.Text =
