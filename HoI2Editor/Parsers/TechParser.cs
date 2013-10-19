@@ -29,7 +29,7 @@ namespace HoI2Editor.Parsers
         public static TechGroup Parse(string fileName)
         {
             _fileName = Path.GetFileName(fileName);
-            using (var lexer = new TextLexer(fileName))
+            using (var lexer = new TextLexer(fileName, true))
             {
                 Token token = lexer.GetToken();
                 // 無効なトークン

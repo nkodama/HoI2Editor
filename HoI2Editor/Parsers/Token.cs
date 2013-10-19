@@ -32,5 +32,7 @@
         Equal, // =
         OpenBrace, // {
         CloseBrace, // }
+        WhiteSpace, // 空白文字
+        Comment, // コメント
     }
 }

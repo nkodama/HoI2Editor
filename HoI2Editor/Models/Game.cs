@@ -221,7 +221,7 @@ namespace HoI2Editor.Models
         public const string ModPathNameDh = "Mods";
 
         /// <summary>
-        ///     miscのファイル名
+        ///     miscファイル名
         /// </summary>
         public const string MiscPathName = "db\\misc.txt";
 
@@ -599,7 +599,8 @@ namespace HoI2Editor.Models
                         l = BinaryScan(data, pattern, 0, (uint) size);
                         if (l.Count == 0)
                         {
-                            Version = 100;
+                            // 日本語版の場合バージョン取得不可のため固定で1.2とする
+                            Version = 120;
                             return;
                         }
                         offset = l[0] + (uint) pattern.Length;
@@ -634,7 +635,8 @@ namespace HoI2Editor.Models
                         l = BinaryScan(data, pattern, 0, (uint) size);
                         if (l.Count == 0)
                         {
-                            Version = 100;
+                            // バージョン取得不可の場合固定で1.04とする
+                            Version = 104;
                             return;
                         }
                     }
@@ -652,7 +654,8 @@ namespace HoI2Editor.Models
                     l = BinaryScan(data, pattern, 0, (uint) size);
                     if (l.Count == 0)
                     {
-                        Version = 100;
+                        // バージョン取得不可の場合固定で1.02とする
+                        Version = 102;
                         return;
                     }
                     offset = l[0] + (uint) pattern.Length;
@@ -670,7 +673,8 @@ namespace HoI2Editor.Models
                     l = BinaryScan(data, pattern, 0, (uint) size);
                     if (l.Count == 0)
                     {
-                        Version = 100;
+                        // 日本語版の場合バージョン取得不可のため固定で1.2とする
+                        Version = 120;
                         return;
                     }
                     offset = l[0] + (uint) pattern.Length;

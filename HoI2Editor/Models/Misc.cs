@@ -1,5 +1,6 @@
 ﻿using System;
 using HoI2Editor.Parsers;
+using HoI2Editor.Writers;
 
 namespace HoI2Editor.Models
 {
@@ -77,6 +78,11 @@ namespace HoI2Editor.Models
         ///     項目の編集済みフラグ
         /// </summary>
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (MiscItemId)).Length];
+
+        /// <summary>
+        /// 項目のコメント
+        /// </summary>
+        private static string[] _comments = new string[Enum.GetValues(typeof (MiscItemId)).Length];
 
         #endregion
 
@@ -288,7 +294,8 @@ namespace HoI2Editor.Models
                         MiscItemId.MaxDailyDissent,
                         MiscItemId.NukesProductionModifier,
                         MiscItemId.ConvoySystemOptionsAllied,
-                        MiscItemId.ResourceConvoysBackUnneeded
+                        MiscItemId.ResourceConvoysBackUnneeded,
+                        MiscItemId.EconomyEnd
                     },
                 new[]
                     {
@@ -307,7 +314,8 @@ namespace HoI2Editor.Models
                         MiscItemId.ExtraMaintenanceCostAboveTen,
                         MiscItemId.ExtraCostIncreasingAboveTen,
                         MiscItemId.ShowThirdCountrySpyReportsDh,
-                        MiscItemId.SpiesMoneyModifier
+                        MiscItemId.SpiesMoneyModifier,
+                        MiscItemId.IntelligenceEnd
                     },
                 new[]
                     {
@@ -325,7 +333,8 @@ namespace HoI2Editor.Models
                         MiscItemId.JoinAutomaticallyAllesAxis,
                         MiscItemId.AllowChangeHosHog,
                         MiscItemId.ChangeTagCoup,
-                        MiscItemId.FilterReleaseCountries
+                        MiscItemId.FilterReleaseCountries,
+                        MiscItemId.DiplomacyEnd
                     },
                 new[]
                     {
@@ -641,7 +650,8 @@ namespace HoI2Editor.Models
                         MiscItemId.BreakthroughOrgDefenderDh,
                         MiscItemId.BreakthroughStrDefenderDh,
                         MiscItemId.HqStrDamageBreakthrough,
-                        MiscItemId.CombatMode
+                        MiscItemId.CombatMode,
+                        MiscItemId.CombatEnd
                     }
                 ,
                 new[]
@@ -736,7 +746,8 @@ namespace HoI2Editor.Models
                         MiscItemId.NavalScrambleMission,
                         MiscItemId.NavalScrambleStartingEfficiency,
                         MiscItemId.NavalScrambleSpeedBonus,
-                        MiscItemId.UseAttackEfficiencyCombatModifier
+                        MiscItemId.UseAttackEfficiencyCombatModifier,
+                        MiscItemId.MissionEnd
                     },
                 new[]
                     {
@@ -777,7 +788,8 @@ namespace HoI2Editor.Models
                         MiscItemId.PeacetimeStockpilesResources,
                         MiscItemId.WartimeStockpilesResources,
                         MiscItemId.PeacetimeStockpilesOilSupplies,
-                        MiscItemId.WartimeStockpilesOilSupplies
+                        MiscItemId.WartimeStockpilesOilSupplies,
+                        MiscItemId.CountryEnd
                     },
                 new[]
                     {
@@ -802,7 +814,8 @@ namespace HoI2Editor.Models
                         MiscItemId.NewCountryNuclearPhysicsComponent,
                         MiscItemId.NewCountryNuclearEngineeringComponent,
                         MiscItemId.NewCountrySecretTechs,
-                        MiscItemId.MaxTechTeamSkill
+                        MiscItemId.MaxTechTeamSkill,
+                        MiscItemId.ResearchEnd
                     },
                 new[]
                     {
@@ -830,7 +843,8 @@ namespace HoI2Editor.Models
                         MiscItemId.PuppetsMaxPoolResources,
                         MiscItemId.NewTradeDealsMinEffectiveness,
                         MiscItemId.CancelTradeDealsEffectiveness,
-                        MiscItemId.AutoTradeAiTradeDeals
+                        MiscItemId.AutoTradeAiTradeDeals,
+                        MiscItemId.TradeEnd
                     },
                 new[]
                     {
@@ -856,7 +870,6 @@ namespace HoI2Editor.Models
                         MiscItemId.NewDowRules,
                         MiscItemId.NewDowRules2,
                         MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality,
-                        MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality2,
                         MiscItemId.NewAiReleaseRules,
                         MiscItemId.AiEventsActionSelectionRules,
                         MiscItemId.ForceStrategicRedeploymentHour,
@@ -866,7 +879,8 @@ namespace HoI2Editor.Models
                         MiscItemId.MinDaysRequiredAiReleaseCountry,
                         MiscItemId.MinDaysRequiredAiAllied,
                         MiscItemId.MinDaysRequiredAiAlliedSupplyBase,
-                        MiscItemId.MinRequiredRelationsAlliedClaimed
+                        MiscItemId.MinRequiredRelationsAlliedClaimed,
+                        MiscItemId.AiEnd
                     },
                 new[]
                     {
@@ -917,7 +931,8 @@ namespace HoI2Editor.Models
                         MiscItemId.UnitPicturesSize,
                         MiscItemId.EnablePicturesNavalBrigades,
                         MiscItemId.BuildingsBuildableOnlyProvinces,
-                        MiscItemId.UnitModifiersStatisticsPages
+                        MiscItemId.UnitModifiersStatisticsPages,
+                        MiscItemId.ModEnd
                     },
                 new[]
                     {
@@ -925,7 +940,8 @@ namespace HoI2Editor.Models
                         MiscItemId.TotalProvinces,
                         MiscItemId.DistanceCalculationModel,
                         MiscItemId.MapWidth,
-                        MiscItemId.MapHeight
+                        MiscItemId.MapHeight,
+                        MiscItemId.MapEnd
                     }
             };
 
@@ -1134,6 +1150,9 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, false, true},
                 {false, false, false, false, false, false, true},
                 {false, false, false, false, false, false, true},
+                {true, true, true, true, true, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
@@ -1478,6 +1497,7 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, false, true},
                 {false, false, false, false, false, false, true},
                 {false, false, false, false, false, false, true},
+                {true, true, true, true, true, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
@@ -1569,6 +1589,8 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
@@ -1629,6 +1651,7 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, false, true},
                 {false, false, false, false, false, false, true},
                 {false, false, false, false, false, false, true},
+                {true, true, true, true, true, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
@@ -1657,26 +1680,6 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, false},
-                {false, false, false, false, false, false, true},
-                {false, false, false, false, false, true, false},
-                {false, false, false, false, false, false, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
@@ -1715,6 +1718,27 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, false},
+                {false, false, false, false, false, false, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
@@ -1739,7 +1763,9 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true}
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true},
             };
 
         /// <summary>
@@ -1929,6 +1955,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.Enum,
                 MiscItemType.NonNegDblMinusOne,
+                MiscItemType.Dbl,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.RangedDbl,
@@ -1945,6 +1972,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.Enum,
                 MiscItemType.NonNegDbl,
+                MiscItemType.Dbl,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
@@ -1960,6 +1988,7 @@ namespace HoI2Editor.Models
                 MiscItemType.Enum,
                 MiscItemType.Bool,
                 MiscItemType.Enum,
+                MiscItemType.Dbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2273,6 +2302,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.Enum,
+                MiscItemType.Dbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
@@ -2364,6 +2394,7 @@ namespace HoI2Editor.Models
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
+                MiscItemType.Dbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2402,6 +2433,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.Dbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonPosDbl,
                 MiscItemType.NonNegDbl,
@@ -2424,6 +2456,7 @@ namespace HoI2Editor.Models
                 MiscItemType.Bool,
                 MiscItemType.Bool,
                 MiscItemType.PosInt,
+                MiscItemType.Dbl,
                 MiscItemType.PosInt,
                 MiscItemType.RangedPosInt,
                 MiscItemType.NonNegInt,
@@ -2449,6 +2482,7 @@ namespace HoI2Editor.Models
                 MiscItemType.RangedDbl,
                 MiscItemType.RangedDbl,
                 MiscItemType.RangedDbl,
+                MiscItemType.Dbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2471,7 +2505,6 @@ namespace HoI2Editor.Models
                 MiscItemType.Enum,
                 MiscItemType.Enum,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDblMinusThree,
                 MiscItemType.NonNegIntMinusOne,
@@ -2482,6 +2515,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.Int,
+                MiscItemType.Dbl,
                 MiscItemType.Bool,
                 MiscItemType.NonNegIntMinusOne,
                 MiscItemType.Bool,
@@ -2530,11 +2564,13 @@ namespace HoI2Editor.Models
                 MiscItemType.Bool,
                 MiscItemType.Enum,
                 MiscItemType.PosInt,
+                MiscItemType.Dbl,
                 MiscItemType.NonNegInt,
                 MiscItemType.RangedInt,
                 MiscItemType.Enum,
                 MiscItemType.PosInt,
-                MiscItemType.PosInt
+                MiscItemType.PosInt,
+                MiscItemType.Dbl
             };
 
         /// <summary>
@@ -2732,6 +2768,7 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
                 -10,
                 0,
                 0,
@@ -2794,6 +2831,9 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
+                0,
+                1,
                 1,
                 1,
                 1,
@@ -2805,189 +2845,6 @@ namespace HoI2Editor.Models
                 1,
                 1,
                 1,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                1,
-                1,
-                1,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
                 0,
                 0,
                 0,
@@ -3069,6 +2926,189 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
                 0.05,
                 0,
                 0,
@@ -3206,19 +3246,22 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
-                1,
-                1,
-                0,
                 0,
                 0,
                 1,
                 1,
+                0,
+                0,
+                0,
+                1,
+                1,
                 1,
                 0,
                 0,
                 0,
                 0,
                 1,
+                0,
                 1,
                 2,
                 0,
@@ -3247,68 +3290,6 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                1,
-                1,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                1,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
                 0,
                 1,
                 0,
@@ -3324,12 +3305,77 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
                 1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
                 0,
                 1,
                 0,
                 1,
-                1
+                1,
+                0
             };
 
         /// <summary>
@@ -3521,6 +3567,7 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
                 100,
                 400,
                 0,
@@ -3538,6 +3585,7 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
                 1,
                 400,
                 100,
@@ -3550,6 +3598,7 @@ namespace HoI2Editor.Models
                 3,
                 1,
                 3,
+                0,
                 0,
                 0,
                 0,
@@ -3863,15 +3912,6 @@ namespace HoI2Editor.Models
                 0,
                 1,
                 1,
-                1,
-                10,
-                0,
-                1,
-                10,
-                0,
-                1,
-                10,
-                0,
                 0,
                 1,
                 10,
@@ -3882,6 +3922,16 @@ namespace HoI2Editor.Models
                 1,
                 10,
                 0,
+                0,
+                1,
+                10,
+                0,
+                1,
+                10,
+                0,
+                1,
+                10,
+                0,
                 1,
                 10,
                 0,
@@ -3899,10 +3949,6 @@ namespace HoI2Editor.Models
                 10,
                 0,
                 0,
-                1,
-                10,
-                1,
-                10,
                 1,
                 10,
                 1,
@@ -3921,21 +3967,12 @@ namespace HoI2Editor.Models
                 10,
                 1,
                 10,
-                0,
-                0,
-                1,
-                10,
-                0,
-                0,
-                1,
-                10,
                 1,
                 10,
                 1,
                 10,
                 0,
-                1,
-                10,
+                0,
                 1,
                 10,
                 0,
@@ -3946,6 +3983,19 @@ namespace HoI2Editor.Models
                 10,
                 1,
                 10,
+                0,
+                1,
+                10,
+                1,
+                10,
+                0,
+                0,
+                1,
+                10,
+                1,
+                10,
+                1,
+                10,
                 1,
                 10,
                 0,
@@ -3969,7 +4019,9 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
                 1,
+                0,
                 0,
                 0,
                 0,
@@ -4031,6 +4083,7 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
+                0,
                 1,
                 1,
                 0,
@@ -4039,6 +4092,7 @@ namespace HoI2Editor.Models
                 100,
                 100,
                 100,
+                0,
                 0,
                 0,
                 0,
@@ -4061,13 +4115,13 @@ namespace HoI2Editor.Models
                 1,
                 2,
                 0,
-                0,
                 1,
                 100,
                 0,
                 0,
                 1,
                 1,
+                0,
                 0,
                 0,
                 0,
@@ -4121,8 +4175,10 @@ namespace HoI2Editor.Models
                 2,
                 0,
                 0,
+                0,
                 10000,
                 1,
+                0,
                 0,
                 0
             };
@@ -4156,6 +4212,9 @@ namespace HoI2Editor.Models
             // 設定値を初期化する
             _items = new object[Enum.GetValues(typeof (MiscItemId)).Length];
 
+            // コメントを初期化する
+            _comments = new string[Enum.GetValues(typeof (MiscItemId)).Length];
+
             // miscファイルを解釈する
             if (!MiscParser.Parse(Game.GetReadFileName(Game.MiscPathName)))
             {
@@ -4167,6 +4226,28 @@ namespace HoI2Editor.Models
 
             // 読み込み済みフラグを設定する
             _loaded = true;
+        }
+
+        #endregion
+
+        #region ファイル書き込み
+
+        /// <summary>
+        /// miscファイルを保存する
+        /// </summary>
+        public static void Save()
+        {
+            // 編集済みでなければ戻る
+            if (!IsDirty())
+            {
+                return;
+            }
+
+            // miscファイルを保存する
+            MiscWriter.Write(Game.GetWriteFileName(Game.MiscPathName));
+
+            // 編集済みフラグを全て解除する
+            ResetDirtyAll();
         }
 
         #endregion
@@ -4191,6 +4272,21 @@ namespace HoI2Editor.Models
         public static void SetItem(MiscItemId id, object o)
         {
             _items[(int) id] = o;
+        }
+
+        public static string GetComment(MiscItemId id)
+        {
+            return _comments[(int) id];
+        }
+
+        /// <summary>
+        /// 項目のコメントを追加する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <param name="s">追加する文字列</param>
+        public static void AppendComment(MiscItemId id, string s)
+        {
+            _comments[(int)id] += s;
         }
 
         #endregion
@@ -4436,6 +4532,7 @@ namespace HoI2Editor.Models
         NukesProductionModifier, // 核兵器生産補正
         ConvoySystemOptionsAllied, // 同盟国に対する船団システム
         ResourceConvoysBackUnneeded, // 不要な資源/燃料の回収比率
+        EconomyEnd, // 経済項目の末尾
 
         // intelligence
         SpyMissionDaysDh, // 諜報任務の間隔
@@ -4454,6 +4551,7 @@ namespace HoI2Editor.Models
         ExtraCostIncreasingAboveTen, // 諜報レベル10超過時増加コスト
         ShowThirdCountrySpyReportsDh, // 第三国の諜報活動を報告するか
         SpiesMoneyModifier, // 諜報資金割り当て補正
+        IntelligenceEnd, // 諜報項目の末尾
 
         // diplomacy
         DaysBetweenDiplomaticMissions, // 外交官派遣間隔
@@ -4471,6 +4569,7 @@ namespace HoI2Editor.Models
         AllowChangeHosHog, // 国家元首/政府首班の交代
         ChangeTagCoup, // クーデター発生時に兄弟国へ変更
         FilterReleaseCountries, // 独立可能国設定
+        DiplomacyEnd, // 経済項目の末尾
 
         // combat
         LandXpGainFactor, // 陸軍経験値入手係数
@@ -4786,6 +4885,7 @@ namespace HoI2Editor.Models
         BreakthroughStrDefenderDh, // 突破イベント防御側戦力補正
         HqStrDamageBreakthrough, // 司令部は突破イベント時のみ戦力ダメージ
         CombatMode, // 戦闘モード
+        CombatEnd, // 戦闘項目の末尾
 
         // mission
         AttackMission, // 攻撃任務
@@ -4879,6 +4979,7 @@ namespace HoI2Editor.Models
         NavalScrambleStartingEfficiency, // 海上緊急出撃初期効率
         NavalScrambleSpeedBonus, // 海上緊急出撃速度ボーナス
         UseAttackEfficiencyCombatModifier, // 攻撃/支援攻撃効率を戦闘補正として使用
+        MissionEnd, // 任務項目の末尾
 
         // country
         LandFortEfficiency, // 陸上要塞効率
@@ -4919,6 +5020,7 @@ namespace HoI2Editor.Models
         WartimeStockpilesResources, // 戦時資源備蓄補正
         PeacetimeStockpilesOilSupplies, // 平時物資/燃料備蓄補正
         WartimeStockpilesOilSupplies, // 戦時物資/燃料備蓄補正
+        CountryEnd, // 国家項目の末尾
 
         // research
         BlueprintBonus, // 青写真ボーナス
@@ -4943,6 +5045,7 @@ namespace HoI2Editor.Models
         NewCountryNuclearEngineeringComponent, // 新規国家で核工学技術を継承
         NewCountrySecretTechs, // 新規国家で秘密兵器技術を継承
         MaxTechTeamSkill, // 最大研究機関スキル
+        ResearchEnd, // 研究項目の末尾
 
         // trade
         DaysTradeOffers, // 貿易交渉間隔
@@ -4970,6 +5073,7 @@ namespace HoI2Editor.Models
         NewTradeDealsMinEffectiveness, // 新規貿易協定最小効率
         CancelTradeDealsEffectiveness, // 貿易協定破棄効率
         AutoTradeAiTradeDeals, // 自動/AIの貿易協定最小効率
+        TradeEnd, // 貿易項目の末尾
 
         // ai
         OverproduceSuppliesBelowDesired, // 理想備蓄未達時の余剰物資生産比率
@@ -4994,7 +5098,6 @@ namespace HoI2Editor.Models
         NewDowRules, // AIの新宣戦布告ルール
         NewDowRules2, // AIの新宣戦布告ルール
         ForcePuppetsJoinMastersAllianceNeutrality, // 傀儡国が宗主国の同盟に強制加入する中立性
-        ForcePuppetsJoinMastersAllianceNeutrality2, // 傀儡国が宗主国の同盟に強制加入する中立性
         NewAiReleaseRules, // 新AI占領地解放ルール
         AiEventsActionSelectionRules, // AIイベント選択ルール
         ForceStrategicRedeploymentHour, // 強制戦略的再配置時間
@@ -5005,6 +5108,7 @@ namespace HoI2Editor.Models
         MinDaysRequiredAiAllied, // AI占領地返還最小日数
         MinDaysRequiredAiAlliedSupplyBase, // AI占領地返還最小日数(物資補給基地)
         MinRequiredRelationsAlliedClaimed, // 被領有権主張時連合加盟最小友好度
+        AiEnd, // AI項目の末尾
 
         // mod
         AiSpyDiplomaticMissionLogger, // AIの諜報/外交をログに記録
@@ -5055,6 +5159,7 @@ namespace HoI2Editor.Models
         EnablePicturesNavalBrigades, // 艦艇付属装備に画像を使用
         BuildingsBuildableOnlyProvinces, // 建物をプロヴィンスでのみ建造
         UnitModifiersStatisticsPages, // ユニット補正ページの新スタイル移行閾値
+        ModEnd, // MOD項目の末尾
 
         // map
         MapNumber, // マップ番号
@@ -5062,6 +5167,7 @@ namespace HoI2Editor.Models
         DistanceCalculationModel, // 距離算出方法
         MapWidth, // マップの幅
         MapHeight, // マップの高さ
+        MapEnd, // マップ項目の末尾
     }
 
     /// <summary>

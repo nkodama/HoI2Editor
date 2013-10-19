@@ -1499,8 +1499,6 @@
             this.forcePuppetsJoinMastersAllianceNeutralityLabel = new System.Windows.Forms.Label();
             this.newDowRules2ComboBox = new System.Windows.Forms.ComboBox();
             this.aiPeacetimeSpyMissionsDhComboBox = new System.Windows.Forms.ComboBox();
-            this.forcePuppetsJoinMastersAllianceNeutrality2TextBox = new System.Windows.Forms.TextBox();
-            this.forcePuppetsJoinMastersAllianceNeutrality2Label = new System.Windows.Forms.Label();
             this.aiMastersGetProvincesConquredPuppetsComboBox = new System.Windows.Forms.ComboBox();
             this.useQuickAreaCheckGarrisonAiComboBox = new System.Windows.Forms.ComboBox();
             this.newDowRulesComboBox = new System.Windows.Forms.ComboBox();
@@ -11816,8 +11814,6 @@
             this.aiTabPage.Controls.Add(this.forcePuppetsJoinMastersAllianceNeutralityLabel);
             this.aiTabPage.Controls.Add(this.newDowRules2ComboBox);
             this.aiTabPage.Controls.Add(this.aiPeacetimeSpyMissionsDhComboBox);
-            this.aiTabPage.Controls.Add(this.forcePuppetsJoinMastersAllianceNeutrality2TextBox);
-            this.aiTabPage.Controls.Add(this.forcePuppetsJoinMastersAllianceNeutrality2Label);
             this.aiTabPage.Controls.Add(this.aiMastersGetProvincesConquredPuppetsComboBox);
             this.aiTabPage.Controls.Add(this.useQuickAreaCheckGarrisonAiComboBox);
             this.aiTabPage.Controls.Add(this.newDowRulesComboBox);
@@ -11922,17 +11918,6 @@
             this.aiPeacetimeSpyMissionsDhComboBox.Name = "aiPeacetimeSpyMissionsDhComboBox";
             this.aiPeacetimeSpyMissionsDhComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnItemComboBoxDrawItem);
             this.aiPeacetimeSpyMissionsDhComboBox.SelectedIndexChanged += new System.EventHandler(this.OnItemComboBoxSelectedIndexChanged);
-            // 
-            // forcePuppetsJoinMastersAllianceNeutrality2TextBox
-            // 
-            resources.ApplyResources(this.forcePuppetsJoinMastersAllianceNeutrality2TextBox, "forcePuppetsJoinMastersAllianceNeutrality2TextBox");
-            this.forcePuppetsJoinMastersAllianceNeutrality2TextBox.Name = "forcePuppetsJoinMastersAllianceNeutrality2TextBox";
-            this.forcePuppetsJoinMastersAllianceNeutrality2TextBox.Validated += new System.EventHandler(this.OnItemTextBoxValidated);
-            // 
-            // forcePuppetsJoinMastersAllianceNeutrality2Label
-            // 
-            resources.ApplyResources(this.forcePuppetsJoinMastersAllianceNeutrality2Label, "forcePuppetsJoinMastersAllianceNeutrality2Label");
-            this.forcePuppetsJoinMastersAllianceNeutrality2Label.Name = "forcePuppetsJoinMastersAllianceNeutrality2Label";
             // 
             // aiMastersGetProvincesConquredPuppetsComboBox
             // 
@@ -14758,8 +14743,6 @@
         private System.Windows.Forms.ComboBox manualTradeDealsComboBox;
         private System.Windows.Forms.ComboBox mergeTradeDealsComboBox;
         private System.Windows.Forms.ComboBox aiPeacetimeSpyMissionsDhComboBox;
-        private System.Windows.Forms.TextBox forcePuppetsJoinMastersAllianceNeutrality2TextBox;
-        private System.Windows.Forms.Label forcePuppetsJoinMastersAllianceNeutrality2Label;
         private System.Windows.Forms.ComboBox aiMastersGetProvincesConquredPuppetsComboBox;
         private System.Windows.Forms.ComboBox useQuickAreaCheckGarrisonAiComboBox;
         private System.Windows.Forms.ComboBox newDowRulesComboBox;

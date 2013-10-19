@@ -7,7 +7,7 @@ using HoI2Editor.Models;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     ゲーム設定エディタのフォーム
+    ///     基礎データエディタのフォーム
     /// </summary>
     public partial class MiscEditorForm : Form
     {
@@ -31,7 +31,7 @@ namespace HoI2Editor.Forms
             // 編集項目のタグを初期化する
             InitItemTags();
 
-            // ゲーム設定ファイルを読み込む
+            // miscファイルを読み込む
             LoadFiles();
 
             // フォームを前面に表示する
@@ -907,8 +907,6 @@ namespace HoI2Editor.Forms
             minDaysRequiredAiAlliedSupplyBaseTextBox.Tag = MiscItemId.MinDaysRequiredAiAlliedSupplyBase;
             minRequiredRelationsAlliedClaimedTextBox.Tag = MiscItemId.MinRequiredRelationsAlliedClaimed;
             newDowRules2ComboBox.Tag = MiscItemId.NewDowRules2;
-            forcePuppetsJoinMastersAllianceNeutrality2TextBox.Tag =
-                MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality2;
         }
 
         /// <summary>
@@ -2497,6 +2495,7 @@ namespace HoI2Editor.Forms
             aiSpyMissionsCostModifierDhLabel.Enabled = flag;
             aiDiplomacyCostModifierDhLabel.Enabled = flag;
             aiInfluenceModifierDhLabel.Enabled = flag;
+            forcePuppetsJoinMastersAllianceNeutralityLabel.Enabled = flag;
             newAiReleaseRulesLabel.Enabled = flag;
             aiEventsActionSelectionRulesLabel.Enabled = flag;
             forceStrategicRedeploymentHourLabel.Enabled = flag;
@@ -2527,6 +2526,7 @@ namespace HoI2Editor.Forms
             aiSpyMissionsCostModifierDhTextBox.Enabled = flag;
             aiDiplomacyCostModifierDhTextBox.Enabled = flag;
             aiInfluenceModifierDhTextBox.Enabled = flag;
+            forcePuppetsJoinMastersAllianceNeutralityTextBox.Enabled = flag;
             newAiReleaseRulesComboBox.Enabled = flag;
             aiEventsActionSelectionRulesTextBox.Enabled = flag;
             forceStrategicRedeploymentHourTextBox.Enabled = flag;
@@ -2542,19 +2542,15 @@ namespace HoI2Editor.Forms
             flag = (Game.Type == GameType.DarkestHour && Game.Version <= 102);
 
             newDowRulesLabel.Enabled = flag;
-            forcePuppetsJoinMastersAllianceNeutralityLabel.Enabled = flag;
 
             newDowRulesComboBox.Enabled = flag;
-            forcePuppetsJoinMastersAllianceNeutralityTextBox.Enabled = flag;
 
             // DH1.03以降固有項目
             flag = (Game.Type == GameType.DarkestHour && Game.Version >= 103);
 
             newDowRules2Label.Enabled = flag;
-            forcePuppetsJoinMastersAllianceNeutrality2Label.Enabled = flag;
 
             newDowRules2ComboBox.Enabled = flag;
-            forcePuppetsJoinMastersAllianceNeutrality2TextBox.Enabled = flag;
         }
 
         /// <summary>
@@ -3886,7 +3882,9 @@ namespace HoI2Editor.Forms
                     Misc.GetItem(MiscItemId.AiSpyMissionsCostModifierDh).ToString();
                 aiDiplomacyCostModifierDhTextBox.Text = Misc.GetItem(MiscItemId.AiDiplomacyCostModifierDh).ToString();
                 aiInfluenceModifierDhTextBox.Text = Misc.GetItem(MiscItemId.AiInfluenceModifierDh).ToString();
-                newAiReleaseRulesComboBox.SelectedIndex = (bool) Misc.GetItem(MiscItemId.NewAiReleaseRules) ? 1 : 0;
+                forcePuppetsJoinMastersAllianceNeutralityTextBox.Text =
+                    Misc.GetItem(MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality).ToString();
+                newAiReleaseRulesComboBox.SelectedIndex = (bool)Misc.GetItem(MiscItemId.NewAiReleaseRules) ? 1 : 0;
                 aiEventsActionSelectionRulesTextBox.Text =
                     Misc.GetItem(MiscItemId.AiEventsActionSelectionRules).ToString();
                 forceStrategicRedeploymentHourTextBox.Text =
@@ -3909,16 +3907,12 @@ namespace HoI2Editor.Forms
             if (Game.Type == GameType.DarkestHour && Game.Version <= 102)
             {
                 newDowRulesComboBox.SelectedIndex = (int) Misc.GetItem(MiscItemId.NewDowRules);
-                forcePuppetsJoinMastersAllianceNeutralityTextBox.Text =
-                    Misc.GetItem(MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality).ToString();
             }
 
             // DH1.03以降固有項目
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
                 newDowRules2ComboBox.SelectedIndex = (int) Misc.GetItem(MiscItemId.NewDowRules2);
-                forcePuppetsJoinMastersAllianceNeutrality2TextBox.Text =
-                    Misc.GetItem(MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality2).ToString();
             }
         }
 
@@ -6192,6 +6186,10 @@ namespace HoI2Editor.Forms
                 aiInfluenceModifierDhTextBox.ForeColor = Misc.IsDirty(MiscItemId.AiInfluenceModifierDh)
                                                              ? Color.Red
                                                              : SystemColors.WindowText;
+                forcePuppetsJoinMastersAllianceNeutralityTextBox.ForeColor =
+                    Misc.IsDirty(MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality)
+                        ? Color.Red
+                        : SystemColors.WindowText;
                 aiEventsActionSelectionRulesTextBox.ForeColor = Misc.IsDirty(MiscItemId.AiEventsActionSelectionRules)
                                                                     ? Color.Red
                                                                     : SystemColors.WindowText;
@@ -6210,24 +6208,6 @@ namespace HoI2Editor.Forms
                     Misc.IsDirty(MiscItemId.MinDaysRequiredAiAlliedSupplyBase) ? Color.Red : SystemColors.WindowText;
                 minRequiredRelationsAlliedClaimedTextBox.ForeColor =
                     Misc.IsDirty(MiscItemId.MinRequiredRelationsAlliedClaimed) ? Color.Red : SystemColors.WindowText;
-            }
-
-            // DH1.02以前固有項目
-            if (Game.Type == GameType.DarkestHour && Game.Version <= 102)
-            {
-                forcePuppetsJoinMastersAllianceNeutralityTextBox.ForeColor =
-                    Misc.IsDirty(MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality)
-                        ? Color.Red
-                        : SystemColors.WindowText;
-            }
-
-            // DH1.03以降固有項目
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
-            {
-                forcePuppetsJoinMastersAllianceNeutrality2TextBox.ForeColor =
-                    Misc.IsDirty(MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality2)
-                        ? Color.Red
-                        : SystemColors.WindowText;
             }
         }
 
@@ -6355,10 +6335,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // ゲーム設定ファイルの再読み込みを要求する
+            // miscファイルの再読み込みを要求する
             Misc.RequireReload();
 
-            // ゲーム設定ファイルを読み込む
+            // miscファイルを読み込む
             LoadFiles();
         }
 
@@ -6373,11 +6353,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ゲーム設定ファイルを読み込む
+        ///     基本データファイルを読み込む
         /// </summary>
         private void LoadFiles()
         {
-            // ゲーム設定ファイルを読み込む
+            // 基本データファイルを読み込む
             Misc.Load();
 
             // 編集項目を初期化する
@@ -6391,11 +6371,15 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ゲーム設定ファイルを保存する
+        ///     基本データファイルを保存する
         /// </summary>
         private void SaveFiles()
         {
-            throw new NotImplementedException();
+            // 基本データファイルを保存する
+            Misc.Save();
+
+            // 編集済みフラグがクリアされるため表示を更新する
+            UpdateEditableItemsColor();
         }
 
         #endregion

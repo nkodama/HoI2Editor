@@ -43,7 +43,7 @@ namespace HoI2Editor.Parsers
         {
             List<MinisterPersonalityInfo> list = null;
 
-            using (var lexer = new TextLexer(fileName))
+            using (var lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {

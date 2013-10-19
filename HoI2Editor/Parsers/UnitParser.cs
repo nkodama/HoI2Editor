@@ -31,7 +31,7 @@ namespace HoI2Editor.Parsers
         public static bool Parse(string fileName, Unit unit)
         {
             _fileName = Path.GetFileName(fileName);
-            using (var lexer = new TextLexer(fileName))
+            using (var lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -1910,7 +1910,7 @@ namespace HoI2Editor.Parsers
         public static bool ParseDivisionTypes(string fileName, List<Unit> units)
         {
             _fileName = Path.GetFileName(fileName);
-            using (var lexer = new TextLexer(fileName))
+            using (var lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -1989,7 +1989,7 @@ namespace HoI2Editor.Parsers
         public static bool ParseBrigadeTypes(string fileName, List<Unit> units)
         {
             _fileName = Path.GetFileName(fileName);
-            using (var lexer = new TextLexer(fileName))
+            using (var lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {

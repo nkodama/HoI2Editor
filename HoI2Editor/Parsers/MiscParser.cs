@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 
@@ -41,7 +42,7 @@ namespace HoI2Editor.Parsers
                     break;
             }
 
-            using (var lexer = new TextLexer(fileName))
+            using (var lexer = new TextLexer(fileName, false))
             {
                 while (true)
                 {
@@ -51,6 +52,12 @@ namespace HoI2Editor.Parsers
                     if (token == null)
                     {
                         return true;
+                    }
+
+                    // 空白文字/コメントを読み飛ばす
+                    if (token.Type == TokenType.WhiteSpace || token.Type == TokenType.Comment)
+                    {
+                        continue;
                     }
 
                     // 無効なトークン
@@ -202,16 +209,35 @@ namespace HoI2Editor.Parsers
         /// <returns>構文解析の成否</returns>
         private static bool ParseSection(MiscSectionId sectionId, MiscGameType gameType, TextLexer lexer)
         {
+            // 空白文字/コメントを読み飛ばす
+            Token token;
+            while (true)
+            {
+                token = lexer.GetToken();
+                if (token.Type != TokenType.WhiteSpace && token.Type != TokenType.Comment)
+                {
+                    break;
+                }
+            }
+
             // =
-            Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
                 Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                 return false;
             }
 
+            // 空白文字/コメントを読み飛ばす
+            while (true)
+            {
+                token = lexer.GetToken();
+                if (token.Type != TokenType.WhiteSpace && token.Type != TokenType.Comment)
+                {
+                    break;
+                }
+            }
+
             // {
-            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
                 Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
@@ -222,10 +248,17 @@ namespace HoI2Editor.Parsers
                 = Misc.SectionItems[(int) sectionId].Where(id => Misc.ItemTable[(int) id, (int) gameType]).ToArray();
             int index = 0;
 
-            while (index < itemIds.Length)
+            while (index < itemIds.Length - 1)
             {
-                // 設定値
+                // 空白文字/コメントを保存する
                 token = lexer.GetToken();
+                if (token.Type == TokenType.WhiteSpace || token.Type == TokenType.Comment)
+                {
+                    Misc.AppendComment(itemIds[index], token.Value as string);
+                    continue;
+                }
+
+                // 設定値
                 if (token.Type != TokenType.Number)
                 {
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
@@ -269,8 +302,18 @@ namespace HoI2Editor.Parsers
                 index++;
             }
 
+            // 空白文字/コメントを保存する
+            while (true)
+            {
+                token = lexer.GetToken();
+                if (token.Type != TokenType.WhiteSpace && token.Type != TokenType.Comment)
+                {
+                    break;
+                }
+                Misc.AppendComment(itemIds[index], token.Value as string);
+            }
+
             // } (セクション終端)
-            token = lexer.GetToken();
             if (token.Type != TokenType.CloseBrace)
             {
                 Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));

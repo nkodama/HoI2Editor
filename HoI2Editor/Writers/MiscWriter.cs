@@ -67,7 +67,60 @@ namespace HoI2Editor.Writers
                 = Misc.SectionItems[(int) sectionId].Where(id => Misc.ItemTable[(int) id, (int) gameType]).ToArray();
 
             writer.WriteLine();
-            writer.WriteLine("{0} = {");
+            writer.Write("{0} = {{", Misc.SectionNames[(int)sectionId]);
+
+            // 項目のコメントと値を順に書き出す
+            int index;
+            for (index = 0; index < itemIds.Length - 1; index++)
+            {
+                MiscItemId id = itemIds[index];
+                writer.Write(Misc.GetComment(id));
+                switch (Misc.ItemTypes[(int) id])
+                {
+                    case MiscItemType.Bool:
+                        writer.Write((bool) Misc.GetItem(id) ? 1 : 0);
+                        break;
+
+                    case MiscItemType.Enum:
+                    case MiscItemType.Int:
+                    case MiscItemType.PosInt:
+                    case MiscItemType.NegInt:
+                    case MiscItemType.NonNegInt:
+                    case MiscItemType.NonPosInt:
+                    case MiscItemType.NonNegIntMinusOne:
+                    case MiscItemType.RangedInt:
+                    case MiscItemType.RangedPosInt:
+                    case MiscItemType.RangedNegInt:
+                        writer.Write(Misc.GetItem(id));
+                        break;
+
+                    case MiscItemType.Dbl:
+                    case MiscItemType.PosDbl:
+                    case MiscItemType.NegDbl:
+                    case MiscItemType.NonNegDbl:
+                    case MiscItemType.NonPosDbl:
+                    case MiscItemType.NonNegDblMinusOne:
+                    case MiscItemType.RangedDbl:
+                    case MiscItemType.RangedPosDbl:
+                    case MiscItemType.RangedNegDbl:
+                    case MiscItemType.RangedDblMinusOne:
+                    case MiscItemType.RangedDblMinusThree:
+                        var d = (double) Misc.GetItem(id);
+                        if ((d < 0.0001 && d > 0) || (d > -0.0001 && d < 0))
+                        {
+                            writer.Write(((double)Misc.GetItem(id)).ToString("F6"));
+                        }
+                        else
+                        {
+                            writer.Write(((double)Misc.GetItem(id)).ToString("G"));
+                        }
+                        break;
+                }
+            }
+            // 最終項目の後のコメントを書き出す
+            writer.Write(Misc.GetComment(itemIds[index]));
+
+            writer.WriteLine("}");
         }
     }
 }
