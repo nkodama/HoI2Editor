@@ -446,6 +446,7 @@
             this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.newButton);
             this.Name = "TeamEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnTeamEditorFormClosing);
             this.Load += new System.EventHandler(this.OnTeamEditorFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.teamPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).EndInit();
