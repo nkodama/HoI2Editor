@@ -97,6 +97,12 @@
     <Compile Include="Forms\UnitEditorForm.Designer.cs">
       <DependentUpon>UnitEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UnitNameEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UnitNameEditorForm.Designer.cs">
+      <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="HoI2EditorApplication.cs" />
@@ -116,6 +122,7 @@
     <Compile Include="Models\Techs.cs" />
     <Compile Include="Models\Trigger.cs" />
     <Compile Include="Models\Unit.cs" />
+    <Compile Include="Models\UnitNames.cs" />
     <Compile Include="Models\Units.cs" />
     <Compile Include="Parsers\CommandParser.cs" />
     <Compile Include="Parsers\MinisterModifierParser.cs" />
@@ -184,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnitEditorForm.resx">
       <DependentUpon>UnitEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UnitNameEditorForm.resx">
+      <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
