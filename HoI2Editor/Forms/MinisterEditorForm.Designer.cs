@@ -454,6 +454,7 @@
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.ministerListView);
             this.Name = "MinisterEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMinisterEditorFormClosing);
             this.Load += new System.EventHandler(this.OnMinisterEditorFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();
