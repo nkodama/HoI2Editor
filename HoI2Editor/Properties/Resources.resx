@@ -495,4 +495,7 @@
   <data name="ContinentPacificOcean" xml:space="preserve">
     <value>Pacific Ocean</value>
   </data>
+  <data name="ConfirmSaveMessage" xml:space="preserve">
+    <value>The items has been changed. Do you want to save the changes?</value>
+  </data>
 </root>

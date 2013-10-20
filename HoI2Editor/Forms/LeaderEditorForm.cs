@@ -99,6 +99,10 @@ namespace HoI2Editor.Forms
             LoadFiles();
         }
 
+        #endregion
+
+        #region 終了処理
+
         /// <summary>
         ///     閉じるボタン押下時の処理
         /// </summary>
@@ -107,6 +111,33 @@ namespace HoI2Editor.Forms
         private void OnCloseButtonClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderEditorFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!Leaders.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                                                  MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    SaveFiles();
+                    break;
+            }
         }
 
         #endregion
