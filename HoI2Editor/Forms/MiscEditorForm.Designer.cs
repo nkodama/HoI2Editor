@@ -13232,6 +13232,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.miscTabControl);
             this.Name = "MiscEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMiscEditorFormClosing);
             this.Load += new System.EventHandler(this.OnMiscEditorFormLoad);
             this.miscTabControl.ResumeLayout(false);
             this.economyTabPage1.ResumeLayout(false);
