@@ -1639,6 +1639,7 @@ namespace HoI2Editor.Forms
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
+            grp.SetDirty(TechGroupItemId.Name);
             Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
@@ -1665,6 +1666,7 @@ namespace HoI2Editor.Forms
             Config.SetText(grp.Desc, desc, Game.TechTextFileName);
 
             // 編集済みフラグを設定する
+            grp.SetDirty(TechGroupItemId.Desc);
             Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
