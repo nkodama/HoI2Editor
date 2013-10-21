@@ -56,6 +56,11 @@ namespace HoI2Editor.Models
         /// </summary>
         private static bool _loaded;
 
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static bool _dirtyFlag;
+
         #endregion
 
         #region 公開定数
@@ -690,6 +695,10 @@ namespace HoI2Editor.Models
             // 技術IDの対応付けを更新する
             UpdateTechIdMap();
 
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
+
+            // 読み込み済みフラグを設定する
             _loaded = true;
         }
 
@@ -735,6 +744,9 @@ namespace HoI2Editor.Models
                     }
                 }
             }
+
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
         }
 
         #endregion
@@ -788,6 +800,27 @@ namespace HoI2Editor.Models
         public static string GetSpecialityName(TechSpeciality speciality)
         {
             return Config.GetText(SpecialityNames[(int) speciality]);
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public static void SetDirty()
+        {
+            _dirtyFlag = true;
         }
 
         #endregion

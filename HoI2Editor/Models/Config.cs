@@ -865,6 +865,15 @@ namespace HoI2Editor.Models
         #region 編集済みフラグ操作
 
         /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty()
+        {
+            return (DirtyFiles.Count > 0);
+        }
+
+        /// <summary>
         ///     編集済みフラグを更新する
         /// </summary>
         /// <param name="fileName">文字列定義ファイル名</param>
