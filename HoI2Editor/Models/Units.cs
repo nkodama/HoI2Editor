@@ -80,6 +80,11 @@ namespace HoI2Editor.Models
         private static bool _loaded;
 
         /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static bool _dirtyFlag;
+
+        /// <summary>
         ///     師団ユニットクラス定義ファイルの編集済みフラグ
         /// </summary>
         private static bool _divisionTypesDirty;
@@ -3118,6 +3123,10 @@ namespace HoI2Editor.Models
                 }
             }
 
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
+
+            // 読み込み済みフラグを設定する
             _loaded = true;
         }
 
@@ -3221,6 +3230,9 @@ namespace HoI2Editor.Models
                     }
                 }
             }
+
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
         }
 
         /// <summary>
@@ -3276,6 +3288,23 @@ namespace HoI2Editor.Models
         #region 編集済みフラグ操作
 
         /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public static void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
         ///     師団ユニットクラス定義が編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
@@ -3299,6 +3328,7 @@ namespace HoI2Editor.Models
         public static void SetDirtyDivisionTypes()
         {
             _divisionTypesDirty = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>
@@ -3307,6 +3337,7 @@ namespace HoI2Editor.Models
         public static void SetDirtyBrigadeTypes()
         {
             _brigadeTypesDirty = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>

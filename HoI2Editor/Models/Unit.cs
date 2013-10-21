@@ -252,6 +252,7 @@ namespace HoI2Editor.Models
         public void SetDirty()
         {
             _dirtyFlag = true;
+            Units.SetDirty();
         }
 
         /// <summary>
