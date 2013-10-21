@@ -712,6 +712,7 @@ namespace HoI2Editor.Forms
                     Country = selected.Country,
                     Id = selected.Id + 1,
                     Name = selected.Name,
+                    Skill = selected.Skill,
                     StartYear = selected.StartYear,
                     EndYear = selected.EndYear,
                     PictureName = selected.PictureName,
