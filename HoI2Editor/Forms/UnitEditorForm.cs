@@ -413,6 +413,12 @@ namespace HoI2Editor.Forms
             // ユニットデータを保存する
             Units.Save();
 
+            // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
+            foreach (Unit unit in Units.Items)
+            {
+                unit.ResetDirtyAll();
+            }
+
             // 編集済みフラグがクリアされるため表示を更新する
             classListBox.Refresh();
             modelListView.Refresh();
