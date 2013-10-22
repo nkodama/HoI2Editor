@@ -991,11 +991,36 @@ namespace HoI2Editor.Forms
             classShortNameTextBox.Text = Config.GetText(unit.ShortName);
             classDescTextBox.Text = Config.GetText(unit.Desc);
             classShortDescTextBox.Text = Config.GetText(unit.ShortDesc);
-            branchComboBox.SelectedIndex = (int) unit.Branch;
 
-            // 師団
+            // 兵科
+            branchComboBox.SelectedIndex = (int) unit.Branch;
+            if (Game.Type == GameType.ArsenalOfDemocracy ||
+                (Game.Type == GameType.DarkestHour && Game.Version >= 103))
+            {
+                branchComboBox.Enabled = true;
+            }
+            else
+            {
+                branchComboBox.Enabled = false;
+            }
+
+            // 付属旅団
             if (unit.Organization == UnitOrganization.Division)
             {
+                if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+                {
+                    maxAllowedBrigadesLabel.Enabled = true;
+                    maxAllowedBrigadesNumericUpDown.Enabled = true;
+                }
+                else
+                {
+                    maxAllowedBrigadesLabel.Enabled = false;
+                    maxAllowedBrigadesNumericUpDown.Enabled = false;
+                }
+                maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
+                maxAllowedBrigadesNumericUpDown.Text =
+                    maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+
                 allowedBrigadesListView.Enabled = true;
                 for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
                 {
@@ -1005,6 +1030,10 @@ namespace HoI2Editor.Forms
             }
             else
             {
+                maxAllowedBrigadesLabel.Enabled = false;
+                maxAllowedBrigadesNumericUpDown.Enabled = false;
+                maxAllowedBrigadesNumericUpDown.ResetText();
+
                 allowedBrigadesListView.Enabled = false;
                 for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
                 {
@@ -1012,145 +1041,160 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            // DH
-            if (Game.Type == GameType.DarkestHour)
+            // DH1.03以降のユニット設定
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
+                listPrioLabel.Enabled = true;
+                listPrioNumericUpDown.Enabled = true;
+
                 // 師団
                 if (unit.Organization == UnitOrganization.Division)
                 {
-                    maxAllowedBrigadesLabel.Enabled = true;
-                    maxAllowedBrigadesNumericUpDown.Enabled = true;
-                    upgradeGroupBox.Enabled = true;
+                    eyrLabel.Enabled = true;
+                    eyrNumericUpDown.Enabled = true;
+                    gfxPrioLabel.Enabled = true;
+                    gfxPrioNumericUpDown.Enabled = true;
+                    uiPrioLabel.Enabled = true;
+                    uiPrioNumericUpDown.Enabled = true;
+                    realUnitTypeLabel.Enabled = true;
+                    realUnitTypeComboBox.Enabled = true;
+                    spriteTypeLabel.Enabled = true;
+                    spriteTypeComboBox.Enabled = true;
+                    transmuteLabel.Enabled = true;
+                    transmuteComboBox.Enabled = true;
+                    militaryValueLabel.Enabled = true;
+                    militaryValueTextBox.Enabled = true;
+                    defaultTypeCheckBox.Enabled = true;
+                    productableCheckBox.Enabled = true;
 
-                    maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
-                    maxAllowedBrigadesNumericUpDown.Text =
-                        maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                    eyrNumericUpDown.Value = unit.Eyr;
+                    eyrNumericUpDown.Text = eyrNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                    gfxPrioNumericUpDown.Value = unit.GfxPrio;
+                    gfxPrioNumericUpDown.Text = gfxPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                    uiPrioNumericUpDown.Value = unit.UiPrio;
+                    uiPrioNumericUpDown.Text = uiPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                    realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
+                    spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
+                    transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
+                    militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    maxAllowedBrigadesLabel.Enabled = false;
-                    maxAllowedBrigadesNumericUpDown.Enabled = false;
-                    upgradeGroupBox.Enabled = false;
+                    eyrLabel.Enabled = false;
+                    eyrNumericUpDown.Enabled = false;
+                    gfxPrioLabel.Enabled = false;
+                    gfxPrioNumericUpDown.Enabled = false;
+                    uiPrioLabel.Enabled = false;
+                    uiPrioNumericUpDown.Enabled = false;
+                    realUnitTypeLabel.Enabled = false;
+                    realUnitTypeComboBox.Enabled = false;
+                    spriteTypeLabel.Enabled = false;
+                    spriteTypeComboBox.Enabled = false;
+                    transmuteLabel.Enabled = false;
+                    transmuteComboBox.Enabled = false;
+                    militaryValueLabel.Enabled = false;
+                    militaryValueTextBox.Enabled = false;
+                    defaultTypeCheckBox.Enabled = false;
+                    productableCheckBox.Enabled = false;
 
-                    maxAllowedBrigadesNumericUpDown.ResetText();
+                    eyrNumericUpDown.ResetText();
+                    gfxPrioNumericUpDown.ResetText();
+                    uiPrioNumericUpDown.ResetText();
+                    realUnitTypeComboBox.SelectedIndex = -1;
+                    realUnitTypeComboBox.ResetText();
+                    spriteTypeComboBox.SelectedIndex = -1;
+                    spriteTypeComboBox.ResetText();
+                    transmuteComboBox.SelectedIndex = -1;
+                    transmuteComboBox.ResetText();
+                    militaryValueTextBox.ResetText();
                 }
 
-                UpdateUpgradeList(unit);
-
-                // DH1.03以降
-                if (Game.Version >= 103)
+                // 陸軍旅団
+                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
                 {
-                    listPrioNumericUpDown.Value = unit.ListPrio;
-                    listPrioNumericUpDown.Text = listPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-
-                    // 師団
-                    if (unit.Organization == UnitOrganization.Division)
-                    {
-                        eyrLabel.Enabled = true;
-                        eyrNumericUpDown.Enabled = true;
-                        gfxPrioLabel.Enabled = true;
-                        gfxPrioNumericUpDown.Enabled = true;
-                        uiPrioLabel.Enabled = true;
-                        uiPrioNumericUpDown.Enabled = true;
-                        realUnitTypeLabel.Enabled = true;
-                        realUnitTypeComboBox.Enabled = true;
-                        spriteTypeLabel.Enabled = true;
-                        spriteTypeComboBox.Enabled = true;
-                        transmuteLabel.Enabled = true;
-                        transmuteComboBox.Enabled = true;
-                        defaultTypeCheckBox.Enabled = true;
-                        productableCheckBox.Enabled = true;
-
-                        eyrNumericUpDown.Value = unit.Eyr;
-                        eyrNumericUpDown.Text = eyrNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-                        gfxPrioNumericUpDown.Value = unit.GfxPrio;
-                        gfxPrioNumericUpDown.Text = gfxPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-                        uiPrioNumericUpDown.Value = unit.UiPrio;
-                        uiPrioNumericUpDown.Text = uiPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-                        realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
-                        spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
-                        transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
-                        militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
-                        defaultTypeCheckBox.Checked = unit.DefaultType;
-                        productableCheckBox.Checked = unit.Productable;
-                    }
-                    else
-                    {
-                        eyrLabel.Enabled = false;
-                        eyrNumericUpDown.Enabled = false;
-                        gfxPrioLabel.Enabled = false;
-                        gfxPrioNumericUpDown.Enabled = false;
-                        uiPrioLabel.Enabled = false;
-                        uiPrioNumericUpDown.Enabled = false;
-                        realUnitTypeLabel.Enabled = false;
-                        realUnitTypeComboBox.Enabled = false;
-                        spriteTypeLabel.Enabled = false;
-                        spriteTypeComboBox.Enabled = false;
-                        transmuteLabel.Enabled = false;
-                        transmuteComboBox.Enabled = false;
-                        defaultTypeCheckBox.Enabled = false;
-                        productableCheckBox.Enabled = false;
-
-                        eyrNumericUpDown.ResetText();
-                        gfxPrioNumericUpDown.ResetText();
-                        uiPrioNumericUpDown.ResetText();
-                        realUnitTypeComboBox.SelectedIndex = -1;
-                        realUnitTypeComboBox.ResetText();
-                        spriteTypeComboBox.SelectedIndex = -1;
-                        spriteTypeComboBox.ResetText();
-                        transmuteComboBox.SelectedIndex = -1;
-                        transmuteComboBox.ResetText();
-                        militaryValueTextBox.ResetText();
-                        defaultTypeCheckBox.Checked = false;
-                        productableCheckBox.Checked = false;
-                    }
-
-                    // 陸軍旅団
-                    if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
-                    {
-                        engineerCheckBox.Enabled = true;
-
-                        engineerCheckBox.Checked = unit.Engineer;
-                    }
-                    else
-                    {
-                        engineerCheckBox.Enabled = false;
-
-                        engineerCheckBox.Checked = false;
-                    }
-
-                    // 海軍旅団
-                    if (unit.Branch == UnitBranch.Navy && unit.Organization == UnitOrganization.Brigade)
-                    {
-                        detachableCheckBox.Enabled = true;
-                        cagCheckBox.Enabled = true;
-
-                        detachableCheckBox.Checked = unit.Detachable;
-                        cagCheckBox.Checked = unit.Cag;
-                    }
-                    else
-                    {
-                        detachableCheckBox.Enabled = false;
-                        cagCheckBox.Enabled = false;
-
-                        detachableCheckBox.Checked = false;
-                        cagCheckBox.Checked = false;
-                    }
-
-                    // 空軍旅団
-                    if (unit.Branch == UnitBranch.AirForce && unit.Organization == UnitOrganization.Brigade)
-                    {
-                        escortCheckBox.Enabled = true;
-
-                        escortCheckBox.Checked = unit.Escort;
-                    }
-                    else
-                    {
-                        escortCheckBox.Enabled = false;
-
-                        escortCheckBox.Checked = false;
-                    }
+                    engineerCheckBox.Enabled = true;
                 }
+                else
+                {
+                    engineerCheckBox.Enabled = false;
+                }
+
+                // 海軍旅団
+                if (unit.Branch == UnitBranch.Navy && unit.Organization == UnitOrganization.Brigade)
+                {
+                    detachableCheckBox.Enabled = true;
+                    cagCheckBox.Enabled = true;
+                }
+                else
+                {
+                    detachableCheckBox.Enabled = false;
+                    cagCheckBox.Enabled = false;
+                }
+
+                // 空軍旅団
+                if (unit.Branch == UnitBranch.AirForce && unit.Organization == UnitOrganization.Brigade)
+                {
+                    escortCheckBox.Enabled = true;
+                }
+                else
+                {
+                    escortCheckBox.Enabled = false;
+                }
+            }
+            else
+            {
+                eyrLabel.Enabled = false;
+                eyrNumericUpDown.Enabled = false;
+                gfxPrioLabel.Enabled = false;
+                gfxPrioNumericUpDown.Enabled = false;
+                listPrioLabel.Enabled = false;
+                listPrioNumericUpDown.Enabled = false;
+                uiPrioLabel.Enabled = false;
+                uiPrioNumericUpDown.Enabled = false;
+                realUnitTypeLabel.Enabled = false;
+                realUnitTypeComboBox.Enabled = false;
+                spriteTypeLabel.Enabled = false;
+                spriteTypeComboBox.Enabled = false;
+                transmuteLabel.Enabled = false;
+                transmuteComboBox.Enabled = false;
+                militaryValueLabel.Enabled = false;
+                militaryValueTextBox.Enabled = false;
+                detachableCheckBox.Enabled = false;
+                cagCheckBox.Enabled = false;
+                escortCheckBox.Enabled = false;
+                engineerCheckBox.Enabled = false;
+                defaultTypeCheckBox.Enabled = false;
+                productableCheckBox.Enabled = false;
+
+                eyrNumericUpDown.ResetText();
+                gfxPrioNumericUpDown.ResetText();
+                listPrioNumericUpDown.ResetText();
+                uiPrioNumericUpDown.ResetText();
+                realUnitTypeComboBox.SelectedIndex = -1;
+                realUnitTypeComboBox.ResetText();
+                spriteTypeComboBox.SelectedIndex = -1;
+                spriteTypeComboBox.ResetText();
+                transmuteComboBox.SelectedIndex = -1;
+                transmuteComboBox.ResetText();
+                militaryValueTextBox.ResetText();
+            }
+
+            detachableCheckBox.Checked = unit.Detachable;
+            cagCheckBox.Checked = unit.Cag;
+            escortCheckBox.Checked = unit.Escort;
+            engineerCheckBox.Checked = unit.Engineer;
+            defaultTypeCheckBox.Checked = unit.DefaultType;
+            productableCheckBox.Checked = unit.Productable;
+
+            // 改良
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                upgradeGroupBox.Enabled = unit.Organization == UnitOrganization.Division;
+                UpdateUpgradeList(unit);
+            }
+            else
+            {
+                upgradeGroupBox.Enabled = false;
             }
 
             // 編集項目の色を設定する
@@ -2561,437 +2605,522 @@ namespace HoI2Editor.Forms
                                       ? CountryTag.None
                                       : (CountryTag) (countryListView.SelectedIndices[0] + 1));
 
+            // モデル画像
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
+            // モデルアイコン
             modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, no);
+            // モデル名
             modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, country));
+            modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name) ? Color.Red : SystemColors.WindowText;
+
+            // 組織率
             defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
+            defaultOrganisationTextBox.ForeColor = model.IsDirty(UnitModelItemId.DefaultOrganization)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+            // 士気
             moraleTextBox.Text = model.Morale.ToString(CultureInfo.InvariantCulture);
-            rangeTextBox.Text = model.Range.ToString(CultureInfo.InvariantCulture);
-            transportWeightTextBox.Text = model.TransportWeight.ToString(CultureInfo.InvariantCulture);
-            transportCapabilityTextBox.Text = model.TransportCapability.ToString(CultureInfo.InvariantCulture);
-            suppressionTextBox.Text = model.Suppression.ToString(CultureInfo.InvariantCulture);
+            moraleTextBox.ForeColor = model.IsDirty(UnitModelItemId.Morale) ? Color.Red : SystemColors.WindowText;
+            // 消費物資
             supplyConsumptionTextBox.Text = model.SupplyConsumption.ToString(CultureInfo.InvariantCulture);
+            supplyConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.SupplyConsumption)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            // 消費燃料
             fuelConsumptionTextBox.Text = model.FuelConsumption.ToString(CultureInfo.InvariantCulture);
+            fuelConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.FuelConsumption)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+            // 必要IC
             costTextBox.Text = model.Cost.ToString(CultureInfo.InvariantCulture);
+            costTextBox.ForeColor = model.IsDirty(UnitModelItemId.Cost) ? Color.Red : SystemColors.WindowText;
+            // 必要時間
             buildTimeTextBox.Text = model.BuildTime.ToString(CultureInfo.InvariantCulture);
+            buildTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.BuildTime) ? Color.Red : SystemColors.WindowText;
+            // 労働力
             manPowerTextBox.Text = model.ManPower.ToString(CultureInfo.InvariantCulture);
-            upgradeCostFactorTextBox.Text = model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
-            upgradeTimeFactorTextBox.Text = model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+            manPowerTextBox.ForeColor = model.IsDirty(UnitModelItemId.ManPower) ? Color.Red : SystemColors.WindowText;
+            // 最大速度
             maxSpeedTextBox.Text = model.MaxSpeed.ToString(CultureInfo.InvariantCulture);
-            speedCapArtTextBox.Text = model.SpeedCapArt.ToString(CultureInfo.InvariantCulture);
-            speedCapEngTextBox.Text = model.SpeedCapEng.ToString(CultureInfo.InvariantCulture);
-            speedCapAtTextBox.Text = model.SpeedCapAt.ToString(CultureInfo.InvariantCulture);
-            speedCapAaTextBox.Text = model.SpeedCapAa.ToString(CultureInfo.InvariantCulture);
-            defensivenessTextBox.Text = model.Defensiveness.ToString(CultureInfo.InvariantCulture);
-            seaDefenceTextBox.Text = model.SeaDefense.ToString(CultureInfo.InvariantCulture);
+            maxSpeedTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSpeed) ? Color.Red : SystemColors.WindowText;
+            // 対空防御力
             airDefenceTextBox.Text = model.AirDefense.ToString(CultureInfo.InvariantCulture);
-            surfaceDefenceTextBox.Text = model.SurfaceDefense.ToString(CultureInfo.InvariantCulture);
-            toughnessTextBox.Text = model.Toughness.ToString(CultureInfo.InvariantCulture);
-            softnessTextBox.Text = model.Softness.ToString(CultureInfo.InvariantCulture);
-            softAttackTextBox.Text = model.SoftAttack.ToString(CultureInfo.InvariantCulture);
-            hardAttackTextBox.Text = model.HardAttack.ToString(CultureInfo.InvariantCulture);
-            seaAttackTextBox.Text = model.SeaAttack.ToString(CultureInfo.InvariantCulture);
-            subAttackTextBox.Text = model.SubAttack.ToString(CultureInfo.InvariantCulture);
-            convoyAttackTextBox.Text = model.ConvoyAttack.ToString(CultureInfo.InvariantCulture);
-            shoreBombardmentTextBox.Text = model.ShoreBombardment.ToString(CultureInfo.InvariantCulture);
+            airDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDefense)
+                                              ? Color.Red
+                                              : SystemColors.WindowText;
+            // 対空攻撃力
             airAttackTextBox.Text = model.AirAttack.ToString(CultureInfo.InvariantCulture);
-            navalAttackTextBox.Text = model.NavalAttack.ToString(CultureInfo.InvariantCulture);
-            strategicAttackTextBox.Text = model.StrategicAttack.ToString(CultureInfo.InvariantCulture);
-            distanceTextBox.Text = model.Distance.ToString(CultureInfo.InvariantCulture);
-            visibilityTextBox.Text = model.Visibility.ToString(CultureInfo.InvariantCulture);
-            surfaceDetectionCapabilityTextBox.Text =
-                model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
-            subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
-            airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
+            airAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirAttack) ? Color.Red : SystemColors.WindowText;
 
             // 陸軍
             if (unit.Branch == UnitBranch.Army)
             {
-                transportWeightLabel.Enabled = true;
-                transportWeightTextBox.Enabled = true;
-                defensivenessLabel.Enabled = true;
-                defensivenessTextBox.Enabled = true;
-                toughnessLabel.Enabled = true;
-                toughnessTextBox.Enabled = true;
-                softnessLabel.Enabled = true;
-                softnessTextBox.Enabled = true;
-
+                // 航続距離
                 rangeLabel.Enabled = false;
                 rangeTextBox.Enabled = false;
+                rangeTextBox.ResetText();
+                // 輸送負荷
+                transportWeightLabel.Enabled = true;
+                transportWeightTextBox.Enabled = true;
+                transportWeightTextBox.Text = model.TransportWeight.ToString(CultureInfo.InvariantCulture);
+                transportWeightTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportWeight)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
+                // 輸送能力
                 transportCapabilityLabel.Enabled = false;
                 transportCapabilityTextBox.Enabled = false;
+                transportCapabilityTextBox.ResetText();
+                // 制圧力
+                suppressionLabel.Enabled = true;
+                suppressionTextBox.Enabled = true;
+                suppressionTextBox.Text = model.Suppression.ToString(CultureInfo.InvariantCulture);
+                suppressionTextBox.ForeColor = model.IsDirty(UnitModelItemId.Suppression)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+                // 防御力
+                defensivenessLabel.Enabled = true;
+                defensivenessTextBox.Enabled = true;
+                defensivenessTextBox.Text = model.Defensiveness.ToString(CultureInfo.InvariantCulture);
+                defensivenessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Defensiveness)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                // 耐久力
+                toughnessLabel.Enabled = true;
+                toughnessTextBox.Enabled = true;
+                toughnessTextBox.Text = model.Toughness.ToString(CultureInfo.InvariantCulture);
+                toughnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Toughness)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+                // 脆弱性
+                softnessLabel.Enabled = true;
+                softnessTextBox.Enabled = true;
+                softnessTextBox.Text = model.Softness.ToString(CultureInfo.InvariantCulture);
+                softnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Softness)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+                // 対地索敵力
                 surfaceDetectionCapabilityLabel.Enabled = false;
                 surfaceDetectionCapabilityTextBox.Enabled = false;
-                subDetectionCapabilityLabel.Enabled = false;
-                subDetectionCapabilityTextBox.Enabled = false;
+                surfaceDetectionCapabilityTextBox.ResetText();
+                // 対空索敵力
                 airDetectionCapabilityLabel.Enabled = false;
                 airDetectionCapabilityTextBox.Enabled = false;
-
-                rangeTextBox.ResetText();
-                transportCapabilityTextBox.ResetText();
-                surfaceDetectionCapabilityTextBox.ResetText();
-                subDetectionCapabilityTextBox.ResetText();
                 airDetectionCapabilityTextBox.ResetText();
             }
             else
             {
+                // 航続距離
                 rangeLabel.Enabled = true;
                 rangeTextBox.Enabled = true;
-                transportCapabilityLabel.Enabled = true;
-                transportCapabilityTextBox.Enabled = true;
-                surfaceDetectionCapabilityLabel.Enabled = true;
-                surfaceDetectionCapabilityTextBox.Enabled = true;
-                subDetectionCapabilityLabel.Enabled = true;
-                subDetectionCapabilityTextBox.Enabled = true;
-                airDetectionCapabilityLabel.Enabled = true;
-                airDetectionCapabilityTextBox.Enabled = true;
-
+                rangeTextBox.Text = model.Range.ToString(CultureInfo.InvariantCulture);
+                rangeTextBox.ForeColor = model.IsDirty(UnitModelItemId.Range) ? Color.Red : SystemColors.WindowText;
+                // 輸送負荷
                 transportWeightLabel.Enabled = false;
                 transportWeightTextBox.Enabled = false;
+                transportWeightTextBox.ResetText();
+                // 輸送能力
+                transportCapabilityLabel.Enabled = true;
+                transportCapabilityTextBox.Enabled = true;
+                transportCapabilityTextBox.Text = model.TransportCapability.ToString(CultureInfo.InvariantCulture);
+                transportCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportCapability)
+                                                           ? Color.Red
+                                                           : SystemColors.WindowText;
+                // 制圧力
+                suppressionLabel.Enabled = false;
+                suppressionTextBox.Enabled = false;
+                suppressionTextBox.ResetText();
+                // 防御力
                 defensivenessLabel.Enabled = false;
                 defensivenessTextBox.Enabled = false;
+                defensivenessTextBox.ResetText();
+                // 耐久力
                 toughnessLabel.Enabled = false;
                 toughnessTextBox.Enabled = false;
+                toughnessTextBox.ResetText();
+                // 脆弱性
                 softnessLabel.Enabled = false;
                 softnessTextBox.Enabled = false;
-
-                transportWeightTextBox.ResetText();
-                defensivenessTextBox.ResetText();
-                toughnessTextBox.ResetText();
                 softnessTextBox.ResetText();
+                // 対地索敵力
+                surfaceDetectionCapabilityLabel.Enabled = true;
+                surfaceDetectionCapabilityTextBox.Enabled = true;
+                surfaceDetectionCapabilityTextBox.Text =
+                    model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                surfaceDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDetectionCapability)
+                                                                  ? Color.Red
+                                                                  : SystemColors.WindowText;
+                // 対空索敵力
+                airDetectionCapabilityLabel.Enabled = true;
+                airDetectionCapabilityTextBox.Enabled = true;
+                airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                airDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDetectionCapability)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
             }
 
             // 陸軍師団
             if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Division)
             {
-                suppressionLabel.Enabled = true;
-                suppressionTextBox.Enabled = true;
+                // 速度キャップ(砲兵)
                 speedCapArtLabel.Enabled = true;
                 speedCapArtTextBox.Enabled = true;
+                speedCapArtTextBox.Text = model.SpeedCapArt.ToString(CultureInfo.InvariantCulture);
+                speedCapArtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapArt)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+                // 速度キャップ(工兵)
                 speedCapEngLabel.Enabled = true;
                 speedCapEngTextBox.Enabled = true;
+                speedCapEngTextBox.Text = model.SpeedCapEng.ToString(CultureInfo.InvariantCulture);
+                speedCapEngTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapEng)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+                // 速度キャップ(対戦車)
                 speedCapAtLabel.Enabled = true;
                 speedCapAtTextBox.Enabled = true;
+                speedCapAtTextBox.Text = model.SpeedCapAt.ToString(CultureInfo.InvariantCulture);
+                speedCapAtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAt)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+                // 速度キャップ(対空)
                 speedCapAaLabel.Enabled = true;
                 speedCapAaTextBox.Enabled = true;
+                speedCapAaTextBox.Text = model.SpeedCapAa.ToString(CultureInfo.InvariantCulture);
+                speedCapAaTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAa)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
             }
             else
             {
-                suppressionLabel.Enabled = false;
-                suppressionTextBox.Enabled = false;
+                // 速度キャップ(砲兵)
                 speedCapArtLabel.Enabled = false;
                 speedCapArtTextBox.Enabled = false;
+                speedCapArtTextBox.ResetText();
+                // 速度キャップ(工兵)
                 speedCapEngLabel.Enabled = false;
                 speedCapEngTextBox.Enabled = false;
-                speedCapAtLabel.Enabled = false;
+                speedCapEngTextBox.ResetText();
+                // 速度キャップ(対戦車)
                 speedCapAtTextBox.Enabled = false;
                 speedCapAaLabel.Enabled = false;
-                speedCapAaTextBox.Enabled = false;
-
-                suppressionTextBox.ResetText();
-                speedCapArtTextBox.ResetText();
-                speedCapEngTextBox.ResetText();
                 speedCapAtTextBox.ResetText();
+                // 速度キャップ(対空)
+                speedCapAtLabel.Enabled = false;
+                speedCapAaTextBox.Enabled = false;
                 speedCapAaTextBox.ResetText();
             }
 
             // 海軍
             if (unit.Branch == UnitBranch.Navy)
             {
+                // 改良コスト
+                upgradeCostFactorLabel.Enabled = false;
+                upgradeCostFactorTextBox.Enabled = false;
+                upgradeCostFactorTextBox.ResetText();
+                // 改良時間
+                upgradeTimeFactorLabel.Enabled = false;
+                upgradeTimeFactorTextBox.Enabled = false;
+                upgradeTimeFactorTextBox.ResetText();
+                // 対艦防御力
                 seaDefenceLabel.Enabled = true;
                 seaDefenceTextBox.Enabled = true;
-                seaAttackLabel.Enabled = true;
-                seaAttackTextBox.Enabled = true;
-                subAttackLabel.Enabled = true;
-                subAttackTextBox.Enabled = true;
-                convoyAttackLabel.Enabled = true;
-                convoyAttackTextBox.Enabled = true;
-                shoreBombardmentLabel.Enabled = true;
-                shoreBombardmentTextBox.Enabled = true;
-                distanceLabel.Enabled = true;
-                distanceTextBox.Enabled = true;
-                visibilityLabel.Enabled = true;
-                visibilityTextBox.Enabled = true;
-
+                seaDefenceTextBox.Text = model.SeaDefense.ToString(CultureInfo.InvariantCulture);
+                seaDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaDefense)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+                // 対人攻撃力
                 softAttackLabel.Enabled = false;
                 softAttackTextBox.Enabled = false;
+                softAttackTextBox.ResetText();
+                // 対甲攻撃力
                 hardAttackLabel.Enabled = false;
                 hardAttackTextBox.Enabled = false;
-
-                softAttackTextBox.ResetText();
                 hardAttackTextBox.ResetText();
+                // 艦対艦攻撃力
+                seaAttackLabel.Enabled = true;
+                seaAttackTextBox.Enabled = true;
+                seaAttackTextBox.Text = model.SeaAttack.ToString(CultureInfo.InvariantCulture);
+                seaAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaAttack)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+                // 対潜攻撃力
+                subAttackLabel.Enabled = true;
+                subAttackTextBox.Enabled = true;
+                subAttackTextBox.Text = model.SubAttack.ToString(CultureInfo.InvariantCulture);
+                subAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubAttack)
+                                                 ? Color.Red
+                                                 : SystemColors.WindowText;
+                // 船団攻撃力
+                convoyAttackLabel.Enabled = true;
+                convoyAttackTextBox.Enabled = true;
+                convoyAttackTextBox.Text = model.ConvoyAttack.ToString(CultureInfo.InvariantCulture);
+                convoyAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.ConvoyAttack)
+                                                    ? Color.Red
+                                                    : SystemColors.WindowText;
+                // 沿岸砲撃能力
+                shoreBombardmentLabel.Enabled = true;
+                shoreBombardmentTextBox.Enabled = true;
+                shoreBombardmentTextBox.Text = model.ShoreBombardment.ToString(CultureInfo.InvariantCulture);
+                shoreBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ShoreBombardment)
+                                                        ? Color.Red
+                                                        : SystemColors.WindowText;
+                // 射程
+                distanceLabel.Enabled = true;
+                distanceTextBox.Enabled = true;
+                distanceTextBox.Text = model.Distance.ToString(CultureInfo.InvariantCulture);
+                distanceTextBox.ForeColor = model.IsDirty(UnitModelItemId.Distance)
+                                                ? Color.Red
+                                                : SystemColors.WindowText;
+                // 視認性
+                visibilityLabel.Enabled = true;
+                visibilityTextBox.Enabled = true;
+                visibilityTextBox.Text = model.Visibility.ToString(CultureInfo.InvariantCulture);
+                visibilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.Visibility)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+                // 対艦索敵力
+                subDetectionCapabilityLabel.Enabled = true;
+                subDetectionCapabilityTextBox.Enabled = true;
+                subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                subDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubDetectionCapability)
+                                                              ? Color.Red
+                                                              : SystemColors.WindowText;
             }
             else
             {
-                softAttackLabel.Enabled = true;
-                softAttackTextBox.Enabled = true;
-                hardAttackLabel.Enabled = true;
-                hardAttackTextBox.Enabled = true;
-
+                // 改良コスト
+                upgradeCostFactorLabel.Enabled = true;
+                upgradeCostFactorTextBox.Enabled = true;
+                upgradeCostFactorTextBox.Text = model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeCostFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeCostFactor)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                // 改良時間
+                upgradeTimeFactorLabel.Enabled = true;
+                upgradeTimeFactorTextBox.Enabled = true;
+                upgradeTimeFactorTextBox.Text = model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeTimeFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeFactor)
+                                                         ? Color.Red
+                                                         : SystemColors.WindowText;
+                // 対艦防御力
                 seaDefenceLabel.Enabled = false;
                 seaDefenceTextBox.Enabled = false;
+                seaDefenceTextBox.ResetText();
+                // 対人攻撃力
+                softAttackLabel.Enabled = true;
+                softAttackTextBox.Enabled = true;
+                softAttackTextBox.Text = model.SoftAttack.ToString(CultureInfo.InvariantCulture);
+                softAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SoftAttack)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+                // 対甲攻撃力
+                hardAttackLabel.Enabled = true;
+                hardAttackTextBox.Enabled = true;
+                hardAttackTextBox.Text = model.HardAttack.ToString(CultureInfo.InvariantCulture);
+                hardAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.HardAttack)
+                                                  ? Color.Red
+                                                  : SystemColors.WindowText;
+                // 艦対艦攻撃力
                 seaAttackLabel.Enabled = false;
                 seaAttackTextBox.Enabled = false;
+                seaAttackTextBox.ResetText();
+                // 対潜攻撃力
                 subAttackLabel.Enabled = false;
                 subAttackTextBox.Enabled = false;
+                subAttackTextBox.ResetText();
+                // 船団攻撃力
                 convoyAttackLabel.Enabled = false;
                 convoyAttackTextBox.Enabled = false;
+                convoyAttackTextBox.ResetText();
+                // 沿岸砲撃能力
                 shoreBombardmentLabel.Enabled = false;
                 shoreBombardmentTextBox.Enabled = false;
+                shoreBombardmentTextBox.ResetText();
+                // 射程
                 distanceLabel.Enabled = false;
                 distanceTextBox.Enabled = false;
+                distanceTextBox.ResetText();
+                // 視認性
                 visibilityLabel.Enabled = false;
                 visibilityTextBox.Enabled = false;
-
-                seaDefenceTextBox.ResetText();
-                seaAttackTextBox.ResetText();
-                subAttackTextBox.ResetText();
-                convoyAttackTextBox.ResetText();
-                shoreBombardmentTextBox.ResetText();
-                distanceTextBox.ResetText();
                 visibilityTextBox.ResetText();
+                // 対艦索敵力
+                subDetectionCapabilityLabel.Enabled = false;
+                subDetectionCapabilityTextBox.Enabled = false;
+                subDetectionCapabilityTextBox.ResetText();
             }
 
             // 空軍
             if (unit.Branch == UnitBranch.AirForce)
             {
+                // 対地防御力
                 surfaceDefenceLabel.Enabled = true;
                 surfaceDefenceTextBox.Enabled = true;
+                surfaceDefenceTextBox.Text = model.SurfaceDefense.ToString(CultureInfo.InvariantCulture);
+                surfaceDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDefense)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                // 空対艦攻撃力
                 navalAttackLabel.Enabled = true;
                 navalAttackTextBox.Enabled = true;
+                navalAttackTextBox.Text = model.NavalAttack.ToString(CultureInfo.InvariantCulture);
+                navalAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.NavalAttack)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
+                // 戦略爆撃攻撃力
                 strategicAttackLabel.Enabled = true;
                 strategicAttackTextBox.Enabled = true;
+                strategicAttackTextBox.Text = model.StrategicAttack.ToString(CultureInfo.InvariantCulture);
+                strategicAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.StrategicAttack)
+                                                       ? Color.Red
+                                                       : SystemColors.WindowText;
             }
             else
             {
+                // 対地防御力
                 surfaceDefenceLabel.Enabled = false;
                 surfaceDefenceTextBox.Enabled = false;
+                surfaceDefenceTextBox.ResetText();
+                // 空対艦攻撃力
                 navalAttackLabel.Enabled = false;
                 navalAttackTextBox.Enabled = false;
+                navalAttackTextBox.ResetText();
+                // 戦略爆撃攻撃力
                 strategicAttackLabel.Enabled = false;
                 strategicAttackTextBox.Enabled = false;
-
-                surfaceDefenceTextBox.ResetText();
-                navalAttackTextBox.ResetText();
                 strategicAttackTextBox.ResetText();
             }
 
-            // AoD
-            if (Game.Type == GameType.ArsenalOfDemocracy)
+            // AoD/陸軍
+            if (Game.Type == GameType.ArsenalOfDemocracy && unit.Branch == UnitBranch.Army)
             {
+                // 最大物資
+                maxSupplyStockLabel.Enabled = true;
+                maxSupplyStockTextBox.Enabled = true;
                 maxSupplyStockTextBox.Text = model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture);
+                maxSupplyStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSupplyStock)
+                                                      ? Color.Red
+                                                      : SystemColors.WindowText;
+                // 最大燃料
+                maxOilStockLabel.Enabled = true;
+                maxOilStockTextBox.Enabled = true;
                 maxOilStockTextBox.Text = model.MaxOilStock.ToString(CultureInfo.InvariantCulture);
-                artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
-
-                // 陸軍師団
-                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Division)
-                {
-                    maxSupplyStockLabel.Enabled = true;
-                    maxSupplyStockTextBox.Enabled = true;
-                    maxOilStockLabel.Enabled = true;
-                    maxOilStockTextBox.Enabled = true;
-                }
-                else
-                {
-                    maxSupplyStockLabel.Enabled = false;
-                    maxSupplyStockTextBox.Enabled = false;
-                    maxOilStockLabel.Enabled = false;
-                    maxOilStockTextBox.Enabled = false;
-
-                    maxSupplyStockTextBox.ResetText();
-                    maxOilStockTextBox.ResetText();
-                }
-
-                // 陸軍旅団
-                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
-                {
-                    artilleryBombardmentLabel.Enabled = true;
-                    artilleryBombardmentTextBox.Enabled = true;
-                }
-                else
-                {
-                    artilleryBombardmentLabel.Enabled = false;
-                    artilleryBombardmentTextBox.Enabled = false;
-
-                    artilleryBombardmentTextBox.ResetText();
-                }
+                maxOilStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxOilStock)
+                                                   ? Color.Red
+                                                   : SystemColors.WindowText;
             }
-
-            // DH
-            if (Game.Type == GameType.DarkestHour)
+            else
             {
-                reinforceCostTextBox.Text = model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture);
-                reinforceTimeTextBox.Text = model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture);
-                noFuelCombatModTextBox.Text = model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture);
-
-                // 師団
-                if (unit.Organization == UnitOrganization.Division)
-                {
-                    reinforceCostLabel.Enabled = true;
-                    reinforceCostTextBox.Enabled = true;
-                    reinforceTimeLabel.Enabled = true;
-                    reinforceTimeTextBox.Enabled = true;
-                }
-                else
-                {
-                    reinforceCostLabel.Enabled = false;
-                    reinforceCostTextBox.Enabled = false;
-                    reinforceTimeLabel.Enabled = false;
-                    reinforceTimeTextBox.Enabled = false;
-
-                    reinforceCostTextBox.ResetText();
-                    reinforceTimeTextBox.ResetText();
-                }
-
-                // 陸軍師団
-                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Division)
-                {
-                    noFuelCombatModLabel.Enabled = true;
-                    noFuelCombatModTextBox.Enabled = true;
-                }
-                else
-                {
-                    noFuelCombatModLabel.Enabled = false;
-                    noFuelCombatModTextBox.Enabled = false;
-
-                    noFuelCombatModTextBox.ResetText();
-                }
-
-                // DH1.03以降
-                if (Game.Version >= 103)
-                {
-                    speedCapAllTextBox.Text = model.SpeedCap.ToString(CultureInfo.InvariantCulture);
-
-                    // 陸軍旅団
-                    if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
-                    {
-                        speedCapAllLabel.Enabled = true;
-                        speedCapAllTextBox.Enabled = true;
-                    }
-                    else
-                    {
-                        speedCapAllLabel.Enabled = false;
-                        speedCapAllTextBox.Enabled = false;
-
-                        speedCapAllTextBox.ResetText();
-                    }
-
-                    // 装備リストを更新する
-                    UpdateEquipmentList(model);
-                }
+                // 最大物資
+                maxSupplyStockLabel.Enabled = false;
+                maxSupplyStockTextBox.Enabled = false;
+                maxSupplyStockTextBox.ResetText();
+                // 最大燃料
+                maxOilStockLabel.Enabled = false;
+                maxOilStockTextBox.Enabled = false;
+                maxOilStockTextBox.ResetText();
             }
 
-            // 編集項目の色を更新する
-            modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name) ? Color.Red : SystemColors.WindowText;
-            defaultOrganisationTextBox.ForeColor = model.IsDirty(UnitModelItemId.DefaultOrganization)
+            // AoD/陸軍旅団
+            if (Game.Type == GameType.ArsenalOfDemocracy &&
+                unit.Branch == UnitBranch.Army &&
+                unit.Organization == UnitOrganization.Brigade)
+            {
+                // 砲撃能力
+                artilleryBombardmentLabel.Enabled = true;
+                artilleryBombardmentTextBox.Enabled = true;
+                artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
+                artilleryBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ArtilleryBombardment)
+                                                            ? Color.Red
+                                                            : SystemColors.WindowText;
+            }
+            else
+            {
+                // 砲撃能力
+                artilleryBombardmentLabel.Enabled = false;
+                artilleryBombardmentTextBox.Enabled = false;
+                artilleryBombardmentTextBox.ResetText();
+            }
+
+            // DH/師団
+            if (Game.Type == GameType.DarkestHour && unit.Organization == UnitOrganization.Division)
+            {
+                // 補充コスト
+                reinforceCostLabel.Enabled = true;
+                reinforceCostTextBox.Enabled = true;
+                reinforceCostTextBox.Text = model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture);
+                reinforceCostTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceCostFactor)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+                // 補充時間
+                reinforceTimeLabel.Enabled = true;
+                reinforceTimeTextBox.Enabled = true;
+                reinforceTimeTextBox.Text = model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture);
+                reinforceTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceTimeFactor)
+                                                     ? Color.Red
+                                                     : SystemColors.WindowText;
+            }
+            else
+            {
+                // 補充コスト
+                reinforceCostLabel.Enabled = false;
+                reinforceCostTextBox.Enabled = false;
+                reinforceCostTextBox.ResetText();
+                // 補充時間
+                reinforceTimeLabel.Enabled = false;
+                reinforceTimeTextBox.Enabled = false;
+                reinforceTimeTextBox.ResetText();
+            }
+
+            // DH/陸軍師団
+            if (Game.Type == GameType.DarkestHour &&
+                unit.Branch == UnitBranch.Army &&
+                unit.Organization == UnitOrganization.Division)
+            {
+                // 燃料切れ補正
+                noFuelCombatModLabel.Enabled = true;
+                noFuelCombatModTextBox.Enabled = true;
+                noFuelCombatModTextBox.Text = model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture);
+                noFuelCombatModTextBox.ForeColor = model.IsDirty(UnitModelItemId.NoFuelCombatMod)
                                                        ? Color.Red
                                                        : SystemColors.WindowText;
-            moraleTextBox.ForeColor = model.IsDirty(UnitModelItemId.Morale) ? Color.Red : SystemColors.WindowText;
-            rangeTextBox.ForeColor = model.IsDirty(UnitModelItemId.Range) ? Color.Red : SystemColors.WindowText;
-            transportWeightTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportWeight)
+            }
+            else
+            {
+                // 燃料切れ補正
+                noFuelCombatModLabel.Enabled = false;
+                noFuelCombatModTextBox.Enabled = false;
+                noFuelCombatModTextBox.ResetText();
+            }
+
+            // DH1.03以降
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                // 装備リストを更新する
+                UpdateEquipmentList(model);
+            }
+
+            // DH1.03以降/陸軍旅団
+            if (Game.Type == GameType.DarkestHour &&
+                Game.Version >= 103 &&
+                unit.Branch == UnitBranch.Army &&
+                unit.Organization == UnitOrganization.Brigade)
+            {
+                // 速度キャップ
+                speedCapAllLabel.Enabled = true;
+                speedCapAllTextBox.Enabled = true;
+                speedCapAllTextBox.Text = model.SpeedCap.ToString(CultureInfo.InvariantCulture);
+                speedCapAllTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCap)
                                                    ? Color.Red
                                                    : SystemColors.WindowText;
-            transportCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportCapability)
-                                                       ? Color.Red
-                                                       : SystemColors.WindowText;
-            suppressionTextBox.ForeColor = model.IsDirty(UnitModelItemId.Suppression)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            supplyConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.SupplyConsumption)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
-            fuelConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.FuelConsumption)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            maxSupplyStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSupplyStock)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
-            maxOilStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxOilStock)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            costTextBox.ForeColor = model.IsDirty(UnitModelItemId.Cost) ? Color.Red : SystemColors.WindowText;
-            buildTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.BuildTime) ? Color.Red : SystemColors.WindowText;
-            manPowerTextBox.ForeColor = model.IsDirty(UnitModelItemId.ManPower) ? Color.Red : SystemColors.WindowText;
-            upgradeCostFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeCostFactor)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
-            upgradeTimeFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeFactor)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
-            reinforceCostTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceCostFactor)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
-            reinforceTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceTimeFactor)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
-            maxSpeedTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSpeed) ? Color.Red : SystemColors.WindowText;
-            speedCapAllTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCap) ? Color.Red : SystemColors.WindowText;
-            speedCapArtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapArt)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            speedCapEngTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapEng)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            speedCapAtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAt)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
-            speedCapAaTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAa)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
-            defensivenessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Defensiveness)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
-            seaDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaDefense)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
-            airDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDefense)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
-            surfaceDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDefense)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
-            toughnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Toughness) ? Color.Red : SystemColors.WindowText;
-            softnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Softness) ? Color.Red : SystemColors.WindowText;
-            softAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SoftAttack)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
-            hardAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.HardAttack)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
-            seaAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaAttack) ? Color.Red : SystemColors.WindowText;
-            subAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubAttack) ? Color.Red : SystemColors.WindowText;
-            convoyAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.ConvoyAttack)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
-            shoreBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ShoreBombardment)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
-            airAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirAttack) ? Color.Red : SystemColors.WindowText;
-            navalAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.NavalAttack)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
-            strategicAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.StrategicAttack)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
-            artilleryBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ArtilleryBombardment)
-                                                        ? Color.Red
-                                                        : SystemColors.WindowText;
-            distanceTextBox.ForeColor = model.IsDirty(UnitModelItemId.Distance) ? Color.Red : SystemColors.WindowText;
-            visibilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.Visibility)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
-            surfaceDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDetectionCapability)
-                                                              ? Color.Red
-                                                              : SystemColors.WindowText;
-            subDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubDetectionCapability)
-                                                          ? Color.Red
-                                                          : SystemColors.WindowText;
-            airDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDetectionCapability)
-                                                          ? Color.Red
-                                                          : SystemColors.WindowText;
-            noFuelCombatModTextBox.ForeColor = model.IsDirty(UnitModelItemId.NoFuelCombatMod)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+            }
+            else
+            {
+                // 速度キャップ
+                speedCapAllLabel.Enabled = false;
+                speedCapAllTextBox.Enabled = false;
+                speedCapAllTextBox.ResetText();
+            }
         }
 
         /// <summary>
@@ -3008,34 +3137,14 @@ namespace HoI2Editor.Forms
             cloneButton.Enabled = true;
             removeButton.Enabled = true;
 
-            // AoD
-            if (Game.Type == GameType.ArsenalOfDemocracy)
+            // DH1.03以降
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
-                maxSupplyStockLabel.Enabled = true;
-                maxSupplyStockTextBox.Enabled = true;
-                maxOilStockLabel.Enabled = true;
-                maxOilStockTextBox.Enabled = true;
-                artilleryBombardmentLabel.Enabled = true;
-                artilleryBombardmentTextBox.Enabled = true;
+                equipmentGroupBox.Enabled = true;
             }
-
-            // DH
-            if (Game.Type == GameType.DarkestHour)
+            else
             {
-                reinforceCostLabel.Enabled = true;
-                reinforceCostTextBox.Enabled = true;
-                reinforceTimeLabel.Enabled = true;
-                reinforceTimeTextBox.Enabled = true;
-                noFuelCombatModLabel.Enabled = true;
-                noFuelCombatModTextBox.Enabled = true;
-
-                // DH1.03以降
-                if (Game.Version >= 103)
-                {
-                    speedCapAllLabel.Enabled = true;
-                    speedCapAllTextBox.Enabled = true;
-                    equipmentGroupBox.Enabled = true;
-                }
+                equipmentGroupBox.Enabled = false;
             }
         }
 
