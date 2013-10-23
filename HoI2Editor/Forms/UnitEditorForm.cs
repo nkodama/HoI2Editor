@@ -1039,7 +1039,7 @@ namespace HoI2Editor.Forms
             // 付属旅団
             if (unit.Organization == UnitOrganization.Division)
             {
-                if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+                if (Game.Type == GameType.DarkestHour)
                 {
                     maxAllowedBrigadesLabel.Enabled = true;
                     maxAllowedBrigadesNumericUpDown.Enabled = true;
