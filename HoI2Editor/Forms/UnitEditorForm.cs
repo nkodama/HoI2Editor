@@ -309,6 +309,23 @@ namespace HoI2Editor.Forms
             }
         }
 
+        /// <summary>
+        ///     付属可能旅団数を初期化する
+        /// </summary>
+        private static void InitMaxAllowedBrigades()
+        {
+            Units.Items[(int) UnitType.Transport].MaxAllowedBrigades = Misc.TpMaxAttach;
+            Units.Items[(int) UnitType.Submarine].MaxAllowedBrigades = Misc.SsMaxAttach;
+            Units.Items[(int) UnitType.NuclearSubmarine].MaxAllowedBrigades = Misc.SsnMaxAttach;
+            Units.Items[(int) UnitType.Destroyer].MaxAllowedBrigades = Misc.DdMaxAttach;
+            Units.Items[(int) UnitType.LightCruiser].MaxAllowedBrigades = Misc.ClMaxAttach;
+            Units.Items[(int) UnitType.HeavyCruiser].MaxAllowedBrigades = Misc.CaMaxAttach;
+            Units.Items[(int) UnitType.BattleCruiser].MaxAllowedBrigades = Misc.BcMaxAttach;
+            Units.Items[(int) UnitType.BattleShip].MaxAllowedBrigades = Misc.BbMaxAttach;
+            Units.Items[(int) UnitType.LightCarrier].MaxAllowedBrigades = Misc.CvlMaxAttach;
+            Units.Items[(int) UnitType.Carrier].MaxAllowedBrigades = Misc.CvMaxAttach;
+        }
+
         #endregion
 
         #region 終了処理
@@ -386,11 +403,20 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadFiles()
         {
+            // Miscファイルを読み込む
+            Misc.Load();
+
             // 文字列定義ファイルを読み込む
             Config.Load();
 
             // ユニットデータを読み込む
             Units.Load();
+
+            // Miscの値に応じて付属可能旅団数を初期化する
+            if (Game.Type == GameType.ArsenalOfDemocracy && Game.Version >= 107)
+            {
+                InitMaxAllowedBrigades();
+            }
 
             // 編集項目を初期化する
             InitEditableItems();
