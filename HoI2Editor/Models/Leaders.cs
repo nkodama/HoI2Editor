@@ -643,6 +643,12 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
+            // 編集済みでなければ何もしない
+            if (!IsDirty())
+            {
+                return;
+            }
+
             foreach (
                 CountryTag country in Enum.GetValues(typeof (CountryTag))
                                           .Cast<CountryTag>()

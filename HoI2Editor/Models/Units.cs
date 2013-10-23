@@ -3457,6 +3457,12 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
+            // 編集済みでなければ何もしない
+            if (!IsDirty() && !IsDirtyDivisionTypes() && !IsDirtyBrigadeTypes())
+            {
+                return;
+            }
+
             // ユニット定義フォルダがなければ作成する
             string folderName = Game.GetWriteFileName(Game.UnitPathName);
             if (!Directory.Exists(folderName))

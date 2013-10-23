@@ -919,7 +919,7 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 閣僚定義ファイル読み込み
+        #region ファイル読み込み
 
         /// <summary>
         ///     閣僚ファイルの再読み込みを要求する
@@ -1329,13 +1329,19 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 閣僚定義ファイル書き込み
+        #region ファイル書き込み
 
         /// <summary>
         ///     閣僚ファイル群を保存する
         /// </summary>
         public static void Save()
         {
+            // 編集済みでなければ何もしない
+            if (!IsDirty())
+            {
+                return;
+            }
+
             foreach (
                 CountryTag country in
                     Enum.GetValues(typeof (CountryTag))

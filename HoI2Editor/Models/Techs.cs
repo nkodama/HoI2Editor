@@ -722,6 +722,12 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
+            // 編集済みでなければ何もしない
+            if (!IsDirty())
+            {
+                return;
+            }
+
             string folderName = Game.GetWriteFileName(Game.TechPathName);
             // 技術定義フォルダがなければ作成する
             if (!Directory.Exists(folderName))

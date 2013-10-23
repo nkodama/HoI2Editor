@@ -4317,7 +4317,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
-            // 編集済みでなければ戻る
+            // 編集済みでなければ何もしない
             if (!IsDirty())
             {
                 return;
