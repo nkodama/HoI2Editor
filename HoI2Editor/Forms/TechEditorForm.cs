@@ -757,12 +757,6 @@ namespace HoI2Editor.Forms
             // 技術項目リストに項目を挿入する
             grp.InsertItem(item, selected);
 
-            // 項目リストビューに項目を挿入する
-            InsertTechListItem(item, techListBox.SelectedIndex + 1);
-
-            // 技術ツリーにラベルを追加する
-            AddTechTreeItems(item);
-
             if (item is TechItem)
             {
                 // 技術項目とIDの対応付けを更新する
@@ -772,6 +766,12 @@ namespace HoI2Editor.Forms
                 // 技術イベントの技術IDコンボボックスの項目を更新する
                 UpdateEventTechListItems();
             }
+
+            // 項目リストビューに項目を挿入する
+            InsertTechListItem(item, techListBox.SelectedIndex + 1);
+
+            // 技術ツリーにラベルを追加する
+            AddTechTreeItems(item);
 
             // 編集済みフラグを設定する
             grp.SetDirty();
