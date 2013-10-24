@@ -936,6 +936,7 @@
             this.Controls.Add(this.worldTreeView);
             this.Controls.Add(this.provinceListView);
             this.Name = "ProvinceEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnProvinceEditorFormClosing);
             this.Load += new System.EventHandler(this.OnProvinceEditorFormLoad);
             this.basicGroupBox.ResumeLayout(false);
             this.basicGroupBox.PerformLayout();

@@ -59,25 +59,14 @@ namespace HoI2Editor.Models
         #region 内部フィールド
 
         /// <summary>
-        ///     ユニット定義ファイル名とIDの対応付け
-        /// </summary>
-        private static readonly Dictionary<UnitType, string> FileNameMap = new Dictionary<UnitType, string>();
-
-        /// <summary>
-        ///     ユニットの兵科とIDの対応付け
-        /// </summary>
-        private static readonly Dictionary<UnitType, UnitBranch> BranchMap = new Dictionary<UnitType, UnitBranch>();
-
-        /// <summary>
-        ///     ユニットの編成とIDの対応付け
-        /// </summary>
-        private static readonly Dictionary<UnitType, UnitOrganization> OrganizationMap =
-            new Dictionary<UnitType, UnitOrganization>();
-
-        /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private static bool _dirtyFlag;
 
         /// <summary>
         ///     師団ユニットクラス定義ファイルの編集済みフラグ
@@ -1173,6 +1162,44 @@ namespace HoI2Editor.Models
                 137,
                 138,
                 139
+            };
+
+        /// <summary>
+        ///     実ユニット種類に対応する兵科
+        /// </summary>
+        public static readonly UnitBranch[] RealBranchTable =
+            {
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.Army,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.Navy,
+                UnitBranch.AirForce,
+                UnitBranch.AirForce,
+                UnitBranch.Army,
+                UnitBranch.Navy,
+                UnitBranch.Navy
             };
 
         #endregion
@@ -2886,41 +2913,314 @@ namespace HoI2Editor.Models
             };
 
         /// <summary>
-        ///     実ユニット種類に対応する兵科
+        ///     最大付属旅団数の初期値
         /// </summary>
-        public static readonly UnitBranch[] RealBranchTable =
+        private static readonly int[] DefaultMaxBrigades =
             {
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.Army,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.Navy,
-                UnitBranch.AirForce,
-                UnitBranch.AirForce,
-                UnitBranch.Army,
-                UnitBranch.Navy,
-                UnitBranch.Navy
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                5,
+                2,
+                3,
+                4,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             };
 
         #endregion
@@ -2970,9 +3270,6 @@ namespace HoI2Editor.Models
         public static void Init()
         {
             InitTypes();
-            InitFileNames();
-            InitBranches();
-            InitOrganizations();
         }
 
         /// <summary>
@@ -2999,42 +3296,6 @@ namespace HoI2Editor.Models
             UnitTypes = new List<UnitType>();
             UnitTypes.AddRange(DivisionTypes);
             UnitTypes.AddRange(BrigadeTypes);
-        }
-
-        /// <summary>
-        ///     ユニット定義ファイル名を初期化する
-        /// </summary>
-        private static void InitFileNames()
-        {
-            FileNameMap.Clear();
-            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
-            {
-                FileNameMap.Add(type, DefaultFileNames[(int) type]);
-            }
-        }
-
-        /// <summary>
-        ///     ユニットの兵科を初期化する
-        /// </summary>
-        private static void InitBranches()
-        {
-            BranchMap.Clear();
-            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
-            {
-                BranchMap.Add(type, DefaultBranches[(int) type]);
-            }
-        }
-
-        /// <summary>
-        ///     ユニットの編成を初期化する
-        /// </summary>
-        private static void InitOrganizations()
-        {
-            OrganizationMap.Clear();
-            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
-            {
-                OrganizationMap.Add(type, DefaultOrganizations[(int) type]);
-            }
         }
 
         #endregion
@@ -3076,10 +3337,21 @@ namespace HoI2Editor.Models
                 var unit = new Unit
                     {
                         Type = type,
-                        Branch = BranchMap[type],
-                        Organization = OrganizationMap[type],
-                        ListPrio = -1
+                        Branch = DefaultBranches[(int) type],
+                        Organization = DefaultOrganizations[(int) type],
+                        ListPrio = -1,
+                        MaxAllowedBrigades = DefaultMaxBrigades[(int) type],
                     };
+
+                // DDAとAoDで付属可能旅団数が異なる箇所を再設定
+                if (Game.Type == GameType.ArsenalOfDemocracy)
+                {
+                    if (type == UnitType.EscortCarrier || type == UnitType.Cas)
+                    {
+                        unit.MaxAllowedBrigades = 1;
+                    }
+                }
+
                 string s = DefaultNames[(int) unit.Type];
                 unit.Name = "NAME_" + s;
                 unit.ShortName = "SNAME_" + s;
@@ -3113,11 +3385,15 @@ namespace HoI2Editor.Models
                         Game.GetReadFileName(
                             unit.Organization == UnitOrganization.Division
                                 ? Game.DivisionPathName
-                                : Game.BrigadePathName, FileNameMap[type]);
+                                : Game.BrigadePathName, DefaultFileNames[(int) type]);
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                 }
             }
 
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
+
+            // 読み込み済みフラグを設定する
             _loaded = true;
         }
 
@@ -3132,7 +3408,7 @@ namespace HoI2Editor.Models
             string fileName =
                 Game.GetReadFileName(
                     unit.Organization == UnitOrganization.Division ? Game.DivisionPathName : Game.BrigadePathName,
-                    FileNameMap[type]);
+                    DefaultFileNames[(int) type]);
             if (!File.Exists(fileName))
             {
                 return;
@@ -3181,6 +3457,12 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
+            // 編集済みでなければ何もしない
+            if (!IsDirty() && !IsDirtyDivisionTypes() && !IsDirtyBrigadeTypes())
+            {
+                return;
+            }
+
             // ユニット定義フォルダがなければ作成する
             string folderName = Game.GetWriteFileName(Game.UnitPathName);
             if (!Directory.Exists(folderName))
@@ -3210,7 +3492,7 @@ namespace HoI2Editor.Models
                         Directory.CreateDirectory(folderName);
                     }
                     // ユニット定義ファイルを保存する
-                    string fileName = Path.Combine(folderName, FileNameMap[unit.Type]);
+                    string fileName = Path.Combine(folderName, DefaultFileNames[(int) unit.Type]);
                     try
                     {
                         UnitWriter.Write(unit, fileName);
@@ -3221,6 +3503,9 @@ namespace HoI2Editor.Models
                     }
                 }
             }
+
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
         }
 
         /// <summary>
@@ -3276,6 +3561,23 @@ namespace HoI2Editor.Models
         #region 編集済みフラグ操作
 
         /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public static void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
         ///     師団ユニットクラス定義が編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
@@ -3299,6 +3601,7 @@ namespace HoI2Editor.Models
         public static void SetDirtyDivisionTypes()
         {
             _divisionTypesDirty = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>
@@ -3307,6 +3610,7 @@ namespace HoI2Editor.Models
         public static void SetDirtyBrigadeTypes()
         {
             _brigadeTypesDirty = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>

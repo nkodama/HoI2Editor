@@ -47,6 +47,11 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグ
         /// </summary>
+        private static bool _dirtyFlag;
+
+        /// <summary>
+        ///     国家ごとの編集済みフラグ
+        /// </summary>
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
 
         /// <summary>
@@ -208,6 +213,10 @@ namespace HoI2Editor.Models
                     break;
             }
 
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
+
+            // 読み込み済みフラグを設定する
             _loaded = true;
         }
 
@@ -634,6 +643,12 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
+            // 編集済みでなければ何もしない
+            if (!IsDirty())
+            {
+                return;
+            }
+
             foreach (
                 CountryTag country in Enum.GetValues(typeof (CountryTag))
                                           .Cast<CountryTag>()
@@ -652,6 +667,9 @@ namespace HoI2Editor.Models
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                 }
             }
+
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
         }
 
         /// <summary>
@@ -826,6 +844,15 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みかどうかを取得する
         /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
         public static bool IsDirty(CountryTag country)
@@ -840,6 +867,7 @@ namespace HoI2Editor.Models
         public static void SetDirty(CountryTag country)
         {
             DirtyFlags[(int) country] = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>

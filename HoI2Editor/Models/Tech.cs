@@ -181,6 +181,7 @@ namespace HoI2Editor.Models
         public void SetDirty()
         {
             _dirtyFlag = true;
+            Techs.SetDirty();
         }
 
         /// <summary>
@@ -390,8 +391,14 @@ namespace HoI2Editor.Models
             }
 
             // 必要技術リスト
-            item.AndRequiredTechs.AddRange(AndRequiredTechs);
-            item.OrRequiredTechs.AddRange(OrRequiredTechs);
+            foreach (RequiredTech required in AndRequiredTechs)
+            {
+                item.AndRequiredTechs.Add(required.Clone());
+            }
+            foreach (RequiredTech required in OrRequiredTechs)
+            {
+                item.OrRequiredTechs.Add(required.Clone());
+            }
 
             // 技術効果リスト
             foreach (Command command in Effects)
@@ -1227,6 +1234,21 @@ namespace HoI2Editor.Models
         ///     編集済みフラグ
         /// </summary>
         private bool _dirtyFlag;
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     座標を複製する
+        /// </summary>
+        /// <returns>複製した座標</returns>
+        public RequiredTech Clone()
+        {
+            var required = new RequiredTech { Id = Id };
+
+            return required;
+        }
 
         #endregion
 

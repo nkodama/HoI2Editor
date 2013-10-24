@@ -1527,6 +1527,7 @@
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.modelListView);
             this.Name = "UnitEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnUnitEditorFormClosing);
             this.Load += new System.EventHandler(this.OnUnitModelEditorFormLoad);
             this.editTabControl.ResumeLayout(false);
             this.classTabPage.ResumeLayout(false);

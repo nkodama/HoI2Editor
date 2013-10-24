@@ -152,6 +152,10 @@ namespace HoI2Editor.Forms
             InitEffectItems();
         }
 
+        #endregion
+
+        #region 終了処理
+
         /// <summary>
         ///     閉じるボタン押下時の処理
         /// </summary>
@@ -160,6 +164,33 @@ namespace HoI2Editor.Forms
         private void OnCloseButtonClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechEditorFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!Techs.IsDirty() && !Config.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                                                  MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    SaveFiles();
+                    break;
+            }
         }
 
         #endregion
@@ -726,12 +757,6 @@ namespace HoI2Editor.Forms
             // 技術項目リストに項目を挿入する
             grp.InsertItem(item, selected);
 
-            // 項目リストビューに項目を挿入する
-            InsertTechListItem(item, techListBox.SelectedIndex + 1);
-
-            // 技術ツリーにラベルを追加する
-            AddTechTreeItems(item);
-
             if (item is TechItem)
             {
                 // 技術項目とIDの対応付けを更新する
@@ -741,6 +766,12 @@ namespace HoI2Editor.Forms
                 // 技術イベントの技術IDコンボボックスの項目を更新する
                 UpdateEventTechListItems();
             }
+
+            // 項目リストビューに項目を挿入する
+            InsertTechListItem(item, techListBox.SelectedIndex + 1);
+
+            // 技術ツリーにラベルを追加する
+            AddTechTreeItems(item);
 
             // 編集済みフラグを設定する
             grp.SetDirty();
@@ -1608,6 +1639,7 @@ namespace HoI2Editor.Forms
             categoryListBox.SelectedIndexChanged += OnCategoryListBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
+            grp.SetDirty(TechGroupItemId.Name);
             Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
@@ -1634,6 +1666,7 @@ namespace HoI2Editor.Forms
             Config.SetText(grp.Desc, desc, Game.TechTextFileName);
 
             // 編集済みフラグを設定する
+            grp.SetDirty(TechGroupItemId.Desc);
             Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する

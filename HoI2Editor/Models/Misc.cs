@@ -12,6 +12,86 @@ namespace HoI2Editor.Models
         #region 公開プロパティ
 
         /// <summary>
+        ///     輸送艦最大付属装備数
+        /// </summary>
+        public static int TpMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.TpMaxAttach] != null) ? (int) _items[(int) MiscItemId.TpMaxAttach] : 0; }
+        }
+
+        /// <summary>
+        ///     潜水艦最大付属装備数
+        /// </summary>
+        public static int SsMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.SsMaxAttach] != null) ? (int) _items[(int) MiscItemId.SsMaxAttach] : 0; }
+        }
+
+        /// <summary>
+        ///     原子力潜水艦最大付属装備数
+        /// </summary>
+        public static int SsnMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.SsnMaxAttach] != null) ? (int) _items[(int) MiscItemId.SsnMaxAttach] : 0; }
+        }
+
+        /// <summary>
+        ///     駆逐艦最大付属装備数
+        /// </summary>
+        public static int DdMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.DdMaxAttach] != null) ? (int) _items[(int) MiscItemId.DdMaxAttach] : 1; }
+        }
+
+        /// <summary>
+        ///     軽巡洋艦最大付属装備数
+        /// </summary>
+        public static int ClMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.ClMaxAttach] != null) ? (int) _items[(int) MiscItemId.ClMaxAttach] : 2; }
+        }
+
+        /// <summary>
+        ///     重巡洋艦最大付属装備数
+        /// </summary>
+        public static int CaMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.CaMaxAttach] != null) ? (int) _items[(int) MiscItemId.CaMaxAttach] : 3; }
+        }
+
+        /// <summary>
+        ///     巡洋戦艦最大付属装備数
+        /// </summary>
+        public static int BcMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.BcMaxAttach] != null) ? (int) _items[(int) MiscItemId.BcMaxAttach] : 4; }
+        }
+
+        /// <summary>
+        ///     戦艦最大付属装備数
+        /// </summary>
+        public static int BbMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.BbMaxAttach] != null) ? (int) _items[(int) MiscItemId.BbMaxAttach] : 5; }
+        }
+
+        /// <summary>
+        ///     軽空母最大付属装備数
+        /// </summary>
+        public static int CvlMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.CvlMaxAttach] != null) ? (int) _items[(int) MiscItemId.CvlMaxAttach] : 1; }
+        }
+
+        /// <summary>
+        ///     空母最大付属装備数
+        /// </summary>
+        public static int CvMaxAttach
+        {
+            get { return (_items[(int) MiscItemId.CvMaxAttach] != null) ? (int) _items[(int) MiscItemId.CvMaxAttach] : 1; }
+        }
+
+        /// <summary>
         ///     新形式閣僚ファイルフォーマット
         /// </summary>
         public static bool UseNewMinisterFilesFormat
@@ -1765,7 +1845,7 @@ namespace HoI2Editor.Models
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
                 {false, false, false, false, false, true, true},
-                {false, false, false, false, false, true, true},
+                {false, false, false, false, false, true, true}
             };
 
         /// <summary>
@@ -4237,7 +4317,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
-            // 編集済みでなければ戻る
+            // 編集済みでなければ何もしない
             if (!IsDirty())
             {
                 return;
