@@ -668,8 +668,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public void SetDirtyAll()
         {
-            Log.Write(string.Format("SetDirtyAll: {0} {1}\n", Id, Config.GetText(Name)));
-
             foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
             {
                 _dirtyFlags[(int) id] = true;
