@@ -157,6 +157,17 @@ namespace HoI2Editor.Forms
             form.Show();
         }
 
+        /// <summary>
+        ///     ユニット名ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitNameButtonClick(object sender, EventArgs e)
+        {
+            var form = new UnitNameEditorForm();
+            form.Show();
+        }
+
         #endregion
 
         #region ゲームフォルダ/MOD名

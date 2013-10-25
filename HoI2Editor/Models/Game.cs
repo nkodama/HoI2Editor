@@ -300,6 +300,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public const string ProvinceTextFileName = "province_names.csv";
 
+        /// <summary>
+        /// ユニット名定義ファイル名
+        /// </summary>
+        public const string UnitNamesPathName = "db\\unitnames.csv";
+
         #endregion
 
         #region 初期化
@@ -325,6 +330,7 @@ namespace HoI2Editor.Models
             Techs.RequireReload();
             Units.RequireReload();
             Provinces.RequireReload();
+            UnitNames.RequireReload();
         }
 
         #endregion

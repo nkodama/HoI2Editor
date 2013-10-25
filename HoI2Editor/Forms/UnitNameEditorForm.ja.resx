@@ -145,8 +145,8 @@
   <data name="allCountryCheckBox.Text" xml:space="preserve">
     <value>全ての国家に適用</value>
   </data>
-  <data name="targetGroupBox.Text" xml:space="preserve">
-    <value>対象</value>
+  <data name="optionGroupBox.Text" xml:space="preserve">
+    <value>オプション</value>
   </data>
   <data name="regexpcheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 16</value>
@@ -178,10 +178,25 @@
   <data name="replaceGroupBox.Text" xml:space="preserve">
     <value>置換</value>
   </data>
+  <data name="suffixLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 12</value>
+  </data>
+  <data name="suffixLabel.Text" xml:space="preserve">
+    <value>文字列(&amp;X)</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>連番</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>ユニット名エディタ</value>
+  <data name="cutButton.Text" xml:space="preserve">
+    <value>切り取り</value>
+  </data>
+  <data name="pasteButton.Text" xml:space="preserve">
+    <value>貼り付け</value>
+  </data>
+  <data name="undoButton.Text" xml:space="preserve">
+    <value>元に戻す</value>
+  </data>
+  <data name="copyButton.Text" xml:space="preserve">
+    <value>コピー</value>
   </data>
 </root>

@@ -192,6 +192,9 @@
     <EmbeddedResource Include="Forms\UnitEditorForm.resx">
       <DependentUpon>UnitEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UnitNameEditorForm.ja.resx">
+      <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnitNameEditorForm.resx">
       <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
     </EmbeddedResource>
