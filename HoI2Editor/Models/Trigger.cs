@@ -165,6 +165,7 @@
         /// </summary>
         public static readonly TriggerParamType[] ParamTypeTable =
             {
+                TriggerParamType.None,
                 TriggerParamType.Container, // and
                 TriggerParamType.Container, // or
                 TriggerParamType.Container, // not
@@ -447,6 +448,7 @@
     /// </summary>
     public enum TriggerParamType
     {
+        None,
         Container,
         Int,
         String,

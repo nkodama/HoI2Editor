@@ -207,10 +207,7 @@ namespace HoI2Editor.Writers
                 if (Game.Type == GameType.DarkestHour && command.Triggers != null && command.Triggers.Count > 0)
                 {
                     writer.Write(" trigger = {");
-                    foreach (Trigger trigger in command.Triggers)
-                    {
-                        writer.Write(" {0} = {1}", Trigger.TypeStringTable[(int) trigger.Type], trigger.Value);
-                    }
+                    WriteTriggers(command.Triggers, writer);
                     writer.Write(" }");
                 }
                 writer.Write(" type = {0}", Command.TypeStringTable[(int) command.Type]);
@@ -233,6 +230,28 @@ namespace HoI2Editor.Writers
                 writer.WriteLine(" }");
             }
             writer.WriteLine("    }");
+        }
+
+        /// <summary>
+        ///     技術効果トリガー群を書き出す
+        /// </summary>
+        /// <param name="triggers">技術効果トリガー群</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteTriggers(IEnumerable<Trigger> triggers, StreamWriter writer)
+        {
+            foreach (Trigger trigger in triggers)
+            {
+                if (Trigger.ParamTypeTable[(int) trigger.Type] != TriggerParamType.Container)
+                {
+                    writer.Write(" {0} = {1}", Trigger.TypeStringTable[(int) trigger.Type], trigger.Value);
+                }
+                else
+                {
+                    writer.Write(" {0} = {{", Trigger.TypeStringTable[(int) trigger.Type]);
+                    WriteTriggers(trigger.Value as List<Trigger>, writer);
+                    writer.Write(" }");
+                }
+            }
         }
 
         #endregion
