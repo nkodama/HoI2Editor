@@ -1245,7 +1245,7 @@ namespace HoI2Editor.Models
         /// <returns>複製した座標</returns>
         public RequiredTech Clone()
         {
-            var required = new RequiredTech { Id = Id };
+            var required = new RequiredTech {Id = Id};
 
             return required;
         }
