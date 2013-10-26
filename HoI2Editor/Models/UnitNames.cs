@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -494,8 +495,94 @@ namespace HoI2Editor.Models
                 Items.Add(country, new Dictionary<UnitNameType, List<string>>());
             }
 
+            // ユニット名リストに変更がなければ戻る
+            if (names.SequenceEqual(Items[country][type]))
+            {
+                return;
+            }
+
             // ユニット名リストを設定する
             Items[country][type] = names;
+
+            // 編集済みフラグを設定する
+            SetDirty(country);
+        }
+
+        /// <summary>
+        /// ユニット名を置換する
+        /// </summary>
+        /// <param name="s">置換元文字列</param>
+        /// <param name="t">置換先文字列</param>
+        /// <param name="country">国タグ</param>
+        /// <param name="type">ユニット名種類</param>
+        /// <param name="regex">正規表現を使用するか</param>
+        public static void Replace(string s, string t, CountryTag country, UnitNameType type, bool regex)
+        {
+            var names = new List<string>();
+            foreach (string name in Items[country][type])
+            {
+                string r = regex ? Regex.Replace(name, s, t) : name.Replace(s, t);
+                if (!r.Equals(name))
+                {
+                    SetDirty(country);
+                }
+                names.Add(r);
+            }
+            SetNames(country, type, names);
+        }
+
+        /// <summary>
+        /// 全てのユニット名を置換する
+        /// </summary>
+        /// <param name="s">置換元文字列</param>
+        /// <param name="t">置換先文字列</param>
+        /// <param name="regex">正規表現を使用するか</param>
+        public static void ReplaceAll(string s, string t, bool regex)
+        {
+            List<KeyValuePair<CountryTag, UnitNameType>> pairs
+                = (from country in Items.Select(pair => pair.Key)
+                   from type in Items[country].Select(pair => pair.Key)
+                   select new KeyValuePair<CountryTag, UnitNameType>(country, type)).ToList();
+            foreach (KeyValuePair<CountryTag, UnitNameType> pair in pairs)
+            {
+                Replace(s, t, pair.Key, pair.Value, regex);
+            }
+        }
+
+        /// <summary>
+        /// 全ての国のユニット名を置換する
+        /// </summary>
+        /// <param name="s">置換元文字列</param>
+        /// <param name="t">置換先文字列</param>
+        /// <param name="type">ユニット名種類</param>
+        /// <param name="regex">正規表現を使用するか</param>
+        public static void ReplaceAllCountries(string s, string t, UnitNameType type, bool regex)
+        {
+            List<CountryTag> countries = Items.Select(pair => pair.Key).Where(country => Items[country].ContainsKey(type)).ToList();
+            foreach (CountryTag country in countries)
+            {
+                Replace(s, t, country, type, regex);
+            }
+        }
+
+        /// <summary>
+        /// 全てのユニット名種類のユニット名を置換する
+        /// </summary>
+        /// <param name="s">置換元文字列</param>
+        /// <param name="t">置換先文字列</param>
+        /// <param name="country">国タグ</param>
+        /// <param name="regex">正規表現を使用するか</param>
+        public static void ReplaceAllTypes(string s, string t, CountryTag country, bool regex)
+        {
+            var types = new List<UnitNameType>();
+            if (Items.ContainsKey(country))
+            {
+                types.AddRange(Items[country].Select(pair => pair.Key));
+            }
+            foreach (UnitNameType type in types)
+            {
+                Replace(s, t, country, type, regex);
+            }
         }
 
         /// <summary>
