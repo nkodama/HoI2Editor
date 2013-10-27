@@ -6441,13 +6441,14 @@ namespace HoI2Editor.Forms
             {
                 case MiscItemType.Int:
                 case MiscItemType.PosInt:
-                case MiscItemType.NegInt:
                 case MiscItemType.NonNegInt:
                 case MiscItemType.NonPosInt:
                 case MiscItemType.NonNegIntMinusOne:
+                case MiscItemType.NonNegInt1:
                 case MiscItemType.RangedInt:
                 case MiscItemType.RangedPosInt:
-                case MiscItemType.RangedNegInt:
+                case MiscItemType.RangedIntMinusOne:
+                case MiscItemType.RangedIntMinusThree:
                     if (!int.TryParse(textBox.Text, out i))
                     {
                         textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
@@ -6457,20 +6458,37 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.Dbl:
                 case MiscItemType.PosDbl:
-                case MiscItemType.NegDbl:
                 case MiscItemType.NonNegDbl:
                 case MiscItemType.NonPosDbl:
+                case MiscItemType.NonNegDbl0:
+                case MiscItemType.NonNegDbl2:
+                case MiscItemType.NonNegDbl5:
+                case MiscItemType.NonPosDbl0:
+                case MiscItemType.NonPosDbl2:
                 case MiscItemType.NonNegDblMinusOne:
+                case MiscItemType.NonNegDblMinusOne1:
+                case MiscItemType.NonNegDbl2AoD:
+                case MiscItemType.NonNegDbl4Dda13:
+                case MiscItemType.NonNegDbl2Dh103Full:
+                case MiscItemType.NonNegDbl2Dh103Full1:
+                case MiscItemType.NonNegDbl2Dh103Full2:
+                case MiscItemType.NonPosDbl5AoD:
+                case MiscItemType.NonPosDbl2Dh103Full:
                 case MiscItemType.RangedDbl:
-                case MiscItemType.RangedPosDbl:
-                case MiscItemType.RangedNegDbl:
                 case MiscItemType.RangedDblMinusOne:
-                case MiscItemType.RangedDblMinusThree:
+                case MiscItemType.RangedDblMinusOne1:
+                case MiscItemType.RangedDbl0:
+                case MiscItemType.NonNegIntNegDbl:
                     if (!double.TryParse(textBox.Text, out d))
                     {
                         textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
+                    break;
+
+                case MiscItemType.None:
+                case MiscItemType.Bool:
+                case MiscItemType.Enum:
                     break;
             }
 
@@ -6480,23 +6498,16 @@ namespace HoI2Editor.Forms
                 case MiscItemType.PosInt:
                     if (i <= 0)
                     {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
-                        return;
-                    }
-                    break;
-
-                case MiscItemType.NegInt:
-                    if (i >= 0)
-                    {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
                     break;
 
                 case MiscItemType.NonNegInt:
+                case MiscItemType.NonNegInt1:
                     if (i < 0)
                     {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
                     break;
@@ -6504,7 +6515,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.NonPosInt:
                     if (i > 0)
                     {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
                     break;
@@ -6512,7 +6523,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.NonNegIntMinusOne:
                     if (i < 0 && i != -1)
                     {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
                     break;
@@ -6520,7 +6531,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.RangedInt:
                     if (i < Misc.ItemMinValues[(int) id] || i > Misc.ItemMaxValues[(int) id])
                     {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
                     break;
@@ -6528,15 +6539,24 @@ namespace HoI2Editor.Forms
                 case MiscItemType.RangedPosInt:
                     if (i < Misc.ItemMinValues[(int) id])
                     {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
                     break;
 
-                case MiscItemType.RangedNegInt:
-                    if (i > Misc.ItemMaxValues[(int) id])
+                case MiscItemType.RangedIntMinusOne:
+                    if ((i < Misc.ItemMinValues[(int) id] || i > Misc.ItemMaxValues[(int) id]) && i != -1)
                     {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
+                        return;
+                    }
+                    break;
+
+                case MiscItemType.RangedIntMinusThree:
+                    if ((i < Misc.ItemMinValues[(int) id] || i > Misc.ItemMaxValues[(int) id]) && i != -1 && i != -2 &&
+                        i != -3)
+                    {
+                        textBox.Text = ((int) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
                     }
                     break;
@@ -6549,15 +6569,15 @@ namespace HoI2Editor.Forms
                     }
                     break;
 
-                case MiscItemType.NegDbl:
-                    if (d >= 0)
-                    {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
-                        return;
-                    }
-                    break;
-
                 case MiscItemType.NonNegDbl:
+                case MiscItemType.NonNegDbl0:
+                case MiscItemType.NonNegDbl2:
+                case MiscItemType.NonNegDbl5:
+                case MiscItemType.NonNegDbl2AoD:
+                case MiscItemType.NonNegDbl4Dda13:
+                case MiscItemType.NonNegDbl2Dh103Full:
+                case MiscItemType.NonNegDbl2Dh103Full1:
+                case MiscItemType.NonNegDbl2Dh103Full2:
                     if (d < 0)
                     {
                         textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
@@ -6566,6 +6586,10 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.NonPosDbl:
+                case MiscItemType.NonPosDbl0:
+                case MiscItemType.NonPosDbl2:
+                case MiscItemType.NonPosDbl5AoD:
+                case MiscItemType.NonPosDbl2Dh103Full:
                     if (d > 0)
                     {
                         textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
@@ -6574,6 +6598,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.NonNegDblMinusOne:
+                case MiscItemType.NonNegDblMinusOne1:
                     if (d < 0 && Math.Abs(d - (-1)) > 0.00005)
                     {
                         textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
@@ -6582,6 +6607,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedDbl:
+                case MiscItemType.RangedDbl0:
                     if (d < Misc.ItemMinValues[(int) id] || d > Misc.ItemMaxValues[(int) id])
                     {
                         textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
@@ -6589,36 +6615,10 @@ namespace HoI2Editor.Forms
                     }
                     break;
 
-                case MiscItemType.RangedPosDbl:
-                    if (d < Misc.ItemMinValues[(int) id])
-                    {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
-                        return;
-                    }
-                    break;
-
-                case MiscItemType.RangedNegDbl:
-                    if (d > Misc.ItemMaxValues[(int) id])
-                    {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
-                        return;
-                    }
-                    break;
-
                 case MiscItemType.RangedDblMinusOne:
+                case MiscItemType.RangedDblMinusOne1:
                     if ((d < Misc.ItemMinValues[(int) id] || d > Misc.ItemMaxValues[(int) id]) &&
                         Math.Abs(d - (-1)) > 0.00005)
-                    {
-                        textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
-                        return;
-                    }
-                    break;
-
-                case MiscItemType.RangedDblMinusThree:
-                    if ((d < Misc.ItemMinValues[(int) id] || d > Misc.ItemMaxValues[(int) id]) &&
-                        Math.Abs(d - (-1)) > 0.00005 &&
-                        Math.Abs(d - (-2)) > 0.00005 &&
-                        Math.Abs(d - (-3)) > 0.00005)
                     {
                         textBox.Text = ((double) Misc.GetItem(id)).ToString(CultureInfo.InvariantCulture);
                         return;
@@ -6631,13 +6631,14 @@ namespace HoI2Editor.Forms
             {
                 case MiscItemType.Int:
                 case MiscItemType.PosInt:
-                case MiscItemType.NegInt:
                 case MiscItemType.NonNegInt:
                 case MiscItemType.NonPosInt:
                 case MiscItemType.NonNegIntMinusOne:
+                case MiscItemType.NonNegInt1:
                 case MiscItemType.RangedInt:
                 case MiscItemType.RangedPosInt:
-                case MiscItemType.RangedNegInt:
+                case MiscItemType.RangedIntMinusOne:
+                case MiscItemType.RangedIntMinusThree:
                     if (i == (int) Misc.GetItem(id))
                     {
                         return;
@@ -6646,15 +6647,27 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.Dbl:
                 case MiscItemType.PosDbl:
-                case MiscItemType.NegDbl:
                 case MiscItemType.NonNegDbl:
                 case MiscItemType.NonPosDbl:
+                case MiscItemType.NonNegDbl0:
+                case MiscItemType.NonNegDbl2:
+                case MiscItemType.NonNegDbl5:
+                case MiscItemType.NonPosDbl0:
+                case MiscItemType.NonPosDbl2:
                 case MiscItemType.NonNegDblMinusOne:
+                case MiscItemType.NonNegDblMinusOne1:
+                case MiscItemType.NonNegDbl2AoD:
+                case MiscItemType.NonNegDbl4Dda13:
+                case MiscItemType.NonNegDbl2Dh103Full:
+                case MiscItemType.NonNegDbl2Dh103Full1:
+                case MiscItemType.NonNegDbl2Dh103Full2:
+                case MiscItemType.NonPosDbl5AoD:
+                case MiscItemType.NonPosDbl2Dh103Full:
                 case MiscItemType.RangedDbl:
-                case MiscItemType.RangedPosDbl:
-                case MiscItemType.RangedNegDbl:
                 case MiscItemType.RangedDblMinusOne:
-                case MiscItemType.RangedDblMinusThree:
+                case MiscItemType.RangedDblMinusOne1:
+                case MiscItemType.RangedDbl0:
+                case MiscItemType.NonNegIntNegDbl:
                     if (Math.Abs(d - (double) Misc.GetItem(id)) <= 0.00005)
                     {
                         return;
@@ -6667,27 +6680,40 @@ namespace HoI2Editor.Forms
             {
                 case MiscItemType.Int:
                 case MiscItemType.PosInt:
-                case MiscItemType.NegInt:
                 case MiscItemType.NonNegInt:
                 case MiscItemType.NonPosInt:
                 case MiscItemType.NonNegIntMinusOne:
+                case MiscItemType.NonNegInt1:
                 case MiscItemType.RangedInt:
                 case MiscItemType.RangedPosInt:
-                case MiscItemType.RangedNegInt:
+                case MiscItemType.RangedIntMinusOne:
+                case MiscItemType.RangedIntMinusThree:
                     Misc.SetItem(id, i);
                     break;
 
                 case MiscItemType.Dbl:
                 case MiscItemType.PosDbl:
-                case MiscItemType.NegDbl:
                 case MiscItemType.NonNegDbl:
                 case MiscItemType.NonPosDbl:
+                case MiscItemType.NonNegDbl0:
+                case MiscItemType.NonNegDbl2:
+                case MiscItemType.NonNegDbl5:
+                case MiscItemType.NonPosDbl0:
+                case MiscItemType.NonPosDbl2:
                 case MiscItemType.NonNegDblMinusOne:
+                case MiscItemType.NonNegDblMinusOne1:
+                case MiscItemType.NonNegDbl2AoD:
+                case MiscItemType.NonNegDbl4Dda13:
+                case MiscItemType.NonNegDbl2Dh103Full:
+                case MiscItemType.NonNegDbl2Dh103Full1:
+                case MiscItemType.NonNegDbl2Dh103Full2:
+                case MiscItemType.NonPosDbl5AoD:
+                case MiscItemType.NonPosDbl2Dh103Full:
                 case MiscItemType.RangedDbl:
-                case MiscItemType.RangedPosDbl:
-                case MiscItemType.RangedNegDbl:
                 case MiscItemType.RangedDblMinusOne:
-                case MiscItemType.RangedDblMinusThree:
+                case MiscItemType.RangedDblMinusOne1:
+                case MiscItemType.RangedDbl0:
+                case MiscItemType.NonNegIntNegDbl:
                     Misc.SetItem(id, d);
                     break;
             }

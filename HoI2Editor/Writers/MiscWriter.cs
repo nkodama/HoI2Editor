@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using HoI2Editor.Models;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Writers
 {
@@ -84,36 +85,79 @@ namespace HoI2Editor.Writers
                     case MiscItemType.Enum:
                     case MiscItemType.Int:
                     case MiscItemType.PosInt:
-                    case MiscItemType.NegInt:
                     case MiscItemType.NonNegInt:
                     case MiscItemType.NonPosInt:
                     case MiscItemType.NonNegIntMinusOne:
                     case MiscItemType.RangedInt:
                     case MiscItemType.RangedPosInt:
-                    case MiscItemType.RangedNegInt:
-                        writer.Write(Misc.GetItem(id));
+                    case MiscItemType.RangedIntMinusOne:
+                    case MiscItemType.RangedIntMinusThree:
+                        writer.Write(IntHelper.ToString0((int) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegInt1:
+                        writer.Write(IntHelper.ToString1((int) Misc.GetItem(id)));
                         break;
 
                     case MiscItemType.Dbl:
                     case MiscItemType.PosDbl:
-                    case MiscItemType.NegDbl:
                     case MiscItemType.NonNegDbl:
                     case MiscItemType.NonPosDbl:
-                    case MiscItemType.NonNegDblMinusOne:
+                    case MiscItemType.NonNegDblMinusOne1:
                     case MiscItemType.RangedDbl:
-                    case MiscItemType.RangedPosDbl:
-                    case MiscItemType.RangedNegDbl:
+                    case MiscItemType.RangedDblMinusOne1:
+                        writer.Write(DoubleHelper.ToString1((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegDbl0:
+                    case MiscItemType.NonPosDbl0:
+                    case MiscItemType.RangedDbl0:
+                        writer.Write(DoubleHelper.ToString0((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegDbl2:
+                    case MiscItemType.NonPosDbl2:
+                        writer.Write(DoubleHelper.ToString2((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegDbl5:
+                        writer.Write(DoubleHelper.ToString5((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegDblMinusOne:
                     case MiscItemType.RangedDblMinusOne:
-                    case MiscItemType.RangedDblMinusThree:
-                        var d = (double) Misc.GetItem(id);
-                        if ((d < 0.0001 && d > 0) || (d > -0.0001 && d < 0))
-                        {
-                            writer.Write(((double) Misc.GetItem(id)).ToString("F6"));
-                        }
-                        else
-                        {
-                            writer.Write(((double) Misc.GetItem(id)).ToString("G"));
-                        }
+                        writer.Write(GetDbl1MinusOneString((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegDbl2AoD:
+                        writer.Write(GetDbl1AoD2String((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegDbl4Dda13:
+                        writer.Write(GetDbl1Dda134String((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonNegDbl2Dh103Full:
+                        writer.Write(GetDbl1Range2String((double) Misc.GetItem(id), 0, 0.1000005));
+                        break;
+
+                    case MiscItemType.NonNegDbl2Dh103Full1:
+                        writer.Write(GetDbl2Range1String((double) Misc.GetItem(id), 0, 0.2000005));
+                        break;
+
+                    case MiscItemType.NonNegDbl2Dh103Full2:
+                        writer.Write(GetDbl1Range2String((double) Misc.GetItem(id), 0, 1));
+                        break;
+                    case MiscItemType.NonPosDbl5AoD:
+                        writer.Write(GetDbl1AoD5String((double) Misc.GetItem(id)));
+                        break;
+
+                    case MiscItemType.NonPosDbl2Dh103Full:
+                        writer.Write(GetDbl1Range2String((double) Misc.GetItem(id), -0.1000005, 0));
+                        break;
+
+                    case MiscItemType.NonNegIntNegDbl:
+                        writer.Write(GetNonNegIntNegDblString((double) Misc.GetItem(id)));
                         break;
                 }
             }
@@ -121,6 +165,86 @@ namespace HoI2Editor.Writers
             writer.Write(Misc.GetComment(itemIds[index]));
 
             writer.WriteLine("}");
+        }
+
+        /// <summary>
+        ///     出力文字列を取得する (実数/小数点以下1桁 or -1)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>出力文字列</returns>
+        private static string GetDbl1MinusOneString(double val)
+        {
+            return Math.Abs(val - (-1)) < 0.0000005 ? "-1" : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     出力文字列を取得する (実数/小数点以下1桁/DDA1.3 or DHのみ小数点以下4桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>出力文字列</returns>
+        private static string GetDbl1Dda134String(double val)
+        {
+            return ((Game.Type == GameType.HeartsOfIron2 && Game.Version >= 130) || Game.Type == GameType.DarkestHour)
+                       ? DoubleHelper.ToString4(val)
+                       : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     出力文字列を取得する (実数/小数点以下1桁/AoDのみ小数点以下2桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>出力文字列</returns>
+        private static string GetDbl1AoD2String(double val)
+        {
+            return (Game.Type == GameType.ArsenalOfDemocracy)
+                       ? DoubleHelper.ToString2(val)
+                       : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     出力文字列を取得する (実数/小数点以下1桁/AoDのみ小数点以下5桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>出力文字列</returns>
+        private static string GetDbl1AoD5String(double val)
+        {
+            return (Game.Type == GameType.ArsenalOfDemocracy)
+                       ? DoubleHelper.ToString5(val)
+                       : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     出力文字列を取得する (実数/小数点以下1桁/指定範囲内ならば小数点以下2桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <param name="min">範囲内の最小値</param>
+        /// <param name="max">範囲内の最大値</param>
+        /// <returns>出力文字列</returns>
+        private static string GetDbl1Range2String(double val, double min, double max)
+        {
+            return (val > min && val < max) ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     出力文字列を取得する (実数/小数点以下2桁/指定範囲外ならば小数点以下1桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>出力文字列</returns>
+        /// <param name="min">範囲内の最小値</param>
+        /// <param name="max">範囲内の最大値</param>
+        private static string GetDbl2Range1String(double val, double min, double max)
+        {
+            return (val > min && val < max) ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     出力文字列を取得する (非負の整数 or 負の実数)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>出力文字列</returns>
+        private static string GetNonNegIntNegDblString(double val)
+        {
+            return (val < 0) ? DoubleHelper.ToString1(val) : IntHelper.ToString0((int) val);
         }
     }
 }
