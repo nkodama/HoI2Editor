@@ -1857,6 +1857,12 @@
   <data name="canUnitSendNonAlliedLabel.Text" xml:space="preserve">
     <value>Units can be Sold to Non-Allied Countries</value>
   </data>
+  <metadata name="miscToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="canUnitSendNonAlliedLabel.ToolTip" xml:space="preserve">
+    <value>If units can be sold/transferred to non allied countries</value>
+  </data>
   <data name="&gt;&gt;canUnitSendNonAlliedLabel.Name" xml:space="preserve">
     <value>canUnitSendNonAlliedLabel</value>
   </data>
@@ -1910,6 +1916,9 @@
   </data>
   <data name="tcLoadUndeployedBrigadeLabel.Text" xml:space="preserve">
     <value>TC Load from Undeployed Brigades</value>
+  </data>
+  <data name="tcLoadUndeployedBrigadeLabel.ToolTip" xml:space="preserve">
+    <value>TC load from undeployed brigades (multiplied on top of the division cost)</value>
   </data>
   <data name="&gt;&gt;tcLoadUndeployedBrigadeLabel.Name" xml:space="preserve">
     <value>tcLoadUndeployedBrigadeLabel</value>
@@ -1965,6 +1974,9 @@
   <data name="sendDivisionDaysLabel.Text" xml:space="preserve">
     <value>Time in days to Send a Division to an Ally</value>
   </data>
+  <data name="sendDivisionDaysLabel.ToolTip" xml:space="preserve">
+    <value>Time in days to send a division to an ally</value>
+  </data>
   <data name="&gt;&gt;sendDivisionDaysLabel.Name" xml:space="preserve">
     <value>sendDivisionDaysLabel</value>
   </data>
@@ -2018,6 +2030,9 @@
   </data>
   <data name="monthlyNationalismReductionLabel.Text" xml:space="preserve">
     <value>Monthly Nationalism Reduction</value>
+  </data>
+  <data name="monthlyNationalismReductionLabel.ToolTip" xml:space="preserve">
+    <value>Monthly nationalism reduction</value>
   </data>
   <data name="&gt;&gt;monthlyNationalismReductionLabel.Name" xml:space="preserve">
     <value>monthlyNationalismReductionLabel</value>
@@ -2073,6 +2088,9 @@
   <data name="nationalismStartingValueLabel.Text" xml:space="preserve">
     <value>Nationalism Starting Value</value>
   </data>
+  <data name="nationalismStartingValueLabel.ToolTip" xml:space="preserve">
+    <value>Nationalism initial value</value>
+  </data>
   <data name="&gt;&gt;nationalismStartingValueLabel.Name" xml:space="preserve">
     <value>nationalismStartingValueLabel</value>
   </data>
@@ -2126,6 +2144,9 @@
   </data>
   <data name="upgradeTimeLabel.Text" xml:space="preserve">
     <value>Upgrade Time Factor</value>
+  </data>
+  <data name="upgradeTimeLabel.ToolTip" xml:space="preserve">
+    <value>Time factor for division upgrade (ratio of time for new production)</value>
   </data>
   <data name="&gt;&gt;upgradeTimeLabel.Name" xml:space="preserve">
     <value>upgradeTimeLabel</value>
@@ -2181,6 +2202,9 @@
   <data name="upgradeCostLabel.Text" xml:space="preserve">
     <value>Upgrade Cost Factor</value>
   </data>
+  <data name="upgradeCostLabel.ToolTip" xml:space="preserve">
+    <value>IC factor for division upgrade (ratio of IC for new production)</value>
+  </data>
   <data name="&gt;&gt;upgradeCostLabel.Name" xml:space="preserve">
     <value>upgradeCostLabel</value>
   </data>
@@ -2234,6 +2258,9 @@
   </data>
   <data name="reinforceTimeLabel.Text" xml:space="preserve">
     <value>Reinforce Time Factor</value>
+  </data>
+  <data name="reinforceTimeLabel.ToolTip" xml:space="preserve">
+    <value>Time factor for division reinforcement (ratio of time for new production)</value>
   </data>
   <data name="&gt;&gt;reinforceTimeLabel.Name" xml:space="preserve">
     <value>reinforceTimeLabel</value>
@@ -2289,6 +2316,9 @@
   <data name="reinforceCostLabel.Text" xml:space="preserve">
     <value>Reinforce Cost Factor</value>
   </data>
+  <data name="reinforceCostLabel.ToolTip" xml:space="preserve">
+    <value>IC factor for division reinforcement (ratio of IC for new production)</value>
+  </data>
   <data name="&gt;&gt;reinforceCostLabel.Name" xml:space="preserve">
     <value>reinforceCostLabel</value>
   </data>
@@ -2342,6 +2372,9 @@
   </data>
   <data name="reinforceManpowerLabel.Text" xml:space="preserve">
     <value>Reinforcement Manpower Factor</value>
+  </data>
+  <data name="reinforceManpowerLabel.ToolTip" xml:space="preserve">
+    <value>Manpower factor for division reinforcement (ratio of manpower for new production)</value>
   </data>
   <data name="&gt;&gt;reinforceManpowerLabel.Name" xml:space="preserve">
     <value>reinforceManpowerLabel</value>
@@ -2397,6 +2430,9 @@
   <data name="trickleBackFactorManpowerLabel.Text" xml:space="preserve">
     <value>Trickle-back Factor for Manpower</value>
   </data>
+  <data name="trickleBackFactorManpowerLabel.ToolTip" xml:space="preserve">
+    <value>Trickle-back factor for manpower from losses in battle</value>
+  </data>
   <data name="&gt;&gt;trickleBackFactorManpowerLabel.Name" xml:space="preserve">
     <value>trickleBackFactorManpowerLabel</value>
   </data>
@@ -2450,6 +2486,9 @@
   </data>
   <data name="requirementAffectSliderLabel.Text" xml:space="preserve">
     <value>Requirement to Affect Domestic Sliders</value>
+  </data>
+  <data name="requirementAffectSliderLabel.ToolTip" xml:space="preserve">
+    <value>"Influence Nation" may affect domestic slider if our IC &gt;= target IC * this value.</value>
   </data>
   <data name="&gt;&gt;requirementAffectSliderLabel.Name" xml:space="preserve">
     <value>requirementAffectSliderLabel</value>
@@ -2505,6 +2544,9 @@
   <data name="manpowerMultiplierColonyLabel.Text" xml:space="preserve">
     <value>Colonial Province Manpower Multiplier</value>
   </data>
+  <data name="manpowerMultiplierColonyLabel.ToolTip" xml:space="preserve">
+    <value>Manpower factor obtained per day from colonial provinces (multiplied on the other)</value>
+  </data>
   <data name="&gt;&gt;manpowerMultiplierColonyLabel.Name" xml:space="preserve">
     <value>manpowerMultiplierColonyLabel</value>
   </data>
@@ -2558,6 +2600,9 @@
   </data>
   <data name="manpowerMultiplierNonNationalLabel.Text" xml:space="preserve">
     <value>Non-National Province Manpower Multiplier</value>
+  </data>
+  <data name="manpowerMultiplierNonNationalLabel.ToolTip" xml:space="preserve">
+    <value>Manpower factor obtained per day from non-national provinces</value>
   </data>
   <data name="&gt;&gt;manpowerMultiplierNonNationalLabel.Name" xml:space="preserve">
     <value>manpowerMultiplierNonNationalLabel</value>
@@ -2613,6 +2658,9 @@
   <data name="manpowerMultiplierNationalLabel.Text" xml:space="preserve">
     <value>National Province Manpower Multiplier</value>
   </data>
+  <data name="manpowerMultiplierNationalLabel.ToolTip" xml:space="preserve">
+    <value>Manpower factor obtained per day from national provinces</value>
+  </data>
   <data name="&gt;&gt;manpowerMultiplierNationalLabel.Name" xml:space="preserve">
     <value>manpowerMultiplierNationalLabel</value>
   </data>
@@ -2663,6 +2711,9 @@
   </data>
   <data name="tcLoadBaseLabel.Text" xml:space="preserve">
     <value>TC Load from Bases in queue</value>
+  </data>
+  <data name="tcLoadBaseLabel.ToolTip" xml:space="preserve">
+    <value>TC load from bases in queue</value>
   </data>
   <data name="&gt;&gt;tcLoadBaseLabel.Name" xml:space="preserve">
     <value>tcLoadBaseLabel</value>
@@ -2715,6 +2766,9 @@
   <data name="tcLoadProvinceDevelopmentLabel.Text" xml:space="preserve">
     <value>TC Load from Province Development</value>
   </data>
+  <data name="tcLoadProvinceDevelopmentLabel.ToolTip" xml:space="preserve">
+    <value>TC load from province development</value>
+  </data>
   <data name="&gt;&gt;tcLoadProvinceDevelopmentLabel.Name" xml:space="preserve">
     <value>tcLoadProvinceDevelopmentLabel</value>
   </data>
@@ -2765,6 +2819,9 @@
   </data>
   <data name="tcLoadFactorOffensiveLabel.Text" xml:space="preserve">
     <value>TC Load Factor from Offensives</value>
+  </data>
+  <data name="tcLoadFactorOffensiveLabel.ToolTip" xml:space="preserve">
+    <value>TC load factor from offensives</value>
   </data>
   <data name="&gt;&gt;tcLoadFactorOffensiveLabel.Name" xml:space="preserve">
     <value>tcLoadFactorOffensiveLabel</value>
@@ -2907,6 +2964,9 @@
   <data name="tcLoadPartisanLabel.Text" xml:space="preserve">
     <value>TC Load from Partisans</value>
   </data>
+  <data name="tcLoadPartisanLabel.ToolTip" xml:space="preserve">
+    <value>TC load from partisans</value>
+  </data>
   <data name="&gt;&gt;tcLoadPartisanLabel.Name" xml:space="preserve">
     <value>tcLoadPartisanLabel</value>
   </data>
@@ -2957,6 +3017,9 @@
   </data>
   <data name="tcLoadMultiplierNavalLabel.Text" xml:space="preserve">
     <value>TC Naval Division Load Multiplier</value>
+  </data>
+  <data name="tcLoadMultiplierNavalLabel.ToolTip" xml:space="preserve">
+    <value>Ratio of TC load from naval division</value>
   </data>
   <data name="&gt;&gt;tcLoadMultiplierNavalLabel.Name" xml:space="preserve">
     <value>tcLoadMultiplierNavalLabel</value>
@@ -3009,6 +3072,9 @@
   <data name="tcLoadMultiplierAirLabel.Text" xml:space="preserve">
     <value>TC Air Division Load Multiplier</value>
   </data>
+  <data name="tcLoadMultiplierAirLabel.ToolTip" xml:space="preserve">
+    <value>Ratio of TC load from air division</value>
+  </data>
   <data name="&gt;&gt;tcLoadMultiplierAirLabel.Name" xml:space="preserve">
     <value>tcLoadMultiplierAirLabel</value>
   </data>
@@ -3059,6 +3125,9 @@
   </data>
   <data name="tcLoadMultiplierLandLabel.Text" xml:space="preserve">
     <value>TC Land Division Load Multiplier</value>
+  </data>
+  <data name="tcLoadMultiplierLandLabel.ToolTip" xml:space="preserve">
+    <value>Ratio of TC load from land division</value>
   </data>
   <data name="&gt;&gt;tcLoadMultiplierLandLabel.Name" xml:space="preserve">
     <value>tcLoadMultiplierLandLabel</value>
@@ -3111,6 +3180,9 @@
   <data name="tcLoadOccupiedLabel.Text" xml:space="preserve">
     <value>TC Occupied Province Load</value>
   </data>
+  <data name="tcLoadOccupiedLabel.ToolTip" xml:space="preserve">
+    <value>TC load from occupied provinces</value>
+  </data>
   <data name="&gt;&gt;tcLoadOccupiedLabel.Name" xml:space="preserve">
     <value>tcLoadOccupiedLabel</value>
   </data>
@@ -3161,6 +3233,9 @@
   </data>
   <data name="tcLoadUndeployedDivisionLabel.Text" xml:space="preserve">
     <value>TC Undeployed Division Load</value>
+  </data>
+  <data name="tcLoadUndeployedDivisionLabel.ToolTip" xml:space="preserve">
+    <value>TC load from undeployed division</value>
   </data>
   <data name="&gt;&gt;tcLoadUndeployedDivisionLabel.Name" xml:space="preserve">
     <value>tcLoadUndeployedDivisionLabel</value>
@@ -3213,6 +3288,9 @@
   <data name="icMultiplierNonOwnedLabel.Text" xml:space="preserve">
     <value>IC Non-Owned Province Multiplier</value>
   </data>
+  <data name="icMultiplierNonOwnedLabel.ToolTip" xml:space="preserve">
+    <value>Ratio of IC obtained from occupied provinces</value>
+  </data>
   <data name="&gt;&gt;icMultiplierNonOwnedLabel.Name" xml:space="preserve">
     <value>icMultiplierNonOwnedLabel</value>
   </data>
@@ -3263,6 +3341,9 @@
   </data>
   <data name="icMultiplierNonNationalLabel.Text" xml:space="preserve">
     <value>IC Non-National Province Multiplier</value>
+  </data>
+  <data name="icMultiplierNonNationalLabel.ToolTip" xml:space="preserve">
+    <value>Ratio of IC obtained from non-national provinces</value>
   </data>
   <data name="&gt;&gt;icMultiplierNonNationalLabel.Name" xml:space="preserve">
     <value>icMultiplierNonNationalLabel</value>
@@ -3315,6 +3396,9 @@
   <data name="gearingBonusIncrementLabel.Text" xml:space="preserve">
     <value>Gearing Bonus Increment</value>
   </data>
+  <data name="gearingBonusIncrementLabel.ToolTip" xml:space="preserve">
+    <value>Continuous production bonus lessening of build time per successive build, down to Max Gearing Bonus</value>
+  </data>
   <data name="&gt;&gt;gearingBonusIncrementLabel.Name" xml:space="preserve">
     <value>gearingBonusIncrementLabel</value>
   </data>
@@ -3365,6 +3449,9 @@
   </data>
   <data name="maxGearingBonusLabel.Text" xml:space="preserve">
     <value>Max Gearing Bonus</value>
+  </data>
+  <data name="maxGearingBonusLabel.ToolTip" xml:space="preserve">
+    <value>Build time is reduced to this value in continuous production.</value>
   </data>
   <data name="&gt;&gt;maxGearingBonusLabel.Name" xml:space="preserve">
     <value>maxGearingBonusLabel</value>
@@ -3417,6 +3504,9 @@
   <data name="icToMoneyRatioLabel.Text" xml:space="preserve">
     <value>IC to Money Ratio</value>
   </data>
+  <data name="icToMoneyRatioLabel.ToolTip" xml:space="preserve">
+    <value>Conversion ratio from IC to money</value>
+  </data>
   <data name="&gt;&gt;icToMoneyRatioLabel.Name" xml:space="preserve">
     <value>icToMoneyRatioLabel</value>
   </data>
@@ -3467,6 +3557,9 @@
   </data>
   <data name="icToConsumerGoodsRatioLabel.Text" xml:space="preserve">
     <value>IC to Consumer Goods Ratio</value>
+  </data>
+  <data name="icToConsumerGoodsRatioLabel.ToolTip" xml:space="preserve">
+    <value>Conversion ratio from IC to consumer goods</value>
   </data>
   <data name="&gt;&gt;icToConsumerGoodsRatioLabel.Name" xml:space="preserve">
     <value>icToConsumerGoodsRatioLabel</value>
@@ -3519,6 +3612,9 @@
   <data name="icToSuppliesRatioLabel.Text" xml:space="preserve">
     <value>IC to Supplies Ratio</value>
   </data>
+  <data name="icToSuppliesRatioLabel.ToolTip" xml:space="preserve">
+    <value>Conversion ratio from IC to TC supplies</value>
+  </data>
   <data name="&gt;&gt;icToSuppliesRatioLabel.Name" xml:space="preserve">
     <value>icToSuppliesRatioLabel</value>
   </data>
@@ -3569,6 +3665,9 @@
   </data>
   <data name="icToTcRatioLabel.Text" xml:space="preserve">
     <value>IC to TC Ratio</value>
+  </data>
+  <data name="icToTcRatioLabel.ToolTip" xml:space="preserve">
+    <value>Conversion ratio from IC to TC</value>
   </data>
   <data name="&gt;&gt;icToTcRatioLabel.Name" xml:space="preserve">
     <value>icToTcRatioLabel</value>
@@ -45092,6 +45191,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Misc Editor</value>
+  </data>
+  <data name="&gt;&gt;miscToolTip.Name" xml:space="preserve">
+    <value>miscToolTip</value>
+  </data>
+  <data name="&gt;&gt;miscToolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MiscEditorForm</value>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MiscEditorForm));
             this.miscTabControl = new System.Windows.Forms.TabControl();
             this.economyTabPage1 = new System.Windows.Forms.TabPage();
@@ -1676,6 +1677,7 @@
             this.closeButton18 = new System.Windows.Forms.Button();
             this.saveButton18 = new System.Windows.Forms.Button();
             this.reloadButton18 = new System.Windows.Forms.Button();
+            this.miscToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.miscTabControl.SuspendLayout();
             this.economyTabPage1.SuspendLayout();
             this.economyTabPage2.SuspendLayout();
@@ -2238,6 +2240,7 @@
             // 
             resources.ApplyResources(this.canUnitSendNonAlliedLabel, "canUnitSendNonAlliedLabel");
             this.canUnitSendNonAlliedLabel.Name = "canUnitSendNonAlliedLabel";
+            this.miscToolTip.SetToolTip(this.canUnitSendNonAlliedLabel, resources.GetString("canUnitSendNonAlliedLabel.ToolTip"));
             // 
             // tcLoadUndeployedBrigadeTextBox
             // 
@@ -2249,6 +2252,7 @@
             // 
             resources.ApplyResources(this.tcLoadUndeployedBrigadeLabel, "tcLoadUndeployedBrigadeLabel");
             this.tcLoadUndeployedBrigadeLabel.Name = "tcLoadUndeployedBrigadeLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadUndeployedBrigadeLabel, resources.GetString("tcLoadUndeployedBrigadeLabel.ToolTip"));
             // 
             // sendDivisionDaysTextBox
             // 
@@ -2260,6 +2264,7 @@
             // 
             resources.ApplyResources(this.sendDivisionDaysLabel, "sendDivisionDaysLabel");
             this.sendDivisionDaysLabel.Name = "sendDivisionDaysLabel";
+            this.miscToolTip.SetToolTip(this.sendDivisionDaysLabel, resources.GetString("sendDivisionDaysLabel.ToolTip"));
             // 
             // monthlyNationalismReductionTextBox
             // 
@@ -2271,6 +2276,7 @@
             // 
             resources.ApplyResources(this.monthlyNationalismReductionLabel, "monthlyNationalismReductionLabel");
             this.monthlyNationalismReductionLabel.Name = "monthlyNationalismReductionLabel";
+            this.miscToolTip.SetToolTip(this.monthlyNationalismReductionLabel, resources.GetString("monthlyNationalismReductionLabel.ToolTip"));
             // 
             // nationalismStartingValueTextBox
             // 
@@ -2282,6 +2288,7 @@
             // 
             resources.ApplyResources(this.nationalismStartingValueLabel, "nationalismStartingValueLabel");
             this.nationalismStartingValueLabel.Name = "nationalismStartingValueLabel";
+            this.miscToolTip.SetToolTip(this.nationalismStartingValueLabel, resources.GetString("nationalismStartingValueLabel.ToolTip"));
             // 
             // upgradeTimeTextBox
             // 
@@ -2293,6 +2300,7 @@
             // 
             resources.ApplyResources(this.upgradeTimeLabel, "upgradeTimeLabel");
             this.upgradeTimeLabel.Name = "upgradeTimeLabel";
+            this.miscToolTip.SetToolTip(this.upgradeTimeLabel, resources.GetString("upgradeTimeLabel.ToolTip"));
             // 
             // upgradeCostTextBox
             // 
@@ -2304,6 +2312,7 @@
             // 
             resources.ApplyResources(this.upgradeCostLabel, "upgradeCostLabel");
             this.upgradeCostLabel.Name = "upgradeCostLabel";
+            this.miscToolTip.SetToolTip(this.upgradeCostLabel, resources.GetString("upgradeCostLabel.ToolTip"));
             // 
             // reinforceTimeTextBox
             // 
@@ -2315,6 +2324,7 @@
             // 
             resources.ApplyResources(this.reinforceTimeLabel, "reinforceTimeLabel");
             this.reinforceTimeLabel.Name = "reinforceTimeLabel";
+            this.miscToolTip.SetToolTip(this.reinforceTimeLabel, resources.GetString("reinforceTimeLabel.ToolTip"));
             // 
             // reinforceCostTextBox
             // 
@@ -2326,6 +2336,7 @@
             // 
             resources.ApplyResources(this.reinforceCostLabel, "reinforceCostLabel");
             this.reinforceCostLabel.Name = "reinforceCostLabel";
+            this.miscToolTip.SetToolTip(this.reinforceCostLabel, resources.GetString("reinforceCostLabel.ToolTip"));
             // 
             // reinforceManpowerTextBox
             // 
@@ -2337,6 +2348,7 @@
             // 
             resources.ApplyResources(this.reinforceManpowerLabel, "reinforceManpowerLabel");
             this.reinforceManpowerLabel.Name = "reinforceManpowerLabel";
+            this.miscToolTip.SetToolTip(this.reinforceManpowerLabel, resources.GetString("reinforceManpowerLabel.ToolTip"));
             // 
             // trickleBackFactorManpowerTextBox
             // 
@@ -2348,6 +2360,7 @@
             // 
             resources.ApplyResources(this.trickleBackFactorManpowerLabel, "trickleBackFactorManpowerLabel");
             this.trickleBackFactorManpowerLabel.Name = "trickleBackFactorManpowerLabel";
+            this.miscToolTip.SetToolTip(this.trickleBackFactorManpowerLabel, resources.GetString("trickleBackFactorManpowerLabel.ToolTip"));
             // 
             // requirementAffectSliderTextBox
             // 
@@ -2359,6 +2372,7 @@
             // 
             resources.ApplyResources(this.requirementAffectSliderLabel, "requirementAffectSliderLabel");
             this.requirementAffectSliderLabel.Name = "requirementAffectSliderLabel";
+            this.miscToolTip.SetToolTip(this.requirementAffectSliderLabel, resources.GetString("requirementAffectSliderLabel.ToolTip"));
             // 
             // manpowerMultiplierColonyTextBox
             // 
@@ -2370,6 +2384,7 @@
             // 
             resources.ApplyResources(this.manpowerMultiplierColonyLabel, "manpowerMultiplierColonyLabel");
             this.manpowerMultiplierColonyLabel.Name = "manpowerMultiplierColonyLabel";
+            this.miscToolTip.SetToolTip(this.manpowerMultiplierColonyLabel, resources.GetString("manpowerMultiplierColonyLabel.ToolTip"));
             // 
             // manpowerMultiplierNonNationalTextBox
             // 
@@ -2381,6 +2396,7 @@
             // 
             resources.ApplyResources(this.manpowerMultiplierNonNationalLabel, "manpowerMultiplierNonNationalLabel");
             this.manpowerMultiplierNonNationalLabel.Name = "manpowerMultiplierNonNationalLabel";
+            this.miscToolTip.SetToolTip(this.manpowerMultiplierNonNationalLabel, resources.GetString("manpowerMultiplierNonNationalLabel.ToolTip"));
             // 
             // manpowerMultiplierNationalTextBox
             // 
@@ -2392,6 +2408,7 @@
             // 
             resources.ApplyResources(this.manpowerMultiplierNationalLabel, "manpowerMultiplierNationalLabel");
             this.manpowerMultiplierNationalLabel.Name = "manpowerMultiplierNationalLabel";
+            this.miscToolTip.SetToolTip(this.manpowerMultiplierNationalLabel, resources.GetString("manpowerMultiplierNationalLabel.ToolTip"));
             // 
             // tcLoadBaseTextBox
             // 
@@ -2403,6 +2420,7 @@
             // 
             resources.ApplyResources(this.tcLoadBaseLabel, "tcLoadBaseLabel");
             this.tcLoadBaseLabel.Name = "tcLoadBaseLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadBaseLabel, resources.GetString("tcLoadBaseLabel.ToolTip"));
             // 
             // tcLoadProvinceDevelopmentTextBox
             // 
@@ -2414,6 +2432,7 @@
             // 
             resources.ApplyResources(this.tcLoadProvinceDevelopmentLabel, "tcLoadProvinceDevelopmentLabel");
             this.tcLoadProvinceDevelopmentLabel.Name = "tcLoadProvinceDevelopmentLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadProvinceDevelopmentLabel, resources.GetString("tcLoadProvinceDevelopmentLabel.ToolTip"));
             // 
             // tcLoadFactorOffensiveTextBox
             // 
@@ -2425,6 +2444,7 @@
             // 
             resources.ApplyResources(this.tcLoadFactorOffensiveLabel, "tcLoadFactorOffensiveLabel");
             this.tcLoadFactorOffensiveLabel.Name = "tcLoadFactorOffensiveLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadFactorOffensiveLabel, resources.GetString("tcLoadFactorOffensiveLabel.ToolTip"));
             // 
             // closeButton1
             // 
@@ -2457,6 +2477,7 @@
             // 
             resources.ApplyResources(this.tcLoadPartisanLabel, "tcLoadPartisanLabel");
             this.tcLoadPartisanLabel.Name = "tcLoadPartisanLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadPartisanLabel, resources.GetString("tcLoadPartisanLabel.ToolTip"));
             // 
             // tcLoadMultiplierNavalTextBox
             // 
@@ -2468,6 +2489,7 @@
             // 
             resources.ApplyResources(this.tcLoadMultiplierNavalLabel, "tcLoadMultiplierNavalLabel");
             this.tcLoadMultiplierNavalLabel.Name = "tcLoadMultiplierNavalLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadMultiplierNavalLabel, resources.GetString("tcLoadMultiplierNavalLabel.ToolTip"));
             // 
             // tcLoadMultiplierAirTextBox
             // 
@@ -2479,6 +2501,7 @@
             // 
             resources.ApplyResources(this.tcLoadMultiplierAirLabel, "tcLoadMultiplierAirLabel");
             this.tcLoadMultiplierAirLabel.Name = "tcLoadMultiplierAirLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadMultiplierAirLabel, resources.GetString("tcLoadMultiplierAirLabel.ToolTip"));
             // 
             // tcLoadMultiplierLandTextBox
             // 
@@ -2490,6 +2513,7 @@
             // 
             resources.ApplyResources(this.tcLoadMultiplierLandLabel, "tcLoadMultiplierLandLabel");
             this.tcLoadMultiplierLandLabel.Name = "tcLoadMultiplierLandLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadMultiplierLandLabel, resources.GetString("tcLoadMultiplierLandLabel.ToolTip"));
             // 
             // tcLoadOccupiedTextBox
             // 
@@ -2501,6 +2525,7 @@
             // 
             resources.ApplyResources(this.tcLoadOccupiedLabel, "tcLoadOccupiedLabel");
             this.tcLoadOccupiedLabel.Name = "tcLoadOccupiedLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadOccupiedLabel, resources.GetString("tcLoadOccupiedLabel.ToolTip"));
             // 
             // tcLoadUndeployedDivisionTextBox
             // 
@@ -2512,6 +2537,7 @@
             // 
             resources.ApplyResources(this.tcLoadUndeployedDivisionLabel, "tcLoadUndeployedDivisionLabel");
             this.tcLoadUndeployedDivisionLabel.Name = "tcLoadUndeployedDivisionLabel";
+            this.miscToolTip.SetToolTip(this.tcLoadUndeployedDivisionLabel, resources.GetString("tcLoadUndeployedDivisionLabel.ToolTip"));
             // 
             // icMultiplierNonOwnedTextBox
             // 
@@ -2523,6 +2549,7 @@
             // 
             resources.ApplyResources(this.icMultiplierNonOwnedLabel, "icMultiplierNonOwnedLabel");
             this.icMultiplierNonOwnedLabel.Name = "icMultiplierNonOwnedLabel";
+            this.miscToolTip.SetToolTip(this.icMultiplierNonOwnedLabel, resources.GetString("icMultiplierNonOwnedLabel.ToolTip"));
             // 
             // icMultiplierNonNationalTextBox
             // 
@@ -2534,6 +2561,7 @@
             // 
             resources.ApplyResources(this.icMultiplierNonNationalLabel, "icMultiplierNonNationalLabel");
             this.icMultiplierNonNationalLabel.Name = "icMultiplierNonNationalLabel";
+            this.miscToolTip.SetToolTip(this.icMultiplierNonNationalLabel, resources.GetString("icMultiplierNonNationalLabel.ToolTip"));
             // 
             // gearingBonusIncrementTextBox
             // 
@@ -2545,6 +2573,7 @@
             // 
             resources.ApplyResources(this.gearingBonusIncrementLabel, "gearingBonusIncrementLabel");
             this.gearingBonusIncrementLabel.Name = "gearingBonusIncrementLabel";
+            this.miscToolTip.SetToolTip(this.gearingBonusIncrementLabel, resources.GetString("gearingBonusIncrementLabel.ToolTip"));
             // 
             // maxGearingBonusTextBox
             // 
@@ -2556,6 +2585,7 @@
             // 
             resources.ApplyResources(this.maxGearingBonusLabel, "maxGearingBonusLabel");
             this.maxGearingBonusLabel.Name = "maxGearingBonusLabel";
+            this.miscToolTip.SetToolTip(this.maxGearingBonusLabel, resources.GetString("maxGearingBonusLabel.ToolTip"));
             // 
             // icToMoneyRatioTextBox
             // 
@@ -2567,6 +2597,7 @@
             // 
             resources.ApplyResources(this.icToMoneyRatioLabel, "icToMoneyRatioLabel");
             this.icToMoneyRatioLabel.Name = "icToMoneyRatioLabel";
+            this.miscToolTip.SetToolTip(this.icToMoneyRatioLabel, resources.GetString("icToMoneyRatioLabel.ToolTip"));
             // 
             // icToConsumerGoodsRatioTextBox
             // 
@@ -2578,6 +2609,7 @@
             // 
             resources.ApplyResources(this.icToConsumerGoodsRatioLabel, "icToConsumerGoodsRatioLabel");
             this.icToConsumerGoodsRatioLabel.Name = "icToConsumerGoodsRatioLabel";
+            this.miscToolTip.SetToolTip(this.icToConsumerGoodsRatioLabel, resources.GetString("icToConsumerGoodsRatioLabel.ToolTip"));
             // 
             // icToSuppliesRatioTextBox
             // 
@@ -2589,6 +2621,7 @@
             // 
             resources.ApplyResources(this.icToSuppliesRatioLabel, "icToSuppliesRatioLabel");
             this.icToSuppliesRatioLabel.Name = "icToSuppliesRatioLabel";
+            this.miscToolTip.SetToolTip(this.icToSuppliesRatioLabel, resources.GetString("icToSuppliesRatioLabel.ToolTip"));
             // 
             // icToTcRatioTextBox
             // 
@@ -2600,6 +2633,7 @@
             // 
             resources.ApplyResources(this.icToTcRatioLabel, "icToTcRatioLabel");
             this.icToTcRatioLabel.Name = "icToTcRatioLabel";
+            this.miscToolTip.SetToolTip(this.icToTcRatioLabel, resources.GetString("icToTcRatioLabel.ToolTip"));
             // 
             // economyTabPage2
             // 
@@ -13325,7 +13359,6 @@
         private System.Windows.Forms.TextBox requirementAffectSliderTextBox;
         private System.Windows.Forms.Label requirementAffectSliderLabel;
         private System.Windows.Forms.TextBox manpowerMultiplierColonyTextBox;
-        private System.Windows.Forms.Label manpowerMultiplierColonyLabel;
         private System.Windows.Forms.TextBox manpowerMultiplierNonNationalTextBox;
         private System.Windows.Forms.Label manpowerMultiplierNonNationalLabel;
         private System.Windows.Forms.TextBox manpowerMultiplierNationalTextBox;
@@ -14924,5 +14957,7 @@
         private System.Windows.Forms.Label bonusSimilarTerrainTraitLabel;
         private System.Windows.Forms.TextBox forcePuppetsJoinMastersAllianceNeutralityTextBox;
         private System.Windows.Forms.Label forcePuppetsJoinMastersAllianceNeutralityLabel;
+        private System.Windows.Forms.ToolTip miscToolTip;
+        private System.Windows.Forms.Label manpowerMultiplierColonyLabel;
     }
 }
