@@ -273,27 +273,40 @@ namespace HoI2Editor.Parsers
                     case MiscItemType.Enum:
                     case MiscItemType.Int:
                     case MiscItemType.PosInt:
-                    case MiscItemType.NegInt:
                     case MiscItemType.NonNegInt:
                     case MiscItemType.NonPosInt:
                     case MiscItemType.NonNegIntMinusOne:
+                    case MiscItemType.NonNegInt1:
                     case MiscItemType.RangedInt:
                     case MiscItemType.RangedPosInt:
-                    case MiscItemType.RangedNegInt:
+                    case MiscItemType.RangedIntMinusOne:
+                    case MiscItemType.RangedIntMinusThree:
                         Misc.SetItem(itemId, (int) (double) token.Value);
                         break;
 
                     case MiscItemType.Dbl:
                     case MiscItemType.PosDbl:
-                    case MiscItemType.NegDbl:
                     case MiscItemType.NonNegDbl:
                     case MiscItemType.NonPosDbl:
+                    case MiscItemType.NonNegDbl0:
+                    case MiscItemType.NonNegDbl2:
+                    case MiscItemType.NonNegDbl5:
+                    case MiscItemType.NonPosDbl0:
+                    case MiscItemType.NonPosDbl2:
                     case MiscItemType.NonNegDblMinusOne:
+                    case MiscItemType.NonNegDblMinusOne1:
+                    case MiscItemType.NonNegDbl2AoD:
+                    case MiscItemType.NonNegDbl4Dda13:
+                    case MiscItemType.NonNegDbl2Dh103Full:
+                    case MiscItemType.NonNegDbl2Dh103Full1:
+                    case MiscItemType.NonNegDbl2Dh103Full2:
+                    case MiscItemType.NonPosDbl5AoD:
+                    case MiscItemType.NonPosDbl2Dh103Full:
                     case MiscItemType.RangedDbl:
-                    case MiscItemType.RangedPosDbl:
-                    case MiscItemType.RangedNegDbl:
                     case MiscItemType.RangedDblMinusOne:
-                    case MiscItemType.RangedDblMinusThree:
+                    case MiscItemType.RangedDblMinusOne1:
+                    case MiscItemType.RangedDbl0:
+                    case MiscItemType.NonNegIntNegDbl:
                         Misc.SetItem(itemId, (double) token.Value);
                         break;
                 }

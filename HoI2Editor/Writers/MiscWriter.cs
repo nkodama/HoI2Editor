@@ -18,27 +18,7 @@ namespace HoI2Editor.Writers
         public static void Write(string fileName)
         {
             // miscファイルの種類を設定する
-            MiscGameType gameType;
-            switch (Game.Type)
-            {
-                case GameType.HeartsOfIron2:
-                    gameType = (Game.Version >= 130) ? MiscGameType.Dda13 : MiscGameType.Dda12;
-                    break;
-
-                case GameType.ArsenalOfDemocracy:
-                    gameType = (Game.Version >= 108)
-                                   ? MiscGameType.Aod108
-                                   : ((Game.Version <= 104) ? MiscGameType.Aod104 : MiscGameType.Aod107);
-                    break;
-
-                case GameType.DarkestHour:
-                    gameType = (Game.Version >= 103) ? MiscGameType.Dh103 : MiscGameType.Dh102;
-                    break;
-
-                default:
-                    gameType = MiscGameType.Dda12;
-                    break;
-            }
+            MiscGameType gameType = Misc.GetGameType();
 
             // ファイルへ書き込む
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
@@ -75,47 +55,7 @@ namespace HoI2Editor.Writers
             {
                 MiscItemId id = itemIds[index];
                 writer.Write(Misc.GetComment(id));
-                switch (Misc.ItemTypes[(int) id])
-                {
-                    case MiscItemType.Bool:
-                        writer.Write((bool) Misc.GetItem(id) ? 1 : 0);
-                        break;
-
-                    case MiscItemType.Enum:
-                    case MiscItemType.Int:
-                    case MiscItemType.PosInt:
-                    case MiscItemType.NegInt:
-                    case MiscItemType.NonNegInt:
-                    case MiscItemType.NonPosInt:
-                    case MiscItemType.NonNegIntMinusOne:
-                    case MiscItemType.RangedInt:
-                    case MiscItemType.RangedPosInt:
-                    case MiscItemType.RangedNegInt:
-                        writer.Write(Misc.GetItem(id));
-                        break;
-
-                    case MiscItemType.Dbl:
-                    case MiscItemType.PosDbl:
-                    case MiscItemType.NegDbl:
-                    case MiscItemType.NonNegDbl:
-                    case MiscItemType.NonPosDbl:
-                    case MiscItemType.NonNegDblMinusOne:
-                    case MiscItemType.RangedDbl:
-                    case MiscItemType.RangedPosDbl:
-                    case MiscItemType.RangedNegDbl:
-                    case MiscItemType.RangedDblMinusOne:
-                    case MiscItemType.RangedDblMinusThree:
-                        var d = (double) Misc.GetItem(id);
-                        if ((d < 0.0001 && d > 0) || (d > -0.0001 && d < 0))
-                        {
-                            writer.Write(((double) Misc.GetItem(id)).ToString("F6"));
-                        }
-                        else
-                        {
-                            writer.Write(((double) Misc.GetItem(id)).ToString("G"));
-                        }
-                        break;
-                }
+                writer.Write(Misc.GetString(id));
             }
             // 最終項目の後のコメントを書き出す
             writer.Write(Misc.GetComment(itemIds[index]));

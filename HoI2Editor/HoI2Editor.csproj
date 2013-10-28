@@ -135,6 +135,8 @@
     <Compile Include="Parsers\UnitParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CursorFactory.cs" />
+    <Compile Include="Utilities\DoubleHelper.cs" />
+    <Compile Include="Utilities\IntHelper.cs" />
     <Compile Include="Writers\MiscWriter.cs" />
     <Compile Include="Writers\TechWriter.cs" />
     <Compile Include="Writers\UnitWriter.cs" />

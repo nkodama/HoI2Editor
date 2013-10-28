@@ -1,5 +1,6 @@
 ﻿using System;
 using HoI2Editor.Parsers;
+using HoI2Editor.Utilities;
 using HoI2Editor.Writers;
 
 namespace HoI2Editor.Models
@@ -1853,16 +1854,16 @@ namespace HoI2Editor.Models
         /// </summary>
         public static MiscItemType[] ItemTypes =
             {
+                MiscItemType.NonNegDbl2AoD,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -1885,40 +1886,40 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2Dh103Full2,
+                MiscItemType.NonNegDbl2Dh103Full2,
+                MiscItemType.NonNegDbl2Dh103Full2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl0,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.RangedDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.RangedInt,
+                MiscItemType.NonNegDbl4Dda13,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.RangedInt,
-                MiscItemType.RangedDbl,
+                MiscItemType.RangedInt,
                 MiscItemType.Enum,
                 MiscItemType.RangedDbl,
-                MiscItemType.RangedDbl,
+                MiscItemType.RangedInt,
                 MiscItemType.Enum,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
@@ -1949,9 +1950,18 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -1959,32 +1969,23 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
-                MiscItemType.NonNegInt,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegInt,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
@@ -2006,6 +2007,10 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDblMinusOne,
                 MiscItemType.NonNegDblMinusOne,
                 MiscItemType.RangedDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2019,14 +2024,10 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.RangedDbl,
@@ -2034,31 +2035,31 @@ namespace HoI2Editor.Models
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.Enum,
-                MiscItemType.NonNegDblMinusOne,
-                MiscItemType.Dbl,
+                MiscItemType.NonNegDblMinusOne1,
+                MiscItemType.None,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
+                MiscItemType.RangedInt,
+                MiscItemType.RangedInt,
+                MiscItemType.Int,
                 MiscItemType.RangedDbl,
-                MiscItemType.RangedDbl,
-                MiscItemType.Dbl,
-                MiscItemType.RangedDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.RangedInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.RangedDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
                 MiscItemType.Enum,
                 MiscItemType.NonNegDbl,
-                MiscItemType.Dbl,
+                MiscItemType.None,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
-                MiscItemType.RangedDbl,
-                MiscItemType.RangedDblMinusOne,
+                MiscItemType.RangedInt,
+                MiscItemType.RangedIntMinusOne,
                 MiscItemType.Bool,
                 MiscItemType.Bool,
                 MiscItemType.Bool,
@@ -2068,45 +2069,45 @@ namespace HoI2Editor.Models
                 MiscItemType.Enum,
                 MiscItemType.Bool,
                 MiscItemType.Enum,
+                MiscItemType.None,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonNegDbl2AoD,
+                MiscItemType.NonNegDbl2AoD,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl2Dh103Full,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl,
                 MiscItemType.Dbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.Dbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonPosDbl,
+                MiscItemType.NonPosDbl2,
                 MiscItemType.NonPosDbl,
                 MiscItemType.PosInt,
                 MiscItemType.PosInt,
@@ -2120,7 +2121,7 @@ namespace HoI2Editor.Models
                 MiscItemType.PosInt,
                 MiscItemType.PosInt,
                 MiscItemType.PosInt,
-                MiscItemType.NonNegDbl,
+                MiscItemType.PosInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonPosInt,
                 MiscItemType.NonNegInt,
@@ -2152,8 +2153,8 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2181,7 +2182,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2Dh103Full,
                 MiscItemType.NonNegDbl,
                 MiscItemType.RangedDbl,
                 MiscItemType.RangedDbl,
@@ -2189,7 +2190,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2204,19 +2205,19 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2254,6 +2255,28 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonPosInt,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl0,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2270,31 +2293,9 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2303,8 +2304,8 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.Enum,
-                MiscItemType.RangedDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.RangedDbl0,
+                MiscItemType.NonNegDbl0,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2327,16 +2328,16 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.NonNegIntMinusOne,
                 MiscItemType.RangedDbl,
-                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.NonNegIntMinusOne,
                 MiscItemType.RangedDbl,
                 MiscItemType.Enum,
                 MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.RangedDbl,
-                MiscItemType.NonNegDblMinusOne,
+                MiscItemType.RangedInt,
+                MiscItemType.NonNegIntMinusOne,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonPosDbl,
@@ -2346,7 +2347,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt1,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2382,7 +2383,7 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.Enum,
-                MiscItemType.Dbl,
+                MiscItemType.None,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
@@ -2410,10 +2411,6 @@ namespace HoI2Editor.Models
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.PosInt,
-                MiscItemType.Bool,
-                MiscItemType.RangedDbl,
-                MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
@@ -2421,8 +2418,8 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
-                MiscItemType.Bool,
-                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.Bool,
@@ -2441,21 +2438,12 @@ namespace HoI2Editor.Models
                 MiscItemType.RangedDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.PosInt,
-                MiscItemType.Bool,
-                MiscItemType.RangedDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.Bool,
-                MiscItemType.RangedDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.Bool,
-                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
@@ -2466,6 +2454,19 @@ namespace HoI2Editor.Models
                 MiscItemType.RangedDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
+                MiscItemType.Bool,
+                MiscItemType.RangedDbl,
                 MiscItemType.Bool,
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
@@ -2474,7 +2475,7 @@ namespace HoI2Editor.Models
                 MiscItemType.RangedDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.Bool,
-                MiscItemType.Dbl,
+                MiscItemType.None,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2491,6 +2492,11 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.RangedDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2508,24 +2514,19 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
+                MiscItemType.None,
+                MiscItemType.NonNegDbl,
+                MiscItemType.NonPosDbl5AoD,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.Dbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonPosDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegDbl5,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.RangedInt,
                 MiscItemType.PosInt,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl0,
                 MiscItemType.Enum,
                 MiscItemType.Enum,
                 MiscItemType.PosInt,
@@ -2536,43 +2537,43 @@ namespace HoI2Editor.Models
                 MiscItemType.Bool,
                 MiscItemType.Bool,
                 MiscItemType.PosInt,
-                MiscItemType.Dbl,
+                MiscItemType.None,
                 MiscItemType.PosInt,
                 MiscItemType.RangedPosInt,
                 MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegDbl2,
+                MiscItemType.NonNegDbl2Dh103Full1,
+                MiscItemType.NonNegDbl2Dh103Full1,
+                MiscItemType.NonNegDbl2,
                 MiscItemType.PosInt,
                 MiscItemType.Bool,
                 MiscItemType.Bool,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
                 MiscItemType.PosDbl,
-                MiscItemType.Dbl,
-                MiscItemType.RangedDbl,
-                MiscItemType.RangedDbl,
-                MiscItemType.RangedDbl,
-                MiscItemType.Dbl,
+                MiscItemType.NonNegIntNegDbl,
+                MiscItemType.RangedInt,
+                MiscItemType.RangedInt,
+                MiscItemType.RangedInt,
+                MiscItemType.None,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.RangedInt,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.RangedDbl,
-                MiscItemType.RangedDblMinusOne,
-                MiscItemType.RangedDblMinusOne,
+                MiscItemType.RangedDblMinusOne1,
+                MiscItemType.RangedDblMinusOne1,
                 MiscItemType.PosDbl,
                 MiscItemType.NonNegDbl,
                 MiscItemType.NonNegDbl,
@@ -2584,51 +2585,51 @@ namespace HoI2Editor.Models
                 MiscItemType.NonNegDbl,
                 MiscItemType.Enum,
                 MiscItemType.Enum,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
                 MiscItemType.Bool,
-                MiscItemType.RangedDblMinusThree,
+                MiscItemType.RangedIntMinusThree,
                 MiscItemType.NonNegIntMinusOne,
-                MiscItemType.Int,
+                MiscItemType.NonNegInt,
                 MiscItemType.Bool,
                 MiscItemType.Bool,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
                 MiscItemType.NonNegInt,
-                MiscItemType.Int,
-                MiscItemType.Dbl,
-                MiscItemType.Bool,
-                MiscItemType.NonNegIntMinusOne,
-                MiscItemType.Bool,
-                MiscItemType.Bool,
-                MiscItemType.Bool,
-                MiscItemType.Int,
-                MiscItemType.NonNegInt,
-                MiscItemType.Bool,
-                MiscItemType.Enum,
-                MiscItemType.Bool,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.PosInt,
-                MiscItemType.Bool,
-                MiscItemType.Bool,
-                MiscItemType.Enum,
-                MiscItemType.Bool,
                 MiscItemType.RangedDbl,
+                MiscItemType.None,
+                MiscItemType.Bool,
+                MiscItemType.NonNegIntMinusOne,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Int,
+                MiscItemType.NonNegInt,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.PosInt,
+                MiscItemType.Bool,
+                MiscItemType.Bool,
+                MiscItemType.Enum,
+                MiscItemType.Bool,
+                MiscItemType.RangedInt,
                 MiscItemType.NonNegIntMinusOne,
                 MiscItemType.RangedInt,
                 MiscItemType.RangedInt,
                 MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
-                MiscItemType.NonNegDbl,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
+                MiscItemType.NonNegInt,
                 MiscItemType.PosInt,
                 MiscItemType.Bool,
                 MiscItemType.Bool,
@@ -2644,13 +2645,13 @@ namespace HoI2Editor.Models
                 MiscItemType.Bool,
                 MiscItemType.Enum,
                 MiscItemType.PosInt,
-                MiscItemType.Dbl,
+                MiscItemType.None,
                 MiscItemType.NonNegInt,
                 MiscItemType.RangedInt,
                 MiscItemType.Enum,
                 MiscItemType.PosInt,
                 MiscItemType.PosInt,
-                MiscItemType.Dbl
+                MiscItemType.None
             };
 
         /// <summary>
@@ -2925,7 +2926,7 @@ namespace HoI2Editor.Models
                 1,
                 1,
                 1,
-                0,
+                1,
                 0,
                 0,
                 0,
@@ -3215,10 +3216,6 @@ namespace HoI2Editor.Models
                 0,
                 0.05,
                 0,
-                1,
-                0,
-                0.05,
-                0,
                 0,
                 0,
                 0.05,
@@ -3227,7 +3224,7 @@ namespace HoI2Editor.Models
                 0,
                 0.05,
                 0,
-                0.05,
+                0,
                 0,
                 0.05,
                 0,
@@ -3247,7 +3244,11 @@ namespace HoI2Editor.Models
                 0,
                 0.05,
                 0,
-                1,
+                0.05,
+                0,
+                0.05,
+                0,
+                0,
                 0,
                 0.05,
                 0,
@@ -3399,7 +3400,7 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
-                0,
+                -200,
                 0,
                 0,
                 0,
@@ -4204,7 +4205,7 @@ namespace HoI2Editor.Models
                 0,
                 0,
                 0,
-                0,
+                200,
                 0,
                 1,
                 0,
@@ -4419,6 +4420,197 @@ namespace HoI2Editor.Models
                 DirtyFlags[(int) id] = false;
             }
             _dirtyFlag = false;
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     項目の文字列を取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>文字列</returns>
+        /// <remarks>Bool/Enumの項目は整数で表現する</remarks>
+        public static string GetString(MiscItemId id)
+        {
+            switch (ItemTypes[(int) id])
+            {
+                case MiscItemType.Bool:
+                    return (bool) GetItem(id) ? "1" : "0";
+
+                case MiscItemType.Enum:
+                case MiscItemType.Int:
+                case MiscItemType.PosInt:
+                case MiscItemType.NonNegInt:
+                case MiscItemType.NonPosInt:
+                case MiscItemType.NonNegIntMinusOne:
+                case MiscItemType.RangedInt:
+                case MiscItemType.RangedPosInt:
+                case MiscItemType.RangedIntMinusOne:
+                case MiscItemType.RangedIntMinusThree:
+                    return IntHelper.ToString0((int) GetItem(id));
+
+                case MiscItemType.NonNegInt1:
+                    return IntHelper.ToString1((int) GetItem(id));
+
+                case MiscItemType.Dbl:
+                case MiscItemType.PosDbl:
+                case MiscItemType.NonNegDbl:
+                case MiscItemType.NonPosDbl:
+                case MiscItemType.NonNegDblMinusOne1:
+                case MiscItemType.RangedDbl:
+                case MiscItemType.RangedDblMinusOne1:
+                    return DoubleHelper.ToString1((double) GetItem(id));
+
+                case MiscItemType.NonNegDbl0:
+                case MiscItemType.NonPosDbl0:
+                case MiscItemType.RangedDbl0:
+                    return DoubleHelper.ToString0((double) GetItem(id));
+
+                case MiscItemType.NonNegDbl2:
+                case MiscItemType.NonPosDbl2:
+                    return DoubleHelper.ToString2((double) GetItem(id));
+
+                case MiscItemType.NonNegDbl5:
+                    return DoubleHelper.ToString5((double) GetItem(id));
+
+                case MiscItemType.NonNegDblMinusOne:
+                case MiscItemType.RangedDblMinusOne:
+                    return GetDbl1MinusOneString((double) GetItem(id));
+
+                case MiscItemType.NonNegDbl2AoD:
+                    return GetDbl1AoD2String((double) GetItem(id));
+
+                case MiscItemType.NonNegDbl4Dda13:
+                    return GetDbl1Dda134String((double) GetItem(id));
+
+                case MiscItemType.NonNegDbl2Dh103Full:
+                    return GetDbl1Range2String((double) GetItem(id), 0, 0.1000005);
+
+                case MiscItemType.NonNegDbl2Dh103Full1:
+                    return GetDbl2Range1String((double) GetItem(id), 0, 0.2000005);
+
+                case MiscItemType.NonNegDbl2Dh103Full2:
+                    return GetDbl1Range2String((double) GetItem(id), 0, 1);
+
+                case MiscItemType.NonPosDbl5AoD:
+                    return GetDbl1AoD5String((double) GetItem(id));
+
+                case MiscItemType.NonPosDbl2Dh103Full:
+                    return GetDbl1Range2String((double) GetItem(id), -0.1000005, 0);
+
+                case MiscItemType.NonNegIntNegDbl:
+                    return GetNonNegIntNegDblString((double) GetItem(id));
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        ///     文字列を取得する (実数/小数点以下1桁 or -1)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>文字列</returns>
+        private static string GetDbl1MinusOneString(double val)
+        {
+            return Math.Abs(val - (-1)) < 0.0000005 ? "-1" : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     文字列を取得する (実数/小数点以下1桁/DDA1.3 or DHのみ小数点以下4桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>文字列</returns>
+        private static string GetDbl1Dda134String(double val)
+        {
+            return ((Game.Type == GameType.HeartsOfIron2 && Game.Version >= 130) || Game.Type == GameType.DarkestHour)
+                       ? DoubleHelper.ToString4(val)
+                       : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     文字列を取得する (実数/小数点以下1桁/AoDのみ小数点以下2桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>文字列</returns>
+        private static string GetDbl1AoD2String(double val)
+        {
+            return (Game.Type == GameType.ArsenalOfDemocracy)
+                       ? DoubleHelper.ToString2(val)
+                       : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     文字列を取得する (実数/小数点以下1桁/AoDのみ小数点以下5桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>文字列</returns>
+        private static string GetDbl1AoD5String(double val)
+        {
+            return (Game.Type == GameType.ArsenalOfDemocracy)
+                       ? DoubleHelper.ToString5(val)
+                       : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     文字列を取得する (実数/小数点以下1桁/指定範囲内ならば小数点以下2桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <param name="min">範囲内の最小値</param>
+        /// <param name="max">範囲内の最大値</param>
+        /// <returns>文字列</returns>
+        private static string GetDbl1Range2String(double val, double min, double max)
+        {
+            return (val > min && val < max) ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     文字列を取得する (実数/小数点以下2桁/指定範囲外ならば小数点以下1桁)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>文字列</returns>
+        /// <param name="min">範囲内の最小値</param>
+        /// <param name="max">範囲内の最大値</param>
+        private static string GetDbl2Range1String(double val, double min, double max)
+        {
+            return (val > min && val < max) ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
+        }
+
+        /// <summary>
+        ///     文字列を取得する (非負の整数 or 負の実数)
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>文字列</returns>
+        private static string GetNonNegIntNegDblString(double val)
+        {
+            return (val < 0) ? DoubleHelper.ToString1(val) : IntHelper.ToString0((int) val);
+        }
+
+        #endregion
+
+        #region ゲームバージョン
+
+        /// <summary>
+        ///     miscファイルの種類を取得する
+        /// </summary>
+        /// <returns></returns>
+        public static MiscGameType GetGameType()
+        {
+            switch (Game.Type)
+            {
+                case GameType.HeartsOfIron2:
+                    return (Game.Version >= 130) ? MiscGameType.Dda13 : MiscGameType.Dda12;
+
+                case GameType.ArsenalOfDemocracy:
+                    return (Game.Version >= 108)
+                               ? MiscGameType.Aod108
+                               : ((Game.Version <= 104) ? MiscGameType.Aod104 : MiscGameType.Aod107);
+
+                case GameType.DarkestHour:
+                    return (Game.Version >= 103) ? MiscGameType.Dh103 : MiscGameType.Dh102;
+            }
+            return MiscGameType.Dda12;
         }
 
         #endregion
@@ -5287,27 +5479,41 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum MiscItemType
     {
+        None, // 終端項目
         Bool, // ブール値
         Enum, // 選択肢
         Int, // 整数
         PosInt, // 正の整数
-        NegInt, // 負の整数
         NonNegInt, // 非負の整数
         NonPosInt, // 非正の整数
         NonNegIntMinusOne, // 非負の整数 or -1
+        NonNegInt1, // 非負の整数 (小数点以下1桁)
         RangedInt, // 範囲あり整数
         RangedPosInt, // 範囲あり正の整数
-        RangedNegInt, // 範囲あり負の整数
+        RangedIntMinusOne, // 範囲あり整数 or -1
+        RangedIntMinusThree, // 範囲あり実数 or -1 or -2 or -3
         Dbl, // 実数
         PosDbl, // 正の実数
-        NegDbl, // 負の実数
         NonNegDbl, // 非負の実数
         NonPosDbl, // 非正の実数
+        NonNegDbl0, // 非負の実数 (小数点以下なし)
+        NonNegDbl2, // 非負の実数 (小数点以下2桁)
+        NonNegDbl5, // 非負の実数 (小数点以下5桁)
+        NonPosDbl0, // 非正の実数 (小数点以下なし)
+        NonPosDbl2, // 非正の実数 (小数点以下2桁)
         NonNegDblMinusOne, // 非負の実数 or -1
+        NonNegDblMinusOne1, // 非負の実数 or -1.0
+        NonNegDbl2AoD, // 非負の実数 (AoDのみ小数点以下2桁)
+        NonNegDbl4Dda13, // 非負の実数 (DDA1.3/DHのみ小数点以下4桁)
+        NonNegDbl2Dh103Full, // 非負の実数 (0より大きく0.10以下の場合のみ小数点以下2桁)
+        NonNegDbl2Dh103Full1, // 非負の実数 (小数点以下2桁/0より大きく0.20以下の場合のみ小数点以下1桁)
+        NonNegDbl2Dh103Full2, // 非負の実数 (0より大きく1未満の場合のみ小数点以下2桁)
+        NonPosDbl5AoD, // 非正の実数 (AoDのみ小数点以下5桁)
+        NonPosDbl2Dh103Full, // 非正の実数 (-0.10以上0未満の場合のみ小数点以下2桁)
         RangedDbl, // 範囲あり実数
-        RangedPosDbl, // 範囲あり正の実数
-        RangedNegDbl, // 範囲あり負の実数
         RangedDblMinusOne, // 範囲あり実数 or -1
-        RangedDblMinusThree, // 範囲あり実数 or -1 or -2 or -3
+        RangedDblMinusOne1, // 範囲あり実数 or -1.0
+        RangedDbl0, // 範囲あり実数 (小数点以下なし)
+        NonNegIntNegDbl, // 非負の整数 or 負の実数
     }
 }
