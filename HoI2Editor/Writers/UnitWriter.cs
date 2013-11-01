@@ -56,7 +56,7 @@ namespace HoI2Editor.Writers
                         writer.WriteLine("allowed_brigades = {0}", Units.Strings[(int) brigade]);
                     }
                     // max_allowed_brigades
-                    if (Game.Type == GameType.DarkestHour && unit.MaxAllowedBrigades != 0)
+                    if (Game.Type == GameType.DarkestHour && Game.Version <= 102 && unit.MaxAllowedBrigades != 0)
                     {
                         writer.WriteLine("max_allowed_brigades = {0}", unit.MaxAllowedBrigades);
                     }
@@ -262,6 +262,14 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tsupplyconsumption\t\t\t= {0}", model.SupplyConsumption);
             writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption);
             writer.WriteLine("\tdistance\t\t\t\t\t= {0}", model.Distance);
+            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceTimeFactor) > 0.00005)
+            {
+                writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor);
+            }
+            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceCostFactor) > 0.00005)
+            {
+                writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
+            }
         }
 
         /// <summary>

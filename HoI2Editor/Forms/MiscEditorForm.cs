@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
+using System.Globalization;
+using System.Resources;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -17,12 +18,1020 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     項目IDと編集コントロールとの対応付け
         /// </summary>
-        private Control[] _controls;
+        private readonly Control[] _edits = new Control[Enum.GetValues(typeof (MiscItemId)).Length];
 
         /// <summary>
         ///     項目IDと編集ラベルとの対応付け
         /// </summary>
-        private Label[] _labels;
+        private readonly Label[] _labels = new Label[Enum.GetValues(typeof (MiscItemId)).Length];
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     編集項目のID
+        /// </summary>
+        private static readonly MiscItemId[][][] EditableItems =
+            {
+                // 経済1
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.IcToTcRatio,
+                                MiscItemId.IcToSuppliesRatio,
+                                MiscItemId.IcToConsumerGoodsRatio,
+                                MiscItemId.IcToMoneyRatio,
+                                MiscItemId.MaxGearingBonus,
+                                MiscItemId.GearingBonusIncrement,
+                                MiscItemId.IcMultiplierNonNational,
+                                MiscItemId.IcMultiplierNonOwned,
+                                MiscItemId.TcLoadUndeployedDivision,
+                                MiscItemId.TcLoadOccupied,
+                                MiscItemId.TcLoadMultiplierLand,
+                                MiscItemId.TcLoadMultiplierAir,
+                                MiscItemId.TcLoadMultiplierNaval,
+                                MiscItemId.TcLoadPartisan,
+                                MiscItemId.TcLoadFactorOffensive,
+                                MiscItemId.TcLoadProvinceDevelopment,
+                                MiscItemId.TcLoadBase,
+                                MiscItemId.ManpowerMultiplierNational,
+                                MiscItemId.ManpowerMultiplierNonNational,
+                                MiscItemId.ManpowerMultiplierColony,
+                                MiscItemId.RequirementAffectSlider,
+                                MiscItemId.TrickleBackFactorManpower,
+                                MiscItemId.ReinforceManpower,
+                                MiscItemId.ReinforceCost
+                            },
+                        new[]
+                            {
+                                MiscItemId.ReinforceTime,
+                                MiscItemId.UpgradeCost,
+                                MiscItemId.UpgradeTime,
+                                MiscItemId.NationalismStartingValue,
+                                MiscItemId.MonthlyNationalismReduction,
+                                MiscItemId.SendDivisionDays,
+                                MiscItemId.TcLoadUndeployedBrigade,
+                                MiscItemId.CanUnitSendNonAllied,
+                                MiscItemId.Separator,
+                                MiscItemId.SpyMissionDays,
+                                MiscItemId.IncreateIntelligenceLevelDays,
+                                MiscItemId.ChanceDetectSpyMission,
+                                MiscItemId.RelationshipsHitDetectedMissions,
+                                MiscItemId.ShowThirdCountrySpyReports,
+                                MiscItemId.DistanceModifierNeighbours,
+                                MiscItemId.SpyInformationAccuracyModifier,
+                                MiscItemId.AiPeacetimeSpyMissions,
+                                MiscItemId.MaxIcCostModifier,
+                                MiscItemId.AiSpyMissionsCostModifier,
+                                MiscItemId.AiDiplomacyCostModifier,
+                                MiscItemId.AiInfluenceModifier
+                            },
+                        new[]
+                            {
+                                MiscItemId.CoreProvinceEfficiencyRiseTime,
+                                MiscItemId.RestockSpeedLand,
+                                MiscItemId.RestockSpeedAir,
+                                MiscItemId.RestockSpeedNaval,
+                                MiscItemId.SpyCoupDissentModifier,
+                                MiscItemId.ConvoyDutyConversion,
+                                MiscItemId.EscortDutyConversion,
+                                MiscItemId.TpMaxAttach,
+                                MiscItemId.SsMaxAttach,
+                                MiscItemId.SsnMaxAttach,
+                                MiscItemId.DdMaxAttach,
+                                MiscItemId.ClMaxAttach,
+                                MiscItemId.CaMaxAttach,
+                                MiscItemId.BcMaxAttach,
+                                MiscItemId.BbMaxAttach,
+                                MiscItemId.CvlMaxAttach,
+                                MiscItemId.CvMaxAttach,
+                                MiscItemId.CanChangeIdeas
+                            }
+                    },
+                // 経済2
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.DissentChangeSpeed,
+                                MiscItemId.GearingResourceIncrement,
+                                MiscItemId.GearingLossNoIc,
+                                MiscItemId.CostRepairBuildings,
+                                MiscItemId.TimeRepairBuilding,
+                                MiscItemId.ProvinceEfficiencyRiseTime,
+                                MiscItemId.LineUpkeep,
+                                MiscItemId.LineStartupTime,
+                                MiscItemId.LineUpgradeTime,
+                                MiscItemId.RetoolingCost,
+                                MiscItemId.RetoolingResource,
+                                MiscItemId.DailyAgingManpower,
+                                MiscItemId.SupplyConvoyHunt,
+                                MiscItemId.SupplyNavalStaticAoD,
+                                MiscItemId.SupplyNavalMoving,
+                                MiscItemId.SupplyNavalBattleAoD,
+                                MiscItemId.SupplyAirStaticAoD,
+                                MiscItemId.SupplyAirMoving,
+                                MiscItemId.SupplyAirBattleAoD,
+                                MiscItemId.SupplyAirBombing,
+                                MiscItemId.SupplyLandStaticAoD,
+                                MiscItemId.SupplyLandMoving,
+                                MiscItemId.SupplyLandBattleAoD,
+                                MiscItemId.SupplyLandBombing
+                            },
+                        new[]
+                            {
+                                MiscItemId.SupplyStockLand,
+                                MiscItemId.SupplyStockAir,
+                                MiscItemId.SupplyStockNaval,
+                                MiscItemId.SyntheticOilConversionMultiplier,
+                                MiscItemId.SyntheticRaresConversionMultiplier,
+                                MiscItemId.MilitarySalary,
+                                MiscItemId.MaxIntelligenceExpenditure,
+                                MiscItemId.MaxResearchExpenditure,
+                                MiscItemId.MilitarySalaryAttrictionModifier,
+                                MiscItemId.MilitarySalaryDissentModifier,
+                                MiscItemId.NuclearSiteUpkeepCost,
+                                MiscItemId.NuclearPowerUpkeepCost,
+                                MiscItemId.SyntheticOilSiteUpkeepCost,
+                                MiscItemId.SyntheticRaresSiteUpkeepCost,
+                                MiscItemId.DurationDetection,
+                                MiscItemId.ConvoyProvinceHostileTime,
+                                MiscItemId.ConvoyProvinceBlockedTime,
+                                MiscItemId.AutoTradeConvoy,
+                                MiscItemId.SpyUpkeepCost,
+                                MiscItemId.SpyDetectionChance,
+                                MiscItemId.InfraEfficiencyModifier,
+                                MiscItemId.ManpowerToConsumerGoods,
+                                MiscItemId.TimeBetweenSliderChangesAoD,
+                                MiscItemId.MinimalPlacementIc
+                            },
+                        new[]
+                            {
+                                MiscItemId.NuclearPower,
+                                MiscItemId.FreeInfraRepair,
+                                MiscItemId.MaxSliderDissent,
+                                MiscItemId.MinSliderDissent,
+                                MiscItemId.MaxDissentSliderMove,
+                                MiscItemId.IcConcentrationBonus,
+                                MiscItemId.TransportConversion,
+                                MiscItemId.MinisterChangeDelay,
+                                MiscItemId.MinisterChangeEventDelay,
+                                MiscItemId.IdeaChangeDelay,
+                                MiscItemId.IdeaChangeEventDelay,
+                                MiscItemId.LeaderChangeDelay,
+                                MiscItemId.ChangeIdeaDissent,
+                                MiscItemId.ChangeMinisterDissent,
+                                MiscItemId.MinDissentRevolt,
+                                MiscItemId.DissentRevoltMultiplier
+                            }
+                    },
+                // 経済3
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.MinAvailableIc,
+                                MiscItemId.MinFinalIc,
+                                MiscItemId.DissentReduction,
+                                MiscItemId.IcMultiplierPuppet,
+                                MiscItemId.ResourceMultiplierNonNational,
+                                MiscItemId.ResourceMultiplierNonOwned,
+                                MiscItemId.ResourceMultiplierNonNationalAi,
+                                MiscItemId.ResourceMultiplierPuppet,
+                                MiscItemId.ManpowerMultiplierPuppet,
+                                MiscItemId.ManpowerMultiplierWartimeOversea,
+                                MiscItemId.ManpowerMultiplierPeacetime,
+                                MiscItemId.ManpowerMultiplierWartime,
+                                MiscItemId.DailyRetiredManpower,
+                                MiscItemId.ReinforceToUpdateModifier,
+                                MiscItemId.NationalismPerManpowerDh,
+                                MiscItemId.MaxNationalism,
+                                MiscItemId.MaxRevoltRisk,
+                                MiscItemId.CanUnitSendNonAlliedDh,
+                                MiscItemId.BluePrintsCanSoldNonAllied,
+                                MiscItemId.ProvinceCanSoldNonAllied,
+                                MiscItemId.TransferAlliedCoreProvinces,
+                                MiscItemId.ProvinceBuildingsRepairModifier,
+                                MiscItemId.ProvinceResourceRepairModifier,
+                                MiscItemId.StockpileLimitMultiplierResource
+                            },
+                        new[]
+                            {
+                                MiscItemId.StockpileLimitMultiplierSuppliesOil,
+                                MiscItemId.OverStockpileLimitDailyLoss,
+                                MiscItemId.MaxResourceDepotSize,
+                                MiscItemId.MaxSuppliesOilDepotSize,
+                                MiscItemId.DesiredStockPilesSuppliesOil,
+                                MiscItemId.MaxManpower,
+                                MiscItemId.ConvoyTransportsCapacity,
+                                MiscItemId.SuppyLandStaticDh,
+                                MiscItemId.SupplyLandBattleDh,
+                                MiscItemId.FuelLandStatic,
+                                MiscItemId.FuelLandBattle,
+                                MiscItemId.SupplyAirStaticDh,
+                                MiscItemId.SupplyAirBattleDh,
+                                MiscItemId.FuelAirNavalStatic,
+                                MiscItemId.FuelAirBattle,
+                                MiscItemId.SupplyNavalStaticDh,
+                                MiscItemId.SupplyNavalBattleDh,
+                                MiscItemId.FuelNavalNotMoving,
+                                MiscItemId.FuelNavalBattle,
+                                MiscItemId.TpTransportsConversionRatio,
+                                MiscItemId.DdEscortsConversionRatio,
+                                MiscItemId.ClEscortsConversionRatio,
+                                MiscItemId.CvlEscortsConversionRatio,
+                                MiscItemId.ProductionLineEdit
+                            },
+                        new[]
+                            {
+                                MiscItemId.GearingBonusLossUpgradeUnit,
+                                MiscItemId.GearingBonusLossUpgradeBrigade,
+                                MiscItemId.DissentNukes,
+                                MiscItemId.MaxDailyDissent,
+                                MiscItemId.Separator,
+                                MiscItemId.NukesProductionModifier,
+                                MiscItemId.ConvoySystemOptionsAllied,
+                                MiscItemId.ResourceConvoysBackUnneeded
+                            }
+                    },
+                // 諜報
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.SpyMissionDaysDh,
+                                MiscItemId.IncreateIntelligenceLevelDaysDh,
+                                MiscItemId.ChanceDetectSpyMissionDh,
+                                MiscItemId.RelationshipsHitDetectedMissionsDh,
+                                MiscItemId.DistanceModifier,
+                                MiscItemId.DistanceModifierNeighboursDh,
+                                MiscItemId.SpyLevelBonusDistanceModifier,
+                                MiscItemId.SpyLevelBonusDistanceModifierAboveTen,
+                                MiscItemId.SpyInformationAccuracyModifierDh,
+                                MiscItemId.IcModifierCost,
+                                MiscItemId.MinIcCostModifier,
+                                MiscItemId.MaxIcCostModifierDh,
+                                MiscItemId.ExtraMaintenanceCostAboveTen,
+                                MiscItemId.ExtraCostIncreasingAboveTen,
+                                MiscItemId.ShowThirdCountrySpyReportsDh,
+                                MiscItemId.SpiesMoneyModifier
+                            }
+                    },
+                // 外交
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.DaysBetweenDiplomaticMissions,
+                                MiscItemId.TimeBetweenSliderChangesDh,
+                                MiscItemId.RequirementAffectSliderDh,
+                                MiscItemId.UseMinisterPersonalityReplacing,
+                                MiscItemId.RelationshipHitCancelTrade,
+                                MiscItemId.RelationshipHitCancelPermanentTrade,
+                                MiscItemId.PuppetsJoinMastersAlliance,
+                                MiscItemId.MastersBecomePuppetsPuppets,
+                                MiscItemId.AllowManualClaimsChange,
+                                MiscItemId.BelligerenceClaimedProvince,
+                                MiscItemId.BelligerenceClaimsRemoval,
+                                MiscItemId.JoinAutomaticallyAllesAxis,
+                                MiscItemId.AllowChangeHosHog,
+                                MiscItemId.ChangeTagCoup,
+                                MiscItemId.FilterReleaseCountries
+                            }
+                    },
+                // 戦闘1
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.LandXpGainFactor,
+                                MiscItemId.NavalXpGainFactor,
+                                MiscItemId.AirXpGainFactor,
+                                MiscItemId.DivisionXpGainFactor,
+                                MiscItemId.LeaderXpGainFactor,
+                                MiscItemId.AttritionSeverityModifier,
+                                MiscItemId.BaseProximity,
+                                MiscItemId.ShoreBombardmentModifier,
+                                MiscItemId.InvasionModifier,
+                                MiscItemId.MultipleCombatModifier,
+                                MiscItemId.OffensiveCombinedArmsBonus,
+                                MiscItemId.DefensiveCombinedArmsBonus,
+                                MiscItemId.SurpriseModifier,
+                                MiscItemId.LandCommandLimitModifier,
+                                MiscItemId.AirCommandLimitModifier,
+                                MiscItemId.NavalCommandLimitModifier,
+                                MiscItemId.EnvelopmentModifier,
+                                MiscItemId.EncircledModifier,
+                                MiscItemId.LandFortMultiplier,
+                                MiscItemId.CoastalFortMultiplier,
+                                MiscItemId.DissentMultiplier,
+                                MiscItemId.SupplyProblemsModifier,
+                                MiscItemId.RaderStationMultiplier,
+                                MiscItemId.InterceptorBomberModifier
+                            },
+                        new[]
+                            {
+                                MiscItemId.AirOverstackingModifier,
+                                MiscItemId.NavalOverstackingModifier,
+                                MiscItemId.LandLeaderCommandLimitRank0,
+                                MiscItemId.LandLeaderCommandLimitRank1,
+                                MiscItemId.LandLeaderCommandLimitRank2,
+                                MiscItemId.LandLeaderCommandLimitRank3,
+                                MiscItemId.AirLeaderCommandLimitRank0,
+                                MiscItemId.AirLeaderCommandLimitRank1,
+                                MiscItemId.AirLeaderCommandLimitRank2,
+                                MiscItemId.AirLeaderCommandLimitRank3,
+                                MiscItemId.NavalLeaderCommandLimitRank0,
+                                MiscItemId.NavalLeaderCommandLimitRank1,
+                                MiscItemId.NavalLeaderCommandLimitRank2,
+                                MiscItemId.NavalLeaderCommandLimitRank3,
+                                MiscItemId.HqCommandLimitFactor,
+                                MiscItemId.ConvoyProtectionFactor,
+                                MiscItemId.DelayAfterCombatEnds,
+                                MiscItemId.MaximumSizesAirStacks,
+                                MiscItemId.EffectExperienceCombat,
+                                MiscItemId.DamageNavalBasesBombing,
+                                MiscItemId.DamageAirBaseBombing,
+                                MiscItemId.DamageAaBombing,
+                                MiscItemId.DamageRocketBombing,
+                                MiscItemId.DamageNukeBombing
+                            },
+                        new[]
+                            {
+                                MiscItemId.DamageRadarBombing,
+                                MiscItemId.DamageInfraBombing,
+                                MiscItemId.DamageIcBombing,
+                                MiscItemId.DamageResourcesBombing,
+                                MiscItemId.HowEffectiveGroundDef,
+                                MiscItemId.ChanceAvoidDefencesLeft,
+                                MiscItemId.ChanceAvoidNoDefences,
+                                MiscItemId.ChanceGetTerrainTrait,
+                                MiscItemId.ChanceGetEventTrait,
+                                MiscItemId.BonusTerrainTrait,
+                                MiscItemId.BonusEventTrait,
+                                MiscItemId.ChanceLeaderDying,
+                                MiscItemId.AirOrgDamage,
+                                MiscItemId.AirStrDamageOrg,
+                                MiscItemId.AirStrDamage,
+                                MiscItemId.Separator,
+                                MiscItemId.SubsOrgDamage,
+                                MiscItemId.SubsStrDamage,
+                                MiscItemId.SubStacksDetectionModifier
+                            }
+                    },
+                // 戦闘2
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.NoSupplyAttritionSeverity,
+                                MiscItemId.NoSupplyMinimunAttrition,
+                                MiscItemId.RaderStationAaMultiplier,
+                                MiscItemId.AirOverstackingModifierAoD,
+                                MiscItemId.LandDelayBeforeOrders,
+                                MiscItemId.NavalDelayBeforeOrders,
+                                MiscItemId.AirDelayBeforeOrders,
+                                MiscItemId.DamageSyntheticOilBombing,
+                                MiscItemId.AirOrgDamageLandAoD,
+                                MiscItemId.AirStrDamageLandAoD,
+                                MiscItemId.LandDamageArtilleryBombardment,
+                                MiscItemId.InfraDamageArtilleryBombardment,
+                                MiscItemId.IcDamageArtilleryBombardment,
+                                MiscItemId.ResourcesDamageArtilleryBombardment,
+                                MiscItemId.PenaltyArtilleryBombardment,
+                                MiscItemId.ArtilleryStrDamage,
+                                MiscItemId.ArtilleryOrgDamage,
+                                MiscItemId.LandStrDamageLandAoD,
+                                MiscItemId.LandOrgDamageLand,
+                                MiscItemId.LandStrDamageAirAoD,
+                                MiscItemId.LandOrgDamageAirAoD,
+                                MiscItemId.NavalStrDamageAirAoD,
+                                MiscItemId.NavalOrgDamageAirAoD,
+                                MiscItemId.AirStrDamageAirAoD
+                            },
+                        new[]
+                            {
+                                MiscItemId.AirOrgDamageAirAoD,
+                                MiscItemId.NavalStrDamageNavyAoD,
+                                MiscItemId.NavalOrgDamageNavyAoD,
+                                MiscItemId.AirStrDamageNavyAoD,
+                                MiscItemId.AirOrgDamageNavyAoD,
+                                MiscItemId.MilitaryExpenseAttritionModifier,
+                                MiscItemId.NavalMinCombatTime,
+                                MiscItemId.LandMinCombatTime,
+                                MiscItemId.AirMinCombatTime,
+                                MiscItemId.LandOverstackingModifier,
+                                MiscItemId.LandOrgLossMoving,
+                                MiscItemId.AirOrgLossMoving,
+                                MiscItemId.NavalOrgLossMoving,
+                                MiscItemId.SupplyDistanceSeverity,
+                                MiscItemId.SupplyBase,
+                                MiscItemId.LandOrgGain,
+                                MiscItemId.AirOrgGain,
+                                MiscItemId.NavalOrgGain,
+                                MiscItemId.NukeManpowerDissent,
+                                MiscItemId.NukeIcDissent,
+                                MiscItemId.NukeTotalDissent,
+                                MiscItemId.LandFriendlyOrgGain,
+                                MiscItemId.AirLandStockModifier,
+                                MiscItemId.ScorchDamage
+                            },
+                        new[]
+                            {
+                                MiscItemId.StandGroundDissent,
+                                MiscItemId.ScorchGroundBelligerence,
+                                MiscItemId.DefaultLandStack,
+                                MiscItemId.DefaultNavalStack,
+                                MiscItemId.DefaultAirStack,
+                                MiscItemId.DefaultRocketStack,
+                                MiscItemId.FortDamageArtilleryBombardment,
+                                MiscItemId.ArtilleryBombardmentOrgCost,
+                                MiscItemId.LandDamageFort,
+                                MiscItemId.AirRebaseFactor,
+                                MiscItemId.AirMaxDisorganized,
+                                MiscItemId.AaInflictedStrDamage,
+                                MiscItemId.AaInflictedOrgDamage,
+                                MiscItemId.AaInflictedFlyingDamage,
+                                MiscItemId.AaInflictedBombingDamage,
+                                MiscItemId.HardAttackStrDamage,
+                                MiscItemId.HardAttackOrgDamage,
+                                MiscItemId.ArmorSoftBreakthroughMin,
+                                MiscItemId.ArmorSoftBreakthroughMax,
+                                MiscItemId.NavalCriticalHitChance,
+                                MiscItemId.NavalCriticalHitEffect,
+                                MiscItemId.LandFortDamage,
+                                MiscItemId.PortAttackSurpriseChanceDay,
+                                MiscItemId.PortAttackSurpriseChanceNight
+                            }
+                    },
+                // 戦闘3
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.PortAttackSurpriseModifier,
+                                MiscItemId.RadarAntiSurpriseChance,
+                                MiscItemId.RadarAntiSurpriseModifier
+                            },
+                        new[]
+                            {
+                                MiscItemId.ShoreBombardmentCap,
+                                MiscItemId.CounterAttackStrDefenderAoD,
+                                MiscItemId.CounterAttackOrgDefenderAoD,
+                                MiscItemId.CounterAttackStrAttackerAoD,
+                                MiscItemId.CounterAttackOrgAttackerAoD,
+                                MiscItemId.AssaultStrDefenderAoD,
+                                MiscItemId.AssaultOrgDefenderAoD,
+                                MiscItemId.AssaultStrAttackerAoD,
+                                MiscItemId.AssaultOrgAttackerAoD,
+                                MiscItemId.EncirclementStrDefenderAoD,
+                                MiscItemId.EncirclementOrgDefenderAoD,
+                                MiscItemId.EncirclementStrAttackerAoD,
+                                MiscItemId.EncirclementOrgAttackerAoD,
+                                MiscItemId.AmbushStrDefenderAoD,
+                                MiscItemId.AmbushOrgDefenderAoD,
+                                MiscItemId.AmbushStrAttackerAoD,
+                                MiscItemId.AmbushOrgAttackerAoD,
+                                MiscItemId.DelayStrDefenderAoD,
+                                MiscItemId.DelayOrgDefenderAoD,
+                                MiscItemId.DelayStrAttackerAoD,
+                                MiscItemId.DelayOrgAttackerAoD,
+                                MiscItemId.TacticalWithdrawStrDefenderAoD,
+                                MiscItemId.TacticalWithdrawOrgDefenderAoD,
+                                MiscItemId.TacticalWithdrawStrAttackerAoD
+                            },
+                        new[]
+                            {
+                                MiscItemId.TacticalWithdrawOrgAttackerAoD,
+                                MiscItemId.BreakthroughStrDefenderAoD,
+                                MiscItemId.BreakthroughOrgDefenderAoD,
+                                MiscItemId.BreakthroughStrAttackerAoD,
+                                MiscItemId.BreakthroughOrgAttackerAoD
+                            }
+                    },
+                // 戦闘4
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.AirDogfightXpGainFactor,
+                                MiscItemId.HardUnitsAttackingUrbanPenalty,
+                                MiscItemId.SupplyProblemsModifierLand,
+                                MiscItemId.SupplyProblemsModifierAir,
+                                MiscItemId.SupplyProblemsModifierNaval,
+                                MiscItemId.FuelProblemsModifierLand,
+                                MiscItemId.FuelProblemsModifierAir,
+                                MiscItemId.FuelProblemsModifierNaval,
+                                MiscItemId.ConvoyEscortsModel,
+                                MiscItemId.DurationAirToAirBattles,
+                                MiscItemId.DurationNavalPortBombing,
+                                MiscItemId.DurationStrategicBombing,
+                                MiscItemId.DurationGroundAttackBombing,
+                                MiscItemId.BonusSimilarTerrainTrait,
+                                MiscItemId.AirStrDamageLandOrg,
+                                MiscItemId.AirOrgDamageLandDh,
+                                MiscItemId.AirStrDamageLandDh,
+                                MiscItemId.LandOrgDamageLandOrg,
+                                MiscItemId.LandStrDamageLandDh,
+                                MiscItemId.AirOrgDamageAirDh,
+                                MiscItemId.AirStrDamageAirDh,
+                                MiscItemId.LandOrgDamageAirDh,
+                                MiscItemId.LandStrDamageAirDh,
+                                MiscItemId.NavalOrgDamageAirDh
+                            },
+                        new[]
+                            {
+                                MiscItemId.NavalStrDamageAirDh,
+                                MiscItemId.SubsOrgDamageAir,
+                                MiscItemId.SubsStrDamageAir,
+                                MiscItemId.AirOrgDamageNavyDh,
+                                MiscItemId.AirStrDamageNavyDh,
+                                MiscItemId.NavalOrgDamageNavyDh,
+                                MiscItemId.NavalStrDamageNavyDh,
+                                MiscItemId.SubsOrgDamageNavy,
+                                MiscItemId.SubsStrDamageNavy,
+                                MiscItemId.NavalOrgDamageAa,
+                                MiscItemId.AirOrgDamageAa,
+                                MiscItemId.AirStrDamageAa,
+                                MiscItemId.AaAirFiringRules,
+                                MiscItemId.AaAirNightModifier,
+                                MiscItemId.AaAirBonusRadars,
+                                MiscItemId.MovementBonusTerrainTrait,
+                                MiscItemId.MovementBonusSimilarTerrainTrait,
+                                MiscItemId.LogisticsWizardEseBonus,
+                                MiscItemId.DaysOffensiveSupply,
+                                MiscItemId.MinisterBonuses,
+                                MiscItemId.OrgRegainBonusFriendly,
+                                MiscItemId.OrgRegainBonusFriendlyCap,
+                                MiscItemId.ConvoyInterceptionMissions,
+                                MiscItemId.AutoReturnTransportFleets
+                            },
+                        new[]
+                            {
+                                MiscItemId.AllowProvinceRegionTargeting,
+                                MiscItemId.NightHoursWinter,
+                                MiscItemId.NightHoursSpringFall,
+                                MiscItemId.NightHoursSummer,
+                                MiscItemId.RecalculateLandArrivalTimes,
+                                MiscItemId.SynchronizeArrivalTimePlayer,
+                                MiscItemId.SynchronizeArrivalTimeAi,
+                                MiscItemId.RecalculateArrivalTimesCombat,
+                                MiscItemId.LandSpeedModifierCombat,
+                                MiscItemId.LandSpeedModifierBombardment,
+                                MiscItemId.LandSpeedModifierSupply,
+                                MiscItemId.LandSpeedModifierOrg,
+                                MiscItemId.LandAirSpeedModifierFuel,
+                                MiscItemId.DefaultSpeedFuel,
+                                MiscItemId.FleetSizeRangePenaltyRatio,
+                                MiscItemId.FleetSizeRangePenaltyThrethold,
+                                MiscItemId.FleetSizeRangePenaltyMax,
+                                MiscItemId.ApplyRangeLimitsAreasRegions,
+                                MiscItemId.RadarBonusDetection,
+                                MiscItemId.BonusDetectionFriendly,
+                                MiscItemId.ScreensCapitalRatioModifier,
+                                MiscItemId.ChanceTargetNoOrgLand,
+                                MiscItemId.ScreenCapitalShipsTargeting
+                            }
+                    },
+                // 戦闘5
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.LandChanceAvoidDefencesLeft,
+                                MiscItemId.AirChanceAvoidDefencesLeft,
+                                MiscItemId.NavalChanceAvoidDefencesLeft,
+                                MiscItemId.LandChanceAvoidNoDefences,
+                                MiscItemId.AirChanceAvoidNoDefences,
+                                MiscItemId.NavalChanceAvoidNoDefences,
+                                MiscItemId.BonusLeaderSkillPointLand,
+                                MiscItemId.BonusLeaderSkillPointAir,
+                                MiscItemId.BonusLeaderSkillPointNaval,
+                                MiscItemId.LandMinOrgDamage,
+                                MiscItemId.LandOrgDamageHardSoftEach,
+                                MiscItemId.LandOrgDamageHardVsSoft,
+                                MiscItemId.LandMinStrDamage,
+                                MiscItemId.LandStrDamageHardSoftEach,
+                                MiscItemId.LandStrDamageHardVsSoft,
+                                MiscItemId.AirMinOrgDamage,
+                                MiscItemId.AirAdditionalOrgDamage,
+                                MiscItemId.AirMinStrDamage,
+                                MiscItemId.AirAdditionalStrDamage,
+                                MiscItemId.AirStrDamageEntrenced,
+                                MiscItemId.NavalMinOrgDamage,
+                                MiscItemId.NavalAdditionalOrgDamage,
+                                MiscItemId.NavalMinStrDamage,
+                                MiscItemId.NavalAdditionalStrDamage
+                            },
+                        new[]
+                            {
+                                MiscItemId.LandOrgDamageLandUrban,
+                                MiscItemId.LandOrgDamageLandFort,
+                                MiscItemId.RequiredLandFortSize,
+                                MiscItemId.FleetPositioningDaytime,
+                                MiscItemId.FleetPositioningLeaderSkill,
+                                MiscItemId.FleetPositioningFleetSize,
+                                MiscItemId.FleetPositioningFleetComposition,
+                                MiscItemId.LandCoastalFortsDamage,
+                                MiscItemId.LandCoastalFortsMaxDamage,
+                                MiscItemId.MinSoftnessBrigades,
+                                MiscItemId.AutoRetreatOrg,
+                                MiscItemId.LandOrgNavalTransportation,
+                                MiscItemId.MaxLandDig,
+                                MiscItemId.DigIncreaseDay,
+                                MiscItemId.BreakthroughEncirclementMinSpeed,
+                                MiscItemId.BreakthroughEncirclementMaxChance,
+                                MiscItemId.BreakthroughEncirclementChanceModifier,
+                                MiscItemId.CombatEventDuration,
+                                MiscItemId.CounterAttackOrgAttackerDh,
+                                MiscItemId.CounterAttackStrAttackerDh,
+                                MiscItemId.CounterAttackOrgDefenderDh,
+                                MiscItemId.CounterAttackStrDefenderDh,
+                                MiscItemId.AssaultOrgAttackerDh,
+                                MiscItemId.AssaultStrAttackerDh
+                            },
+                        new[]
+                            {
+                                MiscItemId.AssaultOrgDefenderDh,
+                                MiscItemId.AssaultStrDefenderDh,
+                                MiscItemId.EncirclementOrgAttackerDh,
+                                MiscItemId.EncirclementStrAttackerDh,
+                                MiscItemId.EncirclementOrgDefenderDh,
+                                MiscItemId.EncirclementStrDefenderDh,
+                                MiscItemId.AmbushOrgAttackerDh,
+                                MiscItemId.AmbushStrAttackerDh,
+                                MiscItemId.AmbushOrgDefenderDh,
+                                MiscItemId.AmbushStrDefenderDh,
+                                MiscItemId.DelayOrgAttackerDh,
+                                MiscItemId.DelayStrAttackerDh,
+                                MiscItemId.DelayOrgDefenderDh,
+                                MiscItemId.DelayStrDefenderDh,
+                                MiscItemId.TacticalWithdrawOrgAttackerDh,
+                                MiscItemId.TacticalWithdrawStrAttackerDh,
+                                MiscItemId.TacticalWithdrawOrgDefenderDh,
+                                MiscItemId.TacticalWithdrawStrDefenderDh,
+                                MiscItemId.BreakthroughOrgAttackerDh,
+                                MiscItemId.BreakthroughStrAttackerDh,
+                                MiscItemId.BreakthroughOrgDefenderDh,
+                                MiscItemId.BreakthroughStrDefenderDh,
+                                MiscItemId.HqStrDamageBreakthrough,
+                                MiscItemId.CombatMode
+                            }
+                    },
+                // 任務1
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.AttackMission,
+                                MiscItemId.AttackStartingEfficiency,
+                                MiscItemId.AttackSpeedBonus,
+                                MiscItemId.RebaseMission,
+                                MiscItemId.RebaseStartingEfficiency,
+                                MiscItemId.RebaseChanceDetected,
+                                MiscItemId.StratRedeployMission,
+                                MiscItemId.StratRedeployStartingEfficiency,
+                                MiscItemId.StratRedeployAddedValue,
+                                MiscItemId.StratRedeployDistanceMultiplier,
+                                MiscItemId.SupportAttackMission,
+                                MiscItemId.SupportAttackStartingEfficiency,
+                                MiscItemId.SupportAttackSpeedBonus,
+                                MiscItemId.SupportDefenseMission,
+                                MiscItemId.SupportDefenseStartingEfficiency,
+                                MiscItemId.SupportDefenseSpeedBonus,
+                                MiscItemId.ReservesMission,
+                                MiscItemId.ReservesStartingEfficiency,
+                                MiscItemId.ReservesSpeedBonus,
+                                MiscItemId.AntiPartisanDutyMission,
+                                MiscItemId.AntiPartisanDutyStartingEfficiency,
+                                MiscItemId.AntiPartisanDutySuppression,
+                                MiscItemId.PlannedDefenseMission,
+                                MiscItemId.PlannedDefenseStartingEfficiency
+                            },
+                        new[]
+                            {
+                                MiscItemId.AirSuperiorityMission,
+                                MiscItemId.AirSuperiorityStartingEfficiency,
+                                MiscItemId.AirSuperiorityDetection,
+                                MiscItemId.AirSuperiorityMinRequired,
+                                MiscItemId.GroundAttackMission,
+                                MiscItemId.GroundAttackStartingEfficiency,
+                                MiscItemId.GroundAttackOrgDamage,
+                                MiscItemId.GroundAttackStrDamage,
+                                MiscItemId.InterdictionMission,
+                                MiscItemId.InterdictionStartingEfficiency,
+                                MiscItemId.InterdictionOrgDamage,
+                                MiscItemId.InterdictionStrDamage,
+                                MiscItemId.StrategicBombardmentMission,
+                                MiscItemId.StrategicBombardmentStartingEfficiency,
+                                MiscItemId.LogisticalStrikeMission,
+                                MiscItemId.LogisticalStrikeStartingEfficiency,
+                                MiscItemId.RunwayCrateringMission,
+                                MiscItemId.RunwayCrateringStartingEfficiency,
+                                MiscItemId.InstallationStrikeMission,
+                                MiscItemId.InstallationStrikeStartingEfficiency,
+                                MiscItemId.NavalStrikeMission,
+                                MiscItemId.NavalStrikeStartingEfficiency,
+                                MiscItemId.PortStrikeMission,
+                                MiscItemId.PortStrikeStartingEfficiency
+                            },
+                        new[]
+                            {
+                                MiscItemId.ConvoyAirRaidingMission,
+                                MiscItemId.ConvoyAirRaidingStartingEfficiency,
+                                MiscItemId.AirSupplyMission,
+                                MiscItemId.AirSupplyStartingEfficiency,
+                                MiscItemId.AirborneAssaultMission,
+                                MiscItemId.AirborneAssaultStartingEfficiency,
+                                MiscItemId.NukeMission,
+                                MiscItemId.NukeStartingEfficiency,
+                                MiscItemId.AirScrambleMission,
+                                MiscItemId.AirScrambleStartingEfficiency,
+                                MiscItemId.AirScrambleDetection,
+                                MiscItemId.AirScrambleMinRequired,
+                                MiscItemId.ConvoyRadingMission,
+                                MiscItemId.ConvoyRadingStartingEfficiency,
+                                MiscItemId.ConvoyRadingRangeModifier,
+                                MiscItemId.ConvoyRadingChanceDetected,
+                                MiscItemId.AswMission,
+                                MiscItemId.AswStartingEfficiency,
+                                MiscItemId.NavalInterdictionMission,
+                                MiscItemId.NavalInterdictionStartingEfficiency,
+                                MiscItemId.ShoreBombardmentMission,
+                                MiscItemId.ShoreBombardmentStartingEfficiency,
+                                MiscItemId.ShoreBombardmentModifierDh
+                            }
+                    },
+                // 任務2
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.AmphibousAssaultMission,
+                                MiscItemId.AmphibousAssaultStartingEfficiency,
+                                MiscItemId.SeaTransportMission,
+                                MiscItemId.SeaTransportStartingEfficiency,
+                                MiscItemId.SeaTransportRangeModifier,
+                                MiscItemId.SeaTransportChanceDetected,
+                                MiscItemId.NavalCombatPatrolMission,
+                                MiscItemId.NavalCombatPatrolStartingEfficiency,
+                                MiscItemId.NavalPortStrikeMission,
+                                MiscItemId.NavalPortStrikeStartingEfficiency,
+                                MiscItemId.NavalAirbaseStrikeMission,
+                                MiscItemId.NavalAirbaseStrikeStartingEfficiency,
+                                MiscItemId.SneakMoveMission,
+                                MiscItemId.SneakMoveStartingEfficiency,
+                                MiscItemId.SneakMoveRangeModifier,
+                                MiscItemId.SneakMoveChanceDetected,
+                                MiscItemId.NavalScrambleMission,
+                                MiscItemId.NavalScrambleStartingEfficiency,
+                                MiscItemId.NavalScrambleSpeedBonus
+                            },
+                        new[]
+                            {
+                                MiscItemId.UseAttackEfficiencyCombatModifier
+                            }
+                    },
+                // 国家
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.LandFortEfficiency,
+                                MiscItemId.CoastalFortEfficiency,
+                                MiscItemId.GroundDefenseEfficiency,
+                                MiscItemId.ConvoyDefenseEfficiency,
+                                MiscItemId.ManpowerBoost,
+                                MiscItemId.TransportCapacityModifier,
+                                MiscItemId.OccupiedTransportCapacityModifier,
+                                MiscItemId.AttritionModifier,
+                                MiscItemId.ManpowerTrickleBackModifier,
+                                MiscItemId.SupplyDistanceModifier,
+                                MiscItemId.RepairModifier,
+                                MiscItemId.ResearchModifier,
+                                MiscItemId.RadarEfficiency,
+                                MiscItemId.HqSupplyEfficiencyBonus,
+                                MiscItemId.HqCombatEventsBonus,
+                                MiscItemId.CombatEventChances,
+                                MiscItemId.FriendlyArmyDetectionChance,
+                                MiscItemId.EnemyArmyDetectionChance,
+                                MiscItemId.FriendlyIntelligenceChance,
+                                MiscItemId.EnemyIntelligenceChance,
+                                MiscItemId.MaxAmphibiousArmySize,
+                                MiscItemId.EnergyToOil,
+                                MiscItemId.TotalProductionEfficiency,
+                                MiscItemId.SupplyProductionEfficiency
+                            },
+                        new[]
+                            {
+                                MiscItemId.AaPower,
+                                MiscItemId.AirSurpriseChance,
+                                MiscItemId.LandSurpriseChance,
+                                MiscItemId.NavalSurpriseChance,
+                                MiscItemId.PeacetimeIcModifier,
+                                MiscItemId.WartimeIcModifier,
+                                MiscItemId.BuildingsProductionModifier,
+                                MiscItemId.ConvoysProductionModifier,
+                                MiscItemId.MinShipsPositioningBattle,
+                                MiscItemId.MaxShipsPositioningBattle,
+                                MiscItemId.PeacetimeStockpilesResources,
+                                MiscItemId.WartimeStockpilesResources,
+                                MiscItemId.PeacetimeStockpilesOilSupplies,
+                                MiscItemId.WartimeStockpilesOilSupplies
+                            }
+                    },
+                // 研究
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.BlueprintBonus,
+                                MiscItemId.PreHistoricalDateModifier,
+                                MiscItemId.CostSkillLevel,
+                                MiscItemId.MeanNumberInventionEventsYear
+                            },
+                        new[]
+                            {
+                                MiscItemId.PostHistoricalDateModifierAoD,
+                                MiscItemId.TechSpeedModifier,
+                                MiscItemId.PreHistoricalPenaltyLimit,
+                                MiscItemId.PostHistoricalBonusLimit,
+                                MiscItemId.Separator,
+                                MiscItemId.MaxActiveTechTeamsAoD,
+                                MiscItemId.RequiredIcEachTechTeamAoD,
+                                MiscItemId.Separator,
+                                MiscItemId.MaximumRandomModifier
+                            },
+                        new[]
+                            {
+                                MiscItemId.PostHistoricalDateModifierDh,
+                                MiscItemId.UseNewTechnologyPageLayout,
+                                MiscItemId.MaxActiveTechTeamsDh,
+                                MiscItemId.MinActiveTechTeams,
+                                MiscItemId.RequiredIcEachTechTeamDh,
+                                MiscItemId.Separator,
+                                MiscItemId.TechOverviewPanelStyle,
+                                MiscItemId.NewCountryRocketryComponent,
+                                MiscItemId.NewCountryNuclearPhysicsComponent,
+                                MiscItemId.NewCountryNuclearEngineeringComponent,
+                                MiscItemId.NewCountrySecretTechs,
+                                MiscItemId.MaxTechTeamSkill
+                            }
+                    },
+                // 貿易
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.DaysTradeOffers,
+                                MiscItemId.DelayGameStartNewTrades,
+                                MiscItemId.LimitAiNewTradesGameStart,
+                                MiscItemId.DesiredOilStockpile,
+                                MiscItemId.CriticalOilStockpile,
+                                MiscItemId.DesiredSuppliesStockpile,
+                                MiscItemId.CriticalSuppliesStockpile,
+                                MiscItemId.DesiredResourcesStockpile,
+                                MiscItemId.CriticalResourceStockpile,
+                                MiscItemId.WartimeDesiredStockpileMultiplier,
+                                MiscItemId.PeacetimeExtraOilImport,
+                                MiscItemId.WartimeExtraOilImport,
+                                MiscItemId.ExtraImportBelowDesired,
+                                MiscItemId.PercentageProducedSupplies,
+                                MiscItemId.PercentageProducedMoney,
+                                MiscItemId.ExtraImportStockpileSelected,
+                                MiscItemId.DaysDeliverResourcesTrades,
+                                MiscItemId.MergeTradeDeals,
+                                MiscItemId.ManualTradeDeals,
+                                MiscItemId.PuppetsSendSuppliesMoney,
+                                MiscItemId.PuppetsCriticalSupplyStockpile,
+                                MiscItemId.PuppetsMaxPoolResources,
+                                MiscItemId.NewTradeDealsMinEffectiveness,
+                                MiscItemId.CancelTradeDealsEffectiveness
+                            },
+                        new[]
+                            {
+                                MiscItemId.AutoTradeAiTradeDeals
+                            }
+                    },
+                // AI
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.OverproduceSuppliesBelowDesired,
+                                MiscItemId.MultiplierOverproduceSuppliesWar,
+                                MiscItemId.NotProduceSuppliesStockpileOver,
+                                MiscItemId.MaxSerialLineProductionGarrisonMilitia,
+                                MiscItemId.MinIcSerialProductionNavalAir,
+                                MiscItemId.NotProduceNewUnitsManpowerRatio,
+                                MiscItemId.NotProduceNewUnitsManpowerValue,
+                                MiscItemId.NotProduceNewUnitsSupply,
+                                MiscItemId.MilitaryStrengthTotalIcRatioPeacetime,
+                                MiscItemId.MilitaryStrengthTotalIcRatioWartime,
+                                MiscItemId.MilitaryStrengthTotalIcRatioMajor,
+                                MiscItemId.NotUseOffensiveSupplyStockpile,
+                                MiscItemId.NotUseOffensiveOilStockpile,
+                                MiscItemId.NotUseOffensiveEse,
+                                MiscItemId.NotUseOffensiveOrgStrDamage,
+                                MiscItemId.AiPeacetimeSpyMissionsDh,
+                                MiscItemId.AiSpyMissionsCostModifierDh,
+                                MiscItemId.AiDiplomacyCostModifierDh,
+                                MiscItemId.AiInfluenceModifierDh,
+                                MiscItemId.NewDowRules,
+                                MiscItemId.ForcePuppetsJoinMastersAllianceNeutrality,
+                                MiscItemId.NewAiReleaseRules,
+                                MiscItemId.AiEventsActionSelectionRules,
+                                MiscItemId.ForceStrategicRedeploymentHour
+                            },
+                        new[]
+                            {
+                                MiscItemId.MaxRedeploymentDaysAi,
+                                MiscItemId.UseQuickAreaCheckGarrisonAi,
+                                MiscItemId.AiMastersGetProvincesConquredPuppets,
+                                MiscItemId.MinDaysRequiredAiReleaseCountry,
+                                MiscItemId.MinDaysRequiredAiAllied,
+                                MiscItemId.MinDaysRequiredAiAlliedSupplyBase,
+                                MiscItemId.MinRequiredRelationsAlliedClaimed,
+                                MiscItemId.Separator,
+                                MiscItemId.NewDowRules2
+                            }
+                    },
+                // MOD
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.AiSpyDiplomaticMissionLogger,
+                                MiscItemId.CountryLogger,
+                                MiscItemId.SwitchedAiFilesLogger,
+                                MiscItemId.UseNewAutoSaveFileFormat,
+                                MiscItemId.LoadNewAiSwitchingAllClients,
+                                MiscItemId.TradeEfficiencyCalculationSystem,
+                                MiscItemId.MergeRelocateProvincialDepots,
+                                MiscItemId.InGameLossesLogging,
+                                MiscItemId.AllowBrigadeAttachingInSupply,
+                                MiscItemId.MultipleDeploymentSizeArmies,
+                                MiscItemId.MultipleDeploymentSizeFleets,
+                                MiscItemId.MultipleDeploymentSizeAir,
+                                MiscItemId.AllowUniquePicturesAllLandProvinces,
+                                MiscItemId.AutoReplyEvents,
+                                MiscItemId.ForceActionsShow,
+                                MiscItemId.EnableDicisionsPlayers,
+                                MiscItemId.RebelsArmyComposition,
+                                MiscItemId.RebelsArmyTechLevel,
+                                MiscItemId.RebelsArmyMinStr,
+                                MiscItemId.RebelsArmyMaxStr,
+                                MiscItemId.RebelsOrgRegain,
+                                MiscItemId.ExtraRebelBonusNeighboringProvince,
+                                MiscItemId.ExtraRebelBonusOccupied,
+                                MiscItemId.ExtraRebelBonusMountain
+                            },
+                        new[]
+                            {
+                                MiscItemId.ExtraRebelBonusHill,
+                                MiscItemId.ExtraRebelBonusForest,
+                                MiscItemId.ExtraRebelBonusJungle,
+                                MiscItemId.ExtraRebelBonusSwamp,
+                                MiscItemId.ExtraRebelBonusDesert,
+                                MiscItemId.ExtraRebelBonusPlain,
+                                MiscItemId.ExtraRebelBonusUrban,
+                                MiscItemId.ExtraRebelBonusAirNavalBases,
+                                MiscItemId.ReturnRebelliousProvince,
+                                MiscItemId.UseNewMinisterFilesFormat,
+                                MiscItemId.LoadSpritesModdirOnly,
+                                MiscItemId.LoadUnitIconsModdirOnly,
+                                MiscItemId.LoadUnitPicturesModdirOnly,
+                                MiscItemId.LoadAiFilesModdirOnly,
+                                MiscItemId.UseSpeedSetGarrisonStatus,
+                                MiscItemId.UseOldSaveGameFormat
+                            },
+                        new[]
+                            {
+                                MiscItemId.InGameLossLogging2,
+                                MiscItemId.EnableRetirementYearMinisters,
+                                MiscItemId.EnableRetirementYearLeaders,
+                                MiscItemId.ProductionPanelUiStyle,
+                                MiscItemId.UnitPicturesSize,
+                                MiscItemId.EnablePicturesNavalBrigades,
+                                MiscItemId.BuildingsBuildableOnlyProvinces,
+                                MiscItemId.UnitModifiersStatisticsPages
+                            }
+                    },
+                // マップ
+                new[]
+                    {
+                        new[]
+                            {
+                                MiscItemId.MapNumber,
+                                MiscItemId.TotalProvinces,
+                                MiscItemId.DistanceCalculationModel,
+                                MiscItemId.MapWidth,
+                                MiscItemId.MapHeight
+                            }
+                    }
+            };
 
         #endregion
 
@@ -43,1650 +1052,33 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMiscEditorFormLoad(object sender, EventArgs e)
         {
-            // 編集項目を初期化する
-            InitEditableItems();
-
             // miscファイルを読み込む
             LoadFiles();
 
-            // フォームを前面に表示する
-            Activate();
-        }
-
-        /// <summary>
-        ///     編集項目を初期化する
-        /// </summary>
-        private void InitEditableItems()
-        {
-            // 項目IDと編集ラベルを対応付ける
-            _labels = new[]
-                {
-                    icToTcRatioLabel,
-                    icToSuppliesRatioLabel,
-                    icToConsumerGoodsRatioLabel,
-                    icToMoneyRatioLabel,
-                    dissentChangeSpeedLabel,
-                    minAvailableIcLabel,
-                    minFinalIcLabel,
-                    dissentReductionLabel,
-                    maxGearingBonusLabel,
-                    gearingBonusIncrementLabel,
-                    gearingResourceIncrementLabel,
-                    gearingLossNoIcLabel,
-                    icMultiplierNonNationalLabel,
-                    icMultiplierNonOwnedLabel,
-                    icMultiplierPuppetLabel,
-                    resourceMultiplierNonNationalLabel,
-                    resourceMultiplierNonOwnedLabel,
-                    resourceMultiplierNonNationalAiLabel,
-                    resourceMultiplierPuppetLabel,
-                    tcLoadUndeployedDivisionLabel,
-                    tcLoadOccupiedLabel,
-                    tcLoadMultiplierLandLabel,
-                    tcLoadMultiplierAirLabel,
-                    tcLoadMultiplierNavalLabel,
-                    tcLoadPartisanLabel,
-                    tcLoadFactorOffensiveLabel,
-                    tcLoadProvinceDevelopmentLabel,
-                    tcLoadBaseLabel,
-                    manpowerMultiplierNationalLabel,
-                    manpowerMultiplierNonNationalLabel,
-                    manpowerMultiplierColonyLabel,
-                    manpowerMultiplierPuppetLabel,
-                    manpowerMultiplierWartimeOverseaLabel,
-                    manpowerMultiplierPeacetimeLabel,
-                    manpowerMultiplierWartimeLabel,
-                    dailyRetiredManpowerLabel,
-                    requirementAffectSliderLabel,
-                    trickleBackFactorManpowerLabel,
-                    reinforceManpowerLabel,
-                    reinforceCostLabel,
-                    reinforceTimeLabel,
-                    upgradeCostLabel,
-                    upgradeTimeLabel,
-                    reinforceToUpdateModifierLabel,
-                    nationalismStartingValueLabel,
-                    nationalismPerManpowerAoDLabel,
-                    nationalismPerManpowerDhLabel,
-                    maxNationalismLabel,
-                    maxRevoltRiskLabel,
-                    monthlyNationalismReductionLabel,
-                    sendDivisionDaysLabel,
-                    tcLoadUndeployedBrigadeLabel,
-                    canUnitSendNonAlliedLabel,
-                    spyMissionDaysLabel,
-                    increateIntelligenceLevelDaysLabel,
-                    chanceDetectSpyMissionLabel,
-                    relationshipsHitDetectedMissionsLabel,
-                    showThirdCountrySpyReportsLabel,
-                    distanceModifierNeighboursLabel,
-                    spyInformationAccuracyModifierLabel,
-                    aiPeacetimeSpyMissionsLabel,
-                    maxIcCostModifierLabel,
-                    aiSpyMissionsCostModifierLabel,
-                    aiDiplomacyCostModifierLabel,
-                    aiInfluenceModifierLabel,
-                    costRepairBuildingsLabel,
-                    timeRepairBuildingLabel,
-                    provinceEfficiencyRiseTimeLabel,
-                    coreProvinceEfficiencyRiseTimeLabel,
-                    lineUpkeepLabel,
-                    lineStartupTimeLabel,
-                    lineUpgradeTimeLabel,
-                    retoolingCostLabel,
-                    retoolingResourceLabel,
-                    dailyAgingManpowerLabel,
-                    supplyConvoyHuntLabel,
-                    supplyNavalStaticAoDLabel,
-                    supplyNavalMovingLabel,
-                    supplyNavalBattleAoDLabel,
-                    supplyAirStaticAoDLabel,
-                    supplyAirMovingLabel,
-                    supplyAirBattleAoDLabel,
-                    supplyAirBombingLabel,
-                    supplyLandStaticAoDLabel,
-                    supplyLandMovingLabel,
-                    supplyLandBattleAoDLabel,
-                    supplyLandBombingLabel,
-                    supplyStockLandLabel,
-                    supplyStockAirLabel,
-                    supplyStockNavalLabel,
-                    restockSpeedLandLabel,
-                    restockSpeedAirLabel,
-                    restockSpeedNavalLabel,
-                    syntheticOilConversionMultiplierLabel,
-                    syntheticRaresConversionMultiplierLabel,
-                    militarySalaryLabel,
-                    maxIntelligenceExpenditureLabel,
-                    maxResearchExpenditureLabel,
-                    militarySalaryAttrictionModifierLabel,
-                    militarySalaryDissentModifierLabel,
-                    nuclearSiteUpkeepCostLabel,
-                    nuclearPowerUpkeepCostLabel,
-                    syntheticOilSiteUpkeepCostLabel,
-                    syntheticRaresSiteUpkeepCostLabel,
-                    durationDetectionLabel,
-                    convoyProvinceHostileTimeLabel,
-                    convoyProvinceBlockedTimeLabel,
-                    autoTradeConvoyLabel,
-                    spyUpkeepCostLabel,
-                    spyDetectionChanceLabel,
-                    spyCoupDissentModifierLabel,
-                    infraEfficiencyModifierLabel,
-                    manpowerToConsumerGoodsLabel,
-                    timeBetweenSliderChangesAoDLabel,
-                    minimalPlacementIcLabel,
-                    nuclearPowerLabel,
-                    freeInfraRepairLabel,
-                    maxSliderDissentLabel,
-                    minSliderDissentLabel,
-                    maxDissentSliderMoveLabel,
-                    icConcentrationBonusLabel,
-                    transportConversionLabel,
-                    convoyDutyConversionLabel,
-                    escortDutyConversionLabel,
-                    ministerChangeDelayLabel,
-                    ministerChangeEventDelayLabel,
-                    ideaChangeDelayLabel,
-                    ideaChangeEventDelayLabel,
-                    leaderChangeDelayLabel,
-                    changeIdeaDissentLabel,
-                    changeMinisterDissentLabel,
-                    minDissentRevoltLabel,
-                    dissentRevoltMultiplierLabel,
-                    tpMaxAttachLabel,
-                    ssMaxAttachLabel,
-                    ssnMaxAttachLabel,
-                    ddMaxAttachLabel,
-                    clMaxAttachLabel,
-                    caMaxAttachLabel,
-                    bcMaxAttachLabel,
-                    bbMaxAttachLabel,
-                    cvlMaxAttachLabel,
-                    cvMaxAttachLabel,
-                    canChangeIdeasLabel,
-                    canUnitSendNonAlliedDhLabel,
-                    bluePrintsCanSoldNonAlliedLabel,
-                    provinceCanSoldNonAlliedLabel,
-                    transferAlliedCoreProvincesLabel,
-                    provinceBuildingsRepairModifierLabel,
-                    provinceResourceRepairModifierLabel,
-                    stockpileLimitMultiplierResourceLabel,
-                    stockpileLimitMultiplierSuppliesOilLabel,
-                    overStockpileLimitDailyLossLabel,
-                    maxResourceDepotSizeLabel,
-                    maxSuppliesOilDepotSizeLabel,
-                    desiredStockPilesSuppliesOilLabel,
-                    maxManpowerLabel,
-                    convoyTransportsCapacityLabel,
-                    suppyLandStaticDhLabel,
-                    supplyLandBattleDhLabel,
-                    fuelLandStaticLabel,
-                    fuelLandBattleLabel,
-                    supplyAirStaticDhLabel,
-                    supplyAirBattleDhLabel,
-                    fuelAirNavalStaticLabel,
-                    fuelAirBattleLabel,
-                    supplyNavalStaticDhLabel,
-                    supplyNavalBattleDhLabel,
-                    fuelNavalNotMovingLabel,
-                    fuelNavalBattleLabel,
-                    tpTransportsConversionRatioLabel,
-                    ddEscortsConversionRatioLabel,
-                    clEscortsConversionRatioLabel,
-                    cvlEscortsConversionRatioLabel,
-                    productionLineEditLabel,
-                    gearingBonusLossUpgradeUnitLabel,
-                    gearingBonusLossUpgradeBrigadeLabel,
-                    dissentNukesLabel,
-                    maxDailyDissentLabel,
-                    nukesProductionModifierLabel,
-                    convoySystemOptionsAlliedLabel,
-                    resourceConvoysBackUnneededLabel,
-                    null,
-                    spyMissionDaysDhLabel,
-                    increateIntelligenceLevelDaysDhLabel,
-                    chanceDetectSpyMissionDhLabel,
-                    relationshipsHitDetectedMissionsDhLabel,
-                    distanceModifierLabel,
-                    distanceModifierNeighboursDhLabel,
-                    spyLevelBonusDistanceModifierLabel,
-                    spyLevelBonusDistanceModifierAboveTenLabel,
-                    spyInformationAccuracyModifierDhLabel,
-                    icModifierCostLabel,
-                    minIcCostModifierLabel,
-                    maxIcCostModifierDhLabel,
-                    extraMaintenanceCostAboveTenLabel,
-                    extraCostIncreasingAboveTenLabel,
-                    showThirdCountrySpyReportsDhLabel,
-                    spiesMoneyModifierLabel,
-                    null,
-                    daysBetweenDiplomaticMissionsLabel,
-                    timeBetweenSliderChangesDhLabel,
-                    requirementAffectSliderDhLabel,
-                    useMinisterPersonalityReplacingLabel,
-                    relationshipHitCancelTradeLabel,
-                    relationshipHitCancelPermanentTradeLabel,
-                    puppetsJoinMastersAllianceLabel,
-                    mastersBecomePuppetsPuppetsLabel,
-                    allowManualClaimsChangeLabel,
-                    belligerenceClaimedProvinceLabel,
-                    belligerenceClaimsRemovalLabel,
-                    joinAutomaticallyAllesAxisLabel,
-                    allowChangeHosHogLabel,
-                    changeTagCoupLabel,
-                    filterReleaseCountriesLabel,
-                    null,
-                    landXpGainFactorLabel,
-                    navalXpGainFactorLabel,
-                    airXpGainFactorLabel,
-                    airDogfightXpGainFactorLabel,
-                    divisionXpGainFactorLabel,
-                    leaderXpGainFactorLabel,
-                    attritionSeverityModifierLabel,
-                    noSupplyAttritionSeverityLabel,
-                    noSupplyMinimunAttritionLabel,
-                    baseProximityLabel,
-                    shoreBombardmentModifierLabel,
-                    shoreBombardmentCapLabel,
-                    invasionModifierLabel,
-                    multipleCombatModifierLabel,
-                    offensiveCombinedArmsBonusLabel,
-                    defensiveCombinedArmsBonusLabel,
-                    surpriseModifierLabel,
-                    landCommandLimitModifierLabel,
-                    airCommandLimitModifierLabel,
-                    navalCommandLimitModifierLabel,
-                    envelopmentModifierLabel,
-                    encircledModifierLabel,
-                    landFortMultiplierLabel,
-                    coastalFortMultiplierLabel,
-                    hardUnitsAttackingUrbanPenaltyLabel,
-                    dissentMultiplierLabel,
-                    supplyProblemsModifierLabel,
-                    supplyProblemsModifierLandLabel,
-                    supplyProblemsModifierAirLabel,
-                    supplyProblemsModifierNavalLabel,
-                    fuelProblemsModifierLandLabel,
-                    fuelProblemsModifierAirLabel,
-                    fuelProblemsModifierNavalLabel,
-                    raderStationMultiplierLabel,
-                    raderStationAaMultiplierLabel,
-                    interceptorBomberModifierLabel,
-                    airOverstackingModifierLabel,
-                    airOverstackingModifierAoDLabel,
-                    navalOverstackingModifierLabel,
-                    landLeaderCommandLimitRank0Label,
-                    landLeaderCommandLimitRank1Label,
-                    landLeaderCommandLimitRank2Label,
-                    landLeaderCommandLimitRank3Label,
-                    airLeaderCommandLimitRank0Label,
-                    airLeaderCommandLimitRank1Label,
-                    airLeaderCommandLimitRank2Label,
-                    airLeaderCommandLimitRank3Label,
-                    navalLeaderCommandLimitRank0Label,
-                    navalLeaderCommandLimitRank1Label,
-                    navalLeaderCommandLimitRank2Label,
-                    navalLeaderCommandLimitRank3Label,
-                    hqCommandLimitFactorLabel,
-                    convoyProtectionFactorLabel,
-                    convoyEscortsModelLabel,
-                    delayAfterCombatEndsLabel,
-                    landDelayBeforeOrdersLabel,
-                    navalDelayBeforeOrdersLabel,
-                    airDelayBeforeOrdersLabel,
-                    maximumSizesAirStacksLabel,
-                    durationAirToAirBattlesLabel,
-                    durationNavalPortBombingLabel,
-                    durationStrategicBombingLabel,
-                    durationGroundAttackBombingLabel,
-                    effectExperienceCombatLabel,
-                    damageNavalBasesBombingLabel,
-                    damageAirBaseBombingLabel,
-                    damageAaBombingLabel,
-                    damageRocketBombingLabel,
-                    damageNukeBombingLabel,
-                    damageRadarBombingLabel,
-                    damageInfraBombingLabel,
-                    damageIcBombingLabel,
-                    damageResourcesBombingLabel,
-                    damageSyntheticOilBombingLabel,
-                    howEffectiveGroundDefLabel,
-                    chanceAvoidDefencesLeftLabel,
-                    chanceAvoidNoDefencesLabel,
-                    landChanceAvoidDefencesLeftLabel,
-                    airChanceAvoidDefencesLeftLabel,
-                    navalChanceAvoidDefencesLeftLabel,
-                    landChanceAvoidNoDefencesLabel,
-                    airChanceAvoidNoDefencesLabel,
-                    navalChanceAvoidNoDefencesLabel,
-                    chanceGetTerrainTraitLabel,
-                    chanceGetEventTraitLabel,
-                    bonusTerrainTraitLabel,
-                    bonusSimilarTerrainTraitLabel,
-                    bonusEventTraitLabel,
-                    bonusLeaderSkillPointLandLabel,
-                    bonusLeaderSkillPointAirLabel,
-                    bonusLeaderSkillPointNavalLabel,
-                    chanceLeaderDyingLabel,
-                    airOrgDamageLabel,
-                    airStrDamageOrgLabel,
-                    airStrDamageLabel,
-                    landMinOrgDamageLabel,
-                    landOrgDamageHardSoftEachLabel,
-                    landOrgDamageHardVsSoftLabel,
-                    landMinStrDamageLabel,
-                    landStrDamageHardSoftEachLabel,
-                    landStrDamageHardVsSoftLabel,
-                    airMinOrgDamageLabel,
-                    airAdditionalOrgDamageLabel,
-                    airMinStrDamageLabel,
-                    airAdditionalStrDamageLabel,
-                    airStrDamageEntrencedLabel,
-                    navalMinOrgDamageLabel,
-                    navalAdditionalOrgDamageLabel,
-                    navalMinStrDamageLabel,
-                    navalAdditionalStrDamageLabel,
-                    airStrDamageLandOrgLabel,
-                    airOrgDamageLandDhLabel,
-                    airStrDamageLandDhLabel,
-                    landOrgDamageLandOrgLabel,
-                    landOrgDamageLandUrbanLabel,
-                    landOrgDamageLandFortLabel,
-                    requiredLandFortSizeLabel,
-                    landStrDamageLandDhLabel,
-                    airOrgDamageAirDhLabel,
-                    airStrDamageAirDhLabel,
-                    landOrgDamageAirDhLabel,
-                    landStrDamageAirDhLabel,
-                    navalOrgDamageAirDhLabel,
-                    navalStrDamageAirDhLabel,
-                    subsOrgDamageAirLabel,
-                    subsStrDamageAirLabel,
-                    airOrgDamageNavyDhLabel,
-                    airStrDamageNavyDhLabel,
-                    navalOrgDamageNavyDhLabel,
-                    navalStrDamageNavyDhLabel,
-                    subsOrgDamageNavyLabel,
-                    subsStrDamageNavyLabel,
-                    subsOrgDamageLabel,
-                    subsStrDamageLabel,
-                    subStacksDetectionModifierLabel,
-                    airOrgDamageLandAoDLabel,
-                    airStrDamageLandAoDLabel,
-                    landDamageArtilleryBombardmentLabel,
-                    infraDamageArtilleryBombardmentLabel,
-                    icDamageArtilleryBombardmentLabel,
-                    resourcesDamageArtilleryBombardmentLabel,
-                    penaltyArtilleryBombardmentLabel,
-                    artilleryStrDamageLabel,
-                    artilleryOrgDamageLabel,
-                    landStrDamageLandAoDLabel,
-                    landOrgDamageLandLabel,
-                    landStrDamageAirAoDLabel,
-                    landOrgDamageAirAoDLabel,
-                    navalStrDamageAirAoDLabel,
-                    navalOrgDamageAirAoDLabel,
-                    airStrDamageAirAoDLabel,
-                    airOrgDamageAirAoDLabel,
-                    navalStrDamageNavyAoDLabel,
-                    navalOrgDamageNavyAoDLabel,
-                    airStrDamageNavyAoDLabel,
-                    airOrgDamageNavyAoDLabel,
-                    militaryExpenseAttritionModifierLabel,
-                    navalMinCombatTimeLabel,
-                    landMinCombatTimeLabel,
-                    airMinCombatTimeLabel,
-                    landOverstackingModifierLabel,
-                    landOrgLossMovingLabel,
-                    airOrgLossMovingLabel,
-                    navalOrgLossMovingLabel,
-                    supplyDistanceSeverityLabel,
-                    supplyBaseLabel,
-                    landOrgGainLabel,
-                    airOrgGainLabel,
-                    navalOrgGainLabel,
-                    nukeManpowerDissentLabel,
-                    nukeIcDissentLabel,
-                    nukeTotalDissentLabel,
-                    landFriendlyOrgGainLabel,
-                    airLandStockModifierLabel,
-                    scorchDamageLabel,
-                    standGroundDissentLabel,
-                    scorchGroundBelligerenceLabel,
-                    defaultLandStackLabel,
-                    defaultNavalStackLabel,
-                    defaultAirStackLabel,
-                    defaultRocketStackLabel,
-                    fortDamageArtilleryBombardmentLabel,
-                    artilleryBombardmentOrgCostLabel,
-                    landDamageFortLabel,
-                    airRebaseFactorLabel,
-                    airMaxDisorganizedLabel,
-                    aaInflictedStrDamageLabel,
-                    aaInflictedOrgDamageLabel,
-                    aaInflictedFlyingDamageLabel,
-                    aaInflictedBombingDamageLabel,
-                    hardAttackStrDamageLabel,
-                    hardAttackOrgDamageLabel,
-                    armorSoftBreakthroughMinLabel,
-                    armorSoftBreakthroughMaxLabel,
-                    navalCriticalHitChanceLabel,
-                    navalCriticalHitEffectLabel,
-                    landFortDamageLabel,
-                    portAttackSurpriseChanceDayLabel,
-                    portAttackSurpriseChanceNightLabel,
-                    portAttackSurpriseModifierLabel,
-                    radarAntiSurpriseChanceLabel,
-                    radarAntiSurpriseModifierLabel,
-                    counterAttackStrDefenderAoDLabel,
-                    counterAttackOrgDefenderAoDLabel,
-                    counterAttackStrAttackerAoDLabel,
-                    counterAttackOrgAttackerAoDLabel,
-                    assaultStrDefenderAoDLabel,
-                    assaultOrgDefenderAoDLabel,
-                    assaultStrAttackerAoDLabel,
-                    assaultOrgAttackerAoDLabel,
-                    encirclementStrDefenderAoDLabel,
-                    encirclementOrgDefenderAoDLabel,
-                    encirclementStrAttackerAoDLabel,
-                    encirclementOrgAttackerAoDLabel,
-                    ambushStrDefenderAoDLabel,
-                    ambushOrgDefenderAoDLabel,
-                    ambushStrAttackerAoDLabel,
-                    ambushOrgAttackerAoDLabel,
-                    delayStrDefenderAoDLabel,
-                    delayOrgDefenderAoDLabel,
-                    delayStrAttackerAoDLabel,
-                    delayOrgAttackerAoDLabel,
-                    tacticalWithdrawStrDefenderAoDLabel,
-                    tacticalWithdrawOrgDefenderAoDLabel,
-                    tacticalWithdrawStrAttackerAoDLabel,
-                    tacticalWithdrawOrgAttackerAoDLabel,
-                    breakthroughStrDefenderAoDLabel,
-                    breakthroughOrgDefenderAoDLabel,
-                    breakthroughStrAttackerAoDLabel,
-                    breakthroughOrgAttackerAoDLabel,
-                    navalOrgDamageAaLabel,
-                    airOrgDamageAaLabel,
-                    airStrDamageAaLabel,
-                    aaAirFiringRulesLabel,
-                    aaAirNightModifierLabel,
-                    aaAirBonusRadarsLabel,
-                    movementBonusTerrainTraitLabel,
-                    movementBonusSimilarTerrainTraitLabel,
-                    logisticsWizardEseBonusLabel,
-                    daysOffensiveSupplyLabel,
-                    ministerBonusesLabel,
-                    orgRegainBonusFriendlyLabel,
-                    orgRegainBonusFriendlyCapLabel,
-                    convoyInterceptionMissionsLabel,
-                    autoReturnTransportFleetsLabel,
-                    allowProvinceRegionTargetingLabel,
-                    nightHoursWinterLabel,
-                    nightHoursSpringFallLabel,
-                    nightHoursSummerLabel,
-                    recalculateLandArrivalTimesLabel,
-                    synchronizeArrivalTimePlayerLabel,
-                    synchronizeArrivalTimeAiLabel,
-                    recalculateArrivalTimesCombatLabel,
-                    landSpeedModifierCombatLabel,
-                    landSpeedModifierBombardmentLabel,
-                    landSpeedModifierSupplyLabel,
-                    landSpeedModifierOrgLabel,
-                    landAirSpeedModifierFuelLabel,
-                    defaultSpeedFuelLabel,
-                    fleetSizeRangePenaltyRatioLabel,
-                    fleetSizeRangePenaltyThretholdLabel,
-                    fleetSizeRangePenaltyMaxLabel,
-                    applyRangeLimitsAreasRegionsLabel,
-                    radarBonusDetectionLabel,
-                    bonusDetectionFriendlyLabel,
-                    screensCapitalRatioModifierLabel,
-                    chanceTargetNoOrgLandLabel,
-                    screenCapitalShipsTargetingLabel,
-                    fleetPositioningDaytimeLabel,
-                    fleetPositioningLeaderSkillLabel,
-                    fleetPositioningFleetSizeLabel,
-                    fleetPositioningFleetCompositionLabel,
-                    landCoastalFortsDamageLabel,
-                    landCoastalFortsMaxDamageLabel,
-                    minSoftnessBrigadesLabel,
-                    autoRetreatOrgLabel,
-                    landOrgNavalTransportationLabel,
-                    maxLandDigLabel,
-                    digIncreaseDayLabel,
-                    breakthroughEncirclementMinSpeedLabel,
-                    breakthroughEncirclementMaxChanceLabel,
-                    breakthroughEncirclementChanceModifierLabel,
-                    combatEventDurationLabel,
-                    counterAttackOrgAttackerDhLabel,
-                    counterAttackStrAttackerDhLabel,
-                    counterAttackOrgDefenderDhLabel,
-                    counterAttackStrDefenderDhLabel,
-                    assaultOrgAttackerDhLabel,
-                    assaultStrAttackerDhLabel,
-                    assaultOrgDefenderDhLabel,
-                    assaultStrDefenderDhLabel,
-                    encirclementOrgAttackerDhLabel,
-                    encirclementStrAttackerDhLabel,
-                    encirclementOrgDefenderDhLabel,
-                    encirclementStrDefenderDhLabel,
-                    ambushOrgAttackerDhLabel,
-                    ambushStrAttackerDhLabel,
-                    ambushOrgDefenderDhLabel,
-                    ambushStrDefenderDhLabel,
-                    delayOrgAttackerDhLabel,
-                    delayStrAttackerDhLabel,
-                    delayOrgDefenderDhLabel,
-                    delayStrDefenderDhLabel,
-                    tacticalWithdrawOrgAttackerDhLabel,
-                    tacticalWithdrawStrAttackerDhLabel,
-                    tacticalWithdrawOrgDefenderDhLabel,
-                    tacticalWithdrawStrDefenderDhLabel,
-                    breakthroughOrgAttackerDhLabel,
-                    breakthroughStrAttackerDhLabel,
-                    breakthroughOrgDefenderDhLabel,
-                    breakthroughStrDefenderDhLabel,
-                    hqStrDamageBreakthroughLabel,
-                    combatModeLabel,
-                    null,
-                    attackMissionLabel,
-                    attackStartingEfficiencyLabel,
-                    attackSpeedBonusLabel,
-                    rebaseMissionLabel,
-                    rebaseStartingEfficiencyLabel,
-                    rebaseChanceDetectedLabel,
-                    stratRedeployMissionLabel,
-                    stratRedeployStartingEfficiencyLabel,
-                    stratRedeployAddedValueLabel,
-                    stratRedeployDistanceMultiplierLabel,
-                    supportAttackMissionLabel,
-                    supportAttackStartingEfficiencyLabel,
-                    supportAttackSpeedBonusLabel,
-                    supportDefenseMissionLabel,
-                    supportDefenseStartingEfficiencyLabel,
-                    supportDefenseSpeedBonusLabel,
-                    reservesMissionLabel,
-                    reservesStartingEfficiencyLabel,
-                    reservesSpeedBonusLabel,
-                    antiPartisanDutyMissionLabel,
-                    antiPartisanDutyStartingEfficiencyLabel,
-                    antiPartisanDutySuppressionLabel,
-                    plannedDefenseMissionLabel,
-                    plannedDefenseStartingEfficiencyLabel,
-                    airSuperiorityMissionLabel,
-                    airSuperiorityStartingEfficiencyLabel,
-                    airSuperiorityDetectionLabel,
-                    airSuperiorityMinRequiredLabel,
-                    groundAttackMissionLabel,
-                    groundAttackStartingEfficiencyLabel,
-                    groundAttackOrgDamageLabel,
-                    groundAttackStrDamageLabel,
-                    interdictionMissionLabel,
-                    interdictionStartingEfficiencyLabel,
-                    interdictionOrgDamageLabel,
-                    interdictionStrDamageLabel,
-                    strategicBombardmentMissionLabel,
-                    strategicBombardmentStartingEfficiencyLabel,
-                    logisticalStrikeMissionLabel,
-                    logisticalStrikeStartingEfficiencyLabel,
-                    runwayCrateringMissionLabel,
-                    runwayCrateringStartingEfficiencyLabel,
-                    installationStrikeMissionLabel,
-                    installationStrikeStartingEfficiencyLabel,
-                    navalStrikeMissionLabel,
-                    navalStrikeStartingEfficiencyLabel,
-                    portStrikeMissionLabel,
-                    portStrikeStartingEfficiencyLabel,
-                    convoyAirRaidingMissionLabel,
-                    convoyAirRaidingStartingEfficiencyLabel,
-                    airSupplyMissionLabel,
-                    airSupplyStartingEfficiencyLabel,
-                    airborneAssaultMissionLabel,
-                    airborneAssaultStartingEfficiencyLabel,
-                    nukeMissionLabel,
-                    nukeStartingEfficiencyLabel,
-                    airScrambleMissionLabel,
-                    airScrambleStartingEfficiencyLabel,
-                    airScrambleDetectionLabel,
-                    airScrambleMinRequiredLabel,
-                    convoyRadingMissionLabel,
-                    convoyRadingStartingEfficiencyLabel,
-                    convoyRadingRangeModifierLabel,
-                    convoyRadingChanceDetectedLabel,
-                    aswMissionLabel,
-                    aswStartingEfficiencyLabel,
-                    navalInterdictionMissionLabel,
-                    navalInterdictionStartingEfficiencyLabel,
-                    shoreBombardmentMissionLabel,
-                    shoreBombardmentStartingEfficiencyLabel,
-                    shoreBombardmentModifierDhLabel,
-                    amphibousAssaultMissionLabel,
-                    amphibousAssaultStartingEfficiencyLabel,
-                    seaTransportMissionLabel,
-                    seaTransportStartingEfficiencyLabel,
-                    seaTransportRangeModifierLabel,
-                    seaTransportChanceDetectedLabel,
-                    NavalCombatPatrolMissionLabel,
-                    NavalCombatPatrolStartingEfficiencyLabel,
-                    navalPortStrikeMissionLabel,
-                    navalPortStrikeStartingEfficiencyLabel,
-                    navalAirbaseStrikeMissionLabel,
-                    navalAirbaseStrikeStartingEfficiencyLabel,
-                    sneakMoveMissionLabel,
-                    sneakMoveStartingEfficiencyLabel,
-                    sneakMoveRangeModifierLabel,
-                    sneakMoveChanceDetectedLabel,
-                    navalScrambleMissionLabel,
-                    navalScrambleStartingEfficiencyLabel,
-                    navalScrambleSpeedBonusLabel,
-                    useAttackEfficiencyCombatModifierLabel,
-                    null,
-                    landFortEfficiencyLabel,
-                    coastalFortEfficiencyLabel,
-                    groundDefenseEfficiencyLabel,
-                    convoyDefenseEfficiencyLabel,
-                    manpowerBoostLabel,
-                    transportCapacityModifierLabel,
-                    occupiedTransportCapacityModifierLabel,
-                    attritionModifierLabel,
-                    manpowerTrickleBackModifierLabel,
-                    supplyDistanceModifierLabel,
-                    repairModifierLabel,
-                    researchModifierLabel,
-                    radarEfficiencyLabel,
-                    hqSupplyEfficiencyBonusLabel,
-                    hqCombatEventsBonusLabel,
-                    combatEventChancesLabel,
-                    friendlyArmyDetectionChanceLabel,
-                    enemyArmyDetectionChanceLabel,
-                    friendlyIntelligenceChanceLabel,
-                    enemyIntelligenceChanceLabel,
-                    maxAmphibiousArmySizeLabel,
-                    energyToOilLabel,
-                    totalProductionEfficiencyLabel,
-                    supplyProductionEfficiencyLabel,
-                    aaPowerLabel,
-                    airSurpriseChanceLabel,
-                    landSurpriseChanceLabel,
-                    navalSurpriseChanceLabel,
-                    peacetimeIcModifierLabel,
-                    wartimeIcModifierLabel,
-                    buildingsProductionModifierLabel,
-                    convoysProductionModifierLabel,
-                    minShipsPositioningBattleLabel,
-                    maxShipsPositioningBattleLabel,
-                    peacetimeStockpilesResourcesLabel,
-                    wartimeStockpilesResourcesLabel,
-                    peacetimeStockpilesOilSuppliesLabel,
-                    wartimeStockpilesOilSuppliesLabel,
-                    null,
-                    blueprintBonusLabel,
-                    preHistoricalDateModifierLabel,
-                    postHistoricalDateModifierDhLabel,
-                    costSkillLevelLabel,
-                    meanNumberInventionEventsYearLabel,
-                    postHistoricalDateModifierAoDLabel,
-                    techSpeedModifierLabel,
-                    preHistoricalPenaltyLimitLabel,
-                    postHistoricalBonusLimitLabel,
-                    maxActiveTechTeamsAoDLabel,
-                    requiredIcEachTechTeamAoDLabel,
-                    maximumRandomModifierLabel,
-                    useNewTechnologyPageLayoutLabel,
-                    techOverviewPanelStyleLabel,
-                    maxActiveTechTeamsDhLabel,
-                    minActiveTechTeamsLabel,
-                    requiredIcEachTechTeamDhLabel,
-                    newCountryRocketryComponentLabel,
-                    newCountryNuclearPhysicsComponentLabel,
-                    newCountryNuclearEngineeringComponentLabel,
-                    newCountrySecretTechsLabel,
-                    maxTechTeamSkillLabel,
-                    null,
-                    daysTradeOffersLabel,
-                    delayGameStartNewTradesLabel,
-                    limitAiNewTradesGameStartLabel,
-                    desiredOilStockpileLabel,
-                    criticalOilStockpileLabel,
-                    desiredSuppliesStockpileLabel,
-                    criticalSuppliesStockpileLabel,
-                    desiredResourcesStockpileLabel,
-                    criticalResourceStockpileLabel,
-                    wartimeDesiredStockpileMultiplierLabel,
-                    peacetimeExtraOilImportLabel,
-                    wartimeExtraOilImportLabel,
-                    extraImportBelowDesiredLabel,
-                    percentageProducedSuppliesLabel,
-                    percentageProducedMoneyLabel,
-                    extraImportStockpileSelectedLabel,
-                    daysDeliverResourcesTradesLabel,
-                    mergeTradeDealsLabel,
-                    manualTradeDealsLabel,
-                    puppetsSendSuppliesMoneyLabel,
-                    puppetsCriticalSupplyStockpileLabel,
-                    puppetsMaxPoolResourcesLabel,
-                    newTradeDealsMinEffectivenessLabel,
-                    cancelTradeDealsEffectivenessLabel,
-                    autoTradeAiTradeDealsLabel,
-                    null,
-                    overproduceSuppliesBelowDesiredLabel,
-                    multiplierOverproduceSuppliesWarLabel,
-                    notProduceSuppliesStockpileOverLabel,
-                    maxSerialLineProductionGarrisonMilitiaLabel,
-                    minIcSerialProductionNavalAirLabel,
-                    notProduceNewUnitsManpowerRatioLabel,
-                    notProduceNewUnitsManpowerValueLabel,
-                    notProduceNewUnitsSupplyLabel,
-                    militaryStrengthTotalIcRatioPeacetimeLabel,
-                    militaryStrengthTotalIcRatioWartimeLabel,
-                    militaryStrengthTotalIcRatioMajorLabel,
-                    notUseOffensiveSupplyStockpileLabel,
-                    notUseOffensiveOilStockpileLabel,
-                    notUseOffensiveEseLabel,
-                    notUseOffensiveOrgStrDamageLabel,
-                    aiPeacetimeSpyMissionsDhLabel,
-                    aiSpyMissionsCostModifierDhLabel,
-                    aiDiplomacyCostModifierDhLabel,
-                    aiInfluenceModifierDhLabel,
-                    newDowRulesLabel,
-                    newDowRules2Label,
-                    forcePuppetsJoinMastersAllianceNeutralityLabel,
-                    newAiReleaseRulesLabel,
-                    aiEventsActionSelectionRulesLabel,
-                    forceStrategicRedeploymentHourLabel,
-                    maxRedeploymentDaysAiLabel,
-                    useQuickAreaCheckGarrisonAiLabel,
-                    aiMastersGetProvincesConquredPuppetsLabel,
-                    minDaysRequiredAiReleaseCountryLabel,
-                    minDaysRequiredAiAlliedLabel,
-                    minDaysRequiredAiAlliedSupplyBaseLabel,
-                    minRequiredRelationsAlliedClaimedLabel,
-                    null,
-                    aiSpyDiplomaticMissionLoggerLabel,
-                    countryLoggerLabel,
-                    switchedAiFilesLoggerLabel,
-                    useNewAutoSaveFileFormatLabel,
-                    loadNewAiSwitchingAllClientsLabel,
-                    tradeEfficiencyCalculationSystemLabel,
-                    mergeRelocateProvincialDepotsLabel,
-                    inGameLossesLoggingLabel,
-                    inGameLossLogging2Label,
-                    allowBrigadeAttachingInSupplyLabel,
-                    multipleDeploymentSizeArmiesLabel,
-                    multipleDeploymentSizeFleetsLabel,
-                    multipleDeploymentSizeAirLabel,
-                    allowUniquePicturesAllLandProvincesLabel,
-                    autoReplyEventsLabel,
-                    forceActionsShowLabel,
-                    enableDicisionsPlayersLabel,
-                    rebelsArmyCompositionLabel,
-                    rebelsArmyTechLevelLabel,
-                    rebelsArmyMinStrLabel,
-                    rebelsArmyMaxStrLabel,
-                    rebelsOrgRegainLabel,
-                    extraRebelBonusNeighboringProvinceLabel,
-                    extraRebelBonusOccupiedLabel,
-                    extraRebelBonusMountainLabel,
-                    extraRebelBonusHillLabel,
-                    extraRebelBonusForestLabel,
-                    extraRebelBonusJungleLabel,
-                    extraRebelBonusSwampLabel,
-                    extraRebelBonusDesertLabel,
-                    extraRebelBonusPlainLabel,
-                    extraRebelBonusUrbanLabel,
-                    extraRebelBonusAirNavalBasesLabel,
-                    returnRebelliousProvinceLabel,
-                    useNewMinisterFilesFormatLabel,
-                    enableRetirementYearMinistersLabel,
-                    enableRetirementYearLeadersLabel,
-                    loadSpritesModdirOnlyLabel,
-                    loadUnitIconsModdirOnlyLabel,
-                    loadUnitPicturesModdirOnlyLabel,
-                    loadAiFilesModdirOnlyLabel,
-                    useSpeedSetGarrisonStatusLabel,
-                    useOldSaveGameFormatLabel,
-                    productionPanelUiStyleLabel,
-                    unitPicturesSizeLabel,
-                    enablePicturesNavalBrigadesLabel,
-                    buildingsBuildableOnlyProvincesLabel,
-                    unitModifiersStatisticsPagesLabel,
-                    null,
-                    mapNumberLabel,
-                    totalProvincesLabel,
-                    distanceCalculationModelLabel,
-                    MapWidthLabel,
-                    MapHeightLabel,
-                    null
-                };
-
-            // 項目IDと編集コントロールを対応付ける
-            _controls = new Control[]
-                {
-                    icToTcRatioTextBox,
-                    icToSuppliesRatioTextBox,
-                    icToConsumerGoodsRatioTextBox,
-                    icToMoneyRatioTextBox,
-                    dissentChangeSpeedTextBox,
-                    minAvailableIcTextBox,
-                    minFinalIcTextBox,
-                    dissentReductionTextBox,
-                    maxGearingBonusTextBox,
-                    gearingBonusIncrementTextBox,
-                    gearingResourceIncrementTextBox,
-                    gearingLossNoIcTextBox,
-                    icMultiplierNonNationalTextBox,
-                    icMultiplierNonOwnedTextBox,
-                    icMultiplierPuppetTextBox,
-                    resourceMultiplierNonNationalTextBox,
-                    resourceMultiplierNonOwnedTextBox,
-                    resourceMultiplierNonNationalAiTextBox,
-                    resourceMultiplierPuppetTextBox,
-                    tcLoadUndeployedDivisionTextBox,
-                    tcLoadOccupiedTextBox,
-                    tcLoadMultiplierLandTextBox,
-                    tcLoadMultiplierAirTextBox,
-                    tcLoadMultiplierNavalTextBox,
-                    tcLoadPartisanTextBox,
-                    tcLoadFactorOffensiveTextBox,
-                    tcLoadProvinceDevelopmentTextBox,
-                    tcLoadBaseTextBox,
-                    manpowerMultiplierNationalTextBox,
-                    manpowerMultiplierNonNationalTextBox,
-                    manpowerMultiplierColonyTextBox,
-                    manpowerMultiplierPuppetTextBox,
-                    manpowerMultiplierWartimeOverseaTextBox,
-                    manpowerMultiplierPeacetimeTextBox,
-                    manpowerMultiplierWartimeTextBox,
-                    dailyRetiredManpowerTextBox,
-                    requirementAffectSliderTextBox,
-                    trickleBackFactorManpowerTextBox,
-                    reinforceManpowerTextBox,
-                    reinforceCostTextBox,
-                    reinforceTimeTextBox,
-                    upgradeCostTextBox,
-                    upgradeTimeTextBox,
-                    reinforceToUpdateModifierTextBox,
-                    nationalismStartingValueTextBox,
-                    nationalismPerManpowerAoDTextBox,
-                    nationalismPerManpowerDhTextBox,
-                    maxNationalismTextBox,
-                    maxRevoltRiskTextBox,
-                    monthlyNationalismReductionTextBox,
-                    sendDivisionDaysTextBox,
-                    tcLoadUndeployedBrigadeTextBox,
-                    canUnitSendNonAlliedComboBox,
-                    spyMissionDaysTextBox,
-                    increateIntelligenceLevelDaysTextBox,
-                    chanceDetectSpyMissionTextBox,
-                    relationshipsHitDetectedMissionsTextBox,
-                    showThirdCountrySpyReportsComboBox,
-                    distanceModifierNeighboursTextBox,
-                    spyInformationAccuracyModifierTextBox,
-                    aiPeacetimeSpyMissionsComboBox,
-                    maxIcCostModifierTextBox,
-                    aiSpyMissionsCostModifierTextBox,
-                    aiDiplomacyCostModifierTextBox,
-                    aiInfluenceModifierTextBox,
-                    costRepairBuildingsTextBox,
-                    timeRepairBuildingTextBox,
-                    provinceEfficiencyRiseTimeTextBox,
-                    coreProvinceEfficiencyRiseTimeTextBox,
-                    lineUpkeepTextBox,
-                    lineStartupTimeTextBox,
-                    lineUpgradeTimeTextBox,
-                    retoolingCostTextBox,
-                    retoolingResourceTextBox,
-                    dailyAgingManpowerTextBox,
-                    supplyConvoyHuntTextBox,
-                    supplyNavalStaticAoDTextBox,
-                    supplyNavalMovingTextBox,
-                    supplyNavalBattleAoDTextBox,
-                    supplyAirStaticAoDTextBox,
-                    supplyAirMovingTextBox,
-                    supplyAirBattleAoDTextBox,
-                    supplyAirBombingTextBox,
-                    supplyLandStaticAoDTextBox,
-                    supplyLandMovingTextBox,
-                    supplyLandBattleAoDTextBox,
-                    supplyLandBombingTextBox,
-                    supplyStockLandTextBox,
-                    supplyStockAirTextBox,
-                    supplyStockNavalTextBox,
-                    restockSpeedLandTextBox,
-                    restockSpeedAirTextBox,
-                    restockSpeedNavalTextBox,
-                    syntheticOilConversionMultiplierTextBox,
-                    syntheticRaresConversionMultiplierTextBox,
-                    militarySalaryTextBox,
-                    maxIntelligenceExpenditureTextBox,
-                    maxResearchExpenditureTextBox,
-                    militarySalaryAttrictionModifierTextBox,
-                    militarySalaryDissentModifierTextBox,
-                    nuclearSiteUpkeepCostTextBox,
-                    nuclearPowerUpkeepCostTextBox,
-                    syntheticOilSiteUpkeepCostTextBox,
-                    syntheticRaresSiteUpkeepCostTextBox,
-                    durationDetectionTextBox,
-                    convoyProvinceHostileTimeTextBox,
-                    convoyProvinceBlockedTimeTextBox,
-                    autoTradeConvoyTextBox,
-                    spyUpkeepCostTextBox,
-                    spyDetectionChanceTextBox,
-                    spyCoupDissentModifierTextBox,
-                    infraEfficiencyModifierTextBox,
-                    manpowerToConsumerGoodsTextBox,
-                    timeBetweenSliderChangesAoDTextBox,
-                    minimalPlacementIcTextBox,
-                    nuclearPowerTextBox,
-                    freeInfraRepairTextBox,
-                    maxSliderDissentTextBox,
-                    minSliderDissentTextBox,
-                    maxDissentSliderMoveTextBox,
-                    icConcentrationBonusTextBox,
-                    transportConversionTextBox,
-                    convoyDutyConversionTextBox,
-                    escortDutyConversionTextBox,
-                    ministerChangeDelayTextBox,
-                    ministerChangeEventDelayTextBox,
-                    ideaChangeDelayTextBox,
-                    ideaChangeEventDelayTextBox,
-                    leaderChangeDelayTextBox,
-                    changeIdeaDissentTextBox,
-                    changeMinisterDissentTextBox,
-                    minDissentRevoltTextBox,
-                    dissentRevoltMultiplierTextBox,
-                    tpMaxAttachTextBox,
-                    ssMaxAttachTextBox,
-                    ssnMaxAttachTextBox,
-                    ddMaxAttachTextBox,
-                    clMaxAttachTextBox,
-                    caMaxAttachTextBox,
-                    bcMaxAttachTextBox,
-                    bbMaxAttachTextBox,
-                    cvlMaxAttachTextBox,
-                    cvMaxAttachTextBox,
-                    canChangeIdeasComboBox,
-                    canUnitSendNonAlliedDhComboBox,
-                    bluePrintsCanSoldNonAlliedComboBox,
-                    provinceCanSoldNonAlliedComboBox,
-                    transferAlliedCoreProvincesComboBox,
-                    provinceBuildingsRepairModifierTextBox,
-                    provinceResourceRepairModifierTextBox,
-                    stockpileLimitMultiplierResourceTextBox,
-                    stockpileLimitMultiplierSuppliesOilTextBox,
-                    overStockpileLimitDailyLossTextBox,
-                    maxResourceDepotSizeTextBox,
-                    maxSuppliesOilDepotSizeTextBox,
-                    desiredStockPilesSuppliesOilTextBox,
-                    maxManpowerTextBox,
-                    convoyTransportsCapacityTextBox,
-                    suppyLandStaticDhTextBox,
-                    supplyLandBattleDhTextBox,
-                    fuelLandStaticTextBox,
-                    fuelLandBattleTextBox,
-                    supplyAirStaticDhTextBox,
-                    supplyAirBattleDhTextBox,
-                    fuelAirNavalStaticTextBox,
-                    fuelAirBattleTextBox,
-                    supplyNavalStaticDhTextBox,
-                    supplyNavalBattleDhTextBox,
-                    fuelNavalNotMovingTextBox,
-                    fuelNavalBattleTextBox,
-                    tpTransportsConversionRatioTextBox,
-                    ddEscortsConversionRatioTextBox,
-                    clEscortsConversionRatioTextBox,
-                    cvlEscortsConversionRatioTextBox,
-                    productionLineEditComboBox,
-                    gearingBonusLossUpgradeUnitTextBox,
-                    gearingBonusLossUpgradeBrigadeTextBox,
-                    dissentNukesTextBox,
-                    maxDailyDissentTextBox,
-                    nukesProductionModifierTextBox,
-                    convoySystemOptionsAlliedComboBox,
-                    resourceConvoysBackUnneededTextBox,
-                    null,
-                    spyMissionDaysDhTextBox,
-                    increateIntelligenceLevelDaysDhTextBox,
-                    chanceDetectSpyMissionDhTextBox,
-                    relationshipsHitDetectedMissionsDhTextBox,
-                    distanceModifierTextBox,
-                    distanceModifierNeighboursDhTextBox,
-                    spyLevelBonusDistanceModifierTextBox,
-                    spyLevelBonusDistanceModifierAboveTenTextBox,
-                    spyInformationAccuracyModifierDhTextBox,
-                    icModifierCostTextBox,
-                    minIcCostModifierTextBox,
-                    maxIcCostModifierDhTextBox,
-                    extraMaintenanceCostAboveTenTextBox,
-                    extraCostIncreasingAboveTenTextBox,
-                    showThirdCountrySpyReportsDhComboBox,
-                    spiesMoneyModifierTextBox,
-                    null,
-                    daysBetweenDiplomaticMissionsTextBox,
-                    timeBetweenSliderChangesDhTextBox,
-                    requirementAffectSliderDhTextBox,
-                    useMinisterPersonalityReplacingComboBox,
-                    relationshipHitCancelTradeTextBox,
-                    relationshipHitCancelPermanentTradeTextBox,
-                    puppetsJoinMastersAllianceComboBox,
-                    mastersBecomePuppetsPuppetsComboBox,
-                    allowManualClaimsChangeComboBox,
-                    belligerenceClaimedProvinceTextBox,
-                    belligerenceClaimsRemovalTextBox,
-                    joinAutomaticallyAllesAxisComboBox,
-                    allowChangeHosHogComboBox,
-                    changeTagCoupComboBox,
-                    filterReleaseCountriesComboBox,
-                    null,
-                    landXpGainFactorTextBox,
-                    navalXpGainFactorTextBox,
-                    airXpGainFactorTextBox,
-                    airDogfightXpGainFactorTextBox,
-                    divisionXpGainFactorTextBox,
-                    leaderXpGainFactorTextBox,
-                    attritionSeverityModifierTextBox,
-                    noSupplyAttritionSeverityTextBox,
-                    noSupplyMinimunAttritionTextBox,
-                    baseProximityTextBox,
-                    shoreBombardmentModifierTextBox,
-                    shoreBombardmentCapTextBox,
-                    invasionModifierTextBox,
-                    multipleCombatModifierTextBox,
-                    offensiveCombinedArmsBonusTextBox,
-                    defensiveCombinedArmsBonusTextBox,
-                    surpriseModifierTextBox,
-                    landCommandLimitModifierTextBox,
-                    airCommandLimitModifierTextBox,
-                    navalCommandLimitModifierTextBox,
-                    envelopmentModifierTextBox,
-                    encircledModifierTextBox,
-                    landFortMultiplierTextBox,
-                    coastalFortMultiplierTextBox,
-                    hardUnitsAttackingUrbanPenaltyTextBox,
-                    dissentMultiplierTextBox,
-                    supplyProblemsModifierTextBox,
-                    supplyProblemsModifierLandTextBox,
-                    supplyProblemsModifierAirTextBox,
-                    supplyProblemsModifierNavalTextBox,
-                    fuelProblemsModifierLandTextBox,
-                    fuelProblemsModifierAirTextBox,
-                    fuelProblemsModifierNavalTextBox,
-                    raderStationMultiplierTextBox,
-                    raderStationAaMultiplierTextBox,
-                    interceptorBomberModifierTextBox,
-                    airOverstackingModifierTextBox,
-                    airOverstackingModifierAoDTextBox,
-                    navalOverstackingModifierTextBox,
-                    landLeaderCommandLimitRank0TextBox,
-                    landLeaderCommandLimitRank1TextBox,
-                    landLeaderCommandLimitRank2TextBox,
-                    landLeaderCommandLimitRank3TextBox,
-                    airLeaderCommandLimitRank0TextBox,
-                    airLeaderCommandLimitRank1TextBox,
-                    airLeaderCommandLimitRank2TextBox,
-                    airLeaderCommandLimitRank3TextBox,
-                    navalLeaderCommandLimitRank0TextBox,
-                    navalLeaderCommandLimitRank1TextBox,
-                    navalLeaderCommandLimitRank2TextBox,
-                    navalLeaderCommandLimitRank3TextBox,
-                    hqCommandLimitFactorTextBox,
-                    convoyProtectionFactorTextBox,
-                    convoyEscortsModelTextBox,
-                    delayAfterCombatEndsTextBox,
-                    landDelayBeforeOrdersTextBox,
-                    navalDelayBeforeOrdersTextBox,
-                    airDelayBeforeOrdersTextBox,
-                    maximumSizesAirStacksTextBox,
-                    durationAirToAirBattlesTextBox,
-                    durationNavalPortBombingTextBox,
-                    durationStrategicBombingTextBox,
-                    durationGroundAttackBombingTextBox,
-                    effectExperienceCombatTextBox,
-                    damageNavalBasesBombingTextBox,
-                    damageAirBaseBombingTextBox,
-                    damageAaBombingTextBox,
-                    damageRocketBombingTextBox,
-                    damageNukeBombingTextBox,
-                    damageRadarBombingTextBox,
-                    damageInfraBombingTextBox,
-                    damageIcBombingTextBox,
-                    damageResourcesBombingTextBox,
-                    damageSyntheticOilBombingTextBox,
-                    howEffectiveGroundDefTextBox,
-                    chanceAvoidDefencesLeftTextBox,
-                    chanceAvoidNoDefencesTextBox,
-                    landChanceAvoidDefencesLeftTextBox,
-                    airChanceAvoidDefencesLeftTextBox,
-                    navalChanceAvoidDefencesLeftTextBox,
-                    landChanceAvoidNoDefencesTextBox,
-                    airChanceAvoidNoDefencesTextBox,
-                    navalChanceAvoidNoDefencesTextBox,
-                    chanceGetTerrainTraitTextBox,
-                    chanceGetEventTraitTextBox,
-                    bonusTerrainTraitTextBox,
-                    bonusSimilarTerrainTraitTextBox,
-                    bonusEventTraitTextBox,
-                    bonusLeaderSkillPointLandTextBox,
-                    bonusLeaderSkillPointAirTextBox,
-                    bonusLeaderSkillPointNavalTextBox,
-                    chanceLeaderDyingTextBox,
-                    airOrgDamageTextBox,
-                    airStrDamageOrgTextBox,
-                    airStrDamageTextBox,
-                    landMinOrgDamageTextBox,
-                    landOrgDamageHardSoftEachTextBox,
-                    landOrgDamageHardVsSoftTextBox,
-                    landMinStrDamageTextBox,
-                    landStrDamageHardSoftEachTextBox,
-                    landStrDamageHardVsSoftTextBox,
-                    airMinOrgDamageTextBox,
-                    airAdditionalOrgDamageTextBox,
-                    airMinStrDamageTextBox,
-                    airAdditionalStrDamageTextBox,
-                    airStrDamageEntrencedTextBox,
-                    navalMinOrgDamageTextBox,
-                    navalAdditionalOrgDamageTextBox,
-                    navalMinStrDamageTextBox,
-                    navalAdditionalStrDamageTextBox,
-                    airStrDamageLandOrgTextBox,
-                    airOrgDamageLandDhTextBox,
-                    airStrDamageLandDhTextBox,
-                    landOrgDamageLandOrgTextBox,
-                    landOrgDamageLandUrbanTextBox,
-                    landOrgDamageLandFortTextBox,
-                    requiredLandFortSizeTextBox,
-                    landStrDamageLandDhTextBox,
-                    airOrgDamageAirDhTextBox,
-                    airStrDamageAirDhTextBox,
-                    landOrgDamageAirDhTextBox,
-                    landStrDamageAirDhTextBox,
-                    navalOrgDamageAirDhTextBox,
-                    navalStrDamageAirDhTextBox,
-                    subsOrgDamageAirTextBox,
-                    subsStrDamageAirTextBox,
-                    airOrgDamageNavyDhTextBox,
-                    airStrDamageNavyDhTextBox,
-                    navalOrgDamageNavyDhTextBox,
-                    navalStrDamageNavyDhTextBox,
-                    subsOrgDamageNavyTextBox,
-                    subsStrDamageNavyTextBox,
-                    subsOrgDamageTextBox,
-                    subsStrDamageTextBox,
-                    subStacksDetectionModifierTextBox,
-                    airOrgDamageLandAoDTextBox,
-                    airStrDamageLandAoDTextBox,
-                    landDamageArtilleryBombardmentTextBox,
-                    infraDamageArtilleryBombardmentTextBox,
-                    icDamageArtilleryBombardmentTextBox,
-                    resourcesDamageArtilleryBombardmentTextBox,
-                    penaltyArtilleryBombardmentTextBox,
-                    artilleryStrDamageTextBox,
-                    artilleryOrgDamageTextBox,
-                    landStrDamageLandAoDTextBox,
-                    landOrgDamageLandTextBox,
-                    landStrDamageAirAoDTextBox,
-                    landOrgDamageAirAoDTextBox,
-                    navalStrDamageAirAoDTextBox,
-                    navalOrgDamageAirAoDTextBox,
-                    airStrDamageAirAoDTextBox,
-                    airOrgDamageAirAoDTextBox,
-                    navalStrDamageNavyAoDTextBox,
-                    navalOrgDamageNavyAoDTextBox,
-                    airStrDamageNavyAoDTextBox,
-                    airOrgDamageNavyAoDTextBox,
-                    militaryExpenseAttritionModifierTextBox,
-                    navalMinCombatTimeTextBox,
-                    landMinCombatTimeTextBox,
-                    airMinCombatTimeTextBox,
-                    landOverstackingModifierTextBox,
-                    landOrgLossMovingTextBox,
-                    airOrgLossMovingTextBox,
-                    navalOrgLossMovingTextBox,
-                    supplyDistanceSeverityTextBox,
-                    supplyBaseTextBox,
-                    landOrgGainTextBox,
-                    airOrgGainTextBox,
-                    navalOrgGainTextBox,
-                    nukeManpowerDissentTextBox,
-                    nukeIcDissentTextBox,
-                    nukeTotalDissentTextBox,
-                    landFriendlyOrgGainTextBox,
-                    airLandStockModifierTextBox,
-                    scorchDamageTextBox,
-                    standGroundDissentTextBox,
-                    scorchGroundBelligerenceTextBox,
-                    defaultLandStackTextBox,
-                    defaultNavalStackTextBox,
-                    defaultAirStackTextBox,
-                    defaultRocketStackTextBox,
-                    fortDamageArtilleryBombardmentTextBox,
-                    artilleryBombardmentOrgCostTextBox,
-                    landDamageFortTextBox,
-                    airRebaseFactorTextBox,
-                    airMaxDisorganizedTextBox,
-                    aaInflictedStrDamageTextBox,
-                    aaInflictedOrgDamageTextBox,
-                    aaInflictedFlyingDamageTextBox,
-                    aaInflictedBombingDamageTextBox,
-                    hardAttackStrDamageTextBox,
-                    hardAttackOrgDamageTextBox,
-                    armorSoftBreakthroughMinTextBox,
-                    armorSoftBreakthroughMaxTextBox,
-                    navalCriticalHitChanceTextBox,
-                    navalCriticalHitEffectTextBox,
-                    landFortDamageTextBox,
-                    portAttackSurpriseChanceDayTextBox,
-                    portAttackSurpriseChanceNightTextBox,
-                    portAttackSurpriseModifierTextBox,
-                    radarAntiSurpriseChanceTextBox,
-                    radarAntiSurpriseModifierTextBox,
-                    counterAttackStrDefenderAoDTextBox,
-                    counterAttackOrgDefenderAoDTextBox,
-                    counterAttackStrAttackerAoDTextBox,
-                    counterAttackOrgAttackerAoDTextBox,
-                    assaultStrDefenderAoDTextBox,
-                    assaultOrgDefenderAoDTextBox,
-                    assaultStrAttackerAoDTextBox,
-                    assaultOrgAttackerAoDTextBox,
-                    encirclementStrDefenderAoDTextBox,
-                    encirclementOrgDefenderAoDTextBox,
-                    encirclementStrAttackerAoDTextBox,
-                    encirclementOrgAttackerAoDTextBox,
-                    ambushStrDefenderAoDTextBox,
-                    ambushOrgDefenderAoDTextBox,
-                    ambushStrAttackerAoDTextBox,
-                    ambushOrgAttackerAoDTextBox,
-                    delayStrDefenderAoDTextBox,
-                    delayOrgDefenderAoDTextBox,
-                    delayStrAttackerAoDTextBox,
-                    delayOrgAttackerAoDTextBox,
-                    tacticalWithdrawStrDefenderAoDTextBox,
-                    tacticalWithdrawOrgDefenderAoDTextBox,
-                    tacticalWithdrawStrAttackerAoDTextBox,
-                    tacticalWithdrawOrgAttackerAoDTextBox,
-                    breakthroughStrDefenderAoDTextBox,
-                    breakthroughOrgDefenderAoDTextBox,
-                    breakthroughStrAttackerAoDTextBox,
-                    breakthroughOrgAttackerAoDTextBox,
-                    navalOrgDamageAaTextBox,
-                    airOrgDamageAaTextBox,
-                    airStrDamageAaTextBox,
-                    aaAirFiringRulesComboBox,
-                    aaAirNightModifierTextBox,
-                    aaAirBonusRadarsTextBox,
-                    movementBonusTerrainTraitTextBox,
-                    movementBonusSimilarTerrainTraitTextBox,
-                    logisticsWizardEseBonusTextBox,
-                    daysOffensiveSupplyTextBox,
-                    ministerBonusesComboBox,
-                    orgRegainBonusFriendlyTextBox,
-                    orgRegainBonusFriendlyCapTextBox,
-                    convoyInterceptionMissionsComboBox,
-                    autoReturnTransportFleetsComboBox,
-                    allowProvinceRegionTargetingComboBox,
-                    nightHoursWinterTextBox,
-                    nightHoursSpringFallTextBox,
-                    nightHoursSummerTextBox,
-                    recalculateLandArrivalTimesTextBox,
-                    synchronizeArrivalTimePlayerTextBox,
-                    synchronizeArrivalTimeAiTextBox,
-                    recalculateArrivalTimesCombatComboBox,
-                    landSpeedModifierCombatTextBox,
-                    landSpeedModifierBombardmentTextBox,
-                    landSpeedModifierSupplyTextBox,
-                    landSpeedModifierOrgTextBox,
-                    landAirSpeedModifierFuelTextBox,
-                    defaultSpeedFuelTextBox,
-                    fleetSizeRangePenaltyRatioTextBox,
-                    fleetSizeRangePenaltyThretholdTextBox,
-                    fleetSizeRangePenaltyMaxTextBox,
-                    applyRangeLimitsAreasRegionsComboBox,
-                    radarBonusDetectionTextBox,
-                    bonusDetectionFriendlyTextBox,
-                    screensCapitalRatioModifierTextBox,
-                    chanceTargetNoOrgLandTextBox,
-                    screenCapitalShipsTargetingTextBox,
-                    fleetPositioningDaytimeTextBox,
-                    fleetPositioningLeaderSkillTextBox,
-                    fleetPositioningFleetSizeTextBox,
-                    fleetPositioningFleetCompositionTextBox,
-                    landCoastalFortsDamageTextBox,
-                    landCoastalFortsMaxDamageTextBox,
-                    minSoftnessBrigadesTextBox,
-                    autoRetreatOrgTextBox,
-                    landOrgNavalTransportationTextBox,
-                    maxLandDigTextBox,
-                    digIncreaseDayTextBox,
-                    breakthroughEncirclementMinSpeedTextBox,
-                    breakthroughEncirclementMaxChanceTextBox,
-                    breakthroughEncirclementChanceModifierTextBox,
-                    combatEventDurationTextBox,
-                    counterAttackOrgAttackerDhTextBox,
-                    counterAttackStrAttackerDhTextBox,
-                    counterAttackOrgDefenderDhTextBox,
-                    counterAttackStrDefenderDhTextBox,
-                    assaultOrgAttackerDhTextBox,
-                    assaultStrAttackerDhTextBox,
-                    assaultOrgDefenderDhTextBox,
-                    assaultStrDefenderDhTextBox,
-                    encirclementOrgAttackerDhTextBox,
-                    encirclementStrAttackerDhTextBox,
-                    encirclementOrgDefenderDhTextBox,
-                    encirclementStrDefenderDhTextBox,
-                    ambushOrgAttackerDhTextBox,
-                    ambushStrAttackerDhTextBox,
-                    ambushOrgDefenderDhTextBox,
-                    ambushStrDefenderDhTextBox,
-                    delayOrgAttackerDhTextBox,
-                    delayStrAttackerDhTextBox,
-                    delayOrgDefenderDhTextBox,
-                    delayStrDefenderDhTextBox,
-                    tacticalWithdrawOrgAttackerDhTextBox,
-                    tacticalWithdrawStrAttackerDhTextBox,
-                    tacticalWithdrawOrgDefenderDhTextBox,
-                    tacticalWithdrawStrDefenderDhTextBox,
-                    breakthroughOrgAttackerDhTextBox,
-                    breakthroughStrAttackerDhTextBox,
-                    breakthroughOrgDefenderDhTextBox,
-                    breakthroughStrDefenderDhTextBox,
-                    hqStrDamageBreakthroughComboBox,
-                    combatModeComboBox,
-                    null,
-                    attackMissionComboBox,
-                    attackStartingEfficiencyTextBox,
-                    attackSpeedBonusTextBox,
-                    rebaseMissionComboBox,
-                    rebaseStartingEfficiencyTextBox,
-                    rebaseChanceDetectedTextBox,
-                    stratRedeployMissionComboBox,
-                    stratRedeployStartingEfficiencyTextBox,
-                    stratRedeployAddedValueTextBox,
-                    stratRedeployDistanceMultiplierTextBox,
-                    supportAttackMissionComboBox,
-                    supportAttackStartingEfficiencyTextBox,
-                    supportAttackSpeedBonusTextBox,
-                    supportDefenseMissionComboBox,
-                    supportDefenseStartingEfficiencyTextBox,
-                    supportDefenseSpeedBonusTextBox,
-                    reservesMissionComboBox,
-                    reservesStartingEfficiencyTextBox,
-                    reservesSpeedBonusTextBox,
-                    antiPartisanDutyMissionComboBox,
-                    antiPartisanDutyStartingEfficiencyTextBox,
-                    antiPartisanDutySuppressionTextBox,
-                    plannedDefenseMissionComboBox,
-                    plannedDefenseStartingEfficiencyTextBox,
-                    airSuperiorityMissionComboBox,
-                    airSuperiorityStartingEfficiencyTextBox,
-                    airSuperiorityDetectionTextBox,
-                    airSuperiorityMinRequiredTextBox,
-                    groundAttackMissionComboBox,
-                    groundAttackStartingEfficiencyTextBox,
-                    groundAttackOrgDamageTextBox,
-                    groundAttackStrDamageTextBox,
-                    interdictionMissionComboBox,
-                    interdictionStartingEfficiencyTextBox,
-                    interdictionOrgDamageTextBox,
-                    interdictionStrDamageTextBox,
-                    strategicBombardmentMissionComboBox,
-                    strategicBombardmentStartingEfficiencyTextBox,
-                    logisticalStrikeMissionComboBox,
-                    logisticalStrikeStartingEfficiencyTextBox,
-                    runwayCrateringMissionComboBox,
-                    runwayCrateringStartingEfficiencyTextBox,
-                    installationStrikeMissionComboBox,
-                    installationStrikeStartingEfficiencyTextBox,
-                    navalStrikeMissionComboBox,
-                    navalStrikeStartingEfficiencyTextBox,
-                    portStrikeMissionComboBox,
-                    portStrikeStartingEfficiencyTextBox,
-                    convoyAirRaidingMissionComboBox,
-                    convoyAirRaidingStartingEfficiencyTextBox,
-                    airSupplyMissionComboBox,
-                    airSupplyStartingEfficiencyTextBox,
-                    airborneAssaultMissionComboBox,
-                    airborneAssaultStartingEfficiencyTextBox,
-                    nukeMissionComboBox,
-                    nukeStartingEfficiencyTextBox,
-                    airScrambleMissionComboBox,
-                    airScrambleStartingEfficiencyTextBox,
-                    airScrambleDetectionTextBox,
-                    airScrambleMinRequiredTextBox,
-                    convoyRadingMissionComboBox,
-                    convoyRadingStartingEfficiencyTextBox,
-                    convoyRadingRangeModifierTextBox,
-                    convoyRadingChanceDetectedTextBox,
-                    aswMissionComboBox,
-                    aswStartingEfficiencyTextBox,
-                    navalInterdictionMissionComboBox,
-                    navalInterdictionStartingEfficiencyTextBox,
-                    shoreBombardmentMissionComboBox,
-                    shoreBombardmentStartingEfficiencyTextBox,
-                    shoreBombardmentModifierDhTextBox,
-                    amphibousAssaultMissionComboBox,
-                    amphibousAssaultStartingEfficiencyTextBox,
-                    seaTransportMissionComboBox,
-                    seaTransportStartingEfficiencyTextBox,
-                    seaTransportRangeModifierTextBox,
-                    seaTransportChanceDetectedTextBox,
-                    NavalCombatPatrolMissionComboBox,
-                    NavalCombatPatrolStartingEfficiencyTextBox,
-                    navalPortStrikeMissionComboBox,
-                    navalPortStrikeStartingEfficiencyTextBox,
-                    navalAirbaseStrikeMissionComboBox,
-                    navalAirbaseStrikeStartingEfficiencyTextBox,
-                    sneakMoveMissionComboBox,
-                    sneakMoveStartingEfficiencyTextBox,
-                    sneakMoveRangeModifierTextBox,
-                    sneakMoveChanceDetectedTextBox,
-                    navalScrambleMissionComboBox,
-                    navalScrambleStartingEfficiencyTextBox,
-                    navalScrambleSpeedBonusTextBox,
-                    useAttackEfficiencyCombatModifierComboBox,
-                    null,
-                    landFortEfficiencyTextBox,
-                    coastalFortEfficiencyTextBox,
-                    groundDefenseEfficiencyTextBox,
-                    convoyDefenseEfficiencyTextBox,
-                    manpowerBoostTextBox,
-                    transportCapacityModifierTextBox,
-                    occupiedTransportCapacityModifierTextBox,
-                    attritionModifierTextBox,
-                    manpowerTrickleBackModifierTextBox,
-                    supplyDistanceModifierTextBox,
-                    repairModifierTextBox,
-                    researchModifierTextBox,
-                    radarEfficiencyTextBox,
-                    hqSupplyEfficiencyBonusTextBox,
-                    hqCombatEventsBonusTextBox,
-                    combatEventChancesTextBox,
-                    friendlyArmyDetectionChanceTextBox,
-                    enemyArmyDetectionChanceTextBox,
-                    friendlyIntelligenceChanceTextBox,
-                    enemyIntelligenceChanceTextBox,
-                    maxAmphibiousArmySizeTextBox,
-                    energyToOilTextBox,
-                    totalProductionEfficiencyTextBox,
-                    supplyProductionEfficiencyTextBox,
-                    aaPowerTextBox,
-                    airSurpriseChanceTextBox,
-                    landSurpriseChanceTextBox,
-                    navalSurpriseChanceTextBox,
-                    peacetimeIcModifierTextBox,
-                    wartimeIcModifierTextBox,
-                    buildingsProductionModifierTextBox,
-                    convoysProductionModifierTextBox,
-                    minShipsPositioningBattleTextBox,
-                    maxShipsPositioningBattleTextBox,
-                    peacetimeStockpilesResourcesTextBox,
-                    wartimeStockpilesResourcesTextBox,
-                    peacetimeStockpilesOilSuppliesTextBox,
-                    wartimeStockpilesOilSuppliesTextBox,
-                    null,
-                    blueprintBonusTextBox,
-                    preHistoricalDateModifierTextBox,
-                    postHistoricalDateModifierDhTextBox,
-                    costSkillLevelTextBox,
-                    meanNumberInventionEventsYearTextBox,
-                    postHistoricalDateModifierAoDTextBox,
-                    techSpeedModifierTextBox,
-                    preHistoricalPenaltyLimitTextBox,
-                    postHistoricalBonusLimitTextBox,
-                    maxActiveTechTeamsAoDTextBox,
-                    requiredIcEachTechTeamAoDTextBox,
-                    maximumRandomModifierTextBox,
-                    useNewTechnologyPageLayoutComboBox,
-                    techOverviewPanelStyleComboBox,
-                    maxActiveTechTeamsDhTextBox,
-                    minActiveTechTeamsTextBox,
-                    requiredIcEachTechTeamDhTextBox,
-                    newCountryRocketryComponentComboBox,
-                    newCountryNuclearPhysicsComponentComboBox,
-                    newCountryNuclearEngineeringComponentComboBox,
-                    newCountrySecretTechsComboBox,
-                    maxTechTeamSkillTextBox,
-                    null,
-                    daysTradeOffersTextBox,
-                    delayGameStartNewTradesTextBox,
-                    limitAiNewTradesGameStartTextBox,
-                    desiredOilStockpileTextBox,
-                    criticalOilStockpileTextBox,
-                    desiredSuppliesStockpileTextBox,
-                    criticalSuppliesStockpileTextBox,
-                    desiredResourcesStockpileTextBox,
-                    criticalResourceStockpileTextBox,
-                    wartimeDesiredStockpileMultiplierTextBox,
-                    peacetimeExtraOilImportTextBox,
-                    wartimeExtraOilImportTextBox,
-                    extraImportBelowDesiredTextBox,
-                    percentageProducedSuppliesTextBox,
-                    percentageProducedMoneyTextBox,
-                    extraImportStockpileSelectedTextBox,
-                    daysDeliverResourcesTradesTextBox,
-                    mergeTradeDealsComboBox,
-                    manualTradeDealsComboBox,
-                    puppetsSendSuppliesMoneyTextBox,
-                    puppetsCriticalSupplyStockpileTextBox,
-                    puppetsMaxPoolResourcesTextBox,
-                    newTradeDealsMinEffectivenessTextBox,
-                    cancelTradeDealsEffectivenessTextBox,
-                    autoTradeAiTradeDealsTextBox,
-                    null,
-                    overproduceSuppliesBelowDesiredTextBox,
-                    multiplierOverproduceSuppliesWarTextBox,
-                    notProduceSuppliesStockpileOverTextBox,
-                    maxSerialLineProductionGarrisonMilitiaTextBox,
-                    minIcSerialProductionNavalAirTextBox,
-                    notProduceNewUnitsManpowerRatioTextBox,
-                    notProduceNewUnitsManpowerValueTextBox,
-                    notProduceNewUnitsSupplyTextBox,
-                    militaryStrengthTotalIcRatioPeacetimeTextBox,
-                    militaryStrengthTotalIcRatioWartimeTextBox,
-                    militaryStrengthTotalIcRatioMajorTextBox,
-                    notUseOffensiveSupplyStockpileTextBox,
-                    notUseOffensiveOilStockpileTextBox,
-                    notUseOffensiveEseTextBox,
-                    notUseOffensiveOrgStrDamageTextBox,
-                    aiPeacetimeSpyMissionsDhComboBox,
-                    aiSpyMissionsCostModifierDhTextBox,
-                    aiDiplomacyCostModifierDhTextBox,
-                    aiInfluenceModifierDhTextBox,
-                    newDowRulesComboBox,
-                    newDowRules2ComboBox,
-                    forcePuppetsJoinMastersAllianceNeutralityTextBox,
-                    newAiReleaseRulesComboBox,
-                    aiEventsActionSelectionRulesTextBox,
-                    forceStrategicRedeploymentHourTextBox,
-                    maxRedeploymentDaysAiTextBox,
-                    useQuickAreaCheckGarrisonAiComboBox,
-                    aiMastersGetProvincesConquredPuppetsComboBox,
-                    minDaysRequiredAiReleaseCountryTextBox,
-                    minDaysRequiredAiAlliedTextBox,
-                    minDaysRequiredAiAlliedSupplyBaseTextBox,
-                    minRequiredRelationsAlliedClaimedTextBox,
-                    null,
-                    aiSpyDiplomaticMissionLoggerComboBox,
-                    countryLoggerTextBox,
-                    switchedAiFilesLoggerComboBox,
-                    useNewAutoSaveFileFormatComboBox,
-                    loadNewAiSwitchingAllClientsComboBox,
-                    tradeEfficiencyCalculationSystemTextBox,
-                    mergeRelocateProvincialDepotsTextBox,
-                    inGameLossesLoggingComboBox,
-                    inGameLossLogging2ComboBox,
-                    allowBrigadeAttachingInSupplyComboBox,
-                    multipleDeploymentSizeArmiesTextBox,
-                    multipleDeploymentSizeFleetsTextBox,
-                    multipleDeploymentSizeAirTextBox,
-                    allowUniquePicturesAllLandProvincesComboBox,
-                    autoReplyEventsComboBox,
-                    forceActionsShowComboBox,
-                    enableDicisionsPlayersComboBox,
-                    rebelsArmyCompositionTextBox,
-                    rebelsArmyTechLevelTextBox,
-                    rebelsArmyMinStrTextBox,
-                    rebelsArmyMaxStrTextBox,
-                    rebelsOrgRegainTextBox,
-                    extraRebelBonusNeighboringProvinceTextBox,
-                    extraRebelBonusOccupiedTextBox,
-                    extraRebelBonusMountainTextBox,
-                    extraRebelBonusHillTextBox,
-                    extraRebelBonusForestTextBox,
-                    extraRebelBonusJungleTextBox,
-                    extraRebelBonusSwampTextBox,
-                    extraRebelBonusDesertTextBox,
-                    extraRebelBonusPlainTextBox,
-                    extraRebelBonusUrbanTextBox,
-                    extraRebelBonusAirNavalBasesTextBox,
-                    returnRebelliousProvinceTextBox,
-                    useNewMinisterFilesFormatComboBox,
-                    enableRetirementYearMinistersComboBox,
-                    enableRetirementYearLeadersComboBox,
-                    loadSpritesModdirOnlyComboBox,
-                    loadUnitIconsModdirOnlyComboBox,
-                    loadUnitPicturesModdirOnlyComboBox,
-                    loadAiFilesModdirOnlyComboBox,
-                    useSpeedSetGarrisonStatusComboBox,
-                    useOldSaveGameFormatComboBox,
-                    productionPanelUiStyleComboBox,
-                    unitPicturesSizeComboBox,
-                    enablePicturesNavalBrigadesComboBox,
-                    buildingsBuildableOnlyProvincesComboBox,
-                    unitModifiersStatisticsPagesTextBox,
-                    null,
-                    mapNumberTextBox,
-                    totalProvincesTextBox,
-                    distanceCalculationModelComboBox,
-                    MapWidthTextBox,
-                    MapHeightTextBox,
-                    null
-                };
-
-            // コントロールにタグを設定する
-            foreach (
-                MiscItemId id in
-                    Enum.GetValues(typeof (MiscItemId)).Cast<MiscItemId>().Where(id => _controls[(int) id] != null))
-            {
-                _controls[(int) id].Tag = id;
-            }
+            // 先頭ページを初期化する
+            InitTabPage(0);
         }
 
         /// <summary>
         ///     編集項目を更新する
         /// </summary>
-        private void UpdateEditableItems()
+        /// <param name="index">タブページのインデックスう</param>
+        private void UpdateEditableItems(int index)
         {
             MiscGameType gameType = Misc.GetGameType();
-            foreach (MiscItemId id in Enum.GetValues(typeof (MiscItemId))
-                                          .Cast<MiscItemId>()
-                                          .Where(id => _labels[(int) id] != null))
+            foreach (Control control in miscTabControl.TabPages[index].Controls)
             {
+                // タグの設定されていないラベル/共通ボタンをスキップする
+                if (control.Tag == null)
+                {
+                    continue;
+                }
+
+                var id = (MiscItemId) control.Tag;
                 if (Misc.ItemTable[(int) id, (int) gameType])
                 {
                     _labels[(int) id].Enabled = true;
-                    _controls[(int) id].Enabled = true;
+                    _edits[(int) id].Enabled = true;
                     ComboBox comboBox;
                     switch (Misc.ItemTypes[(int) id])
                     {
@@ -1694,7 +1086,7 @@ namespace HoI2Editor.Forms
                             break;
 
                         case MiscItemType.Bool:
-                            comboBox = _controls[(int) id] as ComboBox;
+                            comboBox = _edits[(int) id] as ComboBox;
                             if (comboBox != null)
                             {
                                 comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
@@ -1702,15 +1094,15 @@ namespace HoI2Editor.Forms
                             break;
 
                         case MiscItemType.Enum:
-                            comboBox = _controls[(int) id] as ComboBox;
+                            comboBox = _edits[(int) id] as ComboBox;
                             if (comboBox != null)
                             {
-                                comboBox.SelectedIndex = (int) Misc.GetItem(id) - (int) Misc.ItemMinValues[(int) id];
+                                comboBox.SelectedIndex = (int) Misc.GetItem(id) - Misc.IntMinValues[id];
                             }
                             break;
 
                         default:
-                            var textBox = _controls[(int) id] as TextBox;
+                            var textBox = _edits[(int) id] as TextBox;
                             if (textBox != null)
                             {
                                 textBox.Text = Misc.GetString(id);
@@ -1721,7 +1113,7 @@ namespace HoI2Editor.Forms
                 else
                 {
                     _labels[(int) id].Enabled = false;
-                    _controls[(int) id].Enabled = false;
+                    _edits[(int) id].Enabled = false;
                 }
             }
         }
@@ -1729,27 +1121,36 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     編集項目の色を更新する
         /// </summary>
-        private void UpdateItemColor()
+        /// <param name="index">タブページのインデックスう</param>
+        private void UpdateItemColor(int index)
         {
             MiscGameType gameType = Misc.GetGameType();
-            foreach (MiscItemId id in Enum.GetValues(typeof (MiscItemId))
-                                          .Cast<MiscItemId>()
-                                          .Where(id => Misc.ItemTable[(int) id, (int) gameType]))
+            foreach (Control control in miscTabControl.TabPages[index].Controls)
             {
-                switch (Misc.ItemTypes[(int) id])
+                // タグの設定されていないラベル/共通ボタンをスキップする
+                if (control.Tag == null)
                 {
-                    case MiscItemType.None:
-                    case MiscItemType.Bool:
-                    case MiscItemType.Enum:
-                        break;
+                    continue;
+                }
 
-                    default:
-                        var textBox = _controls[(int) id] as TextBox;
-                        if (textBox != null)
-                        {
-                            textBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
-                        }
-                        break;
+                var id = (MiscItemId) control.Tag;
+                if (Misc.ItemTable[(int) id, (int) gameType])
+                {
+                    switch (Misc.ItemTypes[(int) id])
+                    {
+                        case MiscItemType.None:
+                        case MiscItemType.Bool:
+                        case MiscItemType.Enum:
+                            break;
+
+                        default:
+                            var textBox = _edits[(int) id] as TextBox;
+                            if (textBox != null)
+                            {
+                                textBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
+                            }
+                            break;
+                    }
                 }
             }
         }
@@ -1831,11 +1232,13 @@ namespace HoI2Editor.Forms
             // 基本データファイルを読み込む
             Misc.Load();
 
-            // 編集項目を更新する
-            UpdateEditableItems();
-
-            // 編集項目の色を更新する
-            UpdateItemColor();
+            for (int index = 0; index < miscTabControl.TabPages.Count; index++)
+            {
+                // 編集項目を更新する
+                UpdateEditableItems(index);
+                // 編集項目の色を更新する
+                UpdateItemColor(index);
+            }
         }
 
         /// <summary>
@@ -1847,7 +1250,202 @@ namespace HoI2Editor.Forms
             Misc.Save();
 
             // 編集済みフラグがクリアされるため表示を更新する
-            UpdateItemColor();
+            for (int index = 0; index < miscTabControl.TabPages.Count; index++)
+            {
+                UpdateItemColor(index);
+            }
+        }
+
+        #endregion
+
+        #region タブページ処理
+
+        /// <summary>
+        ///     タブページ変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMiscTabControlSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = miscTabControl.SelectedIndex;
+            if (miscTabControl.TabPages[index].Controls.Count == 0)
+            {
+                InitTabPage(index);
+            }
+        }
+
+        /// <summary>
+        ///     タブページを初期化する
+        /// </summary>
+        /// <param name="index">タブページのインデックス</param>
+        private void InitTabPage(int index)
+        {
+            // 編集項目を作成する
+            CreateEditableItems(index);
+
+            // 共通ボタンを作成する
+            CreateCommonButtons(index);
+
+            // 編集項目を更新する
+            UpdateEditableItems(index);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(index);
+        }
+
+        /// <summary>
+        ///     編集項目を作成する
+        /// </summary>
+        /// <param name="index">タブページのインデックス</param>
+        private void CreateEditableItems(int index)
+        {
+            var rm = new ResourceManager("HoI2Editor.Properties.Resources", typeof (Resources).Assembly);
+
+            int labelX = 10;
+            const int margin = 8;
+            foreach (var ids in EditableItems[index])
+            {
+                int labelY = 13;
+                int editX = labelX;
+                foreach (MiscItemId id in ids)
+                {
+                    // セパレータ
+                    if (id == MiscItemId.Separator)
+                    {
+                        labelY += 25;
+                        continue;
+                    }
+
+                    // ラベルを作成する
+                    var label = new Label
+                        {
+                            AutoSize = true,
+                            Text = rm.GetString("MiscLabel" + Misc.ItemNames[(int) id]),
+                            Location = new Point(labelX, labelY)
+                        };
+                    miscTabControl.TabPages[index].Controls.Add(label);
+                    _labels[(int) id] = label;
+
+                    // 編集コントロールの幅のみ求める
+                    int x = labelX + label.Width + 8;
+                    MiscItemType type = Misc.ItemTypes[(int) id];
+                    switch (type)
+                    {
+                        case MiscItemType.Bool:
+                        case MiscItemType.Enum:
+                            int maxWidth = 50;
+                            for (int i = Misc.IntMinValues[id]; i <= Misc.IntMaxValues[id]; i++)
+                            {
+                                string s = i.ToString(CultureInfo.InvariantCulture) + ": " +
+                                           rm.GetString("MiscEnum" + Misc.ItemNames[(int) id] +
+                                                        i.ToString(CultureInfo.InvariantCulture));
+                                if (!string.IsNullOrEmpty(s))
+                                {
+                                    maxWidth = Math.Max(maxWidth,
+                                                        TextRenderer.MeasureText(s, Font).Width +
+                                                        SystemInformation.VerticalScrollBarWidth + margin);
+                                    maxWidth = 50 + ((maxWidth - 50 + 14)/15)*15;
+                                }
+                            }
+                            x += maxWidth;
+                            break;
+
+                        default:
+                            // テキストボックスの項目は50px固定
+                            x += 50;
+                            break;
+                    }
+                    if (x > editX)
+                    {
+                        editX = x;
+                    }
+                    labelY += 25;
+                }
+                int editY = 10;
+                foreach (MiscItemId id in ids)
+                {
+                    // セパレータ
+                    if (id == MiscItemId.Separator)
+                    {
+                        editY += 25;
+                        continue;
+                    }
+                    // 編集コントロールを作成する
+                    MiscItemType type = Misc.ItemTypes[(int) id];
+                    switch (type)
+                    {
+                        case MiscItemType.Bool:
+                        case MiscItemType.Enum:
+                            var comboBox = new ComboBox
+                                {
+                                    DropDownStyle = ComboBoxStyle.DropDownList,
+                                    DrawMode = DrawMode.OwnerDrawFixed,
+                                    Tag = id
+                                };
+                            // コンボボックスの選択項目を登録し、最大幅を求める
+                            int maxWidth = 50;
+                            for (int i = Misc.IntMinValues[id]; i <= Misc.IntMaxValues[id]; i++)
+                            {
+                                string s = i.ToString(CultureInfo.InvariantCulture) + ": " +
+                                           rm.GetString("MiscEnum" + Misc.ItemNames[(int) id] +
+                                                        i.ToString(CultureInfo.InvariantCulture));
+                                if (!string.IsNullOrEmpty(s))
+                                {
+                                    comboBox.Items.Add(s);
+                                    maxWidth = Math.Max(maxWidth,
+                                                        TextRenderer.MeasureText(s, Font).Width +
+                                                        SystemInformation.VerticalScrollBarWidth + margin);
+                                    maxWidth = 50 + ((maxWidth - 50 + 14)/15)*15;
+                                }
+                            }
+                            comboBox.Size = new Size(maxWidth, 20);
+                            comboBox.Location = new Point(editX - maxWidth, editY);
+                            comboBox.DrawItem += OnItemComboBoxDrawItem;
+                            comboBox.SelectedIndexChanged += OnItemComboBoxSelectedIndexChanged;
+                            miscTabControl.TabPages[index].Controls.Add(comboBox);
+                            _edits[(int) id] = comboBox;
+                            break;
+
+                        default:
+                            var textBox = new TextBox
+                                {
+                                    Size = new Size(50, 19),
+                                    Location = new Point(editX - 50, editY),
+                                    TextAlign = HorizontalAlignment.Right,
+                                    Tag = id
+                                };
+                            textBox.Validated += OnItemTextBoxValidated;
+                            miscTabControl.TabPages[index].Controls.Add(textBox);
+                            _edits[(int) id] = textBox;
+                            break;
+                    }
+                    editY += 25;
+                }
+                // 次の列との間を10px空ける
+                labelX = editX + 10;
+            }
+        }
+
+        /// <summary>
+        ///     タブページ間共通ボタンを作成する
+        /// </summary>
+        /// <param name="index">タブページのインデックス</param>
+        private void CreateCommonButtons(int index)
+        {
+            // 再読み込み
+            var button = new Button {Text = Resources.Reload, Location = new Point(731, 625)};
+            button.Click += OnReloadButtonClick;
+            miscTabControl.TabPages[index].Controls.Add(button);
+
+            // 保存
+            button = new Button {Text = Resources.Save, Location = new Point(812, 625)};
+            button.Click += OnSaveButtonClick;
+            miscTabControl.TabPages[index].Controls.Add(button);
+
+            // 閉じる
+            button = new Button {Text = Resources.Close, Location = new Point(893, 625)};
+            button.Click += OnCloseButtonClick;
+            miscTabControl.TabPages[index].Controls.Add(button);
         }
 
         #endregion
@@ -1965,7 +1563,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedInt:
-                    if (i < Misc.ItemMinValues[(int) id] || i > Misc.ItemMaxValues[(int) id])
+                    if (i < Misc.IntMinValues[id] || i > Misc.IntMaxValues[id])
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -1973,7 +1571,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedPosInt:
-                    if (i < Misc.ItemMinValues[(int) id])
+                    if (i < Misc.IntMinValues[id])
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -1981,7 +1579,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedIntMinusOne:
-                    if ((i < Misc.ItemMinValues[(int) id] || i > Misc.ItemMaxValues[(int) id]) && i != -1)
+                    if ((i < Misc.IntMinValues[id] || i > Misc.IntMaxValues[id]) && i != -1)
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -1989,7 +1587,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedIntMinusThree:
-                    if ((i < Misc.ItemMinValues[(int) id] || i > Misc.ItemMaxValues[(int) id]) && i != -1 && i != -2 &&
+                    if ((i < Misc.IntMinValues[id] || i > Misc.IntMaxValues[id]) && i != -1 && i != -2 &&
                         i != -3)
                     {
                         textBox.Text = Misc.GetString(id);
@@ -2044,7 +1642,7 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.RangedDbl:
                 case MiscItemType.RangedDbl0:
-                    if (d < Misc.ItemMinValues[(int) id] || d > Misc.ItemMaxValues[(int) id])
+                    if (d < Misc.DblMinValues[id] || d > Misc.DblMaxValues[id])
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -2053,7 +1651,7 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.RangedDblMinusOne:
                 case MiscItemType.RangedDblMinusOne1:
-                    if ((d < Misc.ItemMinValues[(int) id] || d > Misc.ItemMaxValues[(int) id]) &&
+                    if ((d < Misc.DblMinValues[id] || d > Misc.DblMaxValues[id]) &&
                         Math.Abs(d - (-1)) > 0.00005)
                     {
                         textBox.Text = Misc.GetString(id);
@@ -2199,7 +1797,7 @@ namespace HoI2Editor.Forms
                     index = (int) Misc.GetItem(id);
                     break;
             }
-            if ((e.Index + (int) Misc.ItemMinValues[(int) id] == index) && Misc.IsDirty(id))
+            if ((e.Index + Misc.IntMinValues[id] == index) && Misc.IsDirty(id))
             {
                 brush = new SolidBrush(Color.Red);
             }
@@ -2250,7 +1848,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.Enum:
-                    i = comboBox.SelectedIndex + (int) Misc.ItemMinValues[(int) id];
+                    i = comboBox.SelectedIndex + Misc.IntMinValues[id];
                     if (i == (int) Misc.GetItem(id))
                     {
                         return;
