@@ -348,9 +348,6 @@
   <data name="LoyaltyVeryLow" xml:space="preserve">
     <value>最低</value>
   </data>
-  <data name="ModifiedPersonality" xml:space="preserve">
-    <value>閣僚特性を修正</value>
-  </data>
   <data name="No" xml:space="preserve">
     <value>×</value>
   </data>
@@ -464,5 +461,3089 @@
   </data>
   <data name="ConfirmSaveMessage" xml:space="preserve">
     <value>項目が変更されています。保存しますか?</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="MiscLabelAaAirBonusRadars" xml:space="preserve">
+    <value>対空砲攻撃レーダーボーナス</value>
+  </data>
+  <data name="MiscLabelAaAirFiringRules" xml:space="preserve">
+    <value>対空砲攻撃ルール</value>
+  </data>
+  <data name="MiscLabelAaAirNightModifier" xml:space="preserve">
+    <value>対空砲夜間攻撃補正</value>
+  </data>
+  <data name="MiscLabelAaInflictedBombingDamage" xml:space="preserve">
+    <value>対空砲爆撃中ダメージ補正</value>
+  </data>
+  <data name="MiscLabelAaInflictedFlyingDamage" xml:space="preserve">
+    <value>対空砲上空通過ダメージ補正</value>
+  </data>
+  <data name="MiscLabelAaInflictedOrgDamage" xml:space="preserve">
+    <value>対空砲組織率ダメージ補正</value>
+  </data>
+  <data name="MiscLabelAaInflictedStrDamage" xml:space="preserve">
+    <value>対空砲戦力ダメージ補正</value>
+  </data>
+  <data name="MiscLabelAaPower" xml:space="preserve">
+    <value>対空砲攻撃力</value>
+  </data>
+  <data name="MiscLabelAiDiplomacyCostModifier" xml:space="preserve">
+    <value>AIの外交コスト補正</value>
+  </data>
+  <data name="MiscLabelAiDiplomacyCostModifierDh" xml:space="preserve">
+    <value>AIの外交コスト補正</value>
+  </data>
+  <data name="MiscLabelAiEnd" xml:space="preserve">
+    <value>AI項目の終端</value>
+  </data>
+  <data name="MiscLabelAiEventsActionSelectionRules" xml:space="preserve">
+    <value>AIイベント選択ルール</value>
+  </data>
+  <data name="MiscLabelAiInfluenceModifier" xml:space="preserve">
+    <value>AIの外交影響度補正</value>
+  </data>
+  <data name="MiscLabelAiInfluenceModifierDh" xml:space="preserve">
+    <value>AIの外交影響度補正</value>
+  </data>
+  <data name="MiscLabelAiMastersGetProvincesConquredPuppets" xml:space="preserve">
+    <value>AI宗主国が傀儡国の占領地を支配</value>
+  </data>
+  <data name="MiscLabelAiPeacetimeSpyMissions" xml:space="preserve">
+    <value>AIの平時の攻撃的諜報活動</value>
+  </data>
+  <data name="MiscLabelAiPeacetimeSpyMissionsDh" xml:space="preserve">
+    <value>AIの平時の攻撃的諜報活動</value>
+  </data>
+  <data name="MiscLabelAirAdditionalOrgDamage" xml:space="preserve">
+    <value>空軍追加組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirAdditionalStrDamage" xml:space="preserve">
+    <value>空軍追加戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirborneAssaultMission" xml:space="preserve">
+    <value>空挺強襲任務</value>
+  </data>
+  <data name="MiscLabelAirborneAssaultStartingEfficiency" xml:space="preserve">
+    <value>空挺強襲初期効率</value>
+  </data>
+  <data name="MiscLabelAirChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>空軍基本回避率(防御回数あり)</value>
+  </data>
+  <data name="MiscLabelAirChanceAvoidNoDefences" xml:space="preserve">
+    <value>空軍基本回避率(防御回数なし)</value>
+  </data>
+  <data name="MiscLabelAirCommandLimitModifier" xml:space="preserve">
+    <value>空軍指揮上限ペナルティ</value>
+  </data>
+  <data name="MiscLabelAirDelayBeforeOrders" xml:space="preserve">
+    <value>空軍命令遅延時間</value>
+  </data>
+  <data name="MiscLabelAirDogfightXpGainFactor" xml:space="preserve">
+    <value>空軍空戦時経験値入手係数</value>
+  </data>
+  <data name="MiscLabelAirLandStockModifier" xml:space="preserve">
+    <value>阻止攻撃備蓄補正</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank0" xml:space="preserve">
+    <value>空軍元帥指揮上限</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank1" xml:space="preserve">
+    <value>空軍大将指揮上限</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank2" xml:space="preserve">
+    <value>空軍中将指揮上限</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank3" xml:space="preserve">
+    <value>空軍少将指揮上限</value>
+  </data>
+  <data name="MiscLabelAirMaxDisorganized" xml:space="preserve">
+    <value>空港占領時ペナルティ</value>
+  </data>
+  <data name="MiscLabelAirMinCombatTime" xml:space="preserve">
+    <value>空軍最小戦闘時間</value>
+  </data>
+  <data name="MiscLabelAirMinOrgDamage" xml:space="preserve">
+    <value>空軍最小組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirMinStrDamage" xml:space="preserve">
+    <value>空軍最小戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamage" xml:space="preserve">
+    <value>空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageAa" xml:space="preserve">
+    <value>空軍対空砲組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageAirAoD" xml:space="preserve">
+    <value>空軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageAirDh" xml:space="preserve">
+    <value>空軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageLandAoD" xml:space="preserve">
+    <value>空軍対陸軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageLandDh" xml:space="preserve">
+    <value>空軍対陸軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageNavyAoD" xml:space="preserve">
+    <value>空軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageNavyDh" xml:space="preserve">
+    <value>空軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirOrgGain" xml:space="preserve">
+    <value>空軍組織率補正</value>
+  </data>
+  <data name="MiscLabelAirOrgLossMoving" xml:space="preserve">
+    <value>空軍移動時組織率減少係数</value>
+  </data>
+  <data name="MiscLabelAirOverstackingModifier" xml:space="preserve">
+    <value>空軍スタックペナルティ</value>
+  </data>
+  <data name="MiscLabelAirOverstackingModifierAoD" xml:space="preserve">
+    <value>空軍スタックペナルティ</value>
+  </data>
+  <data name="MiscLabelAirRebaseFactor" xml:space="preserve">
+    <value>空軍基地移動組織率減少係数</value>
+  </data>
+  <data name="MiscLabelAirScrambleDetection" xml:space="preserve">
+    <value>航空緊急出撃敵機発見補正</value>
+  </data>
+  <data name="MiscLabelAirScrambleMinRequired" xml:space="preserve">
+    <value>航空緊急出撃最小ユニット数</value>
+  </data>
+  <data name="MiscLabelAirScrambleMission" xml:space="preserve">
+    <value>航空緊急出撃任務</value>
+  </data>
+  <data name="MiscLabelAirScrambleStartingEfficiency" xml:space="preserve">
+    <value>航空緊急出撃初期効率</value>
+  </data>
+  <data name="MiscLabelAirStrDamage" xml:space="preserve">
+    <value>空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageAa" xml:space="preserve">
+    <value>空軍対空砲戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageAirAoD" xml:space="preserve">
+    <value>空軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageAirDh" xml:space="preserve">
+    <value>空軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageEntrenced" xml:space="preserve">
+    <value>空軍戦力被ダメージ(対塹壕)</value>
+  </data>
+  <data name="MiscLabelAirStrDamageLandAoD" xml:space="preserve">
+    <value>空軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageLandDh" xml:space="preserve">
+    <value>空軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageLandOrg" xml:space="preserve">
+    <value>空軍対陸軍戦力被ダメージ(組織率)</value>
+  </data>
+  <data name="MiscLabelAirStrDamageNavyAoD" xml:space="preserve">
+    <value>空軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageNavyDh" xml:space="preserve">
+    <value>空軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelAirStrDamageOrg" xml:space="preserve">
+    <value>空軍戦力被ダメージ(組織力)</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityDetection" xml:space="preserve">
+    <value>制空権敵機発見補正</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityMinRequired" xml:space="preserve">
+    <value>制空権最小ユニット数</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityMission" xml:space="preserve">
+    <value>制空権任務</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityStartingEfficiency" xml:space="preserve">
+    <value>制空権初期効率</value>
+  </data>
+  <data name="MiscLabelAirSupplyMission" xml:space="preserve">
+    <value>空輸補給任務</value>
+  </data>
+  <data name="MiscLabelAirSupplyStartingEfficiency" xml:space="preserve">
+    <value>空輸補給初期効率</value>
+  </data>
+  <data name="MiscLabelAirSurpriseChance" xml:space="preserve">
+    <value>空軍奇襲確率</value>
+  </data>
+  <data name="MiscLabelAirXpGainFactor" xml:space="preserve">
+    <value>空軍経験値入手係数</value>
+  </data>
+  <data name="MiscLabelAiSpyDiplomaticMissionLogger" xml:space="preserve">
+    <value>AIの諜報/外交をログに記録</value>
+  </data>
+  <data name="MiscLabelAiSpyMissionsCostModifier" xml:space="preserve">
+    <value>AIの諜報コスト補正</value>
+  </data>
+  <data name="MiscLabelAiSpyMissionsCostModifierDh" xml:space="preserve">
+    <value>AIの諜報コスト補正</value>
+  </data>
+  <data name="MiscLabelAllowBrigadeAttachingInSupply" xml:space="preserve">
+    <value>占領地で旅団付属を許可</value>
+  </data>
+  <data name="MiscLabelAllowChangeHosHog" xml:space="preserve">
+    <value>国家元首/政府首班の交代</value>
+  </data>
+  <data name="MiscLabelAllowManualClaimsChange" xml:space="preserve">
+    <value>領有権主張の変更</value>
+  </data>
+  <data name="MiscLabelAllowProvinceRegionTargeting" xml:space="preserve">
+    <value>単一プロヴィンス/地域指定任務</value>
+  </data>
+  <data name="MiscLabelAllowUniquePicturesAllLandProvinces" xml:space="preserve">
+    <value>すべての陸地プロヴィンスに固有画像を許可</value>
+  </data>
+  <data name="MiscLabelAmbushOrgAttackerAoD" xml:space="preserve">
+    <value>待伏イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelAmbushOrgAttackerDh" xml:space="preserve">
+    <value>待伏イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelAmbushOrgDefenderAoD" xml:space="preserve">
+    <value>待伏イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelAmbushOrgDefenderDh" xml:space="preserve">
+    <value>待伏イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelAmbushStrAttackerAoD" xml:space="preserve">
+    <value>待伏イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelAmbushStrAttackerDh" xml:space="preserve">
+    <value>待伏イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelAmbushStrDefenderAoD" xml:space="preserve">
+    <value>待伏イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelAmbushStrDefenderDh" xml:space="preserve">
+    <value>待伏イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelAmphibousAssaultMission" xml:space="preserve">
+    <value>強襲上陸任務</value>
+  </data>
+  <data name="MiscLabelAmphibousAssaultStartingEfficiency" xml:space="preserve">
+    <value>強襲上陸初期効率</value>
+  </data>
+  <data name="MiscLabelAntiPartisanDutyMission" xml:space="preserve">
+    <value>パルチザン掃討任務</value>
+  </data>
+  <data name="MiscLabelAntiPartisanDutyStartingEfficiency" xml:space="preserve">
+    <value>パルチザン掃討初期効率</value>
+  </data>
+  <data name="MiscLabelAntiPartisanDutySuppression" xml:space="preserve">
+    <value>パルチザン掃討制圧力補正</value>
+  </data>
+  <data name="MiscLabelApplyRangeLimitsAreasRegions" xml:space="preserve">
+    <value>地方/地域内での距離制限適用</value>
+  </data>
+  <data name="MiscLabelArmorSoftBreakthroughMax" xml:space="preserve">
+    <value>戦車対人最大突破係数</value>
+  </data>
+  <data name="MiscLabelArmorSoftBreakthroughMin" xml:space="preserve">
+    <value>戦車対人最小突破係数</value>
+  </data>
+  <data name="MiscLabelArtilleryBombardmentOrgCost" xml:space="preserve">
+    <value>砲撃組織率減少</value>
+  </data>
+  <data name="MiscLabelArtilleryOrgDamage" xml:space="preserve">
+    <value>砲撃組織率ダメージ</value>
+  </data>
+  <data name="MiscLabelArtilleryStrDamage" xml:space="preserve">
+    <value>砲撃戦力ダメージ</value>
+  </data>
+  <data name="MiscLabelAssaultOrgAttackerAoD" xml:space="preserve">
+    <value>強襲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelAssaultOrgAttackerDh" xml:space="preserve">
+    <value>強襲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelAssaultOrgDefenderAoD" xml:space="preserve">
+    <value>強襲イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelAssaultOrgDefenderDh" xml:space="preserve">
+    <value>強襲イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelAssaultStrAttackerAoD" xml:space="preserve">
+    <value>強襲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelAssaultStrAttackerDh" xml:space="preserve">
+    <value>強襲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelAssaultStrDefenderAoD" xml:space="preserve">
+    <value>強襲イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelAssaultStrDefenderDh" xml:space="preserve">
+    <value>強襲イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelAswMission" xml:space="preserve">
+    <value>対潜作戦任務</value>
+  </data>
+  <data name="MiscLabelAswStartingEfficiency" xml:space="preserve">
+    <value>対潜作戦初期効率</value>
+  </data>
+  <data name="MiscLabelAttackMission" xml:space="preserve">
+    <value>攻撃任務</value>
+  </data>
+  <data name="MiscLabelAttackSpeedBonus" xml:space="preserve">
+    <value>攻撃速度ボーナス</value>
+  </data>
+  <data name="MiscLabelAttackStartingEfficiency" xml:space="preserve">
+    <value>攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelAttritionModifier" xml:space="preserve">
+    <value>消耗補正</value>
+  </data>
+  <data name="MiscLabelAttritionSeverityModifier" xml:space="preserve">
+    <value>消耗係数</value>
+  </data>
+  <data name="MiscLabelAutoReplyEvents" xml:space="preserve">
+    <value>イベント選択肢を委任</value>
+  </data>
+  <data name="MiscLabelAutoRetreatOrg" xml:space="preserve">
+    <value>自動撤退組織率</value>
+  </data>
+  <data name="MiscLabelAutoReturnTransportFleets" xml:space="preserve">
+    <value>輸送艦隊の自動帰還</value>
+  </data>
+  <data name="MiscLabelAutoTradeAiTradeDeals" xml:space="preserve">
+    <value>自動/AIの貿易協定最小効率</value>
+  </data>
+  <data name="MiscLabelAutoTradeConvoy" xml:space="preserve">
+    <value>自動貿易に必要な輸送船団割合</value>
+  </data>
+  <data name="MiscLabelBaseProximity" xml:space="preserve">
+    <value>基地戦闘補正</value>
+  </data>
+  <data name="MiscLabelBbMaxAttach" xml:space="preserve">
+    <value>戦艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelBcMaxAttach" xml:space="preserve">
+    <value>巡洋戦艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelBelligerenceClaimedProvince" xml:space="preserve">
+    <value>領有権主張時の好戦性上昇値</value>
+  </data>
+  <data name="MiscLabelBelligerenceClaimsRemoval" xml:space="preserve">
+    <value>領有権撤回時の好戦性減少値</value>
+  </data>
+  <data name="MiscLabelBlueprintBonus" xml:space="preserve">
+    <value>青写真ボーナス</value>
+  </data>
+  <data name="MiscLabelBluePrintsCanSoldNonAllied" xml:space="preserve">
+    <value>非同盟国に青写真を売却</value>
+  </data>
+  <data name="MiscLabelBonusDetectionFriendly" xml:space="preserve">
+    <value>友好地航空機発見ボーナス</value>
+  </data>
+  <data name="MiscLabelBonusEventTrait" xml:space="preserve">
+    <value>戦闘特性補正</value>
+  </data>
+  <data name="MiscLabelBonusLeaderSkillPointAir" xml:space="preserve">
+    <value>空軍指揮官スキル補正</value>
+  </data>
+  <data name="MiscLabelBonusLeaderSkillPointLand" xml:space="preserve">
+    <value>陸軍指揮官スキル補正</value>
+  </data>
+  <data name="MiscLabelBonusLeaderSkillPointNaval" xml:space="preserve">
+    <value>海軍指揮官スキル補正</value>
+  </data>
+  <data name="MiscLabelBonusSimilarTerrainTrait" xml:space="preserve">
+    <value>類似地形特性補正</value>
+  </data>
+  <data name="MiscLabelBonusTerrainTrait" xml:space="preserve">
+    <value>地形特性補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughEncirclementChanceModifier" xml:space="preserve">
+    <value>突破/包囲確率補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughEncirclementMaxChance" xml:space="preserve">
+    <value>突破/包囲最大確率</value>
+  </data>
+  <data name="MiscLabelBreakthroughEncirclementMinSpeed" xml:space="preserve">
+    <value>突破/包囲最小速度</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgAttackerAoD" xml:space="preserve">
+    <value>突破イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgAttackerDh" xml:space="preserve">
+    <value>突破イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgDefenderAoD" xml:space="preserve">
+    <value>突破イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgDefenderDh" xml:space="preserve">
+    <value>突破イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrAttackerAoD" xml:space="preserve">
+    <value>突破イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrAttackerDh" xml:space="preserve">
+    <value>突破イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrDefenderAoD" xml:space="preserve">
+    <value>突破イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrDefenderDh" xml:space="preserve">
+    <value>突破イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelBuildingsBuildableOnlyProvinces" xml:space="preserve">
+    <value>建物をプロヴィンスでのみ建造</value>
+  </data>
+  <data name="MiscLabelBuildingsProductionModifier" xml:space="preserve">
+    <value>建造物生産補正</value>
+  </data>
+  <data name="MiscLabelCaMaxAttach" xml:space="preserve">
+    <value>重巡洋艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelCancelTradeDealsEffectiveness" xml:space="preserve">
+    <value>貿易協定破棄効率</value>
+  </data>
+  <data name="MiscLabelCanChangeIdeas" xml:space="preserve">
+    <value>プレイヤーの国策変更を許可</value>
+  </data>
+  <data name="MiscLabelCanUnitSendNonAllied" xml:space="preserve">
+    <value>非同盟国に師団を売却</value>
+  </data>
+  <data name="MiscLabelCanUnitSendNonAlliedDh" xml:space="preserve">
+    <value>非同盟国に師団を売却</value>
+  </data>
+  <data name="MiscLabelChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>基本回避率(防御回数あり)</value>
+  </data>
+  <data name="MiscLabelChanceAvoidNoDefences" xml:space="preserve">
+    <value>基本回避率(防御回数なし)</value>
+  </data>
+  <data name="MiscLabelChanceDetectSpyMission" xml:space="preserve">
+    <value>国内の諜報活動を発見する確率</value>
+  </data>
+  <data name="MiscLabelChanceDetectSpyMissionDh" xml:space="preserve">
+    <value>国内の諜報活動を発見する確率</value>
+  </data>
+  <data name="MiscLabelChanceGetEventTrait" xml:space="preserve">
+    <value>戦闘特性獲得可能性</value>
+  </data>
+  <data name="MiscLabelChanceGetTerrainTrait" xml:space="preserve">
+    <value>地形特性獲得可能性</value>
+  </data>
+  <data name="MiscLabelChanceLeaderDying" xml:space="preserve">
+    <value>指揮官死亡確率</value>
+  </data>
+  <data name="MiscLabelChanceTargetNoOrgLand" xml:space="preserve">
+    <value>陸軍組織率不足ユニット標的確率</value>
+  </data>
+  <data name="MiscLabelChangeIdeaDissent" xml:space="preserve">
+    <value>国策変更時の不満度上昇量</value>
+  </data>
+  <data name="MiscLabelChangeMinisterDissent" xml:space="preserve">
+    <value>閣僚変更時の不満度上昇量</value>
+  </data>
+  <data name="MiscLabelChangeTagCoup" xml:space="preserve">
+    <value>クーデター発生時に兄弟国へ変更</value>
+  </data>
+  <data name="MiscLabelClEscortsConversionRatio" xml:space="preserve">
+    <value>軽巡洋艦の護衛船団への変換比率</value>
+  </data>
+  <data name="MiscLabelClMaxAttach" xml:space="preserve">
+    <value>軽巡洋艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelCoastalFortEfficiency" xml:space="preserve">
+    <value>沿岸要塞効率</value>
+  </data>
+  <data name="MiscLabelCoastalFortMultiplier" xml:space="preserve">
+    <value>沿岸要塞攻撃ペナルティ</value>
+  </data>
+  <data name="MiscLabelCombatEnd" xml:space="preserve">
+    <value>戦闘項目の終端</value>
+  </data>
+  <data name="MiscLabelCombatEventChances" xml:space="preserve">
+    <value>コンバットイベント発生確率</value>
+  </data>
+  <data name="MiscLabelCombatEventDuration" xml:space="preserve">
+    <value>コンバットイベント継続時間</value>
+  </data>
+  <data name="MiscLabelCombatMode" xml:space="preserve">
+    <value>戦闘モード</value>
+  </data>
+  <data name="MiscLabelConvoyAirRaidingMission" xml:space="preserve">
+    <value>航空船団爆撃任務</value>
+  </data>
+  <data name="MiscLabelConvoyAirRaidingStartingEfficiency" xml:space="preserve">
+    <value>航空船団爆撃初期効率</value>
+  </data>
+  <data name="MiscLabelConvoyDefenseEfficiency" xml:space="preserve">
+    <value>船団防衛効率</value>
+  </data>
+  <data name="MiscLabelConvoyDutyConversion" xml:space="preserve">
+    <value>輸送船団変換係数</value>
+  </data>
+  <data name="MiscLabelConvoyEscortsModel" xml:space="preserve">
+    <value>輸送船団護衛モデル</value>
+  </data>
+  <data name="MiscLabelConvoyInterceptionMissions" xml:space="preserve">
+    <value>海上任務中の船団妨害</value>
+  </data>
+  <data name="MiscLabelConvoyProtectionFactor" xml:space="preserve">
+    <value>輸送船団護衛係数</value>
+  </data>
+  <data name="MiscLabelConvoyProvinceBlockedTime" xml:space="preserve">
+    <value>船団攻撃妨害時間</value>
+  </data>
+  <data name="MiscLabelConvoyProvinceHostileTime" xml:space="preserve">
+    <value>船団攻撃回避時間</value>
+  </data>
+  <data name="MiscLabelConvoyRadingChanceDetected" xml:space="preserve">
+    <value>船団襲撃被発見確率</value>
+  </data>
+  <data name="MiscLabelConvoyRadingMission" xml:space="preserve">
+    <value>船団襲撃任務</value>
+  </data>
+  <data name="MiscLabelConvoyRadingRangeModifier" xml:space="preserve">
+    <value>船団襲撃航続距離補正</value>
+  </data>
+  <data name="MiscLabelConvoyRadingStartingEfficiency" xml:space="preserve">
+    <value>船団襲撃初期効率</value>
+  </data>
+  <data name="MiscLabelConvoysProductionModifier" xml:space="preserve">
+    <value>輸送船団生産補正</value>
+  </data>
+  <data name="MiscLabelConvoySystemOptionsAllied" xml:space="preserve">
+    <value>同盟国に対する船団システム</value>
+  </data>
+  <data name="MiscLabelConvoyTransportsCapacity" xml:space="preserve">
+    <value>船団輸送能力</value>
+  </data>
+  <data name="MiscLabelCoreProvinceEfficiencyRiseTime" xml:space="preserve">
+    <value>中核プロヴィンス効率上昇時間</value>
+  </data>
+  <data name="MiscLabelCostRepairBuildings" xml:space="preserve">
+    <value>建物修復コスト補正</value>
+  </data>
+  <data name="MiscLabelCostSkillLevel" xml:space="preserve">
+    <value>研究機関レベル毎のコスト</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgAttackerAoD" xml:space="preserve">
+    <value>反撃イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgAttackerDh" xml:space="preserve">
+    <value>反撃イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgDefenderAoD" xml:space="preserve">
+    <value>反撃イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgDefenderDh" xml:space="preserve">
+    <value>反撃イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrAttackerAoD" xml:space="preserve">
+    <value>反撃イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrAttackerDh" xml:space="preserve">
+    <value>反撃イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrDefenderAoD" xml:space="preserve">
+    <value>反撃イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrDefenderDh" xml:space="preserve">
+    <value>反撃イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelCountryEnd" xml:space="preserve">
+    <value>国家項目の終端</value>
+  </data>
+  <data name="MiscLabelCountryLogger" xml:space="preserve">
+    <value>国家情報をログに記録</value>
+  </data>
+  <data name="MiscLabelCriticalOilStockpile" xml:space="preserve">
+    <value>危険水準石油備蓄</value>
+  </data>
+  <data name="MiscLabelCriticalResourceStockpile" xml:space="preserve">
+    <value>危険水準資源備蓄</value>
+  </data>
+  <data name="MiscLabelCriticalSuppliesStockpile" xml:space="preserve">
+    <value>危険水準物資備蓄</value>
+  </data>
+  <data name="MiscLabelCvlEscortsConversionRatio" xml:space="preserve">
+    <value>軽空母の護衛船団への変換比率</value>
+  </data>
+  <data name="MiscLabelCvlMaxAttach" xml:space="preserve">
+    <value>軽空母最大付属装備数</value>
+  </data>
+  <data name="MiscLabelCvMaxAttach" xml:space="preserve">
+    <value>空母最大付属装備数</value>
+  </data>
+  <data name="MiscLabelDailyAgingManpower" xml:space="preserve">
+    <value>人的資源老化補正</value>
+  </data>
+  <data name="MiscLabelDailyRetiredManpower" xml:space="preserve">
+    <value>人的資源の老化率</value>
+  </data>
+  <data name="MiscLabelDamageAaBombing" xml:space="preserve">
+    <value>対空砲戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageAirBaseBombing" xml:space="preserve">
+    <value>空軍基地戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageIcBombing" xml:space="preserve">
+    <value>IC戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageInfraBombing" xml:space="preserve">
+    <value>インフラ戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageNavalBasesBombing" xml:space="preserve">
+    <value>海軍基地戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageNukeBombing" xml:space="preserve">
+    <value>原子炉戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageRadarBombing" xml:space="preserve">
+    <value>レーダー戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageResourcesBombing" xml:space="preserve">
+    <value>資源戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageRocketBombing" xml:space="preserve">
+    <value>ロケット試験場戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDamageSyntheticOilBombing" xml:space="preserve">
+    <value>合成石油工場戦略爆撃係数</value>
+  </data>
+  <data name="MiscLabelDaysBetweenDiplomaticMissions" xml:space="preserve">
+    <value>外交官派遣間隔</value>
+  </data>
+  <data name="MiscLabelDaysDeliverResourcesTrades" xml:space="preserve">
+    <value>貿易協定資源輸送日数</value>
+  </data>
+  <data name="MiscLabelDaysOffensiveSupply" xml:space="preserve">
+    <value>攻勢継続日数</value>
+  </data>
+  <data name="MiscLabelDaysTradeOffers" xml:space="preserve">
+    <value>貿易交渉間隔</value>
+  </data>
+  <data name="MiscLabelDdEscortsConversionRatio" xml:space="preserve">
+    <value>駆逐艦の護衛船団への変換比率</value>
+  </data>
+  <data name="MiscLabelDdMaxAttach" xml:space="preserve">
+    <value>駆逐艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelDefaultAirStack" xml:space="preserve">
+    <value>空軍デフォルトスタック数</value>
+  </data>
+  <data name="MiscLabelDefaultLandStack" xml:space="preserve">
+    <value>陸軍デフォルトスタック数</value>
+  </data>
+  <data name="MiscLabelDefaultNavalStack" xml:space="preserve">
+    <value>海軍デフォルトスタック数</value>
+  </data>
+  <data name="MiscLabelDefaultRocketStack" xml:space="preserve">
+    <value>ロケットデフォルトスタック数</value>
+  </data>
+  <data name="MiscLabelDefaultSpeedFuel" xml:space="preserve">
+    <value>燃料切れ時デフォルト移動速度</value>
+  </data>
+  <data name="MiscLabelDefensiveCombinedArmsBonus" xml:space="preserve">
+    <value>防御側諸兵科連合ボーナス</value>
+  </data>
+  <data name="MiscLabelDelayAfterCombatEnds" xml:space="preserve">
+    <value>戦闘後命令遅延時間</value>
+  </data>
+  <data name="MiscLabelDelayGameStartNewTrades" xml:space="preserve">
+    <value>ゲーム開始直後の貿易交渉遅延日数</value>
+  </data>
+  <data name="MiscLabelDelayOrgAttackerAoD" xml:space="preserve">
+    <value>遅延イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelDelayOrgAttackerDh" xml:space="preserve">
+    <value>遅延イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelDelayOrgDefenderAoD" xml:space="preserve">
+    <value>遅延イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelDelayOrgDefenderDh" xml:space="preserve">
+    <value>遅延イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelDelayStrAttackerAoD" xml:space="preserve">
+    <value>遅延イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelDelayStrAttackerDh" xml:space="preserve">
+    <value>遅延イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelDelayStrDefenderAoD" xml:space="preserve">
+    <value>遅延イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelDelayStrDefenderDh" xml:space="preserve">
+    <value>遅延イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelDesiredOilStockpile" xml:space="preserve">
+    <value>理想石油備蓄</value>
+  </data>
+  <data name="MiscLabelDesiredResourcesStockpile" xml:space="preserve">
+    <value>理想資源備蓄</value>
+  </data>
+  <data name="MiscLabelDesiredStockPilesSuppliesOil" xml:space="preserve">
+    <value>理想物資/燃料備蓄比率</value>
+  </data>
+  <data name="MiscLabelDesiredSuppliesStockpile" xml:space="preserve">
+    <value>理想物資備蓄</value>
+  </data>
+  <data name="MiscLabelDigIncreaseDay" xml:space="preserve">
+    <value>1日の塹壕増加量</value>
+  </data>
+  <data name="MiscLabelDiplomacyEnd" xml:space="preserve">
+    <value>外交項目の終端</value>
+  </data>
+  <data name="MiscLabelDissentChangeSpeed" xml:space="preserve">
+    <value>不満度変化速度</value>
+  </data>
+  <data name="MiscLabelDissentMultiplier" xml:space="preserve">
+    <value>国民不満度ペナルティ</value>
+  </data>
+  <data name="MiscLabelDissentNukes" xml:space="preserve">
+    <value>中核州核攻撃時の不満度上昇係数</value>
+  </data>
+  <data name="MiscLabelDissentReduction" xml:space="preserve">
+    <value>不満度低下補正</value>
+  </data>
+  <data name="MiscLabelDissentRevoltMultiplier" xml:space="preserve">
+    <value>不満度による反乱軍発生率係数</value>
+  </data>
+  <data name="MiscLabelDistanceCalculationModel" xml:space="preserve">
+    <value>距離算出方法</value>
+  </data>
+  <data name="MiscLabelDistanceModifier" xml:space="preserve">
+    <value>諜報任務の距離補正</value>
+  </data>
+  <data name="MiscLabelDistanceModifierNeighbours" xml:space="preserve">
+    <value>諜報任務の近隣国補正</value>
+  </data>
+  <data name="MiscLabelDistanceModifierNeighboursDh" xml:space="preserve">
+    <value>諜報任務の近隣国補正</value>
+  </data>
+  <data name="MiscLabelDivisionXpGainFactor" xml:space="preserve">
+    <value>師団経験値入手係数</value>
+  </data>
+  <data name="MiscLabelDurationAirToAirBattles" xml:space="preserve">
+    <value>空戦最小戦闘時間</value>
+  </data>
+  <data name="MiscLabelDurationDetection" xml:space="preserve">
+    <value>海軍情報の存続期間</value>
+  </data>
+  <data name="MiscLabelDurationGroundAttackBombing" xml:space="preserve">
+    <value>地上爆撃最小戦闘時間</value>
+  </data>
+  <data name="MiscLabelDurationNavalPortBombing" xml:space="preserve">
+    <value>港湾攻撃最小戦闘時間</value>
+  </data>
+  <data name="MiscLabelDurationStrategicBombing" xml:space="preserve">
+    <value>戦略爆撃最小戦闘時間</value>
+  </data>
+  <data name="MiscLabelEconomyEnd" xml:space="preserve">
+    <value>経済項目の終端</value>
+  </data>
+  <data name="MiscLabelEffectExperienceCombat" xml:space="preserve">
+    <value>経験値補正</value>
+  </data>
+  <data name="MiscLabelEnableDicisionsPlayers" xml:space="preserve">
+    <value>ディシジョンを使用する</value>
+  </data>
+  <data name="MiscLabelEnablePicturesNavalBrigades" xml:space="preserve">
+    <value>艦艇付属装備に画像を使用</value>
+  </data>
+  <data name="MiscLabelEnableRetirementYearLeaders" xml:space="preserve">
+    <value>指揮官引退年を使用</value>
+  </data>
+  <data name="MiscLabelEnableRetirementYearMinisters" xml:space="preserve">
+    <value>閣僚引退年を使用</value>
+  </data>
+  <data name="MiscLabelEncircledModifier" xml:space="preserve">
+    <value>包囲攻撃ペナルティ</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgAttackerAoD" xml:space="preserve">
+    <value>包囲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgAttackerDh" xml:space="preserve">
+    <value>包囲イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgDefenderAoD" xml:space="preserve">
+    <value>包囲イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgDefenderDh" xml:space="preserve">
+    <value>包囲イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelEncirclementStrAttackerAoD" xml:space="preserve">
+    <value>包囲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelEncirclementStrAttackerDh" xml:space="preserve">
+    <value>包囲イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelEncirclementStrDefenderAoD" xml:space="preserve">
+    <value>包囲イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelEncirclementStrDefenderDh" xml:space="preserve">
+    <value>包囲イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelEnemyArmyDetectionChance" xml:space="preserve">
+    <value>敵軍発見確率</value>
+  </data>
+  <data name="MiscLabelEnemyIntelligenceChance" xml:space="preserve">
+    <value>敵国諜報確率</value>
+  </data>
+  <data name="MiscLabelEnergyToOil" xml:space="preserve">
+    <value>エネルギー/石油変換効率</value>
+  </data>
+  <data name="MiscLabelEnvelopmentModifier" xml:space="preserve">
+    <value>多方面攻撃補正</value>
+  </data>
+  <data name="MiscLabelEscortDutyConversion" xml:space="preserve">
+    <value>護衛船団変換係数</value>
+  </data>
+  <data name="MiscLabelExtraCostIncreasingAboveTen" xml:space="preserve">
+    <value>諜報レベル10超過時増加コスト</value>
+  </data>
+  <data name="MiscLabelExtraImportBelowDesired" xml:space="preserve">
+    <value>理想備蓄未到達時の臨時輸入割合</value>
+  </data>
+  <data name="MiscLabelExtraImportStockpileSelected" xml:space="preserve">
+    <value>備蓄選択時の臨時輸入割合</value>
+  </data>
+  <data name="MiscLabelExtraMaintenanceCostAboveTen" xml:space="preserve">
+    <value>諜報レベル10超過時追加維持コスト</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusAirNavalBases" xml:space="preserve">
+    <value>パルチザンボーナス(航空/海軍基地)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusDesert" xml:space="preserve">
+    <value>パルチザンボーナス(砂漠)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusForest" xml:space="preserve">
+    <value>パルチザンボーナス(森林)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusHill" xml:space="preserve">
+    <value>パルチザンボーナス(丘陵)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusJungle" xml:space="preserve">
+    <value>パルチザンボーナス(密林)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusMountain" xml:space="preserve">
+    <value>パルチザンボーナス(山岳)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusNeighboringProvince" xml:space="preserve">
+    <value>パルチザンボーナス(隣接地占領)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusOccupied" xml:space="preserve">
+    <value>パルチザンボーナス(占領地)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusPlain" xml:space="preserve">
+    <value>パルチザンボーナス(平地)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusSwamp" xml:space="preserve">
+    <value>パルチザンボーナス(湿地)</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusUrban" xml:space="preserve">
+    <value>パルチザンボーナス(都市)</value>
+  </data>
+  <data name="MiscLabelFilterReleaseCountries" xml:space="preserve">
+    <value>独立可能国設定</value>
+  </data>
+  <data name="MiscLabelFleetPositioningDaytime" xml:space="preserve">
+    <value>海戦ポジション値日中ボーナス</value>
+  </data>
+  <data name="MiscLabelFleetPositioningFleetComposition" xml:space="preserve">
+    <value>海戦ポジション値艦隊構成補正</value>
+  </data>
+  <data name="MiscLabelFleetPositioningFleetSize" xml:space="preserve">
+    <value>海戦ポジション値艦隊規模補正</value>
+  </data>
+  <data name="MiscLabelFleetPositioningLeaderSkill" xml:space="preserve">
+    <value>海戦ポジション値スキル補正</value>
+  </data>
+  <data name="MiscLabelFleetSizeRangePenaltyMax" xml:space="preserve">
+    <value>艦隊規模航続距離ペナルティ上限</value>
+  </data>
+  <data name="MiscLabelFleetSizeRangePenaltyRatio" xml:space="preserve">
+    <value>艦隊規模航続距離ペナルティ割合</value>
+  </data>
+  <data name="MiscLabelFleetSizeRangePenaltyThrethold" xml:space="preserve">
+    <value>艦隊規模航続距離ペナルティ閾値</value>
+  </data>
+  <data name="MiscLabelForceActionsShow" xml:space="preserve">
+    <value>イベント選択肢強制表示</value>
+  </data>
+  <data name="MiscLabelForcePuppetsJoinMastersAllianceNeutrality" xml:space="preserve">
+    <value>傀儡国が宗主国の同盟に強制加入する中立性</value>
+  </data>
+  <data name="MiscLabelForceStrategicRedeploymentHour" xml:space="preserve">
+    <value>強制戦略的再配置時間</value>
+  </data>
+  <data name="MiscLabelFortDamageArtilleryBombardment" xml:space="preserve">
+    <value>要塞砲撃ダメージ補正</value>
+  </data>
+  <data name="MiscLabelFreeInfraRepair" xml:space="preserve">
+    <value>インフラの自然回復率</value>
+  </data>
+  <data name="MiscLabelFriendlyArmyDetectionChance" xml:space="preserve">
+    <value>友軍発見確率</value>
+  </data>
+  <data name="MiscLabelFriendlyIntelligenceChance" xml:space="preserve">
+    <value>友好国諜報確率</value>
+  </data>
+  <data name="MiscLabelFuelAirBattle" xml:space="preserve">
+    <value>空軍の戦闘時燃料使用量補正</value>
+  </data>
+  <data name="MiscLabelFuelAirNavalStatic" xml:space="preserve">
+    <value>空軍/海軍の待機時燃料使用量補正</value>
+  </data>
+  <data name="MiscLabelFuelLandBattle" xml:space="preserve">
+    <value>陸軍の戦闘時燃料使用量補正</value>
+  </data>
+  <data name="MiscLabelFuelLandStatic" xml:space="preserve">
+    <value>陸軍の待機時燃料使用量補正</value>
+  </data>
+  <data name="MiscLabelFuelNavalBattle" xml:space="preserve">
+    <value>海軍の戦闘時燃料使用量補正</value>
+  </data>
+  <data name="MiscLabelFuelNavalNotMoving" xml:space="preserve">
+    <value>海軍の非移動時燃料使用量補正</value>
+  </data>
+  <data name="MiscLabelFuelProblemsModifierAir" xml:space="preserve">
+    <value>空軍燃料不足ペナルティ</value>
+  </data>
+  <data name="MiscLabelFuelProblemsModifierLand" xml:space="preserve">
+    <value>陸軍燃料不足ペナルティ</value>
+  </data>
+  <data name="MiscLabelFuelProblemsModifierNaval" xml:space="preserve">
+    <value>海軍燃料不足ペナルティ</value>
+  </data>
+  <data name="MiscLabelGearingBonusIncrement" xml:space="preserve">
+    <value>ギアリングボーナスの増加値</value>
+  </data>
+  <data name="MiscLabelGearingBonusLossUpgradeBrigade" xml:space="preserve">
+    <value>旅団改良時のギアリングボーナス減少比率</value>
+  </data>
+  <data name="MiscLabelGearingBonusLossUpgradeUnit" xml:space="preserve">
+    <value>ユニット改良時のギアリングボーナス減少比率</value>
+  </data>
+  <data name="MiscLabelGearingLossNoIc" xml:space="preserve">
+    <value>IC不足時のギアリングボーナス減少値</value>
+  </data>
+  <data name="MiscLabelGearingResourceIncrement" xml:space="preserve">
+    <value>連続生産時の資源消費増加</value>
+  </data>
+  <data name="MiscLabelGroundAttackMission" xml:space="preserve">
+    <value>地上攻撃任務</value>
+  </data>
+  <data name="MiscLabelGroundAttackOrgDamage" xml:space="preserve">
+    <value>地上攻撃組織率ダメージ補正</value>
+  </data>
+  <data name="MiscLabelGroundAttackStartingEfficiency" xml:space="preserve">
+    <value>地上攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelGroundAttackStrDamage" xml:space="preserve">
+    <value>地上攻撃戦力ダメージ補正</value>
+  </data>
+  <data name="MiscLabelGroundDefenseEfficiency" xml:space="preserve">
+    <value>対地防御効率</value>
+  </data>
+  <data name="MiscLabelHardAttackOrgDamage" xml:space="preserve">
+    <value>装甲ユニット組織率ダメージ補正</value>
+  </data>
+  <data name="MiscLabelHardAttackStrDamage" xml:space="preserve">
+    <value>装甲ユニット戦力ダメージ補正</value>
+  </data>
+  <data name="MiscLabelHardUnitsAttackingUrbanPenalty" xml:space="preserve">
+    <value>装甲ユニットの都市攻撃ペナルティ</value>
+  </data>
+  <data name="MiscLabelHowEffectiveGroundDef" xml:space="preserve">
+    <value>対地防御効率補正</value>
+  </data>
+  <data name="MiscLabelHqCombatEventsBonus" xml:space="preserve">
+    <value>司令部コンバットイベントボーナス</value>
+  </data>
+  <data name="MiscLabelHqCommandLimitFactor" xml:space="preserve">
+    <value>司令部指揮上限係数</value>
+  </data>
+  <data name="MiscLabelHqStrDamageBreakthrough" xml:space="preserve">
+    <value>司令部は突破イベント時のみ戦力ダメージ</value>
+  </data>
+  <data name="MiscLabelHqSupplyEfficiencyBonus" xml:space="preserve">
+    <value>司令部補給効率ボーナス</value>
+  </data>
+  <data name="MiscLabelIcConcentrationBonus" xml:space="preserve">
+    <value>工場集中ボーナス</value>
+  </data>
+  <data name="MiscLabelIcDamageArtilleryBombardment" xml:space="preserve">
+    <value>砲撃ダメージ補正(IC)</value>
+  </data>
+  <data name="MiscLabelIcModifierCost" xml:space="preserve">
+    <value>諜報コストのIC補正</value>
+  </data>
+  <data name="MiscLabelIcMultiplierNonNational" xml:space="preserve">
+    <value>非中核州のIC補正</value>
+  </data>
+  <data name="MiscLabelIcMultiplierNonOwned" xml:space="preserve">
+    <value>占領地のIC補正</value>
+  </data>
+  <data name="MiscLabelIcMultiplierPuppet" xml:space="preserve">
+    <value>属国のIC補正</value>
+  </data>
+  <data name="MiscLabelIcToConsumerGoodsRatio" xml:space="preserve">
+    <value>ICから消費財への変換効率</value>
+  </data>
+  <data name="MiscLabelIcToMoneyRatio" xml:space="preserve">
+    <value>ICから資金への変換効率</value>
+  </data>
+  <data name="MiscLabelIcToSuppliesRatio" xml:space="preserve">
+    <value>ICから物資への変換効率</value>
+  </data>
+  <data name="MiscLabelIcToTcRatio" xml:space="preserve">
+    <value>ICからTCへの変換効率</value>
+  </data>
+  <data name="MiscLabelIdeaChangeDelay" xml:space="preserve">
+    <value>国策変更遅延日数</value>
+  </data>
+  <data name="MiscLabelIdeaChangeEventDelay" xml:space="preserve">
+    <value>国策変更遅延日数(イベント)</value>
+  </data>
+  <data name="MiscLabelIncreateIntelligenceLevelDays" xml:space="preserve">
+    <value>諜報レベルの増加間隔</value>
+  </data>
+  <data name="MiscLabelIncreateIntelligenceLevelDaysDh" xml:space="preserve">
+    <value>諜報レベルの増加間隔</value>
+  </data>
+  <data name="MiscLabelInfraDamageArtilleryBombardment" xml:space="preserve">
+    <value>砲撃ダメージ補正(インフラ)</value>
+  </data>
+  <data name="MiscLabelInfraEfficiencyModifier" xml:space="preserve">
+    <value>インフラによるプロヴィンス効率補正</value>
+  </data>
+  <data name="MiscLabelInGameLossesLogging" xml:space="preserve">
+    <value>損失を記録</value>
+  </data>
+  <data name="MiscLabelInGameLossLogging2" xml:space="preserve">
+    <value>損失を記録</value>
+  </data>
+  <data name="MiscLabelInstallationStrikeMission" xml:space="preserve">
+    <value>軍事施設攻撃任務</value>
+  </data>
+  <data name="MiscLabelInstallationStrikeStartingEfficiency" xml:space="preserve">
+    <value>軍事施設攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelIntelligenceEnd" xml:space="preserve">
+    <value>諜報項目の終端</value>
+  </data>
+  <data name="MiscLabelInterceptorBomberModifier" xml:space="preserve">
+    <value>爆撃機迎撃ボーナス</value>
+  </data>
+  <data name="MiscLabelInterdictionMission" xml:space="preserve">
+    <value>阻止攻撃任務</value>
+  </data>
+  <data name="MiscLabelInterdictionOrgDamage" xml:space="preserve">
+    <value>阻止攻撃組織率ダメージ補正</value>
+  </data>
+  <data name="MiscLabelInterdictionStartingEfficiency" xml:space="preserve">
+    <value>阻止攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelInterdictionStrDamage" xml:space="preserve">
+    <value>阻止攻撃戦力ダメージ補正</value>
+  </data>
+  <data name="MiscLabelInvasionModifier" xml:space="preserve">
+    <value>強襲上陸ペナルティ</value>
+  </data>
+  <data name="MiscLabelJoinAutomaticallyAllesAxis" xml:space="preserve">
+    <value>宣戦布告された時に対抗陣営へ自動加盟</value>
+  </data>
+  <data name="MiscLabelLandAirSpeedModifierFuel" xml:space="preserve">
+    <value>燃料切れ時陸軍/空軍移動速度補正</value>
+  </data>
+  <data name="MiscLabelLandChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>陸軍基本回避率(防御回数あり)</value>
+  </data>
+  <data name="MiscLabelLandChanceAvoidNoDefences" xml:space="preserve">
+    <value>陸軍基本回避率(防御回数なし)</value>
+  </data>
+  <data name="MiscLabelLandCoastalFortsDamage" xml:space="preserve">
+    <value>要塞被ダメージ補正</value>
+  </data>
+  <data name="MiscLabelLandCoastalFortsMaxDamage" xml:space="preserve">
+    <value>要塞最大被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandCommandLimitModifier" xml:space="preserve">
+    <value>陸軍指揮上限ペナルティ</value>
+  </data>
+  <data name="MiscLabelLandDamageArtilleryBombardment" xml:space="preserve">
+    <value>砲撃ダメージ補正(陸上部隊)</value>
+  </data>
+  <data name="MiscLabelLandDamageFort" xml:space="preserve">
+    <value>陸軍対要塞ダメージ係数</value>
+  </data>
+  <data name="MiscLabelLandDelayBeforeOrders" xml:space="preserve">
+    <value>陸軍命令遅延時間</value>
+  </data>
+  <data name="MiscLabelLandFortDamage" xml:space="preserve">
+    <value>要塞ダメージ補正</value>
+  </data>
+  <data name="MiscLabelLandFortEfficiency" xml:space="preserve">
+    <value>陸上要塞効率</value>
+  </data>
+  <data name="MiscLabelLandFortMultiplier" xml:space="preserve">
+    <value>要塞攻撃ペナルティ</value>
+  </data>
+  <data name="MiscLabelLandFriendlyOrgGain" xml:space="preserve">
+    <value>陸軍友好地組織率補正</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank0" xml:space="preserve">
+    <value>陸軍元帥指揮上限</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank1" xml:space="preserve">
+    <value>陸軍大将指揮上限</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank2" xml:space="preserve">
+    <value>陸軍中将指揮上限</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank3" xml:space="preserve">
+    <value>陸軍少将指揮上限</value>
+  </data>
+  <data name="MiscLabelLandMinCombatTime" xml:space="preserve">
+    <value>陸軍最小戦闘時間</value>
+  </data>
+  <data name="MiscLabelLandMinOrgDamage" xml:space="preserve">
+    <value>陸軍最小組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandMinStrDamage" xml:space="preserve">
+    <value>陸軍最小戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageAirAoD" xml:space="preserve">
+    <value>陸軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageAirDh" xml:space="preserve">
+    <value>陸軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageHardSoftEach" xml:space="preserve">
+    <value>陸軍組織率被ダメージ(装甲/非装甲同士)</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageHardVsSoft" xml:space="preserve">
+    <value>陸軍組織率被ダメージ(装甲対非装甲)</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLand" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLandFort" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ(要塞)</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLandOrg" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ(組織率)</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLandUrban" xml:space="preserve">
+    <value>陸軍対陸軍組織率被ダメージ(都市)</value>
+  </data>
+  <data name="MiscLabelLandOrgGain" xml:space="preserve">
+    <value>陸軍組織率補正</value>
+  </data>
+  <data name="MiscLabelLandOrgLossMoving" xml:space="preserve">
+    <value>陸軍移動時組織率減少係数</value>
+  </data>
+  <data name="MiscLabelLandOrgNavalTransportation" xml:space="preserve">
+    <value>陸軍海上輸送後組織率補正</value>
+  </data>
+  <data name="MiscLabelLandOverstackingModifier" xml:space="preserve">
+    <value>陸軍スタックペナルティ</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierBombardment" xml:space="preserve">
+    <value>沿岸砲撃時陸軍移動速度補正</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierCombat" xml:space="preserve">
+    <value>戦闘時陸軍移動速度補正</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierOrg" xml:space="preserve">
+    <value>組織率低下時陸軍移動速度補正</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierSupply" xml:space="preserve">
+    <value>物資切れ時陸軍移動速度補正</value>
+  </data>
+  <data name="MiscLabelLandStrDamageAirAoD" xml:space="preserve">
+    <value>陸軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandStrDamageAirDh" xml:space="preserve">
+    <value>陸軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandStrDamageHardSoftEach" xml:space="preserve">
+    <value>陸軍戦力被ダメージ(装甲/非装甲同士)</value>
+  </data>
+  <data name="MiscLabelLandStrDamageHardVsSoft" xml:space="preserve">
+    <value>陸軍戦力被ダメージ(装甲対非装甲)</value>
+  </data>
+  <data name="MiscLabelLandStrDamageLandAoD" xml:space="preserve">
+    <value>陸軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandStrDamageLandDh" xml:space="preserve">
+    <value>陸軍対陸軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelLandSurpriseChance" xml:space="preserve">
+    <value>陸軍奇襲確率</value>
+  </data>
+  <data name="MiscLabelLandXpGainFactor" xml:space="preserve">
+    <value>陸軍経験値入手係数</value>
+  </data>
+  <data name="MiscLabelLeaderChangeDelay" xml:space="preserve">
+    <value>指揮官変更遅延日数</value>
+  </data>
+  <data name="MiscLabelLeaderXpGainFactor" xml:space="preserve">
+    <value>指揮官経験値入手係数</value>
+  </data>
+  <data name="MiscLabelLimitAiNewTradesGameStart" xml:space="preserve">
+    <value>ゲーム開始直後のAI友好国貿易交渉遅延日数</value>
+  </data>
+  <data name="MiscLabelLineStartupTime" xml:space="preserve">
+    <value>ライン開始時間</value>
+  </data>
+  <data name="MiscLabelLineUpgradeTime" xml:space="preserve">
+    <value>ライン改良時間</value>
+  </data>
+  <data name="MiscLabelLineUpkeep" xml:space="preserve">
+    <value>ライン維持コスト補正</value>
+  </data>
+  <data name="MiscLabelLoadAiFilesModdirOnly" xml:space="preserve">
+    <value>AIファイルをMODDIRのみから読み込む</value>
+  </data>
+  <data name="MiscLabelLoadNewAiSwitchingAllClients" xml:space="preserve">
+    <value>マルチプレイでAI切替時に新しい設定を読み込む</value>
+  </data>
+  <data name="MiscLabelLoadSpritesModdirOnly" xml:space="preserve">
+    <value>スプライトをMODDIRのみから読み込む</value>
+  </data>
+  <data name="MiscLabelLoadUnitIconsModdirOnly" xml:space="preserve">
+    <value>ユニットアイコンをMODDIRのみから読み込む</value>
+  </data>
+  <data name="MiscLabelLoadUnitPicturesModdirOnly" xml:space="preserve">
+    <value>ユニット画像をMODDIRのみから読み込む</value>
+  </data>
+  <data name="MiscLabelLogisticalStrikeMission" xml:space="preserve">
+    <value>兵站攻撃任務</value>
+  </data>
+  <data name="MiscLabelLogisticalStrikeStartingEfficiency" xml:space="preserve">
+    <value>兵站攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelLogisticsWizardEseBonus" xml:space="preserve">
+    <value>兵站管理の補給効率ボーナス</value>
+  </data>
+  <data name="MiscLabelManpowerBoost" xml:space="preserve">
+    <value>人的資源増加</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierColony" xml:space="preserve">
+    <value>海外州の人的資源補正</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierNational" xml:space="preserve">
+    <value>中核州の人的資源補正</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierNonNational" xml:space="preserve">
+    <value>非中核州の人的資源補正</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierPeacetime" xml:space="preserve">
+    <value>平時の人的資源補正</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierPuppet" xml:space="preserve">
+    <value>属国の人的資源補正</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierWartime" xml:space="preserve">
+    <value>戦時の人的資源補正</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierWartimeOversea" xml:space="preserve">
+    <value>戦時の海外州の人的資源補正</value>
+  </data>
+  <data name="MiscLabelManpowerToConsumerGoods" xml:space="preserve">
+    <value>人的資源の消費財生産補正</value>
+  </data>
+  <data name="MiscLabelManpowerTrickleBackModifier" xml:space="preserve">
+    <value>人的資源復帰補正</value>
+  </data>
+  <data name="MiscLabelManualTradeDeals" xml:space="preserve">
+    <value>手動貿易協定</value>
+  </data>
+  <data name="MiscLabelMapEnd" xml:space="preserve">
+    <value>マップ項目の終端</value>
+  </data>
+  <data name="MiscLabelMapHeight" xml:space="preserve">
+    <value>マップの高さ</value>
+  </data>
+  <data name="MiscLabelMapNumber" xml:space="preserve">
+    <value>マップ番号</value>
+  </data>
+  <data name="MiscLabelMapWidth" xml:space="preserve">
+    <value>マップの幅</value>
+  </data>
+  <data name="MiscLabelMastersBecomePuppetsPuppets" xml:space="preserve">
+    <value>属国の属国が設立できるか</value>
+  </data>
+  <data name="MiscLabelMaxActiveTechTeamsAoD" xml:space="preserve">
+    <value>研究スロット上限</value>
+  </data>
+  <data name="MiscLabelMaxActiveTechTeamsDh" xml:space="preserve">
+    <value>研究スロット上限</value>
+  </data>
+  <data name="MiscLabelMaxAmphibiousArmySize" xml:space="preserve">
+    <value>最大強襲上陸規模</value>
+  </data>
+  <data name="MiscLabelMaxDailyDissent" xml:space="preserve">
+    <value>物資/消費財不足時の最大不満度上昇値</value>
+  </data>
+  <data name="MiscLabelMaxDissentSliderMove" xml:space="preserve">
+    <value>スライダー移動可能な最大不満度</value>
+  </data>
+  <data name="MiscLabelMaxGearingBonus" xml:space="preserve">
+    <value>最大ギアリングボーナス</value>
+  </data>
+  <data name="MiscLabelMaxIcCostModifier" xml:space="preserve">
+    <value>諜報コスト補正の最大IC</value>
+  </data>
+  <data name="MiscLabelMaxIcCostModifierDh" xml:space="preserve">
+    <value>諜報コスト補正の最大IC</value>
+  </data>
+  <data name="MiscLabelMaximumRandomModifier" xml:space="preserve">
+    <value>最大ランダム補正</value>
+  </data>
+  <data name="MiscLabelMaximumSizesAirStacks" xml:space="preserve">
+    <value>空軍最大スタックサイズ</value>
+  </data>
+  <data name="MiscLabelMaxIntelligenceExpenditure" xml:space="preserve">
+    <value>最大諜報費比率</value>
+  </data>
+  <data name="MiscLabelMaxLandDig" xml:space="preserve">
+    <value>最大塹壕値</value>
+  </data>
+  <data name="MiscLabelMaxManpower" xml:space="preserve">
+    <value>最大人的資源</value>
+  </data>
+  <data name="MiscLabelMaxNationalism" xml:space="preserve">
+    <value>ナショナリズム最大値</value>
+  </data>
+  <data name="MiscLabelMaxRedeploymentDaysAi" xml:space="preserve">
+    <value>AI最大再配置日数</value>
+  </data>
+  <data name="MiscLabelMaxResearchExpenditure" xml:space="preserve">
+    <value>最大研究費比率</value>
+  </data>
+  <data name="MiscLabelMaxResourceDepotSize" xml:space="preserve">
+    <value>資源備蓄上限値</value>
+  </data>
+  <data name="MiscLabelMaxRevoltRisk" xml:space="preserve">
+    <value>最大反乱率</value>
+  </data>
+  <data name="MiscLabelMaxSerialLineProductionGarrisonMilitia" xml:space="preserve">
+    <value>守備隊/民兵の最大連続生産数</value>
+  </data>
+  <data name="MiscLabelMaxShipsPositioningBattle" xml:space="preserve">
+    <value>最大艦船ポジション値</value>
+  </data>
+  <data name="MiscLabelMaxSliderDissent" xml:space="preserve">
+    <value>スライダー移動時の最大不満度</value>
+  </data>
+  <data name="MiscLabelMaxSuppliesOilDepotSize" xml:space="preserve">
+    <value>物資/燃料備蓄上限値</value>
+  </data>
+  <data name="MiscLabelMaxTechTeamSkill" xml:space="preserve">
+    <value>最大研究機関スキル</value>
+  </data>
+  <data name="MiscLabelMeanNumberInventionEventsYear" xml:space="preserve">
+    <value>1年毎の発明イベント平均回数</value>
+  </data>
+  <data name="MiscLabelMergeRelocateProvincialDepots" xml:space="preserve">
+    <value>備蓄庫の再計算間隔</value>
+  </data>
+  <data name="MiscLabelMergeTradeDeals" xml:space="preserve">
+    <value>貿易協定の統合</value>
+  </data>
+  <data name="MiscLabelMilitaryExpenseAttritionModifier" xml:space="preserve">
+    <value>給料不足時の戦闘補正</value>
+  </data>
+  <data name="MiscLabelMilitarySalary" xml:space="preserve">
+    <value>軍隊の給料</value>
+  </data>
+  <data name="MiscLabelMilitarySalaryAttrictionModifier" xml:space="preserve">
+    <value>軍隊の給料不足時の消耗補正</value>
+  </data>
+  <data name="MiscLabelMilitarySalaryDissentModifier" xml:space="preserve">
+    <value>軍隊の給料不足時の不満度補正</value>
+  </data>
+  <data name="MiscLabelMilitaryStrengthTotalIcRatioMajor" xml:space="preserve">
+    <value>総ICに対する軍事力比率(主要国)</value>
+  </data>
+  <data name="MiscLabelMilitaryStrengthTotalIcRatioPeacetime" xml:space="preserve">
+    <value>総ICに対する軍事力比率(平時)</value>
+  </data>
+  <data name="MiscLabelMilitaryStrengthTotalIcRatioWartime" xml:space="preserve">
+    <value>総ICに対する軍事力比率(戦時)</value>
+  </data>
+  <data name="MiscLabelMinActiveTechTeams" xml:space="preserve">
+    <value>研究スロット下限</value>
+  </data>
+  <data name="MiscLabelMinAvailableIc" xml:space="preserve">
+    <value>最小実効ICの比率</value>
+  </data>
+  <data name="MiscLabelMinDaysRequiredAiAllied" xml:space="preserve">
+    <value>AI占領地返還最小日数</value>
+  </data>
+  <data name="MiscLabelMinDaysRequiredAiAlliedSupplyBase" xml:space="preserve">
+    <value>AI占領地返還最小日数(物資補給基地)</value>
+  </data>
+  <data name="MiscLabelMinDaysRequiredAiReleaseCountry" xml:space="preserve">
+    <value>AI占領地解放最小日数</value>
+  </data>
+  <data name="MiscLabelMinDissentRevolt" xml:space="preserve">
+    <value>反乱が発生する最低不満度</value>
+  </data>
+  <data name="MiscLabelMinFinalIc" xml:space="preserve">
+    <value>最小実効IC</value>
+  </data>
+  <data name="MiscLabelMinIcCostModifier" xml:space="preserve">
+    <value>諜報コスト補正の最小IC</value>
+  </data>
+  <data name="MiscLabelMinIcSerialProductionNavalAir" xml:space="preserve">
+    <value>海軍/空軍連続生産最小IC</value>
+  </data>
+  <data name="MiscLabelMinimalPlacementIc" xml:space="preserve">
+    <value>海外プロヴィンスへの配置の必要IC</value>
+  </data>
+  <data name="MiscLabelMinisterBonuses" xml:space="preserve">
+    <value>閣僚ボーナス適用方法</value>
+  </data>
+  <data name="MiscLabelMinisterChangeDelay" xml:space="preserve">
+    <value>閣僚変更遅延日数</value>
+  </data>
+  <data name="MiscLabelMinisterChangeEventDelay" xml:space="preserve">
+    <value>閣僚変更遅延日数(イベント)</value>
+  </data>
+  <data name="MiscLabelMinRequiredRelationsAlliedClaimed" xml:space="preserve">
+    <value>被領有権主張時連合加盟最小友好度</value>
+  </data>
+  <data name="MiscLabelMinShipsPositioningBattle" xml:space="preserve">
+    <value>最小艦船ポジション値</value>
+  </data>
+  <data name="MiscLabelMinSliderDissent" xml:space="preserve">
+    <value>スライダー移動時の最小不満度</value>
+  </data>
+  <data name="MiscLabelMinSoftnessBrigades" xml:space="preserve">
+    <value>付属旅団による最小脆弱性</value>
+  </data>
+  <data name="MiscLabelMissionEnd" xml:space="preserve">
+    <value>任務項目の終端</value>
+  </data>
+  <data name="MiscLabelModEnd" xml:space="preserve">
+    <value>MOD項目の終端</value>
+  </data>
+  <data name="MiscLabelMonthlyNationalismReduction" xml:space="preserve">
+    <value>月ごとのナショナリズムの減少値</value>
+  </data>
+  <data name="MiscLabelMovementBonusSimilarTerrainTrait" xml:space="preserve">
+    <value>類似地形適正移動ボーナス</value>
+  </data>
+  <data name="MiscLabelMovementBonusTerrainTrait" xml:space="preserve">
+    <value>地形適正移動ボーナス</value>
+  </data>
+  <data name="MiscLabelMultipleCombatModifier" xml:space="preserve">
+    <value>側面攻撃ペナルティ</value>
+  </data>
+  <data name="MiscLabelMultipleDeploymentSizeAir" xml:space="preserve">
+    <value>空軍の一括配置数</value>
+  </data>
+  <data name="MiscLabelMultipleDeploymentSizeArmies" xml:space="preserve">
+    <value>陸軍の一括配置数</value>
+  </data>
+  <data name="MiscLabelMultipleDeploymentSizeFleets" xml:space="preserve">
+    <value>海軍の一括配置数</value>
+  </data>
+  <data name="MiscLabelMultiplierOverproduceSuppliesWar" xml:space="preserve">
+    <value>戦時余剰物資生産係数</value>
+  </data>
+  <data name="MiscLabelNationalismPerManpowerAoD" xml:space="preserve">
+    <value>人的資源によるナショナリズムの補正値</value>
+  </data>
+  <data name="MiscLabelNationalismPerManpowerDh" xml:space="preserve">
+    <value>人的資源によるナショナリズムの補正値</value>
+  </data>
+  <data name="MiscLabelNationalismStartingValue" xml:space="preserve">
+    <value>ナショナリズムの初期値</value>
+  </data>
+  <data name="MiscLabelNavalAdditionalOrgDamage" xml:space="preserve">
+    <value>海軍追加組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalAdditionalStrDamage" xml:space="preserve">
+    <value>海軍追加戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalAirbaseStrikeMission" xml:space="preserve">
+    <value>空母による航空基地攻撃任務</value>
+  </data>
+  <data name="MiscLabelNavalAirbaseStrikeStartingEfficiency" xml:space="preserve">
+    <value>空母による航空基地攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelNavalChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>海軍基本回避率(防御回数あり)</value>
+  </data>
+  <data name="MiscLabelNavalChanceAvoidNoDefences" xml:space="preserve">
+    <value>海軍基本回避率(防御回数なし)</value>
+  </data>
+  <data name="MiscLabelNavalCombatPatrolMission" xml:space="preserve">
+    <value>海上戦闘哨戒任務</value>
+  </data>
+  <data name="MiscLabelNavalCombatPatrolStartingEfficiency" xml:space="preserve">
+    <value>海上戦闘哨戒初期効率</value>
+  </data>
+  <data name="MiscLabelNavalCommandLimitModifier" xml:space="preserve">
+    <value>海軍指揮上限ペナルティ</value>
+  </data>
+  <data name="MiscLabelNavalCriticalHitChance" xml:space="preserve">
+    <value>海軍クリティカルヒット確率</value>
+  </data>
+  <data name="MiscLabelNavalCriticalHitEffect" xml:space="preserve">
+    <value>海軍クリティカルヒット効果</value>
+  </data>
+  <data name="MiscLabelNavalDelayBeforeOrders" xml:space="preserve">
+    <value>海軍命令遅延時間</value>
+  </data>
+  <data name="MiscLabelNavalInterdictionMission" xml:space="preserve">
+    <value>海上阻止任務</value>
+  </data>
+  <data name="MiscLabelNavalInterdictionStartingEfficiency" xml:space="preserve">
+    <value>海上阻止初期効率</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank0" xml:space="preserve">
+    <value>海軍元帥指揮上限</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank1" xml:space="preserve">
+    <value>海軍大将指揮上限</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank2" xml:space="preserve">
+    <value>海軍中将指揮上限</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank3" xml:space="preserve">
+    <value>海軍少将指揮上限</value>
+  </data>
+  <data name="MiscLabelNavalMinCombatTime" xml:space="preserve">
+    <value>海軍最小戦闘時間</value>
+  </data>
+  <data name="MiscLabelNavalMinOrgDamage" xml:space="preserve">
+    <value>海軍最小組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalMinStrDamage" xml:space="preserve">
+    <value>海軍最小戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageAa" xml:space="preserve">
+    <value>海軍対空砲組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageAirAoD" xml:space="preserve">
+    <value>海軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageAirDh" xml:space="preserve">
+    <value>海軍対空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageNavyAoD" xml:space="preserve">
+    <value>海軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageNavyDh" xml:space="preserve">
+    <value>海軍対海軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalOrgGain" xml:space="preserve">
+    <value>海軍組織率補正</value>
+  </data>
+  <data name="MiscLabelNavalOrgLossMoving" xml:space="preserve">
+    <value>海軍移動時組織率減少係数</value>
+  </data>
+  <data name="MiscLabelNavalOverstackingModifier" xml:space="preserve">
+    <value>海軍スタックペナルティ</value>
+  </data>
+  <data name="MiscLabelNavalPortStrikeMission" xml:space="preserve">
+    <value>空母による港湾攻撃任務</value>
+  </data>
+  <data name="MiscLabelNavalPortStrikeStartingEfficiency" xml:space="preserve">
+    <value>空母による港湾攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelNavalScrambleMission" xml:space="preserve">
+    <value>海上緊急出撃任務</value>
+  </data>
+  <data name="MiscLabelNavalScrambleSpeedBonus" xml:space="preserve">
+    <value>海上緊急出撃速度ボーナス</value>
+  </data>
+  <data name="MiscLabelNavalScrambleStartingEfficiency" xml:space="preserve">
+    <value>海上緊急出撃初期効率</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageAirAoD" xml:space="preserve">
+    <value>海軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageAirDh" xml:space="preserve">
+    <value>海軍対空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageNavyAoD" xml:space="preserve">
+    <value>海軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageNavyDh" xml:space="preserve">
+    <value>海軍対海軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelNavalStrikeMission" xml:space="preserve">
+    <value>艦船攻撃任務</value>
+  </data>
+  <data name="MiscLabelNavalStrikeStartingEfficiency" xml:space="preserve">
+    <value>艦船攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelNavalSurpriseChance" xml:space="preserve">
+    <value>海軍奇襲確率</value>
+  </data>
+  <data name="MiscLabelNavalXpGainFactor" xml:space="preserve">
+    <value>海軍経験値入手係数</value>
+  </data>
+  <data name="MiscLabelNewAiReleaseRules" xml:space="preserve">
+    <value>新AI占領地解放ルール</value>
+  </data>
+  <data name="MiscLabelNewCountryNuclearEngineeringComponent" xml:space="preserve">
+    <value>新規国家で核工学技術を継承</value>
+  </data>
+  <data name="MiscLabelNewCountryNuclearPhysicsComponent" xml:space="preserve">
+    <value>新規国家で核物理学技術を継承</value>
+  </data>
+  <data name="MiscLabelNewCountryRocketryComponent" xml:space="preserve">
+    <value>新規国家でロケット技術を継承</value>
+  </data>
+  <data name="MiscLabelNewCountrySecretTechs" xml:space="preserve">
+    <value>新規国家で秘密兵器技術を継承</value>
+  </data>
+  <data name="MiscLabelNewDowRules" xml:space="preserve">
+    <value>AIの新宣戦布告ルール</value>
+  </data>
+  <data name="MiscLabelNewDowRules2" xml:space="preserve">
+    <value>AIの新宣戦布告ルール</value>
+  </data>
+  <data name="MiscLabelNewTradeDealsMinEffectiveness" xml:space="preserve">
+    <value>新規貿易協定最小効率</value>
+  </data>
+  <data name="MiscLabelNightHoursSpringFall" xml:space="preserve">
+    <value>春季/秋季夜間時間</value>
+  </data>
+  <data name="MiscLabelNightHoursSummer" xml:space="preserve">
+    <value>夏季夜間時間</value>
+  </data>
+  <data name="MiscLabelNightHoursWinter" xml:space="preserve">
+    <value>冬季夜間時間</value>
+  </data>
+  <data name="MiscLabelNoSupplyAttritionSeverity" xml:space="preserve">
+    <value>無補給時の自然条件消耗係数</value>
+  </data>
+  <data name="MiscLabelNoSupplyMinimunAttrition" xml:space="preserve">
+    <value>無補給時の消耗係数</value>
+  </data>
+  <data name="MiscLabelNotProduceNewUnitsManpowerRatio" xml:space="preserve">
+    <value>新規生産禁止人的資源比率</value>
+  </data>
+  <data name="MiscLabelNotProduceNewUnitsManpowerValue" xml:space="preserve">
+    <value>新規生産禁止人的資源値</value>
+  </data>
+  <data name="MiscLabelNotProduceNewUnitsSupply" xml:space="preserve">
+    <value>新規生産禁止物資比率</value>
+  </data>
+  <data name="MiscLabelNotProduceSuppliesStockpileOver" xml:space="preserve">
+    <value>備蓄余裕時の物資生産禁止係数</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveEse" xml:space="preserve">
+    <value>攻勢中止補給効率</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveOilStockpile" xml:space="preserve">
+    <value>攻勢中止燃料備蓄</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveOrgStrDamage" xml:space="preserve">
+    <value>攻勢中止組織率/戦力ダメージ</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveSupplyStockpile" xml:space="preserve">
+    <value>攻勢中止物資備蓄</value>
+  </data>
+  <data name="MiscLabelNuclearPower" xml:space="preserve">
+    <value>原子力発電量</value>
+  </data>
+  <data name="MiscLabelNuclearPowerUpkeepCost" xml:space="preserve">
+    <value>原子力発電所維持コスト</value>
+  </data>
+  <data name="MiscLabelNuclearSiteUpkeepCost" xml:space="preserve">
+    <value>原子炉維持コスト</value>
+  </data>
+  <data name="MiscLabelNukeIcDissent" xml:space="preserve">
+    <value>核攻撃不満度係数(IC)</value>
+  </data>
+  <data name="MiscLabelNukeManpowerDissent" xml:space="preserve">
+    <value>核攻撃不満度係数(人的資源)</value>
+  </data>
+  <data name="MiscLabelNukeMission" xml:space="preserve">
+    <value>核攻撃任務</value>
+  </data>
+  <data name="MiscLabelNukesProductionModifier" xml:space="preserve">
+    <value>核兵器生産補正</value>
+  </data>
+  <data name="MiscLabelNukeStartingEfficiency" xml:space="preserve">
+    <value>核攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelNukeTotalDissent" xml:space="preserve">
+    <value>核攻撃不満度係数(トータル)</value>
+  </data>
+  <data name="MiscLabelOccupiedTransportCapacityModifier" xml:space="preserve">
+    <value>占領地TC補正</value>
+  </data>
+  <data name="MiscLabelOffensiveCombinedArmsBonus" xml:space="preserve">
+    <value>攻撃側諸兵科連合ボーナス</value>
+  </data>
+  <data name="MiscLabelOrgRegainBonusFriendly" xml:space="preserve">
+    <value>友好地組織率回復ボーナス</value>
+  </data>
+  <data name="MiscLabelOrgRegainBonusFriendlyCap" xml:space="preserve">
+    <value>友好地組織率回復ボーナス上限</value>
+  </data>
+  <data name="MiscLabelOverproduceSuppliesBelowDesired" xml:space="preserve">
+    <value>理想備蓄未達時の余剰物資生産比率</value>
+  </data>
+  <data name="MiscLabelOverStockpileLimitDailyLoss" xml:space="preserve">
+    <value>超過備蓄損失割合</value>
+  </data>
+  <data name="MiscLabelPeacetimeExtraOilImport" xml:space="preserve">
+    <value>平時石油臨時輸入割合</value>
+  </data>
+  <data name="MiscLabelPeacetimeIcModifier" xml:space="preserve">
+    <value>平時IC補正</value>
+  </data>
+  <data name="MiscLabelPeacetimeStockpilesOilSupplies" xml:space="preserve">
+    <value>平時物資/燃料備蓄補正</value>
+  </data>
+  <data name="MiscLabelPeacetimeStockpilesResources" xml:space="preserve">
+    <value>平時資源備蓄補正</value>
+  </data>
+  <data name="MiscLabelPenaltyArtilleryBombardment" xml:space="preserve">
+    <value>砲撃中の被攻撃ペナルティ</value>
+  </data>
+  <data name="MiscLabelPercentageProducedMoney" xml:space="preserve">
+    <value>資金生産割合</value>
+  </data>
+  <data name="MiscLabelPercentageProducedSupplies" xml:space="preserve">
+    <value>物資生産割合</value>
+  </data>
+  <data name="MiscLabelPlannedDefenseMission" xml:space="preserve">
+    <value>防衛計画任務</value>
+  </data>
+  <data name="MiscLabelPlannedDefenseStartingEfficiency" xml:space="preserve">
+    <value>防衛計画初期効率</value>
+  </data>
+  <data name="MiscLabelPortAttackSurpriseChanceDay" xml:space="preserve">
+    <value>日中港湾攻撃奇襲確率</value>
+  </data>
+  <data name="MiscLabelPortAttackSurpriseChanceNight" xml:space="preserve">
+    <value>夜間港湾攻撃奇襲確率</value>
+  </data>
+  <data name="MiscLabelPortAttackSurpriseModifier" xml:space="preserve">
+    <value>港湾攻撃奇襲補正</value>
+  </data>
+  <data name="MiscLabelPortStrikeMission" xml:space="preserve">
+    <value>港湾攻撃任務</value>
+  </data>
+  <data name="MiscLabelPortStrikeStartingEfficiency" xml:space="preserve">
+    <value>港湾攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelPostHistoricalBonusLimit" xml:space="preserve">
+    <value>史実年度以降研究ボーナス上限</value>
+  </data>
+  <data name="MiscLabelPostHistoricalDateModifierAoD" xml:space="preserve">
+    <value>史実年度以降研究ボーナス</value>
+  </data>
+  <data name="MiscLabelPostHistoricalDateModifierDh" xml:space="preserve">
+    <value>史実年度以降研究ボーナス</value>
+  </data>
+  <data name="MiscLabelPreHistoricalDateModifier" xml:space="preserve">
+    <value>史実年度以前研究ペナルティ</value>
+  </data>
+  <data name="MiscLabelPreHistoricalPenaltyLimit" xml:space="preserve">
+    <value>史実年度以前研究ペナルティ上限</value>
+  </data>
+  <data name="MiscLabelProductionLineEdit" xml:space="preserve">
+    <value>生産ラインの編集</value>
+  </data>
+  <data name="MiscLabelProductionPanelUiStyle" xml:space="preserve">
+    <value>生産パネルのUIスタイル</value>
+  </data>
+  <data name="MiscLabelProvinceBuildingsRepairModifier" xml:space="preserve">
+    <value>建物修復速度補正</value>
+  </data>
+  <data name="MiscLabelProvinceCanSoldNonAllied" xml:space="preserve">
+    <value>非同盟国にプロヴィンスを売却</value>
+  </data>
+  <data name="MiscLabelProvinceEfficiencyRiseTime" xml:space="preserve">
+    <value>プロヴィンス効率上昇時間</value>
+  </data>
+  <data name="MiscLabelProvinceResourceRepairModifier" xml:space="preserve">
+    <value>資源回復速度補正</value>
+  </data>
+  <data name="MiscLabelPuppetsCriticalSupplyStockpile" xml:space="preserve">
+    <value>傀儡国物資危険水準</value>
+  </data>
+  <data name="MiscLabelPuppetsJoinMastersAlliance" xml:space="preserve">
+    <value>属国が宗主国の同盟に強制参加する</value>
+  </data>
+  <data name="MiscLabelPuppetsMaxPoolResources" xml:space="preserve">
+    <value>傀儡国最大資源備蓄</value>
+  </data>
+  <data name="MiscLabelPuppetsSendSuppliesMoney" xml:space="preserve">
+    <value>傀儡国上納物資/資金</value>
+  </data>
+  <data name="MiscLabelRadarAntiSurpriseChance" xml:space="preserve">
+    <value>レーダー奇襲確率減少値</value>
+  </data>
+  <data name="MiscLabelRadarAntiSurpriseModifier" xml:space="preserve">
+    <value>レーダー奇襲効果減少値</value>
+  </data>
+  <data name="MiscLabelRadarBonusDetection" xml:space="preserve">
+    <value>レーダー航空機発見ボーナス</value>
+  </data>
+  <data name="MiscLabelRadarEfficiency" xml:space="preserve">
+    <value>レーダー効率</value>
+  </data>
+  <data name="MiscLabelRaderStationAaMultiplier" xml:space="preserve">
+    <value>レーダー/対空砲複合補正</value>
+  </data>
+  <data name="MiscLabelRaderStationMultiplier" xml:space="preserve">
+    <value>レーダー補正</value>
+  </data>
+  <data name="MiscLabelRebaseChanceDetected" xml:space="preserve">
+    <value>基地移動被発見確率</value>
+  </data>
+  <data name="MiscLabelRebaseMission" xml:space="preserve">
+    <value>基地移動任務</value>
+  </data>
+  <data name="MiscLabelRebaseStartingEfficiency" xml:space="preserve">
+    <value>基地移動初期効率</value>
+  </data>
+  <data name="MiscLabelRebelsArmyComposition" xml:space="preserve">
+    <value>パルチザンの歩兵構成割合</value>
+  </data>
+  <data name="MiscLabelRebelsArmyMaxStr" xml:space="preserve">
+    <value>パルチザン最大戦力</value>
+  </data>
+  <data name="MiscLabelRebelsArmyMinStr" xml:space="preserve">
+    <value>パルチザン最小戦力</value>
+  </data>
+  <data name="MiscLabelRebelsArmyTechLevel" xml:space="preserve">
+    <value>パルチザンの技術レベル</value>
+  </data>
+  <data name="MiscLabelRebelsOrgRegain" xml:space="preserve">
+    <value>パルチザン組織率回復速度</value>
+  </data>
+  <data name="MiscLabelRecalculateArrivalTimesCombat" xml:space="preserve">
+    <value>戦闘後到着時刻再計算</value>
+  </data>
+  <data name="MiscLabelRecalculateLandArrivalTimes" xml:space="preserve">
+    <value>陸上部隊到着時刻再計算間隔</value>
+  </data>
+  <data name="MiscLabelReinforceCost" xml:space="preserve">
+    <value>補充に必要なICの比率</value>
+  </data>
+  <data name="MiscLabelReinforceManpower" xml:space="preserve">
+    <value>補充に必要な人的資源の比率</value>
+  </data>
+  <data name="MiscLabelReinforceTime" xml:space="preserve">
+    <value>補充に必要な時間の比率</value>
+  </data>
+  <data name="MiscLabelReinforceToUpdateModifier" xml:space="preserve">
+    <value>改良のための補充係数</value>
+  </data>
+  <data name="MiscLabelRelationshipHitCancelPermanentTrade" xml:space="preserve">
+    <value>永久貿易キャンセル時の友好度低下</value>
+  </data>
+  <data name="MiscLabelRelationshipHitCancelTrade" xml:space="preserve">
+    <value>貿易キャンセル時の友好度低下</value>
+  </data>
+  <data name="MiscLabelRelationshipsHitDetectedMissions" xml:space="preserve">
+    <value>諜報任務発覚時の友好度低下量</value>
+  </data>
+  <data name="MiscLabelRelationshipsHitDetectedMissionsDh" xml:space="preserve">
+    <value>諜報任務発覚時の友好度低下量</value>
+  </data>
+  <data name="MiscLabelRepairModifier" xml:space="preserve">
+    <value>修理補正</value>
+  </data>
+  <data name="MiscLabelRequiredIcEachTechTeamAoD" xml:space="preserve">
+    <value>研究スロット毎の必要IC</value>
+  </data>
+  <data name="MiscLabelRequiredIcEachTechTeamDh" xml:space="preserve">
+    <value>研究スロット毎の必要IC</value>
+  </data>
+  <data name="MiscLabelRequiredLandFortSize" xml:space="preserve">
+    <value>必要要塞規模</value>
+  </data>
+  <data name="MiscLabelRequirementAffectSlider" xml:space="preserve">
+    <value>政策スライダーに影響を与えるためのIC比率</value>
+  </data>
+  <data name="MiscLabelRequirementAffectSliderDh" xml:space="preserve">
+    <value>政策スライダーに影響を与えるためのIC比率</value>
+  </data>
+  <data name="MiscLabelResearchEnd" xml:space="preserve">
+    <value>研究項目の終端</value>
+  </data>
+  <data name="MiscLabelResearchModifier" xml:space="preserve">
+    <value>研究補正</value>
+  </data>
+  <data name="MiscLabelReservesMission" xml:space="preserve">
+    <value>待機任務</value>
+  </data>
+  <data name="MiscLabelReservesSpeedBonus" xml:space="preserve">
+    <value>待機速度ボーナス</value>
+  </data>
+  <data name="MiscLabelReservesStartingEfficiency" xml:space="preserve">
+    <value>待機初期効率</value>
+  </data>
+  <data name="MiscLabelResourceConvoysBackUnneeded" xml:space="preserve">
+    <value>不要な資源/燃料の回収比率</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierNonNational" xml:space="preserve">
+    <value>非中核州の資源補正</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierNonNationalAi" xml:space="preserve">
+    <value>非中核州の資源補正(AI)</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierNonOwned" xml:space="preserve">
+    <value>占領地の資源補正</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierPuppet" xml:space="preserve">
+    <value>属国の資源補正</value>
+  </data>
+  <data name="MiscLabelResourcesDamageArtilleryBombardment" xml:space="preserve">
+    <value>砲撃ダメージ補正(資源)</value>
+  </data>
+  <data name="MiscLabelRestockSpeedAir" xml:space="preserve">
+    <value>空軍の物資再備蓄速度</value>
+  </data>
+  <data name="MiscLabelRestockSpeedLand" xml:space="preserve">
+    <value>陸軍の物資再備蓄速度</value>
+  </data>
+  <data name="MiscLabelRestockSpeedNaval" xml:space="preserve">
+    <value>海軍の物資再備蓄速度</value>
+  </data>
+  <data name="MiscLabelRetoolingCost" xml:space="preserve">
+    <value>ライン調整コスト補正</value>
+  </data>
+  <data name="MiscLabelRetoolingResource" xml:space="preserve">
+    <value>ライン調整資源補正</value>
+  </data>
+  <data name="MiscLabelReturnRebelliousProvince" xml:space="preserve">
+    <value>パルチザン占領プロヴィンス返却時間</value>
+  </data>
+  <data name="MiscLabelRunwayCrateringMission" xml:space="preserve">
+    <value>空港空爆任務</value>
+  </data>
+  <data name="MiscLabelRunwayCrateringStartingEfficiency" xml:space="preserve">
+    <value>空港空爆初期効率</value>
+  </data>
+  <data name="MiscLabelScorchDamage" xml:space="preserve">
+    <value>焦土命令ダメージ</value>
+  </data>
+  <data name="MiscLabelScorchGroundBelligerence" xml:space="preserve">
+    <value>焦土命令好戦性上昇</value>
+  </data>
+  <data name="MiscLabelScreenCapitalShipsTargeting" xml:space="preserve">
+    <value>主力艦/補助艦標的ポジション値</value>
+  </data>
+  <data name="MiscLabelScreensCapitalRatioModifier" xml:space="preserve">
+    <value>主力艦/補助艦割合修正</value>
+  </data>
+  <data name="MiscLabelSeaTransportChanceDetected" xml:space="preserve">
+    <value>海上輸送被発見確率</value>
+  </data>
+  <data name="MiscLabelSeaTransportMission" xml:space="preserve">
+    <value>海上輸送任務</value>
+  </data>
+  <data name="MiscLabelSeaTransportRangeModifier" xml:space="preserve">
+    <value>海上輸送航続距離補正</value>
+  </data>
+  <data name="MiscLabelSeaTransportStartingEfficiency" xml:space="preserve">
+    <value>海上輸送初期効率</value>
+  </data>
+  <data name="MiscLabelSendDivisionDays" xml:space="preserve">
+    <value>師団譲渡後配備可能になるまでの時間</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentCap" xml:space="preserve">
+    <value>艦砲射撃戦闘効率上限</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentMission" xml:space="preserve">
+    <value>沿岸砲撃任務</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentModifier" xml:space="preserve">
+    <value>艦砲射撃戦闘補正</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentModifierDh" xml:space="preserve">
+    <value>沿岸砲撃補正</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentStartingEfficiency" xml:space="preserve">
+    <value>沿岸砲撃初期効率</value>
+  </data>
+  <data name="MiscLabelShowThirdCountrySpyReports" xml:space="preserve">
+    <value>第三国の諜報活動を報告</value>
+  </data>
+  <data name="MiscLabelShowThirdCountrySpyReportsDh" xml:space="preserve">
+    <value>第三国の諜報活動を報告</value>
+  </data>
+  <data name="MiscLabelSneakMoveChanceDetected" xml:space="preserve">
+    <value>隠密移動被発見確率</value>
+  </data>
+  <data name="MiscLabelSneakMoveMission" xml:space="preserve">
+    <value>隠密移動任務</value>
+  </data>
+  <data name="MiscLabelSneakMoveRangeModifier" xml:space="preserve">
+    <value>隠密移動航続距離補正</value>
+  </data>
+  <data name="MiscLabelSneakMoveStartingEfficiency" xml:space="preserve">
+    <value>隠密移動初期効率</value>
+  </data>
+  <data name="MiscLabelSpiesMoneyModifier" xml:space="preserve">
+    <value>諜報資金割り当て補正</value>
+  </data>
+  <data name="MiscLabelSpyCoupDissentModifier" xml:space="preserve">
+    <value>不満度によるクーデター成功率修正</value>
+  </data>
+  <data name="MiscLabelSpyDetectionChance" xml:space="preserve">
+    <value>スパイ発見確率</value>
+  </data>
+  <data name="MiscLabelSpyInformationAccuracyModifier" xml:space="preserve">
+    <value>情報の正確さ補正</value>
+  </data>
+  <data name="MiscLabelSpyInformationAccuracyModifierDh" xml:space="preserve">
+    <value>情報の正確さ補正</value>
+  </data>
+  <data name="MiscLabelSpyLevelBonusDistanceModifier" xml:space="preserve">
+    <value>諜報レベルの距離補正</value>
+  </data>
+  <data name="MiscLabelSpyLevelBonusDistanceModifierAboveTen" xml:space="preserve">
+    <value>諜報レベル10超過時の距離補正</value>
+  </data>
+  <data name="MiscLabelSpyMissionDays" xml:space="preserve">
+    <value>諜報任務の間隔</value>
+  </data>
+  <data name="MiscLabelSpyMissionDaysDh" xml:space="preserve">
+    <value>諜報任務の間隔</value>
+  </data>
+  <data name="MiscLabelSpyUpkeepCost" xml:space="preserve">
+    <value>諜報維持コスト</value>
+  </data>
+  <data name="MiscLabelSsMaxAttach" xml:space="preserve">
+    <value>潜水艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelSsnMaxAttach" xml:space="preserve">
+    <value>原子力潜水艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelStandGroundDissent" xml:space="preserve">
+    <value>死守命令不満度上昇</value>
+  </data>
+  <data name="MiscLabelStockpileLimitMultiplierResource" xml:space="preserve">
+    <value>資源備蓄上限補正</value>
+  </data>
+  <data name="MiscLabelStockpileLimitMultiplierSuppliesOil" xml:space="preserve">
+    <value>物資/燃料備蓄上限補正</value>
+  </data>
+  <data name="MiscLabelStrategicBombardmentMission" xml:space="preserve">
+    <value>戦略爆撃任務</value>
+  </data>
+  <data name="MiscLabelStrategicBombardmentStartingEfficiency" xml:space="preserve">
+    <value>戦略爆撃初期効率</value>
+  </data>
+  <data name="MiscLabelStratRedeployAddedValue" xml:space="preserve">
+    <value>戦略的再配置加算値</value>
+  </data>
+  <data name="MiscLabelStratRedeployDistanceMultiplier" xml:space="preserve">
+    <value>戦略的再配置距離補正</value>
+  </data>
+  <data name="MiscLabelStratRedeployMission" xml:space="preserve">
+    <value>戦略的再配置任務</value>
+  </data>
+  <data name="MiscLabelStratRedeployStartingEfficiency" xml:space="preserve">
+    <value>戦略的再配置初期効率</value>
+  </data>
+  <data name="MiscLabelSubsOrgDamage" xml:space="preserve">
+    <value>潜水艦組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelSubsOrgDamageAir" xml:space="preserve">
+    <value>潜水艦対空軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelSubsOrgDamageNavy" xml:space="preserve">
+    <value>潜水艦対海軍組織率被ダメージ</value>
+  </data>
+  <data name="MiscLabelSubsStrDamage" xml:space="preserve">
+    <value>潜水艦戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelSubsStrDamageAir" xml:space="preserve">
+    <value>潜水艦対空軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelSubsStrDamageNavy" xml:space="preserve">
+    <value>潜水艦対海軍戦力被ダメージ</value>
+  </data>
+  <data name="MiscLabelSubStacksDetectionModifier" xml:space="preserve">
+    <value>潜水艦発見補正</value>
+  </data>
+  <data name="MiscLabelSupplyAirBattleAoD" xml:space="preserve">
+    <value>空軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyAirBattleDh" xml:space="preserve">
+    <value>空軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyAirBombing" xml:space="preserve">
+    <value>空軍の爆撃時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyAirMoving" xml:space="preserve">
+    <value>空軍の移動時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyAirStaticAoD" xml:space="preserve">
+    <value>空軍の待機時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyAirStaticDh" xml:space="preserve">
+    <value>空軍の待機時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyBase" xml:space="preserve">
+    <value>基礎補給効率</value>
+  </data>
+  <data name="MiscLabelSupplyConvoyHunt" xml:space="preserve">
+    <value>船団襲撃時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyDistanceModifier" xml:space="preserve">
+    <value>遠隔地補給補正</value>
+  </data>
+  <data name="MiscLabelSupplyDistanceSeverity" xml:space="preserve">
+    <value>遠隔地補給係数</value>
+  </data>
+  <data name="MiscLabelSupplyLandBattleAoD" xml:space="preserve">
+    <value>陸軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyLandBattleDh" xml:space="preserve">
+    <value>陸軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyLandBombing" xml:space="preserve">
+    <value>陸軍の砲撃時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyLandMoving" xml:space="preserve">
+    <value>陸軍の移動時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyLandStaticAoD" xml:space="preserve">
+    <value>陸軍の待機時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyNavalBattleAoD" xml:space="preserve">
+    <value>海軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyNavalBattleDh" xml:space="preserve">
+    <value>海軍の戦闘時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyNavalMoving" xml:space="preserve">
+    <value>海軍の移動時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyNavalStaticAoD" xml:space="preserve">
+    <value>海軍の待機時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyNavalStaticDh" xml:space="preserve">
+    <value>海軍の待機時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifier" xml:space="preserve">
+    <value>補給不足ペナルティ</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifierAir" xml:space="preserve">
+    <value>空軍物資不足ペナルティ</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifierLand" xml:space="preserve">
+    <value>陸軍物資不足ペナルティ</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifierNaval" xml:space="preserve">
+    <value>海軍物資不足ペナルティ</value>
+  </data>
+  <data name="MiscLabelSupplyProductionEfficiency" xml:space="preserve">
+    <value>物資生産効率</value>
+  </data>
+  <data name="MiscLabelSupplyStockAir" xml:space="preserve">
+    <value>空軍の物資備蓄量</value>
+  </data>
+  <data name="MiscLabelSupplyStockLand" xml:space="preserve">
+    <value>陸軍の物資備蓄量</value>
+  </data>
+  <data name="MiscLabelSupplyStockNaval" xml:space="preserve">
+    <value>海軍の物資備蓄量</value>
+  </data>
+  <data name="MiscLabelSupportAttackMission" xml:space="preserve">
+    <value>支援攻撃任務</value>
+  </data>
+  <data name="MiscLabelSupportAttackSpeedBonus" xml:space="preserve">
+    <value>支援攻撃速度ボーナス</value>
+  </data>
+  <data name="MiscLabelSupportAttackStartingEfficiency" xml:space="preserve">
+    <value>支援攻撃初期効率</value>
+  </data>
+  <data name="MiscLabelSupportDefenseMission" xml:space="preserve">
+    <value>防衛支援任務</value>
+  </data>
+  <data name="MiscLabelSupportDefenseSpeedBonus" xml:space="preserve">
+    <value>防衛支援速度ボーナス</value>
+  </data>
+  <data name="MiscLabelSupportDefenseStartingEfficiency" xml:space="preserve">
+    <value>防衛支援初期効率</value>
+  </data>
+  <data name="MiscLabelSuppyLandStaticDh" xml:space="preserve">
+    <value>陸軍の待機時物資使用量補正</value>
+  </data>
+  <data name="MiscLabelSurpriseModifier" xml:space="preserve">
+    <value>奇襲攻撃ペナルティ</value>
+  </data>
+  <data name="MiscLabelSwitchedAiFilesLogger" xml:space="preserve">
+    <value>AI切り替えをログに記録</value>
+  </data>
+  <data name="MiscLabelSynchronizeArrivalTimeAi" xml:space="preserve">
+    <value>同時到着補正(AI)</value>
+  </data>
+  <data name="MiscLabelSynchronizeArrivalTimePlayer" xml:space="preserve">
+    <value>同時到着補正(プレイヤー)</value>
+  </data>
+  <data name="MiscLabelSyntheticOilConversionMultiplier" xml:space="preserve">
+    <value>合成石油変換係数</value>
+  </data>
+  <data name="MiscLabelSyntheticOilSiteUpkeepCost" xml:space="preserve">
+    <value>合成石油工場維持コスト</value>
+  </data>
+  <data name="MiscLabelSyntheticRaresConversionMultiplier" xml:space="preserve">
+    <value>合成希少資源変換係数</value>
+  </data>
+  <data name="MiscLabelSyntheticRaresSiteUpkeepCost" xml:space="preserve">
+    <value>合成希少資源工場維持コスト</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgAttackerAoD" xml:space="preserve">
+    <value>後退イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgAttackerDh" xml:space="preserve">
+    <value>後退イベント攻撃側組織率補正</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgDefenderAoD" xml:space="preserve">
+    <value>後退イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgDefenderDh" xml:space="preserve">
+    <value>後退イベント防御側組織率補正</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrAttackerAoD" xml:space="preserve">
+    <value>後退イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrAttackerDh" xml:space="preserve">
+    <value>後退イベント攻撃側戦力補正</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrDefenderAoD" xml:space="preserve">
+    <value>後退イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrDefenderDh" xml:space="preserve">
+    <value>後退イベント防御側戦力補正</value>
+  </data>
+  <data name="MiscLabelTcLoadBase" xml:space="preserve">
+    <value>未配備の基地のTC負荷</value>
+  </data>
+  <data name="MiscLabelTcLoadFactorOffensive" xml:space="preserve">
+    <value>攻勢時のTC負荷係数</value>
+  </data>
+  <data name="MiscLabelTcLoadMultiplierAir" xml:space="preserve">
+    <value>空軍師団のTC負荷補正</value>
+  </data>
+  <data name="MiscLabelTcLoadMultiplierLand" xml:space="preserve">
+    <value>陸軍師団のTC負荷補正</value>
+  </data>
+  <data name="MiscLabelTcLoadMultiplierNaval" xml:space="preserve">
+    <value>海軍師団のTC負荷補正</value>
+  </data>
+  <data name="MiscLabelTcLoadOccupied" xml:space="preserve">
+    <value>占領地のTC負荷</value>
+  </data>
+  <data name="MiscLabelTcLoadPartisan" xml:space="preserve">
+    <value>パルチザンのTC負荷</value>
+  </data>
+  <data name="MiscLabelTcLoadProvinceDevelopment" xml:space="preserve">
+    <value>プロヴィンス開発のTC負荷</value>
+  </data>
+  <data name="MiscLabelTcLoadUndeployedBrigade" xml:space="preserve">
+    <value>未配備旅団のTC負荷</value>
+  </data>
+  <data name="MiscLabelTcLoadUndeployedDivision" xml:space="preserve">
+    <value>未配備師団のTC負荷</value>
+  </data>
+  <data name="MiscLabelTechOverviewPanelStyle" xml:space="preserve">
+    <value>研究概要パネルのスタイル</value>
+  </data>
+  <data name="MiscLabelTechSpeedModifier" xml:space="preserve">
+    <value>研究速度補正</value>
+  </data>
+  <data name="MiscLabelTimeBetweenSliderChangesAoD" xml:space="preserve">
+    <value>スライダー移動の間隔</value>
+  </data>
+  <data name="MiscLabelTimeBetweenSliderChangesDh" xml:space="preserve">
+    <value>スライダー移動の間隔</value>
+  </data>
+  <data name="MiscLabelTimeRepairBuilding" xml:space="preserve">
+    <value>建物修復時間補正</value>
+  </data>
+  <data name="MiscLabelTotalProductionEfficiency" xml:space="preserve">
+    <value>総合生産効率</value>
+  </data>
+  <data name="MiscLabelTotalProvinces" xml:space="preserve">
+    <value>総プロヴィンス数</value>
+  </data>
+  <data name="MiscLabelTpMaxAttach" xml:space="preserve">
+    <value>輸送艦最大付属装備数</value>
+  </data>
+  <data name="MiscLabelTpTransportsConversionRatio" xml:space="preserve">
+    <value>輸送艦の輸送船団への変換比率</value>
+  </data>
+  <data name="MiscLabelTradeEfficiencyCalculationSystem" xml:space="preserve">
+    <value>貿易効率算出間隔</value>
+  </data>
+  <data name="MiscLabelTradeEnd" xml:space="preserve">
+    <value>貿易項目の終端</value>
+  </data>
+  <data name="MiscLabelTransferAlliedCoreProvinces" xml:space="preserve">
+    <value>占領中の同盟国の中核州返還</value>
+  </data>
+  <data name="MiscLabelTransportCapacityModifier" xml:space="preserve">
+    <value>TC補正</value>
+  </data>
+  <data name="MiscLabelTransportConversion" xml:space="preserve">
+    <value>輸送艦変換係数</value>
+  </data>
+  <data name="MiscLabelTrickleBackFactorManpower" xml:space="preserve">
+    <value>戦闘による損失からの復帰係数</value>
+  </data>
+  <data name="MiscLabelUnitModifiersStatisticsPages" xml:space="preserve">
+    <value>ユニット補正ページの新スタイル移行閾値</value>
+  </data>
+  <data name="MiscLabelUnitPicturesSize" xml:space="preserve">
+    <value>ユニット画像のサイズ</value>
+  </data>
+  <data name="MiscLabelUpgradeCost" xml:space="preserve">
+    <value>改良に必要なICの比率</value>
+  </data>
+  <data name="MiscLabelUpgradeTime" xml:space="preserve">
+    <value>改良に必要な時間の比率</value>
+  </data>
+  <data name="MiscLabelUseAttackEfficiencyCombatModifier" xml:space="preserve">
+    <value>攻撃/支援攻撃効率を戦闘補正として使用</value>
+  </data>
+  <data name="MiscLabelUseMinisterPersonalityReplacing" xml:space="preserve">
+    <value>閣僚交代時に閣僚特性を適用する</value>
+  </data>
+  <data name="MiscLabelUseNewAutoSaveFileFormat" xml:space="preserve">
+    <value>新自動セーブファイル名</value>
+  </data>
+  <data name="MiscLabelUseNewMinisterFilesFormat" xml:space="preserve">
+    <value>新形式閣僚ファイルフォーマット</value>
+  </data>
+  <data name="MiscLabelUseNewTechnologyPageLayout" xml:space="preserve">
+    <value>研究ページのレイアウト</value>
+  </data>
+  <data name="MiscLabelUseOldSaveGameFormat" xml:space="preserve">
+    <value>旧セーブフォーマットを使用</value>
+  </data>
+  <data name="MiscLabelUseQuickAreaCheckGarrisonAi" xml:space="preserve">
+    <value>守備隊AIの簡易チェック</value>
+  </data>
+  <data name="MiscLabelUseSpeedSetGarrisonStatus" xml:space="preserve">
+    <value>守備隊判定ルール</value>
+  </data>
+  <data name="MiscLabelWartimeDesiredStockpileMultiplier" xml:space="preserve">
+    <value>戦時理想備蓄係数</value>
+  </data>
+  <data name="MiscLabelWartimeExtraOilImport" xml:space="preserve">
+    <value>戦時石油臨時輸入割合</value>
+  </data>
+  <data name="MiscLabelWartimeIcModifier" xml:space="preserve">
+    <value>戦時IC補正</value>
+  </data>
+  <data name="MiscLabelWartimeStockpilesOilSupplies" xml:space="preserve">
+    <value>戦時物資/燃料備蓄補正</value>
+  </data>
+  <data name="MiscLabelWartimeStockpilesResources" xml:space="preserve">
+    <value>戦時資源備蓄補正</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="MiscEnumAaAirFiringRules0" xml:space="preserve">
+    <value>爆撃時</value>
+  </data>
+  <data name="MiscEnumAaAirFiringRules1" xml:space="preserve">
+    <value>通過時</value>
+  </data>
+  <data name="MiscEnumAiMastersGetProvincesConquredPuppets0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAiMastersGetProvincesConquredPuppets1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissions0" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissions1" xml:space="preserve">
+    <value>レベル1</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissions2" xml:space="preserve">
+    <value>レベル2</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissionsDh0" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissionsDh1" xml:space="preserve">
+    <value>レベル1</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissionsDh2" xml:space="preserve">
+    <value>レベル2</value>
+  </data>
+  <data name="MiscEnumAirborneAssaultMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAirborneAssaultMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAirScrambleMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAirScrambleMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAirSuperiorityMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAirSuperiorityMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAirSupplyMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAirSupplyMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAiSpyDiplomaticMissionLogger0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAiSpyDiplomaticMissionLogger1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAllowBrigadeAttachingInSupply0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAllowBrigadeAttachingInSupply1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog1" xml:space="preserve">
+    <value>国家元首のみ</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog2" xml:space="preserve">
+    <value>政府首班のみ</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog3" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAllowManualClaimsChange0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAllowManualClaimsChange1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAllowProvinceRegionTargeting0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAllowProvinceRegionTargeting1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAllowUniquePicturesAllLandProvinces0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAllowUniquePicturesAllLandProvinces1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAmphibousAssaultMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAmphibousAssaultMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAntiPartisanDutyMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAntiPartisanDutyMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumApplyRangeLimitsAreasRegions0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumApplyRangeLimitsAreasRegions1" xml:space="preserve">
+    <value>プレイヤーのみ</value>
+  </data>
+  <data name="MiscEnumApplyRangeLimitsAreasRegions2" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAswMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAswMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAttackMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAttackMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAutoReplyEvents0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAutoReplyEvents1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumAutoReturnTransportFleets0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumAutoReturnTransportFleets1" xml:space="preserve">
+    <value>オプション指定</value>
+  </data>
+  <data name="MiscEnumAutoReturnTransportFleets2" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumBluePrintsCanSoldNonAllied0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumBluePrintsCanSoldNonAllied1" xml:space="preserve">
+    <value>売却のみ</value>
+  </data>
+  <data name="MiscEnumBluePrintsCanSoldNonAllied2" xml:space="preserve">
+    <value>購入/売却可</value>
+  </data>
+  <data name="MiscEnumBuildingsBuildableOnlyProvinces0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumBuildingsBuildableOnlyProvinces1" xml:space="preserve">
+    <value>タイプ1</value>
+  </data>
+  <data name="MiscEnumBuildingsBuildableOnlyProvinces2" xml:space="preserve">
+    <value>タイプ2</value>
+  </data>
+  <data name="MiscEnumCanChangeIdeas0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumCanChangeIdeas1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAllied0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAllied1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAlliedDh0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAlliedDh1" xml:space="preserve">
+    <value>売却のみ</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAlliedDh2" xml:space="preserve">
+    <value>購入/売却可</value>
+  </data>
+  <data name="MiscEnumChangeTagCoup0" xml:space="preserve">
+    <value>オリジナル</value>
+  </data>
+  <data name="MiscEnumChangeTagCoup1" xml:space="preserve">
+    <value>DH</value>
+  </data>
+  <data name="MiscEnumCombatMode0" xml:space="preserve">
+    <value>旧</value>
+  </data>
+  <data name="MiscEnumCombatMode1" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="MiscEnumConvoyAirRaidingMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumConvoyAirRaidingMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumConvoyInterceptionMissions0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumConvoyInterceptionMissions1" xml:space="preserve">
+    <value>オプション指定</value>
+  </data>
+  <data name="MiscEnumConvoyInterceptionMissions2" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumConvoyRadingMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumConvoyRadingMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumConvoySystemOptionsAllied0" xml:space="preserve">
+    <value>タイプ0</value>
+  </data>
+  <data name="MiscEnumConvoySystemOptionsAllied1" xml:space="preserve">
+    <value>タイプ1</value>
+  </data>
+  <data name="MiscEnumConvoySystemOptionsAllied2" xml:space="preserve">
+    <value>タイプ2</value>
+  </data>
+  <data name="MiscEnumDistanceCalculationModel0" xml:space="preserve">
+    <value>旧</value>
+  </data>
+  <data name="MiscEnumDistanceCalculationModel1" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="MiscEnumEnableDicisionsPlayers0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumEnableDicisionsPlayers1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumEnablePicturesNavalBrigades0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumEnablePicturesNavalBrigades1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearLeaders0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearLeaders1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearMinisters0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearMinisters1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries0" xml:space="preserve">
+    <value>タイプ0</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries1" xml:space="preserve">
+    <value>タイプ1</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries2" xml:space="preserve">
+    <value>タイプ2</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries3" xml:space="preserve">
+    <value>タイプ3</value>
+  </data>
+  <data name="MiscEnumForceActionsShow0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumForceActionsShow1" xml:space="preserve">
+    <value>有効時のみ</value>
+  </data>
+  <data name="MiscEnumForceActionsShow2" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumGroundAttackMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumGroundAttackMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumHqStrDamageBreakthrough0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumHqStrDamageBreakthrough1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumInGameLossesLogging0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumInGameLossesLogging1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging20" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging21" xml:space="preserve">
+    <value>タイプ1</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging22" xml:space="preserve">
+    <value>タイプ2</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging23" xml:space="preserve">
+    <value>タイプ3</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging24" xml:space="preserve">
+    <value>タイプ4</value>
+  </data>
+  <data name="MiscEnumInstallationStrikeMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumInstallationStrikeMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumInterdictionMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumInterdictionMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumJoinAutomaticallyAllesAxis0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumJoinAutomaticallyAllesAxis1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumLoadAiFilesModdirOnly0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumLoadAiFilesModdirOnly1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumLoadNewAiSwitchingAllClients0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumLoadNewAiSwitchingAllClients1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumLoadSpritesModdirOnly0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumLoadSpritesModdirOnly1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumLoadUnitIconsModdirOnly0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumLoadUnitIconsModdirOnly1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumLoadUnitPicturesModdirOnly0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumLoadUnitPicturesModdirOnly1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumLogisticalStrikeMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumLogisticalStrikeMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumMastersBecomePuppetsPuppets0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumMastersBecomePuppetsPuppets1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumMergeTradeDeals0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumMergeTradeDeals1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses1" xml:space="preserve">
+    <value>師団優先</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses2" xml:space="preserve">
+    <value>平均</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses3" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses4" xml:space="preserve">
+    <value>最小値</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses5" xml:space="preserve">
+    <value>最大値</value>
+  </data>
+  <data name="MiscEnumNavalAirbaseStrikeMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNavalAirbaseStrikeMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNavalCombatPatrolMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNavalCombatPatrolMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNavalInterdictionMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNavalInterdictionMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNavalPortStrikeMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNavalPortStrikeMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNavalScrambleMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNavalScrambleMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNavalStrikeMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNavalStrikeMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNewAiReleaseRules0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNewAiReleaseRules1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearEngineeringComponent0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearEngineeringComponent1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearPhysicsComponent0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearPhysicsComponent1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNewCountryRocketryComponent0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNewCountryRocketryComponent1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNewCountrySecretTechs0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNewCountrySecretTechs1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNewDowRules0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNewDowRules1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNewDowRules20" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNewDowRules21" xml:space="preserve">
+    <value>AIのみ</value>
+  </data>
+  <data name="MiscEnumNewDowRules22" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumNukeMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumNukeMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumPlannedDefenseMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumPlannedDefenseMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumPortStrikeMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumPortStrikeMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumProductionLineEdit0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumProductionLineEdit1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumProductionPanelUiStyle0" xml:space="preserve">
+    <value>旧</value>
+  </data>
+  <data name="MiscEnumProductionPanelUiStyle1" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="MiscEnumProvinceCanSoldNonAllied0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumProvinceCanSoldNonAllied1" xml:space="preserve">
+    <value>売却のみ</value>
+  </data>
+  <data name="MiscEnumProvinceCanSoldNonAllied2" xml:space="preserve">
+    <value>購入/売却可</value>
+  </data>
+  <data name="MiscEnumPuppetsJoinMastersAlliance0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumPuppetsJoinMastersAlliance1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumRebaseMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumRebaseMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumRecalculateArrivalTimesCombat0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumRecalculateArrivalTimesCombat1" xml:space="preserve">
+    <value>プレイヤーのみ</value>
+  </data>
+  <data name="MiscEnumRecalculateArrivalTimesCombat2" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumReservesMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumReservesMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumRunwayCrateringMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumRunwayCrateringMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumSeaTransportMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumSeaTransportMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumShoreBombardmentMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumShoreBombardmentMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports0" xml:space="preserve">
+    <value>報告しない</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports1" xml:space="preserve">
+    <value>発見時のみ</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports2" xml:space="preserve">
+    <value>発見時/成功時</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports3" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh0" xml:space="preserve">
+    <value>報告しない</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh1" xml:space="preserve">
+    <value>発見時のみ</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh2" xml:space="preserve">
+    <value>発見時/成功時</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh3" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="MiscEnumSneakMoveMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumSneakMoveMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumStrategicBombardmentMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumStrategicBombardmentMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumStratRedeployMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumStratRedeployMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumSupportAttackMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumSupportAttackMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumSupportDefenseMission0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumSupportDefenseMission1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumSwitchedAiFilesLogger0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumSwitchedAiFilesLogger1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumTechOverviewPanelStyle0" xml:space="preserve">
+    <value>旧</value>
+  </data>
+  <data name="MiscEnumTechOverviewPanelStyle1" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="MiscEnumTransferAlliedCoreProvinces0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumTransferAlliedCoreProvinces1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumUnitPicturesSize0" xml:space="preserve">
+    <value>旧</value>
+  </data>
+  <data name="MiscEnumUnitPicturesSize1" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="MiscEnumUseAttackEfficiencyCombatModifier0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumUseAttackEfficiencyCombatModifier1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumUseMinisterPersonalityReplacing0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumUseMinisterPersonalityReplacing1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumUseNewAutoSaveFileFormat0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumUseNewAutoSaveFileFormat1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumUseNewMinisterFilesFormat0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumUseNewMinisterFilesFormat1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumUseNewTechnologyPageLayout0" xml:space="preserve">
+    <value>バニラ</value>
+  </data>
+  <data name="MiscEnumUseNewTechnologyPageLayout1" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="MiscEnumUseOldSaveGameFormat0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumUseOldSaveGameFormat1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumUseQuickAreaCheckGarrisonAi0" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="MiscEnumUseQuickAreaCheckGarrisonAi1" xml:space="preserve">
+    <value>許可</value>
+  </data>
+  <data name="MiscEnumUseSpeedSetGarrisonStatus0" xml:space="preserve">
+    <value>旧</value>
+  </data>
+  <data name="MiscEnumUseSpeedSetGarrisonStatus1" xml:space="preserve">
+    <value>新</value>
   </data>
 </root>

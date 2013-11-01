@@ -215,6 +215,7 @@
     </EmbeddedResource>
     <None Include="Documents\commands.xlsx" />
     <None Include="Documents\misc.xlsx" />
+    <None Include="Documents\miscedit.xlsx" />
     <None Include="Documents\provinces.xlsx" />
     <None Include="Documents\units.xlsx" />
     <None Include="Properties\Settings.settings">

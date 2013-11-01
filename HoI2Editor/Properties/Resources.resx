@@ -498,4 +498,3088 @@
   <data name="ConfirmSaveMessage" xml:space="preserve">
     <value>The items has been changed. Do you want to save the changes?</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="MiscLabelAaAirBonusRadars" xml:space="preserve">
+    <value>AA to Air Bonus from Radars</value>
+  </data>
+  <data name="MiscLabelAaAirFiringRules" xml:space="preserve">
+    <value>AA to Air Firing Rules</value>
+  </data>
+  <data name="MiscLabelAaAirNightModifier" xml:space="preserve">
+    <value>AA to Air Night Modifier</value>
+  </data>
+  <data name="MiscLabelAaInflictedBombingDamage" xml:space="preserve">
+    <value>AA Inflicted Bombing Damage</value>
+  </data>
+  <data name="MiscLabelAaInflictedFlyingDamage" xml:space="preserve">
+    <value>AA Inflicted Flying Damage</value>
+  </data>
+  <data name="MiscLabelAaInflictedOrgDamage" xml:space="preserve">
+    <value>AA Inflicted ORG Damage</value>
+  </data>
+  <data name="MiscLabelAaInflictedStrDamage" xml:space="preserve">
+    <value>AA Inflicted STR Damage</value>
+  </data>
+  <data name="MiscLabelAaPower" xml:space="preserve">
+    <value>AA Power</value>
+  </data>
+  <data name="MiscLabelAiDiplomacyCostModifier" xml:space="preserve">
+    <value>AI Diplomacy Missions Cost Modifier</value>
+  </data>
+  <data name="MiscLabelAiDiplomacyCostModifierDh" xml:space="preserve">
+    <value>AI Diplomacy Missions Cost Modifier</value>
+  </data>
+  <data name="MiscLabelAiEnd" xml:space="preserve">
+    <value>End of AI Items</value>
+  </data>
+  <data name="MiscLabelAiEventsActionSelectionRules" xml:space="preserve">
+    <value>AI Events Action Selection Rules</value>
+  </data>
+  <data name="MiscLabelAiInfluenceModifier" xml:space="preserve">
+    <value>AI Influence Modifier</value>
+  </data>
+  <data name="MiscLabelAiInfluenceModifierDh" xml:space="preserve">
+    <value>AI Influence Modifier</value>
+  </data>
+  <data name="MiscLabelAiMastersGetProvincesConquredPuppets" xml:space="preserve">
+    <value>AI Masters Get Provinces Conquered by Puppets</value>
+  </data>
+  <data name="MiscLabelAiPeacetimeSpyMissions" xml:space="preserve">
+    <value>AI Peacetime Offensive Spy Missions</value>
+  </data>
+  <data name="MiscLabelAiPeacetimeSpyMissionsDh" xml:space="preserve">
+    <value>AI Peacetime Offensive Spy Missions</value>
+  </data>
+  <data name="MiscLabelAirAdditionalOrgDamage" xml:space="preserve">
+    <value>Air Additional ORG Damage</value>
+  </data>
+  <data name="MiscLabelAirAdditionalStrDamage" xml:space="preserve">
+    <value>Air Additional STR Damage</value>
+  </data>
+  <data name="MiscLabelAirborneAssaultMission" xml:space="preserve">
+    <value>Airborne Assault Mission</value>
+  </data>
+  <data name="MiscLabelAirborneAssaultStartingEfficiency" xml:space="preserve">
+    <value>Airborne Assault Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAirChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>Air Chance of Avoid if Defences Left</value>
+  </data>
+  <data name="MiscLabelAirChanceAvoidNoDefences" xml:space="preserve">
+    <value>Air Chance of Avoid if no Defences</value>
+  </data>
+  <data name="MiscLabelAirCommandLimitModifier" xml:space="preserve">
+    <value>Air Command Limit Modifier</value>
+  </data>
+  <data name="MiscLabelAirDelayBeforeOrders" xml:space="preserve">
+    <value>Air Delay before Orders</value>
+  </data>
+  <data name="MiscLabelAirDogfightXpGainFactor" xml:space="preserve">
+    <value>Air Dogfight Xp Gain Factor</value>
+  </data>
+  <data name="MiscLabelAirLandStockModifier" xml:space="preserve">
+    <value>Air Land Stock Modifier</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank0" xml:space="preserve">
+    <value>Air Leader Command Limit - Rank 0</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank1" xml:space="preserve">
+    <value>Air Leader Command Limit - Rank 1</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank2" xml:space="preserve">
+    <value>Air Leader Command Limit - Rank 2</value>
+  </data>
+  <data name="MiscLabelAirLeaderCommandLimitRank3" xml:space="preserve">
+    <value>Air Leader Command Limit - Rank 3</value>
+  </data>
+  <data name="MiscLabelAirMaxDisorganized" xml:space="preserve">
+    <value>Air Max Disorganized</value>
+  </data>
+  <data name="MiscLabelAirMinCombatTime" xml:space="preserve">
+    <value>Air Min Combat Time</value>
+  </data>
+  <data name="MiscLabelAirMinOrgDamage" xml:space="preserve">
+    <value>Air Min ORG Damage</value>
+  </data>
+  <data name="MiscLabelAirMinStrDamage" xml:space="preserve">
+    <value>Air Min STR Damage</value>
+  </data>
+  <data name="MiscLabelAirOrgDamage" xml:space="preserve">
+    <value>Air ORG Damage</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageAa" xml:space="preserve">
+    <value>Air ORG Damage from AA</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageAirAoD" xml:space="preserve">
+    <value>Air ORG Damage from Air</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageAirDh" xml:space="preserve">
+    <value>Air ORG Damage from Air</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageLandAoD" xml:space="preserve">
+    <value>Air ORG Damage from Land</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageLandDh" xml:space="preserve">
+    <value>Air ORG Damage from Land</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageNavyAoD" xml:space="preserve">
+    <value>Air ORG Damage from Navy</value>
+  </data>
+  <data name="MiscLabelAirOrgDamageNavyDh" xml:space="preserve">
+    <value>Air ORG Damage from Navy</value>
+  </data>
+  <data name="MiscLabelAirOrgGain" xml:space="preserve">
+    <value>Air ORG Gain</value>
+  </data>
+  <data name="MiscLabelAirOrgLossMoving" xml:space="preserve">
+    <value>Air ORG Loss Moving</value>
+  </data>
+  <data name="MiscLabelAirOverstackingModifier" xml:space="preserve">
+    <value>Air Overstacking Modifier</value>
+  </data>
+  <data name="MiscLabelAirOverstackingModifierAoD" xml:space="preserve">
+    <value>Air Overstacking Modifier</value>
+  </data>
+  <data name="MiscLabelAirRebaseFactor" xml:space="preserve">
+    <value>Air Rebase Factor</value>
+  </data>
+  <data name="MiscLabelAirScrambleDetection" xml:space="preserve">
+    <value>Air Scramble Detection</value>
+  </data>
+  <data name="MiscLabelAirScrambleMinRequired" xml:space="preserve">
+    <value>Air Scramble Min Required</value>
+  </data>
+  <data name="MiscLabelAirScrambleMission" xml:space="preserve">
+    <value>Air Scramble Mission</value>
+  </data>
+  <data name="MiscLabelAirScrambleStartingEfficiency" xml:space="preserve">
+    <value>Air Scramble Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAirStrDamage" xml:space="preserve">
+    <value>Air STR Damage</value>
+  </data>
+  <data name="MiscLabelAirStrDamageAa" xml:space="preserve">
+    <value>Air STR Damage from AA</value>
+  </data>
+  <data name="MiscLabelAirStrDamageAirAoD" xml:space="preserve">
+    <value>Air STR Damage from Air</value>
+  </data>
+  <data name="MiscLabelAirStrDamageAirDh" xml:space="preserve">
+    <value>Air STR Damage from Air</value>
+  </data>
+  <data name="MiscLabelAirStrDamageEntrenced" xml:space="preserve">
+    <value>Air STR Damage vs Entrenced</value>
+  </data>
+  <data name="MiscLabelAirStrDamageLandAoD" xml:space="preserve">
+    <value>Air STR Damage from Land</value>
+  </data>
+  <data name="MiscLabelAirStrDamageLandDh" xml:space="preserve">
+    <value>Air STR Damage from Land</value>
+  </data>
+  <data name="MiscLabelAirStrDamageLandOrg" xml:space="preserve">
+    <value>Air STR Damage from Land by ORG</value>
+  </data>
+  <data name="MiscLabelAirStrDamageNavyAoD" xml:space="preserve">
+    <value>Air STR Damage from Navy</value>
+  </data>
+  <data name="MiscLabelAirStrDamageNavyDh" xml:space="preserve">
+    <value>Air STR Damage from Navy</value>
+  </data>
+  <data name="MiscLabelAirStrDamageOrg" xml:space="preserve">
+    <value>Air STR Damage by ORG</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityDetection" xml:space="preserve">
+    <value>Air Superiority Detection</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityMinRequired" xml:space="preserve">
+    <value>Air Superiority Min Required</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityMission" xml:space="preserve">
+    <value>Air Superiority Mission</value>
+  </data>
+  <data name="MiscLabelAirSuperiorityStartingEfficiency" xml:space="preserve">
+    <value>Air Superiority Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAirSupplyMission" xml:space="preserve">
+    <value>Air Supply Mission</value>
+  </data>
+  <data name="MiscLabelAirSupplyStartingEfficiency" xml:space="preserve">
+    <value>Air Supply Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAirSurpriseChance" xml:space="preserve">
+    <value>Air Surprise Chance</value>
+  </data>
+  <data name="MiscLabelAirXpGainFactor" xml:space="preserve">
+    <value>Air XP Gain Factor</value>
+  </data>
+  <data name="MiscLabelAiSpyDiplomaticMissionLogger" xml:space="preserve">
+    <value>AI Spy and Diplomatic Mission Loggers</value>
+  </data>
+  <data name="MiscLabelAiSpyMissionsCostModifier" xml:space="preserve">
+    <value>AI Spy Missions Cost Modifier</value>
+  </data>
+  <data name="MiscLabelAiSpyMissionsCostModifierDh" xml:space="preserve">
+    <value>AI Spy Missions Cost Modifier</value>
+  </data>
+  <data name="MiscLabelAllowBrigadeAttachingInSupply" xml:space="preserve">
+    <value>Allow Brigade Attaching in Supply</value>
+  </data>
+  <data name="MiscLabelAllowChangeHosHog" xml:space="preserve">
+    <value>Allow Change HoS/HoG</value>
+  </data>
+  <data name="MiscLabelAllowManualClaimsChange" xml:space="preserve">
+    <value>Allow Manual Claims Change</value>
+  </data>
+  <data name="MiscLabelAllowProvinceRegionTargeting" xml:space="preserve">
+    <value>Allow Province/Region Targeting</value>
+  </data>
+  <data name="MiscLabelAllowUniquePicturesAllLandProvinces" xml:space="preserve">
+    <value>Allow Unique Pictures to All Provinces</value>
+  </data>
+  <data name="MiscLabelAmbushOrgAttackerAoD" xml:space="preserve">
+    <value>Ambush ORG Attacker</value>
+  </data>
+  <data name="MiscLabelAmbushOrgAttackerDh" xml:space="preserve">
+    <value>Ambush ORG Attacker</value>
+  </data>
+  <data name="MiscLabelAmbushOrgDefenderAoD" xml:space="preserve">
+    <value>Ambush ORG Defender</value>
+  </data>
+  <data name="MiscLabelAmbushOrgDefenderDh" xml:space="preserve">
+    <value>Ambush ORG Defender</value>
+  </data>
+  <data name="MiscLabelAmbushStrAttackerAoD" xml:space="preserve">
+    <value>Ambush STR Attacker</value>
+  </data>
+  <data name="MiscLabelAmbushStrAttackerDh" xml:space="preserve">
+    <value>Ambush STR Attacker</value>
+  </data>
+  <data name="MiscLabelAmbushStrDefenderAoD" xml:space="preserve">
+    <value>Ambush STR Defender</value>
+  </data>
+  <data name="MiscLabelAmbushStrDefenderDh" xml:space="preserve">
+    <value>Ambush STR Defender</value>
+  </data>
+  <data name="MiscLabelAmphibousAssaultMission" xml:space="preserve">
+    <value>Amphibous Assault Mission</value>
+  </data>
+  <data name="MiscLabelAmphibousAssaultStartingEfficiency" xml:space="preserve">
+    <value>Amphibous Assault Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAntiPartisanDutyMission" xml:space="preserve">
+    <value>Anti Partisan Duty Mission</value>
+  </data>
+  <data name="MiscLabelAntiPartisanDutyStartingEfficiency" xml:space="preserve">
+    <value>Anti Partisan Duty Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAntiPartisanDutySuppression" xml:space="preserve">
+    <value>Anti Partisan Duty Suppression</value>
+  </data>
+  <data name="MiscLabelApplyRangeLimitsAreasRegions" xml:space="preserve">
+    <value>Apply Range Limits to Areas and Regions</value>
+  </data>
+  <data name="MiscLabelArmorSoftBreakthroughMax" xml:space="preserve">
+    <value>Armor Soft Breakthrough Max</value>
+  </data>
+  <data name="MiscLabelArmorSoftBreakthroughMin" xml:space="preserve">
+    <value>Armor Soft Breakthrough Min</value>
+  </data>
+  <data name="MiscLabelArtilleryBombardmentOrgCost" xml:space="preserve">
+    <value>Artillery Bombardment ORG Cost</value>
+  </data>
+  <data name="MiscLabelArtilleryOrgDamage" xml:space="preserve">
+    <value>Artillery ORG Damage</value>
+  </data>
+  <data name="MiscLabelArtilleryStrDamage" xml:space="preserve">
+    <value>Artillery STR Damage</value>
+  </data>
+  <data name="MiscLabelAssaultOrgAttackerAoD" xml:space="preserve">
+    <value>Assault ORG Attacker</value>
+  </data>
+  <data name="MiscLabelAssaultOrgAttackerDh" xml:space="preserve">
+    <value>Assault ORG Attacker</value>
+  </data>
+  <data name="MiscLabelAssaultOrgDefenderAoD" xml:space="preserve">
+    <value>Assault ORG Defender</value>
+  </data>
+  <data name="MiscLabelAssaultOrgDefenderDh" xml:space="preserve">
+    <value>Assault ORG Defender</value>
+  </data>
+  <data name="MiscLabelAssaultStrAttackerAoD" xml:space="preserve">
+    <value>Assault STR Attacker</value>
+  </data>
+  <data name="MiscLabelAssaultStrAttackerDh" xml:space="preserve">
+    <value>Assault STR Attacker</value>
+  </data>
+  <data name="MiscLabelAssaultStrDefenderAoD" xml:space="preserve">
+    <value>Assault STR Defender</value>
+  </data>
+  <data name="MiscLabelAssaultStrDefenderDh" xml:space="preserve">
+    <value>Assault STR Defender</value>
+  </data>
+  <data name="MiscLabelAswMission" xml:space="preserve">
+    <value>ASW Mission</value>
+  </data>
+  <data name="MiscLabelAswStartingEfficiency" xml:space="preserve">
+    <value>ASW Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAttackMission" xml:space="preserve">
+    <value>Attack Mission</value>
+  </data>
+  <data name="MiscLabelAttackSpeedBonus" xml:space="preserve">
+    <value>Attack Speed Bonus</value>
+  </data>
+  <data name="MiscLabelAttackStartingEfficiency" xml:space="preserve">
+    <value>Attack Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelAttritionModifier" xml:space="preserve">
+    <value>Attrition Modifier</value>
+  </data>
+  <data name="MiscLabelAttritionSeverityModifier" xml:space="preserve">
+    <value>Attrition Severity Modifier</value>
+  </data>
+  <data name="MiscLabelAutoReplyEvents" xml:space="preserve">
+    <value>Auto Reply to Events</value>
+  </data>
+  <data name="MiscLabelAutoRetreatOrg" xml:space="preserve">
+    <value>Auto Retreat ORG</value>
+  </data>
+  <data name="MiscLabelAutoReturnTransportFleets" xml:space="preserve">
+    <value>Auto Return Transport Fleets</value>
+  </data>
+  <data name="MiscLabelAutoTradeAiTradeDeals" xml:space="preserve">
+    <value>Auto-Trade and AI Trade Deals</value>
+  </data>
+  <data name="MiscLabelAutoTradeConvoy" xml:space="preserve">
+    <value>Auto Trade Convoy</value>
+  </data>
+  <data name="MiscLabelBaseProximity" xml:space="preserve">
+    <value>Base Proximity</value>
+  </data>
+  <data name="MiscLabelBbMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Battleships</value>
+  </data>
+  <data name="MiscLabelBcMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Battle Cruisers</value>
+  </data>
+  <data name="MiscLabelBelligerenceClaimedProvince" xml:space="preserve">
+    <value>Belligerence for Claimed Province</value>
+  </data>
+  <data name="MiscLabelBelligerenceClaimsRemoval" xml:space="preserve">
+    <value>Belligerence on Claims Removal</value>
+  </data>
+  <data name="MiscLabelBlueprintBonus" xml:space="preserve">
+    <value>Blueprint Bonus</value>
+  </data>
+  <data name="MiscLabelBluePrintsCanSoldNonAllied" xml:space="preserve">
+    <value>Blue Prints can be Sold to Non-Allied</value>
+  </data>
+  <data name="MiscLabelBonusDetectionFriendly" xml:space="preserve">
+    <value>Bonus on Detection Friendly</value>
+  </data>
+  <data name="MiscLabelBonusEventTrait" xml:space="preserve">
+    <value>Bonus on Event Trait</value>
+  </data>
+  <data name="MiscLabelBonusLeaderSkillPointAir" xml:space="preserve">
+    <value>Bonus per Leader Skill Point - Air</value>
+  </data>
+  <data name="MiscLabelBonusLeaderSkillPointLand" xml:space="preserve">
+    <value>Bonus per Leader Skill Point - Land</value>
+  </data>
+  <data name="MiscLabelBonusLeaderSkillPointNaval" xml:space="preserve">
+    <value>Bonus per Leader Skill Point - Naval</value>
+  </data>
+  <data name="MiscLabelBonusSimilarTerrainTrait" xml:space="preserve">
+    <value>Bonus on Similar Terrain Trait</value>
+  </data>
+  <data name="MiscLabelBonusTerrainTrait" xml:space="preserve">
+    <value>Bonus on Terrain Trait</value>
+  </data>
+  <data name="MiscLabelBreakthroughEncirclementChanceModifier" xml:space="preserve">
+    <value>Breakthrough/Encirclement Chance Modifier</value>
+  </data>
+  <data name="MiscLabelBreakthroughEncirclementMaxChance" xml:space="preserve">
+    <value>Breakthrough/Encirclement Max Chance</value>
+  </data>
+  <data name="MiscLabelBreakthroughEncirclementMinSpeed" xml:space="preserve">
+    <value>Breakthrough/Encirclement Min Speed</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgAttackerAoD" xml:space="preserve">
+    <value>Breakthrough ORG Attacker</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgAttackerDh" xml:space="preserve">
+    <value>Breakthrough ORG Attacker</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgDefenderAoD" xml:space="preserve">
+    <value>Breakthrough ORG Defender</value>
+  </data>
+  <data name="MiscLabelBreakthroughOrgDefenderDh" xml:space="preserve">
+    <value>Breakthrough ORG Defender</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrAttackerAoD" xml:space="preserve">
+    <value>Breakthrough STR Attacker</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrAttackerDh" xml:space="preserve">
+    <value>Breakthrough STR Attacker</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrDefenderAoD" xml:space="preserve">
+    <value>Breakthrough STR Defender</value>
+  </data>
+  <data name="MiscLabelBreakthroughStrDefenderDh" xml:space="preserve">
+    <value>Breakthrough STR Defender</value>
+  </data>
+  <data name="MiscLabelBuildingsBuildableOnlyProvinces" xml:space="preserve">
+    <value>Buldable only in Provinces</value>
+  </data>
+  <data name="MiscLabelBuildingsProductionModifier" xml:space="preserve">
+    <value>Buildings Production Modifier</value>
+  </data>
+  <data name="MiscLabelCaMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Heavy Cruisers</value>
+  </data>
+  <data name="MiscLabelCancelTradeDealsEffectiveness" xml:space="preserve">
+    <value>Cancel Trade Deals Effectiveness</value>
+  </data>
+  <data name="MiscLabelCanChangeIdeas" xml:space="preserve">
+    <value>Player can Change Ideas Freely</value>
+  </data>
+  <data name="MiscLabelCanUnitSendNonAllied" xml:space="preserve">
+    <value>Units can be Sold to Non-Allied Countries</value>
+  </data>
+  <data name="MiscLabelCanUnitSendNonAlliedDh" xml:space="preserve">
+    <value>Units can be Sold to Non-Allied</value>
+  </data>
+  <data name="MiscLabelChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>Chance of Avoid if Defences left</value>
+  </data>
+  <data name="MiscLabelChanceAvoidNoDefences" xml:space="preserve">
+    <value>Chance of Avoid if no Defences</value>
+  </data>
+  <data name="MiscLabelChanceDetectSpyMission" xml:space="preserve">
+    <value>Chance to Detect the Initiator of a Spy Mission</value>
+  </data>
+  <data name="MiscLabelChanceDetectSpyMissionDh" xml:space="preserve">
+    <value>Chance to Detect the Initiator of a Spy Mission</value>
+  </data>
+  <data name="MiscLabelChanceGetEventTrait" xml:space="preserve">
+    <value>Chance to Get Event Trait</value>
+  </data>
+  <data name="MiscLabelChanceGetTerrainTrait" xml:space="preserve">
+    <value>Chance to Get Terrain Trait</value>
+  </data>
+  <data name="MiscLabelChanceLeaderDying" xml:space="preserve">
+    <value>Chance of Leaders Dying</value>
+  </data>
+  <data name="MiscLabelChanceTargetNoOrgLand" xml:space="preserve">
+    <value>Chance to Target no ORG Land</value>
+  </data>
+  <data name="MiscLabelChangeIdeaDissent" xml:space="preserve">
+    <value>Change Idea Dissent</value>
+  </data>
+  <data name="MiscLabelChangeMinisterDissent" xml:space="preserve">
+    <value>Change Minister Dissent</value>
+  </data>
+  <data name="MiscLabelChangeTagCoup" xml:space="preserve">
+    <value>Change TAG on Coup</value>
+  </data>
+  <data name="MiscLabelClEscortsConversionRatio" xml:space="preserve">
+    <value>CL to Convoy Escorts Conversion Ratio</value>
+  </data>
+  <data name="MiscLabelClMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Light Cruisers</value>
+  </data>
+  <data name="MiscLabelCoastalFortEfficiency" xml:space="preserve">
+    <value>Coastal Fort Efficiency</value>
+  </data>
+  <data name="MiscLabelCoastalFortMultiplier" xml:space="preserve">
+    <value>Coastal Fort Multiplier</value>
+  </data>
+  <data name="MiscLabelCombatEnd" xml:space="preserve">
+    <value>End of Combat Items</value>
+  </data>
+  <data name="MiscLabelCombatEventChances" xml:space="preserve">
+    <value>Combat Event Chances</value>
+  </data>
+  <data name="MiscLabelCombatEventDuration" xml:space="preserve">
+    <value>Combat Events Duration</value>
+  </data>
+  <data name="MiscLabelCombatMode" xml:space="preserve">
+    <value>Combat Mode</value>
+  </data>
+  <data name="MiscLabelConvoyAirRaidingMission" xml:space="preserve">
+    <value>Convoy Air Raiding Mission</value>
+  </data>
+  <data name="MiscLabelConvoyAirRaidingStartingEfficiency" xml:space="preserve">
+    <value>Convoy Air Raiding Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelConvoyDefenseEfficiency" xml:space="preserve">
+    <value>Convoy Defense Efficiency</value>
+  </data>
+  <data name="MiscLabelConvoyDutyConversion" xml:space="preserve">
+    <value>Convoy Duty Conversion</value>
+  </data>
+  <data name="MiscLabelConvoyEscortsModel" xml:space="preserve">
+    <value>Convoy Escorts Model</value>
+  </data>
+  <data name="MiscLabelConvoyInterceptionMissions" xml:space="preserve">
+    <value>Convoy Interception on Missions</value>
+  </data>
+  <data name="MiscLabelConvoyProtectionFactor" xml:space="preserve">
+    <value>Convoy Protection Factor</value>
+  </data>
+  <data name="MiscLabelConvoyProvinceBlockedTime" xml:space="preserve">
+    <value>Convoy Province Blocked Time</value>
+  </data>
+  <data name="MiscLabelConvoyProvinceHostileTime" xml:space="preserve">
+    <value>Convoy Province Hostile Time</value>
+  </data>
+  <data name="MiscLabelConvoyRadingChanceDetected" xml:space="preserve">
+    <value>Convoy Rading Chance to be Detected</value>
+  </data>
+  <data name="MiscLabelConvoyRadingMission" xml:space="preserve">
+    <value>Convoy Rading Mission</value>
+  </data>
+  <data name="MiscLabelConvoyRadingRangeModifier" xml:space="preserve">
+    <value>Convoy Rading Range Modifier</value>
+  </data>
+  <data name="MiscLabelConvoyRadingStartingEfficiency" xml:space="preserve">
+    <value>Convoy Rading Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelConvoysProductionModifier" xml:space="preserve">
+    <value>Convoys Production Modifier</value>
+  </data>
+  <data name="MiscLabelConvoySystemOptionsAllied" xml:space="preserve">
+    <value>Convoy System Options for Allied</value>
+  </data>
+  <data name="MiscLabelConvoyTransportsCapacity" xml:space="preserve">
+    <value>Modifier on Convoy Transports Capacity</value>
+  </data>
+  <data name="MiscLabelCoreProvinceEfficiencyRiseTime" xml:space="preserve">
+    <value>Core Province Efficiency Rise Time</value>
+  </data>
+  <data name="MiscLabelCostRepairBuildings" xml:space="preserve">
+    <value>Cost to Repair Province Buildings</value>
+  </data>
+  <data name="MiscLabelCostSkillLevel" xml:space="preserve">
+    <value>Cost for Skill Level</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgAttackerAoD" xml:space="preserve">
+    <value>Counter Attack ORG Attacker</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgAttackerDh" xml:space="preserve">
+    <value>Counter Attack ORG Attacker</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgDefenderAoD" xml:space="preserve">
+    <value>Counter Attack ORG Defender</value>
+  </data>
+  <data name="MiscLabelCounterAttackOrgDefenderDh" xml:space="preserve">
+    <value>Counter Attack ORG Defender</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrAttackerAoD" xml:space="preserve">
+    <value>Counter Attack STR Attacker</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrAttackerDh" xml:space="preserve">
+    <value>Counter Attack STR Attacker</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrDefenderAoD" xml:space="preserve">
+    <value>Counter Attack STR Defender</value>
+  </data>
+  <data name="MiscLabelCounterAttackStrDefenderDh" xml:space="preserve">
+    <value>Counter Attack STR Defender</value>
+  </data>
+  <data name="MiscLabelCountryEnd" xml:space="preserve">
+    <value>End of Country Items</value>
+  </data>
+  <data name="MiscLabelCountryLogger" xml:space="preserve">
+    <value>Country Logger</value>
+  </data>
+  <data name="MiscLabelCriticalOilStockpile" xml:space="preserve">
+    <value>Critical Oil Stockpile</value>
+  </data>
+  <data name="MiscLabelCriticalResourceStockpile" xml:space="preserve">
+    <value>Critical Resources Stockpile</value>
+  </data>
+  <data name="MiscLabelCriticalSuppliesStockpile" xml:space="preserve">
+    <value>Critical Supplies Stockpile</value>
+  </data>
+  <data name="MiscLabelCvlEscortsConversionRatio" xml:space="preserve">
+    <value>CVL to Convoy Escorts Conversion Ratio</value>
+  </data>
+  <data name="MiscLabelCvlMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Escort Carriers</value>
+  </data>
+  <data name="MiscLabelCvMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Fleet Carriers</value>
+  </data>
+  <data name="MiscLabelDailyAgingManpower" xml:space="preserve">
+    <value>Daily Aging of Manpower</value>
+  </data>
+  <data name="MiscLabelDailyRetiredManpower" xml:space="preserve">
+    <value>Daily Retired Manpower</value>
+  </data>
+  <data name="MiscLabelDamageAaBombing" xml:space="preserve">
+    <value>Damage AA from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageAirBaseBombing" xml:space="preserve">
+    <value>Damage Air Base from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageIcBombing" xml:space="preserve">
+    <value>Damage IC from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageInfraBombing" xml:space="preserve">
+    <value>Damage Infra from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageNavalBasesBombing" xml:space="preserve">
+    <value>Damage Naval Bases from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageNukeBombing" xml:space="preserve">
+    <value>Damage Nuke from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageRadarBombing" xml:space="preserve">
+    <value>Damage Radar from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageResourcesBombing" xml:space="preserve">
+    <value>Damage Resources from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageRocketBombing" xml:space="preserve">
+    <value>Damage Rocket from Bombing</value>
+  </data>
+  <data name="MiscLabelDamageSyntheticOilBombing" xml:space="preserve">
+    <value>Damage Synthetic Oil from Bombing</value>
+  </data>
+  <data name="MiscLabelDaysBetweenDiplomaticMissions" xml:space="preserve">
+    <value>Days between Diplomatic Missions</value>
+  </data>
+  <data name="MiscLabelDaysDeliverResourcesTrades" xml:space="preserve">
+    <value>Days to Deliver Resources from Trades</value>
+  </data>
+  <data name="MiscLabelDaysOffensiveSupply" xml:space="preserve">
+    <value>Days in Offensive Supply</value>
+  </data>
+  <data name="MiscLabelDaysTradeOffers" xml:space="preserve">
+    <value>Days between Trade Offers</value>
+  </data>
+  <data name="MiscLabelDdEscortsConversionRatio" xml:space="preserve">
+    <value>DD to Convoy Escorts Conversion Ratio</value>
+  </data>
+  <data name="MiscLabelDdMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Destroyers</value>
+  </data>
+  <data name="MiscLabelDefaultAirStack" xml:space="preserve">
+    <value>Default Air Stack</value>
+  </data>
+  <data name="MiscLabelDefaultLandStack" xml:space="preserve">
+    <value>Default Land Stack</value>
+  </data>
+  <data name="MiscLabelDefaultNavalStack" xml:space="preserve">
+    <value>Default Naval Stack</value>
+  </data>
+  <data name="MiscLabelDefaultRocketStack" xml:space="preserve">
+    <value>Default Rocket Stack</value>
+  </data>
+  <data name="MiscLabelDefaultSpeedFuel" xml:space="preserve">
+    <value>Default Speed when out of Fuel</value>
+  </data>
+  <data name="MiscLabelDefensiveCombinedArmsBonus" xml:space="preserve">
+    <value>Defensive Combined Arms Bonus</value>
+  </data>
+  <data name="MiscLabelDelayAfterCombatEnds" xml:space="preserve">
+    <value>Delay after Combat Ends</value>
+  </data>
+  <data name="MiscLabelDelayGameStartNewTrades" xml:space="preserve">
+    <value>Delay on Game Start before New Trades</value>
+  </data>
+  <data name="MiscLabelDelayOrgAttackerAoD" xml:space="preserve">
+    <value>Delay ORG Attacker</value>
+  </data>
+  <data name="MiscLabelDelayOrgAttackerDh" xml:space="preserve">
+    <value>Delay ORG Attacker</value>
+  </data>
+  <data name="MiscLabelDelayOrgDefenderAoD" xml:space="preserve">
+    <value>Delay ORG Defender</value>
+  </data>
+  <data name="MiscLabelDelayOrgDefenderDh" xml:space="preserve">
+    <value>Delay ORG Defender</value>
+  </data>
+  <data name="MiscLabelDelayStrAttackerAoD" xml:space="preserve">
+    <value>Delay STR Attacker</value>
+  </data>
+  <data name="MiscLabelDelayStrAttackerDh" xml:space="preserve">
+    <value>Delay STR Attacker</value>
+  </data>
+  <data name="MiscLabelDelayStrDefenderAoD" xml:space="preserve">
+    <value>Delay STR Defender</value>
+  </data>
+  <data name="MiscLabelDelayStrDefenderDh" xml:space="preserve">
+    <value>Delay STR Defender</value>
+  </data>
+  <data name="MiscLabelDesiredOilStockpile" xml:space="preserve">
+    <value>Desired Oil Stockpile</value>
+  </data>
+  <data name="MiscLabelDesiredResourcesStockpile" xml:space="preserve">
+    <value>Desired Resources Stockpile</value>
+  </data>
+  <data name="MiscLabelDesiredStockPilesSuppliesOil" xml:space="preserve">
+    <value>Desired Provincial Stockpiles for Oil and Supplies</value>
+  </data>
+  <data name="MiscLabelDesiredSuppliesStockpile" xml:space="preserve">
+    <value>Desired Supplies Stockpile</value>
+  </data>
+  <data name="MiscLabelDigIncreaseDay" xml:space="preserve">
+    <value>Dig Increase per Day</value>
+  </data>
+  <data name="MiscLabelDiplomacyEnd" xml:space="preserve">
+    <value>End of Diplomacy Items</value>
+  </data>
+  <data name="MiscLabelDissentChangeSpeed" xml:space="preserve">
+    <value>Dissent Change Speed</value>
+  </data>
+  <data name="MiscLabelDissentMultiplier" xml:space="preserve">
+    <value>Dissent Multiplier</value>
+  </data>
+  <data name="MiscLabelDissentNukes" xml:space="preserve">
+    <value>Modifier on Dissent Taken from Nukes</value>
+  </data>
+  <data name="MiscLabelDissentReduction" xml:space="preserve">
+    <value>Modifier on dissent reduction</value>
+  </data>
+  <data name="MiscLabelDissentRevoltMultiplier" xml:space="preserve">
+    <value>Dissent Revolt Multiplier</value>
+  </data>
+  <data name="MiscLabelDistanceCalculationModel" xml:space="preserve">
+    <value>Distance Calculation Model</value>
+  </data>
+  <data name="MiscLabelDistanceModifier" xml:space="preserve">
+    <value>Distance Modifier</value>
+  </data>
+  <data name="MiscLabelDistanceModifierNeighbours" xml:space="preserve">
+    <value>Distance Modifier for Neighbours</value>
+  </data>
+  <data name="MiscLabelDistanceModifierNeighboursDh" xml:space="preserve">
+    <value>Distance Modifier for Neighbours</value>
+  </data>
+  <data name="MiscLabelDivisionXpGainFactor" xml:space="preserve">
+    <value>Division XP Gain Factor</value>
+  </data>
+  <data name="MiscLabelDurationAirToAirBattles" xml:space="preserve">
+    <value>Duration of Air to Air Battles</value>
+  </data>
+  <data name="MiscLabelDurationDetection" xml:space="preserve">
+    <value>Duration of Detection</value>
+  </data>
+  <data name="MiscLabelDurationGroundAttackBombing" xml:space="preserve">
+    <value>Duration of Ground Attack Bombing</value>
+  </data>
+  <data name="MiscLabelDurationNavalPortBombing" xml:space="preserve">
+    <value>Duration of Naval and Port Bombing</value>
+  </data>
+  <data name="MiscLabelDurationStrategicBombing" xml:space="preserve">
+    <value>Duration of Strategic Bombing</value>
+  </data>
+  <data name="MiscLabelEconomyEnd" xml:space="preserve">
+    <value>End of Economy Items</value>
+  </data>
+  <data name="MiscLabelEffectExperienceCombat" xml:space="preserve">
+    <value>Effect of Experience on Combat</value>
+  </data>
+  <data name="MiscLabelEnableDicisionsPlayers" xml:space="preserve">
+    <value>Enable Decisions for Players</value>
+  </data>
+  <data name="MiscLabelEnablePicturesNavalBrigades" xml:space="preserve">
+    <value>Enable Pictures for Naval Brigades</value>
+  </data>
+  <data name="MiscLabelEnableRetirementYearLeaders" xml:space="preserve">
+    <value>Enable Retirement Year for Leaders</value>
+  </data>
+  <data name="MiscLabelEnableRetirementYearMinisters" xml:space="preserve">
+    <value>Enable Retirement Year for Ministers</value>
+  </data>
+  <data name="MiscLabelEncircledModifier" xml:space="preserve">
+    <value>Encircled Modifier</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgAttackerAoD" xml:space="preserve">
+    <value>Encirclement ORG Attacker</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgAttackerDh" xml:space="preserve">
+    <value>Encirclement ORG Attacker</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgDefenderAoD" xml:space="preserve">
+    <value>Encirclement ORG Defender</value>
+  </data>
+  <data name="MiscLabelEncirclementOrgDefenderDh" xml:space="preserve">
+    <value>Encirclement ORG Defender</value>
+  </data>
+  <data name="MiscLabelEncirclementStrAttackerAoD" xml:space="preserve">
+    <value>Encirclement STR Attacker</value>
+  </data>
+  <data name="MiscLabelEncirclementStrAttackerDh" xml:space="preserve">
+    <value>Encirclement STR Attacker</value>
+  </data>
+  <data name="MiscLabelEncirclementStrDefenderAoD" xml:space="preserve">
+    <value>Encirclement STR Defender</value>
+  </data>
+  <data name="MiscLabelEncirclementStrDefenderDh" xml:space="preserve">
+    <value>Encirclement STR Defender</value>
+  </data>
+  <data name="MiscLabelEnemyArmyDetectionChance" xml:space="preserve">
+    <value>Enemy Army Detection Chance</value>
+  </data>
+  <data name="MiscLabelEnemyIntelligenceChance" xml:space="preserve">
+    <value>Enemy Intelligence Chance</value>
+  </data>
+  <data name="MiscLabelEnergyToOil" xml:space="preserve">
+    <value>Energy to Oil</value>
+  </data>
+  <data name="MiscLabelEnvelopmentModifier" xml:space="preserve">
+    <value>Envelopment Modifier</value>
+  </data>
+  <data name="MiscLabelEscortDutyConversion" xml:space="preserve">
+    <value>Escort Duty Conversion</value>
+  </data>
+  <data name="MiscLabelExtraCostIncreasingAboveTen" xml:space="preserve">
+    <value>Extra Cost for Increasing Spy Level above 10</value>
+  </data>
+  <data name="MiscLabelExtraImportBelowDesired" xml:space="preserve">
+    <value>Extra Import when below Desired</value>
+  </data>
+  <data name="MiscLabelExtraImportStockpileSelected" xml:space="preserve">
+    <value>Extra Import when Stockpile is Selected</value>
+  </data>
+  <data name="MiscLabelExtraMaintenanceCostAboveTen" xml:space="preserve">
+    <value>Extra Maintenance Cost above 10</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusAirNavalBases" xml:space="preserve">
+    <value>Extra Rebel Bonus for Air or Naval Bases</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusDesert" xml:space="preserve">
+    <value>Extra Rebel Bonus for Desert</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusForest" xml:space="preserve">
+    <value>Extra Rebel Bonus for Forest</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusHill" xml:space="preserve">
+    <value>Extra Rebel Bonus for Hill</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusJungle" xml:space="preserve">
+    <value>Extra Rebel Bonus for Jungle</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusMountain" xml:space="preserve">
+    <value>Extra Rebel Bonus for Mountain</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusNeighboringProvince" xml:space="preserve">
+    <value>Extra Rebel Bonus for Neighboring Province</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusOccupied" xml:space="preserve">
+    <value>Extra Rebel Bonus for Occupied</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusPlain" xml:space="preserve">
+    <value>Extra Rebel Bonus for Plain</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusSwamp" xml:space="preserve">
+    <value>Extra Rebel Bonus for Swamp</value>
+  </data>
+  <data name="MiscLabelExtraRebelBonusUrban" xml:space="preserve">
+    <value>Extra Rebel Bonus for Urban</value>
+  </data>
+  <data name="MiscLabelFilterReleaseCountries" xml:space="preserve">
+    <value>Filter for Release Countries</value>
+  </data>
+  <data name="MiscLabelFleetPositioningDaytime" xml:space="preserve">
+    <value>Fleet Positioning Daytime</value>
+  </data>
+  <data name="MiscLabelFleetPositioningFleetComposition" xml:space="preserve">
+    <value>Fleet Positioning Fleet Composition</value>
+  </data>
+  <data name="MiscLabelFleetPositioningFleetSize" xml:space="preserve">
+    <value>Fleet Positioning Fleet Size</value>
+  </data>
+  <data name="MiscLabelFleetPositioningLeaderSkill" xml:space="preserve">
+    <value>Fleet Positioning Leader Skill</value>
+  </data>
+  <data name="MiscLabelFleetSizeRangePenaltyMax" xml:space="preserve">
+    <value>Fleet Size Range Penalty Max</value>
+  </data>
+  <data name="MiscLabelFleetSizeRangePenaltyRatio" xml:space="preserve">
+    <value>Fleet Size Range Penalty Ratio</value>
+  </data>
+  <data name="MiscLabelFleetSizeRangePenaltyThrethold" xml:space="preserve">
+    <value>Fleet Size Range Penalty Threthold</value>
+  </data>
+  <data name="MiscLabelForceActionsShow" xml:space="preserve">
+    <value>Force Actions to Show</value>
+  </data>
+  <data name="MiscLabelForcePuppetsJoinMastersAllianceNeutrality" xml:space="preserve">
+    <value>Force Puppets Join Master's Alliance Neutrality</value>
+  </data>
+  <data name="MiscLabelForceStrategicRedeploymentHour" xml:space="preserve">
+    <value>Force Strategic RedeploymentHour</value>
+  </data>
+  <data name="MiscLabelFortDamageArtilleryBombardment" xml:space="preserve">
+    <value>Fort Damage by Artillery Bombardment</value>
+  </data>
+  <data name="MiscLabelFreeInfraRepair" xml:space="preserve">
+    <value>Free Infra Repair</value>
+  </data>
+  <data name="MiscLabelFriendlyArmyDetectionChance" xml:space="preserve">
+    <value>Friendly Army Detection Chance</value>
+  </data>
+  <data name="MiscLabelFriendlyIntelligenceChance" xml:space="preserve">
+    <value>Friendly Intelligence Chance</value>
+  </data>
+  <data name="MiscLabelFuelAirBattle" xml:space="preserve">
+    <value>Fuel Consumption Modifier in Combat - Air</value>
+  </data>
+  <data name="MiscLabelFuelAirNavalStatic" xml:space="preserve">
+    <value>Fuel Consumption Modifier at Base - Air/Naval</value>
+  </data>
+  <data name="MiscLabelFuelLandBattle" xml:space="preserve">
+    <value>Fuel Consumption Modifier In Combat</value>
+  </data>
+  <data name="MiscLabelFuelLandStatic" xml:space="preserve">
+    <value>Fuel Consumption Modifier Not Moving - Land</value>
+  </data>
+  <data name="MiscLabelFuelNavalBattle" xml:space="preserve">
+    <value>Fuel Consumption Modifier in Combat - Naval</value>
+  </data>
+  <data name="MiscLabelFuelNavalNotMoving" xml:space="preserve">
+    <value>Fuel Consumption Modifier Not Moving - Naval</value>
+  </data>
+  <data name="MiscLabelFuelProblemsModifierAir" xml:space="preserve">
+    <value>Fuel Problems Modifier - Air</value>
+  </data>
+  <data name="MiscLabelFuelProblemsModifierLand" xml:space="preserve">
+    <value>Fuel Problems Modifier - Land</value>
+  </data>
+  <data name="MiscLabelFuelProblemsModifierNaval" xml:space="preserve">
+    <value>Fuel Problems Modifier - Naval</value>
+  </data>
+  <data name="MiscLabelGearingBonusIncrement" xml:space="preserve">
+    <value>Gearing Bonus Increment</value>
+  </data>
+  <data name="MiscLabelGearingBonusLossUpgradeBrigade" xml:space="preserve">
+    <value>Gearing Bonus Loss per Upgrade Brigade</value>
+  </data>
+  <data name="MiscLabelGearingBonusLossUpgradeUnit" xml:space="preserve">
+    <value>Gearing Bonus Loss per Upgrade Unit</value>
+  </data>
+  <data name="MiscLabelGearingLossNoIc" xml:space="preserve">
+    <value>Gearing Loss if no IC assigned</value>
+  </data>
+  <data name="MiscLabelGearingResourceIncrement" xml:space="preserve">
+    <value>Gearing Bonus Resource Increment</value>
+  </data>
+  <data name="MiscLabelGroundAttackMission" xml:space="preserve">
+    <value>Ground Attack Mission</value>
+  </data>
+  <data name="MiscLabelGroundAttackOrgDamage" xml:space="preserve">
+    <value>Ground Attack ORG Damage</value>
+  </data>
+  <data name="MiscLabelGroundAttackStartingEfficiency" xml:space="preserve">
+    <value>Ground Attack Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelGroundAttackStrDamage" xml:space="preserve">
+    <value>Ground Attack STR Damage</value>
+  </data>
+  <data name="MiscLabelGroundDefenseEfficiency" xml:space="preserve">
+    <value>Ground Defense Efficiency</value>
+  </data>
+  <data name="MiscLabelHardAttackOrgDamage" xml:space="preserve">
+    <value>Hard Attack ORG Damage</value>
+  </data>
+  <data name="MiscLabelHardAttackStrDamage" xml:space="preserve">
+    <value>Hard Attack STR Damage</value>
+  </data>
+  <data name="MiscLabelHardUnitsAttackingUrbanPenalty" xml:space="preserve">
+    <value>Hard Units Attacking Urban Penalty</value>
+  </data>
+  <data name="MiscLabelHowEffectiveGroundDef" xml:space="preserve">
+    <value>How Effective is ground-def</value>
+  </data>
+  <data name="MiscLabelHqCombatEventsBonus" xml:space="preserve">
+    <value>HQ Combat Events Bonus</value>
+  </data>
+  <data name="MiscLabelHqCommandLimitFactor" xml:space="preserve">
+    <value>HQ Command Limit Factor</value>
+  </data>
+  <data name="MiscLabelHqStrDamageBreakthrough" xml:space="preserve">
+    <value>HQ STR Damage only Breakthrough</value>
+  </data>
+  <data name="MiscLabelHqSupplyEfficiencyBonus" xml:space="preserve">
+    <value>HQ Supply Efficiency Bonus</value>
+  </data>
+  <data name="MiscLabelIcConcentrationBonus" xml:space="preserve">
+    <value>IC Concentration Bonus</value>
+  </data>
+  <data name="MiscLabelIcDamageArtilleryBombardment" xml:space="preserve">
+    <value>IC Damage by Artillery Bombardment</value>
+  </data>
+  <data name="MiscLabelIcModifierCost" xml:space="preserve">
+    <value>IC Modifier on Cost</value>
+  </data>
+  <data name="MiscLabelIcMultiplierNonNational" xml:space="preserve">
+    <value>IC Non-National Province Multiplier</value>
+  </data>
+  <data name="MiscLabelIcMultiplierNonOwned" xml:space="preserve">
+    <value>IC Non-Owned Province Multiplier</value>
+  </data>
+  <data name="MiscLabelIcMultiplierPuppet" xml:space="preserve">
+    <value>IC Multiplier for Puppets</value>
+  </data>
+  <data name="MiscLabelIcToConsumerGoodsRatio" xml:space="preserve">
+    <value>IC to Consumer Goods Ratio</value>
+  </data>
+  <data name="MiscLabelIcToMoneyRatio" xml:space="preserve">
+    <value>IC to Money Ratio</value>
+  </data>
+  <data name="MiscLabelIcToSuppliesRatio" xml:space="preserve">
+    <value>IC to Supplies ratio</value>
+  </data>
+  <data name="MiscLabelIcToTcRatio" xml:space="preserve">
+    <value>IC to TC ratio</value>
+  </data>
+  <data name="MiscLabelIdeaChangeDelay" xml:space="preserve">
+    <value>Idea Change Delay</value>
+  </data>
+  <data name="MiscLabelIdeaChangeEventDelay" xml:space="preserve">
+    <value>Idea Change Event Delay</value>
+  </data>
+  <data name="MiscLabelIncreateIntelligenceLevelDays" xml:space="preserve">
+    <value>Days between Increase Intelligence Levels</value>
+  </data>
+  <data name="MiscLabelIncreateIntelligenceLevelDaysDh" xml:space="preserve">
+    <value>Days between Increase Intelligence Levels</value>
+  </data>
+  <data name="MiscLabelInfraDamageArtilleryBombardment" xml:space="preserve">
+    <value>Infra Damage by Artillery Bombardment</value>
+  </data>
+  <data name="MiscLabelInfraEfficiencyModifier" xml:space="preserve">
+    <value>Infra Efficiency Modifier</value>
+  </data>
+  <data name="MiscLabelInGameLossesLogging" xml:space="preserve">
+    <value>In-Game Losses Logging</value>
+  </data>
+  <data name="MiscLabelInGameLossLogging2" xml:space="preserve">
+    <value>In-Game Losses Logging</value>
+  </data>
+  <data name="MiscLabelInstallationStrikeMission" xml:space="preserve">
+    <value>Installation Strike Mission</value>
+  </data>
+  <data name="MiscLabelInstallationStrikeStartingEfficiency" xml:space="preserve">
+    <value>Installation Strike Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelIntelligenceEnd" xml:space="preserve">
+    <value>End of Intelligence Items</value>
+  </data>
+  <data name="MiscLabelInterceptorBomberModifier" xml:space="preserve">
+    <value>Interceptor vs Bomber Modifier</value>
+  </data>
+  <data name="MiscLabelInterdictionMission" xml:space="preserve">
+    <value>Interdiction Mission</value>
+  </data>
+  <data name="MiscLabelInterdictionOrgDamage" xml:space="preserve">
+    <value>Interdiction ORG Damage</value>
+  </data>
+  <data name="MiscLabelInterdictionStartingEfficiency" xml:space="preserve">
+    <value>Interdiction Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelInterdictionStrDamage" xml:space="preserve">
+    <value>Interdiction STR Damage</value>
+  </data>
+  <data name="MiscLabelInvasionModifier" xml:space="preserve">
+    <value>Invasion Modifier</value>
+  </data>
+  <data name="MiscLabelJoinAutomaticallyAllesAxis" xml:space="preserve">
+    <value>Join Automatically Allies/Axis</value>
+  </data>
+  <data name="MiscLabelLandAirSpeedModifierFuel" xml:space="preserve">
+    <value>Land/Air Speed Modifier out of Fuel</value>
+  </data>
+  <data name="MiscLabelLandChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>Land Chance of Avoid if Defences Left</value>
+  </data>
+  <data name="MiscLabelLandChanceAvoidNoDefences" xml:space="preserve">
+    <value>Land Chance of Avoid if no Defences</value>
+  </data>
+  <data name="MiscLabelLandCoastalFortsDamage" xml:space="preserve">
+    <value>Land and Coastal Forts Damage</value>
+  </data>
+  <data name="MiscLabelLandCoastalFortsMaxDamage" xml:space="preserve">
+    <value>Land and Coastal Forts Max Damage</value>
+  </data>
+  <data name="MiscLabelLandCommandLimitModifier" xml:space="preserve">
+    <value>Land Command Limit Modifier</value>
+  </data>
+  <data name="MiscLabelLandDamageArtilleryBombardment" xml:space="preserve">
+    <value>Land Damage by Artillery Bombardment</value>
+  </data>
+  <data name="MiscLabelLandDamageFort" xml:space="preserve">
+    <value>Land Damage from Fort</value>
+  </data>
+  <data name="MiscLabelLandDelayBeforeOrders" xml:space="preserve">
+    <value>Land Delay before Orders</value>
+  </data>
+  <data name="MiscLabelLandFortDamage" xml:space="preserve">
+    <value>Land Fort Damage</value>
+  </data>
+  <data name="MiscLabelLandFortEfficiency" xml:space="preserve">
+    <value>Land Fort Efficiency</value>
+  </data>
+  <data name="MiscLabelLandFortMultiplier" xml:space="preserve">
+    <value>Land Fort Multiplier</value>
+  </data>
+  <data name="MiscLabelLandFriendlyOrgGain" xml:space="preserve">
+    <value>Land Friendly ORG Gain</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank0" xml:space="preserve">
+    <value>Land Leader Command Limit - Rank 0</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank1" xml:space="preserve">
+    <value>Land Leader Command Limit - Rank 1</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank2" xml:space="preserve">
+    <value>Land Leader Command Limit - Rank 2</value>
+  </data>
+  <data name="MiscLabelLandLeaderCommandLimitRank3" xml:space="preserve">
+    <value>Land Leader Command Limit - Rank 3</value>
+  </data>
+  <data name="MiscLabelLandMinCombatTime" xml:space="preserve">
+    <value>Land Min Combat Time</value>
+  </data>
+  <data name="MiscLabelLandMinOrgDamage" xml:space="preserve">
+    <value>Land Min ORG Damage</value>
+  </data>
+  <data name="MiscLabelLandMinStrDamage" xml:space="preserve">
+    <value>Land Min STR Damage</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageAirAoD" xml:space="preserve">
+    <value>Land ORG Damage from Air</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageAirDh" xml:space="preserve">
+    <value>Land ORG Damage from Air</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageHardSoftEach" xml:space="preserve">
+    <value>Land ORG Damage for Hard/Soft Each</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageHardVsSoft" xml:space="preserve">
+    <value>Land ORG Damage for Hard vs Soft</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLand" xml:space="preserve">
+    <value>Land ORG Damage from Land</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLandFort" xml:space="preserve">
+    <value>Land ORG Damage from Land Fort</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLandOrg" xml:space="preserve">
+    <value>Land ORG Damage from Land by ORG</value>
+  </data>
+  <data name="MiscLabelLandOrgDamageLandUrban" xml:space="preserve">
+    <value>Land ORG Damage from Land Urban</value>
+  </data>
+  <data name="MiscLabelLandOrgGain" xml:space="preserve">
+    <value>Land ORG Gain</value>
+  </data>
+  <data name="MiscLabelLandOrgLossMoving" xml:space="preserve">
+    <value>Land ORG Loss Moving</value>
+  </data>
+  <data name="MiscLabelLandOrgNavalTransportation" xml:space="preserve">
+    <value>Land ORG after Naval Transportation</value>
+  </data>
+  <data name="MiscLabelLandOverstackingModifier" xml:space="preserve">
+    <value>Land Overstacking Modifier</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierBombardment" xml:space="preserve">
+    <value>Land Speed Modifier in Bombardment</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierCombat" xml:space="preserve">
+    <value>Land Speed Modifier in Combat</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierOrg" xml:space="preserve">
+    <value>Land Speed Modifier ORG out</value>
+  </data>
+  <data name="MiscLabelLandSpeedModifierSupply" xml:space="preserve">
+    <value>Land Speed Modifier out of Supply</value>
+  </data>
+  <data name="MiscLabelLandStrDamageAirAoD" xml:space="preserve">
+    <value>Land STR Damage from Air</value>
+  </data>
+  <data name="MiscLabelLandStrDamageAirDh" xml:space="preserve">
+    <value>Land STR Damage from Air</value>
+  </data>
+  <data name="MiscLabelLandStrDamageHardSoftEach" xml:space="preserve">
+    <value>Land STR Damage for Hard/Soft Each</value>
+  </data>
+  <data name="MiscLabelLandStrDamageHardVsSoft" xml:space="preserve">
+    <value>Land STR Damage for Hard vs Soft</value>
+  </data>
+  <data name="MiscLabelLandStrDamageLandAoD" xml:space="preserve">
+    <value>Land STR Damage from Land</value>
+  </data>
+  <data name="MiscLabelLandStrDamageLandDh" xml:space="preserve">
+    <value>Land STR Damage from Land</value>
+  </data>
+  <data name="MiscLabelLandSurpriseChance" xml:space="preserve">
+    <value>Land Surprise Chance</value>
+  </data>
+  <data name="MiscLabelLandXpGainFactor" xml:space="preserve">
+    <value>Land XP Gain Factor</value>
+  </data>
+  <data name="MiscLabelLeaderChangeDelay" xml:space="preserve">
+    <value>Leader Change Delay</value>
+  </data>
+  <data name="MiscLabelLeaderXpGainFactor" xml:space="preserve">
+    <value>Leader XP Gain Factor</value>
+  </data>
+  <data name="MiscLabelLimitAiNewTradesGameStart" xml:space="preserve">
+    <value>Limit AI New Trades to Preferred on Game Start</value>
+  </data>
+  <data name="MiscLabelLineStartupTime" xml:space="preserve">
+    <value>Startup Retooling Time</value>
+  </data>
+  <data name="MiscLabelLineUpgradeTime" xml:space="preserve">
+    <value>Retooling Time Line Upgrade</value>
+  </data>
+  <data name="MiscLabelLineUpkeep" xml:space="preserve">
+    <value>Line Upkeep</value>
+  </data>
+  <data name="MiscLabelLoadAiFilesModdirOnly" xml:space="preserve">
+    <value>Load AI Files from Moddir Only</value>
+  </data>
+  <data name="MiscLabelLoadNewAiSwitchingAllClients" xml:space="preserve">
+    <value>Load New AI on Switching to All Clients</value>
+  </data>
+  <data name="MiscLabelLoadSpritesModdirOnly" xml:space="preserve">
+    <value>Load Sprites from Moddir Only</value>
+  </data>
+  <data name="MiscLabelLoadUnitIconsModdirOnly" xml:space="preserve">
+    <value>Load Unit Icons from Moddir Only</value>
+  </data>
+  <data name="MiscLabelLoadUnitPicturesModdirOnly" xml:space="preserve">
+    <value>Load Unit Pictures from Moddir Only</value>
+  </data>
+  <data name="MiscLabelLogisticalStrikeMission" xml:space="preserve">
+    <value>Logistical Strike Mission</value>
+  </data>
+  <data name="MiscLabelLogisticalStrikeStartingEfficiency" xml:space="preserve">
+    <value>Logistical Strike Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelLogisticsWizardEseBonus" xml:space="preserve">
+    <value>Logistics Wizard ESE Bonus</value>
+  </data>
+  <data name="MiscLabelManpowerBoost" xml:space="preserve">
+    <value>Manpower Boost</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierColony" xml:space="preserve">
+    <value>Colonial Province Manpower Multiplier</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierNational" xml:space="preserve">
+    <value>National Province Manpower Multiplier</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierNonNational" xml:space="preserve">
+    <value>Non-National Province Manpower Multiplier</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierPeacetime" xml:space="preserve">
+    <value>Peacetime Manpower Multiplier</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierPuppet" xml:space="preserve">
+    <value>Manpower Multiplier for Puppets</value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierWartime" xml:space="preserve">
+    <value>Wartime Manpower Multiplier </value>
+  </data>
+  <data name="MiscLabelManpowerMultiplierWartimeOversea" xml:space="preserve">
+    <value>Wartime Oversea Provinces Manpower Multiplier</value>
+  </data>
+  <data name="MiscLabelManpowerToConsumerGoods" xml:space="preserve">
+    <value>Manpower to Consumer Goods</value>
+  </data>
+  <data name="MiscLabelManpowerTrickleBackModifier" xml:space="preserve">
+    <value>Manpower Trickle Back Modifier</value>
+  </data>
+  <data name="MiscLabelManualTradeDeals" xml:space="preserve">
+    <value>Manual Trade Deals</value>
+  </data>
+  <data name="MiscLabelMapEnd" xml:space="preserve">
+    <value>End of Map Items</value>
+  </data>
+  <data name="MiscLabelMapHeight" xml:space="preserve">
+    <value>Map Weight</value>
+  </data>
+  <data name="MiscLabelMapNumber" xml:space="preserve">
+    <value>Map Number</value>
+  </data>
+  <data name="MiscLabelMapWidth" xml:space="preserve">
+    <value>Map Width</value>
+  </data>
+  <data name="MiscLabelMastersBecomePuppetsPuppets" xml:space="preserve">
+    <value>Masters Become Puppet's Puppets</value>
+  </data>
+  <data name="MiscLabelMaxActiveTechTeamsAoD" xml:space="preserve">
+    <value>Max Active Tech Teams</value>
+  </data>
+  <data name="MiscLabelMaxActiveTechTeamsDh" xml:space="preserve">
+    <value>Max Active Tech Teams</value>
+  </data>
+  <data name="MiscLabelMaxAmphibiousArmySize" xml:space="preserve">
+    <value>Max Amphibious Army Size</value>
+  </data>
+  <data name="MiscLabelMaxDailyDissent" xml:space="preserve">
+    <value>Max Daily Dissent when not Enough Supplies</value>
+  </data>
+  <data name="MiscLabelMaxDissentSliderMove" xml:space="preserve">
+    <value>Max Dissent for Slider Move</value>
+  </data>
+  <data name="MiscLabelMaxGearingBonus" xml:space="preserve">
+    <value>Max Gearing Bonus</value>
+  </data>
+  <data name="MiscLabelMaxIcCostModifier" xml:space="preserve">
+    <value>Max IC on Cost Modifier</value>
+  </data>
+  <data name="MiscLabelMaxIcCostModifierDh" xml:space="preserve">
+    <value>Max IC on Cost Modifier</value>
+  </data>
+  <data name="MiscLabelMaximumRandomModifier" xml:space="preserve">
+    <value>Maximum Random Modifier</value>
+  </data>
+  <data name="MiscLabelMaximumSizesAirStacks" xml:space="preserve">
+    <value>Maximum Sizes of Air Stacks</value>
+  </data>
+  <data name="MiscLabelMaxIntelligenceExpenditure" xml:space="preserve">
+    <value>Max Intelligence Expenditure</value>
+  </data>
+  <data name="MiscLabelMaxLandDig" xml:space="preserve">
+    <value>Max Land Dig</value>
+  </data>
+  <data name="MiscLabelMaxManpower" xml:space="preserve">
+    <value>Max Manpower</value>
+  </data>
+  <data name="MiscLabelMaxNationalism" xml:space="preserve">
+    <value>Max Unmodified Nationalism</value>
+  </data>
+  <data name="MiscLabelMaxRedeploymentDaysAi" xml:space="preserve">
+    <value>Max Redeployment Days for AI</value>
+  </data>
+  <data name="MiscLabelMaxResearchExpenditure" xml:space="preserve">
+    <value>Max Research Expenditure</value>
+  </data>
+  <data name="MiscLabelMaxResourceDepotSize" xml:space="preserve">
+    <value>Max Provincial Resource Depot Size</value>
+  </data>
+  <data name="MiscLabelMaxRevoltRisk" xml:space="preserve">
+    <value>Max Base Province Revolt Risk</value>
+  </data>
+  <data name="MiscLabelMaxSerialLineProductionGarrisonMilitia" xml:space="preserve">
+    <value>Max Serial Line for Production of Garrison and Militia</value>
+  </data>
+  <data name="MiscLabelMaxShipsPositioningBattle" xml:space="preserve">
+    <value>Max Ships Positioning in Battle</value>
+  </data>
+  <data name="MiscLabelMaxSliderDissent" xml:space="preserve">
+    <value>Max Slider Dissent</value>
+  </data>
+  <data name="MiscLabelMaxSuppliesOilDepotSize" xml:space="preserve">
+    <value>Max Provincial Oil/Supplies Depot Size</value>
+  </data>
+  <data name="MiscLabelMaxTechTeamSkill" xml:space="preserve">
+    <value>Max Tech Team Skill</value>
+  </data>
+  <data name="MiscLabelMeanNumberInventionEventsYear" xml:space="preserve">
+    <value>Mean Number of Invention Events per Year</value>
+  </data>
+  <data name="MiscLabelMergeRelocateProvincialDepots" xml:space="preserve">
+    <value>Merge and Relocate Provincial Depots</value>
+  </data>
+  <data name="MiscLabelMergeTradeDeals" xml:space="preserve">
+    <value>Merge Trade Deals</value>
+  </data>
+  <data name="MiscLabelMilitaryExpenseAttritionModifier" xml:space="preserve">
+    <value>Military Expense Attrition Modifier</value>
+  </data>
+  <data name="MiscLabelMilitarySalary" xml:space="preserve">
+    <value>Military Salary Cost</value>
+  </data>
+  <data name="MiscLabelMilitarySalaryAttrictionModifier" xml:space="preserve">
+    <value>Military Salary Attriction Modifier</value>
+  </data>
+  <data name="MiscLabelMilitarySalaryDissentModifier" xml:space="preserve">
+    <value>Military Salary Dissent Modifier</value>
+  </data>
+  <data name="MiscLabelMilitaryStrengthTotalIcRatioMajor" xml:space="preserve">
+    <value>Military Strength to Total IC Ratio Major</value>
+  </data>
+  <data name="MiscLabelMilitaryStrengthTotalIcRatioPeacetime" xml:space="preserve">
+    <value>Military Strength to Total IC Ratio Peacetime</value>
+  </data>
+  <data name="MiscLabelMilitaryStrengthTotalIcRatioWartime" xml:space="preserve">
+    <value>Military Strength to Total IC Ratio Wartime</value>
+  </data>
+  <data name="MiscLabelMinActiveTechTeams" xml:space="preserve">
+    <value>Min Active Tech Teams</value>
+  </data>
+  <data name="MiscLabelMinAvailableIc" xml:space="preserve">
+    <value>Min Available IC as percentage</value>
+  </data>
+  <data name="MiscLabelMinDaysRequiredAiAllied" xml:space="preserve">
+    <value>Min Days Required for AI to Allied</value>
+  </data>
+  <data name="MiscLabelMinDaysRequiredAiAlliedSupplyBase" xml:space="preserve">
+    <value>Min Days Required for AI to Allied Supply Base</value>
+  </data>
+  <data name="MiscLabelMinDaysRequiredAiReleaseCountry" xml:space="preserve">
+    <value>Min Days Required for AI Release Country</value>
+  </data>
+  <data name="MiscLabelMinDissentRevolt" xml:space="preserve">
+    <value>Min Dissent Revolt</value>
+  </data>
+  <data name="MiscLabelMinFinalIc" xml:space="preserve">
+    <value>Min Final Available IC</value>
+  </data>
+  <data name="MiscLabelMinIcCostModifier" xml:space="preserve">
+    <value>Min IC on Cost Modifier</value>
+  </data>
+  <data name="MiscLabelMinIcSerialProductionNavalAir" xml:space="preserve">
+    <value>Min IC Serial Production of Naval and Air</value>
+  </data>
+  <data name="MiscLabelMinimalPlacementIc" xml:space="preserve">
+    <value>Min Placement IC</value>
+  </data>
+  <data name="MiscLabelMinisterBonuses" xml:space="preserve">
+    <value>Minister Bonuses</value>
+  </data>
+  <data name="MiscLabelMinisterChangeDelay" xml:space="preserve">
+    <value>Minister Change Delay</value>
+  </data>
+  <data name="MiscLabelMinisterChangeEventDelay" xml:space="preserve">
+    <value>Minister Change Event Delay</value>
+  </data>
+  <data name="MiscLabelMinRequiredRelationsAlliedClaimed" xml:space="preserve">
+    <value>Min Required Relations Allied Claimed</value>
+  </data>
+  <data name="MiscLabelMinShipsPositioningBattle" xml:space="preserve">
+    <value>Min Ships Positioning in Battle</value>
+  </data>
+  <data name="MiscLabelMinSliderDissent" xml:space="preserve">
+    <value>Min Slider Dissent</value>
+  </data>
+  <data name="MiscLabelMinSoftnessBrigades" xml:space="preserve">
+    <value>Min Softness Brigades</value>
+  </data>
+  <data name="MiscLabelMissionEnd" xml:space="preserve">
+    <value>End of Mission Items</value>
+  </data>
+  <data name="MiscLabelModEnd" xml:space="preserve">
+    <value>End  of Mod Items</value>
+  </data>
+  <data name="MiscLabelMonthlyNationalismReduction" xml:space="preserve">
+    <value>Monthly Nationalism Reduction</value>
+  </data>
+  <data name="MiscLabelMovementBonusSimilarTerrainTrait" xml:space="preserve">
+    <value>Movement Bonus Similar Terrain Trait</value>
+  </data>
+  <data name="MiscLabelMovementBonusTerrainTrait" xml:space="preserve">
+    <value>Movement Bonus Terrain Trait</value>
+  </data>
+  <data name="MiscLabelMultipleCombatModifier" xml:space="preserve">
+    <value>Multiple Combat Modifier</value>
+  </data>
+  <data name="MiscLabelMultipleDeploymentSizeAir" xml:space="preserve">
+    <value>Multiple Deployment Size for Air</value>
+  </data>
+  <data name="MiscLabelMultipleDeploymentSizeArmies" xml:space="preserve">
+    <value>Multiple Deployment Size for Armies</value>
+  </data>
+  <data name="MiscLabelMultipleDeploymentSizeFleets" xml:space="preserve">
+    <value>Multiple Deployment Size for Fleets</value>
+  </data>
+  <data name="MiscLabelMultiplierOverproduceSuppliesWar" xml:space="preserve">
+    <value>Multiplier on Overproduce Supplies when at War</value>
+  </data>
+  <data name="MiscLabelNationalismPerManpowerAoD" xml:space="preserve">
+    <value>Manpower Nationalism Value</value>
+  </data>
+  <data name="MiscLabelNationalismPerManpowerDh" xml:space="preserve">
+    <value>Nationalism per Manpower</value>
+  </data>
+  <data name="MiscLabelNationalismStartingValue" xml:space="preserve">
+    <value>Nationalism Starting Value</value>
+  </data>
+  <data name="MiscLabelNavalAdditionalOrgDamage" xml:space="preserve">
+    <value>Naval Additional ORG Damage</value>
+  </data>
+  <data name="MiscLabelNavalAdditionalStrDamage" xml:space="preserve">
+    <value>Naval Additional STR Damage</value>
+  </data>
+  <data name="MiscLabelNavalAirbaseStrikeMission" xml:space="preserve">
+    <value>Naval Airbase Strike Mission</value>
+  </data>
+  <data name="MiscLabelNavalAirbaseStrikeStartingEfficiency" xml:space="preserve">
+    <value>Naval Airbase Strike Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelNavalChanceAvoidDefencesLeft" xml:space="preserve">
+    <value>Naval Chance of Avoid if Defences Left</value>
+  </data>
+  <data name="MiscLabelNavalChanceAvoidNoDefences" xml:space="preserve">
+    <value>Naval Chance of Avoid if no Defences</value>
+  </data>
+  <data name="MiscLabelNavalCombatPatrolMission" xml:space="preserve">
+    <value>Naval Combat Patrol Mission</value>
+  </data>
+  <data name="MiscLabelNavalCombatPatrolStartingEfficiency" xml:space="preserve">
+    <value>Naval Combat Patrol Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelNavalCommandLimitModifier" xml:space="preserve">
+    <value>Naval Command Limit Modifier</value>
+  </data>
+  <data name="MiscLabelNavalCriticalHitChance" xml:space="preserve">
+    <value>Naval Critical Hit Chance</value>
+  </data>
+  <data name="MiscLabelNavalCriticalHitEffect" xml:space="preserve">
+    <value>Naval Critical Hit Effect</value>
+  </data>
+  <data name="MiscLabelNavalDelayBeforeOrders" xml:space="preserve">
+    <value>Naval Delay before Orders</value>
+  </data>
+  <data name="MiscLabelNavalInterdictionMission" xml:space="preserve">
+    <value>Naval Interdiction Mission</value>
+  </data>
+  <data name="MiscLabelNavalInterdictionStartingEfficiency" xml:space="preserve">
+    <value>Naval Interdiction Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank0" xml:space="preserve">
+    <value>Naval Leader Command Limit - Rank 0</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank1" xml:space="preserve">
+    <value>Naval Leader Command Limit - Rank 1</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank2" xml:space="preserve">
+    <value>Naval Leader Command Limit - Rank 2</value>
+  </data>
+  <data name="MiscLabelNavalLeaderCommandLimitRank3" xml:space="preserve">
+    <value>Naval Leader Command Limit - Rank 3</value>
+  </data>
+  <data name="MiscLabelNavalMinCombatTime" xml:space="preserve">
+    <value>Naval Min Combat Time</value>
+  </data>
+  <data name="MiscLabelNavalMinOrgDamage" xml:space="preserve">
+    <value>Naval Min ORG Damage</value>
+  </data>
+  <data name="MiscLabelNavalMinStrDamage" xml:space="preserve">
+    <value>Naval Min STR Damage</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageAa" xml:space="preserve">
+    <value>Naval ORG Damage from AA</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageAirAoD" xml:space="preserve">
+    <value>Naval ORG Damage from Air</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageAirDh" xml:space="preserve">
+    <value>Naval ORG Damage from Air</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageNavyAoD" xml:space="preserve">
+    <value>Naval ORG Damage from Navy</value>
+  </data>
+  <data name="MiscLabelNavalOrgDamageNavyDh" xml:space="preserve">
+    <value>Naval ORG Damage from Navy</value>
+  </data>
+  <data name="MiscLabelNavalOrgGain" xml:space="preserve">
+    <value>Naval ORG Gain</value>
+  </data>
+  <data name="MiscLabelNavalOrgLossMoving" xml:space="preserve">
+    <value>Naval ORG Loss Moving</value>
+  </data>
+  <data name="MiscLabelNavalOverstackingModifier" xml:space="preserve">
+    <value>Naval Overstacking Modifier</value>
+  </data>
+  <data name="MiscLabelNavalPortStrikeMission" xml:space="preserve">
+    <value>Naval Port Strike Mission</value>
+  </data>
+  <data name="MiscLabelNavalPortStrikeStartingEfficiency" xml:space="preserve">
+    <value>Naval Port Strike Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelNavalScrambleMission" xml:space="preserve">
+    <value>Naval Scramble Mission</value>
+  </data>
+  <data name="MiscLabelNavalScrambleSpeedBonus" xml:space="preserve">
+    <value>Naval Scramble Speed Bonus</value>
+  </data>
+  <data name="MiscLabelNavalScrambleStartingEfficiency" xml:space="preserve">
+    <value>Naval Scramble Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageAirAoD" xml:space="preserve">
+    <value>Naval STR Damage from Air</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageAirDh" xml:space="preserve">
+    <value>Naval STR Damage from Air</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageNavyAoD" xml:space="preserve">
+    <value>Naval STR Damage from Navy</value>
+  </data>
+  <data name="MiscLabelNavalStrDamageNavyDh" xml:space="preserve">
+    <value>Naval STR Damage from Navy</value>
+  </data>
+  <data name="MiscLabelNavalStrikeMission" xml:space="preserve">
+    <value>Naval Strike Mission</value>
+  </data>
+  <data name="MiscLabelNavalStrikeStartingEfficiency" xml:space="preserve">
+    <value>Naval Strike Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelNavalSurpriseChance" xml:space="preserve">
+    <value>Naval Surprise Chance</value>
+  </data>
+  <data name="MiscLabelNavalXpGainFactor" xml:space="preserve">
+    <value>Naval XP Gain Factor</value>
+  </data>
+  <data name="MiscLabelNewAiReleaseRules" xml:space="preserve">
+    <value>New AI Release Rules</value>
+  </data>
+  <data name="MiscLabelNewCountryNuclearEngineeringComponent" xml:space="preserve">
+    <value>New Country Nuclear Engineering Component</value>
+  </data>
+  <data name="MiscLabelNewCountryNuclearPhysicsComponent" xml:space="preserve">
+    <value>New Country Nuclear Physics Component</value>
+  </data>
+  <data name="MiscLabelNewCountryRocketryComponent" xml:space="preserve">
+    <value>New Country Rocketry Component</value>
+  </data>
+  <data name="MiscLabelNewCountrySecretTechs" xml:space="preserve">
+    <value>New Country Secret Techs</value>
+  </data>
+  <data name="MiscLabelNewDowRules" xml:space="preserve">
+    <value>New DoW Rules</value>
+  </data>
+  <data name="MiscLabelNewDowRules2" xml:space="preserve">
+    <value>New DoW Rules</value>
+  </data>
+  <data name="MiscLabelNewTradeDealsMinEffectiveness" xml:space="preserve">
+    <value>New Trade Deals Min Effectiveness</value>
+  </data>
+  <data name="MiscLabelNightHoursSpringFall" xml:space="preserve">
+    <value>Night Hours during Spring and Fall</value>
+  </data>
+  <data name="MiscLabelNightHoursSummer" xml:space="preserve">
+    <value>Night Hours during Summer</value>
+  </data>
+  <data name="MiscLabelNightHoursWinter" xml:space="preserve">
+    <value>Night Hours during Winter</value>
+  </data>
+  <data name="MiscLabelNoSupplyAttritionSeverity" xml:space="preserve">
+    <value>No Supply Attrition Severity</value>
+  </data>
+  <data name="MiscLabelNoSupplyMinimunAttrition" xml:space="preserve">
+    <value>No Supply Minimum Attrition</value>
+  </data>
+  <data name="MiscLabelNotProduceNewUnitsManpowerRatio" xml:space="preserve">
+    <value>Not Produce New Units Manpower Ratio</value>
+  </data>
+  <data name="MiscLabelNotProduceNewUnitsManpowerValue" xml:space="preserve">
+    <value>Not Produce New Units Manpower Value</value>
+  </data>
+  <data name="MiscLabelNotProduceNewUnitsSupply" xml:space="preserve">
+    <value>Not Produce New Units Supply</value>
+  </data>
+  <data name="MiscLabelNotProduceSuppliesStockpileOver" xml:space="preserve">
+    <value>Not Produce Supplies when Stockpile over</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveEse" xml:space="preserve">
+    <value>Not Use Offensive ESE</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveOilStockpile" xml:space="preserve">
+    <value>Not Use Offensive Oil Stockpile</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveOrgStrDamage" xml:space="preserve">
+    <value>Not Use Offensive ORG or STR Damage</value>
+  </data>
+  <data name="MiscLabelNotUseOffensiveSupplyStockpile" xml:space="preserve">
+    <value>Not Use Offensive Supply Stockpile</value>
+  </data>
+  <data name="MiscLabelNuclearPower" xml:space="preserve">
+    <value>Nuclear Power</value>
+  </data>
+  <data name="MiscLabelNuclearPowerUpkeepCost" xml:space="preserve">
+    <value>Nuclear Power Plant Upkeep Cost</value>
+  </data>
+  <data name="MiscLabelNuclearSiteUpkeepCost" xml:space="preserve">
+    <value>Nuclear Site Upkeep Cost</value>
+  </data>
+  <data name="MiscLabelNukeIcDissent" xml:space="preserve">
+    <value>Nuke IC Dissent</value>
+  </data>
+  <data name="MiscLabelNukeManpowerDissent" xml:space="preserve">
+    <value>Nuke Manpower Dissent</value>
+  </data>
+  <data name="MiscLabelNukeMission" xml:space="preserve">
+    <value>Nuke Mission</value>
+  </data>
+  <data name="MiscLabelNukesProductionModifier" xml:space="preserve">
+    <value>Nukes Production Rate Modifier</value>
+  </data>
+  <data name="MiscLabelNukeStartingEfficiency" xml:space="preserve">
+    <value>Nuke Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelNukeTotalDissent" xml:space="preserve">
+    <value>Nuke Total Dissent</value>
+  </data>
+  <data name="MiscLabelOccupiedTransportCapacityModifier" xml:space="preserve">
+    <value>Occupied Transport Capacity Modifier</value>
+  </data>
+  <data name="MiscLabelOffensiveCombinedArmsBonus" xml:space="preserve">
+    <value>Offensive Combined Arms Bonus</value>
+  </data>
+  <data name="MiscLabelOrgRegainBonusFriendly" xml:space="preserve">
+    <value>ORG Regain Bonus Friendly</value>
+  </data>
+  <data name="MiscLabelOrgRegainBonusFriendlyCap" xml:space="preserve">
+    <value>ORG Regain Bonus Friendly Cap</value>
+  </data>
+  <data name="MiscLabelOverproduceSuppliesBelowDesired" xml:space="preserve">
+    <value>Overproduce of Supplies when below Desired</value>
+  </data>
+  <data name="MiscLabelOverStockpileLimitDailyLoss" xml:space="preserve">
+    <value>Over Stockpile Limit Daily Loss</value>
+  </data>
+  <data name="MiscLabelPeacetimeExtraOilImport" xml:space="preserve">
+    <value>Peacetime Extra Oil Import</value>
+  </data>
+  <data name="MiscLabelPeacetimeIcModifier" xml:space="preserve">
+    <value>Peacetime IC Modifier</value>
+  </data>
+  <data name="MiscLabelPeacetimeStockpilesOilSupplies" xml:space="preserve">
+    <value>Peacetime Stockpiles for Oil and Supplies</value>
+  </data>
+  <data name="MiscLabelPeacetimeStockpilesResources" xml:space="preserve">
+    <value>Peacetime Stockpiles for Resources</value>
+  </data>
+  <data name="MiscLabelPenaltyArtilleryBombardment" xml:space="preserve">
+    <value>Penalty for Artillery Bombardment</value>
+  </data>
+  <data name="MiscLabelPercentageProducedMoney" xml:space="preserve">
+    <value>Percentage of Produced Money</value>
+  </data>
+  <data name="MiscLabelPercentageProducedSupplies" xml:space="preserve">
+    <value>Percentage of Produced Supplies</value>
+  </data>
+  <data name="MiscLabelPlannedDefenseMission" xml:space="preserve">
+    <value>Planned Defense Mission</value>
+  </data>
+  <data name="MiscLabelPlannedDefenseStartingEfficiency" xml:space="preserve">
+    <value>Planned Defense Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelPortAttackSurpriseChanceDay" xml:space="preserve">
+    <value>Port Attack Surprise Chance Day</value>
+  </data>
+  <data name="MiscLabelPortAttackSurpriseChanceNight" xml:space="preserve">
+    <value>Port Attack Surprise Chance Night</value>
+  </data>
+  <data name="MiscLabelPortAttackSurpriseModifier" xml:space="preserve">
+    <value>Port Attack Surprise Modifier</value>
+  </data>
+  <data name="MiscLabelPortStrikeMission" xml:space="preserve">
+    <value>Port Strike Mission</value>
+  </data>
+  <data name="MiscLabelPortStrikeStartingEfficiency" xml:space="preserve">
+    <value>Port Strike Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelPostHistoricalBonusLimit" xml:space="preserve">
+    <value>Post-Historical Bonus Limit</value>
+  </data>
+  <data name="MiscLabelPostHistoricalDateModifierAoD" xml:space="preserve">
+    <value>Post-Historical Date Mod</value>
+  </data>
+  <data name="MiscLabelPostHistoricalDateModifierDh" xml:space="preserve">
+    <value>Post-Historical Date Mod</value>
+  </data>
+  <data name="MiscLabelPreHistoricalDateModifier" xml:space="preserve">
+    <value>Pre-Historical Date Modifier</value>
+  </data>
+  <data name="MiscLabelPreHistoricalPenaltyLimit" xml:space="preserve">
+    <value>Pre-Historical Penalty Limit</value>
+  </data>
+  <data name="MiscLabelProductionLineEdit" xml:space="preserve">
+    <value>Enable Production Line Edit</value>
+  </data>
+  <data name="MiscLabelProductionPanelUiStyle" xml:space="preserve">
+    <value>Production Panel UI Style</value>
+  </data>
+  <data name="MiscLabelProvinceBuildingsRepairModifier" xml:space="preserve">
+    <value>Province Buildings Repair Modifier</value>
+  </data>
+  <data name="MiscLabelProvinceCanSoldNonAllied" xml:space="preserve">
+    <value>Provinces can be Sold to Non-Allied</value>
+  </data>
+  <data name="MiscLabelProvinceEfficiencyRiseTime" xml:space="preserve">
+    <value>Province Efficiency Rise Time</value>
+  </data>
+  <data name="MiscLabelProvinceResourceRepairModifier" xml:space="preserve">
+    <value>Province Resource Repair Modifier</value>
+  </data>
+  <data name="MiscLabelPuppetsCriticalSupplyStockpile" xml:space="preserve">
+    <value>Puppets Critical Supply Stockpile</value>
+  </data>
+  <data name="MiscLabelPuppetsJoinMastersAlliance" xml:space="preserve">
+    <value>Puppets Join Master's Alliance</value>
+  </data>
+  <data name="MiscLabelPuppetsMaxPoolResources" xml:space="preserve">
+    <value>Puppets Max Pool for Resources</value>
+  </data>
+  <data name="MiscLabelPuppetsSendSuppliesMoney" xml:space="preserve">
+    <value>Puppets Send Supplies and Money</value>
+  </data>
+  <data name="MiscLabelRadarAntiSurpriseChance" xml:space="preserve">
+    <value>Radar Anti Surprise Chance</value>
+  </data>
+  <data name="MiscLabelRadarAntiSurpriseModifier" xml:space="preserve">
+    <value>Radar Anti Surprise Modifier</value>
+  </data>
+  <data name="MiscLabelRadarBonusDetection" xml:space="preserve">
+    <value>Radar Bonus on Detection</value>
+  </data>
+  <data name="MiscLabelRadarEfficiency" xml:space="preserve">
+    <value>Radar Efficiency</value>
+  </data>
+  <data name="MiscLabelRaderStationAaMultiplier" xml:space="preserve">
+    <value>Rader Station AA Multiplier</value>
+  </data>
+  <data name="MiscLabelRaderStationMultiplier" xml:space="preserve">
+    <value>Rader Station Multiplier</value>
+  </data>
+  <data name="MiscLabelRebaseChanceDetected" xml:space="preserve">
+    <value>Rebase Chance to be Detected</value>
+  </data>
+  <data name="MiscLabelRebaseMission" xml:space="preserve">
+    <value>Rebase Mission</value>
+  </data>
+  <data name="MiscLabelRebaseStartingEfficiency" xml:space="preserve">
+    <value>Rebase Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelRebelsArmyComposition" xml:space="preserve">
+    <value>Rebels Army Composition</value>
+  </data>
+  <data name="MiscLabelRebelsArmyMaxStr" xml:space="preserve">
+    <value>Rebels Army Max STR</value>
+  </data>
+  <data name="MiscLabelRebelsArmyMinStr" xml:space="preserve">
+    <value>Rebels Army Min STR</value>
+  </data>
+  <data name="MiscLabelRebelsArmyTechLevel" xml:space="preserve">
+    <value>Rebels Army Tech Level</value>
+  </data>
+  <data name="MiscLabelRebelsOrgRegain" xml:space="preserve">
+    <value>Rebels ORG Regain</value>
+  </data>
+  <data name="MiscLabelRecalculateArrivalTimesCombat" xml:space="preserve">
+    <value>Recalculate Arrival Times after Combat</value>
+  </data>
+  <data name="MiscLabelRecalculateLandArrivalTimes" xml:space="preserve">
+    <value>Recalculate Land Arrival Times</value>
+  </data>
+  <data name="MiscLabelReinforceCost" xml:space="preserve">
+    <value>Reinforce Cost Factor</value>
+  </data>
+  <data name="MiscLabelReinforceManpower" xml:space="preserve">
+    <value>Reinforcement Manpower Factor</value>
+  </data>
+  <data name="MiscLabelReinforceTime" xml:space="preserve">
+    <value>Reinforce Time Factor</value>
+  </data>
+  <data name="MiscLabelReinforceToUpdateModifier" xml:space="preserve">
+    <value>Reinforce to Upgrade Modifier</value>
+  </data>
+  <data name="MiscLabelRelationshipHitCancelPermanentTrade" xml:space="preserve">
+    <value>Relationship Hit for Cancel Permanent Trade</value>
+  </data>
+  <data name="MiscLabelRelationshipHitCancelTrade" xml:space="preserve">
+    <value>Relationship Hit for Cancel Trade</value>
+  </data>
+  <data name="MiscLabelRelationshipsHitDetectedMissions" xml:space="preserve">
+    <value>Relationships Hit for Detected Missions</value>
+  </data>
+  <data name="MiscLabelRelationshipsHitDetectedMissionsDh" xml:space="preserve">
+    <value>Relationships Hit for Detected Missions</value>
+  </data>
+  <data name="MiscLabelRepairModifier" xml:space="preserve">
+    <value>Repair Modifier</value>
+  </data>
+  <data name="MiscLabelRequiredIcEachTechTeamAoD" xml:space="preserve">
+    <value>Required IC for Each Tech Team</value>
+  </data>
+  <data name="MiscLabelRequiredIcEachTechTeamDh" xml:space="preserve">
+    <value>Required IC for Each Tech Team</value>
+  </data>
+  <data name="MiscLabelRequiredLandFortSize" xml:space="preserve">
+    <value>Required Land Fort Size</value>
+  </data>
+  <data name="MiscLabelRequirementAffectSlider" xml:space="preserve">
+    <value>Requirement to Affect Domestic Sliders</value>
+  </data>
+  <data name="MiscLabelRequirementAffectSliderDh" xml:space="preserve">
+    <value>Requirement to Affect Domestic Sliders</value>
+  </data>
+  <data name="MiscLabelResearchEnd" xml:space="preserve">
+    <value>End of Research Items</value>
+  </data>
+  <data name="MiscLabelResearchModifier" xml:space="preserve">
+    <value>Research Modifier</value>
+  </data>
+  <data name="MiscLabelReservesMission" xml:space="preserve">
+    <value>Reserves Mission</value>
+  </data>
+  <data name="MiscLabelReservesSpeedBonus" xml:space="preserve">
+    <value>Reserves Speed Bonus</value>
+  </data>
+  <data name="MiscLabelReservesStartingEfficiency" xml:space="preserve">
+    <value>Reserves Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelResourceConvoysBackUnneeded" xml:space="preserve">
+    <value>Resource Convoys Ship Back Unneeded</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierNonNational" xml:space="preserve">
+    <value>Resource Non-National Province Multiplier</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierNonNationalAi" xml:space="preserve">
+    <value>Resource Non-National Province Multiplier (AI)</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierNonOwned" xml:space="preserve">
+    <value>Resource Non-Owned Province Multiplier</value>
+  </data>
+  <data name="MiscLabelResourceMultiplierPuppet" xml:space="preserve">
+    <value>Resource Multiplier for Puppets</value>
+  </data>
+  <data name="MiscLabelResourcesDamageArtilleryBombardment" xml:space="preserve">
+    <value>Resources Damage by Artillery Bombardment</value>
+  </data>
+  <data name="MiscLabelRestockSpeedAir" xml:space="preserve">
+    <value>Resupply Speed - Air</value>
+  </data>
+  <data name="MiscLabelRestockSpeedLand" xml:space="preserve">
+    <value>Resupply Speed - Land</value>
+  </data>
+  <data name="MiscLabelRestockSpeedNaval" xml:space="preserve">
+    <value>Resupply Speed - Naval</value>
+  </data>
+  <data name="MiscLabelRetoolingCost" xml:space="preserve">
+    <value>Retooling Cost</value>
+  </data>
+  <data name="MiscLabelRetoolingResource" xml:space="preserve">
+    <value>Retooling Resource Cost</value>
+  </data>
+  <data name="MiscLabelReturnRebelliousProvince" xml:space="preserve">
+    <value>Return Rebellious Province</value>
+  </data>
+  <data name="MiscLabelRunwayCrateringMission" xml:space="preserve">
+    <value>Runway Cratering Mission</value>
+  </data>
+  <data name="MiscLabelRunwayCrateringStartingEfficiency" xml:space="preserve">
+    <value>Runway Cratering Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelScorchDamage" xml:space="preserve">
+    <value>Scorch Damage</value>
+  </data>
+  <data name="MiscLabelScorchGroundBelligerence" xml:space="preserve">
+    <value>Scorch Ground Belligerence</value>
+  </data>
+  <data name="MiscLabelScreenCapitalShipsTargeting" xml:space="preserve">
+    <value>Screen or Capital Ships Targeting</value>
+  </data>
+  <data name="MiscLabelScreensCapitalRatioModifier" xml:space="preserve">
+    <value>Screens to Capital Ratio Modifier</value>
+  </data>
+  <data name="MiscLabelSeaTransportChanceDetected" xml:space="preserve">
+    <value>Sea Transport Chance to be Detected</value>
+  </data>
+  <data name="MiscLabelSeaTransportMission" xml:space="preserve">
+    <value>Sea Transport Mission</value>
+  </data>
+  <data name="MiscLabelSeaTransportRangeModifier" xml:space="preserve">
+    <value>Sea Transport Range Modifier</value>
+  </data>
+  <data name="MiscLabelSeaTransportStartingEfficiency" xml:space="preserve">
+    <value>Sea Transport Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelSendDivisionDays" xml:space="preserve">
+    <value>Time in days to send a division to an ally</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentCap" xml:space="preserve">
+    <value>Shore Bombardment Cap</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentMission" xml:space="preserve">
+    <value>Shore Bombardment Mission</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentModifier" xml:space="preserve">
+    <value>Shore Bombardment Modifier</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentModifierDh" xml:space="preserve">
+    <value>Shore Bombardment Modifier</value>
+  </data>
+  <data name="MiscLabelShoreBombardmentStartingEfficiency" xml:space="preserve">
+    <value>Shore Bombardment Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelShowThirdCountrySpyReports" xml:space="preserve">
+    <value>Show 3rd Country Spy Report</value>
+  </data>
+  <data name="MiscLabelShowThirdCountrySpyReportsDh" xml:space="preserve">
+    <value>Show 3rd Country Spy Report</value>
+  </data>
+  <data name="MiscLabelSneakMoveChanceDetected" xml:space="preserve">
+    <value>Sneak Move Chance to be Detected</value>
+  </data>
+  <data name="MiscLabelSneakMoveMission" xml:space="preserve">
+    <value>Sneak Move Mission</value>
+  </data>
+  <data name="MiscLabelSneakMoveRangeModifier" xml:space="preserve">
+    <value>Sneak Move Range Modifier</value>
+  </data>
+  <data name="MiscLabelSneakMoveStartingEfficiency" xml:space="preserve">
+    <value>Sneak Move Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelSpiesMoneyModifier" xml:space="preserve">
+    <value>Percentage on Spies to Money Modifier</value>
+  </data>
+  <data name="MiscLabelSpyCoupDissentModifier" xml:space="preserve">
+    <value>Spy Coup Dissent Modifier</value>
+  </data>
+  <data name="MiscLabelSpyDetectionChance" xml:space="preserve">
+    <value>Spy Detection Chance</value>
+  </data>
+  <data name="MiscLabelSpyInformationAccuracyModifier" xml:space="preserve">
+    <value>Spy Information Accuracy Modifier</value>
+  </data>
+  <data name="MiscLabelSpyInformationAccuracyModifierDh" xml:space="preserve">
+    <value>Spy Information Accuracy Modifier</value>
+  </data>
+  <data name="MiscLabelSpyLevelBonusDistanceModifier" xml:space="preserve">
+    <value>Spy Level Bonus on Distance Modifier</value>
+  </data>
+  <data name="MiscLabelSpyLevelBonusDistanceModifierAboveTen" xml:space="preserve">
+    <value>Spy Level Bonus on Distance Modifier above 10</value>
+  </data>
+  <data name="MiscLabelSpyMissionDays" xml:space="preserve">
+    <value>Days between Spy Missions in a Country</value>
+  </data>
+  <data name="MiscLabelSpyMissionDaysDh" xml:space="preserve">
+    <value>Days between Spy Missions in a Country</value>
+  </data>
+  <data name="MiscLabelSpyUpkeepCost" xml:space="preserve">
+    <value>Spy Upkeep Cost</value>
+  </data>
+  <data name="MiscLabelSsMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Submarines</value>
+  </data>
+  <data name="MiscLabelSsnMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Nuclear Submarines</value>
+  </data>
+  <data name="MiscLabelStandGroundDissent" xml:space="preserve">
+    <value>Stand Ground Dissent</value>
+  </data>
+  <data name="MiscLabelStockpileLimitMultiplierResource" xml:space="preserve">
+    <value>Stockpile Limit Multiplier for Resources</value>
+  </data>
+  <data name="MiscLabelStockpileLimitMultiplierSuppliesOil" xml:space="preserve">
+    <value>Stockpile Limits Multiplier for Supplies and Oil</value>
+  </data>
+  <data name="MiscLabelStrategicBombardmentMission" xml:space="preserve">
+    <value>Strategic Bombardment Mission</value>
+  </data>
+  <data name="MiscLabelStrategicBombardmentStartingEfficiency" xml:space="preserve">
+    <value>Strategic Bombardment Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelStratRedeployAddedValue" xml:space="preserve">
+    <value>Strat Redeploy Added Value</value>
+  </data>
+  <data name="MiscLabelStratRedeployDistanceMultiplier" xml:space="preserve">
+    <value>Strat Redeploy Distance Multiplier</value>
+  </data>
+  <data name="MiscLabelStratRedeployMission" xml:space="preserve">
+    <value>Strat Redeploy Mission</value>
+  </data>
+  <data name="MiscLabelStratRedeployStartingEfficiency" xml:space="preserve">
+    <value>Strat Redeploy Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelSubsOrgDamage" xml:space="preserve">
+    <value>Subs ORG Damage</value>
+  </data>
+  <data name="MiscLabelSubsOrgDamageAir" xml:space="preserve">
+    <value>Subs ORG Damage from Air</value>
+  </data>
+  <data name="MiscLabelSubsOrgDamageNavy" xml:space="preserve">
+    <value>Subs ORG Damage from Navy</value>
+  </data>
+  <data name="MiscLabelSubsStrDamage" xml:space="preserve">
+    <value>Subs STR Damage</value>
+  </data>
+  <data name="MiscLabelSubsStrDamageAir" xml:space="preserve">
+    <value>Subs STR Damage from Air</value>
+  </data>
+  <data name="MiscLabelSubsStrDamageNavy" xml:space="preserve">
+    <value>Subs STR Damage from Navy</value>
+  </data>
+  <data name="MiscLabelSubStacksDetectionModifier" xml:space="preserve">
+    <value>Sub Stacks Detection Modifier</value>
+  </data>
+  <data name="MiscLabelSupplyAirBattleAoD" xml:space="preserve">
+    <value>Supply Usage Aviation Battle</value>
+  </data>
+  <data name="MiscLabelSupplyAirBattleDh" xml:space="preserve">
+    <value>Supply Consumption Modifier in Combat - Air</value>
+  </data>
+  <data name="MiscLabelSupplyAirBombing" xml:space="preserve">
+    <value>Supply Usage Aviation Bombing</value>
+  </data>
+  <data name="MiscLabelSupplyAirMoving" xml:space="preserve">
+    <value>Supply Usage Aviation Moving</value>
+  </data>
+  <data name="MiscLabelSupplyAirStaticAoD" xml:space="preserve">
+    <value>Supply Usage Aviation Static</value>
+  </data>
+  <data name="MiscLabelSupplyAirStaticDh" xml:space="preserve">
+    <value>Supply Consumption Modifier at Base - Air</value>
+  </data>
+  <data name="MiscLabelSupplyBase" xml:space="preserve">
+    <value>Supply Base</value>
+  </data>
+  <data name="MiscLabelSupplyConvoyHunt" xml:space="preserve">
+    <value>Suppplies Usage on Convoy Hunt</value>
+  </data>
+  <data name="MiscLabelSupplyDistanceModifier" xml:space="preserve">
+    <value>Supply Distance Modifier</value>
+  </data>
+  <data name="MiscLabelSupplyDistanceSeverity" xml:space="preserve">
+    <value>Supply Distance Severity</value>
+  </data>
+  <data name="MiscLabelSupplyLandBattleAoD" xml:space="preserve">
+    <value>Supply Usage Land Battle</value>
+  </data>
+  <data name="MiscLabelSupplyLandBattleDh" xml:space="preserve">
+    <value>Supply Consumption Modifier in Combat - Land</value>
+  </data>
+  <data name="MiscLabelSupplyLandBombing" xml:space="preserve">
+    <value>Supply Usage Land Bombing</value>
+  </data>
+  <data name="MiscLabelSupplyLandMoving" xml:space="preserve">
+    <value>Supply Usage Land Moving</value>
+  </data>
+  <data name="MiscLabelSupplyLandStaticAoD" xml:space="preserve">
+    <value>Supply Usage Land Static</value>
+  </data>
+  <data name="MiscLabelSupplyNavalBattleAoD" xml:space="preserve">
+    <value>Supply Usage Naval Battle</value>
+  </data>
+  <data name="MiscLabelSupplyNavalBattleDh" xml:space="preserve">
+    <value>Supply Consumption Modifier in Combat - Naval</value>
+  </data>
+  <data name="MiscLabelSupplyNavalMoving" xml:space="preserve">
+    <value>Supply Usage Naval Moving</value>
+  </data>
+  <data name="MiscLabelSupplyNavalStaticAoD" xml:space="preserve">
+    <value>Supply Usage Naval Static</value>
+  </data>
+  <data name="MiscLabelSupplyNavalStaticDh" xml:space="preserve">
+    <value>Supply Consumption Modifier in Port - Naval</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifier" xml:space="preserve">
+    <value>Supply Problems Modifier</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifierAir" xml:space="preserve">
+    <value>Supply Problems Modifier - Air</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifierLand" xml:space="preserve">
+    <value>Supply Problems Modifier - Land</value>
+  </data>
+  <data name="MiscLabelSupplyProblemsModifierNaval" xml:space="preserve">
+    <value>Supply Problems Modifier - Naval</value>
+  </data>
+  <data name="MiscLabelSupplyProductionEfficiency" xml:space="preserve">
+    <value>Supply Production Efficiency</value>
+  </data>
+  <data name="MiscLabelSupplyStockAir" xml:space="preserve">
+    <value>Amount of Stock in Air Divison</value>
+  </data>
+  <data name="MiscLabelSupplyStockLand" xml:space="preserve">
+    <value>Amount of Stock in Land Divison</value>
+  </data>
+  <data name="MiscLabelSupplyStockNaval" xml:space="preserve">
+    <value>Amount of Stock in Naval Divison</value>
+  </data>
+  <data name="MiscLabelSupportAttackMission" xml:space="preserve">
+    <value>Support Attack Mission</value>
+  </data>
+  <data name="MiscLabelSupportAttackSpeedBonus" xml:space="preserve">
+    <value>Support Attack Speed Bonus</value>
+  </data>
+  <data name="MiscLabelSupportAttackStartingEfficiency" xml:space="preserve">
+    <value>Support Attack Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelSupportDefenseMission" xml:space="preserve">
+    <value>Support Defense Mission</value>
+  </data>
+  <data name="MiscLabelSupportDefenseSpeedBonus" xml:space="preserve">
+    <value>Support Defense Speed Bonus</value>
+  </data>
+  <data name="MiscLabelSupportDefenseStartingEfficiency" xml:space="preserve">
+    <value>Support Defense Starting Efficiency</value>
+  </data>
+  <data name="MiscLabelSuppyLandStaticDh" xml:space="preserve">
+    <value>Supply Consumption Modifier Not Moving - Land</value>
+  </data>
+  <data name="MiscLabelSurpriseModifier" xml:space="preserve">
+    <value>Surprise Modifier</value>
+  </data>
+  <data name="MiscLabelSwitchedAiFilesLogger" xml:space="preserve">
+    <value>Switched AI Files Logger</value>
+  </data>
+  <data name="MiscLabelSynchronizeArrivalTimeAi" xml:space="preserve">
+    <value>Synchronize Arrival Time (AI)</value>
+  </data>
+  <data name="MiscLabelSynchronizeArrivalTimePlayer" xml:space="preserve">
+    <value>Synchronize Arrival Time (Player)</value>
+  </data>
+  <data name="MiscLabelSyntheticOilConversionMultiplier" xml:space="preserve">
+    <value>Synthetic Oil Conversion Multiplier</value>
+  </data>
+  <data name="MiscLabelSyntheticOilSiteUpkeepCost" xml:space="preserve">
+    <value>Synthetic Oil Site Upkeep Cost</value>
+  </data>
+  <data name="MiscLabelSyntheticRaresConversionMultiplier" xml:space="preserve">
+    <value>Synthetic Rares Conversion Multiplier</value>
+  </data>
+  <data name="MiscLabelSyntheticRaresSiteUpkeepCost" xml:space="preserve">
+    <value>Synthetic Rares Site Upkeep Cost</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgAttackerAoD" xml:space="preserve">
+    <value>Tactical Withdraw ORG Attacker</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgAttackerDh" xml:space="preserve">
+    <value>Tactical Withdraw ORG Attacker</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgDefenderAoD" xml:space="preserve">
+    <value>Tactical Withdraw ORG Defender</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawOrgDefenderDh" xml:space="preserve">
+    <value>Tactical Withdraw ORG Defender</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrAttackerAoD" xml:space="preserve">
+    <value>Tactical Withdraw STR Attacker</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrAttackerDh" xml:space="preserve">
+    <value>Tactical Withdraw STR Attacker</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrDefenderAoD" xml:space="preserve">
+    <value>Tactical Withdraw STR Defender</value>
+  </data>
+  <data name="MiscLabelTacticalWithdrawStrDefenderDh" xml:space="preserve">
+    <value>Tactical Withdraw STR Defender</value>
+  </data>
+  <data name="MiscLabelTcLoadBase" xml:space="preserve">
+    <value>TC Load from Bases in queue</value>
+  </data>
+  <data name="MiscLabelTcLoadFactorOffensive" xml:space="preserve">
+    <value>TC Load Factor from Offensives</value>
+  </data>
+  <data name="MiscLabelTcLoadMultiplierAir" xml:space="preserve">
+    <value>TC Air Division Load Multiplier</value>
+  </data>
+  <data name="MiscLabelTcLoadMultiplierLand" xml:space="preserve">
+    <value>TC Land Division Load Multiplier</value>
+  </data>
+  <data name="MiscLabelTcLoadMultiplierNaval" xml:space="preserve">
+    <value>TC Naval Division Load Multiplier</value>
+  </data>
+  <data name="MiscLabelTcLoadOccupied" xml:space="preserve">
+    <value>TC Occupied Province Load</value>
+  </data>
+  <data name="MiscLabelTcLoadPartisan" xml:space="preserve">
+    <value>TC Load from Partisans</value>
+  </data>
+  <data name="MiscLabelTcLoadProvinceDevelopment" xml:space="preserve">
+    <value>TC Load from Province Development</value>
+  </data>
+  <data name="MiscLabelTcLoadUndeployedBrigade" xml:space="preserve">
+    <value>TC Load from Undeployed Brigades</value>
+  </data>
+  <data name="MiscLabelTcLoadUndeployedDivision" xml:space="preserve">
+    <value>TC Undeployed Division Load</value>
+  </data>
+  <data name="MiscLabelTechOverviewPanelStyle" xml:space="preserve">
+    <value>Tech Overview Panel Style</value>
+  </data>
+  <data name="MiscLabelTechSpeedModifier" xml:space="preserve">
+    <value>Tech Speed Modifier</value>
+  </data>
+  <data name="MiscLabelTimeBetweenSliderChangesAoD" xml:space="preserve">
+    <value>Time between Slider Changes</value>
+  </data>
+  <data name="MiscLabelTimeBetweenSliderChangesDh" xml:space="preserve">
+    <value>Time between Slider Changes</value>
+  </data>
+  <data name="MiscLabelTimeRepairBuilding" xml:space="preserve">
+    <value>Time to Repair Province Buildings</value>
+  </data>
+  <data name="MiscLabelTotalProductionEfficiency" xml:space="preserve">
+    <value>Total Production Efficiency</value>
+  </data>
+  <data name="MiscLabelTotalProvinces" xml:space="preserve">
+    <value>Total Provinces</value>
+  </data>
+  <data name="MiscLabelTpMaxAttach" xml:space="preserve">
+    <value>Max Attachments to Transports</value>
+  </data>
+  <data name="MiscLabelTpTransportsConversionRatio" xml:space="preserve">
+    <value>TP to Convoy Transports Conversion Ratio</value>
+  </data>
+  <data name="MiscLabelTradeEfficiencyCalculationSystem" xml:space="preserve">
+    <value>Trade Efficiency Calculation System</value>
+  </data>
+  <data name="MiscLabelTradeEnd" xml:space="preserve">
+    <value>End of Trade Items</value>
+  </data>
+  <data name="MiscLabelTransferAlliedCoreProvinces" xml:space="preserve">
+    <value>Non-Owned Provinces to Allied</value>
+  </data>
+  <data name="MiscLabelTransportCapacityModifier" xml:space="preserve">
+    <value>Transport Capacity Modifier</value>
+  </data>
+  <data name="MiscLabelTransportConversion" xml:space="preserve">
+    <value>Transport Conversion</value>
+  </data>
+  <data name="MiscLabelTrickleBackFactorManpower" xml:space="preserve">
+    <value>Trickle-back Factor for Manpower</value>
+  </data>
+  <data name="MiscLabelUnitModifiersStatisticsPages" xml:space="preserve">
+    <value>Unit Modifiers Statistics Page</value>
+  </data>
+  <data name="MiscLabelUnitPicturesSize" xml:space="preserve">
+    <value>Unit Pictures Size</value>
+  </data>
+  <data name="MiscLabelUpgradeCost" xml:space="preserve">
+    <value>Upgrade Cost Factor</value>
+  </data>
+  <data name="MiscLabelUpgradeTime" xml:space="preserve">
+    <value>Upgrade Time Factor</value>
+  </data>
+  <data name="MiscLabelUseAttackEfficiencyCombatModifier" xml:space="preserve">
+    <value>Use Attack Efficiency as Combat Modifier</value>
+  </data>
+  <data name="MiscLabelUseMinisterPersonalityReplacing" xml:space="preserve">
+    <value>Use Minister Personality when Replacing</value>
+  </data>
+  <data name="MiscLabelUseNewAutoSaveFileFormat" xml:space="preserve">
+    <value>Use New Auto-Save File Format</value>
+  </data>
+  <data name="MiscLabelUseNewMinisterFilesFormat" xml:space="preserve">
+    <value>Use New Minister Files Format</value>
+  </data>
+  <data name="MiscLabelUseNewTechnologyPageLayout" xml:space="preserve">
+    <value>Use New Technology Page Layout</value>
+  </data>
+  <data name="MiscLabelUseOldSaveGameFormat" xml:space="preserve">
+    <value>Use Old Save-Game Format</value>
+  </data>
+  <data name="MiscLabelUseQuickAreaCheckGarrisonAi" xml:space="preserve">
+    <value>Use Quick Area Check Garrison AI</value>
+  </data>
+  <data name="MiscLabelUseSpeedSetGarrisonStatus" xml:space="preserve">
+    <value>Use Speed to Set Garrison Status</value>
+  </data>
+  <data name="MiscLabelWartimeDesiredStockpileMultiplier" xml:space="preserve">
+    <value>Wartime Desired Stockpile Multiplier</value>
+  </data>
+  <data name="MiscLabelWartimeExtraOilImport" xml:space="preserve">
+    <value>Wartime Extra Oil Import</value>
+  </data>
+  <data name="MiscLabelWartimeIcModifier" xml:space="preserve">
+    <value>Wartime IC Modifier</value>
+  </data>
+  <data name="MiscLabelWartimeStockpilesOilSupplies" xml:space="preserve">
+    <value>Wartime Stockpiles for Oil and Supplies</value>
+  </data>
+  <data name="MiscLabelWartimeStockpilesResources" xml:space="preserve">
+    <value>Wartime Stockpiles for Resources</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MiscEnumAaAirFiringRules0" xml:space="preserve">
+    <value>Bombing</value>
+  </data>
+  <data name="MiscEnumAaAirFiringRules1" xml:space="preserve">
+    <value>Passing</value>
+  </data>
+  <data name="MiscEnumAiMastersGetProvincesConquredPuppets0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAiMastersGetProvincesConquredPuppets1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissions0" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissions1" xml:space="preserve">
+    <value>Level1</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissions2" xml:space="preserve">
+    <value>Level2</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissionsDh0" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissionsDh1" xml:space="preserve">
+    <value>Level1</value>
+  </data>
+  <data name="MiscEnumAiPeacetimeSpyMissionsDh2" xml:space="preserve">
+    <value>Level2</value>
+  </data>
+  <data name="MiscEnumAirborneAssaultMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAirborneAssaultMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAirScrambleMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAirScrambleMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAirSuperiorityMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAirSuperiorityMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAirSupplyMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAirSupplyMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAiSpyDiplomaticMissionLogger0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAiSpyDiplomaticMissionLogger1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAllowBrigadeAttachingInSupply0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAllowBrigadeAttachingInSupply1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog1" xml:space="preserve">
+    <value>HoG Only</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog2" xml:space="preserve">
+    <value>HoS Only</value>
+  </data>
+  <data name="MiscEnumAllowChangeHosHog3" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumAllowManualClaimsChange0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAllowManualClaimsChange1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAllowProvinceRegionTargeting0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAllowProvinceRegionTargeting1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAllowUniquePicturesAllLandProvinces0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAllowUniquePicturesAllLandProvinces1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAmphibousAssaultMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAmphibousAssaultMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAntiPartisanDutyMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAntiPartisanDutyMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumApplyRangeLimitsAreasRegions0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumApplyRangeLimitsAreasRegions1" xml:space="preserve">
+    <value>Player Only</value>
+  </data>
+  <data name="MiscEnumApplyRangeLimitsAreasRegions2" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAswMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAswMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAttackMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAttackMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAutoReplyEvents0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAutoReplyEvents1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumAutoReturnTransportFleets0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumAutoReturnTransportFleets1" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="MiscEnumAutoReturnTransportFleets2" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumBluePrintsCanSoldNonAllied0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumBluePrintsCanSoldNonAllied1" xml:space="preserve">
+    <value>Sell Only</value>
+  </data>
+  <data name="MiscEnumBluePrintsCanSoldNonAllied2" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumBuildingsBuildableOnlyProvinces0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumBuildingsBuildableOnlyProvinces1" xml:space="preserve">
+    <value>Type1</value>
+  </data>
+  <data name="MiscEnumBuildingsBuildableOnlyProvinces2" xml:space="preserve">
+    <value>Type2</value>
+  </data>
+  <data name="MiscEnumCanChangeIdeas0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumCanChangeIdeas1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAllied0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAllied1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAlliedDh0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAlliedDh1" xml:space="preserve">
+    <value>Sell Only</value>
+  </data>
+  <data name="MiscEnumCanUnitSendNonAlliedDh2" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumChangeTagCoup0" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="MiscEnumChangeTagCoup1" xml:space="preserve">
+    <value>DH</value>
+  </data>
+  <data name="MiscEnumCombatMode0" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="MiscEnumCombatMode1" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MiscEnumConvoyAirRaidingMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumConvoyAirRaidingMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumConvoyInterceptionMissions0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumConvoyInterceptionMissions1" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="MiscEnumConvoyInterceptionMissions2" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumConvoyRadingMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumConvoyRadingMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumConvoySystemOptionsAllied0" xml:space="preserve">
+    <value>Type0</value>
+  </data>
+  <data name="MiscEnumConvoySystemOptionsAllied1" xml:space="preserve">
+    <value>Type1</value>
+  </data>
+  <data name="MiscEnumConvoySystemOptionsAllied2" xml:space="preserve">
+    <value>Type2</value>
+  </data>
+  <data name="MiscEnumDistanceCalculationModel0" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="MiscEnumDistanceCalculationModel1" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MiscEnumEnableDicisionsPlayers0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumEnableDicisionsPlayers1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumEnablePicturesNavalBrigades0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumEnablePicturesNavalBrigades1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearLeaders0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearLeaders1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearMinisters0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumEnableRetirementYearMinisters1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries0" xml:space="preserve">
+    <value>Type0</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries1" xml:space="preserve">
+    <value>Type1</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries2" xml:space="preserve">
+    <value>Type2</value>
+  </data>
+  <data name="MiscEnumFilterReleaseCountries3" xml:space="preserve">
+    <value>Type3</value>
+  </data>
+  <data name="MiscEnumForceActionsShow0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumForceActionsShow1" xml:space="preserve">
+    <value>Only Valid</value>
+  </data>
+  <data name="MiscEnumForceActionsShow2" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumGroundAttackMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumGroundAttackMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumHqStrDamageBreakthrough0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumHqStrDamageBreakthrough1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumInGameLossesLogging0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumInGameLossesLogging1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging20" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging21" xml:space="preserve">
+    <value>Type1</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging22" xml:space="preserve">
+    <value>Type2</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging23" xml:space="preserve">
+    <value>Type3</value>
+  </data>
+  <data name="MiscEnumInGameLossLogging24" xml:space="preserve">
+    <value>Type4</value>
+  </data>
+  <data name="MiscEnumInstallationStrikeMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumInstallationStrikeMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumInterdictionMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumInterdictionMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumJoinAutomaticallyAllesAxis0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumJoinAutomaticallyAllesAxis1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumLoadAiFilesModdirOnly0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumLoadAiFilesModdirOnly1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumLoadNewAiSwitchingAllClients0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumLoadNewAiSwitchingAllClients1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumLoadSpritesModdirOnly0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumLoadSpritesModdirOnly1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumLoadUnitIconsModdirOnly0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumLoadUnitIconsModdirOnly1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumLoadUnitPicturesModdirOnly0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumLoadUnitPicturesModdirOnly1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumLogisticalStrikeMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumLogisticalStrikeMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumMastersBecomePuppetsPuppets0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumMastersBecomePuppetsPuppets1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumMergeTradeDeals0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumMergeTradeDeals1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses1" xml:space="preserve">
+    <value>Division Preferred</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses2" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses3" xml:space="preserve">
+    <value>Sum</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses4" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="MiscEnumMinisterBonuses5" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="MiscEnumNavalAirbaseStrikeMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNavalAirbaseStrikeMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNavalCombatPatrolMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNavalCombatPatrolMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNavalInterdictionMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNavalInterdictionMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNavalPortStrikeMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNavalPortStrikeMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNavalScrambleMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNavalScrambleMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNavalStrikeMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNavalStrikeMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNewAiReleaseRules0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNewAiReleaseRules1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearEngineeringComponent0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearEngineeringComponent1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearPhysicsComponent0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumNewCountryNuclearPhysicsComponent1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumNewCountryRocketryComponent0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumNewCountryRocketryComponent1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumNewCountrySecretTechs0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumNewCountrySecretTechs1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumNewDowRules0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNewDowRules1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNewDowRules20" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNewDowRules21" xml:space="preserve">
+    <value>AI Only</value>
+  </data>
+  <data name="MiscEnumNewDowRules22" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumNukeMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumNukeMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumPlannedDefenseMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumPlannedDefenseMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumPortStrikeMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumPortStrikeMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumProductionLineEdit0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumProductionLineEdit1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumProductionPanelUiStyle0" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="MiscEnumProductionPanelUiStyle1" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MiscEnumProvinceCanSoldNonAllied0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumProvinceCanSoldNonAllied1" xml:space="preserve">
+    <value>Sell Only</value>
+  </data>
+  <data name="MiscEnumProvinceCanSoldNonAllied2" xml:space="preserve">
+    <value>Buy/Sell</value>
+  </data>
+  <data name="MiscEnumPuppetsJoinMastersAlliance0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumPuppetsJoinMastersAlliance1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumRebaseMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumRebaseMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumRecalculateArrivalTimesCombat0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumRecalculateArrivalTimesCombat1" xml:space="preserve">
+    <value>Player Only</value>
+  </data>
+  <data name="MiscEnumRecalculateArrivalTimesCombat2" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumReservesMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumReservesMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumRunwayCrateringMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumRunwayCrateringMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumSeaTransportMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumSeaTransportMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumShoreBombardmentMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumShoreBombardmentMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports1" xml:space="preserve">
+    <value>Detected Only</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports2" xml:space="preserve">
+    <value>Detected/Succeeded</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReports3" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh1" xml:space="preserve">
+    <value>Detected Only</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh2" xml:space="preserve">
+    <value>Detected/Succeeded</value>
+  </data>
+  <data name="MiscEnumShowThirdCountrySpyReportsDh3" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="MiscEnumSneakMoveMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumSneakMoveMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumStrategicBombardmentMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumStrategicBombardmentMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumStratRedeployMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumStratRedeployMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumSupportAttackMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumSupportAttackMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumSupportDefenseMission0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumSupportDefenseMission1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumSwitchedAiFilesLogger0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumSwitchedAiFilesLogger1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumTechOverviewPanelStyle0" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="MiscEnumTechOverviewPanelStyle1" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MiscEnumTransferAlliedCoreProvinces0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumTransferAlliedCoreProvinces1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumUnitPicturesSize0" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="MiscEnumUnitPicturesSize1" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MiscEnumUseAttackEfficiencyCombatModifier0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumUseAttackEfficiencyCombatModifier1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumUseMinisterPersonalityReplacing0" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="MiscEnumUseMinisterPersonalityReplacing1" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MiscEnumUseNewAutoSaveFileFormat0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumUseNewAutoSaveFileFormat1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumUseNewMinisterFilesFormat0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumUseNewMinisterFilesFormat1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumUseNewTechnologyPageLayout0" xml:space="preserve">
+    <value>Vanilla</value>
+  </data>
+  <data name="MiscEnumUseNewTechnologyPageLayout1" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MiscEnumUseOldSaveGameFormat0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumUseOldSaveGameFormat1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumUseQuickAreaCheckGarrisonAi0" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="MiscEnumUseQuickAreaCheckGarrisonAi1" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="MiscEnumUseSpeedSetGarrisonStatus0" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="MiscEnumUseSpeedSetGarrisonStatus1" xml:space="preserve">
+    <value>New</value>
+  </data>
 </root>

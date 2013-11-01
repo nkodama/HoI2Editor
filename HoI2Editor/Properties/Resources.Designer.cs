@@ -232,6 +232,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Close に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The items has been changed. Do you want to save the changes? に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ConfirmSaveMessage {
@@ -934,6 +943,9231 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAaAirFiringRules0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAaAirFiringRules0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Passing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAaAirFiringRules1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAaAirFiringRules1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiMastersGetProvincesConquredPuppets0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiMastersGetProvincesConquredPuppets0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiMastersGetProvincesConquredPuppets1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiMastersGetProvincesConquredPuppets1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   All に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiPeacetimeSpyMissions0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiPeacetimeSpyMissions0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Level1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiPeacetimeSpyMissions1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiPeacetimeSpyMissions1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Level2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiPeacetimeSpyMissions2 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiPeacetimeSpyMissions2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   All に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiPeacetimeSpyMissionsDh0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiPeacetimeSpyMissionsDh0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Level1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiPeacetimeSpyMissionsDh1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiPeacetimeSpyMissionsDh1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Level2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiPeacetimeSpyMissionsDh2 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiPeacetimeSpyMissionsDh2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirborneAssaultMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirborneAssaultMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirborneAssaultMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirborneAssaultMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirScrambleMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirScrambleMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirScrambleMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirScrambleMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirSuperiorityMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirSuperiorityMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirSuperiorityMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirSuperiorityMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirSupplyMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirSupplyMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAirSupplyMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAirSupplyMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiSpyDiplomaticMissionLogger0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiSpyDiplomaticMissionLogger0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAiSpyDiplomaticMissionLogger1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAiSpyDiplomaticMissionLogger1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowBrigadeAttachingInSupply0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowBrigadeAttachingInSupply0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowBrigadeAttachingInSupply1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowBrigadeAttachingInSupply1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowChangeHosHog0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowChangeHosHog0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HoG Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowChangeHosHog1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowChangeHosHog1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HoS Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowChangeHosHog2 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowChangeHosHog2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowChangeHosHog3 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowChangeHosHog3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowManualClaimsChange0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowManualClaimsChange0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowManualClaimsChange1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowManualClaimsChange1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowProvinceRegionTargeting0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowProvinceRegionTargeting0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowProvinceRegionTargeting1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowProvinceRegionTargeting1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowUniquePicturesAllLandProvinces0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowUniquePicturesAllLandProvinces0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAllowUniquePicturesAllLandProvinces1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAllowUniquePicturesAllLandProvinces1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAmphibousAssaultMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAmphibousAssaultMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAmphibousAssaultMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAmphibousAssaultMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAntiPartisanDutyMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAntiPartisanDutyMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAntiPartisanDutyMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAntiPartisanDutyMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumApplyRangeLimitsAreasRegions0 {
+            get {
+                return ResourceManager.GetString("MiscEnumApplyRangeLimitsAreasRegions0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Player Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumApplyRangeLimitsAreasRegions1 {
+            get {
+                return ResourceManager.GetString("MiscEnumApplyRangeLimitsAreasRegions1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumApplyRangeLimitsAreasRegions2 {
+            get {
+                return ResourceManager.GetString("MiscEnumApplyRangeLimitsAreasRegions2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAswMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAswMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAswMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAswMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAttackMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAttackMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAttackMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAttackMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAutoReplyEvents0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAutoReplyEvents0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAutoReplyEvents1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAutoReplyEvents1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAutoReturnTransportFleets0 {
+            get {
+                return ResourceManager.GetString("MiscEnumAutoReturnTransportFleets0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Optional に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAutoReturnTransportFleets1 {
+            get {
+                return ResourceManager.GetString("MiscEnumAutoReturnTransportFleets1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumAutoReturnTransportFleets2 {
+            get {
+                return ResourceManager.GetString("MiscEnumAutoReturnTransportFleets2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumBluePrintsCanSoldNonAllied0 {
+            get {
+                return ResourceManager.GetString("MiscEnumBluePrintsCanSoldNonAllied0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sell Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumBluePrintsCanSoldNonAllied1 {
+            get {
+                return ResourceManager.GetString("MiscEnumBluePrintsCanSoldNonAllied1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumBluePrintsCanSoldNonAllied2 {
+            get {
+                return ResourceManager.GetString("MiscEnumBluePrintsCanSoldNonAllied2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumBuildingsBuildableOnlyProvinces0 {
+            get {
+                return ResourceManager.GetString("MiscEnumBuildingsBuildableOnlyProvinces0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumBuildingsBuildableOnlyProvinces1 {
+            get {
+                return ResourceManager.GetString("MiscEnumBuildingsBuildableOnlyProvinces1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumBuildingsBuildableOnlyProvinces2 {
+            get {
+                return ResourceManager.GetString("MiscEnumBuildingsBuildableOnlyProvinces2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCanChangeIdeas0 {
+            get {
+                return ResourceManager.GetString("MiscEnumCanChangeIdeas0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCanChangeIdeas1 {
+            get {
+                return ResourceManager.GetString("MiscEnumCanChangeIdeas1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCanUnitSendNonAllied0 {
+            get {
+                return ResourceManager.GetString("MiscEnumCanUnitSendNonAllied0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCanUnitSendNonAllied1 {
+            get {
+                return ResourceManager.GetString("MiscEnumCanUnitSendNonAllied1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCanUnitSendNonAlliedDh0 {
+            get {
+                return ResourceManager.GetString("MiscEnumCanUnitSendNonAlliedDh0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sell Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCanUnitSendNonAlliedDh1 {
+            get {
+                return ResourceManager.GetString("MiscEnumCanUnitSendNonAlliedDh1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCanUnitSendNonAlliedDh2 {
+            get {
+                return ResourceManager.GetString("MiscEnumCanUnitSendNonAlliedDh2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Original に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumChangeTagCoup0 {
+            get {
+                return ResourceManager.GetString("MiscEnumChangeTagCoup0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   DH に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumChangeTagCoup1 {
+            get {
+                return ResourceManager.GetString("MiscEnumChangeTagCoup1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Old に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCombatMode0 {
+            get {
+                return ResourceManager.GetString("MiscEnumCombatMode0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumCombatMode1 {
+            get {
+                return ResourceManager.GetString("MiscEnumCombatMode1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoyAirRaidingMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoyAirRaidingMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoyAirRaidingMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoyAirRaidingMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoyInterceptionMissions0 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoyInterceptionMissions0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Optional に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoyInterceptionMissions1 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoyInterceptionMissions1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoyInterceptionMissions2 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoyInterceptionMissions2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoyRadingMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoyRadingMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoyRadingMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoyRadingMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type0 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoySystemOptionsAllied0 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoySystemOptionsAllied0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoySystemOptionsAllied1 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoySystemOptionsAllied1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumConvoySystemOptionsAllied2 {
+            get {
+                return ResourceManager.GetString("MiscEnumConvoySystemOptionsAllied2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Old に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumDistanceCalculationModel0 {
+            get {
+                return ResourceManager.GetString("MiscEnumDistanceCalculationModel0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumDistanceCalculationModel1 {
+            get {
+                return ResourceManager.GetString("MiscEnumDistanceCalculationModel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnableDicisionsPlayers0 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnableDicisionsPlayers0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnableDicisionsPlayers1 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnableDicisionsPlayers1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnablePicturesNavalBrigades0 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnablePicturesNavalBrigades0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnablePicturesNavalBrigades1 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnablePicturesNavalBrigades1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnableRetirementYearLeaders0 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnableRetirementYearLeaders0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnableRetirementYearLeaders1 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnableRetirementYearLeaders1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnableRetirementYearMinisters0 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnableRetirementYearMinisters0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumEnableRetirementYearMinisters1 {
+            get {
+                return ResourceManager.GetString("MiscEnumEnableRetirementYearMinisters1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type0 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumFilterReleaseCountries0 {
+            get {
+                return ResourceManager.GetString("MiscEnumFilterReleaseCountries0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumFilterReleaseCountries1 {
+            get {
+                return ResourceManager.GetString("MiscEnumFilterReleaseCountries1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumFilterReleaseCountries2 {
+            get {
+                return ResourceManager.GetString("MiscEnumFilterReleaseCountries2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type3 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumFilterReleaseCountries3 {
+            get {
+                return ResourceManager.GetString("MiscEnumFilterReleaseCountries3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumForceActionsShow0 {
+            get {
+                return ResourceManager.GetString("MiscEnumForceActionsShow0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Only Valid に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumForceActionsShow1 {
+            get {
+                return ResourceManager.GetString("MiscEnumForceActionsShow1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumForceActionsShow2 {
+            get {
+                return ResourceManager.GetString("MiscEnumForceActionsShow2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumGroundAttackMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumGroundAttackMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumGroundAttackMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumGroundAttackMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumHqStrDamageBreakthrough0 {
+            get {
+                return ResourceManager.GetString("MiscEnumHqStrDamageBreakthrough0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumHqStrDamageBreakthrough1 {
+            get {
+                return ResourceManager.GetString("MiscEnumHqStrDamageBreakthrough1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInGameLossesLogging0 {
+            get {
+                return ResourceManager.GetString("MiscEnumInGameLossesLogging0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInGameLossesLogging1 {
+            get {
+                return ResourceManager.GetString("MiscEnumInGameLossesLogging1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInGameLossLogging20 {
+            get {
+                return ResourceManager.GetString("MiscEnumInGameLossLogging20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInGameLossLogging21 {
+            get {
+                return ResourceManager.GetString("MiscEnumInGameLossLogging21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInGameLossLogging22 {
+            get {
+                return ResourceManager.GetString("MiscEnumInGameLossLogging22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type3 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInGameLossLogging23 {
+            get {
+                return ResourceManager.GetString("MiscEnumInGameLossLogging23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type4 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInGameLossLogging24 {
+            get {
+                return ResourceManager.GetString("MiscEnumInGameLossLogging24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInstallationStrikeMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumInstallationStrikeMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInstallationStrikeMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumInstallationStrikeMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInterdictionMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumInterdictionMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumInterdictionMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumInterdictionMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumJoinAutomaticallyAllesAxis0 {
+            get {
+                return ResourceManager.GetString("MiscEnumJoinAutomaticallyAllesAxis0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumJoinAutomaticallyAllesAxis1 {
+            get {
+                return ResourceManager.GetString("MiscEnumJoinAutomaticallyAllesAxis1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadAiFilesModdirOnly0 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadAiFilesModdirOnly0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadAiFilesModdirOnly1 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadAiFilesModdirOnly1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadNewAiSwitchingAllClients0 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadNewAiSwitchingAllClients0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadNewAiSwitchingAllClients1 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadNewAiSwitchingAllClients1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadSpritesModdirOnly0 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadSpritesModdirOnly0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadSpritesModdirOnly1 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadSpritesModdirOnly1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadUnitIconsModdirOnly0 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadUnitIconsModdirOnly0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadUnitIconsModdirOnly1 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadUnitIconsModdirOnly1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadUnitPicturesModdirOnly0 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadUnitPicturesModdirOnly0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLoadUnitPicturesModdirOnly1 {
+            get {
+                return ResourceManager.GetString("MiscEnumLoadUnitPicturesModdirOnly1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLogisticalStrikeMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumLogisticalStrikeMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumLogisticalStrikeMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumLogisticalStrikeMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMastersBecomePuppetsPuppets0 {
+            get {
+                return ResourceManager.GetString("MiscEnumMastersBecomePuppetsPuppets0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMastersBecomePuppetsPuppets1 {
+            get {
+                return ResourceManager.GetString("MiscEnumMastersBecomePuppetsPuppets1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMergeTradeDeals0 {
+            get {
+                return ResourceManager.GetString("MiscEnumMergeTradeDeals0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMergeTradeDeals1 {
+            get {
+                return ResourceManager.GetString("MiscEnumMergeTradeDeals1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Division Preferred に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMinisterBonuses1 {
+            get {
+                return ResourceManager.GetString("MiscEnumMinisterBonuses1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Average に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMinisterBonuses2 {
+            get {
+                return ResourceManager.GetString("MiscEnumMinisterBonuses2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sum に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMinisterBonuses3 {
+            get {
+                return ResourceManager.GetString("MiscEnumMinisterBonuses3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMinisterBonuses4 {
+            get {
+                return ResourceManager.GetString("MiscEnumMinisterBonuses4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumMinisterBonuses5 {
+            get {
+                return ResourceManager.GetString("MiscEnumMinisterBonuses5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalAirbaseStrikeMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalAirbaseStrikeMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalAirbaseStrikeMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalAirbaseStrikeMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalCombatPatrolMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalCombatPatrolMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalCombatPatrolMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalCombatPatrolMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalInterdictionMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalInterdictionMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalInterdictionMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalInterdictionMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalPortStrikeMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalPortStrikeMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalPortStrikeMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalPortStrikeMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalScrambleMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalScrambleMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalScrambleMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalScrambleMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalStrikeMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalStrikeMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNavalStrikeMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNavalStrikeMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewAiReleaseRules0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewAiReleaseRules0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewAiReleaseRules1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewAiReleaseRules1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountryNuclearEngineeringComponent0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountryNuclearEngineeringComponent0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountryNuclearEngineeringComponent1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountryNuclearEngineeringComponent1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountryNuclearPhysicsComponent0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountryNuclearPhysicsComponent0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountryNuclearPhysicsComponent1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountryNuclearPhysicsComponent1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountryRocketryComponent0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountryRocketryComponent0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountryRocketryComponent1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountryRocketryComponent1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountrySecretTechs0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountrySecretTechs0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewCountrySecretTechs1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewCountrySecretTechs1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewDowRules0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewDowRules0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewDowRules1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewDowRules1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewDowRules20 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewDowRules20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewDowRules21 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewDowRules21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNewDowRules22 {
+            get {
+                return ResourceManager.GetString("MiscEnumNewDowRules22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNukeMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumNukeMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumNukeMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumNukeMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumPlannedDefenseMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumPlannedDefenseMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumPlannedDefenseMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumPlannedDefenseMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumPortStrikeMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumPortStrikeMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumPortStrikeMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumPortStrikeMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumProductionLineEdit0 {
+            get {
+                return ResourceManager.GetString("MiscEnumProductionLineEdit0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumProductionLineEdit1 {
+            get {
+                return ResourceManager.GetString("MiscEnumProductionLineEdit1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Old に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumProductionPanelUiStyle0 {
+            get {
+                return ResourceManager.GetString("MiscEnumProductionPanelUiStyle0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumProductionPanelUiStyle1 {
+            get {
+                return ResourceManager.GetString("MiscEnumProductionPanelUiStyle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumProvinceCanSoldNonAllied0 {
+            get {
+                return ResourceManager.GetString("MiscEnumProvinceCanSoldNonAllied0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sell Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumProvinceCanSoldNonAllied1 {
+            get {
+                return ResourceManager.GetString("MiscEnumProvinceCanSoldNonAllied1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Buy/Sell に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumProvinceCanSoldNonAllied2 {
+            get {
+                return ResourceManager.GetString("MiscEnumProvinceCanSoldNonAllied2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumPuppetsJoinMastersAlliance0 {
+            get {
+                return ResourceManager.GetString("MiscEnumPuppetsJoinMastersAlliance0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumPuppetsJoinMastersAlliance1 {
+            get {
+                return ResourceManager.GetString("MiscEnumPuppetsJoinMastersAlliance1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumRebaseMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumRebaseMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumRebaseMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumRebaseMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumRecalculateArrivalTimesCombat0 {
+            get {
+                return ResourceManager.GetString("MiscEnumRecalculateArrivalTimesCombat0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Player Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumRecalculateArrivalTimesCombat1 {
+            get {
+                return ResourceManager.GetString("MiscEnumRecalculateArrivalTimesCombat1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumRecalculateArrivalTimesCombat2 {
+            get {
+                return ResourceManager.GetString("MiscEnumRecalculateArrivalTimesCombat2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumReservesMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumReservesMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumReservesMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumReservesMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumRunwayCrateringMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumRunwayCrateringMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumRunwayCrateringMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumRunwayCrateringMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSeaTransportMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumSeaTransportMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSeaTransportMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumSeaTransportMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShoreBombardmentMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumShoreBombardmentMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShoreBombardmentMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumShoreBombardmentMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReports0 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReports0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Detected Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReports1 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReports1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Detected/Succeeded に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReports2 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReports2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   All に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReports3 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReports3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReportsDh0 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReportsDh0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Detected Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReportsDh1 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReportsDh1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Detected/Succeeded に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReportsDh2 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReportsDh2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   All に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumShowThirdCountrySpyReportsDh3 {
+            get {
+                return ResourceManager.GetString("MiscEnumShowThirdCountrySpyReportsDh3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSneakMoveMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumSneakMoveMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSneakMoveMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumSneakMoveMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumStrategicBombardmentMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumStrategicBombardmentMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumStrategicBombardmentMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumStrategicBombardmentMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumStratRedeployMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumStratRedeployMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumStratRedeployMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumStratRedeployMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSupportAttackMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumSupportAttackMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSupportAttackMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumSupportAttackMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSupportDefenseMission0 {
+            get {
+                return ResourceManager.GetString("MiscEnumSupportDefenseMission0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSupportDefenseMission1 {
+            get {
+                return ResourceManager.GetString("MiscEnumSupportDefenseMission1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSwitchedAiFilesLogger0 {
+            get {
+                return ResourceManager.GetString("MiscEnumSwitchedAiFilesLogger0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumSwitchedAiFilesLogger1 {
+            get {
+                return ResourceManager.GetString("MiscEnumSwitchedAiFilesLogger1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Old に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumTechOverviewPanelStyle0 {
+            get {
+                return ResourceManager.GetString("MiscEnumTechOverviewPanelStyle0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumTechOverviewPanelStyle1 {
+            get {
+                return ResourceManager.GetString("MiscEnumTechOverviewPanelStyle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumTransferAlliedCoreProvinces0 {
+            get {
+                return ResourceManager.GetString("MiscEnumTransferAlliedCoreProvinces0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumTransferAlliedCoreProvinces1 {
+            get {
+                return ResourceManager.GetString("MiscEnumTransferAlliedCoreProvinces1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Old に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUnitPicturesSize0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUnitPicturesSize0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUnitPicturesSize1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUnitPicturesSize1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseAttackEfficiencyCombatModifier0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseAttackEfficiencyCombatModifier0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseAttackEfficiencyCombatModifier1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseAttackEfficiencyCombatModifier1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseMinisterPersonalityReplacing0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseMinisterPersonalityReplacing0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Yes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseMinisterPersonalityReplacing1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseMinisterPersonalityReplacing1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseNewAutoSaveFileFormat0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseNewAutoSaveFileFormat0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseNewAutoSaveFileFormat1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseNewAutoSaveFileFormat1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseNewMinisterFilesFormat0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseNewMinisterFilesFormat0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseNewMinisterFilesFormat1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseNewMinisterFilesFormat1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Vanilla に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseNewTechnologyPageLayout0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseNewTechnologyPageLayout0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseNewTechnologyPageLayout1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseNewTechnologyPageLayout1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseOldSaveGameFormat0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseOldSaveGameFormat0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseOldSaveGameFormat1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseOldSaveGameFormat1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Disabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseQuickAreaCheckGarrisonAi0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseQuickAreaCheckGarrisonAi0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enabled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseQuickAreaCheckGarrisonAi1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseQuickAreaCheckGarrisonAi1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Old に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseSpeedSetGarrisonStatus0 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseSpeedSetGarrisonStatus0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscEnumUseSpeedSetGarrisonStatus1 {
+            get {
+                return ResourceManager.GetString("MiscEnumUseSpeedSetGarrisonStatus1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA to Air Bonus from Radars に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaAirBonusRadars {
+            get {
+                return ResourceManager.GetString("MiscLabelAaAirBonusRadars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA to Air Firing Rules に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaAirFiringRules {
+            get {
+                return ResourceManager.GetString("MiscLabelAaAirFiringRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA to Air Night Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaAirNightModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAaAirNightModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA Inflicted Bombing Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaInflictedBombingDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAaInflictedBombingDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA Inflicted Flying Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaInflictedFlyingDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAaInflictedFlyingDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA Inflicted ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaInflictedOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAaInflictedOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA Inflicted STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaInflictedStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAaInflictedStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AA Power に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAaPower {
+            get {
+                return ResourceManager.GetString("MiscLabelAaPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Diplomacy Missions Cost Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiDiplomacyCostModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAiDiplomacyCostModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Diplomacy Missions Cost Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiDiplomacyCostModifierDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAiDiplomacyCostModifierDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of AI Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelAiEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Events Action Selection Rules に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiEventsActionSelectionRules {
+            get {
+                return ResourceManager.GetString("MiscLabelAiEventsActionSelectionRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Influence Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiInfluenceModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAiInfluenceModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Influence Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiInfluenceModifierDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAiInfluenceModifierDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Masters Get Provinces Conquered by Puppets に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiMastersGetProvincesConquredPuppets {
+            get {
+                return ResourceManager.GetString("MiscLabelAiMastersGetProvincesConquredPuppets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Peacetime Offensive Spy Missions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiPeacetimeSpyMissions {
+            get {
+                return ResourceManager.GetString("MiscLabelAiPeacetimeSpyMissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Peacetime Offensive Spy Missions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiPeacetimeSpyMissionsDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAiPeacetimeSpyMissionsDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Additional ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirAdditionalOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAirAdditionalOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Additional STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirAdditionalStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAirAdditionalStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Airborne Assault Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirborneAssaultMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAirborneAssaultMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Airborne Assault Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirborneAssaultStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAirborneAssaultStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Chance of Avoid if Defences Left に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirChanceAvoidDefencesLeft {
+            get {
+                return ResourceManager.GetString("MiscLabelAirChanceAvoidDefencesLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Chance of Avoid if no Defences に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirChanceAvoidNoDefences {
+            get {
+                return ResourceManager.GetString("MiscLabelAirChanceAvoidNoDefences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Command Limit Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirCommandLimitModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAirCommandLimitModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Delay before Orders に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirDelayBeforeOrders {
+            get {
+                return ResourceManager.GetString("MiscLabelAirDelayBeforeOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Dogfight Xp Gain Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirDogfightXpGainFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelAirDogfightXpGainFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Land Stock Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirLandStockModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAirLandStockModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Leader Command Limit - Rank 0 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirLeaderCommandLimitRank0 {
+            get {
+                return ResourceManager.GetString("MiscLabelAirLeaderCommandLimitRank0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Leader Command Limit - Rank 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirLeaderCommandLimitRank1 {
+            get {
+                return ResourceManager.GetString("MiscLabelAirLeaderCommandLimitRank1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Leader Command Limit - Rank 2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirLeaderCommandLimitRank2 {
+            get {
+                return ResourceManager.GetString("MiscLabelAirLeaderCommandLimitRank2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Leader Command Limit - Rank 3 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirLeaderCommandLimitRank3 {
+            get {
+                return ResourceManager.GetString("MiscLabelAirLeaderCommandLimitRank3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Max Disorganized に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirMaxDisorganized {
+            get {
+                return ResourceManager.GetString("MiscLabelAirMaxDisorganized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Min Combat Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirMinCombatTime {
+            get {
+                return ResourceManager.GetString("MiscLabelAirMinCombatTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Min ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirMinOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAirMinOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Min STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirMinStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAirMinStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage from AA に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamageAa {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamageAa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamageAirAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamageAirAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamageAirDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamageAirDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage from Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamageLandAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamageLandAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage from Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamageLandDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamageLandDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamageNavyAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamageNavyAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgDamageNavyDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgDamageNavyDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Gain に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgGain {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air ORG Loss Moving に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOrgLossMoving {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOrgLossMoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Overstacking Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOverstackingModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOverstackingModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Overstacking Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirOverstackingModifierAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAirOverstackingModifierAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Rebase Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirRebaseFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelAirRebaseFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Scramble Detection に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirScrambleDetection {
+            get {
+                return ResourceManager.GetString("MiscLabelAirScrambleDetection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Scramble Min Required に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirScrambleMinRequired {
+            get {
+                return ResourceManager.GetString("MiscLabelAirScrambleMinRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Scramble Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirScrambleMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAirScrambleMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Scramble Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirScrambleStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAirScrambleStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from AA に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageAa {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageAa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageAirAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageAirAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageAirDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageAirDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage vs Entrenced に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageEntrenced {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageEntrenced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageLandAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageLandAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageLandDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageLandDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from Land by ORG に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageLandOrg {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageLandOrg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageNavyAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageNavyAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageNavyDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageNavyDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air STR Damage by ORG に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirStrDamageOrg {
+            get {
+                return ResourceManager.GetString("MiscLabelAirStrDamageOrg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Superiority Detection に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirSuperiorityDetection {
+            get {
+                return ResourceManager.GetString("MiscLabelAirSuperiorityDetection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Superiority Min Required に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirSuperiorityMinRequired {
+            get {
+                return ResourceManager.GetString("MiscLabelAirSuperiorityMinRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Superiority Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirSuperiorityMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAirSuperiorityMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Superiority Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirSuperiorityStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAirSuperiorityStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Supply Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirSupplyMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAirSupplyMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Supply Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirSupplyStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAirSupplyStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Surprise Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirSurpriseChance {
+            get {
+                return ResourceManager.GetString("MiscLabelAirSurpriseChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air XP Gain Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAirXpGainFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelAirXpGainFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Spy and Diplomatic Mission Loggers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiSpyDiplomaticMissionLogger {
+            get {
+                return ResourceManager.GetString("MiscLabelAiSpyDiplomaticMissionLogger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Spy Missions Cost Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiSpyMissionsCostModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAiSpyMissionsCostModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AI Spy Missions Cost Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAiSpyMissionsCostModifierDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAiSpyMissionsCostModifierDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Allow Brigade Attaching in Supply に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAllowBrigadeAttachingInSupply {
+            get {
+                return ResourceManager.GetString("MiscLabelAllowBrigadeAttachingInSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Allow Change HoS/HoG に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAllowChangeHosHog {
+            get {
+                return ResourceManager.GetString("MiscLabelAllowChangeHosHog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Allow Manual Claims Change に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAllowManualClaimsChange {
+            get {
+                return ResourceManager.GetString("MiscLabelAllowManualClaimsChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Allow Province/Region Targeting に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAllowProvinceRegionTargeting {
+            get {
+                return ResourceManager.GetString("MiscLabelAllowProvinceRegionTargeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Allow Unique Pictures to All Provinces に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAllowUniquePicturesAllLandProvinces {
+            get {
+                return ResourceManager.GetString("MiscLabelAllowUniquePicturesAllLandProvinces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushOrgAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushOrgAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushOrgAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushOrgAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushOrgDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushOrgDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushOrgDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushOrgDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushStrAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushStrAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushStrAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushStrAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushStrDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushStrDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ambush STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmbushStrDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAmbushStrDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Amphibous Assault Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmphibousAssaultMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAmphibousAssaultMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Amphibous Assault Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAmphibousAssaultStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAmphibousAssaultStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Anti Partisan Duty Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAntiPartisanDutyMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAntiPartisanDutyMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Anti Partisan Duty Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAntiPartisanDutyStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAntiPartisanDutyStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Anti Partisan Duty Suppression に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAntiPartisanDutySuppression {
+            get {
+                return ResourceManager.GetString("MiscLabelAntiPartisanDutySuppression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Apply Range Limits to Areas and Regions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelApplyRangeLimitsAreasRegions {
+            get {
+                return ResourceManager.GetString("MiscLabelApplyRangeLimitsAreasRegions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Armor Soft Breakthrough Max に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelArmorSoftBreakthroughMax {
+            get {
+                return ResourceManager.GetString("MiscLabelArmorSoftBreakthroughMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Armor Soft Breakthrough Min に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelArmorSoftBreakthroughMin {
+            get {
+                return ResourceManager.GetString("MiscLabelArmorSoftBreakthroughMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Artillery Bombardment ORG Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelArtilleryBombardmentOrgCost {
+            get {
+                return ResourceManager.GetString("MiscLabelArtilleryBombardmentOrgCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Artillery ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelArtilleryOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelArtilleryOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Artillery STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelArtilleryStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelArtilleryStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultOrgAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultOrgAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultOrgAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultOrgAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultOrgDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultOrgDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultOrgDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultOrgDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultStrAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultStrAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultStrAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultStrAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultStrDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultStrDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Assault STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAssaultStrDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelAssaultStrDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ASW Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAswMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAswMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ASW Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAswStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAswStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Attack Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAttackMission {
+            get {
+                return ResourceManager.GetString("MiscLabelAttackMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Attack Speed Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAttackSpeedBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelAttackSpeedBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Attack Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAttackStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelAttackStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Attrition Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAttritionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAttritionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Attrition Severity Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAttritionSeverityModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelAttritionSeverityModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Auto Reply to Events に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAutoReplyEvents {
+            get {
+                return ResourceManager.GetString("MiscLabelAutoReplyEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Auto Retreat ORG に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAutoRetreatOrg {
+            get {
+                return ResourceManager.GetString("MiscLabelAutoRetreatOrg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Auto Return Transport Fleets に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAutoReturnTransportFleets {
+            get {
+                return ResourceManager.GetString("MiscLabelAutoReturnTransportFleets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Auto-Trade and AI Trade Deals に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAutoTradeAiTradeDeals {
+            get {
+                return ResourceManager.GetString("MiscLabelAutoTradeAiTradeDeals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Auto Trade Convoy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelAutoTradeConvoy {
+            get {
+                return ResourceManager.GetString("MiscLabelAutoTradeConvoy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Base Proximity に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBaseProximity {
+            get {
+                return ResourceManager.GetString("MiscLabelBaseProximity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Battleships に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBbMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelBbMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Battle Cruisers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBcMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelBcMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Belligerence for Claimed Province に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBelligerenceClaimedProvince {
+            get {
+                return ResourceManager.GetString("MiscLabelBelligerenceClaimedProvince", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Belligerence on Claims Removal に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBelligerenceClaimsRemoval {
+            get {
+                return ResourceManager.GetString("MiscLabelBelligerenceClaimsRemoval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Blueprint Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBlueprintBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelBlueprintBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Blue Prints can be Sold to Non-Allied に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBluePrintsCanSoldNonAllied {
+            get {
+                return ResourceManager.GetString("MiscLabelBluePrintsCanSoldNonAllied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bonus on Detection Friendly に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBonusDetectionFriendly {
+            get {
+                return ResourceManager.GetString("MiscLabelBonusDetectionFriendly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bonus on Event Trait に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBonusEventTrait {
+            get {
+                return ResourceManager.GetString("MiscLabelBonusEventTrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bonus per Leader Skill Point - Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBonusLeaderSkillPointAir {
+            get {
+                return ResourceManager.GetString("MiscLabelBonusLeaderSkillPointAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bonus per Leader Skill Point - Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBonusLeaderSkillPointLand {
+            get {
+                return ResourceManager.GetString("MiscLabelBonusLeaderSkillPointLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bonus per Leader Skill Point - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBonusLeaderSkillPointNaval {
+            get {
+                return ResourceManager.GetString("MiscLabelBonusLeaderSkillPointNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bonus on Similar Terrain Trait に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBonusSimilarTerrainTrait {
+            get {
+                return ResourceManager.GetString("MiscLabelBonusSimilarTerrainTrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Bonus on Terrain Trait に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBonusTerrainTrait {
+            get {
+                return ResourceManager.GetString("MiscLabelBonusTerrainTrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough/Encirclement Chance Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughEncirclementChanceModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughEncirclementChanceModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough/Encirclement Max Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughEncirclementMaxChance {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughEncirclementMaxChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough/Encirclement Min Speed に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughEncirclementMinSpeed {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughEncirclementMinSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughOrgAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughOrgAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughOrgAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughOrgAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughOrgDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughOrgDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughOrgDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughOrgDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughStrAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughStrAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughStrAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughStrAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughStrDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughStrDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Breakthrough STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBreakthroughStrDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelBreakthroughStrDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Buldable only in Provinces に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBuildingsBuildableOnlyProvinces {
+            get {
+                return ResourceManager.GetString("MiscLabelBuildingsBuildableOnlyProvinces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Buildings Production Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelBuildingsProductionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelBuildingsProductionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Heavy Cruisers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCaMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelCaMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cancel Trade Deals Effectiveness に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCancelTradeDealsEffectiveness {
+            get {
+                return ResourceManager.GetString("MiscLabelCancelTradeDealsEffectiveness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Player can Change Ideas Freely に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCanChangeIdeas {
+            get {
+                return ResourceManager.GetString("MiscLabelCanChangeIdeas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Units can be Sold to Non-Allied Countries に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCanUnitSendNonAllied {
+            get {
+                return ResourceManager.GetString("MiscLabelCanUnitSendNonAllied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Units can be Sold to Non-Allied に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCanUnitSendNonAlliedDh {
+            get {
+                return ResourceManager.GetString("MiscLabelCanUnitSendNonAlliedDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance of Avoid if Defences left に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceAvoidDefencesLeft {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceAvoidDefencesLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance of Avoid if no Defences に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceAvoidNoDefences {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceAvoidNoDefences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance to Detect the Initiator of a Spy Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceDetectSpyMission {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceDetectSpyMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance to Detect the Initiator of a Spy Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceDetectSpyMissionDh {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceDetectSpyMissionDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance to Get Event Trait に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceGetEventTrait {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceGetEventTrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance to Get Terrain Trait に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceGetTerrainTrait {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceGetTerrainTrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance of Leaders Dying に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceLeaderDying {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceLeaderDying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance to Target no ORG Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChanceTargetNoOrgLand {
+            get {
+                return ResourceManager.GetString("MiscLabelChanceTargetNoOrgLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Change Idea Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChangeIdeaDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelChangeIdeaDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Change Minister Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChangeMinisterDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelChangeMinisterDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Change TAG on Coup に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelChangeTagCoup {
+            get {
+                return ResourceManager.GetString("MiscLabelChangeTagCoup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   CL to Convoy Escorts Conversion Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelClEscortsConversionRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelClEscortsConversionRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Light Cruisers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelClMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelClMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Coastal Fort Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCoastalFortEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelCoastalFortEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Coastal Fort Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCoastalFortMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelCoastalFortMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Combat Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCombatEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelCombatEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Combat Event Chances に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCombatEventChances {
+            get {
+                return ResourceManager.GetString("MiscLabelCombatEventChances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Combat Events Duration に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCombatEventDuration {
+            get {
+                return ResourceManager.GetString("MiscLabelCombatEventDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Combat Mode に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCombatMode {
+            get {
+                return ResourceManager.GetString("MiscLabelCombatMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Air Raiding Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyAirRaidingMission {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyAirRaidingMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Air Raiding Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyAirRaidingStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyAirRaidingStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Defense Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyDefenseEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyDefenseEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Duty Conversion に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyDutyConversion {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyDutyConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Escorts Model に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyEscortsModel {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyEscortsModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Interception on Missions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyInterceptionMissions {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyInterceptionMissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Protection Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyProtectionFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyProtectionFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Province Blocked Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyProvinceBlockedTime {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyProvinceBlockedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Province Hostile Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyProvinceHostileTime {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyProvinceHostileTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Rading Chance to be Detected に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyRadingChanceDetected {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyRadingChanceDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Rading Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyRadingMission {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyRadingMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Rading Range Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyRadingRangeModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyRadingRangeModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy Rading Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyRadingStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyRadingStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoys Production Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoysProductionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoysProductionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoy System Options for Allied に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoySystemOptionsAllied {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoySystemOptionsAllied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Modifier on Convoy Transports Capacity に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelConvoyTransportsCapacity {
+            get {
+                return ResourceManager.GetString("MiscLabelConvoyTransportsCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Core Province Efficiency Rise Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCoreProvinceEfficiencyRiseTime {
+            get {
+                return ResourceManager.GetString("MiscLabelCoreProvinceEfficiencyRiseTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cost to Repair Province Buildings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCostRepairBuildings {
+            get {
+                return ResourceManager.GetString("MiscLabelCostRepairBuildings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cost for Skill Level に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCostSkillLevel {
+            get {
+                return ResourceManager.GetString("MiscLabelCostSkillLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackOrgAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackOrgAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackOrgAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackOrgAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackOrgDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackOrgDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackOrgDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackOrgDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackStrAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackStrAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackStrAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackStrAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackStrDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackStrDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Counter Attack STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCounterAttackStrDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelCounterAttackStrDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Country Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCountryEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelCountryEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Country Logger に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCountryLogger {
+            get {
+                return ResourceManager.GetString("MiscLabelCountryLogger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Critical Oil Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCriticalOilStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelCriticalOilStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Critical Resources Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCriticalResourceStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelCriticalResourceStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Critical Supplies Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCriticalSuppliesStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelCriticalSuppliesStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   CVL to Convoy Escorts Conversion Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCvlEscortsConversionRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelCvlEscortsConversionRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Escort Carriers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCvlMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelCvlMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Fleet Carriers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelCvMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelCvMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Daily Aging of Manpower に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDailyAgingManpower {
+            get {
+                return ResourceManager.GetString("MiscLabelDailyAgingManpower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Daily Retired Manpower に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDailyRetiredManpower {
+            get {
+                return ResourceManager.GetString("MiscLabelDailyRetiredManpower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage AA from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageAaBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageAaBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Air Base from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageAirBaseBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageAirBaseBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage IC from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageIcBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageIcBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Infra from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageInfraBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageInfraBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Naval Bases from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageNavalBasesBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageNavalBasesBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Nuke from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageNukeBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageNukeBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Radar from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageRadarBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageRadarBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Resources from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageResourcesBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageResourcesBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Rocket from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageRocketBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageRocketBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Damage Synthetic Oil from Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDamageSyntheticOilBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDamageSyntheticOilBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days between Diplomatic Missions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDaysBetweenDiplomaticMissions {
+            get {
+                return ResourceManager.GetString("MiscLabelDaysBetweenDiplomaticMissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days to Deliver Resources from Trades に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDaysDeliverResourcesTrades {
+            get {
+                return ResourceManager.GetString("MiscLabelDaysDeliverResourcesTrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days in Offensive Supply に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDaysOffensiveSupply {
+            get {
+                return ResourceManager.GetString("MiscLabelDaysOffensiveSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days between Trade Offers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDaysTradeOffers {
+            get {
+                return ResourceManager.GetString("MiscLabelDaysTradeOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   DD to Convoy Escorts Conversion Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDdEscortsConversionRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelDdEscortsConversionRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Destroyers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDdMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelDdMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Default Air Stack に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDefaultAirStack {
+            get {
+                return ResourceManager.GetString("MiscLabelDefaultAirStack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Default Land Stack に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDefaultLandStack {
+            get {
+                return ResourceManager.GetString("MiscLabelDefaultLandStack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Default Naval Stack に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDefaultNavalStack {
+            get {
+                return ResourceManager.GetString("MiscLabelDefaultNavalStack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Default Rocket Stack に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDefaultRocketStack {
+            get {
+                return ResourceManager.GetString("MiscLabelDefaultRocketStack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Default Speed when out of Fuel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDefaultSpeedFuel {
+            get {
+                return ResourceManager.GetString("MiscLabelDefaultSpeedFuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Defensive Combined Arms Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDefensiveCombinedArmsBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelDefensiveCombinedArmsBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay after Combat Ends に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayAfterCombatEnds {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayAfterCombatEnds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay on Game Start before New Trades に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayGameStartNewTrades {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayGameStartNewTrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayOrgAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayOrgAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayOrgAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayOrgAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayOrgDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayOrgDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayOrgDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayOrgDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayStrAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayStrAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayStrAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayStrAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayStrDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayStrDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delay STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDelayStrDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelDelayStrDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Desired Oil Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDesiredOilStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelDesiredOilStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Desired Resources Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDesiredResourcesStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelDesiredResourcesStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Desired Provincial Stockpiles for Oil and Supplies に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDesiredStockPilesSuppliesOil {
+            get {
+                return ResourceManager.GetString("MiscLabelDesiredStockPilesSuppliesOil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Desired Supplies Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDesiredSuppliesStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelDesiredSuppliesStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Dig Increase per Day に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDigIncreaseDay {
+            get {
+                return ResourceManager.GetString("MiscLabelDigIncreaseDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Diplomacy Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDiplomacyEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelDiplomacyEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Dissent Change Speed に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDissentChangeSpeed {
+            get {
+                return ResourceManager.GetString("MiscLabelDissentChangeSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Dissent Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDissentMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelDissentMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Modifier on Dissent Taken from Nukes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDissentNukes {
+            get {
+                return ResourceManager.GetString("MiscLabelDissentNukes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Modifier on dissent reduction に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDissentReduction {
+            get {
+                return ResourceManager.GetString("MiscLabelDissentReduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Dissent Revolt Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDissentRevoltMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelDissentRevoltMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Distance Calculation Model に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDistanceCalculationModel {
+            get {
+                return ResourceManager.GetString("MiscLabelDistanceCalculationModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Distance Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDistanceModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelDistanceModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Distance Modifier for Neighbours に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDistanceModifierNeighbours {
+            get {
+                return ResourceManager.GetString("MiscLabelDistanceModifierNeighbours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Distance Modifier for Neighbours に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDistanceModifierNeighboursDh {
+            get {
+                return ResourceManager.GetString("MiscLabelDistanceModifierNeighboursDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Division XP Gain Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDivisionXpGainFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelDivisionXpGainFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Duration of Air to Air Battles に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDurationAirToAirBattles {
+            get {
+                return ResourceManager.GetString("MiscLabelDurationAirToAirBattles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Duration of Detection に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDurationDetection {
+            get {
+                return ResourceManager.GetString("MiscLabelDurationDetection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Duration of Ground Attack Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDurationGroundAttackBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDurationGroundAttackBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Duration of Naval and Port Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDurationNavalPortBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDurationNavalPortBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Duration of Strategic Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelDurationStrategicBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelDurationStrategicBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Economy Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEconomyEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelEconomyEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Effect of Experience on Combat に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEffectExperienceCombat {
+            get {
+                return ResourceManager.GetString("MiscLabelEffectExperienceCombat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enable Decisions for Players に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnableDicisionsPlayers {
+            get {
+                return ResourceManager.GetString("MiscLabelEnableDicisionsPlayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enable Pictures for Naval Brigades に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnablePicturesNavalBrigades {
+            get {
+                return ResourceManager.GetString("MiscLabelEnablePicturesNavalBrigades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enable Retirement Year for Leaders に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnableRetirementYearLeaders {
+            get {
+                return ResourceManager.GetString("MiscLabelEnableRetirementYearLeaders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enable Retirement Year for Ministers に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnableRetirementYearMinisters {
+            get {
+                return ResourceManager.GetString("MiscLabelEnableRetirementYearMinisters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encircled Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncircledModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelEncircledModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementOrgAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementOrgAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementOrgAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementOrgAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementOrgDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementOrgDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementOrgDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementOrgDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementStrAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementStrAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementStrAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementStrAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementStrDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementStrDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Encirclement STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEncirclementStrDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelEncirclementStrDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enemy Army Detection Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnemyArmyDetectionChance {
+            get {
+                return ResourceManager.GetString("MiscLabelEnemyArmyDetectionChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enemy Intelligence Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnemyIntelligenceChance {
+            get {
+                return ResourceManager.GetString("MiscLabelEnemyIntelligenceChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Energy to Oil に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnergyToOil {
+            get {
+                return ResourceManager.GetString("MiscLabelEnergyToOil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Envelopment Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEnvelopmentModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelEnvelopmentModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Escort Duty Conversion に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelEscortDutyConversion {
+            get {
+                return ResourceManager.GetString("MiscLabelEscortDutyConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Cost for Increasing Spy Level above 10 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraCostIncreasingAboveTen {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraCostIncreasingAboveTen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Import when below Desired に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraImportBelowDesired {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraImportBelowDesired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Import when Stockpile is Selected に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraImportStockpileSelected {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraImportStockpileSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Maintenance Cost above 10 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraMaintenanceCostAboveTen {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraMaintenanceCostAboveTen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Air or Naval Bases に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusAirNavalBases {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusAirNavalBases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Desert に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusDesert {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusDesert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Forest に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusForest {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusForest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Hill に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusHill {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusHill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Jungle に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusJungle {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusJungle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Mountain に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusMountain {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusMountain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Neighboring Province に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusNeighboringProvince {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusNeighboringProvince", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Occupied に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusOccupied {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusOccupied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Plain に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusPlain {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusPlain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Swamp に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusSwamp {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusSwamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extra Rebel Bonus for Urban に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelExtraRebelBonusUrban {
+            get {
+                return ResourceManager.GetString("MiscLabelExtraRebelBonusUrban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Filter for Release Countries に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFilterReleaseCountries {
+            get {
+                return ResourceManager.GetString("MiscLabelFilterReleaseCountries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fleet Positioning Daytime に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFleetPositioningDaytime {
+            get {
+                return ResourceManager.GetString("MiscLabelFleetPositioningDaytime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fleet Positioning Fleet Composition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFleetPositioningFleetComposition {
+            get {
+                return ResourceManager.GetString("MiscLabelFleetPositioningFleetComposition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fleet Positioning Fleet Size に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFleetPositioningFleetSize {
+            get {
+                return ResourceManager.GetString("MiscLabelFleetPositioningFleetSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fleet Positioning Leader Skill に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFleetPositioningLeaderSkill {
+            get {
+                return ResourceManager.GetString("MiscLabelFleetPositioningLeaderSkill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fleet Size Range Penalty Max に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFleetSizeRangePenaltyMax {
+            get {
+                return ResourceManager.GetString("MiscLabelFleetSizeRangePenaltyMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fleet Size Range Penalty Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFleetSizeRangePenaltyRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelFleetSizeRangePenaltyRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fleet Size Range Penalty Threthold に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFleetSizeRangePenaltyThrethold {
+            get {
+                return ResourceManager.GetString("MiscLabelFleetSizeRangePenaltyThrethold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Force Actions to Show に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelForceActionsShow {
+            get {
+                return ResourceManager.GetString("MiscLabelForceActionsShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Force Puppets Join Master&apos;s Alliance Neutrality に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelForcePuppetsJoinMastersAllianceNeutrality {
+            get {
+                return ResourceManager.GetString("MiscLabelForcePuppetsJoinMastersAllianceNeutrality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Force Strategic RedeploymentHour に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelForceStrategicRedeploymentHour {
+            get {
+                return ResourceManager.GetString("MiscLabelForceStrategicRedeploymentHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fort Damage by Artillery Bombardment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFortDamageArtilleryBombardment {
+            get {
+                return ResourceManager.GetString("MiscLabelFortDamageArtilleryBombardment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Free Infra Repair に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFreeInfraRepair {
+            get {
+                return ResourceManager.GetString("MiscLabelFreeInfraRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Friendly Army Detection Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFriendlyArmyDetectionChance {
+            get {
+                return ResourceManager.GetString("MiscLabelFriendlyArmyDetectionChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Friendly Intelligence Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFriendlyIntelligenceChance {
+            get {
+                return ResourceManager.GetString("MiscLabelFriendlyIntelligenceChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Consumption Modifier in Combat - Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelAirBattle {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelAirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Consumption Modifier at Base - Air/Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelAirNavalStatic {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelAirNavalStatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Consumption Modifier In Combat に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelLandBattle {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelLandBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Consumption Modifier Not Moving - Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelLandStatic {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelLandStatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Consumption Modifier in Combat - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelNavalBattle {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelNavalBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Consumption Modifier Not Moving - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelNavalNotMoving {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelNavalNotMoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Problems Modifier - Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelProblemsModifierAir {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelProblemsModifierAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Problems Modifier - Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelProblemsModifierLand {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelProblemsModifierLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fuel Problems Modifier - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelFuelProblemsModifierNaval {
+            get {
+                return ResourceManager.GetString("MiscLabelFuelProblemsModifierNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gearing Bonus Increment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGearingBonusIncrement {
+            get {
+                return ResourceManager.GetString("MiscLabelGearingBonusIncrement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gearing Bonus Loss per Upgrade Brigade に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGearingBonusLossUpgradeBrigade {
+            get {
+                return ResourceManager.GetString("MiscLabelGearingBonusLossUpgradeBrigade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gearing Bonus Loss per Upgrade Unit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGearingBonusLossUpgradeUnit {
+            get {
+                return ResourceManager.GetString("MiscLabelGearingBonusLossUpgradeUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gearing Loss if no IC assigned に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGearingLossNoIc {
+            get {
+                return ResourceManager.GetString("MiscLabelGearingLossNoIc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gearing Bonus Resource Increment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGearingResourceIncrement {
+            get {
+                return ResourceManager.GetString("MiscLabelGearingResourceIncrement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ground Attack Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGroundAttackMission {
+            get {
+                return ResourceManager.GetString("MiscLabelGroundAttackMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ground Attack ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGroundAttackOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelGroundAttackOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ground Attack Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGroundAttackStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelGroundAttackStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ground Attack STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGroundAttackStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelGroundAttackStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ground Defense Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelGroundDefenseEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelGroundDefenseEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Hard Attack ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHardAttackOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelHardAttackOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Hard Attack STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHardAttackStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelHardAttackStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Hard Units Attacking Urban Penalty に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHardUnitsAttackingUrbanPenalty {
+            get {
+                return ResourceManager.GetString("MiscLabelHardUnitsAttackingUrbanPenalty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   How Effective is ground-def に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHowEffectiveGroundDef {
+            get {
+                return ResourceManager.GetString("MiscLabelHowEffectiveGroundDef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HQ Combat Events Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHqCombatEventsBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelHqCombatEventsBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HQ Command Limit Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHqCommandLimitFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelHqCommandLimitFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HQ STR Damage only Breakthrough に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHqStrDamageBreakthrough {
+            get {
+                return ResourceManager.GetString("MiscLabelHqStrDamageBreakthrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HQ Supply Efficiency Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelHqSupplyEfficiencyBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelHqSupplyEfficiencyBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC Concentration Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcConcentrationBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelIcConcentrationBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC Damage by Artillery Bombardment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcDamageArtilleryBombardment {
+            get {
+                return ResourceManager.GetString("MiscLabelIcDamageArtilleryBombardment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC Modifier on Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcModifierCost {
+            get {
+                return ResourceManager.GetString("MiscLabelIcModifierCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC Non-National Province Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcMultiplierNonNational {
+            get {
+                return ResourceManager.GetString("MiscLabelIcMultiplierNonNational", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC Non-Owned Province Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcMultiplierNonOwned {
+            get {
+                return ResourceManager.GetString("MiscLabelIcMultiplierNonOwned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC Multiplier for Puppets に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcMultiplierPuppet {
+            get {
+                return ResourceManager.GetString("MiscLabelIcMultiplierPuppet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC to Consumer Goods Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcToConsumerGoodsRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelIcToConsumerGoodsRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC to Money Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcToMoneyRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelIcToMoneyRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC to Supplies ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcToSuppliesRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelIcToSuppliesRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IC to TC ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIcToTcRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelIcToTcRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Idea Change Delay に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIdeaChangeDelay {
+            get {
+                return ResourceManager.GetString("MiscLabelIdeaChangeDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Idea Change Event Delay に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIdeaChangeEventDelay {
+            get {
+                return ResourceManager.GetString("MiscLabelIdeaChangeEventDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days between Increase Intelligence Levels に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIncreateIntelligenceLevelDays {
+            get {
+                return ResourceManager.GetString("MiscLabelIncreateIntelligenceLevelDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days between Increase Intelligence Levels に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIncreateIntelligenceLevelDaysDh {
+            get {
+                return ResourceManager.GetString("MiscLabelIncreateIntelligenceLevelDaysDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Infra Damage by Artillery Bombardment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInfraDamageArtilleryBombardment {
+            get {
+                return ResourceManager.GetString("MiscLabelInfraDamageArtilleryBombardment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Infra Efficiency Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInfraEfficiencyModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelInfraEfficiencyModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   In-Game Losses Logging に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInGameLossesLogging {
+            get {
+                return ResourceManager.GetString("MiscLabelInGameLossesLogging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   In-Game Losses Logging に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInGameLossLogging2 {
+            get {
+                return ResourceManager.GetString("MiscLabelInGameLossLogging2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Installation Strike Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInstallationStrikeMission {
+            get {
+                return ResourceManager.GetString("MiscLabelInstallationStrikeMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Installation Strike Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInstallationStrikeStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelInstallationStrikeStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Intelligence Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelIntelligenceEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelIntelligenceEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Interceptor vs Bomber Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInterceptorBomberModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelInterceptorBomberModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Interdiction Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInterdictionMission {
+            get {
+                return ResourceManager.GetString("MiscLabelInterdictionMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Interdiction ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInterdictionOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelInterdictionOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Interdiction Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInterdictionStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelInterdictionStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Interdiction STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInterdictionStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelInterdictionStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invasion Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelInvasionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelInvasionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Join Automatically Allies/Axis に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelJoinAutomaticallyAllesAxis {
+            get {
+                return ResourceManager.GetString("MiscLabelJoinAutomaticallyAllesAxis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land/Air Speed Modifier out of Fuel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandAirSpeedModifierFuel {
+            get {
+                return ResourceManager.GetString("MiscLabelLandAirSpeedModifierFuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Chance of Avoid if Defences Left に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandChanceAvoidDefencesLeft {
+            get {
+                return ResourceManager.GetString("MiscLabelLandChanceAvoidDefencesLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Chance of Avoid if no Defences に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandChanceAvoidNoDefences {
+            get {
+                return ResourceManager.GetString("MiscLabelLandChanceAvoidNoDefences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land and Coastal Forts Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandCoastalFortsDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelLandCoastalFortsDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land and Coastal Forts Max Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandCoastalFortsMaxDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelLandCoastalFortsMaxDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Command Limit Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandCommandLimitModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelLandCommandLimitModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Damage by Artillery Bombardment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandDamageArtilleryBombardment {
+            get {
+                return ResourceManager.GetString("MiscLabelLandDamageArtilleryBombardment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Damage from Fort に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandDamageFort {
+            get {
+                return ResourceManager.GetString("MiscLabelLandDamageFort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Delay before Orders に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandDelayBeforeOrders {
+            get {
+                return ResourceManager.GetString("MiscLabelLandDelayBeforeOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Fort Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandFortDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelLandFortDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Fort Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandFortEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelLandFortEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Fort Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandFortMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelLandFortMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Friendly ORG Gain に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandFriendlyOrgGain {
+            get {
+                return ResourceManager.GetString("MiscLabelLandFriendlyOrgGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Leader Command Limit - Rank 0 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandLeaderCommandLimitRank0 {
+            get {
+                return ResourceManager.GetString("MiscLabelLandLeaderCommandLimitRank0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Leader Command Limit - Rank 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandLeaderCommandLimitRank1 {
+            get {
+                return ResourceManager.GetString("MiscLabelLandLeaderCommandLimitRank1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Leader Command Limit - Rank 2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandLeaderCommandLimitRank2 {
+            get {
+                return ResourceManager.GetString("MiscLabelLandLeaderCommandLimitRank2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Leader Command Limit - Rank 3 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandLeaderCommandLimitRank3 {
+            get {
+                return ResourceManager.GetString("MiscLabelLandLeaderCommandLimitRank3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Min Combat Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandMinCombatTime {
+            get {
+                return ResourceManager.GetString("MiscLabelLandMinCombatTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Min ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandMinOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelLandMinOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Min STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandMinStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelLandMinStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageAirAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageAirAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageAirDh {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageAirDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage for Hard/Soft Each に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageHardSoftEach {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageHardSoftEach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage for Hard vs Soft に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageHardVsSoft {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageHardVsSoft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage from Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageLand {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage from Land Fort に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageLandFort {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageLandFort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage from Land by ORG に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageLandOrg {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageLandOrg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Damage from Land Urban に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgDamageLandUrban {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgDamageLandUrban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Gain に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgGain {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG Loss Moving に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgLossMoving {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgLossMoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land ORG after Naval Transportation に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOrgNavalTransportation {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOrgNavalTransportation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Overstacking Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandOverstackingModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelLandOverstackingModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Speed Modifier in Bombardment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandSpeedModifierBombardment {
+            get {
+                return ResourceManager.GetString("MiscLabelLandSpeedModifierBombardment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Speed Modifier in Combat に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandSpeedModifierCombat {
+            get {
+                return ResourceManager.GetString("MiscLabelLandSpeedModifierCombat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Speed Modifier ORG out に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandSpeedModifierOrg {
+            get {
+                return ResourceManager.GetString("MiscLabelLandSpeedModifierOrg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Speed Modifier out of Supply に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandSpeedModifierSupply {
+            get {
+                return ResourceManager.GetString("MiscLabelLandSpeedModifierSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land STR Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandStrDamageAirAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelLandStrDamageAirAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land STR Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandStrDamageAirDh {
+            get {
+                return ResourceManager.GetString("MiscLabelLandStrDamageAirDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land STR Damage for Hard/Soft Each に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandStrDamageHardSoftEach {
+            get {
+                return ResourceManager.GetString("MiscLabelLandStrDamageHardSoftEach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land STR Damage for Hard vs Soft に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandStrDamageHardVsSoft {
+            get {
+                return ResourceManager.GetString("MiscLabelLandStrDamageHardVsSoft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land STR Damage from Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandStrDamageLandAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelLandStrDamageLandAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land STR Damage from Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandStrDamageLandDh {
+            get {
+                return ResourceManager.GetString("MiscLabelLandStrDamageLandDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land Surprise Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandSurpriseChance {
+            get {
+                return ResourceManager.GetString("MiscLabelLandSurpriseChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land XP Gain Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLandXpGainFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelLandXpGainFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Leader Change Delay に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLeaderChangeDelay {
+            get {
+                return ResourceManager.GetString("MiscLabelLeaderChangeDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Leader XP Gain Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLeaderXpGainFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelLeaderXpGainFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Limit AI New Trades to Preferred on Game Start に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLimitAiNewTradesGameStart {
+            get {
+                return ResourceManager.GetString("MiscLabelLimitAiNewTradesGameStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Startup Retooling Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLineStartupTime {
+            get {
+                return ResourceManager.GetString("MiscLabelLineStartupTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Retooling Time Line Upgrade に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLineUpgradeTime {
+            get {
+                return ResourceManager.GetString("MiscLabelLineUpgradeTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Line Upkeep に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLineUpkeep {
+            get {
+                return ResourceManager.GetString("MiscLabelLineUpkeep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Load AI Files from Moddir Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLoadAiFilesModdirOnly {
+            get {
+                return ResourceManager.GetString("MiscLabelLoadAiFilesModdirOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Load New AI on Switching to All Clients に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLoadNewAiSwitchingAllClients {
+            get {
+                return ResourceManager.GetString("MiscLabelLoadNewAiSwitchingAllClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Load Sprites from Moddir Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLoadSpritesModdirOnly {
+            get {
+                return ResourceManager.GetString("MiscLabelLoadSpritesModdirOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Load Unit Icons from Moddir Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLoadUnitIconsModdirOnly {
+            get {
+                return ResourceManager.GetString("MiscLabelLoadUnitIconsModdirOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Load Unit Pictures from Moddir Only に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLoadUnitPicturesModdirOnly {
+            get {
+                return ResourceManager.GetString("MiscLabelLoadUnitPicturesModdirOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Logistical Strike Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLogisticalStrikeMission {
+            get {
+                return ResourceManager.GetString("MiscLabelLogisticalStrikeMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Logistical Strike Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLogisticalStrikeStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelLogisticalStrikeStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Logistics Wizard ESE Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelLogisticsWizardEseBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelLogisticsWizardEseBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Manpower Boost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerBoost {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerBoost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Colonial Province Manpower Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerMultiplierColony {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerMultiplierColony", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   National Province Manpower Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerMultiplierNational {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerMultiplierNational", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Non-National Province Manpower Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerMultiplierNonNational {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerMultiplierNonNational", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Peacetime Manpower Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerMultiplierPeacetime {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerMultiplierPeacetime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Manpower Multiplier for Puppets に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerMultiplierPuppet {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerMultiplierPuppet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wartime Manpower Multiplier  に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerMultiplierWartime {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerMultiplierWartime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wartime Oversea Provinces Manpower Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerMultiplierWartimeOversea {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerMultiplierWartimeOversea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Manpower to Consumer Goods に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerToConsumerGoods {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerToConsumerGoods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Manpower Trickle Back Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManpowerTrickleBackModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelManpowerTrickleBackModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Manual Trade Deals に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelManualTradeDeals {
+            get {
+                return ResourceManager.GetString("MiscLabelManualTradeDeals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Map Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMapEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelMapEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Map Weight に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMapHeight {
+            get {
+                return ResourceManager.GetString("MiscLabelMapHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Map Number に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMapNumber {
+            get {
+                return ResourceManager.GetString("MiscLabelMapNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Map Width に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMapWidth {
+            get {
+                return ResourceManager.GetString("MiscLabelMapWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Masters Become Puppet&apos;s Puppets に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMastersBecomePuppetsPuppets {
+            get {
+                return ResourceManager.GetString("MiscLabelMastersBecomePuppetsPuppets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Active Tech Teams に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxActiveTechTeamsAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxActiveTechTeamsAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Active Tech Teams に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxActiveTechTeamsDh {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxActiveTechTeamsDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Amphibious Army Size に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxAmphibiousArmySize {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxAmphibiousArmySize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Daily Dissent when not Enough Supplies に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxDailyDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxDailyDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Dissent for Slider Move に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxDissentSliderMove {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxDissentSliderMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Gearing Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxGearingBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxGearingBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max IC on Cost Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxIcCostModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxIcCostModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max IC on Cost Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxIcCostModifierDh {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxIcCostModifierDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Maximum Random Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaximumRandomModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelMaximumRandomModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Maximum Sizes of Air Stacks に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaximumSizesAirStacks {
+            get {
+                return ResourceManager.GetString("MiscLabelMaximumSizesAirStacks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Intelligence Expenditure に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxIntelligenceExpenditure {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxIntelligenceExpenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Land Dig に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxLandDig {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxLandDig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Manpower に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxManpower {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxManpower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Unmodified Nationalism に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxNationalism {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxNationalism", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Redeployment Days for AI に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxRedeploymentDaysAi {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxRedeploymentDaysAi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Research Expenditure に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxResearchExpenditure {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxResearchExpenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Provincial Resource Depot Size に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxResourceDepotSize {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxResourceDepotSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Base Province Revolt Risk に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxRevoltRisk {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxRevoltRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Serial Line for Production of Garrison and Militia に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxSerialLineProductionGarrisonMilitia {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxSerialLineProductionGarrisonMilitia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Ships Positioning in Battle に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxShipsPositioningBattle {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxShipsPositioningBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Slider Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxSliderDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxSliderDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Provincial Oil/Supplies Depot Size に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxSuppliesOilDepotSize {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxSuppliesOilDepotSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Tech Team Skill に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMaxTechTeamSkill {
+            get {
+                return ResourceManager.GetString("MiscLabelMaxTechTeamSkill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Mean Number of Invention Events per Year に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMeanNumberInventionEventsYear {
+            get {
+                return ResourceManager.GetString("MiscLabelMeanNumberInventionEventsYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Merge and Relocate Provincial Depots に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMergeRelocateProvincialDepots {
+            get {
+                return ResourceManager.GetString("MiscLabelMergeRelocateProvincialDepots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Merge Trade Deals に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMergeTradeDeals {
+            get {
+                return ResourceManager.GetString("MiscLabelMergeTradeDeals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Military Expense Attrition Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMilitaryExpenseAttritionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelMilitaryExpenseAttritionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Military Salary Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMilitarySalary {
+            get {
+                return ResourceManager.GetString("MiscLabelMilitarySalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Military Salary Attriction Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMilitarySalaryAttrictionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelMilitarySalaryAttrictionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Military Salary Dissent Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMilitarySalaryDissentModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelMilitarySalaryDissentModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Military Strength to Total IC Ratio Major に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMilitaryStrengthTotalIcRatioMajor {
+            get {
+                return ResourceManager.GetString("MiscLabelMilitaryStrengthTotalIcRatioMajor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Military Strength to Total IC Ratio Peacetime に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMilitaryStrengthTotalIcRatioPeacetime {
+            get {
+                return ResourceManager.GetString("MiscLabelMilitaryStrengthTotalIcRatioPeacetime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Military Strength to Total IC Ratio Wartime に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMilitaryStrengthTotalIcRatioWartime {
+            get {
+                return ResourceManager.GetString("MiscLabelMilitaryStrengthTotalIcRatioWartime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Active Tech Teams に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinActiveTechTeams {
+            get {
+                return ResourceManager.GetString("MiscLabelMinActiveTechTeams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Available IC as percentage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinAvailableIc {
+            get {
+                return ResourceManager.GetString("MiscLabelMinAvailableIc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Days Required for AI to Allied に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinDaysRequiredAiAllied {
+            get {
+                return ResourceManager.GetString("MiscLabelMinDaysRequiredAiAllied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Days Required for AI to Allied Supply Base に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinDaysRequiredAiAlliedSupplyBase {
+            get {
+                return ResourceManager.GetString("MiscLabelMinDaysRequiredAiAlliedSupplyBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Days Required for AI Release Country に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinDaysRequiredAiReleaseCountry {
+            get {
+                return ResourceManager.GetString("MiscLabelMinDaysRequiredAiReleaseCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Dissent Revolt に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinDissentRevolt {
+            get {
+                return ResourceManager.GetString("MiscLabelMinDissentRevolt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Final Available IC に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinFinalIc {
+            get {
+                return ResourceManager.GetString("MiscLabelMinFinalIc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min IC on Cost Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinIcCostModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelMinIcCostModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min IC Serial Production of Naval and Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinIcSerialProductionNavalAir {
+            get {
+                return ResourceManager.GetString("MiscLabelMinIcSerialProductionNavalAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Placement IC に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinimalPlacementIc {
+            get {
+                return ResourceManager.GetString("MiscLabelMinimalPlacementIc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Minister Bonuses に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinisterBonuses {
+            get {
+                return ResourceManager.GetString("MiscLabelMinisterBonuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Minister Change Delay に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinisterChangeDelay {
+            get {
+                return ResourceManager.GetString("MiscLabelMinisterChangeDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Minister Change Event Delay に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinisterChangeEventDelay {
+            get {
+                return ResourceManager.GetString("MiscLabelMinisterChangeEventDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Required Relations Allied Claimed に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinRequiredRelationsAlliedClaimed {
+            get {
+                return ResourceManager.GetString("MiscLabelMinRequiredRelationsAlliedClaimed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Ships Positioning in Battle に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinShipsPositioningBattle {
+            get {
+                return ResourceManager.GetString("MiscLabelMinShipsPositioningBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Slider Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinSliderDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelMinSliderDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Min Softness Brigades に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMinSoftnessBrigades {
+            get {
+                return ResourceManager.GetString("MiscLabelMinSoftnessBrigades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Mission Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMissionEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelMissionEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End  of Mod Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelModEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelModEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Monthly Nationalism Reduction に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMonthlyNationalismReduction {
+            get {
+                return ResourceManager.GetString("MiscLabelMonthlyNationalismReduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Movement Bonus Similar Terrain Trait に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMovementBonusSimilarTerrainTrait {
+            get {
+                return ResourceManager.GetString("MiscLabelMovementBonusSimilarTerrainTrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Movement Bonus Terrain Trait に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMovementBonusTerrainTrait {
+            get {
+                return ResourceManager.GetString("MiscLabelMovementBonusTerrainTrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Multiple Combat Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMultipleCombatModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelMultipleCombatModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Multiple Deployment Size for Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMultipleDeploymentSizeAir {
+            get {
+                return ResourceManager.GetString("MiscLabelMultipleDeploymentSizeAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Multiple Deployment Size for Armies に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMultipleDeploymentSizeArmies {
+            get {
+                return ResourceManager.GetString("MiscLabelMultipleDeploymentSizeArmies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Multiple Deployment Size for Fleets に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMultipleDeploymentSizeFleets {
+            get {
+                return ResourceManager.GetString("MiscLabelMultipleDeploymentSizeFleets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Multiplier on Overproduce Supplies when at War に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelMultiplierOverproduceSuppliesWar {
+            get {
+                return ResourceManager.GetString("MiscLabelMultiplierOverproduceSuppliesWar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Manpower Nationalism Value に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNationalismPerManpowerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelNationalismPerManpowerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nationalism per Manpower に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNationalismPerManpowerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelNationalismPerManpowerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nationalism Starting Value に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNationalismStartingValue {
+            get {
+                return ResourceManager.GetString("MiscLabelNationalismStartingValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Additional ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalAdditionalOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalAdditionalOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Additional STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalAdditionalStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalAdditionalStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Airbase Strike Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalAirbaseStrikeMission {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalAirbaseStrikeMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Airbase Strike Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalAirbaseStrikeStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalAirbaseStrikeStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Chance of Avoid if Defences Left に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalChanceAvoidDefencesLeft {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalChanceAvoidDefencesLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Chance of Avoid if no Defences に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalChanceAvoidNoDefences {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalChanceAvoidNoDefences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Combat Patrol Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalCombatPatrolMission {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalCombatPatrolMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Combat Patrol Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalCombatPatrolStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalCombatPatrolStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Command Limit Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalCommandLimitModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalCommandLimitModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Critical Hit Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalCriticalHitChance {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalCriticalHitChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Critical Hit Effect に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalCriticalHitEffect {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalCriticalHitEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Delay before Orders に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalDelayBeforeOrders {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalDelayBeforeOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Interdiction Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalInterdictionMission {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalInterdictionMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Interdiction Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalInterdictionStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalInterdictionStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Leader Command Limit - Rank 0 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalLeaderCommandLimitRank0 {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalLeaderCommandLimitRank0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Leader Command Limit - Rank 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalLeaderCommandLimitRank1 {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalLeaderCommandLimitRank1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Leader Command Limit - Rank 2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalLeaderCommandLimitRank2 {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalLeaderCommandLimitRank2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Leader Command Limit - Rank 3 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalLeaderCommandLimitRank3 {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalLeaderCommandLimitRank3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Min Combat Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalMinCombatTime {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalMinCombatTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Min ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalMinOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalMinOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Min STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalMinStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalMinStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval ORG Damage from AA に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOrgDamageAa {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOrgDamageAa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval ORG Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOrgDamageAirAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOrgDamageAirAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval ORG Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOrgDamageAirDh {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOrgDamageAirDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval ORG Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOrgDamageNavyAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOrgDamageNavyAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval ORG Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOrgDamageNavyDh {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOrgDamageNavyDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval ORG Gain に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOrgGain {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOrgGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval ORG Loss Moving に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOrgLossMoving {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOrgLossMoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Overstacking Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalOverstackingModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalOverstackingModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Port Strike Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalPortStrikeMission {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalPortStrikeMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Port Strike Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalPortStrikeStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalPortStrikeStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Scramble Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalScrambleMission {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalScrambleMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Scramble Speed Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalScrambleSpeedBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalScrambleSpeedBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Scramble Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalScrambleStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalScrambleStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval STR Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalStrDamageAirAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalStrDamageAirAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval STR Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalStrDamageAirDh {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalStrDamageAirDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval STR Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalStrDamageNavyAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalStrDamageNavyAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval STR Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalStrDamageNavyDh {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalStrDamageNavyDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Strike Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalStrikeMission {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalStrikeMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Strike Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalStrikeStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalStrikeStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Surprise Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalSurpriseChance {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalSurpriseChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval XP Gain Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNavalXpGainFactor {
+            get {
+                return ResourceManager.GetString("MiscLabelNavalXpGainFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New AI Release Rules に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewAiReleaseRules {
+            get {
+                return ResourceManager.GetString("MiscLabelNewAiReleaseRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New Country Nuclear Engineering Component に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewCountryNuclearEngineeringComponent {
+            get {
+                return ResourceManager.GetString("MiscLabelNewCountryNuclearEngineeringComponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New Country Nuclear Physics Component に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewCountryNuclearPhysicsComponent {
+            get {
+                return ResourceManager.GetString("MiscLabelNewCountryNuclearPhysicsComponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New Country Rocketry Component に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewCountryRocketryComponent {
+            get {
+                return ResourceManager.GetString("MiscLabelNewCountryRocketryComponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New Country Secret Techs に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewCountrySecretTechs {
+            get {
+                return ResourceManager.GetString("MiscLabelNewCountrySecretTechs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New DoW Rules に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewDowRules {
+            get {
+                return ResourceManager.GetString("MiscLabelNewDowRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New DoW Rules に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewDowRules2 {
+            get {
+                return ResourceManager.GetString("MiscLabelNewDowRules2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   New Trade Deals Min Effectiveness に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNewTradeDealsMinEffectiveness {
+            get {
+                return ResourceManager.GetString("MiscLabelNewTradeDealsMinEffectiveness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Night Hours during Spring and Fall に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNightHoursSpringFall {
+            get {
+                return ResourceManager.GetString("MiscLabelNightHoursSpringFall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Night Hours during Summer に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNightHoursSummer {
+            get {
+                return ResourceManager.GetString("MiscLabelNightHoursSummer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Night Hours during Winter に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNightHoursWinter {
+            get {
+                return ResourceManager.GetString("MiscLabelNightHoursWinter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No Supply Attrition Severity に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNoSupplyAttritionSeverity {
+            get {
+                return ResourceManager.GetString("MiscLabelNoSupplyAttritionSeverity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No Supply Minimum Attrition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNoSupplyMinimunAttrition {
+            get {
+                return ResourceManager.GetString("MiscLabelNoSupplyMinimunAttrition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Produce New Units Manpower Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotProduceNewUnitsManpowerRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelNotProduceNewUnitsManpowerRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Produce New Units Manpower Value に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotProduceNewUnitsManpowerValue {
+            get {
+                return ResourceManager.GetString("MiscLabelNotProduceNewUnitsManpowerValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Produce New Units Supply に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotProduceNewUnitsSupply {
+            get {
+                return ResourceManager.GetString("MiscLabelNotProduceNewUnitsSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Produce Supplies when Stockpile over に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotProduceSuppliesStockpileOver {
+            get {
+                return ResourceManager.GetString("MiscLabelNotProduceSuppliesStockpileOver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Use Offensive ESE に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotUseOffensiveEse {
+            get {
+                return ResourceManager.GetString("MiscLabelNotUseOffensiveEse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Use Offensive Oil Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotUseOffensiveOilStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelNotUseOffensiveOilStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Use Offensive ORG or STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotUseOffensiveOrgStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelNotUseOffensiveOrgStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Not Use Offensive Supply Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNotUseOffensiveSupplyStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelNotUseOffensiveSupplyStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuclear Power に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNuclearPower {
+            get {
+                return ResourceManager.GetString("MiscLabelNuclearPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuclear Power Plant Upkeep Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNuclearPowerUpkeepCost {
+            get {
+                return ResourceManager.GetString("MiscLabelNuclearPowerUpkeepCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuclear Site Upkeep Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNuclearSiteUpkeepCost {
+            get {
+                return ResourceManager.GetString("MiscLabelNuclearSiteUpkeepCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuke IC Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNukeIcDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelNukeIcDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuke Manpower Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNukeManpowerDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelNukeManpowerDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuke Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNukeMission {
+            get {
+                return ResourceManager.GetString("MiscLabelNukeMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nukes Production Rate Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNukesProductionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelNukesProductionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuke Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNukeStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelNukeStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nuke Total Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelNukeTotalDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelNukeTotalDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Occupied Transport Capacity Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelOccupiedTransportCapacityModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelOccupiedTransportCapacityModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Offensive Combined Arms Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelOffensiveCombinedArmsBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelOffensiveCombinedArmsBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ORG Regain Bonus Friendly に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelOrgRegainBonusFriendly {
+            get {
+                return ResourceManager.GetString("MiscLabelOrgRegainBonusFriendly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ORG Regain Bonus Friendly Cap に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelOrgRegainBonusFriendlyCap {
+            get {
+                return ResourceManager.GetString("MiscLabelOrgRegainBonusFriendlyCap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Overproduce of Supplies when below Desired に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelOverproduceSuppliesBelowDesired {
+            get {
+                return ResourceManager.GetString("MiscLabelOverproduceSuppliesBelowDesired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Over Stockpile Limit Daily Loss に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelOverStockpileLimitDailyLoss {
+            get {
+                return ResourceManager.GetString("MiscLabelOverStockpileLimitDailyLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Peacetime Extra Oil Import に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPeacetimeExtraOilImport {
+            get {
+                return ResourceManager.GetString("MiscLabelPeacetimeExtraOilImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Peacetime IC Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPeacetimeIcModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelPeacetimeIcModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Peacetime Stockpiles for Oil and Supplies に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPeacetimeStockpilesOilSupplies {
+            get {
+                return ResourceManager.GetString("MiscLabelPeacetimeStockpilesOilSupplies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Peacetime Stockpiles for Resources に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPeacetimeStockpilesResources {
+            get {
+                return ResourceManager.GetString("MiscLabelPeacetimeStockpilesResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Penalty for Artillery Bombardment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPenaltyArtilleryBombardment {
+            get {
+                return ResourceManager.GetString("MiscLabelPenaltyArtilleryBombardment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Percentage of Produced Money に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPercentageProducedMoney {
+            get {
+                return ResourceManager.GetString("MiscLabelPercentageProducedMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Percentage of Produced Supplies に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPercentageProducedSupplies {
+            get {
+                return ResourceManager.GetString("MiscLabelPercentageProducedSupplies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Planned Defense Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPlannedDefenseMission {
+            get {
+                return ResourceManager.GetString("MiscLabelPlannedDefenseMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Planned Defense Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPlannedDefenseStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelPlannedDefenseStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Port Attack Surprise Chance Day に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPortAttackSurpriseChanceDay {
+            get {
+                return ResourceManager.GetString("MiscLabelPortAttackSurpriseChanceDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Port Attack Surprise Chance Night に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPortAttackSurpriseChanceNight {
+            get {
+                return ResourceManager.GetString("MiscLabelPortAttackSurpriseChanceNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Port Attack Surprise Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPortAttackSurpriseModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelPortAttackSurpriseModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Port Strike Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPortStrikeMission {
+            get {
+                return ResourceManager.GetString("MiscLabelPortStrikeMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Port Strike Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPortStrikeStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelPortStrikeStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Post-Historical Bonus Limit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPostHistoricalBonusLimit {
+            get {
+                return ResourceManager.GetString("MiscLabelPostHistoricalBonusLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Post-Historical Date Mod に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPostHistoricalDateModifierAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelPostHistoricalDateModifierAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Post-Historical Date Mod に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPostHistoricalDateModifierDh {
+            get {
+                return ResourceManager.GetString("MiscLabelPostHistoricalDateModifierDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pre-Historical Date Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPreHistoricalDateModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelPreHistoricalDateModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Pre-Historical Penalty Limit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPreHistoricalPenaltyLimit {
+            get {
+                return ResourceManager.GetString("MiscLabelPreHistoricalPenaltyLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enable Production Line Edit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelProductionLineEdit {
+            get {
+                return ResourceManager.GetString("MiscLabelProductionLineEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Production Panel UI Style に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelProductionPanelUiStyle {
+            get {
+                return ResourceManager.GetString("MiscLabelProductionPanelUiStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Province Buildings Repair Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelProvinceBuildingsRepairModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelProvinceBuildingsRepairModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Provinces can be Sold to Non-Allied に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelProvinceCanSoldNonAllied {
+            get {
+                return ResourceManager.GetString("MiscLabelProvinceCanSoldNonAllied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Province Efficiency Rise Time に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelProvinceEfficiencyRiseTime {
+            get {
+                return ResourceManager.GetString("MiscLabelProvinceEfficiencyRiseTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Province Resource Repair Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelProvinceResourceRepairModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelProvinceResourceRepairModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Puppets Critical Supply Stockpile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPuppetsCriticalSupplyStockpile {
+            get {
+                return ResourceManager.GetString("MiscLabelPuppetsCriticalSupplyStockpile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Puppets Join Master&apos;s Alliance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPuppetsJoinMastersAlliance {
+            get {
+                return ResourceManager.GetString("MiscLabelPuppetsJoinMastersAlliance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Puppets Max Pool for Resources に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPuppetsMaxPoolResources {
+            get {
+                return ResourceManager.GetString("MiscLabelPuppetsMaxPoolResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Puppets Send Supplies and Money に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelPuppetsSendSuppliesMoney {
+            get {
+                return ResourceManager.GetString("MiscLabelPuppetsSendSuppliesMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Radar Anti Surprise Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRadarAntiSurpriseChance {
+            get {
+                return ResourceManager.GetString("MiscLabelRadarAntiSurpriseChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Radar Anti Surprise Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRadarAntiSurpriseModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelRadarAntiSurpriseModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Radar Bonus on Detection に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRadarBonusDetection {
+            get {
+                return ResourceManager.GetString("MiscLabelRadarBonusDetection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Radar Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRadarEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelRadarEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rader Station AA Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRaderStationAaMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelRaderStationAaMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rader Station Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRaderStationMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelRaderStationMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebase Chance to be Detected に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebaseChanceDetected {
+            get {
+                return ResourceManager.GetString("MiscLabelRebaseChanceDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebase Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebaseMission {
+            get {
+                return ResourceManager.GetString("MiscLabelRebaseMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebase Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebaseStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelRebaseStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebels Army Composition に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebelsArmyComposition {
+            get {
+                return ResourceManager.GetString("MiscLabelRebelsArmyComposition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebels Army Max STR に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebelsArmyMaxStr {
+            get {
+                return ResourceManager.GetString("MiscLabelRebelsArmyMaxStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebels Army Min STR に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebelsArmyMinStr {
+            get {
+                return ResourceManager.GetString("MiscLabelRebelsArmyMinStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebels Army Tech Level に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebelsArmyTechLevel {
+            get {
+                return ResourceManager.GetString("MiscLabelRebelsArmyTechLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rebels ORG Regain に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRebelsOrgRegain {
+            get {
+                return ResourceManager.GetString("MiscLabelRebelsOrgRegain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recalculate Arrival Times after Combat に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRecalculateArrivalTimesCombat {
+            get {
+                return ResourceManager.GetString("MiscLabelRecalculateArrivalTimesCombat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recalculate Land Arrival Times に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRecalculateLandArrivalTimes {
+            get {
+                return ResourceManager.GetString("MiscLabelRecalculateLandArrivalTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reinforce Cost Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReinforceCost {
+            get {
+                return ResourceManager.GetString("MiscLabelReinforceCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reinforcement Manpower Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReinforceManpower {
+            get {
+                return ResourceManager.GetString("MiscLabelReinforceManpower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reinforce Time Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReinforceTime {
+            get {
+                return ResourceManager.GetString("MiscLabelReinforceTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reinforce to Upgrade Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReinforceToUpdateModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelReinforceToUpdateModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Relationship Hit for Cancel Permanent Trade に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRelationshipHitCancelPermanentTrade {
+            get {
+                return ResourceManager.GetString("MiscLabelRelationshipHitCancelPermanentTrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Relationship Hit for Cancel Trade に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRelationshipHitCancelTrade {
+            get {
+                return ResourceManager.GetString("MiscLabelRelationshipHitCancelTrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Relationships Hit for Detected Missions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRelationshipsHitDetectedMissions {
+            get {
+                return ResourceManager.GetString("MiscLabelRelationshipsHitDetectedMissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Relationships Hit for Detected Missions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRelationshipsHitDetectedMissionsDh {
+            get {
+                return ResourceManager.GetString("MiscLabelRelationshipsHitDetectedMissionsDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Repair Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRepairModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelRepairModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Required IC for Each Tech Team に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRequiredIcEachTechTeamAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelRequiredIcEachTechTeamAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Required IC for Each Tech Team に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRequiredIcEachTechTeamDh {
+            get {
+                return ResourceManager.GetString("MiscLabelRequiredIcEachTechTeamDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Required Land Fort Size に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRequiredLandFortSize {
+            get {
+                return ResourceManager.GetString("MiscLabelRequiredLandFortSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Requirement to Affect Domestic Sliders に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRequirementAffectSlider {
+            get {
+                return ResourceManager.GetString("MiscLabelRequirementAffectSlider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Requirement to Affect Domestic Sliders に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRequirementAffectSliderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelRequirementAffectSliderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Research Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResearchEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelResearchEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Research Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResearchModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelResearchModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reserves Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReservesMission {
+            get {
+                return ResourceManager.GetString("MiscLabelReservesMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reserves Speed Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReservesSpeedBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelReservesSpeedBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reserves Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReservesStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelReservesStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resource Convoys Ship Back Unneeded に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResourceConvoysBackUnneeded {
+            get {
+                return ResourceManager.GetString("MiscLabelResourceConvoysBackUnneeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resource Non-National Province Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResourceMultiplierNonNational {
+            get {
+                return ResourceManager.GetString("MiscLabelResourceMultiplierNonNational", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resource Non-National Province Multiplier (AI) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResourceMultiplierNonNationalAi {
+            get {
+                return ResourceManager.GetString("MiscLabelResourceMultiplierNonNationalAi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resource Non-Owned Province Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResourceMultiplierNonOwned {
+            get {
+                return ResourceManager.GetString("MiscLabelResourceMultiplierNonOwned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resource Multiplier for Puppets に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResourceMultiplierPuppet {
+            get {
+                return ResourceManager.GetString("MiscLabelResourceMultiplierPuppet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resources Damage by Artillery Bombardment に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelResourcesDamageArtilleryBombardment {
+            get {
+                return ResourceManager.GetString("MiscLabelResourcesDamageArtilleryBombardment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resupply Speed - Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRestockSpeedAir {
+            get {
+                return ResourceManager.GetString("MiscLabelRestockSpeedAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resupply Speed - Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRestockSpeedLand {
+            get {
+                return ResourceManager.GetString("MiscLabelRestockSpeedLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Resupply Speed - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRestockSpeedNaval {
+            get {
+                return ResourceManager.GetString("MiscLabelRestockSpeedNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Retooling Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRetoolingCost {
+            get {
+                return ResourceManager.GetString("MiscLabelRetoolingCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Retooling Resource Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRetoolingResource {
+            get {
+                return ResourceManager.GetString("MiscLabelRetoolingResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Return Rebellious Province に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelReturnRebelliousProvince {
+            get {
+                return ResourceManager.GetString("MiscLabelReturnRebelliousProvince", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Runway Cratering Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRunwayCrateringMission {
+            get {
+                return ResourceManager.GetString("MiscLabelRunwayCrateringMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Runway Cratering Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelRunwayCrateringStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelRunwayCrateringStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Scorch Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelScorchDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelScorchDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Scorch Ground Belligerence に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelScorchGroundBelligerence {
+            get {
+                return ResourceManager.GetString("MiscLabelScorchGroundBelligerence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Screen or Capital Ships Targeting に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelScreenCapitalShipsTargeting {
+            get {
+                return ResourceManager.GetString("MiscLabelScreenCapitalShipsTargeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Screens to Capital Ratio Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelScreensCapitalRatioModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelScreensCapitalRatioModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sea Transport Chance to be Detected に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSeaTransportChanceDetected {
+            get {
+                return ResourceManager.GetString("MiscLabelSeaTransportChanceDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sea Transport Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSeaTransportMission {
+            get {
+                return ResourceManager.GetString("MiscLabelSeaTransportMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sea Transport Range Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSeaTransportRangeModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSeaTransportRangeModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sea Transport Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSeaTransportStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelSeaTransportStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Time in days to send a division to an ally に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSendDivisionDays {
+            get {
+                return ResourceManager.GetString("MiscLabelSendDivisionDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Shore Bombardment Cap に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelShoreBombardmentCap {
+            get {
+                return ResourceManager.GetString("MiscLabelShoreBombardmentCap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Shore Bombardment Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelShoreBombardmentMission {
+            get {
+                return ResourceManager.GetString("MiscLabelShoreBombardmentMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Shore Bombardment Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelShoreBombardmentModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelShoreBombardmentModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Shore Bombardment Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelShoreBombardmentModifierDh {
+            get {
+                return ResourceManager.GetString("MiscLabelShoreBombardmentModifierDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Shore Bombardment Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelShoreBombardmentStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelShoreBombardmentStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Show 3rd Country Spy Report に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelShowThirdCountrySpyReports {
+            get {
+                return ResourceManager.GetString("MiscLabelShowThirdCountrySpyReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Show 3rd Country Spy Report に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelShowThirdCountrySpyReportsDh {
+            get {
+                return ResourceManager.GetString("MiscLabelShowThirdCountrySpyReportsDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sneak Move Chance to be Detected に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSneakMoveChanceDetected {
+            get {
+                return ResourceManager.GetString("MiscLabelSneakMoveChanceDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sneak Move Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSneakMoveMission {
+            get {
+                return ResourceManager.GetString("MiscLabelSneakMoveMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sneak Move Range Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSneakMoveRangeModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSneakMoveRangeModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sneak Move Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSneakMoveStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelSneakMoveStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Percentage on Spies to Money Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpiesMoneyModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSpiesMoneyModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Spy Coup Dissent Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyCoupDissentModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyCoupDissentModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Spy Detection Chance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyDetectionChance {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyDetectionChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Spy Information Accuracy Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyInformationAccuracyModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyInformationAccuracyModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Spy Information Accuracy Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyInformationAccuracyModifierDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyInformationAccuracyModifierDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Spy Level Bonus on Distance Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyLevelBonusDistanceModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyLevelBonusDistanceModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Spy Level Bonus on Distance Modifier above 10 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyLevelBonusDistanceModifierAboveTen {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyLevelBonusDistanceModifierAboveTen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days between Spy Missions in a Country に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyMissionDays {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyMissionDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Days between Spy Missions in a Country に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyMissionDaysDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyMissionDaysDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Spy Upkeep Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSpyUpkeepCost {
+            get {
+                return ResourceManager.GetString("MiscLabelSpyUpkeepCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Submarines に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSsMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelSsMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Nuclear Submarines に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSsnMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelSsnMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stand Ground Dissent に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStandGroundDissent {
+            get {
+                return ResourceManager.GetString("MiscLabelStandGroundDissent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stockpile Limit Multiplier for Resources に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStockpileLimitMultiplierResource {
+            get {
+                return ResourceManager.GetString("MiscLabelStockpileLimitMultiplierResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Stockpile Limits Multiplier for Supplies and Oil に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStockpileLimitMultiplierSuppliesOil {
+            get {
+                return ResourceManager.GetString("MiscLabelStockpileLimitMultiplierSuppliesOil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Strategic Bombardment Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStrategicBombardmentMission {
+            get {
+                return ResourceManager.GetString("MiscLabelStrategicBombardmentMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Strategic Bombardment Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStrategicBombardmentStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelStrategicBombardmentStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Strat Redeploy Added Value に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStratRedeployAddedValue {
+            get {
+                return ResourceManager.GetString("MiscLabelStratRedeployAddedValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Strat Redeploy Distance Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStratRedeployDistanceMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelStratRedeployDistanceMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Strat Redeploy Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStratRedeployMission {
+            get {
+                return ResourceManager.GetString("MiscLabelStratRedeployMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Strat Redeploy Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelStratRedeployStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelStratRedeployStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Subs ORG Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSubsOrgDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelSubsOrgDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Subs ORG Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSubsOrgDamageAir {
+            get {
+                return ResourceManager.GetString("MiscLabelSubsOrgDamageAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Subs ORG Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSubsOrgDamageNavy {
+            get {
+                return ResourceManager.GetString("MiscLabelSubsOrgDamageNavy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Subs STR Damage に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSubsStrDamage {
+            get {
+                return ResourceManager.GetString("MiscLabelSubsStrDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Subs STR Damage from Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSubsStrDamageAir {
+            get {
+                return ResourceManager.GetString("MiscLabelSubsStrDamageAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Subs STR Damage from Navy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSubsStrDamageNavy {
+            get {
+                return ResourceManager.GetString("MiscLabelSubsStrDamageNavy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sub Stacks Detection Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSubStacksDetectionModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSubStacksDetectionModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Aviation Battle に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyAirBattleAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyAirBattleAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Consumption Modifier in Combat - Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyAirBattleDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyAirBattleDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Aviation Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyAirBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyAirBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Aviation Moving に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyAirMoving {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyAirMoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Aviation Static に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyAirStaticAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyAirStaticAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Consumption Modifier at Base - Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyAirStaticDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyAirStaticDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Base に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyBase {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Suppplies Usage on Convoy Hunt に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyConvoyHunt {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyConvoyHunt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Distance Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyDistanceModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyDistanceModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Distance Severity に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyDistanceSeverity {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyDistanceSeverity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Land Battle に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyLandBattleAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyLandBattleAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Consumption Modifier in Combat - Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyLandBattleDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyLandBattleDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Land Bombing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyLandBombing {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyLandBombing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Land Moving に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyLandMoving {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyLandMoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Land Static に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyLandStaticAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyLandStaticAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Naval Battle に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyNavalBattleAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyNavalBattleAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Consumption Modifier in Combat - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyNavalBattleDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyNavalBattleDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Naval Moving に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyNavalMoving {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyNavalMoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Usage Naval Static に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyNavalStaticAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyNavalStaticAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Consumption Modifier in Port - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyNavalStaticDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyNavalStaticDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Problems Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyProblemsModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyProblemsModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Problems Modifier - Air に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyProblemsModifierAir {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyProblemsModifierAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Problems Modifier - Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyProblemsModifierLand {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyProblemsModifierLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Problems Modifier - Naval に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyProblemsModifierNaval {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyProblemsModifierNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Production Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyProductionEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyProductionEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Amount of Stock in Air Divison に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyStockAir {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyStockAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Amount of Stock in Land Divison に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyStockLand {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyStockLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Amount of Stock in Naval Divison に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupplyStockNaval {
+            get {
+                return ResourceManager.GetString("MiscLabelSupplyStockNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Support Attack Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupportAttackMission {
+            get {
+                return ResourceManager.GetString("MiscLabelSupportAttackMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Support Attack Speed Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupportAttackSpeedBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelSupportAttackSpeedBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Support Attack Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupportAttackStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelSupportAttackStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Support Defense Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupportDefenseMission {
+            get {
+                return ResourceManager.GetString("MiscLabelSupportDefenseMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Support Defense Speed Bonus に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupportDefenseSpeedBonus {
+            get {
+                return ResourceManager.GetString("MiscLabelSupportDefenseSpeedBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Support Defense Starting Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSupportDefenseStartingEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelSupportDefenseStartingEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Supply Consumption Modifier Not Moving - Land に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSuppyLandStaticDh {
+            get {
+                return ResourceManager.GetString("MiscLabelSuppyLandStaticDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Surprise Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSurpriseModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelSurpriseModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Switched AI Files Logger に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSwitchedAiFilesLogger {
+            get {
+                return ResourceManager.GetString("MiscLabelSwitchedAiFilesLogger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Synchronize Arrival Time (AI) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSynchronizeArrivalTimeAi {
+            get {
+                return ResourceManager.GetString("MiscLabelSynchronizeArrivalTimeAi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Synchronize Arrival Time (Player) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSynchronizeArrivalTimePlayer {
+            get {
+                return ResourceManager.GetString("MiscLabelSynchronizeArrivalTimePlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Synthetic Oil Conversion Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSyntheticOilConversionMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelSyntheticOilConversionMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Synthetic Oil Site Upkeep Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSyntheticOilSiteUpkeepCost {
+            get {
+                return ResourceManager.GetString("MiscLabelSyntheticOilSiteUpkeepCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Synthetic Rares Conversion Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSyntheticRaresConversionMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelSyntheticRaresConversionMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Synthetic Rares Site Upkeep Cost に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelSyntheticRaresSiteUpkeepCost {
+            get {
+                return ResourceManager.GetString("MiscLabelSyntheticRaresSiteUpkeepCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawOrgAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawOrgAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw ORG Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawOrgAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawOrgAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawOrgDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawOrgDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw ORG Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawOrgDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawOrgDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawStrAttackerAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawStrAttackerAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw STR Attacker に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawStrAttackerDh {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawStrAttackerDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawStrDefenderAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawStrDefenderAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tactical Withdraw STR Defender に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTacticalWithdrawStrDefenderDh {
+            get {
+                return ResourceManager.GetString("MiscLabelTacticalWithdrawStrDefenderDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Load from Bases in queue に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadBase {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Load Factor from Offensives に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadFactorOffensive {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadFactorOffensive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Air Division Load Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadMultiplierAir {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadMultiplierAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Land Division Load Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadMultiplierLand {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadMultiplierLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Naval Division Load Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadMultiplierNaval {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadMultiplierNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Occupied Province Load に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadOccupied {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadOccupied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Load from Partisans に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadPartisan {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadPartisan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Load from Province Development に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadProvinceDevelopment {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadProvinceDevelopment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Load from Undeployed Brigades に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadUndeployedBrigade {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadUndeployedBrigade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TC Undeployed Division Load に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTcLoadUndeployedDivision {
+            get {
+                return ResourceManager.GetString("MiscLabelTcLoadUndeployedDivision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tech Overview Panel Style に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTechOverviewPanelStyle {
+            get {
+                return ResourceManager.GetString("MiscLabelTechOverviewPanelStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tech Speed Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTechSpeedModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelTechSpeedModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Time between Slider Changes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTimeBetweenSliderChangesAoD {
+            get {
+                return ResourceManager.GetString("MiscLabelTimeBetweenSliderChangesAoD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Time between Slider Changes に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTimeBetweenSliderChangesDh {
+            get {
+                return ResourceManager.GetString("MiscLabelTimeBetweenSliderChangesDh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Time to Repair Province Buildings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTimeRepairBuilding {
+            get {
+                return ResourceManager.GetString("MiscLabelTimeRepairBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Total Production Efficiency に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTotalProductionEfficiency {
+            get {
+                return ResourceManager.GetString("MiscLabelTotalProductionEfficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Total Provinces に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTotalProvinces {
+            get {
+                return ResourceManager.GetString("MiscLabelTotalProvinces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Max Attachments to Transports に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTpMaxAttach {
+            get {
+                return ResourceManager.GetString("MiscLabelTpMaxAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TP to Convoy Transports Conversion Ratio に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTpTransportsConversionRatio {
+            get {
+                return ResourceManager.GetString("MiscLabelTpTransportsConversionRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Trade Efficiency Calculation System に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTradeEfficiencyCalculationSystem {
+            get {
+                return ResourceManager.GetString("MiscLabelTradeEfficiencyCalculationSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   End of Trade Items に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTradeEnd {
+            get {
+                return ResourceManager.GetString("MiscLabelTradeEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Non-Owned Provinces to Allied に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTransferAlliedCoreProvinces {
+            get {
+                return ResourceManager.GetString("MiscLabelTransferAlliedCoreProvinces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Transport Capacity Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTransportCapacityModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelTransportCapacityModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Transport Conversion に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTransportConversion {
+            get {
+                return ResourceManager.GetString("MiscLabelTransportConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Trickle-back Factor for Manpower に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelTrickleBackFactorManpower {
+            get {
+                return ResourceManager.GetString("MiscLabelTrickleBackFactorManpower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unit Modifiers Statistics Page に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUnitModifiersStatisticsPages {
+            get {
+                return ResourceManager.GetString("MiscLabelUnitModifiersStatisticsPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unit Pictures Size に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUnitPicturesSize {
+            get {
+                return ResourceManager.GetString("MiscLabelUnitPicturesSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Upgrade Cost Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUpgradeCost {
+            get {
+                return ResourceManager.GetString("MiscLabelUpgradeCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Upgrade Time Factor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUpgradeTime {
+            get {
+                return ResourceManager.GetString("MiscLabelUpgradeTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use Attack Efficiency as Combat Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseAttackEfficiencyCombatModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelUseAttackEfficiencyCombatModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use Minister Personality when Replacing に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseMinisterPersonalityReplacing {
+            get {
+                return ResourceManager.GetString("MiscLabelUseMinisterPersonalityReplacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use New Auto-Save File Format に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseNewAutoSaveFileFormat {
+            get {
+                return ResourceManager.GetString("MiscLabelUseNewAutoSaveFileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use New Minister Files Format に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseNewMinisterFilesFormat {
+            get {
+                return ResourceManager.GetString("MiscLabelUseNewMinisterFilesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use New Technology Page Layout に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseNewTechnologyPageLayout {
+            get {
+                return ResourceManager.GetString("MiscLabelUseNewTechnologyPageLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use Old Save-Game Format に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseOldSaveGameFormat {
+            get {
+                return ResourceManager.GetString("MiscLabelUseOldSaveGameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use Quick Area Check Garrison AI に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseQuickAreaCheckGarrisonAi {
+            get {
+                return ResourceManager.GetString("MiscLabelUseQuickAreaCheckGarrisonAi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use Speed to Set Garrison Status に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelUseSpeedSetGarrisonStatus {
+            get {
+                return ResourceManager.GetString("MiscLabelUseSpeedSetGarrisonStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wartime Desired Stockpile Multiplier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelWartimeDesiredStockpileMultiplier {
+            get {
+                return ResourceManager.GetString("MiscLabelWartimeDesiredStockpileMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wartime Extra Oil Import に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelWartimeExtraOilImport {
+            get {
+                return ResourceManager.GetString("MiscLabelWartimeExtraOilImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wartime IC Modifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelWartimeIcModifier {
+            get {
+                return ResourceManager.GetString("MiscLabelWartimeIcModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wartime Stockpiles for Oil and Supplies に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelWartimeStockpilesOilSupplies {
+            get {
+                return ResourceManager.GetString("MiscLabelWartimeStockpilesOilSupplies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wartime Stockpiles for Resources に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscLabelWartimeStockpilesResources {
+            get {
+                return ResourceManager.GetString("MiscLabelWartimeStockpilesResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Modified minister personality に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ModifiedPersonality {
@@ -1020,6 +10254,24 @@ namespace HoI2Editor.Properties {
         public static string Rank3 {
             get {
                 return ResourceManager.GetString("Rank3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reload に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Reload {
+            get {
+                return ResourceManager.GetString("Reload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Save に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
