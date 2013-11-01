@@ -1323,6 +1323,11 @@ namespace HoI2Editor.Forms
                             Text = rm.GetString("MiscLabel" + Misc.ItemNames[(int) id]),
                             Location = new Point(labelX, labelY)
                         };
+                    string t = rm.GetString("MiscToolTip" + Misc.ItemNames[(int) id]);
+                    if (!string.IsNullOrEmpty(t))
+                    {
+                        miscToolTip.SetToolTip(label, t);
+                    }
                     miscTabControl.TabPages[index].Controls.Add(label);
                     _labels[(int) id] = label;
 

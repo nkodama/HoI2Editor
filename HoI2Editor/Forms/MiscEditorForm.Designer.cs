@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MiscEditorForm));
             this.miscTabControl = new System.Windows.Forms.TabControl();
             this.economyTabPage1 = new System.Windows.Forms.TabPage();
@@ -48,6 +49,7 @@
             this.aiTabPage = new System.Windows.Forms.TabPage();
             this.modTabPage = new System.Windows.Forms.TabPage();
             this.mapTabPage = new System.Windows.Forms.TabPage();
+            this.miscToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.miscTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -218,5 +220,6 @@
         private System.Windows.Forms.TabPage aiTabPage;
         private System.Windows.Forms.TabPage modTabPage;
         private System.Windows.Forms.TabPage mapTabPage;
+        private System.Windows.Forms.ToolTip miscToolTip;
     }
 }
