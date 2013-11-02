@@ -993,8 +993,8 @@ namespace HoI2Editor.Forms
             int no = modelListView.SelectedIndices[0];
 
             Country country = (countryListView.SelectedIndices.Count == 0
-                                      ? Country.None
-                                      : (Country) (countryListView.SelectedIndices[0] + 1));
+                                   ? Country.None
+                                   : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // ユニットモデル画像名を更新する
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
@@ -2634,8 +2634,8 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[no];
 
             Country country = (countryListView.SelectedIndices.Count == 0
-                                      ? Country.None
-                                      : (Country) (countryListView.SelectedIndices[0] + 1));
+                                   ? Country.None
+                                   : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // モデル画像
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);

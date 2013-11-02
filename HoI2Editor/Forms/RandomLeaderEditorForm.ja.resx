@@ -117,74 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ministerButton.Text" xml:space="preserve">
-    <value>閣僚</value>
+  <data name="copyButton.Text" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="pasteButton.Text" xml:space="preserve">
+    <value>貼り付け</value>
+  </data>
+  <data name="cutButton.Text" xml:space="preserve">
+    <value>切り取り</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="gameFolderLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 12</value>
+  <data name="suffixLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="gameFolderLabel.Text" xml:space="preserve">
-    <value>ゲームフォルダ名</value>
+  <data name="suffixLabel.Text" xml:space="preserve">
+    <value>接尾辞</value>
   </data>
-  <data name="modLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 12</value>
+  <data name="prefixLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="modLabel.Text" xml:space="preserve">
-    <value>MOD名</value>
+  <data name="prefixLabel.Text" xml:space="preserve">
+    <value>接頭辞</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>ランダム指揮官名</value>
+  <data name="addButton.Text" xml:space="preserve">
+    <value>追加</value>
   </data>
-  <data name="divisionNameButton.Text" xml:space="preserve">
-    <value>師団名</value>
+  <data name="interpolateButton.Text" xml:space="preserve">
+    <value>補間</value>
   </data>
-  <data name="unitNameButton.Text" xml:space="preserve">
-    <value>ユニット名</value>
+  <data name="sequentialGroupBox.Text" xml:space="preserve">
+    <value>連番</value>
   </data>
-  <data name="miscButton.Text" xml:space="preserve">
-    <value>基礎データ</value>
+  <data name="withLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="provinceButton.Text" xml:space="preserve">
-    <value>プロヴィンス</value>
+  <data name="withLabel.Text" xml:space="preserve">
+    <value>置換先</value>
   </data>
-  <data name="unitButton.Text" xml:space="preserve">
-    <value>ユニットモデル</value>
+  <data name="toLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="techButton.Text" xml:space="preserve">
-    <value>技術ツリー</value>
+  <data name="toLabel.Text" xml:space="preserve">
+    <value>置換元</value>
   </data>
-  <data name="leaderButton.Text" xml:space="preserve">
-    <value>指揮官</value>
+  <data name="replaceButton.Text" xml:space="preserve">
+    <value>置換</value>
   </data>
-  <data name="teamButton.Text" xml:space="preserve">
-    <value>研究機関</value>
+  <data name="replaceGroupBox.Text" xml:space="preserve">
+    <value>置換</value>
   </data>
-  <data name="editGroupBox.Text" xml:space="preserve">
-    <value>編集</value>
+  <data name="undoButton.Text" xml:space="preserve">
+    <value>元に戻す</value>
   </data>
-  <data name="gameFolderReferButton.Text" xml:space="preserve">
-    <value>参照</value>
+  <data name="regexCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
   </data>
-  <data name="exitButton.Text" xml:space="preserve">
-    <value>終了</value>
+  <data name="regexCheckBox.Text" xml:space="preserve">
+    <value>正規表現</value>
   </data>
-  <data name="modFolderReferButton.Text" xml:space="preserve">
-    <value>参照</value>
+  <data name="allCountryCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 16</value>
   </data>
-  <data name="languageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
-  <data name="languageLabel.Text" xml:space="preserve">
-    <value>言語</value>
-  </data>
-  <data name="logCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
-  </data>
-  <data name="logCheckBox.Text" xml:space="preserve">
-    <value>エラーログ出力</value>
+  <data name="allCountryCheckBox.Text" xml:space="preserve">
+    <value>全ての国家に適用</value>
   </data>
   <data name="optionGroupBox.Text" xml:space="preserve">
     <value>オプション</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ランダム指揮官名エディタ</value>
   </data>
 </root>

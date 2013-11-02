@@ -65,7 +65,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMinisterEditorFormClosing(object sender, FormClosingEventArgs e)
+        private void OnDivisionNameEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
             if (!DivisionNames.IsDirty())
@@ -508,7 +508,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                // 師団名種類リストボックスの選択項目がなければ戻る
+                // 兵科リストボックスの選択項目がなければ戻る
                 if (branchListBox.SelectedIndex < 0)
                 {
                     return;

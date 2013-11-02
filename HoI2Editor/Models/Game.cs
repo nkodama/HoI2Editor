@@ -320,6 +320,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public const string AirNamesPathName = "db\\airnames.csv";
 
+        /// <summary>
+        ///     ランダム指揮官名定義ファイル
+        /// </summary>
+        public const string RandomLeadersPathName = "db\\randomleaders.csv";
+
         #endregion
 
         #region 初期化
@@ -347,6 +352,7 @@ namespace HoI2Editor.Models
             Provinces.RequireReload();
             UnitNames.RequireReload();
             DivisionNames.RequireReload();
+            RandomLeaders.RequireReload();
         }
 
         #endregion

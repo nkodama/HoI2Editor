@@ -248,9 +248,9 @@ namespace HoI2Editor.Forms
 
             // 選択中の国家リストを作成する
             List<Country> selectedTagList = countryListBox.SelectedItems.Count == 0
-                                                   ? new List<Country>()
-                                                   : (from string countryText in countryListBox.SelectedItems
-                                                      select Countries.StringMap[countryText]).ToList();
+                                                ? new List<Country>()
+                                                : (from string countryText in countryListBox.SelectedItems
+                                                   select Countries.StringMap[countryText]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
             foreach (Team team in Teams.Items.Where(team => selectedTagList.Contains(team.Country)))
@@ -1167,10 +1167,10 @@ namespace HoI2Editor.Forms
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Countries.Tags
-                                        .Select(country => Countries.Strings[(int) country])
-                                        .Select(name => Config.ExistsKey(name)
-                                                            ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                            : name))
+                                          .Select(country => Countries.Strings[(int) country])
+                                          .Select(name => Config.ExistsKey(name)
+                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
+                                                              : name))
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,

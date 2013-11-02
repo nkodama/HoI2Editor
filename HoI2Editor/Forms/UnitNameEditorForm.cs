@@ -68,7 +68,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMinisterEditorFormClosing(object sender, FormClosingEventArgs e)
+        private void OnUnitNameEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
             if (!UnitNames.IsDirty())

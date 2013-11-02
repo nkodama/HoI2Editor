@@ -35,6 +35,7 @@
             this.modLabel = new System.Windows.Forms.Label();
             this.modTextBox = new System.Windows.Forms.TextBox();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.divisionNameButton = new System.Windows.Forms.Button();
             this.unitNameButton = new System.Windows.Forms.Button();
             this.miscButton = new System.Windows.Forms.Button();
@@ -68,8 +69,8 @@
             // 
             // gameFolderTextBox
             // 
-            resources.ApplyResources(this.gameFolderTextBox, "gameFolderTextBox");
             this.gameFolderTextBox.AllowDrop = true;
+            resources.ApplyResources(this.gameFolderTextBox, "gameFolderTextBox");
             this.gameFolderTextBox.Name = "gameFolderTextBox";
             this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
             this.gameFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnGameFolderTextBoxDragDrop);
@@ -82,8 +83,8 @@
             // 
             // modTextBox
             // 
-            resources.ApplyResources(this.modTextBox, "modTextBox");
             this.modTextBox.AllowDrop = true;
+            resources.ApplyResources(this.modTextBox, "modTextBox");
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.TextChanged += new System.EventHandler(this.OnModTextBoxTextChanged);
             this.modTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnModTextBoxDragDrop);
@@ -92,6 +93,7 @@
             // editGroupBox
             // 
             resources.ApplyResources(this.editGroupBox, "editGroupBox");
+            this.editGroupBox.Controls.Add(this.button1);
             this.editGroupBox.Controls.Add(this.divisionNameButton);
             this.editGroupBox.Controls.Add(this.unitNameButton);
             this.editGroupBox.Controls.Add(this.miscButton);
@@ -103,6 +105,13 @@
             this.editGroupBox.Controls.Add(this.ministerButton);
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.OnRandomLeaderButtonClick);
             // 
             // divisionNameButton
             // 
@@ -188,9 +197,9 @@
             // 
             // languageComboBox
             // 
-            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
             this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLanguageComboBoxSelectedIndexChanged);
             // 
@@ -256,5 +265,6 @@
         private System.Windows.Forms.Button miscButton;
         private System.Windows.Forms.Button unitNameButton;
         private System.Windows.Forms.Button divisionNameButton;
+        private System.Windows.Forms.Button button1;
     }
 }

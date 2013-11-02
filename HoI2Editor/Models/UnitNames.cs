@@ -425,7 +425,7 @@ namespace HoI2Editor.Models
                             try
                             {
                                 writer.WriteLine(
-                                    "{0};{1};{2}", Countries.Strings[(int)country], TypeStrings[(int)type], name);
+                                    "{0};{1};{2}", Countries.Strings[(int) country], TypeStrings[(int) type], name);
                             }
                             catch (Exception)
                             {

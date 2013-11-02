@@ -179,6 +179,17 @@ namespace HoI2Editor.Forms
             form.Show();
         }
 
+        /// <summary>
+        ///     ランダム指揮官名ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRandomLeaderButtonClick(object sender, EventArgs e)
+        {
+            var form = new RandomLeaderEditorForm();
+            form.Show();
+        }
+
         #endregion
 
         #region ゲームフォルダ/MOD名

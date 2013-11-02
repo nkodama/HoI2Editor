@@ -11,7 +11,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     新規師団名を保持するクラス
     /// </summary>
-    internal class DivisionNames
+    public class DivisionNames
     {
         #region 内部フィールド
 

@@ -1018,10 +1018,10 @@ namespace HoI2Editor.Forms
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Countries.Tags
-                                        .Select(country => Countries.Strings[(int) country])
-                                        .Select(name => Config.ExistsKey(name)
-                                                            ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                            : name))
+                                          .Select(country => Countries.Strings[(int) country])
+                                          .Select(name => Config.ExistsKey(name)
+                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
+                                                              : name))
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,

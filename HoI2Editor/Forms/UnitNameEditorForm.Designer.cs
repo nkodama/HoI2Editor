@@ -312,7 +312,7 @@
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.countryListBox);
             this.Name = "UnitNameEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMinisterEditorFormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnUnitNameEditorFormClosing);
             this.Load += new System.EventHandler(this.OnUnitNameEditorFormLoad);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();
