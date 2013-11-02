@@ -168,6 +168,17 @@ namespace HoI2Editor.Forms
             form.Show();
         }
 
+        /// <summary>
+        ///     師団名ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionNameButtonClick(object sender, EventArgs e)
+        {
+            var form = new DivisionNameEditorForm();
+            form.Show();
+        }
+
         #endregion
 
         #region ゲームフォルダ/MOD名

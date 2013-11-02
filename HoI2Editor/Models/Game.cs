@@ -305,6 +305,21 @@ namespace HoI2Editor.Models
         /// </summary>
         public const string UnitNamesPathName = "db\\unitnames.csv";
 
+        /// <summary>
+        ///     陸軍師団名定義ファイル名
+        /// </summary>
+        public const string ArmyNamesPathName = "db\\armynames.csv";
+
+        /// <summary>
+        ///     海軍師団名定義ファイル名
+        /// </summary>
+        public const string NavyNamesPathName = "db\\navynames.csv";
+
+        /// <summary>
+        ///     空軍師団名定義ファイル名
+        /// </summary>
+        public const string AirNamesPathName = "db\\airnames.csv";
+
         #endregion
 
         #region 初期化
@@ -331,6 +346,7 @@ namespace HoI2Editor.Models
             Units.RequireReload();
             Provinces.RequireReload();
             UnitNames.RequireReload();
+            DivisionNames.RequireReload();
         }
 
         #endregion
@@ -786,5 +802,16 @@ namespace HoI2Editor.Models
         HeartsOfIron2, // Hearts of Iron 2 (Doomsday Armageddon)
         ArsenalOfDemocracy, // Arsenal of Democracy
         DarkestHour // Darkest Hour
+    }
+
+    /// <summary>
+    ///     兵科
+    /// </summary>
+    public enum Branch
+    {
+        None,
+        Army, // 陸軍
+        Navy, //海軍
+        Airforce //空軍
     }
 }

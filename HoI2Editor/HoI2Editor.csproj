@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\DivisionNameEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DivisionNameEditorForm.Designer.cs">
+      <DependentUpon>DivisionNameEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LeaderEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,7 @@
       <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\DivisionNames.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="HoI2EditorApplication.cs" />
     <Compile Include="Models\Config.cs" />
@@ -140,6 +147,12 @@
     <Compile Include="Writers\MiscWriter.cs" />
     <Compile Include="Writers\TechWriter.cs" />
     <Compile Include="Writers\UnitWriter.cs" />
+    <EmbeddedResource Include="Forms\DivisionNameEditorForm.ja.resx">
+      <DependentUpon>DivisionNameEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DivisionNameEditorForm.resx">
+      <DependentUpon>DivisionNameEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LeaderEditorForm.ja.resx">
       <DependentUpon>LeaderEditorForm.cs</DependentUpon>
     </EmbeddedResource>

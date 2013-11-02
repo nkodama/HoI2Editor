@@ -117,48 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="closeButton.Text" xml:space="preserve">
-    <value>閉じる</value>
+  <data name="copyButton.Text" xml:space="preserve">
+    <value>コピー</value>
   </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>保存</value>
+  <data name="pasteButton.Text" xml:space="preserve">
+    <value>貼り付け</value>
   </data>
-  <data name="reloadButton.Text" xml:space="preserve">
-    <value>再読み込み</value>
-  </data>
-  <data name="optionGroupBox.Text" xml:space="preserve">
-    <value>オプション</value>
+  <data name="cutButton.Text" xml:space="preserve">
+    <value>切り取り</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="allUnitTypeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 16</value>
+  <data name="suffixLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="allUnitTypeCheckBox.Text" xml:space="preserve">
-    <value>全てのユニット種に適用</value>
+  <data name="suffixLabel.Text" xml:space="preserve">
+    <value>接尾辞</value>
   </data>
-  <data name="regexCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
+  <data name="prefixLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="regexCheckBox.Text" xml:space="preserve">
-    <value>正規表現</value>
-  </data>
-  <data name="allCountryCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 16</value>
-  </data>
-  <data name="allCountryCheckBox.Text" xml:space="preserve">
-    <value>全ての国家に適用</value>
-  </data>
-  <data name="replaceButton.Text" xml:space="preserve">
-    <value>置換</value>
-  </data>
-  <data name="interpolateButton.Text" xml:space="preserve">
-    <value>補間</value>
+  <data name="prefixLabel.Text" xml:space="preserve">
+    <value>接頭辞</value>
   </data>
   <data name="addButton.Text" xml:space="preserve">
     <value>追加</value>
   </data>
-  <data name="replaceGroupBox.Text" xml:space="preserve">
-    <value>置換</value>
+  <data name="interpolateButton.Text" xml:space="preserve">
+    <value>補間</value>
+  </data>
+  <data name="sequentialGroupBox.Text" xml:space="preserve">
+    <value>連番</value>
   </data>
   <data name="withLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
@@ -172,34 +160,46 @@
   <data name="toLabel.Text" xml:space="preserve">
     <value>置換元</value>
   </data>
-  <data name="sequentialGroupBox.Text" xml:space="preserve">
-    <value>連番</value>
+  <data name="replaceButton.Text" xml:space="preserve">
+    <value>置換</value>
   </data>
-  <data name="suffixLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
+  <data name="replaceGroupBox.Text" xml:space="preserve">
+    <value>置換</value>
   </data>
-  <data name="suffixLabel.Text" xml:space="preserve">
-    <value>接尾辞</value>
+  <data name="allBranchCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 16</value>
   </data>
-  <data name="prefixLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
+  <data name="allBranchCheckBox.Text" xml:space="preserve">
+    <value>全ての兵科に適用</value>
   </data>
-  <data name="prefixLabel.Text" xml:space="preserve">
-    <value>接頭辞</value>
+  <data name="regexCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
   </data>
-  <data name="cutButton.Text" xml:space="preserve">
-    <value>切り取り</value>
+  <data name="regexCheckBox.Text" xml:space="preserve">
+    <value>正規表現</value>
   </data>
-  <data name="pasteButton.Text" xml:space="preserve">
-    <value>貼り付け</value>
+  <data name="allCountryCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 16</value>
+  </data>
+  <data name="allCountryCheckBox.Text" xml:space="preserve">
+    <value>全ての国家に適用</value>
   </data>
   <data name="undoButton.Text" xml:space="preserve">
     <value>元に戻す</value>
   </data>
-  <data name="copyButton.Text" xml:space="preserve">
-    <value>コピー</value>
+  <data name="optionGroupBox.Text" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>再読み込み</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ユニット名エディタ</value>
+    <value>師団名エディタ</value>
   </data>
 </root>
