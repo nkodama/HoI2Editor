@@ -672,13 +672,13 @@ namespace HoI2Editor.Models
         /// <param name="no">ユニットモデル番号</param>
         /// <param name="country">国タグ</param>
         /// <returns>ユニットモデル名</returns>
-        public static string GetName(Unit unit, int no, CountryTag country)
+        public static string GetName(Unit unit, int no, Country country)
         {
             string name;
             int unitNo = Units.UnitNumbers[(int) unit.Type];
-            if (country != CountryTag.None)
+            if (country != Country.None)
             {
-                string countryText = Country.Strings[(int) country];
+                string countryText = Countries.Strings[(int) country];
                 name = string.Format(
                     unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
                     countryText, unitNo, no);

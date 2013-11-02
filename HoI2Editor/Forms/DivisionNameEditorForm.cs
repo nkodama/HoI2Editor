@@ -31,7 +31,7 @@ namespace HoI2Editor.Forms
         private void OnDivisionNameEditorFormLoad(object sender, EventArgs e)
         {
             // 国家データを初期化する
-            Country.Init();
+            Countries.Init();
 
             // 文字列定義ファイルを読み込む
             Config.Load();
@@ -217,7 +217,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string tag in Country.Tags.Select(country => Country.Strings[(int) country]))
+            foreach (string tag in Countries.Tags.Select(country => Countries.Strings[(int) country]))
             {
                 countryListBox.Items.Add(tag);
             }
@@ -246,7 +246,7 @@ namespace HoI2Editor.Forms
             {
                 // 変更ありの項目は文字色を変更する
                 var branch = (Branch) (branchListBox.SelectedIndex + 1);
-                CountryTag country = Country.Tags[e.Index];
+                Country country = Countries.Tags[e.Index];
                 brush = DivisionNames.IsDirty(branch, country)
                             ? new SolidBrush(Color.Red)
                             : new SolidBrush(SystemColors.WindowText);
@@ -297,7 +297,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            CountryTag country = Country.Tags[countryListBox.SelectedIndex];
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 師団名を順に追加する
             var sb = new StringBuilder();
@@ -328,7 +328,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            CountryTag country = Country.Tags[countryListBox.SelectedIndex];
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 師団名リストを更新する
             DivisionNames.SetNames(nameTextBox.Lines.Where(line => !string.IsNullOrEmpty(line)).ToList(), branch,
@@ -404,7 +404,7 @@ namespace HoI2Editor.Forms
                     {
                         return;
                     }
-                    CountryTag country = Country.Tags[countryListBox.SelectedIndex];
+                    Country country = Countries.Tags[countryListBox.SelectedIndex];
 
                     // 全ての兵科の師団名を置換する
                     DivisionNames.ReplaceAllBranches(toComboBox.Text, withComboBox.Text, country, regexCheckBox.Checked);
@@ -431,7 +431,7 @@ namespace HoI2Editor.Forms
                     {
                         return;
                     }
-                    CountryTag country = Country.Tags[countryListBox.SelectedIndex];
+                    Country country = Countries.Tags[countryListBox.SelectedIndex];
 
                     // 師団名を置換する
                     DivisionNames.Replace(toComboBox.Text, withComboBox.Text, branch, country, regexCheckBox.Checked);
@@ -465,7 +465,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            CountryTag country = Country.Tags[countryListBox.SelectedIndex];
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 師団名を一括追加する
             DivisionNames.AddSequential(prefixComboBox.Text, suffixComboBox.Text, (int) startNumericUpDown.Value,
@@ -500,7 +500,7 @@ namespace HoI2Editor.Forms
                     {
                         return;
                     }
-                    CountryTag country = Country.Tags[countryListBox.SelectedIndex];
+                    Country country = Countries.Tags[countryListBox.SelectedIndex];
 
                     // 全ての兵科の師団名を補間する
                     DivisionNames.InterpolateAllBranches(country);
@@ -527,7 +527,7 @@ namespace HoI2Editor.Forms
                     {
                         return;
                     }
-                    CountryTag country = Country.Tags[countryListBox.SelectedIndex];
+                    Country country = Countries.Tags[countryListBox.SelectedIndex];
 
                     // 師団名を補間する
                     DivisionNames.Interpolate(branch, country);

@@ -77,7 +77,7 @@ namespace HoI2Editor.Forms
         private void OnMinisterEditorFormLoad(object sender, EventArgs e)
         {
             // 国家データを初期化する
-            Country.Init();
+            Countries.Init();
 
             // 閣僚特性を初期化する
             Ministers.InitPersonality();
@@ -245,8 +245,8 @@ namespace HoI2Editor.Forms
             _list.Clear();
 
             // 選択中の国家リストを作成する
-            List<CountryTag> tags =
-                (from string name in countryListBox.SelectedItems select Country.StringMap[name]).ToList();
+            List<Country> tags =
+                (from string name in countryListBox.SelectedItems select Countries.StringMap[name]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
             foreach (Minister minister in Ministers.Items.Where(minister => tags.Contains(minister.Country)))
@@ -512,10 +512,9 @@ namespace HoI2Editor.Forms
                 // 新規項目を作成する
                 minister = new Minister
                     {
-                        Country =
-                            countryListBox.SelectedItems.Count > 0
-                                ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                : CountryTag.None,
+                        Country = countryListBox.SelectedItems.Count > 0
+                                      ? (Country) (countryListBox.SelectedIndex + 1)
+                                      : Country.None,
                         Id = 0,
                         StartYear = 1930,
                         EndYear = 1970,
@@ -866,7 +865,7 @@ namespace HoI2Editor.Forms
 
             var item = new ListViewItem
                 {
-                    Text = Country.Strings[(int) minister.Country],
+                    Text = Countries.Strings[(int) minister.Country],
                     Tag = minister
                 };
             item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
@@ -906,7 +905,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string name in Country.Tags.Select(country => Country.Strings[(int) country]))
+            foreach (string name in Countries.Tags.Select(country => Countries.Strings[(int) country]))
             {
                 countryListBox.Items.Add(name);
             }
@@ -934,7 +933,7 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
                 // 変更ありの項目は文字色を変更する
-                CountryTag country = Country.Tags[e.Index];
+                Country country = Countries.Tags[e.Index];
                 brush = Ministers.IsDirty(country) ? new SolidBrush(Color.Red) : new SolidBrush(SystemColors.WindowText);
             }
             else
@@ -1018,8 +1017,8 @@ namespace HoI2Editor.Forms
             // 国タグ
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
-            foreach (string s in Country.Tags
-                                        .Select(country => Country.Strings[(int) country])
+            foreach (string s in Countries.Tags
+                                        .Select(country => Countries.Strings[(int) country])
                                         .Select(name => Config.ExistsKey(name)
                                                             ? string.Format("{0} {1}", name, Config.GetText(name))
                                                             : name))
@@ -1102,7 +1101,7 @@ namespace HoI2Editor.Forms
         /// <param name="minister">閣僚データ</param>
         private void UpdateEditableItemsValue(Minister minister)
         {
-            countryComboBox.SelectedIndex = minister.Country != CountryTag.None ? (int) minister.Country - 1 : -1;
+            countryComboBox.SelectedIndex = minister.Country != Country.None ? (int) minister.Country - 1 : -1;
             idNumericUpDown.Value = minister.Id;
             nameTextBox.Text = minister.Name;
             startYearNumericUpDown.Value = minister.StartYear;
@@ -1285,7 +1284,7 @@ namespace HoI2Editor.Forms
             if (minister != null)
             {
                 Brush brush;
-                if ((Country.Tags[e.Index] == minister.Country) && minister.IsDirty(MinisterItemId.Country))
+                if ((Countries.Tags[e.Index] == minister.Country) && minister.IsDirty(MinisterItemId.Country))
                 {
                     brush = new SolidBrush(Color.Red);
                 }
@@ -1506,7 +1505,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            CountryTag country = Country.Tags[countryComboBox.SelectedIndex];
+            Country country = Countries.Tags[countryComboBox.SelectedIndex];
             if (country == minister.Country)
             {
                 return;
@@ -1519,7 +1518,7 @@ namespace HoI2Editor.Forms
             minister.Country = country;
 
             // 閣僚リストビューの項目を更新する
-            ministerListView.SelectedItems[0].Text = Country.Strings[(int) minister.Country];
+            ministerListView.SelectedItems[0].Text = Countries.Strings[(int) minister.Country];
 
             // 閣僚ごとの編集済みフラグを設定する
             minister.SetDirty(MinisterItemId.Country);

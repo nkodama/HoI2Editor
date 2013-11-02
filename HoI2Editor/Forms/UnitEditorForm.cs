@@ -47,7 +47,7 @@ namespace HoI2Editor.Forms
         private static void InitData()
         {
             // 国家データを初期化する
-            Country.Init();
+            Countries.Init();
 
             // ユニットデータを初期化する
             Units.Init();
@@ -59,7 +59,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             // 国家リストボックス
-            foreach (string s in Country.Strings.Where(country => !string.IsNullOrEmpty(country)))
+            foreach (string s in Countries.Strings.Where(country => !string.IsNullOrEmpty(country)))
             {
                 countryListView.Items.Add(s);
             }
@@ -624,7 +624,7 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[no];
 
             var item = new ListViewItem {Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture))};
-            item.SubItems.Add(Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
+            item.SubItems.Add(Config.GetText(UnitModel.GetName(unit, no, Country.None)));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
@@ -687,7 +687,7 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを挿入する
             var model = new UnitModel(unit.Models[no]);
-            InsertModel(unit, model, no + 1, Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
+            InsertModel(unit, model, no + 1, Config.GetText(UnitModel.GetName(unit, no, Country.None)));
         }
 
         /// <summary>
@@ -854,12 +854,12 @@ namespace HoI2Editor.Forms
             // 挿入位置以降のユニットモデル名を変更する
             for (int i = unit.Models.Count - 1; i > index; i--)
             {
-                Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                               Config.GetText(UnitModel.GetName(unit, i - 1, CountryTag.None)), Game.UnitTextFileName);
+                Config.SetText(UnitModel.GetName(unit, i, Country.None),
+                               Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)), Game.UnitTextFileName);
             }
 
             // 挿入位置のユニットモデル名を変更する
-            Config.SetText(UnitModel.GetName(unit, index, CountryTag.None), name, Game.UnitTextFileName);
+            Config.SetText(UnitModel.GetName(unit, index, Country.None), name, Game.UnitTextFileName);
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -889,14 +889,14 @@ namespace HoI2Editor.Forms
             {
                 for (int i = index; i < unit.Models.Count; i++)
                 {
-                    Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                                   Config.GetText(UnitModel.GetName(unit, i + 1, CountryTag.None)),
+                    Config.SetText(UnitModel.GetName(unit, i, Country.None),
+                                   Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
                                    Game.UnitTextFileName);
                 }
             }
 
             // 末尾のユニットモデル名を削除する
-            Config.RemoveText(UnitModel.GetName(unit, unit.Models.Count, CountryTag.None), Game.UnitTextFileName);
+            Config.RemoveText(UnitModel.GetName(unit, unit.Models.Count, Country.None), Game.UnitTextFileName);
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -930,14 +930,14 @@ namespace HoI2Editor.Forms
             unit.MoveModel(src, dest);
 
             // 移動元と移動先の間のユニットモデル名を変更する
-            string name = Config.GetText(UnitModel.GetName(unit, src, CountryTag.None));
+            string name = Config.GetText(UnitModel.GetName(unit, src, Country.None));
             if (src > dest)
             {
                 // 上へ移動する場合
                 for (int i = src; i > dest; i--)
                 {
-                    Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                                   Config.GetText(UnitModel.GetName(unit, i - 1, CountryTag.None)),
+                    Config.SetText(UnitModel.GetName(unit, i, Country.None),
+                                   Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)),
                                    Game.UnitTextFileName);
                 }
             }
@@ -946,14 +946,14 @@ namespace HoI2Editor.Forms
                 // 下へ移動する場合
                 for (int i = src; i < dest; i++)
                 {
-                    Config.SetText(UnitModel.GetName(unit, i, CountryTag.None),
-                                   Config.GetText(UnitModel.GetName(unit, i + 1, CountryTag.None)),
+                    Config.SetText(UnitModel.GetName(unit, i, Country.None),
+                                   Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
                                    Game.UnitTextFileName);
                 }
             }
 
             // 移動先のユニットモデル名を変更する
-            Config.SetText(UnitModel.GetName(unit, dest, CountryTag.None), name, Game.UnitTextFileName);
+            Config.SetText(UnitModel.GetName(unit, dest, Country.None), name, Game.UnitTextFileName);
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -992,9 +992,9 @@ namespace HoI2Editor.Forms
             }
             int no = modelListView.SelectedIndices[0];
 
-            CountryTag country = (countryListView.SelectedIndices.Count == 0
-                                      ? CountryTag.None
-                                      : (CountryTag) (countryListView.SelectedIndices[0] + 1));
+            Country country = (countryListView.SelectedIndices.Count == 0
+                                      ? Country.None
+                                      : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // ユニットモデル画像名を更新する
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
@@ -2633,9 +2633,9 @@ namespace HoI2Editor.Forms
             int no = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[no];
 
-            CountryTag country = (countryListView.SelectedIndices.Count == 0
-                                      ? CountryTag.None
-                                      : (CountryTag) (countryListView.SelectedIndices[0] + 1));
+            Country country = (countryListView.SelectedIndices.Count == 0
+                                      ? Country.None
+                                      : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // モデル画像
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
@@ -3282,8 +3282,8 @@ namespace HoI2Editor.Forms
             // 値に変化がなければ何もしない
             string name = UnitModel.GetName(unit, no,
                                             countryListView.SelectedIndices.Count == 0
-                                                ? CountryTag.None
-                                                : (CountryTag) (countryListView.SelectedIndices[0] + 1));
+                                                ? Country.None
+                                                : (Country) (countryListView.SelectedIndices[0] + 1));
             if (modelNameTextBox.Text.Equals(Config.GetText(name)))
             {
                 return;
@@ -3313,18 +3313,18 @@ namespace HoI2Editor.Forms
         /// <param name="no">ユニットモデル番号</param>
         /// <param name="country">国タグ</param>
         /// <returns>ユニットモデル画像のファイル名</returns>
-        private static string GetModelImageFileName(Unit unit, int no, CountryTag country)
+        private static string GetModelImageFileName(Unit unit, int no, Country country)
         {
             string name;
             string fileName;
-            if (country != CountryTag.None)
+            if (country != Country.None)
             {
                 // 国タグ指定/モデル番号指定
                 name = string.Format(
                     unit.Organization == UnitOrganization.Division
                         ? "ill_div_{0}_{1}_{2}.bmp"
                         : "ill_bri_{0}_{1}_{2}.bmp",
-                    Country.Strings[(int) country],
+                    Countries.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type],
                     no);
                 fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
@@ -3338,7 +3338,7 @@ namespace HoI2Editor.Forms
                     unit.Organization == UnitOrganization.Division
                         ? "ill_div_{0}_{1}_0.bmp"
                         : "ill_bri_{0}_{1}_0.bmp",
-                    Country.Strings[(int) country],
+                    Countries.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type]);
                 fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
                 if (File.Exists(fileName))

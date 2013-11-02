@@ -27,8 +27,8 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット名
         /// </summary>
-        private static readonly Dictionary<CountryTag, Dictionary<UnitNameType, List<string>>> Items =
-            new Dictionary<CountryTag, Dictionary<UnitNameType, List<string>>>();
+        private static readonly Dictionary<Country, Dictionary<UnitNameType, List<string>>> Items =
+            new Dictionary<Country, Dictionary<UnitNameType, List<string>>>();
 
         /// <summary>
         ///     ユニット名種類文字列とIDの対応付け
@@ -48,7 +48,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -356,13 +356,13 @@ namespace HoI2Editor.Models
 
             // 国タグ
             string countryName = tokens[0].ToUpper();
-            if (!Country.StringMap.ContainsKey(countryName))
+            if (!Countries.StringMap.ContainsKey(countryName))
             {
                 Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}\n", line));
                 return;
             }
-            CountryTag country = Country.StringMap[countryName];
+            Country country = Countries.StringMap[countryName];
 
             // 兵科
             string typeName = tokens[1].ToUpper();
@@ -413,28 +413,24 @@ namespace HoI2Editor.Models
                 _currentLineNo = 3;
 
 
-                foreach (
-                    CountryTag country in
-                        Items.Select(pair => pair.Key)
-                             .Where(country => ExistsCountry(country) && Items[country].Count > 0))
+                foreach (Country country in Items.Select(pair => pair.Key)
+                                                 .Where(country => ExistsCountry(country) && Items[country].Count > 0))
                 {
-                    CountryTag c = country;
-                    foreach (
-                        UnitNameType type in
-                            Items[country].Select(pair => pair.Key)
-                                          .Where(type => ExistsType(c, type) && Items[c][type].Count > 0))
+                    Country c = country;
+                    foreach (UnitNameType type in Items[country]
+                        .Select(pair => pair.Key).Where(type => ExistsType(c, type) && Items[c][type].Count > 0))
                     {
-                        try
+                        foreach (string name in Items[country][type])
                         {
-                            foreach (string name in Items[country][type])
+                            try
                             {
                                 writer.WriteLine(
-                                    "{0};{1};{2}", Country.Strings[(int) country], TypeStrings[(int) type], name);
+                                    "{0};{1};{2}", Countries.Strings[(int)country], TypeStrings[(int)type], name);
                             }
-                        }
-                        catch (Exception)
-                        {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                            catch (Exception)
+                            {
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                            }
                         }
                     }
                 }
@@ -454,7 +450,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
         /// <returns>ユニット名リスト</returns>
-        public static List<string> GetNames(CountryTag country, UnitNameType type)
+        public static List<string> GetNames(Country country, UnitNameType type)
         {
             // 未登録の場合は空のリストを返す
             if (!ExistsType(country, type))
@@ -471,7 +467,7 @@ namespace HoI2Editor.Models
         /// <param name="name">ユニット名</param>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
-        public static void AddName(string name, CountryTag country, UnitNameType type)
+        public static void AddName(string name, Country country, UnitNameType type)
         {
             // 未登録の場合は項目を作成する
             if (!ExistsCountry(country))
@@ -493,7 +489,7 @@ namespace HoI2Editor.Models
         /// <param name="names">ユニット名リスト</param>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
-        public static void SetNames(List<string> names, CountryTag country, UnitNameType type)
+        public static void SetNames(List<string> names, Country country, UnitNameType type)
         {
             // 未登録の場合は項目を作成する
             if (!ExistsCountry(country))
@@ -522,7 +518,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void Replace(string s, string t, CountryTag country, UnitNameType type, bool regex)
+        public static void Replace(string s, string t, Country country, UnitNameType type, bool regex)
         {
             List<string> names =
                 Items[country][type].Select(name => regex ? Regex.Replace(name, s, t) : name.Replace(s, t)).ToList();
@@ -537,11 +533,10 @@ namespace HoI2Editor.Models
         /// <param name="regex">正規表現を使用するか</param>
         public static void ReplaceAll(string s, string t, bool regex)
         {
-            List<KeyValuePair<CountryTag, UnitNameType>> pairs = (from country in Items.Select(pair => pair.Key)
-                                                                  from type in Items[country].Select(pair => pair.Key)
-                                                                  select
-                                                                      new KeyValuePair<CountryTag, UnitNameType>(
-                                                                      country, type)).ToList();
+            List<KeyValuePair<Country, UnitNameType>> pairs =
+                (from country in Items.Select(pair => pair.Key)
+                 from type in Items[country].Select(pair => pair.Key)
+                 select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
             foreach (var pair in pairs)
             {
                 Replace(s, t, pair.Key, pair.Value, regex);
@@ -557,9 +552,9 @@ namespace HoI2Editor.Models
         /// <param name="regex">正規表現を使用するか</param>
         public static void ReplaceAllCountries(string s, string t, UnitNameType type, bool regex)
         {
-            List<CountryTag> countries =
+            List<Country> countries =
                 Items.Select(pair => pair.Key).Where(country => Items[country].ContainsKey(type)).ToList();
-            foreach (CountryTag country in countries)
+            foreach (Country country in countries)
             {
                 Replace(s, t, country, type, regex);
             }
@@ -572,7 +567,7 @@ namespace HoI2Editor.Models
         /// <param name="t">置換先文字列</param>
         /// <param name="country">国タグ</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAllTypes(string s, string t, CountryTag country, bool regex)
+        public static void ReplaceAllTypes(string s, string t, Country country, bool regex)
         {
             var types = new List<UnitNameType>();
             if (Items.ContainsKey(country))
@@ -594,7 +589,7 @@ namespace HoI2Editor.Models
         /// <param name="end">終了番号</param>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
-        public static void AddSequential(string prefix, string suffix, int start, int end, CountryTag country,
+        public static void AddSequential(string prefix, string suffix, int start, int end, Country country,
                                          UnitNameType type)
         {
             for (int i = start; i <= end; i++)
@@ -613,7 +608,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
-        public static void Interpolate(CountryTag country, UnitNameType type)
+        public static void Interpolate(Country country, UnitNameType type)
         {
             var names = new List<string>();
             var r = new Regex("([^\\d]*)(\\d+)(.*)");
@@ -662,11 +657,10 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void InterpolateAll()
         {
-            List<KeyValuePair<CountryTag, UnitNameType>> pairs = (from country in Items.Select(pair => pair.Key)
-                                                                  from type in Items[country].Select(pair => pair.Key)
-                                                                  select
-                                                                      new KeyValuePair<CountryTag, UnitNameType>(
-                                                                      country, type)).ToList();
+            List<KeyValuePair<Country, UnitNameType>> pairs =
+                (from country in Items.Select(pair => pair.Key)
+                 from type in Items[country].Select(pair => pair.Key)
+                 select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
             foreach (var pair in pairs)
             {
                 Interpolate(pair.Key, pair.Value);
@@ -679,9 +673,9 @@ namespace HoI2Editor.Models
         /// <param name="type">ユニット名種類</param>
         public static void InterpolateAllCountries(UnitNameType type)
         {
-            List<CountryTag> countries =
+            List<Country> countries =
                 Items.Select(pair => pair.Key).Where(country => Items[country].ContainsKey(type)).ToList();
-            foreach (CountryTag country in countries)
+            foreach (Country country in countries)
             {
                 Interpolate(country, type);
             }
@@ -691,7 +685,7 @@ namespace HoI2Editor.Models
         ///     全てのユニット名種類のユニット名を連番補間する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void InterpolateAllTypes(CountryTag country)
+        public static void InterpolateAllTypes(Country country)
         {
             var types = new List<UnitNameType>();
             if (Items.ContainsKey(country))
@@ -711,7 +705,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
         /// <returns>項目が存在すればtrueを返す</returns>
-        private static bool Exists(string name, CountryTag country, UnitNameType type)
+        private static bool Exists(string name, Country country, UnitNameType type)
         {
             return Items[country][type].Contains(name);
         }
@@ -721,7 +715,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>項目が存在すればtrueを返す</returns>
-        private static bool ExistsCountry(CountryTag country)
+        private static bool ExistsCountry(Country country)
         {
             return Items.ContainsKey(country);
         }
@@ -732,7 +726,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
         /// <returns>項目が存在すればtrueを返す</returns>
-        private static bool ExistsType(CountryTag country, UnitNameType type)
+        private static bool ExistsType(Country country, UnitNameType type)
         {
             if (!ExistsCountry(country))
             {
@@ -760,7 +754,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(CountryTag country)
+        public static bool IsDirty(Country country)
         {
             return DirtyFlags[(int) country];
         }
@@ -769,7 +763,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(CountryTag country)
+        public static void SetDirty(Country country)
         {
             DirtyFlags[(int) country] = true;
             _dirtyFlag = true;
@@ -779,7 +773,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void ResetDirty(CountryTag country)
+        public static void ResetDirty(Country country)
         {
             DirtyFlags[(int) country] = false;
         }
@@ -789,7 +783,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void ResetDirtyAll()
         {
-            foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
+            foreach (Country country in Enum.GetValues(typeof (Country)))
             {
                 DirtyFlags[(int) country] = false;
             }

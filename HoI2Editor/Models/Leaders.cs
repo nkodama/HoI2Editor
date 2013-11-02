@@ -23,7 +23,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグと指揮官ファイル名の対応付け
         /// </summary>
-        public static Dictionary<CountryTag, string> FileNameMap { get; private set; }
+        public static Dictionary<Country, string> FileNameMap { get; private set; }
 
         /// <summary>
         ///     兵科名
@@ -52,7 +52,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家ごとの編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -166,7 +166,7 @@ namespace HoI2Editor.Models
             Items = new List<Leader>();
 
             // 国タグと指揮官ファイル名の対応付け
-            FileNameMap = new Dictionary<CountryTag, string>();
+            FileNameMap = new Dictionary<Country, string>();
 
             // 兵科
             BranchNames = new[] {"", Resources.BranchArmy, Resources.BranchNavy, Resources.BranchAirforce};
@@ -377,16 +377,16 @@ namespace HoI2Editor.Models
                 }
 
                 _currentLineNo++;
-                var country = CountryTag.None;
+                var country = Country.None;
 
                 while (!reader.EndOfStream)
                 {
                     Leader leader = ParseLine(reader.ReadLine());
 
-                    if (country == CountryTag.None && leader != null)
+                    if (country == Country.None && leader != null)
                     {
                         country = leader.Country;
-                        if (country != CountryTag.None && !FileNameMap.ContainsKey(country))
+                        if (country != Country.None && !FileNameMap.ContainsKey(country))
                         {
                             FileNameMap.Add(country, Path.GetFileName(fileName));
                         }
@@ -451,13 +451,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 国家
-            if (string.IsNullOrEmpty(tokens[index]) || !Country.StringMap.ContainsKey(tokens[index].ToUpper()))
+            if (string.IsNullOrEmpty(tokens[index]) || !Countries.StringMap.ContainsKey(tokens[index].ToUpper()))
             {
                 Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
                 return null;
             }
-            leader.Country = Country.StringMap[tokens[index].ToUpper()];
+            leader.Country = Countries.StringMap[tokens[index].ToUpper()];
             index++;
 
             // 任官年
@@ -649,10 +649,9 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (
-                CountryTag country in Enum.GetValues(typeof (CountryTag))
-                                          .Cast<CountryTag>()
-                                          .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
+            foreach (Country country in Enum.GetValues(typeof (Country))
+                                            .Cast<Country>()
+                                            .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
                 {
@@ -676,7 +675,7 @@ namespace HoI2Editor.Models
         ///     指揮官ファイルを保存する
         /// </summary>
         /// <param name="country">国タグ</param>
-        private static void SaveFile(CountryTag country)
+        private static void SaveFile(Country country)
         {
             // 指揮官フォルダが存在しなければ作成する
             string folderName = Game.GetWriteFileName(Game.LeaderPathName);
@@ -721,7 +720,7 @@ namespace HoI2Editor.Models
                             "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};x",
                             leader.Name,
                             leader.Id,
-                            Country.Strings[(int) leader.Country],
+                            Countries.Strings[(int) leader.Country],
                             leader.RankYear[0],
                             leader.RankYear[1],
                             leader.RankYear[2],
@@ -748,7 +747,7 @@ namespace HoI2Editor.Models
                             "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};x",
                             leader.Name,
                             leader.Id,
-                            Country.Strings[(int) leader.Country],
+                            Countries.Strings[(int) leader.Country],
                             leader.RankYear[0],
                             leader.RankYear[1],
                             leader.RankYear[2],
@@ -855,7 +854,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(CountryTag country)
+        public static bool IsDirty(Country country)
         {
             return DirtyFlags[(int) country];
         }
@@ -864,7 +863,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(CountryTag country)
+        public static void SetDirty(Country country)
         {
             DirtyFlags[(int) country] = true;
             _dirtyFlag = true;
@@ -874,7 +873,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void ResetDirty(CountryTag country)
+        public static void ResetDirty(Country country)
         {
             DirtyFlags[(int) country] = false;
         }

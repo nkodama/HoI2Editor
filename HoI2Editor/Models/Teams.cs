@@ -36,7 +36,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -282,11 +282,11 @@ namespace HoI2Editor.Models
                     return;
                 }
                 // サポート外の国タグの場合は何もしない
-                if (!Country.StringMap.ContainsKey(tokens[0].ToUpper()))
+                if (!Countries.StringMap.ContainsKey(tokens[0].ToUpper()))
                 {
                     return;
                 }
-                CountryTag country = Country.StringMap[tokens[0].ToUpper()];
+                Country country = Countries.StringMap[tokens[0].ToUpper()];
 
                 _currentLineNo++;
 
@@ -306,7 +306,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="line">対象文字列</param>
         /// <param name="country">国家タグ</param>
-        private static void ParseLine(string line, CountryTag country)
+        private static void ParseLine(string line, Country country)
         {
             // 空行を読み飛ばす
             if (String.IsNullOrEmpty(line))
@@ -451,11 +451,9 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (
-                CountryTag country in
-                    Enum.GetValues(typeof (CountryTag))
-                        .Cast<CountryTag>()
-                        .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
+            foreach (Country country in Enum.GetValues(typeof (Country))
+                                            .Cast<Country>()
+                                            .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
                 {
@@ -479,7 +477,7 @@ namespace HoI2Editor.Models
         ///     研究機関ファイルを保存する
         /// </summary>
         /// <param name="country">国タグ</param>
-        private static void SaveFile(CountryTag country)
+        private static void SaveFile(Country country)
         {
             // 研究機関フォルダが存在しなければ作成する
             string folderName = Game.GetWriteFileName(Game.TeamPathName);
@@ -497,7 +495,7 @@ namespace HoI2Editor.Models
                 // ヘッダ行を書き込む
                 writer.WriteLine(
                     "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
-                    Country.Strings[(int) country]);
+                    Countries.Strings[(int) country]);
 
                 // 研究機関定義行を順に書き込む
                 foreach (Team team in Items.Where(team => team.Country == country))
@@ -604,7 +602,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(CountryTag country)
+        public static bool IsDirty(Country country)
         {
             return DirtyFlags[(int) country];
         }
@@ -613,7 +611,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(CountryTag country)
+        public static void SetDirty(Country country)
         {
             DirtyFlags[(int) country] = true;
             _dirtyFlag = true;
@@ -623,7 +621,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void ResetDirty(CountryTag country)
+        public static void ResetDirty(Country country)
         {
             DirtyFlags[(int) country] = false;
         }

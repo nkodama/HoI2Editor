@@ -12,7 +12,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ
         /// </summary>
-        public CountryTag Country { get; set; }
+        public Country Country { get; set; }
 
         /// <summary>
         ///     指揮官ID

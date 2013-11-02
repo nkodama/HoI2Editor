@@ -19,7 +19,7 @@ namespace HoI2Editor.Models
         ///     師団名リスト
         /// </summary>
         private static readonly List<string>[,] Items =
-            new List<string>[Enum.GetValues(typeof (Branch)).Length,Enum.GetValues(typeof (CountryTag)).Length];
+            new List<string>[Enum.GetValues(typeof (Branch)).Length,Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -40,7 +40,7 @@ namespace HoI2Editor.Models
         ///     国家ごとの編集済みフラグ
         /// </summary>
         private static readonly bool[,] CountryDirtyFlags =
-            new bool[Enum.GetValues(typeof (Branch)).Length,Enum.GetValues(typeof (CountryTag)).Length];
+            new bool[Enum.GetValues(typeof (Branch)).Length,Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -88,7 +88,7 @@ namespace HoI2Editor.Models
             foreach (
                 Branch branch in Enum.GetValues(typeof (Branch)).Cast<Branch>().Where(branch => branch != Branch.None))
             {
-                foreach (CountryTag country in Country.Tags)
+                foreach (Country country in Countries.Tags)
                 {
                     Items[(int) branch, (int) country] = null;
                 }
@@ -171,13 +171,13 @@ namespace HoI2Editor.Models
 
             // 国タグ
             string countryName = tokens[0].ToUpper();
-            if (!Country.StringMap.ContainsKey(countryName))
+            if (!Countries.StringMap.ContainsKey(countryName))
             {
                 Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}\n", line));
                 return;
             }
-            CountryTag country = Country.StringMap[countryName];
+            Country country = Countries.StringMap[countryName];
 
             // 師団名
             string name = tokens[1];
@@ -233,14 +233,13 @@ namespace HoI2Editor.Models
                 _currentFileName = fileName;
                 _currentLineNo = 1;
 
-                foreach (CountryTag country in Country.Tags.Where(country => Items[(int) branch, (int) country] != null)
-                    )
+                foreach (Country country in Countries.Tags.Where(country => Items[(int) branch, (int) country] != null))
                 {
                     foreach (string name in Items[(int) branch, (int) country])
                     {
                         try
                         {
-                            writer.WriteLine("{0};{1}", Country.Strings[(int) country], name);
+                            writer.WriteLine("{0};{1}", Countries.Strings[(int) country], name);
                         }
                         catch (Exception)
                         {
@@ -262,7 +261,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         /// <returns>師団名リスト</returns>
-        public static List<string> GetNames(Branch branch, CountryTag country)
+        public static List<string> GetNames(Branch branch, Country country)
         {
             return Items[(int) branch, (int) country] ?? new List<string>();
         }
@@ -273,7 +272,7 @@ namespace HoI2Editor.Models
         /// <param name="name">師団名</param>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void AddName(string name, Branch branch, CountryTag country)
+        public static void AddName(string name, Branch branch, Country country)
         {
             // 未登録の場合はリストを作成する
             if (Items[(int) branch, (int) country] == null)
@@ -291,7 +290,7 @@ namespace HoI2Editor.Models
         /// <param name="names">師団名リスト</param>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void SetNames(List<string> names, Branch branch, CountryTag country)
+        public static void SetNames(List<string> names, Branch branch, Country country)
         {
             // 師団名リストに変更がなければ戻る
             if (Items[(int) branch, (int) country] != null && names.SequenceEqual(Items[(int) branch, (int) country]))
@@ -314,7 +313,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void Replace(string s, string t, Branch branch, CountryTag country, bool regex)
+        public static void Replace(string s, string t, Branch branch, Country country, bool regex)
         {
             // 未登録ならば何もしない
             if (Items[(int) branch, (int) country] == null)
@@ -337,7 +336,7 @@ namespace HoI2Editor.Models
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
-                foreach (CountryTag country in Country.Tags)
+                foreach (Country country in Countries.Tags)
                 {
                     Replace(s, t, branch, country, regex);
                 }
@@ -351,7 +350,7 @@ namespace HoI2Editor.Models
         /// <param name="t">置換先文字列</param>
         /// <param name="country">国タグ</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAllBranches(string s, string t, CountryTag country, bool regex)
+        public static void ReplaceAllBranches(string s, string t, Country country, bool regex)
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
@@ -368,7 +367,7 @@ namespace HoI2Editor.Models
         /// <param name="regex">正規表現を使用するか</param>
         public static void ReplaceAllCountries(string s, string t, Branch branch, bool regex)
         {
-            foreach (CountryTag country in Country.Tags)
+            foreach (Country country in Countries.Tags)
             {
                 Replace(s, t, branch, country, regex);
             }
@@ -384,7 +383,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         public static void AddSequential(string prefix, string suffix, int start, int end, Branch branch,
-                                         CountryTag country)
+                                         Country country)
         {
             // 未登録の場合はリストを作成する
             if (Items[(int) branch, (int) country] == null)
@@ -408,7 +407,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void Interpolate(Branch branch, CountryTag country)
+        public static void Interpolate(Branch branch, Country country)
         {
             // 未登録ならば何もしない
             if (Items[(int) branch, (int) country] == null)
@@ -465,7 +464,7 @@ namespace HoI2Editor.Models
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
-                foreach (CountryTag country in Country.Tags)
+                foreach (Country country in Countries.Tags)
                 {
                     Interpolate(branch, country);
                 }
@@ -476,7 +475,7 @@ namespace HoI2Editor.Models
         ///     全ての兵科の師団名を連番補間する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void InterpolateAllBranches(CountryTag country)
+        public static void InterpolateAllBranches(Country country)
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
@@ -490,7 +489,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         public static void InterpolateAllCountries(Branch branch)
         {
-            foreach (CountryTag country in Country.Tags)
+            foreach (Country country in Countries.Tags)
             {
                 Interpolate(branch, country);
             }
@@ -525,7 +524,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Branch branch, CountryTag country)
+        public static bool IsDirty(Branch branch, Country country)
         {
             return CountryDirtyFlags[(int) branch, (int) country];
         }
@@ -535,7 +534,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(Branch branch, CountryTag country)
+        public static void SetDirty(Branch branch, Country country)
         {
             CountryDirtyFlags[(int) branch, (int) country] = true;
             BranchDirtyFlags[(int) branch] = true;
@@ -549,7 +548,7 @@ namespace HoI2Editor.Models
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
-                foreach (CountryTag country in Enum.GetValues(typeof (CountryTag)))
+                foreach (Country country in Enum.GetValues(typeof (Country)))
                 {
                     CountryDirtyFlags[(int) branch, (int) country] = false;
                 }

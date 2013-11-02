@@ -76,7 +76,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (CountryTag)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -1128,7 +1128,7 @@ namespace HoI2Editor.Models
                 {
                     return;
                 }
-                CountryTag country = Country.StringMap[token[0].ToUpper()];
+                Country country = Countries.StringMap[token[0].ToUpper()];
 
                 _currentLineNo++;
 
@@ -1148,7 +1148,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="line">対象文字列</param>
         /// <param name="country">国家タグ</param>
-        private static void ParseLine(string line, CountryTag country)
+        private static void ParseLine(string line, Country country)
         {
             // 空行を読み飛ばす
             if (String.IsNullOrEmpty(line))
@@ -1342,11 +1342,9 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            foreach (
-                CountryTag country in
-                    Enum.GetValues(typeof (CountryTag))
-                        .Cast<CountryTag>()
-                        .Where(country => DirtyFlags[(int) country] && country != CountryTag.None))
+            foreach (Country country in Enum.GetValues(typeof (Country))
+                                            .Cast<Country>()
+                                            .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
                 {
@@ -1370,7 +1368,7 @@ namespace HoI2Editor.Models
         ///     閣僚ファイルを保存する
         /// </summary>
         /// <param name="country">国タグ</param>
-        private static void SaveFile(CountryTag country)
+        private static void SaveFile(Country country)
         {
             // 閣僚フォルダが存在しなければ作成する
             string folderName = Game.GetWriteFileName(Game.MinisterPathName);
@@ -1390,20 +1388,20 @@ namespace HoI2Editor.Models
                 {
                     writer.WriteLine(
                         "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Retirement Year;Ideology;Personality;Loyalty;Picturename;X",
-                        Country.Strings[(int) country]);
+                        Countries.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;;;X");
                 }
                 else if (Misc.UseNewMinisterFilesFormat)
                 {
                     writer.WriteLine(
                         "{0};Ruling Cabinet - Start;Name;Start Year;End Year;Ideology;Personality;Loyalty;Picturename;X",
-                        Country.Strings[(int) country]);
+                        Countries.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;;X");
                 }
                 else
                 {
                     writer.WriteLine("{0};Ruling Cabinet - Start;Name;Pool;Ideology;Personality;Loyalty;Picturename;x",
-                                     Country.Strings[(int) country]);
+                                     Countries.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;x");
                 }
 
@@ -1559,7 +1557,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(CountryTag country)
+        public static bool IsDirty(Country country)
         {
             return DirtyFlags[(int) country];
         }
@@ -1568,7 +1566,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(CountryTag country)
+        public static void SetDirty(Country country)
         {
             DirtyFlags[(int) country] = true;
             _dirtyFlag = true;
@@ -1578,7 +1576,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void ResetDirty(CountryTag country)
+        public static void ResetDirty(Country country)
         {
             DirtyFlags[(int) country] = false;
         }

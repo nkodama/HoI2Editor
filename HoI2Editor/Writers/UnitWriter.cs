@@ -96,7 +96,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteModel(UnitModel model, Unit unit, int no, StreamWriter writer)
         {
-            writer.WriteLine("# {0} - {1}", no, Config.GetText(UnitModel.GetName(unit, no, CountryTag.None)));
+            writer.WriteLine("# {0} - {1}", no, Config.GetText(UnitModel.GetName(unit, no, Country.None)));
             writer.WriteLine("model = {");
 
             // 兵科固有部分

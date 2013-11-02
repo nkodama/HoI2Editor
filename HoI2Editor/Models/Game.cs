@@ -408,33 +408,33 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官ファイル名を取得する
         /// </summary>
-        /// <param name="countryTag">国タグ</param>
+        /// <param name="country">国タグ</param>
         /// <returns>指揮官ファイル名</returns>
-        public static string GetLeaderFileName(CountryTag countryTag)
+        public static string GetLeaderFileName(Country country)
         {
-            return Leaders.FileNameMap.ContainsKey(countryTag)
-                       ? Leaders.FileNameMap[countryTag]
-                       : string.Format("leaders{0}.csv", Country.Strings[(int) countryTag].ToUpper());
+            return Leaders.FileNameMap.ContainsKey(country)
+                       ? Leaders.FileNameMap[country]
+                       : string.Format("leaders{0}.csv", Countries.Strings[(int) country].ToUpper());
         }
 
         /// <summary>
         ///     閣僚ファイル名を取得する
         /// </summary>
-        /// <param name="countryTag">国タグ</param>
+        /// <param name="country">国タグ</param>
         /// <returns>閣僚ファイル名</returns>
-        public static string GetMinisterFileName(CountryTag countryTag)
+        public static string GetMinisterFileName(Country country)
         {
-            return string.Format("ministers_{0}.csv", Country.Strings[(int) countryTag].ToLower());
+            return string.Format("ministers_{0}.csv", Countries.Strings[(int) country].ToLower());
         }
 
         /// <summary>
         ///     研究機関ファイル名を取得する
         /// </summary>
-        /// <param name="countryTag">国タグ</param>
+        /// <param name="country">国タグ</param>
         /// <returns>研究機関ファイル名</returns>
-        public static string GetTeamFileName(CountryTag countryTag)
+        public static string GetTeamFileName(Country country)
         {
-            return string.Format("teams_{0}.csv", Country.Strings[(int) countryTag].ToLower());
+            return string.Format("teams_{0}.csv", Countries.Strings[(int) country].ToLower());
         }
 
         /// <summary>

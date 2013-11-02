@@ -76,7 +76,7 @@ namespace HoI2Editor.Forms
         private void OnTeamEditorFormLoad(object sender, EventArgs e)
         {
             // 国家データを初期化する
-            Country.Init();
+            Countries.Init();
 
             // 研究特性を初期化する
             Techs.InitSpecialities();
@@ -247,10 +247,10 @@ namespace HoI2Editor.Forms
             _list.Clear();
 
             // 選択中の国家リストを作成する
-            List<CountryTag> selectedTagList = countryListBox.SelectedItems.Count == 0
-                                                   ? new List<CountryTag>()
+            List<Country> selectedTagList = countryListBox.SelectedItems.Count == 0
+                                                   ? new List<Country>()
                                                    : (from string countryText in countryListBox.SelectedItems
-                                                      select Country.StringMap[countryText]).ToList();
+                                                      select Countries.StringMap[countryText]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
             foreach (Team team in Teams.Items.Where(team => selectedTagList.Contains(team.Country)))
@@ -668,10 +668,9 @@ namespace HoI2Editor.Forms
                 // 新規項目を作成する
                 team = new Team
                     {
-                        Country =
-                            countryListBox.SelectedItems.Count > 0
-                                ? (CountryTag) (countryListBox.SelectedIndex + 1)
-                                : CountryTag.None,
+                        Country = countryListBox.SelectedItems.Count > 0
+                                      ? (Country) (countryListBox.SelectedIndex + 1)
+                                      : Country.None,
                         Id = 0,
                         Skill = 1,
                         StartYear = 1930,
@@ -1016,7 +1015,7 @@ namespace HoI2Editor.Forms
 
             var item = new ListViewItem
                 {
-                    Text = Country.Strings[(int) team.Country],
+                    Text = Countries.Strings[(int) team.Country],
                     Tag = team
                 };
             item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
@@ -1053,7 +1052,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string name in Country.Tags.Select(country => Country.Strings[(int) country]))
+            foreach (string name in Countries.Tags.Select(country => Countries.Strings[(int) country]))
             {
                 countryListBox.Items.Add(name);
             }
@@ -1081,7 +1080,7 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
                 // 変更ありの項目は文字色を変更する
-                CountryTag country = Country.Tags[e.Index];
+                Country country = Countries.Tags[e.Index];
                 brush = Teams.IsDirty(country)
                             ? new SolidBrush(Color.Red)
                             : new SolidBrush(countryListBox.ForeColor);
@@ -1167,8 +1166,8 @@ namespace HoI2Editor.Forms
             // 国タグ
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
-            foreach (string s in Country.Tags
-                                        .Select(country => Country.Strings[(int) country])
+            foreach (string s in Countries.Tags
+                                        .Select(country => Countries.Strings[(int) country])
                                         .Select(name => Config.ExistsKey(name)
                                                             ? string.Format("{0} {1}", name, Config.GetText(name))
                                                             : name))
@@ -1239,7 +1238,7 @@ namespace HoI2Editor.Forms
         /// <param name="team">研究機関データ</param>
         private void UpdateEditableItemsValue(Team team)
         {
-            countryComboBox.SelectedIndex = team.Country != CountryTag.None ? (int) team.Country - 1 : -1;
+            countryComboBox.SelectedIndex = team.Country != Country.None ? (int) team.Country - 1 : -1;
             idNumericUpDown.Value = team.Id;
             nameTextBox.Text = team.Name;
             skillNumericUpDown.Value = team.Skill;
@@ -1368,7 +1367,7 @@ namespace HoI2Editor.Forms
             if (team != null)
             {
                 Brush brush;
-                if ((Country.Tags[e.Index] == team.Country) && team.IsDirty(TeamItemId.Country))
+                if ((Countries.Tags[e.Index] == team.Country) && team.IsDirty(TeamItemId.Country))
                 {
                     brush = new SolidBrush(Color.Red);
                 }
@@ -1694,7 +1693,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            CountryTag country = Country.Tags[countryComboBox.SelectedIndex];
+            Country country = Countries.Tags[countryComboBox.SelectedIndex];
             if (country == team.Country)
             {
                 return;
@@ -1707,7 +1706,7 @@ namespace HoI2Editor.Forms
             team.Country = country;
 
             // 研究機関リストビューの項目を更新する
-            teamListView.SelectedItems[0].Text = Country.Strings[(int) team.Country];
+            teamListView.SelectedItems[0].Text = Countries.Strings[(int) team.Country];
 
             // 研究機関ごとの編集済みフラグを設定する
             team.SetDirty(TeamItemId.Country);
