@@ -301,7 +301,7 @@ namespace HoI2Editor.Models
         public const string ProvinceTextFileName = "province_names.csv";
 
         /// <summary>
-        /// ユニット名定義ファイル名
+        ///     ユニット名定義ファイル名
         /// </summary>
         public const string UnitNamesPathName = "db\\unitnames.csv";
 

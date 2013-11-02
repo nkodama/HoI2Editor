@@ -134,57 +134,63 @@
     <value>護衛戦闘機を削除</value>
   </data>
   <data name="allUnitTypeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 16</value>
+    <value>101, 16</value>
   </data>
   <data name="allUnitTypeCheckBox.Text" xml:space="preserve">
-    <value>全てのユニット種に適用</value>
+    <value>全てのユニット種</value>
+  </data>
+  <data name="regexCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="regexCheckBox.Text" xml:space="preserve">
+    <value>正規表現</value>
   </data>
   <data name="allCountryCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 16</value>
+    <value>79, 16</value>
   </data>
   <data name="allCountryCheckBox.Text" xml:space="preserve">
-    <value>全ての国家に適用</value>
+    <value>全ての国家</value>
   </data>
   <data name="optionGroupBox.Text" xml:space="preserve">
     <value>オプション</value>
   </data>
-  <data name="regexpcheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
-  <data name="regexpcheckBox.Text" xml:space="preserve">
-    <value>正規表現</value>
-  </data>
   <data name="replaceButton.Text" xml:space="preserve">
-    <value>置換(&amp;R)</value>
+    <value>置換</value>
   </data>
   <data name="interpolateButton.Text" xml:space="preserve">
-    <value>補間(&amp;I)</value>
+    <value>補間</value>
   </data>
   <data name="addButton.Text" xml:space="preserve">
-    <value>追加(&amp;A)</value>
+    <value>追加</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
+  <data name="withLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>先(&amp;W)</value>
+  <data name="withLabel.Text" xml:space="preserve">
+    <value>置換先</value>
   </data>
-  <data name="findLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 12</value>
+  <data name="toLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
   </data>
-  <data name="findLabel.Text" xml:space="preserve">
-    <value>元(&amp;T)</value>
+  <data name="toLabel.Text" xml:space="preserve">
+    <value>置換元</value>
   </data>
   <data name="replaceGroupBox.Text" xml:space="preserve">
     <value>置換</value>
   </data>
   <data name="suffixLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 12</value>
+    <value>41, 12</value>
   </data>
   <data name="suffixLabel.Text" xml:space="preserve">
-    <value>文字列(&amp;X)</value>
+    <value>接尾辞</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
+  <data name="prefixLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="prefixLabel.Text" xml:space="preserve">
+    <value>接頭辞</value>
+  </data>
+  <data name="sequentialGroupBox.Text" xml:space="preserve">
     <value>連番</value>
   </data>
   <data name="cutButton.Text" xml:space="preserve">
@@ -198,5 +204,8 @@
   </data>
   <data name="copyButton.Text" xml:space="preserve">
     <value>コピー</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ユニット名エディタ</value>
   </data>
 </root>

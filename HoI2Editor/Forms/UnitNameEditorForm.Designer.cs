@@ -36,23 +36,24 @@
             this.typeListBox = new System.Windows.Forms.ListBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.optionGroupBox = new System.Windows.Forms.GroupBox();
-            this.escortFighterCheckBox = new System.Windows.Forms.CheckBox();
             this.allUnitTypeCheckBox = new System.Windows.Forms.CheckBox();
+            this.regexCheckBox = new System.Windows.Forms.CheckBox();
             this.allCountryCheckBox = new System.Windows.Forms.CheckBox();
-            this.regexcheckBox = new System.Windows.Forms.CheckBox();
             this.replaceButton = new System.Windows.Forms.Button();
-            this.findComboBox = new System.Windows.Forms.ComboBox();
-            this.replaceComboBox = new System.Windows.Forms.ComboBox();
+            this.toComboBox = new System.Windows.Forms.ComboBox();
+            this.withComboBox = new System.Windows.Forms.ComboBox();
             this.startNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.endNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.interpolateButton = new System.Windows.Forms.Button();
-            this.interpolateComboBox = new System.Windows.Forms.ComboBox();
+            this.prefixComboBox = new System.Windows.Forms.ComboBox();
             this.addButton = new System.Windows.Forms.Button();
             this.replaceGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.findLabel = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.withLabel = new System.Windows.Forms.Label();
+            this.toLabel = new System.Windows.Forms.Label();
+            this.sequentialGroupBox = new System.Windows.Forms.GroupBox();
             this.suffixLabel = new System.Windows.Forms.Label();
+            this.suffixComboBox = new System.Windows.Forms.ComboBox();
+            this.prefixLabel = new System.Windows.Forms.Label();
             this.cutButton = new System.Windows.Forms.Button();
             this.pasteButton = new System.Windows.Forms.Button();
             this.undoButton = new System.Windows.Forms.Button();
@@ -61,7 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.startNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endNumericUpDown)).BeginInit();
             this.replaceGroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.sequentialGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // countryListBox
@@ -103,26 +104,19 @@
             // 
             // nameTextBox
             // 
+            this.nameTextBox.AcceptsReturn = true;
             resources.ApplyResources(this.nameTextBox, "nameTextBox");
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Validated += new System.EventHandler(this.OnNameTextBoxValidated);
             // 
             // optionGroupBox
             // 
-            this.optionGroupBox.Controls.Add(this.escortFighterCheckBox);
             this.optionGroupBox.Controls.Add(this.allUnitTypeCheckBox);
+            this.optionGroupBox.Controls.Add(this.regexCheckBox);
             this.optionGroupBox.Controls.Add(this.allCountryCheckBox);
             resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
-            // 
-            // escortFighterCheckBox
-            // 
-            resources.ApplyResources(this.escortFighterCheckBox, "escortFighterCheckBox");
-            this.escortFighterCheckBox.Checked = true;
-            this.escortFighterCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.escortFighterCheckBox.Name = "escortFighterCheckBox";
-            this.escortFighterCheckBox.UseVisualStyleBackColor = true;
             // 
             // allUnitTypeCheckBox
             // 
@@ -130,19 +124,17 @@
             this.allUnitTypeCheckBox.Name = "allUnitTypeCheckBox";
             this.allUnitTypeCheckBox.UseVisualStyleBackColor = true;
             // 
+            // regexCheckBox
+            // 
+            resources.ApplyResources(this.regexCheckBox, "regexCheckBox");
+            this.regexCheckBox.Name = "regexCheckBox";
+            this.regexCheckBox.UseVisualStyleBackColor = true;
+            // 
             // allCountryCheckBox
             // 
             resources.ApplyResources(this.allCountryCheckBox, "allCountryCheckBox");
             this.allCountryCheckBox.Name = "allCountryCheckBox";
             this.allCountryCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // regexcheckBox
-            // 
-            resources.ApplyResources(this.regexcheckBox, "regexcheckBox");
-            this.regexcheckBox.Checked = true;
-            this.regexcheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.regexcheckBox.Name = "regexcheckBox";
-            this.regexcheckBox.UseVisualStyleBackColor = true;
             // 
             // replaceButton
             // 
@@ -151,17 +143,17 @@
             this.replaceButton.UseVisualStyleBackColor = true;
             this.replaceButton.Click += new System.EventHandler(this.OnReplaceButtonClick);
             // 
-            // findComboBox
+            // toComboBox
             // 
-            this.findComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.findComboBox, "findComboBox");
-            this.findComboBox.Name = "findComboBox";
+            this.toComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.toComboBox, "toComboBox");
+            this.toComboBox.Name = "toComboBox";
             // 
-            // replaceComboBox
+            // withComboBox
             // 
-            this.replaceComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.replaceComboBox, "replaceComboBox");
-            this.replaceComboBox.Name = "replaceComboBox";
+            this.withComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.withComboBox, "withComboBox");
+            this.withComboBox.Name = "withComboBox";
             // 
             // startNumericUpDown
             // 
@@ -208,57 +200,71 @@
             resources.ApplyResources(this.interpolateButton, "interpolateButton");
             this.interpolateButton.Name = "interpolateButton";
             this.interpolateButton.UseVisualStyleBackColor = true;
+            this.interpolateButton.Click += new System.EventHandler(this.OnInterpolateButtonClick);
             // 
-            // interpolateComboBox
+            // prefixComboBox
             // 
-            this.interpolateComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.interpolateComboBox, "interpolateComboBox");
-            this.interpolateComboBox.Name = "interpolateComboBox";
+            this.prefixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
+            this.prefixComboBox.Name = "prefixComboBox";
             // 
             // addButton
             // 
             resources.ApplyResources(this.addButton, "addButton");
             this.addButton.Name = "addButton";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.OnAddButtonClick);
             // 
             // replaceGroupBox
             // 
-            this.replaceGroupBox.Controls.Add(this.label1);
-            this.replaceGroupBox.Controls.Add(this.findLabel);
-            this.replaceGroupBox.Controls.Add(this.regexcheckBox);
+            this.replaceGroupBox.Controls.Add(this.withLabel);
+            this.replaceGroupBox.Controls.Add(this.toLabel);
             this.replaceGroupBox.Controls.Add(this.replaceButton);
-            this.replaceGroupBox.Controls.Add(this.findComboBox);
-            this.replaceGroupBox.Controls.Add(this.replaceComboBox);
+            this.replaceGroupBox.Controls.Add(this.toComboBox);
+            this.replaceGroupBox.Controls.Add(this.withComboBox);
             resources.ApplyResources(this.replaceGroupBox, "replaceGroupBox");
             this.replaceGroupBox.Name = "replaceGroupBox";
             this.replaceGroupBox.TabStop = false;
             // 
-            // label1
+            // withLabel
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.withLabel, "withLabel");
+            this.withLabel.Name = "withLabel";
             // 
-            // findLabel
+            // toLabel
             // 
-            resources.ApplyResources(this.findLabel, "findLabel");
-            this.findLabel.Name = "findLabel";
+            resources.ApplyResources(this.toLabel, "toLabel");
+            this.toLabel.Name = "toLabel";
             // 
-            // groupBox1
+            // sequentialGroupBox
             // 
-            this.groupBox1.Controls.Add(this.suffixLabel);
-            this.groupBox1.Controls.Add(this.addButton);
-            this.groupBox1.Controls.Add(this.interpolateComboBox);
-            this.groupBox1.Controls.Add(this.startNumericUpDown);
-            this.groupBox1.Controls.Add(this.interpolateButton);
-            this.groupBox1.Controls.Add(this.endNumericUpDown);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.sequentialGroupBox.Controls.Add(this.suffixLabel);
+            this.sequentialGroupBox.Controls.Add(this.suffixComboBox);
+            this.sequentialGroupBox.Controls.Add(this.prefixLabel);
+            this.sequentialGroupBox.Controls.Add(this.addButton);
+            this.sequentialGroupBox.Controls.Add(this.prefixComboBox);
+            this.sequentialGroupBox.Controls.Add(this.startNumericUpDown);
+            this.sequentialGroupBox.Controls.Add(this.interpolateButton);
+            this.sequentialGroupBox.Controls.Add(this.endNumericUpDown);
+            resources.ApplyResources(this.sequentialGroupBox, "sequentialGroupBox");
+            this.sequentialGroupBox.Name = "sequentialGroupBox";
+            this.sequentialGroupBox.TabStop = false;
             // 
             // suffixLabel
             // 
             resources.ApplyResources(this.suffixLabel, "suffixLabel");
             this.suffixLabel.Name = "suffixLabel";
+            // 
+            // suffixComboBox
+            // 
+            this.suffixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
+            this.suffixComboBox.Name = "suffixComboBox";
+            // 
+            // prefixLabel
+            // 
+            resources.ApplyResources(this.prefixLabel, "prefixLabel");
+            this.prefixLabel.Name = "prefixLabel";
             // 
             // cutButton
             // 
@@ -296,7 +302,7 @@
             this.Controls.Add(this.undoButton);
             this.Controls.Add(this.pasteButton);
             this.Controls.Add(this.cutButton);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.sequentialGroupBox);
             this.Controls.Add(this.replaceGroupBox);
             this.Controls.Add(this.optionGroupBox);
             this.Controls.Add(this.nameTextBox);
@@ -314,8 +320,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.endNumericUpDown)).EndInit();
             this.replaceGroupBox.ResumeLayout(false);
             this.replaceGroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.sequentialGroupBox.ResumeLayout(false);
+            this.sequentialGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,26 +336,27 @@
         private System.Windows.Forms.ListBox typeListBox;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.GroupBox optionGroupBox;
-        private System.Windows.Forms.CheckBox escortFighterCheckBox;
         private System.Windows.Forms.CheckBox allUnitTypeCheckBox;
         private System.Windows.Forms.CheckBox allCountryCheckBox;
-        private System.Windows.Forms.CheckBox regexcheckBox;
+        private System.Windows.Forms.CheckBox regexCheckBox;
         private System.Windows.Forms.Button replaceButton;
-        private System.Windows.Forms.ComboBox findComboBox;
-        private System.Windows.Forms.ComboBox replaceComboBox;
+        private System.Windows.Forms.ComboBox toComboBox;
+        private System.Windows.Forms.ComboBox withComboBox;
         private System.Windows.Forms.NumericUpDown startNumericUpDown;
         private System.Windows.Forms.NumericUpDown endNumericUpDown;
         private System.Windows.Forms.Button interpolateButton;
-        private System.Windows.Forms.ComboBox interpolateComboBox;
+        private System.Windows.Forms.ComboBox prefixComboBox;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.GroupBox replaceGroupBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label findLabel;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label suffixLabel;
+        private System.Windows.Forms.Label withLabel;
+        private System.Windows.Forms.Label toLabel;
+        private System.Windows.Forms.GroupBox sequentialGroupBox;
+        private System.Windows.Forms.Label prefixLabel;
         private System.Windows.Forms.Button cutButton;
         private System.Windows.Forms.Button pasteButton;
         private System.Windows.Forms.Button undoButton;
         private System.Windows.Forms.Button copyButton;
+        private System.Windows.Forms.Label suffixLabel;
+        private System.Windows.Forms.ComboBox suffixComboBox;
     }
 }

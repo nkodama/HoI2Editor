@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -13,14 +9,14 @@ using HoI2Editor.Properties;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    /// ユニット名エディタのフォーム
+    ///     ユニット名エディタのフォーム
     /// </summary>
     public partial class UnitNameEditorForm : Form
     {
         #region 初期化
 
         /// <summary>
-        /// コンストラクタ
+        ///     コンストラクタ
         /// </summary>
         public UnitNameEditorForm()
         {
@@ -158,9 +154,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string name in Country.Tags.Select(country => Country.Strings[(int)country]))
+            foreach (string s in Country.Tags.Select(country => Country.Strings[(int) country]))
             {
-                countryListBox.Items.Add(Config.GetText(name));
+                countryListBox.Items.Add(s);
             }
             countryListBox.SelectedIndex = 0;
         }
@@ -244,9 +240,9 @@ namespace HoI2Editor.Forms
         #region ユニット名リスト
 
         /// <summary>
-        /// ユニット名リストを更新する
+        ///     ユニット名リストを更新する
         /// </summary>
-        void UpdateNameList()
+        private void UpdateNameList()
         {
             nameTextBox.Clear();
 
@@ -275,7 +271,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ユニット名リスト変更時の処理
+        ///     ユニット名リスト変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -296,7 +292,7 @@ namespace HoI2Editor.Forms
             UnitNameType type = UnitNames.Types[typeListBox.SelectedIndex];
 
             // ユニット名リストを更新する
-            UnitNames.SetNames(country, type, nameTextBox.Lines.Where(line => !string.IsNullOrEmpty(line)).ToList());
+            UnitNames.SetNames(nameTextBox.Lines.Where(line => !string.IsNullOrEmpty(line)).ToList(), country, type);
 
             // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
             countryListBox.Refresh();
@@ -307,7 +303,7 @@ namespace HoI2Editor.Forms
         #region 編集機能
 
         /// <summary>
-        /// 元に戻すボタン押下時の処理
+        ///     元に戻すボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -317,7 +313,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 切り取りボタン押下時の処理
+        ///     切り取りボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -327,7 +323,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// コピーボタン押下時の処理
+        ///     コピーボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -337,7 +333,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 貼り付けボタン押下時の処理
+        ///     貼り付けボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -347,7 +343,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 置換ボタン押下時の処理
+        ///     置換ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -358,7 +354,7 @@ namespace HoI2Editor.Forms
                 if (allUnitTypeCheckBox.Checked)
                 {
                     // 全てのユニット名を置換する
-                    UnitNames.ReplaceAll(findComboBox.Text, replaceComboBox.Text, regexcheckBox.Checked);
+                    UnitNames.ReplaceAll(toComboBox.Text, withComboBox.Text, regexCheckBox.Checked);
                 }
                 else
                 {
@@ -368,8 +364,8 @@ namespace HoI2Editor.Forms
                         return;
                     }
                     // 全ての国のユニット名を置換する
-                    UnitNames.ReplaceAllCountries(findComboBox.Text, replaceComboBox.Text,
-                                                  UnitNames.Types[typeListBox.SelectedIndex], regexcheckBox.Checked);
+                    UnitNames.ReplaceAllCountries(toComboBox.Text, withComboBox.Text,
+                                                  UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
                 }
             }
             else
@@ -382,8 +378,8 @@ namespace HoI2Editor.Forms
                 if (allUnitTypeCheckBox.Checked)
                 {
                     // 全てのユニット名種類のユニット名を置換する
-                    UnitNames.ReplaceAllTypes(findComboBox.Text, replaceComboBox.Text,
-                                              Country.Tags[countryListBox.SelectedIndex], regexcheckBox.Checked);
+                    UnitNames.ReplaceAllTypes(toComboBox.Text, withComboBox.Text,
+                                              Country.Tags[countryListBox.SelectedIndex], regexCheckBox.Checked);
                 }
                 else
                 {
@@ -393,9 +389,84 @@ namespace HoI2Editor.Forms
                         return;
                     }
                     // ユニット名を置換する
-                    UnitNames.Replace(findComboBox.Text, replaceComboBox.Text,
-                                      Country.Tags[countryListBox.SelectedIndex],
-                                      UnitNames.Types[typeListBox.SelectedIndex], regexcheckBox.Checked);
+                    UnitNames.Replace(toComboBox.Text, withComboBox.Text, Country.Tags[countryListBox.SelectedIndex],
+                                      UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
+                }
+            }
+
+            // ユニット名リストの表示を更新する
+            UpdateNameList();
+
+            // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     追加ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAddButtonClick(object sender, EventArgs e)
+        {
+            // ユニット名を一括追加する
+            UnitNames.AddSequential(prefixComboBox.Text, suffixComboBox.Text, (int) startNumericUpDown.Value,
+                                    (int) endNumericUpDown.Value, Country.Tags[countryListBox.SelectedIndex],
+                                    UnitNames.Types[typeListBox.SelectedIndex]);
+
+            // ユニット名リストの表示を更新する
+            UpdateNameList();
+
+            // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     補間ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnInterpolateButtonClick(object sender, EventArgs e)
+        {
+            if (allCountryCheckBox.Checked)
+            {
+                if (allUnitTypeCheckBox.Checked)
+                {
+                    // 全てのユニット名を補間する
+                    UnitNames.InterpolateAll();
+                }
+                else
+                {
+                    // ユニット名種類リストボックスの選択項目がなければ戻る
+                    if (typeListBox.SelectedIndex < 0)
+                    {
+                        return;
+                    }
+                    // 全ての国のユニット名を補間する
+                    UnitNames.InterpolateAllCountries(UnitNames.Types[typeListBox.SelectedIndex]);
+                }
+            }
+            else
+            {
+                // 国家リストボックスの選択項目がなければ戻る
+                if (countryListBox.SelectedIndex < 0)
+                {
+                    return;
+                }
+                if (allUnitTypeCheckBox.Checked)
+                {
+                    // 全てのユニット名種類のユニット名を補間する
+                    UnitNames.InterpolateAllTypes(Country.Tags[countryListBox.SelectedIndex]);
+                }
+                else
+                {
+                    // ユニット名種類リストボックスの選択項目がなければ戻る
+                    if (typeListBox.SelectedIndex < 0)
+                    {
+                        return;
+                    }
+                    // ユニット名を補間する
+                    UnitNames.Interpolate(Country.Tags[countryListBox.SelectedIndex],
+                                          UnitNames.Types[typeListBox.SelectedIndex]);
                 }
             }
 
