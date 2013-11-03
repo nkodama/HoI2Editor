@@ -1219,10 +1219,10 @@
     <value>諜報任務の距離補正</value>
   </data>
   <data name="MiscLabelDistanceModifierNeighbours" xml:space="preserve">
-    <value>諜報任務の近隣国補正</value>
+    <value>諜報任務の隣国補正</value>
   </data>
   <data name="MiscLabelDistanceModifierNeighboursDh" xml:space="preserve">
-    <value>諜報任務の近隣国補正</value>
+    <value>諜報任務の隣国補正</value>
   </data>
   <data name="MiscLabelDivisionXpGainFactor" xml:space="preserve">
     <value>師団経験値入手係数</value>
