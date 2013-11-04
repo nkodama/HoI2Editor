@@ -537,6 +537,27 @@
   <data name="teamListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="teamListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="teamListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>760, 181</value>
+  </data>
+  <data name="teamListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;teamListView.Name" xml:space="preserve">
+    <value>teamListView</value>
+  </data>
+  <data name="&gt;&gt;teamListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;teamListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;teamListView.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
   <data name="countryColumnHeader.Text" xml:space="preserve">
     <value>Tag</value>
   </data>
@@ -587,27 +608,6 @@
   </data>
   <data name="specialityColumnHeader.Width" type="System.Int32, mscorlib">
     <value>185</value>
-  </data>
-  <data name="teamListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="teamListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>760, 181</value>
-  </data>
-  <data name="teamListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;teamListView.Name" xml:space="preserve">
-    <value>teamListView</value>
-  </data>
-  <data name="&gt;&gt;teamListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;teamListView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;teamListView.ZOrder" xml:space="preserve">
-    <value>18</value>
   </data>
   <data name="idLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -972,6 +972,90 @@
   <data name="specialityGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="sortAbcButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="sortAbcButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="sortAbcButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 228</value>
+  </data>
+  <data name="sortAbcButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="sortAbcButton.TabIndex" type="System.Int32, mscorlib">
+    <value>73</value>
+  </data>
+  <data name="sortAbcButton.Text" xml:space="preserve">
+    <value>Sort ABC</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.Name" xml:space="preserve">
+    <value>sortAbcButton</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="sortIdButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="sortIdButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="sortIdButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 228</value>
+  </data>
+  <data name="sortIdButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="sortIdButton.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="sortIdButton.Text" xml:space="preserve">
+    <value>Sort ID</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.Name" xml:space="preserve">
+    <value>sortIdButton</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="specialityComboBox7.ItemHeight" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="specialityComboBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 198</value>
+  </data>
+  <data name="specialityComboBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
+  </data>
+  <data name="specialityComboBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.Name" xml:space="preserve">
+    <value>specialityComboBox7</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="specialityComboBox6.ItemHeight" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
@@ -994,7 +1078,7 @@
     <value>specialityGroupBox</value>
   </data>
   <data name="&gt;&gt;specialityComboBox6.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="specialityComboBox5.ItemHeight" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1018,7 +1102,7 @@
     <value>specialityGroupBox</value>
   </data>
   <data name="&gt;&gt;specialityComboBox5.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="specialityComboBox4.ItemHeight" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1042,7 +1126,7 @@
     <value>specialityGroupBox</value>
   </data>
   <data name="&gt;&gt;specialityComboBox4.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="specialityComboBox3.ItemHeight" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1066,7 +1150,7 @@
     <value>specialityGroupBox</value>
   </data>
   <data name="&gt;&gt;specialityComboBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="specialityComboBox2.ItemHeight" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1090,7 +1174,7 @@
     <value>specialityGroupBox</value>
   </data>
   <data name="&gt;&gt;specialityComboBox2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="specialityComboBox1.ItemHeight" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1114,13 +1198,13 @@
     <value>specialityGroupBox</value>
   </data>
   <data name="&gt;&gt;specialityComboBox1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="specialityGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>567, 240</value>
   </data>
   <data name="specialityGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 208</value>
+    <value>204, 261</value>
   </data>
   <data name="specialityGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>

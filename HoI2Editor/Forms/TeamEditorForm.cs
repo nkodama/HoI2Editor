@@ -23,6 +23,11 @@ namespace HoI2Editor.Forms
         private readonly List<Team> _list = new List<Team>();
 
         /// <summary>
+        /// 研究特性コンボボックスの配列
+        /// </summary>
+        private readonly ComboBox[] _specialityComboBoxes;
+
+        /// <summary>
         ///     ソート対象
         /// </summary>
         private SortKey _key = SortKey.None;
@@ -58,6 +63,29 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 内部定数
+
+        /// <summary>
+        /// 研究特性の項目ID
+        /// </summary>
+        private static readonly TeamItemId[] SpecialityItemIds =
+            {
+                TeamItemId.Speciality1,
+                TeamItemId.Speciality2,
+                TeamItemId.Speciality3,
+                TeamItemId.Speciality4,
+                TeamItemId.Speciality5,
+                TeamItemId.Speciality6,
+                TeamItemId.Speciality7,
+            };
+
+        /// <summary>
+        /// 編集可能な特性の数
+        /// </summary>
+        private const int MaxEditableSpecialities = 7;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -66,6 +94,18 @@ namespace HoI2Editor.Forms
         public TeamEditorForm()
         {
             InitializeComponent();
+
+            // 研究特性コンボボックスの配列を初期化する
+            _specialityComboBoxes = new[]
+                {
+                    specialityComboBox1,
+                    specialityComboBox2,
+                    specialityComboBox3,
+                    specialityComboBox4,
+                    specialityComboBox5,
+                    specialityComboBox6,
+                    specialityComboBox7
+                };
         }
 
         /// <summary>
@@ -511,7 +551,9 @@ namespace HoI2Editor.Forms
                 }
 
                 // 研究特性アイコンを描画する
-                e.Graphics.DrawImage(Techs.SpecialityImages.Images[(int) team.Specialities[i] - 1], rect);
+                e.Graphics.DrawImage(
+                    Techs.SpecialityImages.Images[Array.IndexOf(Techs.Specialities, team.Specialities[i]) - 1],
+                    rect);
                 rect.X += 19;
             }
         }
@@ -1180,31 +1222,27 @@ namespace HoI2Editor.Forms
             countryComboBox.DropDownWidth = maxWidth;
 
             // 研究特性
-            specialityComboBox1.Items.Clear();
-            specialityComboBox2.Items.Clear();
-            specialityComboBox3.Items.Clear();
-            specialityComboBox4.Items.Clear();
-            specialityComboBox5.Items.Clear();
+            for (int i = 0; i < MaxEditableSpecialities; i++)
+            {
+                _specialityComboBoxes[i].Tag = i;
+                _specialityComboBoxes[i].Items.Clear();
+            }
             maxWidth = specialityComboBox1.DropDownWidth;
             foreach (string s in Techs.Specialities.Select(Techs.GetSpecialityName))
             {
-                specialityComboBox1.Items.Add(s);
-                specialityComboBox2.Items.Add(s);
-                specialityComboBox3.Items.Add(s);
-                specialityComboBox4.Items.Add(s);
-                specialityComboBox5.Items.Add(s);
-                specialityComboBox6.Items.Add(s);
+                for (int i = 0; i < MaxEditableSpecialities; i++)
+                {
+                    _specialityComboBoxes[i].Items.Add(s);
+                }
                 // +24は研究特性アイコンの分
                 maxWidth = Math.Max(maxWidth,
                                     TextRenderer.MeasureText(s, specialityComboBox1.Font).Width +
                                     SystemInformation.VerticalScrollBarWidth + 24);
             }
-            specialityComboBox1.DropDownWidth = maxWidth;
-            specialityComboBox2.DropDownWidth = maxWidth;
-            specialityComboBox3.DropDownWidth = maxWidth;
-            specialityComboBox4.DropDownWidth = maxWidth;
-            specialityComboBox5.DropDownWidth = maxWidth;
-            specialityComboBox6.DropDownWidth = maxWidth;
+            for (int i = 0; i < MaxEditableSpecialities; i++)
+            {
+                _specialityComboBoxes[i].DropDownWidth = maxWidth;
+            }
         }
 
         /// <summary>
@@ -1244,12 +1282,10 @@ namespace HoI2Editor.Forms
             skillNumericUpDown.Value = team.Skill;
             startYearNumericUpDown.Value = team.StartYear;
             endYearNumericUpDown.Value = team.EndYear;
-            specialityComboBox1.SelectedIndex = (int) team.Specialities[0];
-            specialityComboBox2.SelectedIndex = (int) team.Specialities[1];
-            specialityComboBox3.SelectedIndex = (int) team.Specialities[2];
-            specialityComboBox4.SelectedIndex = (int) team.Specialities[3];
-            specialityComboBox5.SelectedIndex = (int) team.Specialities[4];
-            specialityComboBox6.SelectedIndex = (int) team.Specialities[5];
+            for (int i = 0; i < MaxEditableSpecialities; i++)
+            {
+                _specialityComboBoxes[i].SelectedIndex = Array.IndexOf(Techs.Specialities, team.Specialities[i]);
+            }
             pictureNameTextBox.Text = team.PictureName;
             UpdateTeamPicture(team);
         }
@@ -1262,12 +1298,10 @@ namespace HoI2Editor.Forms
         {
             // コンボボックスの色を更新する
             countryComboBox.Refresh();
-            specialityComboBox1.Refresh();
-            specialityComboBox2.Refresh();
-            specialityComboBox3.Refresh();
-            specialityComboBox4.Refresh();
-            specialityComboBox5.Refresh();
-            specialityComboBox6.Refresh();
+            for (int i = 0; i < MaxEditableSpecialities; i++)
+            {
+                _specialityComboBoxes[i].Refresh();
+            }
 
             // 編集項目の色を更新する
             idNumericUpDown.ForeColor = team.IsDirty(TeamItemId.Id) ? Color.Red : SystemColors.WindowText;
@@ -1291,12 +1325,10 @@ namespace HoI2Editor.Forms
             endYearNumericUpDown.Enabled = true;
             pictureNameTextBox.Enabled = true;
             pictureNameReferButton.Enabled = true;
-            specialityComboBox1.Enabled = true;
-            specialityComboBox2.Enabled = true;
-            specialityComboBox3.Enabled = true;
-            specialityComboBox4.Enabled = true;
-            specialityComboBox5.Enabled = true;
-            specialityComboBox6.Enabled = true;
+            for (int i = 0; i < MaxEditableSpecialities; i++)
+            {
+                _specialityComboBoxes[i].Enabled = true;
+            }
 
             // 無効化時にクリアした文字列を再設定する
             idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
@@ -1331,12 +1363,10 @@ namespace HoI2Editor.Forms
             endYearNumericUpDown.Enabled = false;
             pictureNameTextBox.Enabled = false;
             pictureNameReferButton.Enabled = false;
-            specialityComboBox1.Enabled = false;
-            specialityComboBox2.Enabled = false;
-            specialityComboBox3.Enabled = false;
-            specialityComboBox4.Enabled = false;
-            specialityComboBox5.Enabled = false;
-            specialityComboBox6.Enabled = false;
+            for (int i = 0; i < MaxEditableSpecialities; i++)
+            {
+                _specialityComboBoxes[i].Enabled = false;
+            }
 
             cloneButton.Enabled = false;
             removeButton.Enabled = false;
@@ -1385,17 +1415,24 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     研究特性コンボボックス1の項目描画処理
+        ///     研究特性コンボボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSpecialityComboBox1DrawItem(object sender, DrawItemEventArgs e)
+        private void OnSpecialityComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
             // 項目がなければ何もしない
             if (e.Index == -1)
             {
                 return;
             }
+
+            var comboBox = sender as ComboBox;
+            if (comboBox == null)
+            {
+                return;
+            }
+            var no = (int) comboBox.Tag;
 
             // 背景を描画する
             e.DrawBackground();
@@ -1412,7 +1449,7 @@ namespace HoI2Editor.Forms
 
                 // 項目の文字列を描画する
                 Brush brush;
-                if ((Techs.Specialities[e.Index] == team.Specialities[0]) && team.IsDirty(TeamItemId.Speciality1))
+                if ((Techs.Specialities[e.Index] == team.Specialities[no]) && team.IsDirty(SpecialityItemIds[no]))
                 {
                     brush = new SolidBrush(Color.Red);
                 }
@@ -1420,237 +1457,7 @@ namespace HoI2Editor.Forms
                 {
                     brush = new SolidBrush(SystemColors.WindowText);
                 }
-                string s = specialityComboBox1.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                e.Graphics.DrawString(s, e.Font, brush, tr);
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     研究特性コンボボックス2の項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox2DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index == -1)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            Team team = GetSelectedTeam();
-            if (team != null)
-            {
-                // アイコンを描画する
-                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                }
-
-                // 項目の文字列を描画する
-                Brush brush;
-                if ((Techs.Specialities[e.Index] == team.Specialities[1]) && team.IsDirty(TeamItemId.Speciality2))
-                {
-                    brush = new SolidBrush(Color.Red);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.WindowText);
-                }
-                string s = specialityComboBox2.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                e.Graphics.DrawString(s, e.Font, brush, tr);
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     研究特性コンボボックス3の項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox3DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index == -1)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            Team team = GetSelectedTeam();
-            if (team != null)
-            {
-                // アイコンを描画する
-                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                }
-
-                // 項目の文字列を描画する
-                Brush brush;
-                if ((Techs.Specialities[e.Index] == team.Specialities[2]) && team.IsDirty(TeamItemId.Speciality3))
-                {
-                    brush = new SolidBrush(Color.Red);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.WindowText);
-                }
-                string s = specialityComboBox3.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                e.Graphics.DrawString(s, e.Font, brush, tr);
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     研究特性コンボボックス4の項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox4DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index == -1)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            Team team = GetSelectedTeam();
-            if (team != null)
-            {
-                // アイコンを描画する
-                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                }
-
-                // 項目の文字列を描画する
-                Brush brush;
-                if ((Techs.Specialities[e.Index] == team.Specialities[3]) && team.IsDirty(TeamItemId.Speciality4))
-                {
-                    brush = new SolidBrush(Color.Red);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.WindowText);
-                }
-                string s = specialityComboBox4.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                e.Graphics.DrawString(s, e.Font, brush, tr);
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     研究特性コンボボックス5の項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox5DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index == -1)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            Team team = GetSelectedTeam();
-            if (team != null)
-            {
-                // アイコンを描画する
-                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                }
-
-                // 項目の文字列を描画する
-                Brush brush;
-                if ((Techs.Specialities[e.Index] == team.Specialities[4]) && team.IsDirty(TeamItemId.Speciality5))
-                {
-                    brush = new SolidBrush(Color.Red);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.WindowText);
-                }
-                string s = specialityComboBox5.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
-                e.Graphics.DrawString(s, e.Font, brush, tr);
-                brush.Dispose();
-            }
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
-        ///     研究特性コンボボックス6の項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox6DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index == -1)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            Team team = GetSelectedTeam();
-            if (team != null)
-            {
-                // アイコンを描画する
-                if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
-                {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
-                    e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
-                }
-
-                // 項目の文字列を描画する
-                Brush brush;
-                if ((Techs.Specialities[e.Index] == team.Specialities[5]) && team.IsDirty(TeamItemId.Speciality6))
-                {
-                    brush = new SolidBrush(Color.Red);
-                }
-                else
-                {
-                    brush = new SolidBrush(SystemColors.WindowText);
-                }
-                string s = specialityComboBox6.Items[e.Index].ToString();
+                string s = comboBox.Items[e.Index].ToString();
                 var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
                 e.Graphics.DrawString(s, e.Font, brush, tr);
                 brush.Dispose();
@@ -1900,11 +1707,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     研究特性1変更時の処理
+        ///     研究特性変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSpecialityComboBox1SelectedIndexChanged(object sender, EventArgs e)
+        private void OnSpecialityComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Team team = GetSelectedTeam();
@@ -1913,200 +1720,96 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            var comboBox = sender as ComboBox;
+            if (comboBox == null)
+            {
+                return;
+            }
+            var no = (int) comboBox.Tag;
+
             // 値に変化がなければ何もしない
-            var speciality = (TechSpeciality) specialityComboBox1.SelectedIndex;
-            if (speciality == team.Specialities[0])
+            var speciality = Techs.Specialities[comboBox.SelectedIndex];
+            if (speciality == team.Specialities[no])
             {
                 return;
             }
 
-            // 値を更新する
-            team.Specialities[0] = speciality;
-
-            // 編集済みフラグを設定する
-            team.SetDirty(TeamItemId.Speciality1);
-            Teams.SetDirty(team.Country);
+            // 研究特性を変更する
+            ChangeTechSpeciality(team, no, speciality);
 
             // 研究機関リストビューの項目を更新する
             teamListView.Refresh();
 
-            // 研究特性ボックス1の項目色を変更するため描画更新する
-            specialityComboBox1.Refresh();
+            // 編集項目を更新する
+            UpdateEditableItemsValue(team);
+
+            // 編集項目の色を更新する
+            UpdateEditableItemsColor(team);
         }
 
         /// <summary>
-        ///     特性2変更時の処理
+        /// 研究特性を変更する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox2SelectedIndexChanged(object sender, EventArgs e)
+        /// <param name="team">対象の研究機関</param>
+        /// <param name="no">研究特性の番号</param>
+        /// <param name="speciality">研究特性</param>
+        private void ChangeTechSpeciality(Team team, int no, TechSpeciality speciality)
         {
-            // 選択項目がなければ何もしない
-            Team team = GetSelectedTeam();
-            if (team == null)
+            if (speciality == TechSpeciality.None)
             {
-                return;
+                // 特性なしに変更された場合、後ろの項目を詰める
+                for (int i = no; i < MaxEditableSpecialities; i++)
+                {
+                    if (team.Specialities[i] != TechSpeciality.None || team.Specialities[i + 1] != TechSpeciality.None)
+                    {
+                        // 1つ前に詰める
+                        team.Specialities[i] = team.Specialities[i + 1];
+                        // 編集済みフラグを設定する
+                        team.SetDirty(SpecialityItemIds[i]);
+                    }
+                }
+            }
+            else
+            {
+                // 変更した箇所よりも前に空きがあれば詰める
+                for (int i = 0; i < no; i++)
+                {
+                    if (team.Specialities[i] == TechSpeciality.None)
+                    {
+                        no = i;
+                        break;
+                    }
+                }
+                // 重複項目を検索する
+                for (int i = 0; i < MaxEditableSpecialities; i++)
+                {
+                    if (i == no)
+                    {
+                        continue;
+                    }
+
+                    if (speciality == team.Specialities[i])
+                    {
+                        // 他の項目と重複していてかつ元が特性なしならば何もしない
+                        if (team.Specialities[no] == TechSpeciality.None)
+                        {
+                            return;
+                        }
+                        // 重複している項目と特性を交換する
+                        team.Specialities[i] = team.Specialities[no];
+                        // 交換対象の編集済みフラグを設定する
+                        team.SetDirty(SpecialityItemIds[i]);
+                        break;
+                    }
+                }
+                // 対象項目の値を更新する
+                team.Specialities[no] = speciality;
+                // 対象項目の編集済みフラグを設定する
+                team.SetDirty(SpecialityItemIds[no]);
             }
 
-            // 値に変化がなければ何もしない
-            var speciality = (TechSpeciality) specialityComboBox2.SelectedIndex;
-            if (speciality == team.Specialities[1])
-            {
-                return;
-            }
-
-            // 値を更新する
-            team.Specialities[1] = speciality;
-
-            // 編集済みフラグを設定する
-            team.SetDirty(TeamItemId.Speciality2);
+            // 国別の編集済みフラグを設定する
             Teams.SetDirty(team.Country);
-
-            // 研究機関リストビューの項目を更新する
-            teamListView.Refresh();
-
-            // 研究特性ボックス2の項目色を変更するため描画更新する
-            specialityComboBox2.Refresh();
-        }
-
-        /// <summary>
-        ///     特性3変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox3SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Team team = GetSelectedTeam();
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            var speciality = (TechSpeciality) specialityComboBox3.SelectedIndex;
-            if (speciality == team.Specialities[2])
-            {
-                return;
-            }
-
-            // 値を更新する
-            team.Specialities[2] = speciality;
-
-            // 編集済みフラグを設定する
-            team.SetDirty(TeamItemId.Speciality3);
-            Teams.SetDirty(team.Country);
-
-            // 研究機関リストビューの項目を更新する
-            teamListView.Refresh();
-
-            // 研究特性ボックス3の項目色を変更するため描画更新する
-            specialityComboBox3.Refresh();
-        }
-
-        /// <summary>
-        ///     特性4変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox4SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Team team = GetSelectedTeam();
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            var speciality = (TechSpeciality) specialityComboBox4.SelectedIndex;
-            if (speciality == team.Specialities[3])
-            {
-                return;
-            }
-
-            // 値を更新する
-            team.Specialities[3] = speciality;
-
-            // 編集済みフラグを設定する
-            team.SetDirty(TeamItemId.Speciality4);
-            Teams.SetDirty(team.Country);
-
-            // 研究機関リストビューの項目を更新する
-            teamListView.Refresh();
-
-            // 研究特性ボックス4の項目色を変更するため描画更新する
-            specialityComboBox4.Refresh();
-        }
-
-        /// <summary>
-        ///     特性5変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox5SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Team team = GetSelectedTeam();
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            var speciality = (TechSpeciality) specialityComboBox5.SelectedIndex;
-            if (speciality == team.Specialities[4])
-            {
-                return;
-            }
-
-            // 値を更新する
-            team.Specialities[4] = speciality;
-
-            // 編集済みフラグを設定する
-            team.SetDirty(TeamItemId.Speciality5);
-            Teams.SetDirty(team.Country);
-
-            // 研究機関リストビューの項目を更新する
-            teamListView.Refresh();
-
-            // 研究特性ボックス5の項目色を変更するため描画更新する
-            specialityComboBox5.Refresh();
-        }
-
-        /// <summary>
-        ///     特性6変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSpecialityComboBox6SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Team team = GetSelectedTeam();
-            if (team == null)
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            var speciality = (TechSpeciality) specialityComboBox6.SelectedIndex;
-            if (speciality == team.Specialities[5])
-            {
-                return;
-            }
-
-            // 値を更新する
-            team.Specialities[5] = speciality;
-
-            // 編集済みフラグを設定する
-            team.SetDirty(TeamItemId.Speciality6);
-            Teams.SetDirty(team.Country);
-
-            // 研究機関リストビューの項目を更新する
-            teamListView.Refresh();
-
-            // 研究特性ボックス6の項目色を変更するため描画更新する
-            specialityComboBox6.Refresh();
         }
 
         /// <summary>
@@ -2167,6 +1870,280 @@ namespace HoI2Editor.Forms
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
+            }
+        }
+
+        /// <summary>
+        /// ID順ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSortIdButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 研究特性をID順にソートする
+            SortSpeciality(team, new IdComparer());
+        }
+
+        /// <summary>
+        /// ABC順ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSortAbcButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Team team = GetSelectedTeam();
+            if (team == null)
+            {
+                return;
+            }
+
+            // 研究特性をABC順にソートする
+            SortSpeciality(team, new AbcComparer());
+        }
+
+        /// <summary>
+        /// 研究特性をソートする
+        /// </summary>
+        /// <param name="team">ソート対象の研究機関</param>
+        /// <param name="comparer">ソート用</param>
+        private void SortSpeciality(Team team, IComparer<TechSpeciality> comparer)
+        {
+            // ソート前の項目を退避する
+            const int max = 7;
+            var old = new TechSpeciality[max];
+            for (int i = 0; i < max; i++)
+            {
+                old[i] = team.Specialities[i];
+            }
+
+            // ソートする
+            Array.Sort(team.Specialities, 0, max, comparer);
+
+            // 研究特性1の更新チェック
+            if (team.Specialities[0] != old[0])
+            {
+                // 編集済みフラグを設定する
+                team.SetDirty(TeamItemId.Speciality1);
+                Teams.SetDirty(team.Country);
+            }
+            // 研究特性2の更新チェック
+            if (team.Specialities[1] != old[1])
+            {
+                // 編集済みフラグを設定する
+                team.SetDirty(TeamItemId.Speciality2);
+                Teams.SetDirty(team.Country);
+            }
+            // 研究特性3の更新チェック
+            if (team.Specialities[2] != old[2])
+            {
+                // 編集済みフラグを設定する
+                team.SetDirty(TeamItemId.Speciality3);
+                Teams.SetDirty(team.Country);
+            }
+            // 研究特性4の更新チェック
+            if (team.Specialities[3] != old[3])
+            {
+                // 編集済みフラグを設定する
+                team.SetDirty(TeamItemId.Speciality4);
+                Teams.SetDirty(team.Country);
+            }
+            // 研究特性5の更新チェック
+            if (team.Specialities[4] != old[4])
+            {
+                // 編集済みフラグを設定する
+                team.SetDirty(TeamItemId.Speciality5);
+                Teams.SetDirty(team.Country);
+            }
+            // 研究特性6の更新チェック
+            if (team.Specialities[5] != old[5])
+            {
+                // 編集済みフラグを設定する
+                team.SetDirty(TeamItemId.Speciality6);
+                Teams.SetDirty(team.Country);
+            }
+            // 研究特性7の更新チェック
+            if (team.Specialities[6] != old[6])
+            {
+                // 編集済みフラグを設定する
+                team.SetDirty(TeamItemId.Speciality7);
+                Teams.SetDirty(team.Country);
+            }
+
+            // 研究機関リストビューの項目を更新する
+            teamListView.Refresh();
+
+            // 編集項目を更新する
+            UpdateEditableItemsValue(team);
+
+            // 編集項目の色を更新する
+            UpdateEditableItemsColor(team);
+        }
+
+        /// <summary>
+        /// 研究特性のID順ソート用
+        /// </summary>
+        private class IdComparer : IComparer<TechSpeciality>
+        {
+            /// <summary>
+            /// 研究特性を比較する
+            /// </summary>
+            /// <param name="x"></param>
+            /// <param name="y"></param>
+            /// <returns></returns>
+            public int Compare(TechSpeciality x, TechSpeciality y)
+            {
+                // 指定なしの場合は後ろへ移動する
+                if (x == TechSpeciality.None)
+                {
+                    return 1;
+                }
+                if (y == TechSpeciality.None)
+                {
+                    return -1;
+                }
+                return (int) x - (int) y;
+            }
+        }
+
+        /// <summary>
+        /// 研究特性のABC順ソート用
+        /// </summary>
+        private class AbcComparer : IComparer<TechSpeciality>
+        {
+            /// <summary>
+            /// ABC順優先度
+            /// </summary>
+            private static readonly int[] Priorities = new[]
+                {
+                    109,
+                    3,
+                    29,
+                    15,
+                    12,
+                    47,
+                    18,
+                    39,
+                    34,
+                    0,
+                    37,
+                    36,
+                    25,
+                    20,
+                    28,
+                    42,
+                    24,
+                    11,
+                    14,
+                    46,
+                    19,
+                    21,
+                    13,
+                    23,
+                    33,
+                    35,
+                    2,
+                    17,
+                    7,
+                    9,
+                    45,
+                    22,
+                    41,
+                    40,
+                    38,
+                    4,
+                    32,
+                    48,
+                    8,
+                    44,
+                    16,
+                    6,
+                    31,
+                    1,
+                    27,
+                    26,
+                    5,
+                    43,
+                    30,
+                    10,
+                    49,
+                    50,
+                    51,
+                    52,
+                    53,
+                    54,
+                    55,
+                    56,
+                    57,
+                    58,
+                    59,
+                    60,
+                    61,
+                    62,
+                    63,
+                    64,
+                    65,
+                    66,
+                    67,
+                    68,
+                    69,
+                    70,
+                    71,
+                    72,
+                    73,
+                    74,
+                    75,
+                    76,
+                    77,
+                    78,
+                    79,
+                    80,
+                    81,
+                    82,
+                    83,
+                    84,
+                    85,
+                    86,
+                    87,
+                    88,
+                    89,
+                    90,
+                    91,
+                    92,
+                    93,
+                    94,
+                    95,
+                    96,
+                    97,
+                    98,
+                    99,
+                    100,
+                    101,
+                    102,
+                    103,
+                    104,
+                    105,
+                    106,
+                    107,
+                    108
+                };
+
+            /// <summary>
+            /// 研究特性を比較する
+            /// </summary>
+            /// <param name="x"></param>
+            /// <param name="y"></param>
+            /// <returns></returns>
+            public int Compare(TechSpeciality x, TechSpeciality y)
+            {
+                return Priorities[(int) x] - Priorities[(int) y];
             }
         }
 

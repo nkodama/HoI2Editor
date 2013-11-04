@@ -66,6 +66,9 @@
             this.skillNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.skillLabel = new System.Windows.Forms.Label();
             this.specialityGroupBox = new System.Windows.Forms.GroupBox();
+            this.sortAbcButton = new System.Windows.Forms.Button();
+            this.sortIdButton = new System.Windows.Forms.Button();
+            this.specialityComboBox7 = new System.Windows.Forms.ComboBox();
             this.specialityComboBox6 = new System.Windows.Forms.ComboBox();
             this.specialityComboBox5 = new System.Windows.Forms.ComboBox();
             this.specialityComboBox4 = new System.Windows.Forms.ComboBox();
@@ -342,6 +345,9 @@
             // specialityGroupBox
             // 
             resources.ApplyResources(this.specialityGroupBox, "specialityGroupBox");
+            this.specialityGroupBox.Controls.Add(this.sortAbcButton);
+            this.specialityGroupBox.Controls.Add(this.sortIdButton);
+            this.specialityGroupBox.Controls.Add(this.specialityComboBox7);
             this.specialityGroupBox.Controls.Add(this.specialityComboBox6);
             this.specialityGroupBox.Controls.Add(this.specialityComboBox5);
             this.specialityGroupBox.Controls.Add(this.specialityComboBox4);
@@ -351,6 +357,30 @@
             this.specialityGroupBox.Name = "specialityGroupBox";
             this.specialityGroupBox.TabStop = false;
             // 
+            // sortAbcButton
+            // 
+            resources.ApplyResources(this.sortAbcButton, "sortAbcButton");
+            this.sortAbcButton.Name = "sortAbcButton";
+            this.sortAbcButton.UseVisualStyleBackColor = true;
+            this.sortAbcButton.Click += new System.EventHandler(this.OnSortAbcButtonClick);
+            // 
+            // sortIdButton
+            // 
+            resources.ApplyResources(this.sortIdButton, "sortIdButton");
+            this.sortIdButton.Name = "sortIdButton";
+            this.sortIdButton.UseVisualStyleBackColor = true;
+            this.sortIdButton.Click += new System.EventHandler(this.OnSortIdButtonClick);
+            // 
+            // specialityComboBox7
+            // 
+            this.specialityComboBox7.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.specialityComboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.specialityComboBox7.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox7, "specialityComboBox7");
+            this.specialityComboBox7.Name = "specialityComboBox7";
+            this.specialityComboBox7.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
+            this.specialityComboBox7.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
+            // 
             // specialityComboBox6
             // 
             this.specialityComboBox6.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -358,8 +388,8 @@
             this.specialityComboBox6.FormattingEnabled = true;
             resources.ApplyResources(this.specialityComboBox6, "specialityComboBox6");
             this.specialityComboBox6.Name = "specialityComboBox6";
-            this.specialityComboBox6.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBox6DrawItem);
-            this.specialityComboBox6.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBox6SelectedIndexChanged);
+            this.specialityComboBox6.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
+            this.specialityComboBox6.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox5
             // 
@@ -368,8 +398,8 @@
             this.specialityComboBox5.FormattingEnabled = true;
             resources.ApplyResources(this.specialityComboBox5, "specialityComboBox5");
             this.specialityComboBox5.Name = "specialityComboBox5";
-            this.specialityComboBox5.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBox5DrawItem);
-            this.specialityComboBox5.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBox5SelectedIndexChanged);
+            this.specialityComboBox5.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
+            this.specialityComboBox5.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox4
             // 
@@ -378,8 +408,8 @@
             this.specialityComboBox4.FormattingEnabled = true;
             resources.ApplyResources(this.specialityComboBox4, "specialityComboBox4");
             this.specialityComboBox4.Name = "specialityComboBox4";
-            this.specialityComboBox4.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBox4DrawItem);
-            this.specialityComboBox4.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBox4SelectedIndexChanged);
+            this.specialityComboBox4.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
+            this.specialityComboBox4.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox3
             // 
@@ -388,8 +418,8 @@
             this.specialityComboBox3.FormattingEnabled = true;
             resources.ApplyResources(this.specialityComboBox3, "specialityComboBox3");
             this.specialityComboBox3.Name = "specialityComboBox3";
-            this.specialityComboBox3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBox3DrawItem);
-            this.specialityComboBox3.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBox3SelectedIndexChanged);
+            this.specialityComboBox3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
+            this.specialityComboBox3.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox2
             // 
@@ -398,8 +428,8 @@
             this.specialityComboBox2.FormattingEnabled = true;
             resources.ApplyResources(this.specialityComboBox2, "specialityComboBox2");
             this.specialityComboBox2.Name = "specialityComboBox2";
-            this.specialityComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBox2DrawItem);
-            this.specialityComboBox2.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBox2SelectedIndexChanged);
+            this.specialityComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
+            this.specialityComboBox2.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox1
             // 
@@ -408,8 +438,8 @@
             this.specialityComboBox1.FormattingEnabled = true;
             resources.ApplyResources(this.specialityComboBox1, "specialityComboBox1");
             this.specialityComboBox1.Name = "specialityComboBox1";
-            this.specialityComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBox1DrawItem);
-            this.specialityComboBox1.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBox1SelectedIndexChanged);
+            this.specialityComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
+            this.specialityComboBox1.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // TeamEditorForm
             // 
@@ -504,5 +534,8 @@
         private System.Windows.Forms.ComboBox specialityComboBox2;
         private System.Windows.Forms.ComboBox specialityComboBox1;
         private System.Windows.Forms.ColumnHeader skillColumnHeader;
+        private System.Windows.Forms.ComboBox specialityComboBox7;
+        private System.Windows.Forms.Button sortAbcButton;
+        private System.Windows.Forms.Button sortIdButton;
     }
 }

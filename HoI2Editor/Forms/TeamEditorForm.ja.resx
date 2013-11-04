@@ -205,6 +205,12 @@
   <data name="skillLabel.Text" xml:space="preserve">
     <value>スキル</value>
   </data>
+  <data name="sortAbcButton.Text" xml:space="preserve">
+    <value>ABC順</value>
+  </data>
+  <data name="sortIdButton.Text" xml:space="preserve">
+    <value>ID順</value>
+  </data>
   <data name="specialityGroupBox.Text" xml:space="preserve">
     <value>特性</value>
   </data>
