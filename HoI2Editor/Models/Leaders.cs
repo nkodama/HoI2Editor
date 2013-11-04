@@ -566,11 +566,11 @@ namespace HoI2Editor.Models
             int branch;
             if (int.TryParse(tokens[index], out branch))
             {
-                leader.Branch = (LeaderBranch) (branch + 1);
+                leader.Branch = (Branch) (branch + 1);
             }
             else
             {
-                leader.Branch = LeaderBranch.None;
+                leader.Branch = Branch.None;
                 Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
             }
@@ -700,7 +700,7 @@ namespace HoI2Editor.Models
                 foreach (Leader leader in Items.Where(leader => leader.Country == country))
                 {
                     // 不正な値が設定されている場合は警告をログに出力する
-                    if (leader.Branch == LeaderBranch.None)
+                    if (leader.Branch == Branch.None)
                     {
                         Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName,
                                                 _currentLineNo));
@@ -733,7 +733,7 @@ namespace HoI2Editor.Models
                             leader.Skill,
                             leader.Experience,
                             leader.Loyalty,
-                            leader.Branch != LeaderBranch.None
+                            leader.Branch != Branch.None
                                 ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
                                 : "",
                             leader.PictureName,
@@ -760,7 +760,7 @@ namespace HoI2Editor.Models
                             leader.Skill,
                             leader.Experience,
                             leader.Loyalty,
-                            leader.Branch != LeaderBranch.None
+                            leader.Branch != Branch.None
                                 ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
                                 : "",
                             leader.PictureName,

@@ -85,7 +85,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     兵科
         /// </summary>
-        public LeaderBranch Branch { get; set; }
+        public Branch Branch { get; set; }
 
         #endregion
 
@@ -397,17 +397,6 @@ namespace HoI2Editor.Models
         Disciplined, // 規律
         ElasticDefenceSpecialist, // 戦術的退却
         Blitzer, // 電撃戦
-    }
-
-    /// <summary>
-    ///     兵科
-    /// </summary>
-    public enum LeaderBranch
-    {
-        None,
-        Army, // 陸軍
-        Navy, //海軍
-        Airforce, //空軍
     }
 
     /// <summary>

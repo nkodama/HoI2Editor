@@ -264,21 +264,21 @@ namespace HoI2Editor.Forms
                 // 兵科による絞り込み
                 switch (leader.Branch)
                 {
-                    case LeaderBranch.Army:
+                    case Branch.Army:
                         if (!armyNarrowCheckBox.Checked)
                         {
                             continue;
                         }
                         break;
 
-                    case LeaderBranch.Navy:
+                    case Branch.Navy:
                         if (!navyNarrowCheckBox.Checked)
                         {
                             continue;
                         }
                         break;
 
-                    case LeaderBranch.Airforce:
+                    case Branch.Airforce:
                         if (!airforceNarrowCheckBox.Checked)
                         {
                             continue;
@@ -575,7 +575,7 @@ namespace HoI2Editor.Forms
                     {
                         Country = selected.Country,
                         Id = selected.Id + 1,
-                        Branch = LeaderBranch.None,
+                        Branch = Branch.None,
                         IdealRank = LeaderRank.None,
                         StartYear = 1930,
                         EndYear = 1990,
@@ -602,7 +602,7 @@ namespace HoI2Editor.Forms
                                       ? (Country) (countryListBox.SelectedIndex + 1)
                                       : Country.None,
                         Id = 0,
-                        Branch = LeaderBranch.None,
+                        Branch = Branch.None,
                         IdealRank = LeaderRank.None,
                         StartYear = 1930,
                         EndYear = 1990,
@@ -1596,7 +1596,7 @@ namespace HoI2Editor.Forms
             countryComboBox.SelectedIndex = leader.Country != Country.None ? (int) leader.Country - 1 : -1;
             idNumericUpDown.Value = leader.Id;
             nameTextBox.Text = leader.Name;
-            branchComboBox.SelectedIndex = leader.Branch != LeaderBranch.None ? (int) leader.Branch - 1 : -1;
+            branchComboBox.SelectedIndex = leader.Branch != Branch.None ? (int)leader.Branch - 1 : -1;
             idealRankComboBox.SelectedIndex = leader.IdealRank != LeaderRank.None ? (int) leader.IdealRank - 1 : -1;
             skillNumericUpDown.Value = leader.Skill;
             maxSkillNumericUpDown.Value = leader.MaxSkill;
@@ -2122,7 +2122,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var branch = (LeaderBranch) (branchComboBox.SelectedIndex + 1);
+            var branch = (Branch)(branchComboBox.SelectedIndex + 1);
             if (branch == leader.Branch)
             {
                 return;
