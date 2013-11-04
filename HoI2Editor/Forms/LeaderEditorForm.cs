@@ -574,7 +574,7 @@ namespace HoI2Editor.Forms
                 leader = new Leader
                     {
                         Country = selected.Country,
-                        Id = selected.Id + 1,
+                        Id = Leaders.GetNewId(selected.Country),
                         Branch = Branch.None,
                         IdealRank = LeaderRank.None,
                         StartYear = 1930,
@@ -595,13 +595,14 @@ namespace HoI2Editor.Forms
             }
             else
             {
+                Country country = countryListBox.SelectedItems.Count > 0
+                                      ? (Country) (countryListBox.SelectedIndex + 1)
+                                      : Country.None;
                 // 新規項目を作成する
                 leader = new Leader
                     {
-                        Country = countryListBox.SelectedItems.Count > 0
-                                      ? (Country) (countryListBox.SelectedIndex + 1)
-                                      : Country.None,
-                        Id = 0,
+                        Country = country,
+                        Id = Leaders.GetNewId(country),
                         Branch = Branch.None,
                         IdealRank = LeaderRank.None,
                         StartYear = 1930,
@@ -646,7 +647,7 @@ namespace HoI2Editor.Forms
             var leader = new Leader
                 {
                     Country = selected.Country,
-                    Id = selected.Id + 1,
+                    Id = Leaders.GetNewId(selected.Country),
                     Name = selected.Name,
                     Branch = selected.Branch,
                     IdealRank = selected.IdealRank,

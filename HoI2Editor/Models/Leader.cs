@@ -17,7 +17,16 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官ID
         /// </summary>
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                Leaders.IdSet.Remove(_id);
+                _id = value;
+                Leaders.IdSet.Add(_id);
+            }
+        }
 
         /// <summary>
         ///     名前
@@ -105,6 +114,11 @@ namespace HoI2Editor.Models
         ///     編集済みフラグ
         /// </summary>
         private bool _dirtyFlag;
+
+        /// <summary>
+        ///     指揮官ID
+        /// </summary>
+        private int _id;
 
         #endregion
 

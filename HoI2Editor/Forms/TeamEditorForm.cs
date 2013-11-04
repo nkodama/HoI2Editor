@@ -23,7 +23,7 @@ namespace HoI2Editor.Forms
         private readonly List<Team> _list = new List<Team>();
 
         /// <summary>
-        /// 研究特性コンボボックスの配列
+        ///     研究特性コンボボックスの配列
         /// </summary>
         private readonly ComboBox[] _specialityComboBoxes;
 
@@ -66,7 +66,12 @@ namespace HoI2Editor.Forms
         #region 内部定数
 
         /// <summary>
-        /// 研究特性の項目ID
+        ///     編集可能な特性の数
+        /// </summary>
+        private const int MaxEditableSpecialities = 7;
+
+        /// <summary>
+        ///     研究特性の項目ID
         /// </summary>
         private static readonly TeamItemId[] SpecialityItemIds =
             {
@@ -78,11 +83,6 @@ namespace HoI2Editor.Forms
                 TeamItemId.Speciality6,
                 TeamItemId.Speciality7,
             };
-
-        /// <summary>
-        /// 編集可能な特性の数
-        /// </summary>
-        private const int MaxEditableSpecialities = 7;
 
         #endregion
 
@@ -1728,7 +1728,7 @@ namespace HoI2Editor.Forms
             var no = (int) comboBox.Tag;
 
             // 値に変化がなければ何もしない
-            var speciality = Techs.Specialities[comboBox.SelectedIndex];
+            TechSpeciality speciality = Techs.Specialities[comboBox.SelectedIndex];
             if (speciality == team.Specialities[no])
             {
                 return;
@@ -1748,7 +1748,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究特性を変更する
+        ///     研究特性を変更する
         /// </summary>
         /// <param name="team">対象の研究機関</param>
         /// <param name="no">研究特性の番号</param>
@@ -1874,7 +1874,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ID順ボタン押下時の処理
+        ///     ID順ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1892,7 +1892,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ABC順ボタン押下時の処理
+        ///     ABC順ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1910,7 +1910,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究特性をソートする
+        ///     研究特性をソートする
         /// </summary>
         /// <param name="team">ソート対象の研究機関</param>
         /// <param name="comparer">ソート用</param>
@@ -1988,38 +1988,12 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 研究特性のID順ソート用
-        /// </summary>
-        private class IdComparer : IComparer<TechSpeciality>
-        {
-            /// <summary>
-            /// 研究特性を比較する
-            /// </summary>
-            /// <param name="x"></param>
-            /// <param name="y"></param>
-            /// <returns></returns>
-            public int Compare(TechSpeciality x, TechSpeciality y)
-            {
-                // 指定なしの場合は後ろへ移動する
-                if (x == TechSpeciality.None)
-                {
-                    return 1;
-                }
-                if (y == TechSpeciality.None)
-                {
-                    return -1;
-                }
-                return (int) x - (int) y;
-            }
-        }
-
-        /// <summary>
-        /// 研究特性のABC順ソート用
+        ///     研究特性のABC順ソート用
         /// </summary>
         private class AbcComparer : IComparer<TechSpeciality>
         {
             /// <summary>
-            /// ABC順優先度
+            ///     ABC順優先度
             /// </summary>
             private static readonly int[] Priorities = new[]
                 {
@@ -2136,7 +2110,7 @@ namespace HoI2Editor.Forms
                 };
 
             /// <summary>
-            /// 研究特性を比較する
+            ///     研究特性を比較する
             /// </summary>
             /// <param name="x"></param>
             /// <param name="y"></param>
@@ -2144,6 +2118,32 @@ namespace HoI2Editor.Forms
             public int Compare(TechSpeciality x, TechSpeciality y)
             {
                 return Priorities[(int) x] - Priorities[(int) y];
+            }
+        }
+
+        /// <summary>
+        ///     研究特性のID順ソート用
+        /// </summary>
+        private class IdComparer : IComparer<TechSpeciality>
+        {
+            /// <summary>
+            ///     研究特性を比較する
+            /// </summary>
+            /// <param name="x"></param>
+            /// <param name="y"></param>
+            /// <returns></returns>
+            public int Compare(TechSpeciality x, TechSpeciality y)
+            {
+                // 指定なしの場合は後ろへ移動する
+                if (x == TechSpeciality.None)
+                {
+                    return 1;
+                }
+                if (y == TechSpeciality.None)
+                {
+                    return -1;
+                }
+                return (int) x - (int) y;
             }
         }
 
