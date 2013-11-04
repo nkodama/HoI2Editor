@@ -18,7 +18,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニットの兵科
         /// </summary>
-        public UnitBranch Branch { get; set; }
+        public Branch Branch { get; set; }
 
         /// <summary>
         ///     ユニットの編成
@@ -958,16 +958,6 @@ namespace HoI2Editor.Models
         }
 
         #endregion
-    }
-
-    /// <summary>
-    ///     ユニットの兵科
-    /// </summary>
-    public enum UnitBranch
-    {
-        Army, // 陸軍
-        Navy, // 海軍
-        AirForce, // 空軍
     }
 
     /// <summary>

@@ -27,15 +27,15 @@ namespace HoI2Editor.Writers
                 {
                     switch (unit.Branch)
                     {
-                        case UnitBranch.Army:
+                        case Branch.Army:
                             writer.WriteLine("land_unit_type = 1");
                             break;
 
-                        case UnitBranch.Navy:
+                        case Branch.Navy:
                             writer.WriteLine("naval_unit_type = 1");
                             break;
 
-                        case UnitBranch.AirForce:
+                        case Branch.Airforce:
                             writer.WriteLine("air_unit_type = 1");
                             break;
                     }
@@ -102,7 +102,7 @@ namespace HoI2Editor.Writers
             // 兵科固有部分
             switch (unit.Branch)
             {
-                case UnitBranch.Army:
+                case Branch.Army:
                     if (unit.Organization == UnitOrganization.Division)
                     {
                         WriteLandDivision(model, writer);
@@ -113,7 +113,7 @@ namespace HoI2Editor.Writers
                     }
                     break;
 
-                case UnitBranch.Navy:
+                case Branch.Navy:
                     if (unit.Organization == UnitOrganization.Division)
                     {
                         WriteNavalDivision(model, writer);
@@ -124,7 +124,7 @@ namespace HoI2Editor.Writers
                     }
                     break;
 
-                case UnitBranch.AirForce:
+                case Branch.Airforce:
                     if (unit.Organization == UnitOrganization.Division)
                     {
                         WriteAirDivision(model, writer);
@@ -835,15 +835,15 @@ namespace HoI2Editor.Writers
             {
                 switch (unit.Branch)
                 {
-                    case UnitBranch.Army:
+                    case Branch.Army:
                         writer.WriteLine("\ttype\t\t= land");
                         break;
 
-                    case UnitBranch.Navy:
+                    case Branch.Navy:
                         writer.WriteLine("\ttype\t\t= naval");
                         break;
 
-                    case UnitBranch.AirForce:
+                    case Branch.Airforce:
                         writer.WriteLine("\ttype\t\t= air");
                         break;
                 }

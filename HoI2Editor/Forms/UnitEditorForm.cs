@@ -1025,7 +1025,7 @@ namespace HoI2Editor.Forms
             classShortDescTextBox.Text = Config.GetText(unit.ShortDesc);
 
             // 兵科
-            branchComboBox.SelectedIndex = (int) unit.Branch;
+            branchComboBox.SelectedIndex = (int) unit.Branch - 1;
             if (Game.Type == GameType.ArsenalOfDemocracy ||
                 (Game.Type == GameType.DarkestHour && Game.Version >= 103))
             {
@@ -1142,7 +1142,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 陸軍旅団
-                if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Brigade)
+                if (unit.Branch == Branch.Army && unit.Organization == UnitOrganization.Brigade)
                 {
                     engineerCheckBox.Enabled = true;
                 }
@@ -1152,7 +1152,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 海軍旅団
-                if (unit.Branch == UnitBranch.Navy && unit.Organization == UnitOrganization.Brigade)
+                if (unit.Branch == Branch.Navy && unit.Organization == UnitOrganization.Brigade)
                 {
                     detachableCheckBox.Enabled = true;
                     cagCheckBox.Enabled = true;
@@ -1164,7 +1164,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 空軍旅団
-                if (unit.Branch == UnitBranch.AirForce && unit.Organization == UnitOrganization.Brigade)
+                if (unit.Branch == Branch.Airforce && unit.Organization == UnitOrganization.Brigade)
                 {
                     escortCheckBox.Enabled = true;
                 }
@@ -1286,7 +1286,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             Brush brush;
-            if ((e.Index == (int) unit.Branch) && unit.IsDirty(UnitClassItemId.Branch))
+            if ((e.Index == (int) unit.Branch - 1) && unit.IsDirty(UnitClassItemId.Branch))
             {
                 brush = new SolidBrush(Color.Red);
             }
@@ -1624,7 +1624,7 @@ namespace HoI2Editor.Forms
             Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            var branch = (UnitBranch) branchComboBox.SelectedIndex;
+            var branch = (Branch) (branchComboBox.SelectedIndex + 1);
             if (branch == unit.Branch)
             {
                 return;
@@ -2685,7 +2685,7 @@ namespace HoI2Editor.Forms
             airAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirAttack) ? Color.Red : SystemColors.WindowText;
 
             // 陸軍
-            if (unit.Branch == UnitBranch.Army)
+            if (unit.Branch == Branch.Army)
             {
                 // 航続距離
                 rangeLabel.Enabled = false;
@@ -2791,7 +2791,7 @@ namespace HoI2Editor.Forms
             }
 
             // 陸軍師団
-            if (unit.Branch == UnitBranch.Army && unit.Organization == UnitOrganization.Division)
+            if (unit.Branch == Branch.Army && unit.Organization == UnitOrganization.Division)
             {
                 // 速度キャップ(砲兵)
                 speedCapArtLabel.Enabled = true;
@@ -2843,7 +2843,7 @@ namespace HoI2Editor.Forms
             }
 
             // 海軍
-            if (unit.Branch == UnitBranch.Navy)
+            if (unit.Branch == Branch.Navy)
             {
                 // 改良コスト
                 upgradeCostFactorLabel.Enabled = false;
@@ -2983,7 +2983,7 @@ namespace HoI2Editor.Forms
             }
 
             // 空軍
-            if (unit.Branch == UnitBranch.AirForce)
+            if (unit.Branch == Branch.Airforce)
             {
                 // 対地防御力
                 surfaceDefenceLabel.Enabled = true;
@@ -3024,7 +3024,7 @@ namespace HoI2Editor.Forms
             }
 
             // AoD/陸軍
-            if (Game.Type == GameType.ArsenalOfDemocracy && unit.Branch == UnitBranch.Army)
+            if (Game.Type == GameType.ArsenalOfDemocracy && unit.Branch == Branch.Army)
             {
                 // 最大物資
                 maxSupplyStockLabel.Enabled = true;
@@ -3055,7 +3055,7 @@ namespace HoI2Editor.Forms
 
             // AoD/陸軍旅団
             if (Game.Type == GameType.ArsenalOfDemocracy &&
-                unit.Branch == UnitBranch.Army &&
+                unit.Branch == Branch.Army &&
                 unit.Organization == UnitOrganization.Brigade)
             {
                 // 砲撃能力
@@ -3106,7 +3106,7 @@ namespace HoI2Editor.Forms
 
             // DH/陸軍師団
             if (Game.Type == GameType.DarkestHour &&
-                unit.Branch == UnitBranch.Army &&
+                unit.Branch == Branch.Army &&
                 unit.Organization == UnitOrganization.Division)
             {
                 // 燃料切れ補正
@@ -3135,7 +3135,7 @@ namespace HoI2Editor.Forms
             // DH1.03以降/陸軍旅団
             if (Game.Type == GameType.DarkestHour &&
                 Game.Version >= 103 &&
-                unit.Branch == UnitBranch.Army &&
+                unit.Branch == Branch.Army &&
                 unit.Organization == UnitOrganization.Brigade)
             {
                 // 速度キャップ

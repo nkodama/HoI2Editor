@@ -1596,7 +1596,7 @@ namespace HoI2Editor.Forms
             countryComboBox.SelectedIndex = leader.Country != Country.None ? (int) leader.Country - 1 : -1;
             idNumericUpDown.Value = leader.Id;
             nameTextBox.Text = leader.Name;
-            branchComboBox.SelectedIndex = leader.Branch != Branch.None ? (int)leader.Branch - 1 : -1;
+            branchComboBox.SelectedIndex = leader.Branch != Branch.None ? (int) leader.Branch - 1 : -1;
             idealRankComboBox.SelectedIndex = leader.IdealRank != LeaderRank.None ? (int) leader.IdealRank - 1 : -1;
             skillNumericUpDown.Value = leader.Skill;
             maxSkillNumericUpDown.Value = leader.MaxSkill;
@@ -2122,7 +2122,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var branch = (Branch)(branchComboBox.SelectedIndex + 1);
+            var branch = (Branch) (branchComboBox.SelectedIndex + 1);
             if (branch == leader.Branch)
             {
                 return;

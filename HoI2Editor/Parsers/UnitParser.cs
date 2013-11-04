@@ -190,7 +190,7 @@ namespace HoI2Editor.Parsers
                             }
 
                             // 陸軍師団/旅団
-                            unit.Branch = UnitBranch.Army;
+                            unit.Branch = Branch.Army;
                             continue;
                         }
 
@@ -216,7 +216,7 @@ namespace HoI2Editor.Parsers
                             }
 
                             // 海軍師団/旅団
-                            unit.Branch = UnitBranch.Navy;
+                            unit.Branch = Branch.Navy;
                             continue;
                         }
 
@@ -242,7 +242,7 @@ namespace HoI2Editor.Parsers
                             }
 
                             // 空軍師団/旅団
-                            unit.Branch = UnitBranch.AirForce;
+                            unit.Branch = Branch.Airforce;
                             continue;
                         }
                     }
@@ -2230,21 +2230,21 @@ namespace HoI2Editor.Parsers
                         if (s.Equals("land"))
                         {
                             // 陸軍旅団
-                            unit.Branch = UnitBranch.Army;
+                            unit.Branch = Branch.Army;
                             continue;
                         }
                         // naval
                         if (s.Equals("naval"))
                         {
                             // 海軍旅団
-                            unit.Branch = UnitBranch.Navy;
+                            unit.Branch = Branch.Navy;
                             continue;
                         }
                         // air
                         if (s.Equals("air"))
                         {
                             // 空軍旅団
-                            unit.Branch = UnitBranch.AirForce;
+                            unit.Branch = Branch.Airforce;
                             continue;
                         }
                     }
