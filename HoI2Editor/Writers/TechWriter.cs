@@ -197,61 +197,15 @@ namespace HoI2Editor.Writers
             {
                 if (first)
                 {
-                    writer.Write("    { command = {");
+                    writer.WriteLine("    {{ command = {{ {0} }}", command);
                     first = false;
                 }
                 else
                 {
-                    writer.Write("      command = {");
+                    writer.WriteLine("      command = {{ {0} }}", command);
                 }
-                if (Game.Type == GameType.DarkestHour && command.Triggers != null && command.Triggers.Count > 0)
-                {
-                    writer.Write(" trigger = {");
-                    WriteTriggers(command.Triggers, writer);
-                    writer.Write(" }");
-                }
-                writer.Write(" type = {0}", Command.TypeStringTable[(int) command.Type]);
-                if (command.Which != null)
-                {
-                    writer.Write(" which = {0}", command.Which);
-                }
-                if (command.When != null)
-                {
-                    writer.Write(" when = {0}", command.When);
-                }
-                if (command.Where != null)
-                {
-                    writer.Write(" where = {0}", command.Where);
-                }
-                if (command.Value != null)
-                {
-                    writer.Write(" value = {0}", command.Value);
-                }
-                writer.WriteLine(" }");
             }
             writer.WriteLine("    }");
-        }
-
-        /// <summary>
-        ///     技術効果トリガー群を書き出す
-        /// </summary>
-        /// <param name="triggers">技術効果トリガー群</param>
-        /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteTriggers(IEnumerable<Trigger> triggers, StreamWriter writer)
-        {
-            foreach (Trigger trigger in triggers)
-            {
-                if (Trigger.ParamTypeTable[(int) trigger.Type] != TriggerParamType.Container)
-                {
-                    writer.Write(" {0} = {1}", Trigger.TypeStringTable[(int) trigger.Type], trigger.Value);
-                }
-                else
-                {
-                    writer.Write(" {0} = {{", Trigger.TypeStringTable[(int) trigger.Type]);
-                    WriteTriggers(trigger.Value as List<Trigger>, writer);
-                    writer.Write(" }");
-                }
-            }
         }
 
         #endregion

@@ -1,4 +1,7 @@
-﻿namespace HoI2Editor.Models
+﻿using System.Collections.Generic;
+using System.Text;
+
+namespace HoI2Editor.Models
 {
     /// <summary>
     ///     トリガー
@@ -298,6 +301,37 @@
                 TriggerParamType.Region, // region
                 TriggerParamType.ResearchMod // research_mod
             };
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     文字列に変換する
+        /// </summary>
+        /// <returns>文字列</returns>
+        public override string ToString()
+        {
+            // 単発トリガーの場合
+            if (ParamTypeTable[(int) Type] != TriggerParamType.Container)
+            {
+                return string.Format("{0} = {1}", TypeStringTable[(int) Type], Value);
+            }
+
+            // コンテナトリガーの場合
+            var sb = new StringBuilder();
+            sb.AppendFormat("{0} = {{", TypeStringTable[(int) Type]);
+            var triggers = Value as List<Trigger>;
+            if (triggers != null)
+            {
+                foreach (Trigger trigger in triggers)
+                {
+                    sb.AppendFormat(" {0}", trigger);
+                }
+            }
+            sb.Append(" }");
+            return sb.ToString();
+        }
 
         #endregion
     }

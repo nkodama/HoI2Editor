@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace HoI2Editor.Models
 {
@@ -368,6 +369,46 @@ namespace HoI2Editor.Models
             var command = new Command {Type = Type, Which = Which, Value = Value, When = When, Where = Where};
 
             return command;
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     文字列に変換する
+        /// </summary>
+        /// <returns>文字列</returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            if (Game.Type == GameType.DarkestHour && Triggers != null && Triggers.Count > 0)
+            {
+                sb.Append(" trigger = {");
+                foreach (Trigger trigger in Triggers)
+                {
+                    sb.AppendFormat(" {0}", trigger);
+                }
+                sb.Append(" }");
+            }
+            sb.AppendFormat(" type = {0}", TypeStringTable[(int) Type]);
+            if (Which != null)
+            {
+                sb.AppendFormat(" which = {0}", Which);
+            }
+            if (When != null)
+            {
+                sb.AppendFormat(" when = {0}", When);
+            }
+            if (Where != null)
+            {
+                sb.AppendFormat(" where = {0}", Where);
+            }
+            if (Value != null)
+            {
+                sb.AppendFormat(" value = {0}", Value);
+            }
+            return sb.ToString();
         }
 
         #endregion
