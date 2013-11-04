@@ -134,7 +134,7 @@
     <value>MOD名</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
-    <value>ランダム指揮官名</value>
+    <value>ランダム指揮官</value>
   </data>
   <data name="divisionNameButton.Text" xml:space="preserve">
     <value>師団名</value>

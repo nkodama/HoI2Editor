@@ -67,8 +67,8 @@
             // 
             // countryListBox
             // 
-            resources.ApplyResources(this.countryListBox, "countryListBox");
             this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            resources.ApplyResources(this.countryListBox, "countryListBox");
             this.countryListBox.FormattingEnabled = true;
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
@@ -97,8 +97,8 @@
             // 
             // typeListBox
             // 
-            resources.ApplyResources(this.typeListBox, "typeListBox");
             this.typeListBox.FormattingEnabled = true;
+            resources.ApplyResources(this.typeListBox, "typeListBox");
             this.typeListBox.Name = "typeListBox";
             this.typeListBox.SelectedIndexChanged += new System.EventHandler(this.OnTypeListBoxSelectedIndexChanged);
             // 
@@ -111,10 +111,10 @@
             // 
             // optionGroupBox
             // 
-            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Controls.Add(this.allUnitTypeCheckBox);
             this.optionGroupBox.Controls.Add(this.regexCheckBox);
             this.optionGroupBox.Controls.Add(this.allCountryCheckBox);
+            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
             // 
@@ -145,14 +145,14 @@
             // 
             // toComboBox
             // 
-            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.Name = "withComboBox";
             // 
             // startNumericUpDown
@@ -204,8 +204,8 @@
             // 
             // prefixComboBox
             // 
-            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.Name = "prefixComboBox";
             // 
             // addButton
@@ -217,12 +217,12 @@
             // 
             // replaceGroupBox
             // 
-            resources.ApplyResources(this.replaceGroupBox, "replaceGroupBox");
             this.replaceGroupBox.Controls.Add(this.withLabel);
             this.replaceGroupBox.Controls.Add(this.toLabel);
             this.replaceGroupBox.Controls.Add(this.replaceButton);
             this.replaceGroupBox.Controls.Add(this.toComboBox);
             this.replaceGroupBox.Controls.Add(this.withComboBox);
+            resources.ApplyResources(this.replaceGroupBox, "replaceGroupBox");
             this.replaceGroupBox.Name = "replaceGroupBox";
             this.replaceGroupBox.TabStop = false;
             // 
@@ -238,7 +238,6 @@
             // 
             // sequentialGroupBox
             // 
-            resources.ApplyResources(this.sequentialGroupBox, "sequentialGroupBox");
             this.sequentialGroupBox.Controls.Add(this.suffixLabel);
             this.sequentialGroupBox.Controls.Add(this.suffixComboBox);
             this.sequentialGroupBox.Controls.Add(this.prefixLabel);
@@ -247,6 +246,7 @@
             this.sequentialGroupBox.Controls.Add(this.startNumericUpDown);
             this.sequentialGroupBox.Controls.Add(this.interpolateButton);
             this.sequentialGroupBox.Controls.Add(this.endNumericUpDown);
+            resources.ApplyResources(this.sequentialGroupBox, "sequentialGroupBox");
             this.sequentialGroupBox.Name = "sequentialGroupBox";
             this.sequentialGroupBox.TabStop = false;
             // 
@@ -257,8 +257,8 @@
             // 
             // suffixComboBox
             // 
-            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.Name = "suffixComboBox";
             // 
             // prefixLabel

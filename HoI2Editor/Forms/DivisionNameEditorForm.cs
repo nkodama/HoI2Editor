@@ -219,7 +219,7 @@ namespace HoI2Editor.Forms
         {
             foreach (string tag in Countries.Tags.Select(country => Countries.Strings[(int) country]))
             {
-                countryListBox.Items.Add(tag);
+                countryListBox.Items.Add(string.Format("{0} {1}", tag, Config.GetText(tag)));
             }
             countryListBox.SelectedIndex = 0;
         }
