@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -13,6 +14,39 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class DivisionNameEditorForm : Form
     {
+        #region 内部フィールド
+
+        /// <summary>
+        ///     接頭辞の履歴
+        /// </summary>
+        private readonly History _prefixHistory = new History(HistorySize);
+
+        /// <summary>
+        ///     設備時の履歴
+        /// </summary>
+        private readonly History _suffixHistory = new History(HistorySize);
+
+        /// <summary>
+        ///     置換元の履歴
+        /// </summary>
+        private readonly History _toHistory = new History(HistorySize);
+
+        /// <summary>
+        ///     置換先の履歴
+        /// </summary>
+        private readonly History _withHistory = new History(HistorySize);
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     履歴の最大数
+        /// </summary>
+        private const int HistorySize = 10;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -390,12 +424,15 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReplaceButtonClick(object sender, EventArgs e)
         {
+            string to = toComboBox.Text;
+            string with = withComboBox.Text;
+
             if (allBranchCheckBox.Checked)
             {
                 if (allCountryCheckBox.Checked)
                 {
                     // 全ての師団名を置換する
-                    DivisionNames.ReplaceAll(toComboBox.Text, withComboBox.Text, regexCheckBox.Checked);
+                    DivisionNames.ReplaceAll(to, with, regexCheckBox.Checked);
                 }
                 else
                 {
@@ -407,7 +444,7 @@ namespace HoI2Editor.Forms
                     Country country = Countries.Tags[countryListBox.SelectedIndex];
 
                     // 全ての兵科の師団名を置換する
-                    DivisionNames.ReplaceAllBranches(toComboBox.Text, withComboBox.Text, country, regexCheckBox.Checked);
+                    DivisionNames.ReplaceAllBranches(to, with, country, regexCheckBox.Checked);
                 }
             }
             else
@@ -422,7 +459,7 @@ namespace HoI2Editor.Forms
                 if (allCountryCheckBox.Checked)
                 {
                     // 全ての国の師団名を置換する
-                    DivisionNames.ReplaceAllCountries(toComboBox.Text, withComboBox.Text, branch, regexCheckBox.Checked);
+                    DivisionNames.ReplaceAllCountries(to, with, branch, regexCheckBox.Checked);
                 }
                 else
                 {
@@ -434,7 +471,7 @@ namespace HoI2Editor.Forms
                     Country country = Countries.Tags[countryListBox.SelectedIndex];
 
                     // 師団名を置換する
-                    DivisionNames.Replace(toComboBox.Text, withComboBox.Text, branch, country, regexCheckBox.Checked);
+                    DivisionNames.Replace(to, with, branch, country, regexCheckBox.Checked);
                 }
             }
 
@@ -444,6 +481,20 @@ namespace HoI2Editor.Forms
             // 編集済みフラグが更新されるため表示を更新する
             branchListBox.Refresh();
             countryListBox.Refresh();
+
+            // 履歴を更新する
+            _toHistory.Add(to);
+            toComboBox.Items.Clear();
+            foreach (string s in _toHistory.Get())
+            {
+                toComboBox.Items.Add(s);
+            }
+            _withHistory.Add(with);
+            withComboBox.Items.Clear();
+            foreach (string s in _withHistory.Get())
+            {
+                withComboBox.Items.Add(s);
+            }
         }
 
         /// <summary>
@@ -467,9 +518,12 @@ namespace HoI2Editor.Forms
             }
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
+            string prefix = prefixComboBox.Text;
+            string suffix = suffixComboBox.Text;
+
             // 師団名を一括追加する
-            DivisionNames.AddSequential(prefixComboBox.Text, suffixComboBox.Text, (int) startNumericUpDown.Value,
-                                        (int) endNumericUpDown.Value, branch, country);
+            DivisionNames.AddSequential(prefix, suffix, (int) startNumericUpDown.Value, (int) endNumericUpDown.Value,
+                                        branch, country);
 
             // 師団名リストの表示を更新する
             UpdateNameList();
@@ -477,6 +531,20 @@ namespace HoI2Editor.Forms
             // 編集済みフラグが更新されるため表示を更新する
             branchListBox.Refresh();
             countryListBox.Refresh();
+
+            // 履歴を更新する
+            _prefixHistory.Add(prefix);
+            prefixComboBox.Items.Clear();
+            foreach (string s in _prefixHistory.Get())
+            {
+                prefixComboBox.Items.Add(s);
+            }
+            _suffixHistory.Add(suffix);
+            suffixComboBox.Items.Clear();
+            foreach (string s in _suffixHistory.Get())
+            {
+                suffixComboBox.Items.Add(s);
+            }
         }
 
         /// <summary>

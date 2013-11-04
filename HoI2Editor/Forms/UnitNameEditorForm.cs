@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -13,6 +14,39 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class UnitNameEditorForm : Form
     {
+        #region 内部フィールド
+
+        /// <summary>
+        ///     接頭辞の履歴
+        /// </summary>
+        private readonly History _prefixHistory = new History(HistorySize);
+
+        /// <summary>
+        ///     設備時の履歴
+        /// </summary>
+        private readonly History _suffixHistory = new History(HistorySize);
+
+        /// <summary>
+        ///     置換元の履歴
+        /// </summary>
+        private readonly History _toHistory = new History(HistorySize);
+
+        /// <summary>
+        ///     置換先の履歴
+        /// </summary>
+        private readonly History _withHistory = new History(HistorySize);
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     履歴の最大数
+        /// </summary>
+        private const int HistorySize = 10;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -349,12 +383,15 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReplaceButtonClick(object sender, EventArgs e)
         {
+            string to = toComboBox.Text;
+            string with = withComboBox.Text;
+
             if (allCountryCheckBox.Checked)
             {
                 if (allUnitTypeCheckBox.Checked)
                 {
                     // 全てのユニット名を置換する
-                    UnitNames.ReplaceAll(toComboBox.Text, withComboBox.Text, regexCheckBox.Checked);
+                    UnitNames.ReplaceAll(to, with, regexCheckBox.Checked);
                 }
                 else
                 {
@@ -364,7 +401,7 @@ namespace HoI2Editor.Forms
                         return;
                     }
                     // 全ての国のユニット名を置換する
-                    UnitNames.ReplaceAllCountries(toComboBox.Text, withComboBox.Text,
+                    UnitNames.ReplaceAllCountries(to, with,
                                                   UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
                 }
             }
@@ -378,7 +415,7 @@ namespace HoI2Editor.Forms
                 if (allUnitTypeCheckBox.Checked)
                 {
                     // 全てのユニット名種類のユニット名を置換する
-                    UnitNames.ReplaceAllTypes(toComboBox.Text, withComboBox.Text,
+                    UnitNames.ReplaceAllTypes(to, with,
                                               Countries.Tags[countryListBox.SelectedIndex], regexCheckBox.Checked);
                 }
                 else
@@ -389,7 +426,7 @@ namespace HoI2Editor.Forms
                         return;
                     }
                     // ユニット名を置換する
-                    UnitNames.Replace(toComboBox.Text, withComboBox.Text, Countries.Tags[countryListBox.SelectedIndex],
+                    UnitNames.Replace(to, with, Countries.Tags[countryListBox.SelectedIndex],
                                       UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
                 }
             }
@@ -399,6 +436,20 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
             countryListBox.Refresh();
+
+            // 履歴を更新する
+            _toHistory.Add(to);
+            toComboBox.Items.Clear();
+            foreach (string s in _toHistory.Get())
+            {
+                toComboBox.Items.Add(s);
+            }
+            _withHistory.Add(with);
+            withComboBox.Items.Clear();
+            foreach (string s in _withHistory.Get())
+            {
+                withComboBox.Items.Add(s);
+            }
         }
 
         /// <summary>
@@ -408,9 +459,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAddButtonClick(object sender, EventArgs e)
         {
+            string prefix = prefixComboBox.Text;
+            string suffix = suffixComboBox.Text;
+
             // ユニット名を一括追加する
-            UnitNames.AddSequential(prefixComboBox.Text, suffixComboBox.Text, (int) startNumericUpDown.Value,
-                                    (int) endNumericUpDown.Value, Countries.Tags[countryListBox.SelectedIndex],
+            UnitNames.AddSequential(prefix, suffix, (int) startNumericUpDown.Value, (int) endNumericUpDown.Value,
+                                    Countries.Tags[countryListBox.SelectedIndex],
                                     UnitNames.Types[typeListBox.SelectedIndex]);
 
             // ユニット名リストの表示を更新する
@@ -418,6 +472,20 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
             countryListBox.Refresh();
+
+            // 履歴を更新する
+            _prefixHistory.Add(prefix);
+            prefixComboBox.Items.Clear();
+            foreach (string s in _prefixHistory.Get())
+            {
+                prefixComboBox.Items.Add(s);
+            }
+            _suffixHistory.Add(suffix);
+            suffixComboBox.Items.Clear();
+            foreach (string s in _suffixHistory.Get())
+            {
+                suffixComboBox.Items.Add(s);
+            }
         }
 
         /// <summary>

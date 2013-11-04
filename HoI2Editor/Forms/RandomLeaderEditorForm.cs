@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -13,6 +14,29 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class RandomLeaderEditorForm : Form
     {
+        #region 内部フィールド
+
+        /// <summary>
+        ///     置換元の履歴
+        /// </summary>
+        private readonly History _toHistory = new History(HistorySize);
+
+        /// <summary>
+        ///     置換先の履歴
+        /// </summary>
+        private readonly History _withHistory = new History(HistorySize);
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     履歴の最大数
+        /// </summary>
+        private const int HistorySize = 10;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -304,10 +328,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReplaceButtonClick(object sender, EventArgs e)
         {
+            string to = toComboBox.Text;
+            string with = withComboBox.Text;
+
             if (allCountryCheckBox.Checked)
             {
                 // 全ての国のランダム指揮官名を置換する
-                RandomLeaders.ReplaceAll(toComboBox.Text, withComboBox.Text, regexCheckBox.Checked);
+                RandomLeaders.ReplaceAll(to, with, regexCheckBox.Checked);
             }
             else
             {
@@ -319,7 +346,7 @@ namespace HoI2Editor.Forms
                 Country country = Countries.Tags[countryListBox.SelectedIndex];
 
                 // ランダム指揮官名を置換する
-                RandomLeaders.Replace(toComboBox.Text, withComboBox.Text, country, regexCheckBox.Checked);
+                RandomLeaders.Replace(to, with, country, regexCheckBox.Checked);
             }
 
             // ランダム指揮官名リストの表示を更新する
@@ -327,6 +354,20 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが更新されるため表示を更新する
             countryListBox.Refresh();
+
+            // 履歴を更新する
+            _toHistory.Add(to);
+            toComboBox.Items.Clear();
+            foreach (string s in _toHistory.Get())
+            {
+                toComboBox.Items.Add(s);
+            }
+            _withHistory.Add(with);
+            withComboBox.Items.Clear();
+            foreach (string s in _withHistory.Get())
+            {
+                withComboBox.Items.Add(s);
+            }
         }
 
         #endregion

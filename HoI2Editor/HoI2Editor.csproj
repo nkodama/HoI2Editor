@@ -150,6 +150,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CursorFactory.cs" />
     <Compile Include="Utilities\DoubleHelper.cs" />
+    <Compile Include="Utilities\History.cs" />
     <Compile Include="Utilities\IntHelper.cs" />
     <Compile Include="Writers\MiscWriter.cs" />
     <Compile Include="Writers\TechWriter.cs" />
