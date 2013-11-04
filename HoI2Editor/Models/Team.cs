@@ -17,7 +17,16 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ID
         /// </summary>
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                Teams.IdSet.Remove(_id);
+                _id = value;
+                Teams.IdSet.Add(_id);
+            }
+        }
 
         /// <summary>
         ///     名前
@@ -70,6 +79,11 @@ namespace HoI2Editor.Models
         ///     編集済みフラグ
         /// </summary>
         private bool _dirtyFlag;
+
+        /// <summary>
+        ///     研究機関ID
+        /// </summary>
+        private int _id;
 
         #endregion
 

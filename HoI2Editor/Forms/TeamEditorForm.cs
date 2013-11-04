@@ -81,7 +81,7 @@ namespace HoI2Editor.Forms
                 TeamItemId.Speciality4,
                 TeamItemId.Speciality5,
                 TeamItemId.Speciality6,
-                TeamItemId.Speciality7,
+                TeamItemId.Speciality7
             };
 
         #endregion
@@ -692,7 +692,7 @@ namespace HoI2Editor.Forms
                 team = new Team
                     {
                         Country = selected.Country,
-                        Id = selected.Id + 1,
+                        Id = Teams.GetNewId(selected.Country),
                         Skill = 1,
                         StartYear = 1930,
                         EndYear = 1970,
@@ -707,13 +707,14 @@ namespace HoI2Editor.Forms
             }
             else
             {
+                Country country = countryListBox.SelectedItems.Count > 0
+                                      ? (Country) (countryListBox.SelectedIndex + 1)
+                                      : Country.None;
                 // 新規項目を作成する
                 team = new Team
                     {
-                        Country = countryListBox.SelectedItems.Count > 0
-                                      ? (Country) (countryListBox.SelectedIndex + 1)
-                                      : Country.None,
-                        Id = 0,
+                        Country = country,
+                        Id = Teams.GetNewId(country),
                         Skill = 1,
                         StartYear = 1930,
                         EndYear = 1970,
@@ -751,7 +752,7 @@ namespace HoI2Editor.Forms
             var team = new Team
                 {
                     Country = selected.Country,
-                    Id = selected.Id + 1,
+                    Id = Teams.GetNewId(selected.Country),
                     Name = selected.Name,
                     Skill = selected.Skill,
                     StartYear = selected.StartYear,

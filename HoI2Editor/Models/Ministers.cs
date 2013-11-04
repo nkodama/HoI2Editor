@@ -22,6 +22,11 @@ namespace HoI2Editor.Models
         public static List<Minister> Items { get; private set; }
 
         /// <summary>
+        ///     使用済みIDリスト
+        /// </summary>
+        public static HashSet<int> IdSet { get; private set; }
+
+        /// <summary>
         ///     閣僚特性一覧
         /// </summary>
         public static MinisterPersonalityInfo[] Personalities { get; private set; }
@@ -730,6 +735,9 @@ namespace HoI2Editor.Models
             // マスター閣僚リスト
             Items = new List<Minister>();
 
+            // 使用済みIDリスト
+            IdSet = new HashSet<int>();
+
             // 閣僚地位と特性の対応付け
             PositionPersonalityTable = new List<int>[Enum.GetValues(typeof (MinisterPosition)).Length];
 
@@ -941,6 +949,7 @@ namespace HoI2Editor.Models
             }
 
             Items.Clear();
+            IdSet.Clear();
 
             switch (Game.Type)
             {
@@ -1513,6 +1522,9 @@ namespace HoI2Editor.Models
         public static void RemoveItem(Minister minister)
         {
             Items.Remove(minister);
+
+            // 使用済みIDリストから削除する
+            IdSet.Remove(minister.Id);
         }
 
         /// <summary>
@@ -1537,6 +1549,36 @@ namespace HoI2Editor.Models
                 Items.Insert(destIndex + 1, src);
                 Items.RemoveAt(srcIndex);
             }
+        }
+
+        #endregion
+
+        #region ID操作
+
+        /// <summary>
+        ///     未使用の閣僚IDを取得する
+        /// </summary>
+        /// <param name="country">対象の国タグ</param>
+        /// <returns>閣僚ID</returns>
+        public static int GetNewId(Country country)
+        {
+            // 対象国の閣僚IDの最大値+1から検索を始める
+            int id = 1;
+            if (country != Country.None)
+            {
+                List<int> ids =
+                    Items.Where(minister => minister.Country == country).Select(minister => minister.Id).ToList();
+                if (ids.Any())
+                {
+                    id = ids.Max() + 1;
+                }
+            }
+            // 未使用IDが見つかるまでIDを1ずつ増やす
+            while (IdSet.Contains(id))
+            {
+                id++;
+            }
+            return id;
         }
 
         #endregion

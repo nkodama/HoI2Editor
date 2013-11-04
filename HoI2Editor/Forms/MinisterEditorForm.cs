@@ -490,7 +490,7 @@ namespace HoI2Editor.Forms
                 minister = new Minister
                     {
                         Country = selected.Country,
-                        Id = selected.Id + 1,
+                        Id = Ministers.GetNewId(selected.Country),
                         StartYear = 1936,
                         EndYear = 1970,
                         RetirementYear = 1999,
@@ -509,13 +509,14 @@ namespace HoI2Editor.Forms
             }
             else
             {
+                Country country = countryListBox.SelectedItems.Count > 0
+                                      ? (Country) (countryListBox.SelectedIndex + 1)
+                                      : Country.None;
                 // 新規項目を作成する
                 minister = new Minister
                     {
-                        Country = countryListBox.SelectedItems.Count > 0
-                                      ? (Country) (countryListBox.SelectedIndex + 1)
-                                      : Country.None,
-                        Id = 0,
+                        Country = country,
+                        Id = Ministers.GetNewId(country),
                         StartYear = 1930,
                         EndYear = 1970,
                         RetirementYear = 1999,
@@ -558,7 +559,7 @@ namespace HoI2Editor.Forms
             var minister = new Minister
                 {
                     Country = selected.Country,
-                    Id = selected.Id + 1,
+                    Id = Ministers.GetNewId(selected.Country),
                     Name = selected.Name,
                     StartYear = selected.StartYear,
                     EndYear = selected.EndYear,
