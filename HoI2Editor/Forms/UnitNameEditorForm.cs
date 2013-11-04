@@ -165,6 +165,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
+            typeListBox.Refresh();
         }
 
         /// <summary>
@@ -177,6 +178,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
+            typeListBox.Refresh();
         }
 
         #endregion
@@ -259,6 +261,45 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     ユニット種類リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTypeListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
+            {
+                // 変更ありの項目は文字色を変更する
+                Country country = Countries.Tags[countryListBox.SelectedIndex];
+                UnitNameType type = UnitNames.Types[e.Index];
+                brush = UnitNames.IsDirty(country, type)
+                            ? new SolidBrush(Color.Red)
+                            : new SolidBrush(SystemColors.WindowText);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = typeListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
         ///     ユニット種類リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -330,6 +371,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
             countryListBox.Refresh();
+            typeListBox.Refresh();
         }
 
         #endregion
@@ -436,6 +478,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
             countryListBox.Refresh();
+            typeListBox.Refresh();
 
             // 履歴を更新する
             _toHistory.Add(to);
@@ -485,6 +528,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
             countryListBox.Refresh();
+            typeListBox.Refresh();
 
             // 履歴を更新する
             _prefixHistory.Add(prefix);
@@ -554,8 +598,9 @@ namespace HoI2Editor.Forms
             // ユニット名リストの表示を更新する
             UpdateNameList();
 
-            // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
+            // 編集済みフラグが更新されるため表示を更新する
             countryListBox.Refresh();
+            typeListBox.Refresh();
         }
 
         #endregion

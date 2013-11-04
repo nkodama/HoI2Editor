@@ -46,9 +46,15 @@ namespace HoI2Editor.Models
         private static bool _dirtyFlag;
 
         /// <summary>
-        ///     編集済みフラグ
+        ///     国家ごとの編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+        private static readonly bool[] CountryDirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+
+        /// <summary>
+        ///     ユニット名種類ごとの編集済みフラグ
+        /// </summary>
+        private static readonly bool[,] TypeDirtyFlags =
+            new bool[Enum.GetValues(typeof (Country)).Length,Enum.GetValues(typeof (UnitNameType)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -507,7 +513,7 @@ namespace HoI2Editor.Models
             Items[country][type] = names;
 
             // 編集済みフラグを設定する
-            SetDirty(country);
+            SetDirty(country, type);
         }
 
         /// <summary>
@@ -598,7 +604,7 @@ namespace HoI2Editor.Models
                 if (!Exists(name, country, type))
                 {
                     AddName(name, country, type);
-                    SetDirty(country);
+                    SetDirty(country, type);
                 }
             }
         }
@@ -756,26 +762,30 @@ namespace HoI2Editor.Models
         /// <returns>編集済みならばtrueを返す</returns>
         public static bool IsDirty(Country country)
         {
-            return DirtyFlags[(int) country];
+            return CountryDirtyFlags[(int) country];
+        }
+
+        /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <param name="type">ユニット名種類</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty(Country country, UnitNameType type)
+        {
+            return TypeDirtyFlags[(int) country, (int) type];
         }
 
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(Country country)
+        /// <param name="type">ユニット名種類</param>
+        public static void SetDirty(Country country, UnitNameType type)
         {
-            DirtyFlags[(int) country] = true;
+            TypeDirtyFlags[(int) country, (int) type] = true;
+            CountryDirtyFlags[(int) country] = true;
             _dirtyFlag = true;
-        }
-
-        /// <summary>
-        ///     編集済みフラグを解除する
-        /// </summary>
-        /// <param name="country">国タグ</param>
-        public static void ResetDirty(Country country)
-        {
-            DirtyFlags[(int) country] = false;
         }
 
         /// <summary>
@@ -785,7 +795,11 @@ namespace HoI2Editor.Models
         {
             foreach (Country country in Enum.GetValues(typeof (Country)))
             {
-                DirtyFlags[(int) country] = false;
+                foreach (UnitNameType type in Enum.GetValues(typeof (UnitNameType)))
+                {
+                    TypeDirtyFlags[(int) country, (int) type] = false;
+                }
+                CountryDirtyFlags[(int) country] = false;
             }
             _dirtyFlag = false;
         }

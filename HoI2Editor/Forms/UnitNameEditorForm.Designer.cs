@@ -97,9 +97,11 @@
             // 
             // typeListBox
             // 
+            this.typeListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.typeListBox.FormattingEnabled = true;
             resources.ApplyResources(this.typeListBox, "typeListBox");
             this.typeListBox.Name = "typeListBox";
+            this.typeListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTypeListBoxDrawItem);
             this.typeListBox.SelectedIndexChanged += new System.EventHandler(this.OnTypeListBoxSelectedIndexChanged);
             // 
             // nameTextBox

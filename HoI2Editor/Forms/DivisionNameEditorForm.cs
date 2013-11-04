@@ -605,7 +605,8 @@ namespace HoI2Editor.Forms
             // 師団名リストの表示を更新する
             UpdateNameList();
 
-            // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
+            // 編集済みフラグが更新されるため表示を更新する
+            branchListBox.Refresh();
             countryListBox.Refresh();
         }
 
