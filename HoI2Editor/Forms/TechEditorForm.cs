@@ -3285,7 +3285,7 @@ namespace HoI2Editor.Forms
             // 編集項目の値を更新する
             componentIdNumericUpDown.Value = component.Id;
             componentNameTextBox.Text = component.ToString();
-            componentSpecialityComboBox.SelectedIndex = (int) component.Speciality - 1;
+            componentSpecialityComboBox.SelectedIndex = Array.IndexOf(Techs.Specialities, component.Speciality) - 1;
             componentDifficultyNumericUpDown.Value = component.Difficulty;
             componentDoubleTimeCheckBox.Checked = component.DoubleTime;
 
