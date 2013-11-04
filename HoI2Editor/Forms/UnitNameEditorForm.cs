@@ -459,13 +459,26 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAddButtonClick(object sender, EventArgs e)
         {
+            // 選択中の国家がなければ戻る
+            if (countryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+
+            // 選択中のユニット名種類がなければ戻る
+            if (typeListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            UnitNameType type = UnitNames.Types[typeListBox.SelectedIndex];
+
             string prefix = prefixComboBox.Text;
             string suffix = suffixComboBox.Text;
 
             // ユニット名を一括追加する
             UnitNames.AddSequential(prefix, suffix, (int) startNumericUpDown.Value, (int) endNumericUpDown.Value,
-                                    Countries.Tags[countryListBox.SelectedIndex],
-                                    UnitNames.Types[typeListBox.SelectedIndex]);
+                                    country, type);
 
             // ユニット名リストの表示を更新する
             UpdateNameList();
