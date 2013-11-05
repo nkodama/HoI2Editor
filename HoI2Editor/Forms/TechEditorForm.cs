@@ -3395,7 +3395,7 @@ namespace HoI2Editor.Forms
             {
                 int index = componentListView.SelectedIndices[0];
                 TechComponent selected = item.Components[index];
-                component.Id = selected.Id + 1;
+                component.Id = item.GetNewComponentId(selected.Id + 1);
 
                 // 項目をリストに挿入する
                 item.InsertComponent(component, index + 1);
@@ -3405,6 +3405,8 @@ namespace HoI2Editor.Forms
             }
             else
             {
+                component.Id = item.GetNewComponentId(item.Id + 1);
+
                 // 項目をリストに追加する
                 item.AddComponent(component);
 
@@ -3434,7 +3436,9 @@ namespace HoI2Editor.Forms
             }
             int index = componentListView.SelectedIndices[0];
 
-            TechComponent component = item.Components[index].Clone();
+            TechComponent selected = item.Components[index];
+            TechComponent component = selected.Clone();
+            component.Id = item.GetNewComponentId(selected.Id);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();

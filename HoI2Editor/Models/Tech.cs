@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace HoI2Editor.Models
 {
@@ -462,6 +463,22 @@ namespace HoI2Editor.Models
         public void RemoveComponent(int index)
         {
             Components.RemoveAt(index);
+        }
+
+        /// <summary>
+        ///     未使用の小研究IDを取得する
+        /// </summary>
+        /// <param name="startId">検索を開始するID</param>
+        /// <returns>未使用の小研究ID</returns>
+        public int GetNewComponentId(int startId)
+        {
+            int id = startId;
+            List<int> ids = Components.Select(component => component.Id).ToList();
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
         }
 
         #endregion
@@ -1358,7 +1375,6 @@ namespace HoI2Editor.Models
         {
             var component = new TechComponent
                 {
-                    Id = Id + 1,
                     Name = Config.GetTempKey(),
                     Speciality = Speciality,
                     Difficulty = Difficulty,
