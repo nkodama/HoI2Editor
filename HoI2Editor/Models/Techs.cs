@@ -794,6 +794,21 @@ namespace HoI2Editor.Models
             }
         }
 
+        /// <summary>
+        ///     未使用の技術IDを取得する
+        /// </summary>
+        /// <param name="startId">検索を開始するID</param>
+        /// <returns>未使用の技術ID</returns>
+        public static int GetNewId(int startId)
+        {
+            int id = startId;
+            while (TechIds.Contains(id))
+            {
+                id += 10;
+            }
+            return id;
+        }
+
         #endregion
 
         #region 文字列操作

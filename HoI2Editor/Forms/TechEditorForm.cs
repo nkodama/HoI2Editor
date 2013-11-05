@@ -597,11 +597,16 @@ namespace HoI2Editor.Forms
                 // 選択項目の先頭座標を引き継ぐ
                 item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
 
-                // 選択項目が技術アプリケーションならばIDを10増やす
                 if (selected is TechItem)
                 {
+                    // 選択項目が技術アプリケーションならばIDを10増やす
                     var selectedApplication = selected as TechItem;
-                    item.Id = selectedApplication.Id + 10;
+                    item.Id = Techs.GetNewId(selectedApplication.Id + 10);
+                }
+                else
+                {
+                    // 未使用の技術IDを1010以降で検索する
+                    item.Id = Techs.GetNewId(1010);
                 }
 
                 // 技術項目リストに項目を挿入する
@@ -614,6 +619,9 @@ namespace HoI2Editor.Forms
             {
                 // 仮の座標を登録する
                 item.Positions.Add(new TechPosition());
+
+                // 未使用の技術IDを1010以降で検索する
+                item.Id = Techs.GetNewId(1010);
 
                 // 技術項目リストに項目を追加する
                 grp.AddItem(item);

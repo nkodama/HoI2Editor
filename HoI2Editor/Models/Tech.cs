@@ -365,7 +365,7 @@ namespace HoI2Editor.Models
         {
             var item = new TechItem
                 {
-                    Id = Id + 10,
+                    Id = Techs.GetNewId(Id + 10),
                     Name = Config.GetTempKey(),
                     ShortName = Config.GetTempKey(),
                     Desc = Config.GetTempKey(),
