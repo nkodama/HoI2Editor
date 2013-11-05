@@ -3917,7 +3917,7 @@ namespace HoI2Editor.Forms
             else
             {
                 // 項目がなくなれば編集項目を無効化する
-                DisableComponentTab();
+                DisableComponentItems();
             }
         }
 
