@@ -1045,7 +1045,10 @@ namespace HoI2Editor.Forms
             // 特性
             personalityComboBox.DropDownWidth =
                 Ministers.Personalities.Select(info => Config.GetText(info.Name))
-                         .Select(s => TextRenderer.MeasureText(s, personalityComboBox.Font).Width)
+                         .Select(
+                             s =>
+                             TextRenderer.MeasureText(s, personalityComboBox.Font).Width +
+                             SystemInformation.VerticalScrollBarWidth)
                          .Concat(new[] {personalityComboBox.DropDownWidth})
                          .Max();
 

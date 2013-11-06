@@ -3549,4 +3549,43 @@
   <data name="MinisterPersonalityGenericMinister" xml:space="preserve">
     <value>一般閣僚</value>
   </data>
+  <data name="Bronsart" xml:space="preserve">
+    <value>ブロンザルト</value>
+  </data>
+  <data name="Goltz" xml:space="preserve">
+    <value>ゴルツ</value>
+  </data>
+  <data name="Meissner" xml:space="preserve">
+    <value>マイスナー</value>
+  </data>
+  <data name="Paschwitz" xml:space="preserve">
+    <value>パシヴィッツ</value>
+  </data>
+  <data name="Peiper" xml:space="preserve">
+    <value>パイパー</value>
+  </data>
+  <data name="Seeckt" xml:space="preserve">
+    <value>ゼークト</value>
+  </data>
+  <data name="Serno" xml:space="preserve">
+    <value>ゼルノ</value>
+  </data>
+  <data name="Sievert" xml:space="preserve">
+    <value>ジーフェルト</value>
+  </data>
+  <data name="Souchon" xml:space="preserve">
+    <value>ゾウヒョン</value>
+  </data>
+  <data name="Thauvenay" xml:space="preserve">
+    <value>トヴネ</value>
+  </data>
+  <data name="Usedom" xml:space="preserve">
+    <value>ウーゼドム</value>
+  </data>
+  <data name="Friedman" xml:space="preserve">
+    <value>フリードマン</value>
+  </data>
+  <data name="Sinclair" xml:space="preserve">
+    <value>シンクレア</value>
+  </data>
 </root>

@@ -3585,4 +3585,43 @@
   <data name="MinisterPersonalityGenericMinister" xml:space="preserve">
     <value>Generic minister</value>
   </data>
+  <data name="Bronsart" xml:space="preserve">
+    <value>Bronsart</value>
+  </data>
+  <data name="Goltz" xml:space="preserve">
+    <value>Goltz</value>
+  </data>
+  <data name="Meissner" xml:space="preserve">
+    <value>Meißner</value>
+  </data>
+  <data name="Paschwitz" xml:space="preserve">
+    <value>Paschwitz</value>
+  </data>
+  <data name="Peiper" xml:space="preserve">
+    <value>Peiper</value>
+  </data>
+  <data name="Seeckt" xml:space="preserve">
+    <value>Seeckt</value>
+  </data>
+  <data name="Serno" xml:space="preserve">
+    <value>Serno</value>
+  </data>
+  <data name="Sievert" xml:space="preserve">
+    <value>Sievert</value>
+  </data>
+  <data name="Souchon" xml:space="preserve">
+    <value>Souchon</value>
+  </data>
+  <data name="Thauvenay" xml:space="preserve">
+    <value>Thauvenay</value>
+  </data>
+  <data name="Usedom" xml:space="preserve">
+    <value>Usedom</value>
+  </data>
+  <data name="Friedman" xml:space="preserve">
+    <value>Friedman</value>
+  </data>
+  <data name="Sinclair" xml:space="preserve">
+    <value>Sinclair</value>
+  </data>
 </root>

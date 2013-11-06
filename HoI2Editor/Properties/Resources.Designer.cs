@@ -232,6 +232,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Bronsart に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Bronsart {
+            get {
+                return ResourceManager.GetString("Bronsart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Close に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Close {
@@ -354,6 +363,24 @@ namespace HoI2Editor.Properties {
         public static string FileWriteError {
             get {
                 return ResourceManager.GetString("FileWriteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Friedman に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Friedman {
+            get {
+                return ResourceManager.GetString("Friedman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Goltz に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Goltz {
+            get {
+                return ResourceManager.GetString("Goltz", resourceCulture);
             }
         }
         
@@ -939,6 +966,15 @@ namespace HoI2Editor.Properties {
         public static string LoyaltyVeryLow {
             get {
                 return ResourceManager.GetString("LoyaltyVeryLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Meißner に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Meissner {
+            get {
+                return ResourceManager.GetString("Meissner", resourceCulture);
             }
         }
         
@@ -10231,6 +10267,24 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Paschwitz に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Paschwitz {
+            get {
+                return ResourceManager.GetString("Paschwitz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Peiper に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Peiper {
+            get {
+                return ResourceManager.GetString("Peiper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Marshal に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Rank0 {
@@ -10290,6 +10344,51 @@ namespace HoI2Editor.Properties {
         public static string Section {
             get {
                 return ResourceManager.GetString("Section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Seeckt に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Seeckt {
+            get {
+                return ResourceManager.GetString("Seeckt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Serno に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Serno {
+            get {
+                return ResourceManager.GetString("Serno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sievert に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Sievert {
+            get {
+                return ResourceManager.GetString("Sievert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sinclair に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Sinclair {
+            get {
+                return ResourceManager.GetString("Sinclair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Souchon に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Souchon {
+            get {
+                return ResourceManager.GetString("Souchon", resourceCulture);
             }
         }
         
@@ -10443,6 +10542,24 @@ namespace HoI2Editor.Properties {
         public static string Stalin {
             get {
                 return ResourceManager.GetString("Stalin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Thauvenay に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Thauvenay {
+            get {
+                return ResourceManager.GetString("Thauvenay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Usedom に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Usedom {
+            get {
+                return ResourceManager.GetString("Usedom", resourceCulture);
             }
         }
         

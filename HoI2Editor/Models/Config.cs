@@ -771,6 +771,64 @@ namespace HoI2Editor.Models
                 AddReplacedText("NPERSONALITY_STALIN",
                                 string.Format("{0}({1})", GetText("NPERSONALITY_STALIN"), Resources.Stalin));
             }
+
+            // ドイツ軍事顧問: パイパー/マイスナー/ブロンザルト/ゼークト/ゾウヒョン/パシヴィッツ/ゼルノ/ゴルツ/ジーフェルト/トヴネ/ウーゼドム
+            if (ExistsKey("NPERSONALITY_GER_MIL_M1") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M2") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M3") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M4") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M5") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M6") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M7") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M8") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M9") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M10") &&
+                ExistsKey("NPERSONALITY_GER_MIL_M11") &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M2")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M3")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M4")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M5")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M6")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M7")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M8")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M9")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M10")) &&
+                GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M11")))
+            {
+                AddReplacedText("NPERSONALITY_GER_MIL_M1",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M1"), Resources.Peiper));
+                AddReplacedText("NPERSONALITY_GER_MIL_M2",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M2"), Resources.Meissner));
+                AddReplacedText("NPERSONALITY_GER_MIL_M3",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M3"), Resources.Bronsart));
+                AddReplacedText("NPERSONALITY_GER_MIL_M4",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M4"), Resources.Seeckt));
+                AddReplacedText("NPERSONALITY_GER_MIL_M5",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M5"), Resources.Souchon));
+                AddReplacedText("NPERSONALITY_GER_MIL_M6",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M6"), Resources.Paschwitz));
+                AddReplacedText("NPERSONALITY_GER_MIL_M7",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M7"), Resources.Serno));
+                AddReplacedText("NPERSONALITY_GER_MIL_M8",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M8"), Resources.Goltz));
+                AddReplacedText("NPERSONALITY_GER_MIL_M9",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M9"), Resources.Sievert));
+                AddReplacedText("NPERSONALITY_GER_MIL_M10",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M10"), Resources.Thauvenay));
+                AddReplacedText("NPERSONALITY_GER_MIL_M11",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M11"), Resources.Usedom));
+            }
+
+            // 暗号解析の専門家: シンクレア/フリードマン
+            if (ExistsKey("NPERSONALITY_SINCLAIR") &&
+                ExistsKey("NPERSONALITY_FRIEDMAN") &&
+                GetText("NPERSONALITY_SINCLAIR").Equals(GetText("NPERSONALITY_FRIEDMAN")))
+            {
+                AddReplacedText("NPERSONALITY_SINCLAIR",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_SINCLAIR"), Resources.Sinclair));
+                AddReplacedText("NPERSONALITY_FRIEDMAN",
+                                string.Format("{0}({1})", GetText("NPERSONALITY_FRIEDMAN"), Resources.Friedman));
+            }
         }
 
         /// <summary>
