@@ -943,6 +943,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Generic minister に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MinisterPersonalityGenericMinister {
+            get {
+                return ResourceManager.GetString("MinisterPersonalityGenericMinister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Bombing に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MiscEnumAaAirFiringRules0 {

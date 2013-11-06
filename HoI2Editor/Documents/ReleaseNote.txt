@@ -1,5 +1,9 @@
 Alternative HoI2 Editor 更新履歴
 
+- 2013/11/06 Ver 0.23
+
+DH None/Lightで閣僚新規追加時に特性が"Generic minister"になる問題を回避。
+
 - 2013/11/06 Ver 0.22
 
 ユニット名/師団名/ランダム指揮官名の編集機能を実装。

@@ -3582,4 +3582,7 @@
   <data name="MiscEnumUseSpeedSetGarrisonStatus1" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="MinisterPersonalityGenericMinister" xml:space="preserve">
+    <value>Generic minister</value>
+  </data>
 </root>

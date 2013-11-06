@@ -863,6 +863,9 @@ namespace HoI2Editor.Models
                 AddComplementedText("NAME_SP_ROCKET_ARTILLERY", Resources.BrigadeSpRocketArtillery);
                 AddComplementedText("NAME_ANTITANK", Resources.BrigadeAntiTank);
                 AddComplementedText("NAME_NAVAL_TORPEDOES_L", Resources.BrigadeNavalTorpedoesL);
+
+                // DH None/Lightで定義されていない閣僚特性
+                AddComplementedText("GENERIC MINISTER", Resources.MinisterPersonalityGenericMinister);
             }
         }
 
