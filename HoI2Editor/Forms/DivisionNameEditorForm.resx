@@ -133,7 +133,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="copyButton.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>8</value>
   </data>
   <data name="copyButton.Text" xml:space="preserve">
     <value>Copy</value>
@@ -163,7 +163,7 @@
     <value>75, 23</value>
   </data>
   <data name="pasteButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>9</value>
   </data>
   <data name="pasteButton.Text" xml:space="preserve">
     <value>Paste</value>
@@ -193,7 +193,7 @@
     <value>75, 23</value>
   </data>
   <data name="cutButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>7</value>
   </data>
   <data name="cutButton.Text" xml:space="preserve">
     <value>Cut</value>
@@ -223,7 +223,7 @@
     <value>35, 12</value>
   </data>
   <data name="suffixLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="suffixLabel.Text" xml:space="preserve">
     <value>Suffix</value>
@@ -247,7 +247,7 @@
     <value>134, 20</value>
   </data>
   <data name="suffixComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;suffixComboBox.Name" xml:space="preserve">
     <value>suffixComboBox</value>
@@ -301,7 +301,7 @@
     <value>75, 23</value>
   </data>
   <data name="addButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="addButton.Text" xml:space="preserve">
     <value>Add</value>
@@ -346,7 +346,7 @@
     <value>60, 19</value>
   </data>
   <data name="startNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="startNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -373,7 +373,7 @@
     <value>75, 23</value>
   </data>
   <data name="interpolateButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="interpolateButton.Text" xml:space="preserve">
     <value>Interpolate</value>
@@ -397,7 +397,7 @@
     <value>60, 19</value>
   </data>
   <data name="endNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="endNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -421,7 +421,7 @@
     <value>210, 128</value>
   </data>
   <data name="sequentialGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>4</value>
   </data>
   <data name="sequentialGroupBox.Text" xml:space="preserve">
     <value>Sequential Number</value>
@@ -574,7 +574,7 @@
     <value>210, 101</value>
   </data>
   <data name="replaceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>3</value>
   </data>
   <data name="replaceGroupBox.Text" xml:space="preserve">
     <value>Replace</value>
@@ -604,7 +604,7 @@
     <value>123, 16</value>
   </data>
   <data name="allBranchCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="allBranchCheckBox.Text" xml:space="preserve">
     <value>Apply All Branches</value>
@@ -634,7 +634,7 @@
     <value>123, 16</value>
   </data>
   <data name="regexCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="regexCheckBox.Text" xml:space="preserve">
     <value>Regular Expression</value>
@@ -664,7 +664,7 @@
     <value>124, 16</value>
   </data>
   <data name="allCountryCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="allCountryCheckBox.Text" xml:space="preserve">
     <value>Apply All Countries</value>
@@ -694,7 +694,7 @@
     <value>75, 23</value>
   </data>
   <data name="undoButton.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>6</value>
   </data>
   <data name="undoButton.Text" xml:space="preserve">
     <value>Undo</value>
@@ -718,7 +718,7 @@
     <value>210, 85</value>
   </data>
   <data name="optionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>5</value>
   </data>
   <data name="optionGroupBox.Text" xml:space="preserve">
     <value>Option</value>
@@ -748,7 +748,7 @@
     <value>258, 386</value>
   </data>
   <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
     <value>nameTextBox</value>
@@ -772,7 +772,7 @@
     <value>120, 40</value>
   </data>
   <data name="branchListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;branchListBox.Name" xml:space="preserve">
     <value>branchListBox</value>
@@ -799,7 +799,7 @@
     <value>75, 23</value>
   </data>
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>12</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -829,7 +829,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>11</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -859,7 +859,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>10</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -889,7 +889,7 @@
     <value>120, 340</value>
   </data>
   <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;countryListBox.Name" xml:space="preserve">
     <value>countryListBox</value>

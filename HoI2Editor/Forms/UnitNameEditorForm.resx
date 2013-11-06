@@ -160,7 +160,7 @@
     <value>75, 23</value>
   </data>
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>12</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -190,7 +190,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -220,7 +220,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -325,7 +325,7 @@
     <value>123, 16</value>
   </data>
   <data name="regexCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="regexCheckBox.Text" xml:space="preserve">
     <value>Regular Expression</value>
@@ -466,7 +466,7 @@
     <value>60, 19</value>
   </data>
   <data name="startNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="startNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -490,7 +490,7 @@
     <value>60, 19</value>
   </data>
   <data name="endNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="endNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -514,7 +514,7 @@
     <value>75, 23</value>
   </data>
   <data name="interpolateButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="interpolateButton.Text" xml:space="preserve">
     <value>Interpolate</value>
@@ -559,7 +559,7 @@
     <value>75, 23</value>
   </data>
   <data name="addButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="addButton.Text" xml:space="preserve">
     <value>Add</value>
@@ -667,7 +667,7 @@
     <value>35, 12</value>
   </data>
   <data name="suffixLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="suffixLabel.Text" xml:space="preserve">
     <value>Suffix</value>
@@ -691,7 +691,7 @@
     <value>134, 20</value>
   </data>
   <data name="suffixComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;suffixComboBox.Name" xml:space="preserve">
     <value>suffixComboBox</value>
@@ -769,7 +769,7 @@
     <value>75, 23</value>
   </data>
   <data name="cutButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="cutButton.Text" xml:space="preserve">
     <value>Cut</value>
@@ -799,7 +799,7 @@
     <value>75, 23</value>
   </data>
   <data name="pasteButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="pasteButton.Text" xml:space="preserve">
     <value>Paste</value>
@@ -829,7 +829,7 @@
     <value>75, 23</value>
   </data>
   <data name="undoButton.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>6</value>
   </data>
   <data name="undoButton.Text" xml:space="preserve">
     <value>Undo</value>
@@ -859,7 +859,7 @@
     <value>75, 23</value>
   </data>
   <data name="copyButton.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>8</value>
   </data>
   <data name="copyButton.Text" xml:space="preserve">
     <value>Copy</value>
