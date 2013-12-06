@@ -573,16 +573,16 @@ namespace HoI2Editor.Forms
             // リストビューに項目を登録する
             modelListView.BeginUpdate();
             modelListView.Items.Clear();
-            for (int no = 0; no < unit.Models.Count; no++)
+            for (int i = 0; i < unit.Models.Count; i++)
             {
-                ListViewItem item = CreateModelListItem(unit, no);
+                ListViewItem item = CreateModelListItem(unit, i);
                 modelListView.Items.Add(item);
             }
             modelListView.EndUpdate();
         }
 
         /// <summary>
-        /// ユニットモデルリストのモデル名を更新する
+        ///     ユニットモデルリストのモデル名を更新する
         /// </summary>
         private void UpdateModelListName()
         {
@@ -591,16 +591,16 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.Items[(int)Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストビューの項目を更新する
+            Country country = (countryListView.SelectedIndices.Count == 0)
+                                  ? Country.None
+                                  : (Country) (countryListView.SelectedIndices[0] + 1);
             modelListView.BeginUpdate();
-            for (int no = 0; no < unit.Models.Count; no++)
+            for (int i = 0; i < unit.Models.Count; i++)
             {
-                modelListView.Items[no].SubItems[1].Text =
-                    Config.GetText(UnitModel.GetName(unit, no, countryListView.SelectedIndices.Count == 0
-                                                                   ? Country.None
-                                                                   : (Country) (countryListView.SelectedIndices[0] + 1)));
+                modelListView.Items[i].SubItems[1].Text = Config.GetText(UnitModel.GetName(unit, i, country));
             }
             modelListView.EndUpdate();
         }
@@ -641,17 +641,17 @@ namespace HoI2Editor.Forms
         ///     ユニットモデルリストビューの項目を作成する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
-        /// <param name="no">ユニットモデル番号</param>
+        /// <param name="index">ユニットモデルのインデックス</param>
         /// <returns>ユニットモデルリストビューの項目</returns>
-        private ListViewItem CreateModelListItem(Unit unit, int no)
+        private ListViewItem CreateModelListItem(Unit unit, int index)
         {
-            UnitModel model = unit.Models[no];
+            UnitModel model = unit.Models[index];
 
-            var item = new ListViewItem {Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture))};
+            var item = new ListViewItem {Text = Config.GetText(index.ToString(CultureInfo.InvariantCulture))};
             item.SubItems.Add(Config.GetText(UnitModel.GetName(
-                unit, no, countryListView.SelectedIndices.Count == 0
-                              ? Country.None
-                              : (Country) (countryListView.SelectedIndices[0] + 1))));
+                unit, index, countryListView.SelectedIndices.Count == 0
+                                 ? Country.None
+                                 : (Country) (countryListView.SelectedIndices[0] + 1))));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
@@ -682,8 +682,8 @@ namespace HoI2Editor.Forms
             var model = new UnitModel();
             if (modelListView.SelectedIndices.Count > 0)
             {
-                int no = modelListView.SelectedIndices[0];
-                InsertModel(unit, model, no + 1, "");
+                int index = modelListView.SelectedIndices[0];
+                InsertModel(unit, model, index + 1, "");
             }
             else
             {
@@ -710,11 +710,11 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
+            int index = modelListView.SelectedIndices[0];
 
             // ユニットモデルを挿入する
-            var model = new UnitModel(unit.Models[no]);
-            InsertModel(unit, model, no + 1, Config.GetText(UnitModel.GetName(unit, no, Country.None)));
+            var model = new UnitModel(unit.Models[index]);
+            InsertModel(unit, model, index + 1, Config.GetText(UnitModel.GetName(unit, index, Country.None)));
         }
 
         /// <summary>
@@ -736,10 +736,10 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
+            int index = modelListView.SelectedIndices[0];
 
             // ユニットモデルを削除する
-            RemoveModel(unit, no);
+            RemoveModel(unit, index);
         }
 
         /// <summary>
@@ -761,16 +761,16 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
+            int index = modelListView.SelectedIndices[0];
 
             // リストの先頭ならば何もしない
-            if (no == 0)
+            if (index == 0)
             {
                 return;
             }
 
             // ユニットモデルを移動する
-            MoveModel(unit, no, 0);
+            MoveModel(unit, index, 0);
         }
 
         /// <summary>
@@ -792,16 +792,16 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
+            int index = modelListView.SelectedIndices[0];
 
             // リストの先頭ならば何もしない
-            if (no == 0)
+            if (index == 0)
             {
                 return;
             }
 
             // ユニットモデルを移動する
-            MoveModel(unit, no, no - 1);
+            MoveModel(unit, index, index - 1);
         }
 
         /// <summary>
@@ -823,16 +823,16 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
+            int index = modelListView.SelectedIndices[0];
 
             // リストの末尾ならば何もしない
-            if (no == unit.Models.Count - 1)
+            if (index == unit.Models.Count - 1)
             {
                 return;
             }
 
             // ユニットモデルを移動する
-            MoveModel(unit, no, no + 1);
+            MoveModel(unit, index, index + 1);
         }
 
         /// <summary>
@@ -854,16 +854,16 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
+            int index = modelListView.SelectedIndices[0];
 
             // リストの末尾ならば何もしない
-            if (no == unit.Models.Count - 1)
+            if (index == unit.Models.Count - 1)
             {
                 return;
             }
 
             // ユニットモデルを移動する
-            MoveModel(unit, no, unit.Models.Count - 1);
+            MoveModel(unit, index, unit.Models.Count - 1);
         }
 
         /// <summary>
@@ -1017,17 +1017,20 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
+            int index = modelListView.SelectedIndices[0];
 
             Country country = (countryListView.SelectedIndices.Count == 0
                                    ? Country.None
                                    : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // ユニットモデル画像名を更新する
-            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
+            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, index, country);
 
             // ユニットモデル名を更新する
-            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, country));
+            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, index, country));
+
+            // ユニットモデル名の表示色を更新する
+            modelNameTextBox.ForeColor = unit.Models[index].IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
 
             // ユニットモデルリストのモデル名を更新する
             UpdateModelListName();
@@ -2660,20 +2663,20 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             Country country = (countryListView.SelectedIndices.Count == 0
                                    ? Country.None
                                    : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // モデル画像
-            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, no, country);
+            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, index, country);
             // モデルアイコン
-            modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, no);
+            modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, index);
             // モデル名
-            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, country));
-            modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name) ? Color.Red : SystemColors.WindowText;
+            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, index, country));
+            modelNameTextBox.ForeColor = model.IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
 
             // 組織率
             defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
@@ -3306,31 +3309,27 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 値に変化がなければ何もしない
-            string name = UnitModel.GetName(unit, no,
-                                            countryListView.SelectedIndices.Count == 0
-                                                ? Country.None
-                                                : (Country) (countryListView.SelectedIndices[0] + 1));
+            Country country = countryListView.SelectedIndices.Count == 0
+                                  ? Country.None
+                                  : (Country) (countryListView.SelectedIndices[0] + 1);
+            string name = UnitModel.GetName(unit, index, country);
             if (modelNameTextBox.Text.Equals(Config.GetText(name)))
             {
                 return;
             }
 
             // 値を更新する
-            string fileName = (countryListView.SelectedIndices.Count == 0
-                                   ? Game.UnitTextFileName
-                                   : Game.ModelTextFileName);
-            Config.SetText(name, modelNameTextBox.Text, fileName);
+            UnitModel.SetName(unit, index, country, modelNameTextBox.Text);
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[1].Text = modelNameTextBox.Text;
+            modelListView.Items[index].SubItems[1].Text = modelNameTextBox.Text;
 
             // 編集済みフラグを設定する
-            model.SetDirty(UnitModelItemId.Name);
-            Config.SetDirty(fileName);
+            model.SetDirtyName(country);
 
             // 文字色を変更する
             modelNameTextBox.ForeColor = Color.Red;
@@ -3340,10 +3339,10 @@ namespace HoI2Editor.Forms
         ///     ユニットモデル画像のファイル名を取得する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
-        /// <param name="no">ユニットモデル番号</param>
+        /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
         /// <returns>ユニットモデル画像のファイル名</returns>
-        private static string GetModelImageFileName(Unit unit, int no, Country country)
+        private static string GetModelImageFileName(Unit unit, int index, Country country)
         {
             string name;
             string fileName;
@@ -3356,7 +3355,7 @@ namespace HoI2Editor.Forms
                         : "ill_bri_{0}_{1}_{2}.bmp",
                     Countries.Strings[(int) country],
                     Units.UnitNumbers[(int) unit.Type],
-                    no);
+                    index);
                 fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
                 if (File.Exists(fileName))
                 {
@@ -3383,7 +3382,7 @@ namespace HoI2Editor.Forms
                     ? "ill_div_{0}_{1}.bmp"
                     : "ill_bri_{0}_{1}.bmp",
                 Units.UnitNumbers[(int) unit.Type],
-                no);
+                index);
             fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
             if (File.Exists(fileName))
             {
@@ -3404,9 +3403,9 @@ namespace HoI2Editor.Forms
         ///     ユニットモデルアイコンのファイル名を取得する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
-        /// <param name="no">ユニットモデル番号</param>
+        /// <param name="index">ユニットモデルのインデックス</param>
         /// <returns>ユニットモデルアイコンのファイル名</returns>
-        private static string GetModelIconFileName(Unit unit, int no)
+        private static string GetModelIconFileName(Unit unit, int index)
         {
             // 旅団にはアイコンが存在しないので空文字列を返す
             if (unit.Organization == UnitOrganization.Brigade)
@@ -3414,7 +3413,7 @@ namespace HoI2Editor.Forms
                 return string.Empty;
             }
 
-            string name = string.Format("model_{0}_{1}.bmp", Units.UnitNumbers[(int) unit.Type], no);
+            string name = string.Format("model_{0}_{1}.bmp", Units.UnitNumbers[(int) unit.Type], index);
             string fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
             return File.Exists(fileName) ? fileName : string.Empty;
         }
@@ -3442,8 +3441,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3463,7 +3462,7 @@ namespace HoI2Editor.Forms
             model.DefaultOrganization = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[7].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[7].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.DefaultOrganization);
@@ -3493,8 +3492,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3514,7 +3513,7 @@ namespace HoI2Editor.Forms
             model.Morale = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[8].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[8].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.Morale);
@@ -3544,8 +3543,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3592,8 +3591,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3640,8 +3639,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3688,8 +3687,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3736,8 +3735,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3757,7 +3756,7 @@ namespace HoI2Editor.Forms
             model.SupplyConsumption = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[5].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[5].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.SupplyConsumption);
@@ -3787,8 +3786,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3808,7 +3807,7 @@ namespace HoI2Editor.Forms
             model.FuelConsumption = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[6].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[6].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.FuelConsumption);
@@ -3838,8 +3837,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3886,8 +3885,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3938,8 +3937,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -3959,7 +3958,7 @@ namespace HoI2Editor.Forms
             model.Cost = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.Cost);
@@ -3989,8 +3988,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4010,7 +4009,7 @@ namespace HoI2Editor.Forms
             model.BuildTime = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[3].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[3].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.BuildTime);
@@ -4040,8 +4039,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4061,7 +4060,7 @@ namespace HoI2Editor.Forms
             model.ManPower = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[4].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[4].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.ManPower);
@@ -4091,8 +4090,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4139,8 +4138,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4187,8 +4186,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4235,8 +4234,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4287,8 +4286,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4308,7 +4307,7 @@ namespace HoI2Editor.Forms
             model.MaxSpeed = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[no].SubItems[9].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[9].Text = val.ToString(CultureInfo.InvariantCulture);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.MaxSpeed);
@@ -4338,8 +4337,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4386,8 +4385,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4434,8 +4433,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4482,8 +4481,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4530,8 +4529,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4582,8 +4581,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4630,8 +4629,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4678,8 +4677,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4726,8 +4725,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4774,8 +4773,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4822,8 +4821,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4870,8 +4869,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4918,8 +4917,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -4966,8 +4965,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5014,8 +5013,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5062,8 +5061,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5110,8 +5109,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5158,8 +5157,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5206,8 +5205,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5254,8 +5253,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5302,8 +5301,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5350,8 +5349,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5398,8 +5397,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5447,8 +5446,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5495,8 +5494,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5543,8 +5542,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -5661,8 +5660,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
@@ -5712,8 +5711,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
@@ -5755,8 +5754,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
@@ -5808,8 +5807,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
@@ -5868,8 +5867,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 装備リストに項目を追加する
             var equipment = new UnitEquipment();
@@ -5903,8 +5902,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
@@ -5943,8 +5942,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)
@@ -5989,8 +5988,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            int no = modelListView.SelectedIndices[0];
-            UnitModel model = unit.Models[no];
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
 
             // 選択項目がなければ何もしない
             if (equipmentListView.SelectedIndices.Count == 0)

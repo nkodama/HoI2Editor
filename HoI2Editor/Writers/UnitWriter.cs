@@ -78,11 +78,11 @@ namespace HoI2Editor.Writers
                 }
 
                 // model
-                int no = 0;
+                int index = 0;
                 foreach (UnitModel model in unit.Models)
                 {
-                    WriteModel(model, unit, no, writer);
-                    no++;
+                    WriteModel(model, unit, index, writer);
+                    index++;
                 }
             }
         }
@@ -92,11 +92,11 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="model">ユニットモデルデータ</param>
         /// <param name="unit">ユニットデータ</param>
-        /// <param name="no">モデル番号</param>
+        /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteModel(UnitModel model, Unit unit, int no, StreamWriter writer)
+        private static void WriteModel(UnitModel model, Unit unit, int index, StreamWriter writer)
         {
-            writer.WriteLine("# {0} - {1}", no, Config.GetText(UnitModel.GetName(unit, no, Country.None)));
+            writer.WriteLine("# {0} - {1}", index, Config.GetText(UnitModel.GetName(unit, index, Country.None)));
             writer.WriteLine("model = {");
 
             // 兵科固有部分
