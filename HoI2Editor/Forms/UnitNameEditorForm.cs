@@ -22,7 +22,7 @@ namespace HoI2Editor.Forms
         private readonly History _prefixHistory = new History(HistorySize);
 
         /// <summary>
-        ///     設備時の履歴
+        ///     接尾辞の履歴
         /// </summary>
         private readonly History _suffixHistory = new History(HistorySize);
 
