@@ -3618,7 +3618,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void ResetDirtyDivisionTypes()
         {
-            _divisionTypesDirty = true;
+            _divisionTypesDirty = false;
         }
 
         /// <summary>
@@ -3626,7 +3626,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void ResetDirtyBrigadeTypes()
         {
-            _brigadeTypesDirty = true;
+            _brigadeTypesDirty = false;
         }
 
         #endregion
