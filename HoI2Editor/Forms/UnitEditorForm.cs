@@ -582,6 +582,30 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// ユニットモデルリストのモデル名を更新する
+        /// </summary>
+        private void UpdateModelListName()
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int)Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // リストビューの項目を更新する
+            modelListView.BeginUpdate();
+            for (int no = 0; no < unit.Models.Count; no++)
+            {
+                modelListView.Items[no].SubItems[1].Text =
+                    Config.GetText(UnitModel.GetName(unit, no, countryListView.SelectedIndices.Count == 0
+                                                                   ? Country.None
+                                                                   : (Country) (countryListView.SelectedIndices[0] + 1)));
+            }
+            modelListView.EndUpdate();
+        }
+
+        /// <summary>
         ///     ユニットモデルリストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -619,12 +643,15 @@ namespace HoI2Editor.Forms
         /// <param name="unit">ユニットクラス</param>
         /// <param name="no">ユニットモデル番号</param>
         /// <returns>ユニットモデルリストビューの項目</returns>
-        private static ListViewItem CreateModelListItem(Unit unit, int no)
+        private ListViewItem CreateModelListItem(Unit unit, int no)
         {
             UnitModel model = unit.Models[no];
 
             var item = new ListViewItem {Text = Config.GetText(no.ToString(CultureInfo.InvariantCulture))};
-            item.SubItems.Add(Config.GetText(UnitModel.GetName(unit, no, Country.None)));
+            item.SubItems.Add(Config.GetText(UnitModel.GetName(
+                unit, no, countryListView.SelectedIndices.Count == 0
+                              ? Country.None
+                              : (Country) (countryListView.SelectedIndices[0] + 1))));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
@@ -1001,6 +1028,9 @@ namespace HoI2Editor.Forms
 
             // ユニットモデル名を更新する
             modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, no, country));
+
+            // ユニットモデルリストのモデル名を更新する
+            UpdateModelListName();
         }
 
         #endregion
