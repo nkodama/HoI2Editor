@@ -643,6 +643,7 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
         }
 
         /// <summary>
@@ -689,6 +690,7 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
         }
 
         /// <summary>
@@ -784,6 +786,10 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
+            if (item is TechItem || item is TechLabel)
+            {
+                Config.SetDirty(Game.TechTextFileName);
+            }
         }
 
         /// <summary>
@@ -3390,6 +3396,7 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
 
             if (componentListView.SelectedIndices.Count > 0)
             {
@@ -3445,6 +3452,7 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
 
             // 項目をリストに挿入する
             item.InsertComponent(component, index + 1);
