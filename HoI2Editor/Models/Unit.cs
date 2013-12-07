@@ -719,7 +719,7 @@ namespace HoI2Editor.Models
                 name = string.Format(
                     (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
                     Countries.Strings[(int) country], no, index);
-                if (Config.ExistsKey(name))
+                if (Config.ExistsKey(name) && !string.IsNullOrEmpty(Config.GetText(name)))
                 {
                     return name;
                 }
