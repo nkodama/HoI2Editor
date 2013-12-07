@@ -356,12 +356,27 @@ namespace HoI2Editor.Forms
 
                 case LanguageMode.English:
                     // ロシア語は1251/それ以外は1252
-                    Game.CodePage = languageComboBox.SelectedIndex == 7 ? 1251 : 1252;
+                    Game.CodePage = (languageComboBox.SelectedIndex == 7) ? 1251 : 1252;
                     break;
 
                 case LanguageMode.PatchedJapanese:
                     // 日本語は932/それ以外は1252
-                    Game.CodePage = languageComboBox.SelectedIndex == 0 ? 932 : 1252;
+                    Game.CodePage = (languageComboBox.SelectedIndex == 0) ? 932 : 1252;
+                    break;
+
+                case LanguageMode.PatchedKorean:
+                    // 韓国語は949
+                    Game.CodePage = 949;
+                    break;
+
+                case LanguageMode.PatchedTraditionalChinese:
+                    // 繁体字中国語は950
+                    Game.CodePage = 950;
+                    break;
+
+                case LanguageMode.PatchedSimplifiedChinese:
+                    // 簡体字中国語は936
+                    Game.CodePage = 936;
                     break;
             }
         }
