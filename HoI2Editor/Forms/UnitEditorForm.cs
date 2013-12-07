@@ -891,17 +891,17 @@ namespace HoI2Editor.Forms
             // 挿入位置のユニットモデル名を変更する
             Config.SetText(UnitModel.GetName(unit, index, Country.None), name, Game.UnitTextFileName);
 
+            // 編集済みフラグを設定する
+            model.SetDirtyAll();
+            unit.SetDirty();
+            Config.SetDirty(Game.UnitTextFileName);
+
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
 
             // 挿入した項目を選択する
             modelListView.Items[index].Focused = true;
             modelListView.Items[index].Selected = true;
-
-            // 編集済みフラグを設定する
-            model.SetDirtyAll();
-            unit.SetDirty();
-            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -928,6 +928,10 @@ namespace HoI2Editor.Forms
             // 末尾のユニットモデル名を削除する
             Config.RemoveText(UnitModel.GetName(unit, unit.Models.Count, Country.None), Game.UnitTextFileName);
 
+            // 編集済みフラグを設定する
+            unit.SetDirty();
+            Config.SetDirty(Game.UnitTextFileName);
+
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
 
@@ -942,10 +946,6 @@ namespace HoI2Editor.Forms
                 modelListView.Items[index - 1].Focused = true;
                 modelListView.Items[index - 1].Selected = true;
             }
-
-            // 編集済みフラグを設定する
-            unit.SetDirty();
-            Config.SetDirty(Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -985,16 +985,16 @@ namespace HoI2Editor.Forms
             // 移動先のユニットモデル名を変更する
             Config.SetText(UnitModel.GetName(unit, dest, Country.None), name, Game.UnitTextFileName);
 
+            // 編集済みフラグを設定する
+            unit.SetDirty();
+            Config.SetDirty(Game.UnitTextFileName);
+
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
 
             // 移動先の項目を選択する
             modelListView.Items[dest].Focused = true;
             modelListView.Items[dest].Selected = true;
-
-            // 編集済みフラグを設定する
-            unit.SetDirty();
-            Config.SetDirty(Game.UnitTextFileName);
         }
 
         #endregion
@@ -2545,12 +2545,12 @@ namespace HoI2Editor.Forms
             var upgrade = new UnitUpgrade();
             unit.Upgrades.Add(upgrade);
 
-            // 改良リストビューに項目を追加する
-            AddUpgradeListItem(upgrade);
-
             // 編集済みフラグを設定する
             upgrade.SetDirtyAll();
             unit.SetDirty();
+
+            // 改良リストビューに項目を追加する
+            AddUpgradeListItem(upgrade);
         }
 
         /// <summary>
@@ -2577,11 +2577,11 @@ namespace HoI2Editor.Forms
             // 改良情報を削除する
             unit.Upgrades.RemoveAt(index);
 
-            // 改良リストビューから項目を削除する
-            RemoveUpgradeListItem(index);
-
             // 編集済みフラグを設定する
             unit.SetDirty();
+
+            // 改良リストビューから項目を削除する
+            RemoveUpgradeListItem(index);
         }
 
         /// <summary>
@@ -5877,13 +5877,13 @@ namespace HoI2Editor.Forms
             var equipment = new UnitEquipment();
             model.Equipments.Add(equipment);
 
-            // 装備リストビューに項目を追加する
-            AddEquipmentListItem(equipment);
-
             // 編集済みフラグを設定する
             equipment.SetDirtyAll();
             model.SetDirty();
             unit.SetDirty();
+
+            // 装備リストビューに項目を追加する
+            AddEquipmentListItem(equipment);
         }
 
         /// <summary>
@@ -5916,14 +5916,14 @@ namespace HoI2Editor.Forms
             int index = equipmentListView.SelectedIndices[0];
 
             // 装備リストから項目を削除する
-            RemoveEquipmentListItem(index);
-
-            // 装備リストビューから項目を削除する
             model.Equipments.RemoveAt(index);
 
             // 編集済みフラグを設定する
             model.SetDirty();
             unit.SetDirty();
+
+            // 装備リストビューから項目を削除する
+            RemoveEquipmentListItem(index);
         }
 
         /// <summary>
@@ -5964,12 +5964,12 @@ namespace HoI2Editor.Forms
             // 装備リストの項目を移動する
             model.MoveEquipment(index, index - 1);
 
-            // 装備リストビューの項目を移動する
-            MoveEquipmentListItem(index, index - 1);
-
             // 編集済みフラグを設定する
             model.SetDirty();
             unit.SetDirty();
+
+            // 装備リストビューの項目を移動する
+            MoveEquipmentListItem(index, index - 1);
         }
 
         /// <summary>
@@ -6010,12 +6010,12 @@ namespace HoI2Editor.Forms
             // 装備リストの項目を移動する
             model.MoveEquipment(index, index + 1);
 
-            // 装備リストビューの項目を移動する
-            MoveEquipmentListItem(index, index + 1);
-
             // 編集済みフラグを設定する
             model.SetDirty();
             unit.SetDirty();
+
+            // 装備リストビューの項目を移動する
+            MoveEquipmentListItem(index, index + 1);
         }
 
         /// <summary>
