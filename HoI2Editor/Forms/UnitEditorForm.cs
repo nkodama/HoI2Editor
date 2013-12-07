@@ -1015,6 +1015,9 @@ namespace HoI2Editor.Forms
             }
             Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
+            // ユニットモデルリストのモデル名を更新する
+            UpdateModelListName();
+
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
@@ -1034,9 +1037,6 @@ namespace HoI2Editor.Forms
 
             // ユニットモデル名の表示色を更新する
             modelNameTextBox.ForeColor = unit.Models[index].IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
-
-            // ユニットモデルリストのモデル名を更新する
-            UpdateModelListName();
         }
 
         #endregion
