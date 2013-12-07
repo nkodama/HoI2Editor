@@ -708,7 +708,7 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
-            
+
             if (techListBox.SelectedItem is ITechItem)
             {
                 var selected = techListBox.SelectedItem as ITechItem;

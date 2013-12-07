@@ -251,9 +251,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string tag in Countries.Tags.Select(country => Countries.Strings[(int) country]))
+            foreach (string s in Countries.Tags
+                                          .Select(country => Countries.Strings[(int) country])
+                                          .Select(name => Config.ExistsKey(name)
+                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
+                                                              : name))
             {
-                countryListBox.Items.Add(string.Format("{0} {1}", tag, Config.GetText(tag)));
+                countryListBox.Items.Add(s);
             }
             countryListBox.SelectedIndex = 0;
         }
