@@ -412,6 +412,9 @@ namespace HoI2Editor.Forms
             // ユニットデータを読み込む
             Units.Load();
 
+            // 付属可能旅団の値が変化してしまうので一旦選択を解除する
+            classListBox.SelectedIndex = -1;
+
             // Miscの値に応じて付属可能旅団数を初期化する
             if (Game.Type == GameType.ArsenalOfDemocracy && Game.Version >= 107)
             {
