@@ -50,6 +50,8 @@
             this.classListBox = new System.Windows.Forms.ListBox();
             this.editTabControl = new System.Windows.Forms.TabControl();
             this.classTabPage = new System.Windows.Forms.TabPage();
+            this.maxSpeedStepComboBox = new System.Windows.Forms.ComboBox();
+            this.maxSpeedStepLabel = new System.Windows.Forms.Label();
             this.uiPrioLabel = new System.Windows.Forms.Label();
             this.uiPrioNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.eyrNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -363,6 +365,8 @@
             // classTabPage
             // 
             this.classTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.classTabPage.Controls.Add(this.maxSpeedStepComboBox);
+            this.classTabPage.Controls.Add(this.maxSpeedStepLabel);
             this.classTabPage.Controls.Add(this.uiPrioLabel);
             this.classTabPage.Controls.Add(this.uiPrioNumericUpDown);
             this.classTabPage.Controls.Add(this.eyrNumericUpDown);
@@ -401,6 +405,25 @@
             this.classTabPage.Controls.Add(this.classNameLabel);
             resources.ApplyResources(this.classTabPage, "classTabPage");
             this.classTabPage.Name = "classTabPage";
+            // 
+            // maxSpeedStepComboBox
+            // 
+            this.maxSpeedStepComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.maxSpeedStepComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.maxSpeedStepComboBox.FormattingEnabled = true;
+            this.maxSpeedStepComboBox.Items.AddRange(new object[] {
+            resources.GetString("maxSpeedStepComboBox.Items"),
+            resources.GetString("maxSpeedStepComboBox.Items1"),
+            resources.GetString("maxSpeedStepComboBox.Items2")});
+            resources.ApplyResources(this.maxSpeedStepComboBox, "maxSpeedStepComboBox");
+            this.maxSpeedStepComboBox.Name = "maxSpeedStepComboBox";
+            this.maxSpeedStepComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMaxSpeedStepComboBoxDrawItem);
+            this.maxSpeedStepComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMaxSpeedStepComboBoxSelectedIndexChanged);
+            // 
+            // maxSpeedStepLabel
+            // 
+            resources.ApplyResources(this.maxSpeedStepLabel, "maxSpeedStepLabel");
+            this.maxSpeedStepLabel.Name = "maxSpeedStepLabel";
             // 
             // uiPrioLabel
             // 
@@ -1744,5 +1767,7 @@
         private System.Windows.Forms.ColumnHeader maxSpeedColumnHeader;
         private System.Windows.Forms.NumericUpDown uiPrioNumericUpDown;
         private System.Windows.Forms.Label uiPrioLabel;
+        private System.Windows.Forms.ComboBox maxSpeedStepComboBox;
+        private System.Windows.Forms.Label maxSpeedStepLabel;
     }
 }

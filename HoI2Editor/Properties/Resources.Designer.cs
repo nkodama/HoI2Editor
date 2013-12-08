@@ -808,6 +808,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   中文 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageChinese {
+            get {
+                return ResourceManager.GetString("LanguageChinese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   English に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string LanguageEnglish {
@@ -867,6 +876,15 @@ namespace HoI2Editor.Properties {
         public static string LanguageJapanese {
             get {
                 return ResourceManager.GetString("LanguageJapanese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   한국어 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LanguageKorean {
+            get {
+                return ResourceManager.GetString("LanguageKorean", resourceCulture);
             }
         }
         

@@ -3343,12 +3343,24 @@ namespace HoI2Editor.Models
                         MaxAllowedBrigades = DefaultMaxBrigades[(int) type],
                     };
 
-                // DDAとAoDで付属可能旅団数が異なる箇所を再設定
                 if (Game.Type == GameType.ArsenalOfDemocracy)
                 {
+                    // DDAとAoDで付属可能旅団数が異なる箇所を再設定
                     if (type == UnitType.EscortCarrier || type == UnitType.Cas)
                     {
                         unit.MaxAllowedBrigades = 1;
+                    }
+
+                    // 最大生産速度を初期設定
+                    if (unit.Organization == UnitOrganization.Division)
+                    {
+                        unit.MaxSpeedStep = 2;
+                    }
+
+                    // 旅団の着脱可能を初期設定
+                    if (unit.Organization == UnitOrganization.Brigade)
+                    {
+                        unit.Detachable = true;
                     }
                 }
 
@@ -3618,7 +3630,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void ResetDirtyDivisionTypes()
         {
-            _divisionTypesDirty = true;
+            _divisionTypesDirty = false;
         }
 
         /// <summary>
@@ -3626,7 +3638,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void ResetDirtyBrigadeTypes()
         {
-            _brigadeTypesDirty = true;
+            _brigadeTypesDirty = false;
         }
 
         #endregion

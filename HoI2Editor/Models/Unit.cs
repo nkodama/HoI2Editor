@@ -86,6 +86,11 @@ namespace HoI2Editor.Models
         public RealUnitType RealType { get; set; }
 
         /// <summary>
+        ///     最大生産速度
+        /// </summary>
+        public int MaxSpeedStep { get; set; }
+
+        /// <summary>
         ///     初期状態で生産可能かどうか
         /// </summary>
         public bool Productable { get; set; }
@@ -564,6 +569,11 @@ namespace HoI2Editor.Models
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (UnitModelItemId)).Length];
 
         /// <summary>
+        ///     国別モデル名の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _nameDirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+
+        /// <summary>
         ///     編集済みフラグ
         /// </summary>
         private bool _dirtyFlag;
@@ -666,29 +676,61 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
+        ///     ユニットモデル名を設定する
+        /// </summary>
+        /// <param name="unit">ユニットクラス</param>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <param name="country">国タグ</param>
+        /// <param name="s">ユニットモデル名</param>
+        public static void SetName(Unit unit, int index, Country country, string s)
+        {
+            string name;
+            string fileName;
+            int no = Units.UnitNumbers[(int) unit.Type];
+            if (country != Country.None)
+            {
+                name = string.Format(
+                    (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
+                    Countries.Strings[(int) country], no, index);
+                fileName = Game.ModelTextFileName;
+            }
+            else
+            {
+                name = string.Format(
+                    (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", no, index);
+                fileName = Game.UnitTextFileName;
+            }
+
+            // ユニットモデル名を更新する
+            Config.SetText(name, s, fileName);
+
+            // 編集済みフラグを設定する
+            Config.SetDirty(fileName);
+        }
+
+        /// <summary>
         ///     ユニットモデル名を取得する
         /// </summary>
         /// <param name="unit">ユニットクラス</param>
-        /// <param name="no">ユニットモデル番号</param>
+        /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
         /// <returns>ユニットモデル名</returns>
-        public static string GetName(Unit unit, int no, Country country)
+        public static string GetName(Unit unit, int index, Country country)
         {
             string name;
-            int unitNo = Units.UnitNumbers[(int) unit.Type];
+            int no = Units.UnitNumbers[(int) unit.Type];
             if (country != Country.None)
             {
-                string countryText = Countries.Strings[(int) country];
                 name = string.Format(
-                    unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
-                    countryText, unitNo, no);
-                if (Config.ExistsKey(name))
+                    (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
+                    Countries.Strings[(int) country], no, index);
+                if (Config.ExistsKey(name) && !string.IsNullOrEmpty(Config.GetText(name)))
                 {
                     return name;
                 }
             }
             name = string.Format(
-                unit.Organization == UnitOrganization.Division ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", unitNo, no);
+                (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", no, index);
             return name;
         }
 
@@ -716,6 +758,24 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     国別モデル名が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyName(Country country)
+        {
+            return (country == Country.None) ? _dirtyFlags[(int) UnitModelItemId.Name] : _nameDirtyFlags[(int) country];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
@@ -725,11 +785,19 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     編集済みフラグを設定する
+        ///     国別モデル名の編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        /// <param name="country">項目ID</param>
+        public void SetDirtyName(Country country)
         {
-            _dirtyFlag = true;
+            if (country == Country.None)
+            {
+                _dirtyFlags[(int) UnitModelItemId.Name] = true;
+            }
+            else
+            {
+                _nameDirtyFlags[(int) country] = true;
+            }
         }
 
         /// <summary>
@@ -752,6 +820,10 @@ namespace HoI2Editor.Models
             foreach (UnitModelItemId id in Enum.GetValues(typeof (UnitModelItemId)))
             {
                 _dirtyFlags[(int) id] = false;
+            }
+            foreach (Country country in Enum.GetValues(typeof (Country)))
+            {
+                _nameDirtyFlags[(int) country] = false;
             }
             _dirtyFlag = false;
         }
@@ -1542,6 +1614,7 @@ namespace HoI2Editor.Models
         ListPrio, // リストの優先度
         UiPrio, // UI優先度
         RealType, // 実ユニット種類
+        MaxSpeedStep, // 最大生産速度
         Productable, // 初期状態で生産可能かどうか
         Cag, // 空母航空隊かどうか
         Escort, // 護衛戦闘機かどうか

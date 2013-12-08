@@ -3624,4 +3624,10 @@
   <data name="Sinclair" xml:space="preserve">
     <value>Sinclair</value>
   </data>
+  <data name="LanguageKorean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="LanguageChinese" xml:space="preserve">
+    <value>中文</value>
+  </data>
 </root>

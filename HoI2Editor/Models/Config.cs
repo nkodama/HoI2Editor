@@ -110,7 +110,10 @@ namespace HoI2Editor.Models
                         Resources.LanguagePortuguese, Resources.LanguageRussian, Resources.LanguageExtra1,
                         Resources.LanguageExtra2
                     },
-                new[] {Resources.LanguageJapanese, Resources.LanguageEnglish}
+                new[] {Resources.LanguageJapanese, Resources.LanguageEnglish},
+                new[] {Resources.LanguageKorean},
+                new[] {Resources.LanguageChinese},
+                new[] {Resources.LanguageChinese}
             };
 
         #endregion
@@ -971,23 +974,8 @@ namespace HoI2Editor.Models
         Japanese, // 日本語版
         English, // 英語版
         PatchedJapanese, // 英語版日本語化
-    }
-
-    /// <summary>
-    ///     言語コード
-    /// </summary>
-    public enum LanguageCode
-    {
-        English,
-        French,
-        Italian,
-        Spanish,
-        German,
-        Polish,
-        Portuguese,
-        Russian,
-        Extra1,
-        Extra2,
-        Japanese,
+        PatchedKorean, // 英語版韓国語化
+        PatchedTraditionalChinese, // 英語版繁体字中国語化
+        PatchedSimplifiedChinese, // 英語版簡体字中国語化
     }
 }

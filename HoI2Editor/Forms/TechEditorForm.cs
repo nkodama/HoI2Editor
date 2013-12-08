@@ -590,6 +590,11 @@ namespace HoI2Editor.Forms
             Config.SetText(item.ShortName, "", Game.TechTextFileName);
             Config.SetText(item.Desc, "", Game.TechTextFileName);
 
+            // 編集済みフラグを設定する
+            grp.SetDirty();
+            item.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
+
             if (techListBox.SelectedItem is ITechItem)
             {
                 var selected = techListBox.SelectedItem as ITechItem;
@@ -639,10 +644,6 @@ namespace HoI2Editor.Forms
             UpdateRequiredTechListItems();
             // 技術イベントの技術IDコンボボックスの項目を更新する
             UpdateEventTechListItems();
-
-            // 編集済みフラグを設定する
-            grp.SetDirty();
-            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -657,6 +658,11 @@ namespace HoI2Editor.Forms
             // 項目を作成する
             var item = new TechLabel {Name = Config.GetTempKey()};
             Config.SetText(item.Name, "", Game.TechTextFileName);
+
+            // 編集済みフラグを設定する
+            grp.SetDirty();
+            item.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
 
             if (techListBox.SelectedItem is ITechItem)
             {
@@ -685,10 +691,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーにラベルを追加する
             AddTechTreeItems(item);
-
-            // 編集済みフラグを設定する
-            grp.SetDirty();
-            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -702,6 +704,10 @@ namespace HoI2Editor.Forms
 
             // 項目を作成する
             var item = new TechEvent();
+
+            // 編集済みフラグを設定する
+            grp.SetDirty();
+            item.SetDirtyAll();
 
             if (techListBox.SelectedItem is ITechItem)
             {
@@ -737,10 +743,6 @@ namespace HoI2Editor.Forms
 
             // 技術ツリーにラベルを追加する
             AddTechTreeItems(item);
-
-            // 編集済みフラグを設定する
-            grp.SetDirty();
-            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -775,15 +777,19 @@ namespace HoI2Editor.Forms
                 UpdateEventTechListItems();
             }
 
+            // 編集済みフラグを設定する
+            grp.SetDirty();
+            item.SetDirtyAll();
+            if (item is TechItem || item is TechLabel)
+            {
+                Config.SetDirty(Game.TechTextFileName);
+            }
+
             // 項目リストビューに項目を挿入する
             InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
             // 技術ツリーにラベルを追加する
             AddTechTreeItems(item);
-
-            // 編集済みフラグを設定する
-            grp.SetDirty();
-            item.SetDirtyAll();
         }
 
         /// <summary>
@@ -3390,6 +3396,7 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
 
             if (componentListView.SelectedIndices.Count > 0)
             {
@@ -3445,6 +3452,7 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirtyAll();
+            Config.SetDirty(Game.TechTextFileName);
 
             // 項目をリストに挿入する
             item.InsertComponent(component, index + 1);

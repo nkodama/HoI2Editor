@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 
 namespace HoI2Editor.Models
 {
@@ -777,11 +779,39 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            // _inmm.dllが存在すれば英語版日本語化
+            // _inmm.dllが存在すれば英語版にパッチを当てた環境
             if (File.Exists(Path.Combine(FolderName, "_inmm.dll")))
             {
-                Config.LangMode = LanguageMode.PatchedJapanese;
-                return;
+                CultureInfo culture = Thread.CurrentThread.CurrentUICulture;
+                // 英語版日本語化
+                if (culture.Equals(CultureInfo.GetCultureInfo("ja-JP")))
+                {
+                    Config.LangMode = LanguageMode.PatchedJapanese;
+                    return;
+                }
+                // 英語版韓国語化
+                if (culture.Equals(CultureInfo.GetCultureInfo("ko-KR")))
+                {
+                    Config.LangMode = LanguageMode.PatchedKorean;
+                    return;
+                }
+                // 英語版繁体字中国語化
+                if (culture.Equals(CultureInfo.GetCultureInfo("zh-TW")) ||
+                    culture.Equals(CultureInfo.GetCultureInfo("zh-Hant")) ||
+                    culture.Equals(CultureInfo.GetCultureInfo("zh-HK")) ||
+                    culture.Equals(CultureInfo.GetCultureInfo("zh-MO")))
+                {
+                    Config.LangMode = LanguageMode.PatchedTraditionalChinese;
+                    return;
+                }
+                // 英語版簡体字中国語化
+                if (culture.Equals(CultureInfo.GetCultureInfo("zh-CN")) ||
+                    culture.Equals(CultureInfo.GetCultureInfo("zh-Hans")) ||
+                    culture.Equals(CultureInfo.GetCultureInfo("zh-SG")))
+                {
+                    Config.LangMode = LanguageMode.PatchedSimplifiedChinese;
+                    return;
+                }
             }
 
             // DoomsdayJP.exe(HoI2)/cyberfront.url(AoD)が存在すれば日本語版

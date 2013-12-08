@@ -22,7 +22,7 @@ namespace HoI2Editor.Forms
         private readonly History _prefixHistory = new History(HistorySize);
 
         /// <summary>
-        ///     設備時の履歴
+        ///     接尾辞の履歴
         /// </summary>
         private readonly History _suffixHistory = new History(HistorySize);
 
@@ -190,9 +190,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string tag in Countries.Tags.Select(country => Countries.Strings[(int) country]))
+            foreach (string s in Countries.Tags
+                                          .Select(country => Countries.Strings[(int) country])
+                                          .Select(name => Config.ExistsKey(name)
+                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
+                                                              : name))
             {
-                countryListBox.Items.Add(string.Format("{0} {1}", tag, Config.GetText(tag)));
+                countryListBox.Items.Add(s);
             }
             countryListBox.SelectedIndex = 0;
         }

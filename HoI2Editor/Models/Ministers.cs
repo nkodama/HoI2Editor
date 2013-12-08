@@ -196,7 +196,7 @@ namespace HoI2Editor.Models
                 "Air Superiority Proponent",
                 "Battle Fleet Proponent",
                 "Resource Industrialist",
-                "Laissez Faires Capitalist",
+                "Laissez-Faire Capitalist",
                 "Theoretical Scientist",
                 "Military Entrepreneur",
                 "Submarine Proponent",
@@ -393,7 +393,7 @@ namespace HoI2Editor.Models
                 (int) MinisterPersonalityHoI2.AirSuperiorityProponent,
                 (int) MinisterPersonalityHoI2.BattleFleetProponent,
                 (int) MinisterPersonalityHoI2.ResourceIndustrialist,
-                (int) MinisterPersonalityHoI2.LaissezFairesCapitalist,
+                (int) MinisterPersonalityHoI2.LaissezFaireCapitalist,
                 (int) MinisterPersonalityHoI2.TheoreticalScientist,
                 (int) MinisterPersonalityHoI2.MilitaryEnterpreneur,
                 (int) MinisterPersonalityHoI2.SubmarineProponent,
@@ -598,9 +598,9 @@ namespace HoI2Editor.Models
                     {"the cloak-n-dagger schemer", "the cloak n dagger schemer"},
                     {"cloak-n-dagger schemer", "the cloak n dagger schemer"},
                     {"cloak n dagger schemer", "the cloak n dagger schemer"},
-                    {"laissez-faires capitalist", "laissez faires capitalist"},
-                    {"laissez faire capitalist", "laissez faires capitalist"},
-                    {"laissez-faire capitalist", "laissez faires capitalist"},
+                    {"laissez-faires capitalist", "laissez-faire capitalist"},
+                    {"laissez faires capitalist", "laissez-faire capitalist"},
+                    {"laissez faire capitalist", "laissez-faire capitalist"},
                     {"military entrepeneur", "military entrepreneur"},
                     {"crooked plutocrat", "crooked kleptocrat"},
                     {"school of defense", "school of defence"},
@@ -665,7 +665,7 @@ namespace HoI2Editor.Models
             AirSuperiorityProponent, // 制空権重視
             BattleFleetProponent, // 艦隊重視
             ResourceIndustrialist, // 鉱山企業家タイプ
-            LaissezFairesCapitalist, // 自由放任主義者
+            LaissezFaireCapitalist, // 自由放任主義者
             TheoreticalScientist, // 理論科学者
             MilitaryEnterpreneur, // 歴戦の勇士
             SubmarineProponent, // 潜水艦重視

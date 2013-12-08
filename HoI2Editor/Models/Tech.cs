@@ -390,6 +390,10 @@ namespace HoI2Editor.Models
             {
                 item.Components.Add(component.Clone());
             }
+            foreach (TechComponent component in item.Components)
+            {
+                component.Id = item.GetNewComponentId(item.Id + 1);
+            }
 
             // 必要技術リスト
             foreach (RequiredTech required in AndRequiredTechs)
