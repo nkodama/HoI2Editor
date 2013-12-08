@@ -160,6 +160,8 @@ namespace HoI2Editor.Forms
             // AoD
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
+                maxSpeedStepLabel.Enabled = true;
+                maxSpeedStepComboBox.Enabled = true;
                 maxSupplyStockLabel.Enabled = true;
                 maxSupplyStockTextBox.Enabled = true;
                 maxOilStockLabel.Enabled = true;
@@ -169,6 +171,8 @@ namespace HoI2Editor.Forms
             }
             else
             {
+                maxSpeedStepLabel.Enabled = false;
+                maxSpeedStepComboBox.Enabled = false;
                 maxSupplyStockLabel.Enabled = false;
                 maxSupplyStockTextBox.Enabled = false;
                 maxOilStockLabel.Enabled = false;
@@ -176,6 +180,7 @@ namespace HoI2Editor.Forms
                 artilleryBombardmentLabel.Enabled = false;
                 artilleryBombardmentTextBox.Enabled = false;
 
+                maxSpeedStepComboBox.ResetText();
                 maxSupplyStockTextBox.ResetText();
                 maxOilStockTextBox.ResetText();
                 artilleryBombardmentTextBox.ResetText();
@@ -215,97 +220,96 @@ namespace HoI2Editor.Forms
                 upgradeTypeComboBox.ResetText();
                 upgradeCostTextBox.ResetText();
                 upgradeTimeTextBox.ResetText();
+            }
 
-                // DH1.03以降
-                if (Game.Version >= 103)
-                {
-                    productableCheckBox.Enabled = true;
-                    detachableCheckBox.Enabled = true;
-                    cagCheckBox.Enabled = true;
-                    escortCheckBox.Enabled = true;
-                    engineerCheckBox.Enabled = true;
-                    eyrLabel.Enabled = true;
-                    eyrNumericUpDown.Enabled = true;
-                    gfxPrioLabel.Enabled = true;
-                    gfxPrioNumericUpDown.Enabled = true;
-                    listPrioLabel.Enabled = true;
-                    listPrioNumericUpDown.Enabled = true;
-                    uiPrioLabel.Enabled = true;
-                    uiPrioNumericUpDown.Enabled = true;
-                    realUnitTypeLabel.Enabled = true;
-                    realUnitTypeComboBox.Enabled = true;
-                    defaultTypeCheckBox.Enabled = true;
-                    spriteTypeLabel.Enabled = true;
-                    spriteTypeComboBox.Enabled = true;
-                    transmuteLabel.Enabled = true;
-                    transmuteComboBox.Enabled = true;
-                    militaryValueLabel.Enabled = true;
-                    militaryValueTextBox.Enabled = true;
-                    speedCapAllLabel.Enabled = true;
-                    speedCapAllTextBox.Enabled = true;
-                    equipmentGroupBox.Enabled = true;
-                }
-                else
-                {
-                    productableCheckBox.Enabled = false;
-                    detachableCheckBox.Enabled = false;
-                    cagCheckBox.Enabled = false;
-                    escortCheckBox.Enabled = false;
-                    engineerCheckBox.Enabled = false;
-                    eyrLabel.Enabled = false;
-                    eyrNumericUpDown.Enabled = false;
-                    gfxPrioLabel.Enabled = false;
-                    gfxPrioNumericUpDown.Enabled = false;
-                    listPrioLabel.Enabled = false;
-                    listPrioNumericUpDown.Enabled = false;
-                    uiPrioLabel.Enabled = false;
-                    uiPrioNumericUpDown.Enabled = false;
-                    realUnitTypeLabel.Enabled = false;
-                    realUnitTypeComboBox.Enabled = false;
-                    defaultTypeCheckBox.Enabled = false;
-                    spriteTypeLabel.Enabled = false;
-                    spriteTypeComboBox.Enabled = false;
-                    transmuteLabel.Enabled = false;
-                    transmuteComboBox.Enabled = false;
-                    militaryValueLabel.Enabled = false;
-                    militaryValueTextBox.Enabled = false;
-                    speedCapAllLabel.Enabled = false;
-                    speedCapAllTextBox.Enabled = false;
-                    equipmentGroupBox.Enabled = false;
+            // DH1.03以降
+            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            {
+                productableCheckBox.Enabled = true;
+                cagCheckBox.Enabled = true;
+                escortCheckBox.Enabled = true;
+                engineerCheckBox.Enabled = true;
+                eyrLabel.Enabled = true;
+                eyrNumericUpDown.Enabled = true;
+                gfxPrioLabel.Enabled = true;
+                gfxPrioNumericUpDown.Enabled = true;
+                listPrioLabel.Enabled = true;
+                listPrioNumericUpDown.Enabled = true;
+                uiPrioLabel.Enabled = true;
+                uiPrioNumericUpDown.Enabled = true;
+                realUnitTypeLabel.Enabled = true;
+                realUnitTypeComboBox.Enabled = true;
+                defaultTypeCheckBox.Enabled = true;
+                spriteTypeLabel.Enabled = true;
+                spriteTypeComboBox.Enabled = true;
+                transmuteLabel.Enabled = true;
+                transmuteComboBox.Enabled = true;
+                militaryValueLabel.Enabled = true;
+                militaryValueTextBox.Enabled = true;
+                speedCapAllLabel.Enabled = true;
+                speedCapAllTextBox.Enabled = true;
+                equipmentGroupBox.Enabled = true;
+            }
+            else
+            {
+                productableCheckBox.Enabled = false;
+                cagCheckBox.Enabled = false;
+                escortCheckBox.Enabled = false;
+                engineerCheckBox.Enabled = false;
+                eyrLabel.Enabled = false;
+                eyrNumericUpDown.Enabled = false;
+                gfxPrioLabel.Enabled = false;
+                gfxPrioNumericUpDown.Enabled = false;
+                listPrioLabel.Enabled = false;
+                listPrioNumericUpDown.Enabled = false;
+                uiPrioLabel.Enabled = false;
+                uiPrioNumericUpDown.Enabled = false;
+                realUnitTypeLabel.Enabled = false;
+                realUnitTypeComboBox.Enabled = false;
+                defaultTypeCheckBox.Enabled = false;
+                spriteTypeLabel.Enabled = false;
+                spriteTypeComboBox.Enabled = false;
+                transmuteLabel.Enabled = false;
+                transmuteComboBox.Enabled = false;
+                militaryValueLabel.Enabled = false;
+                militaryValueTextBox.Enabled = false;
+                speedCapAllLabel.Enabled = false;
+                speedCapAllTextBox.Enabled = false;
+                equipmentGroupBox.Enabled = false;
 
-                    productableCheckBox.Checked = false;
-                    detachableCheckBox.Checked = false;
-                    cagCheckBox.Checked = false;
-                    escortCheckBox.Checked = false;
-                    engineerCheckBox.Checked = false;
-                    eyrNumericUpDown.ResetText();
-                    gfxPrioNumericUpDown.ResetText();
-                    listPrioNumericUpDown.ResetText();
-                    uiPrioNumericUpDown.ResetText();
-                    realUnitTypeComboBox.SelectedIndex = -1;
-                    realUnitTypeComboBox.ResetText();
-                    defaultTypeCheckBox.ResetText();
-                    spriteTypeComboBox.SelectedIndex = -1;
-                    spriteTypeComboBox.ResetText();
-                    transmuteComboBox.SelectedIndex = -1;
-                    transmuteComboBox.ResetText();
-                    militaryValueTextBox.ResetText();
-                    speedCapAllTextBox.ResetText();
-                    equipmentListView.Items.Clear();
-                    resourceComboBox.SelectedIndex = -1;
-                    resourceComboBox.ResetText();
-                    quantityTextBox.ResetText();
-                }
+                productableCheckBox.Checked = false;
+                detachableCheckBox.Checked = false;
+                cagCheckBox.Checked = false;
+                escortCheckBox.Checked = false;
+                engineerCheckBox.Checked = false;
+                eyrNumericUpDown.ResetText();
+                gfxPrioNumericUpDown.ResetText();
+                listPrioNumericUpDown.ResetText();
+                uiPrioNumericUpDown.ResetText();
+                realUnitTypeComboBox.SelectedIndex = -1;
+                realUnitTypeComboBox.ResetText();
+                spriteTypeComboBox.SelectedIndex = -1;
+                spriteTypeComboBox.ResetText();
+                transmuteComboBox.SelectedIndex = -1;
+                transmuteComboBox.ResetText();
+                militaryValueTextBox.ResetText();
+                speedCapAllTextBox.ResetText();
+                equipmentListView.Items.Clear();
+                resourceComboBox.SelectedIndex = -1;
+                resourceComboBox.ResetText();
+                quantityTextBox.ResetText();
             }
 
             // AoDまたはDH1.03以降
             if (Game.Type == GameType.ArsenalOfDemocracy || (Game.Type == GameType.DarkestHour && Game.Version >= 103))
             {
                 branchComboBox.Enabled = true;
+                detachableCheckBox.Enabled = true;
             }
             else
             {
                 branchComboBox.Enabled = false;
+                detachableCheckBox.Enabled = true;
             }
         }
 
@@ -1044,7 +1048,7 @@ namespace HoI2Editor.Forms
         #region ユニットクラスタブ
 
         /// <summary>
-        ///     ユニットクラスタブの編集項目の値を更新する
+        ///     ユニットクラスタブの編集項目を更新する
         /// </summary>
         private void UpdateClassEditableItems()
         {
@@ -1190,12 +1194,10 @@ namespace HoI2Editor.Forms
                 // 海軍旅団
                 if (unit.Branch == Branch.Navy && unit.Organization == UnitOrganization.Brigade)
                 {
-                    detachableCheckBox.Enabled = true;
                     cagCheckBox.Enabled = true;
                 }
                 else
                 {
-                    detachableCheckBox.Enabled = false;
                     cagCheckBox.Enabled = false;
                 }
 
@@ -1227,7 +1229,6 @@ namespace HoI2Editor.Forms
                 transmuteComboBox.Enabled = false;
                 militaryValueLabel.Enabled = false;
                 militaryValueTextBox.Enabled = false;
-                detachableCheckBox.Enabled = false;
                 cagCheckBox.Enabled = false;
                 escortCheckBox.Enabled = false;
                 engineerCheckBox.Enabled = false;
@@ -1245,6 +1246,36 @@ namespace HoI2Editor.Forms
                 transmuteComboBox.SelectedIndex = -1;
                 transmuteComboBox.ResetText();
                 militaryValueTextBox.ResetText();
+            }
+
+            // 最大生産速度
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (unit.Organization == UnitOrganization.Division))
+            {
+                maxSpeedStepLabel.Enabled = true;
+                maxSpeedStepComboBox.Enabled = true;
+                maxSpeedStepComboBox.SelectedIndex = unit.MaxSpeedStep;
+            }
+            else
+            {
+                maxSpeedStepLabel.Enabled = false;
+                maxSpeedStepComboBox.Enabled = false;
+                maxSpeedStepComboBox.SelectedIndex = -1;
+                maxSpeedStepComboBox.ResetText();
+            }
+
+            // 着脱可能
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                detachableCheckBox.Enabled = (unit.Organization == UnitOrganization.Brigade);
+            }
+            else if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
+            {
+                detachableCheckBox.Enabled = ((unit.Branch == Branch.Navy) &&
+                                              (unit.Organization == UnitOrganization.Brigade));
+            }
+            else
+            {
+                detachableCheckBox.Enabled = false;
             }
 
             detachableCheckBox.Checked = unit.Detachable;
@@ -1454,6 +1485,47 @@ namespace HoI2Editor.Forms
                 brush = new SolidBrush(SystemColors.WindowText);
             }
             string s = transmuteComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     最大生産速度コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaxSpeedStepComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == unit.MaxSpeedStep) && unit.IsDirty(UnitClassItemId.MaxSpeedStep))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = maxSpeedStepComboBox.Items[e.Index].ToString();
             e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
             brush.Dispose();
 
@@ -2000,6 +2072,44 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     最大生産速度コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMaxSpeedStepComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 非選択になった時には何もしない
+            if (maxSpeedStepComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            int val = maxSpeedStepComboBox.SelectedIndex;
+            if (val == unit.MaxSpeedStep)
+            {
+                return;
+            }
+
+            // 値を更新する
+            unit.MaxSpeedStep = val;
+
+            // 編集済みフラグを設定する
+            unit.SetDirty(UnitClassItemId.MaxSpeedStep);
+            unit.SetDirty();
+
+            // 最大生産速度コンボボックスの項目色を変更するために描画更新する
+            maxSpeedStepComboBox.Refresh();
+        }
+
+        /// <summary>
         ///     生産可能チェックボックスの状態変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -2055,7 +2165,14 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Detachable);
-            Units.SetDirtyBrigadeTypes();
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                unit.SetDirty();
+            }
+            else if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
+            {
+                Units.SetDirtyBrigadeTypes();
+            }
 
             // 文字色を変更する
             detachableCheckBox.ForeColor = Color.Red;

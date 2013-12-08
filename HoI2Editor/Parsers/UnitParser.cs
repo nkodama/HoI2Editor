@@ -245,6 +245,65 @@ namespace HoI2Editor.Parsers
                             unit.Branch = Branch.Airforce;
                             continue;
                         }
+
+                        // max_speed_step
+                        if (keyword.Equals("max_speed_step"))
+                        {
+                            // =
+                            token = lexer.GetToken();
+                            if (token.Type != TokenType.Equal)
+                            {
+                                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                                lexer.SkipLine();
+                                continue;
+                            }
+
+                            // 無効なトークン
+                            token = lexer.GetToken();
+                            if (token.Type != TokenType.Number)
+                            {
+                                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                                lexer.SkipLine();
+                                continue;
+                            }
+                            var step = (int) (double) token.Value;
+                            if (step < 0 || step > 2)
+                            {
+                                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                                lexer.SkipLine();
+                                continue;
+                            }
+
+                            // 最大生産速度
+                            unit.MaxSpeedStep = step;
+                            continue;
+                        }
+
+                        // locked
+                        if (keyword.Equals("locked"))
+                        {
+                            // =
+                            token = lexer.GetToken();
+                            if (token.Type != TokenType.Equal)
+                            {
+                                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                                lexer.SkipLine();
+                                continue;
+                            }
+
+                            // 無効なトークン
+                            token = lexer.GetToken();
+                            if (token.Type != TokenType.Number)
+                            {
+                                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                                lexer.SkipLine();
+                                continue;
+                            }
+
+                            // 着脱可能
+                            unit.Detachable = false;
+                            continue;
+                        }
                     }
 
                     else if (Game.Type == GameType.DarkestHour)

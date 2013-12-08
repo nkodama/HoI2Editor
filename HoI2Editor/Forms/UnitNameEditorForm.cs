@@ -191,7 +191,7 @@ namespace HoI2Editor.Forms
         private void InitCountryListBox()
         {
             foreach (string s in Countries.Tags
-                                          .Select(country => Countries.Strings[(int)country])
+                                          .Select(country => Countries.Strings[(int) country])
                                           .Select(name => Config.ExistsKey(name)
                                                               ? string.Format("{0} {1}", name, Config.GetText(name))
                                                               : name))

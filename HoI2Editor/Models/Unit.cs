@@ -86,6 +86,11 @@ namespace HoI2Editor.Models
         public RealUnitType RealType { get; set; }
 
         /// <summary>
+        ///     最大生産速度
+        /// </summary>
+        public int MaxSpeedStep { get; set; }
+
+        /// <summary>
         ///     初期状態で生産可能かどうか
         /// </summary>
         public bool Productable { get; set; }
@@ -1609,6 +1614,7 @@ namespace HoI2Editor.Models
         ListPrio, // リストの優先度
         UiPrio, // UI優先度
         RealType, // 実ユニット種類
+        MaxSpeedStep, // 最大生産速度
         Productable, // 初期状態で生産可能かどうか
         Cag, // 空母航空隊かどうか
         Escort, // 護衛戦闘機かどうか

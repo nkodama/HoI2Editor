@@ -41,11 +41,27 @@ namespace HoI2Editor.Writers
                     }
                 }
 
+                // max_speed_step
+                if ((Game.Type == GameType.ArsenalOfDemocracy) &&
+                    (unit.Organization == UnitOrganization.Division) &&
+                    (unit.MaxSpeedStep < 2))
+                {
+                    writer.WriteLine("max_speed_step = {0}", unit.MaxSpeedStep);
+                }
+
                 // detachable
                 if (Game.Type == GameType.DarkestHour && unit.Detachable)
                 {
                     writer.WriteLine("detachable = yes");
                     writer.WriteLine();
+                }
+
+                // locked
+                if ((Game.Type == GameType.ArsenalOfDemocracy) &&
+                    (unit.Organization == UnitOrganization.Brigade) &&
+                    !unit.Detachable)
+                {
+                    writer.WriteLine("locked = 1");
                 }
 
                 // allowed_brigades
