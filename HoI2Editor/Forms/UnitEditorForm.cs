@@ -5163,7 +5163,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 船団攻撃力テキストボックスフォーカス移動後の処理
+        ///     船団攻撃力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5174,7 +5174,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            Unit unit = Units.Items[(int)Units.UnitTypes[classListBox.SelectedIndex]];
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
