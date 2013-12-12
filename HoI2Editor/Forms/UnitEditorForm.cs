@@ -5163,6 +5163,54 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        /// 船団攻撃力テキストボックスフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnConvoyAttackTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int)Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(convoyAttackTextBox.Text, out val))
+            {
+                convoyAttackTextBox.Text = model.ConvoyAttack.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (Math.Abs(val - model.ConvoyAttack) <= 0.00005)
+            {
+                return;
+            }
+
+            // 値を更新する
+            model.ConvoyAttack = val;
+
+            // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.ConvoyAttack);
+            model.SetDirty();
+            unit.SetDirty();
+
+            // 文字色を変更する
+            convoyAttackTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
         ///     沿岸砲撃能力テキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
