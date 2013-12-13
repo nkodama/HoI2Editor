@@ -551,21 +551,21 @@ namespace HoI2Editor.Models
         public void RenameTempKey(string name)
         {
             // 技術名
-            if (Config.IsReservedKey(Name, Game.TechTextFileName))
+            if (Config.IsTempKey(Name))
             {
                 string newKey = String.Format("TECH_APP_{0}_{1}_NAME", name, Id);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
             }
             // 技術短縮名
-            if (Config.IsReservedKey(ShortName, Game.TechTextFileName))
+            if (Config.IsTempKey(ShortName))
             {
                 string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", name, Id);
                 Config.RenameText(ShortName, newKey, Game.TechTextFileName);
                 ShortName = newKey;
             }
             // 技術説明
-            if (Config.IsReservedKey(Desc, Game.TechTextFileName))
+            if (Config.IsTempKey(Desc))
             {
                 string newKey = String.Format("TECH_APP_{0}_{1}_DESC", name, Id);
                 Config.RenameText(Desc, newKey, Game.TechTextFileName);
@@ -575,7 +575,7 @@ namespace HoI2Editor.Models
             int componentId = 1;
             foreach (TechComponent component in Components)
             {
-                if (Config.IsReservedKey(component.Name, Game.TechTextFileName))
+                if (Config.IsTempKey(component.Name))
                 {
                     string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", name, Id, componentId);
                     Config.RenameText(component.Name, newKey, Game.TechTextFileName);
@@ -591,17 +591,17 @@ namespace HoI2Editor.Models
         public void RemoveTempKey()
         {
             // 技術名
-            if (Config.IsReservedKey(Name, Game.TechTextFileName))
+            if (Config.IsTempKey(Name))
             {
                 Config.RemoveText(Name, Game.TechTextFileName);
             }
             // 技術短縮名
-            if (Config.IsReservedKey(ShortName, Game.TechTextFileName))
+            if (Config.IsTempKey(ShortName))
             {
                 Config.RemoveText(ShortName, Game.TechTextFileName);
             }
             // 技術説明
-            if (Config.IsReservedKey(Desc, Game.TechTextFileName))
+            if (Config.IsTempKey(Desc))
             {
                 Config.RemoveText(Desc, Game.TechTextFileName);
             }
@@ -609,7 +609,7 @@ namespace HoI2Editor.Models
             // 小研究名
             foreach (TechComponent component in Components)
             {
-                if (Config.IsReservedKey(component.Name, Game.TechTextFileName))
+                if (Config.IsTempKey(component.Name))
                 {
                     Config.RemoveText(component.Name, Game.TechTextFileName);
                 }
@@ -839,7 +839,7 @@ namespace HoI2Editor.Models
         public void RenameTempKey(string name)
         {
             // ラベル名
-            if (Config.IsReservedKey(Name, Game.TechTextFileName))
+            if (Config.IsTempKey(Name))
             {
                 string newKey = String.Format("TECH_CAT_{0}", name);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
@@ -853,7 +853,7 @@ namespace HoI2Editor.Models
         public void RemoveTempKey()
         {
             // ラベル名
-            if (Config.IsReservedKey(Name, Game.TechTextFileName))
+            if (Config.IsTempKey(Name))
             {
                 Config.RemoveText(Name, Game.TechTextFileName);
             }

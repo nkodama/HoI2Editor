@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -76,6 +77,16 @@ namespace HoI2Editor.Models
             new Dictionary<string, List<string>>();
 
         /// <summary>
+        ///     一時キーリスト
+        /// </summary>
+        /// <remarks>
+        ///     一時キーが発行された時、一時キーのまま保存された定義を読み込んだ時に登録される。
+        ///     一時キーをリネームした時にリストから削除される。
+        ///     一時キーのままの定義は文字列保存時にスキップされる
+        /// </remarks>
+        private static readonly List<string> TempKeyList = new List<string>();
+
+        /// <summary>
         ///     編集済みファイルのリスト
         /// </summary>
         /// <remarks>
@@ -92,6 +103,11 @@ namespace HoI2Editor.Models
         ///     一時キー作成のための番号
         /// </summary>
         private static int _tempNo = 1;
+
+        /// <summary>
+        ///     一時キーかどうかの判定のための正規表現
+        /// </summary>
+        private static readonly Regex RegexTempKey = new Regex("_EDITOR_TEMP_\\d+");
 
         #endregion
 
@@ -159,6 +175,7 @@ namespace HoI2Editor.Models
             Text.Clear();
             ReplacedText.Clear();
             OrderListTable.Clear();
+            TempKeyList.Clear();
             DirtyFiles.Clear();
 
             var fileList = new List<string>();
@@ -406,6 +423,12 @@ namespace HoI2Editor.Models
                         continue;
                     }
 
+                    // 何らかの理由で一時キーがファイルに残っていれば一時キーリストに登録する
+                    if (RegexTempKey.IsMatch(tokens[0]))
+                    {
+                        TempKeyList.Add(tokens[0]);
+                    }
+
                     // 変換テーブルに登録する
                     var t = new string[MaxLanguages];
                     for (int i = 0; i < MaxLanguages; i++)
@@ -504,6 +527,11 @@ namespace HoI2Editor.Models
                             firsteof = false;
                         }
                         writer.WriteLine("{0};;;;;;;;;;;X", key);
+                        continue;
+                    }
+                    // 一時キーは保存しない
+                    if (TempKeyList.Contains(key))
+                    {
                         continue;
                     }
                     // 文字列定義
@@ -658,10 +686,25 @@ namespace HoI2Editor.Models
             Text.Remove(oldKey);
 
             // 予約リストに登録し直す
-            if (ReservedListTable[fileName].Contains(oldKey) && !ReservedListTable[fileName].Contains(newKey))
+            if (ReservedListTable.ContainsKey(fileName) &&
+                ReservedListTable[fileName].Contains(oldKey) &&
+                !ReservedListTable[fileName].Contains(newKey))
             {
                 ReservedListTable[fileName].Remove(oldKey);
                 ReservedListTable[fileName].Add(newKey);
+            }
+
+            // 文字列定義順リストを書き換える
+            if (OrderListTable[fileName].Contains(oldKey))
+            {
+                int index = OrderListTable[fileName].IndexOf(oldKey);
+                OrderListTable[fileName][index] = newKey;
+            }
+
+            // 一時キーリストから削除する
+            if (TempKeyList.Contains(oldKey))
+            {
+                TempKeyList.Remove(oldKey);
             }
         }
 
@@ -674,6 +717,12 @@ namespace HoI2Editor.Models
         {
             Text.Remove(key);
             ReservedListTable[fileName].Remove(key);
+
+            // 一時キーリストから削除する
+            if (TempKeyList.Contains(key))
+            {
+                TempKeyList.Remove(key);
+            }
         }
 
         /// <summary>
@@ -704,13 +753,31 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     一時キーかどうかを判定する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        /// <returns>
+        ///     一時キーかどうか<</returns>
+        public static bool IsTempKey(string key)
+        {
+            return (TempKeyList.Contains(key));
+        }
+
+        /// <summary>
         ///     一時キーを取得する
         /// </summary>
         /// <returns>一時キー名</returns>
         public static string GetTempKey()
         {
-            string key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
-            _tempNo++;
+            string key;
+            do
+            {
+                key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
+                _tempNo++;
+            } while (TempKeyList.Contains(key));
+
+            // 一時キーリストに登録する
+            TempKeyList.Add(key);
 
             return key;
         }
