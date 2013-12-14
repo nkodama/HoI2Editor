@@ -3344,7 +3344,8 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 研究特性アイコンを描画する
-            if (e.Index < Techs.SpecialityImages.Images.Count && !string.IsNullOrEmpty(componentSpecialityComboBox.Text))
+            if (e.Index < Techs.SpecialityImages.Images.Count &&
+                !string.IsNullOrEmpty(componentSpecialityComboBox.Items[e.Index].ToString()))
             {
                 e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index],
                                      new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16));
