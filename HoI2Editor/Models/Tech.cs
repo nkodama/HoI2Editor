@@ -132,7 +132,7 @@ namespace HoI2Editor.Models
         /// <returns>技術グループ名</returns>
         public override string ToString()
         {
-            return Config.GetText(Name);
+            return Config.ExistsKey(Name) ? Config.GetText(Name) : "";
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace HoI2Editor.Models
         /// <returns>技術グループ説明</returns>
         public string GetDesc()
         {
-            return Config.GetText(Desc);
+            return Config.ExistsKey(Desc) ? Config.GetText(Desc) : "";
         }
 
         #endregion
@@ -622,7 +622,7 @@ namespace HoI2Editor.Models
         /// <returns>技術名</returns>
         public override string ToString()
         {
-            return Config.GetText(Name);
+            return Config.ExistsKey(Name) ? Config.GetText(Name) : "";
         }
 
         /// <summary>
@@ -631,7 +631,7 @@ namespace HoI2Editor.Models
         /// <returns>技術短縮名</returns>
         public string GetShortName()
         {
-            return Config.GetText(ShortName);
+            return Config.ExistsKey(ShortName) ? Config.GetText(ShortName) : "";
         }
 
         /// <summary>
@@ -640,7 +640,7 @@ namespace HoI2Editor.Models
         /// <returns>技術説明</returns>
         public string GetDesc()
         {
-            return Config.GetText(Desc);
+            return Config.ExistsKey(Desc) ? Config.GetText(Desc) : "";
         }
 
         #endregion
@@ -865,6 +865,10 @@ namespace HoI2Editor.Models
         /// <returns>技術ラベル名</returns>
         public override string ToString()
         {
+            if (!Config.ExistsKey(Name))
+            {
+                return "";
+            }
             string s = Config.GetText(Name);
 
             // 色指定文字列を読み飛ばす
@@ -1400,7 +1404,7 @@ namespace HoI2Editor.Models
         /// <returns>小研究名</returns>
         public override string ToString()
         {
-            return Config.GetText(Name);
+            return Config.ExistsKey(Name) ? Config.GetText(Name) : "";
         }
 
         #endregion
