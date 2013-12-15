@@ -943,6 +943,9 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDownButtonClick(object sender, EventArgs e)
         {
+            Config.OutputLogs();
+            return;
+
             // 選択項目がなければ何もしない
             ITechItem selected = GetSelectedItem();
             if (selected == null)

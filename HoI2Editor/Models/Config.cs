@@ -424,10 +424,11 @@ namespace HoI2Editor.Models
                         continue;
                     }
 
+                    string key = tokens[0].ToUpper();
                     // 何らかの理由で一時キーがファイルに残っていれば一時キーリストに登録する
-                    if (RegexTempKey.IsMatch(tokens[0]))
+                    if (RegexTempKey.IsMatch(key))
                     {
-                        TempKeyList.Add(tokens[0]);
+                        TempKeyList.Add(key);
                     }
 
                     // 変換テーブルに登録する
@@ -436,13 +437,86 @@ namespace HoI2Editor.Models
                     {
                         t[i] = tokens[i + 1];
                     }
-                    Text[tokens[0].ToUpper()] = t;
+                    Text[key] = t;
                 }
                 reader.Close();
             }
 
             // 定義順リストテーブルに登録する
             OrderListTable.Add(name, orderList);
+
+            //using (var writer = new StreamWriter("log.txt", false, Encoding.GetEncoding(Game.CodePage)))
+            //{
+            //    writer.WriteLine("[Text]");
+            //    foreach (string key in Text.Keys)
+            //    {
+            //        writer.WriteLine("{0} => {1}", key, Text[key][0]);
+            //    }
+            //    writer.WriteLine();
+            //    writer.WriteLine("[OrderListTable]");
+            //    foreach (string fn in OrderListTable.Keys)
+            //    {
+            //        writer.WriteLine("--- {0} ---", fn);
+            //        foreach (string key in OrderListTable[fn])
+            //        {
+            //            writer.WriteLine(key);
+            //        }
+            //    }
+            //    writer.WriteLine();
+            //    writer.WriteLine("[ReservedListTable]");
+            //    foreach (string fn in ReservedListTable.Keys)
+            //    {
+            //        writer.WriteLine("--- {0} ---", fn);
+            //        foreach (string key in ReservedListTable[fn])
+            //        {
+            //            writer.WriteLine(key);
+            //        }
+            //    }
+            //    writer.WriteLine();
+            //    writer.WriteLine("[TempKeyList]");
+            //    foreach (string key in TempKeyList)
+            //    {
+            //        writer.WriteLine(key);
+            //    }
+            //}
+        }
+
+        public static void OutputLogs()
+        {
+            using (var writer = new StreamWriter("log.txt", false, Encoding.GetEncoding(Game.CodePage)))
+            {
+                //writer.WriteLine("[Text]");
+                //foreach (string key in Text.Keys)
+                //{
+                //    writer.WriteLine("{0} => {1}", key, Text[key][0]);
+                //}
+                //writer.WriteLine();
+                //writer.WriteLine("[OrderListTable]");
+                //foreach (string fn in OrderListTable.Keys)
+                //{
+                //    writer.WriteLine("--- {0} ---", fn);
+                //    foreach (string key in OrderListTable[fn])
+                //    {
+                //        writer.WriteLine(key);
+                //    }
+                //}
+                //writer.WriteLine();
+                writer.WriteLine("[ReservedListTable]");
+                foreach (string fn in ReservedListTable.Keys)
+                {
+                    writer.WriteLine("--- {0} ---", fn);
+                    foreach (string key in ReservedListTable[fn])
+                    {
+                        writer.WriteLine(key);
+                    }
+                }
+                writer.WriteLine();
+                writer.WriteLine("[TempKeyList]");
+                foreach (string key in TempKeyList)
+                {
+                    writer.WriteLine(key);
+                }
+            }
         }
 
         #endregion
@@ -538,6 +612,7 @@ namespace HoI2Editor.Models
                     // 一時キーは保存しない
                     if (TempKeyList.Contains(k))
                     {
+                        TempKeyList.Remove(k);
                         continue;
                     }
                     // 登録されていないキーは保存しない
@@ -597,6 +672,7 @@ namespace HoI2Editor.Models
                 }
             }
 
+            // 予約リストを全て削除する
             ReservedListTable[fileName].Clear();
         }
 
@@ -788,7 +864,7 @@ namespace HoI2Editor.Models
             {
                 key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
                 _tempNo++;
-            } while (TempKeyList.Contains(key));
+            } while (IsTempKey(key));
 
             // 一時キーリストに登録する
             TempKeyList.Add(key);
