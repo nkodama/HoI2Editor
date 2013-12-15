@@ -174,6 +174,7 @@ namespace HoI2Editor.Models
 
             Text.Clear();
             ReplacedText.Clear();
+            ComplementedText.Clear();
             OrderListTable.Clear();
             TempKeyList.Clear();
             DirtyFiles.Clear();
@@ -437,6 +438,7 @@ namespace HoI2Editor.Models
                     }
                     Text[tokens[0].ToUpper()] = t;
                 }
+                reader.Close();
             }
 
             // 定義順リストテーブルに登録する
@@ -756,8 +758,7 @@ namespace HoI2Editor.Models
         ///     一時キーかどうかを判定する
         /// </summary>
         /// <param name="key">文字列の定義名</param>
-        /// <returns>
-        ///     一時キーかどうか<</returns>
+        /// <returns>一時キーかどうか</returns>
         public static bool IsTempKey(string key)
         {
             return (TempKeyList.Contains(key));
