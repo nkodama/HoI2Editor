@@ -104,6 +104,11 @@ namespace HoI2Editor.Models
             new Dictionary<string, List<string>>();
 
         /// <summary>
+        /// 文字列定義ファイルテーブル
+        /// </summary>
+        private static readonly Dictionary<string, string> TextFileTable = new Dictionary<string, string>(); 
+
+        /// <summary>
         ///     一時キーリスト
         /// </summary>
         /// <remarks>
@@ -216,6 +221,7 @@ namespace HoI2Editor.Models
             ReplacedText.Clear();
             ComplementedText.Clear();
             OrderListTable.Clear();
+            TextFileTable.Clear();
             TempKeyList.Clear();
             DirtyFiles.Clear();
 
@@ -488,6 +494,9 @@ namespace HoI2Editor.Models
                         t[i] = tokens[i + 1];
                     }
                     Text[key] = t;
+
+                    // 文字列定義ファイルテーブルに登録する
+                    TextFileTable[key] = name;
                 }
                 reader.Close();
             }
@@ -726,6 +735,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">文字列定義ファイル名</param>
         /// <remarks>
         ///     文字列が登録されていなければ新規追加、登録されていれば値を変更する
+        /// ファイル名の指定は既存の定義が存在しない場合のみ有効
         /// </remarks>
         public static void SetText(string key, string text, string fileName)
         {
@@ -750,12 +760,23 @@ namespace HoI2Editor.Models
                 // 文字列変換テーブルに登録する
                 Text[key] = new string[MaxLanguages];
 
-                Debug.WriteLine(string.Format("[Config] Added {0}: {1} ({2})", key, text, Path.GetFileName(fileName)));
+                // 文字列定義ファイルテーブルに登録する
+                TextFileTable[key] = fileName;
+
+                Debug.WriteLine(string.Format("[Config] Added {0}: {1} ({2})", key, text, fileName));
+            }
+            else if (TextFileTable.ContainsKey(key))
+            {
+                // 既存の定義ならばファイル名を検索して置き換える
+                fileName = TextFileTable[key];
             }
 
             // 文字列変換テーブルの文字列を変更する
             Text[key][LangIndex] = text;
             Debug.WriteLine(string.Format("[Config] Set {0}: {1}", key, text));
+
+            // 編集済みフラグを設定する
+            SetDirty(fileName);
         }
 
         /// <summary>
@@ -773,25 +794,40 @@ namespace HoI2Editor.Models
             oldKey = oldKey.ToUpper();
             newKey = newKey.ToUpper();
 
-            if (!Text.ContainsKey(oldKey) || Text.ContainsKey(newKey))
+            // 文字列変換テーブルに登録し直す
+            if (Text.ContainsKey(oldKey))
             {
-                Debug.WriteLine(string.Format("[Config] RenameText failed: {0} - {1}", oldKey, newKey));
-                return;
+                if (!Text.ContainsKey(newKey))
+                {
+                    Text.Add(newKey, Text[oldKey]);
+                    Debug.WriteLine(string.Format("[Config] Rename: {0} - {1}", oldKey, newKey));
+                }
+                else
+                {
+                    // 変換後のキーあり: 一時キーがリネームされずに保存された場合
+                    Debug.WriteLine(string.Format("[Config] Rename target already exists: {0} - {1}", oldKey, newKey));
+                }
+                Text.Remove(oldKey);
+            }
+            else
+            {
+                // 変換前のキーなし: 一時キーが重複していて既にリネームされた場合
+                Debug.WriteLine(string.Format("[Config] Rename source does not exist: {0} - {1}", oldKey, newKey));
             }
 
-            // 文字列変換テーブルに登録し直す
-            Text.Add(newKey, Text[oldKey]);
-            Text.Remove(oldKey);
-
             // 予約リストに登録し直す
-            if (ReservedListTable.ContainsKey(fileName) &&
-                ReservedListTable[fileName].Contains(oldKey) &&
-                !ReservedListTable[fileName].Contains(newKey))
+            if (ReservedListTable.ContainsKey(fileName))
             {
-                ReservedListTable[fileName].Remove(oldKey);
-                ReservedListTable[fileName].Add(newKey);
-                Debug.WriteLine(string.Format("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey,
-                                              Path.GetFileName(fileName)));
+                if (ReservedListTable[fileName].Contains(oldKey))
+                {
+                    ReservedListTable[fileName].Remove(oldKey);
+                }
+                if (!ReservedListTable[fileName].Contains(newKey))
+                {
+                    ReservedListTable[fileName].Add(newKey);
+                    Debug.WriteLine(string.Format("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey,
+                                                  Path.GetFileName(fileName)));
+                }
             }
 
             // 文字列定義順リストを書き換える
@@ -799,8 +835,19 @@ namespace HoI2Editor.Models
             {
                 int index = OrderListTable[fileName].IndexOf(oldKey);
                 OrderListTable[fileName][index] = newKey;
-                Debug.WriteLine(string.Format("[Config] Replaced order list: {0} - {1} ({2})", oldKey, newKey,
-                                              Path.GetFileName(fileName)));
+            }
+
+            // 文字列定義ファイルテーブルに登録し直す
+            if (TextFileTable.ContainsKey(fileName))
+            {
+                if (TextFileTable.ContainsKey(oldKey))
+                {
+                    TextFileTable.Remove(oldKey);
+                }
+                if (!TextFileTable.ContainsKey(newKey))
+                {
+                    TextFileTable.Add(newKey, fileName);
+                }
             }
 
             // 一時キーリストから削除する
@@ -809,6 +856,9 @@ namespace HoI2Editor.Models
                 TempKeyList.Remove(oldKey);
                 Debug.WriteLine(string.Format("[Config] Removed temp list: {0}", oldKey));
             }
+
+            // 編集済みフラグを設定する
+            SetDirty(fileName);
         }
 
         /// <summary>
@@ -846,17 +896,6 @@ namespace HoI2Editor.Models
             key = key.ToUpper();
 
             return Text.ContainsKey(key);
-        }
-
-        /// <summary>
-        ///     予約キーかどうかを判定する
-        /// </summary>
-        /// <param name="key">文字列の定義名</param>
-        /// <param name="fileName">文字列定義ファイル名</param>
-        /// <returns>予約キーかどうか</returns>
-        public static bool IsReservedKey(string key, string fileName)
-        {
-            return (ReservedListTable.ContainsKey(fileName) && ReservedListTable[fileName].Contains(key));
         }
 
         /// <summary>

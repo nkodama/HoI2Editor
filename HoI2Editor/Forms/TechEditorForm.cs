@@ -593,7 +593,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
-            Config.SetDirty(Game.TechTextFileName);
 
             if (techListBox.SelectedItem is ITechItem)
             {
@@ -662,7 +661,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
-            Config.SetDirty(Game.TechTextFileName);
 
             if (techListBox.SelectedItem is ITechItem)
             {
@@ -780,10 +778,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
-            if (item is TechItem || item is TechLabel)
-            {
-                Config.SetDirty(Game.TechTextFileName);
-            }
 
             // 項目リストビューに項目を挿入する
             InsertTechListItem(item, techListBox.SelectedIndex + 1);
@@ -1654,7 +1648,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             grp.SetDirty(TechGroupItemId.Name);
-            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             categoryNameTextBox.ForeColor = Color.Red;
@@ -1681,7 +1674,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             grp.SetDirty(TechGroupItemId.Desc);
-            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             categoryDescTextBox.ForeColor = Color.Red;
@@ -1863,7 +1855,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.Name);
-            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             techNameTextBox.ForeColor = Color.Red;
@@ -1905,7 +1896,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.ShortName);
-            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             techShortNameTextBox.ForeColor = Color.Red;
@@ -3397,7 +3387,6 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirtyAll();
-            Config.SetDirty(Game.TechTextFileName);
 
             if (componentListView.SelectedIndices.Count > 0)
             {
@@ -3453,7 +3442,6 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             component.SetDirtyAll();
-            Config.SetDirty(Game.TechTextFileName);
 
             // 項目をリストに挿入する
             item.InsertComponent(component, index + 1);
@@ -3662,7 +3650,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             item.SetDirty();
             component.SetDirty(TechComponentItemId.Name);
-            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             componentNameTextBox.ForeColor = Color.Red;
@@ -4993,7 +4980,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.Name);
-            Config.SetDirty(Game.TechTextFileName);
 
             // 文字色を変更する
             labelNameTextBox.ForeColor = Color.Red;

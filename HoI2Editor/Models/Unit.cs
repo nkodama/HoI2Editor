@@ -703,9 +703,6 @@ namespace HoI2Editor.Models
 
             // ユニットモデル名を更新する
             Config.SetText(name, s, fileName);
-
-            // 編集済みフラグを設定する
-            Config.SetDirty(fileName);
         }
 
         /// <summary>

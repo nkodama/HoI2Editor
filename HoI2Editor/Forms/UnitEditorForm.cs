@@ -898,7 +898,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             model.SetDirtyAll();
             unit.SetDirty();
-            Config.SetDirty(Game.UnitTextFileName);
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -934,7 +933,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             unit.SetDirty();
-            Config.SetDirty(Game.UnitTextFileName);
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -991,7 +989,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             unit.SetDirty();
-            Config.SetDirty(Game.UnitTextFileName);
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -1618,7 +1615,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Name);
-            Config.SetDirty(Game.UnitTextFileName);
 
             // 文字色を変更する
             classNameTextBox.ForeColor = Color.Red;
@@ -1649,7 +1645,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.ShortName);
-            Config.SetDirty(Game.UnitTextFileName);
 
             // 文字色を変更する
             classShortNameTextBox.ForeColor = Color.Red;
@@ -1680,7 +1675,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Desc);
-            Config.SetDirty(Game.UnitTextFileName);
 
             // 文字色を変更する
             classDescTextBox.ForeColor = Color.Red;
@@ -1711,7 +1705,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.ShortDesc);
-            Config.SetDirty(Game.UnitTextFileName);
 
             // 文字色を変更する
             classShortDescTextBox.ForeColor = Color.Red;

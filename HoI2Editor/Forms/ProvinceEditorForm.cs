@@ -1522,7 +1522,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             province.SetDirty(ProvinceItemId.Name);
-            Config.SetDirty(Game.ProvinceTextFileName);
 
             // 文字色を変更する
             nameTextBox.ForeColor = Color.Red;
