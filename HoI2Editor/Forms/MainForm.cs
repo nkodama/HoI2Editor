@@ -33,7 +33,7 @@ namespace HoI2Editor.Forms
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             // バージョン文字列を更新する
-            UpdateVersion();
+            Text = HoI2EditorApplication.Version;
 
             // 言語を初期化する
             Config.LangMode = Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP"))
@@ -45,25 +45,6 @@ namespace HoI2Editor.Forms
 
             // 言語リストを更新する
             UpdateLanguage();
-        }
-
-        /// <summary>
-        ///     バージョン文字列を更新する
-        /// </summary>
-        private void UpdateVersion()
-        {
-            FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-            char privateVersion;
-            if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
-            {
-                privateVersion = (char) ('`' + info.FilePrivatePart);
-            }
-            else
-            {
-                privateVersion = '\0';
-            }
-            Text = string.Format("Alternative HoI2 Editor Ver {0}.{1}{2}{3}", info.FileMajorPart, info.FileMinorPart,
-                                 info.FileBuildPart, privateVersion);
         }
 
         /// <summary>
@@ -220,6 +201,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGameFolderTextBoxTextChanged(object sender, EventArgs e)
         {
+            // ゲームフォルダ名が変更なければ戻る
+            if (gameFolderTextBox.Text.Equals(Game.FolderName))
+            {
+                return;
+            }
+
             // 言語モードを記憶する
             LanguageMode prev = Config.LangMode;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,7 +18,15 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     言語モード
         /// </summary>
-        public static LanguageMode LangMode { get; set; }
+        public static LanguageMode LangMode
+        {
+            get { return _langMode; }
+            set
+            {
+                _langMode = value;
+                Debug.WriteLine(string.Format("Language Mode: {0}", LanguageModeStrings[(int) _langMode]));
+            }
+        }
 
         /// <summary>
         ///     言語インデックス
@@ -26,11 +35,29 @@ namespace HoI2Editor.Models
         ///     日本語環境ならば先頭言語が日本語、その次が英語(英語版日本語化の場合)で残りは空
         ///     日本語環境でなければ、英仏伊西独波葡露Extra1/2の順
         /// </remarks>
-        public static int LangIndex { get; set; }
+        public static int LangIndex
+        {
+            private get { return _langIndex; }
+            set {
+                _langIndex = value;
+                Debug.WriteLine(string.Format("Language Index: {0} ({1})", _langIndex,
+                                              LanguageStrings[(int)_langMode][_langIndex]));
+            }
+        }
 
         #endregion
 
         #region 内部フィールド
+
+        /// <summary>
+        ///     言語モード
+        /// </summary>
+        private static LanguageMode _langMode;
+
+        /// <summary>
+        ///     言語インデックス
+        /// </summary>
+        private static int _langIndex;
 
         /// <summary>
         ///     文字列変換テーブル
@@ -142,6 +169,19 @@ namespace HoI2Editor.Models
         private const int MaxLanguages = 10;
 
         /// <summary>
+        /// 言語モード文字列
+        /// </summary>
+        private static readonly string[] LanguageModeStrings =
+            {
+                "Japanese",
+                "English",
+                "Patched Japanese",
+                "Patched Korean",
+                "Patched Traditional Chinese",
+                "Patched Simplified Chinese"
+            };
+
+        /// <summary>
         ///     CSVファイルの区切り文字
         /// </summary>
         private static readonly char[] CsvSeparator = {';'};
@@ -202,6 +242,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
                     }
                 }
 
@@ -221,6 +262,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
                         }
                     }
                 }
@@ -245,6 +287,7 @@ namespace HoI2Editor.Models
                             catch (Exception)
                             {
                                 Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
                             }
                         }
                     }
@@ -267,6 +310,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
                         }
                     }
                 }
@@ -294,6 +338,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
                         }
                     }
                 }
@@ -314,6 +359,7 @@ namespace HoI2Editor.Models
                             catch (Exception)
                             {
                                 Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
                             }
                         }
                     }
@@ -357,6 +403,8 @@ namespace HoI2Editor.Models
             {
                 name = Path.Combine("Addtional", name);
             }
+
+            Debug.WriteLine(string.Format("[Config] Load: {0}", name));
 
             // トークン数の設定
             int expectedCount;
@@ -410,6 +458,7 @@ namespace HoI2Editor.Models
                         Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount,
                                                 Path.Combine(Game.ConfigPathName, name), lineNo));
                         Log.Write(string.Format("  {0}\n\n", line));
+                        Debug.WriteLine(string.Format("[Config] Invalid token count ({0} L{1})", name, lineNo));
 
                         // 末尾のxがない/余分な項目がある場合は解析を続ける
                         if (tokens.Length < effectiveCount)
@@ -429,6 +478,7 @@ namespace HoI2Editor.Models
                     if (RegexTempKey.IsMatch(key))
                     {
                         TempKeyList.Add(key);
+                        Debug.WriteLine(string.Format("[Config] Unexpected temp key: {0} ({1} L{2})", key, name, lineNo));
                     }
 
                     // 変換テーブルに登録する
@@ -444,79 +494,6 @@ namespace HoI2Editor.Models
 
             // 定義順リストテーブルに登録する
             OrderListTable.Add(name, orderList);
-
-            //using (var writer = new StreamWriter("log.txt", false, Encoding.GetEncoding(Game.CodePage)))
-            //{
-            //    writer.WriteLine("[Text]");
-            //    foreach (string key in Text.Keys)
-            //    {
-            //        writer.WriteLine("{0} => {1}", key, Text[key][0]);
-            //    }
-            //    writer.WriteLine();
-            //    writer.WriteLine("[OrderListTable]");
-            //    foreach (string fn in OrderListTable.Keys)
-            //    {
-            //        writer.WriteLine("--- {0} ---", fn);
-            //        foreach (string key in OrderListTable[fn])
-            //        {
-            //            writer.WriteLine(key);
-            //        }
-            //    }
-            //    writer.WriteLine();
-            //    writer.WriteLine("[ReservedListTable]");
-            //    foreach (string fn in ReservedListTable.Keys)
-            //    {
-            //        writer.WriteLine("--- {0} ---", fn);
-            //        foreach (string key in ReservedListTable[fn])
-            //        {
-            //            writer.WriteLine(key);
-            //        }
-            //    }
-            //    writer.WriteLine();
-            //    writer.WriteLine("[TempKeyList]");
-            //    foreach (string key in TempKeyList)
-            //    {
-            //        writer.WriteLine(key);
-            //    }
-            //}
-        }
-
-        public static void OutputLogs()
-        {
-            using (var writer = new StreamWriter("log.txt", false, Encoding.GetEncoding(Game.CodePage)))
-            {
-                //writer.WriteLine("[Text]");
-                //foreach (string key in Text.Keys)
-                //{
-                //    writer.WriteLine("{0} => {1}", key, Text[key][0]);
-                //}
-                //writer.WriteLine();
-                //writer.WriteLine("[OrderListTable]");
-                //foreach (string fn in OrderListTable.Keys)
-                //{
-                //    writer.WriteLine("--- {0} ---", fn);
-                //    foreach (string key in OrderListTable[fn])
-                //    {
-                //        writer.WriteLine(key);
-                //    }
-                //}
-                //writer.WriteLine();
-                writer.WriteLine("[ReservedListTable]");
-                foreach (string fn in ReservedListTable.Keys)
-                {
-                    writer.WriteLine("--- {0} ---", fn);
-                    foreach (string key in ReservedListTable[fn])
-                    {
-                        writer.WriteLine(key);
-                    }
-                }
-                writer.WriteLine();
-                writer.WriteLine("[TempKeyList]");
-                foreach (string key in TempKeyList)
-                {
-                    writer.WriteLine(key);
-                }
-            }
         }
 
         #endregion
@@ -559,6 +536,25 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void SaveFile(string fileName)
         {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return;
+            }
+
+            string name = Path.GetFileName(fileName);
+            if (string.IsNullOrEmpty(name))
+            {
+                return;
+            }
+
+            string dirName = Path.GetFileName(Path.GetDirectoryName(fileName));
+            if (!string.IsNullOrEmpty(dirName) && dirName.ToLower().Equals("additional"))
+            {
+                name = Path.Combine("Addtional", name);
+            }
+
+            Debug.WriteLine(string.Format("[Config] Save: {0}", name));
+
             // 保存フォルダ名を取得する
             string folderName = Game.GetWriteFileName(fileName.Equals(Game.ProvinceTextFileName)
                                                           ? Game.GetProvinceNameFolderName()
@@ -612,12 +608,15 @@ namespace HoI2Editor.Models
                     // 一時キーは保存しない
                     if (TempKeyList.Contains(k))
                     {
+                        Debug.WriteLine(string.Format("[Config] Skipped temp key: {0} ({1})", key, name));
                         TempKeyList.Remove(k);
+                        Debug.WriteLine(string.Format("[Config] Removed temp key: {0}", key));
                         continue;
                     }
                     // 登録されていないキーは保存しない
                     if (!Text.ContainsKey(k))
                     {
+                        Debug.WriteLine(string.Format("[Config] Skipped unexisting key: {0} ({1})", key, name));
                         continue;
                     }
                     string[] t = Text[k];
@@ -658,6 +657,9 @@ namespace HoI2Editor.Models
                 // 一時キーは保存しない
                 if (TempKeyList.Contains(k))
                 {
+                    Debug.WriteLine(string.Format("[Config] Skipped temp key: {0} ({1})", key,
+                                                  Path.GetFileName(fileName)));
+                    TempKeyList.Remove(k);
                     continue;
                 }
                 if (Text.ContainsKey(k))
@@ -712,6 +714,7 @@ namespace HoI2Editor.Models
             }
 
             // テーブルに登録されていなければ定義名を返す
+            Debug.WriteLine(string.Format("[Config] GetText failed: {0}", key));
             return key;
         }
 
@@ -746,10 +749,13 @@ namespace HoI2Editor.Models
 
                 // 文字列変換テーブルに登録する
                 Text[key] = new string[MaxLanguages];
+
+                Debug.WriteLine(string.Format("[Config] Added {0}: {1} ({2})", key, text, Path.GetFileName(fileName)));
             }
 
             // 文字列変換テーブルの文字列を変更する
             Text[key][LangIndex] = text;
+            Debug.WriteLine(string.Format("[Config] Set {0}: {1}", key, text));
         }
 
         /// <summary>
@@ -769,6 +775,7 @@ namespace HoI2Editor.Models
 
             if (!Text.ContainsKey(oldKey) || Text.ContainsKey(newKey))
             {
+                Debug.WriteLine(string.Format("[Config] RenameText failed: {0} - {1}", oldKey, newKey));
                 return;
             }
 
@@ -783,6 +790,8 @@ namespace HoI2Editor.Models
             {
                 ReservedListTable[fileName].Remove(oldKey);
                 ReservedListTable[fileName].Add(newKey);
+                Debug.WriteLine(string.Format("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey,
+                                              Path.GetFileName(fileName)));
             }
 
             // 文字列定義順リストを書き換える
@@ -790,12 +799,15 @@ namespace HoI2Editor.Models
             {
                 int index = OrderListTable[fileName].IndexOf(oldKey);
                 OrderListTable[fileName][index] = newKey;
+                Debug.WriteLine(string.Format("[Config] Replaced order list: {0} - {1} ({2})", oldKey, newKey,
+                                              Path.GetFileName(fileName)));
             }
 
             // 一時キーリストから削除する
             if (TempKeyList.Contains(oldKey))
             {
                 TempKeyList.Remove(oldKey);
+                Debug.WriteLine(string.Format("[Config] Removed temp list: {0}", oldKey));
             }
         }
 
@@ -807,12 +819,16 @@ namespace HoI2Editor.Models
         public static void RemoveText(string key, string fileName)
         {
             Text.Remove(key);
+            Debug.WriteLine(string.Format("[Config] Removed text: {0} ({1})", key, Path.GetFileName(fileName)));
+
             ReservedListTable[fileName].Remove(key);
+            Debug.WriteLine(string.Format("[Config] Removed reserved list: {0} ({1})", key, Path.GetFileName(fileName)));
 
             // 一時キーリストから削除する
             if (TempKeyList.Contains(key))
             {
                 TempKeyList.Remove(key);
+                Debug.WriteLine(string.Format("[Config] Removed temp list: {0}", key));
             }
         }
 
@@ -868,6 +884,7 @@ namespace HoI2Editor.Models
 
             // 一時キーリストに登録する
             TempKeyList.Add(key);
+            Debug.WriteLine(string.Format("[Config] New temp key: {0}", key));
 
             return key;
         }

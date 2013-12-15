@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -16,12 +17,28 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ゲームの種類
         /// </summary>
-        public static GameType Type { get; private set; }
+        public static GameType Type
+        {
+            get { return _type; }
+            private set
+            {
+                _type = value;
+                OutputGameType();
+            }
+        }
 
         /// <summary>
         ///     ゲームバージョン
         /// </summary>
-        public static int Version { get; private set; }
+        public static int Version
+        {
+            get { return _version; }
+            private set
+            {
+                _version = value;
+                OutputGameVersion();
+            }
+        }
 
         /// <summary>
         ///     ファイル読み書き時のコードページ
@@ -32,6 +49,7 @@ namespace HoI2Editor.Models
             set
             {
                 _codePage = value;
+                Debug.WriteLine(string.Format("CodePage: {0}", _codePage));
 
                 // ファイルの再読み込みを要求する
                 RequireReload();
@@ -47,6 +65,7 @@ namespace HoI2Editor.Models
             set
             {
                 _folderName = value;
+                Debug.WriteLine(string.Format("Game Folder: {0}", _folderName));
 
                 // ゲームの種類を判別する
                 DistinguishGameType();
@@ -82,6 +101,7 @@ namespace HoI2Editor.Models
             set
             {
                 _modName = value;
+                Debug.WriteLine(string.Format("MOD Name: {0}", _modName));
 
                 // MODフォルダ名を更新する
                 UpdateModFolderName();
@@ -107,6 +127,16 @@ namespace HoI2Editor.Models
         #endregion
 
         #region 内部フィールド
+
+        /// <summary>
+        ///     ゲームの種類
+        /// </summary>
+        private static GameType _type;
+
+        /// <summary>
+        ///     ゲームバージョン
+        /// </summary>
+        private static int _version;
 
         /// <summary>
         ///     ゲームフォルダ名
@@ -329,6 +359,21 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部定数
+
+        /// <summary>
+        /// ゲーム種類の文字列
+        /// </summary>
+        private static readonly string[] GameTypeStrings =
+            {
+                "Unknown",
+                "Hearts of Iron 2",
+                "Arsenal of Democracy",
+                "Darkest Hour"
+            };
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -355,6 +400,8 @@ namespace HoI2Editor.Models
             UnitNames.RequireReload();
             DivisionNames.RequireReload();
             RandomLeaders.RequireReload();
+
+            Debug.WriteLine("Required to reload all");
         }
 
         #endregion
@@ -750,6 +797,43 @@ namespace HoI2Editor.Models
                     return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// ゲームの種類を出力する
+        /// </summary>
+        [Conditional("DEBUG")]
+        private static void OutputGameType()
+        {
+            // 種類不明の場合は何も出力しない
+            if (_type == GameType.None)
+            {
+                return;
+            }
+
+            Debug.WriteLine(string.Format("Game Type: {0}", GameTypeStrings[(int) _type]));
+        }
+
+        [Conditional("DEBUG")]
+        private static void OutputGameVersion()
+        {
+            string s;
+            switch (_type)
+            {
+                case GameType.HeartsOfIron2:
+                    s = string.Format("{0}.{1}", _version/100, (_version%100)/10);
+                    break;
+
+                case GameType.ArsenalOfDemocracy:
+                case GameType.DarkestHour:
+                    s = string.Format("{0}.{1}{2}", _version/100, (_version%100)/10, (_version%10));
+                    break;
+
+                default:
+                    // 種類不明の場合は何も出力しない
+                    return;
+            }
+            Debug.WriteLine(string.Format("Game Version: {0}", s));
         }
 
         #endregion
