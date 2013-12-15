@@ -511,6 +511,7 @@ namespace HoI2Editor.Models
                         writer.WriteLine(";;;;;;;;;;;X");
                         continue;
                     }
+
                     // コメント行
                     if (key[0] == '#')
                     {
@@ -531,19 +532,22 @@ namespace HoI2Editor.Models
                         writer.WriteLine("{0};;;;;;;;;;;X", key);
                         continue;
                     }
+
+                    // 文字列定義
+                    string k = key.ToUpper();
                     // 一時キーは保存しない
-                    if (TempKeyList.Contains(key))
+                    if (TempKeyList.Contains(k))
                     {
                         continue;
                     }
-                    // 文字列定義
-                    string k = key.ToUpper();
-                    if (Text.ContainsKey(k))
+                    // 登録されていないキーは保存しない
+                    if (!Text.ContainsKey(k))
                     {
-                        string[] t = Text[k];
-                        writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};X",
-                                         key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
+                        continue;
                     }
+                    string[] t = Text[k];
+                    writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};X",
+                                     key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
                 }
 
                 // ファイル末尾のEOFがない場合の保険
@@ -554,6 +558,8 @@ namespace HoI2Editor.Models
                     // 末尾行
                     writer.WriteLine("#EOF;;;;;;;;;;;X");
                 }
+
+                writer.Close();
             }
         }
 
@@ -574,6 +580,11 @@ namespace HoI2Editor.Models
             foreach (string key in ReservedListTable[fileName])
             {
                 string k = key.ToUpper();
+                // 一時キーは保存しない
+                if (TempKeyList.Contains(k))
+                {
+                    continue;
+                }
                 if (Text.ContainsKey(k))
                 {
                     string[] t = Text[k];
@@ -585,6 +596,8 @@ namespace HoI2Editor.Models
                     writer.WriteLine("{0};;;;;;;;;;;X", key);
                 }
             }
+
+            ReservedListTable[fileName].Clear();
         }
 
         #endregion
