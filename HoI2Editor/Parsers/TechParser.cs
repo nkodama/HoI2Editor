@@ -44,7 +44,7 @@ namespace HoI2Editor.Parsers
                 if (group == null)
                 {
                     Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "technology",
-                                            Resources.Section, _fileName));
+                        Resources.Section, _fileName));
                 }
                 return group;
             }
@@ -229,7 +229,7 @@ namespace HoI2Editor.Parsers
                     if (label == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "label",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -245,7 +245,7 @@ namespace HoI2Editor.Parsers
                     if (ev == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "event",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -261,7 +261,7 @@ namespace HoI2Editor.Parsers
                     if (application == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "application",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -421,7 +421,7 @@ namespace HoI2Editor.Parsers
                     if (position == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "position",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -489,7 +489,7 @@ namespace HoI2Editor.Parsers
                     if (component == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "component",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -505,7 +505,7 @@ namespace HoI2Editor.Parsers
                     if (ids == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "required",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -525,7 +525,7 @@ namespace HoI2Editor.Parsers
                     if (ids == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "or_required",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -545,7 +545,7 @@ namespace HoI2Editor.Parsers
                     if (commands == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "effects",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -650,7 +650,7 @@ namespace HoI2Editor.Parsers
                     if (position == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "position",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -755,7 +755,7 @@ namespace HoI2Editor.Parsers
                     if (position == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "position",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
 
@@ -1257,7 +1257,7 @@ namespace HoI2Editor.Parsers
                     if (command == null)
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "command",
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                         continue;
                     }
                     if (command.Type == CommandType.None)

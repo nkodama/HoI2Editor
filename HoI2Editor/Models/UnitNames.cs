@@ -54,7 +54,7 @@ namespace HoI2Editor.Models
         ///     ユニット名種類ごとの編集済みフラグ
         /// </summary>
         private static readonly bool[,] TypeDirtyFlags =
-            new bool[Enum.GetValues(typeof (Country)).Length,Enum.GetValues(typeof (UnitNameType)).Length];
+            new bool[Enum.GetValues(typeof (Country)).Length, Enum.GetValues(typeof (UnitNameType)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -74,83 +74,83 @@ namespace HoI2Editor.Models
         ///     ユニット種類名
         /// </summary>
         public static readonly string[] TypeNames =
-            {
-                "NAME_HQ",
-                "NAME_INFANTRY",
-                "NAME_GARRISON",
-                "NAME_CAVALRY",
-                "NAME_MOTORIZED",
-                "NAME_MECHANIZED",
-                "NAME_LIGHT_ARMOR",
-                "NAME_ARMOR",
-                "NAME_PARATROOPER",
-                "NAME_MARINE",
-                "NAME_BERGSJAEGER",
-                "NAME_MILITIA",
-                "NAME_MULTI_ROLE",
-                "NAME_INTERCEPTOR",
-                "NAME_ROCKET_INTERCEPTOR",
-                "NAME_ESCORT",
-                "NAME_STRATEGIC_BOMBER",
-                "NAME_TACTICAL_BOMBER",
-                "NAME_CAS",
-                "NAME_NAVAL_BOMBER",
-                "NAME_TRANSPORT_PLANE",
-                "NAME_FLYING_BOMB",
-                "NAME_FLYING_ROCKET",
-                "NAME_BATTLESHIP",
-                "NAME_BATTLECRUISER",
-                "NAME_CARRIER",
-                "NAME_ESCORT_CARRIER",
-                "NAME_LIGHT_CARRIER",
-                "NAME_HEAVY_CRUISER",
-                "NAME_LIGHT_CRUISER",
-                "NAME_DESTROYER",
-                "NAME_SUBMARINE",
-                "NAME_NUCLEAR_SUBMARINE",
-                "NAME_TRANSPORT"
-            };
+        {
+            "NAME_HQ",
+            "NAME_INFANTRY",
+            "NAME_GARRISON",
+            "NAME_CAVALRY",
+            "NAME_MOTORIZED",
+            "NAME_MECHANIZED",
+            "NAME_LIGHT_ARMOR",
+            "NAME_ARMOR",
+            "NAME_PARATROOPER",
+            "NAME_MARINE",
+            "NAME_BERGSJAEGER",
+            "NAME_MILITIA",
+            "NAME_MULTI_ROLE",
+            "NAME_INTERCEPTOR",
+            "NAME_ROCKET_INTERCEPTOR",
+            "NAME_ESCORT",
+            "NAME_STRATEGIC_BOMBER",
+            "NAME_TACTICAL_BOMBER",
+            "NAME_CAS",
+            "NAME_NAVAL_BOMBER",
+            "NAME_TRANSPORT_PLANE",
+            "NAME_FLYING_BOMB",
+            "NAME_FLYING_ROCKET",
+            "NAME_BATTLESHIP",
+            "NAME_BATTLECRUISER",
+            "NAME_CARRIER",
+            "NAME_ESCORT_CARRIER",
+            "NAME_LIGHT_CARRIER",
+            "NAME_HEAVY_CRUISER",
+            "NAME_LIGHT_CRUISER",
+            "NAME_DESTROYER",
+            "NAME_SUBMARINE",
+            "NAME_NUCLEAR_SUBMARINE",
+            "NAME_TRANSPORT"
+        };
 
         /// <summary>
         ///     ユニット種類文字列
         /// </summary>
         public static readonly string[] TypeStrings =
-            {
-                "HQ",
-                "Inf",
-                "Gar",
-                "Cav",
-                "Mot",
-                "Mec",
-                "L ARM",
-                "Arm",
-                "Par",
-                "Mar",
-                "Mtn",
-                "Mil",
-                "Fig",
-                "Int F",
-                "32",
-                "Esc F",
-                "Str",
-                "Tac",
-                "CAS",
-                "Nav",
-                "Trp",
-                "V1",
-                "V2",
-                "BB",
-                "BC",
-                "CV",
-                "27",
-                "31",
-                "CA",
-                "CL",
-                "DD",
-                "SS",
-                "NS",
-                "TP"
-            };
+        {
+            "HQ",
+            "Inf",
+            "Gar",
+            "Cav",
+            "Mot",
+            "Mec",
+            "L ARM",
+            "Arm",
+            "Par",
+            "Mar",
+            "Mtn",
+            "Mil",
+            "Fig",
+            "Int F",
+            "32",
+            "Esc F",
+            "Str",
+            "Tac",
+            "CAS",
+            "Nav",
+            "Trp",
+            "V1",
+            "V2",
+            "BB",
+            "BC",
+            "CV",
+            "27",
+            "31",
+            "CA",
+            "CL",
+            "DD",
+            "SS",
+            "NS",
+            "TP"
+        };
 
         #endregion
 
@@ -160,81 +160,81 @@ namespace HoI2Editor.Models
         ///     利用可能なユニット名種類 (DDA/AoD/DH1.02)
         /// </summary>
         private static readonly UnitNameType[] TypesHoI2 =
-            {
-                UnitNameType.Hq,
-                UnitNameType.Infantry,
-                UnitNameType.Garrison,
-                UnitNameType.Cavalry,
-                UnitNameType.Motorized,
-                UnitNameType.Mechanized,
-                UnitNameType.LightArmor,
-                UnitNameType.Armor,
-                UnitNameType.Paratrooper,
-                UnitNameType.Marine,
-                UnitNameType.Bergsjaeger,
-                UnitNameType.Militia,
-                UnitNameType.Fighter,
-                UnitNameType.Interceptor,
-                UnitNameType.EscortFighter,
-                UnitNameType.StrategicBomber,
-                UnitNameType.TacticalBomber,
-                UnitNameType.Cas,
-                UnitNameType.NavalBomber,
-                UnitNameType.TransportPlane,
-                UnitNameType.FlyingBomb,
-                UnitNameType.FlyingRocket,
-                UnitNameType.Battleship,
-                UnitNameType.BattleCruiser,
-                UnitNameType.Carrier,
-                UnitNameType.EscortCarrier,
-                UnitNameType.HeavyCruiser,
-                UnitNameType.LightCruiser,
-                UnitNameType.Destroyer,
-                UnitNameType.Submarine,
-                UnitNameType.NuclearSubmarine,
-                UnitNameType.Transport,
-            };
+        {
+            UnitNameType.Hq,
+            UnitNameType.Infantry,
+            UnitNameType.Garrison,
+            UnitNameType.Cavalry,
+            UnitNameType.Motorized,
+            UnitNameType.Mechanized,
+            UnitNameType.LightArmor,
+            UnitNameType.Armor,
+            UnitNameType.Paratrooper,
+            UnitNameType.Marine,
+            UnitNameType.Bergsjaeger,
+            UnitNameType.Militia,
+            UnitNameType.Fighter,
+            UnitNameType.Interceptor,
+            UnitNameType.EscortFighter,
+            UnitNameType.StrategicBomber,
+            UnitNameType.TacticalBomber,
+            UnitNameType.Cas,
+            UnitNameType.NavalBomber,
+            UnitNameType.TransportPlane,
+            UnitNameType.FlyingBomb,
+            UnitNameType.FlyingRocket,
+            UnitNameType.Battleship,
+            UnitNameType.BattleCruiser,
+            UnitNameType.Carrier,
+            UnitNameType.EscortCarrier,
+            UnitNameType.HeavyCruiser,
+            UnitNameType.LightCruiser,
+            UnitNameType.Destroyer,
+            UnitNameType.Submarine,
+            UnitNameType.NuclearSubmarine,
+            UnitNameType.Transport
+        };
 
         /// <summary>
         ///     利用可能なユニット名種類 (DH1.03)
         /// </summary>
         private static readonly UnitNameType[] TypesDh103 =
-            {
-                UnitNameType.Hq,
-                UnitNameType.Infantry,
-                UnitNameType.Garrison,
-                UnitNameType.Cavalry,
-                UnitNameType.Motorized,
-                UnitNameType.Mechanized,
-                UnitNameType.LightArmor,
-                UnitNameType.Armor,
-                UnitNameType.Paratrooper,
-                UnitNameType.Marine,
-                UnitNameType.Bergsjaeger,
-                UnitNameType.Militia,
-                UnitNameType.Fighter,
-                UnitNameType.Interceptor,
-                UnitNameType.RocketInterceptor,
-                UnitNameType.EscortFighter,
-                UnitNameType.StrategicBomber,
-                UnitNameType.TacticalBomber,
-                UnitNameType.Cas,
-                UnitNameType.NavalBomber,
-                UnitNameType.TransportPlane,
-                UnitNameType.FlyingBomb,
-                UnitNameType.FlyingRocket,
-                UnitNameType.Battleship,
-                UnitNameType.BattleCruiser,
-                UnitNameType.Carrier,
-                UnitNameType.EscortCarrier,
-                UnitNameType.LightCarrier,
-                UnitNameType.HeavyCruiser,
-                UnitNameType.LightCruiser,
-                UnitNameType.Destroyer,
-                UnitNameType.Submarine,
-                UnitNameType.NuclearSubmarine,
-                UnitNameType.Transport,
-            };
+        {
+            UnitNameType.Hq,
+            UnitNameType.Infantry,
+            UnitNameType.Garrison,
+            UnitNameType.Cavalry,
+            UnitNameType.Motorized,
+            UnitNameType.Mechanized,
+            UnitNameType.LightArmor,
+            UnitNameType.Armor,
+            UnitNameType.Paratrooper,
+            UnitNameType.Marine,
+            UnitNameType.Bergsjaeger,
+            UnitNameType.Militia,
+            UnitNameType.Fighter,
+            UnitNameType.Interceptor,
+            UnitNameType.RocketInterceptor,
+            UnitNameType.EscortFighter,
+            UnitNameType.StrategicBomber,
+            UnitNameType.TacticalBomber,
+            UnitNameType.Cas,
+            UnitNameType.NavalBomber,
+            UnitNameType.TransportPlane,
+            UnitNameType.FlyingBomb,
+            UnitNameType.FlyingRocket,
+            UnitNameType.Battleship,
+            UnitNameType.BattleCruiser,
+            UnitNameType.Carrier,
+            UnitNameType.EscortCarrier,
+            UnitNameType.LightCarrier,
+            UnitNameType.HeavyCruiser,
+            UnitNameType.LightCruiser,
+            UnitNameType.Destroyer,
+            UnitNameType.Submarine,
+            UnitNameType.NuclearSubmarine,
+            UnitNameType.Transport
+        };
 
         /// <summary>
         ///     CSVファイルの区切り文字
@@ -420,7 +420,7 @@ namespace HoI2Editor.Models
 
 
                 foreach (Country country in Items.Select(pair => pair.Key)
-                                                 .Where(country => ExistsCountry(country) && Items[country].Count > 0))
+                    .Where(country => ExistsCountry(country) && Items[country].Count > 0))
                 {
                     Country c = country;
                     foreach (UnitNameType type in Items[country]
@@ -541,8 +541,8 @@ namespace HoI2Editor.Models
         {
             List<KeyValuePair<Country, UnitNameType>> pairs =
                 (from country in Items.Select(pair => pair.Key)
-                 from type in Items[country].Select(pair => pair.Key)
-                 select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
+                    from type in Items[country].Select(pair => pair.Key)
+                    select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
             foreach (var pair in pairs)
             {
                 Replace(s, t, pair.Key, pair.Value, regex);
@@ -596,7 +596,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
         public static void AddSequential(string prefix, string suffix, int start, int end, Country country,
-                                         UnitNameType type)
+            UnitNameType type)
         {
             for (int i = start; i <= end; i++)
             {
@@ -665,8 +665,8 @@ namespace HoI2Editor.Models
         {
             List<KeyValuePair<Country, UnitNameType>> pairs =
                 (from country in Items.Select(pair => pair.Key)
-                 from type in Items[country].Select(pair => pair.Key)
-                 select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
+                    from type in Items[country].Select(pair => pair.Key)
+                    select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
             foreach (var pair in pairs)
             {
                 Interpolate(pair.Key, pair.Value);

@@ -1280,6 +1280,7 @@
             this.Controls.Add(this.categoryListBox);
             this.Name = "TechEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnTechEditorFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnTechEditorFormClosed);
             this.Load += new System.EventHandler(this.OnTechEditorFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.treePictureBox)).EndInit();
             this.editTabControl.ResumeLayout(false);

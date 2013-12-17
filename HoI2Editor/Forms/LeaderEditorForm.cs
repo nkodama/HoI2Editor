@@ -128,7 +128,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -138,6 +138,16 @@ namespace HoI2Editor.Forms
                     SaveFiles();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnLeaderEditorFormClosed();
         }
 
         #endregion
@@ -572,15 +582,15 @@ namespace HoI2Editor.Forms
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
                 leader = new Leader
-                    {
-                        Country = selected.Country,
-                        Id = Leaders.GetNewId(selected.Country),
-                        Branch = Branch.None,
-                        IdealRank = LeaderRank.None,
-                        StartYear = 1930,
-                        EndYear = 1990,
-                        RetirementYear = 1999,
-                    };
+                {
+                    Country = selected.Country,
+                    Id = Leaders.GetNewId(selected.Country),
+                    Branch = Branch.None,
+                    IdealRank = LeaderRank.None,
+                    StartYear = 1930,
+                    EndYear = 1990,
+                    RetirementYear = 1999,
+                };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
                 leader.RankYear[2] = 1990;
@@ -596,19 +606,19 @@ namespace HoI2Editor.Forms
             else
             {
                 Country country = countryListBox.SelectedItems.Count > 0
-                                      ? (Country) (countryListBox.SelectedIndex + 1)
-                                      : Country.None;
+                    ? (Country) (countryListBox.SelectedIndex + 1)
+                    : Country.None;
                 // 新規項目を作成する
                 leader = new Leader
-                    {
-                        Country = country,
-                        Id = Leaders.GetNewId(country),
-                        Branch = Branch.None,
-                        IdealRank = LeaderRank.None,
-                        StartYear = 1930,
-                        EndYear = 1990,
-                        RetirementYear = 1999,
-                    };
+                {
+                    Country = country,
+                    Id = Leaders.GetNewId(country),
+                    Branch = Branch.None,
+                    IdealRank = LeaderRank.None,
+                    StartYear = 1930,
+                    EndYear = 1990,
+                    RetirementYear = 1999,
+                };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
                 leader.RankYear[2] = 1990;
@@ -645,22 +655,22 @@ namespace HoI2Editor.Forms
 
             // 選択項目を引き継いで項目を作成する
             var leader = new Leader
-                {
-                    Country = selected.Country,
-                    Id = Leaders.GetNewId(selected.Country),
-                    Name = selected.Name,
-                    Branch = selected.Branch,
-                    IdealRank = selected.IdealRank,
-                    Skill = selected.Skill,
-                    MaxSkill = selected.MaxSkill,
-                    Experience = selected.Experience,
-                    Loyalty = selected.Loyalty,
-                    StartYear = selected.StartYear,
-                    EndYear = selected.EndYear,
-                    RetirementYear = selected.RetirementYear,
-                    PictureName = selected.PictureName,
-                    Traits = selected.Traits
-                };
+            {
+                Country = selected.Country,
+                Id = Leaders.GetNewId(selected.Country),
+                Name = selected.Name,
+                Branch = selected.Branch,
+                IdealRank = selected.IdealRank,
+                Skill = selected.Skill,
+                MaxSkill = selected.MaxSkill,
+                Experience = selected.Experience,
+                Loyalty = selected.Loyalty,
+                StartYear = selected.StartYear,
+                EndYear = selected.EndYear,
+                RetirementYear = selected.RetirementYear,
+                PictureName = selected.PictureName,
+                Traits = selected.Traits
+            };
             leader.RankYear[0] = selected.RankYear[0];
             leader.RankYear[1] = selected.RankYear[1];
             leader.RankYear[2] = selected.RankYear[2];
@@ -956,10 +966,10 @@ namespace HoI2Editor.Forms
         private static ListViewItem CreateLeaderListViewItem(Leader leader)
         {
             var item = new ListViewItem
-                {
-                    Text = Countries.Strings[(int) leader.Country],
-                    Tag = leader
-                };
+            {
+                Text = Countries.Strings[(int) leader.Country],
+                Tag = leader
+            };
             item.SubItems.Add(leader.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.Name);
             item.SubItems.Add(Leaders.BranchNames[(int) leader.Branch]);
@@ -995,11 +1005,11 @@ namespace HoI2Editor.Forms
         private static string GetLeaderTraitsText(uint traits)
         {
             string s = Enum.GetValues(typeof (LeaderTraitsId))
-                           .Cast<LeaderTraitsId>()
-                           .Where(id => (traits & Leaders.TraitsValues[(int) id]) != 0)
-                           .Aggregate("",
-                                      (current, id) =>
-                                      string.Format("{0}, {1}", current, Config.GetText(Leaders.TraitsNames[(int) id])));
+                .Cast<LeaderTraitsId>()
+                .Where(id => (traits & Leaders.TraitsValues[(int) id]) != 0)
+                .Aggregate("",
+                    (current, id) =>
+                        string.Format("{0}, {1}", current, Config.GetText(Leaders.TraitsNames[(int) id])));
             // 先頭項目の", "を削除する
             if (!string.IsNullOrEmpty(s))
             {
@@ -1466,8 +1476,8 @@ namespace HoI2Editor.Forms
         {
             // 選択数に合わせて全選択/全解除を切り替える
             countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
-                                        ? Resources.KeySelectAll
-                                        : Resources.KeyUnselectAll;
+                ? Resources.KeySelectAll
+                : Resources.KeyUnselectAll;
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
             newButton.Enabled = countryListBox.SelectedItems.Count > 0;
@@ -1527,15 +1537,15 @@ namespace HoI2Editor.Forms
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Countries.Tags
-                                          .Select(country => Countries.Strings[(int) country])
-                                          .Select(name => Config.ExistsKey(name)
-                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                              : name))
+                .Select(country => Countries.Strings[(int) country])
+                .Select(name => Config.ExistsKey(name)
+                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    : name))
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1663,98 +1673,98 @@ namespace HoI2Editor.Forms
             nameTextBox.ForeColor = leader.IsDirty(LeaderItemId.Name) ? Color.Red : SystemColors.WindowText;
             skillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Skill) ? Color.Red : SystemColors.WindowText;
             maxSkillNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.MaxSkill)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             experienceNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Experience)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             loyaltyNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.Loyalty) ? Color.Red : SystemColors.WindowText;
             startYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.StartYear)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             endYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.EndYear) ? Color.Red : SystemColors.WindowText;
             retirementYearNumericUpDown.ForeColor = leader.IsDirty(LeaderItemId.RetirementYear)
-                                                        ? Color.Red
-                                                        : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             rankYearNumericUpDown1.ForeColor = leader.IsDirty(LeaderItemId.Rank3Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             rankYearNumericUpDown2.ForeColor = leader.IsDirty(LeaderItemId.Rank2Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             rankYearNumericUpDown3.ForeColor = leader.IsDirty(LeaderItemId.Rank1Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             rankYearNumericUpDown4.ForeColor = leader.IsDirty(LeaderItemId.Rank0Year)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             pictureNameTextBox.ForeColor = leader.IsDirty(LeaderItemId.PictureName)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
 
             // 特性チェックボックスの項目色を更新する
             logisticsWizardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.LogisticsWizard)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             defensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DefensiveDoctrine)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             offensiveDoctrineCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OffensiveDoctrine)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             winterSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.WinterSpecialist)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             tricksterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Trickster) ? Color.Red : SystemColors.WindowText;
             engineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Engineer) ? Color.Red : SystemColors.WindowText;
             fortressBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FortressBuster)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             panzerLeaderCheckBox.ForeColor = leader.IsDirty(LeaderItemId.PanzerLeader)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             commandoCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Commando) ? Color.Red : SystemColors.WindowText;
             oldGuardCheckBox.ForeColor = leader.IsDirty(LeaderItemId.OldGuard) ? Color.Red : SystemColors.WindowText;
             seaWolfCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SeaWolf) ? Color.Red : SystemColors.WindowText;
             blockadeRunnerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.BlockadeRunner)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             superiorTacticianCheckBox.ForeColor = leader.IsDirty(LeaderItemId.SuperiorTactician)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             spotterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Spotter) ? Color.Red : SystemColors.WindowText;
             tankBusterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.TankBuster) ? Color.Red : SystemColors.WindowText;
             carpetBomberCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CarpetBomber)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             nightFlyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.NightFlyer) ? Color.Red : SystemColors.WindowText;
             fleetDestroyerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.FleetDestroyer)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             desertFoxCheckBox.ForeColor = leader.IsDirty(LeaderItemId.DesertFox) ? Color.Red : SystemColors.WindowText;
             jungleRatCheckBox.ForeColor = leader.IsDirty(LeaderItemId.JungleRat) ? Color.Red : SystemColors.WindowText;
             urbanWarfareSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.UrbanWarfareSpecialist)
-                                                           ? Color.Red
-                                                           : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             rangerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ranger) ? Color.Red : SystemColors.WindowText;
             mountaineerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Mountaineer)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             hillsFighterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.HillsFighter)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             counterAttackerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.CounterAttacker)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             assaulterCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Assaulter) ? Color.Red : SystemColors.WindowText;
             encirclerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Encircler) ? Color.Red : SystemColors.WindowText;
             ambusherCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Ambusher) ? Color.Red : SystemColors.WindowText;
             disciplinedCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Disciplined)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             elasticDefenceSpecialistCheckBox.ForeColor = leader.IsDirty(LeaderItemId.ElasticDefenceSpecialist)
-                                                             ? Color.Red
-                                                             : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             blitzerCheckBox.ForeColor = leader.IsDirty(LeaderItemId.Blitzer) ? Color.Red : SystemColors.WindowText;
         }
 
@@ -1986,7 +1996,7 @@ namespace HoI2Editor.Forms
             if (!string.IsNullOrEmpty(leader.PictureName))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
-                                                       Path.ChangeExtension(leader.PictureName, ".bmp"));
+                    Path.ChangeExtension(leader.PictureName, ".bmp"));
                 leaderPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
             }
             else
@@ -2589,11 +2599,11 @@ namespace HoI2Editor.Forms
 
             // ファイル選択ダイアログを開く
             var dialog = new OpenFileDialog
-                {
-                    InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
-                    FileName = leader.PictureName,
-                    Filter = Resources.OpenBitmapFileDialogFilter
-                };
+            {
+                InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
+                FileName = leader.PictureName,
+                Filter = Resources.OpenBitmapFileDialogFilter
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);

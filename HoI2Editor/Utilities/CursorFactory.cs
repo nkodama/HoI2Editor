@@ -87,7 +87,7 @@ namespace HoI2Editor.Utilities
                 for (int y = 0; y < bitmap.Height; y++)
                 {
                     xorMask.SetPixel(x, y,
-                                     andMask.GetPixel(x, y) == transparent ? Color.Transparent : bitmap.GetPixel(x, y));
+                        andMask.GetPixel(x, y) == transparent ? Color.Transparent : bitmap.GetPixel(x, y));
                 }
             }
 

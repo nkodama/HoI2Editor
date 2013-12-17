@@ -141,7 +141,7 @@ namespace HoI2Editor.Parsers
                         if (upgrade == null)
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "upgrade",
-                                                    Resources.Section, _fileName));
+                                Resources.Section, _fileName));
                             continue;
                         }
 
@@ -157,7 +157,7 @@ namespace HoI2Editor.Parsers
                         if (model == null)
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "model",
-                                                    Resources.Section, _fileName));
+                                Resources.Section, _fileName));
                             continue;
                         }
 
@@ -1693,7 +1693,7 @@ namespace HoI2Editor.Parsers
                             if (equipments == null)
                             {
                                 Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "equipment",
-                                                        Resources.Section, _fileName));
+                                    Resources.Section, _fileName));
                                 continue;
                             }
 
@@ -2002,7 +2002,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseEyr(lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "eyr",
-                                                    Resources.Section, _fileName));
+                                Resources.Section, _fileName));
                             // 実装したらcontinueを追加すること
                             // continue
                         }
@@ -2031,7 +2031,7 @@ namespace HoI2Editor.Parsers
                     if (!ParseUnitClass(lexer, units[(int) type]))
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, keyword,
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                     }
                 }
             }
@@ -2096,7 +2096,7 @@ namespace HoI2Editor.Parsers
                     if (!ParseUnitClass(lexer, units[(int) type]))
                     {
                         Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, keyword,
-                                                Resources.Section, _fileName));
+                            Resources.Section, _fileName));
                     }
                 }
             }

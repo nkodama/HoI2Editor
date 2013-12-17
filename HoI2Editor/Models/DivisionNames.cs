@@ -19,7 +19,7 @@ namespace HoI2Editor.Models
         ///     師団名リスト
         /// </summary>
         private static readonly List<string>[,] Items =
-            new List<string>[Enum.GetValues(typeof (Branch)).Length,Enum.GetValues(typeof (Country)).Length];
+            new List<string>[Enum.GetValues(typeof (Branch)).Length, Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -40,7 +40,7 @@ namespace HoI2Editor.Models
         ///     国家ごとの編集済みフラグ
         /// </summary>
         private static readonly bool[,] CountryDirtyFlags =
-            new bool[Enum.GetValues(typeof (Branch)).Length,Enum.GetValues(typeof (Country)).Length];
+            new bool[Enum.GetValues(typeof (Branch)).Length, Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -383,7 +383,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         public static void AddSequential(string prefix, string suffix, int start, int end, Branch branch,
-                                         Country country)
+            Country country)
         {
             // 未登録の場合はリストを作成する
             if (Items[(int) branch, (int) country] == null)

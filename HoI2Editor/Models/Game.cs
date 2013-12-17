@@ -362,15 +362,15 @@ namespace HoI2Editor.Models
         #region 内部定数
 
         /// <summary>
-        /// ゲーム種類の文字列
+        ///     ゲーム種類の文字列
         /// </summary>
         private static readonly string[] GameTypeStrings =
-            {
-                "Unknown",
-                "Hearts of Iron 2",
-                "Arsenal of Democracy",
-                "Darkest Hour"
-            };
+        {
+            "Unknown",
+            "Hearts of Iron 2",
+            "Arsenal of Democracy",
+            "Darkest Hour"
+        };
 
         #endregion
 
@@ -468,8 +468,8 @@ namespace HoI2Editor.Models
         public static string GetLeaderFileName(Country country)
         {
             return Leaders.FileNameMap.ContainsKey(country)
-                       ? Leaders.FileNameMap[country]
-                       : string.Format("leaders{0}.csv", Countries.Strings[(int) country].ToUpper());
+                ? Leaders.FileNameMap[country]
+                : string.Format("leaders{0}.csv", Countries.Strings[(int) country].ToUpper());
         }
 
         /// <summary>
@@ -658,21 +658,21 @@ namespace HoI2Editor.Models
                 case GameType.HeartsOfIron2:
                     // Doomsday Armageddon v X.X
                     pattern = new byte[]
-                        {
-                            0x44, 0x6F, 0x6F, 0x6D, 0x73, 0x64, 0x61, 0x79,
-                            0x20, 0x41, 0x72, 0x6D, 0x61, 0x67, 0x65, 0x64,
-                            0x64, 0x6F, 0x6E, 0x20, 0x76, 0x20
-                        };
+                    {
+                        0x44, 0x6F, 0x6F, 0x6D, 0x73, 0x64, 0x61, 0x79,
+                        0x20, 0x41, 0x72, 0x6D, 0x61, 0x67, 0x65, 0x64,
+                        0x64, 0x6F, 0x6E, 0x20, 0x76, 0x20
+                    };
                     l = BinaryScan(data, pattern, 0, (uint) size);
                     if (l.Count == 0)
                     {
                         // Iron Cross Armageddon X.XX
                         pattern = new byte[]
-                            {
-                                0x49, 0x72, 0x6F, 0x6E, 0x20, 0x43, 0x72, 0x6F,
-                                0x73, 0x73, 0x20, 0x41, 0x72, 0x6D, 0x61, 0x67,
-                                0x65, 0x64, 0x64, 0x6F, 0x6E, 0x20
-                            };
+                        {
+                            0x49, 0x72, 0x6F, 0x6E, 0x20, 0x43, 0x72, 0x6F,
+                            0x73, 0x73, 0x20, 0x41, 0x72, 0x6D, 0x61, 0x67,
+                            0x65, 0x64, 0x64, 0x6F, 0x6E, 0x20
+                        };
                         l = BinaryScan(data, pattern, 0, (uint) size);
                         if (l.Count == 0)
                         {
@@ -694,21 +694,21 @@ namespace HoI2Editor.Models
                 case GameType.ArsenalOfDemocracy:
                     // Arsenal of Democracy X.XX
                     pattern = new byte[]
-                        {
-                            0x41, 0x72, 0x73, 0x65, 0x6E, 0x61, 0x6C, 0x20,
-                            0x6F, 0x66, 0x20, 0x44, 0x65, 0x6D, 0x6F, 0x63,
-                            0x72, 0x61, 0x63, 0x79, 0x20
-                        };
+                    {
+                        0x41, 0x72, 0x73, 0x65, 0x6E, 0x61, 0x6C, 0x20,
+                        0x6F, 0x66, 0x20, 0x44, 0x65, 0x6D, 0x6F, 0x63,
+                        0x72, 0x61, 0x63, 0x79, 0x20
+                    };
                     l = BinaryScan(data, pattern, 0, (uint) size);
                     if (l.Count == 0)
                     {
                         // Arsenal Of Democracy v X.XX
                         pattern = new byte[]
-                            {
-                                0x41, 0x72, 0x73, 0x65, 0x6E, 0x61, 0x6C, 0x20,
-                                0x4F, 0x66, 0x20, 0x44, 0x65, 0x6D, 0x6F, 0x63,
-                                0x72, 0x61, 0x63, 0x79, 0x20, 0x76, 0x20
-                            };
+                        {
+                            0x41, 0x72, 0x73, 0x65, 0x6E, 0x61, 0x6C, 0x20,
+                            0x4F, 0x66, 0x20, 0x44, 0x65, 0x6D, 0x6F, 0x63,
+                            0x72, 0x61, 0x63, 0x79, 0x20, 0x76, 0x20
+                        };
                         l = BinaryScan(data, pattern, 0, (uint) size);
                         if (l.Count == 0)
                         {
@@ -724,10 +724,10 @@ namespace HoI2Editor.Models
                 case GameType.DarkestHour:
                     // Darkest Hour v X.XX
                     pattern = new byte[]
-                        {
-                            0x44, 0x61, 0x72, 0x6B, 0x65, 0x73, 0x74, 0x20,
-                            0x48, 0x6F, 0x75, 0x72, 0x20, 0x76, 0x20
-                        };
+                    {
+                        0x44, 0x61, 0x72, 0x6B, 0x65, 0x73, 0x74, 0x20,
+                        0x48, 0x6F, 0x75, 0x72, 0x20, 0x76, 0x20
+                    };
                     l = BinaryScan(data, pattern, 0, (uint) size);
                     if (l.Count == 0)
                     {
@@ -742,11 +742,11 @@ namespace HoI2Editor.Models
                 default:
                     // Doomsday Armageddon v X.X
                     pattern = new byte[]
-                        {
-                            0x44, 0x6F, 0x6F, 0x6D, 0x73, 0x64, 0x61, 0x79,
-                            0x20, 0x41, 0x72, 0x6D, 0x61, 0x67, 0x65, 0x64,
-                            0x64, 0x6F, 0x6E, 0x20, 0x76, 0x20
-                        };
+                    {
+                        0x44, 0x6F, 0x6F, 0x6D, 0x73, 0x64, 0x61, 0x79,
+                        0x20, 0x41, 0x72, 0x6D, 0x61, 0x67, 0x65, 0x64,
+                        0x64, 0x6F, 0x6E, 0x20, 0x76, 0x20
+                    };
                     l = BinaryScan(data, pattern, 0, (uint) size);
                     if (l.Count == 0)
                     {
@@ -800,7 +800,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ゲームの種類を出力する
+        ///     ゲームの種類を出力する
         /// </summary>
         [Conditional("DEBUG")]
         private static void OutputGameType()

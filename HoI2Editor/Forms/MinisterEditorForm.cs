@@ -127,7 +127,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -137,6 +137,16 @@ namespace HoI2Editor.Forms
                     SaveFiles();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnMinisterEditorFormClosed();
         }
 
         #endregion
@@ -488,17 +498,17 @@ namespace HoI2Editor.Forms
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
                 minister = new Minister
-                    {
-                        Country = selected.Country,
-                        Id = Ministers.GetNewId(selected.Country),
-                        StartYear = 1936,
-                        EndYear = 1970,
-                        RetirementYear = 1999,
-                        Position = MinisterPosition.None,
-                        Personality = 0,
-                        Ideology = MinisterIdeology.None,
-                        Loyalty = MinisterLoyalty.None,
-                    };
+                {
+                    Country = selected.Country,
+                    Id = Ministers.GetNewId(selected.Country),
+                    StartYear = 1936,
+                    EndYear = 1970,
+                    RetirementYear = 1999,
+                    Position = MinisterPosition.None,
+                    Personality = 0,
+                    Ideology = MinisterIdeology.None,
+                    Loyalty = MinisterLoyalty.None,
+                };
 
                 // 閣僚ごとの編集済みフラグを設定する
                 minister.SetDirtyAll();
@@ -510,21 +520,21 @@ namespace HoI2Editor.Forms
             else
             {
                 Country country = countryListBox.SelectedItems.Count > 0
-                                      ? (Country) (countryListBox.SelectedIndex + 1)
-                                      : Country.None;
+                    ? (Country) (countryListBox.SelectedIndex + 1)
+                    : Country.None;
                 // 新規項目を作成する
                 minister = new Minister
-                    {
-                        Country = country,
-                        Id = Ministers.GetNewId(country),
-                        StartYear = 1930,
-                        EndYear = 1970,
-                        RetirementYear = 1999,
-                        Position = MinisterPosition.None,
-                        Personality = 0,
-                        Ideology = MinisterIdeology.None,
-                        Loyalty = MinisterLoyalty.None,
-                    };
+                {
+                    Country = country,
+                    Id = Ministers.GetNewId(country),
+                    StartYear = 1930,
+                    EndYear = 1970,
+                    RetirementYear = 1999,
+                    Position = MinisterPosition.None,
+                    Personality = 0,
+                    Ideology = MinisterIdeology.None,
+                    Loyalty = MinisterLoyalty.None,
+                };
 
                 // 閣僚ごとの編集済みフラグを設定する
                 minister.SetDirtyAll();
@@ -557,19 +567,19 @@ namespace HoI2Editor.Forms
 
             // 選択項目を引き継いで項目を作成する
             var minister = new Minister
-                {
-                    Country = selected.Country,
-                    Id = Ministers.GetNewId(selected.Country),
-                    Name = selected.Name,
-                    StartYear = selected.StartYear,
-                    EndYear = selected.EndYear,
-                    RetirementYear = selected.RetirementYear,
-                    Position = selected.Position,
-                    Personality = selected.Personality,
-                    Ideology = selected.Ideology,
-                    Loyalty = selected.Loyalty,
-                    PictureName = selected.PictureName
-                };
+            {
+                Country = selected.Country,
+                Id = Ministers.GetNewId(selected.Country),
+                Name = selected.Name,
+                StartYear = selected.StartYear,
+                EndYear = selected.EndYear,
+                RetirementYear = selected.RetirementYear,
+                Position = selected.Position,
+                Personality = selected.Personality,
+                Ideology = selected.Ideology,
+                Loyalty = selected.Loyalty,
+                PictureName = selected.PictureName
+            };
 
             // 閣僚ごとの編集済みフラグを設定する
             minister.SetDirtyAll();
@@ -865,16 +875,16 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-                {
-                    Text = Countries.Strings[(int) minister.Country],
-                    Tag = minister
-                };
+            {
+                Text = Countries.Strings[(int) minister.Country],
+                Tag = minister
+            };
             item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(minister.Name);
             item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(Misc.UseNewMinisterFilesFormat
-                                  ? minister.EndYear.ToString(CultureInfo.InvariantCulture)
-                                  : "");
+                ? minister.EndYear.ToString(CultureInfo.InvariantCulture)
+                : "");
             item.SubItems.Add(Config.GetText(Ministers.PositionNames[(int) minister.Position]));
             item.SubItems.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
             item.SubItems.Add(Config.GetText(Ministers.IdeologyNames[(int) minister.Ideology]));
@@ -958,8 +968,8 @@ namespace HoI2Editor.Forms
         {
             // 選択数に合わせて全選択/全解除を切り替える
             countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
-                                        ? Resources.KeySelectAll
-                                        : Resources.KeyUnselectAll;
+                ? Resources.KeySelectAll
+                : Resources.KeyUnselectAll;
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
             newButton.Enabled = countryListBox.SelectedItems.Count > 0;
@@ -1019,15 +1029,15 @@ namespace HoI2Editor.Forms
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Countries.Tags
-                                          .Select(country => Countries.Strings[(int) country])
-                                          .Select(name => Config.ExistsKey(name)
-                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                              : name))
+                .Select(country => Countries.Strings[(int) country])
+                .Select(name => Config.ExistsKey(name)
+                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    : name))
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1045,12 +1055,12 @@ namespace HoI2Editor.Forms
             // 特性
             personalityComboBox.DropDownWidth =
                 Ministers.Personalities.Select(info => Config.GetText(info.Name))
-                         .Select(
-                             s =>
-                             TextRenderer.MeasureText(s, personalityComboBox.Font).Width +
-                             SystemInformation.VerticalScrollBarWidth)
-                         .Concat(new[] {personalityComboBox.DropDownWidth})
-                         .Max();
+                    .Select(
+                        s =>
+                            TextRenderer.MeasureText(s, personalityComboBox.Font).Width +
+                            SystemInformation.VerticalScrollBarWidth)
+                    .Concat(new[] {personalityComboBox.DropDownWidth})
+                    .Max();
 
             // イデオロギー
             ideologyComboBox.Items.Clear();
@@ -1112,12 +1122,12 @@ namespace HoI2Editor.Forms
             endYearNumericUpDown.Value = minister.EndYear;
             retirementYearNumericUpDown.Value = minister.RetirementYear;
             positionComboBox.SelectedIndex = minister.Position != MinisterPosition.None
-                                                 ? (int) minister.Position - 1
-                                                 : -1;
+                ? (int) minister.Position - 1
+                : -1;
             UpdatePersonalityComboBox(minister);
             ideologyComboBox.SelectedIndex = minister.Ideology != MinisterIdeology.None
-                                                 ? (int) minister.Ideology - 1
-                                                 : -1;
+                ? (int) minister.Ideology - 1
+                : -1;
             loyaltyComboBox.SelectedIndex = minister.Loyalty != MinisterLoyalty.None ? (int) minister.Loyalty - 1 : -1;
             pictureNameTextBox.Text = minister.PictureName;
             UpdateMinisterPicture(minister);
@@ -1140,17 +1150,17 @@ namespace HoI2Editor.Forms
             idNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.Id) ? Color.Red : SystemColors.WindowText;
             nameTextBox.ForeColor = minister.IsDirty(MinisterItemId.Name) ? Color.Red : SystemColors.WindowText;
             startYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.StartYear)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             endYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.EndYear)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             retirementYearNumericUpDown.ForeColor = minister.IsDirty(MinisterItemId.RetirementYear)
-                                                        ? Color.Red
-                                                        : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             pictureNameTextBox.ForeColor = minister.IsDirty(MinisterItemId.PictureName)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -1485,7 +1495,7 @@ namespace HoI2Editor.Forms
             if (!string.IsNullOrEmpty(minister.PictureName))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
-                                                       Path.ChangeExtension(minister.PictureName, ".bmp"));
+                    Path.ChangeExtension(minister.PictureName, ".bmp"));
                 ministerPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
             }
             else
@@ -1822,8 +1832,8 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             MinisterIdeology ideology = !string.IsNullOrEmpty(ideologyComboBox.Items[0].ToString())
-                                            ? (MinisterIdeology) (ideologyComboBox.SelectedIndex + 1)
-                                            : (MinisterIdeology) ideologyComboBox.SelectedIndex;
+                ? (MinisterIdeology) (ideologyComboBox.SelectedIndex + 1)
+                : (MinisterIdeology) ideologyComboBox.SelectedIndex;
             if (ideology == minister.Ideology)
             {
                 return;
@@ -1860,8 +1870,8 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             MinisterLoyalty loyalty = !string.IsNullOrEmpty(loyaltyComboBox.Items[0].ToString())
-                                          ? (MinisterLoyalty) (loyaltyComboBox.SelectedIndex + 1)
-                                          : (MinisterLoyalty) loyaltyComboBox.SelectedIndex;
+                ? (MinisterLoyalty) (loyaltyComboBox.SelectedIndex + 1)
+                : (MinisterLoyalty) loyaltyComboBox.SelectedIndex;
             if (loyalty == minister.Loyalty)
             {
                 return;
@@ -1929,11 +1939,11 @@ namespace HoI2Editor.Forms
 
             // ファイル選択ダイアログを開く
             var dialog = new OpenFileDialog
-                {
-                    InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
-                    FileName = minister.PictureName,
-                    Filter = Resources.OpenBitmapFileDialogFilter
-                };
+            {
+                InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
+                FileName = minister.PictureName,
+                Filter = Resources.OpenBitmapFileDialogFilter
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);

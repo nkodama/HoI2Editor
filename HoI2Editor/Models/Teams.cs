@@ -423,7 +423,7 @@ namespace HoI2Editor.Models
                 {
                     team.Specialities[i] = TechSpeciality.None;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
-                                            _currentLineNo));
+                        _currentLineNo));
                     Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
                     continue;
                 }
@@ -433,7 +433,7 @@ namespace HoI2Editor.Models
                 if (!Techs.Specialities.Contains(speciality))
                 {
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
-                                            _currentLineNo));
+                        _currentLineNo));
                     Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
                     continue;
                 }
@@ -460,8 +460,8 @@ namespace HoI2Editor.Models
             }
 
             foreach (Country country in Enum.GetValues(typeof (Country))
-                                            .Cast<Country>()
-                                            .Where(country => DirtyFlags[(int) country] && country != Country.None))
+                .Cast<Country>()
+                .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
                 {
@@ -471,7 +471,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                                     Game.TeamPathName);
+                        Game.TeamPathName);
                     string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                 }
@@ -519,9 +519,9 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < Team.SpecialityLength; i++)
                     {
                         writer.Write(";{0}",
-                                     team.Specialities[i] != TechSpeciality.None
-                                         ? Techs.SpecialityStrings[(int) team.Specialities[i]]
-                                         : "");
+                            team.Specialities[i] != TechSpeciality.None
+                                ? Techs.SpecialityStrings[(int) team.Specialities[i]]
+                                : "");
                     }
                     writer.WriteLine(";x");
 

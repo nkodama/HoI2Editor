@@ -109,7 +109,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -119,6 +119,16 @@ namespace HoI2Editor.Forms
                     SaveFiles();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionNameEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnDivisionNameEditorFormClosed();
         }
 
         #endregion
@@ -216,8 +226,8 @@ namespace HoI2Editor.Forms
                 // 変更ありの項目は文字色を変更する
                 var branch = (Branch) (e.Index + 1);
                 brush = DivisionNames.IsDirty(branch)
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
             }
             else
             {
@@ -252,10 +262,10 @@ namespace HoI2Editor.Forms
         private void InitCountryListBox()
         {
             foreach (string s in Countries.Tags
-                                          .Select(country => Countries.Strings[(int) country])
-                                          .Select(name => Config.ExistsKey(name)
-                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                              : name))
+                .Select(country => Countries.Strings[(int) country])
+                .Select(name => Config.ExistsKey(name)
+                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    : name))
             {
                 countryListBox.Items.Add(s);
             }
@@ -286,8 +296,8 @@ namespace HoI2Editor.Forms
                 var branch = (Branch) (branchListBox.SelectedIndex + 1);
                 Country country = Countries.Tags[e.Index];
                 brush = DivisionNames.IsDirty(branch, country)
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
             }
             else
             {
@@ -370,7 +380,7 @@ namespace HoI2Editor.Forms
 
             // 師団名リストを更新する
             DivisionNames.SetNames(nameTextBox.Lines.Where(line => !string.IsNullOrEmpty(line)).ToList(), branch,
-                                   country);
+                country);
 
             // 編集済みフラグが更新されるため表示を更新する
             branchListBox.Refresh();
@@ -527,7 +537,7 @@ namespace HoI2Editor.Forms
 
             // 師団名を一括追加する
             DivisionNames.AddSequential(prefix, suffix, (int) startNumericUpDown.Value, (int) endNumericUpDown.Value,
-                                        branch, country);
+                branch, country);
 
             // 師団名リストの表示を更新する
             UpdateNameList();

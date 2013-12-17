@@ -315,6 +315,7 @@
             this.Controls.Add(this.countryListBox);
             this.Name = "DivisionNameEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnDivisionNameEditorFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnDivisionNameEditorFormClosed);
             this.Load += new System.EventHandler(this.OnDivisionNameEditorFormLoad);
             this.sequentialGroupBox.ResumeLayout(false);
             this.sequentialGroupBox.PerformLayout();

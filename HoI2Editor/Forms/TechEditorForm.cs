@@ -86,17 +86,17 @@ namespace HoI2Editor.Forms
         ///     技術ツリー画像ファイル名
         /// </summary>
         private static readonly string[] TechTreeFileNames =
-            {
-                "techtree_infantry.bmp",
-                "techtree_armor.bmp",
-                "techtree_naval.bmp",
-                "techtree_aircraft.bmp",
-                "techtree_industry.bmp",
-                "techtree_land_doctrine.bmp",
-                "techtree_secret_weapons.bmp",
-                "techtree_naval_doctrines.bmp",
-                "techtree_air_doctrines.bmp"
-            };
+        {
+            "techtree_infantry.bmp",
+            "techtree_armor.bmp",
+            "techtree_naval.bmp",
+            "techtree_aircraft.bmp",
+            "techtree_industry.bmp",
+            "techtree_land_doctrine.bmp",
+            "techtree_secret_weapons.bmp",
+            "techtree_naval_doctrines.bmp",
+            "techtree_air_doctrines.bmp"
+        };
 
         #endregion
 
@@ -181,7 +181,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -191,6 +191,16 @@ namespace HoI2Editor.Forms
                     SaveFiles();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnTechEditorFormClosed();
         }
 
         #endregion
@@ -539,12 +549,12 @@ namespace HoI2Editor.Forms
                 if (techListBox.Items[e.Index] is TechLabel)
                 {
                     e.Graphics.FillRectangle(Brushes.AliceBlue,
-                                             new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+                        new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
                 }
                 else if (techListBox.Items[e.Index] is TechEvent)
                 {
                     e.Graphics.FillRectangle(Brushes.Honeydew,
-                                             new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+                        new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
                 }
             }
 
@@ -555,8 +565,8 @@ namespace HoI2Editor.Forms
                 // 変更ありの項目は文字色を変更する
                 var item = techListBox.Items[e.Index] as ITechItem;
                 brush = (item != null && item.IsDirty())
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(categoryListBox.ForeColor);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(categoryListBox.ForeColor);
             }
             else
             {
@@ -580,12 +590,12 @@ namespace HoI2Editor.Forms
 
             // 項目を作成する
             var item = new TechItem
-                {
-                    Name = Config.GetTempKey(),
-                    ShortName = Config.GetTempKey(),
-                    Desc = Config.GetTempKey(),
-                    Year = 1936,
-                };
+            {
+                Name = Config.GetTempKey(),
+                ShortName = Config.GetTempKey(),
+                Desc = Config.GetTempKey(),
+                Year = 1936,
+            };
             Config.SetText(item.Name, "", Game.TechTextFileName);
             Config.SetText(item.ShortName, "", Game.TechTextFileName);
             Config.SetText(item.Desc, "", Game.TechTextFileName);
@@ -1112,7 +1122,7 @@ namespace HoI2Editor.Forms
         {
             TechGroup grp = GetSelectedGroup();
             treePictureBox.ImageLocation = Game.GetReadFileName(Game.PicturePathName,
-                                                                TechTreeFileNames[(int) grp.Category]);
+                TechTreeFileNames[(int) grp.Category]);
         }
 
         /// <summary>
@@ -1135,11 +1145,11 @@ namespace HoI2Editor.Forms
         private void AddTechTreeItem(ITechItem item, TechPosition position)
         {
             var label = new Label
-                {
-                    Location = new Point(position.X, position.Y),
-                    BackColor = Color.Transparent,
-                    Tag = new TechLabelInfo {Item = item, Position = position}
-                };
+            {
+                Location = new Point(position.X, position.Y),
+                BackColor = Color.Transparent,
+                Tag = new TechLabelInfo {Item = item, Position = position}
+            };
 
             if (item is TechItem)
             {
@@ -1280,7 +1290,7 @@ namespace HoI2Editor.Forms
             // 技術
             var bitmap = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
             _techLabelBitmap = bitmap.Clone(new Rectangle(0, 0, TechLabelWidth, TechLabelHeight),
-                                            bitmap.PixelFormat);
+                bitmap.PixelFormat);
             bitmap.Dispose();
             _applicationLabelAndMask = new Bitmap(_techLabelBitmap.Width, _techLabelBitmap.Height);
             Color transparent = _techLabelBitmap.GetPixel(0, 0);
@@ -1420,7 +1430,7 @@ namespace HoI2Editor.Forms
             // ドラッグ判定サイズを超えていなければ何もしない
             Size dragSize = SystemInformation.DragSize;
             var dragRect = new Rectangle(_dragPoint.X - dragSize.Width/2, _dragPoint.Y - dragSize.Height/2,
-                                         dragSize.Width, dragSize.Height);
+                dragSize.Width, dragSize.Height);
             if (dragRect.Contains(label.Left + e.X, label.Top + e.Y))
             {
                 return;
@@ -1439,17 +1449,17 @@ namespace HoI2Editor.Forms
             if (info.Item is TechItem)
             {
                 _dragCursor = CursorFactory.CreateCursor(bitmap, _applicationLabelAndMask, _dragPoint.X - label.Left,
-                                                         _dragPoint.Y - label.Top);
+                    _dragPoint.Y - label.Top);
             }
             else if (info.Item is TechLabel)
             {
                 _dragCursor = CursorFactory.CreateCursor(bitmap, _dragPoint.X - label.Left,
-                                                         _dragPoint.Y - label.Top);
+                    _dragPoint.Y - label.Top);
             }
             else
             {
                 _dragCursor = CursorFactory.CreateCursor(bitmap, _eventLabelAndMask, _dragPoint.X - label.Left,
-                                                         _dragPoint.Y - label.Top);
+                    _dragPoint.Y - label.Top);
             }
 
             // ドラッグアンドドロップを開始する
@@ -1505,7 +1515,7 @@ namespace HoI2Editor.Forms
             var dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
             Point p = treePictureBox.PointToClient(new Point(e.X, e.Y));
             var r = new Rectangle(label.Left + p.X - _dragPoint.X, label.Top + p.Y - _dragPoint.Y, label.Width,
-                                  label.Height);
+                label.Height);
             e.Effect = dragRect.Contains(r) ? DragDropEffects.Move : DragDropEffects.None;
         }
 
@@ -1703,8 +1713,8 @@ namespace HoI2Editor.Forms
             techIdNumericUpDown.ForeColor = item.IsDirty(TechItemId.Id) ? Color.Red : SystemColors.WindowText;
             techYearNumericUpDown.ForeColor = item.IsDirty(TechItemId.Year) ? Color.Red : SystemColors.WindowText;
             techPictureNameTextBox.ForeColor = item.IsDirty(TechItemId.PictureName)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -2216,15 +2226,15 @@ namespace HoI2Editor.Forms
 
             // 編集項目の色を更新する
             techPictureNameTextBox.ForeColor = item.IsDirty(TechItemId.PictureName)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
 
             string fileName =
                 Game.GetReadFileName(Game.TechPicturePathName,
-                                     string.Format("{0}.bmp",
-                                                   string.IsNullOrEmpty(item.PictureName)
-                                                       ? item.Id.ToString(CultureInfo.InvariantCulture)
-                                                       : item.PictureName));
+                    string.Format("{0}.bmp",
+                        string.IsNullOrEmpty(item.PictureName)
+                            ? item.Id.ToString(CultureInfo.InvariantCulture)
+                            : item.PictureName));
             if (File.Exists(fileName))
             {
                 // 技術画像を更新する
@@ -2289,11 +2299,11 @@ namespace HoI2Editor.Forms
             }
 
             var dialog = new OpenFileDialog
-                {
-                    InitialDirectory = Path.Combine(Game.FolderName, Game.TechPicturePathName),
-                    FileName = item.PictureName,
-                    Filter = Resources.OpenBitmapFileDialogFilter
-                };
+            {
+                InitialDirectory = Path.Combine(Game.FolderName, Game.TechPicturePathName),
+                FileName = item.PictureName,
+                Filter = Resources.OpenBitmapFileDialogFilter
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 // 画像ファイル名テキストボックスの値を更新する
@@ -2358,8 +2368,8 @@ namespace HoI2Editor.Forms
                 andTechComboBox.Items.Add(item);
                 orTechComboBox.Items.Add(item);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(item.ToString(), andTechComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(item.ToString(), andTechComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             andTechComboBox.DropDownWidth = maxWidth;
             orTechComboBox.DropDownWidth = maxWidth;
@@ -3143,12 +3153,12 @@ namespace HoI2Editor.Forms
             componentSpecialityComboBox.Items.Clear();
             int maxWidth = componentSpecialityComboBox.DropDownWidth;
             foreach (string name in Techs.Specialities.Where(speciality => speciality != TechSpeciality.None)
-                                         .Select(Techs.GetSpecialityName))
+                .Select(Techs.GetSpecialityName))
             {
                 componentSpecialityComboBox.Items.Add(name);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(name, componentSpecialityComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(name, componentSpecialityComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             componentSpecialityComboBox.DropDownWidth = maxWidth;
         }
@@ -3298,17 +3308,17 @@ namespace HoI2Editor.Forms
 
             // 編集項目の色を更新する
             componentIdNumericUpDown.ForeColor = component.IsDirty(TechComponentItemId.Id)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             componentNameTextBox.ForeColor = component.IsDirty(TechComponentItemId.Name)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             componentDifficultyNumericUpDown.ForeColor = component.IsDirty(TechComponentItemId.Difficulty)
-                                                             ? Color.Red
-                                                             : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             componentDoubleTimeCheckBox.ForeColor = component.IsDirty(TechComponentItemId.DoubleTime)
-                                                        ? Color.Red
-                                                        : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableComponentItems();
@@ -3338,7 +3348,7 @@ namespace HoI2Editor.Forms
                 !string.IsNullOrEmpty(componentSpecialityComboBox.Items[e.Index].ToString()))
             {
                 e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index],
-                                     new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16));
+                    new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16));
             }
 
             // 項目の文字列を描画する
@@ -3933,8 +3943,8 @@ namespace HoI2Editor.Forms
             {
                 commandTypeComboBox.Items.Add(name);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(name, commandTypeComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(name, commandTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             commandTypeComboBox.DropDownWidth = maxWidth;
         }
@@ -4105,8 +4115,8 @@ namespace HoI2Editor.Forms
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
                 Brush brush = command.IsDirty(CommandItemId.Which)
-                                  ? new SolidBrush(Color.Red)
-                                  : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
                 string s = commandWhichComboBox.Items[e.Index].ToString();
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
@@ -4138,8 +4148,8 @@ namespace HoI2Editor.Forms
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
                 Brush brush = command.IsDirty(CommandItemId.Value)
-                                  ? new SolidBrush(Color.Red)
-                                  : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
                 string s = commandValueComboBox.Items[e.Index].ToString();
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
@@ -4171,8 +4181,8 @@ namespace HoI2Editor.Forms
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
                 Brush brush = command.IsDirty(CommandItemId.When)
-                                  ? new SolidBrush(Color.Red)
-                                  : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
                 string s = commandWhenComboBox.Items[e.Index].ToString();
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
@@ -4204,8 +4214,8 @@ namespace HoI2Editor.Forms
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
                 Brush brush = command.IsDirty(CommandItemId.Where)
-                                  ? new SolidBrush(Color.Red)
-                                  : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
                 string s = commandWhereComboBox.Items[e.Index].ToString();
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
@@ -5268,8 +5278,8 @@ namespace HoI2Editor.Forms
             {
                 eventTechComboBox.Items.Add(item);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(item.ToString(), eventTechComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(item.ToString(), eventTechComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             eventTechComboBox.DropDownWidth = maxWidth;
 

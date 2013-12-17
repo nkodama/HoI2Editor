@@ -74,15 +74,15 @@ namespace HoI2Editor.Forms
         ///     研究特性の項目ID
         /// </summary>
         private static readonly TeamItemId[] SpecialityItemIds =
-            {
-                TeamItemId.Speciality1,
-                TeamItemId.Speciality2,
-                TeamItemId.Speciality3,
-                TeamItemId.Speciality4,
-                TeamItemId.Speciality5,
-                TeamItemId.Speciality6,
-                TeamItemId.Speciality7
-            };
+        {
+            TeamItemId.Speciality1,
+            TeamItemId.Speciality2,
+            TeamItemId.Speciality3,
+            TeamItemId.Speciality4,
+            TeamItemId.Speciality5,
+            TeamItemId.Speciality6,
+            TeamItemId.Speciality7
+        };
 
         #endregion
 
@@ -97,15 +97,15 @@ namespace HoI2Editor.Forms
 
             // 研究特性コンボボックスの配列を初期化する
             _specialityComboBoxes = new[]
-                {
-                    specialityComboBox1,
-                    specialityComboBox2,
-                    specialityComboBox3,
-                    specialityComboBox4,
-                    specialityComboBox5,
-                    specialityComboBox6,
-                    specialityComboBox7
-                };
+            {
+                specialityComboBox1,
+                specialityComboBox2,
+                specialityComboBox3,
+                specialityComboBox4,
+                specialityComboBox5,
+                specialityComboBox6,
+                specialityComboBox7
+            };
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -179,6 +179,16 @@ namespace HoI2Editor.Forms
                     SaveFiles();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnTeamEditorFormClosed();
         }
 
         #endregion
@@ -288,9 +298,9 @@ namespace HoI2Editor.Forms
 
             // 選択中の国家リストを作成する
             List<Country> selectedTagList = countryListBox.SelectedItems.Count == 0
-                                                ? new List<Country>()
-                                                : (from string countryText in countryListBox.SelectedItems
-                                                   select Countries.StringMap[countryText]).ToList();
+                ? new List<Country>()
+                : (from string countryText in countryListBox.SelectedItems
+                    select Countries.StringMap[countryText]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
             foreach (Team team in Teams.Items.Where(team => selectedTagList.Contains(team.Country)))
@@ -379,128 +389,128 @@ namespace HoI2Editor.Forms
                     if (_order == SortOrder.Ascendant)
                     {
                         _list.Sort((team1, team2) =>
+                        {
+                            if (team1.Specialities[0] > team2.Specialities[0])
                             {
-                                if (team1.Specialities[0] > team2.Specialities[0])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[0] < team2.Specialities[0])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[1] > team2.Specialities[1])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[1] < team2.Specialities[1])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[2] > team2.Specialities[2])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[2] < team2.Specialities[2])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[3] > team2.Specialities[3])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[3] < team2.Specialities[3])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[4] > team2.Specialities[4])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[4] < team2.Specialities[4])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[5] > team2.Specialities[5])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[5] < team2.Specialities[5])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[6] > team2.Specialities[6])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[6] < team2.Specialities[6])
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (team1.Specialities[0] < team2.Specialities[0])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[1] > team2.Specialities[1])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[1] < team2.Specialities[1])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[2] > team2.Specialities[2])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[2] < team2.Specialities[2])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[3] > team2.Specialities[3])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[3] < team2.Specialities[3])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[4] > team2.Specialities[4])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[4] < team2.Specialities[4])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[5] > team2.Specialities[5])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[5] < team2.Specialities[5])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[6] > team2.Specialities[6])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[6] < team2.Specialities[6])
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     else
                     {
                         _list.Sort((team1, team2) =>
+                        {
+                            if (team1.Specialities[0] < team2.Specialities[0])
                             {
-                                if (team1.Specialities[0] < team2.Specialities[0])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[0] > team2.Specialities[0])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[1] < team2.Specialities[1])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[1] > team2.Specialities[1])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[2] < team2.Specialities[2])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[2] > team2.Specialities[2])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[3] < team2.Specialities[3])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[3] > team2.Specialities[3])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[4] < team2.Specialities[4])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[4] > team2.Specialities[4])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[5] < team2.Specialities[5])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[5] > team2.Specialities[5])
-                                {
-                                    return -1;
-                                }
-                                if (team1.Specialities[6] < team2.Specialities[6])
-                                {
-                                    return 1;
-                                }
-                                if (team1.Specialities[6] > team2.Specialities[6])
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (team1.Specialities[0] > team2.Specialities[0])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[1] < team2.Specialities[1])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[1] > team2.Specialities[1])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[2] < team2.Specialities[2])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[2] > team2.Specialities[2])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[3] < team2.Specialities[3])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[3] > team2.Specialities[3])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[4] < team2.Specialities[4])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[4] > team2.Specialities[4])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[5] < team2.Specialities[5])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[5] > team2.Specialities[5])
+                            {
+                                return -1;
+                            }
+                            if (team1.Specialities[6] < team2.Specialities[6])
+                            {
+                                return 1;
+                            }
+                            if (team1.Specialities[6] > team2.Specialities[6])
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     break;
             }
@@ -690,13 +700,13 @@ namespace HoI2Editor.Forms
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
                 team = new Team
-                    {
-                        Country = selected.Country,
-                        Id = Teams.GetNewId(selected.Country),
-                        Skill = 1,
-                        StartYear = 1930,
-                        EndYear = 1970,
-                    };
+                {
+                    Country = selected.Country,
+                    Id = Teams.GetNewId(selected.Country),
+                    Skill = 1,
+                    StartYear = 1930,
+                    EndYear = 1970,
+                };
 
                 // 研究機関ごとの編集済みフラグを設定する
                 team.SetDirtyAll();
@@ -708,17 +718,17 @@ namespace HoI2Editor.Forms
             else
             {
                 Country country = countryListBox.SelectedItems.Count > 0
-                                      ? (Country) (countryListBox.SelectedIndex + 1)
-                                      : Country.None;
+                    ? (Country) (countryListBox.SelectedIndex + 1)
+                    : Country.None;
                 // 新規項目を作成する
                 team = new Team
-                    {
-                        Country = country,
-                        Id = Teams.GetNewId(country),
-                        Skill = 1,
-                        StartYear = 1930,
-                        EndYear = 1970,
-                    };
+                {
+                    Country = country,
+                    Id = Teams.GetNewId(country),
+                    Skill = 1,
+                    StartYear = 1930,
+                    EndYear = 1970,
+                };
 
                 // 研究機関ごとの編集済みフラグを設定する
                 team.SetDirtyAll();
@@ -750,15 +760,15 @@ namespace HoI2Editor.Forms
 
             // 選択項目を引き継いで項目を作成する
             var team = new Team
-                {
-                    Country = selected.Country,
-                    Id = Teams.GetNewId(selected.Country),
-                    Name = selected.Name,
-                    Skill = selected.Skill,
-                    StartYear = selected.StartYear,
-                    EndYear = selected.EndYear,
-                    PictureName = selected.PictureName,
-                };
+            {
+                Country = selected.Country,
+                Id = Teams.GetNewId(selected.Country),
+                Name = selected.Name,
+                Skill = selected.Skill,
+                StartYear = selected.StartYear,
+                EndYear = selected.EndYear,
+                PictureName = selected.PictureName,
+            };
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
                 team.Specialities[i] = selected.Specialities[i];
@@ -1057,10 +1067,10 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-                {
-                    Text = Countries.Strings[(int) team.Country],
-                    Tag = team
-                };
+            {
+                Text = Countries.Strings[(int) team.Country],
+                Tag = team
+            };
             item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(team.Name);
             item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
@@ -1125,8 +1135,8 @@ namespace HoI2Editor.Forms
                 // 変更ありの項目は文字色を変更する
                 Country country = Countries.Tags[e.Index];
                 brush = Teams.IsDirty(country)
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(countryListBox.ForeColor);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(countryListBox.ForeColor);
             }
             else
             {
@@ -1149,8 +1159,8 @@ namespace HoI2Editor.Forms
         {
             // 選択数に合わせて全選択/全解除を切り替える
             countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
-                                        ? Resources.KeySelectAll
-                                        : Resources.KeyUnselectAll;
+                ? Resources.KeySelectAll
+                : Resources.KeyUnselectAll;
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
             newButton.Enabled = countryListBox.SelectedItems.Count > 0;
@@ -1210,15 +1220,15 @@ namespace HoI2Editor.Forms
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
             foreach (string s in Countries.Tags
-                                          .Select(country => Countries.Strings[(int) country])
-                                          .Select(name => Config.ExistsKey(name)
-                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                              : name))
+                .Select(country => Countries.Strings[(int) country])
+                .Select(name => Config.ExistsKey(name)
+                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    : name))
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1237,8 +1247,8 @@ namespace HoI2Editor.Forms
                 }
                 // +24は研究特性アイコンの分
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, specialityComboBox1.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth + 24);
+                    TextRenderer.MeasureText(s, specialityComboBox1.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + 24);
             }
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {
@@ -1477,7 +1487,7 @@ namespace HoI2Editor.Forms
             if (!string.IsNullOrEmpty(team.PictureName))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
-                                                       Path.ChangeExtension(team.PictureName, ".bmp"));
+                    Path.ChangeExtension(team.PictureName, ".bmp"));
                 teamPictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
             }
             else
@@ -1863,11 +1873,11 @@ namespace HoI2Editor.Forms
             }
 
             var dialog = new OpenFileDialog
-                {
-                    InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
-                    FileName = team.PictureName,
-                    Filter = Resources.OpenBitmapFileDialogFilter
-                };
+            {
+                InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
+                FileName = team.PictureName,
+                Filter = Resources.OpenBitmapFileDialogFilter
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
@@ -1996,119 +2006,119 @@ namespace HoI2Editor.Forms
             /// <summary>
             ///     ABC順優先度
             /// </summary>
-            private static readonly int[] Priorities = new[]
-                {
-                    109,
-                    3,
-                    29,
-                    15,
-                    12,
-                    47,
-                    18,
-                    39,
-                    34,
-                    0,
-                    37,
-                    36,
-                    25,
-                    20,
-                    28,
-                    42,
-                    24,
-                    11,
-                    14,
-                    46,
-                    19,
-                    21,
-                    13,
-                    23,
-                    33,
-                    35,
-                    2,
-                    17,
-                    7,
-                    9,
-                    45,
-                    22,
-                    41,
-                    40,
-                    38,
-                    4,
-                    32,
-                    48,
-                    8,
-                    44,
-                    16,
-                    6,
-                    31,
-                    1,
-                    27,
-                    26,
-                    5,
-                    43,
-                    30,
-                    10,
-                    49,
-                    50,
-                    51,
-                    52,
-                    53,
-                    54,
-                    55,
-                    56,
-                    57,
-                    58,
-                    59,
-                    60,
-                    61,
-                    62,
-                    63,
-                    64,
-                    65,
-                    66,
-                    67,
-                    68,
-                    69,
-                    70,
-                    71,
-                    72,
-                    73,
-                    74,
-                    75,
-                    76,
-                    77,
-                    78,
-                    79,
-                    80,
-                    81,
-                    82,
-                    83,
-                    84,
-                    85,
-                    86,
-                    87,
-                    88,
-                    89,
-                    90,
-                    91,
-                    92,
-                    93,
-                    94,
-                    95,
-                    96,
-                    97,
-                    98,
-                    99,
-                    100,
-                    101,
-                    102,
-                    103,
-                    104,
-                    105,
-                    106,
-                    107,
-                    108
-                };
+            private static readonly int[] Priorities =
+            {
+                109,
+                3,
+                29,
+                15,
+                12,
+                47,
+                18,
+                39,
+                34,
+                0,
+                37,
+                36,
+                25,
+                20,
+                28,
+                42,
+                24,
+                11,
+                14,
+                46,
+                19,
+                21,
+                13,
+                23,
+                33,
+                35,
+                2,
+                17,
+                7,
+                9,
+                45,
+                22,
+                41,
+                40,
+                38,
+                4,
+                32,
+                48,
+                8,
+                44,
+                16,
+                6,
+                31,
+                1,
+                27,
+                26,
+                5,
+                43,
+                30,
+                10,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87,
+                88,
+                89,
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99,
+                100,
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108
+            };
 
             /// <summary>
             ///     研究特性を比較する

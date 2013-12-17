@@ -193,6 +193,7 @@
             this.Controls.Add(this.countryListBox);
             this.Name = "RandomLeaderEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnRandomLeaderEditorFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnRandomLeaderEditorFormClosed);
             this.Load += new System.EventHandler(this.OnRandomLeaderEditorFormLoad);
             this.replaceGroupBox.ResumeLayout(false);
             this.replaceGroupBox.PerformLayout();

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using HoI2Editor.Models;
@@ -37,8 +35,8 @@ namespace HoI2Editor.Forms
 
             // 言語を初期化する
             Config.LangMode = Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP"))
-                                  ? LanguageMode.Japanese
-                                  : LanguageMode.English;
+                ? LanguageMode.Japanese
+                : LanguageMode.English;
 
             // 初期状態のゲームフォルダ名を設定する
             gameFolderTextBox.Text = Game.FolderName;
@@ -68,8 +66,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderButtonClick(object sender, EventArgs e)
         {
-            var form = new LeaderEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchLeaderEditorForm();
         }
 
         /// <summary>
@@ -79,8 +76,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
-            var form = new MinisterEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchMinisterEditorForm();
         }
 
         /// <summary>
@@ -90,8 +86,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamButtonClick(object sender, EventArgs e)
         {
-            var form = new TeamEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchTeamEditorForm();
         }
 
         /// <summary>
@@ -101,8 +96,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceButtonClick(object sender, EventArgs e)
         {
-            var form = new ProvinceEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchProvinceEditorForm();
         }
 
         /// <summary>
@@ -112,8 +106,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechButtonClick(object sender, EventArgs e)
         {
-            var form = new TechEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchTechEditorForm();
         }
 
         /// <summary>
@@ -123,8 +116,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitButtonClick(object sender, EventArgs e)
         {
-            var form = new UnitEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchUnitEditorForm();
         }
 
         /// <summary>
@@ -134,8 +126,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMiscButtonClick(object sender, EventArgs e)
         {
-            var form = new MiscEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchMiscEditorForm();
         }
 
         /// <summary>
@@ -145,8 +136,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitNameButtonClick(object sender, EventArgs e)
         {
-            var form = new UnitNameEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchUnitNameEditorForm();
         }
 
         /// <summary>
@@ -156,8 +146,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDivisionNameButtonClick(object sender, EventArgs e)
         {
-            var form = new DivisionNameEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchDivisionNameEditorForm();
         }
 
         /// <summary>
@@ -167,8 +156,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRandomLeaderButtonClick(object sender, EventArgs e)
         {
-            var form = new RandomLeaderEditorForm();
-            form.Show();
+            HoI2EditorApplication.LaunchRandomLeaderEditorForm();
         }
 
         #endregion
@@ -183,11 +171,11 @@ namespace HoI2Editor.Forms
         private void OnLoadButtonClick(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog
-                {
-                    SelectedPath = Game.FolderName,
-                    ShowNewFolderButton = false,
-                    Description = Resources.OpenGameFolderDialogDescription
-                };
+            {
+                SelectedPath = Game.FolderName,
+                ShowNewFolderButton = false,
+                Description = Resources.OpenGameFolderDialogDescription
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 gameFolderTextBox.Text = dialog.SelectedPath;
@@ -231,18 +219,18 @@ namespace HoI2Editor.Forms
         private void OnModFolderReferButtonClick(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog
-                {
-                    SelectedPath = Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                    ShowNewFolderButton = false,
-                    Description = Resources.OpenModFolderDialogDescription
-                };
+            {
+                SelectedPath = Game.IsModActive ? Game.ModFolderName : Game.FolderName,
+                ShowNewFolderButton = false,
+                Description = Resources.OpenModFolderDialogDescription
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 modTextBox.Text = Path.GetFileName(dialog.SelectedPath);
                 string folderName = Path.GetDirectoryName(dialog.SelectedPath);
                 gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
-                                             ? Path.GetDirectoryName(folderName)
-                                             : folderName;
+                    ? Path.GetDirectoryName(folderName)
+                    : folderName;
             }
         }
 
@@ -299,8 +287,8 @@ namespace HoI2Editor.Forms
             modTextBox.Text = Path.GetFileName(fileNames[0]);
             string folderName = Path.GetDirectoryName(fileNames[0]);
             gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
-                                         ? Path.GetDirectoryName(folderName)
-                                         : folderName;
+                ? Path.GetDirectoryName(folderName)
+                : folderName;
         }
 
         #endregion

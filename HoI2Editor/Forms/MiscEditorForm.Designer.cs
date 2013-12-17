@@ -193,6 +193,7 @@
             this.Controls.Add(this.miscTabControl);
             this.Name = "MiscEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMiscEditorFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnMiscEditorFormClosed);
             this.Load += new System.EventHandler(this.OnMiscEditorFormLoad);
             this.miscTabControl.ResumeLayout(false);
             this.ResumeLayout(false);

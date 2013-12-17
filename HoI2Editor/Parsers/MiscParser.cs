@@ -28,8 +28,8 @@ namespace HoI2Editor.Parsers
 
                 case GameType.ArsenalOfDemocracy:
                     gameType = (Game.Version >= 108)
-                                   ? MiscGameType.Aod108
-                                   : ((Game.Version <= 104) ? MiscGameType.Aod104 : MiscGameType.Aod107);
+                        ? MiscGameType.Aod108
+                        : ((Game.Version <= 104) ? MiscGameType.Aod104 : MiscGameType.Aod107);
                     break;
 
                 case GameType.DarkestHour:
@@ -78,7 +78,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Economy, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "economy",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -89,7 +89,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Intelligence, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "intelligence",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -100,7 +100,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Diplomacy, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "diplomacy",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -111,7 +111,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Combat, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "combat",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -122,7 +122,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Mission, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mission",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -133,7 +133,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Country, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "country",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -144,7 +144,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Research, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "research",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -155,7 +155,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Trade, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "trade",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -166,7 +166,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Ai, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "ai",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -177,7 +177,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Mod, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mod",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }
@@ -188,7 +188,7 @@ namespace HoI2Editor.Parsers
                         if (!ParseSection(MiscSectionId.Map, gameType, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "map",
-                                                    Resources.Section, "misc.txt"));
+                                Resources.Section, "misc.txt"));
                         }
                         continue;
                     }

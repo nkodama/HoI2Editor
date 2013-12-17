@@ -38,10 +38,11 @@ namespace HoI2Editor.Models
         public static int LangIndex
         {
             private get { return _langIndex; }
-            set {
+            set
+            {
                 _langIndex = value;
                 Debug.WriteLine(string.Format("Language Index: {0} ({1})", _langIndex,
-                                              LanguageStrings[(int)_langMode][_langIndex]));
+                    LanguageStrings[(int) _langMode][_langIndex]));
             }
         }
 
@@ -104,9 +105,9 @@ namespace HoI2Editor.Models
             new Dictionary<string, List<string>>();
 
         /// <summary>
-        /// 文字列定義ファイルテーブル
+        ///     文字列定義ファイルテーブル
         /// </summary>
-        private static readonly Dictionary<string, string> TextFileTable = new Dictionary<string, string>(); 
+        private static readonly Dictionary<string, string> TextFileTable = new Dictionary<string, string>();
 
         /// <summary>
         ///     一時キーリスト
@@ -149,20 +150,20 @@ namespace HoI2Editor.Models
         ///     言語名文字列
         /// </summary>
         public static readonly string[][] LanguageStrings =
+        {
+            new[] {Resources.LanguageJapanese},
+            new[]
             {
-                new[] {Resources.LanguageJapanese},
-                new[]
-                    {
-                        Resources.LanguageEnglish, Resources.LanguageFrench, Resources.LanguageItalian,
-                        Resources.LanguageSpanish, Resources.LanguageGerman, Resources.LanguagePolish,
-                        Resources.LanguagePortuguese, Resources.LanguageRussian, Resources.LanguageExtra1,
-                        Resources.LanguageExtra2
-                    },
-                new[] {Resources.LanguageJapanese, Resources.LanguageEnglish},
-                new[] {Resources.LanguageKorean},
-                new[] {Resources.LanguageChinese},
-                new[] {Resources.LanguageChinese}
-            };
+                Resources.LanguageEnglish, Resources.LanguageFrench, Resources.LanguageItalian,
+                Resources.LanguageSpanish, Resources.LanguageGerman, Resources.LanguagePolish,
+                Resources.LanguagePortuguese, Resources.LanguageRussian, Resources.LanguageExtra1,
+                Resources.LanguageExtra2
+            },
+            new[] {Resources.LanguageJapanese, Resources.LanguageEnglish},
+            new[] {Resources.LanguageKorean},
+            new[] {Resources.LanguageChinese},
+            new[] {Resources.LanguageChinese}
+        };
 
         #endregion
 
@@ -174,17 +175,17 @@ namespace HoI2Editor.Models
         private const int MaxLanguages = 10;
 
         /// <summary>
-        /// 言語モード文字列
+        ///     言語モード文字列
         /// </summary>
         private static readonly string[] LanguageModeStrings =
-            {
-                "Japanese",
-                "English",
-                "Patched Japanese",
-                "Patched Korean",
-                "Patched Traditional Chinese",
-                "Patched Simplified Chinese"
-            };
+        {
+            "Japanese",
+            "English",
+            "Patched Japanese",
+            "Patched Korean",
+            "Patched Traditional Chinese",
+            "Patched Simplified Chinese"
+        };
 
         /// <summary>
         ///     CSVファイルの区切り文字
@@ -232,7 +233,7 @@ namespace HoI2Editor.Models
             if (Game.Type == GameType.DarkestHour && Misc.MapNumber != 0)
             {
                 folderName = Path.Combine(Path.Combine(Game.ModFolderName, Game.MapPathName),
-                                          string.Format("Map_{0}", Misc.MapNumber));
+                    string.Format("Map_{0}", Misc.MapNumber));
                 string fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
                 if (File.Exists(fileName))
                 {
@@ -253,7 +254,7 @@ namespace HoI2Editor.Models
                 }
 
                 folderName = Path.Combine(Path.Combine(Game.FolderName, Game.MapPathName),
-                                          string.Format("Map_{0}", Misc.MapNumber));
+                    string.Format("Map_{0}", Misc.MapNumber));
                 fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
                 if (File.Exists(fileName))
                 {
@@ -462,7 +463,7 @@ namespace HoI2Editor.Models
                     if (tokens.Length != expectedCount)
                     {
                         Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount,
-                                                Path.Combine(Game.ConfigPathName, name), lineNo));
+                            Path.Combine(Game.ConfigPathName, name), lineNo));
                         Log.Write(string.Format("  {0}\n\n", line));
                         Debug.WriteLine(string.Format("[Config] Invalid token count ({0} L{1})", name, lineNo));
 
@@ -529,7 +530,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                                     Game.ConfigPathName);
+                        Game.ConfigPathName);
                     string pathName = Path.Combine(folderName, fileName);
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, pathName));
                 }
@@ -566,8 +567,8 @@ namespace HoI2Editor.Models
 
             // 保存フォルダ名を取得する
             string folderName = Game.GetWriteFileName(fileName.Equals(Game.ProvinceTextFileName)
-                                                          ? Game.GetProvinceNameFolderName()
-                                                          : Game.ConfigPathName);
+                ? Game.GetProvinceNameFolderName()
+                : Game.ConfigPathName);
 
             // 文字列フォルダがなければ作成する
             if (!Directory.Exists(folderName))
@@ -630,7 +631,7 @@ namespace HoI2Editor.Models
                     }
                     string[] t = Text[k];
                     writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};X",
-                                     key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
+                        key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
                 }
 
                 // ファイル末尾のEOFがない場合の保険
@@ -667,7 +668,7 @@ namespace HoI2Editor.Models
                 if (TempKeyList.Contains(k))
                 {
                     Debug.WriteLine(string.Format("[Config] Skipped temp key: {0} ({1})", key,
-                                                  Path.GetFileName(fileName)));
+                        Path.GetFileName(fileName)));
                     TempKeyList.Remove(k);
                     continue;
                 }
@@ -675,7 +676,7 @@ namespace HoI2Editor.Models
                 {
                     string[] t = Text[k];
                     writer.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};X",
-                                     key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
+                        key, t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9]);
                 }
                 else
                 {
@@ -735,7 +736,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">文字列定義ファイル名</param>
         /// <remarks>
         ///     文字列が登録されていなければ新規追加、登録されていれば値を変更する
-        /// ファイル名の指定は既存の定義が存在しない場合のみ有効
+        ///     ファイル名の指定は既存の定義が存在しない場合のみ有効
         /// </remarks>
         public static void SetText(string key, string text, string fileName)
         {
@@ -826,7 +827,7 @@ namespace HoI2Editor.Models
                 {
                     ReservedListTable[fileName].Add(newKey);
                     Debug.WriteLine(string.Format("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey,
-                                                  Path.GetFileName(fileName)));
+                        Path.GetFileName(fileName)));
                 }
             }
 
@@ -970,11 +971,11 @@ namespace HoI2Editor.Models
                     .Equals(GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2")))
             {
                 AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"),
-                                              Resources.BranchArmy));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"),
+                        Resources.BranchArmy));
                 AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"),
-                                              Resources.BranchNavy));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"),
+                        Resources.BranchNavy));
             }
 
             // 偏執的誇大妄想家: ヒトラー/スターリン
@@ -983,9 +984,9 @@ namespace HoI2Editor.Models
                 GetText("NPERSONALITY_HITLER").Equals(GetText("NPERSONALITY_STALIN")))
             {
                 AddReplacedText("NPERSONALITY_HITLER",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_HITLER"), Resources.Hitler));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_HITLER"), Resources.Hitler));
                 AddReplacedText("NPERSONALITY_STALIN",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_STALIN"), Resources.Stalin));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_STALIN"), Resources.Stalin));
             }
 
             // ドイツ軍事顧問: パイパー/マイスナー/ブロンザルト/ゼークト/ゾウヒョン/パシヴィッツ/ゼルノ/ゴルツ/ジーフェルト/トヴネ/ウーゼドム
@@ -1012,27 +1013,27 @@ namespace HoI2Editor.Models
                 GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M11")))
             {
                 AddReplacedText("NPERSONALITY_GER_MIL_M1",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M1"), Resources.Peiper));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M1"), Resources.Peiper));
                 AddReplacedText("NPERSONALITY_GER_MIL_M2",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M2"), Resources.Meissner));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M2"), Resources.Meissner));
                 AddReplacedText("NPERSONALITY_GER_MIL_M3",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M3"), Resources.Bronsart));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M3"), Resources.Bronsart));
                 AddReplacedText("NPERSONALITY_GER_MIL_M4",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M4"), Resources.Seeckt));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M4"), Resources.Seeckt));
                 AddReplacedText("NPERSONALITY_GER_MIL_M5",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M5"), Resources.Souchon));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M5"), Resources.Souchon));
                 AddReplacedText("NPERSONALITY_GER_MIL_M6",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M6"), Resources.Paschwitz));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M6"), Resources.Paschwitz));
                 AddReplacedText("NPERSONALITY_GER_MIL_M7",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M7"), Resources.Serno));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M7"), Resources.Serno));
                 AddReplacedText("NPERSONALITY_GER_MIL_M8",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M8"), Resources.Goltz));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M8"), Resources.Goltz));
                 AddReplacedText("NPERSONALITY_GER_MIL_M9",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M9"), Resources.Sievert));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M9"), Resources.Sievert));
                 AddReplacedText("NPERSONALITY_GER_MIL_M10",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M10"), Resources.Thauvenay));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M10"), Resources.Thauvenay));
                 AddReplacedText("NPERSONALITY_GER_MIL_M11",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M11"), Resources.Usedom));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M11"), Resources.Usedom));
             }
 
             // 暗号解析の専門家: シンクレア/フリードマン
@@ -1041,9 +1042,9 @@ namespace HoI2Editor.Models
                 GetText("NPERSONALITY_SINCLAIR").Equals(GetText("NPERSONALITY_FRIEDMAN")))
             {
                 AddReplacedText("NPERSONALITY_SINCLAIR",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_SINCLAIR"), Resources.Sinclair));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_SINCLAIR"), Resources.Sinclair));
                 AddReplacedText("NPERSONALITY_FRIEDMAN",
-                                string.Format("{0}({1})", GetText("NPERSONALITY_FRIEDMAN"), Resources.Friedman));
+                    string.Format("{0}({1})", GetText("NPERSONALITY_FRIEDMAN"), Resources.Friedman));
             }
         }
 
@@ -1070,7 +1071,7 @@ namespace HoI2Editor.Models
                 for (int i = 1; i <= 20; i++)
                 {
                     AddComplementedText(string.Format("NAME_B_U{0}", i),
-                                        string.Format("{0}{1}", Resources.BrigadeUser, i));
+                        string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
             }
 
@@ -1097,7 +1098,7 @@ namespace HoI2Editor.Models
                 for (int i = 1; i <= 60; i++)
                 {
                     AddComplementedText(string.Format("RT_USER{0}", i),
-                                        string.Format("{0}{1}", Resources.SpecialityUser, i));
+                        string.Format("{0}{1}", Resources.SpecialityUser, i));
                 }
 
                 // DH固有のユニットクラス名
@@ -1117,19 +1118,19 @@ namespace HoI2Editor.Models
                 for (int i = 33; i <= 40; i++)
                 {
                     AddComplementedText(string.Format("NAME_D_RSV_{0}", i),
-                                        string.Format("{0}{1}", Resources.DivisionReserved, i));
+                        string.Format("{0}{1}", Resources.DivisionReserved, i));
                 }
                 for (int i = 36; i <= 40; i++)
                 {
                     AddComplementedText(string.Format("NAME_B_RSV_{0}", i),
-                                        string.Format("{0}{1}", Resources.BrigadeReserved, i));
+                        string.Format("{0}{1}", Resources.BrigadeReserved, i));
                 }
                 for (int i = 1; i <= 99; i++)
                 {
                     AddComplementedText(string.Format("NAME_D_{0:D2}", i),
-                                        string.Format("{0}{1}", Resources.DivisionUser, i));
+                        string.Format("{0}{1}", Resources.DivisionUser, i));
                     AddComplementedText(string.Format("NAME_B_{0:D2}", i),
-                                        string.Format("{0}{1}", Resources.BrigadeUser, i));
+                        string.Format("{0}{1}", Resources.BrigadeUser, i));
                 }
 
                 // DH Fullで定義されていない旅団のユニットクラス名

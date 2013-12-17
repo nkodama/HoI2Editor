@@ -112,7 +112,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -122,6 +122,16 @@ namespace HoI2Editor.Forms
                     SaveFile();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitNameEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnUnitNameEditorFormClosed();
         }
 
         #endregion
@@ -191,10 +201,10 @@ namespace HoI2Editor.Forms
         private void InitCountryListBox()
         {
             foreach (string s in Countries.Tags
-                                          .Select(country => Countries.Strings[(int) country])
-                                          .Select(name => Config.ExistsKey(name)
-                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                              : name))
+                .Select(country => Countries.Strings[(int) country])
+                .Select(name => Config.ExistsKey(name)
+                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    : name))
             {
                 countryListBox.Items.Add(s);
             }
@@ -288,8 +298,8 @@ namespace HoI2Editor.Forms
                 Country country = Countries.Tags[countryListBox.SelectedIndex];
                 UnitNameType type = UnitNames.Types[e.Index];
                 brush = UnitNames.IsDirty(country, type)
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
             }
             else
             {
@@ -448,7 +458,7 @@ namespace HoI2Editor.Forms
                     }
                     // 全ての国のユニット名を置換する
                     UnitNames.ReplaceAllCountries(to, with,
-                                                  UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
+                        UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
                 }
             }
             else
@@ -462,7 +472,7 @@ namespace HoI2Editor.Forms
                 {
                     // 全てのユニット名種類のユニット名を置換する
                     UnitNames.ReplaceAllTypes(to, with,
-                                              Countries.Tags[countryListBox.SelectedIndex], regexCheckBox.Checked);
+                        Countries.Tags[countryListBox.SelectedIndex], regexCheckBox.Checked);
                 }
                 else
                 {
@@ -473,7 +483,7 @@ namespace HoI2Editor.Forms
                     }
                     // ユニット名を置換する
                     UnitNames.Replace(to, with, Countries.Tags[countryListBox.SelectedIndex],
-                                      UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
+                        UnitNames.Types[typeListBox.SelectedIndex], regexCheckBox.Checked);
                 }
             }
 
@@ -525,7 +535,7 @@ namespace HoI2Editor.Forms
 
             // ユニット名を一括追加する
             UnitNames.AddSequential(prefix, suffix, (int) startNumericUpDown.Value, (int) endNumericUpDown.Value,
-                                    country, type);
+                country, type);
 
             // ユニット名リストの表示を更新する
             UpdateNameList();
@@ -595,7 +605,7 @@ namespace HoI2Editor.Forms
                     }
                     // ユニット名を補間する
                     UnitNames.Interpolate(Countries.Tags[countryListBox.SelectedIndex],
-                                          UnitNames.Types[typeListBox.SelectedIndex]);
+                        UnitNames.Types[typeListBox.SelectedIndex]);
                 }
             }
 

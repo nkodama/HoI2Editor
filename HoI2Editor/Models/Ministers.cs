@@ -101,37 +101,37 @@ namespace HoI2Editor.Models
         ///     閣僚地位名
         /// </summary>
         public static readonly string[] PositionNames =
-            {
-                "",
-                "HOIG_HEAD_OF_STATE",
-                "HOIG_HEAD_OF_GOVERNMENT",
-                "HOIG_FOREIGN_MINISTER",
-                "HOIG_ARMAMENT_MINISTER",
-                "HOIG_MINISTER_OF_SECURITY",
-                "HOIG_MINISTER_OF_INTELLIGENCE",
-                "HOIG_CHIEF_OF_STAFF",
-                "HOIG_CHIEF_OF_ARMY",
-                "HOIG_CHIEF_OF_NAVY",
-                "HOIG_CHIEF_OF_AIR"
-            };
+        {
+            "",
+            "HOIG_HEAD_OF_STATE",
+            "HOIG_HEAD_OF_GOVERNMENT",
+            "HOIG_FOREIGN_MINISTER",
+            "HOIG_ARMAMENT_MINISTER",
+            "HOIG_MINISTER_OF_SECURITY",
+            "HOIG_MINISTER_OF_INTELLIGENCE",
+            "HOIG_CHIEF_OF_STAFF",
+            "HOIG_CHIEF_OF_ARMY",
+            "HOIG_CHIEF_OF_NAVY",
+            "HOIG_CHIEF_OF_AIR"
+        };
 
         /// <summary>
         ///     イデオロギー名
         /// </summary>
         public static readonly string[] IdeologyNames =
-            {
-                "",
-                "CATEGORY_NATIONAL_SOCIALIST",
-                "CATEGORY_FASCIST",
-                "CATEGORY_PATERNAL_AUTOCRAT",
-                "CATEGORY_SOCIAL_CONSERVATIVE",
-                "CATEGORY_MARKET_LIBERAL",
-                "CATEGORY_SOCIAL_LIBERAL",
-                "CATEGORY_SOCIAL_DEMOCRAT",
-                "CATEGORY_LEFT_WING_RADICAL",
-                "CATEGORY_LENINIST",
-                "CATEGORY_STALINIST"
-            };
+        {
+            "",
+            "CATEGORY_NATIONAL_SOCIALIST",
+            "CATEGORY_FASCIST",
+            "CATEGORY_PATERNAL_AUTOCRAT",
+            "CATEGORY_SOCIAL_CONSERVATIVE",
+            "CATEGORY_MARKET_LIBERAL",
+            "CATEGORY_SOCIAL_LIBERAL",
+            "CATEGORY_SOCIAL_DEMOCRAT",
+            "CATEGORY_LEFT_WING_RADICAL",
+            "CATEGORY_LENINIST",
+            "CATEGORY_STALINIST"
+        };
 
         #endregion
 
@@ -141,474 +141,474 @@ namespace HoI2Editor.Models
         ///     閣僚地位文字列
         /// </summary>
         private static readonly string[] PositionStrings =
-            {
-                "",
-                "Head of State",
-                "Head of Government",
-                "Foreign Minister",
-                "Minister of Armament",
-                "Minister of Security",
-                "Head of Military Intelligence",
-                "Chief of Staff",
-                "Chief of Army",
-                "Chief of Navy",
-                "Chief of Air Force"
-            };
+        {
+            "",
+            "Head of State",
+            "Head of Government",
+            "Foreign Minister",
+            "Minister of Armament",
+            "Minister of Security",
+            "Head of Military Intelligence",
+            "Chief of Staff",
+            "Chief of Army",
+            "Chief of Navy",
+            "Chief of Air Force"
+        };
 
         /// <summary>
         ///     閣僚特性文字列(HoI2)
         /// </summary>
         private static readonly string[] PersonalityStringsHoI2 =
-            {
-                "Undistinguished Suit",
-                "Autocratic Charmer",
-                "Barking Buffoon",
-                "Benevolent Gentleman",
-                "Die-hard Reformer",
-                "Insignificant Layman",
-                "Pig-headed Isolationist",
-                "Popular Figurehead",
-                "Powerhungry Demagogue",
-                "Resigned Generalissimo",
-                "Ruthless Powermonger",
-                "Stern Imperialist",
-                "Weary Stiffneck",
-                "Ambitious Union Boss",
-                "Backroom Backstabber",
-                "Corporate Suit",
-                "Flamboyant Tough Guy",
-                "Happy Amateur",
-                "Naive Optimist",
-                "Old Admiral",
-                "Old Air Marshal",
-                "Old General",
-                "Political Protege",
-                "Silent Workhorse",
-                "Smiling Oilman",
-                "Apologetic Clerk",
-                "Biased Intellectual",
-                "Ideological Crusader",
-                "Iron Fisted Brute",
-                "General Staffer",
-                "Great Compromiser",
-                "The Cloak N Dagger Schemer",
-                "Administrative Genius",
-                "Air Superiority Proponent",
-                "Battle Fleet Proponent",
-                "Resource Industrialist",
-                "Laissez-Faire Capitalist",
-                "Theoretical Scientist",
-                "Military Entrepreneur",
-                "Submarine Proponent",
-                "Tank Proponent",
-                "Infantry Proponent",
-                "Corrupt Kleptocrat",
-                "Air to Ground Proponent",
-                "Air to Sea Proponent",
-                "Strategic Air Proponent",
-                "Back Stabber",
-                "Compassionate Gentleman",
-                "Crime Fighter",
-                "Crooked Kleptocrat",
-                "Efficient Sociopath",
-                "Man of the People",
-                "Prince of Terror",
-                "Silent Lawyer",
-                "Dismal Enigma",
-                "Industrial Specialist",
-                "Logistics Specialist",
-                "Naval Intelligence Specialist",
-                "Political Specialist",
-                "Technical Specialist",
-                "School of Defence",
-                "School of Fire Support",
-                "School of Mass Combat",
-                "School of Manoeuvre",
-                "School of Psychology",
-                "Armoured Spearhead Doctrine",
-                "Decisive Battle Doctrine",
-                "Elastic Defence Doctrine",
-                "Guns and Butter Doctrine",
-                "Static Defence Doctrine",
-                "Base Control Doctrine",
-                "Decisive Naval Battle Doctrine",
-                "Indirect Approach Doctrine",
-                "Open Seas Doctrine",
-                "Power Projection Doctrine",
-                "Air Superiority Doctrine",
-                "Army Aviation Doctrine",
-                "Carpet Bombing Doctrine",
-                "Naval Aviation Doctrine",
-                "Vertical Envelopment Doctrine"
-            };
+        {
+            "Undistinguished Suit",
+            "Autocratic Charmer",
+            "Barking Buffoon",
+            "Benevolent Gentleman",
+            "Die-hard Reformer",
+            "Insignificant Layman",
+            "Pig-headed Isolationist",
+            "Popular Figurehead",
+            "Powerhungry Demagogue",
+            "Resigned Generalissimo",
+            "Ruthless Powermonger",
+            "Stern Imperialist",
+            "Weary Stiffneck",
+            "Ambitious Union Boss",
+            "Backroom Backstabber",
+            "Corporate Suit",
+            "Flamboyant Tough Guy",
+            "Happy Amateur",
+            "Naive Optimist",
+            "Old Admiral",
+            "Old Air Marshal",
+            "Old General",
+            "Political Protege",
+            "Silent Workhorse",
+            "Smiling Oilman",
+            "Apologetic Clerk",
+            "Biased Intellectual",
+            "Ideological Crusader",
+            "Iron Fisted Brute",
+            "General Staffer",
+            "Great Compromiser",
+            "The Cloak N Dagger Schemer",
+            "Administrative Genius",
+            "Air Superiority Proponent",
+            "Battle Fleet Proponent",
+            "Resource Industrialist",
+            "Laissez-Faire Capitalist",
+            "Theoretical Scientist",
+            "Military Entrepreneur",
+            "Submarine Proponent",
+            "Tank Proponent",
+            "Infantry Proponent",
+            "Corrupt Kleptocrat",
+            "Air to Ground Proponent",
+            "Air to Sea Proponent",
+            "Strategic Air Proponent",
+            "Back Stabber",
+            "Compassionate Gentleman",
+            "Crime Fighter",
+            "Crooked Kleptocrat",
+            "Efficient Sociopath",
+            "Man of the People",
+            "Prince of Terror",
+            "Silent Lawyer",
+            "Dismal Enigma",
+            "Industrial Specialist",
+            "Logistics Specialist",
+            "Naval Intelligence Specialist",
+            "Political Specialist",
+            "Technical Specialist",
+            "School of Defence",
+            "School of Fire Support",
+            "School of Mass Combat",
+            "School of Manoeuvre",
+            "School of Psychology",
+            "Armoured Spearhead Doctrine",
+            "Decisive Battle Doctrine",
+            "Elastic Defence Doctrine",
+            "Guns and Butter Doctrine",
+            "Static Defence Doctrine",
+            "Base Control Doctrine",
+            "Decisive Naval Battle Doctrine",
+            "Indirect Approach Doctrine",
+            "Open Seas Doctrine",
+            "Power Projection Doctrine",
+            "Air Superiority Doctrine",
+            "Army Aviation Doctrine",
+            "Carpet Bombing Doctrine",
+            "Naval Aviation Doctrine",
+            "Vertical Envelopment Doctrine"
+        };
 
         /// <summary>
         ///     閣僚特性名(HoI2)
         /// </summary>
         private static readonly string[] PersonalityNamesHoI2 =
-            {
-                "NPERSONALITY_UNDISTINGUISHED_SUIT",
-                "NPERSONALITY_AUTOCRATIC_CHARMER",
-                "NPERSONALITY_BARKING_BUFFOON",
-                "NPERSONALITY_BENEVOLENT_GENTLEMAN",
-                "NPERSONALITY_DIE_HARD_REFORMER",
-                "NPERSONALITY_INSIGNIFICANT_LAYMAN",
-                "NPERSONALITY_PIG_HEADED_ISOLATIONIST",
-                "NPERSONALITY_POPULAR_FIGUREHEAD",
-                "NPERSONALITY_POWER_HUNGRY_DEMAGOGUE",
-                "NPERSONALITY_RESIGNED_GENERALISSIMO",
-                "NPERSONALITY_RUTHLESS_POWERMONGER",
-                "NPERSONALITY_STERN_IMPERIALIST",
-                "NPERSONALITY_WEARY_STIFF_NECK",
-                "NPERSONALITY_AMBITIOUS_UNION_BOSS",
-                "NPERSONALITY_BACKROOM_BACKSTABBER",
-                "NPERSONALITY_CORPORATE_SUIT",
-                "NPERSONALITY_FLAMBOYANT_TOUGH_GUY",
-                "NPERSONALITY_HAPPY_AMATEUR",
-                "NPERSONALITY_NAIVE_OPTIMIST",
-                "NPERSONALITY_OLD_ADMIRAL",
-                "NPERSONALITY_OLD_AIR_MARSHAL",
-                "NPERSONALITY_OLD_GENERAL",
-                "NPERSONALITY_POLITICAL_PROTEGE",
-                "NPERSONALITY_SILENT_WORKHORSE",
-                "NPERSONALITY_SMILING_OILMAN",
-                "NPERSONALITY_APOLOGETIC_CLERK",
-                "NPERSONALITY_BIASED_INTELLECTUAL",
-                "NPERSONALITY_IDEOLOGICAL_CRUSADER",
-                "NPERSONALITY_IRON_FISTED_BRUTE",
-                "NPERSONALITY_GENERAL_STAFFER",
-                "NPERSONALITY_GREAT_COMPROMISER",
-                "NPERSONALITY_THE_CLOAK_N_DAGGER_SCHEMER",
-                "NPERSONALITY_ADMINISTRATIVE_GENIUS",
-                "NPERSONALITY_AIR_SUPERIORITY_PROPONENT",
-                "NPERSONALITY_BATTLE_FLEET_PROPONENT",
-                "NPERSONALITY_RESOURCE_INDUSTRIALIST",
-                "NPERSONALITY_LAISSEZ_FAIRES_CAPITALIST",
-                "NPERSONALITY_THEORETICAL_SCIENTIST",
-                "NPERSONALITY_MILITARY_ENTREPRENEUR",
-                "NPERSONALITY_SUBMARINE_PROPONENT",
-                "NPERSONALITY_TANK_PROPONENT",
-                "NPERSONALITY_INFANTRY_PROPONENT",
-                "NPERSONALITY_CORRUPT_KLEPTOCRAT",
-                "NPERSONALITY_AIR_TO_GROUND_PROPONENT",
-                "NPERSONALITY_AIR_TO_SEA_PROPONENT",
-                "NPERSONALITY_STRATEGIC_AIR_PROPONENT",
-                "NPERSONALITY_BACK_STABBER",
-                "NPERSONALITY_COMPASSIONATE_GENTLEMAN",
-                "NPERSONALITY_CRIME_FIGHTER",
-                "NPERSONALITY_CROOKED_KLEPTOCRAT",
-                "NPERSONALITY_EFFICIENT_SOCIOPATH",
-                "NPERSONALITY_MAN_OF_THE_PEOPLE",
-                "NPERSONALITY_PRINCE_OF_TERROR",
-                "NPERSONALITY_SILENT_LAWYER",
-                "NPERSONALITY_DISMAL_ENIGMA",
-                "NPERSONALITY_INDUSTRIAL_SPECIALIST",
-                "NPERSONALITY_LOGISTICS_SPECIALIST",
-                "NPERSONALITY_NAVAL_INTELLIGENCE_SPECIALIST",
-                "NPERSONALITY_POLITICAL_SPECIALIST",
-                "NPERSONALITY_TECHNICAL_SPECIALIST",
-                "NPERSONALITY_SCHOOL_OF_DEFENCE",
-                "NPERSONALITY_SCHOOL_OF_FIRE_SUPPORT",
-                "NPERSONALITY_SCHOOL_OF_MASS_COMBAT",
-                "NPERSONALITY_SCHOOL_OF_MANOEUVRE",
-                "NPERSONALITY_SCHOOL_OF_PSYCHOLOGY",
-                "NPERSONALITY_ARMOURED_SPEARHEAD_DOCTRINE",
-                "NPERSONALITY_DECISIVE_BATTLE_DOCTRINE",
-                "NPERSONALITY_ELASTIC_DEFENCE_DOCTRINE",
-                "NPERSONALITY_GUNS_AND_BUTTER_DOCTRINE",
-                "NPERSONALITY_STATIC_DEFENCE_DOCTRINE",
-                "NPERSONALITY_BASE_CONTROL_DOCTRINE",
-                "NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2",
-                "NPERSONALITY_INDIRECT_APPROACH_DOCTRINE",
-                "NPERSONALITY_OPEN_SEAS_DOCTRINE",
-                "NPERSONALITY_POWER_PROJECTION_DOCTRINE",
-                "NPERSONALITY_AIR_SUPERIORITY_DOCTRINE",
-                "NPERSONALITY_ARMY_AVIATION_DOCTRINE",
-                "NPERSONALITY_CARPET_BOMBING_DOCTRINE",
-                "NPERSONALITY_NAVAL_AVIATION_DOCTRINE",
-                "NPERSONALITY_VERTICAL_ENVELOPMENT_DOCTRINE"
-            };
+        {
+            "NPERSONALITY_UNDISTINGUISHED_SUIT",
+            "NPERSONALITY_AUTOCRATIC_CHARMER",
+            "NPERSONALITY_BARKING_BUFFOON",
+            "NPERSONALITY_BENEVOLENT_GENTLEMAN",
+            "NPERSONALITY_DIE_HARD_REFORMER",
+            "NPERSONALITY_INSIGNIFICANT_LAYMAN",
+            "NPERSONALITY_PIG_HEADED_ISOLATIONIST",
+            "NPERSONALITY_POPULAR_FIGUREHEAD",
+            "NPERSONALITY_POWER_HUNGRY_DEMAGOGUE",
+            "NPERSONALITY_RESIGNED_GENERALISSIMO",
+            "NPERSONALITY_RUTHLESS_POWERMONGER",
+            "NPERSONALITY_STERN_IMPERIALIST",
+            "NPERSONALITY_WEARY_STIFF_NECK",
+            "NPERSONALITY_AMBITIOUS_UNION_BOSS",
+            "NPERSONALITY_BACKROOM_BACKSTABBER",
+            "NPERSONALITY_CORPORATE_SUIT",
+            "NPERSONALITY_FLAMBOYANT_TOUGH_GUY",
+            "NPERSONALITY_HAPPY_AMATEUR",
+            "NPERSONALITY_NAIVE_OPTIMIST",
+            "NPERSONALITY_OLD_ADMIRAL",
+            "NPERSONALITY_OLD_AIR_MARSHAL",
+            "NPERSONALITY_OLD_GENERAL",
+            "NPERSONALITY_POLITICAL_PROTEGE",
+            "NPERSONALITY_SILENT_WORKHORSE",
+            "NPERSONALITY_SMILING_OILMAN",
+            "NPERSONALITY_APOLOGETIC_CLERK",
+            "NPERSONALITY_BIASED_INTELLECTUAL",
+            "NPERSONALITY_IDEOLOGICAL_CRUSADER",
+            "NPERSONALITY_IRON_FISTED_BRUTE",
+            "NPERSONALITY_GENERAL_STAFFER",
+            "NPERSONALITY_GREAT_COMPROMISER",
+            "NPERSONALITY_THE_CLOAK_N_DAGGER_SCHEMER",
+            "NPERSONALITY_ADMINISTRATIVE_GENIUS",
+            "NPERSONALITY_AIR_SUPERIORITY_PROPONENT",
+            "NPERSONALITY_BATTLE_FLEET_PROPONENT",
+            "NPERSONALITY_RESOURCE_INDUSTRIALIST",
+            "NPERSONALITY_LAISSEZ_FAIRES_CAPITALIST",
+            "NPERSONALITY_THEORETICAL_SCIENTIST",
+            "NPERSONALITY_MILITARY_ENTREPRENEUR",
+            "NPERSONALITY_SUBMARINE_PROPONENT",
+            "NPERSONALITY_TANK_PROPONENT",
+            "NPERSONALITY_INFANTRY_PROPONENT",
+            "NPERSONALITY_CORRUPT_KLEPTOCRAT",
+            "NPERSONALITY_AIR_TO_GROUND_PROPONENT",
+            "NPERSONALITY_AIR_TO_SEA_PROPONENT",
+            "NPERSONALITY_STRATEGIC_AIR_PROPONENT",
+            "NPERSONALITY_BACK_STABBER",
+            "NPERSONALITY_COMPASSIONATE_GENTLEMAN",
+            "NPERSONALITY_CRIME_FIGHTER",
+            "NPERSONALITY_CROOKED_KLEPTOCRAT",
+            "NPERSONALITY_EFFICIENT_SOCIOPATH",
+            "NPERSONALITY_MAN_OF_THE_PEOPLE",
+            "NPERSONALITY_PRINCE_OF_TERROR",
+            "NPERSONALITY_SILENT_LAWYER",
+            "NPERSONALITY_DISMAL_ENIGMA",
+            "NPERSONALITY_INDUSTRIAL_SPECIALIST",
+            "NPERSONALITY_LOGISTICS_SPECIALIST",
+            "NPERSONALITY_NAVAL_INTELLIGENCE_SPECIALIST",
+            "NPERSONALITY_POLITICAL_SPECIALIST",
+            "NPERSONALITY_TECHNICAL_SPECIALIST",
+            "NPERSONALITY_SCHOOL_OF_DEFENCE",
+            "NPERSONALITY_SCHOOL_OF_FIRE_SUPPORT",
+            "NPERSONALITY_SCHOOL_OF_MASS_COMBAT",
+            "NPERSONALITY_SCHOOL_OF_MANOEUVRE",
+            "NPERSONALITY_SCHOOL_OF_PSYCHOLOGY",
+            "NPERSONALITY_ARMOURED_SPEARHEAD_DOCTRINE",
+            "NPERSONALITY_DECISIVE_BATTLE_DOCTRINE",
+            "NPERSONALITY_ELASTIC_DEFENCE_DOCTRINE",
+            "NPERSONALITY_GUNS_AND_BUTTER_DOCTRINE",
+            "NPERSONALITY_STATIC_DEFENCE_DOCTRINE",
+            "NPERSONALITY_BASE_CONTROL_DOCTRINE",
+            "NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2",
+            "NPERSONALITY_INDIRECT_APPROACH_DOCTRINE",
+            "NPERSONALITY_OPEN_SEAS_DOCTRINE",
+            "NPERSONALITY_POWER_PROJECTION_DOCTRINE",
+            "NPERSONALITY_AIR_SUPERIORITY_DOCTRINE",
+            "NPERSONALITY_ARMY_AVIATION_DOCTRINE",
+            "NPERSONALITY_CARPET_BOMBING_DOCTRINE",
+            "NPERSONALITY_NAVAL_AVIATION_DOCTRINE",
+            "NPERSONALITY_VERTICAL_ENVELOPMENT_DOCTRINE"
+        };
 
         /// <summary>
         ///     国家元首の特性(HoI2)
         /// </summary>
         private static readonly int[] HeadOfStatePersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.AutocraticCharmer,
-                (int) MinisterPersonalityHoI2.BarkingBuffoon,
-                (int) MinisterPersonalityHoI2.BenevolentGentleman,
-                (int) MinisterPersonalityHoI2.DieHardReformer,
-                (int) MinisterPersonalityHoI2.InsignificantLayman,
-                (int) MinisterPersonalityHoI2.PigHeadedIsolationist,
-                (int) MinisterPersonalityHoI2.PopularFigurehead,
-                (int) MinisterPersonalityHoI2.PowerHungryDemagogue,
-                (int) MinisterPersonalityHoI2.ResignedGeneralissimo,
-                (int) MinisterPersonalityHoI2.RuthlessPowermonger,
-                (int) MinisterPersonalityHoI2.SternImperalist,
-                (int) MinisterPersonalityHoI2.WearyStiffNeck,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.AutocraticCharmer,
+            (int) MinisterPersonalityHoI2.BarkingBuffoon,
+            (int) MinisterPersonalityHoI2.BenevolentGentleman,
+            (int) MinisterPersonalityHoI2.DieHardReformer,
+            (int) MinisterPersonalityHoI2.InsignificantLayman,
+            (int) MinisterPersonalityHoI2.PigHeadedIsolationist,
+            (int) MinisterPersonalityHoI2.PopularFigurehead,
+            (int) MinisterPersonalityHoI2.PowerHungryDemagogue,
+            (int) MinisterPersonalityHoI2.ResignedGeneralissimo,
+            (int) MinisterPersonalityHoI2.RuthlessPowermonger,
+            (int) MinisterPersonalityHoI2.SternImperalist,
+            (int) MinisterPersonalityHoI2.WearyStiffNeck,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     政府首班の特性(HoI2)
         /// </summary>
         private static readonly int[] HeadOfGovernmentPersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.AmbitiousUnionBoss,
-                (int) MinisterPersonalityHoI2.BackroomBackstabber,
-                (int) MinisterPersonalityHoI2.CorporateSuit,
-                (int) MinisterPersonalityHoI2.FlamboyantToughGuy,
-                (int) MinisterPersonalityHoI2.HappyAmateur,
-                (int) MinisterPersonalityHoI2.NaiveOptimist,
-                (int) MinisterPersonalityHoI2.OldAdmiral,
-                (int) MinisterPersonalityHoI2.OldAirMarshal,
-                (int) MinisterPersonalityHoI2.OldGeneral,
-                (int) MinisterPersonalityHoI2.PoliticalProtege,
-                (int) MinisterPersonalityHoI2.SilentWorkhorse,
-                (int) MinisterPersonalityHoI2.SmilingOilman,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.AmbitiousUnionBoss,
+            (int) MinisterPersonalityHoI2.BackroomBackstabber,
+            (int) MinisterPersonalityHoI2.CorporateSuit,
+            (int) MinisterPersonalityHoI2.FlamboyantToughGuy,
+            (int) MinisterPersonalityHoI2.HappyAmateur,
+            (int) MinisterPersonalityHoI2.NaiveOptimist,
+            (int) MinisterPersonalityHoI2.OldAdmiral,
+            (int) MinisterPersonalityHoI2.OldAirMarshal,
+            (int) MinisterPersonalityHoI2.OldGeneral,
+            (int) MinisterPersonalityHoI2.PoliticalProtege,
+            (int) MinisterPersonalityHoI2.SilentWorkhorse,
+            (int) MinisterPersonalityHoI2.SmilingOilman,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     外務大臣の特性(HoI2)
         /// </summary>
         private static readonly int[] ForeignMinisterPersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.ApologeticClerk,
-                (int) MinisterPersonalityHoI2.BiasedIntellectual,
-                (int) MinisterPersonalityHoI2.IdeologyCrusader,
-                (int) MinisterPersonalityHoI2.IronFistedBrute,
-                (int) MinisterPersonalityHoI2.GeneralStaffer,
-                (int) MinisterPersonalityHoI2.GreatCompromiser,
-                (int) MinisterPersonalityHoI2.TheCloakNDaggerSchemer,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.ApologeticClerk,
+            (int) MinisterPersonalityHoI2.BiasedIntellectual,
+            (int) MinisterPersonalityHoI2.IdeologyCrusader,
+            (int) MinisterPersonalityHoI2.IronFistedBrute,
+            (int) MinisterPersonalityHoI2.GeneralStaffer,
+            (int) MinisterPersonalityHoI2.GreatCompromiser,
+            (int) MinisterPersonalityHoI2.TheCloakNDaggerSchemer,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     軍需大臣の特性(HoI2)
         /// </summary>
         private static readonly int[] MinisterOfArmamentPersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.AdministrativeGenius,
-                (int) MinisterPersonalityHoI2.AirSuperiorityProponent,
-                (int) MinisterPersonalityHoI2.BattleFleetProponent,
-                (int) MinisterPersonalityHoI2.ResourceIndustrialist,
-                (int) MinisterPersonalityHoI2.LaissezFaireCapitalist,
-                (int) MinisterPersonalityHoI2.TheoreticalScientist,
-                (int) MinisterPersonalityHoI2.MilitaryEnterpreneur,
-                (int) MinisterPersonalityHoI2.SubmarineProponent,
-                (int) MinisterPersonalityHoI2.TankProponent,
-                (int) MinisterPersonalityHoI2.InfantryProponent,
-                (int) MinisterPersonalityHoI2.CorruptKleptocrat,
-                (int) MinisterPersonalityHoI2.AirToGroundProponent,
-                (int) MinisterPersonalityHoI2.AirToSeaProponent,
-                (int) MinisterPersonalityHoI2.StrategicAirProponent,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.AdministrativeGenius,
+            (int) MinisterPersonalityHoI2.AirSuperiorityProponent,
+            (int) MinisterPersonalityHoI2.BattleFleetProponent,
+            (int) MinisterPersonalityHoI2.ResourceIndustrialist,
+            (int) MinisterPersonalityHoI2.LaissezFaireCapitalist,
+            (int) MinisterPersonalityHoI2.TheoreticalScientist,
+            (int) MinisterPersonalityHoI2.MilitaryEnterpreneur,
+            (int) MinisterPersonalityHoI2.SubmarineProponent,
+            (int) MinisterPersonalityHoI2.TankProponent,
+            (int) MinisterPersonalityHoI2.InfantryProponent,
+            (int) MinisterPersonalityHoI2.CorruptKleptocrat,
+            (int) MinisterPersonalityHoI2.AirToGroundProponent,
+            (int) MinisterPersonalityHoI2.AirToSeaProponent,
+            (int) MinisterPersonalityHoI2.StrategicAirProponent,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     内務大臣の特性(HoI2)
         /// </summary>
         private static readonly int[] MinisterOfSecurityPersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.BackStabber,
-                (int) MinisterPersonalityHoI2.CompassionateGentleman,
-                (int) MinisterPersonalityHoI2.CrimeFighter,
-                (int) MinisterPersonalityHoI2.CrookedKleptocrat,
-                (int) MinisterPersonalityHoI2.EfficientSociopath,
-                (int) MinisterPersonalityHoI2.ManOfThePeople,
-                (int) MinisterPersonalityHoI2.PrinceOfTerror,
-                (int) MinisterPersonalityHoI2.SilentLawyer,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.BackStabber,
+            (int) MinisterPersonalityHoI2.CompassionateGentleman,
+            (int) MinisterPersonalityHoI2.CrimeFighter,
+            (int) MinisterPersonalityHoI2.CrookedKleptocrat,
+            (int) MinisterPersonalityHoI2.EfficientSociopath,
+            (int) MinisterPersonalityHoI2.ManOfThePeople,
+            (int) MinisterPersonalityHoI2.PrinceOfTerror,
+            (int) MinisterPersonalityHoI2.SilentLawyer,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     情報大臣の特性(HoI2)
         /// </summary>
         private static readonly int[] HeadOfMilitaryIntelligencePersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.DismalEnigma,
-                (int) MinisterPersonalityHoI2.IndustrialSpecialist,
-                (int) MinisterPersonalityHoI2.LogisticsSpecialist,
-                (int) MinisterPersonalityHoI2.NavalIntelligenceSpecialist,
-                (int) MinisterPersonalityHoI2.PoliticalSpecialist,
-                (int) MinisterPersonalityHoI2.TechnicalSpecialist,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.DismalEnigma,
+            (int) MinisterPersonalityHoI2.IndustrialSpecialist,
+            (int) MinisterPersonalityHoI2.LogisticsSpecialist,
+            (int) MinisterPersonalityHoI2.NavalIntelligenceSpecialist,
+            (int) MinisterPersonalityHoI2.PoliticalSpecialist,
+            (int) MinisterPersonalityHoI2.TechnicalSpecialist,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     統合参謀総長の特性(HoI2)
         /// </summary>
         private static readonly int[] ChiefOfStaffPersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.SchoolOfDefence,
-                (int) MinisterPersonalityHoI2.SchoolOfFireSupport,
-                (int) MinisterPersonalityHoI2.SchoolOfMassCombat,
-                (int) MinisterPersonalityHoI2.SchoolOfManeuvre,
-                (int) MinisterPersonalityHoI2.SchoolOfPsychology,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.SchoolOfDefence,
+            (int) MinisterPersonalityHoI2.SchoolOfFireSupport,
+            (int) MinisterPersonalityHoI2.SchoolOfMassCombat,
+            (int) MinisterPersonalityHoI2.SchoolOfManeuvre,
+            (int) MinisterPersonalityHoI2.SchoolOfPsychology,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     陸軍総司令官の特性(HoI2)
         /// </summary>
         private static readonly int[] ChiefOfArmyPersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.ArmouredSpearheadDoctrine,
-                (int) MinisterPersonalityHoI2.DecisiveBattleDoctrine,
-                (int) MinisterPersonalityHoI2.ElasticDefenceDoctrine,
-                (int) MinisterPersonalityHoI2.GunsAndButterDoctrine,
-                (int) MinisterPersonalityHoI2.StaticDefenceDoctrine,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.ArmouredSpearheadDoctrine,
+            (int) MinisterPersonalityHoI2.DecisiveBattleDoctrine,
+            (int) MinisterPersonalityHoI2.ElasticDefenceDoctrine,
+            (int) MinisterPersonalityHoI2.GunsAndButterDoctrine,
+            (int) MinisterPersonalityHoI2.StaticDefenceDoctrine,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     海軍総司令官の特性(HoI2)
         /// </summary>
         private static readonly int[] ChiefOfNavyPersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.BaseControlDoctrine,
-                (int) MinisterPersonalityHoI2.DecisiveNavalBattleDoctrine,
-                (int) MinisterPersonalityHoI2.IndirectApproachDoctrine,
-                (int) MinisterPersonalityHoI2.OpenSeasDoctrine,
-                (int) MinisterPersonalityHoI2.PowerProjectionDoctrine,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.BaseControlDoctrine,
+            (int) MinisterPersonalityHoI2.DecisiveNavalBattleDoctrine,
+            (int) MinisterPersonalityHoI2.IndirectApproachDoctrine,
+            (int) MinisterPersonalityHoI2.OpenSeasDoctrine,
+            (int) MinisterPersonalityHoI2.PowerProjectionDoctrine,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     空軍総司令官の特性(HoI2)
         /// </summary>
         private static readonly int[] ChiefOfAirForcePersonalitiesHoI2 =
-            {
-                (int) MinisterPersonalityHoI2.AirSuperiorityDoctrine,
-                (int) MinisterPersonalityHoI2.ArmyAviationDoctrine,
-                (int) MinisterPersonalityHoI2.CarpetBombingDoctrine,
-                (int) MinisterPersonalityHoI2.NavalAviationDoctrine,
-                (int) MinisterPersonalityHoI2.VerticalEnvelopmentDoctrine,
-                (int) MinisterPersonalityHoI2.UndistinguishedSuit
-            };
+        {
+            (int) MinisterPersonalityHoI2.AirSuperiorityDoctrine,
+            (int) MinisterPersonalityHoI2.ArmyAviationDoctrine,
+            (int) MinisterPersonalityHoI2.CarpetBombingDoctrine,
+            (int) MinisterPersonalityHoI2.NavalAviationDoctrine,
+            (int) MinisterPersonalityHoI2.VerticalEnvelopmentDoctrine,
+            (int) MinisterPersonalityHoI2.UndistinguishedSuit
+        };
 
         /// <summary>
         ///     閣僚地位と特性の対応付け(HoI2)
         /// </summary>
         private static readonly int[][] PositionPersonalityTableHoI2 =
-            {
-                null,
-                HeadOfStatePersonalitiesHoI2,
-                HeadOfGovernmentPersonalitiesHoI2,
-                ForeignMinisterPersonalitiesHoI2,
-                MinisterOfArmamentPersonalitiesHoI2,
-                MinisterOfSecurityPersonalitiesHoI2,
-                HeadOfMilitaryIntelligencePersonalitiesHoI2,
-                ChiefOfStaffPersonalitiesHoI2,
-                ChiefOfArmyPersonalitiesHoI2,
-                ChiefOfNavyPersonalitiesHoI2,
-                ChiefOfAirForcePersonalitiesHoI2
-            };
+        {
+            null,
+            HeadOfStatePersonalitiesHoI2,
+            HeadOfGovernmentPersonalitiesHoI2,
+            ForeignMinisterPersonalitiesHoI2,
+            MinisterOfArmamentPersonalitiesHoI2,
+            MinisterOfSecurityPersonalitiesHoI2,
+            HeadOfMilitaryIntelligencePersonalitiesHoI2,
+            ChiefOfStaffPersonalitiesHoI2,
+            ChiefOfArmyPersonalitiesHoI2,
+            ChiefOfNavyPersonalitiesHoI2,
+            ChiefOfAirForcePersonalitiesHoI2
+        };
 
         /// <summary>
         ///     イデオロギー文字列
         /// </summary>
         private static readonly string[] IdeologyStrings =
-            {
-                "",
-                "NS",
-                "FA",
-                "PA",
-                "SC",
-                "ML",
-                "SL",
-                "SD",
-                "LWR",
-                "LE",
-                "ST"
-            };
+        {
+            "",
+            "NS",
+            "FA",
+            "PA",
+            "SC",
+            "ML",
+            "SL",
+            "SD",
+            "LWR",
+            "LE",
+            "ST"
+        };
 
         /// <summary>
         ///     忠誠度文字列
         /// </summary>
         private static readonly string[] LoyaltyStrings =
-            {
-                "",
-                "Very High",
-                "High",
-                "Medium",
-                "Low",
-                "Very Low",
-                "Undying",
-                "NA"
-            };
+        {
+            "",
+            "Very High",
+            "High",
+            "Medium",
+            "Low",
+            "Very Low",
+            "Undying",
+            "NA"
+        };
 
         /// <summary>
         ///     閣僚特性文字列の先頭大文字変換の特例
         /// </summary>
         private static readonly Dictionary<string, string> PersonalityStringCaseMap
             = new Dictionary<string, string>
-                {
-                    {"die-hard reformer", "Die-hard Reformer"},
-                    {"pig-headed isolationist", "Pig-headed Isolationist"},
-                    {"air to ground proponent", "Air to Ground Proponent"},
-                    {"air to sea proponent", "Air to Sea Proponent"},
-                    {"man of the people", "Man of the People"},
-                    {"prince of terror", "Prince of Terror"},
-                    {"school of defence", "School of Defence"},
-                    {"school of fire support", "School of Fire Support"},
-                    {"school of mass combat", "School of Mass Combat"},
-                    {"school of manoeuvre", "School of Manoeuvre"},
-                    {"school of psychology", "School of Psychology"},
-                    {"guns and butter doctrine", "Guns and Butter Doctrine"},
-                    {"health and safety", "Health and Safety"},
-                    {"doctrine of autonomy", "Doctrine of Autonomy"},
-                    {"ger_mil_m1", "ger_mil_m1"},
-                    {"ger_mil_m2", "ger_mil_m2"},
-                    {"ger_mil_m3", "ger_mil_m3"},
-                    {"ger_mil_m4", "ger_mil_m4"},
-                    {"ger_mil_m5", "ger_mil_m5"},
-                    {"ger_mil_m6", "ger_mil_m6"},
-                    {"ger_mil_m7", "ger_mil_m7"},
-                    {"ger_mil_m8", "ger_mil_m8"},
-                    {"ger_mil_m9", "ger_mil_m9"},
-                    {"ger_mil_m10", "ger_mil_m10"},
-                    {"ger_mil_m11", "ger_mil_m11"},
-                    {"brit_nav_mis", "brit_nav_mis"},
-                    {"ss reichsfuhrer", "SS Reichsfuhrer"},
-                    {"salesman of deception", "Salesman of Deception"},
-                    {"master of propaganda", "Master of Propaganda"},
-                    {"undersecretary of war", "Undersecretary of War"},
-                    {"persuader of democracies", "Persuader of Democracies"},
-                    {"father of united nations", "Father of United Nations"},
-                    {"director of fbi", "Director of FBI"},
-                    {"secretary of war", "Secretary of War"},
-                    {"ambassador to un", "Ambassador to UN"},
-                    {"secretary of the interior", "Secretary of the Interior"},
-                    {"supporter of devaluation", "Supporter of Devaluation"},
-                    {"opposer of the far right", "Opposer of the Far Right"},
-                    {"supporter of friendly relations", "Supporter of Friendly Relations"},
-                    {"opposer to military spending", "Opposer to Military Spending"}
-                };
+            {
+                {"die-hard reformer", "Die-hard Reformer"},
+                {"pig-headed isolationist", "Pig-headed Isolationist"},
+                {"air to ground proponent", "Air to Ground Proponent"},
+                {"air to sea proponent", "Air to Sea Proponent"},
+                {"man of the people", "Man of the People"},
+                {"prince of terror", "Prince of Terror"},
+                {"school of defence", "School of Defence"},
+                {"school of fire support", "School of Fire Support"},
+                {"school of mass combat", "School of Mass Combat"},
+                {"school of manoeuvre", "School of Manoeuvre"},
+                {"school of psychology", "School of Psychology"},
+                {"guns and butter doctrine", "Guns and Butter Doctrine"},
+                {"health and safety", "Health and Safety"},
+                {"doctrine of autonomy", "Doctrine of Autonomy"},
+                {"ger_mil_m1", "ger_mil_m1"},
+                {"ger_mil_m2", "ger_mil_m2"},
+                {"ger_mil_m3", "ger_mil_m3"},
+                {"ger_mil_m4", "ger_mil_m4"},
+                {"ger_mil_m5", "ger_mil_m5"},
+                {"ger_mil_m6", "ger_mil_m6"},
+                {"ger_mil_m7", "ger_mil_m7"},
+                {"ger_mil_m8", "ger_mil_m8"},
+                {"ger_mil_m9", "ger_mil_m9"},
+                {"ger_mil_m10", "ger_mil_m10"},
+                {"ger_mil_m11", "ger_mil_m11"},
+                {"brit_nav_mis", "brit_nav_mis"},
+                {"ss reichsfuhrer", "SS Reichsfuhrer"},
+                {"salesman of deception", "Salesman of Deception"},
+                {"master of propaganda", "Master of Propaganda"},
+                {"undersecretary of war", "Undersecretary of War"},
+                {"persuader of democracies", "Persuader of Democracies"},
+                {"father of united nations", "Father of United Nations"},
+                {"director of fbi", "Director of FBI"},
+                {"secretary of war", "Secretary of War"},
+                {"ambassador to un", "Ambassador to UN"},
+                {"secretary of the interior", "Secretary of the Interior"},
+                {"supporter of devaluation", "Supporter of Devaluation"},
+                {"opposer of the far right", "Opposer of the Far Right"},
+                {"supporter of friendly relations", "Supporter of Friendly Relations"},
+                {"opposer to military spending", "Opposer to Military Spending"}
+            };
 
         /// <summary>
         ///     閣僚特性文字列のよくある綴り間違いと正しい値の関連付け
         /// </summary>
         private static readonly Dictionary<string, string> PersonalityStringTypoMap
             = new Dictionary<string, string>
-                {
-                    {"barking buffon", "barking buffoon"},
-                    {"iron-fisted brute", "iron fisted brute"},
-                    {"the cloak-n-dagger schemer", "the cloak n dagger schemer"},
-                    {"cloak-n-dagger schemer", "the cloak n dagger schemer"},
-                    {"cloak n dagger schemer", "the cloak n dagger schemer"},
-                    {"laissez-faires capitalist", "laissez-faire capitalist"},
-                    {"laissez faires capitalist", "laissez-faire capitalist"},
-                    {"laissez faire capitalist", "laissez-faire capitalist"},
-                    {"military entrepeneur", "military entrepreneur"},
-                    {"crooked plutocrat", "crooked kleptocrat"},
-                    {"school of defense", "school of defence"},
-                    {"school of maneouvre", "school of manoeuvre"},
-                    {"elastic defense doctrine", "elastic defence doctrine"},
-                    {"static defense doctrine", "static defence doctrine"},
-                    {"vertical envelopement doctrine", "vertical envelopment doctrine"},
-                };
+            {
+                {"barking buffon", "barking buffoon"},
+                {"iron-fisted brute", "iron fisted brute"},
+                {"the cloak-n-dagger schemer", "the cloak n dagger schemer"},
+                {"cloak-n-dagger schemer", "the cloak n dagger schemer"},
+                {"cloak n dagger schemer", "the cloak n dagger schemer"},
+                {"laissez-faires capitalist", "laissez-faire capitalist"},
+                {"laissez faires capitalist", "laissez-faire capitalist"},
+                {"laissez faire capitalist", "laissez-faire capitalist"},
+                {"military entrepeneur", "military entrepreneur"},
+                {"crooked plutocrat", "crooked kleptocrat"},
+                {"school of defense", "school of defence"},
+                {"school of maneouvre", "school of manoeuvre"},
+                {"elastic defense doctrine", "elastic defence doctrine"},
+                {"static defense doctrine", "static defence doctrine"},
+                {"vertical envelopement doctrine", "vertical envelopment doctrine"},
+            };
 
         /// <summary>
         ///     CSVファイルの区切り文字
@@ -749,16 +749,16 @@ namespace HoI2Editor.Models
 
             // 忠誠度
             LoyaltyNames = new[]
-                {
-                    "",
-                    Resources.LoyaltyVeryHigh,
-                    Resources.LoyaltyHigh,
-                    Resources.LoyaltyMedium,
-                    Resources.LoyaltyLow,
-                    Resources.LoyaltyVeryLow,
-                    Resources.LoyaltyUndying,
-                    Resources.LoyaltyNA
-                };
+            {
+                "",
+                Resources.LoyaltyVeryHigh,
+                Resources.LoyaltyHigh,
+                Resources.LoyaltyMedium,
+                Resources.LoyaltyLow,
+                Resources.LoyaltyVeryLow,
+                Resources.LoyaltyUndying,
+                Resources.LoyaltyNA
+            };
             foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof (MinisterLoyalty)))
             {
                 LoyaltyStringMap.Add(LoyaltyStrings[(int) loyalty].ToLower(), loyalty);
@@ -820,10 +820,10 @@ namespace HoI2Editor.Models
             for (int i = 0; i < personalityCount; i++)
             {
                 var info = new MinisterPersonalityInfo
-                    {
-                        String = PersonalityStringsHoI2[i],
-                        Name = PersonalityNamesHoI2[i]
-                    };
+                {
+                    String = PersonalityStringsHoI2[i],
+                    Name = PersonalityNamesHoI2[i]
+                };
                 Personalities[i] = info;
                 PersonalityStringMap.Add(info.String.ToLower(), i);
             }
@@ -1243,7 +1243,7 @@ namespace HoI2Editor.Models
                 {
                     minister.EndYear = 1970;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
-                                            _currentLineNo));
+                        _currentLineNo));
                     Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
                 }
                 index++;
@@ -1265,7 +1265,7 @@ namespace HoI2Editor.Models
                 {
                     minister.RetirementYear = 1999;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidRetirementYear, _currentFileName,
-                                            _currentLineNo));
+                        _currentLineNo));
                     Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
                 }
                 index++;
@@ -1302,15 +1302,15 @@ namespace HoI2Editor.Models
                 {
                     minister.Personality = PersonalityStringMap[PersonalityStringTypoMap[personalityName]];
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.ModifiedPersonality, _currentFileName,
-                                            _currentLineNo));
+                        _currentLineNo));
                     Log.Write(String.Format("  {0}: {1} => {2} -> {3}\n", minister.Id, minister.Name, tokens[index],
-                                            Personalities[minister.Personality].String));
+                        Personalities[minister.Personality].String));
                 }
                 else
                 {
                     minister.Personality = 0;
                     Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPersonality, _currentFileName,
-                                            _currentLineNo));
+                        _currentLineNo));
                     Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
                 }
             }
@@ -1352,8 +1352,8 @@ namespace HoI2Editor.Models
             }
 
             foreach (Country country in Enum.GetValues(typeof (Country))
-                                            .Cast<Country>()
-                                            .Where(country => DirtyFlags[(int) country] && country != Country.None))
+                .Cast<Country>()
+                .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
                 {
@@ -1363,7 +1363,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                                     Game.MinisterPathName);
+                        Game.MinisterPathName);
                     string fileName = Path.Combine(folderName, Game.GetMinisterFileName(country));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                 }
@@ -1410,7 +1410,7 @@ namespace HoI2Editor.Models
                 else
                 {
                     writer.WriteLine("{0};Ruling Cabinet - Start;Name;Pool;Ideology;Personality;Loyalty;Picturename;x",
-                                     Countries.Strings[(int) country]);
+                        Countries.Strings[(int) country]);
                     writer.WriteLine(";Replacements;;;;;;;x");
                 }
 
@@ -1421,19 +1421,19 @@ namespace HoI2Editor.Models
                     if (minister.Position == MinisterPosition.None)
                     {
                         Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName,
-                                                _currentLineNo));
+                            _currentLineNo));
                         Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
                     }
                     if (minister.Ideology == MinisterIdeology.None)
                     {
                         Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName,
-                                                _currentLineNo));
+                            _currentLineNo));
                         Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
                     }
                     if (minister.Loyalty == MinisterLoyalty.None)
                     {
                         Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName,
-                                                _currentLineNo));
+                            _currentLineNo));
                         Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
                     }
 

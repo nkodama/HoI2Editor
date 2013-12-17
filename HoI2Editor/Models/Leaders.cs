@@ -77,77 +77,77 @@ namespace HoI2Editor.Models
         ///     指揮官特性値
         /// </summary>
         public static readonly uint[] TraitsValues =
-            {
-                LeaderTraits.LogisticsWizard,
-                LeaderTraits.DefensiveDoctrine,
-                LeaderTraits.OffensiveDoctrine,
-                LeaderTraits.WinterSpecialist,
-                LeaderTraits.Trickster,
-                LeaderTraits.Engineer,
-                LeaderTraits.FortressBuster,
-                LeaderTraits.PanzerLeader,
-                LeaderTraits.Commando,
-                LeaderTraits.OldGuard,
-                LeaderTraits.SeaWolf,
-                LeaderTraits.BlockadeRunner,
-                LeaderTraits.SuperiorTactician,
-                LeaderTraits.Spotter,
-                LeaderTraits.TankBuster,
-                LeaderTraits.CarpetBomber,
-                LeaderTraits.NightFlyer,
-                LeaderTraits.FleetDestroyer,
-                LeaderTraits.DesertFox,
-                LeaderTraits.JungleRat,
-                LeaderTraits.UrbanWarfareSpecialist,
-                LeaderTraits.Ranger,
-                LeaderTraits.Mountaineer,
-                LeaderTraits.HillsFighter,
-                LeaderTraits.CounterAttacker,
-                LeaderTraits.Assaulter,
-                LeaderTraits.Encircler,
-                LeaderTraits.Ambusher,
-                LeaderTraits.Disciplined,
-                LeaderTraits.ElasticDefenceSpecialist,
-                LeaderTraits.Blitzer
-            };
+        {
+            LeaderTraits.LogisticsWizard,
+            LeaderTraits.DefensiveDoctrine,
+            LeaderTraits.OffensiveDoctrine,
+            LeaderTraits.WinterSpecialist,
+            LeaderTraits.Trickster,
+            LeaderTraits.Engineer,
+            LeaderTraits.FortressBuster,
+            LeaderTraits.PanzerLeader,
+            LeaderTraits.Commando,
+            LeaderTraits.OldGuard,
+            LeaderTraits.SeaWolf,
+            LeaderTraits.BlockadeRunner,
+            LeaderTraits.SuperiorTactician,
+            LeaderTraits.Spotter,
+            LeaderTraits.TankBuster,
+            LeaderTraits.CarpetBomber,
+            LeaderTraits.NightFlyer,
+            LeaderTraits.FleetDestroyer,
+            LeaderTraits.DesertFox,
+            LeaderTraits.JungleRat,
+            LeaderTraits.UrbanWarfareSpecialist,
+            LeaderTraits.Ranger,
+            LeaderTraits.Mountaineer,
+            LeaderTraits.HillsFighter,
+            LeaderTraits.CounterAttacker,
+            LeaderTraits.Assaulter,
+            LeaderTraits.Encircler,
+            LeaderTraits.Ambusher,
+            LeaderTraits.Disciplined,
+            LeaderTraits.ElasticDefenceSpecialist,
+            LeaderTraits.Blitzer
+        };
 
         /// <summary>
         ///     指揮官特性名
         /// </summary>
         public static readonly string[] TraitsNames =
-            {
-                "TRAIT_LOGWIZ",
-                "TRAIT_DEFDOC",
-                "TRAIT_OFFDOC",
-                "TRAIT_WINSPE",
-                "TRAIT_TRICKS",
-                "TRAIT_ENGINE",
-                "TRAIT_FORBUS",
-                "TRAIT_PNZLED",
-                "TRAIT_COMMAN",
-                "TRAIT_OLDGRD",
-                "TRAIT_SEAWOL",
-                "TRAIT_BLKRUN",
-                "TRAIT_SUPTAC",
-                "TRAIT_SPOTTE",
-                "TRAIT_TNKBUS",
-                "TRAIT_CRPBOM",
-                "TRAIT_NGHTFL",
-                "TRAIT_FLTDES",
-                "TRAIT_DSRFOX",
-                "TRAIT_JUNGLE",
-                "TRAIT_URBAN",
-                "TRAIT_FOREST",
-                "TRAIT_MOUNTAIN",
-                "TRAIT_HILLS",
-                "TRAIT_COUNTER",
-                "TRAIT_ASSAULT",
-                "TRAIT_ENCIRCL",
-                "TRAIT_AMBUSH",
-                "TRAIT_DELAY",
-                "TRAIT_TATICAL",
-                "TRAIT_BREAK"
-            };
+        {
+            "TRAIT_LOGWIZ",
+            "TRAIT_DEFDOC",
+            "TRAIT_OFFDOC",
+            "TRAIT_WINSPE",
+            "TRAIT_TRICKS",
+            "TRAIT_ENGINE",
+            "TRAIT_FORBUS",
+            "TRAIT_PNZLED",
+            "TRAIT_COMMAN",
+            "TRAIT_OLDGRD",
+            "TRAIT_SEAWOL",
+            "TRAIT_BLKRUN",
+            "TRAIT_SUPTAC",
+            "TRAIT_SPOTTE",
+            "TRAIT_TNKBUS",
+            "TRAIT_CRPBOM",
+            "TRAIT_NGHTFL",
+            "TRAIT_FLTDES",
+            "TRAIT_DSRFOX",
+            "TRAIT_JUNGLE",
+            "TRAIT_URBAN",
+            "TRAIT_FOREST",
+            "TRAIT_MOUNTAIN",
+            "TRAIT_HILLS",
+            "TRAIT_COUNTER",
+            "TRAIT_ASSAULT",
+            "TRAIT_ENCIRCL",
+            "TRAIT_AMBUSH",
+            "TRAIT_DELAY",
+            "TRAIT_TATICAL",
+            "TRAIT_BREAK"
+        };
 
         #endregion
 
@@ -481,7 +481,7 @@ namespace HoI2Editor.Models
                 {
                     leader.RankYear[i] = 1990;
                     Log.Write(string.Format("{0}({1}): {2} L{3}\n", Resources.InvalidRankYear, RankNames[i],
-                                            _currentFileName, _currentLineNo));
+                        _currentFileName, _currentLineNo));
                     Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
                 }
                 index++;
@@ -629,7 +629,7 @@ namespace HoI2Editor.Models
                 {
                     leader.RetirementYear = 1999;
                     Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
-                                            _currentLineNo));
+                        _currentLineNo));
                     Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
                 }
             }
@@ -659,8 +659,8 @@ namespace HoI2Editor.Models
             }
 
             foreach (Country country in Enum.GetValues(typeof (Country))
-                                            .Cast<Country>()
-                                            .Where(country => DirtyFlags[(int) country] && country != Country.None))
+                .Cast<Country>()
+                .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
                 {
@@ -670,7 +670,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                                                     Game.LeaderPathName);
+                        Game.LeaderPathName);
                     string fileName = Path.Combine(folderName, Game.GetLeaderFileName(country));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                 }
@@ -712,13 +712,13 @@ namespace HoI2Editor.Models
                     if (leader.Branch == Branch.None)
                     {
                         Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName,
-                                                _currentLineNo));
+                            _currentLineNo));
                         Log.Write(String.Format("  {0}: {1}\n", leader.Id, leader.Name));
                     }
                     if (leader.IdealRank == LeaderRank.None)
                     {
                         Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName,
-                                                _currentLineNo));
+                            _currentLineNo));
                         Log.Write(String.Format("  {0}: {1}\n", leader.Id, leader.Name));
                     }
 

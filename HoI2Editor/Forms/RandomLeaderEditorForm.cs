@@ -67,6 +67,16 @@ namespace HoI2Editor.Forms
             LoadFile();
         }
 
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRandomLeaderEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnRandomLeaderEditorFormClosed();
+        }
+
         #endregion
 
         #region 終了処理
@@ -96,7 +106,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -173,10 +183,10 @@ namespace HoI2Editor.Forms
         private void InitCountryListBox()
         {
             foreach (string s in Countries.Tags
-                                          .Select(country => Countries.Strings[(int) country])
-                                          .Select(name => Config.ExistsKey(name)
-                                                              ? string.Format("{0} {1}", name, Config.GetText(name))
-                                                              : name))
+                .Select(country => Countries.Strings[(int) country])
+                .Select(name => Config.ExistsKey(name)
+                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    : name))
             {
                 countryListBox.Items.Add(s);
             }
@@ -206,8 +216,8 @@ namespace HoI2Editor.Forms
                 // 変更ありの項目は文字色を変更する
                 Country country = Countries.Tags[e.Index];
                 brush = RandomLeaders.IsDirty(country)
-                            ? new SolidBrush(Color.Red)
-                            : new SolidBrush(SystemColors.WindowText);
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
             }
             else
             {

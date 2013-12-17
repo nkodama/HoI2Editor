@@ -315,6 +315,7 @@
             this.Controls.Add(this.countryListBox);
             this.Name = "UnitNameEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnUnitNameEditorFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnUnitNameEditorFormClosed);
             this.Load += new System.EventHandler(this.OnUnitNameEditorFormLoad);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();

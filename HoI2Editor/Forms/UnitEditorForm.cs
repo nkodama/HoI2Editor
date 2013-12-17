@@ -89,8 +89,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.RealNames[(int) type]);
                 realUnitTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, realUnitTypeComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, realUnitTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             realUnitTypeComboBox.DropDownWidth = maxWidth;
 
@@ -102,8 +102,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.SpriteNames[(int) type]);
                 spriteTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, spriteTypeComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, spriteTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             spriteTypeComboBox.DropDownWidth = maxWidth;
 
@@ -115,8 +115,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.Items[(int) type].Name);
                 transmuteComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, transmuteComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, transmuteComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             transmuteComboBox.DropDownWidth = maxWidth;
 
@@ -128,8 +128,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.Items[(int) type].Name);
                 upgradeTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, upgradeTypeComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, upgradeTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             upgradeTypeComboBox.DropDownWidth = maxWidth;
 
@@ -141,8 +141,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.EquipmentNames[(int) type]);
                 resourceComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, resourceComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, resourceComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             resourceComboBox.DropDownWidth = maxWidth;
 
@@ -359,7 +359,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -369,6 +369,16 @@ namespace HoI2Editor.Forms
                     SaveFiles();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnUnitEditorFormClosed();
         }
 
         #endregion
@@ -602,8 +612,8 @@ namespace HoI2Editor.Forms
 
             // リストビューの項目を更新する
             Country country = (countryListView.SelectedIndices.Count == 0)
-                                  ? Country.None
-                                  : (Country) (countryListView.SelectedIndices[0] + 1);
+                ? Country.None
+                : (Country) (countryListView.SelectedIndices[0] + 1);
             modelListView.BeginUpdate();
             for (int i = 0; i < unit.Models.Count; i++)
             {
@@ -657,8 +667,8 @@ namespace HoI2Editor.Forms
             var item = new ListViewItem {Text = Config.GetText(index.ToString(CultureInfo.InvariantCulture))};
             item.SubItems.Add(Config.GetText(UnitModel.GetName(
                 unit, index, countryListView.SelectedIndices.Count == 0
-                                 ? Country.None
-                                 : (Country) (countryListView.SelectedIndices[0] + 1))));
+                    ? Country.None
+                    : (Country) (countryListView.SelectedIndices[0] + 1))));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
@@ -889,7 +899,7 @@ namespace HoI2Editor.Forms
             for (int i = unit.Models.Count - 1; i > index; i--)
             {
                 Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                               Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)), Game.UnitTextFileName);
+                    Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)), Game.UnitTextFileName);
             }
 
             // 挿入位置のユニットモデル名を変更する
@@ -923,8 +933,8 @@ namespace HoI2Editor.Forms
                 for (int i = index; i < unit.Models.Count; i++)
                 {
                     Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                                   Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
-                                   Game.UnitTextFileName);
+                        Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
+                        Game.UnitTextFileName);
                 }
             }
 
@@ -969,8 +979,8 @@ namespace HoI2Editor.Forms
                 for (int i = src; i > dest; i--)
                 {
                     Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                                   Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)),
-                                   Game.UnitTextFileName);
+                        Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)),
+                        Game.UnitTextFileName);
                 }
             }
             else
@@ -979,8 +989,8 @@ namespace HoI2Editor.Forms
                 for (int i = src; i < dest; i++)
                 {
                     Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                                   Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
-                                   Game.UnitTextFileName);
+                        Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
+                        Game.UnitTextFileName);
                 }
             }
 
@@ -1027,8 +1037,8 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
 
             Country country = (countryListView.SelectedIndices.Count == 0
-                                   ? Country.None
-                                   : (Country) (countryListView.SelectedIndices[0] + 1));
+                ? Country.None
+                : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // ユニットモデル画像名を更新する
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, index, country);
@@ -1296,31 +1306,31 @@ namespace HoI2Editor.Forms
             // 編集項目の色を設定する
             classNameTextBox.ForeColor = unit.IsDirty(UnitClassItemId.Name) ? Color.Red : SystemColors.WindowText;
             classShortNameTextBox.ForeColor = unit.IsDirty(UnitClassItemId.ShortName)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             classDescTextBox.ForeColor = unit.IsDirty(UnitClassItemId.Desc) ? Color.Red : SystemColors.WindowText;
             classShortDescTextBox.ForeColor = unit.IsDirty(UnitClassItemId.ShortDesc)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             eyrNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.Eyr) ? Color.Red : SystemColors.WindowText;
             gfxPrioNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.GfxPrio) ? Color.Red : SystemColors.WindowText;
             listPrioNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.ListPrio)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             uiPrioNumericUpDown.ForeColor = unit.IsDirty(UnitClassItemId.UiPrio) ? Color.Red : SystemColors.WindowText;
             militaryValueTextBox.ForeColor = unit.IsDirty(UnitClassItemId.Vaule) ? Color.Red : SystemColors.WindowText;
             detachableCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Detachable)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             cagCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Cag) ? Color.Red : SystemColors.WindowText;
             escortCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Escort) ? Color.Red : SystemColors.WindowText;
             engineerCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Engineer) ? Color.Red : SystemColors.WindowText;
             defaultTypeCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.DefaultType)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             productableCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Productable)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             maxAllowedBrigadesNumericUpDown.ForeColor =
                 unit.IsDirty(UnitClassItemId.MaxAllowedBrigades) ? Color.Red : SystemColors.WindowText;
         }
@@ -1570,8 +1580,8 @@ namespace HoI2Editor.Forms
                     // ドロップダウン幅を更新する
                     realUnitTypeComboBox.DropDownWidth =
                         Math.Max(realUnitTypeComboBox.DropDownWidth,
-                                 TextRenderer.MeasureText(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
-                                 SystemInformation.VerticalScrollBarWidth);
+                            TextRenderer.MeasureText(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
+                            SystemInformation.VerticalScrollBarWidth);
                 }
 
                 // スプライトコンボボックスの項目を更新する
@@ -1582,8 +1592,8 @@ namespace HoI2Editor.Forms
                     // ドロップダウン幅を更新する
                     spriteTypeComboBox.DropDownWidth =
                         Math.Max(spriteTypeComboBox.DropDownWidth,
-                                 TextRenderer.MeasureText(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
-                                 SystemInformation.VerticalScrollBarWidth);
+                            TextRenderer.MeasureText(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
+                            SystemInformation.VerticalScrollBarWidth);
                 }
 
                 // 代替ユニットコンボボックスの項目を更新する
@@ -1591,16 +1601,16 @@ namespace HoI2Editor.Forms
                 // ドロップダウン幅を更新する
                 transmuteComboBox.DropDownWidth =
                     Math.Max(transmuteComboBox.DropDownWidth,
-                             TextRenderer.MeasureText(classNameTextBox.Text, transmuteComboBox.Font).Width +
-                             SystemInformation.VerticalScrollBarWidth);
+                        TextRenderer.MeasureText(classNameTextBox.Text, transmuteComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth);
 
                 // 更新ユニットコンボボックスの項目を更新する
                 upgradeTypeComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
                 // ドロップダウン幅を更新する
                 upgradeTypeComboBox.DropDownWidth =
                     Math.Max(upgradeTypeComboBox.DropDownWidth,
-                             TextRenderer.MeasureText(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
-                             SystemInformation.VerticalScrollBarWidth);
+                        TextRenderer.MeasureText(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth);
             }
             else
             {
@@ -2481,11 +2491,11 @@ namespace HoI2Editor.Forms
 
             // 編集項目の色を更新する
             upgradeCostTextBox.ForeColor = upgrade.IsDirty(UnitUpgradeItemId.UpgradeCostFactor)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             upgradeTimeTextBox.ForeColor = upgrade.IsDirty(UnitUpgradeItemId.UpgradeTimeFactor)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableUpgradeItems();
@@ -2780,8 +2790,8 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             Country country = (countryListView.SelectedIndices.Count == 0
-                                   ? Country.None
-                                   : (Country) (countryListView.SelectedIndices[0] + 1));
+                ? Country.None
+                : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // モデル画像
             modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, index, country);
@@ -2794,21 +2804,21 @@ namespace HoI2Editor.Forms
             // 組織率
             defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
             defaultOrganisationTextBox.ForeColor = model.IsDirty(UnitModelItemId.DefaultOrganization)
-                                                       ? Color.Red
-                                                       : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             // 士気
             moraleTextBox.Text = model.Morale.ToString(CultureInfo.InvariantCulture);
             moraleTextBox.ForeColor = model.IsDirty(UnitModelItemId.Morale) ? Color.Red : SystemColors.WindowText;
             // 消費物資
             supplyConsumptionTextBox.Text = model.SupplyConsumption.ToString(CultureInfo.InvariantCulture);
             supplyConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.SupplyConsumption)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             // 消費燃料
             fuelConsumptionTextBox.Text = model.FuelConsumption.ToString(CultureInfo.InvariantCulture);
             fuelConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.FuelConsumption)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             // 必要IC
             costTextBox.Text = model.Cost.ToString(CultureInfo.InvariantCulture);
             costTextBox.ForeColor = model.IsDirty(UnitModelItemId.Cost) ? Color.Red : SystemColors.WindowText;
@@ -2824,8 +2834,8 @@ namespace HoI2Editor.Forms
             // 対空防御力
             airDefenceTextBox.Text = model.AirDefense.ToString(CultureInfo.InvariantCulture);
             airDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDefense)
-                                              ? Color.Red
-                                              : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             // 対空攻撃力
             airAttackTextBox.Text = model.AirAttack.ToString(CultureInfo.InvariantCulture);
             airAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirAttack) ? Color.Red : SystemColors.WindowText;
@@ -2842,8 +2852,8 @@ namespace HoI2Editor.Forms
                 transportWeightTextBox.Enabled = true;
                 transportWeightTextBox.Text = model.TransportWeight.ToString(CultureInfo.InvariantCulture);
                 transportWeightTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportWeight)
-                                                       ? Color.Red
-                                                       : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 輸送能力
                 transportCapabilityLabel.Enabled = false;
                 transportCapabilityTextBox.Enabled = false;
@@ -2853,29 +2863,29 @@ namespace HoI2Editor.Forms
                 suppressionTextBox.Enabled = true;
                 suppressionTextBox.Text = model.Suppression.ToString(CultureInfo.InvariantCulture);
                 suppressionTextBox.ForeColor = model.IsDirty(UnitModelItemId.Suppression)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 防御力
                 defensivenessLabel.Enabled = true;
                 defensivenessTextBox.Enabled = true;
                 defensivenessTextBox.Text = model.Defensiveness.ToString(CultureInfo.InvariantCulture);
                 defensivenessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Defensiveness)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 耐久力
                 toughnessLabel.Enabled = true;
                 toughnessTextBox.Enabled = true;
                 toughnessTextBox.Text = model.Toughness.ToString(CultureInfo.InvariantCulture);
                 toughnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Toughness)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 脆弱性
                 softnessLabel.Enabled = true;
                 softnessTextBox.Enabled = true;
                 softnessTextBox.Text = model.Softness.ToString(CultureInfo.InvariantCulture);
                 softnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Softness)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 対地索敵力
                 surfaceDetectionCapabilityLabel.Enabled = false;
                 surfaceDetectionCapabilityTextBox.Enabled = false;
@@ -2901,8 +2911,8 @@ namespace HoI2Editor.Forms
                 transportCapabilityTextBox.Enabled = true;
                 transportCapabilityTextBox.Text = model.TransportCapability.ToString(CultureInfo.InvariantCulture);
                 transportCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportCapability)
-                                                           ? Color.Red
-                                                           : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 制圧力
                 suppressionLabel.Enabled = false;
                 suppressionTextBox.Enabled = false;
@@ -2925,15 +2935,15 @@ namespace HoI2Editor.Forms
                 surfaceDetectionCapabilityTextBox.Text =
                     model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 surfaceDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDetectionCapability)
-                                                                  ? Color.Red
-                                                                  : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 対空索敵力
                 airDetectionCapabilityLabel.Enabled = true;
                 airDetectionCapabilityTextBox.Enabled = true;
                 airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 airDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDetectionCapability)
-                                                              ? Color.Red
-                                                              : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
 
             // 陸軍師団
@@ -2944,29 +2954,29 @@ namespace HoI2Editor.Forms
                 speedCapArtTextBox.Enabled = true;
                 speedCapArtTextBox.Text = model.SpeedCapArt.ToString(CultureInfo.InvariantCulture);
                 speedCapArtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapArt)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 速度キャップ(工兵)
                 speedCapEngLabel.Enabled = true;
                 speedCapEngTextBox.Enabled = true;
                 speedCapEngTextBox.Text = model.SpeedCapEng.ToString(CultureInfo.InvariantCulture);
                 speedCapEngTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapEng)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 速度キャップ(対戦車)
                 speedCapAtLabel.Enabled = true;
                 speedCapAtTextBox.Enabled = true;
                 speedCapAtTextBox.Text = model.SpeedCapAt.ToString(CultureInfo.InvariantCulture);
                 speedCapAtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAt)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 速度キャップ(対空)
                 speedCapAaLabel.Enabled = true;
                 speedCapAaTextBox.Enabled = true;
                 speedCapAaTextBox.Text = model.SpeedCapAa.ToString(CultureInfo.InvariantCulture);
                 speedCapAaTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAa)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3004,8 +3014,8 @@ namespace HoI2Editor.Forms
                 seaDefenceTextBox.Enabled = true;
                 seaDefenceTextBox.Text = model.SeaDefense.ToString(CultureInfo.InvariantCulture);
                 seaDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaDefense)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 対人攻撃力
                 softAttackLabel.Enabled = false;
                 softAttackTextBox.Enabled = false;
@@ -3019,50 +3029,50 @@ namespace HoI2Editor.Forms
                 seaAttackTextBox.Enabled = true;
                 seaAttackTextBox.Text = model.SeaAttack.ToString(CultureInfo.InvariantCulture);
                 seaAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaAttack)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 対潜攻撃力
                 subAttackLabel.Enabled = true;
                 subAttackTextBox.Enabled = true;
                 subAttackTextBox.Text = model.SubAttack.ToString(CultureInfo.InvariantCulture);
                 subAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubAttack)
-                                                 ? Color.Red
-                                                 : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 船団攻撃力
                 convoyAttackLabel.Enabled = true;
                 convoyAttackTextBox.Enabled = true;
                 convoyAttackTextBox.Text = model.ConvoyAttack.ToString(CultureInfo.InvariantCulture);
                 convoyAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.ConvoyAttack)
-                                                    ? Color.Red
-                                                    : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 沿岸砲撃能力
                 shoreBombardmentLabel.Enabled = true;
                 shoreBombardmentTextBox.Enabled = true;
                 shoreBombardmentTextBox.Text = model.ShoreBombardment.ToString(CultureInfo.InvariantCulture);
                 shoreBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ShoreBombardment)
-                                                        ? Color.Red
-                                                        : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 射程
                 distanceLabel.Enabled = true;
                 distanceTextBox.Enabled = true;
                 distanceTextBox.Text = model.Distance.ToString(CultureInfo.InvariantCulture);
                 distanceTextBox.ForeColor = model.IsDirty(UnitModelItemId.Distance)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 視認性
                 visibilityLabel.Enabled = true;
                 visibilityTextBox.Enabled = true;
                 visibilityTextBox.Text = model.Visibility.ToString(CultureInfo.InvariantCulture);
                 visibilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.Visibility)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 対艦索敵力
                 subDetectionCapabilityLabel.Enabled = true;
                 subDetectionCapabilityTextBox.Enabled = true;
                 subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 subDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubDetectionCapability)
-                                                              ? Color.Red
-                                                              : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3071,15 +3081,15 @@ namespace HoI2Editor.Forms
                 upgradeCostFactorTextBox.Enabled = true;
                 upgradeCostFactorTextBox.Text = model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
                 upgradeCostFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeCostFactor)
-                                                         ? Color.Red
-                                                         : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 改良時間
                 upgradeTimeFactorLabel.Enabled = true;
                 upgradeTimeFactorTextBox.Enabled = true;
                 upgradeTimeFactorTextBox.Text = model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
                 upgradeTimeFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeFactor)
-                                                         ? Color.Red
-                                                         : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 対艦防御力
                 seaDefenceLabel.Enabled = false;
                 seaDefenceTextBox.Enabled = false;
@@ -3089,15 +3099,15 @@ namespace HoI2Editor.Forms
                 softAttackTextBox.Enabled = true;
                 softAttackTextBox.Text = model.SoftAttack.ToString(CultureInfo.InvariantCulture);
                 softAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SoftAttack)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 対甲攻撃力
                 hardAttackLabel.Enabled = true;
                 hardAttackTextBox.Enabled = true;
                 hardAttackTextBox.Text = model.HardAttack.ToString(CultureInfo.InvariantCulture);
                 hardAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.HardAttack)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 艦対艦攻撃力
                 seaAttackLabel.Enabled = false;
                 seaAttackTextBox.Enabled = false;
@@ -3136,22 +3146,22 @@ namespace HoI2Editor.Forms
                 surfaceDefenceTextBox.Enabled = true;
                 surfaceDefenceTextBox.Text = model.SurfaceDefense.ToString(CultureInfo.InvariantCulture);
                 surfaceDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDefense)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 空対艦攻撃力
                 navalAttackLabel.Enabled = true;
                 navalAttackTextBox.Enabled = true;
                 navalAttackTextBox.Text = model.NavalAttack.ToString(CultureInfo.InvariantCulture);
                 navalAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.NavalAttack)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 戦略爆撃攻撃力
                 strategicAttackLabel.Enabled = true;
                 strategicAttackTextBox.Enabled = true;
                 strategicAttackTextBox.Text = model.StrategicAttack.ToString(CultureInfo.InvariantCulture);
                 strategicAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.StrategicAttack)
-                                                       ? Color.Red
-                                                       : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3177,15 +3187,15 @@ namespace HoI2Editor.Forms
                 maxSupplyStockTextBox.Enabled = true;
                 maxSupplyStockTextBox.Text = model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture);
                 maxSupplyStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSupplyStock)
-                                                      ? Color.Red
-                                                      : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 最大燃料
                 maxOilStockLabel.Enabled = true;
                 maxOilStockTextBox.Enabled = true;
                 maxOilStockTextBox.Text = model.MaxOilStock.ToString(CultureInfo.InvariantCulture);
                 maxOilStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxOilStock)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3209,8 +3219,8 @@ namespace HoI2Editor.Forms
                 artilleryBombardmentTextBox.Enabled = true;
                 artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
                 artilleryBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ArtilleryBombardment)
-                                                            ? Color.Red
-                                                            : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3228,15 +3238,15 @@ namespace HoI2Editor.Forms
                 reinforceCostTextBox.Enabled = true;
                 reinforceCostTextBox.Text = model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture);
                 reinforceCostTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceCostFactor)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 // 補充時間
                 reinforceTimeLabel.Enabled = true;
                 reinforceTimeTextBox.Enabled = true;
                 reinforceTimeTextBox.Text = model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture);
                 reinforceTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceTimeFactor)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3260,8 +3270,8 @@ namespace HoI2Editor.Forms
                 noFuelCombatModTextBox.Enabled = true;
                 noFuelCombatModTextBox.Text = model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture);
                 noFuelCombatModTextBox.ForeColor = model.IsDirty(UnitModelItemId.NoFuelCombatMod)
-                                                       ? Color.Red
-                                                       : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3289,8 +3299,8 @@ namespace HoI2Editor.Forms
                 speedCapAllTextBox.Enabled = true;
                 speedCapAllTextBox.Text = model.SpeedCap.ToString(CultureInfo.InvariantCulture);
                 speedCapAllTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCap)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                    ? Color.Red
+                    : SystemColors.WindowText;
             }
             else
             {
@@ -3427,8 +3437,8 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             Country country = countryListView.SelectedIndices.Count == 0
-                                  ? Country.None
-                                  : (Country) (countryListView.SelectedIndices[0] + 1);
+                ? Country.None
+                : (Country) (countryListView.SelectedIndices[0] + 1);
             string name = UnitModel.GetName(unit, index, country);
             if (modelNameTextBox.Text.Equals(Config.GetText(name)))
             {
@@ -5889,8 +5899,8 @@ namespace HoI2Editor.Forms
 
             // 編集項目の色を更新する
             quantityTextBox.ForeColor = equipment.IsDirty(UnitEquipmentItemId.Quantity)
-                                            ? Color.Red
-                                            : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableEquipmentItems();

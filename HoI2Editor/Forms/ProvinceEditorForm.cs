@@ -130,7 +130,7 @@ namespace HoI2Editor.Forms
 
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                                                  MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             switch (result)
             {
                 case DialogResult.Cancel:
@@ -140,6 +140,16 @@ namespace HoI2Editor.Forms
                     SaveFiles();
                     break;
             }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2EditorApplication.OnProvinceEditorFormClosed();
         }
 
         #endregion
@@ -425,32 +435,32 @@ namespace HoI2Editor.Forms
                     if (_order == SortOrder.Ascendant)
                     {
                         _list.Sort((province1, province2) =>
+                        {
+                            if (province1.Terrain == TerrainId.Ocean && province2.Terrain != TerrainId.Ocean)
                             {
-                                if (province1.Terrain == TerrainId.Ocean && province2.Terrain != TerrainId.Ocean)
-                                {
-                                    return 1;
-                                }
-                                if (province2.Terrain == TerrainId.Ocean && province1.Terrain != TerrainId.Ocean)
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (province2.Terrain == TerrainId.Ocean && province1.Terrain != TerrainId.Ocean)
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     else
                     {
                         _list.Sort((province1, province2) =>
+                        {
+                            if (province2.Terrain == TerrainId.Ocean && province1.Terrain != TerrainId.Ocean)
                             {
-                                if (province2.Terrain == TerrainId.Ocean && province1.Terrain != TerrainId.Ocean)
-                                {
-                                    return 1;
-                                }
-                                if (province1.Terrain == TerrainId.Ocean && province2.Terrain != TerrainId.Ocean)
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (province1.Terrain == TerrainId.Ocean && province2.Terrain != TerrainId.Ocean)
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     break;
 
@@ -458,32 +468,32 @@ namespace HoI2Editor.Forms
                     if (_order == SortOrder.Ascendant)
                     {
                         _list.Sort((province1, province2) =>
+                        {
+                            if (province1.PortAllowed && !province2.PortAllowed)
                             {
-                                if (province1.PortAllowed && !province2.PortAllowed)
-                                {
-                                    return 1;
-                                }
-                                if (!province1.PortAllowed && province2.PortAllowed)
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (!province1.PortAllowed && province2.PortAllowed)
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     else
                     {
                         _list.Sort((province1, province2) =>
+                        {
+                            if (province2.PortAllowed && !province1.PortAllowed)
                             {
-                                if (province2.PortAllowed && !province1.PortAllowed)
-                                {
-                                    return 1;
-                                }
-                                if (!province2.PortAllowed && province1.PortAllowed)
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (!province2.PortAllowed && province1.PortAllowed)
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     break;
 
@@ -491,32 +501,32 @@ namespace HoI2Editor.Forms
                     if (_order == SortOrder.Ascendant)
                     {
                         _list.Sort((province1, province2) =>
+                        {
+                            if (province1.Beaches && !province2.Beaches)
                             {
-                                if (province1.Beaches && !province2.Beaches)
-                                {
-                                    return 1;
-                                }
-                                if (!province1.Beaches && province2.Beaches)
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (!province1.Beaches && province2.Beaches)
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     else
                     {
                         _list.Sort((province1, province2) =>
+                        {
+                            if (province2.Beaches && !province1.Beaches)
                             {
-                                if (province2.Beaches && !province1.Beaches)
-                                {
-                                    return 1;
-                                }
-                                if (!province2.Beaches && province1.Beaches)
-                                {
-                                    return -1;
-                                }
-                                return 0;
-                            });
+                                return 1;
+                            }
+                            if (!province2.Beaches && province1.Beaches)
+                            {
+                                return -1;
+                            }
+                            return 0;
+                        });
                     }
                     break;
 
@@ -776,10 +786,10 @@ namespace HoI2Editor.Forms
             }
 
             var item = new ListViewItem
-                {
-                    Text = province.GetName(),
-                    Tag = province
-                };
+            {
+                Text = province.GetName(),
+                Tag = province
+            };
             item.SubItems.Add(province.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(province.Terrain == TerrainId.Ocean ? Resources.Yes : Resources.No);
             item.SubItems.Add(province.PortAllowed ? Resources.Yes : Resources.No);
@@ -828,8 +838,8 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetContinentName(continent);
                 continentComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, continentComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, continentComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             continentComboBox.DropDownWidth = maxWidth;
             continentComboBox.EndUpdate();
@@ -843,8 +853,8 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetRegionName(region);
                 regionComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, regionComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, regionComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             regionComboBox.DropDownWidth = maxWidth;
             regionComboBox.EndUpdate();
@@ -858,8 +868,8 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetAreaName(area);
                 areaComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, areaComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, areaComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             areaComboBox.DropDownWidth = maxWidth;
             areaComboBox.EndUpdate();
@@ -873,8 +883,8 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetClimateName(climate);
                 climateComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, climateComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, climateComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             climateComboBox.DropDownWidth = maxWidth;
             climateComboBox.EndUpdate();
@@ -888,8 +898,8 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetTerrainName(terrain);
                 terrainComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, terrainComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, terrainComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             terrainComboBox.DropDownWidth = maxWidth;
             terrainComboBox.EndUpdate();
@@ -1042,91 +1052,91 @@ namespace HoI2Editor.Forms
             nameTextBox.ForeColor = province.IsDirty(ProvinceItemId.Name) ? Color.Red : SystemColors.WindowText;
 
             infraNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Infrastructure)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             icNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Ic) ? Color.Red : SystemColors.WindowText;
             manpowerNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Manpower)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             energyNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Energy)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             metalNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Metal) ? Color.Red : SystemColors.WindowText;
             rareMaterialsNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.RareMaterials)
-                                                       ? Color.Red
-                                                       : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             oilNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Oil) ? Color.Red : SystemColors.WindowText;
 
             beachCheckBox.ForeColor = province.IsDirty(ProvinceItemId.Beaches) ? Color.Red : SystemColors.WindowText;
             beachXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachXPos)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             beachYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachYPos)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             beachIconNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachIcon)
-                                                   ? Color.Red
-                                                   : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             portCheckBox.ForeColor = province.IsDirty(ProvinceItemId.PortAllowed) ? Color.Red : SystemColors.WindowText;
             portXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             portYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             portSeaZoneNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.PortSeaZone)
-                                                     ? Color.Red
-                                                     : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             cityXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CityXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             cityYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CityYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fortXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.FortXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fortYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.FortYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             aaXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.AaXPos) ? Color.Red : SystemColors.WindowText;
             aaYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.AaYPos) ? Color.Red : SystemColors.WindowText;
             armyXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.ArmyXPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             armyYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.ArmyYPos)
-                                               ? Color.Red
-                                               : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             counterXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CounterXPos)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             counterYNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.CounterYPos)
-                                                  ? Color.Red
-                                                  : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillXNumericUpDown1.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX1)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillYNumericUpDown1.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY1)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillXNumericUpDown2.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX2)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillYNumericUpDown2.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY2)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillXNumericUpDown3.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX3)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillYNumericUpDown3.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY3)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillXNumericUpDown4.ForeColor = province.IsDirty(ProvinceItemId.FillCoordX4)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
             fillYNumericUpDown4.ForeColor = province.IsDirty(ProvinceItemId.FillCoordY4)
-                                                ? Color.Red
-                                                : SystemColors.WindowText;
+                ? Color.Red
+                : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -1247,8 +1257,8 @@ namespace HoI2Editor.Forms
                 string s = province.GetName();
                 portSeaZoneComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                                    TextRenderer.MeasureText(s, portSeaZoneComboBox.Font).Width +
-                                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, portSeaZoneComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth);
             }
             portSeaZoneComboBox.DropDownWidth = maxWidth;
             portSeaZoneComboBox.EndUpdate();
