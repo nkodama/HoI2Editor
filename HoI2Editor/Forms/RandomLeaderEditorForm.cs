@@ -74,7 +74,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRandomLeaderEditorFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorApplication.OnRandomLeaderEditorFormClosed();
+            HoI2Editor.OnRandomLeaderEditorFormClosed();
         }
 
         #endregion
@@ -164,7 +164,7 @@ namespace HoI2Editor.Forms
         private void SaveFile()
         {
             // 編集したデータを保存する
-            HoI2EditorApplication.Save();
+            HoI2Editor.SaveFiles();
         }
 
         /// <summary>

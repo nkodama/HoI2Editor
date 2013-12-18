@@ -3630,4 +3630,10 @@
   <data name="LanguageChinese" xml:space="preserve">
     <value>中文</value>
   </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="LogFileOpenError" xml:space="preserve">
+    <value>Cannot open log file.</value>
+  </data>
 </root>

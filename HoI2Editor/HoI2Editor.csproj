@@ -115,6 +115,7 @@
     <Compile Include="Forms\UnitNameEditorForm.Designer.cs">
       <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoI2Editor.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\DivisionNames.cs" />
     <Compile Include="Models\Game.cs" />

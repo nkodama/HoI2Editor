@@ -31,7 +31,7 @@ namespace HoI2Editor.Forms
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             // バージョン文字列を更新する
-            Text = HoI2EditorApplication.Version;
+            Text = HoI2Editor.Version;
 
             // 言語を初期化する
             Config.LangMode = Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP"))
@@ -66,7 +66,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchLeaderEditorForm();
+            HoI2Editor.LaunchLeaderEditorForm();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchMinisterEditorForm();
+            HoI2Editor.LaunchMinisterEditorForm();
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchTeamEditorForm();
+            HoI2Editor.LaunchTeamEditorForm();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchProvinceEditorForm();
+            HoI2Editor.LaunchProvinceEditorForm();
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchTechEditorForm();
+            HoI2Editor.LaunchTechEditorForm();
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchUnitEditorForm();
+            HoI2Editor.LaunchUnitEditorForm();
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMiscButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchMiscEditorForm();
+            HoI2Editor.LaunchMiscEditorForm();
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitNameButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchUnitNameEditorForm();
+            HoI2Editor.LaunchUnitNameEditorForm();
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnDivisionNameButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchDivisionNameEditorForm();
+            HoI2Editor.LaunchDivisionNameEditorForm();
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRandomLeaderButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorApplication.LaunchRandomLeaderEditorForm();
+            HoI2Editor.LaunchRandomLeaderEditorForm();
         }
 
         #endregion

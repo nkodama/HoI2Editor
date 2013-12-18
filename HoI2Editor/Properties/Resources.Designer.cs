@@ -925,6 +925,24 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Log に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Log {
+            get {
+                return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cannot open log file. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LogFileOpenError {
+            get {
+                return ResourceManager.GetString("LogFileOpenError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   High に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string LoyaltyHigh {

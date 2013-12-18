@@ -149,7 +149,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceEditorFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorApplication.OnProvinceEditorFormClosed();
+            HoI2Editor.OnProvinceEditorFormClosed();
         }
 
         #endregion
@@ -204,7 +204,7 @@ namespace HoI2Editor.Forms
         private void SaveFiles()
         {
             // 編集したデータを保存する
-            HoI2EditorApplication.Save();
+            HoI2Editor.SaveFiles();
         }
 
         /// <summary>

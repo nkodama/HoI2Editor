@@ -146,7 +146,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterEditorFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorApplication.OnMinisterEditorFormClosed();
+            HoI2Editor.OnMinisterEditorFormClosed();
         }
 
         #endregion
@@ -195,7 +195,7 @@ namespace HoI2Editor.Forms
         private void SaveFiles()
         {
             // 編集したデータを保存する
-            HoI2EditorApplication.Save();
+            HoI2Editor.SaveFiles();
         }
 
         /// <summary>

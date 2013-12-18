@@ -3588,4 +3588,10 @@
   <data name="Sinclair" xml:space="preserve">
     <value>シンクレア</value>
   </data>
+  <data name="Log" xml:space="preserve">
+    <value>ログ</value>
+  </data>
+  <data name="LogFileOpenError" xml:space="preserve">
+    <value>ログファイルを開くことができません。</value>
+  </data>
 </root>

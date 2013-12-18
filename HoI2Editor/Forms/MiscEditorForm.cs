@@ -1203,7 +1203,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMiscEditorFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorApplication.OnMiscEditorFormClosed();
+            HoI2Editor.OnMiscEditorFormClosed();
         }
 
         #endregion
@@ -1252,7 +1252,7 @@ namespace HoI2Editor.Forms
         private void SaveFiles()
         {
             // 編集したデータを保存する
-            HoI2EditorApplication.Save();
+            HoI2Editor.SaveFiles();
         }
 
         /// <summary>
