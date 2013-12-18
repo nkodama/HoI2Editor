@@ -1242,6 +1242,24 @@ namespace HoI2Editor.Forms
             // 基本データファイルを読み込む
             Misc.Load();
 
+            // データ読み込み後の処理
+            OnMiscLoaded();
+        }
+
+        /// <summary>
+        ///     基本データファイルを保存する
+        /// </summary>
+        private void SaveFiles()
+        {
+            // 編集したデータを保存する
+            HoI2EditorApplication.Save();
+        }
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        private void OnMiscLoaded()
+        {
             for (int index = 0; index < miscTabControl.TabPages.Count; index++)
             {
                 // 編集項目を更新する
@@ -1252,13 +1270,10 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     基本データファイルを保存する
+        ///     データ保存後の処理
         /// </summary>
-        private void SaveFiles()
+        public void OnMiscSaved()
         {
-            // 基本データファイルを保存する
-            Misc.Save();
-
             // 編集済みフラグがクリアされるため表示を更新する
             for (int index = 0; index < miscTabControl.TabPages.Count; index++)
             {

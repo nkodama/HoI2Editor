@@ -318,6 +318,12 @@ namespace HoI2Editor.Forms
         /// </summary>
         private static void InitMaxAllowedBrigades()
         {
+            // AoD1.07以降のみ
+            if (Game.Type != GameType.ArsenalOfDemocracy || Game.Version < 107)
+            {
+                return;
+            }
+
             Units.Items[(int) UnitType.Transport].MaxAllowedBrigades = Misc.TpMaxAttach;
             Units.Items[(int) UnitType.Submarine].MaxAllowedBrigades = Misc.SsMaxAttach;
             Units.Items[(int) UnitType.NuclearSubmarine].MaxAllowedBrigades = Misc.SsnMaxAttach;
@@ -426,14 +432,29 @@ namespace HoI2Editor.Forms
             // ユニットデータを読み込む
             Units.Load();
 
+            // データ読み込み後の処理
+            OnUnitsLoaded();
+        }
+
+        /// <summary>
+        ///     各種ファイルを保存する
+        /// </summary>
+        private void SaveFiles()
+        {
+            // 編集したデータを保存する
+            HoI2EditorApplication.Save();
+        }
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        private void OnUnitsLoaded()
+        {
             // 付属可能旅団の値が変化してしまうので一旦選択を解除する
             classListBox.SelectedIndex = -1;
 
             // Miscの値に応じて付属可能旅団数を初期化する
-            if (Game.Type == GameType.ArsenalOfDemocracy && Game.Version >= 107)
-            {
-                InitMaxAllowedBrigades();
-            }
+            InitMaxAllowedBrigades();
 
             // 編集項目を初期化する
             InitEditableItems();
@@ -446,22 +467,10 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     各種ファイルを保存する
+        ///     データ保存後の処理
         /// </summary>
-        private void SaveFiles()
+        public void OnUnitsSaved()
         {
-            // 文字列定義ファイルを保存する
-            Config.Save();
-
-            // ユニットデータを保存する
-            Units.Save();
-
-            // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
-            foreach (Unit unit in Units.Items)
-            {
-                unit.ResetDirtyAll();
-            }
-
             // 編集済みフラグがクリアされるため表示を更新する
             classListBox.Refresh();
             modelListView.Refresh();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 using HoI2Editor.Writers;
@@ -3470,29 +3471,24 @@ namespace HoI2Editor.Models
         public static void Save()
         {
             // 編集済みでなければ何もしない
-            if (!IsDirty() && !IsDirtyDivisionTypes() && !IsDirtyBrigadeTypes())
+            if (IsDirty() || IsDirtyDivisionTypes() || IsDirtyBrigadeTypes())
             {
-                return;
-            }
+                // ユニット定義フォルダがなければ作成する
+                string folderName = Game.GetWriteFileName(Game.UnitPathName);
+                if (!Directory.Exists(folderName))
+                {
+                    Directory.CreateDirectory(folderName);
+                }
 
-            // ユニット定義フォルダがなければ作成する
-            string folderName = Game.GetWriteFileName(Game.UnitPathName);
-            if (!Directory.Exists(folderName))
-            {
-                Directory.CreateDirectory(folderName);
-            }
+                // ユニットクラス定義ファイルを保存する(DH1.03以降)
+                if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+                {
+                    SaveDivisionTypes();
+                    SaveBrigadeTypes();
+                }
 
-            // ユニットクラス定義ファイルを保存する(DH1.03以降)
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
-            {
-                SaveDivisionTypes();
-                SaveBrigadeTypes();
-            }
-
-            // ユニット定義ファイルへ順に保存する
-            foreach (Unit unit in Items)
-            {
-                if (unit.IsDirty())
+                // ユニット定義ファイルへ順に保存する
+                foreach (Unit unit in Items.Where(unit => unit.IsDirty()))
                 {
                     // 師団/旅団定義フォルダがなければ作成する
                     folderName =
@@ -3514,10 +3510,16 @@ namespace HoI2Editor.Models
                         Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     }
                 }
+
+                // 編集済みフラグを解除する
+                _dirtyFlag = false;
             }
 
-            // 編集済みフラグを解除する
-            _dirtyFlag = false;
+            // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
+            foreach (Unit unit in Items)
+            {
+                unit.ResetDirtyAll();
+            }
         }
 
         /// <summary>

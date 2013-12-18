@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -722,21 +723,16 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Save()
         {
-            // 編集済みでなければ何もしない
-            if (!IsDirty())
+            // 編集済みでなければ保存しない
+            if (IsDirty())
             {
-                return;
-            }
-
-            string folderName = Game.GetWriteFileName(Game.TechPathName);
-            // 技術定義フォルダがなければ作成する
-            if (!Directory.Exists(folderName))
-            {
-                Directory.CreateDirectory(folderName);
-            }
-            foreach (TechGroup grp in Groups)
-            {
-                if (grp.IsDirty())
+                string folderName = Game.GetWriteFileName(Game.TechPathName);
+                // 技術定義フォルダがなければ作成する
+                if (!Directory.Exists(folderName))
+                {
+                    Directory.CreateDirectory(folderName);
+                }
+                foreach (TechGroup grp in Groups.Where(grp => grp.IsDirty()))
                 {
                     string fileName = Path.Combine(folderName, FileNames[(int) grp.Category]);
                     try
@@ -749,10 +745,42 @@ namespace HoI2Editor.Models
                         Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     }
                 }
+
+                // 編集済みフラグを解除する
+                _dirtyFlag = false;
             }
 
-            // 編集済みフラグを解除する
-            _dirtyFlag = false;
+            // 文字列定義のみ保存の場合、技術名などの編集済みフラグがクリアされないためここで全クリアする
+            foreach (TechGroup grp in Groups)
+            {
+                grp.ResetDirtyAll();
+            }
+        }
+
+        /// <summary>
+        ///     文字列の一時キーを保存形式に変更する
+        /// </summary>
+        public static void RenameTempKeys()
+        {
+            // 文字列の一時キーを保存形式に変更する
+            int no = 1;
+            foreach (TechGroup grp in Groups)
+            {
+                foreach (ITechItem item in grp.Items)
+                {
+                    if (item is TechItem)
+                    {
+                        var techItem = item as TechItem;
+                        techItem.RenameTempKey(CategoryNames[(int) grp.Category]);
+                    }
+                    else if (item is TechLabel)
+                    {
+                        var labelItem = item as TechLabel;
+                        labelItem.RenameTempKey(no.ToString(CultureInfo.InvariantCulture));
+                        no++;
+                    }
+                }
+            }
         }
 
         #endregion

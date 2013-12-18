@@ -154,7 +154,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region プロヴィンスデータ処理
+        #region データ処理
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -194,6 +194,24 @@ namespace HoI2Editor.Forms
             // プロヴィンスファイルを読み込む
             Provinces.Load();
 
+            // データ読み込み後の処理
+            OnProvincesLoaded();
+        }
+
+        /// <summary>
+        ///     プロヴィンスファイルを保存する
+        /// </summary>
+        private void SaveFiles()
+        {
+            // 編集したデータを保存する
+            HoI2EditorApplication.Save();
+        }
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        private void OnProvincesLoaded()
+        {
             // 海域の編集項目を更新する
             UpdateSeaZoneItems();
 
@@ -202,23 +220,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     プロヴィンスファイルを保存する
+        ///     データ保存後の処理
         /// </summary>
-        private void SaveFiles()
+        public void OnProvincesSaved()
         {
-            // 文字列定義ファイルを保存する
-            Config.Save();
-
-            // プロヴィンスファイルを保存する
-            Provinces.Save();
-
-            // 文字列定義のみ保存の場合、プロヴィンス名の編集済みフラグがクリアされないためここで全クリアする
-            foreach (Province province in Provinces.Items)
-            {
-                province.ResetDirtyAll();
-            }
-
-            // 編集項目を更新する
+            // 編集済みフラグがクリアされるため表示を更新する
             UpdateEditableItems();
         }
 

@@ -152,7 +152,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 指揮官データ処理
+        #region データ処理
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -186,6 +186,24 @@ namespace HoI2Editor.Forms
             // 指揮官ファイルを読み込む
             Leaders.Load();
 
+            // データ読み込み後の処理
+            OnLeadersLoaded();
+        }
+
+        /// <summary>
+        ///     指揮官ファイルを保存する
+        /// </summary>
+        private void SaveFiles()
+        {
+            // 編集したデータを保存する
+            HoI2EditorApplication.Save();
+        }
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        private void OnLeadersLoaded()
+        {
             // 指揮官リストを絞り込む
             NarrowLeaderList();
 
@@ -200,13 +218,10 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     指揮官ファイルを保存する
+        ///     データ保存後の処理
         /// </summary>
-        private void SaveFiles()
+        public void OnLeadersSaved()
         {
-            // 指揮官ファイルを保存する
-            Leaders.Save();
-
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
             UpdateEditableItems();

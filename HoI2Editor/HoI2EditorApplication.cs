@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Forms;
+using HoI2Editor.Models;
 
 namespace HoI2Editor
 {
@@ -167,6 +168,35 @@ namespace HoI2Editor
         private static void TermLogFile()
         {
             _writer.Close();
+        }
+
+        #endregion
+
+        #region データ処理
+
+        /// <summary>
+        ///     編集したデータを保存する
+        /// </summary>
+        public static void Save()
+        {
+            // 文字列の一時キーを保存形式に変更する
+            Techs.RenameTempKeys();
+
+            // 編集したデータを保存する
+            Misc.Save();
+            Config.Save();
+            Leaders.Save();
+            Ministers.Save();
+            Teams.Save();
+            Provinces.Save();
+            Techs.Save();
+            Units.Save();
+            UnitNames.Save();
+            DivisionNames.Save();
+            RandomLeaders.Load();
+
+            // データ保存後の処理呼び出し
+            OnSaved();
         }
 
         #endregion
@@ -411,6 +441,53 @@ namespace HoI2Editor
         public static void OnRandomLeaderEditorFormClosed()
         {
             _randomLeaderEditorForm = null;
+        }
+
+        /// <summary>
+        ///     データ保存後の処理呼び出し
+        /// </summary>
+        private static void OnSaved()
+        {
+            if (_leaderEditorForm != null)
+            {
+                _leaderEditorForm.OnLeadersSaved();
+            }
+            if (_ministerEditorForm != null)
+            {
+                _ministerEditorForm.OnMinistersSaved();
+            }
+            if (_teamEditorForm != null)
+            {
+                _teamEditorForm.OnTeamsSaved();
+            }
+            if (_provinceEditorForm != null)
+            {
+                _provinceEditorForm.OnProvincesSaved();
+            }
+            if (_techEditorForm != null)
+            {
+                _techEditorForm.OnTechsSaved();
+            }
+            if (_unitEditorForm != null)
+            {
+                _unitEditorForm.OnUnitsSaved();
+            }
+            if (_miscEditorForm != null)
+            {
+                _miscEditorForm.OnMiscSaved();
+            }
+            if (_unitNameEditorForm != null)
+            {
+                _unitNameEditorForm.OnUnitNamesSaved();
+            }
+            if (_divisionNameEditorForm != null)
+            {
+                _divisionNameEditorForm.OnDivisionNamesSaved();
+            }
+            if (_randomLeaderEditorForm != null)
+            {
+                _randomLeaderEditorForm.OnRandomLeadersSaved();
+            }
         }
 
         #endregion

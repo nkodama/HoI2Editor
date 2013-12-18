@@ -205,7 +205,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 技術定義データ処理
+        #region データ処理
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -239,12 +239,33 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadFiles()
         {
+            // Miscファイルを読み込む
+            Misc.Load();
+
             // 文字列定義ファイルを読み込む
             Config.Load();
 
             // 技術定義ファイルを読み込む
             Techs.Load();
 
+            // データ読み込み後の処理
+            OnTechsLoaded();
+        }
+
+        /// <summary>
+        ///     技術定義ファイルを保存する
+        /// </summary>
+        private void SaveFiles()
+        {
+            // 編集したデータを保存する
+            HoI2EditorApplication.Save();
+        }
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        private void OnTechsLoaded()
+        {
             // 編集項目を初期化する
             InitEditableItems();
 
@@ -259,42 +280,10 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術定義ファイルを保存する
+        ///     データ保存後の処理
         /// </summary>
-        private void SaveFiles()
+        public void OnTechsSaved()
         {
-            // 文字列の一時キーを保存形式に変更する
-            int no = 1;
-            foreach (TechGroup grp in Techs.Groups)
-            {
-                foreach (ITechItem item in grp.Items)
-                {
-                    if (item is TechItem)
-                    {
-                        var techItem = item as TechItem;
-                        techItem.RenameTempKey(Techs.CategoryNames[(int) grp.Category]);
-                    }
-                    else if (item is TechLabel)
-                    {
-                        var labelItem = item as TechLabel;
-                        labelItem.RenameTempKey(no.ToString(CultureInfo.InvariantCulture));
-                        no++;
-                    }
-                }
-            }
-
-            // 文字列定義ファイルを保存する
-            Config.Save();
-
-            // 技術定義ファイルを保存する
-            Techs.Save();
-
-            // 文字列定義のみ保存の場合、技術名などの編集済みフラグがクリアされないためここで全クリアする
-            foreach (TechGroup grp in Techs.Groups)
-            {
-                grp.ResetDirtyAll();
-            }
-
             // 編集済みフラグがクリアされるため表示を更新する
             categoryListBox.Refresh();
             techListBox.Refresh();

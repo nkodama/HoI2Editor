@@ -154,6 +154,24 @@ namespace HoI2Editor.Forms
             // ランダム指揮官名定義ファイルを読み込む
             RandomLeaders.Load();
 
+            // データ読み込み後の処理
+            OnRandomLeadersLoaded();
+        }
+
+        /// <summary>
+        ///     ランダム指揮官名定義ファイルを保存する
+        /// </summary>
+        private void SaveFile()
+        {
+            // 編集したデータを保存する
+            HoI2EditorApplication.Save();
+        }
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        private void OnRandomLeadersLoaded()
+        {
             // ランダム指揮官名リストの表示を更新する
             UpdateNameList();
 
@@ -162,13 +180,10 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ランダム指揮官名定義ファイルを保存する
+        ///     データ保存後の処理
         /// </summary>
-        private void SaveFile()
+        public void OnRandomLeadersSaved()
         {
-            // ランダム指揮官名定義ファイルを保存する
-            RandomLeaders.Save();
-
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
         }
