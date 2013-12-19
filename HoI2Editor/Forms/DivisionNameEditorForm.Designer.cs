@@ -104,6 +104,7 @@
             // 
             // sequentialGroupBox
             // 
+            resources.ApplyResources(this.sequentialGroupBox, "sequentialGroupBox");
             this.sequentialGroupBox.Controls.Add(this.suffixLabel);
             this.sequentialGroupBox.Controls.Add(this.suffixComboBox);
             this.sequentialGroupBox.Controls.Add(this.prefixLabel);
@@ -112,7 +113,6 @@
             this.sequentialGroupBox.Controls.Add(this.startNumericUpDown);
             this.sequentialGroupBox.Controls.Add(this.interpolateButton);
             this.sequentialGroupBox.Controls.Add(this.endNumericUpDown);
-            resources.ApplyResources(this.sequentialGroupBox, "sequentialGroupBox");
             this.sequentialGroupBox.Name = "sequentialGroupBox";
             this.sequentialGroupBox.TabStop = false;
             // 
@@ -188,12 +188,12 @@
             // 
             // replaceGroupBox
             // 
+            resources.ApplyResources(this.replaceGroupBox, "replaceGroupBox");
             this.replaceGroupBox.Controls.Add(this.withLabel);
             this.replaceGroupBox.Controls.Add(this.toLabel);
             this.replaceGroupBox.Controls.Add(this.replaceButton);
             this.replaceGroupBox.Controls.Add(this.toComboBox);
             this.replaceGroupBox.Controls.Add(this.withComboBox);
-            resources.ApplyResources(this.replaceGroupBox, "replaceGroupBox");
             this.replaceGroupBox.Name = "replaceGroupBox";
             this.replaceGroupBox.TabStop = false;
             // 
@@ -243,10 +243,10 @@
             // 
             // optionGroupBox
             // 
+            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Controls.Add(this.allBranchCheckBox);
             this.optionGroupBox.Controls.Add(this.regexCheckBox);
             this.optionGroupBox.Controls.Add(this.allCountryCheckBox);
-            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
             // 
@@ -289,8 +289,8 @@
             // 
             // countryListBox
             // 
-            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.countryListBox, "countryListBox");
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryListBox.FormattingEnabled = true;
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);

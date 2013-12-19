@@ -226,13 +226,14 @@
             // 
             // worldTreeView
             // 
-            this.worldTreeView.HideSelection = false;
             resources.ApplyResources(this.worldTreeView, "worldTreeView");
+            this.worldTreeView.HideSelection = false;
             this.worldTreeView.Name = "worldTreeView";
             this.worldTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnWorldTreeViewAfterSelect);
             // 
             // basicGroupBox
             // 
+            resources.ApplyResources(this.basicGroupBox, "basicGroupBox");
             this.basicGroupBox.Controls.Add(this.terrainComboBox);
             this.basicGroupBox.Controls.Add(this.terrainLabel);
             this.basicGroupBox.Controls.Add(this.climateComboBox);
@@ -247,7 +248,6 @@
             this.basicGroupBox.Controls.Add(this.nameLabel);
             this.basicGroupBox.Controls.Add(this.idNumericUpDown);
             this.basicGroupBox.Controls.Add(this.idLabel);
-            resources.ApplyResources(this.basicGroupBox, "basicGroupBox");
             this.basicGroupBox.Name = "basicGroupBox";
             this.basicGroupBox.TabStop = false;
             // 
@@ -360,6 +360,7 @@
             // 
             // positionGroupBox
             // 
+            resources.ApplyResources(this.positionGroupBox, "positionGroupBox");
             this.positionGroupBox.Controls.Add(this.fillYNumericUpDown4);
             this.positionGroupBox.Controls.Add(this.fillXNumericUpDown4);
             this.positionGroupBox.Controls.Add(this.fillYNumericUpDown3);
@@ -395,7 +396,6 @@
             this.positionGroupBox.Controls.Add(this.cityYNumericUpDown);
             this.positionGroupBox.Controls.Add(this.cityXNumericUpDown);
             this.positionGroupBox.Controls.Add(this.cityLabel);
-            resources.ApplyResources(this.positionGroupBox, "positionGroupBox");
             this.positionGroupBox.Name = "positionGroupBox";
             this.positionGroupBox.TabStop = false;
             // 
@@ -785,6 +785,7 @@
             // 
             // resourceGroupBox
             // 
+            resources.ApplyResources(this.resourceGroupBox, "resourceGroupBox");
             this.resourceGroupBox.Controls.Add(this.oilNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.oilLabel);
             this.resourceGroupBox.Controls.Add(this.rareMaterialsNumericUpDown);
@@ -799,7 +800,6 @@
             this.resourceGroupBox.Controls.Add(this.icLabel);
             this.resourceGroupBox.Controls.Add(this.infraNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.infraLabel);
-            resources.ApplyResources(this.resourceGroupBox, "resourceGroupBox");
             this.resourceGroupBox.Name = "resourceGroupBox";
             this.resourceGroupBox.TabStop = false;
             // 

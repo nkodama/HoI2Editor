@@ -119,14 +119,14 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="copyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="copyButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="copyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 344</value>
+    <value>488, 189</value>
   </data>
   <data name="copyButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -151,13 +151,13 @@
     <value>0</value>
   </data>
   <data name="pasteButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="pasteButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="pasteButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>489, 373</value>
+    <value>489, 218</value>
   </data>
   <data name="pasteButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -181,13 +181,13 @@
     <value>1</value>
   </data>
   <data name="cutButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="cutButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cutButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>408, 373</value>
+    <value>408, 218</value>
   </data>
   <data name="cutButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -209,6 +209,9 @@
   </data>
   <data name="&gt;&gt;cutButton.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="replaceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="withLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -364,13 +367,13 @@
     <value>3</value>
   </data>
   <data name="undoButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="undoButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="undoButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>408, 344</value>
+    <value>408, 189</value>
   </data>
   <data name="undoButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -392,6 +395,9 @@
   </data>
   <data name="&gt;&gt;undoButton.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="optionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="regexCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -476,6 +482,9 @@
   </data>
   <data name="&gt;&gt;optionGroupBox.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>138, 12</value>
@@ -593,6 +602,9 @@
   </data>
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 9pt</value>

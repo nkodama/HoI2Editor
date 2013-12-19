@@ -1456,17 +1456,32 @@ namespace HoI2Editor.Forms
         private void CreateCommonButtons(int index)
         {
             // 再読み込み
-            var button = new Button {Text = Resources.Reload, Location = new Point(731, 625)};
+            var button = new Button
+            {
+                Text = Resources.Reload,
+                Location = new Point(731, 625),
+                Anchor = AnchorStyles.Right | AnchorStyles.Bottom
+            };
             button.Click += OnReloadButtonClick;
             miscTabControl.TabPages[index].Controls.Add(button);
 
             // 保存
-            button = new Button {Text = Resources.Save, Location = new Point(812, 625)};
+            button = new Button
+            {
+                Text = Resources.Save,
+                Location = new Point(812, 625),
+                Anchor = AnchorStyles.Right | AnchorStyles.Bottom
+            };
             button.Click += OnSaveButtonClick;
             miscTabControl.TabPages[index].Controls.Add(button);
 
             // 閉じる
-            button = new Button {Text = Resources.Close, Location = new Point(893, 625)};
+            button = new Button
+            {
+                Text = Resources.Close,
+                Location = new Point(893, 625),
+                Anchor = AnchorStyles.Right | AnchorStyles.Bottom
+            };
             button.Click += OnCloseButtonClick;
             miscTabControl.TabPages[index].Controls.Add(button);
         }

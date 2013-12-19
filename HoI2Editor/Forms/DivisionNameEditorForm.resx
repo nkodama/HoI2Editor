@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="copyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="copyButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -151,7 +151,7 @@
     <value>0</value>
   </data>
   <data name="pasteButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="pasteButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -181,7 +181,7 @@
     <value>1</value>
   </data>
   <data name="cutButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="cutButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -290,6 +290,9 @@
   </data>
   <data name="&gt;&gt;prefixLabel.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="sequentialGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="addButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -498,6 +501,9 @@
   <data name="&gt;&gt;toLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="replaceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="replaceButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -682,7 +688,7 @@
     <value>2</value>
   </data>
   <data name="undoButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="undoButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -711,6 +717,9 @@
   <data name="&gt;&gt;undoButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="optionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="optionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>402, 253</value>
   </data>
@@ -734,6 +743,9 @@
   </data>
   <data name="&gt;&gt;optionGroupBox.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>138, 12</value>
@@ -875,6 +887,9 @@
   </data>
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 9pt</value>
