@@ -96,7 +96,10 @@ namespace HoI2Editor.Forms
             InitCountryListBox();
 
             // 指揮官ファイルを読み込む
-            LoadFiles();
+            Leaders.Load();
+
+            // データ読み込み後の処理
+            OnLeadersLoaded();
         }
 
         #endregion
@@ -121,7 +124,7 @@ namespace HoI2Editor.Forms
         private void OnLeaderEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!Leaders.IsDirty())
+            if (!HoI2Editor.IsDirty())
             {
                 return;
             }
@@ -135,7 +138,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    SaveFiles();
+                    HoI2Editor.SaveFiles();
                     break;
             }
         }
@@ -161,11 +164,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 指揮官ファイルの再読み込みを要求する
-            Leaders.RequireReload();
-
-            // 指揮官ファイルを読み込む
-            LoadFiles();
+            HoI2Editor.ReloadFiles();
         }
 
         /// <summary>
@@ -175,34 +174,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFiles();
-        }
-
-        /// <summary>
-        ///     指揮官ファイルを読み込む
-        /// </summary>
-        private void LoadFiles()
-        {
-            // 指揮官ファイルを読み込む
-            Leaders.Load();
-
-            // データ読み込み後の処理
-            OnLeadersLoaded();
-        }
-
-        /// <summary>
-        ///     指揮官ファイルを保存する
-        /// </summary>
-        private void SaveFiles()
-        {
-            // 編集したデータを保存する
             HoI2Editor.SaveFiles();
         }
 
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        private void OnLeadersLoaded()
+        public void OnLeadersLoaded()
         {
             // 指揮官リストを絞り込む
             NarrowLeaderList();

@@ -1052,8 +1052,11 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMiscEditorFormLoad(object sender, EventArgs e)
         {
-            // miscファイルを読み込む
-            LoadFiles();
+            // 基本データファイルを読み込む
+            Misc.Load();
+
+            // データ読み込み後の処理
+            OnMiscLoaded();
 
             // 先頭ページを初期化する
             InitTabPage(0);
@@ -1177,7 +1180,7 @@ namespace HoI2Editor.Forms
         private void OnMiscEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!Misc.IsDirty())
+            if (!HoI2Editor.IsDirty())
             {
                 return;
             }
@@ -1191,7 +1194,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    SaveFiles();
+                    HoI2Editor.SaveFiles();
                     break;
             }
         }
@@ -1217,11 +1220,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // miscファイルの再読み込みを要求する
-            Misc.RequireReload();
-
-            // miscファイルを読み込む
-            LoadFiles();
+            HoI2Editor.ReloadFiles();
         }
 
         /// <summary>
@@ -1231,34 +1230,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFiles();
-        }
-
-        /// <summary>
-        ///     基本データファイルを読み込む
-        /// </summary>
-        private void LoadFiles()
-        {
-            // 基本データファイルを読み込む
-            Misc.Load();
-
-            // データ読み込み後の処理
-            OnMiscLoaded();
-        }
-
-        /// <summary>
-        ///     基本データファイルを保存する
-        /// </summary>
-        private void SaveFiles()
-        {
-            // 編集したデータを保存する
             HoI2Editor.SaveFiles();
         }
 
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        private void OnMiscLoaded()
+        public void OnMiscLoaded()
         {
             for (int index = 0; index < miscTabControl.TabPages.Count; index++)
             {

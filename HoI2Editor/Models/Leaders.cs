@@ -190,9 +190,25 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequireReload()
+        public static void RequestReload()
         {
             _loaded = false;
+        }
+
+        /// <summary>
+        ///     指揮官ファイル群を再読み込みする
+        /// </summary>
+        public static void Reload()
+        {
+            // 読み込み前なら何もしない
+            if (!_loaded)
+            {
+                return;
+            }
+
+            _loaded = false;
+
+            Load();
         }
 
         /// <summary>

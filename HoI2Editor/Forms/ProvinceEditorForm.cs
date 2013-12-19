@@ -98,7 +98,10 @@ namespace HoI2Editor.Forms
             InitEditableItems();
 
             // プロヴィンスファイルを読み込む
-            LoadFiles();
+            Provinces.Load();
+
+            // データ読み込み後の処理
+            OnProvincesLoaded();
         }
 
         #endregion
@@ -123,7 +126,7 @@ namespace HoI2Editor.Forms
         private void OnProvinceEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!Provinces.IsDirty() && !Config.IsDirty())
+            if (!HoI2Editor.IsDirty())
             {
                 return;
             }
@@ -137,7 +140,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    SaveFiles();
+                    HoI2Editor.SaveFiles();
                     break;
             }
         }
@@ -163,17 +166,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 文字列定義ファイルの再読み込みを要求する
-            Config.RequireReload();
-
-            // プロヴィンスファイルの再読み込みを要求する
-            Provinces.RequireReload();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
-            // プロヴィンスファイルを読み込む
-            LoadFiles();
+            HoI2Editor.ReloadFiles();
         }
 
         /// <summary>
@@ -183,34 +176,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFiles();
-        }
-
-        /// <summary>
-        ///     プロヴィンスファイルを読み込む
-        /// </summary>
-        private void LoadFiles()
-        {
-            // プロヴィンスファイルを読み込む
-            Provinces.Load();
-
-            // データ読み込み後の処理
-            OnProvincesLoaded();
-        }
-
-        /// <summary>
-        ///     プロヴィンスファイルを保存する
-        /// </summary>
-        private void SaveFiles()
-        {
-            // 編集したデータを保存する
             HoI2Editor.SaveFiles();
         }
 
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        private void OnProvincesLoaded()
+        public void OnProvincesLoaded()
         {
             // 海域の編集項目を更新する
             UpdateSeaZoneItems();

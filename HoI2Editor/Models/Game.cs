@@ -389,17 +389,17 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void RequireReload()
         {
-            Misc.RequireReload();
-            Config.RequireReload();
-            Leaders.RequireReload();
-            Ministers.RequireReload();
-            Teams.RequireReload();
-            Techs.RequireReload();
-            Units.RequireReload();
-            Provinces.RequireReload();
-            UnitNames.RequireReload();
-            DivisionNames.RequireReload();
-            RandomLeaders.RequireReload();
+            Misc.RequestReload();
+            Config.RequestReload();
+            Leaders.RequestReload();
+            Ministers.RequestReload();
+            Teams.RequestReload();
+            Techs.RequestReload();
+            Units.RequestReload();
+            Provinces.RequestReload();
+            UnitNames.RequestReload();
+            DivisionNames.RequestReload();
+            RandomLeaders.RequestReload();
 
             Debug.WriteLine("Required to reload all");
         }

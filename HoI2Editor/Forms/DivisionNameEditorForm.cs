@@ -77,7 +77,10 @@ namespace HoI2Editor.Forms
             InitCountryListBox();
 
             // 師団名定義ファイルを読み込む
-            LoadFiles();
+            DivisionNames.Load();
+
+            // データ読み込み後の処理
+            OnDivisionNamesLoaded();
         }
 
         #endregion
@@ -102,7 +105,7 @@ namespace HoI2Editor.Forms
         private void OnDivisionNameEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!DivisionNames.IsDirty())
+            if (!HoI2Editor.IsDirty())
             {
                 return;
             }
@@ -116,7 +119,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    SaveFiles();
+                    HoI2Editor.SaveFiles();
                     break;
             }
         }
@@ -142,11 +145,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 師団名定義ファイルの再読み込みを要求する
-            DivisionNames.RequireReload();
-
-            // 師団名定義ファイルを読み込む
-            LoadFiles();
+            HoI2Editor.ReloadFiles();
         }
 
         /// <summary>
@@ -156,34 +155,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFiles();
-        }
-
-        /// <summary>
-        ///     師団名定義ファイルを読み込む
-        /// </summary>
-        private void LoadFiles()
-        {
-            // 師団名定義ファイルを読み込む
-            DivisionNames.Load();
-
-            // データ読み込み後の処理
-            OnDivisionNamesLoaded();
-        }
-
-        /// <summary>
-        ///     師団名定義ファイルを保存する
-        /// </summary>
-        private void SaveFiles()
-        {
-            // 編集したデータを保存する
             HoI2Editor.SaveFiles();
         }
 
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        private void OnDivisionNamesLoaded()
+        public void OnDivisionNamesLoaded()
         {
             // 師団名リストの表示を更新する
             UpdateNameList();

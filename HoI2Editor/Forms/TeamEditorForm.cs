@@ -137,7 +137,10 @@ namespace HoI2Editor.Forms
             InitCountryListBox();
 
             // 研究機関ファイルを読み込む
-            LoadFiles();
+            Teams.Load();
+
+            // データ読み込み後の処理
+            OnTeamsLoaded();
         }
 
         #endregion
@@ -162,7 +165,7 @@ namespace HoI2Editor.Forms
         private void OnTeamEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!Teams.IsDirty())
+            if (!HoI2Editor.IsDirty())
             {
                 return;
             }
@@ -176,7 +179,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    SaveFiles();
+                    HoI2Editor.SaveFiles();
                     break;
             }
         }
@@ -202,11 +205,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 研究機関ファイルの再読み込みを要求する
-            Teams.RequireReload();
-
-            // 研究機関ファイルを読み込む
-            LoadFiles();
+            HoI2Editor.ReloadFiles();
         }
 
         /// <summary>
@@ -216,34 +215,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFiles();
-        }
-
-        /// <summary>
-        ///     研究機関ファイルを読み込む
-        /// </summary>
-        private void LoadFiles()
-        {
-            // 研究機関ファイルを読み込む
-            Teams.Load();
-
-            // データ読み込み後の処理
-            OnTeamsLoaded();
-        }
-
-        /// <summary>
-        ///     研究機関ファイルを保存する
-        /// </summary>
-        private void SaveFiles()
-        {
-            // 編集したデータを保存する
             HoI2Editor.SaveFiles();
         }
 
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        private void OnTeamsLoaded()
+        public void OnTeamsLoaded()
         {
             // 研究機関リストを絞り込む
             NarrowTeamList();

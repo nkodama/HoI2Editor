@@ -34,23 +34,23 @@ namespace HoI2Editor.Forms
             // ゲーム設定ファイルを読み込む
             Misc.Load();
 
-            // 各種データを初期化する
-            InitData();
-
-            // 各種ファイルを読み込む
-            LoadFiles();
-        }
-
-        /// <summary>
-        ///     各種データを初期化する
-        /// </summary>
-        private static void InitData()
-        {
             // 国家データを初期化する
             Countries.Init();
 
             // ユニットデータを初期化する
             Units.Init();
+
+            // Miscファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
+            // ユニットデータを読み込む
+            Units.Load();
+
+            // データ読み込み後の処理
+            OnUnitsLoaded();
         }
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace HoI2Editor.Forms
         private void OnUnitEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!Units.IsDirty() && !Config.IsDirty())
+            if (!HoI2Editor.IsDirty())
             {
                 return;
             }
@@ -372,7 +372,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    SaveFiles();
+                    HoI2Editor.SaveFiles();
                     break;
             }
         }
@@ -398,14 +398,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 文字列定義ファイルの再読み込みを要求する
-            Config.RequireReload();
-
-            // ユニット定義ファイルの再読み込みを要求する
-            Units.RequireReload();
-
-            // 各種ファイルを読み込む
-            LoadFiles();
+            HoI2Editor.ReloadFiles();
         }
 
         /// <summary>
@@ -415,40 +408,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFiles();
-        }
-
-        /// <summary>
-        ///     各種ファイルを読み込む
-        /// </summary>
-        private void LoadFiles()
-        {
-            // Miscファイルを読み込む
-            Misc.Load();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
-            // ユニットデータを読み込む
-            Units.Load();
-
-            // データ読み込み後の処理
-            OnUnitsLoaded();
-        }
-
-        /// <summary>
-        ///     各種ファイルを保存する
-        /// </summary>
-        private void SaveFiles()
-        {
-            // 編集したデータを保存する
             HoI2Editor.SaveFiles();
         }
 
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        private void OnUnitsLoaded()
+        public void OnUnitsLoaded()
         {
             // 付属可能旅団の値が変化してしまうので一旦選択を解除する
             classListBox.SelectedIndex = -1;

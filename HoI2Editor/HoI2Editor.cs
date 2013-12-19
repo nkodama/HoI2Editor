@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
@@ -11,7 +10,11 @@ namespace HoI2Editor
     /// </summary>
     public static class HoI2Editor
     {
-        #region 公開プロパティ
+        #region 内部フィールド
+
+        #endregion
+
+        #region エディターのバージョン
 
         /// <summary>
         ///     エディターのバージョン
@@ -21,66 +24,10 @@ namespace HoI2Editor
             get { return _version; }
         }
 
-        #endregion
-
-        #region 内部フィールド
-
         /// <summary>
         ///     エディターのバージョン
         /// </summary>
         private static string _version;
-
-        /// <summary>
-        ///     指揮官エディターのフォーム
-        /// </summary>
-        private static LeaderEditorForm _leaderEditorForm;
-
-        /// <summary>
-        ///     閣僚エディターのフォーム
-        /// </summary>
-        private static MinisterEditorForm _ministerEditorForm;
-
-        /// <summary>
-        ///     研究機関エディターのフォーム
-        /// </summary>
-        private static TeamEditorForm _teamEditorForm;
-
-        /// <summary>
-        ///     プロヴィンスエディターのフォーム
-        /// </summary>
-        private static ProvinceEditorForm _provinceEditorForm;
-
-        /// <summary>
-        ///     技術ツリーエディターのフォーム
-        /// </summary>
-        private static TechEditorForm _techEditorForm;
-
-        /// <summary>
-        ///     ユニットモデルエディターのフォーム
-        /// </summary>
-        private static UnitEditorForm _unitEditorForm;
-
-        /// <summary>
-        ///     ゲーム設定エディターのフォーム
-        /// </summary>
-        private static MiscEditorForm _miscEditorForm;
-
-        /// <summary>
-        ///     ユニット名エディターのフォーム
-        /// </summary>
-        private static UnitNameEditorForm _unitNameEditorForm;
-
-        /// <summary>
-        ///     師団名エディターのフォーム
-        /// </summary>
-        private static DivisionNameEditorForm _divisionNameEditorForm;
-
-        /// <summary>
-        ///     ランダム指揮官エディターのフォーム
-        /// </summary>
-        private static RandomLeaderEditorForm _randomLeaderEditorForm;
-
-        #endregion
 
         /// <summary>
         ///     エディターのバージョンを初期化する
@@ -101,15 +48,48 @@ namespace HoI2Editor
             Debug.WriteLine(_version);
         }
 
+        #endregion
+
         #region データ処理
+
+        /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirty()
+        {
+            return Misc.IsDirty() ||
+                   Config.IsDirty() ||
+                   Leaders.IsDirty() ||
+                   Ministers.IsDirty() ||
+                   Teams.IsDirty() ||
+                   Provinces.IsDirty() ||
+                   Techs.IsDirty() ||
+                   Units.IsDirty() ||
+                   UnitNames.IsDirty() ||
+                   DivisionNames.IsDirty() ||
+                   RandomLeaders.IsDirty();
+        }
 
         /// <summary>
         ///     データを再読み込みする
         /// </summary>
         public static void ReloadFiles()
         {
-            throw new NotImplementedException();
+            // データを再読み込みする
+            Misc.Reload();
+            Config.Reload();
+            Leaders.Reload();
+            Ministers.Reload();
+            Teams.Reload();
+            Provinces.Reload();
+            Techs.Reload();
+            Units.Reload();
+            UnitNames.Reload();
+            DivisionNames.Reload();
+            RandomLeaders.Reload();
 
+            // データ読み込み後の更新処理呼び出し
             OnFileLoaded();
         }
 
@@ -143,7 +123,46 @@ namespace HoI2Editor
         /// </summary>
         private static void OnFileLoaded()
         {
-            throw new NotImplementedException();
+            if (_leaderEditorForm != null)
+            {
+                _leaderEditorForm.OnLeadersLoaded();
+            }
+            if (_ministerEditorForm != null)
+            {
+                _ministerEditorForm.OnMinistersLoaded();
+            }
+            if (_teamEditorForm != null)
+            {
+                _teamEditorForm.OnTeamsLoaded();
+            }
+            if (_provinceEditorForm != null)
+            {
+                _provinceEditorForm.OnProvincesLoaded();
+            }
+            if (_techEditorForm != null)
+            {
+                _techEditorForm.OnTechsLoaded();
+            }
+            if (_unitEditorForm != null)
+            {
+                _unitEditorForm.OnUnitsLoaded();
+            }
+            if (_miscEditorForm != null)
+            {
+                _miscEditorForm.OnMiscLoaded();
+            }
+            if (_unitNameEditorForm != null)
+            {
+                _unitNameEditorForm.OnUnitNamesLoaded();
+            }
+            if (_divisionNameEditorForm != null)
+            {
+                _divisionNameEditorForm.OnDivisionNamesLoaded();
+            }
+            if (_randomLeaderEditorForm != null)
+            {
+                _randomLeaderEditorForm.OnRandomLeadersLoaded();
+            }
         }
 
         /// <summary>
@@ -196,6 +215,56 @@ namespace HoI2Editor
         #endregion
 
         #region エディターフォーム管理
+
+        /// <summary>
+        ///     指揮官エディターのフォーム
+        /// </summary>
+        private static LeaderEditorForm _leaderEditorForm;
+
+        /// <summary>
+        ///     閣僚エディターのフォーム
+        /// </summary>
+        private static MinisterEditorForm _ministerEditorForm;
+
+        /// <summary>
+        ///     研究機関エディターのフォーム
+        /// </summary>
+        private static TeamEditorForm _teamEditorForm;
+
+        /// <summary>
+        ///     プロヴィンスエディターのフォーム
+        /// </summary>
+        private static ProvinceEditorForm _provinceEditorForm;
+
+        /// <summary>
+        ///     技術ツリーエディターのフォーム
+        /// </summary>
+        private static TechEditorForm _techEditorForm;
+
+        /// <summary>
+        ///     ユニットモデルエディターのフォーム
+        /// </summary>
+        private static UnitEditorForm _unitEditorForm;
+
+        /// <summary>
+        ///     ゲーム設定エディターのフォーム
+        /// </summary>
+        private static MiscEditorForm _miscEditorForm;
+
+        /// <summary>
+        ///     ユニット名エディターのフォーム
+        /// </summary>
+        private static UnitNameEditorForm _unitNameEditorForm;
+
+        /// <summary>
+        ///     師団名エディターのフォーム
+        /// </summary>
+        private static DivisionNameEditorForm _divisionNameEditorForm;
+
+        /// <summary>
+        ///     ランダム指揮官エディターのフォーム
+        /// </summary>
+        private static RandomLeaderEditorForm _randomLeaderEditorForm;
 
         /// <summary>
         ///     指揮官エディターフォームを起動する

@@ -80,7 +80,10 @@ namespace HoI2Editor.Forms
             InitTypeListBox();
 
             // ユニット名定義ファイルを読み込む
-            LoadFile();
+            UnitNames.Load();
+
+            // データ読み込み後の処理
+            OnUnitNamesLoaded();
         }
 
         #endregion
@@ -105,7 +108,7 @@ namespace HoI2Editor.Forms
         private void OnUnitNameEditorFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!UnitNames.IsDirty())
+            if (!HoI2Editor.IsDirty())
             {
                 return;
             }
@@ -119,7 +122,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    SaveFile();
+                    HoI2Editor.SaveFiles();
                     break;
             }
         }
@@ -145,11 +148,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // ユニット名定義ファイルの再読み込みを要求する
-            UnitNames.RequireReload();
-
-            // ユニット名定義ファイルを読み込む
-            LoadFile();
+            HoI2Editor.ReloadFiles();
         }
 
         /// <summary>
@@ -159,34 +158,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveFile();
-        }
-
-        /// <summary>
-        ///     ユニット名定義ファイルを読み込む
-        /// </summary>
-        private void LoadFile()
-        {
-            // ユニット名定義ファイルを読み込む
-            UnitNames.Load();
-
-            // データ読み込み後の処理
-            OnUnitNamesLoaded();
-        }
-
-        /// <summary>
-        ///     ユニット名定義ファイルを保存する
-        /// </summary>
-        private void SaveFile()
-        {
-            // 編集したデータを保存する
             HoI2Editor.SaveFiles();
         }
 
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        private void OnUnitNamesLoaded()
+        public void OnUnitNamesLoaded()
         {
             // ユニット名リストの表示を更新する
             UpdateNameList();

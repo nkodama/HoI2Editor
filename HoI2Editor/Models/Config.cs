@@ -202,9 +202,25 @@ namespace HoI2Editor.Models
         /// <remarks>
         ///     ゲームフォルダ、MOD名、ゲーム種類、言語の変更があった場合に呼び出す
         /// </remarks>
-        public static void RequireReload()
+        public static void RequestReload()
         {
             _loaded = false;
+        }
+
+        /// <summary>
+        ///     文字列定義ファイル群を再読み込みする
+        /// </summary>
+        public static void Reload()
+        {
+            // 読み込み前なら何もしない
+            if (!_loaded)
+            {
+                return;
+            }
+
+            _loaded = false;
+
+            Load();
         }
 
         /// <summary>
