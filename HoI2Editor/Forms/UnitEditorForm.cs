@@ -398,6 +398,21 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
+            // 編集済みならば保存するかを問い合わせる
+            if (HoI2Editor.IsDirty())
+            {
+                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Cancel:
+                        return;
+                    case DialogResult.Yes:
+                        HoI2Editor.SaveFiles();
+                        break;
+                }
+            }
+
             HoI2Editor.ReloadFiles();
         }
 
