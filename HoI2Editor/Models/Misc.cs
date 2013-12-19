@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using HoI2Editor.Parsers;
 using HoI2Editor.Utilities;
 using HoI2Editor.Writers;
@@ -3948,6 +3949,13 @@ namespace HoI2Editor.Models
             if (!IsDirty())
             {
                 return;
+            }
+
+            // dbフォルダがなければ作成する
+            string folderName = Game.GetWriteFileName(Game.DatabasePathName);
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
             }
 
             // miscファイルを保存する

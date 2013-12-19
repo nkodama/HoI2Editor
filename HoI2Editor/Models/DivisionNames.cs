@@ -244,6 +244,13 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void SaveFile(Branch branch, string fileName)
         {
+            // dbフォルダがなければ作成する
+            string folderName = Game.GetWriteFileName(Game.DatabasePathName);
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = fileName;

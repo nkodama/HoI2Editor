@@ -197,6 +197,13 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // dbフォルダがなければ作成する
+            string folderName = Game.GetWriteFileName(Game.DatabasePathName);
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+            
             string fileName = Game.GetWriteFileName(Game.RandomLeadersPathName);
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
