@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using HoI2Editor.Forms;
 using HoI2Editor.Properties;
@@ -19,10 +20,18 @@ namespace HoI2Editor
         [STAThread]
         public static void Main()
         {
-            InitLogFile();
+            // 多重起動防止
+            const string mutexName = "HoI2Editor";
+            var mutex = new Mutex(false, mutexName);
+            if (!mutex.WaitOne(0, false))
+            {
+                return;
+            }
 
             try
             {
+                InitLogFile();
+
                 Debug.WriteLine("");
                 Debug.WriteLine(String.Format("[{0}]", DateTime.Now));
 
@@ -36,6 +45,8 @@ namespace HoI2Editor
             finally
             {
                 TermLogFile();
+
+                mutex.ReleaseMutex();
             }
         }
 
