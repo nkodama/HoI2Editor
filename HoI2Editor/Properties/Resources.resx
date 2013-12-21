@@ -3630,10 +3630,25 @@
   <data name="LanguageChinese" xml:space="preserve">
     <value>中文</value>
   </data>
-  <data name="Log" xml:space="preserve">
-    <value>Log</value>
-  </data>
-  <data name="LogFileOpenError" xml:space="preserve">
+  <data name="ErrorLogFileOpen" xml:space="preserve">
     <value>Cannot open log file.</value>
+  </data>
+  <data name="WarningRemovedUnusedTempKey" xml:space="preserve">
+    <value>Removed unused temp key</value>
+  </data>
+  <data name="WarningRenameSourceDoesNotExist" xml:space="preserve">
+    <value>Rename source does not exist</value>
+  </data>
+  <data name="WarningRenameTargetAlreadyExists" xml:space="preserve">
+    <value>Rename target already exists</value>
+  </data>
+  <data name="WarningSkippedUnexisitingKey" xml:space="preserve">
+    <value>Skipped unexisiting key</value>
+  </data>
+  <data name="WarningSkippedUnusedTempKey" xml:space="preserve">
+    <value>Skipped unused temp key</value>
+  </data>
+  <data name="WarningUnexpectedTempKey" xml:space="preserve">
+    <value>Unexpected temp key</value>
   </data>
 </root>

@@ -95,7 +95,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteApplication(TechItem item, StreamWriter writer)
         {
-            writer.WriteLine("  # {0}", Config.GetText(item.Name));
+            writer.WriteLine("  # {0}", Config.ExistsKey(item.Name) ? Config.GetText(item.Name) : "");
             writer.WriteLine("  application =");
             writer.WriteLine("  {{ id        = {0}", item.Id);
             writer.WriteLine("    name      = {0}", item.Name);
@@ -132,7 +132,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteComponent(TechComponent component, StreamWriter writer)
         {
-            writer.WriteLine("    # {0}", Config.GetText(component.Name));
+            writer.WriteLine("    # {0}", Config.ExistsKey(component.Name) ? Config.GetText(component.Name) : "");
             writer.Write(
                 "    component = {{ id = {0} name = {1} type = {2} difficulty = {3}",
                 component.Id,

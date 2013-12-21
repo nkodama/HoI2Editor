@@ -203,7 +203,7 @@ namespace HoI2Editor.Models
             {
                 Directory.CreateDirectory(folderName);
             }
-            
+
             string fileName = Game.GetWriteFileName(Game.RandomLeadersPathName);
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {

@@ -224,7 +224,8 @@ namespace HoI2Editor.Models
         ///     文字列の一時キーを保存形式に変更する
         /// </summary>
         /// <param name="name">キー文字列</param>
-        void RenameTempKey(string name);
+        /// <returns>変更があればtrueを返す</returns>
+        bool RenameTempKey(string name);
 
         /// <summary>
         ///     文字列の一時キーを削除する
@@ -548,14 +549,21 @@ namespace HoI2Editor.Models
         ///     文字列の一時キーを保存形式に変更する
         /// </summary>
         /// <param name="name">キー文字列</param>
-        public void RenameTempKey(string name)
+        /// <returns>変更があればtrueを返す</returns>
+        public bool RenameTempKey(string name)
         {
+            bool result = false;
+
             // 技術名
             if (Config.IsTempKey(Name))
             {
                 string newKey = String.Format("TECH_APP_{0}_{1}_NAME", name, Id);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
+
+                // 編集済みフラグを設定する
+                SetDirty(TechItemId.Name);
+                result = true;
             }
             // 技術短縮名
             if (Config.IsTempKey(ShortName))
@@ -563,6 +571,10 @@ namespace HoI2Editor.Models
                 string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", name, Id);
                 Config.RenameText(ShortName, newKey, Game.TechTextFileName);
                 ShortName = newKey;
+
+                // 編集済みフラグを設定する
+                SetDirty(TechItemId.ShortName);
+                result = true;
             }
             // 技術説明
             if (Config.IsTempKey(Desc))
@@ -570,6 +582,10 @@ namespace HoI2Editor.Models
                 string newKey = String.Format("TECH_APP_{0}_{1}_DESC", name, Id);
                 Config.RenameText(Desc, newKey, Game.TechTextFileName);
                 Desc = newKey;
+
+                // 編集済みフラグを設定する
+                SetDirty(TechItemId.Desc);
+                result = true;
             }
             // 小研究名
             int componentId = 1;
@@ -580,9 +596,16 @@ namespace HoI2Editor.Models
                     string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", name, Id, componentId);
                     Config.RenameText(component.Name, newKey, Game.TechTextFileName);
                     component.Name = newKey;
+
+                    // 編集済みフラグを設定する
+                    component.SetDirty(TechComponentItemId.Name);
+                    SetDirty();
+                    result = true;
                 }
                 componentId++;
             }
+
+            return result;
         }
 
         /// <summary>
@@ -836,15 +859,30 @@ namespace HoI2Editor.Models
         ///     文字列の一時キーを保存形式に変更する
         /// </summary>
         /// <param name="name">キー名</param>
-        public void RenameTempKey(string name)
+        /// <returns>変更があればtrueを返す</returns>
+        public bool RenameTempKey(string name)
         {
+            bool result = false;
+
             // ラベル名
             if (Config.IsTempKey(Name))
             {
-                string newKey = String.Format("TECH_CAT_{0}", name);
+                string newKey;
+                int no = 1;
+                do
+                {
+                    newKey = string.Format("TECH_CAT_{0}_{1}", name, no);
+                    no++;
+                } while (Config.ExistsKey(newKey));
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
+
+                // 編集済みフラグを設定する
+                SetDirty(TechItemId.Name);
+                result = true;
             }
+
+            return result;
         }
 
         /// <summary>
@@ -1034,9 +1072,11 @@ namespace HoI2Editor.Models
         ///     文字列の一時キーをIDに沿った値に変更する
         /// </summary>
         /// <param name="name">キー名</param>
-        public void RenameTempKey(string name)
+        /// <returns>変更があればtrueを返す</returns>
+        public bool RenameTempKey(string name)
         {
             // 何もしない
+            return false;
         }
 
         /// <summary>

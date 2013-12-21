@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -779,22 +778,19 @@ namespace HoI2Editor.Models
         public static void RenameTempKeys()
         {
             // 文字列の一時キーを保存形式に変更する
-            int no = 1;
             foreach (TechGroup grp in Groups)
             {
+                bool dirty = false;
                 foreach (ITechItem item in grp.Items)
                 {
-                    if (item is TechItem)
+                    if (item.RenameTempKey(CategoryNames[(int) grp.Category]))
                     {
-                        var techItem = item as TechItem;
-                        techItem.RenameTempKey(CategoryNames[(int) grp.Category]);
+                        dirty = true;
                     }
-                    else if (item is TechLabel)
-                    {
-                        var labelItem = item as TechLabel;
-                        labelItem.RenameTempKey(no.ToString(CultureInfo.InvariantCulture));
-                        no++;
-                    }
+                }
+                if (dirty)
+                {
+                    grp.SetDirty();
                 }
             }
         }

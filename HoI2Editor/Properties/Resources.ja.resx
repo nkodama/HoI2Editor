@@ -3588,10 +3588,25 @@
   <data name="Sinclair" xml:space="preserve">
     <value>シンクレア</value>
   </data>
-  <data name="Log" xml:space="preserve">
-    <value>ログ</value>
-  </data>
-  <data name="LogFileOpenError" xml:space="preserve">
+  <data name="ErrorLogFileOpen" xml:space="preserve">
     <value>ログファイルを開くことができません。</value>
+  </data>
+  <data name="WarningRemovedUnusedTempKey" xml:space="preserve">
+    <value>未使用の一時キーを削除</value>
+  </data>
+  <data name="WarningRenameSourceDoesNotExist" xml:space="preserve">
+    <value>リネーム元が見つからない</value>
+  </data>
+  <data name="WarningRenameTargetAlreadyExists" xml:space="preserve">
+    <value>リネーム先が既に存在する</value>
+  </data>
+  <data name="WarningSkippedUnexisitingKey" xml:space="preserve">
+    <value>存在しないキーをスキップ</value>
+  </data>
+  <data name="WarningSkippedUnusedTempKey" xml:space="preserve">
+    <value>未使用の一時キーをスキップ</value>
+  </data>
+  <data name="WarningUnexpectedTempKey" xml:space="preserve">
+    <value>想定外の一時キー</value>
   </data>
 </root>

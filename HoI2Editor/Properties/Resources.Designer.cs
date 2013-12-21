@@ -340,6 +340,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Cannot open log file. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ErrorLogFileOpen {
+            get {
+                return ResourceManager.GetString("ErrorLogFileOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Event に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Event {
@@ -921,24 +930,6 @@ namespace HoI2Editor.Properties {
         public static string LanguageSpanish {
             get {
                 return ResourceManager.GetString("LanguageSpanish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Log に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string Log {
-            get {
-                return ResourceManager.GetString("Log", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cannot open log file. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string LogFileOpenError {
-            get {
-                return ResourceManager.GetString("LogFileOpenError", resourceCulture);
             }
         }
         
@@ -10596,6 +10587,60 @@ namespace HoI2Editor.Properties {
         public static string Usedom {
             get {
                 return ResourceManager.GetString("Usedom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Removed unused temp key に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WarningRemovedUnusedTempKey {
+            get {
+                return ResourceManager.GetString("WarningRemovedUnusedTempKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rename source does not exist に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WarningRenameSourceDoesNotExist {
+            get {
+                return ResourceManager.GetString("WarningRenameSourceDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rename target already exists に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WarningRenameTargetAlreadyExists {
+            get {
+                return ResourceManager.GetString("WarningRenameTargetAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Skipped unexisiting key に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WarningSkippedUnexisitingKey {
+            get {
+                return ResourceManager.GetString("WarningSkippedUnexisitingKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Skipped unused temp key に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WarningSkippedUnusedTempKey {
+            get {
+                return ResourceManager.GetString("WarningSkippedUnusedTempKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unexpected temp key に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WarningUnexpectedTempKey {
+            get {
+                return ResourceManager.GetString("WarningUnexpectedTempKey", resourceCulture);
             }
         }
         

@@ -19,15 +19,15 @@ namespace HoI2Editor
         /// <summary>
         ///     エディターのバージョン
         /// </summary>
-        public static string Version
-        {
-            get { return _version; }
-        }
+        private static string _version;
 
         /// <summary>
         ///     エディターのバージョン
         /// </summary>
-        private static string _version;
+        public static string Version
+        {
+            get { return _version; }
+        }
 
         /// <summary>
         ///     エディターのバージョンを初期化する

@@ -21,7 +21,7 @@ namespace HoI2Editor
         public static void Main()
         {
             // 多重起動防止
-            const string mutexName = "HoI2Editor";
+            const string mutexName = "Alternative HoI2 Editor";
             var mutex = new Mutex(false, mutexName);
             if (!mutex.WaitOne(0, false))
             {
@@ -86,10 +86,8 @@ namespace HoI2Editor
             }
             catch (Exception)
             {
-                MessageBox.Show(Resources.Log, Resources.LogFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
+                const string appName = "Alternative HoI2 Editor";
+                MessageBox.Show(Resources.ErrorLogFileOpen, appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TermLogFile();
             }
         }

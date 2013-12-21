@@ -501,6 +501,8 @@ namespace HoI2Editor.Models
                     if (RegexTempKey.IsMatch(key))
                     {
                         TempKeyList.Add(key);
+                        Log.Write(string.Format("{0}: {1} {2} L{3}\n", Resources.WarningUnexpectedTempKey, key,
+                            Path.Combine(Game.ConfigPathName, name), lineNo));
                         Debug.WriteLine(string.Format("[Config] Unexpected temp key: {0} ({1} L{2})", key, name, lineNo));
                     }
 
@@ -549,6 +551,7 @@ namespace HoI2Editor.Models
                         Game.ConfigPathName);
                     string pathName = Path.Combine(folderName, fileName);
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, pathName));
+                    Debug.WriteLine(string.Format("[Config] Write error: {0}", fileName));
                 }
             }
 
@@ -634,14 +637,15 @@ namespace HoI2Editor.Models
                     // 一時キーは保存しない
                     if (TempKeyList.Contains(k))
                     {
-                        Debug.WriteLine(string.Format("[Config] Skipped temp key: {0} ({1})", key, name));
                         TempKeyList.Remove(k);
-                        Debug.WriteLine(string.Format("[Config] Removed temp key: {0}", key));
+                        Log.Write(string.Format("{0}: {1}", Resources.WarningRemovedUnusedTempKey, key));
+                        Debug.WriteLine(string.Format("[Config] Removed unused temp key: {0}", key));
                         continue;
                     }
                     // 登録されていないキーは保存しない
                     if (!Text.ContainsKey(k))
                     {
+                        Log.Write(string.Format("{0}: {1} ({2})\n", Resources.WarningSkippedUnexisitingKey, key, name));
                         Debug.WriteLine(string.Format("[Config] Skipped unexisting key: {0} ({1})", key, name));
                         continue;
                     }
@@ -683,8 +687,8 @@ namespace HoI2Editor.Models
                 // 一時キーは保存しない
                 if (TempKeyList.Contains(k))
                 {
-                    Debug.WriteLine(string.Format("[Config] Skipped temp key: {0} ({1})", key,
-                        Path.GetFileName(fileName)));
+                    Log.Write(string.Format("{0}: {1} {2}", Resources.WarningSkippedUnusedTempKey, key, fileName));
+                    Debug.WriteLine(string.Format("[Config] Skipped temp key: {0} ({1})", key, fileName));
                     TempKeyList.Remove(k);
                     continue;
                 }
@@ -822,14 +826,26 @@ namespace HoI2Editor.Models
                 else
                 {
                     // 変換後のキーあり: 一時キーがリネームされずに保存された場合
-                    Debug.WriteLine(string.Format("[Config] Rename target already exists: {0} - {1}", oldKey, newKey));
+                    Text[newKey] = Text[oldKey];
+                    Log.Write(string.Format("{0}: {1} - {2}\n", Resources.WarningRenameTargetAlreadyExists, oldKey,
+                        newKey));
+                    Debug.WriteLine(string.Format("[Config] Rename target already exists in text table: {0} - {1}",
+                        oldKey, newKey));
                 }
                 Text.Remove(oldKey);
             }
             else
             {
+                if (!Text.ContainsKey(newKey))
+                {
+                    // 文字列変換テーブルに登録する
+                    Text[newKey] = new string[MaxLanguages];
+                    Text[newKey][LangIndex] = "";
+                }
                 // 変換前のキーなし: 一時キーが重複していて既にリネームされた場合
-                Debug.WriteLine(string.Format("[Config] Rename source does not exist: {0} - {1}", oldKey, newKey));
+                Log.Write(string.Format("{0}: {1} - {2}\n", Resources.WarningRenameSourceDoesNotExist, oldKey, newKey));
+                Debug.WriteLine(string.Format("[Config] Rename source does not exist in text table: {0} - {1}", oldKey,
+                    newKey));
             }
 
             // 予約リストに登録し直す
@@ -837,34 +853,46 @@ namespace HoI2Editor.Models
             {
                 if (ReservedListTable[fileName].Contains(oldKey))
                 {
+                    if (!ReservedListTable[fileName].Contains(newKey))
+                    {
+                        ReservedListTable[fileName].Add(newKey);
+                        Debug.WriteLine(string.Format("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey,
+                            fileName));
+                    }
+                    else
+                    {
+                        Debug.WriteLine(string.Format("[Config] Already exists in reserved list: {0} - {1} ({2})",
+                            oldKey, newKey, fileName));
+                    }
                     ReservedListTable[fileName].Remove(oldKey);
                 }
-                if (!ReservedListTable[fileName].Contains(newKey))
+                else
                 {
-                    ReservedListTable[fileName].Add(newKey);
-                    Debug.WriteLine(string.Format("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey,
-                        Path.GetFileName(fileName)));
+                    if (!ReservedListTable[fileName].Contains(newKey))
+                    {
+                        ReservedListTable[fileName].Add(newKey);
+                    }
+                    Debug.WriteLine(
+                        string.Format("[Config] Rename source does not exist in reserved list: {0} - {1} ({2})",
+                            oldKey, newKey, fileName));
                 }
             }
 
             // 文字列定義順リストを書き換える
-            if (OrderListTable[fileName].Contains(oldKey))
+            if (OrderListTable.ContainsKey(fileName) && OrderListTable[fileName].Contains(oldKey))
             {
-                int index = OrderListTable[fileName].IndexOf(oldKey);
+                int index = OrderListTable[fileName].LastIndexOf(oldKey);
                 OrderListTable[fileName][index] = newKey;
             }
 
             // 文字列定義ファイルテーブルに登録し直す
-            if (TextFileTable.ContainsKey(fileName))
+            if (TextFileTable.ContainsKey(oldKey))
             {
-                if (TextFileTable.ContainsKey(oldKey))
-                {
-                    TextFileTable.Remove(oldKey);
-                }
-                if (!TextFileTable.ContainsKey(newKey))
-                {
-                    TextFileTable.Add(newKey, fileName);
-                }
+                TextFileTable.Remove(fileName);
+            }
+            if (!TextFileTable.ContainsKey(newKey))
+            {
+                TextFileTable.Add(newKey, fileName);
             }
 
             // 一時キーリストから削除する
@@ -885,11 +913,32 @@ namespace HoI2Editor.Models
         /// <param name="fileName">文字列定義ファイル名</param>
         public static void RemoveText(string key, string fileName)
         {
-            Text.Remove(key);
-            Debug.WriteLine(string.Format("[Config] Removed text: {0} ({1})", key, Path.GetFileName(fileName)));
+            // 文字列変換テーブルから削除する
+            if (Text.ContainsKey(key))
+            {
+                Text.Remove(key);
+                Debug.WriteLine(string.Format("[Config] Removed text: {0} ({1})", key, Path.GetFileName(fileName)));
+            }
 
-            ReservedListTable[fileName].Remove(key);
-            Debug.WriteLine(string.Format("[Config] Removed reserved list: {0} ({1})", key, Path.GetFileName(fileName)));
+            // 予約リストから削除する
+            if (ReservedListTable.ContainsKey(fileName) && ReservedListTable[fileName].Contains(key))
+            {
+                ReservedListTable[fileName].Remove(key);
+                Debug.WriteLine(string.Format("[Config] Removed reserved list: {0} ({1})", key,
+                    Path.GetFileName(fileName)));
+            }
+
+            // 文字列定義順リストから削除する
+            if (OrderListTable.ContainsKey(fileName) && OrderListTable[fileName].Contains(key))
+            {
+                OrderListTable[fileName].Remove(key);
+            }
+
+            // 文字列定義ファイルテーブルから削除する
+            if (TextFileTable.ContainsKey(key))
+            {
+                TextFileTable.Remove(key);
+            }
 
             // 一時キーリストから削除する
             if (TempKeyList.Contains(key))
@@ -897,6 +946,9 @@ namespace HoI2Editor.Models
                 TempKeyList.Remove(key);
                 Debug.WriteLine(string.Format("[Config] Removed temp list: {0}", key));
             }
+
+            // 編集済みフラグを設定する
+            SetDirty(fileName);
         }
 
         /// <summary>
@@ -922,7 +974,7 @@ namespace HoI2Editor.Models
         /// <returns>一時キーかどうか</returns>
         public static bool IsTempKey(string key)
         {
-            return (TempKeyList.Contains(key));
+            return RegexTempKey.IsMatch(key);
         }
 
         /// <summary>
@@ -936,7 +988,7 @@ namespace HoI2Editor.Models
             {
                 key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
                 _tempNo++;
-            } while (IsTempKey(key));
+            } while (ExistsKey(key));
 
             // 一時キーリストに登録する
             TempKeyList.Add(key);
