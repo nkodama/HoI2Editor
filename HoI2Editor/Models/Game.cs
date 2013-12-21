@@ -377,14 +377,6 @@ namespace HoI2Editor.Models
         #region 初期化
 
         /// <summary>
-        ///     静的コンストラクタ
-        /// </summary>
-        static Game()
-        {
-            FolderName = Environment.CurrentDirectory;
-        }
-
-        /// <summary>
         ///     ファイルの再読み込みを要求する
         /// </summary>
         private static void RequireReload()

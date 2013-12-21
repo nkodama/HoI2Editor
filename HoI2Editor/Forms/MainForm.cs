@@ -39,7 +39,7 @@ namespace HoI2Editor.Forms
                 : LanguageMode.English;
 
             // 初期状態のゲームフォルダ名を設定する
-            gameFolderTextBox.Text = Game.FolderName;
+            gameFolderTextBox.Text = Environment.CurrentDirectory;
 
             // 言語リストを更新する
             UpdateLanguage();
