@@ -40,7 +40,7 @@ namespace HoI2Editor
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(new MainForm());
+                HoI2Editor.LaunchMainForm();
             }
             finally
             {

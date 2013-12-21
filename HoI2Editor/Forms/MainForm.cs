@@ -291,6 +291,28 @@ namespace HoI2Editor.Forms
                 : folderName;
         }
 
+        /// <summary>
+        /// ゲームフォルダ名/MOD名の変更を許可する
+        /// </summary>
+        public void EnableFolderChange()
+        {
+            gameFolderTextBox.Enabled = true;
+            gameFolderReferButton.Enabled = true;
+            modTextBox.Enabled = true;
+            modFolderReferButton.Enabled = true;
+        }
+
+        /// <summary>
+        /// ゲームフォルダ名/MOD名の変更を禁止する
+        /// </summary>
+        public void DisableFolderChange()
+        {
+            gameFolderTextBox.Enabled = false;
+            gameFolderReferButton.Enabled = false;
+            modTextBox.Enabled = false;
+            modFolderReferButton.Enabled = false;
+        }
+
         #endregion
 
         #region 言語

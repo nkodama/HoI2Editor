@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using System.Windows.Forms;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
 
@@ -217,6 +218,11 @@ namespace HoI2Editor
         #region エディターフォーム管理
 
         /// <summary>
+        /// メインフォーム
+        /// </summary>
+        private static MainForm _mainForm;
+
+        /// <summary>
         ///     指揮官エディターのフォーム
         /// </summary>
         private static LeaderEditorForm _leaderEditorForm;
@@ -267,6 +273,15 @@ namespace HoI2Editor
         private static RandomLeaderEditorForm _randomLeaderEditorForm;
 
         /// <summary>
+        /// メインフォームを起動する
+        /// </summary>
+        public static void LaunchMainForm()
+        {
+            _mainForm = new MainForm();
+            Application.Run(_mainForm);
+        }
+
+        /// <summary>
         ///     指揮官エディターフォームを起動する
         /// </summary>
         public static void LaunchLeaderEditorForm()
@@ -275,6 +290,8 @@ namespace HoI2Editor
             {
                 _leaderEditorForm = new LeaderEditorForm();
                 _leaderEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -291,6 +308,8 @@ namespace HoI2Editor
             {
                 _ministerEditorForm = new MinisterEditorForm();
                 _ministerEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -307,6 +326,8 @@ namespace HoI2Editor
             {
                 _teamEditorForm = new TeamEditorForm();
                 _teamEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -323,6 +344,8 @@ namespace HoI2Editor
             {
                 _provinceEditorForm = new ProvinceEditorForm();
                 _provinceEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -339,6 +362,8 @@ namespace HoI2Editor
             {
                 _techEditorForm = new TechEditorForm();
                 _techEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -355,6 +380,8 @@ namespace HoI2Editor
             {
                 _unitEditorForm = new UnitEditorForm();
                 _unitEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -371,6 +398,8 @@ namespace HoI2Editor
             {
                 _miscEditorForm = new MiscEditorForm();
                 _miscEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -387,6 +416,8 @@ namespace HoI2Editor
             {
                 _unitNameEditorForm = new UnitNameEditorForm();
                 _unitNameEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -403,6 +434,8 @@ namespace HoI2Editor
             {
                 _divisionNameEditorForm = new DivisionNameEditorForm();
                 _divisionNameEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -419,6 +452,8 @@ namespace HoI2Editor
             {
                 _randomLeaderEditorForm = new RandomLeaderEditorForm();
                 _randomLeaderEditorForm.Show();
+
+                OnEditorStatusUpdete();
             }
             else
             {
@@ -432,6 +467,8 @@ namespace HoI2Editor
         public static void OnLeaderEditorFormClosed()
         {
             _leaderEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -440,6 +477,8 @@ namespace HoI2Editor
         public static void OnMinisterEditorFormClosed()
         {
             _ministerEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -448,6 +487,8 @@ namespace HoI2Editor
         public static void OnTeamEditorFormClosed()
         {
             _teamEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -456,6 +497,8 @@ namespace HoI2Editor
         public static void OnProvinceEditorFormClosed()
         {
             _provinceEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -464,6 +507,8 @@ namespace HoI2Editor
         public static void OnTechEditorFormClosed()
         {
             _techEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -472,6 +517,8 @@ namespace HoI2Editor
         public static void OnUnitEditorFormClosed()
         {
             _unitEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -480,6 +527,8 @@ namespace HoI2Editor
         public static void OnMiscEditorFormClosed()
         {
             _miscEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -488,6 +537,8 @@ namespace HoI2Editor
         public static void OnUnitNameEditorFormClosed()
         {
             _unitNameEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -496,6 +547,8 @@ namespace HoI2Editor
         public static void OnDivisionNameEditorFormClosed()
         {
             _divisionNameEditorForm = null;
+
+            OnEditorStatusUpdete();
         }
 
         /// <summary>
@@ -504,6 +557,32 @@ namespace HoI2Editor
         public static void OnRandomLeaderEditorFormClosed()
         {
             _randomLeaderEditorForm = null;
+
+            OnEditorStatusUpdete();
+        }
+
+        /// <summary>
+        /// エディターの状態更新時の処理
+        /// </summary>
+        private static void OnEditorStatusUpdete()
+        {
+            if (_leaderEditorForm == null &&
+                _ministerEditorForm == null &&
+                _teamEditorForm == null &&
+                _provinceEditorForm == null &&
+                _techEditorForm == null &&
+                _unitEditorForm == null &&
+                _miscEditorForm == null &&
+                _unitNameEditorForm == null &&
+                _divisionNameEditorForm == null &&
+                _randomLeaderEditorForm == null)
+            {
+                _mainForm.EnableFolderChange();
+            }
+            else
+            {
+                _mainForm.DisableFolderChange();
+            }
         }
 
         #endregion
