@@ -3544,7 +3544,7 @@ namespace HoI2Editor.Models
             int n;
             if (!Int32.TryParse(token[index], out n))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
+                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidId, _currentFileName, _currentLineNo));
                 Log.Write(String.Format("  {0}\n", token[index]));
                 return;
             }

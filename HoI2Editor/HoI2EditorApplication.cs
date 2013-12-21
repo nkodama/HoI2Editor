@@ -87,7 +87,7 @@ namespace HoI2Editor
             catch (Exception)
             {
                 const string appName = "Alternative HoI2 Editor";
-                MessageBox.Show(Resources.ErrorLogFileOpen, appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.LogFileOpenError, appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TermLogFile();
             }
         }

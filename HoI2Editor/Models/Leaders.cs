@@ -468,7 +468,7 @@ namespace HoI2Editor.Models
             int id;
             if (!int.TryParse(tokens[index], out id))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidID, _currentFileName, _currentLineNo));
+                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidId, _currentFileName, _currentLineNo));
                 Log.Write(string.Format("  {0}: {1}\n", tokens[index], leader.Name));
                 return null;
             }

@@ -1458,7 +1458,7 @@ namespace HoI2Editor.Forms
             // 再読み込み
             var button = new Button
             {
-                Text = Resources.Reload,
+                Text = Resources.KeyReload,
                 Location = new Point(731, 625),
                 Anchor = AnchorStyles.Right | AnchorStyles.Bottom
             };
@@ -1468,7 +1468,7 @@ namespace HoI2Editor.Forms
             // 保存
             button = new Button
             {
-                Text = Resources.Save,
+                Text = Resources.KeySave,
                 Location = new Point(812, 625),
                 Anchor = AnchorStyles.Right | AnchorStyles.Bottom
             };
@@ -1478,7 +1478,7 @@ namespace HoI2Editor.Forms
             // 閉じる
             button = new Button
             {
-                Text = Resources.Close,
+                Text = Resources.KeyClose,
                 Location = new Point(893, 625),
                 Anchor = AnchorStyles.Right | AnchorStyles.Bottom
             };

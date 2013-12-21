@@ -138,10 +138,10 @@
   <data name="Section" xml:space="preserve">
     <value>section</value>
   </data>
-  <data name="Hitler" xml:space="preserve">
+  <data name="MinisterHitler" xml:space="preserve">
     <value>Hitler</value>
   </data>
-  <data name="Stalin" xml:space="preserve">
+  <data name="MinisterStalin" xml:space="preserve">
     <value>Stalin</value>
   </data>
   <data name="OpenModFolderDialogDescription" xml:space="preserve">
@@ -189,7 +189,7 @@
   <data name="InvalidExperience" xml:space="preserve">
     <value>Invalid experience</value>
   </data>
-  <data name="InvalidID" xml:space="preserve">
+  <data name="InvalidId" xml:space="preserve">
     <value>Invalid ID</value>
   </data>
   <data name="InvalidIdealRank" xml:space="preserve">
@@ -294,20 +294,11 @@
   <data name="InvalidRetirementYear" xml:space="preserve">
     <value>Invalid retirement year</value>
   </data>
-  <data name="Event" xml:space="preserve">
-    <value>Event</value>
-  </data>
-  <data name="Label" xml:space="preserve">
-    <value>Label</value>
-  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
   </data>
   <data name="FileReadError" xml:space="preserve">
     <value>Reading file error</value>
@@ -498,7 +489,7 @@
   <data name="ConfirmSaveMessage" xml:space="preserve">
     <value>The items has been changed. Do you want to save the changes?</value>
   </data>
-  <data name="Close" xml:space="preserve">
+  <data name="KeyClose" xml:space="preserve">
     <value>Close</value>
   </data>
   <data name="MiscLabelAaAirBonusRadars" xml:space="preserve">
@@ -2895,10 +2886,10 @@
   <data name="MiscLabelWartimeStockpilesResources" xml:space="preserve">
     <value>Wartime Stockpiles for Resources</value>
   </data>
-  <data name="Reload" xml:space="preserve">
+  <data name="KeyReload" xml:space="preserve">
     <value>Reload</value>
   </data>
-  <data name="Save" xml:space="preserve">
+  <data name="KeySave" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="MiscEnumAaAirFiringRules0" xml:space="preserve">
@@ -3585,43 +3576,43 @@
   <data name="MinisterPersonalityGenericMinister" xml:space="preserve">
     <value>Generic minister</value>
   </data>
-  <data name="Bronsart" xml:space="preserve">
+  <data name="MinisterBronsart" xml:space="preserve">
     <value>Bronsart</value>
   </data>
-  <data name="Goltz" xml:space="preserve">
+  <data name="MinisterGoltz" xml:space="preserve">
     <value>Goltz</value>
   </data>
-  <data name="Meissner" xml:space="preserve">
+  <data name="MinisterMeissner" xml:space="preserve">
     <value>Meißner</value>
   </data>
-  <data name="Paschwitz" xml:space="preserve">
+  <data name="MinisterPaschwitz" xml:space="preserve">
     <value>Paschwitz</value>
   </data>
-  <data name="Peiper" xml:space="preserve">
+  <data name="MinisterPeiper" xml:space="preserve">
     <value>Peiper</value>
   </data>
-  <data name="Seeckt" xml:space="preserve">
+  <data name="MinisterSeeckt" xml:space="preserve">
     <value>Seeckt</value>
   </data>
-  <data name="Serno" xml:space="preserve">
+  <data name="MinisterSerno" xml:space="preserve">
     <value>Serno</value>
   </data>
-  <data name="Sievert" xml:space="preserve">
+  <data name="MinisterSievert" xml:space="preserve">
     <value>Sievert</value>
   </data>
-  <data name="Souchon" xml:space="preserve">
+  <data name="MinisterSouchon" xml:space="preserve">
     <value>Souchon</value>
   </data>
-  <data name="Thauvenay" xml:space="preserve">
+  <data name="MinisterThauvenay" xml:space="preserve">
     <value>Thauvenay</value>
   </data>
-  <data name="Usedom" xml:space="preserve">
+  <data name="MinisterUsedom" xml:space="preserve">
     <value>Usedom</value>
   </data>
-  <data name="Friedman" xml:space="preserve">
+  <data name="MinisterFriedman" xml:space="preserve">
     <value>Friedman</value>
   </data>
-  <data name="Sinclair" xml:space="preserve">
+  <data name="MinisterSinclair" xml:space="preserve">
     <value>Sinclair</value>
   </data>
   <data name="LanguageKorean" xml:space="preserve">
@@ -3630,7 +3621,7 @@
   <data name="LanguageChinese" xml:space="preserve">
     <value>中文</value>
   </data>
-  <data name="ErrorLogFileOpen" xml:space="preserve">
+  <data name="LogFileOpenError" xml:space="preserve">
     <value>Cannot open log file.</value>
   </data>
   <data name="WarningRemovedUnusedTempKey" xml:space="preserve">
