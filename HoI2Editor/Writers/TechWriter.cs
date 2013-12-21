@@ -107,7 +107,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    position  = {{ x = {0} y = {1} }}", position.X, position.Y);
             }
-            if (!string.IsNullOrEmpty(item.PictureName))
+            if (Game.Type == GameType.DarkestHour && !string.IsNullOrEmpty(item.PictureName))
             {
                 writer.WriteLine("    picture   = \"{0}\"", item.PictureName);
             }

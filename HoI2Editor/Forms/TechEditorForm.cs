@@ -151,6 +151,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
+            // 技術タブの編集項目を初期化する
+            InitTechItems();
+
             // 小研究タブの編集項目を初期化する
             InitComponentItems();
 
@@ -1670,6 +1673,18 @@ namespace HoI2Editor.Forms
         #region 技術タブ
 
         /// <summary>
+        ///     技術タブの項目を初期化する
+        /// </summary>
+        private void InitTechItems()
+        {
+            // 画像ファイル名
+            bool flag = (Game.Type == GameType.DarkestHour);
+            techPictureNameLabel.Enabled = flag;
+            techPictureNameTextBox.Enabled = flag;
+            techPictureNameBrowseButton.Enabled = flag;
+        }
+
+        /// <summary>
         ///     技術タブの項目を更新する
         /// </summary>
         /// <param name="item">技術アプリケーション</param>
@@ -2198,7 +2213,10 @@ namespace HoI2Editor.Forms
         private void UpdateTechPicture(TechItem item)
         {
             // 画像ファイル名テキストボックスの値を更新する
-            techPictureNameTextBox.Text = item.PictureName ?? "";
+            if (Game.Type == GameType.DarkestHour)
+            {
+                techPictureNameTextBox.Text = item.PictureName ?? "";
+            }
 
             // 編集項目の色を更新する
             techPictureNameTextBox.ForeColor = item.IsDirty(TechItemId.PictureName)
