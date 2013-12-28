@@ -702,15 +702,18 @@ namespace HoI2Editor.Models
 
             foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
             {
-                string fileName = Game.GetReadFileName(Game.TechPathName, FileNames[(int) category]);
+                string fileName = FileNames[(int) category];
+                string pathName = Game.GetReadFileName(Game.TechPathName, fileName);
                 try
                 {
                     // 技術定義ファイルを読み込む
-                    LoadFile(fileName);
+                    Debug.WriteLine(string.Format("[Tech] Load: {0}", fileName));
+                    LoadFile(pathName);
                 }
                 catch (Exception)
                 {
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, pathName));
+                    Debug.WriteLine(string.Format("[Tech] Read error: {0}", pathName));
                 }
             }
 
@@ -770,6 +773,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                        Debug.WriteLine(string.Format("[Tech] Write error: {0}", fileName));
                     }
                 }
 
