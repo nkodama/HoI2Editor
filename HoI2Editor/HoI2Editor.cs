@@ -218,7 +218,7 @@ namespace HoI2Editor
         #region エディターフォーム管理
 
         /// <summary>
-        /// メインフォーム
+        ///     メインフォーム
         /// </summary>
         private static MainForm _mainForm;
 
@@ -273,7 +273,7 @@ namespace HoI2Editor
         private static RandomLeaderEditorForm _randomLeaderEditorForm;
 
         /// <summary>
-        /// メインフォームを起動する
+        ///     メインフォームを起動する
         /// </summary>
         public static void LaunchMainForm()
         {
@@ -562,7 +562,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        /// エディターの状態更新時の処理
+        ///     エディターの状態更新時の処理
         /// </summary>
         private static void OnEditorStatusUpdete()
         {

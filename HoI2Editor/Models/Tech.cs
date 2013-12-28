@@ -96,6 +96,17 @@ namespace HoI2Editor.Models
 
             // 一時キーを削除する
             item.RemoveTempKey();
+
+            if (item is TechItem)
+            {
+                // 技術項目とIDの対応付けを更新する
+                var techItem = item as TechItem;
+                Techs.TechIds.Remove(techItem.Id);
+                Techs.TechIdMap.Remove(techItem.Id);
+            }
+
+            // 重複文字列リストの項目を削除する
+            Techs.RemoveDuplicatedListItem(item);
         }
 
         /// <summary>
@@ -467,6 +478,9 @@ namespace HoI2Editor.Models
         /// <param name="index">削除対象の項目の位置</param>
         public void RemoveComponent(int index)
         {
+            // 重複文字列リストから項目を削除する
+            Techs.DecrementDuplicatedListCount(Components[index].Name);
+
             Components.RemoveAt(index);
         }
 

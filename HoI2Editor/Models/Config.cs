@@ -988,13 +988,26 @@ namespace HoI2Editor.Models
             {
                 key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
                 _tempNo++;
-            } while (ExistsKey(key));
+            } while (TempKeyList.Contains(key) || ExistsKey(key));
 
             // 一時キーリストに登録する
             TempKeyList.Add(key);
             Debug.WriteLine(string.Format("[Config] New temp key: {0}", key));
 
             return key;
+        }
+
+        /// <summary>
+        ///     一時キーリストに登録する
+        /// </summary>
+        /// <param name="key">文字列の定義名</param>
+        public static void AddTempKey(string key)
+        {
+            if (!TempKeyList.Contains(key))
+            {
+                TempKeyList.Add(key);
+                Debug.WriteLine(string.Format("[Config] Added temp key: {0}", key));
+            }
         }
 
         /// <summary>

@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using HoI2Editor.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor

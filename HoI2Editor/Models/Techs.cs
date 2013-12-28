@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -52,6 +53,11 @@ namespace HoI2Editor.Models
         #region 内部フィールド
 
         /// <summary>
+        ///     重複文字列リスト
+        /// </summary>
+        private static readonly Dictionary<string, int> DuplicatedList = new Dictionary<string, int>();
+
+        /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
@@ -84,7 +90,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     技術カテゴリ名
         /// </summary>
-        public static readonly string[] CategoryNames =
+        private static readonly string[] CategoryNames =
         {
             "INFANTRY",
             "ARMOR",
@@ -711,6 +717,12 @@ namespace HoI2Editor.Models
             // 技術IDの対応付けを更新する
             UpdateTechIdMap();
 
+            // 重複文字列リストを更新する
+            UpdateDuplicatedList();
+
+            // リンクの切れた一時キーをリストに登録する
+            AddUnlinkedTempKey();
+
             // 編集済みフラグを解除する
             _dirtyFlag = false;
 
@@ -852,6 +864,159 @@ namespace HoI2Editor.Models
         #endregion
 
         #region 文字列操作
+
+        /// <summary>
+        ///     文字列の定義名が重複しているかを取得する
+        /// </summary>
+        /// <param name="name">対象の文字列定義名</param>
+        /// <returns>定義名が重複していればtrueを返す</returns>
+        public static bool IsDuplicatedName(string name)
+        {
+            return DuplicatedList.ContainsKey(name) && (DuplicatedList[name] > 1);
+        }
+
+        /// <summary>
+        ///     重複文字列リストを更新する
+        /// </summary>
+        private static void UpdateDuplicatedList()
+        {
+            DuplicatedList.Clear();
+            foreach (ITechItem item in Groups.SelectMany(grp => grp.Items))
+            {
+                AddDuplicatedListItem(item);
+            }
+        }
+
+        /// <summary>
+        ///     重複文字列リストに項目を追加する
+        /// </summary>
+        /// <param name="item">技術項目</param>
+        public static void AddDuplicatedListItem(ITechItem item)
+        {
+            if (item is TechItem)
+            {
+                var techItem = item as TechItem;
+                IncrementDuplicatedListCount(techItem.Name);
+                IncrementDuplicatedListCount(techItem.ShortName);
+                IncrementDuplicatedListCount(techItem.Desc);
+                foreach (TechComponent component in techItem.Components)
+                {
+                    IncrementDuplicatedListCount(component.Name);
+                }
+            }
+            else if (item is TechLabel)
+            {
+                var labelItem = item as TechLabel;
+                IncrementDuplicatedListCount(labelItem.Name);
+            }
+        }
+
+        /// <summary>
+        ///     重複文字列リストの項目を削除する
+        /// </summary>
+        /// <param name="item">技術項目</param>
+        public static void RemoveDuplicatedListItem(ITechItem item)
+        {
+            if (item is TechItem)
+            {
+                var techItem = item as TechItem;
+                DecrementDuplicatedListCount(techItem.Name);
+                DecrementDuplicatedListCount(techItem.ShortName);
+                DecrementDuplicatedListCount(techItem.Desc);
+                foreach (TechComponent component in techItem.Components)
+                {
+                    DecrementDuplicatedListCount(component.Name);
+                }
+            }
+            else if (item is TechLabel)
+            {
+                var labelItem = item as TechLabel;
+                DecrementDuplicatedListCount(labelItem.Name);
+            }
+        }
+
+        /// <summary>
+        ///     重複文字列リストのカウントをインクリメントする
+        /// </summary>
+        /// <param name="name">対象の文字列定義名</param>
+        public static void IncrementDuplicatedListCount(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return;
+            }
+            if (!DuplicatedList.ContainsKey(name))
+            {
+                DuplicatedList.Add(name, 1);
+            }
+            else
+            {
+                DuplicatedList[name]++;
+                Debug.WriteLine(string.Format("[Tech] Incremented duplicated list: {0} {1}", name, DuplicatedList[name]));
+            }
+        }
+
+        /// <summary>
+        ///     重複文字列リストのカウントをデクリメントする
+        /// </summary>
+        /// <param name="name">対象の文字列定義名</param>
+        public static void DecrementDuplicatedListCount(string name)
+        {
+            if (!string.IsNullOrEmpty(name) && DuplicatedList.ContainsKey(name))
+            {
+                DuplicatedList[name]--;
+                if (DuplicatedList[name] == 0)
+                {
+                    DuplicatedList.Remove(name);
+                }
+                else
+                {
+                    Debug.WriteLine(string.Format("[Tech] Decremented duplicated list: {0} {1}", name,
+                        DuplicatedList[name]));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     リンクの切れた一時キーをリストに登録する
+        /// </summary>
+        private static void AddUnlinkedTempKey()
+        {
+            foreach (ITechItem item in Groups.SelectMany(grp => grp.Items))
+            {
+                if (item is TechItem)
+                {
+                    var techItem = item as TechItem;
+                    if (Config.IsTempKey(techItem.Name))
+                    {
+                        Config.AddTempKey(techItem.Name);
+                    }
+                    if (Config.IsTempKey(techItem.ShortName))
+                    {
+                        Config.AddTempKey(techItem.ShortName);
+                    }
+                    if (Config.IsTempKey(techItem.Desc))
+                    {
+                        Config.AddTempKey(techItem.Desc);
+                    }
+                    foreach (TechComponent component in techItem.Components)
+                    {
+                        if (Config.IsTempKey(component.Name))
+                        {
+                            Config.AddTempKey(component.Name);
+                        }
+                    }
+                }
+                else if (item is TechLabel)
+                {
+                    var labelItem = item as TechLabel;
+                    if (Config.IsTempKey(labelItem.Name))
+                    {
+                        Config.AddTempKey(labelItem.Name);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         ///     研究特性名を取得する

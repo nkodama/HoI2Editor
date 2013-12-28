@@ -292,7 +292,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ゲームフォルダ名/MOD名の変更を許可する
+        ///     ゲームフォルダ名/MOD名の変更を許可する
         /// </summary>
         public void EnableFolderChange()
         {
@@ -303,7 +303,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// ゲームフォルダ名/MOD名の変更を禁止する
+        ///     ゲームフォルダ名/MOD名の変更を禁止する
         /// </summary>
         public void DisableFolderChange()
         {

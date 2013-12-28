@@ -579,6 +579,9 @@ namespace HoI2Editor.Forms
             Config.SetText(item.ShortName, "", Game.TechTextFileName);
             Config.SetText(item.Desc, "", Game.TechTextFileName);
 
+            // 重複文字列リストに登録する
+            Techs.AddDuplicatedListItem(item);
+
             // 編集済みフラグを設定する
             grp.SetDirty();
             item.SetDirtyAll();
@@ -646,6 +649,9 @@ namespace HoI2Editor.Forms
             // 項目を作成する
             var item = new TechLabel {Name = Config.GetTempKey()};
             Config.SetText(item.Name, "", Game.TechTextFileName);
+
+            // 重複文字列リストに登録する
+            Techs.AddDuplicatedListItem(item);
 
             // 編集済みフラグを設定する
             grp.SetDirty();
@@ -751,6 +757,9 @@ namespace HoI2Editor.Forms
             // 項目を複製する
             ITechItem item = selected.Clone();
 
+            // 重複文字列リストに登録する
+            Techs.AddDuplicatedListItem(item);
+
             // 技術項目リストに項目を挿入する
             grp.InsertItem(item, selected);
 
@@ -802,10 +811,6 @@ namespace HoI2Editor.Forms
 
             if (selected is TechItem)
             {
-                // 技術項目とIDの対応付けを更新する
-                var item = selected as TechItem;
-                Techs.TechIds.Remove(item.Id);
-                Techs.TechIdMap.Remove(item.Id);
                 // 必要技術コンボボックスの項目を更新する
                 UpdateRequiredTechListItems();
                 // 技術イベントの技術IDコンボボックスの項目を更新する
@@ -1827,6 +1832,14 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 重複文字列ならば定義名を再設定する
+            if (Techs.IsDuplicatedName(item.Name))
+            {
+                Techs.DecrementDuplicatedListCount(item.Name);
+                item.Name = Config.GetTempKey();
+                Techs.IncrementDuplicatedListCount(item.Name);
+            }
+
             // 値を更新する
             Config.SetText(item.Name, name, Game.TechTextFileName);
 
@@ -1880,6 +1893,14 @@ namespace HoI2Editor.Forms
             if (shortName.Equals(item.GetShortName()))
             {
                 return;
+            }
+
+            // 重複文字列ならば定義名を再設定する
+            if (Techs.IsDuplicatedName(item.ShortName))
+            {
+                Techs.DecrementDuplicatedListCount(item.ShortName);
+                item.ShortName = Config.GetTempKey();
+                Techs.IncrementDuplicatedListCount(item.ShortName);
             }
 
             // 値を更新する
@@ -3386,6 +3407,9 @@ namespace HoI2Editor.Forms
 
             TechComponent component = TechComponent.Create();
 
+            // 重複文字列リストに登録する
+            Techs.IncrementDuplicatedListCount(component.Name);
+
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
@@ -3440,6 +3464,9 @@ namespace HoI2Editor.Forms
             TechComponent selected = item.Components[index];
             TechComponent component = selected.Clone();
             component.Id = item.GetNewComponentId(selected.Id);
+
+            // 重複文字列リストに登録する
+            Techs.IncrementDuplicatedListCount(component.Name);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -3643,6 +3670,14 @@ namespace HoI2Editor.Forms
             if (name.Equals(component.ToString()))
             {
                 return;
+            }
+
+            // 重複文字列ならば定義名を再設定する
+            if (Techs.IsDuplicatedName(component.Name))
+            {
+                Techs.DecrementDuplicatedListCount(component.Name);
+                component.Name = Config.GetTempKey();
+                Techs.IncrementDuplicatedListCount(component.Name);
             }
 
             // 値を更新する
