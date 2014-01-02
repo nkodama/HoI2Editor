@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace HoI2Editor.Models
 {
@@ -94,15 +95,20 @@ namespace HoI2Editor.Models
         {
             Items.Remove(item);
 
-            // 一時キーを削除する
-            item.RemoveTempKey();
-
             if (item is TechItem)
             {
-                // 技術項目とIDの対応付けを更新する
                 var techItem = item as TechItem;
+                // 一時キーを削除する
+                techItem.RemoveTempKey();
+                // 技術項目とIDの対応付けを更新する
                 Techs.TechIds.Remove(techItem.Id);
                 Techs.TechIdMap.Remove(techItem.Id);
+            }
+            else if (item is TechLabel)
+            {
+                var labelItem = item as TechLabel;
+                // 一時キーを削除する
+                labelItem.RemoveTempKey();
             }
 
             // 重複文字列リストの項目を削除する
@@ -220,10 +226,16 @@ namespace HoI2Editor.Models
     /// </summary>
     public interface ITechItem
     {
+        #region 公開プロパティ
+
         /// <summary>
         ///     座標リスト
         /// </summary>
         List<TechPosition> Positions { get; }
+
+        #endregion
+
+        #region 初期化
 
         /// <summary>
         ///     技術項目を複製する
@@ -231,17 +243,9 @@ namespace HoI2Editor.Models
         /// <returns>複製した技術項目</returns>
         ITechItem Clone();
 
-        /// <summary>
-        ///     文字列の一時キーを保存形式に変更する
-        /// </summary>
-        /// <param name="name">キー文字列</param>
-        /// <returns>変更があればtrueを返す</returns>
-        bool RenameTempKey(string name);
+        #endregion
 
-        /// <summary>
-        ///     文字列の一時キーを削除する
-        /// </summary>
-        void RemoveTempKey();
+        #region 編集済みフラグ操作
 
         /// <summary>
         ///     技術項目データが編集済みかどうかを取得する
@@ -276,6 +280,8 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを全て解除する
         /// </summary>
         void ResetDirtyAll();
+
+        #endregion
     }
 
     /// <summary>
@@ -343,6 +349,21 @@ namespace HoI2Editor.Models
         #endregion
 
         #region 内部フィールド
+
+        /// <summary>
+        ///     技術名の正規表現
+        /// </summary>
+        private static readonly Regex RegexTechName = new Regex("TECH_APP_(\\w+)_(\\d+)_NAME");
+
+        /// <summary>
+        ///     技術説明の正規表現
+        /// </summary>
+        private static readonly Regex RegexTechDesc = new Regex("TECH_APP_(\\w+)_(\\d+)_DESC");
+
+        /// <summary>
+        ///     小研究名の正規表現
+        /// </summary>
+        private static readonly Regex RegexComponentName = new Regex("TECH_CMP_(\\w+)_(\\d+)_(\\d+)_NAME");
 
         /// <summary>
         ///     項目の編集済みフラグ
@@ -560,66 +581,190 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
-        ///     文字列の一時キーを保存形式に変更する
+        ///     文字列キー番号をリストに登録する
         /// </summary>
-        /// <param name="name">キー文字列</param>
-        /// <returns>変更があればtrueを返す</returns>
-        public bool RenameTempKey(string name)
+        /// <param name="list">登録先のリスト</param>
+        public void AddKeyNumbers(List<int> list)
         {
-            bool result = false;
+            int no;
+            // 技術名
+            Match match = RegexTechName.Match(Name);
+            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+            {
+                list.Add(no);
+            }
+            // 技術説明
+            match = RegexTechDesc.Match(Name);
+            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+            {
+                list.Add(no);
+            }
+            // 小研究名
+            foreach (TechComponent component in Components)
+            {
+                match = RegexComponentName.Match(component.Name);
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+                {
+                    list.Add(no);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     文字列キーを保存形式に変更する
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="list">キー番号リスト</param>
+        /// <returns>変更があればtrueを返す</returns>
+        public bool RenameKeys(string categoryName, List<int> list)
+        {
+            bool dirty = false;
+            int no = 0;
 
             // 技術名
-            if (Config.IsTempKey(Name))
+            if (Config.IsTempKey(Name) || IsOldStyleKey(Name, RegexTechName))
             {
-                string newKey = String.Format("TECH_APP_{0}_{1}_NAME", name, Id);
+                no = GetKeyNumber(list);
+                string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
+                Techs.DecrementDuplicatedListCount(Name);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
+                Techs.IncrementDuplicatedListCount(Name);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.Name);
-                result = true;
+                dirty = true;
             }
             // 技術短縮名
-            if (Config.IsTempKey(ShortName))
+            if (Config.IsTempKey(ShortName) || IsOldStyleKey(ShortName, RegexTechName))
             {
-                string newKey = String.Format("SHORT_TECH_APP_{0}_{1}_NAME", name, Id);
+                if (no == 0)
+                {
+                    no = GetKeyNumber(list);
+                }
+                string newKey = string.Format("SHORT_TECH_APP_{0}_{1}_NAME", categoryName, no);
+                Techs.DecrementDuplicatedListCount(ShortName);
                 Config.RenameText(ShortName, newKey, Game.TechTextFileName);
                 ShortName = newKey;
+                Techs.IncrementDuplicatedListCount(ShortName);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.ShortName);
-                result = true;
+                dirty = true;
             }
             // 技術説明
-            if (Config.IsTempKey(Desc))
+            if (Config.IsTempKey(Desc) || IsOldStyleKey(Desc, RegexTechDesc))
             {
-                string newKey = String.Format("TECH_APP_{0}_{1}_DESC", name, Id);
+                if (no == 0)
+                {
+                    no = GetKeyNumber(list);
+                }
+                string newKey = string.Format("TECH_APP_{0}_{1}_DESC", categoryName, no);
+                Techs.DecrementDuplicatedListCount(Desc);
                 Config.RenameText(Desc, newKey, Game.TechTextFileName);
                 Desc = newKey;
+                Techs.IncrementDuplicatedListCount(Desc);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.Desc);
-                result = true;
+                dirty = true;
             }
             // 小研究名
             int componentId = 1;
             foreach (TechComponent component in Components)
             {
-                if (Config.IsTempKey(component.Name))
+                if (Config.IsTempKey(component.Name) || IsOldStyleKey(component.Name, RegexComponentName))
                 {
-                    string newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", name, Id, componentId);
+                    if (no == 0)
+                    {
+                        no = GetKeyNumber(list);
+                    }
+                    string newKey;
+                    do
+                    {
+                        newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, componentId);
+                        componentId++;
+                    } while (Config.ExistsKey(newKey));
+                    Techs.DecrementDuplicatedListCount(component.Name);
                     Config.RenameText(component.Name, newKey, Game.TechTextFileName);
                     component.Name = newKey;
+                    Techs.IncrementDuplicatedListCount(component.Name);
 
                     // 編集済みフラグを設定する
                     component.SetDirty(TechComponentItemId.Name);
                     SetDirty();
-                    result = true;
+                    dirty = true;
                 }
                 componentId++;
             }
 
-            return result;
+            return dirty;
+        }
+
+        /// <summary>
+        ///     文字列キーが旧形式かどうかを判定する
+        /// </summary>
+        /// <param name="key">文字列キー</param>
+        /// <param name="regex">判定に使用する正規表現</param>
+        /// <returns>旧形式ならばtrueを返す</returns>
+        private static bool IsOldStyleKey(string key, Regex regex)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return false;
+            }
+            Match match = regex.Match(key);
+            if (!match.Success)
+            {
+                return false;
+            }
+            int n;
+            if (!int.TryParse(match.Groups[2].Value, out n))
+            {
+                return false;
+            }
+            // 数字の部分が1000以上ならば技術IDと関連付けられた旧形式だとみなす
+            return (n >= 1000);
+        }
+
+        /// <summary>
+        ///     文字列キーの番号を取得する
+        /// </summary>
+        /// <param name="list">番号リスト</param>
+        /// <returns>文字列キーの番号</returns>
+        private int GetKeyNumber(List<int> list)
+        {
+            int no;
+            // 技術名に使用されている番号を取得する
+            Match match = RegexTechName.Match(Name);
+            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && no < 1000)
+            {
+                return no;
+            }
+            // 技術説明に使用されている番号を取得する
+            match = RegexTechDesc.Match(Desc);
+            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && no < 1000)
+            {
+                return no;
+            }
+            // 小研究名に使用されている番号を取得する
+            foreach (TechComponent component in Components)
+            {
+                match = RegexComponentName.Match(component.Name);
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && no < 1000)
+                {
+                    return no;
+                }
+            }
+
+            // 空き番号を返す
+            no = 1;
+            while (list.Contains(no))
+            {
+                no++;
+            }
+            list.Add(no);
+            return no;
         }
 
         /// <summary>
@@ -810,6 +955,16 @@ namespace HoI2Editor.Models
         #region 内部フィールド
 
         /// <summary>
+        ///     新形式のカテゴリ名の正規表現
+        /// </summary>
+        private static readonly Regex RegexNewLabelName = new Regex("TECH_CAT_(\\w+)_(\\d+)");
+
+        /// <summary>
+        ///     旧形式のカテゴリ名の正規表現
+        /// </summary>
+        private static readonly Regex RegexOldLabelName = new Regex("TECH_CAT_(\\d+)");
+
+        /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
@@ -870,33 +1025,74 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
-        ///     文字列の一時キーを保存形式に変更する
+        ///     文字列キー番号をリストに登録する
         /// </summary>
-        /// <param name="name">キー名</param>
-        /// <returns>変更があればtrueを返す</returns>
-        public bool RenameTempKey(string name)
+        /// <param name="list">登録先のリスト</param>
+        public void AddKeyNumbers(List<int> list)
         {
-            bool result = false;
+            int no;
+            // ラベル名
+            Match match = RegexNewLabelName.Match(Name);
+            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+            {
+                list.Add(no);
+            }
+        }
+
+        /// <summary>
+        ///     文字列キーを保存形式に変更する
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="list">キー番号リスト</param>
+        /// <returns>変更があればtrueを返す</returns>
+        public bool RenameKeys(string categoryName, List<int> list)
+        {
+            bool dirty = false;
 
             // ラベル名
-            if (Config.IsTempKey(Name))
+            if (Config.IsTempKey(Name) || IsOldStyleKey(Name, RegexOldLabelName))
             {
-                string newKey;
-                int no = 1;
-                do
-                {
-                    newKey = string.Format("TECH_CAT_{0}_{1}", name, no);
-                    no++;
-                } while (Config.ExistsKey(newKey));
+                int no = GetKeyNumber(list);
+                string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
+                Techs.DecrementDuplicatedListCount(Name);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
                 Name = newKey;
+                Techs.IncrementDuplicatedListCount(Name);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.Name);
-                result = true;
+                dirty = true;
             }
 
-            return result;
+            return dirty;
+        }
+
+        /// <summary>
+        ///     文字列キーが旧形式かどうかを判定する
+        /// </summary>
+        /// <param name="key">文字列キー</param>
+        /// <param name="regex">判定に使用する正規表現</param>
+        /// <returns>旧形式ならばtrueを返す</returns>
+        private static bool IsOldStyleKey(string key, Regex regex)
+        {
+            return !string.IsNullOrEmpty(key) && regex.IsMatch(key);
+        }
+
+        /// <summary>
+        ///     文字列キーの番号を取得する
+        /// </summary>
+        /// <param name="list">番号リスト</param>
+        /// <returns>文字列キーの番号</returns>
+        private static int GetKeyNumber(List<int> list)
+        {
+            // 空き番号を返す
+            int n = 1;
+            while (list.Contains(n))
+            {
+                n++;
+            }
+            list.Add(n);
+            return n;
         }
 
         /// <summary>

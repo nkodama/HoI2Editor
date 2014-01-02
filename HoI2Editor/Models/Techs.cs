@@ -789,24 +789,34 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     文字列の一時キーを保存形式に変更する
+        ///     文字列キーを保存形式に変更する
         /// </summary>
-        public static void RenameTempKeys()
+        public static void RenameKeys()
         {
-            // 文字列の一時キーを保存形式に変更する
             foreach (TechGroup grp in Groups)
             {
-                bool dirty = false;
-                foreach (ITechItem item in grp.Items)
+                string categoryName = CategoryNames[(int) grp.Category];
+
+                // 技術
+                var list = new List<int>();
+                foreach (TechItem item in grp.Items.OfType<TechItem>())
                 {
-                    if (item.RenameTempKey(CategoryNames[(int) grp.Category]))
-                    {
-                        dirty = true;
-                    }
+                    item.AddKeyNumbers(list);
                 }
-                if (dirty)
+                foreach (TechItem item in grp.Items.OfType<TechItem>())
                 {
-                    grp.SetDirty();
+                    item.RenameKeys(categoryName, list);
+                }
+
+                // ラベル
+                list = new List<int>();
+                foreach (TechLabel item in grp.Items.OfType<TechLabel>())
+                {
+                    item.AddKeyNumbers(list);
+                }
+                foreach (TechLabel item in grp.Items.OfType<TechLabel>())
+                {
+                    item.RenameKeys(categoryName, list);
                 }
             }
         }
