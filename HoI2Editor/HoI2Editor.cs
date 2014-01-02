@@ -100,7 +100,7 @@ namespace HoI2Editor
         public static void SaveFiles()
         {
             // 文字列の一時キーを保存形式に変更する
-            Techs.RenameTempKeys();
+            Techs.RenameKeys();
 
             // 編集したデータを保存する
             Misc.Save();
