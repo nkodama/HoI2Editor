@@ -974,7 +974,7 @@ namespace HoI2Editor.Models
         /// <returns>一時キーかどうか</returns>
         public static bool IsTempKey(string key)
         {
-            return RegexTempKey.IsMatch(key);
+            return !string.IsNullOrEmpty(key) && RegexTempKey.IsMatch(key);
         }
 
         /// <summary>
