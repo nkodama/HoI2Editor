@@ -624,7 +624,7 @@ namespace HoI2Editor.Models
             // 技術名
             if (Config.IsTempKey(Name) || IsOldStyleKey(Name, RegexTechName))
             {
-                no = GetKeyNumber(list);
+                no = GetKeyNumber(list, categoryName);
                 string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
                 Techs.DecrementDuplicatedListCount(Name);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
@@ -640,7 +640,7 @@ namespace HoI2Editor.Models
             {
                 if (no == 0)
                 {
-                    no = GetKeyNumber(list);
+                    no = GetKeyNumber(list, categoryName);
                 }
                 string newKey = string.Format("SHORT_TECH_APP_{0}_{1}_NAME", categoryName, no);
                 Techs.DecrementDuplicatedListCount(ShortName);
@@ -657,7 +657,7 @@ namespace HoI2Editor.Models
             {
                 if (no == 0)
                 {
-                    no = GetKeyNumber(list);
+                    no = GetKeyNumber(list, categoryName);
                 }
                 string newKey = string.Format("TECH_APP_{0}_{1}_DESC", categoryName, no);
                 Techs.DecrementDuplicatedListCount(Desc);
@@ -677,7 +677,7 @@ namespace HoI2Editor.Models
                 {
                     if (no == 0)
                     {
-                        no = GetKeyNumber(list);
+                        no = GetKeyNumber(list, categoryName);
                     }
                     string newKey;
                     do
@@ -695,7 +695,6 @@ namespace HoI2Editor.Models
                     SetDirty();
                     dirty = true;
                 }
-                componentId++;
             }
 
             return dirty;
@@ -731,8 +730,9 @@ namespace HoI2Editor.Models
         ///     文字列キーの番号を取得する
         /// </summary>
         /// <param name="list">番号リスト</param>
+        /// <param name="categoryName">カテゴリ名</param>
         /// <returns>文字列キーの番号</returns>
-        private int GetKeyNumber(List<int> list)
+        private int GetKeyNumber(List<int> list, string categoryName)
         {
             int no;
             // 技術名に使用されている番号を取得する
@@ -759,12 +759,50 @@ namespace HoI2Editor.Models
 
             // 空き番号を返す
             no = 1;
-            while (list.Contains(no))
+            while (list.Contains(no) || ExistsUnlinkedKey(categoryName, no))
             {
                 no++;
             }
             list.Add(no);
             return no;
+        }
+
+        /// <summary>
+        /// 未使用の技術名定義が存在するかを調べる
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="no">技術番号</param>
+        /// <returns>定義が存在すればtrueを返す</returns>
+        private bool ExistsUnlinkedKey(string categoryName, int no)
+        {
+            // 技術名
+            string name = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
+            if (Config.ExistsKey(name))
+            {
+                return true;
+            }
+            // 技術短縮名
+            name = string.Format("SHORT_TECH_APP_{0}_{1}_Name", categoryName, no);
+            if (Config.ExistsKey(name))
+            {
+                return true;
+            }
+            // 技術名
+            name = string.Format("TECH_APP_{0}_{1}_DESC", categoryName, no);
+            if (Config.ExistsKey(name))
+            {
+                return true;
+            }
+            // 小研究名
+            for (int i = 1; i <= Components.Count; i++)
+            {
+                name = string.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, i);
+                if (Config.ExistsKey(name))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -1052,7 +1090,7 @@ namespace HoI2Editor.Models
             // ラベル名
             if (Config.IsTempKey(Name) || IsOldStyleKey(Name, RegexOldLabelName))
             {
-                int no = GetKeyNumber(list);
+                int no = GetKeyNumber(list, categoryName);
                 string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
                 Techs.DecrementDuplicatedListCount(Name);
                 Config.RenameText(Name, newKey, Game.TechTextFileName);
@@ -1082,17 +1120,34 @@ namespace HoI2Editor.Models
         ///     文字列キーの番号を取得する
         /// </summary>
         /// <param name="list">番号リスト</param>
+        /// <param name="categoryName">カテゴリ名</param>
         /// <returns>文字列キーの番号</returns>
-        private static int GetKeyNumber(List<int> list)
+        private static int GetKeyNumber(List<int> list, string categoryName)
         {
             // 空き番号を返す
-            int n = 1;
-            while (list.Contains(n))
+            int no = 1;
+            while (list.Contains(no) || ExistsUnlinkedKey(categoryName, no))
             {
-                n++;
+                no++;
             }
-            list.Add(n);
-            return n;
+            list.Add(no);
+            return no;
+        }
+
+        /// <summary>
+        /// 未使用のラベル定義が存在するかを調べる
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="no">ラベル番号</param>
+        /// <returns>定義が存在すればtrueを返す</returns>
+        private static bool ExistsUnlinkedKey(string categoryName, int no)
+        {
+            string name = string.Format("TECH_CAT_{0}_{1}", categoryName, no);
+            if (Config.ExistsKey(name))
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
