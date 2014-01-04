@@ -222,7 +222,7 @@
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.optionGroupBox);
             this.Controls.Add(this.modFolderReferButton);
             this.Controls.Add(this.exitButton);

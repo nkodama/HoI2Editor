@@ -1536,7 +1536,7 @@
             // UnitEditorForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.countryListView);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);

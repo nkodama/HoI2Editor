@@ -1261,7 +1261,7 @@
             // TechEditorForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.treePanel);
             this.Controls.Add(this.editTabControl);
             this.Controls.Add(this.removeButton);

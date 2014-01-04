@@ -585,54 +585,6 @@
   <data name="replaceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;withLabel.Name" xml:space="preserve">
-    <value>withLabel</value>
-  </data>
-  <data name="&gt;&gt;withLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;withLabel.Parent" xml:space="preserve">
-    <value>replaceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;withLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toLabel.Name" xml:space="preserve">
-    <value>toLabel</value>
-  </data>
-  <data name="&gt;&gt;toLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toLabel.Parent" xml:space="preserve">
-    <value>replaceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;toLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="replaceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 12</value>
-  </data>
-  <data name="replaceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 101</value>
-  </data>
-  <data name="replaceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="replaceGroupBox.Text" xml:space="preserve">
-    <value>Replace</value>
-  </data>
-  <data name="&gt;&gt;replaceGroupBox.Name" xml:space="preserve">
-    <value>replaceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;replaceGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;replaceGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;replaceGroupBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="withLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -687,68 +639,32 @@
   <data name="&gt;&gt;toLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="sequentialGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="replaceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>402, 12</value>
   </data>
-  <data name="&gt;&gt;suffixLabel.Name" xml:space="preserve">
-    <value>suffixLabel</value>
+  <data name="replaceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 101</value>
   </data>
-  <data name="&gt;&gt;suffixLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="replaceGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;suffixLabel.Parent" xml:space="preserve">
-    <value>sequentialGroupBox</value>
+  <data name="replaceGroupBox.Text" xml:space="preserve">
+    <value>Replace</value>
   </data>
-  <data name="&gt;&gt;suffixLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;replaceGroupBox.Name" xml:space="preserve">
+    <value>replaceGroupBox</value>
   </data>
-  <data name="&gt;&gt;suffixComboBox.Name" xml:space="preserve">
-    <value>suffixComboBox</value>
-  </data>
-  <data name="&gt;&gt;suffixComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;suffixComboBox.Parent" xml:space="preserve">
-    <value>sequentialGroupBox</value>
-  </data>
-  <data name="&gt;&gt;suffixComboBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;prefixLabel.Name" xml:space="preserve">
-    <value>prefixLabel</value>
-  </data>
-  <data name="&gt;&gt;prefixLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;prefixLabel.Parent" xml:space="preserve">
-    <value>sequentialGroupBox</value>
-  </data>
-  <data name="&gt;&gt;prefixLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="sequentialGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 119</value>
-  </data>
-  <data name="sequentialGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 128</value>
-  </data>
-  <data name="sequentialGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="sequentialGroupBox.Text" xml:space="preserve">
-    <value>Sequential Number</value>
-  </data>
-  <data name="&gt;&gt;sequentialGroupBox.Name" xml:space="preserve">
-    <value>sequentialGroupBox</value>
-  </data>
-  <data name="&gt;&gt;sequentialGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;replaceGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;sequentialGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;replaceGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;sequentialGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;replaceGroupBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="sequentialGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="suffixLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -827,6 +743,30 @@
   </data>
   <data name="&gt;&gt;prefixLabel.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="sequentialGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>402, 119</value>
+  </data>
+  <data name="sequentialGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 128</value>
+  </data>
+  <data name="sequentialGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="sequentialGroupBox.Text" xml:space="preserve">
+    <value>Sequential Number</value>
+  </data>
+  <data name="&gt;&gt;sequentialGroupBox.Name" xml:space="preserve">
+    <value>sequentialGroupBox</value>
+  </data>
+  <data name="&gt;&gt;sequentialGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sequentialGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;sequentialGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="cutButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -952,7 +892,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+    <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>624, 442</value>

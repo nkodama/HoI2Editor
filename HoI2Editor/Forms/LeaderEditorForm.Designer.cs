@@ -1192,7 +1192,7 @@
             // LeaderEditorForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.retirementYearNumericUpDown);
             this.Controls.Add(this.traitsGroupBox);
             this.Controls.Add(this.traitsNarrowGroupBox);
