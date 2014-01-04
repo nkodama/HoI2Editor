@@ -784,7 +784,7 @@ namespace HoI2Editor.Models
                 // 文字列定義ファイルテーブルに登録する
                 TextFileTable[key] = fileName;
 
-                Debug.WriteLine(string.Format("[Config] Added {0}: {1} ({2})", key, text, fileName));
+                Debug.WriteLine(string.Format("[Config] Added {0} ({1})", key, fileName));
             }
             else if (TextFileTable.ContainsKey(key))
             {

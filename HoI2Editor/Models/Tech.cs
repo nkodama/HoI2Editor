@@ -626,10 +626,18 @@ namespace HoI2Editor.Models
             {
                 no = GetKeyNumber(list, categoryName);
                 string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
-                Techs.DecrementDuplicatedListCount(Name);
-                Config.RenameText(Name, newKey, Game.TechTextFileName);
+                string oldKey = Name;
+                if (!Techs.IsDuplicatedName(oldKey))
+                {
+                    Config.RenameText(oldKey, newKey, Game.TechTextFileName);
+                }
+                else
+                {
+                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                }
                 Name = newKey;
-                Techs.IncrementDuplicatedListCount(Name);
+                Techs.DecrementDuplicatedListCount(oldKey);
+                Techs.IncrementDuplicatedListCount(newKey);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.Name);
@@ -643,10 +651,18 @@ namespace HoI2Editor.Models
                     no = GetKeyNumber(list, categoryName);
                 }
                 string newKey = string.Format("SHORT_TECH_APP_{0}_{1}_NAME", categoryName, no);
-                Techs.DecrementDuplicatedListCount(ShortName);
-                Config.RenameText(ShortName, newKey, Game.TechTextFileName);
+                string oldKey = ShortName;
+                if (!Techs.IsDuplicatedName(oldKey))
+                {
+                    Config.RenameText(oldKey, newKey, Game.TechTextFileName);
+                }
+                else
+                {
+                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                }
                 ShortName = newKey;
-                Techs.IncrementDuplicatedListCount(ShortName);
+                Techs.DecrementDuplicatedListCount(oldKey);
+                Techs.IncrementDuplicatedListCount(newKey);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.ShortName);
@@ -660,10 +676,18 @@ namespace HoI2Editor.Models
                     no = GetKeyNumber(list, categoryName);
                 }
                 string newKey = string.Format("TECH_APP_{0}_{1}_DESC", categoryName, no);
-                Techs.DecrementDuplicatedListCount(Desc);
-                Config.RenameText(Desc, newKey, Game.TechTextFileName);
+                string oldKey = Desc;
+                if (!Techs.IsDuplicatedName(oldKey))
+                {
+                    Config.RenameText(oldKey, newKey, Game.TechTextFileName);
+                }
+                else
+                {
+                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                }
                 Desc = newKey;
-                Techs.IncrementDuplicatedListCount(Desc);
+                Techs.DecrementDuplicatedListCount(oldKey);
+                Techs.IncrementDuplicatedListCount(newKey);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.Desc);
@@ -685,10 +709,18 @@ namespace HoI2Editor.Models
                         newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, componentId);
                         componentId++;
                     } while (Config.ExistsKey(newKey));
-                    Techs.DecrementDuplicatedListCount(component.Name);
-                    Config.RenameText(component.Name, newKey, Game.TechTextFileName);
+                    string oldKey = component.Name;
+                    if (!Techs.IsDuplicatedName(oldKey))
+                    {
+                        Config.RenameText(oldKey, newKey, Game.TechTextFileName);
+                    }
+                    else
+                    {
+                        Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                    }
                     component.Name = newKey;
-                    Techs.IncrementDuplicatedListCount(component.Name);
+                    Techs.DecrementDuplicatedListCount(oldKey);
+                    Techs.IncrementDuplicatedListCount(newKey);
 
                     // 編集済みフラグを設定する
                     component.SetDirty(TechComponentItemId.Name);
@@ -768,7 +800,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 未使用の技術名定義が存在するかを調べる
+        ///     未使用の技術名定義が存在するかを調べる
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="no">技術番号</param>
@@ -1092,10 +1124,18 @@ namespace HoI2Editor.Models
             {
                 int no = GetKeyNumber(list, categoryName);
                 string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
-                Techs.DecrementDuplicatedListCount(Name);
-                Config.RenameText(Name, newKey, Game.TechTextFileName);
+                string oldKey = Name;
+                if (!Techs.IsDuplicatedName(oldKey))
+                {
+                    Config.RenameText(oldKey, newKey, Game.TechTextFileName);
+                }
+                else
+                {
+                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                }
                 Name = newKey;
-                Techs.IncrementDuplicatedListCount(Name);
+                Techs.DecrementDuplicatedListCount(oldKey);
+                Techs.IncrementDuplicatedListCount(newKey);
 
                 // 編集済みフラグを設定する
                 SetDirty(TechItemId.Name);
@@ -1135,7 +1175,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 未使用のラベル定義が存在するかを調べる
+        ///     未使用のラベル定義が存在するかを調べる
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="no">ラベル番号</param>
