@@ -758,8 +758,8 @@ namespace HoI2Editor.Models
             {
                 return false;
             }
-            // 数字の部分が1000以上ならば技術IDと関連付けられた旧形式だとみなす
-            return (n >= 1000);
+            // 数字の部分が1000以上かつ10の倍数ならば技術IDと関連付けられた旧形式だとみなす
+            return ((n >= 1000) && (n%10 == 0));
         }
 
         /// <summary>
@@ -773,13 +773,13 @@ namespace HoI2Editor.Models
             int no;
             // 技術名に使用されている番号を取得する
             Match match = RegexTechName.Match(Name);
-            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && no < 1000)
+            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
             {
                 return no;
             }
             // 技術説明に使用されている番号を取得する
             match = RegexTechDesc.Match(Desc);
-            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && no < 1000)
+            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
             {
                 return no;
             }
@@ -787,7 +787,7 @@ namespace HoI2Editor.Models
             foreach (TechComponent component in Components)
             {
                 match = RegexComponentName.Match(component.Name);
-                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && no < 1000)
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
                 {
                     return no;
                 }
