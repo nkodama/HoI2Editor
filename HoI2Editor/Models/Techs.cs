@@ -796,6 +796,7 @@ namespace HoI2Editor.Models
             foreach (TechGroup grp in Groups)
             {
                 string categoryName = CategoryNames[(int) grp.Category];
+                bool dirty = false;
 
                 // 技術
                 var list = new List<int>();
@@ -805,7 +806,10 @@ namespace HoI2Editor.Models
                 }
                 foreach (TechItem item in grp.Items.OfType<TechItem>())
                 {
-                    item.RenameKeys(categoryName, list);
+                    if (item.RenameKeys(categoryName, list))
+                    {
+                        dirty = true;
+                    }
                 }
 
                 // ラベル
@@ -816,7 +820,16 @@ namespace HoI2Editor.Models
                 }
                 foreach (TechLabel item in grp.Items.OfType<TechLabel>())
                 {
-                    item.RenameKeys(categoryName, list);
+                    if (item.RenameKeys(categoryName, list))
+                    {
+                        dirty = true;
+                    }
+                }
+
+                // 編集済みフラグを更新する
+                if (dirty)
+                {
+                    grp.SetDirty();
                 }
             }
         }

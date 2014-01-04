@@ -1334,17 +1334,6 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
-        ///     文字列の一時キーをIDに沿った値に変更する
-        /// </summary>
-        /// <param name="name">キー名</param>
-        /// <returns>変更があればtrueを返す</returns>
-        public bool RenameTempKey(string name)
-        {
-            // 何もしない
-            return false;
-        }
-
-        /// <summary>
         ///     文字列の一時キーを削除する
         /// </summary>
         public void RemoveTempKey()
