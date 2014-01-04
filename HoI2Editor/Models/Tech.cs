@@ -633,7 +633,8 @@ namespace HoI2Editor.Models
                 }
                 else
                 {
-                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                    string s = Config.GetText(oldKey);
+                    Config.SetText(newKey, !s.Equals(oldKey) ? s : "" , Game.TechTextFileName);
                 }
                 Name = newKey;
                 Techs.DecrementDuplicatedListCount(oldKey);
@@ -658,7 +659,8 @@ namespace HoI2Editor.Models
                 }
                 else
                 {
-                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                    string s = Config.GetText(oldKey);
+                    Config.SetText(newKey, !s.Equals(oldKey) ? s : "", Game.TechTextFileName);
                 }
                 ShortName = newKey;
                 Techs.DecrementDuplicatedListCount(oldKey);
@@ -683,7 +685,8 @@ namespace HoI2Editor.Models
                 }
                 else
                 {
-                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                    string s = Config.GetText(oldKey);
+                    Config.SetText(newKey, !s.Equals(oldKey) ? s : "", Game.TechTextFileName);
                 }
                 Desc = newKey;
                 Techs.DecrementDuplicatedListCount(oldKey);
@@ -716,7 +719,8 @@ namespace HoI2Editor.Models
                     }
                     else
                     {
-                        Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                        string s = Config.GetText(oldKey);
+                        Config.SetText(newKey, !s.Equals(oldKey) ? s : "", Game.TechTextFileName);
                     }
                     component.Name = newKey;
                     Techs.DecrementDuplicatedListCount(oldKey);
@@ -1123,7 +1127,7 @@ namespace HoI2Editor.Models
             if (Config.IsTempKey(Name) || IsOldStyleKey(Name, RegexOldLabelName))
             {
                 int no = GetKeyNumber(list, categoryName);
-                string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
+                string newKey = string.Format("TECH_CAT_{0}_{1}", categoryName, no);
                 string oldKey = Name;
                 if (!Techs.IsDuplicatedName(oldKey))
                 {
@@ -1131,7 +1135,8 @@ namespace HoI2Editor.Models
                 }
                 else
                 {
-                    Config.SetText(newKey, Config.GetText(oldKey), Game.TechTextFileName);
+                    string s = Config.GetText(oldKey);
+                    Config.SetText(newKey, !s.Equals(oldKey) ? s : "", Game.TechTextFileName);
                 }
                 Name = newKey;
                 Techs.DecrementDuplicatedListCount(oldKey);

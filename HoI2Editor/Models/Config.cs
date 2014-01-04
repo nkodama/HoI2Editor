@@ -866,16 +866,6 @@ namespace HoI2Editor.Models
                     }
                     ReservedListTable[fileName].Remove(oldKey);
                 }
-                else
-                {
-                    if (!ReservedListTable[fileName].Contains(newKey))
-                    {
-                        ReservedListTable[fileName].Add(newKey);
-                    }
-                    Debug.WriteLine(
-                        string.Format("[Config] Rename source does not exist in reserved list: {0} - {1} ({2})",
-                            oldKey, newKey, fileName));
-                }
             }
 
             // 文字列定義順リストを書き換える
