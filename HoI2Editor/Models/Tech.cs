@@ -634,7 +634,7 @@ namespace HoI2Editor.Models
                 else
                 {
                     string s = Config.GetText(oldKey);
-                    Config.SetText(newKey, !s.Equals(oldKey) ? s : "" , Game.TechTextFileName);
+                    Config.SetText(newKey, !s.Equals(oldKey) ? s : "", Game.TechTextFileName);
                 }
                 Name = newKey;
                 Techs.DecrementDuplicatedListCount(oldKey);
@@ -706,12 +706,12 @@ namespace HoI2Editor.Models
                     {
                         no = GetKeyNumber(list, categoryName);
                     }
-                    string newKey;
-                    do
+                    string newKey = string.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, componentId);
+                    while (Config.ExistsKey(newKey))
                     {
-                        newKey = String.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, componentId);
                         componentId++;
-                    } while (Config.ExistsKey(newKey));
+                        newKey = string.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, componentId);
+                    }
                     string oldKey = component.Name;
                     if (!Techs.IsDuplicatedName(oldKey))
                     {
@@ -731,6 +731,7 @@ namespace HoI2Editor.Models
                     SetDirty();
                     dirty = true;
                 }
+                componentId++;
             }
 
             return dirty;
