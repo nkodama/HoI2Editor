@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Alternative HoI2 Editor")]
-[assembly: AssemblyCopyright("Copyright © 2012-2013 dak")]
+[assembly: AssemblyCopyright("Copyright © 2012-2014 dak")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("0.2.6.0")]
+[assembly: AssemblyFileVersion("0.2.7.0")]
