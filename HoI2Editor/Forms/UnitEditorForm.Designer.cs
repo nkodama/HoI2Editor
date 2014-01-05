@@ -39,9 +39,9 @@
             this.modelListView = new System.Windows.Forms.ListView();
             this.noColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.costColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buildCostColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buildTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.manPowerSkillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.manpowerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.supplyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.fuelColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.organisationColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -289,9 +289,9 @@
             this.modelListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.noColumnHeader,
             this.nameColumnHeader,
-            this.costColumnHeader,
+            this.buildCostColumnHeader,
             this.buildTimeColumnHeader,
-            this.manPowerSkillColumnHeader,
+            this.manpowerColumnHeader,
             this.supplyColumnHeader,
             this.fuelColumnHeader,
             this.organisationColumnHeader,
@@ -314,17 +314,17 @@
             // 
             resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
             // 
-            // costColumnHeader
+            // buildCostColumnHeader
             // 
-            resources.ApplyResources(this.costColumnHeader, "costColumnHeader");
+            resources.ApplyResources(this.buildCostColumnHeader, "buildCostColumnHeader");
             // 
             // buildTimeColumnHeader
             // 
             resources.ApplyResources(this.buildTimeColumnHeader, "buildTimeColumnHeader");
             // 
-            // manPowerSkillColumnHeader
+            // manpowerColumnHeader
             // 
-            resources.ApplyResources(this.manPowerSkillColumnHeader, "manPowerSkillColumnHeader");
+            resources.ApplyResources(this.manpowerColumnHeader, "manpowerColumnHeader");
             // 
             // supplyColumnHeader
             // 
@@ -1594,9 +1594,9 @@
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.ListView modelListView;
         private System.Windows.Forms.ColumnHeader nameColumnHeader;
-        private System.Windows.Forms.ColumnHeader costColumnHeader;
+        private System.Windows.Forms.ColumnHeader buildCostColumnHeader;
         private System.Windows.Forms.ColumnHeader buildTimeColumnHeader;
-        private System.Windows.Forms.ColumnHeader manPowerSkillColumnHeader;
+        private System.Windows.Forms.ColumnHeader manpowerColumnHeader;
         private System.Windows.Forms.ColumnHeader supplyColumnHeader;
         private System.Windows.Forms.ColumnHeader fuelColumnHeader;
         private System.Windows.Forms.ColumnHeader noColumnHeader;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -22,6 +23,49 @@ namespace HoI2Editor.Forms
         public UnitEditorForm()
         {
             InitializeComponent();
+
+            // 自動スケーリングを考慮した初期化
+            InitScaling();
+        }
+
+        /// <summary>
+        ///     自動スケーリングを考慮した初期化
+        /// </summary>
+        private void InitScaling()
+        {
+            // ユニットモデルリストビュー
+            noColumnHeader.Width = DeviceCaps.GetScaledWidth(noColumnHeader.Width);
+            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
+            buildCostColumnHeader.Width = DeviceCaps.GetScaledWidth(buildCostColumnHeader.Width);
+            buildTimeColumnHeader.Width = DeviceCaps.GetScaledWidth(buildTimeColumnHeader.Width);
+            manpowerColumnHeader.Width = DeviceCaps.GetScaledWidth(manpowerColumnHeader.Width);
+            supplyColumnHeader.Width = DeviceCaps.GetScaledWidth(supplyColumnHeader.Width);
+            fuelColumnHeader.Width = DeviceCaps.GetScaledWidth(fuelColumnHeader.Width);
+            organisationColumnHeader.Width = DeviceCaps.GetScaledWidth(organisationColumnHeader.Width);
+            moraleColumnHeader.Width = DeviceCaps.GetScaledWidth(moraleColumnHeader.Width);
+            maxSpeedColumnHeader.Width = DeviceCaps.GetScaledWidth(maxSpeedColumnHeader.Width);
+
+            // ユニットクラスリストボックス
+            classListBox.ItemHeight = DeviceCaps.GetScaledHeight(classListBox.ItemHeight);
+
+            // 国家リストボックス
+            countryDummyColumnHeader.Width = DeviceCaps.GetScaledWidth(countryDummyColumnHeader.Width);
+
+            // 改良リストビュー
+            upgradeTypeColumnHeader.Width = DeviceCaps.GetScaledWidth(upgradeTypeColumnHeader.Width);
+            upgradeCostColumnHeader.Width = DeviceCaps.GetScaledWidth(upgradeCostColumnHeader.Width);
+            upgradeTimeColumnHeader.Width = DeviceCaps.GetScaledWidth(upgradeTimeColumnHeader.Width);
+
+            // 装備リストビュー
+            resourceColumnHeader.Width = DeviceCaps.GetScaledWidth(resourceColumnHeader.Width);
+            quantityColumnHeader.Width = DeviceCaps.GetScaledWidth(quantityColumnHeader.Width);
+
+            // 画面解像度が十分に広い場合は指揮官リストビューが広く表示できるようにする
+            int longHeight = DeviceCaps.GetScaledHeight(720);
+            if (Screen.GetWorkingArea(this).Height >= longHeight)
+            {
+                Height = longHeight;
+            }
         }
 
         /// <summary>
@@ -77,7 +121,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.Items[(int) type].Name);
                 allowedBrigadesListView.Items.Add(s);
                 // +16はチェックボックスの分
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, allowedBrigadesListView.Font).Width + 16);
+                maxWidth = Math.Max(maxWidth,
+                    TextRenderer.MeasureText(s, allowedBrigadesListView.Font).Width + DeviceCaps.GetScaledWidth(16));
             }
             allowedBrigadesDummyColumnHeader.Width = maxWidth;
 

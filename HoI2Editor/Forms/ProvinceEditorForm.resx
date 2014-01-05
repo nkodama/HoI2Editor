@@ -232,7 +232,7 @@
     <value>12, 12</value>
   </data>
   <data name="provinceListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>760, 188</value>
+    <value>760, 140</value>
   </data>
   <data name="provinceListView.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -253,7 +253,7 @@
     <value>Bottom, Left, Right</value>
   </data>
   <data name="worldTreeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 305</value>
+    <value>12, 261</value>
   </data>
   <data name="worldTreeView.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 328</value>
@@ -616,7 +616,7 @@
     <value>13</value>
   </data>
   <data name="basicGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 206</value>
+    <value>291, 165</value>
   </data>
   <data name="basicGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>266, 212</value>
@@ -1510,7 +1510,7 @@
     <value>34</value>
   </data>
   <data name="positionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 427</value>
+    <value>291, 383</value>
   </data>
   <data name="positionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>436, 206</value>
@@ -1540,7 +1540,7 @@
     <value>NoControl</value>
   </data>
   <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>697, 646</value>
+    <value>697, 597</value>
   </data>
   <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1570,7 +1570,7 @@
     <value>NoControl</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 646</value>
+    <value>616, 597</value>
   </data>
   <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1600,7 +1600,7 @@
     <value>NoControl</value>
   </data>
   <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>535, 646</value>
+    <value>535, 597</value>
   </data>
   <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1984,7 +1984,7 @@
     <value>13</value>
   </data>
   <data name="resourceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>563, 206</value>
+    <value>563, 165</value>
   </data>
   <data name="resourceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 212</value>
@@ -2011,10 +2011,13 @@
     <value>Bottom, Left</value>
   </data>
   <data name="provincePictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 213</value>
+    <value>12, 169</value>
   </data>
   <data name="provincePictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 74</value>
+  </data>
+  <data name="provincePictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
   <data name="provincePictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
@@ -2038,7 +2041,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 681</value>
+    <value>784, 632</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Province Editor</value>

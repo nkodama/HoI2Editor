@@ -837,6 +837,9 @@
   <data name="techPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>344, 266</value>
   </data>
+  <data name="techPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
   <data name="techPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
@@ -1164,7 +1167,7 @@
   <data name="orRequiredListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="orIdcolumnHeader.Text" xml:space="preserve">
+  <data name="orIdColumnHeader.Text" xml:space="preserve">
     <value>ID</value>
   </data>
   <data name="orNameColumnHeader.Text" xml:space="preserve">
@@ -2896,7 +2899,7 @@
     <value>6</value>
   </data>
   <data name="editTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 374</value>
+    <value>210, 325</value>
   </data>
   <data name="editTabControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>681, 295</value>
@@ -2926,7 +2929,7 @@
     <value>12, 133</value>
   </data>
   <data name="techListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 472</value>
+    <value>192, 412</value>
   </data>
   <data name="techListBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2947,7 +2950,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 588</value>
+    <value>897, 539</value>
   </data>
   <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -2974,7 +2977,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 617</value>
+    <value>897, 568</value>
   </data>
   <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3001,7 +3004,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 646</value>
+    <value>897, 597</value>
   </data>
   <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3028,7 +3031,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="topButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 617</value>
+    <value>12, 568</value>
   </data>
   <data name="topButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3055,7 +3058,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="bottomButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 646</value>
+    <value>12, 597</value>
   </data>
   <data name="bottomButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3082,7 +3085,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="upButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 617</value>
+    <value>93, 568</value>
   </data>
   <data name="upButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3109,7 +3112,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="downButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 646</value>
+    <value>93, 597</value>
   </data>
   <data name="downButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3136,7 +3139,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="newTechButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 396</value>
+    <value>897, 347</value>
   </data>
   <data name="newTechButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3163,7 +3166,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="newLabelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 425</value>
+    <value>897, 376</value>
   </data>
   <data name="newLabelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3190,7 +3193,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="newEventButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 454</value>
+    <value>897, 405</value>
   </data>
   <data name="newEventButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3217,7 +3220,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="cloneButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 483</value>
+    <value>897, 434</value>
   </data>
   <data name="cloneButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3244,7 +3247,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="removeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 512</value>
+    <value>897, 463</value>
   </data>
   <data name="removeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -3277,7 +3280,7 @@
     <value>210, 12</value>
   </data>
   <data name="treePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>762, 356</value>
+    <value>762, 307</value>
   </data>
   <data name="treePanel.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -3301,7 +3304,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>984, 681</value>
+    <value>984, 632</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Tech Tree Editor</value>
@@ -3318,10 +3321,10 @@
   <data name="&gt;&gt;techYColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;orIdcolumnHeader.Name" xml:space="preserve">
-    <value>orIdcolumnHeader</value>
+  <data name="&gt;&gt;orIdColumnHeader.Name" xml:space="preserve">
+    <value>orIdColumnHeader</value>
   </data>
-  <data name="&gt;&gt;orIdcolumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;orIdColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;orNameColumnHeader.Name" xml:space="preserve">

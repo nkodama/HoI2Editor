@@ -74,7 +74,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動スケーリングを考慮した初期化
+        ///     自動スケーリングを考慮した初期化
         /// </summary>
         private void InitScaling()
         {
@@ -1068,8 +1068,7 @@ namespace HoI2Editor.Forms
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1087,10 +1086,7 @@ namespace HoI2Editor.Forms
             // 特性
             personalityComboBox.DropDownWidth =
                 Ministers.Personalities.Select(info => Config.GetText(info.Name))
-                    .Select(
-                        s =>
-                            TextRenderer.MeasureText(s, personalityComboBox.Font).Width +
-                            SystemInformation.VerticalScrollBarWidth)
+                    .Select(s => TextRenderer.MeasureText(s, personalityComboBox.Font).Width)
                     .Concat(new[] {personalityComboBox.DropDownWidth})
                     .Max();
 

@@ -67,8 +67,8 @@
             // 
             // countryListBox
             // 
-            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.countryListBox, "countryListBox");
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryListBox.FormattingEnabled = true;
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
@@ -147,14 +147,14 @@
             // 
             // toComboBox
             // 
-            this.toComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.toComboBox, "toComboBox");
+            this.toComboBox.FormattingEnabled = true;
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            this.withComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.withComboBox, "withComboBox");
+            this.withComboBox.FormattingEnabled = true;
             this.withComboBox.Name = "withComboBox";
             // 
             // startNumericUpDown
@@ -206,8 +206,8 @@
             // 
             // prefixComboBox
             // 
-            this.prefixComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
+            this.prefixComboBox.FormattingEnabled = true;
             this.prefixComboBox.Name = "prefixComboBox";
             // 
             // addButton
@@ -259,8 +259,8 @@
             // 
             // suffixComboBox
             // 
-            this.suffixComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
+            this.suffixComboBox.FormattingEnabled = true;
             this.suffixComboBox.Name = "suffixComboBox";
             // 
             // prefixLabel

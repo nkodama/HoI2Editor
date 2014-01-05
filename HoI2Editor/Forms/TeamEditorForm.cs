@@ -113,11 +113,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動スケーリングを考慮した初期化
+        ///     自動スケーリングを考慮した初期化
         /// </summary>
         private void InitScaling()
         {
-            // 指揮官リストビュー
+            // 研究機関リストビュー
             countryColumnHeader.Width = DeviceCaps.GetScaledWidth(countryColumnHeader.Width);
             idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
             nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
@@ -591,7 +591,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16), DeviceCaps.GetScaledHeight(16));
+            var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
+                DeviceCaps.GetScaledHeight(16));
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
                 // 研究特性なしならば何もしない
@@ -1267,8 +1268,7 @@ namespace HoI2Editor.Forms
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1279,6 +1279,7 @@ namespace HoI2Editor.Forms
                 _specialityComboBoxes[i].Items.Clear();
             }
             maxWidth = specialityComboBox1.DropDownWidth;
+            int additionalWidth = DeviceCaps.GetScaledWidth(16) + 3 + SystemInformation.VerticalScrollBarWidth;
             foreach (string s in Techs.Specialities.Select(Techs.GetSpecialityName))
             {
                 for (int i = 0; i < MaxEditableSpecialities; i++)
@@ -1287,8 +1288,7 @@ namespace HoI2Editor.Forms
                 }
                 // 研究特性アイコンの幅を追加している
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, specialityComboBox1.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth + DeviceCaps.GetScaledWidth(24));
+                    TextRenderer.MeasureText(s, specialityComboBox1.Font).Width + additionalWidth);
             }
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {
@@ -1494,7 +1494,8 @@ namespace HoI2Editor.Forms
                 // アイコンを描画する
                 if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16), DeviceCaps.GetScaledHeight(16));
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
+                        DeviceCaps.GetScaledHeight(16));
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
 
@@ -1509,7 +1510,8 @@ namespace HoI2Editor.Forms
                     brush = new SolidBrush(SystemColors.WindowText);
                 }
                 string s = comboBox.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3, e.Bounds.Width - DeviceCaps.GetScaledWidth(16) - 3, e.Bounds.Height);
+                var tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3,
+                    e.Bounds.Width - DeviceCaps.GetScaledWidth(16) - 3, e.Bounds.Height);
                 e.Graphics.DrawString(s, e.Font, brush, tr);
                 brush.Dispose();
             }

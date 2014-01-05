@@ -55,6 +55,20 @@ namespace HoI2Editor.Forms
         public UnitNameEditorForm()
         {
             InitializeComponent();
+
+            // 自動スケーリングを考慮した初期化
+            InitScaling();
+        }
+
+        /// <summary>
+        ///     自動スケーリングを考慮した初期化
+        /// </summary>
+        private void InitScaling()
+        {
+            // 国家リストボックス
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+            // ユニット種類リストボックス
+            typeListBox.ItemHeight = DeviceCaps.GetScaledHeight(typeListBox.ItemHeight);
         }
 
         /// <summary>

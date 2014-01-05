@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -76,6 +77,36 @@ namespace HoI2Editor.Forms
         public ProvinceEditorForm()
         {
             InitializeComponent();
+
+            // 自動スケーリングを考慮した初期化
+            InitScaling();
+        }
+
+        /// <summary>
+        ///     自動スケーリングを考慮した初期化
+        /// </summary>
+        private void InitScaling()
+        {
+            // 指揮官リストビュー
+            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
+            idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
+            seaColumnHeader.Width = DeviceCaps.GetScaledWidth(seaColumnHeader.Width);
+            portColumnHeader.Width = DeviceCaps.GetScaledWidth(portColumnHeader.Width);
+            beachColumnHeader.Width = DeviceCaps.GetScaledWidth(beachColumnHeader.Width);
+            infraColumnHeader.Width = DeviceCaps.GetScaledWidth(infraColumnHeader.Width);
+            icColumnHeader.Width = DeviceCaps.GetScaledWidth(icColumnHeader.Width);
+            manpowerColumnHeader.Width = DeviceCaps.GetScaledWidth(manpowerColumnHeader.Width);
+            energyColumnHeader.Width = DeviceCaps.GetScaledWidth(energyColumnHeader.Width);
+            metalColumnHeader.Width = DeviceCaps.GetScaledWidth(metalColumnHeader.Width);
+            rareMaterialsColumnHeader.Width = DeviceCaps.GetScaledWidth(rareMaterialsColumnHeader.Width);
+            oilColumnHeader.Width = DeviceCaps.GetScaledWidth(oilColumnHeader.Width);
+
+            // 画面解像度が十分に広い場合は指揮官リストビューが広く表示できるようにする
+            int longHeight = DeviceCaps.GetScaledHeight(720);
+            if (Screen.GetWorkingArea(this).Height >= longHeight)
+            {
+                Height = longHeight;
+            }
         }
 
         /// <summary>
@@ -830,9 +861,7 @@ namespace HoI2Editor.Forms
             {
                 string s = Provinces.GetContinentName(continent);
                 continentComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, continentComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, continentComboBox.Font).Width);
             }
             continentComboBox.DropDownWidth = maxWidth;
             continentComboBox.EndUpdate();
@@ -846,8 +875,7 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetRegionName(region);
                 regionComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, regionComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, regionComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
             }
             regionComboBox.DropDownWidth = maxWidth;
             regionComboBox.EndUpdate();
@@ -861,8 +889,7 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetAreaName(area);
                 areaComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, areaComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, areaComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
             }
             areaComboBox.DropDownWidth = maxWidth;
             areaComboBox.EndUpdate();
@@ -875,9 +902,7 @@ namespace HoI2Editor.Forms
             {
                 string s = Provinces.GetClimateName(climate);
                 climateComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, climateComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, climateComboBox.Font).Width);
             }
             climateComboBox.DropDownWidth = maxWidth;
             climateComboBox.EndUpdate();
@@ -890,9 +915,7 @@ namespace HoI2Editor.Forms
             {
                 string s = Provinces.GetTerrainName(terrain);
                 terrainComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, terrainComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, terrainComboBox.Font).Width);
             }
             terrainComboBox.DropDownWidth = maxWidth;
             terrainComboBox.EndUpdate();

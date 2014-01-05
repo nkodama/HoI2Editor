@@ -93,8 +93,8 @@
             // 
             // suffixComboBox
             // 
-            this.suffixComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
+            this.suffixComboBox.FormattingEnabled = true;
             this.suffixComboBox.Name = "suffixComboBox";
             // 
             // prefixLabel
@@ -125,8 +125,8 @@
             // 
             // prefixComboBox
             // 
-            this.prefixComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
+            this.prefixComboBox.FormattingEnabled = true;
             this.prefixComboBox.Name = "prefixComboBox";
             // 
             // startNumericUpDown
@@ -206,14 +206,14 @@
             // 
             // toComboBox
             // 
-            this.toComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.toComboBox, "toComboBox");
+            this.toComboBox.FormattingEnabled = true;
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            this.withComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.withComboBox, "withComboBox");
+            this.withComboBox.FormattingEnabled = true;
             this.withComboBox.Name = "withComboBox";
             // 
             // allBranchCheckBox
@@ -259,9 +259,9 @@
             // 
             // branchListBox
             // 
+            resources.ApplyResources(this.branchListBox, "branchListBox");
             this.branchListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.branchListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.branchListBox, "branchListBox");
             this.branchListBox.Name = "branchListBox";
             this.branchListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnBranchListBoxDrawItem);
             this.branchListBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchListBoxSelectedIndexChanged);

@@ -75,7 +75,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動スケーリングを考慮した初期化
+        ///     自動スケーリングを考慮した初期化
         /// </summary>
         private void InitScaling()
         {
@@ -93,7 +93,7 @@ namespace HoI2Editor.Forms
             // 国家リストボックス
             countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
             countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
-            
+
             // 画面解像度が十分に広い場合は指揮官リストビューが広く表示できるようにする
             int longHeight = DeviceCaps.GetScaledHeight(720);
             if (Screen.GetWorkingArea(this).Height >= longHeight)
@@ -1584,8 +1584,7 @@ namespace HoI2Editor.Forms
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, countryComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    TextRenderer.MeasureText(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
             }
             countryComboBox.DropDownWidth = maxWidth;
 

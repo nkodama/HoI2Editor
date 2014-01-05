@@ -199,6 +199,9 @@
   <data name="reloadButton.Text" xml:space="preserve">
     <value>再読み込み</value>
   </data>
+  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>師団名エディタ</value>
   </data>

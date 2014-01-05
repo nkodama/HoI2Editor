@@ -5,6 +5,7 @@ using System.Resources;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -1319,18 +1320,30 @@ namespace HoI2Editor.Forms
         {
             var rm = new ResourceManager("HoI2Editor.Properties.Resources", typeof (Resources).Assembly);
 
-            int labelX = 10;
-            const int margin = 8;
+            int itemHeight = DeviceCaps.GetScaledHeight(25);
+            int labelStartX = DeviceCaps.GetScaledWidth(10);
+            int labelStartY = DeviceCaps.GetScaledHeight(13);
+            int editStartY = DeviceCaps.GetScaledHeight(10);
+            int labelEditMargin = DeviceCaps.GetScaledWidth(8);
+            int columnMargin = DeviceCaps.GetScaledWidth(10);
+            int textBoxWidth = DeviceCaps.GetScaledWidth(50);
+            int textBoxHeight = DeviceCaps.GetScaledHeight(19);
+            int comboBoxWidthUnit = DeviceCaps.GetScaledWidth(15);
+            int comboBoxWidthBase = DeviceCaps.GetScaledWidth(50);
+            int comboBoxWidthMargin = DeviceCaps.GetScaledWidth(8);
+            int comboBoxHeight = DeviceCaps.GetScaledHeight(20);
+
+            int labelX = labelStartX;
             foreach (var ids in EditableItems[index])
             {
-                int labelY = 13;
-                int editX = labelX;
+                int labelY = labelStartY;
+                int editX = labelX; // 編集コントロールの右端X座標(左端ではない)
                 foreach (MiscItemId id in ids)
                 {
                     // セパレータ
                     if (id == MiscItemId.Separator)
                     {
-                        labelY += 25;
+                        labelY += itemHeight;
                         continue;
                     }
 
@@ -1350,13 +1363,13 @@ namespace HoI2Editor.Forms
                     _labels[(int) id] = label;
 
                     // 編集コントロールの幅のみ求める
-                    int x = labelX + label.Width + 8;
+                    int x = labelX + label.Width + labelEditMargin;
                     MiscItemType type = Misc.ItemTypes[(int) id];
                     switch (type)
                     {
                         case MiscItemType.Bool:
                         case MiscItemType.Enum:
-                            int maxWidth = 50;
+                            int maxWidth = comboBoxWidthBase;
                             for (int i = Misc.IntMinValues[id]; i <= Misc.IntMaxValues[id]; i++)
                             {
                                 string s = i.ToString(CultureInfo.InvariantCulture) + ": " +
@@ -1366,31 +1379,33 @@ namespace HoI2Editor.Forms
                                 {
                                     maxWidth = Math.Max(maxWidth,
                                         TextRenderer.MeasureText(s, Font).Width +
-                                        SystemInformation.VerticalScrollBarWidth + margin);
-                                    maxWidth = 50 + ((maxWidth - 50 + 14)/15)*15;
+                                        SystemInformation.VerticalScrollBarWidth + comboBoxWidthMargin);
+                                    maxWidth = comboBoxWidthBase +
+                                               ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))/
+                                                comboBoxWidthUnit)*comboBoxWidthUnit;
                                 }
                             }
                             x += maxWidth;
                             break;
 
                         default:
-                            // テキストボックスの項目は50px固定
-                            x += 50;
+                            // テキストボックスの項目は固定
+                            x += textBoxWidth;
                             break;
                     }
                     if (x > editX)
                     {
                         editX = x;
                     }
-                    labelY += 25;
+                    labelY += itemHeight;
                 }
-                int editY = 10;
+                int editY = editStartY;
                 foreach (MiscItemId id in ids)
                 {
                     // セパレータ
                     if (id == MiscItemId.Separator)
                     {
-                        editY += 25;
+                        editY += itemHeight;
                         continue;
                     }
                     // 編集コントロールを作成する
@@ -1406,7 +1421,7 @@ namespace HoI2Editor.Forms
                                 Tag = id
                             };
                             // コンボボックスの選択項目を登録し、最大幅を求める
-                            int maxWidth = 50;
+                            int maxWidth = comboBoxWidthBase;
                             for (int i = Misc.IntMinValues[id]; i <= Misc.IntMaxValues[id]; i++)
                             {
                                 string s = i.ToString(CultureInfo.InvariantCulture) + ": " +
@@ -1417,11 +1432,13 @@ namespace HoI2Editor.Forms
                                     comboBox.Items.Add(s);
                                     maxWidth = Math.Max(maxWidth,
                                         TextRenderer.MeasureText(s, Font).Width +
-                                        SystemInformation.VerticalScrollBarWidth + margin);
-                                    maxWidth = 50 + ((maxWidth - 50 + 14)/15)*15;
+                                        SystemInformation.VerticalScrollBarWidth + comboBoxWidthMargin);
+                                    maxWidth = comboBoxWidthBase +
+                                               ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))/
+                                                comboBoxWidthUnit)*comboBoxWidthUnit;
                                 }
                             }
-                            comboBox.Size = new Size(maxWidth, 20);
+                            comboBox.Size = new Size(maxWidth, comboBoxHeight);
                             comboBox.Location = new Point(editX - maxWidth, editY);
                             comboBox.DrawItem += OnItemComboBoxDrawItem;
                             comboBox.SelectedIndexChanged += OnItemComboBoxSelectedIndexChanged;
@@ -1432,8 +1449,8 @@ namespace HoI2Editor.Forms
                         default:
                             var textBox = new TextBox
                             {
-                                Size = new Size(50, 19),
-                                Location = new Point(editX - 50, editY),
+                                Size = new Size(textBoxWidth, textBoxHeight),
+                                Location = new Point(editX - textBoxWidth, editY),
                                 TextAlign = HorizontalAlignment.Right,
                                 Tag = id
                             };
@@ -1442,10 +1459,10 @@ namespace HoI2Editor.Forms
                             _edits[(int) id] = textBox;
                             break;
                     }
-                    editY += 25;
+                    editY += itemHeight;
                 }
-                // 次の列との間を10px空ける
-                labelX = editX + 10;
+                // 次の列との間を空ける
+                labelX = editX + columnMargin;
             }
         }
 
@@ -1455,31 +1472,43 @@ namespace HoI2Editor.Forms
         /// <param name="index">タブページのインデックス</param>
         private void CreateCommonButtons(int index)
         {
+            int buttonWidth = DeviceCaps.GetScaledWidth(75);
+            int buttonMargin = DeviceCaps.GetScaledWidth(8); // ボタンとボタンの間隔
+            int buttonHeight = DeviceCaps.GetScaledHeight(23);
+            int buttonStartX = DeviceCaps.GetScaledWidth(731);
+            int buttonY = DeviceCaps.GetScaledHeight(625);
+
+            int x = buttonStartX;
             // 再読み込み
             var button = new Button
             {
                 Text = Resources.KeyReload,
-                Location = new Point(731, 625),
+                Location = new Point(x, buttonY),
+                Size = new Size(buttonWidth, buttonHeight),
                 Anchor = AnchorStyles.Right | AnchorStyles.Bottom
             };
             button.Click += OnReloadButtonClick;
             miscTabControl.TabPages[index].Controls.Add(button);
 
             // 保存
+            x += buttonWidth + buttonMargin;
             button = new Button
             {
                 Text = Resources.KeySave,
-                Location = new Point(812, 625),
+                Location = new Point(x, buttonY),
+                Size = new Size(buttonWidth, buttonHeight),
                 Anchor = AnchorStyles.Right | AnchorStyles.Bottom
             };
             button.Click += OnSaveButtonClick;
             miscTabControl.TabPages[index].Controls.Add(button);
 
             // 閉じる
+            x += buttonWidth + buttonMargin;
             button = new Button
             {
                 Text = Resources.KeyClose,
-                Location = new Point(893, 625),
+                Location = new Point(x, buttonY),
+                Size = new Size(buttonWidth, buttonHeight),
                 Anchor = AnchorStyles.Right | AnchorStyles.Bottom
             };
             button.Click += OnCloseButtonClick;

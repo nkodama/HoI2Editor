@@ -71,7 +71,7 @@
             this.orRemoveButton = new System.Windows.Forms.Button();
             this.orAddButton = new System.Windows.Forms.Button();
             this.orRequiredListView = new System.Windows.Forms.ListView();
-            this.orIdcolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.orIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.andRequiredListView = new System.Windows.Forms.ListView();
             this.andIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -557,7 +557,7 @@
             // 
             resources.ApplyResources(this.orRequiredListView, "orRequiredListView");
             this.orRequiredListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.orIdcolumnHeader,
+            this.orIdColumnHeader,
             this.orNameColumnHeader});
             this.orRequiredListView.FullRowSelect = true;
             this.orRequiredListView.GridLines = true;
@@ -568,9 +568,9 @@
             this.orRequiredListView.View = System.Windows.Forms.View.Details;
             this.orRequiredListView.SelectedIndexChanged += new System.EventHandler(this.OnOrRequiredListViewSelectedIndexChanged);
             // 
-            // orIdcolumnHeader
+            // orIdColumnHeader
             // 
-            resources.ApplyResources(this.orIdcolumnHeader, "orIdcolumnHeader");
+            resources.ApplyResources(this.orIdColumnHeader, "orIdColumnHeader");
             // 
             // orNameColumnHeader
             // 
@@ -1360,7 +1360,7 @@
         private System.Windows.Forms.Button andAddButton;
         private System.Windows.Forms.Button orAddButton;
         private System.Windows.Forms.ListView orRequiredListView;
-        private System.Windows.Forms.ColumnHeader orIdcolumnHeader;
+        private System.Windows.Forms.ColumnHeader orIdColumnHeader;
         private System.Windows.Forms.ColumnHeader orNameColumnHeader;
         private System.Windows.Forms.ListView andRequiredListView;
         private System.Windows.Forms.ColumnHeader andIdColumnHeader;

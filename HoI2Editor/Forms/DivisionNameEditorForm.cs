@@ -55,6 +55,20 @@ namespace HoI2Editor.Forms
         public DivisionNameEditorForm()
         {
             InitializeComponent();
+
+            // 自動スケーリングを考慮した初期化
+            InitScaling();
+        }
+
+        /// <summary>
+        ///     自動スケーリングを考慮した初期化
+        /// </summary>
+        private void InitScaling()
+        {
+            // 兵科リストボックス
+            branchListBox.ItemHeight = DeviceCaps.GetScaledHeight(branchListBox.ItemHeight);
+            // 国家リストボックス
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
         }
 
         /// <summary>
