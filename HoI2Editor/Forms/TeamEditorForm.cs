@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -106,6 +107,37 @@ namespace HoI2Editor.Forms
                 specialityComboBox6,
                 specialityComboBox7
             };
+
+            // 自動スケーリングを考慮した初期化
+            InitScaling();
+        }
+
+        /// <summary>
+        /// 自動スケーリングを考慮した初期化
+        /// </summary>
+        private void InitScaling()
+        {
+            // 指揮官リストビュー
+            countryColumnHeader.Width = DeviceCaps.GetScaledWidth(countryColumnHeader.Width);
+            idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
+            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
+            skillColumnHeader.Width = DeviceCaps.GetScaledWidth(skillColumnHeader.Width);
+            startYearColumnHeader.Width = DeviceCaps.GetScaledWidth(startYearColumnHeader.Width);
+            endYearColumnHeader.Width = DeviceCaps.GetScaledWidth(endYearColumnHeader.Width);
+            specialityColumnHeader.Width = DeviceCaps.GetScaledWidth(specialityColumnHeader.Width);
+
+            // 国家リストボックス
+            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+
+            // 特性コンボボックス
+            specialityComboBox1.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox1.ItemHeight);
+            specialityComboBox2.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox2.ItemHeight);
+            specialityComboBox3.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox3.ItemHeight);
+            specialityComboBox4.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox4.ItemHeight);
+            specialityComboBox5.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox5.ItemHeight);
+            specialityComboBox6.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox6.ItemHeight);
+            specialityComboBox7.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox7.ItemHeight);
         }
 
         /// <summary>
@@ -128,7 +160,7 @@ namespace HoI2Editor.Forms
             Config.Load();
 
             // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
-            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, 18)};
+            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
 
             // 編集項目を初期化する
             InitEditableItems();
@@ -559,7 +591,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, 16, 16);
+            var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16), DeviceCaps.GetScaledHeight(16));
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
                 // 研究特性なしならば何もしない
@@ -572,7 +604,7 @@ namespace HoI2Editor.Forms
                 e.Graphics.DrawImage(
                     Techs.SpecialityImages.Images[Array.IndexOf(Techs.Specialities, team.Specialities[i]) - 1],
                     rect);
-                rect.X += 19;
+                rect.X += DeviceCaps.GetScaledWidth(16) + 3;
             }
         }
 
@@ -1253,10 +1285,10 @@ namespace HoI2Editor.Forms
                 {
                     _specialityComboBoxes[i].Items.Add(s);
                 }
-                // +24は研究特性アイコンの分
+                // 研究特性アイコンの幅を追加している
                 maxWidth = Math.Max(maxWidth,
                     TextRenderer.MeasureText(s, specialityComboBox1.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth + 24);
+                    SystemInformation.VerticalScrollBarWidth + DeviceCaps.GetScaledWidth(24));
             }
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {
@@ -1462,7 +1494,7 @@ namespace HoI2Editor.Forms
                 // アイコンを描画する
                 if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, 16, 16);
+                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16), DeviceCaps.GetScaledHeight(16));
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
 
@@ -1477,7 +1509,7 @@ namespace HoI2Editor.Forms
                     brush = new SolidBrush(SystemColors.WindowText);
                 }
                 string s = comboBox.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + 19, e.Bounds.Y + 3, e.Bounds.Width - 19, e.Bounds.Height);
+                var tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3, e.Bounds.Width - DeviceCaps.GetScaledWidth(16) - 3, e.Bounds.Height);
                 e.Graphics.DrawString(s, e.Font, brush, tr);
                 brush.Dispose();
             }

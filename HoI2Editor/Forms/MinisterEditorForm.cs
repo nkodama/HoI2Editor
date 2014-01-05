@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -67,6 +68,29 @@ namespace HoI2Editor.Forms
         public MinisterEditorForm()
         {
             InitializeComponent();
+
+            // 自動スケーリングを考慮した初期化
+            InitScaling();
+        }
+
+        /// <summary>
+        /// 自動スケーリングを考慮した初期化
+        /// </summary>
+        private void InitScaling()
+        {
+            // 閣僚リストビュー
+            countryColumnHeader.Width = DeviceCaps.GetScaledWidth(countryColumnHeader.Width);
+            idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
+            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
+            startYearColumnHeader.Width = DeviceCaps.GetScaledWidth(startYearColumnHeader.Width);
+            endYearColumnHeader.Width = DeviceCaps.GetScaledWidth(endYearColumnHeader.Width);
+            positionColumnHeader.Width = DeviceCaps.GetScaledWidth(positionColumnHeader.Width);
+            personalityColumnHeader.Width = DeviceCaps.GetScaledWidth(personalityColumnHeader.Width);
+            ideologyColumnHeader.Width = DeviceCaps.GetScaledWidth(ideologyColumnHeader.Width);
+
+            // 国家リストボックス
+            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
         }
 
         /// <summary>

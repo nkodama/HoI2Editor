@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -68,6 +69,37 @@ namespace HoI2Editor.Forms
         public LeaderEditorForm()
         {
             InitializeComponent();
+
+            // 自動スケーリングを考慮した初期化
+            InitScaling();
+        }
+
+        /// <summary>
+        /// 自動スケーリングを考慮した初期化
+        /// </summary>
+        private void InitScaling()
+        {
+            // 指揮官リストビュー
+            countryColumnHeader.Width = DeviceCaps.GetScaledWidth(countryColumnHeader.Width);
+            idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
+            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
+            branchColumnHeader.Width = DeviceCaps.GetScaledWidth(branchColumnHeader.Width);
+            skillColumnHeader.Width = DeviceCaps.GetScaledWidth(skillColumnHeader.Width);
+            maxSkillColumnHeader.Width = DeviceCaps.GetScaledWidth(maxSkillColumnHeader.Width);
+            startYearColumnHeader.Width = DeviceCaps.GetScaledWidth(startYearColumnHeader.Width);
+            endYearColumnHeader.Width = DeviceCaps.GetScaledWidth(endYearColumnHeader.Width);
+            traitsColumnHeader.Width = DeviceCaps.GetScaledWidth(traitsColumnHeader.Width);
+
+            // 国家リストボックス
+            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+            
+            // 画面解像度が十分に広い場合は指揮官リストビューが広く表示できるようにする
+            int longHeight = DeviceCaps.GetScaledHeight(720);
+            if (Screen.GetWorkingArea(this).Height >= longHeight)
+            {
+                Height = longHeight;
+            }
         }
 
         /// <summary>

@@ -131,31 +131,37 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 12</value>
+    <value>113, 18</value>
   </data>
   <data name="pictureNameLabel.Text" xml:space="preserve">
     <value>画像ファイル名</value>
   </data>
   <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
+    <value>62, 18</value>
   </data>
   <data name="endYearLabel.Text" xml:space="preserve">
     <value>終了年</value>
   </data>
   <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
+    <value>62, 18</value>
   </data>
   <data name="startYearLabel.Text" xml:space="preserve">
     <value>開始年</value>
   </data>
   <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
+    <value>44, 18</value>
   </data>
   <data name="nameLabel.Text" xml:space="preserve">
     <value>名前</value>
   </data>
+  <data name="countryComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 26</value>
+  </data>
   <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
+    <value>44, 18</value>
   </data>
   <data name="countryLabel.Text" xml:space="preserve">
     <value>国家</value>
@@ -206,67 +212,67 @@
     <value>最大スキル</value>
   </data>
   <data name="rankYearLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+    <value>98, 18</value>
   </data>
   <data name="rankYearLabel1.Text" xml:space="preserve">
     <value>少将任官年</value>
   </data>
   <data name="rankYearLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+    <value>98, 18</value>
   </data>
   <data name="rankYearLabel2.Text" xml:space="preserve">
     <value>中将任官年</value>
   </data>
   <data name="rankYearLabel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+    <value>98, 18</value>
   </data>
   <data name="rankYearLabel3.Text" xml:space="preserve">
     <value>大将任官年</value>
   </data>
   <data name="rankYearLabel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+    <value>98, 18</value>
   </data>
   <data name="rankYearLabel4.Text" xml:space="preserve">
     <value>元帥任官年</value>
   </data>
   <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
+    <value>52, 18</value>
   </data>
   <data name="skillLabel.Text" xml:space="preserve">
     <value>スキル</value>
   </data>
   <data name="maxSkillLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 12</value>
+    <value>88, 18</value>
   </data>
   <data name="maxSkillLabel.Text" xml:space="preserve">
     <value>最大スキル</value>
   </data>
   <data name="idealRankLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
+    <value>80, 18</value>
   </data>
   <data name="idealRankLabel.Text" xml:space="preserve">
     <value>理想階級</value>
   </data>
   <data name="loyaltyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
+    <value>62, 18</value>
   </data>
   <data name="loyaltyLabel.Text" xml:space="preserve">
     <value>忠誠度</value>
   </data>
   <data name="airforceNarrowCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
+    <value>70, 22</value>
   </data>
   <data name="airforceNarrowCheckBox.Text" xml:space="preserve">
     <value>空軍</value>
   </data>
   <data name="navyNarrowCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
+    <value>70, 22</value>
   </data>
   <data name="navyNarrowCheckBox.Text" xml:space="preserve">
     <value>海軍</value>
   </data>
   <data name="armyNarrowCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
+    <value>70, 22</value>
   </data>
   <data name="armyNarrowCheckBox.Text" xml:space="preserve">
     <value>陸軍</value>
@@ -278,7 +284,7 @@
     <value>選択反転</value>
   </data>
   <data name="traitsNoneNarrowRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 16</value>
+    <value>124, 22</value>
   </data>
   <data name="traitsNoneNarrowRadioButton.Text" xml:space="preserve">
     <value>絞り込みなし</value>
@@ -287,13 +293,13 @@
     <value>特性の絞り込み</value>
   </data>
   <data name="branchLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
+    <value>44, 18</value>
   </data>
   <data name="branchLabel.Text" xml:space="preserve">
     <value>兵科</value>
   </data>
   <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
+    <value>62, 18</value>
   </data>
   <data name="experienceLabel.Text" xml:space="preserve">
     <value>経験値</value>
@@ -302,7 +308,7 @@
     <value>特性</value>
   </data>
   <data name="retirementYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
+    <value>62, 18</value>
   </data>
   <data name="retirementYearLabel.Text" xml:space="preserve">
     <value>引退年</value>
