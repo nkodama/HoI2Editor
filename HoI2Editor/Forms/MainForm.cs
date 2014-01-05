@@ -39,7 +39,7 @@ namespace HoI2Editor.Forms
                 : LanguageMode.English;
 
             // 初期状態のゲームフォルダ名を設定する
-            gameFolderTextBox.Text = Environment.CurrentDirectory;
+            SetFolderName(Environment.CurrentDirectory);
 
             // 言語リストを更新する
             UpdateLanguage();
@@ -289,6 +289,86 @@ namespace HoI2Editor.Forms
             gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
                 ? Path.GetDirectoryName(folderName)
                 : folderName;
+        }
+
+        /// <summary>
+        ///     メインフォームにドラッグした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMainFormDragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.Copy : DragDropEffects.None;
+        }
+
+        /// <summary>
+        ///     メインフォームにドロップした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMainFormDragDrop(object sender, DragEventArgs e)
+        {
+            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            SetFolderName(fileNames[0]);
+        }
+
+        /// <summary>
+        ///     ゲームフォルダ/MOD名を設定する
+        /// </summary>
+        /// <param name="folderName">対象フォルダ名</param>
+        private void SetFolderName(string folderName)
+        {
+            if (!IsGameFolder(folderName))
+            {
+                string modName = Path.GetFileName(folderName);
+                string subFolderName = Path.GetDirectoryName(folderName);
+                if (string.Equals(Path.GetFileName(subFolderName), Game.ModPathNameDh))
+                {
+                    subFolderName = Path.GetDirectoryName(subFolderName);
+                }
+                if (IsGameFolder(subFolderName))
+                {
+                    modTextBox.Text = modName;
+                    gameFolderTextBox.Text = subFolderName;
+                    return;
+                }
+            }
+            modTextBox.Text = "";
+            gameFolderTextBox.Text = folderName;
+        }
+
+        /// <summary>
+        ///     指定したフォルダがゲームフォルダかどうかを判定する
+        /// </summary>
+        /// <param name="folderName">対象フォルダ名</param>
+        /// <returns>ゲームフォルダならばtrueを返す</returns>
+        private static bool IsGameFolder(string folderName)
+        {
+            if (string.IsNullOrEmpty(folderName))
+            {
+                return false;
+            }
+            // Hearts of Iron 2 日本語版
+            if (File.Exists(Path.Combine(folderName, "DoomsdayJP.exe")))
+            {
+                return true;
+            }
+            // Hearts of Iron 2 英語版
+            if (File.Exists(Path.Combine(folderName, "Hoi2.exe")))
+            {
+                return true;
+            }
+            // Arsenal of Democracy 日本語版/英語版
+            if (File.Exists(Path.Combine(folderName, "AODGame.exe")))
+            {
+                return true;
+            }
+            // Darkest Hour 英語版
+            if (File.Exists(Path.Combine(folderName, "Darkest Hour.exe")))
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

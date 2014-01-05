@@ -221,6 +221,7 @@
             // 
             // MainForm
             // 
+            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.optionGroupBox);
@@ -234,6 +235,8 @@
             this.Controls.Add(this.gameFolderLabel);
             this.Name = "MainForm";
             this.Load += new System.EventHandler(this.OnMainFormLoad);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnMainFormDragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnMainFormDragEnter);
             this.editGroupBox.ResumeLayout(false);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();
