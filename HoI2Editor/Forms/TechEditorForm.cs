@@ -1241,7 +1241,7 @@ namespace HoI2Editor.Forms
             else if (item is TechLabel)
             {
                 var labelItem = item as TechLabel;
-                label.Size = TextRenderer.MeasureText(labelItem.ToString(), label.Font);
+                label.Size = Graphics.FromHwnd(label.Handle).MeasureString(labelItem.ToString(), label.Font).ToSize();
                 label.Paint += OnTechTreeLabelPaint;
             }
             else
@@ -2494,6 +2494,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateRequiredTechListItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             andTechComboBox.BeginUpdate();
             orTechComboBox.BeginUpdate();
 
@@ -2506,8 +2509,8 @@ namespace HoI2Editor.Forms
                 andTechComboBox.Items.Add(item);
                 orTechComboBox.Items.Add(item);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(item.ToString(), andTechComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(item.ToString(), andTechComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             andTechComboBox.DropDownWidth = maxWidth;
             orTechComboBox.DropDownWidth = maxWidth;
@@ -3303,6 +3306,7 @@ namespace HoI2Editor.Forms
         {
             // 小研究特性
             componentSpecialityComboBox.Items.Clear();
+            Graphics g = Graphics.FromHwnd(componentSpecialityComboBox.Handle);
             int maxWidth = componentSpecialityComboBox.DropDownWidth;
             int additionalWidth = SystemInformation.VerticalScrollBarWidth + DeviceCaps.GetScaledWidth(16) + 3;
             foreach (string name in Techs.Specialities.Where(speciality => speciality != TechSpeciality.None)
@@ -3310,7 +3314,7 @@ namespace HoI2Editor.Forms
             {
                 componentSpecialityComboBox.Items.Add(name);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(name, componentSpecialityComboBox.Font).Width + additionalWidth);
+                    (int) g.MeasureString(name, componentSpecialityComboBox.Font).Width + additionalWidth);
             }
             componentSpecialityComboBox.DropDownWidth = maxWidth;
         }
@@ -4126,6 +4130,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEffectItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 技術効果の種類
             commandTypeComboBox.Items.Clear();
             int maxWidth = commandTypeComboBox.DropDownWidth;
@@ -4133,8 +4140,8 @@ namespace HoI2Editor.Forms
             {
                 commandTypeComboBox.Items.Add(name);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(name, commandTypeComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(name, commandTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             commandTypeComboBox.DropDownWidth = maxWidth;
         }
@@ -5205,7 +5212,7 @@ namespace HoI2Editor.Forms
                 var info = label.Tag as TechLabelInfo;
                 if (info != null && info.Item == item)
                 {
-                    label.Size = TextRenderer.MeasureText(item.ToString(), label.Font);
+                    label.Size = Graphics.FromHwnd(label.Handle).MeasureString(item.ToString(), label.Font).ToSize();
                     label.Refresh();
                 }
             }
@@ -5502,6 +5509,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateEventTechListItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             eventTechComboBox.BeginUpdate();
             eventTechComboBox.Items.Clear();
 
@@ -5510,8 +5520,8 @@ namespace HoI2Editor.Forms
             {
                 eventTechComboBox.Items.Add(item);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(item.ToString(), eventTechComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(item.ToString(), eventTechComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             eventTechComboBox.DropDownWidth = maxWidth;
 

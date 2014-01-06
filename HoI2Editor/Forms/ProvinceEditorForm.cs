@@ -853,6 +853,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 大陸
             continentComboBox.BeginUpdate();
             continentComboBox.Items.Clear();
@@ -861,7 +864,7 @@ namespace HoI2Editor.Forms
             {
                 string s = Provinces.GetContinentName(continent);
                 continentComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, continentComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, continentComboBox.Font).Width + margin);
             }
             continentComboBox.DropDownWidth = maxWidth;
             continentComboBox.EndUpdate();
@@ -875,7 +878,8 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetRegionName(region);
                 regionComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, regionComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, regionComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    margin);
             }
             regionComboBox.DropDownWidth = maxWidth;
             regionComboBox.EndUpdate();
@@ -889,7 +893,8 @@ namespace HoI2Editor.Forms
                 string s = Provinces.GetAreaName(area);
                 areaComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, areaComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, areaComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    margin);
             }
             areaComboBox.DropDownWidth = maxWidth;
             areaComboBox.EndUpdate();
@@ -902,7 +907,7 @@ namespace HoI2Editor.Forms
             {
                 string s = Provinces.GetClimateName(climate);
                 climateComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, climateComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, climateComboBox.Font).Width + margin);
             }
             climateComboBox.DropDownWidth = maxWidth;
             climateComboBox.EndUpdate();
@@ -915,7 +920,7 @@ namespace HoI2Editor.Forms
             {
                 string s = Provinces.GetTerrainName(terrain);
                 terrainComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, terrainComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, terrainComboBox.Font).Width + margin);
             }
             terrainComboBox.DropDownWidth = maxWidth;
             terrainComboBox.EndUpdate();
@@ -1264,6 +1269,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateSeaZoneItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             portSeaZoneComboBox.BeginUpdate();
             portSeaZoneComboBox.Items.Clear();
             int maxWidth = portSeaZoneComboBox.DropDownWidth;
@@ -1273,8 +1281,8 @@ namespace HoI2Editor.Forms
                 string s = province.GetName();
                 portSeaZoneComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, portSeaZoneComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, portSeaZoneComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    margin);
             }
             portSeaZoneComboBox.DropDownWidth = maxWidth;
             portSeaZoneComboBox.EndUpdate();

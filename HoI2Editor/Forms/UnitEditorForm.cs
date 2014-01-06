@@ -102,6 +102,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 国家リストボックス
             foreach (string s in Countries.Strings.Where(country => !string.IsNullOrEmpty(country)))
             {
@@ -122,7 +125,7 @@ namespace HoI2Editor.Forms
                 allowedBrigadesListView.Items.Add(s);
                 // +16はチェックボックスの分
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, allowedBrigadesListView.Font).Width + DeviceCaps.GetScaledWidth(16));
+                    (int) g.MeasureString(s, allowedBrigadesListView.Font).Width + DeviceCaps.GetScaledWidth(16));
             }
             allowedBrigadesDummyColumnHeader.Width = maxWidth;
 
@@ -134,8 +137,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.RealNames[(int) type]);
                 realUnitTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, realUnitTypeComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, realUnitTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             realUnitTypeComboBox.DropDownWidth = maxWidth;
 
@@ -147,8 +150,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.SpriteNames[(int) type]);
                 spriteTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, spriteTypeComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, spriteTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             spriteTypeComboBox.DropDownWidth = maxWidth;
 
@@ -160,8 +163,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.Items[(int) type].Name);
                 transmuteComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, transmuteComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, transmuteComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             transmuteComboBox.DropDownWidth = maxWidth;
 
@@ -173,8 +176,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.Items[(int) type].Name);
                 upgradeTypeComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, upgradeTypeComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, upgradeTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             upgradeTypeComboBox.DropDownWidth = maxWidth;
 
@@ -186,8 +189,8 @@ namespace HoI2Editor.Forms
                 string s = Config.GetText(Units.EquipmentNames[(int) type]);
                 resourceComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, resourceComboBox.Font).Width +
-                    SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, resourceComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
             resourceComboBox.DropDownWidth = maxWidth;
 
@@ -1607,6 +1610,9 @@ namespace HoI2Editor.Forms
 
             if (unit.Organization == UnitOrganization.Division)
             {
+                Graphics g = Graphics.FromHwnd(Handle);
+                int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
                 // 実ユニットコンボボックスの項目を更新する
                 int index = Array.IndexOf(Units.RealNames, unit.Name);
                 if (index >= 0)
@@ -1615,8 +1621,8 @@ namespace HoI2Editor.Forms
                     // ドロップダウン幅を更新する
                     realUnitTypeComboBox.DropDownWidth =
                         Math.Max(realUnitTypeComboBox.DropDownWidth,
-                            TextRenderer.MeasureText(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
-                            SystemInformation.VerticalScrollBarWidth);
+                            (int) g.MeasureString(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
+                            SystemInformation.VerticalScrollBarWidth + margin);
                 }
 
                 // スプライトコンボボックスの項目を更新する
@@ -1627,8 +1633,8 @@ namespace HoI2Editor.Forms
                     // ドロップダウン幅を更新する
                     spriteTypeComboBox.DropDownWidth =
                         Math.Max(spriteTypeComboBox.DropDownWidth,
-                            TextRenderer.MeasureText(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
-                            SystemInformation.VerticalScrollBarWidth);
+                            (int) g.MeasureString(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
+                            SystemInformation.VerticalScrollBarWidth + margin);
                 }
 
                 // 代替ユニットコンボボックスの項目を更新する
@@ -1636,16 +1642,16 @@ namespace HoI2Editor.Forms
                 // ドロップダウン幅を更新する
                 transmuteComboBox.DropDownWidth =
                     Math.Max(transmuteComboBox.DropDownWidth,
-                        TextRenderer.MeasureText(classNameTextBox.Text, transmuteComboBox.Font).Width +
-                        SystemInformation.VerticalScrollBarWidth);
+                        (int) g.MeasureString(classNameTextBox.Text, transmuteComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth + margin);
 
                 // 更新ユニットコンボボックスの項目を更新する
                 upgradeTypeComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
                 // ドロップダウン幅を更新する
                 upgradeTypeComboBox.DropDownWidth =
                     Math.Max(upgradeTypeComboBox.DropDownWidth,
-                        TextRenderer.MeasureText(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
-                        SystemInformation.VerticalScrollBarWidth);
+                        (int) g.MeasureString(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth + margin);
             }
             else
             {

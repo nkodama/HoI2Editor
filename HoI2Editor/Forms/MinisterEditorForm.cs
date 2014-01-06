@@ -1057,6 +1057,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 国タグ
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
@@ -1068,7 +1071,8 @@ namespace HoI2Editor.Forms
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    margin);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1079,14 +1083,14 @@ namespace HoI2Editor.Forms
                 string s in Ministers.PositionNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
             {
                 positionComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, positionComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, positionComboBox.Font).Width + margin);
             }
             positionComboBox.DropDownWidth = maxWidth;
 
             // 特性
             personalityComboBox.DropDownWidth =
                 Ministers.Personalities.Select(info => Config.GetText(info.Name))
-                    .Select(s => TextRenderer.MeasureText(s, personalityComboBox.Font).Width)
+                    .Select(s => (int) g.MeasureString(s, personalityComboBox.Font).Width + margin)
                     .Concat(new[] {personalityComboBox.DropDownWidth})
                     .Max();
 
@@ -1097,7 +1101,7 @@ namespace HoI2Editor.Forms
                 string s in Ministers.IdeologyNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
             {
                 ideologyComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, ideologyComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, ideologyComboBox.Font).Width + margin);
             }
             ideologyComboBox.DropDownWidth = maxWidth;
 
@@ -1107,7 +1111,7 @@ namespace HoI2Editor.Forms
             foreach (string s in Ministers.LoyaltyNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 loyaltyComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, loyaltyComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, loyaltyComboBox.Font).Width + margin);
             }
             loyaltyComboBox.DropDownWidth = maxWidth;
         }

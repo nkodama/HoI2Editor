@@ -1257,6 +1257,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 国タグ
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
@@ -1268,7 +1271,8 @@ namespace HoI2Editor.Forms
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    margin);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1288,7 +1292,7 @@ namespace HoI2Editor.Forms
                 }
                 // 研究特性アイコンの幅を追加している
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, specialityComboBox1.Font).Width + additionalWidth);
+                    (int) g.MeasureString(s, specialityComboBox1.Font).Width + additionalWidth);
             }
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {

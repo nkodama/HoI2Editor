@@ -1573,6 +1573,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 国タグ
             countryComboBox.Items.Clear();
             int maxWidth = countryComboBox.DropDownWidth;
@@ -1584,7 +1587,8 @@ namespace HoI2Editor.Forms
             {
                 countryComboBox.Items.Add(s);
                 maxWidth = Math.Max(maxWidth,
-                    TextRenderer.MeasureText(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth);
+                    (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    margin);
             }
             countryComboBox.DropDownWidth = maxWidth;
 
@@ -1594,7 +1598,7 @@ namespace HoI2Editor.Forms
             foreach (string s in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 branchComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, branchComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, branchComboBox.Font).Width + margin);
             }
             branchComboBox.DropDownWidth = maxWidth;
 
@@ -1604,7 +1608,7 @@ namespace HoI2Editor.Forms
             foreach (string s in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 idealRankComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, TextRenderer.MeasureText(s, idealRankComboBox.Font).Width);
+                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, idealRankComboBox.Font).Width + margin);
             }
             idealRankComboBox.DropDownWidth = maxWidth;
         }

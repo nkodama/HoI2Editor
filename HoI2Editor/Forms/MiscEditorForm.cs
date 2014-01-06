@@ -1320,6 +1320,7 @@ namespace HoI2Editor.Forms
         {
             var rm = new ResourceManager("HoI2Editor.Properties.Resources", typeof (Resources).Assembly);
 
+            Graphics g = Graphics.FromHwnd(Handle);
             int itemHeight = DeviceCaps.GetScaledHeight(25);
             int labelStartX = DeviceCaps.GetScaledWidth(10);
             int labelStartY = DeviceCaps.GetScaledHeight(13);
@@ -1378,7 +1379,7 @@ namespace HoI2Editor.Forms
                                 if (!string.IsNullOrEmpty(s))
                                 {
                                     maxWidth = Math.Max(maxWidth,
-                                        TextRenderer.MeasureText(s, Font).Width +
+                                        (int) g.MeasureString(s, Font).Width +
                                         SystemInformation.VerticalScrollBarWidth + comboBoxWidthMargin);
                                     maxWidth = comboBoxWidthBase +
                                                ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))/
@@ -1431,7 +1432,7 @@ namespace HoI2Editor.Forms
                                 {
                                     comboBox.Items.Add(s);
                                     maxWidth = Math.Max(maxWidth,
-                                        TextRenderer.MeasureText(s, Font).Width +
+                                        (int) g.MeasureString(s, Font).Width +
                                         SystemInformation.VerticalScrollBarWidth + comboBoxWidthMargin);
                                     maxWidth = comboBoxWidthBase +
                                                ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))/
