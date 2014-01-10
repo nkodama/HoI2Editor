@@ -129,7 +129,7 @@
     <value>12, 12</value>
   </data>
   <data name="logRichTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 228</value>
+    <value>440, 229</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="logRichTextBox.TabIndex" type="System.Int32, mscorlib">
@@ -154,7 +154,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="clearButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 246</value>
+    <value>215, 247</value>
   </data>
   <data name="clearButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -181,7 +181,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="copyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 246</value>
+    <value>296, 247</value>
   </data>
   <data name="copyButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -208,7 +208,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>377, 246</value>
+    <value>377, 247</value>
   </data>
   <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -238,7 +238,10 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>464, 281</value>
+    <value>464, 282</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>480, 320</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Log</value>
