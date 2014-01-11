@@ -131,25 +131,25 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 18</value>
+    <value>75, 12</value>
   </data>
   <data name="pictureNameLabel.Text" xml:space="preserve">
     <value>画像ファイル名</value>
   </data>
   <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 18</value>
+    <value>41, 12</value>
   </data>
   <data name="endYearLabel.Text" xml:space="preserve">
     <value>終了年</value>
   </data>
   <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 18</value>
+    <value>41, 12</value>
   </data>
   <data name="startYearLabel.Text" xml:space="preserve">
     <value>開始年</value>
   </data>
   <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 18</value>
+    <value>29, 12</value>
   </data>
   <data name="nameLabel.Text" xml:space="preserve">
     <value>名前</value>
@@ -176,10 +176,10 @@
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 26</value>
+    <value>181, 20</value>
   </data>
   <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 18</value>
+    <value>29, 12</value>
   </data>
   <data name="countryLabel.Text" xml:space="preserve">
     <value>国家</value>
@@ -206,7 +206,7 @@
     <value>新規</value>
   </data>
   <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 18</value>
+    <value>34, 12</value>
   </data>
   <data name="skillLabel.Text" xml:space="preserve">
     <value>スキル</value>
