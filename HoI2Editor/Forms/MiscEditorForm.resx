@@ -117,504 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="economyTabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="economyTabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="economyTabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="economyTabPage1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="economyTabPage1.Text" xml:space="preserve">
-    <value>Economy1</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage1.Name" xml:space="preserve">
-    <value>economyTabPage1</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage1.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="economyTabPage2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="economyTabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="economyTabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="economyTabPage2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="economyTabPage2.Text" xml:space="preserve">
-    <value>Economy2</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage2.Name" xml:space="preserve">
-    <value>economyTabPage2</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage2.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="economyTabPage3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="economyTabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="economyTabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="economyTabPage3.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="economyTabPage3.Text" xml:space="preserve">
-    <value>Economy3</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage3.Name" xml:space="preserve">
-    <value>economyTabPage3</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage3.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;economyTabPage3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="intelligenceTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="intelligenceTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="intelligenceTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="intelligenceTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="intelligenceTabPage.Text" xml:space="preserve">
-    <value>Intelligence</value>
-  </data>
-  <data name="&gt;&gt;intelligenceTabPage.Name" xml:space="preserve">
-    <value>intelligenceTabPage</value>
-  </data>
-  <data name="&gt;&gt;intelligenceTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;intelligenceTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;intelligenceTabPage.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="diplomacyTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="diplomacyTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="diplomacyTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="diplomacyTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="diplomacyTabPage.Text" xml:space="preserve">
-    <value>Diplomacy</value>
-  </data>
-  <data name="&gt;&gt;diplomacyTabPage.Name" xml:space="preserve">
-    <value>diplomacyTabPage</value>
-  </data>
-  <data name="&gt;&gt;diplomacyTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;diplomacyTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;diplomacyTabPage.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="combatTabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="combatTabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="combatTabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="combatTabPage1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="combatTabPage1.Text" xml:space="preserve">
-    <value>Combat1</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage1.Name" xml:space="preserve">
-    <value>combatTabPage1</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage1.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="combatTabPage2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="combatTabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="combatTabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="combatTabPage2.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="combatTabPage2.Text" xml:space="preserve">
-    <value>Combat2</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage2.Name" xml:space="preserve">
-    <value>combatTabPage2</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage2.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage2.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="combatTabPage3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="combatTabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="combatTabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="combatTabPage3.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="combatTabPage3.Text" xml:space="preserve">
-    <value>Combat3</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage3.Name" xml:space="preserve">
-    <value>combatTabPage3</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage3.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage3.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="combatTabPage4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="combatTabPage4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="combatTabPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="combatTabPage4.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="combatTabPage4.Text" xml:space="preserve">
-    <value>Combat4</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage4.Name" xml:space="preserve">
-    <value>combatTabPage4</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage4.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage4.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="combatTabPage5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="combatTabPage5.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="combatTabPage5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="combatTabPage5.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="combatTabPage5.Text" xml:space="preserve">
-    <value>Combat5</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage5.Name" xml:space="preserve">
-    <value>combatTabPage5</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage5.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;combatTabPage5.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="missionTabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="missionTabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="missionTabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="missionTabPage1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="missionTabPage1.Text" xml:space="preserve">
-    <value>Mission1</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage1.Name" xml:space="preserve">
-    <value>missionTabPage1</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage1.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage1.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="missionTabPage2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="missionTabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="missionTabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="missionTabPage2.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="missionTabPage2.Text" xml:space="preserve">
-    <value>Mission2</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage2.Name" xml:space="preserve">
-    <value>missionTabPage2</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage2.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;missionTabPage2.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="countryTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="countryTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="countryTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="countryTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="countryTabPage.Text" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="&gt;&gt;countryTabPage.Name" xml:space="preserve">
-    <value>countryTabPage</value>
-  </data>
-  <data name="&gt;&gt;countryTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;countryTabPage.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="researchTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="researchTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="researchTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="researchTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="researchTabPage.Text" xml:space="preserve">
-    <value>Research</value>
-  </data>
-  <data name="&gt;&gt;researchTabPage.Name" xml:space="preserve">
-    <value>researchTabPage</value>
-  </data>
-  <data name="&gt;&gt;researchTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;researchTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;researchTabPage.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="tradeTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tradeTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tradeTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="tradeTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="tradeTabPage.Text" xml:space="preserve">
-    <value>Trade</value>
-  </data>
-  <data name="&gt;&gt;tradeTabPage.Name" xml:space="preserve">
-    <value>tradeTabPage</value>
-  </data>
-  <data name="&gt;&gt;tradeTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;tradeTabPage.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="aiTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="aiTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="aiTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="aiTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="aiTabPage.Text" xml:space="preserve">
-    <value>AI</value>
-  </data>
-  <data name="&gt;&gt;aiTabPage.Name" xml:space="preserve">
-    <value>aiTabPage</value>
-  </data>
-  <data name="&gt;&gt;aiTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;aiTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;aiTabPage.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="modTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="modTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="modTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="modTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="modTabPage.Text" xml:space="preserve">
-    <value>MOD</value>
-  </data>
-  <data name="&gt;&gt;modTabPage.Name" xml:space="preserve">
-    <value>modTabPage</value>
-  </data>
-  <data name="&gt;&gt;modTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;modTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;modTabPage.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="mapTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="mapTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="mapTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 656</value>
-  </data>
-  <data name="mapTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="mapTabPage.Text" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="&gt;&gt;mapTabPage.Name" xml:space="preserve">
-    <value>mapTabPage</value>
-  </data>
-  <data name="&gt;&gt;mapTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mapTabPage.Parent" xml:space="preserve">
-    <value>miscTabControl</value>
-  </data>
-  <data name="&gt;&gt;mapTabPage.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
   <data name="miscTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+    <value>Top</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="miscTabControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="miscTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>984, 682</value>
+    <value>784, 521</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="miscTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -628,11 +142,101 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;miscTabControl.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <metadata name="miscToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="closeButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>697, 527</value>
+  </data>
+  <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Name" xml:space="preserve">
+    <value>closeButton</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="saveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 527</value>
+  </data>
+  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
+    <value>saveButton</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="reloadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>535, 527</value>
+  </data>
+  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
+    <value>reloadButton</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -640,10 +244,10 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>984, 682</value>
+    <value>784, 562</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1000, 670</value>
+    <value>800, 600</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Misc Editor</value>
