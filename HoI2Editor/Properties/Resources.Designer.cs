@@ -10321,6 +10321,105 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   AI に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionAi {
+            get {
+                return ResourceManager.GetString("MiscSectionAi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Combat に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionCombat {
+            get {
+                return ResourceManager.GetString("MiscSectionCombat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Country に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionCountry {
+            get {
+                return ResourceManager.GetString("MiscSectionCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Diplomacy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionDiplomacy {
+            get {
+                return ResourceManager.GetString("MiscSectionDiplomacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Economy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionEconomy {
+            get {
+                return ResourceManager.GetString("MiscSectionEconomy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Intelligence に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionIntelligence {
+            get {
+                return ResourceManager.GetString("MiscSectionIntelligence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Map に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionMap {
+            get {
+                return ResourceManager.GetString("MiscSectionMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Mission に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionMission {
+            get {
+                return ResourceManager.GetString("MiscSectionMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   MOD に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionMod {
+            get {
+                return ResourceManager.GetString("MiscSectionMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Research に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionResearch {
+            get {
+                return ResourceManager.GetString("MiscSectionResearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Trade に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MiscSectionTrade {
+            get {
+                return ResourceManager.GetString("MiscSectionTrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Modified minister personality に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ModifiedPersonality {

@@ -3600,4 +3600,37 @@
   <data name="WarningUnexpectedTempKey" xml:space="preserve">
     <value>想定外の一時キー</value>
   </data>
+  <data name="MiscSectionAi" xml:space="preserve">
+    <value>AI</value>
+  </data>
+  <data name="MiscSectionCombat" xml:space="preserve">
+    <value>戦闘</value>
+  </data>
+  <data name="MiscSectionCountry" xml:space="preserve">
+    <value>国家</value>
+  </data>
+  <data name="MiscSectionDiplomacy" xml:space="preserve">
+    <value>外交</value>
+  </data>
+  <data name="MiscSectionEconomy" xml:space="preserve">
+    <value>経済</value>
+  </data>
+  <data name="MiscSectionIntelligence" xml:space="preserve">
+    <value>諜報</value>
+  </data>
+  <data name="MiscSectionMap" xml:space="preserve">
+    <value>マップ</value>
+  </data>
+  <data name="MiscSectionMission" xml:space="preserve">
+    <value>任務</value>
+  </data>
+  <data name="MiscSectionMod" xml:space="preserve">
+    <value>MOD</value>
+  </data>
+  <data name="MiscSectionResearch" xml:space="preserve">
+    <value>研究</value>
+  </data>
+  <data name="MiscSectionTrade" xml:space="preserve">
+    <value>貿易</value>
+  </data>
 </root>

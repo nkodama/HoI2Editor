@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Resources;
 using HoI2Editor.Parsers;
+using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
 using HoI2Editor.Writers;
 
@@ -202,9 +204,9 @@ namespace HoI2Editor.Models
         #region 公開定数
 
         /// <summary>
-        ///     セクション名
+        ///     セクション文字列
         /// </summary>
-        public static readonly string[] SectionNames =
+        public static readonly string[] SectionStrings =
         {
             "economy",
             "intelligence",
@@ -3876,6 +3878,28 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部定数
+
+        /// <summary>
+        /// セクション名
+        /// </summary>
+        private static readonly string[] SectionNames =
+        {
+            "Economy",
+            "Intelligence",
+            "Diplomacy",
+            "Combat",
+            "Mission",
+            "Country",
+            "Research",
+            "Trade",
+            "Ai",
+            "Mod",
+            "Map"
+        };
+
+        #endregion
+
         #region ファイル読み込み
 
         /// <summary>
@@ -4059,6 +4083,18 @@ namespace HoI2Editor.Models
         #endregion
 
         #region 文字列操作
+
+        /// <summary>
+        /// セクション名を取得する
+        /// </summary>
+        /// <param name="section">セクション</param>
+        /// <returns>セクション名</returns>
+        public static string GetSectionName(MiscSectionId section)
+        {
+            var rm = new ResourceManager("HoI2Editor.Properties.Resources", typeof(Resources).Assembly);
+
+            return rm.GetString("MiscSection" + SectionNames[(int) section]);
+        }
 
         /// <summary>
         ///     項目の文字列を取得する

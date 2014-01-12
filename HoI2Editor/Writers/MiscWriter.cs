@@ -47,7 +47,7 @@ namespace HoI2Editor.Writers
                 = Misc.SectionItems[(int) sectionId].Where(id => Misc.ItemTable[(int) id, (int) gameType]).ToArray();
 
             writer.WriteLine();
-            writer.Write("{0} = {{", Misc.SectionNames[(int) sectionId]);
+            writer.Write("{0} = {{", Misc.SectionStrings[(int) sectionId]);
 
             // 項目のコメントと値を順に書き出す
             int index;

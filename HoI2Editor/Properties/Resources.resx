@@ -3642,4 +3642,37 @@
   <data name="WarningUnexpectedTempKey" xml:space="preserve">
     <value>Unexpected temp key</value>
   </data>
+  <data name="MiscSectionAi" xml:space="preserve">
+    <value>AI</value>
+  </data>
+  <data name="MiscSectionCombat" xml:space="preserve">
+    <value>Combat</value>
+  </data>
+  <data name="MiscSectionCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="MiscSectionDiplomacy" xml:space="preserve">
+    <value>Diplomacy</value>
+  </data>
+  <data name="MiscSectionEconomy" xml:space="preserve">
+    <value>Economy</value>
+  </data>
+  <data name="MiscSectionIntelligence" xml:space="preserve">
+    <value>Intelligence</value>
+  </data>
+  <data name="MiscSectionMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="MiscSectionMission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="MiscSectionMod" xml:space="preserve">
+    <value>MOD</value>
+  </data>
+  <data name="MiscSectionResearch" xml:space="preserve">
+    <value>Research</value>
+  </data>
+  <data name="MiscSectionTrade" xml:space="preserve">
+    <value>Trade</value>
+  </data>
 </root>
