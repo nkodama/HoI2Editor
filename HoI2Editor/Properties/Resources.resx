@@ -489,9 +489,6 @@
   <data name="ConfirmSaveMessage" xml:space="preserve">
     <value>The items has been changed. Do you want to save the changes?</value>
   </data>
-  <data name="KeyClose" xml:space="preserve">
-    <value>Close</value>
-  </data>
   <data name="MiscLabelAaAirBonusRadars" xml:space="preserve">
     <value>AA to Air Bonus from Radars</value>
   </data>
@@ -2885,12 +2882,6 @@
   </data>
   <data name="MiscLabelWartimeStockpilesResources" xml:space="preserve">
     <value>Wartime Stockpiles for Resources</value>
-  </data>
-  <data name="KeyReload" xml:space="preserve">
-    <value>Reload</value>
-  </data>
-  <data name="KeySave" xml:space="preserve">
-    <value>Save</value>
   </data>
   <data name="MiscEnumAaAirFiringRules0" xml:space="preserve">
     <value>Bombing</value>

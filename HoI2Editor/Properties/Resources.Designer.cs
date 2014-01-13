@@ -718,33 +718,6 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   Close に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string KeyClose {
-            get {
-                return ResourceManager.GetString("KeyClose", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Reload に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string KeyReload {
-            get {
-                return ResourceManager.GetString("KeyReload", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Save に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string KeySave {
-            get {
-                return ResourceManager.GetString("KeySave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Select All に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string KeySelectAll {
