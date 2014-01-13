@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using System.Resources;
 using HoI2Editor.Parsers;
-using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
 using HoI2Editor.Writers;
 
@@ -3881,7 +3880,7 @@ namespace HoI2Editor.Models
         #region 内部定数
 
         /// <summary>
-        /// セクション名
+        ///     セクション名
         /// </summary>
         private static readonly string[] SectionNames =
         {
@@ -4085,15 +4084,46 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
-        /// セクション名を取得する
+        ///     セクション名を取得する
         /// </summary>
         /// <param name="section">セクション</param>
         /// <returns>セクション名</returns>
         public static string GetSectionName(MiscSectionId section)
         {
-            var rm = new ResourceManager("HoI2Editor.Properties.Resources", typeof(Resources).Assembly);
+            return HoI2Editor.GetResourceString("MiscSection" + SectionNames[(int) section]);
+        }
 
-            return rm.GetString("MiscSection" + SectionNames[(int) section]);
+        /// <summary>
+        ///     項目名を取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>項目名</returns>
+        public static string GetItemName(MiscItemId id)
+        {
+            return HoI2Editor.GetResourceString("MiscLabel" + ItemNames[(int) id]);
+        }
+
+        /// <summary>
+        ///     項目のツールチップ文字列を取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>ツールチップ文字列</returns>
+        public static string GetItemToolTip(MiscItemId id)
+        {
+            return HoI2Editor.GetResourceString("MiscToolTip" + ItemNames[(int) id]);
+        }
+
+        /// <summary>
+        ///     項目の選択肢の文字列を取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <param name="index">選択肢のインデックス</param>
+        /// <returns>選択肢の文字列</returns>
+        public static string GetItemChoice(MiscItemId id, int index)
+        {
+            return index.ToString(CultureInfo.InvariantCulture) + ": "
+                   + HoI2Editor.GetResourceString("MiscEnum" + ItemNames[(int) id]
+                                                  + index.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>

@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using System.Resources;
 using System.Windows.Forms;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
+using HoI2Editor.Properties;
 
 namespace HoI2Editor
 {
@@ -11,10 +13,6 @@ namespace HoI2Editor
     /// </summary>
     public static class HoI2Editor
     {
-        #region 内部フィールド
-
-        #endregion
-
         #region エディターのバージョン
 
         /// <summary>
@@ -47,6 +45,25 @@ namespace HoI2Editor
                     info.FileMinorPart, info.FileBuildPart);
             }
             Debug.WriteLine(_version);
+        }
+
+        #endregion
+
+        #region リソース管理
+
+        /// <summary>
+        ///     リソースマネージャ
+        /// </summary>
+        private static readonly ResourceManager ResourceManager
+            = new ResourceManager("HoI2Editor.Properties.Resources", typeof (Resources).Assembly);
+
+        /// <summary>
+        ///     リソース文字列を取得する
+        /// </summary>
+        /// <param name="name">リソース名</param>
+        public static string GetResourceString(string name)
+        {
+            return ResourceManager.GetString(name);
         }
 
         #endregion
