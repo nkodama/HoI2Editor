@@ -702,7 +702,7 @@ namespace HoI2Editor.Forms
         {
             UnitModel model = unit.Models[index];
 
-            var item = new ListViewItem {Text = Config.GetText(index.ToString(CultureInfo.InvariantCulture))};
+            var item = new ListViewItem {Text = index.ToString(CultureInfo.InvariantCulture)};
             item.SubItems.Add(Config.GetText(UnitModel.GetName(
                 unit, index, countryListView.SelectedIndices.Count == 0
                     ? Country.None
