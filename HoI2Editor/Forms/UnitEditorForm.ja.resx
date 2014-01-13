@@ -141,13 +141,13 @@
   <data name="nameColumnHeader.Text" xml:space="preserve">
     <value>名前</value>
   </data>
-  <data name="costColumnHeader.Text" xml:space="preserve">
+  <data name="buildCostColumnHeader.Text" xml:space="preserve">
     <value>IC</value>
   </data>
   <data name="buildTimeColumnHeader.Text" xml:space="preserve">
     <value>時間</value>
   </data>
-  <data name="manPowerSkillColumnHeader.Text" xml:space="preserve">
+  <data name="manpowerColumnHeader.Text" xml:space="preserve">
     <value>労働力</value>
   </data>
   <data name="supplyColumnHeader.Text" xml:space="preserve">

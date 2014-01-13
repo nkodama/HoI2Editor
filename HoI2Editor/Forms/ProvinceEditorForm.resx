@@ -117,2014 +117,2014 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;energyLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 597</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="provinceListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="nameColumnHeader.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="nameColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>185</value>
-  </data>
-  <data name="idColumnHeader.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="idColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="idColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="seaColumnHeader.Text" xml:space="preserve">
-    <value>Sea</value>
-  </data>
-  <data name="seaColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="seaColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="portColumnHeader.Text" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="portColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="portColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="beachColumnHeader.Text" xml:space="preserve">
-    <value>Beach</value>
-  </data>
-  <data name="beachColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="beachColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="infraColumnHeader.Text" xml:space="preserve">
-    <value>Infra</value>
-  </data>
-  <data name="infraColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="infraColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="icColumnHeader.Text" xml:space="preserve">
-    <value>IC</value>
-  </data>
-  <data name="icColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="icColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="manpowerColumnHeader.Text" xml:space="preserve">
-    <value>MP</value>
-  </data>
-  <data name="manpowerColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="manpowerColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="energyColumnHeader.Text" xml:space="preserve">
-    <value>Energy</value>
-  </data>
-  <data name="energyColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="energyColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="metalColumnHeader.Text" xml:space="preserve">
-    <value>Metal</value>
-  </data>
-  <data name="metalColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="metalColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="rareMaterialsColumnHeader.Text" xml:space="preserve">
-    <value>Rares</value>
-  </data>
-  <data name="rareMaterialsColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="rareMaterialsColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="oilColumnHeader.Text" xml:space="preserve">
-    <value>Oil</value>
-  </data>
   <data name="oilColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="oilColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="&gt;&gt;armyXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="provinceListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="provinceListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>760, 140</value>
-  </data>
-  <data name="provinceListView.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;provinceListView.Name" xml:space="preserve">
-    <value>provinceListView</value>
-  </data>
-  <data name="&gt;&gt;provinceListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceListView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;provinceListView.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="worldTreeView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="worldTreeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 261</value>
-  </data>
-  <data name="worldTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 328</value>
-  </data>
-  <data name="worldTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;worldTreeView.Name" xml:space="preserve">
-    <value>worldTreeView</value>
-  </data>
-  <data name="&gt;&gt;worldTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;worldTreeView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;worldTreeView.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="basicGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="terrainComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 177</value>
-  </data>
-  <data name="terrainComboBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="portSeaZoneComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 20</value>
   </data>
-  <data name="terrainComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.Name" xml:space="preserve">
+    <value>rareMaterialsNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;terrainComboBox.Name" xml:space="preserve">
-    <value>terrainComboBox</value>
-  </data>
-  <data name="&gt;&gt;terrainComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;terrainComboBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;terrainComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="terrainLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="terrainLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 180</value>
-  </data>
-  <data name="terrainLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="terrainLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="terrainLabel.Text" xml:space="preserve">
-    <value>Terrain</value>
-  </data>
-  <data name="&gt;&gt;terrainLabel.Name" xml:space="preserve">
-    <value>terrainLabel</value>
-  </data>
-  <data name="&gt;&gt;terrainLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;terrainLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;terrainLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="climateComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 151</value>
-  </data>
-  <data name="climateComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 20</value>
-  </data>
-  <data name="climateComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;climateComboBox.Name" xml:space="preserve">
-    <value>climateComboBox</value>
-  </data>
-  <data name="&gt;&gt;climateComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;climateComboBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;climateComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="climateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="climateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 154</value>
-  </data>
-  <data name="climateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 12</value>
-  </data>
-  <data name="climateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="climateLabel.Text" xml:space="preserve">
-    <value>Climate</value>
-  </data>
-  <data name="&gt;&gt;climateLabel.Name" xml:space="preserve">
-    <value>climateLabel</value>
-  </data>
-  <data name="&gt;&gt;climateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;climateLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;climateLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="areaComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 125</value>
-  </data>
-  <data name="areaComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 20</value>
-  </data>
-  <data name="areaComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;areaComboBox.Name" xml:space="preserve">
-    <value>areaComboBox</value>
-  </data>
-  <data name="&gt;&gt;areaComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaComboBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;areaComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="areaLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="areaLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 128</value>
-  </data>
-  <data name="areaLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
-  <data name="areaLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="areaLabel.Text" xml:space="preserve">
-    <value>Area</value>
-  </data>
-  <data name="&gt;&gt;areaLabel.Name" xml:space="preserve">
-    <value>areaLabel</value>
-  </data>
-  <data name="&gt;&gt;areaLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;areaLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="aaLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
   </data>
   <data name="regionComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>90, 99</value>
   </data>
-  <data name="regionComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 20</value>
+  <data name="&gt;&gt;manpowerLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
   </data>
-  <data name="regionComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="rareMaterialsNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;regionComboBox.Name" xml:space="preserve">
-    <value>regionComboBox</value>
+  <data name="&gt;&gt;energyNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
   </data>
-  <data name="&gt;&gt;regionComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;regionComboBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;regionComboBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="regionLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="regionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 102</value>
-  </data>
-  <data name="regionLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 12</value>
-  </data>
-  <data name="regionLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="regionLabel.Text" xml:space="preserve">
-    <value>Region</value>
-  </data>
-  <data name="&gt;&gt;regionLabel.Name" xml:space="preserve">
-    <value>regionLabel</value>
-  </data>
-  <data name="&gt;&gt;regionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="worldTreeView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;regionLabel.Parent" xml:space="preserve">
     <value>basicGroupBox</value>
   </data>
-  <data name="&gt;&gt;regionLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="continentComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 73</value>
-  </data>
-  <data name="continentComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 20</value>
-  </data>
-  <data name="continentComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;continentComboBox.Name" xml:space="preserve">
-    <value>continentComboBox</value>
-  </data>
-  <data name="&gt;&gt;continentComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;continentComboBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;continentComboBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="continentLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="continentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 76</value>
-  </data>
-  <data name="continentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 12</value>
-  </data>
-  <data name="continentLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="continentLabel.Text" xml:space="preserve">
-    <value>Continent</value>
-  </data>
-  <data name="&gt;&gt;continentLabel.Name" xml:space="preserve">
-    <value>continentLabel</value>
-  </data>
-  <data name="&gt;&gt;continentLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;continentLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;continentLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 48</value>
-  </data>
-  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 19</value>
-  </data>
-  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
-    <value>nameTextBox</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="nameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 51</value>
-  </data>
-  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="nameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Name" xml:space="preserve">
-    <value>nameLabel</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="idNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 23</value>
-  </data>
-  <data name="idNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="idNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="idNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;idNumericUpDown.Name" xml:space="preserve">
-    <value>idNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;idNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;idNumericUpDown.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="idLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 25</value>
-  </data>
-  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="idLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="idLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Name" xml:space="preserve">
-    <value>idLabel</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Parent" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="basicGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 165</value>
-  </data>
-  <data name="basicGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 212</value>
-  </data>
-  <data name="basicGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="basicGroupBox.Text" xml:space="preserve">
-    <value>Basic Settings</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
-    <value>basicGroupBox</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="positionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="fillYNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 173</value>
-  </data>
-  <data name="fillYNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillYNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="fillYNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown4.Name" xml:space="preserve">
-    <value>fillYNumericUpDown4</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown4.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="fillXNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 173</value>
-  </data>
-  <data name="fillXNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillXNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="fillXNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown4.Name" xml:space="preserve">
-    <value>fillXNumericUpDown4</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown4.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="fillYNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 148</value>
-  </data>
-  <data name="fillYNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillYNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="fillYNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown3.Name" xml:space="preserve">
-    <value>fillYNumericUpDown3</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown3.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="fillXNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 148</value>
-  </data>
-  <data name="fillXNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillXNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="fillXNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown3.Name" xml:space="preserve">
-    <value>fillXNumericUpDown3</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown3.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown3.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="fillYNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 123</value>
-  </data>
-  <data name="fillYNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillYNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="fillYNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown2.Name" xml:space="preserve">
-    <value>fillYNumericUpDown2</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown2.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="fillXNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 123</value>
-  </data>
-  <data name="fillXNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillXNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="fillXNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown2.Name" xml:space="preserve">
-    <value>fillXNumericUpDown2</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown2.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown2.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="fillYNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 98</value>
-  </data>
-  <data name="fillYNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillYNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="fillYNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown1.Name" xml:space="preserve">
-    <value>fillYNumericUpDown1</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown1.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillYNumericUpDown1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="fillXNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 98</value>
-  </data>
-  <data name="fillXNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fillXNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="fillXNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown1.Name" xml:space="preserve">
-    <value>fillXNumericUpDown1</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown1.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillXNumericUpDown1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="fillLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="fillLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 100</value>
-  </data>
-  <data name="fillLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>21, 12</value>
-  </data>
-  <data name="fillLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="fillLabel.Text" xml:space="preserve">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;fillLabel.Name" xml:space="preserve">
-    <value>fillLabel</value>
-  </data>
-  <data name="&gt;&gt;fillLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fillLabel.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fillLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="counterYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 173</value>
-  </data>
-  <data name="counterYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="counterYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="counterYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;counterYNumericUpDown.Name" xml:space="preserve">
-    <value>counterYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;counterYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;counterYNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;counterYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="counterXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 173</value>
-  </data>
-  <data name="counterXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="counterXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="counterXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;counterXNumericUpDown.Name" xml:space="preserve">
-    <value>counterXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;counterXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;counterXNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;counterXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="counterLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="counterLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 175</value>
-  </data>
-  <data name="counterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 12</value>
-  </data>
-  <data name="counterLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="counterLabel.Text" xml:space="preserve">
-    <value>Counter</value>
-  </data>
-  <data name="&gt;&gt;counterLabel.Name" xml:space="preserve">
-    <value>counterLabel</value>
-  </data>
-  <data name="&gt;&gt;counterLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;counterLabel.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;counterLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="aaYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 123</value>
-  </data>
-  <data name="aaYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="aaYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="aaYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;aaYNumericUpDown.Name" xml:space="preserve">
-    <value>aaYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;aaYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;aaYNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;aaYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="aaXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 123</value>
-  </data>
-  <data name="aaXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="aaXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="aaXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;aaXNumericUpDown.Name" xml:space="preserve">
-    <value>aaXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;aaXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;aaXNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;aaXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="aaLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="aaLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 125</value>
-  </data>
-  <data name="aaLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 12</value>
-  </data>
-  <data name="aaLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="aaLabel.Text" xml:space="preserve">
-    <value>Anti Air</value>
-  </data>
-  <data name="&gt;&gt;aaLabel.Name" xml:space="preserve">
-    <value>aaLabel</value>
-  </data>
-  <data name="&gt;&gt;aaLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;aaLabel.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;aaLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="fortYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 98</value>
-  </data>
-  <data name="fortYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fortYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="fortYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;fortYNumericUpDown.Name" xml:space="preserve">
-    <value>fortYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;fortYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fortYNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fortYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="fortXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 98</value>
-  </data>
-  <data name="fortXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="fortXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="cityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 12</value>
   </data>
   <data name="fortXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;fortXNumericUpDown.Name" xml:space="preserve">
-    <value>fortXNumericUpDown</value>
+  <data name="&gt;&gt;infraNumericUpDown.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
-  <data name="&gt;&gt;fortXNumericUpDown.Type" xml:space="preserve">
+  <data name="&gt;&gt;energyNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fortXNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fortXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>16</value>
   </data>
   <data name="fortLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="fortLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 100</value>
+  <data name="fortXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
-  <data name="fortLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 12</value>
+  <data name="&gt;&gt;cityXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>33</value>
   </data>
-  <data name="fortLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="fortLabel.Text" xml:space="preserve">
-    <value>Fortress</value>
-  </data>
-  <data name="&gt;&gt;fortLabel.Name" xml:space="preserve">
-    <value>fortLabel</value>
-  </data>
-  <data name="&gt;&gt;fortLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fortLabel.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;fortLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="beachIconNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 23</value>
-  </data>
-  <data name="beachIconNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="beachIconNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="beachIconNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;beachIconNumericUpDown.Name" xml:space="preserve">
-    <value>beachIconNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;beachIconNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;beachIconNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;beachIconNumericUpDown.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="beachIconLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="beachIconLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 25</value>
-  </data>
-  <data name="beachIconLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 12</value>
-  </data>
-  <data name="beachIconLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="beachIconLabel.Text" xml:space="preserve">
-    <value>Icon</value>
-  </data>
-  <data name="&gt;&gt;beachIconLabel.Name" xml:space="preserve">
-    <value>beachIconLabel</value>
-  </data>
-  <data name="&gt;&gt;beachIconLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;beachIconLabel.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;beachIconLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="beachYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 23</value>
-  </data>
-  <data name="beachYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="beachYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="beachYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;beachYNumericUpDown.Name" xml:space="preserve">
-    <value>beachYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;beachYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;beachYNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;beachYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="beachXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 23</value>
-  </data>
-  <data name="beachXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="beachXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="beachXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="fillXNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="&gt;&gt;beachXNumericUpDown.Name" xml:space="preserve">
     <value>beachXNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;beachXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="fillXNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
   </data>
-  <data name="&gt;&gt;beachXNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
+  <data name="&gt;&gt;rareMaterialsColumnHeader.Name" xml:space="preserve">
+    <value>rareMaterialsColumnHeader</value>
   </data>
-  <data name="&gt;&gt;beachXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="beachCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="beachCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 24</value>
-  </data>
-  <data name="beachCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
-  </data>
-  <data name="beachCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="beachCheckBox.Text" xml:space="preserve">
-    <value>Beach</value>
-  </data>
-  <data name="&gt;&gt;beachCheckBox.Name" xml:space="preserve">
-    <value>beachCheckBox</value>
-  </data>
-  <data name="&gt;&gt;beachCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;beachCheckBox.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;beachCheckBox.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="portSeaZoneComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>251, 73</value>
-  </data>
-  <data name="portSeaZoneComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 20</value>
-  </data>
-  <data name="portSeaZoneComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneComboBox.Name" xml:space="preserve">
-    <value>portSeaZoneComboBox</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneComboBox.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneComboBox.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="portSeaZoneNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 48</value>
-  </data>
-  <data name="portSeaZoneNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="portSeaZoneNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="portSeaZoneNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneNumericUpDown.Name" xml:space="preserve">
-    <value>portSeaZoneNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneNumericUpDown.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="portSeaZoneLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="portSeaZoneLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 50</value>
-  </data>
-  <data name="portSeaZoneLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="portSeaZoneLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="portSeaZoneLabel.Text" xml:space="preserve">
-    <value>Sea Zone</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneLabel.Name" xml:space="preserve">
-    <value>portSeaZoneLabel</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneLabel.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;portSeaZoneLabel.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="portYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 48</value>
-  </data>
-  <data name="portYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="portYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="portYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;portYNumericUpDown.Name" xml:space="preserve">
-    <value>portYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;portYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;portYNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;portYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="portXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 48</value>
-  </data>
-  <data name="portXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="portXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="portXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;portXNumericUpDown.Name" xml:space="preserve">
-    <value>portXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;portXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;terrainComboBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
   </data>
   <data name="&gt;&gt;portXNumericUpDown.Parent" xml:space="preserve">
     <value>positionGroupBox</value>
   </data>
-  <data name="&gt;&gt;portXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="portCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="portCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 49</value>
-  </data>
-  <data name="portCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 16</value>
-  </data>
-  <data name="portCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="portCheckBox.Text" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="&gt;&gt;portCheckBox.Name" xml:space="preserve">
-    <value>portCheckBox</value>
-  </data>
-  <data name="&gt;&gt;portCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;portCheckBox.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;portCheckBox.ZOrder" xml:space="preserve">
-    <value>28</value>
-  </data>
-  <data name="armyYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 148</value>
-  </data>
-  <data name="armyYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="armyYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="armyYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;armyYNumericUpDown.Name" xml:space="preserve">
-    <value>armyYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;armyYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;armyYNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;armyYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>29</value>
-  </data>
-  <data name="armyXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 148</value>
-  </data>
-  <data name="armyXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="armyXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="armyXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;armyXNumericUpDown.Name" xml:space="preserve">
-    <value>armyXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;armyXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;armyXNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;armyXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="armyLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="armyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 150</value>
-  </data>
-  <data name="armyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 12</value>
-  </data>
-  <data name="armyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+  <data name="&gt;&gt;portColumnHeader.Name" xml:space="preserve">
+    <value>portColumnHeader</value>
   </data>
   <data name="armyLabel.Text" xml:space="preserve">
     <value>Army</value>
   </data>
-  <data name="&gt;&gt;armyLabel.Name" xml:space="preserve">
-    <value>armyLabel</value>
+  <data name="&gt;&gt;beachYNumericUpDown.Name" xml:space="preserve">
+    <value>beachYNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;armyLabel.Type" xml:space="preserve">
+  <data name="beachXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;terrainLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;continentLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;infraNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="oilNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;climateLabel.Name" xml:space="preserve">
+    <value>climateLabel</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;armyLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;beachYNumericUpDown.Parent" xml:space="preserve">
     <value>positionGroupBox</value>
   </data>
-  <data name="&gt;&gt;armyLabel.ZOrder" xml:space="preserve">
-    <value>31</value>
+  <data name="counterLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
-  <data name="cityYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 73</value>
+  <data name="fillLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 100</value>
   </data>
-  <data name="cityYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
+  <data name="beachCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="cityYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;areaLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cityYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;cityYNumericUpDown.Name" xml:space="preserve">
-    <value>cityYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;cityYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cityYNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;cityYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>32</value>
-  </data>
-  <data name="cityXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 73</value>
-  </data>
-  <data name="cityXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="cityXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="cityXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;cityXNumericUpDown.Name" xml:space="preserve">
-    <value>cityXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;cityXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cityXNumericUpDown.Parent" xml:space="preserve">
-    <value>positionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;cityXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>33</value>
-  </data>
-  <data name="cityLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="regionLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="cityLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 75</value>
+  <data name="&gt;&gt;seaColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cityLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 12</value>
+  <data name="&gt;&gt;worldTreeView.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="cityLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="&gt;&gt;beachCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cityLabel.Text" xml:space="preserve">
-    <value>City</value>
+  <data name="&gt;&gt;aaYNumericUpDown.Name" xml:space="preserve">
+    <value>aaYNumericUpDown</value>
+  </data>
+  <data name="portSeaZoneLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="continentComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 73</value>
+  </data>
+  <data name="&gt;&gt;beachCheckBox.Name" xml:space="preserve">
+    <value>beachCheckBox</value>
+  </data>
+  <data name="fillXNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>285, 148</value>
+  </data>
+  <data name="energyColumnHeader.Text" xml:space="preserve">
+    <value>Energy</value>
+  </data>
+  <data name="&gt;&gt;metalLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="oilLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;counterYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="fillLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="portCheckBox.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="provinceListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="oilNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="fillLabel.Text" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="beachColumnHeader.Text" xml:space="preserve">
+    <value>Beach</value>
+  </data>
+  <data name="&gt;&gt;beachIconLabel.Name" xml:space="preserve">
+    <value>beachIconLabel</value>
+  </data>
+  <data name="manpowerLabel.Text" xml:space="preserve">
+    <value>Manpower</value>
+  </data>
+  <data name="climateComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 20</value>
+  </data>
+  <data name="fillYNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="metalNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="areaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="portCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;beachColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cityLabel.Name" xml:space="preserve">
     <value>cityLabel</value>
   </data>
-  <data name="&gt;&gt;cityLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;manpowerNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cityLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;regionComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="beachCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="areaComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="manpowerNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 74</value>
+  </data>
+  <data name="&gt;&gt;climateLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="beachCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="rareMaterialsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 152</value>
+  </data>
+  <data name="regionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.Parent" xml:space="preserve">
     <value>positionGroupBox</value>
   </data>
-  <data name="&gt;&gt;cityLabel.ZOrder" xml:space="preserve">
-    <value>34</value>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>Close</value>
   </data>
-  <data name="positionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 383</value>
+  <data name="cityLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="positionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 206</value>
+  <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="positionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="continentComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="positionGroupBox.Text" xml:space="preserve">
-    <value>Position Settings</value>
+  <data name="beachXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;positionGroupBox.Name" xml:space="preserve">
+  <data name="portSeaZoneNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="fillYNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.Name" xml:space="preserve">
+    <value>aaXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="aaLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;resourceGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="portColumnHeader.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ProvinceEditorForm</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 100</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.Name" xml:space="preserve">
+    <value>fortYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;climateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="metalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 12</value>
+  </data>
+  <data name="fillXNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="idNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;terrainLabel.Name" xml:space="preserve">
+    <value>terrainLabel</value>
+  </data>
+  <data name="&gt;&gt;cityXNumericUpDown.Name" xml:space="preserve">
+    <value>cityXNumericUpDown</value>
+  </data>
+  <data name="continentComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 20</value>
+  </data>
+  <data name="&gt;&gt;beachXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="portColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;manpowerNumericUpDown.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;regionLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;icLabel.Name" xml:space="preserve">
+    <value>icLabel</value>
+  </data>
+  <data name="climateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 12</value>
+  </data>
+  <data name="&gt;&gt;metalColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.Name" xml:space="preserve">
+    <value>counterXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.Name" xml:space="preserve">
+    <value>fortXNumericUpDown</value>
+  </data>
+  <data name="idLabel.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="&gt;&gt;idColumnHeader.Name" xml:space="preserve">
+    <value>idColumnHeader</value>
+  </data>
+  <data name="rareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 12</value>
+  </data>
+  <data name="beachIconLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 12</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;beachCheckBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="manpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 12</value>
+  </data>
+  <data name="areaLabel.Text" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="&gt;&gt;aaYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="portSeaZoneLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cityYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="portSeaZoneComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>251, 73</value>
+  </data>
+  <data name="idLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="fortXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown3.Parent" xml:space="preserve">
     <value>positionGroupBox</value>
   </data>
   <data name="&gt;&gt;positionGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;positionGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;positionGroupBox.Name" xml:space="preserve">
+    <value>positionGroupBox</value>
   </data>
-  <data name="&gt;&gt;positionGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="aaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
   </data>
-  <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="closeButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>697, 597</value>
-  </data>
-  <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="closeButton.Text" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="&gt;&gt;closeButton.Name" xml:space="preserve">
-    <value>closeButton</value>
-  </data>
-  <data name="&gt;&gt;closeButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;closeButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="saveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 597</value>
-  </data>
-  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;fillYNumericUpDown1.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cityXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;icLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="fillYNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="metalNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;worldTreeView.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
-    <value>saveButton</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="reloadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>535, 597</value>
-  </data>
-  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="manpowerNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="reloadButton.Text" xml:space="preserve">
-    <value>Reload</value>
+  <data name="seaColumnHeader.Text" xml:space="preserve">
+    <value>Sea</value>
   </data>
-  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
-    <value>reloadButton</value>
+  <data name="aaXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="provincePictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;terrainLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="armyYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="portSeaZoneComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="nameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown1.Name" xml:space="preserve">
+    <value>fillXNumericUpDown1</value>
+  </data>
+  <data name="energyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 102</value>
+  </data>
+  <data name="nameColumnHeader.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;beachYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portXNumericUpDown.Name" xml:space="preserve">
+    <value>portXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Name" xml:space="preserve">
+    <value>nameLabel</value>
+  </data>
+  <data name="fortYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="portXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 48</value>
+  </data>
+  <data name="rareMaterialsLabel.Text" xml:space="preserve">
+    <value>Rare Materials</value>
+  </data>
+  <data name="counterLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 175</value>
+  </data>
+  <data name="fillXNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;infraLabel.Name" xml:space="preserve">
+    <value>infraLabel</value>
+  </data>
+  <data name="&gt;&gt;metalLabel.Name" xml:space="preserve">
+    <value>metalLabel</value>
+  </data>
+  <data name="armyXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="metalColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="beachIconLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 25</value>
+  </data>
+  <data name="icColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;armyYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="portCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;reloadButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;rareMaterialsLabel.Name" xml:space="preserve">
+    <value>rareMaterialsLabel</value>
+  </data>
+  <data name="idNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 23</value>
+  </data>
+  <data name="&gt;&gt;portXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;infraLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energyNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="armyYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 148</value>
+  </data>
+  <data name="fillXNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="provinceListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>760, 140</value>
+  </data>
+  <data name="counterYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 173</value>
+  </data>
+  <data name="armyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 150</value>
+  </data>
+  <data name="&gt;&gt;manpowerColumnHeader.Name" xml:space="preserve">
+    <value>manpowerColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fortLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 12</value>
+  </data>
+  <data name="energyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="fillXNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>285, 98</value>
+  </data>
+  <data name="cityLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;regionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fillYNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 148</value>
+  </data>
+  <data name="provincePictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 169</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneLabel.Name" xml:space="preserve">
+    <value>portSeaZoneLabel</value>
+  </data>
+  <data name="infraLabel.Text" xml:space="preserve">
+    <value>Infra</value>
+  </data>
+  <data name="resourceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>563, 165</value>
+  </data>
+  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 48</value>
+  </data>
+  <data name="beachYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;fortLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;provinceListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;climateComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;infraColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="provinceListView.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;aaXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Province Editor</value>
+  </data>
+  <data name="&gt;&gt;beachIconLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="aaXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;oilColumnHeader.Name" xml:space="preserve">
+    <value>oilColumnHeader</value>
+  </data>
+  <data name="fortLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 100</value>
+  </data>
+  <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;beachCheckBox.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;infraColumnHeader.Name" xml:space="preserve">
+    <value>infraColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;counterYNumericUpDown.Name" xml:space="preserve">
+    <value>counterYNumericUpDown</value>
+  </data>
+  <data name="cityYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="provincePictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 74</value>
+  </data>
+  <data name="&gt;&gt;icColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>535, 597</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="reloadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;areaLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="infraLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="climateComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 151</value>
+  </data>
+  <data name="oilLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="idNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="beachIconNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.Name" xml:space="preserve">
+    <value>icNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;infraNumericUpDown.Name" xml:space="preserve">
+    <value>infraNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;cityLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;areaLabel.Name" xml:space="preserve">
+    <value>areaLabel</value>
+  </data>
+  <data name="fillXNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;continentComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="worldTreeView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 328</value>
+  </data>
   <data name="&gt;&gt;reloadButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;armyYNumericUpDown.Name" xml:space="preserve">
+    <value>armyYNumericUpDown</value>
   </data>
-  <data name="resourceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;fillXNumericUpDown4.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
   </data>
-  <data name="oilNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 175</value>
+  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 19</value>
   </data>
-  <data name="oilNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="&gt;&gt;cityXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.Name" xml:space="preserve">
+    <value>fillLabel</value>
+  </data>
+  <data name="fillYNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 173</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Name" xml:space="preserve">
+    <value>idLabel</value>
+  </data>
+  <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="rareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;regionComboBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="terrainLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="fillYNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 19</value>
   </data>
-  <data name="oilNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+  <data name="cityYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;resourceGroupBox.Name" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="icColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="infraNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="nameColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>185</value>
+  </data>
+  <data name="beachCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 16</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="climateComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="basicGroupBox.Text" xml:space="preserve">
+    <value>Basic Settings</value>
+  </data>
+  <data name="oilColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="oilNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;fillXNumericUpDown1.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
   </data>
-  <data name="&gt;&gt;oilNumericUpDown.Name" xml:space="preserve">
-    <value>oilNumericUpDown</value>
+  <data name="fillLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;oilNumericUpDown.Type" xml:space="preserve">
+  <data name="beachColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="positionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>291, 383</value>
+  </data>
+  <data name="climateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 154</value>
+  </data>
+  <data name="portCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 16</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
+    <value>reloadButton</value>
+  </data>
+  <data name="infraColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="manpowerColumnHeader.Text" xml:space="preserve">
+    <value>MP</value>
+  </data>
+  <data name="resourceGroupBox.Text" xml:space="preserve">
+    <value>Resource Settings</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>784, 632</value>
+  </data>
+  <data name="portYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 48</value>
+  </data>
+  <data name="regionComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;oilNumericUpDown.Parent" xml:space="preserve">
     <value>resourceGroupBox</value>
   </data>
-  <data name="&gt;&gt;oilNumericUpDown.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="oilLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="oilLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 177</value>
-  </data>
-  <data name="oilLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 12</value>
-  </data>
-  <data name="oilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="oilLabel.Text" xml:space="preserve">
-    <value>Oil</value>
-  </data>
-  <data name="&gt;&gt;oilLabel.Name" xml:space="preserve">
-    <value>oilLabel</value>
-  </data>
-  <data name="&gt;&gt;oilLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oilLabel.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;oilLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rareMaterialsNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 150</value>
-  </data>
-  <data name="rareMaterialsNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="rareMaterialsNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="rareMaterialsNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsNumericUpDown.Name" xml:space="preserve">
-    <value>rareMaterialsNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsNumericUpDown.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsNumericUpDown.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="rareMaterialsLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rareMaterialsLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 152</value>
-  </data>
-  <data name="rareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 12</value>
-  </data>
-  <data name="rareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="rareMaterialsLabel.Text" xml:space="preserve">
-    <value>Rare Materials</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsLabel.Name" xml:space="preserve">
-    <value>rareMaterialsLabel</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsLabel.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rareMaterialsLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="metalNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 125</value>
-  </data>
-  <data name="metalNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="metalNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="metalNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;metalNumericUpDown.Name" xml:space="preserve">
-    <value>metalNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;metalNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;metalNumericUpDown.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;metalNumericUpDown.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;positionGroupBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="metalLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="metalLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 127</value>
-  </data>
-  <data name="metalLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 12</value>
-  </data>
-  <data name="metalLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="metalLabel.Text" xml:space="preserve">
-    <value>Metal</value>
-  </data>
-  <data name="&gt;&gt;metalLabel.Name" xml:space="preserve">
-    <value>metalLabel</value>
-  </data>
-  <data name="&gt;&gt;metalLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;metalLabel.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;metalLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="energyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 100</value>
-  </data>
-  <data name="energyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="energyNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="energyNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;energyNumericUpDown.Name" xml:space="preserve">
-    <value>energyNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;energyNumericUpDown.Type" xml:space="preserve">
+  <data name="&gt;&gt;fillXNumericUpDown3.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;energyNumericUpDown.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;energyNumericUpDown.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="energyLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="energyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 102</value>
-  </data>
-  <data name="energyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 12</value>
+  <data name="climateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="energyLabel.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="energyLabel.Text" xml:space="preserve">
-    <value>Energy</value>
+  <data name="oilLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 177</value>
   </data>
-  <data name="&gt;&gt;energyLabel.Name" xml:space="preserve">
-    <value>energyLabel</value>
-  </data>
-  <data name="&gt;&gt;energyLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;energyLabel.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;energyLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="manpowerNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 74</value>
-  </data>
-  <data name="manpowerNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="manpowerNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="manpowerNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="fillXNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;manpowerNumericUpDown.Name" xml:space="preserve">
-    <value>manpowerNumericUpDown</value>
+  <data name="cityLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 75</value>
   </data>
-  <data name="&gt;&gt;manpowerNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="aaYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 123</value>
   </data>
-  <data name="&gt;&gt;manpowerNumericUpDown.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
+  <data name="oilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 12</value>
   </data>
-  <data name="&gt;&gt;manpowerNumericUpDown.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="energyColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="&gt;&gt;worldTreeView.Name" xml:space="preserve">
+    <value>worldTreeView</value>
+  </data>
+  <data name="basicGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>291, 165</value>
+  </data>
+  <data name="resourceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="fortLabel.Text" xml:space="preserve">
+    <value>Fortress</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown1.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="manpowerColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="seaColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
+    <value>nameColumnHeader</value>
+  </data>
+  <data name="aaYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Name" xml:space="preserve">
+    <value>closeButton</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneNumericUpDown.Name" xml:space="preserve">
+    <value>portSeaZoneNumericUpDown</value>
+  </data>
+  <data name="fillLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 12</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;manpowerColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;armyXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;beachColumnHeader.Name" xml:space="preserve">
+    <value>beachColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;climateComboBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="fillYNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="infraNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="fillXNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.Name" xml:space="preserve">
+    <value>metalNumericUpDown</value>
+  </data>
+  <data name="nameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 25</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneComboBox.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="terrainComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="oilNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="basicGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 212</value>
+  </data>
+  <data name="counterYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;metalLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;energyColumnHeader.Name" xml:space="preserve">
+    <value>energyColumnHeader</value>
   </data>
   <data name="manpowerLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="manpowerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 76</value>
+  <data name="&gt;&gt;oilNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="manpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 12</value>
+  <data name="idLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="manpowerLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="idColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="areaLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="icLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="basicGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="fillXNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;idColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oilColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.Name" xml:space="preserve">
+    <value>portYNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;infraLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provincePictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.Name" xml:space="preserve">
+    <value>armyLabel</value>
+  </data>
+  <data name="counterYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="aaLabel.Text" xml:space="preserve">
+    <value>Anti Air</value>
+  </data>
+  <data name="&gt;&gt;positionGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="portCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 49</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="terrainLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="beachIconNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;counterYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="areaComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 20</value>
+  </data>
+  <data name="portXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.Name" xml:space="preserve">
+    <value>oilLabel</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Name" xml:space="preserve">
+    <value>idNumericUpDown</value>
+  </data>
+  <data name="regionComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 20</value>
+  </data>
+  <data name="&gt;&gt;areaLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneComboBox.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="fillXNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="counterLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fillYNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 98</value>
+  </data>
+  <data name="&gt;&gt;fortLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="manpowerColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;portSeaZoneLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rareMaterialsColumnHeader.Text" xml:space="preserve">
+    <value>Rares</value>
+  </data>
+  <data name="&gt;&gt;continentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="icNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="armyXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="beachIconNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="saveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="areaLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="aaYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="rareMaterialsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="beachYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="metalLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 127</value>
+  </data>
+  <data name="areaLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 128</value>
+  </data>
+  <data name="beachColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="metalNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.Name" xml:space="preserve">
+    <value>fillYNumericUpDown4</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="infraColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;portXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="worldTreeView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="energyNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="counterYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="beachCheckBox.Text" xml:space="preserve">
+    <value>Beach</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fillYNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="beachXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 23</value>
+  </data>
+  <data name="&gt;&gt;beachIconLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="armyYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;cityLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="portYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="portXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="fillXNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="portSeaZoneLabel.Text" xml:space="preserve">
+    <value>Sea Zone</value>
+  </data>
+  <data name="armyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 12</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
+    <value>nameTextBox</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown1.Name" xml:space="preserve">
+    <value>fillYNumericUpDown1</value>
+  </data>
+  <data name="metalLabel.Text" xml:space="preserve">
+    <value>Metal</value>
+  </data>
+  <data name="infraLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 12</value>
+  </data>
+  <data name="&gt;&gt;fortYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;beachYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;beachIconNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;icColumnHeader.Name" xml:space="preserve">
+    <value>icColumnHeader</value>
+  </data>
+  <data name="icLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;areaComboBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;manpowerLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="counterLabel.Text" xml:space="preserve">
+    <value>Counter</value>
+  </data>
+  <data name="&gt;&gt;terrainComboBox.Name" xml:space="preserve">
+    <value>terrainComboBox</value>
+  </data>
+  <data name="positionGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="manpowerLabel.Text" xml:space="preserve">
-    <value>Manpower</value>
+  <data name="&gt;&gt;manpowerNumericUpDown.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
   </data>
-  <data name="&gt;&gt;manpowerLabel.Name" xml:space="preserve">
-    <value>manpowerLabel</value>
+  <data name="beachIconLabel.Text" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="aaXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="fillYNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="energyLabel.Text" xml:space="preserve">
+    <value>Energy</value>
+  </data>
+  <data name="energyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
+  </data>
+  <data name="&gt;&gt;portColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fortYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>800, 670</value>
+  </data>
+  <data name="&gt;&gt;provinceListView.Name" xml:space="preserve">
+    <value>provinceListView</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.Name" xml:space="preserve">
+    <value>portCheckBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cityYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 73</value>
+  </data>
+  <data name="&gt;&gt;aaYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
   </data>
   <data name="&gt;&gt;manpowerLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;manpowerLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;climateLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="idColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="continentLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fillXNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>285, 123</value>
+  </data>
+  <data name="icColumnHeader.Text" xml:space="preserve">
+    <value>IC</value>
+  </data>
+  <data name="positionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="counterXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;regionComboBox.Name" xml:space="preserve">
+    <value>regionComboBox</value>
+  </data>
+  <data name="idNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="provinceListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="&gt;&gt;beachIconNumericUpDown.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fortLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;fortLabel.Name" xml:space="preserve">
+    <value>fortLabel</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rareMaterialsColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="rareMaterialsColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;worldTreeView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="terrainComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 177</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;armyXNumericUpDown.Name" xml:space="preserve">
+    <value>armyXNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;areaComboBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="manpowerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 76</value>
+  </data>
+  <data name="fillYNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;beachXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="terrainLabel.Text" xml:space="preserve">
+    <value>Terrain</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="continentLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="metalLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown3.Name" xml:space="preserve">
+    <value>fillYNumericUpDown3</value>
+  </data>
+  <data name="aaXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 123</value>
+  </data>
+  <data name="portSeaZoneNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;basicGroupBox.Name" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="continentLabel.Text" xml:space="preserve">
+    <value>Continent</value>
+  </data>
+  <data name="aaYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="aaLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 125</value>
+  </data>
+  <data name="&gt;&gt;continentLabel.Name" xml:space="preserve">
+    <value>continentLabel</value>
+  </data>
+  <data name="icLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="&gt;&gt;icLabel.Parent" xml:space="preserve">
     <value>resourceGroupBox</value>
   </data>
-  <data name="&gt;&gt;manpowerLabel.ZOrder" xml:space="preserve">
+  <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>697, 597</value>
+  </data>
+  <data name="regionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.Name" xml:space="preserve">
+    <value>fillYNumericUpDown2</value>
+  </data>
+  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fortYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 98</value>
+  </data>
+  <data name="resourceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 212</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown4.Name" xml:space="preserve">
+    <value>fillXNumericUpDown4</value>
+  </data>
+  <data name="manpowerNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="regionLabel.Text" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="&gt;&gt;armyLabel.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="basicGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="fillXNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>285, 173</value>
+  </data>
+  <data name="&gt;&gt;aaYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="manpowerNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="provincePictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="&gt;&gt;icLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cityYNumericUpDown.Name" xml:space="preserve">
+    <value>cityYNumericUpDown</value>
+  </data>
+  <data name="armyXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="infraNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 23</value>
+  </data>
+  <data name="&gt;&gt;armyYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="regionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 102</value>
+  </data>
+  <data name="&gt;&gt;areaComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="terrainComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 20</value>
+  </data>
+  <data name="&gt;&gt;energyNumericUpDown.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;armyXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;terrainComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rareMaterialsNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="metalNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 125</value>
+  </data>
+  <data name="portColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="portYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;oilNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;regionLabel.Name" xml:space="preserve">
+    <value>regionLabel</value>
+  </data>
+  <data name="&gt;&gt;cityYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;cityLabel.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;metalNumericUpDown.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="icLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 51</value>
+  </data>
+  <data name="fillYNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;regionComboBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;counterXNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
+  </data>
+  <data name="cityXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="portSeaZoneNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 48</value>
+  </data>
+  <data name="fillYNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="seaColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;manpowerLabel.Name" xml:space="preserve">
+    <value>manpowerLabel</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;continentComboBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="&gt;&gt;energyLabel.Parent" xml:space="preserve">
+    <value>resourceGroupBox</value>
+  </data>
+  <data name="cityXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="portSeaZoneNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="cityXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 73</value>
+  </data>
+  <data name="&gt;&gt;provincePictureBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;energyColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;terrainLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;energyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fillLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;seaColumnHeader.Name" xml:space="preserve">
+    <value>seaColumnHeader</value>
+  </data>
+  <data name="armyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;counterLabel.Name" xml:space="preserve">
+    <value>counterLabel</value>
+  </data>
+  <data name="&gt;&gt;resourceGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="rareMaterialsNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 150</value>
+  </data>
+  <data name="&gt;&gt;continentLabel.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
   <data name="icNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 49</value>
   </data>
-  <data name="icNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
+  <data name="&gt;&gt;climateComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="icNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 51</value>
   </data>
-  <data name="icNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;manpowerNumericUpDown.Name" xml:space="preserve">
+    <value>manpowerNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;icNumericUpDown.Name" xml:space="preserve">
-    <value>icNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;icNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;icNumericUpDown.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;icNumericUpDown.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="icLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="icLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 51</value>
-  </data>
-  <data name="icLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="icLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="icLabel.Text" xml:space="preserve">
-    <value>IC</value>
-  </data>
-  <data name="&gt;&gt;icLabel.Name" xml:space="preserve">
-    <value>icLabel</value>
-  </data>
-  <data name="&gt;&gt;icLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;icLabel.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;icLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="infraNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 23</value>
-  </data>
-  <data name="infraNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="infraNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="infraNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;infraNumericUpDown.Name" xml:space="preserve">
-    <value>infraNumericUpDown</value>
+  <data name="&gt;&gt;counterYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;infraNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;infraNumericUpDown.Parent" xml:space="preserve">
-    <value>resourceGroupBox</value>
+  <data name="&gt;&gt;beachXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>21</value>
   </data>
-  <data name="&gt;&gt;infraNumericUpDown.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="energyColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="infraLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="infraLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 25</value>
-  </data>
-  <data name="infraLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 12</value>
-  </data>
-  <data name="infraLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="infraLabel.Text" xml:space="preserve">
-    <value>Infra</value>
-  </data>
-  <data name="&gt;&gt;infraLabel.Name" xml:space="preserve">
-    <value>infraLabel</value>
-  </data>
-  <data name="&gt;&gt;infraLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;fortLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;infraLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;rareMaterialsNumericUpDown.Parent" xml:space="preserve">
     <value>resourceGroupBox</value>
   </data>
-  <data name="&gt;&gt;infraLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="resourceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>563, 165</value>
-  </data>
-  <data name="resourceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 212</value>
-  </data>
-  <data name="resourceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="resourceGroupBox.Text" xml:space="preserve">
-    <value>Resource Settings</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.Name" xml:space="preserve">
-    <value>resourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;resourceGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="positionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 206</value>
   </data>
   <data name="provincePictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="provincePictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 169</value>
+  <data name="metalColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
   </data>
-  <data name="provincePictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 74</value>
+  <data name="&gt;&gt;fillXNumericUpDown3.Name" xml:space="preserve">
+    <value>fillXNumericUpDown3</value>
   </data>
-  <data name="provincePictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
+  <data name="&gt;&gt;beachIconNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
   </data>
-  <data name="provincePictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+  <data name="armyYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="&gt;&gt;portYNumericUpDown.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="armyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="fillYNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 123</value>
+  </data>
+  <data name="&gt;&gt;climateComboBox.Name" xml:space="preserve">
+    <value>climateComboBox</value>
+  </data>
+  <data name="&gt;&gt;fillXNumericUpDown2.Name" xml:space="preserve">
+    <value>fillXNumericUpDown2</value>
+  </data>
+  <data name="rareMaterialsNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="beachIconLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="idColumnHeader.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="terrainLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 180</value>
+  </data>
+  <data name="manpowerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="infraLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 25</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="&gt;&gt;continentComboBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="beachYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;provincePictureBox.Name" xml:space="preserve">
     <value>provincePictureBox</value>
   </data>
-  <data name="&gt;&gt;provincePictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="metalLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;provincePictureBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="portXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="counterXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="fillYNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="counterXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 173</value>
+  </data>
+  <data name="portSeaZoneLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 50</value>
+  </data>
+  <data name="infraNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="areaComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 125</value>
+  </data>
+  <data name="continentLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 76</value>
   </data>
   <data name="&gt;&gt;provincePictureBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="&gt;&gt;beachIconLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="oilNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 175</value>
+  </data>
+  <data name="beachYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 23</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="armyXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 148</value>
+  </data>
+  <data name="climateLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 632</value>
+  <data name="&gt;&gt;resourceGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 670</value>
+  <data name="cityLabel.Text" xml:space="preserve">
+    <value>City</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Province Editor</value>
+  <data name="oilColumnHeader.Text" xml:space="preserve">
+    <value>Oil</value>
   </data>
-  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
-    <value>nameColumnHeader</value>
+  <data name="&gt;&gt;terrainComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;idColumnHeader.Name" xml:space="preserve">
-    <value>idColumnHeader</value>
+  <data name="beachIconLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;idColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;areaComboBox.Name" xml:space="preserve">
+    <value>areaComboBox</value>
   </data>
-  <data name="&gt;&gt;seaColumnHeader.Name" xml:space="preserve">
-    <value>seaColumnHeader</value>
+  <data name="resourceGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;seaColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;oilNumericUpDown.Name" xml:space="preserve">
+    <value>oilNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;portColumnHeader.Name" xml:space="preserve">
-    <value>portColumnHeader</value>
+  <data name="icNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;portColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cityXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;beachColumnHeader.Name" xml:space="preserve">
-    <value>beachColumnHeader</value>
+  <data name="&gt;&gt;cityYNumericUpDown.Parent" xml:space="preserve">
+    <value>positionGroupBox</value>
   </data>
-  <data name="&gt;&gt;beachColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;portSeaZoneLabel.ZOrder" xml:space="preserve">
+    <value>25</value>
   </data>
-  <data name="&gt;&gt;infraColumnHeader.Name" xml:space="preserve">
-    <value>infraColumnHeader</value>
+  <data name="icNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;infraColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="fortYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
   </data>
-  <data name="&gt;&gt;icColumnHeader.Name" xml:space="preserve">
-    <value>icColumnHeader</value>
+  <data name="&gt;&gt;metalLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;icColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;infraLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
-  <data name="&gt;&gt;manpowerColumnHeader.Name" xml:space="preserve">
-    <value>manpowerColumnHeader</value>
+  <data name="continentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 12</value>
   </data>
-  <data name="&gt;&gt;manpowerColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cityYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;energyColumnHeader.Name" xml:space="preserve">
-    <value>energyColumnHeader</value>
+  <data name="closeButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;energyColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="counterLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="beachXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="portYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="terrainLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="portSeaZoneLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;continentComboBox.Name" xml:space="preserve">
+    <value>continentComboBox</value>
+  </data>
+  <data name="energyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="worldTreeView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 261</value>
+  </data>
+  <data name="&gt;&gt;beachIconNumericUpDown.Name" xml:space="preserve">
+    <value>beachIconNumericUpDown</value>
+  </data>
+  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="metalColumnHeader.Text" xml:space="preserve">
+    <value>Metal</value>
+  </data>
+  <data name="&gt;&gt;fortXNumericUpDown.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="fortXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 98</value>
   </data>
   <data name="&gt;&gt;metalColumnHeader.Name" xml:space="preserve">
     <value>metalColumnHeader</value>
   </data>
-  <data name="&gt;&gt;metalColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;portSeaZoneComboBox.Name" xml:space="preserve">
+    <value>portSeaZoneComboBox</value>
   </data>
-  <data name="&gt;&gt;rareMaterialsColumnHeader.Name" xml:space="preserve">
-    <value>rareMaterialsColumnHeader</value>
+  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
+    <value>saveButton</value>
   </data>
-  <data name="&gt;&gt;rareMaterialsColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="fillXNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;oilColumnHeader.Name" xml:space="preserve">
-    <value>oilColumnHeader</value>
+  <data name="oilLabel.Text" xml:space="preserve">
+    <value>Oil</value>
   </data>
-  <data name="&gt;&gt;oilColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="icLabel.Text" xml:space="preserve">
+    <value>IC</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ProvinceEditorForm</value>
+  <data name="fillYNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="beachIconNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 23</value>
   </data>
+  <data name="&gt;&gt;armyYNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;aaLabel.Name" xml:space="preserve">
+    <value>aaLabel</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
+    <value>basicGroupBox</value>
+  </data>
+  <data name="climateLabel.Text" xml:space="preserve">
+    <value>Climate</value>
+  </data>
+  <data name="&gt;&gt;portCheckBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;oilLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;icNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="infraLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;fillYNumericUpDown2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;energyNumericUpDown.Name" xml:space="preserve">
+    <value>energyNumericUpDown</value>
+  </data>
+  <data name="infraColumnHeader.Text" xml:space="preserve">
+    <value>Infra</value>
+  </data>
+  <data name="&gt;&gt;provinceListView.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="nameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="counterXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;energyLabel.Name" xml:space="preserve">
+    <value>energyLabel</value>
+  </data>
+  <data name="positionGroupBox.Text" xml:space="preserve">
+    <value>Position Settings</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

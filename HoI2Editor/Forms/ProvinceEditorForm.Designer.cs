@@ -253,10 +253,10 @@
             // 
             // terrainComboBox
             // 
+            resources.ApplyResources(this.terrainComboBox, "terrainComboBox");
             this.terrainComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.terrainComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.terrainComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.terrainComboBox, "terrainComboBox");
             this.terrainComboBox.Name = "terrainComboBox";
             this.terrainComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTerrainComboBoxDrawItem);
             this.terrainComboBox.SelectedIndexChanged += new System.EventHandler(this.OnTerrainComboBoxSelectedIndexChanged);
@@ -268,10 +268,10 @@
             // 
             // climateComboBox
             // 
+            resources.ApplyResources(this.climateComboBox, "climateComboBox");
             this.climateComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.climateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.climateComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.climateComboBox, "climateComboBox");
             this.climateComboBox.Name = "climateComboBox";
             this.climateComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnClimateComboBoxDrawItem);
             this.climateComboBox.SelectedIndexChanged += new System.EventHandler(this.OnClimateComboBoxSelectedIndexChanged);
@@ -283,10 +283,10 @@
             // 
             // areaComboBox
             // 
+            resources.ApplyResources(this.areaComboBox, "areaComboBox");
             this.areaComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.areaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.areaComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.areaComboBox, "areaComboBox");
             this.areaComboBox.Name = "areaComboBox";
             this.areaComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAreaComboBoxDrawItem);
             this.areaComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAreaComboBoxSelectedIndexChanged);
@@ -298,10 +298,10 @@
             // 
             // regionComboBox
             // 
+            resources.ApplyResources(this.regionComboBox, "regionComboBox");
             this.regionComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.regionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.regionComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.regionComboBox, "regionComboBox");
             this.regionComboBox.Name = "regionComboBox";
             this.regionComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnRegionComboBoxDrawItem);
             this.regionComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRegionComboBoxSelectedIndexChanged);
@@ -313,10 +313,10 @@
             // 
             // continentComboBox
             // 
+            resources.ApplyResources(this.continentComboBox, "continentComboBox");
             this.continentComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.continentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.continentComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.continentComboBox, "continentComboBox");
             this.continentComboBox.Name = "continentComboBox";
             this.continentComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnContinentComboBoxDrawItem);
             this.continentComboBox.SelectedIndexChanged += new System.EventHandler(this.OnContinentComboBoxSelectedIndexChanged);
@@ -655,10 +655,10 @@
             // 
             // portSeaZoneComboBox
             // 
+            resources.ApplyResources(this.portSeaZoneComboBox, "portSeaZoneComboBox");
             this.portSeaZoneComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.portSeaZoneComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portSeaZoneComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.portSeaZoneComboBox, "portSeaZoneComboBox");
             this.portSeaZoneComboBox.Name = "portSeaZoneComboBox";
             this.portSeaZoneComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnPortSeaZoneComboBoxDrawItem);
             this.portSeaZoneComboBox.SelectedIndexChanged += new System.EventHandler(this.OnPortSeaZoneComboBoxSelectedIndexChanged);
@@ -869,8 +869,8 @@
             // 
             // manpowerNumericUpDown
             // 
-            this.manpowerNumericUpDown.DecimalPlaces = 1;
             resources.ApplyResources(this.manpowerNumericUpDown, "manpowerNumericUpDown");
+            this.manpowerNumericUpDown.DecimalPlaces = 1;
             this.manpowerNumericUpDown.Maximum = new decimal(new int[] {
             999,
             0,
