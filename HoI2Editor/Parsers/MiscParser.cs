@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 
@@ -19,27 +20,7 @@ namespace HoI2Editor.Parsers
         public static bool Parse(string fileName)
         {
             // ゲームの種類を設定する
-            MiscGameType gameType;
-            switch (Game.Type)
-            {
-                case GameType.HeartsOfIron2:
-                    gameType = (Game.Version >= 130) ? MiscGameType.Dda13 : MiscGameType.Dda12;
-                    break;
-
-                case GameType.ArsenalOfDemocracy:
-                    gameType = (Game.Version >= 108)
-                        ? MiscGameType.Aod108
-                        : ((Game.Version <= 104) ? MiscGameType.Aod104 : MiscGameType.Aod107);
-                    break;
-
-                case GameType.DarkestHour:
-                    gameType = (Game.Version >= 103) ? MiscGameType.Dh103 : MiscGameType.Dh102;
-                    break;
-
-                default:
-                    gameType = MiscGameType.Dda12;
-                    break;
-            }
+            MiscGameType type = Misc.GetGameType();
 
             using (var lexer = new TextLexer(fileName, false))
             {
@@ -75,7 +56,7 @@ namespace HoI2Editor.Parsers
                     // economyセクション
                     if (keyword.Equals("economy"))
                     {
-                        if (!ParseSection(MiscSectionId.Economy, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Economy, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "economy",
                                 Resources.Section, "misc.txt"));
@@ -86,7 +67,7 @@ namespace HoI2Editor.Parsers
                     // intelligenceセクション
                     if (keyword.Equals("intelligence"))
                     {
-                        if (!ParseSection(MiscSectionId.Intelligence, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Intelligence, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "intelligence",
                                 Resources.Section, "misc.txt"));
@@ -97,7 +78,7 @@ namespace HoI2Editor.Parsers
                     // diplomacyセクション
                     if (keyword.Equals("diplomacy"))
                     {
-                        if (!ParseSection(MiscSectionId.Diplomacy, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Diplomacy, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "diplomacy",
                                 Resources.Section, "misc.txt"));
@@ -108,7 +89,7 @@ namespace HoI2Editor.Parsers
                     // combatセクション
                     if (keyword.Equals("combat"))
                     {
-                        if (!ParseSection(MiscSectionId.Combat, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Combat, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "combat",
                                 Resources.Section, "misc.txt"));
@@ -119,7 +100,7 @@ namespace HoI2Editor.Parsers
                     // missionセクション
                     if (keyword.Equals("mission"))
                     {
-                        if (!ParseSection(MiscSectionId.Mission, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Mission, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mission",
                                 Resources.Section, "misc.txt"));
@@ -130,7 +111,7 @@ namespace HoI2Editor.Parsers
                     // countryセクション
                     if (keyword.Equals("country"))
                     {
-                        if (!ParseSection(MiscSectionId.Country, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Country, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "country",
                                 Resources.Section, "misc.txt"));
@@ -141,7 +122,7 @@ namespace HoI2Editor.Parsers
                     // researchセクション
                     if (keyword.Equals("research"))
                     {
-                        if (!ParseSection(MiscSectionId.Research, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Research, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "research",
                                 Resources.Section, "misc.txt"));
@@ -152,7 +133,7 @@ namespace HoI2Editor.Parsers
                     // tradeセクション
                     if (keyword.Equals("trade"))
                     {
-                        if (!ParseSection(MiscSectionId.Trade, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Trade, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "trade",
                                 Resources.Section, "misc.txt"));
@@ -163,7 +144,7 @@ namespace HoI2Editor.Parsers
                     // aiセクション
                     if (keyword.Equals("ai"))
                     {
-                        if (!ParseSection(MiscSectionId.Ai, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Ai, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "ai",
                                 Resources.Section, "misc.txt"));
@@ -174,7 +155,7 @@ namespace HoI2Editor.Parsers
                     // modセクション
                     if (keyword.Equals("mod"))
                     {
-                        if (!ParseSection(MiscSectionId.Mod, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Mod, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mod",
                                 Resources.Section, "misc.txt"));
@@ -185,7 +166,7 @@ namespace HoI2Editor.Parsers
                     // mapセクション
                     if (keyword.Equals("map"))
                     {
-                        if (!ParseSection(MiscSectionId.Map, gameType, lexer))
+                        if (!ParseSection(MiscSectionId.Map, type, lexer))
                         {
                             Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "map",
                                 Resources.Section, "misc.txt"));
@@ -202,11 +183,11 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     セクションを構文解析する
         /// </summary>
-        /// <param name="sectionId">セクションID</param>
-        /// <param name="gameType">ゲームの種類</param>
+        /// <param name="section">セクションID</param>
+        /// <param name="type">ゲームの種類</param>
         /// <param name="lexer">字句解析器</param>
         /// <returns>構文解析の成否</returns>
-        private static bool ParseSection(MiscSectionId sectionId, MiscGameType gameType, TextLexer lexer)
+        private static bool ParseSection(MiscSectionId section, MiscGameType type, TextLexer lexer)
         {
             // 空白文字/コメントを読み飛ばす
             Token token;
@@ -243,19 +224,22 @@ namespace HoI2Editor.Parsers
                 return false;
             }
 
-            MiscItemId[] itemIds
-                = Misc.SectionItems[(int) sectionId].Where(id => Misc.ItemTable[(int) id, (int) gameType]).ToArray();
-            int index = 0;
-
-            while (index < itemIds.Length - 1)
+            StringBuilder sb;
+            foreach (MiscItemId id in Misc.SectionItems[(int) section]
+                .Where(id => Misc.ItemTable[(int) id, (int) type]))
             {
                 // 空白文字/コメントを保存する
-                token = lexer.GetToken();
-                if (token.Type == TokenType.WhiteSpace || token.Type == TokenType.Comment)
+                sb = new StringBuilder();
+                while (true)
                 {
-                    Misc.AppendComment(itemIds[index], token.Value as string);
-                    continue;
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.WhiteSpace && token.Type != TokenType.Comment)
+                    {
+                        break;
+                    }
+                    sb.Append(token.Value);
                 }
+                Misc.SetComment(id, sb.ToString());
 
                 // 設定値
                 if (token.Type != TokenType.Number)
@@ -263,11 +247,11 @@ namespace HoI2Editor.Parsers
                     Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
                     return false;
                 }
-                MiscItemId itemId = itemIds[index];
-                switch (Misc.ItemTypes[(int) itemId])
+                //Debug.WriteLine(string.Format("{0}: {1}", id, token.Value));
+                switch (Misc.ItemTypes[(int) id])
                 {
                     case MiscItemType.Bool:
-                        Misc.SetItem(itemId, (int) (double) token.Value != 0);
+                        Misc.SetItem(id, (int) (double) token.Value != 0);
                         break;
 
                     case MiscItemType.Enum:
@@ -281,7 +265,7 @@ namespace HoI2Editor.Parsers
                     case MiscItemType.RangedPosInt:
                     case MiscItemType.RangedIntMinusOne:
                     case MiscItemType.RangedIntMinusThree:
-                        Misc.SetItem(itemId, (int) (double) token.Value);
+                        Misc.SetItem(id, (int) (double) token.Value);
                         break;
 
                     case MiscItemType.Dbl:
@@ -307,14 +291,13 @@ namespace HoI2Editor.Parsers
                     case MiscItemType.RangedDblMinusOne1:
                     case MiscItemType.RangedDbl0:
                     case MiscItemType.NonNegIntNegDbl:
-                        Misc.SetItem(itemId, (double) token.Value);
+                        Misc.SetItem(id, (double) token.Value);
                         break;
                 }
-                //Log.Write(string.Format("{0}: {1}\n", itemId, token.Value));
-                index++;
             }
 
-            // 空白文字/コメントを保存する
+            // セクション末尾の空白文字/コメントを保存する
+            sb = new StringBuilder();
             while (true)
             {
                 token = lexer.GetToken();
@@ -322,8 +305,9 @@ namespace HoI2Editor.Parsers
                 {
                     break;
                 }
-                Misc.AppendComment(itemIds[index], token.Value as string);
+                sb.Append(token.Value);
             }
+            Misc.SetSuffix(section, sb.ToString());
 
             // } (セクション終端)
             if (token.Type != TokenType.CloseBrace)

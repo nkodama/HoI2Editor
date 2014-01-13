@@ -196,7 +196,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目のコメント
         /// </summary>
-        private static string[] _comments = new string[Enum.GetValues(typeof (MiscItemId)).Length];
+        private static string[] _comments;
+
+        /// <summary>
+        ///     セクション末尾の文字列
+        /// </summary>
+        private static string[] _suffixes;
 
         #endregion
 
@@ -3901,6 +3906,9 @@ namespace HoI2Editor.Models
             // コメントを初期化する
             _comments = new string[Enum.GetValues(typeof (MiscItemId)).Length];
 
+            // セクション末尾の文字列を初期化する
+            _suffixes = new string[Enum.GetValues(typeof (MiscSectionId)).Length];
+
             // miscファイルを解釈する
             if (!MiscParser.Parse(Game.GetReadFileName(Game.MiscPathName)))
             {
@@ -3967,19 +3975,44 @@ namespace HoI2Editor.Models
             _items[(int) id] = o;
         }
 
+        /// <summary>
+        ///     項目の空白文字/コメントを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>項目の空白文字/コメント</returns>
         public static string GetComment(MiscItemId id)
         {
             return _comments[(int) id];
         }
 
         /// <summary>
-        ///     項目のコメントを追加する
+        ///     項目の空白文字/コメントを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        /// <param name="s">追加する文字列</param>
-        public static void AppendComment(MiscItemId id, string s)
+        /// <param name="s">設定する文字列</param>
+        public static void SetComment(MiscItemId id, string s)
         {
-            _comments[(int) id] += s;
+            _comments[(int) id] = s;
+        }
+
+        /// <summary>
+        ///     セクション末尾の空白文字/コメントを取得する
+        /// </summary>
+        /// <param name="section">セクションID</param>
+        /// <returns>セクション末尾の空白文字/コメント</returns>
+        public static string GetSuffix(MiscSectionId section)
+        {
+            return _suffixes[(int) section];
+        }
+
+        /// <summary>
+        ///     セクション末尾の空白文字/コメントを設定する
+        /// </summary>
+        /// <param name="section">セクションID</param>
+        /// <param name="s">設定する文字列</param>
+        public static void SetSuffix(MiscSectionId section, string s)
+        {
+            _suffixes[(int) section] = s;
         }
 
         #endregion
