@@ -1079,7 +1079,14 @@ namespace HoI2Editor.Forms
                 : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // ユニットモデル画像名を更新する
-            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, index, country);
+            var bitmap = new Bitmap(GetModelImageFileName(unit, index, country));
+            bitmap.MakeTransparent(Color.Lime);
+            Image old = modelImagePictureBox.Image;
+            modelImagePictureBox.Image = bitmap;
+            if (old != null)
+            {
+                old.Dispose();
+            }
 
             // ユニットモデル名を更新する
             modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, index, country));
@@ -2835,9 +2842,23 @@ namespace HoI2Editor.Forms
                 : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // モデル画像
-            modelImagePictureBox.ImageLocation = GetModelImageFileName(unit, index, country);
+            var bitmap = new Bitmap(GetModelImageFileName(unit, index, country));
+            bitmap.MakeTransparent(Color.Lime);
+            Image old = modelImagePictureBox.Image;
+            modelImagePictureBox.Image = bitmap;
+            if (old != null)
+            {
+                old.Dispose();
+            }
             // モデルアイコン
-            modelIconPictureBox.ImageLocation = GetModelIconFileName(unit, index);
+            bitmap = new Bitmap(GetModelIconFileName(unit, index));
+            bitmap.MakeTransparent(Color.Lime);
+            old = modelIconPictureBox.Image;
+            modelIconPictureBox.Image = bitmap;
+            if (old != null)
+            {
+                old.Dispose();
+            }
             // モデル名
             modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, index, country));
             modelNameTextBox.ForeColor = model.IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
