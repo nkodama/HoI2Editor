@@ -86,6 +86,26 @@ namespace HoI2Editor.Utilities
         }
 
         /// <summary>
+        ///     スケーリング前の幅を取得する
+        /// </summary>
+        /// <param name="x">スケーリング後の幅</param>
+        /// <returns>スケーリング前の幅</returns>
+        public static int GetUnscaledWidth(int x)
+        {
+            return MulDiv(x, DefaultDpiX, DpiX);
+        }
+
+        /// <summary>
+        ///     スケーリング前の高さを取得する
+        /// </summary>
+        /// <param name="y">スケーリング後の高さ</param>
+        /// <returns>スケーリング前の高さ</returns>
+        public static int GetUncaledHeight(int y)
+        {
+            return MulDiv(y, DefaultDpiY, DpiY);
+        }
+
+        /// <summary>
         ///     GetDeviceCapsの取得対象項目
         /// </summary>
         private enum DeviceCapsIndices

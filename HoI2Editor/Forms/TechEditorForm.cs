@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -31,13 +32,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     技術ラベルの描画領域
         /// </summary>
-        private static readonly Region TechLabelRegion = new Region(new Rectangle(0, 0, TechLabelWidth, TechLabelHeight));
+        private static Region _techLabelRegion;
 
         /// <summary>
         ///     イベントラベルの描画領域
         /// </summary>
-        private static readonly Region EventLabelRegion =
-            new Region(new Rectangle(0, 0, EventLabelWidth, EventLabelHeight));
+        private static Region _eventLabelRegion;
 
         /// <summary>
         ///     ドラッグアンドドロップの開始位置
@@ -52,12 +52,32 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     技術ラベルのANDマスク
         /// </summary>
-        private static Bitmap _applicationLabelAndMask;
+        private static Bitmap _techLabelAndMask;
 
         /// <summary>
         ///     イベントラベルのANDマスク
         /// </summary>
         private static Bitmap _eventLabelAndMask;
+
+        /// <summary>
+        ///     イベントラベルの高さ
+        /// </summary>
+        private int _eventLabelHeight;
+
+        /// <summary>
+        ///     イベントラベルの幅
+        /// </summary>
+        private int _eventLabelWidth;
+
+        /// <summary>
+        ///     技術ラベルの高さ
+        /// </summary>
+        private int _techLabelHeight;
+
+        /// <summary>
+        ///     技術ラベルの幅
+        /// </summary>
+        private int _techLabelWidth;
 
         #endregion
 
@@ -66,22 +86,22 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     技術ラベルの幅
         /// </summary>
-        private const int TechLabelWidth = 112;
+        private const int TechLabelWidthBase = 112;
 
         /// <summary>
         ///     技術ラベルの高さ
         /// </summary>
-        private const int TechLabelHeight = 16;
+        private const int TechLabelHeightBase = 16;
 
         /// <summary>
         ///     イベントラベルの幅
         /// </summary>
-        private const int EventLabelWidth = 112;
+        private const int EventLabelWidthBase = 112;
 
         /// <summary>
         ///     イベントラベルの高さ
         /// </summary>
-        private const int EventLabelHeight = 24;
+        private const int EventLabelHeightBase = 24;
 
         /// <summary>
         ///     技術ツリー画像ファイル名
@@ -164,6 +184,14 @@ namespace HoI2Editor.Forms
             // 発明イベント座標リストビュー
             eventXColumnHeader.Width = DeviceCaps.GetScaledWidth(eventXColumnHeader.Width);
             eventYColumnHeader.Width = DeviceCaps.GetScaledWidth(eventYColumnHeader.Width);
+
+            // 技術ツリーのラベル
+            _techLabelWidth = DeviceCaps.GetScaledWidth(TechLabelWidthBase);
+            _techLabelHeight = DeviceCaps.GetScaledHeight(TechLabelHeightBase);
+            _eventLabelWidth = DeviceCaps.GetScaledWidth(EventLabelWidthBase);
+            _eventLabelHeight = DeviceCaps.GetScaledHeight(EventLabelHeightBase);
+            _techLabelRegion = new Region(new Rectangle(0, 0, _techLabelWidth, _techLabelHeight));
+            _eventLabelRegion = new Region(new Rectangle(0, 0, _eventLabelWidth, _eventLabelHeight));
 
             // 画面解像度が十分に広い場合は指揮官リストビューが広く表示できるようにする
             int longHeight = DeviceCaps.GetScaledHeight(720);
@@ -1201,8 +1229,23 @@ namespace HoI2Editor.Forms
         private void UpdateTechTreePicture()
         {
             TechGroup grp = GetSelectedGroup();
-            treePictureBox.ImageLocation = Game.GetReadFileName(Game.PicturePathName,
-                TechTreeFileNames[(int) grp.Category]);
+
+            var original = new Bitmap(Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) grp.Category]));
+            int width = DeviceCaps.GetScaledWidth(original.Width);
+            int height = DeviceCaps.GetScaledHeight(original.Height);
+
+            var scaled = new Bitmap(width, height);
+            Graphics g = Graphics.FromImage(scaled);
+            g.DrawImage(original, 0, 0, width, height);
+            g.Dispose();
+            original.Dispose();
+
+            Image old = treePictureBox.Image;
+            treePictureBox.Image = scaled;
+            if (old != null)
+            {
+                old.Dispose();
+            }
         }
 
         /// <summary>
@@ -1226,16 +1269,16 @@ namespace HoI2Editor.Forms
         {
             var label = new Label
             {
-                Location = new Point(position.X, position.Y),
+                Location = new Point(DeviceCaps.GetScaledWidth(position.X), DeviceCaps.GetScaledHeight(position.Y)),
                 BackColor = Color.Transparent,
                 Tag = new TechLabelInfo {Item = item, Position = position}
             };
 
             if (item is TechItem)
             {
-                label.Size = new Size(TechLabelWidth, TechLabelHeight);
+                label.Size = new Size(_techLabelWidth, _techLabelHeight);
                 label.Image = _techLabelBitmap;
-                label.Region = TechLabelRegion;
+                label.Region = _techLabelRegion;
                 label.Paint += OnTechTreeLabelPaint;
             }
             else if (item is TechLabel)
@@ -1246,9 +1289,9 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                label.Size = new Size(EventLabelWidth, EventLabelHeight);
+                label.Size = new Size(_eventLabelWidth, _eventLabelHeight);
                 label.Image = _eventLabelBitmap;
-                label.Region = EventLabelRegion;
+                label.Region = _eventLabelRegion;
             }
 
             label.MouseDown += OnTechTreeLabelMouseDown;
@@ -1365,14 +1408,18 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     ラベル画像を初期化する
         /// </summary>
-        private static void InitLabelBitmap()
+        private void InitLabelBitmap()
         {
             // 技術
-            var bitmap = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
-            _techLabelBitmap = bitmap.Clone(new Rectangle(0, 0, TechLabelWidth, TechLabelHeight),
-                bitmap.PixelFormat);
-            bitmap.Dispose();
-            _applicationLabelAndMask = new Bitmap(_techLabelBitmap.Width, _techLabelBitmap.Height);
+            var original = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
+            _techLabelBitmap = new Bitmap(_techLabelWidth, _techLabelHeight);
+            Graphics g = Graphics.FromImage(_techLabelBitmap);
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
+            g.DrawImage(original, new Rectangle(0, 0, _techLabelWidth, _techLabelHeight),
+                new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
+            g.Dispose();
+            original.Dispose();
+            _techLabelAndMask = new Bitmap(_techLabelWidth, _techLabelHeight);
             Color transparent = _techLabelBitmap.GetPixel(0, 0);
             for (int x = 0; x < _techLabelBitmap.Width; x++)
             {
@@ -1380,22 +1427,27 @@ namespace HoI2Editor.Forms
                 {
                     if (_techLabelBitmap.GetPixel(x, y) == transparent)
                     {
-                        TechLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
-                        _applicationLabelAndMask.SetPixel(x, y, Color.White);
+                        _techLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
+                        _techLabelAndMask.SetPixel(x, y, Color.White);
                     }
                     else
                     {
-                        _applicationLabelAndMask.SetPixel(x, y, Color.Black);
+                        _techLabelAndMask.SetPixel(x, y, Color.Black);
                     }
                 }
             }
             _techLabelBitmap.MakeTransparent(transparent);
 
             // 技術イベント
-            bitmap = new Bitmap(Game.GetReadFileName(Game.SecretLabelPathName));
-            _eventLabelBitmap = bitmap.Clone(new Rectangle(0, 0, EventLabelWidth, EventLabelHeight), bitmap.PixelFormat);
-            bitmap.Dispose();
-            _eventLabelAndMask = new Bitmap(_eventLabelBitmap.Width, _eventLabelBitmap.Height);
+            original = new Bitmap(Game.GetReadFileName(Game.SecretLabelPathName));
+            _eventLabelBitmap = new Bitmap(_eventLabelWidth, _eventLabelHeight);
+            g = Graphics.FromImage(_eventLabelBitmap);
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
+            g.DrawImage(original, new Rectangle(0, 0, _eventLabelWidth, _eventLabelHeight),
+                new Rectangle(0, 0, EventLabelWidthBase, EventLabelHeightBase), GraphicsUnit.Pixel);
+            g.Dispose();
+            original.Dispose();
+            _eventLabelAndMask = new Bitmap(_eventLabelWidth, _eventLabelHeight);
             transparent = _eventLabelBitmap.GetPixel(0, 0);
             for (int x = 0; x < _eventLabelBitmap.Width; x++)
             {
@@ -1403,7 +1455,7 @@ namespace HoI2Editor.Forms
                 {
                     if (_eventLabelBitmap.GetPixel(x, y) == transparent)
                     {
-                        EventLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
+                        _eventLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
                         _eventLabelAndMask.SetPixel(x, y, Color.White);
                     }
                     else
@@ -1528,7 +1580,7 @@ namespace HoI2Editor.Forms
             label.DrawToBitmap(bitmap, new Rectangle(0, 0, label.Width, label.Height));
             if (info.Item is TechItem)
             {
-                _dragCursor = CursorFactory.CreateCursor(bitmap, _applicationLabelAndMask, _dragPoint.X - label.Left,
+                _dragCursor = CursorFactory.CreateCursor(bitmap, _techLabelAndMask, _dragPoint.X - label.Left,
                     _dragPoint.Y - label.Top);
             }
             else if (info.Item is TechLabel)
@@ -1630,8 +1682,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            info.Position.X = p.X;
-            info.Position.Y = p.Y;
+            info.Position.X = DeviceCaps.GetUnscaledWidth(p.X);
+            info.Position.Y = DeviceCaps.GetUncaledHeight(p.Y);
 
             // 座標リストビューの項目を更新する
             for (int i = 0; i < info.Item.Positions.Count; i++)
@@ -2177,7 +2229,8 @@ namespace HoI2Editor.Forms
                 var info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
-                    label.Location = new Point(position.X, position.Y);
+                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
+                        DeviceCaps.GetScaledHeight(position.Y));
                 }
             }
 
@@ -2234,7 +2287,8 @@ namespace HoI2Editor.Forms
                 var info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
-                    label.Location = new Point(position.X, position.Y);
+                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
+                        DeviceCaps.GetScaledHeight(position.Y));
                 }
             }
 
@@ -5302,7 +5356,8 @@ namespace HoI2Editor.Forms
                 var info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
-                    label.Location = new Point(position.X, position.Y);
+                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
+                        DeviceCaps.GetScaledHeight(position.Y));
                 }
             }
 
@@ -5360,7 +5415,8 @@ namespace HoI2Editor.Forms
                 var info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
-                    label.Location = new Point(position.X, position.Y);
+                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
+                        DeviceCaps.GetScaledHeight(position.Y));
                 }
             }
 
@@ -5857,7 +5913,8 @@ namespace HoI2Editor.Forms
                 var info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
-                    label.Location = new Point(position.X, position.Y);
+                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
+                        DeviceCaps.GetScaledHeight(position.Y));
                 }
             }
 
@@ -5915,7 +5972,8 @@ namespace HoI2Editor.Forms
                 var info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
-                    label.Location = new Point(position.X, position.Y);
+                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
+                        DeviceCaps.GetScaledHeight(position.Y));
                 }
             }
 
