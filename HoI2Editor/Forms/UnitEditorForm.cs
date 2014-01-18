@@ -655,7 +655,7 @@ namespace HoI2Editor.Forms
             modelListView.BeginUpdate();
             for (int i = 0; i < unit.Models.Count; i++)
             {
-                modelListView.Items[i].SubItems[1].Text = Config.GetText(UnitModel.GetName(unit, i, country));
+                modelListView.Items[i].SubItems[1].Text = unit.GetModelName(i, country);
             }
             modelListView.EndUpdate();
         }
@@ -703,10 +703,9 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             var item = new ListViewItem {Text = index.ToString(CultureInfo.InvariantCulture)};
-            item.SubItems.Add(Config.GetText(UnitModel.GetName(
-                unit, index, countryListView.SelectedIndices.Count == 0
-                    ? Country.None
-                    : (Country) (countryListView.SelectedIndices[0] + 1))));
+            item.SubItems.Add(unit.GetModelName(index, (countryListView.SelectedIndices.Count == 0)
+                ? Country.None
+                : (Country) (countryListView.SelectedIndices[0] + 1)));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
@@ -769,7 +768,7 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを挿入する
             var model = new UnitModel(unit.Models[index]);
-            InsertModel(unit, model, index + 1, Config.GetText(UnitModel.GetName(unit, index, Country.None)));
+            InsertModel(unit, model, index + 1, unit.GetModelName(index));
         }
 
         /// <summary>
@@ -931,21 +930,7 @@ namespace HoI2Editor.Forms
         private void InsertModel(Unit unit, UnitModel model, int index, string name)
         {
             // ユニットクラスにユニットモデルを挿入する
-            unit.InsertModel(model, index);
-
-            // 挿入位置以降のユニットモデル名を変更する
-            for (int i = unit.Models.Count - 1; i > index; i--)
-            {
-                Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                    Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)), Game.UnitTextFileName);
-            }
-
-            // 挿入位置のユニットモデル名を変更する
-            Config.SetText(UnitModel.GetName(unit, index, Country.None), name, Game.UnitTextFileName);
-
-            // 編集済みフラグを設定する
-            model.SetDirtyAll();
-            unit.SetDirty();
+            unit.InsertModel(model, index, name);
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -964,23 +949,6 @@ namespace HoI2Editor.Forms
         {
             // ユニットクラスからユニットモデルを削除する
             unit.RemoveModel(index);
-
-            // 削除位置以降のユニットモデル名を変更する
-            if (index < unit.Models.Count)
-            {
-                for (int i = index; i < unit.Models.Count; i++)
-                {
-                    Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                        Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
-                        Game.UnitTextFileName);
-                }
-            }
-
-            // 末尾のユニットモデル名を削除する
-            Config.RemoveText(UnitModel.GetName(unit, unit.Models.Count, Country.None), Game.UnitTextFileName);
-
-            // 編集済みフラグを設定する
-            unit.SetDirty();
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -1008,35 +976,6 @@ namespace HoI2Editor.Forms
         {
             // ユニットクラスのユニットモデルを移動する
             unit.MoveModel(src, dest);
-
-            // 移動元と移動先の間のユニットモデル名を変更する
-            string name = Config.GetText(UnitModel.GetName(unit, src, Country.None));
-            if (src > dest)
-            {
-                // 上へ移動する場合
-                for (int i = src; i > dest; i--)
-                {
-                    Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                        Config.GetText(UnitModel.GetName(unit, i - 1, Country.None)),
-                        Game.UnitTextFileName);
-                }
-            }
-            else
-            {
-                // 下へ移動する場合
-                for (int i = src; i < dest; i++)
-                {
-                    Config.SetText(UnitModel.GetName(unit, i, Country.None),
-                        Config.GetText(UnitModel.GetName(unit, i + 1, Country.None)),
-                        Game.UnitTextFileName);
-                }
-            }
-
-            // 移動先のユニットモデル名を変更する
-            Config.SetText(UnitModel.GetName(unit, dest, Country.None), name, Game.UnitTextFileName);
-
-            // 編集済みフラグを設定する
-            unit.SetDirty();
 
             // ユニットモデルリストの表示を更新する
             UpdateModelList();
@@ -1089,7 +1028,7 @@ namespace HoI2Editor.Forms
             }
 
             // ユニットモデル名を更新する
-            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, index, country));
+            modelNameTextBox.Text = unit.GetModelName(index, country);
 
             // ユニットモデル名の表示色を更新する
             modelNameTextBox.ForeColor = unit.Models[index].IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
@@ -2860,7 +2799,7 @@ namespace HoI2Editor.Forms
                 old.Dispose();
             }
             // モデル名
-            modelNameTextBox.Text = Config.GetText(UnitModel.GetName(unit, index, country));
+            modelNameTextBox.Text = unit.GetModelName(index, country);
             modelNameTextBox.ForeColor = model.IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
 
             // 組織率
@@ -3501,14 +3440,14 @@ namespace HoI2Editor.Forms
             Country country = countryListView.SelectedIndices.Count == 0
                 ? Country.None
                 : (Country) (countryListView.SelectedIndices[0] + 1);
-            string name = UnitModel.GetName(unit, index, country);
-            if (modelNameTextBox.Text.Equals(Config.GetText(name)))
+            string name = unit.GetModelName(index, country);
+            if (modelNameTextBox.Text.Equals(name))
             {
                 return;
             }
 
             // 値を更新する
-            UnitModel.SetName(unit, index, country, modelNameTextBox.Text);
+            unit.SetModelName(index, country, modelNameTextBox.Text);
 
             // ユニットモデルリストの項目を更新する
             modelListView.Items[index].SubItems[1].Text = modelNameTextBox.Text;

@@ -175,25 +175,60 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region ユニットモデルリスト操作
+        #region ユニットモデルリスト
 
         /// <summary>
         ///     ユニットモデルを挿入する
         /// </summary>
-        /// <param name="model"></param>
-        /// <param name="index"></param>
-        public void InsertModel(UnitModel model, int index)
+        /// <param name="model">挿入対象のユニットモデル</param>
+        /// <param name="index">挿入する位置</param>
+        /// <param name="name">ユニットモデル名</param>
+        public void InsertModel(UnitModel model, int index, string name)
         {
+            // ユニットモデルリストに項目を挿入する
             Models.Insert(index, model);
+
+            // TODO: 国別ユニットモデル名の対応
+            // TODO: 外部関数に逃す
+            // TODO: 国別のモデル名と共通のモデル名を取得する関数を分ける
+            // 挿入位置以降のユニットモデル名を変更する
+            for (int i = Models.Count - 1; i > index; i--)
+            {
+                CopyModelName(i, i - 1);
+            }
+
+            // 挿入位置のユニットモデル名を変更する
+            SetModelName(index, name);
+
+            // 編集済みフラグを設定する
+            model.SetDirtyAll();
+            SetDirty();
         }
 
         /// <summary>
         ///     ユニットモデルを削除する
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">削除する位置</param>
         public void RemoveModel(int index)
         {
+            // ユニットモデルリストから項目を削除する
             Models.RemoveAt(index);
+
+            // TODO: 国別ユニットモデル名の対応
+            // 削除位置以降のユニットモデル名を変更する
+            if (index < Models.Count)
+            {
+                for (int i = index; i < Models.Count; i++)
+                {
+                    CopyModelName(i, i + 1);
+                }
+            }
+
+            // 末尾のユニットモデル名を削除する
+            RemoveModelName(Models.Count);
+
+            // 編集済みフラグを設定する
+            SetDirty();
         }
 
         /// <summary>
@@ -205,6 +240,7 @@ namespace HoI2Editor.Models
         {
             UnitModel model = Models[src];
 
+            // ユニットモデルリストの項目を移動する
             if (src > dest)
             {
                 // 上へ移動する場合
@@ -217,6 +253,173 @@ namespace HoI2Editor.Models
                 Models.Insert(dest + 1, model);
                 Models.RemoveAt(src);
             }
+
+            // TODO: 国別ユニットモデル名の対応
+            // TODO: 外部関数に逃がす
+            // 移動元と移動先の間のユニットモデル名を変更する
+            string name = GetModelName(src);
+            if (src > dest)
+            {
+                // 上へ移動する場合
+                for (int i = src; i > dest; i--)
+                {
+                    CopyModelName(i, i - 1);
+                }
+            }
+            else
+            {
+                // 下へ移動する場合
+                for (int i = src; i < dest; i++)
+                {
+                    CopyModelName(i, i + 1);
+                }
+            }
+
+            // 移動先のユニットモデル名を変更する
+            SetModelName(dest, name);
+
+            // 編集済みフラグを設定する
+            SetDirty();
+        }
+
+        #endregion
+
+        #region ユニットモデル名
+
+        /// <summary>
+        ///     共通のユニットモデル名を取得する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <returns>ユニットモデル名</returns>
+        public string GetModelName(int index)
+        {
+            return Config.GetText(GetModelNameKey(index));
+        }
+
+        /// <summary>
+        ///     国別のユニットモデル名を取得する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <param name="country">国タグ</param>
+        /// <returns>ユニットモデル名</returns>
+        public string GetModelName(int index, Country country)
+        {
+            if (country == Country.None)
+            {
+                return GetModelName(index);
+            }
+            string key = GetModelNameKey(index, country);
+            if (!Config.ExistsKey(key))
+            {
+                return GetModelName(index);
+            }
+            return Config.GetText(key);
+        }
+
+        /// <summary>
+        ///     共通のユニットモデル名を設定する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <param name="s">ユニットモデル名</param>
+        public void SetModelName(int index, string s)
+        {
+            Config.SetText(GetModelNameKey(index), s, Game.UnitTextFileName);
+        }
+
+        /// <summary>
+        ///     国別のユニットモデル名を設定する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <param name="country">国タグ</param>
+        /// <param name="s">ユニットモデル名</param>
+        public void SetModelName(int index, Country country, string s)
+        {
+            if (country == Country.None)
+            {
+                SetModelName(index, s);
+                return;
+            }
+
+            Config.SetText(GetModelNameKey(index, country), s, Game.ModelTextFileName);
+        }
+
+        /// <summary>
+        ///     共通のユニットモデル名をコピーする
+        /// </summary>
+        /// <param name="src">コピー元ユニットモデルのインデックス</param>
+        /// <param name="dest">コピー元ユニットモデルのインデックス</param>
+        public void CopyModelName(int src, int dest)
+        {
+            SetModelName(src, GetModelName(dest));
+        }
+
+        /// <summary>
+        ///     国別のユニットモデル名をコピーする
+        /// </summary>
+        /// <param name="src">コピー元ユニットモデルのインデックス</param>
+        /// <param name="dest">コピー元ユニットモデルのインデックス</param>
+        /// <param name="country">国タグ</param>
+        public void CopyModelName(int src, int dest, Country country)
+        {
+            if (country == Country.None)
+            {
+                SetModelName(src, GetModelName(dest));
+                return;
+            }
+
+            SetModelName(src, country, GetModelName(dest, country));
+        }
+
+        /// <summary>
+        ///     共通のユニットモデル名を削除する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        public void RemoveModelName(int index)
+        {
+            Config.RemoveText(GetModelNameKey(index), Game.UnitTextFileName);
+        }
+
+        /// <summary>
+        ///     国別のユニットモデル名を削除する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <param name="country">国タグ</param>
+        public void RemoveModelName(int index, Country country)
+        {
+            if (country == Country.None)
+            {
+                RemoveModelName(index);
+                return;
+            }
+
+            Config.RemoveText(GetModelNameKey(index, country), Game.ModelTextFileName);
+        }
+
+        /// <summary>
+        ///     共通のユニットモデル名のキーを取得する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <returns>ユニットモデル名のキー</returns>
+        private string GetModelNameKey(int index)
+        {
+            string format = (Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}";
+            return string.Format(format, Units.UnitNumbers[(int) Type], index);
+        }
+
+        /// <summary>
+        ///     国別のユニットモデル名のキーを取得する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <param name="country">国タグ</param>
+        /// <returns>ユニットモデル名のキー</returns>
+        private string GetModelNameKey(int index, Country country)
+        {
+            if (country == Country.None)
+            {
+                return GetModelNameKey(index);
+            }
+            string format = (Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}";
+            return string.Format(format, Countries.Strings[(int) country], Units.UnitNumbers[(int) Type], index);
         }
 
         #endregion
@@ -669,66 +872,6 @@ namespace HoI2Editor.Models
                 Equipments.Insert(dest + 1, equipment);
                 Equipments.RemoveAt(src);
             }
-        }
-
-        #endregion
-
-        #region 文字列操作
-
-        /// <summary>
-        ///     ユニットモデル名を設定する
-        /// </summary>
-        /// <param name="unit">ユニットクラス</param>
-        /// <param name="index">ユニットモデルのインデックス</param>
-        /// <param name="country">国タグ</param>
-        /// <param name="s">ユニットモデル名</param>
-        public static void SetName(Unit unit, int index, Country country, string s)
-        {
-            string name;
-            string fileName;
-            int no = Units.UnitNumbers[(int) unit.Type];
-            if (country != Country.None)
-            {
-                name = string.Format(
-                    (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
-                    Countries.Strings[(int) country], no, index);
-                fileName = Game.ModelTextFileName;
-            }
-            else
-            {
-                name = string.Format(
-                    (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", no, index);
-                fileName = Game.UnitTextFileName;
-            }
-
-            // ユニットモデル名を更新する
-            Config.SetText(name, s, fileName);
-        }
-
-        /// <summary>
-        ///     ユニットモデル名を取得する
-        /// </summary>
-        /// <param name="unit">ユニットクラス</param>
-        /// <param name="index">ユニットモデルのインデックス</param>
-        /// <param name="country">国タグ</param>
-        /// <returns>ユニットモデル名</returns>
-        public static string GetName(Unit unit, int index, Country country)
-        {
-            string name;
-            int no = Units.UnitNumbers[(int) unit.Type];
-            if (country != Country.None)
-            {
-                name = string.Format(
-                    (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}",
-                    Countries.Strings[(int) country], no, index);
-                if (Config.ExistsKey(name) && !string.IsNullOrEmpty(Config.GetText(name)))
-                {
-                    return name;
-                }
-            }
-            name = string.Format(
-                (unit.Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}", no, index);
-            return name;
         }
 
         #endregion
