@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace HoI2Editor.Models
 {
@@ -192,6 +191,12 @@ namespace HoI2Editor.Models
             // 挿入位置以降のユニットモデル名を変更する
             SlideModelNamesDown(index, Models.Count - 1);
 
+            // 挿入位置の国別ユニットモデル名を削除する
+            foreach (Country country in Countries.Tags)
+            {
+                RemoveModelName(index, country);
+            }
+
             // 挿入位置のユニットモデル名を変更する
             SetModelName(index, name);
 
@@ -216,6 +221,10 @@ namespace HoI2Editor.Models
 
             // 末尾のユニットモデル名を削除する
             RemoveModelName(Models.Count - 1);
+            foreach (Country country in Countries.Tags)
+            {
+                RemoveModelName(Models.Count - 1, country);
+            }
 
             // ユニットモデルリストから項目を削除する
             Models.RemoveAt(index);
@@ -335,7 +344,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">コピー元ユニットモデルのインデックス</param>
         /// <param name="dest">コピー元ユニットモデルのインデックス</param>
-        public void CopyModelName(int src, int dest)
+        private void CopyModelName(int src, int dest)
         {
             Debug.WriteLine(string.Format("[Unit] Copy model name: {0} -> {1}", src, dest));
 
@@ -348,7 +357,7 @@ namespace HoI2Editor.Models
         /// <param name="src">コピー元ユニットモデルのインデックス</param>
         /// <param name="dest">コピー元ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
-        public void CopyModelName(int src, int dest, Country country)
+        private void CopyModelName(int src, int dest, Country country)
         {
             if (country == Country.None)
             {
@@ -366,11 +375,18 @@ namespace HoI2Editor.Models
         ///     共通のユニットモデル名を削除する
         /// </summary>
         /// <param name="index">ユニットモデルのインデックス</param>
-        public void RemoveModelName(int index)
+        private void RemoveModelName(int index)
         {
+            // 共通のユニットモデル名が存在しなければ何もしない
+            string key = GetModelNameKey(index);
+            if (!Config.ExistsKey(key))
+            {
+                return;
+            }
+
             Debug.WriteLine(string.Format("[Unit] Remove model name: {0}", index));
 
-            Config.RemoveText(GetModelNameKey(index), Game.UnitTextFileName);
+            Config.RemoveText(key, Game.UnitTextFileName);
         }
 
         /// <summary>
@@ -378,7 +394,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
-        public void RemoveModelName(int index, Country country)
+        private void RemoveModelName(int index, Country country)
         {
             if (country == Country.None)
             {
@@ -386,9 +402,16 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // 国別のユニットモデル名が存在しなければ何もしない
+            string key = GetModelNameKey(index, country);
+            if (!Config.ExistsKey(key))
+            {
+                return;
+            }
+
             Debug.WriteLine(string.Format("[Unit] Remove model name: {0} ({1})", index, Countries.Strings[(int) country]));
 
-            Config.RemoveText(GetModelNameKey(index, country), Game.ModelTextFileName);
+            Config.RemoveText(key, Game.ModelTextFileName);
         }
 
         /// <summary>
@@ -396,7 +419,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="start">開始位置</param>
         /// <param name="end">終了位置</param>
-        public void SlideModelNamesUp(int start, int end)
+        private void SlideModelNamesUp(int start, int end)
         {
             // 開始位置が終了位置よりも後ろならば入れ替える
             if (start > end)
@@ -425,8 +448,7 @@ namespace HoI2Editor.Models
             }
 
             // 国別のモデル名を順に上へ移動する
-            foreach (Country country
-                in Enum.GetValues(typeof (Country)).Cast<Country>().Where(country => country != Country.None))
+            foreach (Country country in Countries.Tags)
             {
                 for (int i = start; i <= end; i++)
                 {
@@ -450,7 +472,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="start">開始位置</param>
         /// <param name="end">終了位置</param>
-        public void SlideModelNamesDown(int start, int end)
+        private void SlideModelNamesDown(int start, int end)
         {
             // 開始位置が終了位置よりも後ろならば入れ替える
             if (start > end)
@@ -479,8 +501,7 @@ namespace HoI2Editor.Models
             }
 
             // 国別のモデル名を順に下へ移動する
-            foreach (Country country
-                in Enum.GetValues(typeof (Country)).Cast<Country>().Where(country => country != Country.None))
+            foreach (Country country in Countries.Tags)
             {
                 for (int i = end; i >= start; i--)
                 {
@@ -1092,7 +1113,7 @@ namespace HoI2Editor.Models
             {
                 _dirtyFlags[(int) id] = false;
             }
-            foreach (Country country in Enum.GetValues(typeof (Country)))
+            foreach (Country country in Countries.Tags)
             {
                 _nameDirtyFlags[(int) country] = false;
             }

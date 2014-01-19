@@ -134,12 +134,12 @@ namespace HoI2Editor.Forms
                 // 実ユニット種類コンボボックス
                 realUnitTypeComboBox.Items.Clear();
                 maxWidth = realUnitTypeComboBox.DropDownWidth;
-                foreach (RealUnitType type in Enum.GetValues(typeof(RealUnitType)))
+                foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
                 {
-                    string s = Config.GetText(Units.RealNames[(int)type]);
+                    string s = Config.GetText(Units.RealNames[(int) type]);
                     realUnitTypeComboBox.Items.Add(s);
                     maxWidth = Math.Max(maxWidth,
-                        (int)g.MeasureString(s, realUnitTypeComboBox.Font).Width +
+                        (int) g.MeasureString(s, realUnitTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
                 realUnitTypeComboBox.DropDownWidth = maxWidth;
@@ -147,12 +147,12 @@ namespace HoI2Editor.Forms
                 // スプライト種類コンボボックス
                 spriteTypeComboBox.Items.Clear();
                 maxWidth = spriteTypeComboBox.DropDownWidth;
-                foreach (SpriteType type in Enum.GetValues(typeof(SpriteType)))
+                foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
                 {
-                    string s = Config.GetText(Units.SpriteNames[(int)type]);
+                    string s = Config.GetText(Units.SpriteNames[(int) type]);
                     spriteTypeComboBox.Items.Add(s);
                     maxWidth = Math.Max(maxWidth,
-                        (int)g.MeasureString(s, spriteTypeComboBox.Font).Width +
+                        (int) g.MeasureString(s, spriteTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
                 spriteTypeComboBox.DropDownWidth = maxWidth;
@@ -162,10 +162,10 @@ namespace HoI2Editor.Forms
                 maxWidth = transmuteComboBox.DropDownWidth;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
-                    string s = Config.GetText(Units.Items[(int)type].Name);
+                    string s = Config.GetText(Units.Items[(int) type].Name);
                     transmuteComboBox.Items.Add(s);
                     maxWidth = Math.Max(maxWidth,
-                        (int)g.MeasureString(s, transmuteComboBox.Font).Width +
+                        (int) g.MeasureString(s, transmuteComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
                 transmuteComboBox.DropDownWidth = maxWidth;
@@ -175,10 +175,10 @@ namespace HoI2Editor.Forms
                 maxWidth = upgradeTypeComboBox.DropDownWidth;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
-                    string s = Config.GetText(Units.Items[(int)type].Name);
+                    string s = Config.GetText(Units.Items[(int) type].Name);
                     upgradeTypeComboBox.Items.Add(s);
                     maxWidth = Math.Max(maxWidth,
-                        (int)g.MeasureString(s, upgradeTypeComboBox.Font).Width +
+                        (int) g.MeasureString(s, upgradeTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
                 upgradeTypeComboBox.DropDownWidth = maxWidth;
@@ -186,12 +186,12 @@ namespace HoI2Editor.Forms
                 // 資源コンボボックス
                 resourceComboBox.Items.Clear();
                 maxWidth = resourceComboBox.DropDownWidth;
-                foreach (EquipmentType type in Enum.GetValues(typeof(EquipmentType)))
+                foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
                 {
-                    string s = Config.GetText(Units.EquipmentNames[(int)type]);
+                    string s = Config.GetText(Units.EquipmentNames[(int) type]);
                     resourceComboBox.Items.Add(s);
                     maxWidth = Math.Max(maxWidth,
-                        (int)g.MeasureString(s, resourceComboBox.Font).Width +
+                        (int) g.MeasureString(s, resourceComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
                 resourceComboBox.DropDownWidth = maxWidth;
