@@ -185,20 +185,14 @@ namespace HoI2Editor.Models
         /// <param name="name">ユニットモデル名</param>
         public void InsertModel(UnitModel model, int index, string name)
         {
-            // ユニットモデルリストに項目を挿入する
-            Models.Insert(index, model);
-
-            // TODO: 国別ユニットモデル名の対応
-            // TODO: 外部関数に逃す
-            // TODO: 国別のモデル名と共通のモデル名を取得する関数を分ける
             // 挿入位置以降のユニットモデル名を変更する
-            for (int i = Models.Count - 1; i > index; i--)
-            {
-                CopyModelName(i, i - 1);
-            }
+            SlideModelNamesDown(index, Models.Count - 1);
 
             // 挿入位置のユニットモデル名を変更する
             SetModelName(index, name);
+
+            // ユニットモデルリストに項目を挿入する
+            Models.Insert(index, model);
 
             // 編集済みフラグを設定する
             model.SetDirtyAll();
@@ -211,21 +205,14 @@ namespace HoI2Editor.Models
         /// <param name="index">削除する位置</param>
         public void RemoveModel(int index)
         {
-            // ユニットモデルリストから項目を削除する
-            Models.RemoveAt(index);
-
-            // TODO: 国別ユニットモデル名の対応
             // 削除位置以降のユニットモデル名を変更する
-            if (index < Models.Count)
-            {
-                for (int i = index; i < Models.Count; i++)
-                {
-                    CopyModelName(i, i + 1);
-                }
-            }
+            SlideModelNamesUp(index + 1, Models.Count - 1);
 
             // 末尾のユニットモデル名を削除する
-            RemoveModelName(Models.Count);
+            RemoveModelName(Models.Count - 1);
+
+            // ユニットモデルリストから項目を削除する
+            Models.RemoveAt(index);
 
             // 編集済みフラグを設定する
             SetDirty();
@@ -254,25 +241,17 @@ namespace HoI2Editor.Models
                 Models.RemoveAt(src);
             }
 
-            // TODO: 国別ユニットモデル名の対応
-            // TODO: 外部関数に逃がす
             // 移動元と移動先の間のユニットモデル名を変更する
             string name = GetModelName(src);
             if (src > dest)
             {
                 // 上へ移動する場合
-                for (int i = src; i > dest; i--)
-                {
-                    CopyModelName(i, i - 1);
-                }
+                SlideModelNamesDown(dest, src - 1);
             }
             else
             {
                 // 下へ移動する場合
-                for (int i = src; i < dest; i++)
-                {
-                    CopyModelName(i, i + 1);
-                }
+                SlideModelNamesUp(src + 1, dest);
             }
 
             // 移動先のユニットモデル名を変更する
@@ -393,6 +372,125 @@ namespace HoI2Editor.Models
             }
 
             Config.RemoveText(GetModelNameKey(index, country), Game.ModelTextFileName);
+        }
+
+        /// <summary>
+        ///     ユニットモデル名を1つ上へずらす
+        /// </summary>
+        /// <param name="start">開始位置</param>
+        /// <param name="end">終了位置</param>
+        public void SlideModelNamesUp(int start, int end)
+        {
+            // 開始位置が終了位置よりも後ろならば入れ替える
+            if (start > end)
+            {
+                int tmp = start;
+                start = end;
+                end = tmp;
+            }
+
+            // 共通のモデル名を順に上へ移動する
+            for (int i = start; i <= end; i++)
+            {
+                if (ExistsModelName(i))
+                {
+                    CopyModelName(i, i - 1);
+                }
+                else
+                {
+                    if (ExistsModelName(i - 1))
+                    {
+                        RemoveModelName(i - 1);
+                    }
+                }
+            }
+
+            // 国別のモデル名を順に上へ移動する
+            foreach (Country country in Enum.GetValues(typeof (Country)))
+            {
+                for (int i = start; i <= end; i++)
+                {
+                    if (ExistsModelName(i, country))
+                    {
+                        CopyModelName(i, i - 1, country);
+                    }
+                    else
+                    {
+                        if (ExistsModelName(i - 1, country))
+                        {
+                            RemoveModelName(i - 1, country);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ユニットモデル名を1つ下へずらす
+        /// </summary>
+        /// <param name="start">開始位置</param>
+        /// <param name="end">終了位置</param>
+        public void SlideModelNamesDown(int start, int end)
+        {
+            // 開始位置が終了位置よりも後ろならば入れ替える
+            if (start > end)
+            {
+                int tmp = start;
+                start = end;
+                end = tmp;
+            }
+
+            // 共通のモデル名を順に下へ移動する
+            for (int i = end; i >= start; i--)
+            {
+                CopyModelName(i, i + 1);
+            }
+
+            // 国別のモデル名を順に下へ移動する
+            foreach (Country country in Enum.GetValues(typeof (Country)))
+            {
+                for (int i = end; i >= start; i--)
+                {
+                    if (ExistsModelName(i, country))
+                    {
+                        CopyModelName(i, i + 1, country);
+                    }
+                    else
+                    {
+                        if (ExistsModelName(i + 1, country))
+                        {
+                            RemoveModelName(i + 1, country);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     共通のモデル名が存在するかを取得する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <returns>モデル名が存在すればtrueを返す</returns>
+        private bool ExistsModelName(int index)
+        {
+            string key = GetModelNameKey(index);
+            return string.IsNullOrEmpty(key) && Config.ExistsKey(key);
+        }
+
+        /// <summary>
+        ///     国別のモデル名が存在するかを取得する
+        /// </summary>
+        /// <param name="index">ユニットモデルのインデックス</param>
+        /// <param name="country">国タグ</param>
+        /// <returns>モデル名が存在すればtrueを返す</returns>
+        private bool ExistsModelName(int index, Country country)
+        {
+            if (country == Country.None)
+            {
+                return ExistsModelName(index);
+            }
+            string key = GetModelNameKey(index, country);
+            return string.IsNullOrEmpty(key) && Config.ExistsKey(key);
         }
 
         /// <summary>
