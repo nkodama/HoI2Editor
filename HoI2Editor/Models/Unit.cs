@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace HoI2Editor.Models
 {
@@ -185,6 +187,8 @@ namespace HoI2Editor.Models
         /// <param name="name">ユニットモデル名</param>
         public void InsertModel(UnitModel model, int index, string name)
         {
+            Debug.WriteLine(string.Format("[Unit] Insert model: {0} ({1})", index, name));
+
             // 挿入位置以降のユニットモデル名を変更する
             SlideModelNamesDown(index, Models.Count - 1);
 
@@ -205,6 +209,8 @@ namespace HoI2Editor.Models
         /// <param name="index">削除する位置</param>
         public void RemoveModel(int index)
         {
+            Debug.WriteLine(string.Format("[Unit] Remove model: {0}", index));
+
             // 削除位置以降のユニットモデル名を変更する
             SlideModelNamesUp(index + 1, Models.Count - 1);
 
@@ -225,6 +231,8 @@ namespace HoI2Editor.Models
         /// <param name="dest">移動先の位置</param>
         public void MoveModel(int src, int dest)
         {
+            Debug.WriteLine(string.Format("[Unit] Move model: {0} -> {1} ", src, dest));
+
             UnitModel model = Models[src];
 
             // ユニットモデルリストの項目を移動する
@@ -329,6 +337,8 @@ namespace HoI2Editor.Models
         /// <param name="dest">コピー元ユニットモデルのインデックス</param>
         public void CopyModelName(int src, int dest)
         {
+            Debug.WriteLine(string.Format("[Unit] Copy model name: {0} -> {1}", src, dest));
+
             SetModelName(dest, GetModelName(src));
         }
 
@@ -346,6 +356,9 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] Copy model name: {0} -> {1} ({2})", src, dest,
+                Countries.Strings[(int) country]));
+
             SetModelName(dest, country, GetModelName(src, country));
         }
 
@@ -355,6 +368,8 @@ namespace HoI2Editor.Models
         /// <param name="index">ユニットモデルのインデックス</param>
         public void RemoveModelName(int index)
         {
+            Debug.WriteLine(string.Format("[Unit] Remove model name: {0}", index));
+
             Config.RemoveText(GetModelNameKey(index), Game.UnitTextFileName);
         }
 
@@ -370,6 +385,8 @@ namespace HoI2Editor.Models
                 RemoveModelName(index);
                 return;
             }
+
+            Debug.WriteLine(string.Format("[Unit] Remove model name: {0} ({1})", index, Countries.Strings[(int) country]));
 
             Config.RemoveText(GetModelNameKey(index, country), Game.ModelTextFileName);
         }
@@ -389,6 +406,8 @@ namespace HoI2Editor.Models
                 end = tmp;
             }
 
+            Debug.WriteLine(string.Format("[Unit] Slide model names up: {0} - {1}", start, end));
+
             // 共通のモデル名を順に上へ移動する
             for (int i = start; i <= end; i++)
             {
@@ -406,7 +425,8 @@ namespace HoI2Editor.Models
             }
 
             // 国別のモデル名を順に上へ移動する
-            foreach (Country country in Enum.GetValues(typeof (Country)))
+            foreach (Country country
+                in Enum.GetValues(typeof (Country)).Cast<Country>().Where(country => country != Country.None))
             {
                 for (int i = start; i <= end; i++)
                 {
@@ -440,6 +460,8 @@ namespace HoI2Editor.Models
                 end = tmp;
             }
 
+            Debug.WriteLine(string.Format("[Unit] Slide model names down: {0} - {1}", start, end));
+
             // 共通のモデル名を順に下へ移動する
             for (int i = end; i >= start; i--)
             {
@@ -457,7 +479,8 @@ namespace HoI2Editor.Models
             }
 
             // 国別のモデル名を順に下へ移動する
-            foreach (Country country in Enum.GetValues(typeof (Country)))
+            foreach (Country country
+                in Enum.GetValues(typeof (Country)).Cast<Country>().Where(country => country != Country.None))
             {
                 for (int i = end; i >= start; i--)
                 {
@@ -484,7 +507,7 @@ namespace HoI2Editor.Models
         private bool ExistsModelName(int index)
         {
             string key = GetModelNameKey(index);
-            return string.IsNullOrEmpty(key) && Config.ExistsKey(key);
+            return !string.IsNullOrEmpty(key) && Config.ExistsKey(key);
         }
 
         /// <summary>
@@ -500,7 +523,7 @@ namespace HoI2Editor.Models
                 return ExistsModelName(index);
             }
             string key = GetModelNameKey(index, country);
-            return string.IsNullOrEmpty(key) && Config.ExistsKey(key);
+            return !string.IsNullOrEmpty(key) && Config.ExistsKey(key);
         }
 
         /// <summary>
