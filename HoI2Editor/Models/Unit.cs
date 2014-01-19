@@ -329,7 +329,7 @@ namespace HoI2Editor.Models
         /// <param name="dest">コピー元ユニットモデルのインデックス</param>
         public void CopyModelName(int src, int dest)
         {
-            SetModelName(src, GetModelName(dest));
+            SetModelName(dest, GetModelName(src));
         }
 
         /// <summary>
@@ -342,11 +342,11 @@ namespace HoI2Editor.Models
         {
             if (country == Country.None)
             {
-                SetModelName(src, GetModelName(dest));
+                SetModelName(dest, GetModelName(src));
                 return;
             }
 
-            SetModelName(src, country, GetModelName(dest, country));
+            SetModelName(dest, country, GetModelName(src, country));
         }
 
         /// <summary>
