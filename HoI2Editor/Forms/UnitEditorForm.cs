@@ -1021,13 +1021,19 @@ namespace HoI2Editor.Forms
                 : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // ユニットモデル画像名を更新する
-            var bitmap = new Bitmap(GetModelImageFileName(unit, index, country));
-            bitmap.MakeTransparent(Color.Lime);
-            Image old = modelImagePictureBox.Image;
-            modelImagePictureBox.Image = bitmap;
-            if (old != null)
+            Image oldImage = modelImagePictureBox.Image;
+            string fileName = GetModelImageFileName(unit, index, country);
+            if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
-                old.Dispose();
+                var bitmap = new Bitmap(fileName);
+                bitmap.MakeTransparent(Color.Lime);
+                modelImagePictureBox.Image = bitmap;
+            }
+            else
+                modelImagePictureBox.Image = null;
+            if (oldImage != null)
+            {
+                oldImage.Dispose();
             }
 
             // ユニットモデル名を更新する
@@ -2784,22 +2790,38 @@ namespace HoI2Editor.Forms
                 : (Country) (countryListView.SelectedIndices[0] + 1));
 
             // モデル画像
-            var bitmap = new Bitmap(GetModelImageFileName(unit, index, country));
-            bitmap.MakeTransparent(Color.Lime);
-            Image old = modelImagePictureBox.Image;
-            modelImagePictureBox.Image = bitmap;
-            if (old != null)
+            Image oldImage = modelImagePictureBox.Image;
+            string fileName = GetModelImageFileName(unit, index, country);
+            if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
-                old.Dispose();
+                var bitmap = new Bitmap(fileName);
+                bitmap.MakeTransparent(Color.Lime);
+                modelImagePictureBox.Image = bitmap;
+            }
+            else
+            {
+                modelIconPictureBox.Image = null;
+            }
+            if (oldImage != null)
+            {
+                oldImage.Dispose();
             }
             // モデルアイコン
-            bitmap = new Bitmap(GetModelIconFileName(unit, index));
-            bitmap.MakeTransparent(Color.Lime);
-            old = modelIconPictureBox.Image;
-            modelIconPictureBox.Image = bitmap;
-            if (old != null)
+            oldImage = modelIconPictureBox.Image;
+            fileName = GetModelIconFileName(unit, index);
+            if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
-                old.Dispose();
+                var bitmap = new Bitmap(GetModelIconFileName(unit, index));
+                bitmap.MakeTransparent(Color.Lime);
+                modelIconPictureBox.Image = bitmap;
+            }
+            else
+            {
+                modelIconPictureBox.Image = null;
+            }
+            if (oldImage != null)
+            {
+                oldImage.Dispose();
             }
             // モデル名
             modelNameTextBox.Text = unit.GetModelName(index, country);
