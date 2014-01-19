@@ -443,7 +443,17 @@ namespace HoI2Editor.Models
             // 共通のモデル名を順に下へ移動する
             for (int i = end; i >= start; i--)
             {
-                CopyModelName(i, i + 1);
+                if (ExistsModelName(i))
+                {
+                    CopyModelName(i, i + 1);
+                }
+                else
+                {
+                    if (ExistsModelName(i + 1))
+                    {
+                        RemoveModelName(i + 1);
+                    }
+                }
             }
 
             // 国別のモデル名を順に下へ移動する
