@@ -132,7 +132,7 @@ namespace HoI2Editor.Forms
             Provinces.Load();
 
             // データ読み込み後の処理
-            OnProvincesLoaded();
+            OnFileLoaded();
         }
 
         #endregion
@@ -228,7 +228,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnProvincesLoaded()
+        public void OnFileLoaded()
         {
             // 海域の編集項目を更新する
             UpdateSeaZoneItems();
@@ -240,10 +240,19 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnProvincesSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

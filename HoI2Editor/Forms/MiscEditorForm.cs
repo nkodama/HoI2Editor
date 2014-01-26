@@ -65,7 +65,7 @@ namespace HoI2Editor.Forms
             InitTabPages();
 
             // データ読み込み後の処理
-            OnMiscLoaded();
+            OnFileLoaded();
 
             // 先頭ページを初期化する
             if (miscTabControl.TabCount > 0)
@@ -167,7 +167,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnMiscLoaded()
+        public void OnFileLoaded()
         {
             foreach (TabPage page in miscTabControl.TabPages)
             {
@@ -181,13 +181,22 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnMiscSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             foreach (TabPage page in miscTabControl.TabPages)
             {
                 UpdateItemColor(page);
             }
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

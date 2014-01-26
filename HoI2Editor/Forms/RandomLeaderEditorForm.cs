@@ -79,7 +79,7 @@ namespace HoI2Editor.Forms
             RandomLeaders.Load();
 
             // データ読み込み後の処理
-            OnRandomLeadersLoaded();
+            OnFileLoaded();
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnRandomLeadersLoaded()
+        public void OnFileLoaded()
         {
             // ランダム指揮官名リストの表示を更新する
             UpdateNameList();
@@ -187,10 +187,19 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnRandomLeadersSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

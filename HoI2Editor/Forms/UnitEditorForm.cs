@@ -94,7 +94,7 @@ namespace HoI2Editor.Forms
             Units.Load();
 
             // データ読み込み後の処理
-            OnUnitsLoaded();
+            OnFileLoaded();
         }
 
         /// <summary>
@@ -480,7 +480,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnUnitsLoaded()
+        public void OnFileLoaded()
         {
             // 付属可能旅団の値が変化してしまうので一旦選択を解除する
             classListBox.SelectedIndex = -1;
@@ -501,13 +501,22 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnUnitsSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             classListBox.Refresh();
             modelListView.Refresh();
             UpdateClassEditableItems();
             UpdateModelEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

@@ -230,7 +230,7 @@ namespace HoI2Editor.Forms
             InitLabelBitmap();
 
             // データ読み込み後の処理
-            OnTechsLoaded();
+            OnFileLoaded();
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnTechsLoaded()
+        public void OnFileLoaded()
         {
             // 編集項目を初期化する
             InitEditableItems();
@@ -359,12 +359,21 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnTechsSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             categoryListBox.Refresh();
             techListBox.Refresh();
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

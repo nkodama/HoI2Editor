@@ -122,7 +122,7 @@ namespace HoI2Editor.Forms
             Ministers.Load();
 
             // データ読み込み後の処理
-            OnMinistersLoaded();
+            OnFileLoaded();
         }
 
         #endregion
@@ -218,7 +218,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnMinistersLoaded()
+        public void OnFileLoaded()
         {
             // 閣僚リストを絞り込む
             NarrowMinisterList();
@@ -236,11 +236,20 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnMinistersSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

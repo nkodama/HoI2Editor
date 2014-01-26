@@ -172,7 +172,7 @@ namespace HoI2Editor.Forms
             Teams.Load();
 
             // データ読み込み後の処理
-            OnTeamsLoaded();
+            OnFileLoaded();
         }
 
         #endregion
@@ -268,7 +268,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnTeamsLoaded()
+        public void OnFileLoaded()
         {
             // 研究機関リストを絞り込む
             NarrowTeamList();
@@ -286,11 +286,20 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnTeamsSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

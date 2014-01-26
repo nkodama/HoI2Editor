@@ -97,7 +97,7 @@ namespace HoI2Editor.Forms
             UnitNames.Load();
 
             // データ読み込み後の処理
-            OnUnitNamesLoaded();
+            OnFileLoaded();
         }
 
         #endregion
@@ -193,7 +193,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnUnitNamesLoaded()
+        public void OnFileLoaded()
         {
             // ユニット名リストの表示を更新する
             UpdateNameList();
@@ -206,11 +206,20 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnUnitNamesSaved()
+        public void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
             typeListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion

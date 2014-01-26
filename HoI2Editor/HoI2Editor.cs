@@ -143,47 +143,47 @@ namespace HoI2Editor
         {
             if (_leaderEditorForm != null)
             {
-                _leaderEditorForm.OnLeadersLoaded();
+                _leaderEditorForm.OnFileLoaded();
             }
             if (_ministerEditorForm != null)
             {
-                _ministerEditorForm.OnMinistersLoaded();
+                _ministerEditorForm.OnFileLoaded();
             }
             if (_teamEditorForm != null)
             {
-                _teamEditorForm.OnTeamsLoaded();
+                _teamEditorForm.OnFileLoaded();
             }
             if (_provinceEditorForm != null)
             {
-                _provinceEditorForm.OnProvincesLoaded();
+                _provinceEditorForm.OnFileLoaded();
             }
             if (_techEditorForm != null)
             {
-                _techEditorForm.OnTechsLoaded();
+                _techEditorForm.OnFileLoaded();
             }
             if (_unitEditorForm != null)
             {
-                _unitEditorForm.OnUnitsLoaded();
+                _unitEditorForm.OnFileLoaded();
             }
             if (_miscEditorForm != null)
             {
-                _miscEditorForm.OnMiscLoaded();
+                _miscEditorForm.OnFileLoaded();
             }
             if (_unitNameEditorForm != null)
             {
-                _unitNameEditorForm.OnUnitNamesLoaded();
+                _unitNameEditorForm.OnFileLoaded();
             }
             if (_modelNameEditorForm != null)
             {
-                _modelNameEditorForm.OnModelNamesLoaded();
+                _modelNameEditorForm.OnFileLoaded();
             }
             if (_divisionNameEditorForm != null)
             {
-                _divisionNameEditorForm.OnDivisionNamesLoaded();
+                _divisionNameEditorForm.OnFileLoaded();
             }
             if (_randomLeaderEditorForm != null)
             {
-                _randomLeaderEditorForm.OnRandomLeadersLoaded();
+                _randomLeaderEditorForm.OnFileLoaded();
             }
         }
 
@@ -194,47 +194,100 @@ namespace HoI2Editor
         {
             if (_leaderEditorForm != null)
             {
-                _leaderEditorForm.OnLeadersSaved();
+                _leaderEditorForm.OnFileSaved();
             }
             if (_ministerEditorForm != null)
             {
-                _ministerEditorForm.OnMinistersSaved();
+                _ministerEditorForm.OnFileSaved();
             }
             if (_teamEditorForm != null)
             {
-                _teamEditorForm.OnTeamsSaved();
+                _teamEditorForm.OnFileSaved();
             }
             if (_provinceEditorForm != null)
             {
-                _provinceEditorForm.OnProvincesSaved();
+                _provinceEditorForm.OnFileSaved();
             }
             if (_techEditorForm != null)
             {
-                _techEditorForm.OnTechsSaved();
+                _techEditorForm.OnFileSaved();
             }
             if (_unitEditorForm != null)
             {
-                _unitEditorForm.OnUnitsSaved();
+                _unitEditorForm.OnFileSaved();
             }
             if (_miscEditorForm != null)
             {
-                _miscEditorForm.OnMiscSaved();
+                _miscEditorForm.OnFileSaved();
             }
             if (_unitNameEditorForm != null)
             {
-                _unitNameEditorForm.OnUnitNamesSaved();
+                _unitNameEditorForm.OnFileSaved();
             }
             if (_modelNameEditorForm != null)
             {
-                _modelNameEditorForm.OnModelNamesSaved();
+                _modelNameEditorForm.OnFileSaved();
             }
             if (_divisionNameEditorForm != null)
             {
-                _divisionNameEditorForm.OnDivisionNamesSaved();
+                _divisionNameEditorForm.OnFileSaved();
             }
             if (_randomLeaderEditorForm != null)
             {
-                _randomLeaderEditorForm.OnRandomLeadersSaved();
+                _randomLeaderEditorForm.OnFileSaved();
+            }
+        }
+
+        /// <summary>
+        ///     編集項目変更後の更新処理呼び出し
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        /// <param name="form">呼び出し元のフォーム</param>
+        public static void OnItemChanged(EditorItemId id, Form form)
+        {
+            if ((_leaderEditorForm != null) && (form != _leaderEditorForm))
+            {
+                _leaderEditorForm.OnItemChanged(id);
+            }
+            if ((_ministerEditorForm != null) && (form != _ministerEditorForm))
+            {
+                _ministerEditorForm.OnItemChanged(id);
+            }
+            if ((_teamEditorForm != null) && (form != _teamEditorForm))
+            {
+                _teamEditorForm.OnItemChanged(id);
+            }
+            if ((_provinceEditorForm != null) && (form != _provinceEditorForm))
+            {
+                _provinceEditorForm.OnItemChanged(id);
+            }
+            if ((_techEditorForm != null) && (form != _techEditorForm))
+            {
+                _techEditorForm.OnItemChanged(id);
+            }
+            if ((_unitEditorForm != null) && (form != _unitEditorForm))
+            {
+                _unitEditorForm.OnItemChanged(id);
+            }
+            if ((_miscEditorForm != null) && (form != _miscEditorForm))
+            {
+                _miscEditorForm.OnItemChanged(id);
+            }
+            if ((_unitNameEditorForm != null) && (form != _unitNameEditorForm))
+            {
+                _unitNameEditorForm.OnItemChanged(id);
+            }
+            if ((_modelNameEditorForm != null) && (form != _modelNameEditorForm))
+            {
+                _modelNameEditorForm.OnItemChanged(id);
+            }
+            if ((_divisionNameEditorForm != null) && (form != _divisionNameEditorForm))
+            {
+                _divisionNameEditorForm.OnItemChanged(id);
+            }
+            if ((_randomLeaderEditorForm != null) && (form != _randomLeaderEditorForm))
+            {
+                _randomLeaderEditorForm.OnItemChanged(id);
             }
         }
 
@@ -645,5 +698,15 @@ namespace HoI2Editor
         }
 
         #endregion
+    }
+
+    /// <summary>
+    ///     エディタの編集項目ID
+    /// </summary>
+    public enum EditorItemId
+    {
+        UnitName, // ユニットクラス名
+        CommonModelName, // 共通のユニットモデル名
+        CountryModelName, // 国別のユニットモデル名
     }
 }

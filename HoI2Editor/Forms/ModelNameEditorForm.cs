@@ -63,7 +63,7 @@ namespace HoI2Editor.Forms
             InitTypeListBox();
 
             // データ読み込み後の処理
-            OnModelNamesLoaded();
+            OnFileLoaded();
         }
 
         #endregion
@@ -159,7 +159,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnModelNamesLoaded()
+        public void OnFileLoaded()
         {
             // 編集項目の表示を更新する
             UpdateEditableItems();
@@ -172,7 +172,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnModelNamesSaved()
+        public void OnFileSaved()
         {
             // 編集項目の表示を更新する
             UpdateEditableItems();
@@ -180,6 +180,15 @@ namespace HoI2Editor.Forms
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
             typeListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion
