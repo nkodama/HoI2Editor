@@ -45,6 +45,10 @@ namespace HoI2Editor.Forms
             UpdateLanguage();
         }
 
+        #endregion
+
+        #region 終了処理
+
         /// <summary>
         ///     終了ボタン押下時の処理
         /// </summary>
@@ -52,7 +56,34 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnExitButtonClick(object sender, EventArgs e)
         {
-            Application.Exit();
+            Close();
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMainFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!HoI2Editor.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    HoI2Editor.SaveFiles();
+                    break;
+            }
         }
 
         #endregion
