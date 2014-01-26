@@ -69,8 +69,8 @@
             // 
             // countryListBox
             // 
-            resources.ApplyResources(this.countryListBox, "countryListBox");
             this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            resources.ApplyResources(this.countryListBox, "countryListBox");
             this.countryListBox.FormattingEnabled = true;
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
