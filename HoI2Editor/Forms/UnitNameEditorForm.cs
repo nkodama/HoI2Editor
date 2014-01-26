@@ -219,7 +219,13 @@ namespace HoI2Editor.Forms
         /// <param name="id">編集項目ID</param>
         public void OnItemChanged(EditorItemId id)
         {
-            // 何もしない
+            switch (id)
+            {
+                case EditorItemId.UnitName:
+                    // ユニット種類リストボックスの表示項目を更新する
+                    UpdateTypeListBox();
+                    break;
+            }
         }
 
         #endregion
@@ -306,6 +312,23 @@ namespace HoI2Editor.Forms
                 typeListBox.Items.Add(Config.GetText(UnitNames.TypeNames[(int) type]));
             }
             typeListBox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        ///     ユニット種類リストボックスの表示項目を更新する
+        /// </summary>
+        private void UpdateTypeListBox()
+        {
+            typeListBox.BeginUpdate();
+            int top = typeListBox.TopIndex;
+            int i = 0;
+            foreach (UnitNameType type in UnitNames.Types)
+            {
+                typeListBox.Items[i] = Config.GetText(UnitNames.TypeNames[(int) type]);
+                i++;
+            }
+            typeListBox.TopIndex = top;
+            typeListBox.EndUpdate();
         }
 
         /// <summary>

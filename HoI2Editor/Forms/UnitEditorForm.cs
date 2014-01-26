@@ -1574,48 +1574,51 @@ namespace HoI2Editor.Forms
 
             if (unit.Organization == UnitOrganization.Division)
             {
-                Graphics g = Graphics.FromHwnd(Handle);
-                int margin = DeviceCaps.GetScaledWidth(2) + 1;
-
-                // 実ユニットコンボボックスの項目を更新する
-                int index = Array.IndexOf(Units.RealNames, unit.Name);
-                if (index >= 0)
+                if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
                 {
-                    realUnitTypeComboBox.Items[index] = classNameTextBox.Text;
+                    Graphics g = Graphics.FromHwnd(Handle);
+                    int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
+                    // 実ユニットコンボボックスの項目を更新する
+                    int index = Array.IndexOf(Units.RealNames, unit.Name);
+                    if (index >= 0)
+                    {
+                        realUnitTypeComboBox.Items[index] = classNameTextBox.Text;
+                        // ドロップダウン幅を更新する
+                        realUnitTypeComboBox.DropDownWidth =
+                            Math.Max(realUnitTypeComboBox.DropDownWidth,
+                                (int) g.MeasureString(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
+                                SystemInformation.VerticalScrollBarWidth + margin);
+                    }
+
+                    // スプライトコンボボックスの項目を更新する
+                    index = Array.IndexOf(Units.SpriteNames, unit.Name);
+                    if (index >= 0)
+                    {
+                        spriteTypeComboBox.Items[index] = classNameTextBox.Text;
+                        // ドロップダウン幅を更新する
+                        spriteTypeComboBox.DropDownWidth =
+                            Math.Max(spriteTypeComboBox.DropDownWidth,
+                                (int) g.MeasureString(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
+                                SystemInformation.VerticalScrollBarWidth + margin);
+                    }
+
+                    // 代替ユニットコンボボックスの項目を更新する
+                    transmuteComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
                     // ドロップダウン幅を更新する
-                    realUnitTypeComboBox.DropDownWidth =
-                        Math.Max(realUnitTypeComboBox.DropDownWidth,
-                            (int) g.MeasureString(classNameTextBox.Text, realUnitTypeComboBox.Font).Width +
+                    transmuteComboBox.DropDownWidth =
+                        Math.Max(transmuteComboBox.DropDownWidth,
+                            (int) g.MeasureString(classNameTextBox.Text, transmuteComboBox.Font).Width +
+                            SystemInformation.VerticalScrollBarWidth + margin);
+
+                    // 更新ユニットコンボボックスの項目を更新する
+                    upgradeTypeComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
+                    // ドロップダウン幅を更新する
+                    upgradeTypeComboBox.DropDownWidth =
+                        Math.Max(upgradeTypeComboBox.DropDownWidth,
+                            (int) g.MeasureString(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
                             SystemInformation.VerticalScrollBarWidth + margin);
                 }
-
-                // スプライトコンボボックスの項目を更新する
-                index = Array.IndexOf(Units.SpriteNames, unit.Name);
-                if (index >= 0)
-                {
-                    spriteTypeComboBox.Items[index] = classNameTextBox.Text;
-                    // ドロップダウン幅を更新する
-                    spriteTypeComboBox.DropDownWidth =
-                        Math.Max(spriteTypeComboBox.DropDownWidth,
-                            (int) g.MeasureString(classNameTextBox.Text, spriteTypeComboBox.Font).Width +
-                            SystemInformation.VerticalScrollBarWidth + margin);
-                }
-
-                // 代替ユニットコンボボックスの項目を更新する
-                transmuteComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
-                // ドロップダウン幅を更新する
-                transmuteComboBox.DropDownWidth =
-                    Math.Max(transmuteComboBox.DropDownWidth,
-                        (int) g.MeasureString(classNameTextBox.Text, transmuteComboBox.Font).Width +
-                        SystemInformation.VerticalScrollBarWidth + margin);
-
-                // 更新ユニットコンボボックスの項目を更新する
-                upgradeTypeComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
-                // ドロップダウン幅を更新する
-                upgradeTypeComboBox.DropDownWidth =
-                    Math.Max(upgradeTypeComboBox.DropDownWidth,
-                        (int) g.MeasureString(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
-                        SystemInformation.VerticalScrollBarWidth + margin);
             }
             else
             {
@@ -1633,6 +1636,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             classNameTextBox.ForeColor = Color.Red;
+
+            // ユニットクラス名の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.UnitName, this);
         }
 
         /// <summary>
