@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -516,7 +517,24 @@ namespace HoI2Editor.Forms
         /// <param name="id">編集項目ID</param>
         public void OnItemChanged(EditorItemId id)
         {
-            // 何もしない
+            switch (id)
+            {
+                case EditorItemId.CommonModelName:
+                    Debug.WriteLine("[Unit] Changed common model name");
+                    // ユニットモデルリストのモデル名を更新する
+                    UpdateModelListName();
+                    // ユニットモデル名の表示を更新する
+                    UpdateModelNameTextBox();
+                    break;
+
+                case EditorItemId.CountryModelName:
+                    Debug.WriteLine("[Unit] Changed country model name");
+                    // ユニットモデルリストのモデル名を更新する
+                    UpdateModelListName();
+                    // ユニットモデル名の表示を更新する
+                    UpdateModelNameTextBox();
+                    break;
+            }
         }
 
         #endregion
@@ -3455,6 +3473,36 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     ユニットモデル名の表示を更新する
+        /// </summary>
+        private void UpdateModelNameTextBox()
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            if (classListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+
+            Country country = (countryListView.SelectedIndices.Count == 0
+                ? Country.None
+                : (Country) (countryListView.SelectedIndices[0] + 1));
+
+            // ユニットモデル名を更新する
+            modelNameTextBox.Text = unit.GetModelName(index, country);
+
+            // ユニットモデル名の表示色を更新する
+            modelNameTextBox.ForeColor = unit.Models[index].IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
         ///     ユニットモデル名変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -3497,6 +3545,10 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             modelNameTextBox.ForeColor = Color.Red;
+
+            // ユニットモデル名の更新を通知する
+            HoI2Editor.OnItemChanged(
+                (country == Country.None) ? EditorItemId.CommonModelName : EditorItemId.CountryModelName, this);
         }
 
         /// <summary>

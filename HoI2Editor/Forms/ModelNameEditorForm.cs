@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -191,10 +192,25 @@ namespace HoI2Editor.Forms
             switch (id)
             {
                 case EditorItemId.UnitName:
+                    Debug.WriteLine("[ModelName] Changed unit name");
                     // ユニット種類リストボックスの表示項目を更新する
                     UpdateTypeListBox();
                     break;
+
+                case EditorItemId.CommonModelName:
+                    Debug.WriteLine("[ModelName] Changed common model name");
+                    // 編集項目の表示を更新する
+                    UpdateEditableItems();
+                    break;
+
+                case EditorItemId.CountryModelName:
+                    Debug.WriteLine("[ModelName] Changed country model name");
+                    // 編集項目の表示を更新する
+                    UpdateEditableItems();
+                    break;
             }
+
+            // TODO: ユニットモデルの項目数が変化した時の更新処理
         }
 
         #endregion
@@ -519,6 +535,9 @@ namespace HoI2Editor.Forms
             // 編集済みフラグが更新されるため国家リストボックスの表示を更新する
             countryListBox.Refresh();
             typeListBox.Refresh();
+
+            // ユニットモデル名の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.CountryModelName, this);
         }
 
         #endregion
