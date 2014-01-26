@@ -278,6 +278,9 @@ namespace HoI2Editor.Forms
         {
             // ユニット名リストの表示を更新する
             UpdateNameList();
+
+            // 編集済みフラグが変化するのでユニット種類リストボックスの表示を更新する
+            typeListBox.Refresh();
         }
 
         #endregion
