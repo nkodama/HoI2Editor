@@ -457,9 +457,19 @@ namespace HoI2Editor.Forms
             var index = (int) textBox.Tag;
 
             // 値に変化がなければ何もしない
-            if (textBox.Text.Equals(unit.GetModelName(index, country)))
+            if (unit.ExistsModelName(index, country))
             {
-                return;
+                if (textBox.Text.Equals(unit.GetModelName(index, country)))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    return;
+                }
             }
 
             // 値を更新する
