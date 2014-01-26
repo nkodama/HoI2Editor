@@ -79,6 +79,17 @@ namespace HoI2Editor.Models
         /// </summary>
         private static bool _brigadeTypesDirty;
 
+        /// <summary>
+        ///     国家ごとのモデル名編集済みフラグ
+        /// </summary>
+        private static readonly bool[] CountryNameDirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+
+        /// <summary>
+        ///     ユニット名種類ごとのモデル名編集済みフラグ
+        /// </summary>
+        private static readonly bool[,] TypeNameDirtyFlags =
+            new bool[Enum.GetValues(typeof (Country)).Length, Enum.GetValues(typeof (UnitType)).Length];
+
         #endregion
 
         #region 公開定数
@@ -3339,6 +3350,9 @@ namespace HoI2Editor.Models
             }
 
             LoadFiles();
+
+            // モデル名の編集済みフラグをクリアする
+            ResetDirtyAllModelName();
         }
 
         /// <summary>
@@ -3536,6 +3550,9 @@ namespace HoI2Editor.Models
             {
                 unit.ResetDirtyAll();
             }
+
+            // モデル名の編集済みフラグをクリアする
+            ResetDirtyAllModelName();
         }
 
         /// <summary>
@@ -3657,6 +3674,53 @@ namespace HoI2Editor.Models
         public static void ResetDirtyBrigadeTypes()
         {
             _brigadeTypesDirty = false;
+        }
+
+        /// <summary>
+        ///     モデル名が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirtyModelName(Country country)
+        {
+            return CountryNameDirtyFlags[(int) country];
+        }
+
+        /// <summary>
+        ///     モデル名が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <param name="type">ユニット名種類</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public static bool IsDirtyModelName(Country country, UnitType type)
+        {
+            return TypeNameDirtyFlags[(int) country, (int) type];
+        }
+
+        /// <summary>
+        ///     モデル名の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <param name="type">ユニット名種類</param>
+        public static void SetDirtyModelName(Country country, UnitType type)
+        {
+            TypeNameDirtyFlags[(int) country, (int) type] = true;
+            CountryNameDirtyFlags[(int) country] = true;
+        }
+
+        /// <summary>
+        ///     モデル名の編集済みフラグを全て解除する
+        /// </summary>
+        private static void ResetDirtyAllModelName()
+        {
+            foreach (Country country in Enum.GetValues(typeof (Country)))
+            {
+                foreach (UnitType type in UnitTypes)
+                {
+                    TypeNameDirtyFlags[(int) country, (int) type] = false;
+                }
+                CountryNameDirtyFlags[(int) country] = false;
+            }
         }
 
         #endregion

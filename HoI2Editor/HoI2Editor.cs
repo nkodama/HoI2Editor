@@ -173,6 +173,10 @@ namespace HoI2Editor
             {
                 _unitNameEditorForm.OnUnitNamesLoaded();
             }
+            if (_modelNameEditorForm != null)
+            {
+                _modelNameEditorForm.OnModelNamesLoaded();
+            }
             if (_divisionNameEditorForm != null)
             {
                 _divisionNameEditorForm.OnDivisionNamesLoaded();
@@ -220,6 +224,10 @@ namespace HoI2Editor
             {
                 _unitNameEditorForm.OnUnitNamesSaved();
             }
+            if (_modelNameEditorForm != null)
+            {
+                _modelNameEditorForm.OnModelNamesSaved();
+            }
             if (_divisionNameEditorForm != null)
             {
                 _divisionNameEditorForm.OnDivisionNamesSaved();
@@ -240,52 +248,57 @@ namespace HoI2Editor
         private static MainForm _mainForm;
 
         /// <summary>
-        ///     指揮官エディターのフォーム
+        ///     指揮官エディタのフォーム
         /// </summary>
         private static LeaderEditorForm _leaderEditorForm;
 
         /// <summary>
-        ///     閣僚エディターのフォーム
+        ///     閣僚エディタのフォーム
         /// </summary>
         private static MinisterEditorForm _ministerEditorForm;
 
         /// <summary>
-        ///     研究機関エディターのフォーム
+        ///     研究機関エディタのフォーム
         /// </summary>
         private static TeamEditorForm _teamEditorForm;
 
         /// <summary>
-        ///     プロヴィンスエディターのフォーム
+        ///     プロヴィンスエディタのフォーム
         /// </summary>
         private static ProvinceEditorForm _provinceEditorForm;
 
         /// <summary>
-        ///     技術ツリーエディターのフォーム
+        ///     技術ツリーエディタのフォーム
         /// </summary>
         private static TechEditorForm _techEditorForm;
 
         /// <summary>
-        ///     ユニットモデルエディターのフォーム
+        ///     ユニットモデルエディタのフォーム
         /// </summary>
         private static UnitEditorForm _unitEditorForm;
 
         /// <summary>
-        ///     ゲーム設定エディターのフォーム
+        ///     ゲーム設定エディタのフォーム
         /// </summary>
         private static MiscEditorForm _miscEditorForm;
 
         /// <summary>
-        ///     ユニット名エディターのフォーム
+        ///     ユニット名エディタのフォーム
         /// </summary>
         private static UnitNameEditorForm _unitNameEditorForm;
 
         /// <summary>
-        ///     師団名エディターのフォーム
+        ///     モデル名エディタのフォーム
+        /// </summary>
+        private static ModelNameEditorForm _modelNameEditorForm;
+
+        /// <summary>
+        ///     師団名エディタのフォーム
         /// </summary>
         private static DivisionNameEditorForm _divisionNameEditorForm;
 
         /// <summary>
-        ///     ランダム指揮官エディターのフォーム
+        ///     ランダム指揮官エディタのフォーム
         /// </summary>
         private static RandomLeaderEditorForm _randomLeaderEditorForm;
 
@@ -443,6 +456,24 @@ namespace HoI2Editor
         }
 
         /// <summary>
+        ///     モデル名エディターフォームを起動する
+        /// </summary>
+        public static void LaunchModelNameEditorForm()
+        {
+            if (_modelNameEditorForm == null)
+            {
+                _modelNameEditorForm = new ModelNameEditorForm();
+                _modelNameEditorForm.Show();
+
+                OnEditorStatusUpdete();
+            }
+            else
+            {
+                _modelNameEditorForm.Activate();
+            }
+        }
+
+        /// <summary>
         ///     師団名エディターフォームを起動する
         /// </summary>
         public static void LaunchDivisionNameEditorForm()
@@ -559,6 +590,16 @@ namespace HoI2Editor
         }
 
         /// <summary>
+        ///     モデル名エディターフォームクローズ時の処理
+        /// </summary>
+        public static void OnModelNameEditorFormClosed()
+        {
+            _modelNameEditorForm = null;
+
+            OnEditorStatusUpdete();
+        }
+
+        /// <summary>
         ///     師団名エディターフォームクローズ時の処理
         /// </summary>
         public static void OnDivisionNameEditorFormClosed()
@@ -591,6 +632,7 @@ namespace HoI2Editor
                 _unitEditorForm == null &&
                 _miscEditorForm == null &&
                 _unitNameEditorForm == null &&
+                _modelNameEditorForm == null &&
                 _divisionNameEditorForm == null &&
                 _randomLeaderEditorForm == null)
             {
