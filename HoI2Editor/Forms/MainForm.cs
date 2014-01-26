@@ -140,6 +140,16 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     モデル名ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelNameButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.LaunchModelNameEditorForm();
+        }
+
+        /// <summary>
         ///     師団名ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>

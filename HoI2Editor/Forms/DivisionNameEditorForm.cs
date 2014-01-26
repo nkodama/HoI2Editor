@@ -272,6 +272,9 @@ namespace HoI2Editor.Forms
         {
             // 師団名リストの表示を更新する
             UpdateNameList();
+
+            // 編集済みフラグが変化するので国家リストボックスの表示を更新する
+            countryListBox.Refresh();
         }
 
         #endregion

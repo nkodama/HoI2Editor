@@ -261,7 +261,7 @@ namespace HoI2Editor.Models
 
             // 移動元のユニットモデル名を退避する
             string name = GetModelName(src);
-            var names = Countries.Tags.Where(country => ExistsModelName(src, country))
+            Dictionary<Country, string> names = Countries.Tags.Where(country => ExistsModelName(src, country))
                 .ToDictionary(country => country, country => GetModelName(src, country));
 
             // 移動元と移動先の間のユニットモデル名を変更する
@@ -278,7 +278,7 @@ namespace HoI2Editor.Models
 
             // 移動先のユニットモデル名を変更する
             SetModelName(dest, name);
-            foreach (KeyValuePair<Country, string> pair in names)
+            foreach (var pair in names)
             {
                 SetModelName(dest, pair.Key, pair.Value);
             }
@@ -546,7 +546,7 @@ namespace HoI2Editor.Models
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
         /// <returns>モデル名が存在すればtrueを返す</returns>
-        private bool ExistsModelName(int index, Country country)
+        public bool ExistsModelName(int index, Country country)
         {
             if (country == Country.None)
             {
