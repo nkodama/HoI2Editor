@@ -42,14 +42,12 @@
             resources.ApplyResources(this.miscTabControl, "miscTabControl");
             this.miscTabControl.Name = "miscTabControl";
             this.miscTabControl.SelectedIndex = 0;
-            this.miscToolTip.SetToolTip(this.miscTabControl, resources.GetString("miscTabControl.ToolTip"));
             this.miscTabControl.SelectedIndexChanged += new System.EventHandler(this.OnMiscTabControlSelectedIndexChanged);
             // 
             // closeButton
             // 
             resources.ApplyResources(this.closeButton, "closeButton");
             this.closeButton.Name = "closeButton";
-            this.miscToolTip.SetToolTip(this.closeButton, resources.GetString("closeButton.ToolTip"));
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.OnCloseButtonClick);
             // 
@@ -57,7 +55,6 @@
             // 
             resources.ApplyResources(this.saveButton, "saveButton");
             this.saveButton.Name = "saveButton";
-            this.miscToolTip.SetToolTip(this.saveButton, resources.GetString("saveButton.ToolTip"));
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.OnSaveButtonClick);
             // 
@@ -65,7 +62,6 @@
             // 
             resources.ApplyResources(this.reloadButton, "reloadButton");
             this.reloadButton.Name = "reloadButton";
-            this.miscToolTip.SetToolTip(this.reloadButton, resources.GetString("reloadButton.ToolTip"));
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.OnReloadButtonClick);
             // 
@@ -80,7 +76,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MiscEditorForm";
-            this.miscToolTip.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMiscEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnMiscEditorFormClosed);
             this.Load += new System.EventHandler(this.OnMiscEditorFormLoad);
