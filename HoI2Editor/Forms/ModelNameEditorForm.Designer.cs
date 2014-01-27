@@ -35,6 +35,10 @@
             this.reloadButton = new System.Windows.Forms.Button();
             this.countryListBox = new System.Windows.Forms.ListBox();
             this.itemPanel = new System.Windows.Forms.Panel();
+            this.listSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.listSplitContainer.Panel1.SuspendLayout();
+            this.listSplitContainer.Panel2.SuspendLayout();
+            this.listSplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // typeListBox
@@ -69,8 +73,8 @@
             // 
             // countryListBox
             // 
-            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.countryListBox, "countryListBox");
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.countryListBox.FormattingEnabled = true;
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
@@ -82,20 +86,37 @@
             this.itemPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.itemPanel.Name = "itemPanel";
             // 
+            // listSplitContainer
+            // 
+            resources.ApplyResources(this.listSplitContainer, "listSplitContainer");
+            this.listSplitContainer.Name = "listSplitContainer";
+            // 
+            // listSplitContainer.Panel1
+            // 
+            resources.ApplyResources(this.listSplitContainer.Panel1, "listSplitContainer.Panel1");
+            this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
+            // 
+            // listSplitContainer.Panel2
+            // 
+            resources.ApplyResources(this.listSplitContainer.Panel2, "listSplitContainer.Panel2");
+            this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
+            // 
             // ModelNameEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listSplitContainer);
             this.Controls.Add(this.itemPanel);
-            this.Controls.Add(this.typeListBox);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
-            this.Controls.Add(this.countryListBox);
             this.Name = "ModelNameEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnModelNameEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnModelNameEditorFormClosed);
             this.Load += new System.EventHandler(this.OnModelNameEditorFormLoad);
+            this.listSplitContainer.Panel1.ResumeLayout(false);
+            this.listSplitContainer.Panel2.ResumeLayout(false);
+            this.listSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -108,5 +129,6 @@
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.ListBox countryListBox;
         private System.Windows.Forms.Panel itemPanel;
+        private System.Windows.Forms.SplitContainer listSplitContainer;
     }
 }

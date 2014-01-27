@@ -58,11 +58,15 @@
             this.pasteButton = new System.Windows.Forms.Button();
             this.undoButton = new System.Windows.Forms.Button();
             this.copyButton = new System.Windows.Forms.Button();
+            this.listSplitContainer = new System.Windows.Forms.SplitContainer();
             this.optionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endNumericUpDown)).BeginInit();
             this.replaceGroupBox.SuspendLayout();
             this.sequentialGroupBox.SuspendLayout();
+            this.listSplitContainer.Panel1.SuspendLayout();
+            this.listSplitContainer.Panel2.SuspendLayout();
+            this.listSplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // countryListBox
@@ -147,14 +151,14 @@
             // 
             // toComboBox
             // 
-            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.Name = "withComboBox";
             // 
             // startNumericUpDown
@@ -206,8 +210,8 @@
             // 
             // prefixComboBox
             // 
-            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.Name = "prefixComboBox";
             // 
             // addButton
@@ -259,8 +263,8 @@
             // 
             // suffixComboBox
             // 
-            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.Name = "suffixComboBox";
             // 
             // prefixLabel
@@ -296,10 +300,24 @@
             this.copyButton.UseVisualStyleBackColor = true;
             this.copyButton.Click += new System.EventHandler(this.OnCopyButtonClick);
             // 
+            // listSplitContainer
+            // 
+            resources.ApplyResources(this.listSplitContainer, "listSplitContainer");
+            this.listSplitContainer.Name = "listSplitContainer";
+            // 
+            // listSplitContainer.Panel1
+            // 
+            this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
+            // 
+            // listSplitContainer.Panel2
+            // 
+            this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
+            // 
             // UnitNameEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.listSplitContainer);
             this.Controls.Add(this.copyButton);
             this.Controls.Add(this.undoButton);
             this.Controls.Add(this.pasteButton);
@@ -308,11 +326,9 @@
             this.Controls.Add(this.replaceGroupBox);
             this.Controls.Add(this.optionGroupBox);
             this.Controls.Add(this.nameTextBox);
-            this.Controls.Add(this.typeListBox);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
-            this.Controls.Add(this.countryListBox);
             this.Name = "UnitNameEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnUnitNameEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnUnitNameEditorFormClosed);
@@ -325,6 +341,9 @@
             this.replaceGroupBox.PerformLayout();
             this.sequentialGroupBox.ResumeLayout(false);
             this.sequentialGroupBox.PerformLayout();
+            this.listSplitContainer.Panel1.ResumeLayout(false);
+            this.listSplitContainer.Panel2.ResumeLayout(false);
+            this.listSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,5 +380,6 @@
         private System.Windows.Forms.Button copyButton;
         private System.Windows.Forms.Label suffixLabel;
         private System.Windows.Forms.ComboBox suffixComboBox;
+        private System.Windows.Forms.SplitContainer listSplitContainer;
     }
 }
