@@ -1085,10 +1085,7 @@ namespace HoI2Editor.Forms
             }
 
             // ユニットモデル名を更新する
-            modelNameTextBox.Text = unit.GetModelName(index, country);
-
-            // ユニットモデル名の表示色を更新する
-            modelNameTextBox.ForeColor = unit.Models[index].IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
+            UpdateModelNameTextBox();
         }
 
         #endregion
@@ -2878,8 +2875,7 @@ namespace HoI2Editor.Forms
                 oldImage.Dispose();
             }
             // モデル名
-            modelNameTextBox.Text = unit.GetModelName(index, country);
-            modelNameTextBox.ForeColor = model.IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
+            UpdateModelNameTextBox();
 
             // 組織率
             defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
@@ -3520,7 +3516,28 @@ namespace HoI2Editor.Forms
             modelNameTextBox.Text = unit.GetModelName(index, country);
 
             // ユニットモデル名の表示色を更新する
-            modelNameTextBox.ForeColor = unit.Models[index].IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
+            UnitModel model = unit.Models[index];
+            if (country == Country.None)
+            {
+                modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+            }
+            else
+            {
+                if (unit.ExistsModelName(index, country))
+                {
+                    modelNameTextBox.ForeColor = model.IsDirtyName(country)
+                        ? Color.Red
+                        : SystemColors.WindowText;
+                }
+                else
+                {
+                    modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name)
+                        ? Color.Salmon
+                        : Color.Gray;
+                }
+            }
         }
 
         /// <summary>
@@ -3555,17 +3572,28 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値を更新する
-            unit.SetModelName(index, country, modelNameTextBox.Text);
+            if ((country != Country.None) && string.IsNullOrEmpty(modelNameTextBox.Text))
+            {
+                // 国別のモデル名を削除する
+                unit.RemoveModelName(index, country);
+                // 共通のモデル名を設定する
+                modelNameTextBox.Text = unit.GetModelName(index);
+                // 文字色を変更する
+                modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name) ? Color.Salmon : Color.Gray;
+            }
+            else
+            {
+                // 値を更新する
+                unit.SetModelName(index, country, modelNameTextBox.Text);
+                // 文字色を変更する
+                modelNameTextBox.ForeColor = Color.Red;
+            }
 
             // ユニットモデルリストの項目を更新する
             modelListView.Items[index].SubItems[1].Text = modelNameTextBox.Text;
 
             // 編集済みフラグを設定する
             model.SetDirtyName(country);
-
-            // 文字色を変更する
-            modelNameTextBox.ForeColor = Color.Red;
 
             // ユニットモデル名の更新を通知する
             HoI2Editor.OnItemChanged(

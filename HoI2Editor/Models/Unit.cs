@@ -403,7 +403,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
-        private void RemoveModelName(int index, Country country)
+        public void RemoveModelName(int index, Country country)
         {
             if (country == Country.None)
             {

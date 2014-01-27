@@ -507,24 +507,34 @@ namespace HoI2Editor.Forms
             var textBox = sender as TextBox;
             var index = (int) textBox.Tag;
 
-            // 値に変化がなければ何もしない
             if (unit.ExistsModelName(index, country))
             {
+                // 値に変化がなければ何もしない
                 if (textBox.Text.Equals(unit.GetModelName(index, country)))
                 {
                     return;
                 }
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    // 変更後の文字列が空ならば国別のモデル名を削除する
+                    unit.RemoveModelName(index, country);
+                }
+                else
+                {
+                    // 値を更新する
+                    unit.SetModelName(index, country, textBox.Text);
+                }
             }
             else
             {
+                // 値に変化がなければ何もしない
                 if (string.IsNullOrEmpty(textBox.Text))
                 {
                     return;
                 }
+                // 値を更新する
+                unit.SetModelName(index, country, textBox.Text);
             }
-
-            // 値を更新する
-            unit.SetModelName(index, country, textBox.Text);
 
             // 編集済みフラグを設定する
             UnitModel model = unit.Models[index];
