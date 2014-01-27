@@ -706,6 +706,7 @@ namespace HoI2Editor
     public enum EditorItemId
     {
         UnitName, // ユニットクラス名
+        ModelList, // ユニットモデルリスト
         CommonModelName, // 共通のユニットモデル名
         CountryModelName, // 国別のユニットモデル名
     }

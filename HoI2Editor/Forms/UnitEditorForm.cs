@@ -773,6 +773,9 @@ namespace HoI2Editor.Forms
             {
                 InsertModel(unit, model, 0, "");
             }
+
+            // ユニットモデルリストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -799,6 +802,9 @@ namespace HoI2Editor.Forms
             // ユニットモデルを挿入する
             var model = new UnitModel(unit.Models[index]);
             InsertModel(unit, model, index + 1, unit.GetModelName(index));
+
+            // ユニットモデルリストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -824,6 +830,9 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを削除する
             RemoveModel(unit, index);
+
+            // ユニットモデルリストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -855,6 +864,9 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを移動する
             MoveModel(unit, index, 0);
+
+            // ユニットモデルリストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -886,6 +898,9 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを移動する
             MoveModel(unit, index, index - 1);
+
+            // ユニットモデルリストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -917,6 +932,9 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを移動する
             MoveModel(unit, index, index + 1);
+
+            // ユニットモデルリストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -948,6 +966,9 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを移動する
             MoveModel(unit, index, unit.Models.Count - 1);
+
+            // ユニットモデルリストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>

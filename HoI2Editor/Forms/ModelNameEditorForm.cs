@@ -197,10 +197,14 @@ namespace HoI2Editor.Forms
                     UpdateTypeListBox();
                     break;
 
-                case EditorItemId.CommonModelName:
-                    Debug.WriteLine("[ModelName] Changed common model name");
+                case EditorItemId.ModelList:
+                    Debug.WriteLine("[ModelName] Changed model list");
                     // 編集項目の表示を更新する
                     UpdateEditableItems();
+                    break;
+
+                case EditorItemId.CommonModelName:
+                    Debug.WriteLine("[ModelName] Changed common model name");
                     break;
 
                 case EditorItemId.CountryModelName:
@@ -209,8 +213,6 @@ namespace HoI2Editor.Forms
                     UpdateEditableItems();
                     break;
             }
-
-            // TODO: ユニットモデルの項目数が変化した時の更新処理
         }
 
         #endregion
