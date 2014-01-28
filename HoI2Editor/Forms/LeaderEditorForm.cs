@@ -314,8 +314,7 @@ namespace HoI2Editor.Forms
             uint traitsMask = GetNarrowedTraits();
 
             // 選択中の国家リストを作成する
-            List<Country> tags =
-                (from string name in countryListBox.SelectedItems select Countries.StringMap[name]).ToList();
+            List<Country> tags = (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
             foreach (Leader leader in Leaders.Items.Where(leader => tags.Contains(leader.Country)))
@@ -654,9 +653,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                Country country = countryListBox.SelectedItems.Count > 0
-                    ? (Country) (countryListBox.SelectedIndex + 1)
-                    : Country.None;
+                Country country = Countries.Tags[countryListBox.SelectedIndex];
                 // 新規項目を作成する
                 leader = new Leader
                 {
@@ -1473,11 +1470,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string name in Countries.Tags.Select(country => Countries.Strings[(int) country]))
+            countryListBox.BeginUpdate();
+            countryListBox.Items.Clear();
+            foreach (Country country in Countries.Tags)
             {
-                countryListBox.Items.Add(name);
+                countryListBox.Items.Add(Countries.Strings[(int) country]);
             }
             countryListBox.SelectedIndex = 0;
+            countryListBox.EndUpdate();
         }
 
         /// <summary>
@@ -1523,13 +1523,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            int count = countryListBox.SelectedItems.Count;
+
             // 選択数に合わせて全選択/全解除を切り替える
-            countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
-                ? Resources.KeySelectAll
-                : Resources.KeyUnselectAll;
+            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
-            newButton.Enabled = countryListBox.SelectedItems.Count > 0;
+            newButton.Enabled = (count > 0);
 
             // 指揮官リストを更新する
             NarrowLeaderList();
@@ -1586,8 +1586,9 @@ namespace HoI2Editor.Forms
             int margin = DeviceCaps.GetScaledWidth(2) + 1;
 
             // 国タグ
+            countryComboBox.BeginUpdate();
             countryComboBox.Items.Clear();
-            int maxWidth = countryComboBox.DropDownWidth;
+            int width = countryComboBox.Width;
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
@@ -1595,31 +1596,32 @@ namespace HoI2Editor.Forms
                     : name))
             {
                 countryComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
+                width = Math.Max(width,
                     (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
                     margin);
             }
-            countryComboBox.DropDownWidth = maxWidth;
+            countryComboBox.DropDownWidth = width;
+            countryComboBox.EndUpdate();
 
             // 兵科
             branchComboBox.Items.Clear();
-            maxWidth = branchComboBox.DropDownWidth;
+            width = branchComboBox.DropDownWidth;
             foreach (string s in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 branchComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, branchComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, branchComboBox.Font).Width + margin);
             }
-            branchComboBox.DropDownWidth = maxWidth;
+            branchComboBox.DropDownWidth = width;
 
             // 階級
             idealRankComboBox.Items.Clear();
-            maxWidth = idealRankComboBox.DropDownWidth;
+            width = idealRankComboBox.DropDownWidth;
             foreach (string s in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 idealRankComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, idealRankComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, idealRankComboBox.Font).Width + margin);
             }
-            idealRankComboBox.DropDownWidth = maxWidth;
+            idealRankComboBox.DropDownWidth = width;
         }
 
         /// <summary>

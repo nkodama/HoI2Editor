@@ -106,11 +106,14 @@ namespace HoI2Editor.Forms
             Graphics g = Graphics.FromHwnd(Handle);
             int margin = DeviceCaps.GetScaledWidth(2) + 1;
 
-            // 国家リストボックス
-            foreach (string s in Countries.Strings.Where(country => !string.IsNullOrEmpty(country)))
+            // 国家リストビュー
+            countryListView.BeginUpdate();
+            countryListView.Items.Clear();
+            foreach (Country country in Countries.Tags)
             {
-                countryListView.Items.Add(s);
+                countryListView.Items.Add(Countries.Strings[(int) country]);
             }
+            countryListView.EndUpdate();
 
             // 兵科コンボボックス
             branchComboBox.Items.Add(Config.GetText("EYR_ARMY"));
@@ -679,9 +682,7 @@ namespace HoI2Editor.Forms
             Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストビューの項目を更新する
-            Country country = (countryListView.SelectedIndices.Count == 0)
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1);
+            Country country = GetSelectedCountry();
             modelListView.BeginUpdate();
             for (int i = 0; i < unit.Models.Count; i++)
             {
@@ -733,9 +734,7 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             var item = new ListViewItem {Text = index.ToString(CultureInfo.InvariantCulture)};
-            item.SubItems.Add(unit.GetModelName(index, (countryListView.SelectedIndices.Count == 0)
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1)));
+            item.SubItems.Add(unit.GetModelName(index, GetSelectedCountry()));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
@@ -1041,6 +1040,17 @@ namespace HoI2Editor.Forms
         #region 国家リストビュー
 
         /// <summary>
+        ///     選択中の国タグを取得する
+        /// </summary>
+        /// <returns></returns>
+        private Country GetSelectedCountry()
+        {
+            return (countryListView.SelectedIndices.Count > 0)
+                ? Countries.Tags[countryListView.SelectedIndices[0]]
+                : Country.None;
+        }
+
+        /// <summary>
         ///     国家リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1064,13 +1074,9 @@ namespace HoI2Editor.Forms
             }
             int index = modelListView.SelectedIndices[0];
 
-            Country country = (countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1));
-
             // ユニットモデル画像名を更新する
             Image oldImage = modelImagePictureBox.Image;
-            string fileName = GetModelImageFileName(unit, index, country);
+            string fileName = GetModelImageFileName(unit, index, GetSelectedCountry());
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
                 var bitmap = new Bitmap(fileName);
@@ -2836,13 +2842,9 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[index];
 
-            Country country = (countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1));
-
             // モデル画像
             Image oldImage = modelImagePictureBox.Image;
-            string fileName = GetModelImageFileName(unit, index, country);
+            string fileName = GetModelImageFileName(unit, index, GetSelectedCountry());
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
                 var bitmap = new Bitmap(fileName);
@@ -3508,9 +3510,7 @@ namespace HoI2Editor.Forms
             }
             int index = modelListView.SelectedIndices[0];
 
-            Country country = (countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1));
+            Country country = GetSelectedCountry();
 
             // ユニットモデル名を更新する
             modelNameTextBox.Text = unit.GetModelName(index, country);
@@ -3563,9 +3563,7 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             // 値に変化がなければ何もしない
-            Country country = countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1);
+            Country country = GetSelectedCountry();
             string name = unit.GetModelName(index, country);
             if (modelNameTextBox.Text.Equals(name))
             {

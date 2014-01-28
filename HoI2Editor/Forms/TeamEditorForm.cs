@@ -346,16 +346,10 @@ namespace HoI2Editor.Forms
             _list.Clear();
 
             // 選択中の国家リストを作成する
-            List<Country> selectedTagList = countryListBox.SelectedItems.Count == 0
-                ? new List<Country>()
-                : (from string countryText in countryListBox.SelectedItems
-                    select Countries.StringMap[countryText]).ToList();
+            List<Country> tags = (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToList();
 
             // 選択中の国家に所属する指揮官を順に絞り込む
-            foreach (Team team in Teams.Items.Where(team => selectedTagList.Contains(team.Country)))
-            {
-                _list.Add(team);
-            }
+            _list.AddRange(Teams.Items.Where(team => tags.Contains(team.Country)));
         }
 
         /// <summary>
@@ -767,9 +761,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                Country country = countryListBox.SelectedItems.Count > 0
-                    ? (Country) (countryListBox.SelectedIndex + 1)
-                    : Country.None;
+                Country country = Countries.Tags[countryListBox.SelectedIndex];
                 // 新規項目を作成する
                 team = new Team
                 {
@@ -1155,11 +1147,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
-            foreach (string name in Countries.Tags.Select(country => Countries.Strings[(int) country]))
+            countryListBox.BeginUpdate();
+            countryListBox.Items.Clear();
+            foreach (Country country in Countries.Tags)
             {
-                countryListBox.Items.Add(name);
+                countryListBox.Items.Add(Countries.Strings[(int) country]);
             }
             countryListBox.SelectedIndex = 0;
+            countryListBox.EndUpdate();
         }
 
         /// <summary>
@@ -1207,13 +1202,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            int count = countryListBox.SelectedItems.Count;
+
             // 選択数に合わせて全選択/全解除を切り替える
-            countryAllButton.Text = countryListBox.SelectedItems.Count <= 1
-                ? Resources.KeySelectAll
-                : Resources.KeyUnselectAll;
+            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
-            newButton.Enabled = countryListBox.SelectedItems.Count > 0;
+            newButton.Enabled = (count > 0);
 
             // 研究機関リストを更新する
             NarrowTeamList();
@@ -1270,8 +1265,9 @@ namespace HoI2Editor.Forms
             int margin = DeviceCaps.GetScaledWidth(2) + 1;
 
             // 国タグ
+            countryComboBox.BeginUpdate();
             countryComboBox.Items.Clear();
-            int maxWidth = countryComboBox.DropDownWidth;
+            int width = countryComboBox.Width;
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
@@ -1279,11 +1275,12 @@ namespace HoI2Editor.Forms
                     : name))
             {
                 countryComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
+                width = Math.Max(width,
                     (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
                     margin);
             }
-            countryComboBox.DropDownWidth = maxWidth;
+            countryComboBox.DropDownWidth = width;
+            countryComboBox.EndUpdate();
 
             // 研究特性
             for (int i = 0; i < MaxEditableSpecialities; i++)
@@ -1291,7 +1288,7 @@ namespace HoI2Editor.Forms
                 _specialityComboBoxes[i].Tag = i;
                 _specialityComboBoxes[i].Items.Clear();
             }
-            maxWidth = specialityComboBox1.DropDownWidth;
+            width = specialityComboBox1.DropDownWidth;
             int additionalWidth = DeviceCaps.GetScaledWidth(16) + 3 + SystemInformation.VerticalScrollBarWidth;
             foreach (string s in Techs.Specialities.Select(Techs.GetSpecialityName))
             {
@@ -1300,12 +1297,12 @@ namespace HoI2Editor.Forms
                     _specialityComboBoxes[i].Items.Add(s);
                 }
                 // 研究特性アイコンの幅を追加している
-                maxWidth = Math.Max(maxWidth,
+                width = Math.Max(width,
                     (int) g.MeasureString(s, specialityComboBox1.Font).Width + additionalWidth);
             }
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {
-                _specialityComboBoxes[i].DropDownWidth = maxWidth;
+                _specialityComboBoxes[i].DropDownWidth = width;
             }
         }
 

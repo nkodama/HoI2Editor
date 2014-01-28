@@ -6,7 +6,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     国家データ
     /// </summary>
-    public class Countries
+    public static class Countries
     {
         #region 公開プロパティ
 
@@ -27,7 +27,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ文字列
         /// </summary>
-        public static string[] Strings =
+        public static readonly string[] Strings =
         {
             "",
             "AFG",
