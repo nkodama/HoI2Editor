@@ -174,12 +174,21 @@
   <data name="maxSpeedStepComboBox.Items2" xml:space="preserve">
     <value>緊急生産 (1.5x)</value>
   </data>
+  <data name="closeButton1.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton1.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="maxSpeedStepLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 12</value>
   </data>
   <data name="maxSpeedStepLabel.Text" xml:space="preserve">
     <value>最大生産速度</value>
+  </data>
+  <data name="reloadButton1.Text" xml:space="preserve">
+    <value>再読み込み</value>
   </data>
   <data name="uiPrioLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 12</value>
@@ -337,6 +346,15 @@
   <data name="classTabPage.Text" xml:space="preserve">
     <value>ユニットクラス</value>
   </data>
+  <data name="closeButton2.Text" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="saveButton2.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="reloadButton2.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
   <data name="equipmentDownButton.Text" xml:space="preserve">
     <value>下へ</value>
   </data>
@@ -369,6 +387,18 @@
   </data>
   <data name="equipmentGroupBox.Text" xml:space="preserve">
     <value>装備</value>
+  </data>
+  <data name="autoUpgradeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="autoUpgradeCheckBox.Text" xml:space="preserve">
+    <value>自動改良</value>
+  </data>
+  <data name="upgradeTimeBoostCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 16</value>
+  </data>
+  <data name="upgradeTimeBoostCheckBox.Text" xml:space="preserve">
+    <value>2段階改良</value>
   </data>
   <data name="reinforceCostLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 12</value>
@@ -651,15 +681,6 @@
   </data>
   <data name="modelTabPage.Text" xml:space="preserve">
     <value>ユニットモデル</value>
-  </data>
-  <data name="closeButton.Text" xml:space="preserve">
-    <value>閉じる</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="reloadButton.Text" xml:space="preserve">
-    <value>再読み込み</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>ユニットモデルエディタ</value>
