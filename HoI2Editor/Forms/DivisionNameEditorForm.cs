@@ -228,10 +228,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitBranchListBox()
         {
+            branchListBox.BeginUpdate();
+            branchListBox.Items.Clear();
             branchListBox.Items.Add(Config.GetText("EYR_ARMY"));
             branchListBox.Items.Add(Config.GetText("EYR_NAVY"));
             branchListBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
             branchListBox.SelectedIndex = 0;
+            branchListBox.EndUpdate();
         }
 
         /// <summary>
@@ -295,6 +298,8 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
+            countryListBox.BeginUpdate();
+            countryListBox.Items.Clear();
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
@@ -304,6 +309,7 @@ namespace HoI2Editor.Forms
                 countryListBox.Items.Add(s);
             }
             countryListBox.SelectedIndex = 0;
+            countryListBox.EndUpdate();
         }
 
         /// <summary>

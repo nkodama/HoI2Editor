@@ -106,11 +106,14 @@ namespace HoI2Editor.Forms
             Graphics g = Graphics.FromHwnd(Handle);
             int margin = DeviceCaps.GetScaledWidth(2) + 1;
 
-            // 国家リストボックス
-            foreach (string s in Countries.Strings.Where(country => !string.IsNullOrEmpty(country)))
+            // 国家リストビュー
+            countryListView.BeginUpdate();
+            countryListView.Items.Clear();
+            foreach (Country country in Countries.Tags)
             {
-                countryListView.Items.Add(s);
+                countryListView.Items.Add(Countries.Strings[(int) country]);
             }
+            countryListView.EndUpdate();
 
             // 兵科コンボボックス
             branchComboBox.Items.Add(Config.GetText("EYR_ARMY"));
@@ -118,84 +121,96 @@ namespace HoI2Editor.Forms
             branchComboBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
 
             // 付属可能旅団リストビュー
+            allowedBrigadesListView.BeginUpdate();
             allowedBrigadesListView.Items.Clear();
-            int maxWidth = 60;
+            int width = 60;
             foreach (UnitType type in Units.BrigadeTypes)
             {
                 string s = Config.GetText(Units.Items[(int) type].Name);
                 allowedBrigadesListView.Items.Add(s);
                 // +16はチェックボックスの分
-                maxWidth = Math.Max(maxWidth,
+                width = Math.Max(width,
                     (int) g.MeasureString(s, allowedBrigadesListView.Font).Width + DeviceCaps.GetScaledWidth(16));
             }
-            allowedBrigadesDummyColumnHeader.Width = maxWidth;
+            allowedBrigadesDummyColumnHeader.Width = width;
+            allowedBrigadesListView.EndUpdate();
 
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
                 // 実ユニット種類コンボボックス
+                realUnitTypeComboBox.BeginUpdate();
                 realUnitTypeComboBox.Items.Clear();
-                maxWidth = realUnitTypeComboBox.DropDownWidth;
+                width = realUnitTypeComboBox.DropDownWidth;
                 foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
                 {
                     string s = Config.GetText(Units.RealNames[(int) type]);
                     realUnitTypeComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, realUnitTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                realUnitTypeComboBox.DropDownWidth = maxWidth;
+                realUnitTypeComboBox.DropDownWidth = width;
+                realUnitTypeComboBox.EndUpdate();
 
                 // スプライト種類コンボボックス
+                spriteTypeComboBox.BeginUpdate();
                 spriteTypeComboBox.Items.Clear();
-                maxWidth = spriteTypeComboBox.DropDownWidth;
+                width = spriteTypeComboBox.DropDownWidth;
                 foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
                 {
                     string s = Config.GetText(Units.SpriteNames[(int) type]);
                     spriteTypeComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, spriteTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                spriteTypeComboBox.DropDownWidth = maxWidth;
+                spriteTypeComboBox.DropDownWidth = width;
+                spriteTypeComboBox.EndUpdate();
 
                 // 代替ユニット種類コンボボックス
+                transmuteComboBox.BeginUpdate();
                 transmuteComboBox.Items.Clear();
-                maxWidth = transmuteComboBox.DropDownWidth;
+                width = transmuteComboBox.DropDownWidth;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
                     string s = Config.GetText(Units.Items[(int) type].Name);
                     transmuteComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, transmuteComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                transmuteComboBox.DropDownWidth = maxWidth;
+                transmuteComboBox.DropDownWidth = width;
+                transmuteComboBox.EndUpdate();
 
                 // 更新ユニット種類コンボボックス
+                upgradeTypeComboBox.BeginUpdate();
                 upgradeTypeComboBox.Items.Clear();
-                maxWidth = upgradeTypeComboBox.DropDownWidth;
+                width = upgradeTypeComboBox.DropDownWidth;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
                     string s = Config.GetText(Units.Items[(int) type].Name);
                     upgradeTypeComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, upgradeTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                upgradeTypeComboBox.DropDownWidth = maxWidth;
+                upgradeTypeComboBox.DropDownWidth = width;
+                upgradeTypeComboBox.EndUpdate();
 
                 // 資源コンボボックス
+                resourceComboBox.BeginUpdate();
                 resourceComboBox.Items.Clear();
-                maxWidth = resourceComboBox.DropDownWidth;
+                width = resourceComboBox.DropDownWidth;
                 foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
                 {
                     string s = Config.GetText(Units.EquipmentNames[(int) type]);
                     resourceComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, resourceComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                resourceComboBox.DropDownWidth = maxWidth;
+                resourceComboBox.DropDownWidth = width;
+                resourceComboBox.EndUpdate();
             }
 
             // チェックボックスの文字列
@@ -679,9 +694,7 @@ namespace HoI2Editor.Forms
             Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストビューの項目を更新する
-            Country country = (countryListView.SelectedIndices.Count == 0)
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1);
+            Country country = GetSelectedCountry();
             modelListView.BeginUpdate();
             for (int i = 0; i < unit.Models.Count; i++)
             {
@@ -733,9 +746,7 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             var item = new ListViewItem {Text = index.ToString(CultureInfo.InvariantCulture)};
-            item.SubItems.Add(unit.GetModelName(index, (countryListView.SelectedIndices.Count == 0)
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1)));
+            item.SubItems.Add(unit.GetModelName(index, GetSelectedCountry()));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
@@ -1041,6 +1052,17 @@ namespace HoI2Editor.Forms
         #region 国家リストビュー
 
         /// <summary>
+        ///     選択中の国タグを取得する
+        /// </summary>
+        /// <returns></returns>
+        private Country GetSelectedCountry()
+        {
+            return (countryListView.SelectedIndices.Count > 0)
+                ? Countries.Tags[countryListView.SelectedIndices[0]]
+                : Country.None;
+        }
+
+        /// <summary>
         ///     国家リストビューの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1064,13 +1086,9 @@ namespace HoI2Editor.Forms
             }
             int index = modelListView.SelectedIndices[0];
 
-            Country country = (countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1));
-
             // ユニットモデル画像名を更新する
             Image oldImage = modelImagePictureBox.Image;
-            string fileName = GetModelImageFileName(unit, index, country);
+            string fileName = GetModelImageFileName(unit, index, GetSelectedCountry());
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
                 var bitmap = new Bitmap(fileName);
@@ -2836,13 +2854,9 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[index];
 
-            Country country = (countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1));
-
             // モデル画像
             Image oldImage = modelImagePictureBox.Image;
-            string fileName = GetModelImageFileName(unit, index, country);
+            string fileName = GetModelImageFileName(unit, index, GetSelectedCountry());
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
                 var bitmap = new Bitmap(fileName);
@@ -3508,9 +3522,7 @@ namespace HoI2Editor.Forms
             }
             int index = modelListView.SelectedIndices[0];
 
-            Country country = (countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1));
+            Country country = GetSelectedCountry();
 
             // ユニットモデル名を更新する
             modelNameTextBox.Text = unit.GetModelName(index, country);
@@ -3563,9 +3575,7 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             // 値に変化がなければ何もしない
-            Country country = countryListView.SelectedIndices.Count == 0
-                ? Country.None
-                : (Country) (countryListView.SelectedIndices[0] + 1);
+            Country country = GetSelectedCountry();
             string name = unit.GetModelName(index, country);
             if (modelNameTextBox.Text.Equals(name))
             {

@@ -239,6 +239,8 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryListBox()
         {
+            countryListBox.BeginUpdate();
+            countryListBox.Items.Clear();
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
@@ -248,6 +250,7 @@ namespace HoI2Editor.Forms
                 countryListBox.Items.Add(s);
             }
             countryListBox.SelectedIndex = 0;
+            countryListBox.EndUpdate();
         }
 
         /// <summary>
@@ -309,11 +312,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitTypeListBox()
         {
+            typeListBox.BeginUpdate();
+            typeListBox.Items.Clear();
             foreach (UnitNameType type in UnitNames.Types)
             {
                 typeListBox.Items.Add(Config.GetText(UnitNames.TypeNames[(int) type]));
             }
             typeListBox.SelectedIndex = 0;
+            typeListBox.EndUpdate();
         }
 
         /// <summary>
