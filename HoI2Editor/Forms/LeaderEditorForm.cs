@@ -1604,24 +1604,28 @@ namespace HoI2Editor.Forms
             countryComboBox.EndUpdate();
 
             // 兵科
+            branchComboBox.BeginUpdate();
             branchComboBox.Items.Clear();
-            width = branchComboBox.DropDownWidth;
+            width = branchComboBox.Width;
             foreach (string s in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 branchComboBox.Items.Add(s);
                 width = Math.Max(width, (int) g.MeasureString(s, branchComboBox.Font).Width + margin);
             }
             branchComboBox.DropDownWidth = width;
+            branchComboBox.EndUpdate();
 
             // 階級
+            idealRankComboBox.BeginUpdate();
             idealRankComboBox.Items.Clear();
-            width = idealRankComboBox.DropDownWidth;
+            width = idealRankComboBox.Width;
             foreach (string s in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 idealRankComboBox.Items.Add(s);
                 width = Math.Max(width, (int) g.MeasureString(s, idealRankComboBox.Font).Width + margin);
             }
             idealRankComboBox.DropDownWidth = width;
+            idealRankComboBox.EndUpdate();
         }
 
         /// <summary>

@@ -1085,8 +1085,9 @@ namespace HoI2Editor.Forms
             countryComboBox.EndUpdate();
 
             // 地位
+            positionComboBox.BeginUpdate();
             positionComboBox.Items.Clear();
-            width = positionComboBox.DropDownWidth;
+            width = positionComboBox.Width;
             foreach (
                 string s in Ministers.PositionNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
             {
@@ -1094,17 +1095,20 @@ namespace HoI2Editor.Forms
                 width = Math.Max(width, (int) g.MeasureString(s, positionComboBox.Font).Width + margin);
             }
             positionComboBox.DropDownWidth = width;
+            positionComboBox.EndUpdate();
 
             // 特性
             personalityComboBox.DropDownWidth =
                 Ministers.Personalities.Select(info => Config.GetText(info.Name))
-                    .Select(s => (int) g.MeasureString(s, personalityComboBox.Font).Width + margin)
-                    .Concat(new[] {personalityComboBox.DropDownWidth})
+                    .Select(s => (int) g.MeasureString(s, personalityComboBox.Font).Width +
+                                 SystemInformation.VerticalScrollBarWidth + margin)
+                    .Concat(new[] {personalityComboBox.Width})
                     .Max();
 
             // イデオロギー
+            ideologyComboBox.BeginUpdate();
             ideologyComboBox.Items.Clear();
-            width = ideologyComboBox.DropDownWidth;
+            width = ideologyComboBox.Width;
             foreach (
                 string s in Ministers.IdeologyNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
             {
@@ -1112,16 +1116,19 @@ namespace HoI2Editor.Forms
                 width = Math.Max(width, (int) g.MeasureString(s, ideologyComboBox.Font).Width + margin);
             }
             ideologyComboBox.DropDownWidth = width;
+            ideologyComboBox.EndUpdate();
 
             // 忠誠度
+            loyaltyComboBox.BeginUpdate();
             loyaltyComboBox.Items.Clear();
-            width = loyaltyComboBox.DropDownWidth;
+            width = loyaltyComboBox.Width;
             foreach (string s in Ministers.LoyaltyNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 loyaltyComboBox.Items.Add(s);
                 width = Math.Max(width, (int) g.MeasureString(s, loyaltyComboBox.Font).Width + margin);
             }
             loyaltyComboBox.DropDownWidth = width;
+            loyaltyComboBox.EndUpdate();
         }
 
         /// <summary>
@@ -1283,7 +1290,6 @@ namespace HoI2Editor.Forms
         {
             personalityComboBox.BeginUpdate();
             personalityComboBox.Items.Clear();
-
             if (minister.Position == MinisterPosition.None)
             {
                 // 閣僚地位の値が不正な場合は、現在の閣僚特性のみ登録する

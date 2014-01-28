@@ -228,10 +228,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitBranchListBox()
         {
+            branchListBox.BeginUpdate();
+            branchListBox.Items.Clear();
             branchListBox.Items.Add(Config.GetText("EYR_ARMY"));
             branchListBox.Items.Add(Config.GetText("EYR_NAVY"));
             branchListBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
             branchListBox.SelectedIndex = 0;
+            branchListBox.EndUpdate();
         }
 
         /// <summary>

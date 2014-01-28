@@ -312,11 +312,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitTypeListBox()
         {
+            typeListBox.BeginUpdate();
+            typeListBox.Items.Clear();
             foreach (UnitNameType type in UnitNames.Types)
             {
                 typeListBox.Items.Add(Config.GetText(UnitNames.TypeNames[(int) type]));
             }
             typeListBox.SelectedIndex = 0;
+            typeListBox.EndUpdate();
         }
 
         /// <summary>

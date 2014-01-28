@@ -121,84 +121,96 @@ namespace HoI2Editor.Forms
             branchComboBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
 
             // 付属可能旅団リストビュー
+            allowedBrigadesListView.BeginUpdate();
             allowedBrigadesListView.Items.Clear();
-            int maxWidth = 60;
+            int width = 60;
             foreach (UnitType type in Units.BrigadeTypes)
             {
                 string s = Config.GetText(Units.Items[(int) type].Name);
                 allowedBrigadesListView.Items.Add(s);
                 // +16はチェックボックスの分
-                maxWidth = Math.Max(maxWidth,
+                width = Math.Max(width,
                     (int) g.MeasureString(s, allowedBrigadesListView.Font).Width + DeviceCaps.GetScaledWidth(16));
             }
-            allowedBrigadesDummyColumnHeader.Width = maxWidth;
+            allowedBrigadesDummyColumnHeader.Width = width;
+            allowedBrigadesListView.EndUpdate();
 
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
                 // 実ユニット種類コンボボックス
+                realUnitTypeComboBox.BeginUpdate();
                 realUnitTypeComboBox.Items.Clear();
-                maxWidth = realUnitTypeComboBox.DropDownWidth;
+                width = realUnitTypeComboBox.DropDownWidth;
                 foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
                 {
                     string s = Config.GetText(Units.RealNames[(int) type]);
                     realUnitTypeComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, realUnitTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                realUnitTypeComboBox.DropDownWidth = maxWidth;
+                realUnitTypeComboBox.DropDownWidth = width;
+                realUnitTypeComboBox.EndUpdate();
 
                 // スプライト種類コンボボックス
+                spriteTypeComboBox.BeginUpdate();
                 spriteTypeComboBox.Items.Clear();
-                maxWidth = spriteTypeComboBox.DropDownWidth;
+                width = spriteTypeComboBox.DropDownWidth;
                 foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
                 {
                     string s = Config.GetText(Units.SpriteNames[(int) type]);
                     spriteTypeComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, spriteTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                spriteTypeComboBox.DropDownWidth = maxWidth;
+                spriteTypeComboBox.DropDownWidth = width;
+                spriteTypeComboBox.EndUpdate();
 
                 // 代替ユニット種類コンボボックス
+                transmuteComboBox.BeginUpdate();
                 transmuteComboBox.Items.Clear();
-                maxWidth = transmuteComboBox.DropDownWidth;
+                width = transmuteComboBox.DropDownWidth;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
                     string s = Config.GetText(Units.Items[(int) type].Name);
                     transmuteComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, transmuteComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                transmuteComboBox.DropDownWidth = maxWidth;
+                transmuteComboBox.DropDownWidth = width;
+                transmuteComboBox.EndUpdate();
 
                 // 更新ユニット種類コンボボックス
+                upgradeTypeComboBox.BeginUpdate();
                 upgradeTypeComboBox.Items.Clear();
-                maxWidth = upgradeTypeComboBox.DropDownWidth;
+                width = upgradeTypeComboBox.DropDownWidth;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
                     string s = Config.GetText(Units.Items[(int) type].Name);
                     upgradeTypeComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, upgradeTypeComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                upgradeTypeComboBox.DropDownWidth = maxWidth;
+                upgradeTypeComboBox.DropDownWidth = width;
+                upgradeTypeComboBox.EndUpdate();
 
                 // 資源コンボボックス
+                resourceComboBox.BeginUpdate();
                 resourceComboBox.Items.Clear();
-                maxWidth = resourceComboBox.DropDownWidth;
+                width = resourceComboBox.DropDownWidth;
                 foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
                 {
                     string s = Config.GetText(Units.EquipmentNames[(int) type]);
                     resourceComboBox.Items.Add(s);
-                    maxWidth = Math.Max(maxWidth,
+                    width = Math.Max(width,
                         (int) g.MeasureString(s, resourceComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                 }
-                resourceComboBox.DropDownWidth = maxWidth;
+                resourceComboBox.DropDownWidth = width;
+                resourceComboBox.EndUpdate();
             }
 
             // チェックボックスの文字列

@@ -1288,8 +1288,8 @@ namespace HoI2Editor.Forms
                 _specialityComboBoxes[i].Tag = i;
                 _specialityComboBoxes[i].Items.Clear();
             }
-            width = specialityComboBox1.DropDownWidth;
-            int additionalWidth = DeviceCaps.GetScaledWidth(16) + 3 + SystemInformation.VerticalScrollBarWidth;
+            width = specialityComboBox1.Width;
+            int additional = DeviceCaps.GetScaledWidth(16) + 3 + SystemInformation.VerticalScrollBarWidth;
             foreach (string s in Techs.Specialities.Select(Techs.GetSpecialityName))
             {
                 for (int i = 0; i < MaxEditableSpecialities; i++)
@@ -1298,7 +1298,7 @@ namespace HoI2Editor.Forms
                 }
                 // 研究特性アイコンの幅を追加している
                 width = Math.Max(width,
-                    (int) g.MeasureString(s, specialityComboBox1.Font).Width + additionalWidth);
+                    (int) g.MeasureString(s, specialityComboBox1.Font).Width + additional);
             }
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {

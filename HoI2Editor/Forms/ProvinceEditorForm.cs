@@ -868,70 +868,70 @@ namespace HoI2Editor.Forms
             // 大陸
             continentComboBox.BeginUpdate();
             continentComboBox.Items.Clear();
-            int maxWidth = continentComboBox.DropDownWidth;
+            int width = continentComboBox.Width;
             foreach (ContinentId continent in Provinces.Continents)
             {
                 string s = Provinces.GetContinentName(continent);
                 continentComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, continentComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, continentComboBox.Font).Width + margin);
             }
-            continentComboBox.DropDownWidth = maxWidth;
+            continentComboBox.DropDownWidth = width;
             continentComboBox.EndUpdate();
 
             // 地方
             regionComboBox.BeginUpdate();
             regionComboBox.Items.Clear();
-            maxWidth = regionComboBox.DropDownWidth;
+            width = regionComboBox.Width;
             foreach (RegionId region in Provinces.Regions)
             {
                 string s = Provinces.GetRegionName(region);
                 regionComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
+                width = Math.Max(width,
                     (int) g.MeasureString(s, regionComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
                     margin);
             }
-            regionComboBox.DropDownWidth = maxWidth;
+            regionComboBox.DropDownWidth = width;
             regionComboBox.EndUpdate();
 
             // 地域
             areaComboBox.BeginUpdate();
             areaComboBox.Items.Clear();
-            maxWidth = areaComboBox.DropDownWidth;
+            width = areaComboBox.Width;
             foreach (AreaId area in Provinces.Areas)
             {
                 string s = Provinces.GetAreaName(area);
                 areaComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth,
+                width = Math.Max(width,
                     (int) g.MeasureString(s, areaComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
                     margin);
             }
-            areaComboBox.DropDownWidth = maxWidth;
+            areaComboBox.DropDownWidth = width;
             areaComboBox.EndUpdate();
 
             // 気候
             climateComboBox.BeginUpdate();
             climateComboBox.Items.Clear();
-            maxWidth = climateComboBox.DropDownWidth;
+            width = climateComboBox.Width;
             foreach (ClimateId climate in Provinces.Climates)
             {
                 string s = Provinces.GetClimateName(climate);
                 climateComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, climateComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, climateComboBox.Font).Width + margin);
             }
-            climateComboBox.DropDownWidth = maxWidth;
+            climateComboBox.DropDownWidth = width;
             climateComboBox.EndUpdate();
 
             // 地形
             terrainComboBox.BeginUpdate();
             terrainComboBox.Items.Clear();
-            maxWidth = terrainComboBox.DropDownWidth;
+            width = terrainComboBox.Width;
             foreach (TerrainId terrain in Provinces.Terrains)
             {
                 string s = Provinces.GetTerrainName(terrain);
                 terrainComboBox.Items.Add(s);
-                maxWidth = Math.Max(maxWidth, (int) g.MeasureString(s, terrainComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, terrainComboBox.Font).Width + margin);
             }
-            terrainComboBox.DropDownWidth = maxWidth;
+            terrainComboBox.DropDownWidth = width;
             terrainComboBox.EndUpdate();
         }
 
@@ -1283,7 +1283,7 @@ namespace HoI2Editor.Forms
 
             portSeaZoneComboBox.BeginUpdate();
             portSeaZoneComboBox.Items.Clear();
-            int maxWidth = portSeaZoneComboBox.DropDownWidth;
+            int maxWidth = portSeaZoneComboBox.Width;
             foreach (int id in Provinces.SeaZones)
             {
                 Province province = Provinces.SeaZoneMap[id];
