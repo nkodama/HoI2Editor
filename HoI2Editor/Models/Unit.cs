@@ -991,6 +991,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public UnitModel()
         {
+            UpgradeTimeBoost = true;
             Equipments = new List<UnitEquipment>();
         }
 

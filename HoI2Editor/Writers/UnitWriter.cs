@@ -152,6 +152,20 @@ namespace HoI2Editor.Writers
                     break;
             }
 
+            if (Game.Type == GameType.DarkestHour)
+            {
+                // 自動改良
+                if (model.AutoUpgrade)
+                {
+                    writer.WriteLine("\t{0}\t\t\t\t= {1}", Units.Strings[(int)model.UpgradeClass], model.UpgradeModel);
+                }
+                // upgrade_time_boost
+                if (!model.UpgradeTimeBoost)
+                {
+                    writer.WriteLine("\tupgrade_time_boost \t= {0}", model.UpgradeTimeBoost ? "yes" : "no");
+                }
+            }
+
             // equipment (DH1.03以降)
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103 && model.Equipments.Count > 0)
             {
@@ -236,11 +250,6 @@ namespace HoI2Editor.Writers
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103 && Math.Abs(model.SpeedCap) > 0.00005)
             {
                 writer.WriteLine("\tspeed_cap\t\t\t= {0}", model.SpeedCap);
-            }
-            if (Game.Type == GameType.DarkestHour && model.AutoUpgrade && model.UpgradeClass == UnitType.Armor)
-            {
-                writer.WriteLine("\tarmor\t\t\t\t= {0}", model.UpgradeModel);
-                writer.WriteLine("\tupgrade_time_boost \t= {0}", model.UpgradeTimeBoost ? "yes" : "no");
             }
         }
 

@@ -2939,6 +2939,7 @@ namespace HoI2Editor.Forms
                 autoUpgradeCheckBox.Checked = true;
                 autoUpgradeClassComboBox.Enabled = true;
                 UpdateAutoUpgradeClassList();
+                UpdateAutoUpgradeModelList();
             }
             else
             {
@@ -3351,27 +3352,6 @@ namespace HoI2Editor.Forms
                 artilleryBombardmentLabel.Enabled = false;
                 artilleryBombardmentTextBox.Enabled = false;
                 artilleryBombardmentTextBox.ResetText();
-            }
-
-            // DH
-            if (Game.Type == GameType.DarkestHour)
-            {
-                // 2段階改良
-                upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
-                // 自動改良
-                if (model.AutoUpgrade)
-                {
-                    autoUpgradeCheckBox.Checked = true;
-                    autoUpgradeClassComboBox.Enabled = true;
-                    autoUpgradeModelComboBox.Enabled = true;
-                }
-                else
-                {
-                    autoUpgradeCheckBox.Checked = false;
-                    autoUpgradeClassComboBox.Enabled = false;
-                    autoUpgradeModelComboBox.Enabled = false;
-                }
-                UpdateAutoUpgradeClassList();
             }
 
             // DH/師団
@@ -4248,12 +4228,10 @@ namespace HoI2Editor.Forms
         #region ユニットモデルタブ - 生産ステータス
 
         /// <summary>
-        /// 自動改良先クラスの表示を更新する
+        /// 自動改良先リストを更新する
         /// </summary>
         private void UpdateAutoUpgradeClassList()
         {
-            Debug.WriteLine("[Unit] Update auto upgrade class");
-
             // 選択中のユニットクラスがなければ何もしない
             var unit = classListBox.SelectedItem as Unit;
             if (unit == null)
@@ -4273,21 +4251,22 @@ namespace HoI2Editor.Forms
             autoUpgradeClassComboBox.Items.Clear();
             if (model.AutoUpgrade)
             {
-                int i = 0;
-                foreach (Unit u in Units.UnitTypes.Select(type => Units.Items[(int) type])
-                    .Where(u => (u.Branch == unit.Branch) && (u.Organization == unit.Organization)))
+                foreach (Unit u in Units.UnitTypes
+                    .Select(type => Units.Items[(int) type])
+                    .Where(u => (u.Branch == unit.Branch) &&
+                                (u.Organization == unit.Organization) &&
+                                !string.IsNullOrEmpty(u.ToString())))
                 {
                     autoUpgradeClassComboBox.Items.Add(u);
-                    if (u.Type == model.UpgradeClass)
-                    {
-                        autoUpgradeClassComboBox.SelectedIndex = i;
-                    }
-                    i++;
                 }
+                autoUpgradeClassComboBox.SelectedItem = Units.Items[(int) model.UpgradeClass];
+                autoUpgradeClassComboBox.Enabled = true;
             }
             else
             {
+                autoUpgradeClassComboBox.Enabled = false;
                 autoUpgradeClassComboBox.SelectedIndex = -1;
+                autoUpgradeClassComboBox.ResetText();
             }
             autoUpgradeClassComboBox.EndUpdate();
         }
@@ -4297,8 +4276,6 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateAutoUpgradeModelList()
         {
-            Debug.WriteLine("[Unit] Update auto upgrade model");
-
             // 選択中のユニットクラスがなければ何もしない
             var unit = classListBox.SelectedItem as Unit;
             if (unit == null)
@@ -4331,6 +4308,13 @@ namespace HoI2Editor.Forms
                 {
                     autoUpgradeModelComboBox.SelectedIndex = -1;
                 }
+                autoUpgradeModelComboBox.Enabled = true;
+            }
+            else
+            {
+                autoUpgradeModelComboBox.Enabled = false;
+                autoUpgradeModelComboBox.SelectedIndex = -1;
+                autoUpgradeModelComboBox.ResetText();
             }
             autoUpgradeModelComboBox.EndUpdate();
         }
@@ -4718,6 +4702,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeTimeBoostCheckBox.ForeColor = Color.Red;
+
+            Debug.WriteLine(string.Format("[Unit] Upgrade time boost changed: {0} ({1})",
+                model.UpgradeTimeBoost ? "true" : "false", unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4759,8 +4746,12 @@ namespace HoI2Editor.Forms
             // 文字色を変更する
             autoUpgradeCheckBox.ForeColor = Color.Red;
 
-            // 自動改良先クラスコンボボックスの表示を更新する
+            Debug.WriteLine(string.Format("[Unit] Auto upgrade changed: {0} ({1})",
+                model.AutoUpgrade ? "true" : "false", unit.GetModelName(index)));
+
+            // 自動改良先リストを更新する
             UpdateAutoUpgradeClassList();
+            UpdateAutoUpgradeModelList();
         }
 
         /// <summary>
@@ -4871,8 +4862,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAutoUpgradeClassComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            Debug.WriteLine(string.Format("[Unit] Auto upgrade class: {0}", autoUpgradeClassComboBox.SelectedIndex));
-
             // 選択中の項目がなければ何もしない
             if (autoUpgradeClassComboBox.SelectedIndex < 0)
             {
@@ -4896,8 +4885,8 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             UnitType type = (unit.Organization == UnitOrganization.Division)
-              ? Units.DivisionTypes[autoUpgradeClassComboBox.SelectedIndex]
-              : Units.BrigadeTypes[autoUpgradeClassComboBox.SelectedIndex];
+                ? Units.DivisionTypes[autoUpgradeClassComboBox.SelectedIndex]
+                : Units.BrigadeTypes[autoUpgradeClassComboBox.SelectedIndex];
             if (type == model.UpgradeClass)
             {
                 return;
@@ -4914,6 +4903,9 @@ namespace HoI2Editor.Forms
             // 自動改良先クラスコンボボックスの項目色を変更するために描画更新する
             autoUpgradeClassComboBox.Refresh();
 
+            Debug.WriteLine(string.Format("[Unit] Auto upgrade class changed: {0} ({1})",
+                Units.Items[(int)model.UpgradeClass], unit.GetModelName(index)));
+
             // 自動改良先モデルコンボボックスの表示を更新する
             UpdateAutoUpgradeModelList();
         }
@@ -4925,8 +4917,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAutoUpgradeModelComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            Debug.WriteLine(string.Format("[Unit] Auto upgrade model: {0}", autoUpgradeModelComboBox.SelectedIndex));
-
             // 選択中の項目がなければ何もしない
             if (autoUpgradeModelComboBox.SelectedIndex < 0)
             {
@@ -4964,6 +4954,9 @@ namespace HoI2Editor.Forms
 
             // 自動改良先モデルコンボボックスの項目色を変更するために描画更新する
             autoUpgradeModelComboBox.Refresh();
+
+            Debug.WriteLine(string.Format("[Unit] Auto upgrade model changed: {0} ({1})",
+                Units.Items[(int)model.UpgradeClass].GetModelName(model.UpgradeModel), unit.GetModelName(index)));
         }
 
         #endregion
