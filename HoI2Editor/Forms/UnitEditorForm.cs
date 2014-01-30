@@ -2612,7 +2612,7 @@ namespace HoI2Editor.Forms
             upgrade.Type = type;
 
             // 改良リストビューの項目を更新する
-            upgradeListView.Items[index].Text = Units.Items[(int)type].ToString();
+            upgradeListView.Items[index].Text = Units.Items[(int) type].ToString();
 
             // 編集済みフラグを設定する
             upgrade.SetDirty(UnitUpgradeItemId.Type);
@@ -2933,25 +2933,16 @@ namespace HoI2Editor.Forms
             manPowerTextBox.ForeColor = model.IsDirty(UnitModelItemId.ManPower) ? Color.Red : SystemColors.WindowText;
             // 2段階改良
             upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
+            upgradeTimeBoostCheckBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeBoost)
+                ? Color.Red
+                : SystemColors.WindowText;
             // 自動改良先
-            if (model.AutoUpgrade)
-            {
-                autoUpgradeCheckBox.Checked = true;
-                autoUpgradeClassComboBox.Enabled = true;
-                UpdateAutoUpgradeClassList();
-                UpdateAutoUpgradeModelList();
-            }
-            else
-            {
-                autoUpgradeCheckBox.Checked = false;
-                autoUpgradeClassComboBox.Enabled = false;
-                autoUpgradeModelComboBox.Enabled = false;
-
-                autoUpgradeClassComboBox.SelectedIndex = -1;
-                autoUpgradeClassComboBox.ResetText();
-                autoUpgradeModelComboBox.SelectedIndex = -1;
-                autoUpgradeModelComboBox.ResetText();
-            }
+            autoUpgradeCheckBox.Checked = model.AutoUpgrade;
+            autoUpgradeCheckBox.ForeColor = model.IsDirty(UnitModelItemId.AutoUpgrade)
+                ? Color.Red
+                : SystemColors.WindowText;
+            UpdateAutoUpgradeClassList();
+            UpdateAutoUpgradeModelList();
             // 最大速度
             maxSpeedTextBox.Text = model.MaxSpeed.ToString(CultureInfo.InvariantCulture);
             maxSpeedTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSpeed) ? Color.Red : SystemColors.WindowText;
@@ -4228,7 +4219,7 @@ namespace HoI2Editor.Forms
         #region ユニットモデルタブ - 生産ステータス
 
         /// <summary>
-        /// 自動改良先リストを更新する
+        ///     自動改良先リストを更新する
         /// </summary>
         private void UpdateAutoUpgradeClassList()
         {
@@ -4272,7 +4263,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動改良先モデルの表示を更新する
+        ///     自動改良先モデルの表示を更新する
         /// </summary>
         private void UpdateAutoUpgradeModelList()
         {
@@ -4665,7 +4656,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 2段階改良チェックボックスのチェック状態変更時の処理
+        ///     2段階改良チェックボックスのチェック状態変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4708,7 +4699,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動改良チェックボックスのチェック状態変更時の処理
+        ///     自動改良チェックボックスのチェック状態変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4755,7 +4746,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動改良先クラスコンボボックスの項目描画処理
+        ///     自動改良先クラスコンボボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4807,7 +4798,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動改良先モデルコンボボックスの項目描画処理
+        ///     自動改良先モデルコンボボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4856,7 +4847,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 自動改良先クラスコンボボックスの選択項目変更時の処理
+        ///     自動改良先クラスコンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4904,14 +4895,14 @@ namespace HoI2Editor.Forms
             autoUpgradeClassComboBox.Refresh();
 
             Debug.WriteLine(string.Format("[Unit] Auto upgrade class changed: {0} ({1})",
-                Units.Items[(int)model.UpgradeClass], unit.GetModelName(index)));
+                Units.Items[(int) model.UpgradeClass], unit.GetModelName(index)));
 
             // 自動改良先モデルコンボボックスの表示を更新する
             UpdateAutoUpgradeModelList();
         }
 
         /// <summary>
-        /// 自動改良先クラスコンボボックスの選択項目変更時の処理
+        ///     自動改良先クラスコンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -4956,7 +4947,7 @@ namespace HoI2Editor.Forms
             autoUpgradeModelComboBox.Refresh();
 
             Debug.WriteLine(string.Format("[Unit] Auto upgrade model changed: {0} ({1})",
-                Units.Items[(int)model.UpgradeClass].GetModelName(model.UpgradeModel), unit.GetModelName(index)));
+                Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel), unit.GetModelName(index)));
         }
 
         #endregion

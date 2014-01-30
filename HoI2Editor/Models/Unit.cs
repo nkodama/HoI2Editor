@@ -180,7 +180,7 @@ namespace HoI2Editor.Models
         #region 文字列操作
 
         /// <summary>
-        /// ユニットクラス名を取得する
+        ///     ユニットクラス名を取得する
         /// </summary>
         /// <returns>ユニットクラス名</returns>
         public override string ToString()
@@ -189,7 +189,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ユニット短縮名を取得する
+        ///     ユニット短縮名を取得する
         /// </summary>
         /// <returns>短縮名</returns>
         public string GetShortName()
@@ -198,7 +198,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ユニット説明を取得する
+        ///     ユニット説明を取得する
         /// </summary>
         /// <returns>ユニット説明</returns>
         public string GetDesc()
@@ -207,7 +207,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// ユニット短縮説明を取得する
+        ///     ユニット短縮説明を取得する
         /// </summary>
         /// <returns>ユニット短縮説明</returns>
         public string GetShortDesc()

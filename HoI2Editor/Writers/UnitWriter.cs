@@ -157,7 +157,7 @@ namespace HoI2Editor.Writers
                 // 自動改良
                 if (model.AutoUpgrade)
                 {
-                    writer.WriteLine("\t{0}\t\t\t\t= {1}", Units.Strings[(int)model.UpgradeClass], model.UpgradeModel);
+                    writer.WriteLine("\t{0}\t\t\t\t= {1}", Units.Strings[(int) model.UpgradeClass], model.UpgradeModel);
                 }
                 // upgrade_time_boost
                 if (!model.UpgradeTimeBoost)
