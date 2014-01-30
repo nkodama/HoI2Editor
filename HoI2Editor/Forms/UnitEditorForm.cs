@@ -4270,15 +4270,12 @@ namespace HoI2Editor.Forms
                 int width = autoUpgradeClassComboBox.Width;
                 foreach (Unit u in Units.UnitTypes
                     .Select(type => Units.Items[(int) type])
-                    .Where(u => (u.Branch == unit.Branch) && (u.Organization == unit.Organization)))
+                    .Where(u => (u.Branch == unit.Branch) &&
+                                (u.Organization == unit.Organization) &&
+                                (u.Models.Count > 0)))
                 {
-                    string s = u.ToString();
-                    if (string.IsNullOrEmpty(s))
-                    {
-                        continue;
-                    }
                     width = Math.Max(width,
-                        (int) g.MeasureString(s, autoUpgradeClassComboBox.Font).Width +
+                        (int) g.MeasureString(u.ToString(), autoUpgradeClassComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                     autoUpgradeClassComboBox.Items.Add(u);
                 }

@@ -185,7 +185,7 @@ namespace HoI2Editor.Models
         /// <returns>ユニットクラス名</returns>
         public override string ToString()
         {
-            return Config.ExistsKey(Name) ? Config.GetText(Name) : "";
+            return Config.ExistsKey(Name) ? Config.GetText(Name) : Units.Strings[(int) Type];
         }
 
         /// <summary>
