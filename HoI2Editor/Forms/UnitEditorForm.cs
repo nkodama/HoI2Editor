@@ -662,6 +662,11 @@ namespace HoI2Editor.Forms
                     DisableModelEditableItems();
                 }
             }
+            else
+            {
+                // 編集項目を無効化する
+                DisableModelEditableItems();
+            }
         }
 
         #endregion
@@ -1106,7 +1111,9 @@ namespace HoI2Editor.Forms
                 modelImagePictureBox.Image = bitmap;
             }
             else
+            {
                 modelImagePictureBox.Image = null;
+            }
             if (oldImage != null)
             {
                 oldImage.Dispose();
@@ -3469,8 +3476,18 @@ namespace HoI2Editor.Forms
             battleGroupBox.Enabled = false;
             equipmentGroupBox.Enabled = false;
 
-            modelImagePictureBox.ImageLocation = "";
-            modelIconPictureBox.ImageLocation = "";
+            Image oldImage = modelImagePictureBox.Image;
+            modelImagePictureBox.Image = null;
+            if (oldImage != null)
+            {
+                oldImage.Dispose();
+            }
+            oldImage = modelIconPictureBox.Image;
+            modelIconPictureBox.Image = null;
+            if (oldImage != null)
+            {
+                oldImage.Dispose();
+            }
             modelNameTextBox.ResetText();
 
             defaultOrganisationTextBox.ResetText();
