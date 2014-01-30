@@ -4244,18 +4244,28 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[index];
 
+            Graphics g = Graphics.FromHwnd(autoUpgradeClassComboBox.Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
             autoUpgradeClassComboBox.BeginUpdate();
             autoUpgradeClassComboBox.Items.Clear();
             if (model.AutoUpgrade)
             {
+                int width = autoUpgradeClassComboBox.Width;
                 foreach (Unit u in Units.UnitTypes
                     .Select(type => Units.Items[(int) type])
-                    .Where(u => (u.Branch == unit.Branch) &&
-                                (u.Organization == unit.Organization) &&
-                                !string.IsNullOrEmpty(u.ToString())))
+                    .Where(u => (u.Branch == unit.Branch) && (u.Organization == unit.Organization)))
                 {
+                    string s = u.ToString();
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    width = Math.Max(width,
+                        (int)g.MeasureString(s, autoUpgradeClassComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth + margin);
                     autoUpgradeClassComboBox.Items.Add(u);
                 }
+                autoUpgradeClassComboBox.DropDownWidth = width;
                 autoUpgradeClassComboBox.SelectedItem = Units.Items[(int) model.UpgradeClass];
                 autoUpgradeClassComboBox.Enabled = true;
             }
@@ -4288,15 +4298,23 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[index];
 
+            Graphics g = Graphics.FromHwnd(autoUpgradeClassComboBox.Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
             autoUpgradeModelComboBox.BeginUpdate();
             autoUpgradeModelComboBox.Items.Clear();
             if (model.AutoUpgrade)
             {
                 Unit upgrade = Units.Items[(int) model.UpgradeClass];
+                int width = autoUpgradeModelComboBox.Width;
                 for (int i = 0; i < upgrade.Models.Count; i++)
                 {
-                    autoUpgradeModelComboBox.Items.Add(upgrade.GetModelName(i));
+                    string s = upgrade.GetModelName(i);
+                    width = Math.Max(width,
+                        (int)g.MeasureString(s, autoUpgradeModelComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth + margin);
+                    autoUpgradeModelComboBox.Items.Add(s);
                 }
+                autoUpgradeModelComboBox.DropDownWidth = width;
                 if ((model.UpgradeModel >= 0) && (model.UpgradeModel < upgrade.Models.Count))
                 {
                     autoUpgradeModelComboBox.SelectedIndex = model.UpgradeModel;
