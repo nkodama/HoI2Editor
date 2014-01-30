@@ -1640,7 +1640,8 @@ namespace HoI2Editor.Forms
 
                 if (Game.Type == GameType.DarkestHour)
                 {
-                    // TODO: ユニット名更新時に自動改良先クラスコンボボックスの項目を更新する
+                    // 自動改良先クラスコンボボックスの表示を更新する
+                    autoUpgradeClassComboBox.Refresh();
                 }
 
                 if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
@@ -1839,7 +1840,12 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            // TODO: 兵科更新時に自動改良先クラスコンボボックスの項目を更新する
+            // 兵科更新時に自動改良先クラスコンボボックスの項目を更新する
+            if (Game.Type == GameType.DarkestHour)
+            {
+                UpdateAutoUpgradeClassList();
+                UpdateAutoUpgradeModelList();
+            }
 
             // 兵科コンボボックスの項目色を変更するために描画更新する
             branchComboBox.Refresh();
@@ -4777,21 +4783,22 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            Brush brush;
-            UnitType type = (unit.Organization == UnitOrganization.Division)
-                ? Units.DivisionTypes[e.Index]
-                : Units.BrigadeTypes[e.Index];
-            if ((type == model.UpgradeClass) && model.IsDirty(UnitModelItemId.UpgradeClass))
+            var u = autoUpgradeClassComboBox.Items[e.Index] as Unit;
+            if (u != null)
             {
-                brush = new SolidBrush(Color.Red);
+                Brush brush;
+                if ((u.Type == model.UpgradeClass) && model.IsDirty(UnitModelItemId.UpgradeClass))
+                {
+                    brush = new SolidBrush(Color.Red);
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                string s = autoUpgradeClassComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
-            else
-            {
-                brush = new SolidBrush(SystemColors.WindowText);
-            }
-            string s = autoUpgradeClassComboBox.Items[e.Index].ToString();
-            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            brush.Dispose();
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
@@ -4875,16 +4882,18 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             // 値に変化がなければ何もしない
-            UnitType type = (unit.Organization == UnitOrganization.Division)
-                ? Units.DivisionTypes[autoUpgradeClassComboBox.SelectedIndex]
-                : Units.BrigadeTypes[autoUpgradeClassComboBox.SelectedIndex];
-            if (type == model.UpgradeClass)
+            var upgrade = autoUpgradeClassComboBox.SelectedItem as Unit;
+            if (upgrade == null)
+            {
+                return;
+            }
+            if (upgrade.Type == model.UpgradeClass)
             {
                 return;
             }
 
             // 値を更新する
-            model.UpgradeClass = type;
+            model.UpgradeClass = upgrade.Type;
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.UpgradeClass);
