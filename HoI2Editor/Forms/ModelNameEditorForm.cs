@@ -305,7 +305,7 @@ namespace HoI2Editor.Forms
             foreach (UnitType type in Units.UnitTypes)
             {
                 Unit unit = Units.Items[(int) type];
-                typeListBox.Items.Add(Config.GetText(unit.Name));
+                typeListBox.Items.Add(unit);
             }
             typeListBox.EndUpdate();
 
@@ -327,7 +327,7 @@ namespace HoI2Editor.Forms
             foreach (UnitType type in Units.UnitTypes)
             {
                 Unit unit = Units.Items[(int) type];
-                typeListBox.Items[i] = Config.GetText(unit.Name);
+                typeListBox.Items[i] = unit;
                 i++;
             }
             typeListBox.TopIndex = top;
@@ -400,14 +400,14 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 選択中のユニット名種類がなければ戻る
-            Country country = Countries.Tags[countryListBox.SelectedIndex];
-            if (typeListBox.SelectedIndex < 0)
+            var unit = typeListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[typeListBox.SelectedIndex]];
 
             Graphics g = Graphics.FromHwnd(Handle);
             int itemHeight = DeviceCaps.GetScaledHeight(25);
@@ -496,12 +496,11 @@ namespace HoI2Editor.Forms
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 選択中のユニット名種類がなければ戻る
-            if (typeListBox.SelectedIndex < 0)
+            var unit = typeListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            UnitType type = Units.UnitTypes[typeListBox.SelectedIndex];
-            Unit unit = Units.Items[(int) type];
 
             if (!(sender is TextBox))
             {
@@ -542,7 +541,7 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             UnitModel model = unit.Models[index];
             model.SetDirtyName(country);
-            Units.SetDirtyModelName(country, type);
+            Units.SetDirtyModelName(country, unit.Type);
 
             // 文字色を変更する
             textBox.ForeColor = Color.Red;

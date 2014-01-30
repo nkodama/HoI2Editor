@@ -177,6 +177,46 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 文字列操作
+
+        /// <summary>
+        /// ユニットクラス名を取得する
+        /// </summary>
+        /// <returns>ユニットクラス名</returns>
+        public override string ToString()
+        {
+            return Config.ExistsKey(Name) ? Config.GetText(Name) : "";
+        }
+
+        /// <summary>
+        /// ユニット短縮名を取得する
+        /// </summary>
+        /// <returns>短縮名</returns>
+        public string GetShortName()
+        {
+            return Config.ExistsKey(ShortName) ? Config.GetText(ShortName) : "";
+        }
+
+        /// <summary>
+        /// ユニット説明を取得する
+        /// </summary>
+        /// <returns>ユニット説明</returns>
+        public string GetDesc()
+        {
+            return Config.ExistsKey(Desc) ? Config.GetText(Desc) : "";
+        }
+
+        /// <summary>
+        /// ユニット短縮説明を取得する
+        /// </summary>
+        /// <returns>ユニット短縮説明</returns>
+        public string GetShortDesc()
+        {
+            return Config.ExistsKey(ShortDesc) ? Config.GetText(ShortDesc) : "";
+        }
+
+        #endregion
+
         #region ユニットモデルリスト
 
         /// <summary>

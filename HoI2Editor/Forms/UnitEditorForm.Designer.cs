@@ -954,27 +954,37 @@
             // 
             // autoUpgradeModelComboBox
             // 
+            this.autoUpgradeModelComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.autoUpgradeModelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.autoUpgradeModelComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.autoUpgradeModelComboBox, "autoUpgradeModelComboBox");
             this.autoUpgradeModelComboBox.Name = "autoUpgradeModelComboBox";
+            this.autoUpgradeModelComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAutoUpgradeModelComboBoxDrawItem);
+            this.autoUpgradeModelComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAutoUpgradeModelComboBoxSelectedIndexChanged);
             // 
             // autoUpgradeClassComboBox
             // 
+            this.autoUpgradeClassComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.autoUpgradeClassComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.autoUpgradeClassComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.autoUpgradeClassComboBox, "autoUpgradeClassComboBox");
             this.autoUpgradeClassComboBox.Name = "autoUpgradeClassComboBox";
+            this.autoUpgradeClassComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAutoUpgradeClassComboBoxDrawItem);
+            this.autoUpgradeClassComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAutoUpgradeClassComboBoxSelectedIndexChanged);
             // 
             // autoUpgradeCheckBox
             // 
             resources.ApplyResources(this.autoUpgradeCheckBox, "autoUpgradeCheckBox");
             this.autoUpgradeCheckBox.Name = "autoUpgradeCheckBox";
             this.autoUpgradeCheckBox.UseVisualStyleBackColor = true;
+            this.autoUpgradeCheckBox.CheckedChanged += new System.EventHandler(this.OnAutoUpgradeCheckBoxCheckedChanged);
             // 
             // upgradeTimeBoostCheckBox
             // 
             resources.ApplyResources(this.upgradeTimeBoostCheckBox, "upgradeTimeBoostCheckBox");
             this.upgradeTimeBoostCheckBox.Name = "upgradeTimeBoostCheckBox";
             this.upgradeTimeBoostCheckBox.UseVisualStyleBackColor = true;
+            this.upgradeTimeBoostCheckBox.CheckedChanged += new System.EventHandler(this.OnUpgradeTimeBoostCheckBoxCheckedChanged);
             // 
             // reinforceCostTextBox
             // 

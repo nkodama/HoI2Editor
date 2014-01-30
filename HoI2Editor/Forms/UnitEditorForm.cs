@@ -126,7 +126,7 @@ namespace HoI2Editor.Forms
             int width = 60;
             foreach (UnitType type in Units.BrigadeTypes)
             {
-                string s = Config.GetText(Units.Items[(int) type].Name);
+                string s = Units.Items[(int) type].ToString();
                 allowedBrigadesListView.Items.Add(s);
                 // +16はチェックボックスの分
                 width = Math.Max(width,
@@ -140,7 +140,7 @@ namespace HoI2Editor.Forms
                 // 実ユニット種類コンボボックス
                 realUnitTypeComboBox.BeginUpdate();
                 realUnitTypeComboBox.Items.Clear();
-                width = realUnitTypeComboBox.DropDownWidth;
+                width = realUnitTypeComboBox.Width;
                 foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
                 {
                     string s = Config.GetText(Units.RealNames[(int) type]);
@@ -155,7 +155,7 @@ namespace HoI2Editor.Forms
                 // スプライト種類コンボボックス
                 spriteTypeComboBox.BeginUpdate();
                 spriteTypeComboBox.Items.Clear();
-                width = spriteTypeComboBox.DropDownWidth;
+                width = spriteTypeComboBox.Width;
                 foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
                 {
                     string s = Config.GetText(Units.SpriteNames[(int) type]);
@@ -170,10 +170,10 @@ namespace HoI2Editor.Forms
                 // 代替ユニット種類コンボボックス
                 transmuteComboBox.BeginUpdate();
                 transmuteComboBox.Items.Clear();
-                width = transmuteComboBox.DropDownWidth;
+                width = transmuteComboBox.Width;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
-                    string s = Config.GetText(Units.Items[(int) type].Name);
+                    string s = Units.Items[(int) type].ToString();
                     transmuteComboBox.Items.Add(s);
                     width = Math.Max(width,
                         (int) g.MeasureString(s, transmuteComboBox.Font).Width +
@@ -185,10 +185,10 @@ namespace HoI2Editor.Forms
                 // 更新ユニット種類コンボボックス
                 upgradeTypeComboBox.BeginUpdate();
                 upgradeTypeComboBox.Items.Clear();
-                width = upgradeTypeComboBox.DropDownWidth;
+                width = upgradeTypeComboBox.Width;
                 foreach (UnitType type in Units.DivisionTypes)
                 {
-                    string s = Config.GetText(Units.Items[(int) type].Name);
+                    string s = Units.Items[(int) type].ToString();
                     upgradeTypeComboBox.Items.Add(s);
                     width = Math.Max(width,
                         (int) g.MeasureString(s, upgradeTypeComboBox.Font).Width +
@@ -200,7 +200,7 @@ namespace HoI2Editor.Forms
                 // 資源コンボボックス
                 resourceComboBox.BeginUpdate();
                 resourceComboBox.Items.Clear();
-                width = resourceComboBox.DropDownWidth;
+                width = resourceComboBox.Width;
                 foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
                 {
                     string s = Config.GetText(Units.EquipmentNames[(int) type]);
@@ -258,13 +258,15 @@ namespace HoI2Editor.Forms
             {
                 maxAllowedBrigadesLabel.Enabled = true;
                 maxAllowedBrigadesNumericUpDown.Enabled = true;
-                upgradeGroupBox.Enabled = true;
                 reinforceCostLabel.Enabled = true;
                 reinforceCostTextBox.Enabled = true;
                 reinforceTimeLabel.Enabled = true;
                 reinforceTimeTextBox.Enabled = true;
+                upgradeTimeBoostCheckBox.Enabled = true;
+                autoUpgradeCheckBox.Enabled = true;
                 noFuelCombatModLabel.Enabled = true;
                 noFuelCombatModTextBox.Enabled = true;
+                upgradeGroupBox.Enabled = true;
             }
             else
             {
@@ -274,6 +276,10 @@ namespace HoI2Editor.Forms
                 reinforceCostTextBox.Enabled = false;
                 reinforceTimeLabel.Enabled = false;
                 reinforceTimeTextBox.Enabled = false;
+                upgradeTimeBoostCheckBox.Enabled = false;
+                autoUpgradeCheckBox.Enabled = false;
+                autoUpgradeClassComboBox.Enabled = false;
+                autoUpgradeModelComboBox.Enabled = false;
                 noFuelCombatModLabel.Enabled = false;
                 noFuelCombatModTextBox.Enabled = false;
                 upgradeGroupBox.Enabled = false;
@@ -281,6 +287,10 @@ namespace HoI2Editor.Forms
                 maxAllowedBrigadesNumericUpDown.ResetText();
                 reinforceCostTextBox.ResetText();
                 reinforceTimeTextBox.ResetText();
+                autoUpgradeClassComboBox.SelectedIndex = -1;
+                autoUpgradeClassComboBox.ResetText();
+                autoUpgradeModelComboBox.SelectedIndex = -1;
+                autoUpgradeModelComboBox.ResetText();
                 noFuelCombatModTextBox.ResetText();
                 upgradeListView.Items.Clear();
                 upgradeTypeComboBox.SelectedIndex = -1;
@@ -567,7 +577,7 @@ namespace HoI2Editor.Forms
             foreach (UnitType type in Units.UnitTypes)
             {
                 Unit unit = Units.Items[(int) type];
-                classListBox.Items.Add(Config.GetText(unit.Name));
+                classListBox.Items.Add(unit);
             }
             classListBox.EndUpdate();
 
@@ -664,11 +674,11 @@ namespace HoI2Editor.Forms
         private void UpdateModelList()
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストビューに項目を登録する
             modelListView.BeginUpdate();
@@ -687,11 +697,11 @@ namespace HoI2Editor.Forms
         private void UpdateModelListName()
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // リストビューの項目を更新する
             Country country = GetSelectedCountry();
@@ -767,11 +777,11 @@ namespace HoI2Editor.Forms
         private void OnNewButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // ユニットモデルを挿入する
             var model = new UnitModel();
@@ -797,11 +807,11 @@ namespace HoI2Editor.Forms
         private void OnCloneButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -826,11 +836,11 @@ namespace HoI2Editor.Forms
         private void OnRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -854,11 +864,11 @@ namespace HoI2Editor.Forms
         private void OnTopButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -888,11 +898,11 @@ namespace HoI2Editor.Forms
         private void OnUpButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -922,11 +932,11 @@ namespace HoI2Editor.Forms
         private void OnDownButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -956,11 +966,11 @@ namespace HoI2Editor.Forms
         private void OnBottonButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -1070,11 +1080,11 @@ namespace HoI2Editor.Forms
         private void OnCountryListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // ユニットモデルリストのモデル名を更新する
             UpdateModelListName();
@@ -1116,21 +1126,21 @@ namespace HoI2Editor.Forms
         private void UpdateClassEditableItems()
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
-            classNameTextBox.Text = Config.GetText(unit.Name);
-            classShortNameTextBox.Text = Config.GetText(unit.ShortName);
-            classDescTextBox.Text = Config.GetText(unit.Desc);
-            classShortDescTextBox.Text = Config.GetText(unit.ShortDesc);
+            classNameTextBox.Text = unit.ToString();
+            classShortNameTextBox.Text = unit.GetShortName();
+            classDescTextBox.Text = unit.GetDesc();
+            classShortDescTextBox.Text = unit.GetShortDesc();
 
             // 兵科
             branchComboBox.SelectedIndex = (int) unit.Branch - 1;
-            if (Game.Type == GameType.ArsenalOfDemocracy ||
-                (Game.Type == GameType.DarkestHour && Game.Version >= 103))
+            if ((Game.Type == GameType.ArsenalOfDemocracy) ||
+                ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103)))
             {
                 branchComboBox.Enabled = true;
             }
@@ -1177,7 +1187,7 @@ namespace HoI2Editor.Forms
             }
 
             // DH1.03以降のユニット設定
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
             {
                 listPrioLabel.Enabled = true;
                 listPrioNumericUpDown.Enabled = true;
@@ -1245,7 +1255,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 陸軍旅団
-                if (unit.Branch == Branch.Army && unit.Organization == UnitOrganization.Brigade)
+                if ((unit.Branch == Branch.Army) && (unit.Organization == UnitOrganization.Brigade))
                 {
                     engineerCheckBox.Enabled = true;
                 }
@@ -1255,7 +1265,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 海軍旅団
-                if (unit.Branch == Branch.Navy && unit.Organization == UnitOrganization.Brigade)
+                if ((unit.Branch == Branch.Navy) && (unit.Organization == UnitOrganization.Brigade))
                 {
                     cagCheckBox.Enabled = true;
                 }
@@ -1265,7 +1275,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 空軍旅団
-                if (unit.Branch == Branch.Airforce && unit.Organization == UnitOrganization.Brigade)
+                if ((unit.Branch == Branch.Airforce) && (unit.Organization == UnitOrganization.Brigade))
                 {
                     escortCheckBox.Enabled = true;
                 }
@@ -1349,7 +1359,7 @@ namespace HoI2Editor.Forms
             productableCheckBox.Checked = unit.Productable;
 
             // 改良
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
             {
                 upgradeGroupBox.Enabled = unit.Organization == UnitOrganization.Division;
                 UpdateUpgradeList(unit);
@@ -1405,11 +1415,11 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 背景を描画する
             e.DrawBackground();
@@ -1446,11 +1456,11 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 背景を描画する
             e.DrawBackground();
@@ -1487,11 +1497,11 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 背景を描画する
             e.DrawBackground();
@@ -1528,11 +1538,11 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 背景を描画する
             e.DrawBackground();
@@ -1569,11 +1579,11 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 背景を描画する
             e.DrawBackground();
@@ -1604,14 +1614,14 @@ namespace HoI2Editor.Forms
         private void OnClassNameTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            if (classNameTextBox.Text.Equals(Config.GetText(unit.Name)))
+            if (classNameTextBox.Text.Equals(unit.ToString()))
             {
                 return;
             }
@@ -1619,20 +1629,22 @@ namespace HoI2Editor.Forms
             // 値を更新する
             Config.SetText(unit.Name, classNameTextBox.Text, Game.UnitTextFileName);
 
-            // ユニットクラスリストボックスの項目を再設定することで表示更新している
-            // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
-            classListBox.SelectedIndexChanged -= OnClassListBoxSelectedIndexChanged;
-            classListBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
-            classListBox.SelectedIndexChanged += OnClassListBoxSelectedIndexChanged;
+            // ユニットクラスリストボックスの表示を更新する
+            classListBox.Refresh();
 
 
             if (unit.Organization == UnitOrganization.Division)
             {
+                Graphics g = Graphics.FromHwnd(Handle);
+                int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
+                if (Game.Type == GameType.DarkestHour)
+                {
+                    // TODO: ユニット名更新時に自動改良先クラスコンボボックスの項目を更新する
+                }
+
                 if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
                 {
-                    Graphics g = Graphics.FromHwnd(Handle);
-                    int margin = DeviceCaps.GetScaledWidth(2) + 1;
-
                     // 実ユニットコンボボックスの項目を更新する
                     int index = Array.IndexOf(Units.RealNames, unit.Name);
                     if (index >= 0)
@@ -1703,14 +1715,14 @@ namespace HoI2Editor.Forms
         private void OnClassShortNameTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
-            if (classShortNameTextBox.Text.Equals(Config.GetText(unit.ShortName)))
+            if (classShortNameTextBox.Text.Equals(unit.GetShortName()))
             {
                 return;
             }
@@ -1733,11 +1745,11 @@ namespace HoI2Editor.Forms
         private void OnClassDescTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classDescTextBox.Text.Equals(Config.GetText(unit.Desc)))
@@ -1763,11 +1775,11 @@ namespace HoI2Editor.Forms
         private void OnClassShortDescTextBox(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (classShortDescTextBox.Text.Equals(Config.GetText(unit.ShortDesc)))
@@ -1793,11 +1805,11 @@ namespace HoI2Editor.Forms
         private void OnBranchComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var branch = (Branch) (branchComboBox.SelectedIndex + 1);
@@ -1827,6 +1839,8 @@ namespace HoI2Editor.Forms
                 }
             }
 
+            // TODO: 兵科更新時に自動改良先クラスコンボボックスの項目を更新する
+
             // 兵科コンボボックスの項目色を変更するために描画更新する
             branchComboBox.Refresh();
         }
@@ -1839,11 +1853,11 @@ namespace HoI2Editor.Forms
         private void OnEyrNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var eyr = (int) eyrNumericUpDown.Value;
@@ -1871,11 +1885,11 @@ namespace HoI2Editor.Forms
         private void OnGraphicsPriorityNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var prio = (int) gfxPrioNumericUpDown.Value;
@@ -1903,11 +1917,11 @@ namespace HoI2Editor.Forms
         private void OnListPrioNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var prio = (int) listPrioNumericUpDown.Value;
@@ -1942,11 +1956,11 @@ namespace HoI2Editor.Forms
         private void OnUiPrioNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var prio = (int) uiPrioNumericUpDown.Value;
@@ -1974,11 +1988,11 @@ namespace HoI2Editor.Forms
         private void OnRealUnitTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var type = (RealUnitType) realUnitTypeComboBox.SelectedIndex;
@@ -2006,11 +2020,11 @@ namespace HoI2Editor.Forms
         private void OnDefaultTypeCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (defaultTypeCheckBox.Checked == unit.DefaultType)
@@ -2037,11 +2051,11 @@ namespace HoI2Editor.Forms
         private void OnSpriteTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var type = (SpriteType) spriteTypeComboBox.SelectedIndex;
@@ -2069,11 +2083,11 @@ namespace HoI2Editor.Forms
         private void OnTransmuteComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             var type = (UnitType) transmuteComboBox.SelectedIndex;
@@ -2101,11 +2115,11 @@ namespace HoI2Editor.Forms
         private void OnMilitaryValueTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
@@ -2147,11 +2161,11 @@ namespace HoI2Editor.Forms
         private void OnMaxSpeedStepComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 非選択になった時には何もしない
             if (maxSpeedStepComboBox.SelectedIndex == -1)
@@ -2185,12 +2199,11 @@ namespace HoI2Editor.Forms
         private void OnProductableCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
-
             // 値に変化がなければ何もしない
             if (productableCheckBox.Checked == unit.Productable)
             {
@@ -2216,11 +2229,11 @@ namespace HoI2Editor.Forms
         private void OnDetachableCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (detachableCheckBox.Checked == unit.Detachable)
@@ -2254,11 +2267,11 @@ namespace HoI2Editor.Forms
         private void OnCagCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (cagCheckBox.Checked == unit.Cag)
@@ -2285,11 +2298,11 @@ namespace HoI2Editor.Forms
         private void OnEscortCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (escortCheckBox.Checked == unit.Escort)
@@ -2316,11 +2329,11 @@ namespace HoI2Editor.Forms
         private void OnEngineerCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (engineerCheckBox.Checked == unit.Engineer)
@@ -2347,11 +2360,11 @@ namespace HoI2Editor.Forms
         private void OnMaxAllowedBrigadesNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 値に変化がなければ何もしない
             if (maxAllowedBrigadesNumericUpDown.Value == unit.MaxAllowedBrigades)
@@ -2378,11 +2391,11 @@ namespace HoI2Editor.Forms
         private void OnAllowedBrigadesListViewItemChecked(object sender, ItemCheckedEventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
             UnitType type = Units.BrigadeTypes[e.Item.Index];
 
             if (e.Item.Checked)
@@ -2493,11 +2506,11 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中の項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -2535,11 +2548,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ編集を禁止する
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -2574,11 +2587,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -2599,7 +2612,7 @@ namespace HoI2Editor.Forms
             upgrade.Type = type;
 
             // 改良リストビューの項目を更新する
-            upgradeListView.Items[index].Text = Config.GetText(Units.Items[(int) type].Name);
+            upgradeListView.Items[index].Text = Units.Items[(int)type].ToString();
 
             // 編集済みフラグを設定する
             upgrade.SetDirty(UnitUpgradeItemId.Type);
@@ -2618,11 +2631,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeCostTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -2669,11 +2682,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeTimeTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -2720,11 +2733,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeAddButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 改良情報を追加する
             var upgrade = new UnitUpgrade();
@@ -2746,11 +2759,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択項目がなければ何もしない
             if (upgradeListView.SelectedIndices.Count == 0)
@@ -2776,7 +2789,7 @@ namespace HoI2Editor.Forms
         /// <returns>改良リストの項目</returns>
         private static ListViewItem CreateUpgradeListItem(UnitUpgrade upgrade)
         {
-            var item = new ListViewItem {Text = Config.GetText(Units.Items[(int) upgrade.Type].Name)};
+            var item = new ListViewItem {Text = Units.Items[(int) upgrade.Type].ToString()};
             item.SubItems.Add(upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
 
@@ -2840,11 +2853,11 @@ namespace HoI2Editor.Forms
         private void UpdateModelEditableItems()
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -2918,6 +2931,26 @@ namespace HoI2Editor.Forms
             // 労働力
             manPowerTextBox.Text = model.ManPower.ToString(CultureInfo.InvariantCulture);
             manPowerTextBox.ForeColor = model.IsDirty(UnitModelItemId.ManPower) ? Color.Red : SystemColors.WindowText;
+            // 2段階改良
+            upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
+            // 自動改良先
+            if (model.AutoUpgrade)
+            {
+                autoUpgradeCheckBox.Checked = true;
+                autoUpgradeClassComboBox.Enabled = true;
+                UpdateAutoUpgradeClassList();
+            }
+            else
+            {
+                autoUpgradeCheckBox.Checked = false;
+                autoUpgradeClassComboBox.Enabled = false;
+                autoUpgradeModelComboBox.Enabled = false;
+
+                autoUpgradeClassComboBox.SelectedIndex = -1;
+                autoUpgradeClassComboBox.ResetText();
+                autoUpgradeModelComboBox.SelectedIndex = -1;
+                autoUpgradeModelComboBox.ResetText();
+            }
             // 最大速度
             maxSpeedTextBox.Text = model.MaxSpeed.ToString(CultureInfo.InvariantCulture);
             maxSpeedTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSpeed) ? Color.Red : SystemColors.WindowText;
@@ -3320,6 +3353,27 @@ namespace HoI2Editor.Forms
                 artilleryBombardmentTextBox.ResetText();
             }
 
+            // DH
+            if (Game.Type == GameType.DarkestHour)
+            {
+                // 2段階改良
+                upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
+                // 自動改良
+                if (model.AutoUpgrade)
+                {
+                    autoUpgradeCheckBox.Checked = true;
+                    autoUpgradeClassComboBox.Enabled = true;
+                    autoUpgradeModelComboBox.Enabled = true;
+                }
+                else
+                {
+                    autoUpgradeCheckBox.Checked = false;
+                    autoUpgradeClassComboBox.Enabled = false;
+                    autoUpgradeModelComboBox.Enabled = false;
+                }
+                UpdateAutoUpgradeClassList();
+            }
+
             // DH/師団
             if (Game.Type == GameType.DarkestHour && unit.Organization == UnitOrganization.Division)
             {
@@ -3509,11 +3563,11 @@ namespace HoI2Editor.Forms
         private void UpdateModelNameTextBox()
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3560,11 +3614,11 @@ namespace HoI2Editor.Forms
         private void OnModelNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3705,11 +3759,11 @@ namespace HoI2Editor.Forms
         private void OnDefaultOrganizationTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3756,11 +3810,11 @@ namespace HoI2Editor.Forms
         private void OnMoraleTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3807,11 +3861,11 @@ namespace HoI2Editor.Forms
         private void OnRangeTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3855,11 +3909,11 @@ namespace HoI2Editor.Forms
         private void OnTransportWeightTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3903,11 +3957,11 @@ namespace HoI2Editor.Forms
         private void OnTransportCapabilityTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3951,11 +4005,11 @@ namespace HoI2Editor.Forms
         private void OnSuppressionTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -3999,11 +4053,11 @@ namespace HoI2Editor.Forms
         private void OnSupplyConsumptionTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4050,11 +4104,11 @@ namespace HoI2Editor.Forms
         private void OnFuelConsumptionTextBox(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4101,11 +4155,11 @@ namespace HoI2Editor.Forms
         private void OnMaxSupplyStockTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4149,11 +4203,11 @@ namespace HoI2Editor.Forms
         private void OnMaxOilStockTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4194,6 +4248,94 @@ namespace HoI2Editor.Forms
         #region ユニットモデルタブ - 生産ステータス
 
         /// <summary>
+        /// 自動改良先クラスの表示を更新する
+        /// </summary>
+        private void UpdateAutoUpgradeClassList()
+        {
+            Debug.WriteLine("[Unit] Update auto upgrade class");
+
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            autoUpgradeClassComboBox.BeginUpdate();
+            autoUpgradeClassComboBox.Items.Clear();
+            if (model.AutoUpgrade)
+            {
+                int i = 0;
+                foreach (Unit u in Units.UnitTypes.Select(type => Units.Items[(int) type])
+                    .Where(u => (u.Branch == unit.Branch) && (u.Organization == unit.Organization)))
+                {
+                    autoUpgradeClassComboBox.Items.Add(u);
+                    if (u.Type == model.UpgradeClass)
+                    {
+                        autoUpgradeClassComboBox.SelectedIndex = i;
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                autoUpgradeClassComboBox.SelectedIndex = -1;
+            }
+            autoUpgradeClassComboBox.EndUpdate();
+        }
+
+        /// <summary>
+        /// 自動改良先モデルの表示を更新する
+        /// </summary>
+        private void UpdateAutoUpgradeModelList()
+        {
+            Debug.WriteLine("[Unit] Update auto upgrade model");
+
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            autoUpgradeModelComboBox.BeginUpdate();
+            autoUpgradeModelComboBox.Items.Clear();
+            if (model.AutoUpgrade)
+            {
+                Unit upgrade = Units.Items[(int) model.UpgradeClass];
+                for (int i = 0; i < upgrade.Models.Count; i++)
+                {
+                    autoUpgradeModelComboBox.Items.Add(upgrade.GetModelName(i));
+                }
+                if ((model.UpgradeModel >= 0) && (model.UpgradeModel < upgrade.Models.Count))
+                {
+                    autoUpgradeModelComboBox.SelectedIndex = model.UpgradeModel;
+                }
+                else
+                {
+                    autoUpgradeModelComboBox.SelectedIndex = -1;
+                }
+            }
+            autoUpgradeModelComboBox.EndUpdate();
+        }
+
+        /// <summary>
         ///     必要ICテキストボックスフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -4201,11 +4343,11 @@ namespace HoI2Editor.Forms
         private void OnCostTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4252,11 +4394,11 @@ namespace HoI2Editor.Forms
         private void OnBuildTimeTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4303,11 +4445,11 @@ namespace HoI2Editor.Forms
         private void OnManPowerTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4354,11 +4496,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeCostFactorTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4402,11 +4544,11 @@ namespace HoI2Editor.Forms
         private void OnUpgradeTimeFactorTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4450,11 +4592,11 @@ namespace HoI2Editor.Forms
         private void OnReinforceCostTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4498,11 +4640,11 @@ namespace HoI2Editor.Forms
         private void OnReinforceTimeTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4538,6 +4680,292 @@ namespace HoI2Editor.Forms
             reinforceTimeTextBox.ForeColor = Color.Red;
         }
 
+        /// <summary>
+        /// 2段階改良チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeTimeBoostCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            // 値に変化がなければ何もしない
+            if (upgradeTimeBoostCheckBox.Checked == model.UpgradeTimeBoost)
+            {
+                return;
+            }
+
+            // 値を更新する
+            model.UpgradeTimeBoost = upgradeTimeBoostCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.UpgradeTimeBoost);
+            model.SetDirty();
+            unit.SetDirty();
+
+            // 文字色を変更する
+            upgradeTimeBoostCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        /// 自動改良チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAutoUpgradeCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            // 値に変化がなければ何もしない
+            if (autoUpgradeCheckBox.Checked == model.AutoUpgrade)
+            {
+                return;
+            }
+
+            // 値を更新する
+            model.AutoUpgrade = autoUpgradeCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.AutoUpgrade);
+            model.SetDirty();
+            unit.SetDirty();
+
+            // 文字色を変更する
+            autoUpgradeCheckBox.ForeColor = Color.Red;
+
+            // 自動改良先クラスコンボボックスの表示を更新する
+            UpdateAutoUpgradeClassList();
+        }
+
+        /// <summary>
+        /// 自動改良先クラスコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAutoUpgradeClassComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            UnitType type = (unit.Organization == UnitOrganization.Division)
+                ? Units.DivisionTypes[e.Index]
+                : Units.BrigadeTypes[e.Index];
+            if ((type == model.UpgradeClass) && model.IsDirty(UnitModelItemId.UpgradeClass))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = autoUpgradeClassComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        /// 自動改良先モデルコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAutoUpgradeModelComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int i = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[i];
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Brush brush;
+            if ((e.Index == model.UpgradeModel) && model.IsDirty(UnitModelItemId.UpgradeModel))
+            {
+                brush = new SolidBrush(Color.Red);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.WindowText);
+            }
+            string s = autoUpgradeModelComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        /// 自動改良先クラスコンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAutoUpgradeClassComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine(string.Format("[Unit] Auto upgrade class: {0}", autoUpgradeClassComboBox.SelectedIndex));
+
+            // 選択中の項目がなければ何もしない
+            if (autoUpgradeClassComboBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            // 値に変化がなければ何もしない
+            UnitType type = (unit.Organization == UnitOrganization.Division)
+              ? Units.DivisionTypes[autoUpgradeClassComboBox.SelectedIndex]
+              : Units.BrigadeTypes[autoUpgradeClassComboBox.SelectedIndex];
+            if (type == model.UpgradeClass)
+            {
+                return;
+            }
+
+            // 値を更新する
+            model.UpgradeClass = type;
+
+            // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.UpgradeClass);
+            model.SetDirty();
+            unit.SetDirty();
+
+            // 自動改良先クラスコンボボックスの項目色を変更するために描画更新する
+            autoUpgradeClassComboBox.Refresh();
+
+            // 自動改良先モデルコンボボックスの表示を更新する
+            UpdateAutoUpgradeModelList();
+        }
+
+        /// <summary>
+        /// 自動改良先クラスコンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAutoUpgradeModelComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine(string.Format("[Unit] Auto upgrade model: {0}", autoUpgradeModelComboBox.SelectedIndex));
+
+            // 選択中の項目がなければ何もしない
+            if (autoUpgradeModelComboBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            // 値に変化がなければ何もしない
+            if (autoUpgradeModelComboBox.SelectedIndex == model.UpgradeModel)
+            {
+                return;
+            }
+
+            // 値を更新する
+            model.UpgradeModel = autoUpgradeModelComboBox.SelectedIndex;
+
+            // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.UpgradeModel);
+            model.SetDirty();
+            unit.SetDirty();
+
+            // 自動改良先モデルコンボボックスの項目色を変更するために描画更新する
+            autoUpgradeModelComboBox.Refresh();
+        }
+
         #endregion
 
         #region ユニットモデルタブ - 速度ステータス
@@ -4550,11 +4978,11 @@ namespace HoI2Editor.Forms
         private void OnMaxSpeedTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4601,11 +5029,11 @@ namespace HoI2Editor.Forms
         private void OnSpeedCapTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4649,11 +5077,11 @@ namespace HoI2Editor.Forms
         private void OnSpeedCapArtTextBox(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4697,11 +5125,11 @@ namespace HoI2Editor.Forms
         private void OnSpeedCapEngTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4745,11 +5173,11 @@ namespace HoI2Editor.Forms
         private void OnSpeedCapAtTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4793,11 +5221,11 @@ namespace HoI2Editor.Forms
         private void OnSpeedCapAaTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4845,11 +5273,11 @@ namespace HoI2Editor.Forms
         private void OnDefensivenessTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4893,11 +5321,11 @@ namespace HoI2Editor.Forms
         private void OnSeaDefenceTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4941,11 +5369,11 @@ namespace HoI2Editor.Forms
         private void OnAirDefenceTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -4989,11 +5417,11 @@ namespace HoI2Editor.Forms
         private void OnSurfaceDefenceTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5037,11 +5465,11 @@ namespace HoI2Editor.Forms
         private void OnToughnessTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5085,11 +5513,11 @@ namespace HoI2Editor.Forms
         private void OnSoftnessTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5133,11 +5561,11 @@ namespace HoI2Editor.Forms
         private void OnSoftAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5181,11 +5609,11 @@ namespace HoI2Editor.Forms
         private void OnHardAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5229,11 +5657,11 @@ namespace HoI2Editor.Forms
         private void OnSeaAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5277,11 +5705,11 @@ namespace HoI2Editor.Forms
         private void OnSubAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5325,11 +5753,11 @@ namespace HoI2Editor.Forms
         private void OnConvoyAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5373,11 +5801,11 @@ namespace HoI2Editor.Forms
         private void OnShoreBombardmentTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5421,11 +5849,11 @@ namespace HoI2Editor.Forms
         private void OnAirAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5469,11 +5897,11 @@ namespace HoI2Editor.Forms
         private void OnNavalAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5517,11 +5945,11 @@ namespace HoI2Editor.Forms
         private void OnStrategicAttackTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5565,11 +5993,11 @@ namespace HoI2Editor.Forms
         private void OnArtilleryBombardmentTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5613,11 +6041,11 @@ namespace HoI2Editor.Forms
         private void OnDistanceTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5661,11 +6089,11 @@ namespace HoI2Editor.Forms
         private void OnVisibilityTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5709,11 +6137,11 @@ namespace HoI2Editor.Forms
         private void OnSurfaceDetectionCapabilityTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5758,11 +6186,11 @@ namespace HoI2Editor.Forms
         private void OnSubDetectionCapabilityTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5806,11 +6234,11 @@ namespace HoI2Editor.Forms
         private void OnAirDetectionCapabilityTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5854,11 +6282,11 @@ namespace HoI2Editor.Forms
         private void OnNoFuelCombatModTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -5972,11 +6400,11 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -6023,11 +6451,11 @@ namespace HoI2Editor.Forms
         private void OnEquipmentListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -6066,11 +6494,11 @@ namespace HoI2Editor.Forms
         private void OnResourceComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -6119,11 +6547,11 @@ namespace HoI2Editor.Forms
         private void OnQuantityTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -6179,11 +6607,11 @@ namespace HoI2Editor.Forms
         private void OnEquipmentAddButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -6214,11 +6642,11 @@ namespace HoI2Editor.Forms
         private void OnEquipmentRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -6254,11 +6682,11 @@ namespace HoI2Editor.Forms
         private void OnEquipmentUpButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
@@ -6300,11 +6728,11 @@ namespace HoI2Editor.Forms
         private void OnEquipmentDownButtonClick(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
-            if (classListBox.SelectedIndex < 0)
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
             {
                 return;
             }
-            Unit unit = Units.Items[(int) Units.UnitTypes[classListBox.SelectedIndex]];
 
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
