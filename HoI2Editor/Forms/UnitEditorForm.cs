@@ -4261,7 +4261,7 @@ namespace HoI2Editor.Forms
                         continue;
                     }
                     width = Math.Max(width,
-                        (int)g.MeasureString(s, autoUpgradeClassComboBox.Font).Width +
+                        (int) g.MeasureString(s, autoUpgradeClassComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                     autoUpgradeClassComboBox.Items.Add(u);
                 }
@@ -4310,7 +4310,7 @@ namespace HoI2Editor.Forms
                 {
                     string s = upgrade.GetModelName(i);
                     width = Math.Max(width,
-                        (int)g.MeasureString(s, autoUpgradeModelComboBox.Font).Width +
+                        (int) g.MeasureString(s, autoUpgradeModelComboBox.Font).Width +
                         SystemInformation.VerticalScrollBarWidth + margin);
                     autoUpgradeModelComboBox.Items.Add(s);
                 }
