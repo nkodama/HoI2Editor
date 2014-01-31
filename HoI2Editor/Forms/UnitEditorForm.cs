@@ -1139,7 +1139,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            classNameTextBox.Text = unit.ToString();
+            classNameTextBox.Text = Config.ExistsKey(unit.Name) ? Config.GetText(unit.Name) : "";
             classShortNameTextBox.Text = unit.GetShortName();
             classDescTextBox.Text = unit.GetDesc();
             classShortDescTextBox.Text = unit.GetShortDesc();
@@ -1173,12 +1173,32 @@ namespace HoI2Editor.Forms
                 maxAllowedBrigadesNumericUpDown.Text =
                     maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
 
+                Graphics g = Graphics.FromHwnd(allowedBrigadesListView.Handle);
+                int width = DeviceCaps.GetScaledWidth(60);
+                allowedBrigadesListView.ItemChecked -= OnAllowedBrigadesListViewItemChecked;
                 allowedBrigadesListView.Enabled = true;
-                for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
+                allowedBrigadesListView.BeginUpdate();
+                allowedBrigadesListView.Items.Clear();
+                foreach (Unit brigade in Units.BrigadeTypes
+                    .Select(type => Units.Items[(int) type])
+                    .Where(brigade => (brigade.Branch == unit.Branch) && (brigade.Models.Count > 0)))
                 {
-                    UnitType type = Units.BrigadeTypes[i];
-                    allowedBrigadesListView.Items[i].Checked = unit.AllowedBrigades.Contains(type);
+                    string s = brigade.ToString();
+                    // +16はチェックボックスの分
+                    width = Math.Max(width,
+                        (int) g.MeasureString(s, allowedBrigadesListView.Font).Width + DeviceCaps.GetScaledWidth(16));
+                    var item = new ListViewItem
+                    {
+                        Text = s,
+                        Checked = unit.AllowedBrigades.Contains(brigade.Type),
+                        ForeColor = unit.IsDirtyAllowedBrigades(brigade.Type) ? Color.Red : SystemColors.WindowText,
+                        Tag = brigade
+                    };
+                    allowedBrigadesListView.Items.Add(item);
                 }
+                allowedBrigadesDummyColumnHeader.Width = width;
+                allowedBrigadesListView.EndUpdate();
+                allowedBrigadesListView.ItemChecked += OnAllowedBrigadesListViewItemChecked;
             }
             else
             {
@@ -1187,10 +1207,9 @@ namespace HoI2Editor.Forms
                 maxAllowedBrigadesNumericUpDown.ResetText();
 
                 allowedBrigadesListView.Enabled = false;
-                for (int i = 0; i < Units.BrigadeTypes.Count(); i++)
-                {
-                    allowedBrigadesListView.Items[i].Checked = false;
-                }
+                allowedBrigadesListView.BeginUpdate();
+                allowedBrigadesListView.Items.Clear();
+                allowedBrigadesListView.EndUpdate();
             }
 
             // DH1.03以降のユニット設定
@@ -1628,9 +1647,19 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            if (classNameTextBox.Text.Equals(unit.ToString()))
+            if (Config.ExistsKey(unit.Name))
             {
-                return;
+                if (classNameTextBox.Text.Equals(Config.GetText(unit.Name)))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(classNameTextBox.Text))
+                {
+                    return;
+                }
             }
 
             // 値を更新する
@@ -1638,7 +1667,6 @@ namespace HoI2Editor.Forms
 
             // ユニットクラスリストボックスの表示を更新する
             classListBox.Refresh();
-
 
             if (unit.Organization == UnitOrganization.Division)
             {
@@ -1694,16 +1722,6 @@ namespace HoI2Editor.Forms
                             SystemInformation.VerticalScrollBarWidth + margin);
                 }
             }
-            else
-            {
-                // 付属旅団リストビューの項目を更新する
-                int index = Array.IndexOf(Units.BrigadeTypes, unit.Type);
-                if (index >= 0)
-                {
-                    allowedBrigadesListView.Items[index].Text = classNameTextBox.Text;
-                }
-            }
-
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Name);
@@ -2409,33 +2427,37 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            UnitType type = Units.BrigadeTypes[e.Item.Index];
+            var brigade = e.Item.Tag as Unit;
+            if (brigade == null)
+            {
+                return;
+            }
 
             if (e.Item.Checked)
             {
                 // 値に変化がなければ何もしない
-                if (unit.AllowedBrigades.Contains(type))
+                if (unit.AllowedBrigades.Contains(brigade.Type))
                 {
                     return;
                 }
 
                 // 値を更新する
-                unit.AllowedBrigades.Add(type);
+                unit.AllowedBrigades.Add(brigade.Type);
             }
             else
             {
                 // 値に変化がなければ何もしない
-                if (!unit.AllowedBrigades.Contains(type))
+                if (!unit.AllowedBrigades.Contains(brigade.Type))
                 {
                     return;
                 }
 
                 // 値を更新する
-                unit.AllowedBrigades.Remove(type);
+                unit.AllowedBrigades.Remove(brigade.Type);
             }
 
             // 編集済みフラグを設定する
-            unit.SetDirtyAllowedBrigades(type);
+            unit.SetDirtyAllowedBrigades(brigade.Type);
             unit.SetDirty();
 
             // 文字色を変更する
