@@ -4290,6 +4290,15 @@ namespace HoI2Editor.Forms
             if (model.AutoUpgrade)
             {
                 int width = autoUpgradeClassComboBox.Width;
+                // 現在の自動改良先クラスと兵科がマッチしない場合、ワンショットで候補に登録する
+                Unit current = Units.Items[(int) model.UpgradeClass];
+                if (current.Branch != unit.Branch)
+                {
+                    width = Math.Max(width,
+                        (int) g.MeasureString(current.ToString(), autoUpgradeClassComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth + margin);
+                    autoUpgradeClassComboBox.Items.Add(current);
+                }
                 foreach (Unit u in Units.UnitTypes
                     .Select(type => Units.Items[(int) type])
                     .Where(u => (u.Branch == unit.Branch) &&
@@ -4947,6 +4956,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
+            Unit old = Units.Items[(int) model.UpgradeClass];
             model.UpgradeClass = upgrade.Type;
 
             // 編集済みフラグを設定する
@@ -4954,8 +4964,16 @@ namespace HoI2Editor.Forms
             model.SetDirty();
             unit.SetDirty();
 
-            // 自動改良先クラスコンボボックスの項目色を変更するために描画更新する
-            autoUpgradeClassComboBox.Refresh();
+            if (old.Branch != unit.Branch)
+            {
+                // 自動改良先クラスと兵科がマッチしていなかった場合は、項目を更新する
+                UpdateAutoUpgradeClassList();
+            }
+            else
+            {
+                // 自動改良先クラスコンボボックスの項目色を変更するために描画更新する
+                autoUpgradeClassComboBox.Refresh();
+            }
 
             Debug.WriteLine(string.Format("[Unit] Auto upgrade class changed: {0} ({1})",
                 Units.Items[(int) model.UpgradeClass], unit.GetModelName(index)));
