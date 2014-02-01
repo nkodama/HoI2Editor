@@ -172,6 +172,9 @@ namespace HoI2Editor.Forms
                 case DialogResult.Yes:
                     HoI2Editor.SaveFiles();
                     break;
+                case DialogResult.No:
+                    HoI2Editor.SaveCanceled = true;
+                    break;
             }
         }
 

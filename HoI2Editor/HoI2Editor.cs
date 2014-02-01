@@ -71,6 +71,11 @@ namespace HoI2Editor
         #region データ処理
 
         /// <summary>
+        ///     保存がキャンセルされたかどうか
+        /// </summary>
+        public static bool SaveCanceled { get; set; }
+
+        /// <summary>
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
@@ -90,10 +95,34 @@ namespace HoI2Editor
         }
 
         /// <summary>
+        ///     ファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequestReload()
+        {
+            Misc.RequestReload();
+            Config.RequestReload();
+            Leaders.RequestReload();
+            Ministers.RequestReload();
+            Teams.RequestReload();
+            Techs.RequestReload();
+            Units.RequestReload();
+            Provinces.RequestReload();
+            UnitNames.RequestReload();
+            DivisionNames.RequestReload();
+            RandomLeaders.RequestReload();
+
+            SaveCanceled = false;
+
+            Debug.WriteLine("Request to reload");
+        }
+
+        /// <summary>
         ///     データを再読み込みする
         /// </summary>
         public static void ReloadFiles()
         {
+            Debug.WriteLine("Reload");
+
             // データを再読み込みする
             Misc.Reload();
             Config.Reload();
@@ -109,6 +138,8 @@ namespace HoI2Editor
 
             // データ読み込み後の更新処理呼び出し
             OnFileLoaded();
+
+            SaveCanceled = false;
         }
 
         /// <summary>
@@ -116,6 +147,8 @@ namespace HoI2Editor
         /// </summary>
         public static void SaveFiles()
         {
+            Debug.WriteLine("Save");
+
             // 文字列の一時キーを保存形式に変更する
             Techs.RenameKeys();
 
@@ -134,6 +167,8 @@ namespace HoI2Editor
 
             // データ保存後の更新処理呼び出し
             OnFileSaved();
+
+            SaveCanceled = false;
         }
 
         /// <summary>

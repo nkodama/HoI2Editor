@@ -51,7 +51,7 @@ namespace HoI2Editor.Models
                 Debug.WriteLine(string.Format("CodePage: {0}", _codePage));
 
                 // ファイルの再読み込みを要求する
-                RequireReload();
+                HoI2Editor.RequestReload();
             }
         }
 
@@ -79,7 +79,7 @@ namespace HoI2Editor.Models
                 UpdateModFolderName();
 
                 // ファイルの再読み込みを要求する
-                RequireReload();
+                HoI2Editor.RequestReload();
             }
         }
 
@@ -106,7 +106,7 @@ namespace HoI2Editor.Models
                 UpdateModFolderName();
 
                 // ファイルの再読み込みを要求する
-                RequireReload();
+                HoI2Editor.RequestReload();
             }
         }
 
@@ -370,30 +370,6 @@ namespace HoI2Editor.Models
             "Arsenal of Democracy",
             "Darkest Hour"
         };
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     ファイルの再読み込みを要求する
-        /// </summary>
-        private static void RequireReload()
-        {
-            Misc.RequestReload();
-            Config.RequestReload();
-            Leaders.RequestReload();
-            Ministers.RequestReload();
-            Teams.RequestReload();
-            Techs.RequestReload();
-            Units.RequestReload();
-            Provinces.RequestReload();
-            UnitNames.RequestReload();
-            DivisionNames.RequestReload();
-            RandomLeaders.RequestReload();
-
-            Debug.WriteLine("Required to reload all");
-        }
 
         #endregion
 

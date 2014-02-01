@@ -72,6 +72,12 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 既に保存をキャンセルしていればフォームを閉じる
+            if (HoI2Editor.SaveCanceled)
+            {
+                return;
+            }
+
             // 保存するかを問い合わせる
             DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                 MessageBoxIcon.Question);
