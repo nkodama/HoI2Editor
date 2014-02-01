@@ -389,10 +389,10 @@
     <value>装備</value>
   </data>
   <data name="autoUpgradeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
+    <value>108, 16</value>
   </data>
   <data name="autoUpgradeCheckBox.Text" xml:space="preserve">
-    <value>自動改良</value>
+    <value>自動改良先指定</value>
   </data>
   <data name="upgradeTimeBoostCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 16</value>

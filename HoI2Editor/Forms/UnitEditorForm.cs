@@ -3028,18 +3028,6 @@ namespace HoI2Editor.Forms
             // 労働力
             manPowerTextBox.Text = model.ManPower.ToString(CultureInfo.InvariantCulture);
             manPowerTextBox.ForeColor = model.IsDirty(UnitModelItemId.ManPower) ? Color.Red : SystemColors.WindowText;
-            // 2段階改良
-            upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
-            upgradeTimeBoostCheckBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeBoost)
-                ? Color.Red
-                : SystemColors.WindowText;
-            // 自動改良先
-            autoUpgradeCheckBox.Checked = model.AutoUpgrade;
-            autoUpgradeCheckBox.ForeColor = model.IsDirty(UnitModelItemId.AutoUpgrade)
-                ? Color.Red
-                : SystemColors.WindowText;
-            UpdateAutoUpgradeClassList();
-            UpdateAutoUpgradeModelList();
             // 最大速度
             maxSpeedTextBox.Text = model.MaxSpeed.ToString(CultureInfo.InvariantCulture);
             maxSpeedTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSpeed) ? Color.Red : SystemColors.WindowText;
@@ -3389,6 +3377,40 @@ namespace HoI2Editor.Forms
                 strategicAttackLabel.Enabled = false;
                 strategicAttackTextBox.Enabled = false;
                 strategicAttackTextBox.ResetText();
+            }
+
+            // 海軍師団以外
+            if ((unit.Branch != Branch.Navy) || (unit.Organization != UnitOrganization.Division))
+            {
+                // 2段階改良
+                upgradeTimeBoostCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
+                upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
+                upgradeTimeBoostCheckBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeBoost)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+                // 自動改良先
+                autoUpgradeCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
+                autoUpgradeCheckBox.Checked = model.AutoUpgrade;
+                autoUpgradeCheckBox.ForeColor = model.IsDirty(UnitModelItemId.AutoUpgrade)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+                UpdateAutoUpgradeClassList();
+                UpdateAutoUpgradeModelList();
+            }
+            else
+            {
+                // 2段階改良
+                upgradeTimeBoostCheckBox.Enabled = false;
+                upgradeTimeBoostCheckBox.Checked = false;
+                autoUpgradeCheckBox.Enabled = false;
+                autoUpgradeCheckBox.Checked = false;
+                // 自動改良先
+                autoUpgradeClassComboBox.BeginUpdate();
+                autoUpgradeClassComboBox.Items.Clear();
+                autoUpgradeClassComboBox.EndUpdate();
+                autoUpgradeModelComboBox.BeginUpdate();
+                autoUpgradeModelComboBox.Items.Clear();
+                autoUpgradeModelComboBox.EndUpdate();
             }
 
             // AoD/陸軍
@@ -4800,6 +4822,12 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 選択中のユニットクラスが海軍師団ならば何もしない
+            if ((unit.Branch == Branch.Navy) && (unit.Organization == UnitOrganization.Division))
+            {
+                return;
+            }
+
             // 選択中のユニットモデルがなければ何もしない
             if (modelListView.SelectedIndices.Count == 0)
             {
@@ -4839,6 +4867,12 @@ namespace HoI2Editor.Forms
             // 選択中のユニットクラスがなければ何もしない
             var unit = classListBox.SelectedItem as Unit;
             if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスが海軍師団ならば何もしない
+            if ((unit.Branch == Branch.Navy) && (unit.Organization == UnitOrganization.Division))
             {
                 return;
             }
