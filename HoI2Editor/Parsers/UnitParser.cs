@@ -161,6 +161,10 @@ namespace HoI2Editor.Parsers
                             continue;
                         }
 
+                        // 自動改良先の初期設定
+                        model.UpgradeClass = unit.Type;
+                        model.UpgradeModel = unit.Models.Count + 1;
+
                         // ユニットモデル
                         unit.Models.Add(model);
                         continue;
