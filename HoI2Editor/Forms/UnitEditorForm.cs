@@ -182,21 +182,6 @@ namespace HoI2Editor.Forms
                 transmuteComboBox.DropDownWidth = width;
                 transmuteComboBox.EndUpdate();
 
-                // 更新ユニット種類コンボボックス
-                upgradeTypeComboBox.BeginUpdate();
-                upgradeTypeComboBox.Items.Clear();
-                width = upgradeTypeComboBox.Width;
-                foreach (UnitType type in Units.DivisionTypes)
-                {
-                    string s = Units.Items[(int) type].ToString();
-                    upgradeTypeComboBox.Items.Add(s);
-                    width = Math.Max(width,
-                        (int) g.MeasureString(s, upgradeTypeComboBox.Font).Width +
-                        SystemInformation.VerticalScrollBarWidth + margin);
-                }
-                upgradeTypeComboBox.DropDownWidth = width;
-                upgradeTypeComboBox.EndUpdate();
-
                 // 資源コンボボックス
                 resourceComboBox.BeginUpdate();
                 resourceComboBox.Items.Clear();
@@ -1385,14 +1370,28 @@ namespace HoI2Editor.Forms
             productableCheckBox.Checked = unit.Productable;
 
             // 改良
-            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) &&
+                (unit.Organization == UnitOrganization.Division) && (unit.Branch != Branch.Navy))
             {
-                upgradeGroupBox.Enabled = unit.Organization == UnitOrganization.Division;
+                upgradeGroupBox.Enabled = true;
                 UpdateUpgradeList(unit);
+                UpdateUpgradeTypeComboBox();
+                const string def = "0";
+                upgradeCostTextBox.Text = def;
+                upgradeTimeTextBox.Text = def;
             }
             else
             {
                 upgradeGroupBox.Enabled = false;
+                // 編集項目の値をクリアする
+                upgradeListView.BeginUpdate();
+                upgradeListView.Items.Clear();
+                upgradeListView.EndUpdate();
+                upgradeTypeComboBox.BeginUpdate();
+                upgradeTypeComboBox.Items.Clear();
+                upgradeTypeComboBox.EndUpdate();
+                upgradeCostTextBox.ResetText();
+                upgradeTimeTextBox.ResetText();
             }
 
             // 編集項目の色を設定する
@@ -1673,12 +1672,6 @@ namespace HoI2Editor.Forms
                 Graphics g = Graphics.FromHwnd(Handle);
                 int margin = DeviceCaps.GetScaledWidth(2) + 1;
 
-                if (Game.Type == GameType.DarkestHour)
-                {
-                    // 自動改良先クラスコンボボックスの表示を更新する
-                    autoUpgradeClassComboBox.Refresh();
-                }
-
                 if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
                 {
                     // 実ユニットコンボボックスの項目を更新する
@@ -1711,14 +1704,6 @@ namespace HoI2Editor.Forms
                     transmuteComboBox.DropDownWidth =
                         Math.Max(transmuteComboBox.DropDownWidth,
                             (int) g.MeasureString(classNameTextBox.Text, transmuteComboBox.Font).Width +
-                            SystemInformation.VerticalScrollBarWidth + margin);
-
-                    // 更新ユニットコンボボックスの項目を更新する
-                    upgradeTypeComboBox.Items[classListBox.SelectedIndex] = classNameTextBox.Text;
-                    // ドロップダウン幅を更新する
-                    upgradeTypeComboBox.DropDownWidth =
-                        Math.Max(upgradeTypeComboBox.DropDownWidth,
-                            (int) g.MeasureString(classNameTextBox.Text, upgradeTypeComboBox.Font).Width +
                             SystemInformation.VerticalScrollBarWidth + margin);
                 }
             }
@@ -2490,10 +2475,6 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 先頭の項目を選択する
-            upgradeListView.Items[0].Focused = true;
-            upgradeListView.Items[0].Selected = true;
-
             // 編集項目を有効化する
             EnableUpgradeItems();
         }
@@ -2503,10 +2484,6 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void EnableUpgradeItems()
         {
-            upgradeTypeComboBox.Enabled = true;
-            upgradeCostTextBox.Enabled = true;
-            upgradeTimeTextBox.Enabled = true;
-
             upgradeRemoveButton.Enabled = true;
         }
 
@@ -2515,16 +2492,62 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void DisableUpgradeItems()
         {
-            upgradeTypeComboBox.Enabled = false;
-            upgradeCostTextBox.Enabled = false;
-            upgradeTimeTextBox.Enabled = false;
-
-            upgradeTypeComboBox.SelectedIndex = -1;
-            upgradeTypeComboBox.ResetText();
-            upgradeCostTextBox.ResetText();
-            upgradeTimeTextBox.ResetText();
-
             upgradeRemoveButton.Enabled = false;
+        }
+
+        /// <summary>
+        ///     改良ユニット種類コンボボックスの項目を更新する
+        /// </summary>
+        private void UpdateUpgradeTypeComboBox()
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            Graphics g = Graphics.FromHwnd(autoUpgradeClassComboBox.Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+            upgradeTypeComboBox.BeginUpdate();
+            upgradeTypeComboBox.Items.Clear();
+            int width = upgradeTypeComboBox.Width;
+            // 現在の改良先クラスと兵科がマッチしない場合、ワンショットで候補に登録する
+            Unit current = null;
+            if (upgradeListView.SelectedIndices.Count > 0)
+            {
+                current = Units.Items[(int) unit.Upgrades[upgradeListView.SelectedIndices[0]].Type];
+                if ((current.Branch != unit.Branch) || (current.Models.Count == 0))
+                {
+                    width = Math.Max(width,
+                        (int) g.MeasureString(current.ToString(), upgradeTypeComboBox.Font).Width +
+                        SystemInformation.VerticalScrollBarWidth + margin);
+                    upgradeTypeComboBox.Items.Add(current);
+                }
+            }
+            foreach (Unit u in Units.DivisionTypes
+                .Select(type => Units.Items[(int) type])
+                .Where(u => (u.Branch == unit.Branch) &&
+                            (u.Models.Count > 0)))
+            {
+                width = Math.Max(width,
+                    (int) g.MeasureString(u.ToString(), upgradeTypeComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
+                upgradeTypeComboBox.Items.Add(u);
+            }
+            upgradeTypeComboBox.DropDownWidth = width;
+            if (current != null)
+            {
+                upgradeTypeComboBox.SelectedItem = current;
+            }
+            else
+            {
+                if (upgradeTypeComboBox.Items.Count > 0)
+                {
+                    upgradeTypeComboBox.SelectedIndex = 0;
+                }
+            }
+            upgradeTypeComboBox.EndUpdate();
         }
 
         /// <summary>
@@ -2547,29 +2570,33 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 選択中の項目がなければ何もしない
-            if (upgradeListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-            UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
-
             // 背景を描画する
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            Brush brush;
-            if ((e.Index == (int) upgrade.Type) && upgrade.IsDirty(UnitUpgradeItemId.Type))
+            var u = upgradeTypeComboBox.Items[e.Index] as Unit;
+            if (u != null)
             {
-                brush = new SolidBrush(Color.Red);
+                Brush brush;
+                if (upgradeListView.SelectedIndices.Count > 0)
+                {
+                    UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
+                    if ((u.Type == upgrade.Type) && upgrade.IsDirty(UnitUpgradeItemId.Type))
+                    {
+                        brush = new SolidBrush(Color.Red);
+                    }
+                    else
+                    {
+                        brush = new SolidBrush(SystemColors.WindowText);
+                    }
+                }
+                else
+                {
+                    brush = new SolidBrush(SystemColors.WindowText);
+                }
+                e.Graphics.DrawString(u.ToString(), e.Font, brush, e.Bounds);
+                brush.Dispose();
             }
-            else
-            {
-                brush = new SolidBrush(SystemColors.WindowText);
-            }
-            string s = upgradeTypeComboBox.Items[e.Index].ToString();
-            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            brush.Dispose();
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
@@ -2598,7 +2625,7 @@ namespace HoI2Editor.Forms
             UnitUpgrade upgrade = unit.Upgrades[upgradeListView.SelectedIndices[0]];
 
             // 編集項目の値を更新する
-            upgradeTypeComboBox.SelectedIndex = (int) upgrade.Type;
+            UpdateUpgradeTypeComboBox();
             upgradeCostTextBox.Text = upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
             upgradeTimeTextBox.Text = upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
 
@@ -2637,25 +2664,40 @@ namespace HoI2Editor.Forms
             UnitUpgrade upgrade = unit.Upgrades[index];
 
             // 値に変化がなければ何もしない
-            var type = (UnitType) upgradeTypeComboBox.SelectedIndex;
-            if (type == upgrade.Type)
+            var selected = upgradeTypeComboBox.SelectedItem as Unit;
+            if (selected == null)
+            {
+                return;
+            }
+            if (selected.Type == upgrade.Type)
             {
                 return;
             }
 
             // 値を更新する
-            upgrade.Type = type;
+            Unit old = Units.Items[(int) upgrade.Type];
+            upgrade.Type = selected.Type;
 
             // 改良リストビューの項目を更新する
-            upgradeListView.Items[index].Text = Units.Items[(int) type].ToString();
+            upgradeListView.Items[index].Text = selected.ToString();
 
             // 編集済みフラグを設定する
             upgrade.SetDirty(UnitUpgradeItemId.Type);
             upgrade.SetDirty();
             unit.SetDirty();
 
-            // 改良ユニット種類コンボボックスの項目色を変更するために描画更新する
-            upgradeTypeComboBox.Refresh();
+            Debug.WriteLine(string.Format("[Unit] Update type changed: {0} ({1})", selected, unit));
+
+            if ((old.Branch != unit.Branch) || (old.Models.Count == 0))
+            {
+                // 改良先クラスと兵科がマッチしていなかった場合は、項目を更新する
+                UpdateUpgradeTypeComboBox();
+            }
+            else
+            {
+                // 改良ユニット種類コンボボックスの項目色を変更するために描画更新する
+                upgradeTypeComboBox.Refresh();
+            }
         }
 
         /// <summary>
@@ -2707,6 +2749,8 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeCostTextBox.ForeColor = Color.Red;
+
+            Debug.WriteLine(string.Format("[Unit] Update cost changed: {0} ({1})", upgrade.UpgradeCostFactor, unit));
         }
 
         /// <summary>
@@ -2758,6 +2802,8 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeTimeTextBox.ForeColor = Color.Red;
+
+            Debug.WriteLine(string.Format("[Unit] Update time changed: {0} ({1})", upgrade.UpgradeTimeFactor, unit));
         }
 
         /// <summary>
@@ -2775,7 +2821,17 @@ namespace HoI2Editor.Forms
             }
 
             // 改良情報を追加する
-            var upgrade = new UnitUpgrade();
+            var u = upgradeTypeComboBox.SelectedItem as Unit;
+            var upgrade = new UnitUpgrade {Type = (u != null) ? u.Type : unit.Type};
+            double val;
+            if (double.TryParse(upgradeCostTextBox.Text, out val))
+            {
+                upgrade.UpgradeCostFactor = val;
+            }
+            if (double.TryParse(upgradeTimeTextBox.Text, out val))
+            {
+                upgrade.UpgradeTimeFactor = val;
+            }
             unit.Upgrades.Add(upgrade);
 
             // 編集済みフラグを設定する
@@ -2784,6 +2840,9 @@ namespace HoI2Editor.Forms
 
             // 改良リストビューに項目を追加する
             AddUpgradeListItem(upgrade);
+
+            Debug.WriteLine(string.Format("[Unit] Upgrade info added: {0} {1} {2} ({3})", u, upgrade.UpgradeCostFactor,
+                upgrade.UpgradeTimeFactor, unit));
         }
 
         /// <summary>
@@ -2806,6 +2865,9 @@ namespace HoI2Editor.Forms
                 return;
             }
             int index = upgradeListView.SelectedIndices[0];
+
+            Debug.WriteLine(string.Format("[Unit] Upgrade info removed: {0} ({1})",
+                Units.Items[(int) unit.Upgrades[index].Type], unit));
 
             // 改良情報を削除する
             unit.Upgrades.RemoveAt(index);
@@ -4343,7 +4405,7 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[index];
 
-            Graphics g = Graphics.FromHwnd(autoUpgradeClassComboBox.Handle);
+            Graphics g = Graphics.FromHwnd(autoUpgradeModelComboBox.Handle);
             int margin = DeviceCaps.GetScaledWidth(2) + 1;
             autoUpgradeModelComboBox.BeginUpdate();
             autoUpgradeModelComboBox.Items.Clear();
