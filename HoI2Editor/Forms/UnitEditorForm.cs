@@ -375,29 +375,6 @@ namespace HoI2Editor.Forms
             }
         }
 
-        /// <summary>
-        ///     付属可能旅団数を初期化する
-        /// </summary>
-        private static void InitMaxAllowedBrigades()
-        {
-            // AoD1.07以降のみ
-            if (Game.Type != GameType.ArsenalOfDemocracy || Game.Version < 107)
-            {
-                return;
-            }
-
-            Units.Items[(int) UnitType.Transport].MaxAllowedBrigades = Misc.TpMaxAttach;
-            Units.Items[(int) UnitType.Submarine].MaxAllowedBrigades = Misc.SsMaxAttach;
-            Units.Items[(int) UnitType.NuclearSubmarine].MaxAllowedBrigades = Misc.SsnMaxAttach;
-            Units.Items[(int) UnitType.Destroyer].MaxAllowedBrigades = Misc.DdMaxAttach;
-            Units.Items[(int) UnitType.LightCruiser].MaxAllowedBrigades = Misc.ClMaxAttach;
-            Units.Items[(int) UnitType.HeavyCruiser].MaxAllowedBrigades = Misc.CaMaxAttach;
-            Units.Items[(int) UnitType.BattleCruiser].MaxAllowedBrigades = Misc.BcMaxAttach;
-            Units.Items[(int) UnitType.BattleShip].MaxAllowedBrigades = Misc.BbMaxAttach;
-            Units.Items[(int) UnitType.LightCarrier].MaxAllowedBrigades = Misc.CvlMaxAttach;
-            Units.Items[(int) UnitType.Carrier].MaxAllowedBrigades = Misc.CvMaxAttach;
-        }
-
         #endregion
 
         #region 終了処理
@@ -498,9 +475,6 @@ namespace HoI2Editor.Forms
         {
             // 付属可能旅団の値が変化してしまうので一旦選択を解除する
             classListBox.SelectedIndex = -1;
-
-            // Miscの値に応じて付属可能旅団数を初期化する
-            InitMaxAllowedBrigades();
 
             // 編集項目を初期化する
             InitEditableItems();
@@ -1157,7 +1131,7 @@ namespace HoI2Editor.Forms
                     maxAllowedBrigadesLabel.Enabled = false;
                     maxAllowedBrigadesNumericUpDown.Enabled = false;
                 }
-                maxAllowedBrigadesNumericUpDown.Value = unit.MaxAllowedBrigades;
+                maxAllowedBrigadesNumericUpDown.Value = unit.GetMaxAllowedBrigades();
                 maxAllowedBrigadesNumericUpDown.Text =
                     maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
 
@@ -2378,6 +2352,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMaxAllowedBrigadesNumericUpDownValueChanged(object sender, EventArgs e)
         {
+            // DH以外では変更不可
+            if (Game.Type != GameType.DarkestHour)
+            {
+                return;
+            }
+
             // 選択中のユニットクラスがなければ何もしない
             var unit = classListBox.SelectedItem as Unit;
             if (unit == null)
@@ -2386,7 +2366,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            if (maxAllowedBrigadesNumericUpDown.Value == unit.MaxAllowedBrigades)
+            if (maxAllowedBrigadesNumericUpDown.Value == unit.GetMaxAllowedBrigades())
             {
                 return;
             }
@@ -2400,6 +2380,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             maxAllowedBrigadesNumericUpDown.ForeColor = Color.Red;
+
+            Debug.WriteLine(string.Format("[Unit] Max allowed brigades changed: {0} ({1})", unit.MaxAllowedBrigades,
+                unit));
         }
 
         /// <summary>

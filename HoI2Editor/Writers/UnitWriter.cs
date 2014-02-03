@@ -72,7 +72,7 @@ namespace HoI2Editor.Writers
                         writer.WriteLine("allowed_brigades = {0}", Units.Strings[(int) brigade]);
                     }
                     // max_allowed_brigades
-                    if (Game.Type == GameType.DarkestHour && Game.Version <= 102 && unit.MaxAllowedBrigades != 0)
+                    if ((Game.Type == GameType.DarkestHour) && (unit.MaxAllowedBrigades >= 0))
                     {
                         writer.WriteLine("max_allowed_brigades = {0}", unit.MaxAllowedBrigades);
                     }
@@ -80,7 +80,7 @@ namespace HoI2Editor.Writers
                 }
 
                 // upgrade
-                if (Game.Type == GameType.DarkestHour && unit.Upgrades.Count > 0)
+                if ((Game.Type == GameType.DarkestHour) && (unit.Upgrades.Count > 0))
                 {
                     foreach (UnitUpgrade upgrade in unit.Upgrades)
                     {
@@ -167,7 +167,7 @@ namespace HoI2Editor.Writers
             }
 
             // equipment (DH1.03以降)
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103 && model.Equipments.Count > 0)
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && (model.Equipments.Count > 0))
             {
                 writer.Write("\tequipment = {");
                 foreach (UnitEquipment equipment in model.Equipments)
@@ -209,7 +209,7 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\ttransportweight\t\t\t= {0}", model.TransportWeight);
             writer.WriteLine("\tsupplyconsumption \t\t= {0}", model.SupplyConsumption);
             writer.WriteLine("\tfuelconsumption\t\t\t= {0}", model.FuelConsumption);
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.NoFuelCombatMod) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.NoFuelCombatMod) > 0.00005))
             {
                 writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", model.NoFuelCombatMod);
             }
@@ -231,23 +231,23 @@ namespace HoI2Editor.Writers
             }
             writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor);
             writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor);
-            if (Game.Type == GameType.ArsenalOfDemocracy && Math.Abs(model.MaxSupplyStock) > 0.00005)
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxSupplyStock) > 0.00005))
             {
                 writer.WriteLine("\tmax_supply_stock = {0}", model.MaxSupplyStock);
             }
-            if (Game.Type == GameType.ArsenalOfDemocracy && Math.Abs(model.MaxOilStock) > 0.00005)
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxOilStock) > 0.00005))
             {
                 writer.WriteLine("\tmax_oil_stock = {0}", model.MaxOilStock);
             }
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceTimeFactor) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
             {
                 writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor);
             }
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceCostFactor) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
             {
                 writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
             }
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103 && Math.Abs(model.SpeedCap) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && (Math.Abs(model.SpeedCap) > 0.00005))
             {
                 writer.WriteLine("\tspeed_cap\t\t\t= {0}", model.SpeedCap);
             }
@@ -287,11 +287,11 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tsupplyconsumption\t\t\t= {0}", model.SupplyConsumption);
             writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption);
             writer.WriteLine("\tdistance\t\t\t\t\t= {0}", model.Distance);
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceTimeFactor) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
             {
                 writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor);
             }
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceCostFactor) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
             {
                 writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
             }
@@ -329,15 +329,15 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption);
             writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor);
             writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor);
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceTimeFactor) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
             {
                 writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor);
             }
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.ReinforceCostFactor) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
             {
                 writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
             }
-            if (Game.Type == GameType.DarkestHour && model.AutoUpgrade)
+            if ((Game.Type == GameType.DarkestHour) && model.AutoUpgrade)
             {
                 if (model.UpgradeClass == UnitType.FlyingRocket)
                 {
@@ -409,7 +409,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("\tairattack\t\t\t= {0}", model.AirAttack);
             }
-            if (Game.Type == GameType.ArsenalOfDemocracy && Math.Abs(model.ArtilleryBombardment) > 0.00005)
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.ArtilleryBombardment) > 0.00005))
             {
                 writer.WriteLine("\tartillery_bombardment\t\t= {0}", model.ArtilleryBombardment);
             }
@@ -422,7 +422,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("\tfuelconsumption\t\t= {0}", model.FuelConsumption);
             }
-            if (Game.Type == GameType.DarkestHour && Math.Abs(model.NoFuelCombatMod) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.NoFuelCombatMod) > 0.00005))
             {
                 writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", model.NoFuelCombatMod);
             }
@@ -444,15 +444,15 @@ namespace HoI2Editor.Writers
             }
             writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor);
             writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor);
-            if (Game.Type == GameType.ArsenalOfDemocracy && Math.Abs(model.MaxSupplyStock) > 0.00005)
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxSupplyStock) > 0.00005))
             {
                 writer.WriteLine("\tmax_supply_stock = {0}", model.MaxSupplyStock);
             }
-            if (Game.Type == GameType.ArsenalOfDemocracy && Math.Abs(model.MaxOilStock) > 0.00005)
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxOilStock) > 0.00005))
             {
                 writer.WriteLine("\tmax_oil_stock = {0}", model.MaxOilStock);
             }
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103 && Math.Abs(model.SpeedCap) > 0.00005)
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && (Math.Abs(model.SpeedCap) > 0.00005))
             {
                 writer.WriteLine("\tspeed_cap\t\t\t= {0}", model.SpeedCap);
             }
@@ -569,7 +569,7 @@ namespace HoI2Editor.Writers
                     Unit unit = units[(int) type];
 
                     // ユーザー定義師団に定義内容がなければ出力しない
-                    if (unit.ListPrio == -1 && unit.Type >= UnitType.Division01)
+                    if ((unit.ListPrio == -1) && (unit.Type >= UnitType.Division01))
                     {
                         continue;
                     }
@@ -824,7 +824,7 @@ namespace HoI2Editor.Writers
                     Unit unit = units[(int) type];
 
                     // ユーザー定義旅団に定義内容がなければ出力しない
-                    if (unit.ListPrio == -1 && unit.Type >= UnitType.Brigade01)
+                    if ((unit.ListPrio == -1) && (unit.Type >= UnitType.Brigade01))
                     {
                         continue;
                     }
@@ -890,7 +890,7 @@ namespace HoI2Editor.Writers
                     writer.WriteLine("\tengineer\t= yes");
                 }
             }
-            if (unit.Type != UnitType.None || unit.ListPrio != -1)
+            if ((unit.Type != UnitType.None) || (unit.ListPrio != -1))
             {
                 writer.WriteLine("\tlist_prio\t= {0}", unit.ListPrio);
             }
