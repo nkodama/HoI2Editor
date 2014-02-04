@@ -4437,6 +4437,7 @@ namespace HoI2Editor.Forms
                 else
                 {
                     autoUpgradeModelComboBox.SelectedIndex = -1;
+                    autoUpgradeModelComboBox.Text = model.UpgradeModel.ToString(CultureInfo.InvariantCulture);
                 }
                 autoUpgradeModelComboBox.Enabled = true;
             }
@@ -4446,6 +4447,9 @@ namespace HoI2Editor.Forms
                 autoUpgradeModelComboBox.SelectedIndex = -1;
                 autoUpgradeModelComboBox.ResetText();
             }
+            autoUpgradeModelComboBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeModel)
+                ? Color.Red
+                : SystemColors.WindowText;
             autoUpgradeModelComboBox.EndUpdate();
         }
 
@@ -5065,7 +5069,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     自動改良先クラスコンボボックスの選択項目変更時の処理
+        ///     自動改良先モデルコンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5105,6 +5109,92 @@ namespace HoI2Editor.Forms
             model.SetDirty(UnitModelItemId.UpgradeModel);
             model.SetDirty();
             unit.SetDirty();
+
+            // 文字色を変更する
+            autoUpgradeModelComboBox.ForeColor = Color.Red;
+
+            // 自動改良先モデルコンボボックスの項目色を変更するために描画更新する
+            autoUpgradeModelComboBox.Refresh();
+
+            Debug.WriteLine(string.Format("[Unit] Auto upgrade model changed: {0} ({1})",
+                Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel), unit.GetModelName(index)));
+        }
+
+        /// <summary>
+        ///     自動改良先クラスコンボボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAutoUpgradeModelComboBoxValidated(object sender, EventArgs e)
+        {
+            // 選択中の項目があれば何もしない
+            if (autoUpgradeModelComboBox.SelectedIndex >= 0)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            Unit upgrade = Units.Items[(int) model.UpgradeClass];
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!int.TryParse(autoUpgradeModelComboBox.Text, out val))
+            {
+                if ((model.UpgradeModel >= 0) && (model.UpgradeModel < upgrade.Models.Count))
+                {
+                    autoUpgradeModelComboBox.SelectedIndex = model.UpgradeModel;
+                }
+                else
+                {
+                    autoUpgradeModelComboBox.SelectedIndex = -1;
+                    autoUpgradeModelComboBox.Text = model.UpgradeModel.ToString(CultureInfo.InvariantCulture);
+                }
+                return;
+            }
+
+            // 値に変化がなければ更新しない
+            if (val == model.UpgradeModel)
+            {
+                // 選択項目が存在する範囲ならば数字を選択項目へ戻す
+                if ((val >= 0) && (val < upgrade.Models.Count))
+                {
+                    autoUpgradeModelComboBox.SelectedIndex = model.UpgradeModel;
+                }
+                return;
+            }
+
+            // 値を更新する
+            model.UpgradeModel = val;
+
+            // 選択項目が存在する範囲ならば数字を選択項目へ戻す
+            {
+                if ((val >= 0) && (val < upgrade.Models.Count))
+                {
+                    autoUpgradeModelComboBox.SelectedIndex = model.UpgradeModel;
+                }
+            }
+
+            // 編集済みフラグを設定する
+            model.SetDirty(UnitModelItemId.UpgradeModel);
+            model.SetDirty();
+            unit.SetDirty();
+
+            // 文字色を変更する
+            autoUpgradeModelComboBox.ForeColor = Color.Red;
 
             // 自動改良先モデルコンボボックスの項目色を変更するために描画更新する
             autoUpgradeModelComboBox.Refresh();
