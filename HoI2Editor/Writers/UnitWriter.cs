@@ -337,17 +337,6 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
             }
-            if ((Game.Type == GameType.DarkestHour) && model.AutoUpgrade)
-            {
-                if (model.UpgradeClass == UnitType.FlyingRocket)
-                {
-                    writer.WriteLine("\tflying_rocket\t\t\t\t= {0}", model.UpgradeModel);
-                }
-                if (model.UpgradeClass == UnitType.Interceptor)
-                {
-                    writer.WriteLine("\tinterceptor\t\t\t\t\t= {0}", model.UpgradeModel);
-                }
-            }
         }
 
         /// <summary>
