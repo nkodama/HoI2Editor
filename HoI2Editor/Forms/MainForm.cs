@@ -254,8 +254,15 @@ namespace HoI2Editor.Forms
                 UpdateLanguage();
             }
 
-            // ゲームフォルダ名が有効ならばデータ編集を有効化する
-            editGroupBox.Enabled = Game.IsGameFolderActive;
+            // ゲームフォルダ名が有効でなければデータ編集を無効化する
+            if (!Game.IsGameFolderActive)
+            {
+                editGroupBox.Enabled = false;
+                return;
+            }
+
+            // 他のエディタプロセスで使われていなければ、データ編集を有効化する
+            editGroupBox.Enabled = HoI2Editor.LockMutex(Game.FolderName);
         }
 
         /// <summary>

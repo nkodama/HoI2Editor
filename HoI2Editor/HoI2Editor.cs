@@ -1,6 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Resources;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
@@ -729,6 +733,118 @@ namespace HoI2Editor
             else
             {
                 _mainForm.DisableFolderChange();
+            }
+        }
+
+        #endregion
+
+        #region 多重編集禁止
+
+        /// <summary>
+        ///     多重編集禁止用のミューテックス
+        /// </summary>
+        private const string MutextName = "Alternative HoI2 Editor";
+
+        private static Mutex _mutex;
+
+        /// <summary>
+        ///     ミューテックスをロックする
+        /// </summary>
+        /// <param name="key">キー文字列</param>
+        /// <returns>ロックに成功したらtrueを返す</returns>
+        public static bool LockMutex(string key)
+        {
+            // 既にミューテックスをロックしていれば解放する
+            if (_mutex != null)
+            {
+                _mutex.ReleaseMutex();
+                _mutex = null;
+            }
+
+            _mutex = new Mutex(false, string.Format("{0}: {1}", MutextName, key.GetHashCode()));
+
+            if (!_mutex.WaitOne(0, false))
+            {
+                _mutex = null;
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        ///     ミューテックスをアンロックする
+        /// </summary>
+        public static void UnlockMutex()
+        {
+            if (_mutex == null)
+            {
+                return;
+            }
+
+            _mutex.ReleaseMutex();
+            _mutex = null;
+        }
+
+        #endregion
+
+        #region ログファイル
+
+        /// <summary>
+        ///     ログファイル名
+        /// </summary>
+        private const string LogFileName = "editorlog.txt";
+
+        /// <summary>
+        ///     ログファイル識別子
+        /// </summary>
+        private const string LogFileIdentifier = "LogFile";
+
+        /// <summary>
+        ///     ログファイル書き込み用
+        /// </summary>
+        private static StreamWriter _writer;
+
+        /// <summary>
+        ///     ログファイル書き込み用
+        /// </summary>
+        private static TextWriterTraceListener _listener;
+
+        /// <summary>
+        ///     ログファイルを初期化する
+        /// </summary>
+        [Conditional("DEBUG")]
+        public static void InitLogFile()
+        {
+            try
+            {
+                _writer = new StreamWriter(LogFileName, true, Encoding.UTF8) {AutoFlush = true};
+                _listener = new TextWriterTraceListener(_writer, LogFileIdentifier);
+                Debug.Listeners.Add(_listener);
+
+                Debug.WriteLine("");
+                Debug.WriteLine(String.Format("[{0}]", DateTime.Now));
+            }
+            catch (Exception)
+            {
+                const string appName = "Alternative HoI2 Editor";
+                MessageBox.Show(Resources.LogFileOpenError, appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TermLogFile();
+            }
+        }
+
+        /// <summary>
+        ///     ログファイルを終了する
+        /// </summary>
+        [Conditional("DEBUG")]
+        public static void TermLogFile()
+        {
+            if (_listener != null)
+            {
+                Debug.Listeners.Remove(_listener);
+            }
+            if (_writer != null)
+            {
+                _writer.Close();
             }
         }
 
