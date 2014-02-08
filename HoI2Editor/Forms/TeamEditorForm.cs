@@ -779,6 +779,7 @@ namespace HoI2Editor.Forms
                 team.SetDirtyAll();
 
                 // 研究機関リストに項目を追加する
+                Teams.AddItem(team);
                 AddListItem(team);
 
                 // 編集項目を有効化する
