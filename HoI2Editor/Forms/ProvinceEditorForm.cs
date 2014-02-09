@@ -1599,7 +1599,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            province.Continent = continent;
+            Provinces.ModifyContinent(province, continent);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -1635,7 +1635,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            province.Region = region;
+            Provinces.ModifyRegion(province, region);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -1671,7 +1671,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            province.Area = area;
+            Provinces.ModifyArea(province, area);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
