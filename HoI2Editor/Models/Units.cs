@@ -2371,7 +2371,7 @@ namespace HoI2Editor.Models
         private static void SaveDivisionTypes(string fileName)
         {
             // 変更がなければ何もしない
-            if (!IsDirtyBrigadeTypes())
+            if (!IsDirtyDivisionTypes())
             {
                 return;
             }
