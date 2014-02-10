@@ -700,6 +700,7 @@ namespace HoI2Editor.Models
 
             Groups.Clear();
 
+            bool error = false;
             foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
             {
                 string fileName = FileNames[(int) category];
@@ -707,13 +708,19 @@ namespace HoI2Editor.Models
                 try
                 {
                     // 技術定義ファイルを読み込む
-                    Debug.WriteLine(string.Format("[Tech] Load: {0}", fileName));
                     LoadFile(pathName);
                 }
                 catch (Exception)
                 {
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, pathName));
+                    error = true;
                     Debug.WriteLine(string.Format("[Tech] Read error: {0}", pathName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, pathName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, pathName),
+                        Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        break;
+                    }
                 }
             }
 
@@ -725,6 +732,12 @@ namespace HoI2Editor.Models
 
             // リンクの切れた一時キーをリストに登録する
             AddUnlinkedTempKey();
+
+            // 読み込みに失敗していれば戻る
+            if (error)
+            {
+                return;
+            }
 
             // 編集済みフラグを解除する
             _dirtyFlag = false;
@@ -739,9 +752,10 @@ namespace HoI2Editor.Models
         /// <param name="fileName">技術定義ファイル名</param>
         private static void LoadFile(string fileName)
         {
+            Debug.WriteLine(string.Format("[Tech] Load: {0}", Path.GetFileName(fileName)));
+
             TechGroup grp = TechParser.Parse(fileName);
             Groups.Add(grp);
-            grp.ResetDirtyAll();
         }
 
         #endregion
@@ -751,41 +765,73 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     技術定義ファイル群を保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
-            // 編集済みでなければ保存しない
             if (IsDirty())
             {
                 string folderName = Game.GetWriteFileName(Game.TechPathName);
-                // 技術定義フォルダがなければ作成する
-                if (!Directory.Exists(folderName))
+                try
                 {
-                    Directory.CreateDirectory(folderName);
+                    // 技術定義フォルダがなければ作成する
+                    if (!Directory.Exists(folderName))
+                    {
+                        Directory.CreateDirectory(folderName);
+                    }
                 }
+                catch (Exception)
+                {
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, folderName));
+                    Debug.WriteLine(string.Format("[Tech] Write error: {0}", folderName));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, folderName),
+                        Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                bool error = false;
                 foreach (TechGroup grp in Groups.Where(grp => grp.IsDirty()))
                 {
                     string fileName = Path.Combine(folderName, FileNames[(int) grp.Category]);
                     try
                     {
                         // 技術定義ファイルを保存する
+                        Debug.WriteLine(string.Format("[Tech] Save: {0}", Path.GetFileName(fileName)));
                         TechWriter.Write(grp, fileName);
                     }
                     catch (Exception)
                     {
+                        error = true;
                         Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                         Debug.WriteLine(string.Format("[Tech] Write error: {0}", fileName));
+                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                            Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                            == DialogResult.Cancel)
+                        {
+                            return false;
+                        }
                     }
+                }
+
+                // 保存に失敗していれば戻る
+                if (error)
+                {
+                    return false;
                 }
 
                 // 編集済みフラグを解除する
                 _dirtyFlag = false;
             }
 
-            // 文字列定義のみ保存の場合、技術名などの編集済みフラグがクリアされないためここで全クリアする
-            foreach (TechGroup grp in Groups)
+            if (_loaded)
             {
-                grp.ResetDirtyAll();
+                // 文字列定義のみ保存の場合、技術名などの編集済みフラグがクリアされないためここで全クリアする
+                foreach (TechGroup grp in Groups)
+                {
+                    grp.ResetDirtyAll();
+                }
             }
+
+            return true;
         }
 
         /// <summary>

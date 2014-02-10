@@ -313,6 +313,114 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Strings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorConfig {
+            get {
+                return ResourceManager.GetString("EditorConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Division Name Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorDivisionName {
+            get {
+                return ResourceManager.GetString("EditorDivisionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Leader Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorLeader {
+            get {
+                return ResourceManager.GetString("EditorLeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Minister Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorMinister {
+            get {
+                return ResourceManager.GetString("EditorMinister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Misc Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorMisc {
+            get {
+                return ResourceManager.GetString("EditorMisc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Model Name Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorModelName {
+            get {
+                return ResourceManager.GetString("EditorModelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Province Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorProvince {
+            get {
+                return ResourceManager.GetString("EditorProvince", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Random Leader Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorRandomLeader {
+            get {
+                return ResourceManager.GetString("EditorRandomLeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Team Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorTeam {
+            get {
+                return ResourceManager.GetString("EditorTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tech Tree Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorTech {
+            get {
+                return ResourceManager.GetString("EditorTech", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unit Model Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorUnit {
+            get {
+                return ResourceManager.GetString("EditorUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unit Name Editor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditorUnitName {
+            get {
+                return ResourceManager.GetString("EditorUnitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Reading file error に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string FileReadError {

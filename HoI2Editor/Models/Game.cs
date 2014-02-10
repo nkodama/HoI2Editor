@@ -460,10 +460,10 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     マップフォルダ名を取得する
+        ///     プロヴィンス定義フォルダ名を取得する
         /// </summary>
-        /// <returns>マップフォルダ名</returns>
-        public static string GetMapFolderName()
+        /// <returns>プロヴィンス定義フォルダ名</returns>
+        public static string GetProvinceFolderName()
         {
             // バニラのマップ
             if (Type != GameType.DarkestHour || Misc.MapNumber == 0)

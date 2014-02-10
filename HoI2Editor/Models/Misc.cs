@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Windows.Forms;
 using HoI2Editor.Parsers;
+using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
 using HoI2Editor.Writers;
 
@@ -3910,8 +3913,18 @@ namespace HoI2Editor.Models
             _suffixes = new string[Enum.GetValues(typeof (MiscSectionId)).Length];
 
             // miscファイルを解釈する
-            if (!MiscParser.Parse(Game.GetReadFileName(Game.MiscPathName)))
+            string fileName = Game.GetReadFileName(Game.MiscPathName);
+            Debug.WriteLine(string.Format("[Misc] Load: {0}", Path.GetFileName(fileName)));
+            try
             {
+                MiscParser.Parse(fileName);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine(string.Format("[Misc] Read error: {0}", fileName));
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    Resources.EditorMisc, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -3929,26 +3942,42 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     miscファイルを保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
             {
-                return;
+                return true;
             }
 
-            // dbフォルダがなければ作成する
-            string folderName = Game.GetWriteFileName(Game.DatabasePathName);
-            if (!Directory.Exists(folderName))
+            string fileName = Game.GetWriteFileName(Game.MiscPathName);
+            try
             {
-                Directory.CreateDirectory(folderName);
-            }
+                // dbフォルダがなければ作成する
+                string folderName = Game.GetWriteFileName(Game.DatabasePathName);
+                if (!Directory.Exists(folderName))
+                {
+                    Directory.CreateDirectory(folderName);
+                }
 
-            // miscファイルを保存する
-            MiscWriter.Write(Game.GetWriteFileName(Game.MiscPathName));
+                // miscファイルを保存する
+                Debug.WriteLine(string.Format("[Misc] Save: {0}", Path.GetFileName(fileName)));
+                MiscWriter.Write(fileName);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine(string.Format("[Misc] Write error: {0}", fileName));
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    Resources.EditorMisc, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
             // 編集済みフラグを全て解除する
             ResetDirtyAll();
+
+            return true;
         }
 
         #endregion

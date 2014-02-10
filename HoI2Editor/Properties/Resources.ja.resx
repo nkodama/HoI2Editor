@@ -3624,4 +3624,40 @@
   <data name="MiscSectionTrade" xml:space="preserve">
     <value>貿易</value>
   </data>
+  <data name="EditorDivisionName" xml:space="preserve">
+    <value>師団名エディタ</value>
+  </data>
+  <data name="EditorLeader" xml:space="preserve">
+    <value>指揮官エディタ</value>
+  </data>
+  <data name="EditorMinister" xml:space="preserve">
+    <value>閣僚エディタ</value>
+  </data>
+  <data name="EditorMisc" xml:space="preserve">
+    <value>基礎データエディタ</value>
+  </data>
+  <data name="EditorModelName" xml:space="preserve">
+    <value>モデル名エディタ</value>
+  </data>
+  <data name="EditorProvince" xml:space="preserve">
+    <value>プロヴィンスエディタ</value>
+  </data>
+  <data name="EditorRandomLeader" xml:space="preserve">
+    <value>ランダム指揮官エディタ</value>
+  </data>
+  <data name="EditorTeam" xml:space="preserve">
+    <value>研究機関エディタ</value>
+  </data>
+  <data name="EditorTech" xml:space="preserve">
+    <value>技術ツリーエディタ</value>
+  </data>
+  <data name="EditorUnit" xml:space="preserve">
+    <value>ユニットモデルエディタ</value>
+  </data>
+  <data name="EditorUnitName" xml:space="preserve">
+    <value>ユニット名エディタ</value>
+  </data>
+  <data name="EditorConfig" xml:space="preserve">
+    <value>文字列</value>
+  </data>
 </root>

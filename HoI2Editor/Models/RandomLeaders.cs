@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -11,7 +13,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ランダム指揮官名を保持するクラス
     /// </summary>
-    public class RandomLeaders
+    public static class RandomLeaders
     {
         #region 内部フィールド
 
@@ -108,6 +110,18 @@ namespace HoI2Editor.Models
 
             // ランダム指揮官名定義ファイルを読み込む
             LoadFile(fileName);
+            try
+            {
+                LoadFile(fileName);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine(string.Format("[RandomLeader] Read error: {0}", fileName));
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    Resources.EditorDivisionName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // 編集済みフラグを全て解除する
             ResetDirtyAll();
@@ -122,6 +136,8 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void LoadFile(string fileName)
         {
+            Debug.WriteLine(string.Format("[RandomLeader] Load: {0}", Path.GetFileName(fileName)));
+
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = Path.GetFileName(fileName);
@@ -189,22 +205,51 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ランダム指揮官名定義ファイルを保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
             {
-                return;
+                return true;
             }
 
-            // dbフォルダがなければ作成する
             string folderName = Game.GetWriteFileName(Game.DatabasePathName);
-            if (!Directory.Exists(folderName))
+            string fileName = Game.GetWriteFileName(Game.RandomLeadersPathName);
+            try
             {
-                Directory.CreateDirectory(folderName);
+                // dbフォルダがなければ作成する
+                if (!Directory.Exists(folderName))
+                {
+                    Directory.CreateDirectory(folderName);
+                }
+
+                // ランダム指揮官名定義ファイルを保存する
+                SaveFile(fileName);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine(string.Format("[RandomLeader] Write error: {0}", fileName));
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    Resources.EditorDivisionName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
-            string fileName = Game.GetWriteFileName(Game.RandomLeadersPathName);
+            // 編集済みフラグを全て解除する
+            ResetDirtyAll();
+
+            return true;
+        }
+
+        /// <summary>
+        ///     ランダム指揮官名定義ファイルを保存する
+        /// </summary>
+        /// <param name="fileName">対象ファイル名</param>
+        private static void SaveFile(string fileName)
+        {
+            Debug.WriteLine(string.Format("[RandomLeader] Save: {0}", Path.GetFileName(fileName)));
+
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = fileName;
@@ -226,9 +271,6 @@ namespace HoI2Editor.Models
                     }
                 }
             }
-
-            // 編集済みフラグを全て解除する
-            ResetDirtyAll();
         }
 
         #endregion
@@ -240,7 +282,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>ランダム指揮官名リスト</returns>
-        public static List<string> GetNames(Country country)
+        public static IEnumerable<string> GetNames(Country country)
         {
             return Items[(int) country] ?? new List<string>();
         }
@@ -250,7 +292,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="name">ランダム指揮官名</param>
         /// <param name="country">国タグ</param>
-        public static void AddName(string name, Country country)
+        private static void AddName(string name, Country country)
         {
             // 未登録の場合はリストを作成する
             if (Items[(int) country] == null)
@@ -343,7 +385,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(Country country)
+        private static void SetDirty(Country country)
         {
             DirtyFlags[(int) country] = true;
             _dirtyFlag = true;
@@ -352,7 +394,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public static void ResetDirtyAll()
+        private static void ResetDirtyAll()
         {
             foreach (Country country in Enum.GetValues(typeof (Country)))
             {

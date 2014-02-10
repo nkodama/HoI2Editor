@@ -137,7 +137,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.SaveFiles();
+                    HoI2Editor.Save();
                     break;
                 case DialogResult.No:
                     HoI2Editor.SaveCanceled = true;
@@ -176,12 +176,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.SaveFiles();
+                        HoI2Editor.Save();
                         break;
                 }
             }
 
-            HoI2Editor.ReloadFiles();
+            HoI2Editor.Reload();
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.SaveFiles();
+            HoI2Editor.Save();
         }
 
         /// <summary>

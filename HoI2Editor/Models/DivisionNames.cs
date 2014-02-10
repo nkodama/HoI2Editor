@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -11,7 +13,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     新規師団名を保持するクラス
     /// </summary>
-    public class DivisionNames
+    public static class DivisionNames
     {
         #region 内部フィールド
 
@@ -110,25 +112,90 @@ namespace HoI2Editor.Models
                 }
             }
 
+            bool error = false;
+
             // 陸軍師団名定義ファイルを読み込む
             string fileName = Game.GetReadFileName(Game.ArmyNamesPathName);
             if (File.Exists(fileName))
             {
-                LoadFile(Branch.Army, fileName);
+                try
+                {
+                    LoadFile(Branch.Army, fileName);
+                }
+                catch (Exception)
+                {
+                    error = true;
+                    Debug.WriteLine(string.Format("[DivisionName] Read error: {0}", fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorDivisionName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                error = true;
             }
 
             // 海軍師団名定義ファイルを読み込む
             fileName = Game.GetReadFileName(Game.NavyNamesPathName);
             if (File.Exists(fileName))
             {
-                LoadFile(Branch.Navy, fileName);
+                try
+                {
+                    LoadFile(Branch.Navy, fileName);
+                }
+                catch (Exception)
+                {
+                    error = true;
+                    Debug.WriteLine(string.Format("[DivisionName] Read error: {0}", fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                error = true;
             }
 
             // 空軍師団名定義ファイルを読み込む
             fileName = Game.GetReadFileName(Game.AirNamesPathName);
             if (File.Exists(fileName))
             {
-                LoadFile(Branch.Airforce, fileName);
+                try
+                {
+                    LoadFile(Branch.Airforce, fileName);
+                }
+                catch (Exception)
+                {
+                    error = true;
+                    Debug.WriteLine(string.Format("[DivisionName] Read error: {0}", fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                error = true;
+            }
+
+            // 読み込みに失敗していれば戻る
+            if (error)
+            {
+                return;
             }
 
             // 編集済みフラグを全て解除する
@@ -145,6 +212,8 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void LoadFile(Branch branch, string fileName)
         {
+            Debug.WriteLine(string.Format("[DivisionName] Load: {0}", Path.GetFileName(fileName)));
+
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = Path.GetFileName(fileName);
@@ -213,28 +282,88 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     師団名定義ファイルを保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
+            bool error = false;
+
             // 陸軍師団名定義ファイルを保存する
             if (IsDirty(Branch.Army))
             {
-                SaveFile(Branch.Army, Game.GetWriteFileName(Game.ArmyNamesPathName));
+                string fileName = Game.GetWriteFileName(Game.ArmyNamesPathName);
+                try
+                {
+                    SaveFile(Branch.Army, fileName);
+                }
+                catch (Exception)
+                {
+                    error = true;
+                    Debug.WriteLine(string.Format("[DivisionName] Write error: {0}", fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                }
             }
+
 
             // 海軍師団名定義ファイルを保存する
             if (IsDirty(Branch.Navy))
             {
-                SaveFile(Branch.Navy, Game.GetWriteFileName(Game.NavyNamesPathName));
+                string fileName = Game.GetWriteFileName(Game.NavyNamesPathName);
+                try
+                {
+                    SaveFile(Branch.Navy, fileName);
+                }
+                catch (Exception)
+                {
+                    error = true;
+                    Debug.WriteLine(string.Format("[DivisionName] Write error: {0}", fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                }
             }
 
             // 空軍師団名定義ファイルを保存する
             if (IsDirty(Branch.Airforce))
             {
-                SaveFile(Branch.Airforce, Game.GetWriteFileName(Game.AirNamesPathName));
+                string fileName = Game.GetWriteFileName(Game.AirNamesPathName);
+                try
+                {
+                    SaveFile(Branch.Airforce, fileName);
+                }
+                catch (Exception)
+                {
+                    error = true;
+                    Debug.WriteLine(string.Format("[DivisionName] Write error: {0}", fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            // 保存に失敗していれば戻る
+            if (error)
+            {
+                return false;
             }
 
             // 編集済みフラグを全て解除する
             ResetDirtyAll();
+
+            return true;
         }
 
         /// <summary>
@@ -251,6 +380,8 @@ namespace HoI2Editor.Models
                 Directory.CreateDirectory(folderName);
             }
 
+            Debug.WriteLine(string.Format("[DivisionName] Save: {0}", Path.GetFileName(fileName)));
+
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = fileName;
@@ -260,14 +391,7 @@ namespace HoI2Editor.Models
                 {
                     foreach (string name in Items[(int) branch, (int) country])
                     {
-                        try
-                        {
-                            writer.WriteLine("{0};{1}", Countries.Strings[(int) country], name);
-                        }
-                        catch (Exception)
-                        {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-                        }
+                        writer.WriteLine("{0};{1}", Countries.Strings[(int) country], name);
                         _currentLineNo++;
                     }
                 }
@@ -284,7 +408,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         /// <returns>師団名リスト</returns>
-        public static List<string> GetNames(Branch branch, Country country)
+        public static IEnumerable<string> GetNames(Branch branch, Country country)
         {
             return Items[(int) branch, (int) country] ?? new List<string>();
         }
@@ -295,7 +419,7 @@ namespace HoI2Editor.Models
         /// <param name="name">師団名</param>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void AddName(string name, Branch branch, Country country)
+        private static void AddName(string name, Branch branch, Country country)
         {
             // 未登録の場合はリストを作成する
             if (Items[(int) branch, (int) country] == null)
@@ -557,7 +681,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(Branch branch, Country country)
+        private static void SetDirty(Branch branch, Country country)
         {
             CountryDirtyFlags[(int) branch, (int) country] = true;
             BranchDirtyFlags[(int) branch] = true;
@@ -567,7 +691,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public static void ResetDirtyAll()
+        private static void ResetDirtyAll()
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {

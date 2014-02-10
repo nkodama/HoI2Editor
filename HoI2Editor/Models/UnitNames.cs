@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -111,10 +113,14 @@ namespace HoI2Editor.Models
             "NAME_TRANSPORT"
         };
 
+        #endregion
+
+        #region 内部定数
+
         /// <summary>
         ///     ユニット種類文字列
         /// </summary>
-        public static readonly string[] TypeStrings =
+        private static readonly string[] TypeStrings =
         {
             "HQ",
             "Inf",
@@ -151,10 +157,6 @@ namespace HoI2Editor.Models
             "NS",
             "TP"
         };
-
-        #endregion
-
-        #region 内部定数
 
         /// <summary>
         ///     利用可能なユニット名種類 (DDA/AoD/DH1.02)
@@ -322,7 +324,18 @@ namespace HoI2Editor.Models
             }
 
             // ユニット名定義ファイルを読み込む
-            LoadFile(fileName);
+            try
+            {
+                LoadFile(fileName);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine(string.Format("[UnitName] Read error: {0}", fileName));
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    Resources.EditorUnitName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // 編集済みフラグを全て解除する
             ResetDirtyAll();
@@ -337,6 +350,8 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void LoadFile(string fileName)
         {
+            Debug.WriteLine(string.Format("[UnitName] Load: {0}", Path.GetFileName(fileName)));
+
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = Path.GetFileName(fileName);
@@ -420,27 +435,55 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット名定義ファイルを保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
             {
-                return;
-            }
-
-            // dbフォルダがなければ作成する
-            string folderName = Game.GetWriteFileName(Game.DatabasePathName);
-            if (!Directory.Exists(folderName))
-            {
-                Directory.CreateDirectory(folderName);
+                return true;
             }
 
             string fileName = Game.GetWriteFileName(Game.UnitNamesPathName);
+            try
+            {
+                // dbフォルダがなければ作成する
+                string folderName = Game.GetWriteFileName(Game.DatabasePathName);
+                if (!Directory.Exists(folderName))
+                {
+                    Directory.CreateDirectory(folderName);
+                }
+
+                // ユニット名定義ファイルを保存する
+                SaveFile(fileName);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine(string.Format("[UnitName] Write error: {0}", fileName));
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    Resources.EditorUnitName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // 編集済みフラグを全て解除する
+            ResetDirtyAll();
+
+            return true;
+        }
+
+        /// <summary>
+        ///     ユニット名定義ファイルを保存する
+        /// </summary>
+        /// <param name="fileName">対象ファイル名</param>
+        private static void SaveFile(string fileName)
+        {
+            Debug.WriteLine(string.Format("[UnitName] Save: {0}", Path.GetFileName(fileName)));
+
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = fileName;
-                _currentLineNo = 3;
-
+                _currentLineNo = 1;
 
                 foreach (Country country in Items.Select(pair => pair.Key)
                     .Where(country => ExistsCountry(country) && Items[country].Count > 0))
@@ -451,22 +494,13 @@ namespace HoI2Editor.Models
                     {
                         foreach (string name in Items[country][type])
                         {
-                            try
-                            {
-                                writer.WriteLine(
-                                    "{0};{1};{2}", Countries.Strings[(int) country], TypeStrings[(int) type], name);
-                            }
-                            catch (Exception)
-                            {
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-                            }
+                            writer.WriteLine("{0};{1};{2}", Countries.Strings[(int) country], TypeStrings[(int) type],
+                                name);
+                            _currentLineNo++;
                         }
                     }
                 }
             }
-
-            // 編集済みフラグを全て解除する
-            ResetDirtyAll();
         }
 
         #endregion
@@ -479,7 +513,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
         /// <returns>ユニット名リスト</returns>
-        public static List<string> GetNames(Country country, UnitNameType type)
+        public static IEnumerable<string> GetNames(Country country, UnitNameType type)
         {
             // 未登録の場合は空のリストを返す
             if (!ExistsType(country, type))
@@ -496,7 +530,7 @@ namespace HoI2Editor.Models
         /// <param name="name">ユニット名</param>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
-        public static void AddName(string name, Country country, UnitNameType type)
+        private static void AddName(string name, Country country, UnitNameType type)
         {
             // 未登録の場合は項目を作成する
             if (!ExistsCountry(country))
@@ -804,7 +838,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
-        public static void SetDirty(Country country, UnitNameType type)
+        private static void SetDirty(Country country, UnitNameType type)
         {
             TypeDirtyFlags[(int) country, (int) type] = true;
             CountryDirtyFlags[(int) country] = true;
@@ -814,7 +848,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public static void ResetDirtyAll()
+        private static void ResetDirtyAll()
         {
             foreach (Country country in Enum.GetValues(typeof (Country)))
             {

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -3469,12 +3471,53 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            // プロヴィンスデータを順に読み込む
             Items.Clear();
-            _currentFileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.ProvinceFileName);
-            _currentLineNo = 1;
-            using (var reader = new StreamReader(_currentFileName, Encoding.GetEncoding(Game.CodePage)))
+
+            // プロヴィンスデータを順に読み込む
+            bool error = false;
+            string fileName = Game.GetReadFileName(Game.GetProvinceFolderName(), Game.ProvinceFileName);
+            try
             {
+                LoadFile(fileName);
+            }
+            catch (Exception)
+            {
+                error = true;
+                Debug.WriteLine("[Province] Load failed: {0}", fileName);
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    Resources.EditorProvince, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // 大陸/地方/地域の対応付け
+            AttachProvinces();
+
+            // 海域リストを更新する
+            UpdateSeaZones();
+
+            // 読み込みに失敗していれば戻る
+            if (error)
+            {
+                return;
+            }
+
+            // 読み込み済みフラグを設定する
+            _loaded = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンスファイルを読み込む
+        /// </summary>
+        /// <param name="fileName">対象ファイル名</param>
+        private static void LoadFile(string fileName)
+        {
+            Debug.WriteLine(string.Format("[Province] Load: {0}", Path.GetFileName(fileName)));
+
+            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            {
+                _currentFileName = fileName;
+                _currentLineNo = 1;
+
                 // 空ファイルを読み飛ばす
                 if (reader.EndOfStream)
                 {
@@ -3499,15 +3542,6 @@ namespace HoI2Editor.Models
 
                 ResetDirty();
             }
-
-            // 大陸/地方/地域の対応付け
-            AttachProvinces();
-
-            // 海域リストを更新する
-            UpdateSeaZones();
-
-            // 読み込み済みフラグを設定する
-            _loaded = true;
         }
 
         /// <summary>
@@ -4228,191 +4262,219 @@ namespace HoI2Editor.Models
         #region ファイル書き込み
 
         /// <summary>
-        ///     プロヴィンスファイルを保存する
+        ///     プロヴィンス定義ファイルを保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
-            // 編集済みでなければ何もしない
             if (IsDirty())
             {
-                // フォルダがなければ作成する
-                string folderName = Game.GetWriteFileName(Game.GetMapFolderName());
+                string folderName = Game.GetWriteFileName(Game.GetProvinceFolderName());
                 if (string.IsNullOrEmpty(folderName))
                 {
-                    return;
-                }
-                if (!Directory.Exists(folderName))
-                {
-                    Directory.CreateDirectory(folderName);
+                    return false;
                 }
 
                 string fileName = Path.Combine(folderName, Game.ProvinceFileName);
-                using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+                try
                 {
-                    _currentFileName = fileName;
-                    _currentLineNo = 2;
-
-                    // ヘッダ行を書き込む
-                    writer.WriteLine(
-                        "Id;Name;Area;Region;Continent;Climate;Terrain;SizeModifier;AirCapacity;Infrastructure;City;Beaches;Port Allowed;Port Seazone;IC;Manpower;Oil;Metal;Energy;Rare Materials;City XPos;City YPos;Army XPos;Army YPos;Port XPos;Port YPos;Beach XPos;Beach YPos;Beach Icon;Fort XPos;Fort YPos;AA XPos;AA YPos;Counter x;Counter Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Fill coord X;Fill coord Y;;;;;;;;;"
-                        );
-
-                    // プロヴィンス定義行を順に書き込む
-                    foreach (Province province in Items)
+                    // フォルダがなければ作成する
+                    if (!Directory.Exists(folderName))
                     {
-                        if (Game.Type == GameType.DarkestHour)
-                        {
-                            writer.WriteLine(
-                                "{0};{1};{2};{3};{4};{5};{6};;;{7};;{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};;;;;;;;;;;{32};{33};{34};{35};{36};{37};{38};{39};{40};{41};{42}",
-                                province.Id,
-                                province.Name,
-                                AreaStrings[(int) province.Area],
-                                RegionStrings[(int) province.Region],
-                                province.Continent != ContinentId.None ? ContinentStrings[(int) province.Continent] : "",
-                                ClimateStrings[(int) province.Climate],
-                                TerrainStrings[(int) province.Terrain],
-                                province.Infrastructure,
-                                province.Beaches ? 1 : 0,
-                                province.PortAllowed ? 1 : 0,
-                                province.PortSeaZone,
-                                province.Ic,
-                                province.Manpower,
-                                province.Oil,
-                                province.Metal,
-                                province.Energy,
-                                province.RareMaterials,
-                                province.CityXPos,
-                                province.CityYPos,
-                                province.ArmyXPos,
-                                province.ArmyYPos,
-                                province.PortXPos,
-                                province.PortYPos,
-                                province.BeachXPos,
-                                province.BeachYPos,
-                                province.BeachIcon,
-                                province.FortXPos,
-                                province.FortYPos,
-                                province.AaXPos,
-                                province.AaYPos,
-                                province.CounterXPos,
-                                province.CounterYPos,
-                                province.FillCoordX1,
-                                province.FillCoordY1,
-                                province.FillCoordX2,
-                                province.FillCoordY2,
-                                (province.FillCoordX3 != 0)
-                                    ? province.FillCoordX3.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.FillCoordY3 != 0)
-                                    ? province.FillCoordY3.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.FillCoordX4 != 0)
-                                    ? province.FillCoordX4.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.FillCoordY4 != 0)
-                                    ? province.FillCoordY4.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.FillCoordX5 != 0)
-                                    ? province.FillCoordX5.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.FillCoordY5 != 0)
-                                    ? province.FillCoordY5.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.FillCoordX6 != 0)
-                                    ? province.FillCoordX6.ToString(CultureInfo.InvariantCulture)
-                                    : "");
-                        }
-                        else
-                        {
-                            writer.Write(
-                                "{0};{1};{2};{3};{4};{5};{6};;;{7};;{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};;;;;;;;;;;{32};{33};{34};{35}",
-                                province.Id,
-                                province.Name,
-                                AreaStrings[(int) province.Area],
-                                RegionStrings[(int) province.Region],
-                                ContinentStrings[(int) province.Continent],
-                                ClimateStrings[(int) province.Climate],
-                                TerrainStrings[(int) province.Terrain],
-                                province.Infrastructure,
-                                province.Beaches ? 1 : 0,
-                                province.PortAllowed ? 1 : 0,
-                                province.PortSeaZone,
-                                (province.Terrain != TerrainId.Ocean)
-                                    ? province.Ic.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.Terrain != TerrainId.Ocean)
-                                    ? province.Manpower.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.Terrain != TerrainId.Ocean)
-                                    ? province.Oil.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.Terrain != TerrainId.Ocean)
-                                    ? province.Metal.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.Terrain != TerrainId.Ocean)
-                                    ? province.Energy.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.Terrain != TerrainId.Ocean)
-                                    ? province.RareMaterials.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.CityXPos != 0) ? province.CityXPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.CityYPos != 0) ? province.CityYPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.ArmyXPos != 0) ? province.ArmyXPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.ArmyYPos != 0) ? province.ArmyYPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.PortXPos != 0) ? province.PortXPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.PortYPos != 0) ? province.PortYPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.BeachXPos != 0)
-                                    ? province.BeachXPos.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.BeachYPos != 0)
-                                    ? province.BeachYPos.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.BeachXPos != 0)
-                                    ? province.BeachIcon.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.FortXPos != 0) ? province.FortXPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.FortYPos != 0) ? province.FortYPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.AaXPos != 0) ? province.AaXPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.AaYPos != 0) ? province.AaYPos.ToString(CultureInfo.InvariantCulture) : "",
-                                (province.CounterXPos != 0)
-                                    ? province.CounterXPos.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                (province.CounterYPos != 0)
-                                    ? province.CounterYPos.ToString(CultureInfo.InvariantCulture)
-                                    : "",
-                                province.FillCoordX1,
-                                province.FillCoordY1,
-                                province.FillCoordX2,
-                                province.FillCoordY2);
-                            if (province.FillCoordX3 != 0 || province.FillCoordY3 != 0 ||
-                                province.FillCoordX2 != -1 || province.FillCoordY2 != -1)
-                            {
-                                writer.Write(";{0};{1}", province.FillCoordX3, province.FillCoordY3);
-                                if (province.FillCoordX4 != 0 || province.FillCoordY4 != 0 ||
-                                    province.FillCoordX3 != -1 || province.FillCoordY3 != -1)
-                                {
-                                    writer.Write(
-                                        ";{0};{1}",
-                                        province.FillCoordX4.ToString(CultureInfo.InvariantCulture),
-                                        province.FillCoordY4.ToString(CultureInfo.InvariantCulture));
-                                }
-                            }
-                            writer.WriteLine();
-                        }
-
-                        _currentLineNo++;
+                        Directory.CreateDirectory(folderName);
                     }
-                    writer.Close();
+
+                    // プロヴィンス定義ファイルを保存する
+                    Debug.WriteLine(string.Format("[Province] Save: {0}", Path.GetFileName(fileName)));
+                    SaveFile(fileName);
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("[Province] Save failed: {0}", fileName);
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        Resources.EditorProvince, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
 
                 // 編集済みフラグを解除する
                 ResetDirty();
             }
 
-            // 文字列定義のみ保存の場合、プロヴィンス名の編集済みフラグがクリアされないためここで全クリアする
-            foreach (Province province in Items)
+            if (_loaded)
             {
-                province.ResetDirtyAll();
+                // 文字列定義のみ保存の場合、プロヴィンス名の編集済みフラグがクリアされないためここで全クリアする
+                foreach (Province province in Items)
+                {
+                    province.ResetDirtyAll();
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     プロヴィンス定義ファイルを保存する
+        /// </summary>
+        /// <param name="fileName">対象ファイル名</param>
+        private static void SaveFile(string fileName)
+        {
+            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            {
+                _currentFileName = fileName;
+                _currentLineNo = 2;
+
+                // ヘッダ行を書き込む
+                writer.WriteLine(
+                    "Id;Name;Area;Region;Continent;Climate;Terrain;SizeModifier;AirCapacity;Infrastructure;City;Beaches;Port Allowed;Port Seazone;IC;Manpower;Oil;Metal;Energy;Rare Materials;City XPos;City YPos;Army XPos;Army YPos;Port XPos;Port YPos;Beach XPos;Beach YPos;Beach Icon;Fort XPos;Fort YPos;AA XPos;AA YPos;Counter x;Counter Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Fill coord X;Fill coord Y;;;;;;;;;"
+                    );
+
+                // プロヴィンス定義行を順に書き込む
+                foreach (Province province in Items)
+                {
+                    if (Game.Type == GameType.DarkestHour)
+                    {
+                        writer.WriteLine(
+                            "{0};{1};{2};{3};{4};{5};{6};;;{7};;{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};;;;;;;;;;;{32};{33};{34};{35};{36};{37};{38};{39};{40};{41};{42}",
+                            province.Id,
+                            province.Name,
+                            AreaStrings[(int) province.Area],
+                            RegionStrings[(int) province.Region],
+                            province.Continent != ContinentId.None ? ContinentStrings[(int) province.Continent] : "",
+                            ClimateStrings[(int) province.Climate],
+                            TerrainStrings[(int) province.Terrain],
+                            province.Infrastructure,
+                            province.Beaches ? 1 : 0,
+                            province.PortAllowed ? 1 : 0,
+                            province.PortSeaZone,
+                            province.Ic,
+                            province.Manpower,
+                            province.Oil,
+                            province.Metal,
+                            province.Energy,
+                            province.RareMaterials,
+                            province.CityXPos,
+                            province.CityYPos,
+                            province.ArmyXPos,
+                            province.ArmyYPos,
+                            province.PortXPos,
+                            province.PortYPos,
+                            province.BeachXPos,
+                            province.BeachYPos,
+                            province.BeachIcon,
+                            province.FortXPos,
+                            province.FortYPos,
+                            province.AaXPos,
+                            province.AaYPos,
+                            province.CounterXPos,
+                            province.CounterYPos,
+                            province.FillCoordX1,
+                            province.FillCoordY1,
+                            province.FillCoordX2,
+                            province.FillCoordY2,
+                            (province.FillCoordX3 != 0)
+                                ? province.FillCoordX3.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordY3 != 0)
+                                ? province.FillCoordY3.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordX4 != 0)
+                                ? province.FillCoordX4.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordY4 != 0)
+                                ? province.FillCoordY4.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordX5 != 0)
+                                ? province.FillCoordX5.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordY5 != 0)
+                                ? province.FillCoordY5.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FillCoordX6 != 0)
+                                ? province.FillCoordX6.ToString(CultureInfo.InvariantCulture)
+                                : "");
+                    }
+                    else
+                    {
+                        writer.Write(
+                            "{0};{1};{2};{3};{4};{5};{6};;;{7};;{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};;;;;;;;;;;{32};{33};{34};{35}",
+                            province.Id,
+                            province.Name,
+                            AreaStrings[(int) province.Area],
+                            RegionStrings[(int) province.Region],
+                            ContinentStrings[(int) province.Continent],
+                            ClimateStrings[(int) province.Climate],
+                            TerrainStrings[(int) province.Terrain],
+                            province.Infrastructure,
+                            province.Beaches ? 1 : 0,
+                            province.PortAllowed ? 1 : 0,
+                            province.PortSeaZone,
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Ic.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Manpower.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Oil.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Metal.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.Energy.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.Terrain != TerrainId.Ocean)
+                                ? province.RareMaterials.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.CityXPos != 0) ? province.CityXPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.CityYPos != 0) ? province.CityYPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.ArmyXPos != 0) ? province.ArmyXPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.ArmyYPos != 0) ? province.ArmyYPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.PortXPos != 0) ? province.PortXPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.PortYPos != 0) ? province.PortYPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.BeachXPos != 0)
+                                ? province.BeachXPos.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.BeachYPos != 0)
+                                ? province.BeachYPos.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.BeachXPos != 0)
+                                ? province.BeachIcon.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.FortXPos != 0) ? province.FortXPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.FortYPos != 0) ? province.FortYPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.AaXPos != 0) ? province.AaXPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.AaYPos != 0) ? province.AaYPos.ToString(CultureInfo.InvariantCulture) : "",
+                            (province.CounterXPos != 0)
+                                ? province.CounterXPos.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            (province.CounterYPos != 0)
+                                ? province.CounterYPos.ToString(CultureInfo.InvariantCulture)
+                                : "",
+                            province.FillCoordX1,
+                            province.FillCoordY1,
+                            province.FillCoordX2,
+                            province.FillCoordY2);
+                        if (province.FillCoordX3 != 0 || province.FillCoordY3 != 0 ||
+                            province.FillCoordX2 != -1 || province.FillCoordY2 != -1)
+                        {
+                            writer.Write(";{0};{1}", province.FillCoordX3, province.FillCoordY3);
+                            if (province.FillCoordX4 != 0 || province.FillCoordY4 != 0 ||
+                                province.FillCoordX3 != -1 || province.FillCoordY3 != -1)
+                            {
+                                writer.Write(
+                                    ";{0};{1}",
+                                    province.FillCoordX4.ToString(CultureInfo.InvariantCulture),
+                                    province.FillCoordY4.ToString(CultureInfo.InvariantCulture));
+                            }
+                        }
+                        writer.WriteLine();
+                    }
+
+                    _currentLineNo++;
+                }
+                writer.Close();
             }
         }
 
@@ -4569,7 +4631,7 @@ namespace HoI2Editor.Models
         ///     海域リストに項目を追加する
         /// </summary>
         /// <param name="province"></param>
-        public static void AddSeaZone(Province province)
+        private static void AddSeaZone(Province province)
         {
             // 名前が空文字列の場合は何もしない
             if (!Config.ExistsKey(province.Name) || string.IsNullOrEmpty(province.GetName()))
@@ -4585,7 +4647,7 @@ namespace HoI2Editor.Models
         ///     海域リストから項目を削除する
         /// </summary>
         /// <param name="province"></param>
-        public static void RemoveSeaZone(Province province)
+        private static void RemoveSeaZone(Province province)
         {
             // 名前が空文字列の場合は何もしない
             if (!Config.ExistsKey(province.Name) || string.IsNullOrEmpty(province.GetName()))
@@ -4836,7 +4898,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを解除する
         /// </summary>
-        public static void ResetDirty()
+        private static void ResetDirty()
         {
             _dirtyFlag = false;
         }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -123,17 +125,16 @@ namespace HoI2Editor.Models
             {
                 case GameType.HeartsOfIron2:
                 case GameType.ArsenalOfDemocracy:
-                    LoadHoI2();
+                    if (!LoadHoI2())
+                    {
+                        return;
+                    }
                     break;
 
                 case GameType.DarkestHour:
-                    if (Game.IsModActive)
+                    if (!LoadDh())
                     {
-                        LoadDh();
-                    }
-                    else
-                    {
-                        LoadHoI2();
+                        return;
                     }
                     break;
             }
@@ -148,10 +149,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ファイル群を読み込む(HoI2/AoD/DH-MOD未使用時)
         /// </summary>
-        private static void LoadHoI2()
+        /// <returns>読み込みに失敗すればfalseを返す</returns>
+        private static bool LoadHoI2()
         {
             var list = new List<string>();
             string folderName;
+            bool error = false;
 
             // MODフォルダ内の研究機関ファイルを読み込む
             if (Game.IsModActive)
@@ -175,7 +178,15 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            error = true;
+                            Debug.WriteLine("[Team] Load failed: {0}", fileName);
+                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                == DialogResult.Cancel)
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
@@ -201,23 +212,33 @@ namespace HoI2Editor.Models
                     }
                     catch (Exception)
                     {
-                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        error = true;
+                        Debug.WriteLine("[Team] Load failed: {0}", fileName);
+                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                            Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                            == DialogResult.Cancel)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
+
+            return !error;
         }
 
         /// <summary>
         ///     研究機関ファイル群を読み込む(DH-MOD使用時)
         /// </summary>
-        private static void LoadDh()
+        /// <returns>読み込みに失敗すればfalseを返す</returns>
+        private static bool LoadDh()
         {
             // 研究機関リストファイルが存在しなければ従来通りの読み込み方法を使用する
             string listFileName = Game.GetReadFileName(Game.DhTeamListPathName);
             if (!File.Exists(listFileName))
             {
-                LoadHoI2();
-                return;
+                return LoadHoI2();
             }
 
             // 研究機関リストファイルを読み込む
@@ -228,10 +249,14 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
-                return;
+                Debug.WriteLine("[Team] Load failed: {0}", listFileName);
+                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName),
+                    Resources.EditorTeam, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
+            bool error = false;
             foreach (string fileName in fileList.Select(name => Game.GetReadFileName(Game.TeamPathName, name)))
             {
                 try
@@ -241,9 +266,19 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    error = true;
+                    Debug.WriteLine("[Team] Load failed: {0}", fileName);
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
                 }
             }
+
+            return !error;
         }
 
         /// <summary>
@@ -251,6 +286,8 @@ namespace HoI2Editor.Models
         /// </summary>
         private static IEnumerable<string> LoadList(string fileName)
         {
+            Debug.WriteLine(string.Format("[Team] Load: {0}", Path.GetFileName(fileName)));
+
             var list = new List<string>();
             using (var reader = new StreamReader(fileName))
             {
@@ -283,6 +320,8 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadFile(string fileName)
         {
+            Debug.WriteLine(string.Format("[Team] Load: {0}", Path.GetFileName(fileName)));
+
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
                 _currentFileName = Path.GetFileName(fileName);
@@ -467,14 +506,18 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ファイル群を保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
             {
-                return;
+                return true;
             }
 
+            // TODO: 研究機関ファイルリストの保存
+
+            bool error = false;
             foreach (Country country in Enum.GetValues(typeof (Country))
                 .Cast<Country>()
                 .Where(country => DirtyFlags[(int) country] && country != Country.None))
@@ -486,15 +529,27 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                        Game.TeamPathName);
-                    string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
+                    error = true;
+                    string fileName = Game.GetWriteFileName(Game.MinisterPathName, Game.GetMinisterFileName(country));
+                    Debug.WriteLine("[Minister] Save failed: {0}", fileName);
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                        return false;
                 }
+            }
+
+            // 保存に失敗していれば戻る
+            if (error)
+            {
+                return false;
             }
 
             // 編集済みフラグを解除する
             _dirtyFlag = false;
+
+            return true;
         }
 
         /// <summary>
@@ -509,7 +564,9 @@ namespace HoI2Editor.Models
             {
                 Directory.CreateDirectory(folderName);
             }
+
             string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
+            Debug.WriteLine(string.Format("[Team] Save: {0}", Path.GetFileName(fileName)));
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -677,7 +734,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void ResetDirty(Country country)
+        private static void ResetDirty(Country country)
         {
             DirtyFlags[(int) country] = false;
         }

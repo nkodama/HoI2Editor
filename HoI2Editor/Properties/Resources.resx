@@ -3666,4 +3666,40 @@
   <data name="MiscSectionTrade" xml:space="preserve">
     <value>Trade</value>
   </data>
+  <data name="EditorDivisionName" xml:space="preserve">
+    <value>Division Name Editor</value>
+  </data>
+  <data name="EditorLeader" xml:space="preserve">
+    <value>Leader Editor</value>
+  </data>
+  <data name="EditorMinister" xml:space="preserve">
+    <value>Minister Editor</value>
+  </data>
+  <data name="EditorMisc" xml:space="preserve">
+    <value>Misc Editor</value>
+  </data>
+  <data name="EditorModelName" xml:space="preserve">
+    <value>Model Name Editor</value>
+  </data>
+  <data name="EditorProvince" xml:space="preserve">
+    <value>Province Editor</value>
+  </data>
+  <data name="EditorRandomLeader" xml:space="preserve">
+    <value>Random Leader Editor</value>
+  </data>
+  <data name="EditorTeam" xml:space="preserve">
+    <value>Team Editor</value>
+  </data>
+  <data name="EditorTech" xml:space="preserve">
+    <value>Tech Tree Editor</value>
+  </data>
+  <data name="EditorUnit" xml:space="preserve">
+    <value>Unit Model Editor</value>
+  </data>
+  <data name="EditorUnitName" xml:space="preserve">
+    <value>Unit Name Editor</value>
+  </data>
+  <data name="EditorConfig" xml:space="preserve">
+    <value>Strings</value>
+  </data>
 </root>

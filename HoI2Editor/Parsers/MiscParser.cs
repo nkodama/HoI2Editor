@@ -16,8 +16,7 @@ namespace HoI2Editor.Parsers
         ///     miscファイルを構文解析する
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        /// <returns>構文解析の成否</returns>
-        public static bool Parse(string fileName)
+        public static void Parse(string fileName)
         {
             // ゲームの種類を設定する
             MiscGameType type = Misc.GetGameType();
@@ -31,7 +30,7 @@ namespace HoI2Editor.Parsers
                     // ファイルの終端
                     if (token == null)
                     {
-                        return true;
+                        return;
                     }
 
                     // 空白文字/コメントを読み飛ばす

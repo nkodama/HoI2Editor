@@ -123,7 +123,7 @@ namespace HoI2Editor
         /// <summary>
         ///     データを再読み込みする
         /// </summary>
-        public static void ReloadFiles()
+        public static void Reload()
         {
             Debug.WriteLine("Reload");
 
@@ -149,7 +149,7 @@ namespace HoI2Editor
         /// <summary>
         ///     データを保存する
         /// </summary>
-        public static void SaveFiles()
+        public static void Save()
         {
             Debug.WriteLine("Save");
 
@@ -157,22 +157,60 @@ namespace HoI2Editor
             Techs.RenameKeys();
 
             // 編集したデータを保存する
-            Misc.Save();
-            Config.Save();
-            Leaders.Save();
-            Ministers.Save();
-            Teams.Save();
-            Provinces.Save();
-            Techs.Save();
-            Units.Save();
-            UnitNames.Save();
-            DivisionNames.Save();
-            RandomLeaders.Save();
+            SaveFiles();
 
             // データ保存後の更新処理呼び出し
             OnFileSaved();
 
             SaveCanceled = false;
+        }
+
+        /// <summary>
+        ///     データを保存する
+        /// </summary>
+        private static void SaveFiles()
+        {
+            if (!Misc.Save())
+            {
+                return;
+            }
+            if (!Config.Save())
+            {
+                return;
+            }
+            if (!Leaders.Save())
+            {
+                return;
+            }
+            if (!Ministers.Save())
+            {
+                return;
+            }
+            if (!Teams.Save())
+            {
+                return;
+            }
+            if (!Provinces.Save())
+            {
+                return;
+            }
+            if (!Techs.Save())
+            {
+                return;
+            }
+            if (!Units.Save())
+            {
+                return;
+            }
+            if (!UnitNames.Save())
+            {
+                return;
+            }
+            if (!DivisionNames.Save())
+            {
+                return;
+            }
+            RandomLeaders.Save();
         }
 
         /// <summary>

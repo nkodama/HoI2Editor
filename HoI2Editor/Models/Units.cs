@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 using HoI2Editor.Writers;
@@ -2127,14 +2129,27 @@ namespace HoI2Editor.Models
             // ユニットクラス定義ファイルを読み込む(DH1.03以降)
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
             {
-                LoadDivisionTypes();
-                LoadBrigadeTypes();
+                string fileName = "";
+                try
+                {
+                    fileName = Game.GetReadFileName(Game.DhDivisionTypePathName);
+                    LoadDivisionTypes(fileName);
 
-                ResetDirtyDivisionTypes();
-                ResetDirtyBrigadeTypes();
+                    fileName = Game.GetReadFileName(Game.DhBrigadeTypePathName);
+                    LoadBrigadeTypes(fileName);
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine(string.Format("[Unit] Read error: {0}", fileName));
+                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             // ユニット定義ファイルを順に読み込む
+            bool error = false;
             foreach (UnitType type in UnitTypes)
             {
                 try
@@ -2143,14 +2158,28 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
+                    error = true;
                     Unit unit = Items[(int) type];
                     string fileName =
                         Game.GetReadFileName(
                             unit.Organization == UnitOrganization.Division
                                 ? Game.DivisionPathName
                                 : Game.BrigadePathName, DefaultFileNames[(int) type]);
+                    Debug.WriteLine(string.Format("[Unit] Read error: {0}", fileName));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return;
+                    }
                 }
+            }
+
+            // 読み込みに失敗していれば戻る
+            if (error)
+            {
+                return;
             }
 
             // 編集済みフラグを解除する
@@ -2176,39 +2205,52 @@ namespace HoI2Editor.Models
             {
                 return;
             }
+
+            Debug.WriteLine(string.Format("[Unit] Load: {0}", Path.GetFileName(fileName)));
+
             UnitParser.Parse(fileName, unit);
         }
 
         /// <summary>
         ///     師団ユニットクラス定義ファイルを読み込む
         /// </summary>
-        private static void LoadDivisionTypes()
+        /// <param name="fileName">対象ファイル名</param>
+        private static void LoadDivisionTypes(string fileName)
         {
             // ファイルが存在しなければ戻る
-            string fileName = Game.GetReadFileName(Game.DhDivisionTypePathName);
             if (!File.Exists(fileName))
             {
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] Load: {0}", Path.GetFileName(fileName)));
+
             // ファイルを解析する
             UnitParser.ParseDivisionTypes(fileName, Items);
+
+            // 編集済みフラグを解除する
+            ResetDirtyDivisionTypes();
         }
 
         /// <summary>
         ///     旅団ユニットクラス定義ファイルを読み込む
         /// </summary>
-        private static void LoadBrigadeTypes()
+        /// <param name="fileName">対象ファイル名</param>
+        private static void LoadBrigadeTypes(string fileName)
         {
             // ファイルが存在しなければ戻る
-            string fileName = Game.GetReadFileName(Game.DhBrigadeTypePathName);
             if (!File.Exists(fileName))
             {
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] Load: {0}", Path.GetFileName(fileName)));
+
             // ファイルを解析する
             UnitParser.ParseBrigadeTypes(fileName, Items);
+
+            // 編集済みフラグを解除する
+            ResetDirtyBrigadeTypes();
         }
 
         #endregion
@@ -2218,67 +2260,115 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット定義ファイル群を保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
-            // 編集済みでなければ何もしない
-            if (IsDirty() || IsDirtyDivisionTypes() || IsDirtyBrigadeTypes())
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
             {
-                // ユニット定義フォルダがなければ作成する
-                string folderName = Game.GetWriteFileName(Game.UnitPathName);
-                if (!Directory.Exists(folderName))
+                if (IsDirtyDivisionTypes())
                 {
-                    Directory.CreateDirectory(folderName);
-                }
-
-                // ユニットクラス定義ファイルを保存する(DH1.03以降)
-                if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
-                {
-                    SaveDivisionTypes();
-                    SaveBrigadeTypes();
-                }
-
-                // ユニット定義ファイルへ順に保存する
-                foreach (Unit unit in Items.Where(unit => unit.IsDirty()))
-                {
-                    // 師団/旅団定義フォルダがなければ作成する
-                    folderName =
-                        Game.GetWriteFileName(unit.Organization == UnitOrganization.Division
-                            ? Game.DivisionPathName
-                            : Game.BrigadePathName);
-                    if (!Directory.Exists(folderName))
-                    {
-                        Directory.CreateDirectory(folderName);
-                    }
-                    // ユニット定義ファイルを保存する
-                    string fileName = Path.Combine(folderName, DefaultFileNames[(int) unit.Type]);
+                    // 師団定義ファイルを保存する
+                    string fileName = Game.GetWriteFileName(Game.DhDivisionTypePathName);
                     try
                     {
+                        SaveDivisionTypes(fileName);
+                    }
+                    catch (Exception)
+                    {
+                        Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
+                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                        MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                            Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                if (IsDirtyBrigadeTypes())
+                {
+                    // 旅団定義ファイルを保存する
+                    string fileName = Game.GetWriteFileName(Game.DhBrigadeTypePathName);
+                    try
+                    {
+                        SaveBrigadeTypes(fileName);
+                    }
+                    catch (Exception)
+                    {
+                        Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
+                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                        MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                            Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+
+            if (IsDirty())
+            {
+                // ユニット定義ファイルへ順に保存する
+                bool error = false;
+                foreach (Unit unit in Items.Where(unit => unit.IsDirty()))
+                {
+                    string folderName = Game.GetWriteFileName((unit.Organization == UnitOrganization.Division)
+                        ? Game.DivisionPathName
+                        : Game.BrigadePathName);
+                    string fileName = Path.Combine(folderName, DefaultFileNames[(int) unit.Type]);
+
+                    try
+                    {
+                        // 師団/旅団定義フォルダがなければ作成する
+                        if (!Directory.Exists(folderName))
+                        {
+                            Directory.CreateDirectory(folderName);
+                        }
+
+                        Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
+
+                        // ユニット定義ファイルを保存する
                         UnitWriter.Write(unit, fileName);
                     }
                     catch (Exception)
                     {
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                        error = true;
+                        Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
+                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                            Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                            == DialogResult.Cancel)
+                        {
+                            return false;
+                        }
                     }
+                }
+
+                // 保存に失敗していれば戻る
+                if (error)
+                {
+                    return false;
                 }
 
                 // 編集済みフラグを解除する
                 _dirtyFlag = false;
             }
 
-            // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
-            foreach (Unit unit in Items)
+            if (_loaded)
             {
-                unit.ResetDirtyAll();
+                // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
+                foreach (Unit unit in Items)
+                {
+                    unit.ResetDirtyAll();
+                }
+
+                // モデル名の編集済みフラグをクリアする
+                ResetDirtyAllModelName();
             }
 
-            // モデル名の編集済みフラグをクリアする
-            ResetDirtyAllModelName();
+            return true;
         }
 
         /// <summary>
         ///     師団ユニットクラス定義ファイルを保存する
         /// </summary>
-        private static void SaveDivisionTypes()
+        /// <param name="fileName">対象ファイル名</param>
+        private static void SaveDivisionTypes(string fileName)
         {
             // 変更がなければ何もしない
             if (!IsDirtyBrigadeTypes())
@@ -2286,23 +2376,27 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // ユニット定義フォルダがなければ作成する
+            string folderName = Path.GetDirectoryName(fileName);
+            if (!string.IsNullOrEmpty(folderName) && !Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
+
             // 師団ユニットクラス定義ファイルを保存する
-            string fileName = Game.GetWriteFileName(Game.DhDivisionTypePathName);
-            try
-            {
-                UnitWriter.WriteDivisionTypes(Items, fileName);
-                ResetDirtyDivisionTypes();
-            }
-            catch (Exception)
-            {
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-            }
+            UnitWriter.WriteDivisionTypes(Items, fileName);
+
+            // 編集済みフラグを解除する
+            ResetDirtyDivisionTypes();
         }
 
         /// <summary>
         ///     旅団ユニットクラス定義ファイルを保存する
         /// </summary>
-        private static void SaveBrigadeTypes()
+        /// <param name="fileName">対象ファイル名</param>
+        private static void SaveBrigadeTypes(string fileName)
         {
             // 変更がなければ何もしない
             if (!IsDirtyBrigadeTypes())
@@ -2310,17 +2404,20 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // ユニット定義フォルダがなければ作成する
+            string folderName = Path.GetDirectoryName(fileName);
+            if (!string.IsNullOrEmpty(folderName) && !Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
+
             // 旅団ユニットクラス定義ファイルを保存する
-            string fileName = Game.GetWriteFileName(Game.DhBrigadeTypePathName);
-            try
-            {
-                UnitWriter.WriteBrigadeTypes(Items, fileName);
-                ResetDirtyBrigadeTypes();
-            }
-            catch (Exception)
-            {
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-            }
+            UnitWriter.WriteBrigadeTypes(Items, fileName);
+
+            // 編集済みフラグを解除する
+            ResetDirtyBrigadeTypes();
         }
 
         #endregion

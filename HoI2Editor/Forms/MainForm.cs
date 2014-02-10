@@ -87,7 +87,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.SaveFiles();
+                    HoI2Editor.Save();
                     break;
             }
         }

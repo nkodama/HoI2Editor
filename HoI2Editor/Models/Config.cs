@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -244,6 +245,7 @@ namespace HoI2Editor.Models
 
             var fileList = new List<string>();
             string folderName;
+            bool error = false;
 
             // DHでデフォルト以外のマップを使用する場合、マップフォルダからprovince_names.csvを読み込む
             if (Game.Type == GameType.DarkestHour && Misc.MapNumber != 0)
@@ -264,8 +266,15 @@ namespace HoI2Editor.Models
                     }
                     catch (Exception)
                     {
-                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        error = true;
                         Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                            Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                            == DialogResult.Cancel)
+                        {
+                            return;
+                        }
                     }
                 }
 
@@ -284,8 +293,15 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            error = true;
                             Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                == DialogResult.Cancel)
+                            {
+                                return;
+                            }
                         }
                     }
                 }
@@ -309,8 +325,15 @@ namespace HoI2Editor.Models
                             }
                             catch (Exception)
                             {
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                error = true;
                                 Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                    Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                    == DialogResult.Cancel)
+                                {
+                                    return;
+                                }
                             }
                         }
                     }
@@ -332,8 +355,15 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            error = true;
                             Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                == DialogResult.Cancel)
+                            {
+                                return;
+                            }
                         }
                     }
                 }
@@ -360,8 +390,15 @@ namespace HoI2Editor.Models
                         }
                         catch (Exception)
                         {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            error = true;
                             Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                == DialogResult.Cancel)
+                            {
+                                return;
+                            }
                         }
                     }
                 }
@@ -381,8 +418,15 @@ namespace HoI2Editor.Models
                             }
                             catch (Exception)
                             {
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                error = true;
                                 Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                    Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                    == DialogResult.Cancel)
+                                {
+                                    return;
+                                }
                             }
                         }
                     }
@@ -395,6 +439,13 @@ namespace HoI2Editor.Models
             // 不足している文字列を補完する
             AddInsufficientStrings();
 
+            // 読み込みに失敗していれば戻る
+            if (error)
+            {
+                return;
+            }
+
+            // 読み込み済みフラグを設定する
             _loaded = true;
         }
 
@@ -531,14 +582,16 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列ファイル群を保存する
         /// </summary>
-        public static void Save()
+        /// <returns>保存に失敗すればfalseを返す</returns>
+        public static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
             {
-                return;
+                return true;
             }
 
+            bool error = false;
             foreach (string fileName in DirtyFiles)
             {
                 try
@@ -547,16 +600,31 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
+                    error = true;
                     string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
                         Game.ConfigPathName);
                     string pathName = Path.Combine(folderName, fileName);
+                    Debug.WriteLine(string.Format("[Config] Write error: {0}", pathName));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, pathName));
-                    Debug.WriteLine(string.Format("[Config] Write error: {0}", fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, pathName),
+                        Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
                 }
+            }
+
+            // 保存に失敗していれば戻る
+            if (error)
+            {
+                return false;
             }
 
             // 編集済みフラグを全て解除する
             ResetDirtyAll();
+
+            return true;
         }
 
         /// <summary>
