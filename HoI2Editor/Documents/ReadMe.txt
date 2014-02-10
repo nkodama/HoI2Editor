@@ -1,4 +1,4 @@
-Alternative HoI2 Editor Ver 0.29
+Alternative HoI2 Editor Ver 0.30
 
 ■はじめに
   HoI2/AoD/DHのゲームデータを編集するためのツールです。
