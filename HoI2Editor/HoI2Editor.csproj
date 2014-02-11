@@ -255,11 +255,12 @@
     <EmbeddedResource Include="Properties\Resources.ja.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Documents\commands.xlsx" />
-    <None Include="Documents\misc.xlsx" />
-    <None Include="Documents\miscedit.xlsx" />
-    <None Include="Documents\provinces.xlsx" />
-    <None Include="Documents\units.xlsx" />
+    <None Include="Documents\Design\commands.xlsx" />
+    <None Include="Documents\Design\misc.xlsx" />
+    <None Include="Documents\Design\miscedit.xlsx" />
+    <None Include="Documents\Design\provinces.xlsx" />
+    <None Include="Documents\Design\research.xlsx" />
+    <None Include="Documents\Design\units.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -270,9 +271,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Documents\ReadMe.txt" />
-    <Content Include="Documents\ReleaseNote.txt" />
+    <Content Include="Documents\En\changelog.txt" />
+    <Content Include="Documents\En\readme.txt" />
+    <Content Include="Documents\Jp\changelog.txt" />
+    <Content Include="Documents\Jp\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
