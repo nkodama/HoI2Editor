@@ -1,0 +1,5 @@
+Alternative HoI2 Editor Changelog
+
+- 2014/02/11 Ver 0.30
+
+Initial release for English version.

@@ -15,7 +15,7 @@ It also supports moddir.
 3. Launch .exe file.
 4. Drag and drop a game folder to the editor's window, and editor buttons are active.
 5. Press editor buttons and individual editors are launched.
-6. If you finish editing, press Save button and exit.
+6. If you have finished editing, press Save button and exit.
 
 - Disclaimer
 
