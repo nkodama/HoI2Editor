@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using HoI2Editor.Models;
@@ -187,69 +188,69 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteLandDivision(UnitModel model, StreamWriter writer)
         {
-            writer.WriteLine("\tcost \t\t\t\t\t= {0}", model.Cost);
+            writer.WriteLine("\tcost \t\t\t\t\t= {0}", model.Cost.ToString(CultureInfo.InvariantCulture));
             // 必要ICが0のモデルは未定義と扱う
             if (Math.Abs(model.Cost) <= 0.00005)
             {
                 return;
             }
-            writer.WriteLine("\tbuildtime\t \t\t\t= {0}", model.BuildTime);
-            writer.WriteLine("\tmanpower \t\t\t\t= {0}", model.ManPower);
-            writer.WriteLine("\tmaxspeed \t\t\t\t= {0}", model.MaxSpeed);
-            writer.WriteLine("\tdefaultorganisation \t= {0}", model.DefaultOrganization);
-            writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale);
-            writer.WriteLine("\tdefensiveness \t\t\t= {0}", model.Defensiveness);
-            writer.WriteLine("\ttoughness\t\t\t\t= {0}", model.Toughness);
-            writer.WriteLine("\tsoftness\t\t\t\t= {0}", model.Softness);
-            writer.WriteLine("\tsuppression\t\t\t\t= {0}", model.Suppression);
-            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense);
-            writer.WriteLine("\tsoftattack\t\t\t\t= {0}", model.SoftAttack);
-            writer.WriteLine("\thardattack\t\t\t\t= {0}", model.HardAttack);
-            writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack);
-            writer.WriteLine("\ttransportweight\t\t\t= {0}", model.TransportWeight);
-            writer.WriteLine("\tsupplyconsumption \t\t= {0}", model.SupplyConsumption);
-            writer.WriteLine("\tfuelconsumption\t\t\t= {0}", model.FuelConsumption);
+            writer.WriteLine("\tbuildtime\t \t\t\t= {0}", model.BuildTime.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmanpower \t\t\t\t= {0}", model.ManPower.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmaxspeed \t\t\t\t= {0}", model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tdefaultorganisation \t= {0}", model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tdefensiveness \t\t\t= {0}", model.Defensiveness.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\ttoughness\t\t\t\t= {0}", model.Toughness.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsoftness\t\t\t\t= {0}", model.Softness.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsuppression\t\t\t\t= {0}", model.Suppression.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsoftattack\t\t\t\t= {0}", model.SoftAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\thardattack\t\t\t\t= {0}", model.HardAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\ttransportweight\t\t\t= {0}", model.TransportWeight.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsupplyconsumption \t\t= {0}", model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tfuelconsumption\t\t\t= {0}", model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.NoFuelCombatMod) > 0.00005))
             {
-                writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", model.NoFuelCombatMod);
+                writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapArt) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_art\t\t\t= {0}", model.SpeedCapArt);
+                writer.WriteLine("\tspeed_cap_art\t\t\t= {0}", model.SpeedCapArt.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapEng) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_eng\t\t\t= {0}", model.SpeedCapEng);
+                writer.WriteLine("\tspeed_cap_eng\t\t\t= {0}", model.SpeedCapEng.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapAt) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_at\t\t\t= {0}", model.SpeedCapAt);
+                writer.WriteLine("\tspeed_cap_at\t\t\t= {0}", model.SpeedCapAt.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapAa) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_aa\t\t\t= {0}", model.SpeedCapAa);
+                writer.WriteLine("\tspeed_cap_aa\t\t\t= {0}", model.SpeedCapAa.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor);
-            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor);
+            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
             if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxSupplyStock) > 0.00005))
             {
-                writer.WriteLine("\tmax_supply_stock = {0}", model.MaxSupplyStock);
+                writer.WriteLine("\tmax_supply_stock = {0}", model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxOilStock) > 0.00005))
             {
-                writer.WriteLine("\tmax_oil_stock = {0}", model.MaxOilStock);
+                writer.WriteLine("\tmax_oil_stock = {0}", model.MaxOilStock.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
             {
-                writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor);
+                writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
             {
-                writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
+                writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && (Math.Abs(model.SpeedCap) > 0.00005))
             {
-                writer.WriteLine("\tspeed_cap\t\t\t= {0}", model.SpeedCap);
+                writer.WriteLine("\tspeed_cap\t\t\t= {0}", model.SpeedCap.ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -260,40 +261,40 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteNavalDivision(UnitModel model, StreamWriter writer)
         {
-            writer.WriteLine("\tcost\t\t\t\t\t\t= {0}", model.Cost);
+            writer.WriteLine("\tcost\t\t\t\t\t\t= {0}", model.Cost.ToString(CultureInfo.InvariantCulture));
             // 必要ICが0のモデルは未定義と扱う
             if (Math.Abs(model.Cost) <= 0.00005)
             {
                 return;
             }
-            writer.WriteLine("\tbuildtime \t\t\t\t\t= {0}", model.BuildTime);
-            writer.WriteLine("\tdefaultorganisation \t\t= {0}", model.DefaultOrganization);
-            writer.WriteLine("\tmorale\t\t\t\t\t\t= {0}", model.Morale);
-            writer.WriteLine("\tmanpower\t\t\t\t\t= {0}", model.ManPower);
-            writer.WriteLine("\tmaxspeed\t\t\t\t\t= {0}", model.MaxSpeed);
-            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability);
-            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability);
-            writer.WriteLine("\tsubdetectioncapability\t\t= {0}", model.SubDetectionCapability);
-            writer.WriteLine("\tvisibility\t\t\t\t\t= {0}", model.Visibility);
-            writer.WriteLine("\tseadefence\t\t\t\t\t= {0}", model.SeaDefense);
-            writer.WriteLine("\tairdefence\t\t\t\t\t= {0}", model.AirDefense);
-            writer.WriteLine("\tseaattack\t\t\t\t\t= {0}", model.SeaAttack);
-            writer.WriteLine("\tairattack\t\t\t\t\t= {0}", model.AirAttack);
-            writer.WriteLine("\tsubattack\t\t\t\t\t= {0}", model.SubAttack);
-            writer.WriteLine("\tconvoyattack\t\t\t\t\t= {0}", model.ConvoyAttack);
-            writer.WriteLine("\tshorebombardment\t\t\t= {0}", model.ShoreBombardment);
-            writer.WriteLine("\ttransportcapability\t\t\t= {0}", model.TransportCapability);
-            writer.WriteLine("\trange\t\t\t\t\t\t= {0}", model.Range);
-            writer.WriteLine("\tsupplyconsumption\t\t\t= {0}", model.SupplyConsumption);
-            writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption);
-            writer.WriteLine("\tdistance\t\t\t\t\t= {0}", model.Distance);
+            writer.WriteLine("\tbuildtime \t\t\t\t\t= {0}", model.BuildTime.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tdefaultorganisation \t\t= {0}", model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmorale\t\t\t\t\t\t= {0}", model.Morale.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmanpower\t\t\t\t\t= {0}", model.ManPower.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmaxspeed\t\t\t\t\t= {0}", model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsubdetectioncapability\t\t= {0}", model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tvisibility\t\t\t\t\t= {0}", model.Visibility.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tseadefence\t\t\t\t\t= {0}", model.SeaDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tseaattack\t\t\t\t\t= {0}", model.SeaAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairattack\t\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsubattack\t\t\t\t\t= {0}", model.SubAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tconvoyattack\t\t\t\t\t= {0}", model.ConvoyAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tshorebombardment\t\t\t= {0}", model.ShoreBombardment.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\ttransportcapability\t\t\t= {0}", model.TransportCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\trange\t\t\t\t\t\t= {0}", model.Range.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsupplyconsumption\t\t\t= {0}", model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tdistance\t\t\t\t\t= {0}", model.Distance.ToString(CultureInfo.InvariantCulture));
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
             {
-                writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor);
+                writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
             {
-                writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
+                writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -304,38 +305,38 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAirDivision(UnitModel model, StreamWriter writer)
         {
-            writer.WriteLine("\tcost \t\t\t\t\t= {0}", model.Cost);
+            writer.WriteLine("\tcost \t\t\t\t\t= {0}", model.Cost.ToString(CultureInfo.InvariantCulture));
             // 必要ICが0のモデルは未定義と扱う
             if (Math.Abs(model.Cost) <= 0.00005)
             {
                 return;
             }
-            writer.WriteLine("\tbuildtime\t \t\t\t= {0}", model.BuildTime);
-            writer.WriteLine("\tdefaultorganisation \t\t= {0}", model.DefaultOrganization);
-            writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale);
-            writer.WriteLine("\tmanpower\t\t\t\t= {0}", model.ManPower);
-            writer.WriteLine("\tmaxspeed\t\t\t\t= {0}", model.MaxSpeed);
-            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability);
-            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability);
-            writer.WriteLine("\tsurfacedefence\t\t\t\t= {0}", model.SurfaceDefense);
-            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense);
-            writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack);
-            writer.WriteLine("\tstrategicattack\t\t\t\t= {0}", model.StrategicAttack);
-            writer.WriteLine("\tsoftattack\t\t\t\t= {0}", model.SoftAttack);
-            writer.WriteLine("\thardattack\t\t\t\t= {0}", model.HardAttack);
-            writer.WriteLine("\tnavalattack\t\t\t\t= {0}", model.NavalAttack);
-            writer.WriteLine("\trange\t\t\t\t\t= {0}", model.Range);
-            writer.WriteLine("\tsupplyconsumption \t\t\t= {0}", model.SupplyConsumption);
-            writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption);
-            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor);
-            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor);
+            writer.WriteLine("\tbuildtime\t \t\t\t= {0}", model.BuildTime.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tdefaultorganisation \t\t= {0}", model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmanpower\t\t\t\t= {0}", model.ManPower.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmaxspeed\t\t\t\t= {0}", model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsurfacedefence\t\t\t\t= {0}", model.SurfaceDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tstrategicattack\t\t\t\t= {0}", model.StrategicAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsoftattack\t\t\t\t= {0}", model.SoftAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\thardattack\t\t\t\t= {0}", model.HardAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tnavalattack\t\t\t\t= {0}", model.NavalAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\trange\t\t\t\t\t= {0}", model.Range.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsupplyconsumption \t\t\t= {0}", model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
             {
-                writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor);
+                writer.WriteLine("\treinforce_time\t\t= {0}", model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
             {
-                writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor);
+                writer.WriteLine("\treinforce_cost \t\t= {0}", model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -346,104 +347,104 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteLandBrigade(UnitModel model, StreamWriter writer)
         {
-            writer.WriteLine("\tcost \t\t\t\t= {0}", model.Cost);
+            writer.WriteLine("\tcost \t\t\t\t= {0}", model.Cost.ToString(CultureInfo.InvariantCulture));
             // 必要ICが0のモデルは未定義と扱う
             if (Math.Abs(model.Cost) <= 0.00005)
             {
                 return;
             }
-            writer.WriteLine("\tbuildtime\t \t\t= {0}", model.BuildTime);
-            writer.WriteLine("\tmanpower \t\t\t= {0}", model.ManPower);
+            writer.WriteLine("\tbuildtime\t \t\t= {0}", model.BuildTime.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmanpower \t\t\t= {0}", model.ManPower.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.MaxSpeed) > 0.00005)
             {
-                writer.WriteLine("\tmaxspeed \t\t\t= {0}", model.MaxSpeed);
+                writer.WriteLine("\tmaxspeed \t\t\t= {0}", model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.DefaultOrganization) > 0.00005)
             {
-                writer.WriteLine("\tdefaultorganisation = {0}", model.DefaultOrganization);
+                writer.WriteLine("\tdefaultorganisation = {0}", model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.Morale) > 0.00005)
             {
-                writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale);
+                writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.Defensiveness) > 0.00005)
             {
-                writer.WriteLine("\tdefensiveness \t\t= {0}", model.Defensiveness);
+                writer.WriteLine("\tdefensiveness \t\t= {0}", model.Defensiveness.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.Toughness) > 0.00005)
             {
-                writer.WriteLine("\ttoughness \t\t\t= {0}", model.Toughness);
+                writer.WriteLine("\ttoughness \t\t\t= {0}", model.Toughness.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.Softness) > 0.00005)
             {
-                writer.WriteLine("\tsoftness\t\t\t= {0}", model.Softness);
+                writer.WriteLine("\tsoftness\t\t\t= {0}", model.Softness.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.Suppression) > 0.00005)
             {
-                writer.WriteLine("\tsuppression\t\t\t= {0}", model.Suppression);
+                writer.WriteLine("\tsuppression\t\t\t= {0}", model.Suppression.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.AirDefense) > 0.00005)
             {
-                writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense);
+                writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SoftAttack) > 0.00005)
             {
-                writer.WriteLine("\tsoftattack\t\t\t= {0}", model.SoftAttack);
+                writer.WriteLine("\tsoftattack\t\t\t= {0}", model.SoftAttack.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.HardAttack) > 0.00005)
             {
-                writer.WriteLine("\thardattack\t\t\t= {0}", model.HardAttack);
+                writer.WriteLine("\thardattack\t\t\t= {0}", model.HardAttack.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.AirAttack) > 0.00005)
             {
-                writer.WriteLine("\tairattack\t\t\t= {0}", model.AirAttack);
+                writer.WriteLine("\tairattack\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.ArtilleryBombardment) > 0.00005))
             {
-                writer.WriteLine("\tartillery_bombardment\t\t= {0}", model.ArtilleryBombardment);
+                writer.WriteLine("\tartillery_bombardment\t\t= {0}", model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.TransportWeight) > 0.00005)
             {
-                writer.WriteLine("\ttransportweight\t\t\t= {0}", model.TransportWeight);
+                writer.WriteLine("\ttransportweight\t\t\t= {0}", model.TransportWeight.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tsupplyconsumption \t= {0}", model.SupplyConsumption);
+            writer.WriteLine("\tsupplyconsumption \t= {0}", model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.FuelConsumption) > 0.00005)
             {
-                writer.WriteLine("\tfuelconsumption\t\t= {0}", model.FuelConsumption);
+                writer.WriteLine("\tfuelconsumption\t\t= {0}", model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.NoFuelCombatMod) > 0.00005))
             {
-                writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", model.NoFuelCombatMod);
+                writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapArt) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_art\t\t\t= {0}", model.SpeedCapArt);
+                writer.WriteLine("\tspeed_cap_art\t\t\t= {0}", model.SpeedCapArt.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapEng) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_eng\t\t\t= {0}", model.SpeedCapEng);
+                writer.WriteLine("\tspeed_cap_eng\t\t\t= {0}", model.SpeedCapEng.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapAt) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_at\t\t\t= {0}", model.SpeedCapAt);
+                writer.WriteLine("\tspeed_cap_at\t\t\t= {0}", model.SpeedCapAt.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SpeedCapAa) > 0.00005)
             {
-                writer.WriteLine("\tspeed_cap_aa\t\t\t= {0}", model.SpeedCapAa);
+                writer.WriteLine("\tspeed_cap_aa\t\t\t= {0}", model.SpeedCapAa.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor);
-            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor);
+            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
             if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxSupplyStock) > 0.00005))
             {
-                writer.WriteLine("\tmax_supply_stock = {0}", model.MaxSupplyStock);
+                writer.WriteLine("\tmax_supply_stock = {0}", model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxOilStock) > 0.00005))
             {
-                writer.WriteLine("\tmax_oil_stock = {0}", model.MaxOilStock);
+                writer.WriteLine("\tmax_oil_stock = {0}", model.MaxOilStock.ToString(CultureInfo.InvariantCulture));
             }
             if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && (Math.Abs(model.SpeedCap) > 0.00005))
             {
-                writer.WriteLine("\tspeed_cap\t\t\t= {0}", model.SpeedCap);
+                writer.WriteLine("\tspeed_cap\t\t\t= {0}", model.SpeedCap.ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -454,56 +455,56 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteNavalBrigade(UnitModel model, StreamWriter writer)
         {
-            writer.WriteLine("\tcost \t\t\t\t= {0}", model.Cost);
+            writer.WriteLine("\tcost \t\t\t\t= {0}", model.Cost.ToString(CultureInfo.InvariantCulture));
             // 必要ICが0のモデルは未定義と扱う
             if (Math.Abs(model.Cost) <= 0.00005)
             {
                 return;
             }
-            writer.WriteLine("\tbuildtime\t\t\t= {0}", model.BuildTime);
+            writer.WriteLine("\tbuildtime\t\t\t= {0}", model.BuildTime.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.DefaultOrganization) > 0.00005)
             {
-                writer.WriteLine("\tdefaultorganisation \t= {0}", model.DefaultOrganization);
+                writer.WriteLine("\tdefaultorganisation \t= {0}", model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.Morale) > 0.00005)
             {
-                writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale);
+                writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tmanpower \t\t\t= {0}", model.ManPower);
+            writer.WriteLine("\tmanpower \t\t\t= {0}", model.ManPower.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.MaxSpeed) > 0.00005)
             {
-                writer.WriteLine("\tmaxspeed \t\t\t\t= {0}", model.MaxSpeed);
+                writer.WriteLine("\tmaxspeed \t\t\t\t= {0}", model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability);
-            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability);
-            writer.WriteLine("\tsubdetectioncapability\t\t= {0}", model.SubDetectionCapability);
+            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsubdetectioncapability\t\t= {0}", model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.Visibility) > 0.00005)
             {
-                writer.WriteLine("\tvisibility\t\t\t\t\t= {0}", model.Visibility);
+                writer.WriteLine("\tvisibility\t\t\t\t\t= {0}", model.Visibility.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tairdefence\t\t\t= {0}", model.AirDefense);
+            writer.WriteLine("\tairdefence\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.SeaDefense) > 0.00005)
             {
-                writer.WriteLine("\tseadefence\t\t\t= {0}", model.SeaDefense);
+                writer.WriteLine("\tseadefence\t\t\t= {0}", model.SeaDefense.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tseaattack\t\t\t= {0}", model.SeaAttack);
-            writer.WriteLine("\tconvoyattack\t\t\t= {0}", model.ConvoyAttack);
-            writer.WriteLine("\tsubattack\t\t\t= {0}", model.SubAttack);
-            writer.WriteLine("\tairattack\t\t\t= {0}", model.AirAttack);
-            writer.WriteLine("\tshorebombardment\t\t= {0}", model.ShoreBombardment);
+            writer.WriteLine("\tseaattack\t\t\t= {0}", model.SeaAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tconvoyattack\t\t\t= {0}", model.ConvoyAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsubattack\t\t\t= {0}", model.SubAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairattack\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tshorebombardment\t\t= {0}", model.ShoreBombardment.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.TransportCapability) > 0.00005)
             {
-                writer.WriteLine("\ttransportcapability\t\t\t= {0}", model.TransportCapability);
+                writer.WriteLine("\ttransportcapability\t\t\t= {0}", model.TransportCapability.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.Range) > 0.00005)
             {
-                writer.WriteLine("\trange\t\t\t\t\t\t= {0}", model.Range);
+                writer.WriteLine("\trange\t\t\t\t\t\t= {0}", model.Range.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tdistance\t\t\t= {0}", model.Distance);
-            writer.WriteLine("\tsupplyconsumption \t\t= {0}", model.SupplyConsumption);
-            writer.WriteLine("\tfuelconsumption\t\t\t= {0}", model.FuelConsumption);
-            writer.WriteLine("\tupgrade_time_factor \t\t= {0}", model.UpgradeTimeFactor);
-            writer.WriteLine("\tupgrade_cost_factor \t\t= {0}", model.UpgradeCostFactor);
+            writer.WriteLine("\tdistance\t\t\t= {0}", model.Distance.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsupplyconsumption \t\t= {0}", model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tfuelconsumption\t\t\t= {0}", model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_time_factor \t\t= {0}", model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_cost_factor \t\t= {0}", model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -513,31 +514,31 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAirBrigade(UnitModel model, StreamWriter writer)
         {
-            writer.WriteLine("\tcost \t\t\t\t\t= {0}", model.Cost);
+            writer.WriteLine("\tcost \t\t\t\t\t= {0}", model.Cost.ToString(CultureInfo.InvariantCulture));
             // 必要ICが0のモデルは未定義と扱う
             if (Math.Abs(model.Cost) <= 0.00005)
             {
                 return;
             }
-            writer.WriteLine("\tbuildtime\t \t\t\t= {0}", model.BuildTime);
-            writer.WriteLine("\tdefaultorganisation \t\t= {0}", model.DefaultOrganization);
-            writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale);
-            writer.WriteLine("\tmanpower\t\t\t\t= {0}", model.ManPower);
-            writer.WriteLine("\tmaxspeed\t\t\t\t= {0}", model.MaxSpeed);
-            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability);
-            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability);
-            writer.WriteLine("\tsurfacedefence\t\t\t\t= {0}", model.SurfaceDefense);
-            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense);
-            writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack);
-            writer.WriteLine("\tstrategicattack\t\t\t\t= {0}", model.StrategicAttack);
-            writer.WriteLine("\tsoftattack\t\t\t\t= {0}", model.SoftAttack);
-            writer.WriteLine("\thardattack\t\t\t\t= {0}", model.HardAttack);
-            writer.WriteLine("\tnavalattack\t\t\t\t= {0}", model.NavalAttack);
-            writer.WriteLine("\trange\t\t\t\t\t= {0}", model.Range);
-            writer.WriteLine("\tsupplyconsumption \t\t\t= {0}", model.SupplyConsumption);
-            writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption);
-            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor);
-            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor);
+            writer.WriteLine("\tbuildtime\t \t\t\t= {0}", model.BuildTime.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tdefaultorganisation \t\t= {0}", model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmorale\t\t\t\t\t= {0}", model.Morale.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmanpower\t\t\t\t= {0}", model.ManPower.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tmaxspeed\t\t\t\t= {0}", model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsurfacedetectioncapability\t= {0}", model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdetectioncapability\t\t= {0}", model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsurfacedefence\t\t\t\t= {0}", model.SurfaceDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tstrategicattack\t\t\t\t= {0}", model.StrategicAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsoftattack\t\t\t\t= {0}", model.SoftAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\thardattack\t\t\t\t= {0}", model.HardAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tnavalattack\t\t\t\t= {0}", model.NavalAttack.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\trange\t\t\t\t\t= {0}", model.Range.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tsupplyconsumption \t\t\t= {0}", model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_time_factor = {0}", model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tupgrade_cost_factor = {0}", model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -618,7 +619,7 @@ namespace HoI2Editor.Writers
                         writer.WriteLine("\t{0} = yes", s);
                     }
                 }
-                writer.WriteLine("\tvalue\t\t= {0}", unit.Value);
+                writer.WriteLine("\tvalue\t\t= {0}", unit.Value.ToString(CultureInfo.InvariantCulture));
                 if (unit.Productable)
                 {
                     writer.WriteLine("\tproduction\t= yes");
@@ -865,7 +866,7 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("\tshort_name\t= {0}", unit.ShortName);
                 writer.WriteLine("\tdesc\t\t= {0}", unit.Desc);
                 writer.WriteLine("\tshort_desc\t= {0}", unit.ShortDesc);
-                writer.WriteLine("\tvalue\t\t= {0}", unit.Value);
+                writer.WriteLine("\tvalue\t\t= {0}", unit.Value.ToString(CultureInfo.InvariantCulture));
                 if (unit.Cag)
                 {
                     writer.WriteLine("\tcag\t\t\t= yes");
