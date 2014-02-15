@@ -1,5 +1,9 @@
 Alternative HoI2 Editor Changelog
 
-- 2014/02/11 Ver 0.30
+- 15 February 2014; Ver 0.31
+
+Fixed a bug that unit models, misc values, and province resources cannot be edited correctly in some countries.
+
+- 11 February 2014; Ver 0.30
 
 Initial release for English version.
