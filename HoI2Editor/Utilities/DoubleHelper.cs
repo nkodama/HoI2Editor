@@ -18,32 +18,32 @@ namespace HoI2Editor.Utilities
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
             {
-                return val.ToString("F6");
+                return val.ToString("F6", CultureInfo.InvariantCulture);
             }
             // 小数点以下5桁
             if (Math.Abs(val - Math.Round(val, 4)) > 0.000005)
             {
-                return val.ToString("F5");
+                return val.ToString("F5", CultureInfo.InvariantCulture);
             }
             // 小数点以下4桁
             if (Math.Abs(val - Math.Round(val, 3)) > 0.00005)
             {
-                return val.ToString("F4");
+                return val.ToString("F4", CultureInfo.InvariantCulture);
             }
             // 小数点以下3桁
             if (Math.Abs(val - Math.Round(val, 2)) > 0.0005)
             {
-                return val.ToString("F3");
+                return val.ToString("F3", CultureInfo.InvariantCulture);
             }
             // 小数点以下2桁
             if (Math.Abs(val - Math.Round(val, 1)) > 0.005)
             {
-                return val.ToString("F2");
+                return val.ToString("F2", CultureInfo.InvariantCulture);
             }
             // 小数点以下1桁
             if (Math.Abs(val - Math.Round(val)) > 0.05)
             {
-                return val.ToString("F1");
+                return val.ToString("F1", CultureInfo.InvariantCulture);
             }
             // 小数点以下なし
             return val.ToString(CultureInfo.InvariantCulture);
@@ -59,30 +59,30 @@ namespace HoI2Editor.Utilities
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
             {
-                return val.ToString("F6");
+                return val.ToString("F6", CultureInfo.InvariantCulture);
             }
             // 小数点以下5桁
             if (Math.Abs(val - Math.Round(val, 4)) > 0.000005)
             {
-                return val.ToString("F5");
+                return val.ToString("F5", CultureInfo.InvariantCulture);
             }
             // 小数点以下4桁
             if (Math.Abs(val - Math.Round(val, 3)) > 0.00005)
             {
-                return val.ToString("F4");
+                return val.ToString("F4", CultureInfo.InvariantCulture);
             }
             // 小数点以下3桁
             if (Math.Abs(val - Math.Round(val, 2)) > 0.0005)
             {
-                return val.ToString("F3");
+                return val.ToString("F3", CultureInfo.InvariantCulture);
             }
             // 小数点以下2桁
             if (Math.Abs(val - Math.Round(val, 1)) > 0.005)
             {
-                return val.ToString("F2");
+                return val.ToString("F2", CultureInfo.InvariantCulture);
             }
             // 小数点以下1桁を保証する
-            return val.ToString("F1");
+            return val.ToString("F1", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -95,25 +95,25 @@ namespace HoI2Editor.Utilities
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
             {
-                return val.ToString("F6");
+                return val.ToString("F6", CultureInfo.InvariantCulture);
             }
             // 小数点以下5桁
             if (Math.Abs(val - Math.Round(val, 4)) > 0.000005)
             {
-                return val.ToString("F5");
+                return val.ToString("F5", CultureInfo.InvariantCulture);
             }
             // 小数点以下4桁
             if (Math.Abs(val - Math.Round(val, 3)) > 0.00005)
             {
-                return val.ToString("F4");
+                return val.ToString("F4", CultureInfo.InvariantCulture);
             }
             // 小数点以下3桁
             if (Math.Abs(val - Math.Round(val, 2)) > 0.0005)
             {
-                return val.ToString("F3");
+                return val.ToString("F3", CultureInfo.InvariantCulture);
             }
             // 小数点以下2桁を保証する
-            return val.ToString("F2");
+            return val.ToString("F2", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -126,20 +126,20 @@ namespace HoI2Editor.Utilities
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
             {
-                return val.ToString("F6");
+                return val.ToString("F6", CultureInfo.InvariantCulture);
             }
             // 小数点以下5桁
             if (Math.Abs(val - Math.Round(val, 4)) > 0.000005)
             {
-                return val.ToString("F5");
+                return val.ToString("F5", CultureInfo.InvariantCulture);
             }
             // 小数点以下4桁
             if (Math.Abs(val - Math.Round(val, 3)) > 0.00005)
             {
-                return val.ToString("F4");
+                return val.ToString("F4", CultureInfo.InvariantCulture);
             }
             // 小数点以下3桁を保証する
-            return val.ToString("F3");
+            return val.ToString("F3", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -152,15 +152,15 @@ namespace HoI2Editor.Utilities
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
             {
-                return val.ToString("F6");
+                return val.ToString("F6", CultureInfo.InvariantCulture);
             }
             // 小数点以下5桁
             if (Math.Abs(val - Math.Round(val, 4)) > 0.000005)
             {
-                return val.ToString("F5");
+                return val.ToString("F5", CultureInfo.InvariantCulture);
             }
             // 小数点以下4桁を保証する
-            return val.ToString("F4");
+            return val.ToString("F4", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -173,10 +173,10 @@ namespace HoI2Editor.Utilities
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
             {
-                return val.ToString("F6");
+                return val.ToString("F6", CultureInfo.InvariantCulture);
             }
             // 小数点以下5桁を保証する
-            return val.ToString("F5");
+            return val.ToString("F5", CultureInfo.InvariantCulture);
         }
     }
 }

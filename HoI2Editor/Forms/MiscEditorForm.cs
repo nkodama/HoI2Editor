@@ -588,7 +588,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.RangedDblMinusOne1:
                 case MiscItemType.RangedDbl0:
                 case MiscItemType.NonNegIntNegDbl:
-                    if (!double.TryParse(textBox.Text, out d))
+                    if (!double.TryParse(textBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out d))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;

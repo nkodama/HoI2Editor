@@ -1,4 +1,6 @@
-﻿namespace HoI2Editor.Utilities
+﻿using System.Globalization;
+
+namespace HoI2Editor.Utilities
 {
     /// <summary>
     ///     整数型のヘルパークラス
@@ -12,7 +14,7 @@
         /// <returns>変換後の文字列</returns>
         public static string ToString0(int val)
         {
-            return val.ToString("D");
+            return val.ToString("D", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -22,7 +24,7 @@
         /// <returns>変換後の文字列</returns>
         public static string ToString1(int val)
         {
-            return val.ToString("F1");
+            return val.ToString("F1", CultureInfo.InvariantCulture);
         }
     }
 }
