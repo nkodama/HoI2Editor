@@ -98,19 +98,19 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
             this.resourceGroupBox = new System.Windows.Forms.GroupBox();
-            this.oilNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.oilTextBox = new System.Windows.Forms.TextBox();
+            this.rareMaterialsTextBox = new System.Windows.Forms.TextBox();
+            this.metalTextBox = new System.Windows.Forms.TextBox();
+            this.energyTextBox = new System.Windows.Forms.TextBox();
+            this.manpowerTextBox = new System.Windows.Forms.TextBox();
+            this.icTextBox = new System.Windows.Forms.TextBox();
+            this.infraTextBox = new System.Windows.Forms.TextBox();
             this.oilLabel = new System.Windows.Forms.Label();
-            this.rareMaterialsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.rareMaterialsLabel = new System.Windows.Forms.Label();
-            this.metalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.metalLabel = new System.Windows.Forms.Label();
-            this.energyNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.energyLabel = new System.Windows.Forms.Label();
-            this.manpowerNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.manpowerLabel = new System.Windows.Forms.Label();
-            this.icNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.icLabel = new System.Windows.Forms.Label();
-            this.infraNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.infraLabel = new System.Windows.Forms.Label();
             this.provincePictureBox = new System.Windows.Forms.PictureBox();
             this.basicGroupBox.SuspendLayout();
@@ -141,13 +141,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cityYNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cityXNumericUpDown)).BeginInit();
             this.resourceGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.oilNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rareMaterialsNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metalNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.energyNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.manpowerNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.icNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.infraNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.provincePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,10 +246,10 @@
             // 
             // terrainComboBox
             // 
-            resources.ApplyResources(this.terrainComboBox, "terrainComboBox");
             this.terrainComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.terrainComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.terrainComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.terrainComboBox, "terrainComboBox");
             this.terrainComboBox.Name = "terrainComboBox";
             this.terrainComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTerrainComboBoxDrawItem);
             this.terrainComboBox.SelectedIndexChanged += new System.EventHandler(this.OnTerrainComboBoxSelectedIndexChanged);
@@ -268,10 +261,10 @@
             // 
             // climateComboBox
             // 
-            resources.ApplyResources(this.climateComboBox, "climateComboBox");
             this.climateComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.climateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.climateComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.climateComboBox, "climateComboBox");
             this.climateComboBox.Name = "climateComboBox";
             this.climateComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnClimateComboBoxDrawItem);
             this.climateComboBox.SelectedIndexChanged += new System.EventHandler(this.OnClimateComboBoxSelectedIndexChanged);
@@ -283,10 +276,10 @@
             // 
             // areaComboBox
             // 
-            resources.ApplyResources(this.areaComboBox, "areaComboBox");
             this.areaComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.areaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.areaComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.areaComboBox, "areaComboBox");
             this.areaComboBox.Name = "areaComboBox";
             this.areaComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAreaComboBoxDrawItem);
             this.areaComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAreaComboBoxSelectedIndexChanged);
@@ -298,10 +291,10 @@
             // 
             // regionComboBox
             // 
-            resources.ApplyResources(this.regionComboBox, "regionComboBox");
             this.regionComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.regionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.regionComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.regionComboBox, "regionComboBox");
             this.regionComboBox.Name = "regionComboBox";
             this.regionComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnRegionComboBoxDrawItem);
             this.regionComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRegionComboBoxSelectedIndexChanged);
@@ -313,10 +306,10 @@
             // 
             // continentComboBox
             // 
-            resources.ApplyResources(this.continentComboBox, "continentComboBox");
             this.continentComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.continentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.continentComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.continentComboBox, "continentComboBox");
             this.continentComboBox.Name = "continentComboBox";
             this.continentComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnContinentComboBoxDrawItem);
             this.continentComboBox.SelectedIndexChanged += new System.EventHandler(this.OnContinentComboBoxSelectedIndexChanged);
@@ -655,10 +648,10 @@
             // 
             // portSeaZoneComboBox
             // 
-            resources.ApplyResources(this.portSeaZoneComboBox, "portSeaZoneComboBox");
             this.portSeaZoneComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.portSeaZoneComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portSeaZoneComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.portSeaZoneComboBox, "portSeaZoneComboBox");
             this.portSeaZoneComboBox.Name = "portSeaZoneComboBox";
             this.portSeaZoneComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnPortSeaZoneComboBoxDrawItem);
             this.portSeaZoneComboBox.SelectedIndexChanged += new System.EventHandler(this.OnPortSeaZoneComboBoxSelectedIndexChanged);
@@ -786,130 +779,94 @@
             // resourceGroupBox
             // 
             resources.ApplyResources(this.resourceGroupBox, "resourceGroupBox");
-            this.resourceGroupBox.Controls.Add(this.oilNumericUpDown);
+            this.resourceGroupBox.Controls.Add(this.oilTextBox);
+            this.resourceGroupBox.Controls.Add(this.rareMaterialsTextBox);
+            this.resourceGroupBox.Controls.Add(this.metalTextBox);
+            this.resourceGroupBox.Controls.Add(this.energyTextBox);
+            this.resourceGroupBox.Controls.Add(this.manpowerTextBox);
+            this.resourceGroupBox.Controls.Add(this.icTextBox);
+            this.resourceGroupBox.Controls.Add(this.infraTextBox);
             this.resourceGroupBox.Controls.Add(this.oilLabel);
-            this.resourceGroupBox.Controls.Add(this.rareMaterialsNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.rareMaterialsLabel);
-            this.resourceGroupBox.Controls.Add(this.metalNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.metalLabel);
-            this.resourceGroupBox.Controls.Add(this.energyNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.energyLabel);
-            this.resourceGroupBox.Controls.Add(this.manpowerNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.manpowerLabel);
-            this.resourceGroupBox.Controls.Add(this.icNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.icLabel);
-            this.resourceGroupBox.Controls.Add(this.infraNumericUpDown);
             this.resourceGroupBox.Controls.Add(this.infraLabel);
             this.resourceGroupBox.Name = "resourceGroupBox";
             this.resourceGroupBox.TabStop = false;
             // 
-            // oilNumericUpDown
+            // oilTextBox
             // 
-            resources.ApplyResources(this.oilNumericUpDown, "oilNumericUpDown");
-            this.oilNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.oilNumericUpDown.Name = "oilNumericUpDown";
-            this.oilNumericUpDown.ValueChanged += new System.EventHandler(this.OnOilNumericUpDownValueChanged);
+            resources.ApplyResources(this.oilTextBox, "oilTextBox");
+            this.oilTextBox.Name = "oilTextBox";
+            this.oilTextBox.Validated += new System.EventHandler(this.OnOilNumericUpDownValueChanged);
+            // 
+            // rareMaterialsTextBox
+            // 
+            resources.ApplyResources(this.rareMaterialsTextBox, "rareMaterialsTextBox");
+            this.rareMaterialsTextBox.Name = "rareMaterialsTextBox";
+            this.rareMaterialsTextBox.Validated += new System.EventHandler(this.OnRareMaterialsTextBoxValidated);
+            // 
+            // metalTextBox
+            // 
+            resources.ApplyResources(this.metalTextBox, "metalTextBox");
+            this.metalTextBox.Name = "metalTextBox";
+            this.metalTextBox.Validated += new System.EventHandler(this.OnMetalTextBoxValidated);
+            // 
+            // energyTextBox
+            // 
+            resources.ApplyResources(this.energyTextBox, "energyTextBox");
+            this.energyTextBox.Name = "energyTextBox";
+            this.energyTextBox.Validated += new System.EventHandler(this.OnEnergyTextBoxValidated);
+            // 
+            // manpowerTextBox
+            // 
+            resources.ApplyResources(this.manpowerTextBox, "manpowerTextBox");
+            this.manpowerTextBox.Name = "manpowerTextBox";
+            this.manpowerTextBox.Validated += new System.EventHandler(this.OnManpowerTextBoxValidated);
+            // 
+            // icTextBox
+            // 
+            resources.ApplyResources(this.icTextBox, "icTextBox");
+            this.icTextBox.Name = "icTextBox";
+            this.icTextBox.Validated += new System.EventHandler(this.OnIcTextBoxValidated);
+            // 
+            // infraTextBox
+            // 
+            resources.ApplyResources(this.infraTextBox, "infraTextBox");
+            this.infraTextBox.Name = "infraTextBox";
+            this.infraTextBox.Validated += new System.EventHandler(this.OnInfraTextBoxValidated);
             // 
             // oilLabel
             // 
             resources.ApplyResources(this.oilLabel, "oilLabel");
             this.oilLabel.Name = "oilLabel";
             // 
-            // rareMaterialsNumericUpDown
-            // 
-            resources.ApplyResources(this.rareMaterialsNumericUpDown, "rareMaterialsNumericUpDown");
-            this.rareMaterialsNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.rareMaterialsNumericUpDown.Name = "rareMaterialsNumericUpDown";
-            this.rareMaterialsNumericUpDown.ValueChanged += new System.EventHandler(this.OnRareMaterialsNumericUpDownValueChanged);
-            // 
             // rareMaterialsLabel
             // 
             resources.ApplyResources(this.rareMaterialsLabel, "rareMaterialsLabel");
             this.rareMaterialsLabel.Name = "rareMaterialsLabel";
-            // 
-            // metalNumericUpDown
-            // 
-            resources.ApplyResources(this.metalNumericUpDown, "metalNumericUpDown");
-            this.metalNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.metalNumericUpDown.Name = "metalNumericUpDown";
-            this.metalNumericUpDown.ValueChanged += new System.EventHandler(this.OnMetalNumericUpDownValueChanged);
             // 
             // metalLabel
             // 
             resources.ApplyResources(this.metalLabel, "metalLabel");
             this.metalLabel.Name = "metalLabel";
             // 
-            // energyNumericUpDown
-            // 
-            resources.ApplyResources(this.energyNumericUpDown, "energyNumericUpDown");
-            this.energyNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.energyNumericUpDown.Name = "energyNumericUpDown";
-            this.energyNumericUpDown.ValueChanged += new System.EventHandler(this.OnEnergyNumericUpDownValueChanged);
-            // 
             // energyLabel
             // 
             resources.ApplyResources(this.energyLabel, "energyLabel");
             this.energyLabel.Name = "energyLabel";
-            // 
-            // manpowerNumericUpDown
-            // 
-            resources.ApplyResources(this.manpowerNumericUpDown, "manpowerNumericUpDown");
-            this.manpowerNumericUpDown.DecimalPlaces = 1;
-            this.manpowerNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.manpowerNumericUpDown.Name = "manpowerNumericUpDown";
-            this.manpowerNumericUpDown.ValueChanged += new System.EventHandler(this.OnManpowerNumericUpDownValueChanged);
             // 
             // manpowerLabel
             // 
             resources.ApplyResources(this.manpowerLabel, "manpowerLabel");
             this.manpowerLabel.Name = "manpowerLabel";
             // 
-            // icNumericUpDown
-            // 
-            resources.ApplyResources(this.icNumericUpDown, "icNumericUpDown");
-            this.icNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.icNumericUpDown.Name = "icNumericUpDown";
-            this.icNumericUpDown.ValueChanged += new System.EventHandler(this.OnIcNumericUpDownValueChanged);
-            // 
             // icLabel
             // 
             resources.ApplyResources(this.icLabel, "icLabel");
             this.icLabel.Name = "icLabel";
-            // 
-            // infraNumericUpDown
-            // 
-            resources.ApplyResources(this.infraNumericUpDown, "infraNumericUpDown");
-            this.infraNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.infraNumericUpDown.Name = "infraNumericUpDown";
-            this.infraNumericUpDown.ValueChanged += new System.EventHandler(this.OnInfraNumericUpDownValueChanged);
             // 
             // infraLabel
             // 
@@ -970,13 +927,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cityXNumericUpDown)).EndInit();
             this.resourceGroupBox.ResumeLayout(false);
             this.resourceGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.oilNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rareMaterialsNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metalNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.energyNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.manpowerNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.icNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.infraNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.provincePictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -1041,19 +991,12 @@
         private System.Windows.Forms.NumericUpDown fillXNumericUpDown1;
         private System.Windows.Forms.Label fillLabel;
         private System.Windows.Forms.GroupBox resourceGroupBox;
-        private System.Windows.Forms.NumericUpDown infraNumericUpDown;
         private System.Windows.Forms.Label infraLabel;
-        private System.Windows.Forms.NumericUpDown manpowerNumericUpDown;
         private System.Windows.Forms.Label manpowerLabel;
-        private System.Windows.Forms.NumericUpDown icNumericUpDown;
         private System.Windows.Forms.Label icLabel;
-        private System.Windows.Forms.NumericUpDown energyNumericUpDown;
         private System.Windows.Forms.Label energyLabel;
-        private System.Windows.Forms.NumericUpDown oilNumericUpDown;
         private System.Windows.Forms.Label oilLabel;
-        private System.Windows.Forms.NumericUpDown rareMaterialsNumericUpDown;
         private System.Windows.Forms.Label rareMaterialsLabel;
-        private System.Windows.Forms.NumericUpDown metalNumericUpDown;
         private System.Windows.Forms.Label metalLabel;
         private System.Windows.Forms.ColumnHeader nameColumnHeader;
         private System.Windows.Forms.ColumnHeader idColumnHeader;
@@ -1068,5 +1011,12 @@
         private System.Windows.Forms.ColumnHeader rareMaterialsColumnHeader;
         private System.Windows.Forms.ColumnHeader oilColumnHeader;
         private System.Windows.Forms.PictureBox provincePictureBox;
+        private System.Windows.Forms.TextBox oilTextBox;
+        private System.Windows.Forms.TextBox rareMaterialsTextBox;
+        private System.Windows.Forms.TextBox metalTextBox;
+        private System.Windows.Forms.TextBox energyTextBox;
+        private System.Windows.Forms.TextBox manpowerTextBox;
+        private System.Windows.Forms.TextBox icTextBox;
+        private System.Windows.Forms.TextBox infraTextBox;
     }
 }

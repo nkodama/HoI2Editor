@@ -57,7 +57,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     インフラ
         /// </summary>
-        public int Infrastructure { get; set; }
+        public double Infrastructure { get; set; }
 
         /// <summary>
         ///     都市(不明)
@@ -82,7 +82,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     IC
         /// </summary>
-        public int Ic { get; set; }
+        public double Ic { get; set; }
 
         /// <summary>
         ///     労働力
@@ -92,22 +92,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     石油
         /// </summary>
-        public int Oil { get; set; }
+        public double Oil { get; set; }
 
         /// <summary>
         ///     金属
         /// </summary>
-        public int Metal { get; set; }
+        public double Metal { get; set; }
 
         /// <summary>
         ///     エネルギー
         /// </summary>
-        public int Energy { get; set; }
+        public double Energy { get; set; }
 
         /// <summary>
         ///     希少資源
         /// </summary>
-        public int RareMaterials { get; set; }
+        public double RareMaterials { get; set; }
 
         /// <summary>
         ///     都市のX座標

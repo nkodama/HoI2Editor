@@ -569,22 +569,24 @@ namespace HoI2Editor.Forms
                 case SortKey.Infrastructure: // インフラ
                     if (_order == SortOrder.Ascendant)
                     {
-                        _list.Sort((province1, province2) => province1.Infrastructure - province2.Infrastructure);
+                        _list.Sort(
+                            (province1, province2) => Math.Sign(province1.Infrastructure - province2.Infrastructure));
                     }
                     else
                     {
-                        _list.Sort((province1, province2) => province2.Infrastructure - province1.Infrastructure);
+                        _list.Sort(
+                            (province1, province2) => Math.Sign(province2.Infrastructure - province1.Infrastructure));
                     }
                     break;
 
                 case SortKey.Ic: // IC
                     if (_order == SortOrder.Ascendant)
                     {
-                        _list.Sort((province1, province2) => province1.Ic - province2.Ic);
+                        _list.Sort((province1, province2) => Math.Sign(province1.Ic - province2.Ic));
                     }
                     else
                     {
-                        _list.Sort((province1, province2) => province2.Ic - province1.Ic);
+                        _list.Sort((province1, province2) => Math.Sign(province2.Ic - province1.Ic));
                     }
                     break;
 
@@ -602,44 +604,46 @@ namespace HoI2Editor.Forms
                 case SortKey.Energy: // エネルギー
                     if (_order == SortOrder.Ascendant)
                     {
-                        _list.Sort((province1, province2) => province1.Energy - province2.Energy);
+                        _list.Sort((province1, province2) => Math.Sign(province1.Energy - province2.Energy));
                     }
                     else
                     {
-                        _list.Sort((province1, province2) => province2.Energy - province1.Energy);
+                        _list.Sort((province1, province2) => Math.Sign(province2.Energy - province1.Energy));
                     }
                     break;
 
                 case SortKey.Metal: // 金属
                     if (_order == SortOrder.Ascendant)
                     {
-                        _list.Sort((province1, province2) => province1.Metal - province2.Metal);
+                        _list.Sort((province1, province2) => Math.Sign(province1.Metal - province2.Metal));
                     }
                     else
                     {
-                        _list.Sort((province1, province2) => province2.Metal - province1.Metal);
+                        _list.Sort((province1, province2) => Math.Sign(province2.Metal - province1.Metal));
                     }
                     break;
 
                 case SortKey.RareMaterials: // 希少資源
                     if (_order == SortOrder.Ascendant)
                     {
-                        _list.Sort((province1, province2) => province1.RareMaterials - province2.RareMaterials);
+                        _list.Sort(
+                            (province1, province2) => Math.Sign(province1.RareMaterials - province2.RareMaterials));
                     }
                     else
                     {
-                        _list.Sort((province1, province2) => province2.RareMaterials - province1.RareMaterials);
+                        _list.Sort(
+                            (province1, province2) => Math.Sign(province2.RareMaterials - province1.RareMaterials));
                     }
                     break;
 
                 case SortKey.Oil: // 石油
                     if (_order == SortOrder.Ascendant)
                     {
-                        _list.Sort((province1, province2) => province1.Oil - province2.Oil);
+                        _list.Sort((province1, province2) => Math.Sign(province1.Oil - province2.Oil));
                     }
                     else
                     {
-                        _list.Sort((province1, province2) => province2.Oil - province1.Oil);
+                        _list.Sort((province1, province2) => Math.Sign(province2.Oil - province1.Oil));
                     }
                     break;
             }
@@ -1016,13 +1020,13 @@ namespace HoI2Editor.Forms
             }
 
             // 資源設定
-            infraNumericUpDown.Value = province.Infrastructure;
-            icNumericUpDown.Value = province.Ic;
-            manpowerNumericUpDown.Value = (decimal) province.Manpower;
-            energyNumericUpDown.Value = province.Energy;
-            metalNumericUpDown.Value = province.Metal;
-            rareMaterialsNumericUpDown.Value = province.RareMaterials;
-            oilNumericUpDown.Value = province.Oil;
+            infraTextBox.Text = province.Infrastructure.ToString(CultureInfo.InvariantCulture);
+            icTextBox.Text = province.Ic.ToString(CultureInfo.InvariantCulture);
+            manpowerTextBox.Text = province.Manpower.ToString(CultureInfo.InvariantCulture);
+            energyTextBox.Text = province.Energy.ToString(CultureInfo.InvariantCulture);
+            metalTextBox.Text = province.Metal.ToString(CultureInfo.InvariantCulture);
+            rareMaterialsTextBox.Text = province.RareMaterials.ToString(CultureInfo.InvariantCulture);
+            oilTextBox.Text = province.Oil.ToString(CultureInfo.InvariantCulture);
 
             // 座標設定
             beachCheckBox.Checked = province.Beaches;
@@ -1084,21 +1088,19 @@ namespace HoI2Editor.Forms
             idNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Id) ? Color.Red : SystemColors.WindowText;
             nameTextBox.ForeColor = province.IsDirty(ProvinceItemId.Name) ? Color.Red : SystemColors.WindowText;
 
-            infraNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Infrastructure)
+            infraTextBox.ForeColor = province.IsDirty(ProvinceItemId.Infrastructure)
                 ? Color.Red
                 : SystemColors.WindowText;
-            icNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Ic) ? Color.Red : SystemColors.WindowText;
-            manpowerNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Manpower)
+            icTextBox.ForeColor = province.IsDirty(ProvinceItemId.Ic) ? Color.Red : SystemColors.WindowText;
+            manpowerTextBox.ForeColor = province.IsDirty(ProvinceItemId.Manpower)
                 ? Color.Red
                 : SystemColors.WindowText;
-            energyNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Energy)
+            energyTextBox.ForeColor = province.IsDirty(ProvinceItemId.Energy) ? Color.Red : SystemColors.WindowText;
+            metalTextBox.ForeColor = province.IsDirty(ProvinceItemId.Metal) ? Color.Red : SystemColors.WindowText;
+            rareMaterialsTextBox.ForeColor = province.IsDirty(ProvinceItemId.RareMaterials)
                 ? Color.Red
                 : SystemColors.WindowText;
-            metalNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Metal) ? Color.Red : SystemColors.WindowText;
-            rareMaterialsNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.RareMaterials)
-                ? Color.Red
-                : SystemColors.WindowText;
-            oilNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.Oil) ? Color.Red : SystemColors.WindowText;
+            oilTextBox.ForeColor = province.IsDirty(ProvinceItemId.Oil) ? Color.Red : SystemColors.WindowText;
 
             beachCheckBox.ForeColor = province.IsDirty(ProvinceItemId.Beaches) ? Color.Red : SystemColors.WindowText;
             beachXNumericUpDown.ForeColor = province.IsDirty(ProvinceItemId.BeachXPos)
@@ -1183,13 +1185,6 @@ namespace HoI2Editor.Forms
 
             // 無効化時にクリアした文字列を再設定する
             idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            infraNumericUpDown.Text = infraNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            icNumericUpDown.Text = icNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            manpowerNumericUpDown.Text = manpowerNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            energyNumericUpDown.Text = energyNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            metalNumericUpDown.Text = metalNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            rareMaterialsNumericUpDown.Text = rareMaterialsNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            oilNumericUpDown.Text = oilNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
             beachXNumericUpDown.Text = beachXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
             beachYNumericUpDown.Text = beachYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
             beachIconNumericUpDown.Text = beachIconNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
@@ -1234,13 +1229,13 @@ namespace HoI2Editor.Forms
             terrainComboBox.SelectedIndex = -1;
             terrainComboBox.ResetText();
 
-            infraNumericUpDown.ResetText();
-            icNumericUpDown.ResetText();
-            manpowerNumericUpDown.ResetText();
-            energyNumericUpDown.ResetText();
-            metalNumericUpDown.ResetText();
-            rareMaterialsNumericUpDown.ResetText();
-            oilNumericUpDown.ResetText();
+            infraTextBox.ResetText();
+            icTextBox.ResetText();
+            manpowerTextBox.ResetText();
+            energyTextBox.ResetText();
+            metalTextBox.ResetText();
+            rareMaterialsTextBox.ResetText();
+            oilTextBox.ResetText();
 
             beachCheckBox.Checked = false;
             beachXNumericUpDown.ResetText();
@@ -1758,7 +1753,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnInfraNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnInfraTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Province province = GetSelectedProvince();
@@ -1767,15 +1762,22 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(infraTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            {
+                infraTextBox.Text = province.Infrastructure.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            var infra = (int) infraNumericUpDown.Value;
-            if (infra == province.Infrastructure)
+            if (Math.Abs(val - province.Infrastructure) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            province.Infrastructure = infra;
+            province.Infrastructure = val;
 
             // プロヴィンスリストビューの項目を更新する
             provinceListView.SelectedItems[0].SubItems[5].Text =
@@ -1786,7 +1788,7 @@ namespace HoI2Editor.Forms
             province.SetDirty(ProvinceItemId.Infrastructure);
 
             // 文字色を変更する
-            infraNumericUpDown.ForeColor = Color.Red;
+            infraTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1794,7 +1796,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnIcNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnIcTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Province province = GetSelectedProvince();
@@ -1803,15 +1805,22 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(icTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            {
+                icTextBox.Text = province.Ic.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            var ic = (int) icNumericUpDown.Value;
-            if (ic == province.Ic)
+            if (Math.Abs(val - province.Ic) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            province.Ic = ic;
+            province.Ic = val;
 
             // プロヴィンスリストビューの項目を更新する
             provinceListView.SelectedItems[0].SubItems[6].Text = province.Ic.ToString(CultureInfo.InvariantCulture);
@@ -1821,7 +1830,7 @@ namespace HoI2Editor.Forms
             province.SetDirty(ProvinceItemId.Ic);
 
             // 文字色を変更する
-            icNumericUpDown.ForeColor = Color.Red;
+            icTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1829,7 +1838,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnManpowerNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnManpowerTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Province province = GetSelectedProvince();
@@ -1838,15 +1847,22 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(manpowerTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            {
+                manpowerTextBox.Text = province.Manpower.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            var manpower = (double) manpowerNumericUpDown.Value;
-            if (Math.Abs(manpower - province.Manpower) <= 0.00005)
+            if (Math.Abs(val - province.Manpower) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            province.Manpower = manpower;
+            province.Manpower = val;
 
             // プロヴィンスリストビューの項目を更新する
             provinceListView.SelectedItems[0].SubItems[7].Text = province.Manpower.ToString(CultureInfo.InvariantCulture);
@@ -1856,7 +1872,7 @@ namespace HoI2Editor.Forms
             province.SetDirty(ProvinceItemId.Manpower);
 
             // 文字色を変更する
-            manpowerNumericUpDown.ForeColor = Color.Red;
+            manpowerTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1864,7 +1880,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnEnergyNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnEnergyTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Province province = GetSelectedProvince();
@@ -1873,15 +1889,22 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(energyTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            {
+                energyTextBox.Text = province.Energy.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            var energy = (int) energyNumericUpDown.Value;
-            if (energy == province.Energy)
+            if (Math.Abs(val - province.Energy) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            province.Energy = energy;
+            province.Energy = val;
 
             // プロヴィンスリストビューの項目を更新する
             provinceListView.SelectedItems[0].SubItems[8].Text = province.Energy.ToString(CultureInfo.InvariantCulture);
@@ -1891,7 +1914,7 @@ namespace HoI2Editor.Forms
             province.SetDirty(ProvinceItemId.Energy);
 
             // 文字色を変更する
-            energyNumericUpDown.ForeColor = Color.Red;
+            energyTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1899,7 +1922,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMetalNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnMetalTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Province province = GetSelectedProvince();
@@ -1908,15 +1931,22 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(metalTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            {
+                metalTextBox.Text = province.Metal.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            var metal = (int) metalNumericUpDown.Value;
-            if (metal == province.Metal)
+            if (Math.Abs(val - province.Metal) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            province.Metal = metal;
+            province.Metal = val;
 
             // プロヴィンスリストビューの項目を更新する
             provinceListView.SelectedItems[0].SubItems[9].Text = province.Metal.ToString(CultureInfo.InvariantCulture);
@@ -1926,7 +1956,7 @@ namespace HoI2Editor.Forms
             province.SetDirty(ProvinceItemId.Metal);
 
             // 文字色を変更する
-            metalNumericUpDown.ForeColor = Color.Red;
+            metalTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1934,7 +1964,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnRareMaterialsNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnRareMaterialsTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Province province = GetSelectedProvince();
@@ -1943,15 +1973,22 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(rareMaterialsTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            {
+                rareMaterialsTextBox.Text = province.RareMaterials.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            var rareMaterials = (int) rareMaterialsNumericUpDown.Value;
-            if (rareMaterials == province.RareMaterials)
+            if (Math.Abs(val - province.RareMaterials) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            province.RareMaterials = rareMaterials;
+            province.RareMaterials = val;
 
             // プロヴィンスリストビューの項目を更新する
             provinceListView.SelectedItems[0].SubItems[10].Text =
@@ -1962,7 +1999,7 @@ namespace HoI2Editor.Forms
             province.SetDirty(ProvinceItemId.RareMaterials);
 
             // 文字色を変更する
-            rareMaterialsNumericUpDown.ForeColor = Color.Red;
+            rareMaterialsTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>
@@ -1979,15 +2016,22 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!double.TryParse(oilTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            {
+                oilTextBox.Text = province.Oil.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            var oil = (int) oilNumericUpDown.Value;
-            if (oil == province.Oil)
+            if (Math.Abs(val - province.Oil) <= 0.00005)
             {
                 return;
             }
 
             // 値を更新する
-            province.Oil = oil;
+            province.Oil = val;
 
             // プロヴィンスリストビューの項目を更新する
             provinceListView.SelectedItems[0].SubItems[11].Text = province.Oil.ToString(CultureInfo.InvariantCulture);
@@ -1997,7 +2041,7 @@ namespace HoI2Editor.Forms
             province.SetDirty(ProvinceItemId.Oil);
 
             // 文字色を変更する
-            oilNumericUpDown.ForeColor = Color.Red;
+            oilTextBox.ForeColor = Color.Red;
         }
 
         /// <summary>

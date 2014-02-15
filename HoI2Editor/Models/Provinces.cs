@@ -3680,13 +3680,14 @@ namespace HoI2Editor.Models
             index += 3;
 
             // インフラ
+            double d;
             if (string.IsNullOrEmpty(token[index]))
             {
                 province.Infrastructure = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
-                province.Infrastructure = n;
+                province.Infrastructure = d;
             }
             else
             {
@@ -3750,9 +3751,9 @@ namespace HoI2Editor.Models
             {
                 province.Ic = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
-                province.Ic = n;
+                province.Ic = d;
             }
             else
             {
@@ -3762,12 +3763,11 @@ namespace HoI2Editor.Models
             index++;
 
             // 労働力
-            double d;
             if (string.IsNullOrEmpty(token[index]))
             {
                 province.Manpower = 0;
             }
-            else if (double.TryParse(token[index], out d))
+            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.Manpower = d;
             }
@@ -3783,9 +3783,9 @@ namespace HoI2Editor.Models
             {
                 province.Oil = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
-                province.Oil = n;
+                province.Oil = d;
             }
             else
             {
@@ -3799,9 +3799,9 @@ namespace HoI2Editor.Models
             {
                 province.Metal = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
-                province.Metal = n;
+                province.Metal = d;
             }
             else
             {
@@ -3815,9 +3815,9 @@ namespace HoI2Editor.Models
             {
                 province.Energy = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
-                province.Energy = n;
+                province.Energy = d;
             }
             else
             {
@@ -3831,9 +3831,9 @@ namespace HoI2Editor.Models
             {
                 province.RareMaterials = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
-                province.RareMaterials = n;
+                province.RareMaterials = d;
             }
             else
             {
@@ -4343,16 +4343,16 @@ namespace HoI2Editor.Models
                             province.Continent != ContinentId.None ? ContinentStrings[(int) province.Continent] : "",
                             ClimateStrings[(int) province.Climate],
                             TerrainStrings[(int) province.Terrain],
-                            province.Infrastructure,
+                            province.Infrastructure.ToString(CultureInfo.InvariantCulture),
                             province.Beaches ? 1 : 0,
                             province.PortAllowed ? 1 : 0,
                             province.PortSeaZone,
-                            province.Ic,
-                            province.Manpower,
-                            province.Oil,
-                            province.Metal,
-                            province.Energy,
-                            province.RareMaterials,
+                            province.Ic.ToString(CultureInfo.InvariantCulture),
+                            province.Manpower.ToString(CultureInfo.InvariantCulture),
+                            province.Oil.ToString(CultureInfo.InvariantCulture),
+                            province.Metal.ToString(CultureInfo.InvariantCulture),
+                            province.Energy.ToString(CultureInfo.InvariantCulture),
+                            province.RareMaterials.ToString(CultureInfo.InvariantCulture),
                             province.CityXPos,
                             province.CityYPos,
                             province.ArmyXPos,
@@ -4405,7 +4405,7 @@ namespace HoI2Editor.Models
                             ContinentStrings[(int) province.Continent],
                             ClimateStrings[(int) province.Climate],
                             TerrainStrings[(int) province.Terrain],
-                            province.Infrastructure,
+                            province.Infrastructure.ToString(CultureInfo.InvariantCulture),
                             province.Beaches ? 1 : 0,
                             province.PortAllowed ? 1 : 0,
                             province.PortSeaZone,
