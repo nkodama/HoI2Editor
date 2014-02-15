@@ -11,24 +11,6 @@ namespace HoI2Editor.Utilities
     public static class CursorFactory
     {
         /// <summary>
-        ///     GetIconInfo Win32API
-        /// </summary>
-        /// <param name="hIcon"></param>
-        /// <param name="pIconInfo"></param>
-        /// <returns></returns>
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
-
-        /// <summary>
-        ///     CreateIconIndirect Win32API
-        /// </summary>
-        /// <param name="icon"></param>
-        /// <returns></returns>
-        [DllImport("user32.dll")]
-        public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
-
-        /// <summary>
         ///     カーソルを作成する
         /// </summary>
         /// <param name="bitmap">カーソル画像</param>
@@ -60,13 +42,13 @@ namespace HoI2Editor.Utilities
 
             IntPtr hIcon = bitmap.GetHicon();
             var info = new IconInfo();
-            GetIconInfo(hIcon, ref info);
+            NativeMethods.GetIconInfo(hIcon, ref info);
             info.xHotspot = xHotSpot;
             info.yHotspot = yHotSpot;
             info.hbmMask = andMask.GetHbitmap();
             info.hbmColor = xorMask.GetHbitmap();
             info.fIcon = false;
-            hIcon = CreateIconIndirect(ref info);
+            hIcon = NativeMethods.CreateIconIndirect(ref info);
             return new Cursor(hIcon);
         }
 
@@ -93,14 +75,38 @@ namespace HoI2Editor.Utilities
 
             IntPtr hIcon = bitmap.GetHicon();
             var info = new IconInfo();
-            GetIconInfo(hIcon, ref info);
+            NativeMethods.GetIconInfo(hIcon, ref info);
             info.xHotspot = xHotSpot;
             info.yHotspot = yHotSpot;
             info.hbmMask = andMask.GetHbitmap();
             info.hbmColor = xorMask.GetHbitmap();
             info.fIcon = false;
-            hIcon = CreateIconIndirect(ref info);
+            hIcon = NativeMethods.CreateIconIndirect(ref info);
             return new Cursor(hIcon);
+        }
+
+        /// <summary>
+        ///     P/Invokeメソッド定義用クラス
+        /// </summary>
+        private static class NativeMethods
+        {
+            /// <summary>
+            ///     GetIconInfo Win32API
+            /// </summary>
+            /// <param name="hIcon"></param>
+            /// <param name="pIconInfo"></param>
+            /// <returns></returns>
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
+
+            /// <summary>
+            ///     CreateIconIndirect Win32API
+            /// </summary>
+            /// <param name="icon"></param>
+            /// <returns></returns>
+            [DllImport("user32.dll")]
+            public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
         }
     }
 
@@ -143,13 +149,10 @@ namespace HoI2Editor.Utilities
 
         #region hbmColor
 
+        // ReSharper disable InconsistentNaming
         public IntPtr hbmColor;
+        // ReSharper restore InconsistentNaming
 
         #endregion
-
-        // ReSharper disable InconsistentNaming
-        // ReSharperで並び替えられないようにregionで区切る
-
-        // ReSharper restore InconsistentNaming
     }
 }

@@ -49,7 +49,28 @@ namespace HoI2Editor.Parsers
         /// </summary>
         public void Dispose()
         {
-            Close();
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        ///     デストラクタ
+        /// </summary>
+        ~TextLexer()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        ///     オブジェクト破棄時の処理
+        /// </summary>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_reader != null)
+            {
+                Close();
+            }
         }
 
         /// <summary>
@@ -63,6 +84,12 @@ namespace HoI2Editor.Parsers
                 return;
             }
 
+            // 既に開いているファイルがあれば閉じる
+            if (_reader != null)
+            {
+                Close();
+            }
+
             _reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
         }
 
@@ -72,6 +99,7 @@ namespace HoI2Editor.Parsers
         public void Close()
         {
             _reader.Close();
+            _reader = null;
         }
 
         #endregion

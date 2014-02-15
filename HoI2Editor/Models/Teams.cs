@@ -309,7 +309,6 @@ namespace HoI2Editor.Models
 
                     list.Add(line);
                 }
-                reader.Close();
             }
             return list;
         }
@@ -358,7 +357,6 @@ namespace HoI2Editor.Models
                     ParseLine(reader.ReadLine(), country);
                     _currentLineNo++;
                 }
-                reader.Close();
 
                 ResetDirty(country);
             }
@@ -603,7 +601,6 @@ namespace HoI2Editor.Models
 
                     _currentLineNo++;
                 }
-                writer.Close();
             }
 
             ResetDirty(country);

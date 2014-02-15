@@ -3538,7 +3538,6 @@ namespace HoI2Editor.Models
                     ParseLine(reader.ReadLine());
                     _currentLineNo++;
                 }
-                reader.Close();
 
                 ResetDirty();
             }
@@ -4474,7 +4473,6 @@ namespace HoI2Editor.Models
 
                     _currentLineNo++;
                 }
-                writer.Close();
             }
         }
 

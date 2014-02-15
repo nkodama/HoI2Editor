@@ -568,7 +568,6 @@ namespace HoI2Editor.Models
                     // 文字列定義ファイルテーブルに登録する
                     TextFileTable[key] = name;
                 }
-                reader.Close();
             }
 
             // 定義順リストテーブルに登録する
@@ -730,8 +729,6 @@ namespace HoI2Editor.Models
                     // 末尾行
                     writer.WriteLine("#EOF;;;;;;;;;;;X");
                 }
-
-                writer.Close();
             }
         }
 
