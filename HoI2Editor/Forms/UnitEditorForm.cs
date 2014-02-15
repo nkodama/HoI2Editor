@@ -3861,7 +3861,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(defaultOrganisationTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(defaultOrganisationTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -4059,7 +4061,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(transportCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(transportCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 transportCapabilityTextBox.Text = model.TransportCapability.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -4155,7 +4159,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(supplyConsumptionTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(supplyConsumptionTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 supplyConsumptionTextBox.Text = model.SupplyConsumption.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -4630,7 +4636,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(upgradeCostFactorTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(upgradeCostFactorTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 upgradeCostFactorTextBox.Text = model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -4678,7 +4686,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(upgradeTimeFactorTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(upgradeTimeFactorTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 upgradeTimeFactorTextBox.Text = model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -6054,7 +6064,8 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(shoreBombardmentTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(shoreBombardmentTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
             {
                 shoreBombardmentTextBox.Text = model.ShoreBombardment.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -6246,7 +6257,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(artilleryBombardmentTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(artilleryBombardmentTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -6390,7 +6403,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(surfaceDetectionCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(surfaceDetectionCapabilityTextBox.Text, NumberStyles.Float,
+                    CultureInfo.InvariantCulture, out val))
             {
                 surfaceDetectionCapabilityTextBox.Text =
                     model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
@@ -6439,7 +6454,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(subDetectionCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(subDetectionCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -6487,7 +6504,9 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(airDetectionCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (
+                !double.TryParse(airDetectionCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
+                    out val))
             {
                 airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 return;
