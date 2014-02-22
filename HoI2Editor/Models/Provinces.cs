@@ -777,9 +777,9 @@ namespace HoI2Editor.Models
             "AREA_BADEN_WURTTEMBERG",
             "AREA_BAHAMAS_ISLANDS",
             "AREA_BALEARES",
+            "AREA_BELGOROD",
             "AREA_BAVARIA",
             "AREA_BECHUANALAND",
-            "AREA_BELGOROD",
             "AREA_BENGAL",
             "AREA_BENGAZI",
             "AREA_BERMUDA",
@@ -847,9 +847,9 @@ namespace HoI2Editor.Models
             "AREA_EASTERN_GHAT",
             "AREA_EASTERN_HUNGARY",
             "AREA_EIRE",
+            "AREA_ENGELS",
             "AREA_EL_ALAMEIN",
             "AREA_EL_RIF",
-            "AREA_ENGELS",
             "AREA_ESPIRTU_SANTO",
             "AREA_ESTONIA",
             "AREA_ETHIOPIAN_HIGHLAND",
@@ -990,7 +990,6 @@ namespace HoI2Editor.Models
             "AREA_NEBRASKA",
             "AREA_NEDRE_NORRLAND",
             "AREA_NETHERLANDS",
-            "AREA_NEVADA",
             "AREA_NEW_BRUNSWICK",
             "AREA_NEW_FOUNDLAND",
             "AREA_NEW_HAMPSHIRE",
@@ -998,6 +997,7 @@ namespace HoI2Editor.Models
             "AREA_NEW_MEXICO",
             "AREA_NEW_YORK",
             "AREA_NEW_ZEALAND",
+            "AREA_NEVADA",
             "AREA_NIASSA",
             "AREA_NICARAGUA",
             "AREA_NIGER",
@@ -2707,7 +2707,7 @@ namespace HoI2Editor.Models
         };
 
         /// <summary>
-        ///     利用可能な地域ID (HoI2)
+        ///     利用可能な地域ID (DH)
         /// </summary>
         private static readonly AreaId[] AreasDh =
         {
