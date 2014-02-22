@@ -1246,6 +1246,7 @@ namespace HoI2Editor.Forms
             var original = new Bitmap(Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) grp.Category]));
             int width = DeviceCaps.GetScaledWidth(original.Width);
             int height = DeviceCaps.GetScaledHeight(original.Height);
+            original.MakeTransparent(Color.Lime);
 
             var scaled = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(scaled);
