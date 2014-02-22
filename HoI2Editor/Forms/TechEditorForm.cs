@@ -4546,6 +4546,10 @@ namespace HoI2Editor.Forms
             commandValueComboBox.Refresh();
             commandWhenComboBox.Refresh();
             commandWhereComboBox.Refresh();
+            commandWhichComboBox.ForeColor = command.IsDirty(CommandItemId.Which) ? Color.Red : SystemColors.WindowText;
+            commandValueComboBox.ForeColor = command.IsDirty(CommandItemId.Value) ? Color.Red : SystemColors.WindowText;
+            commandWhenComboBox.ForeColor = command.IsDirty(CommandItemId.When) ? Color.Red : SystemColors.WindowText;
+            commandWhereComboBox.ForeColor = command.IsDirty(CommandItemId.Where) ? Color.Red : SystemColors.WindowText;
 
             // 編集項目を有効化する
             EnableEffectItems();
@@ -4872,6 +4876,9 @@ namespace HoI2Editor.Forms
             item.SetDirty();
             command.SetDirty(CommandItemId.Which);
 
+            // 文字色を変更する
+            commandWhichComboBox.ForeColor = Color.Red;
+
             // 技術効果whichパラメータコンボボックスの項目色を変更するため描画更新する
             commandWhichComboBox.Refresh();
         }
@@ -4942,6 +4949,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             command.SetDirty(CommandItemId.Value);
+
+            // 文字色を変更する
+            commandValueComboBox.ForeColor = Color.Red;
 
             // 技術効果valueパラメータコンボボックスの項目色を変更するため描画更新する
             commandValueComboBox.Refresh();
@@ -5014,6 +5024,9 @@ namespace HoI2Editor.Forms
             item.SetDirty();
             command.SetDirty(CommandItemId.When);
 
+            // 文字色を変更する
+            commandWhenComboBox.ForeColor = Color.Red;
+
             // 技術効果whenパラメータコンボボックスの項目色を変更するため描画更新する
             commandWhenComboBox.Refresh();
         }
@@ -5084,6 +5097,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirty();
             command.SetDirty(CommandItemId.Where);
+
+            // 文字色を変更する
+            commandWhereComboBox.ForeColor = Color.Red;
 
             // 技術効果whereパラメータコンボボックスの項目色を変更するため描画更新する
             commandWhereComboBox.Refresh();
