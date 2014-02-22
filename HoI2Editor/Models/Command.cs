@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
@@ -394,19 +396,19 @@ namespace HoI2Editor.Models
             sb.AppendFormat(" type = {0}", TypeStringTable[(int) Type]);
             if (Which != null)
             {
-                sb.AppendFormat(" which = {0}", Which);
+                sb.AppendFormat(CultureInfo.InvariantCulture, " which = {0}", ObjectHelper.ToString(Which));
             }
             if (When != null)
             {
-                sb.AppendFormat(" when = {0}", When);
+                sb.AppendFormat(CultureInfo.InvariantCulture, " when = {0}", ObjectHelper.ToString(When));
             }
             if (Where != null)
             {
-                sb.AppendFormat(" where = {0}", Where);
+                sb.AppendFormat(CultureInfo.InvariantCulture, " where = {0}", ObjectHelper.ToString(Where));
             }
             if (Value != null)
             {
-                sb.AppendFormat(" value = {0}", Value);
+                sb.AppendFormat(CultureInfo.InvariantCulture, " value = {0}", ObjectHelper.ToString(Value));
             }
             return sb.ToString();
         }

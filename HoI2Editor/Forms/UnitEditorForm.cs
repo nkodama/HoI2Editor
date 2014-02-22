@@ -2736,7 +2736,8 @@ namespace HoI2Editor.Forms
             // 文字色を変更する
             upgradeCostTextBox.ForeColor = Color.Red;
 
-            Debug.WriteLine(string.Format("[Unit] Update cost changed: {0} ({1})", upgrade.UpgradeCostFactor, unit));
+            Debug.WriteLine(string.Format("[Unit] Update cost changed: {0} ({1})",
+                upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture), unit));
         }
 
         /// <summary>
@@ -2789,7 +2790,8 @@ namespace HoI2Editor.Forms
             // 文字色を変更する
             upgradeTimeTextBox.ForeColor = Color.Red;
 
-            Debug.WriteLine(string.Format("[Unit] Update time changed: {0} ({1})", upgrade.UpgradeTimeFactor, unit));
+            Debug.WriteLine(string.Format("[Unit] Update time changed: {0} ({1})",
+                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit));
         }
 
         /// <summary>
@@ -2827,8 +2829,9 @@ namespace HoI2Editor.Forms
             // 改良リストビューに項目を追加する
             AddUpgradeListItem(upgrade);
 
-            Debug.WriteLine(string.Format("[Unit] Upgrade info added: {0} {1} {2} ({3})", u, upgrade.UpgradeCostFactor,
-                upgrade.UpgradeTimeFactor, unit));
+            Debug.WriteLine(string.Format("[Unit] Upgrade info added: {0} {1} {2} ({3})", u,
+                upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
+                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit));
         }
 
         /// <summary>
@@ -3133,7 +3136,7 @@ namespace HoI2Editor.Forms
             }
 
             // 陸軍師団
-            if (unit.Branch == Branch.Army && unit.Organization == UnitOrganization.Division)
+            if ((unit.Branch == Branch.Army) && (unit.Organization == UnitOrganization.Division))
             {
                 // 速度キャップ(砲兵)
                 speedCapArtLabel.Enabled = true;
@@ -3400,7 +3403,7 @@ namespace HoI2Editor.Forms
             }
 
             // AoD/陸軍
-            if (Game.Type == GameType.ArsenalOfDemocracy && unit.Branch == Branch.Army)
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (unit.Branch == Branch.Army))
             {
                 // 最大物資
                 maxSupplyStockLabel.Enabled = true;
@@ -3430,9 +3433,9 @@ namespace HoI2Editor.Forms
             }
 
             // AoD/陸軍旅団
-            if (Game.Type == GameType.ArsenalOfDemocracy &&
-                unit.Branch == Branch.Army &&
-                unit.Organization == UnitOrganization.Brigade)
+            if ((Game.Type == GameType.ArsenalOfDemocracy) &&
+                (unit.Branch == Branch.Army) &&
+                (unit.Organization == UnitOrganization.Brigade))
             {
                 // 砲撃能力
                 artilleryBombardmentLabel.Enabled = true;
@@ -3451,7 +3454,7 @@ namespace HoI2Editor.Forms
             }
 
             // DH/師団
-            if (Game.Type == GameType.DarkestHour && unit.Organization == UnitOrganization.Division)
+            if ((Game.Type == GameType.DarkestHour) && (unit.Organization == UnitOrganization.Division))
             {
                 // 補充コスト
                 reinforceCostLabel.Enabled = true;
@@ -3481,9 +3484,9 @@ namespace HoI2Editor.Forms
             }
 
             // DH/陸軍師団
-            if (Game.Type == GameType.DarkestHour &&
-                unit.Branch == Branch.Army &&
-                unit.Organization == UnitOrganization.Division)
+            if ((Game.Type == GameType.DarkestHour) &&
+                (unit.Branch == Branch.Army) &&
+                (unit.Organization == UnitOrganization.Division))
             {
                 // 燃料切れ補正
                 noFuelCombatModLabel.Enabled = true;
@@ -3502,17 +3505,17 @@ namespace HoI2Editor.Forms
             }
 
             // DH1.03以降
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
             {
                 // 装備リストを更新する
                 UpdateEquipmentList(model);
             }
 
             // DH1.03以降/陸軍旅団
-            if (Game.Type == GameType.DarkestHour &&
-                Game.Version >= 103 &&
-                unit.Branch == Branch.Army &&
-                unit.Organization == UnitOrganization.Brigade)
+            if ((Game.Type == GameType.DarkestHour) &&
+                (Game.Version >= 103) &&
+                (unit.Branch == Branch.Army) &&
+                (unit.Organization == UnitOrganization.Brigade))
             {
                 // 速度キャップ
                 speedCapAllLabel.Enabled = true;
@@ -3546,7 +3549,7 @@ namespace HoI2Editor.Forms
             removeButton.Enabled = true;
 
             // DH1.03以降
-            if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
             {
                 equipmentGroupBox.Enabled = true;
             }
@@ -4061,9 +4064,8 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(transportCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!double.TryParse(transportCapabilityTextBox.Text, NumberStyles.Float,
+                CultureInfo.InvariantCulture, out val))
             {
                 transportCapabilityTextBox.Text = model.TransportCapability.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -4159,9 +4161,8 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(supplyConsumptionTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!double.TryParse(supplyConsumptionTextBox.Text, NumberStyles.Float,
+                CultureInfo.InvariantCulture, out val))
             {
                 supplyConsumptionTextBox.Text = model.SupplyConsumption.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -6257,9 +6258,8 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(artilleryBombardmentTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!double.TryParse(artilleryBombardmentTextBox.Text, NumberStyles.Float,
+                CultureInfo.InvariantCulture, out val))
             {
                 artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -6403,9 +6403,8 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(surfaceDetectionCapabilityTextBox.Text, NumberStyles.Float,
-                    CultureInfo.InvariantCulture, out val))
+            if (!double.TryParse(surfaceDetectionCapabilityTextBox.Text, NumberStyles.Float,
+                CultureInfo.InvariantCulture, out val))
             {
                 surfaceDetectionCapabilityTextBox.Text =
                     model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
@@ -6454,9 +6453,8 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(subDetectionCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!double.TryParse(subDetectionCapabilityTextBox.Text, NumberStyles.Float,
+                CultureInfo.InvariantCulture, out val))
             {
                 subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 return;
@@ -6504,9 +6502,8 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(airDetectionCapabilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!double.TryParse(airDetectionCapabilityTextBox.Text, NumberStyles.Float,
+                CultureInfo.InvariantCulture, out val))
             {
                 airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
                 return;

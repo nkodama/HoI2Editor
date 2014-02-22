@@ -3954,7 +3954,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component id: {0} -> {1} [{2}]",
+            Debug.WriteLine(string.Format("[Tech] Changed tech component speciality: {0} -> {1} [{2}]",
                 Techs.GetSpecialityName(component.Speciality), Techs.GetSpecialityName(speciality), component));
 
             // 値を更新する
@@ -4007,7 +4007,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component id: {0} -> {1} [{2}]", component.Difficulty,
+            Debug.WriteLine(string.Format("[Tech] Changed tech component difficulty: {0} -> {1} [{2}]",
+                component.Difficulty,
                 difficulty, component));
 
             // 値を更新する
@@ -4060,7 +4061,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component id: {0} -> {1} [{2}]", component.DoubleTime,
+            Debug.WriteLine(string.Format("[Tech] Changed tech component double time: {0} -> {1} [{2}]",
+                component.DoubleTime,
                 doubleTime, component));
 
             // 値を更新する
@@ -4386,7 +4388,7 @@ namespace HoI2Editor.Forms
                 Brush brush = command.IsDirty(CommandItemId.Which)
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(SystemColors.WindowText);
-                string s = commandWhichComboBox.Items[e.Index].ToString();
+                string s = ObjectHelper.ToString(commandWhichComboBox.Items[e.Index]);
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
             }
@@ -4419,7 +4421,7 @@ namespace HoI2Editor.Forms
                 Brush brush = command.IsDirty(CommandItemId.Value)
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(SystemColors.WindowText);
-                string s = commandValueComboBox.Items[e.Index].ToString();
+                string s = ObjectHelper.ToString(commandValueComboBox.Items[e.Index]);
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
             }
@@ -4452,7 +4454,7 @@ namespace HoI2Editor.Forms
                 Brush brush = command.IsDirty(CommandItemId.When)
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(SystemColors.WindowText);
-                string s = commandWhenComboBox.Items[e.Index].ToString();
+                string s = ObjectHelper.ToString(commandWhenComboBox.Items[e.Index]);
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
             }
@@ -4485,7 +4487,7 @@ namespace HoI2Editor.Forms
                 Brush brush = command.IsDirty(CommandItemId.Where)
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(SystemColors.WindowText);
-                string s = commandWhereComboBox.Items[e.Index].ToString();
+                string s = ObjectHelper.ToString(commandWhereComboBox.Items[e.Index]);
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
                 brush.Dispose();
             }
@@ -4532,10 +4534,10 @@ namespace HoI2Editor.Forms
                 commandTypeComboBox.SelectedIndex = -1;
                 commandTypeComboBox.Text = "";
             }
-            commandWhichComboBox.Text = command.Which != null ? command.Which.ToString() : "";
-            commandValueComboBox.Text = command.Value != null ? command.Value.ToString() : "";
-            commandWhenComboBox.Text = command.When != null ? command.When.ToString() : "";
-            commandWhereComboBox.Text = command.Where != null ? command.Where.ToString() : "";
+            commandWhichComboBox.Text = ObjectHelper.ToString(command.Which);
+            commandValueComboBox.Text = ObjectHelper.ToString(command.Value);
+            commandWhenComboBox.Text = ObjectHelper.ToString(command.When);
+            commandWhereComboBox.Text = ObjectHelper.ToString(command.Where);
 
             // コンボボックスの色を更新する
             commandTypeComboBox.Refresh();
@@ -4547,8 +4549,8 @@ namespace HoI2Editor.Forms
             // 編集項目を有効化する
             EnableEffectItems();
 
-            effectUpButton.Enabled = index != 0;
-            effectDownButton.Enabled = index != item.Effects.Count - 1;
+            effectUpButton.Enabled = (index != 0);
+            effectDownButton.Enabled = (index != item.Effects.Count - 1);
         }
 
         /// <summary>
@@ -4783,7 +4785,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech effect: {0} -> {1} [{2}]",
+            Debug.WriteLine(string.Format("[Tech] Changed tech effect type: {0} -> {1} [{2}]",
                 Command.TypeStringTable[(int) command.Type], Command.TypeStringTable[(int) type], item));
 
             // 値を更新する
@@ -4829,21 +4831,39 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値に変化がなければ何もしない
-            string text = commandWhichComboBox.Text;
-            if (command.Which != null && text.Equals(command.Which.ToString()))
+            double val;
+            if (double.TryParse(commandWhichComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
             {
-                return;
+                // 値に変化がなければ何もしない
+                if (ObjectHelper.IsEqual(val, command.Which))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect which: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.Which), ObjectHelper.ToString(val), item));
+
+                // 値を更新する
+                command.Which = val;
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                string text = commandWhichComboBox.Text;
+                if (ObjectHelper.IsEqual(text, command.Which))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect which: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.Which), text, item));
+
+                // 値を更新する
+                command.Which = text;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech effect which: {0} -> {1} [{2}]", command.Which, text,
-                item));
-
-            // 値を更新する
-            command.Which = text;
-
             // 技術効果リストビューの表示を更新する
-            effectListView.Items[index].SubItems[1].Text = text;
+            effectListView.Items[index].SubItems[1].Text = ObjectHelper.ToString(command.Which);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4882,21 +4902,39 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値に変化がなければ何もしない
-            string text = commandValueComboBox.Text;
-            if (command.Value != null && text.Equals(command.Value.ToString()))
+            double val;
+            if (double.TryParse(commandValueComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
             {
-                return;
+                // 値に変化がなければ何もしない
+                if (ObjectHelper.IsEqual(val, command.Value))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect value: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.Value), ObjectHelper.ToString(val), item));
+
+                // 値を更新する
+                command.Value = val;
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                string text = commandValueComboBox.Text;
+                if (ObjectHelper.IsEqual(text, command.Value))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect value: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.Value), text, item));
+
+                // 値を更新する
+                command.Value = text;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech effect value: {0} -> {1} [{2}]", command.Value, text,
-                item));
-
-            // 値を更新する
-            command.Value = text;
-
             // 技術効果リストビューの表示を更新する
-            effectListView.Items[index].SubItems[2].Text = text;
+            effectListView.Items[index].SubItems[2].Text = ObjectHelper.ToString(command.Value);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4935,20 +4973,39 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値に変化がなければ何もしない
-            string text = commandWhenComboBox.Text;
-            if (command.When != null && text.Equals(command.When.ToString()))
+            double val;
+            if (double.TryParse(commandWhenComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
             {
-                return;
+                // 値に変化がなければ何もしない
+                if (ObjectHelper.IsEqual(val, command.When))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect when: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.When), ObjectHelper.ToString(val), item));
+
+                // 値を更新する
+                command.When = val;
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                string text = commandWhenComboBox.Text;
+                if (ObjectHelper.IsEqual(text, command.When))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect when: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.When), text, item));
+
+                // 値を更新する
+                command.When = text;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech effect when: {0} -> {1} [{2}]", command.When, text, item));
-
-            // 値を更新する
-            command.When = text;
-
             // 技術効果リストビューの表示を更新する
-            effectListView.Items[index].SubItems[3].Text = text;
+            effectListView.Items[index].SubItems[3].Text = ObjectHelper.ToString(command.When);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4987,21 +5044,39 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値に変化がなければ何もしない
-            string text = commandWhereComboBox.Text;
-            if (command.Where != null && text.Equals(command.Where.ToString()))
+            double val;
+            if (double.TryParse(commandWhereComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
             {
-                return;
+                // 値に変化がなければ何もしない
+                if (ObjectHelper.IsEqual(val, command.Where))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect where: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.Where), ObjectHelper.ToString(val), item));
+
+                // 値を更新する
+                command.Where = val;
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                string text = commandWhereComboBox.Text;
+                if (ObjectHelper.IsEqual(text, command.Where))
+                {
+                    return;
+                }
+
+                Debug.WriteLine(string.Format("[Tech] Changed tech effect where: {0} -> {1} [{2}]",
+                    ObjectHelper.ToString(command.Where), text, item));
+
+                // 値を更新する
+                command.Where = text;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech effect where: {0} -> {1} [{2}]", command.Where, text,
-                item));
-
-            // 値を更新する
-            command.Where = text;
-
             // 技術効果リストビューの表示を更新する
-            effectListView.Items[index].SubItems[4].Text = text;
+            effectListView.Items[index].SubItems[4].Text = ObjectHelper.ToString(command.Where);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -5021,10 +5096,10 @@ namespace HoI2Editor.Forms
         private static ListViewItem CreateEffectListItem(Command command)
         {
             var li = new ListViewItem {Text = Command.TypeStringTable[(int) command.Type]};
-            li.SubItems.Add(command.Which != null ? command.Which.ToString() : "");
-            li.SubItems.Add(command.Value != null ? command.Value.ToString() : "");
-            li.SubItems.Add(command.When != null ? command.When.ToString() : "");
-            li.SubItems.Add(command.Where != null ? command.Where.ToString() : "");
+            li.SubItems.Add(ObjectHelper.ToString(command.Which));
+            li.SubItems.Add(ObjectHelper.ToString(command.Value));
+            li.SubItems.Add(ObjectHelper.ToString(command.When));
+            li.SubItems.Add(ObjectHelper.ToString(command.Where));
 
             return li;
         }
