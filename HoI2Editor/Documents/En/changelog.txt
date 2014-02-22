@@ -1,5 +1,11 @@
 Alternative HoI2 Editor Changelog
 
+- 22 February 2014; Ver 0.32
+
+Fixed a bug that tech effect parameters cannot be edited correctly in some countries.
+When a tech effect parameter is changed, the input field becomes red.
+Fixed a bug that some area ids and names are not matched.
+
 - 15 February 2014; Ver 0.31
 
 Fixed a bug that unit models, misc values, and province resources cannot be edited correctly in some countries.
