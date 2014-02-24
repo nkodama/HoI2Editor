@@ -302,6 +302,11 @@ namespace HoI2Editor.Models
         public const string TechIconPathName = "gfx\\interface\\tc_icons.bmp";
 
         /// <summary>
+        ///     研究特性オーバーレイアイコンのファイル名
+        /// </summary>
+        public const string TechIconOverlayPathName = "gfx\\interface\\tc_icon_overlay.bmp";
+
+        /// <summary>
         ///     技術ラベルのファイル名
         /// </summary>
         public const string TechLabelPathName = "gfx\\interface\\button_tech_normal.bmp";

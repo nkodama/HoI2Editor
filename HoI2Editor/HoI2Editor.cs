@@ -262,6 +262,10 @@ namespace HoI2Editor
             {
                 _randomLeaderEditorForm.OnFileLoaded();
             }
+            if (_researchViewerForm != null)
+            {
+                _researchViewerForm.OnFileLoaded();
+            }
         }
 
         /// <summary>
@@ -366,6 +370,10 @@ namespace HoI2Editor
             {
                 _randomLeaderEditorForm.OnItemChanged(id);
             }
+            if (_researchViewerForm != null)
+            {
+                _researchViewerForm.OnItemChanged(id);
+            }
         }
 
         #endregion
@@ -433,6 +441,11 @@ namespace HoI2Editor
         private static RandomLeaderEditorForm _randomLeaderEditorForm;
 
         /// <summary>
+        ///     研究速度ビューアのフォーム
+        /// </summary>
+        private static ResearchViewerForm _researchViewerForm;
+
+        /// <summary>
         ///     メインフォームを起動する
         /// </summary>
         public static void LaunchMainForm()
@@ -442,7 +455,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     指揮官エディターフォームを起動する
+        ///     指揮官エディタフォームを起動する
         /// </summary>
         public static void LaunchLeaderEditorForm()
         {
@@ -460,7 +473,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     閣僚エディターフォームを起動する
+        ///     閣僚エディタフォームを起動する
         /// </summary>
         public static void LaunchMinisterEditorForm()
         {
@@ -478,7 +491,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     研究機関エディターフォームを起動する
+        ///     研究機関エディタフォームを起動する
         /// </summary>
         public static void LaunchTeamEditorForm()
         {
@@ -496,7 +509,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     プロヴィンスエディターフォームを起動する
+        ///     プロヴィンスエディタフォームを起動する
         /// </summary>
         public static void LaunchProvinceEditorForm()
         {
@@ -514,7 +527,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     技術ツリーエディターフォームを起動する
+        ///     技術ツリーエディタフォームを起動する
         /// </summary>
         public static void LaunchTechEditorForm()
         {
@@ -532,7 +545,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     ユニットモデルエディターフォームを起動する
+        ///     ユニットモデルエディタフォームを起動する
         /// </summary>
         public static void LaunchUnitEditorForm()
         {
@@ -550,7 +563,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     ゲーム設定エディターフォームを起動する
+        ///     ゲーム設定エディタフォームを起動する
         /// </summary>
         public static void LaunchMiscEditorForm()
         {
@@ -568,7 +581,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     ユニット名エディターフォームを起動する
+        ///     ユニット名エディタフォームを起動する
         /// </summary>
         public static void LaunchUnitNameEditorForm()
         {
@@ -586,7 +599,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     モデル名エディターフォームを起動する
+        ///     モデル名エディタフォームを起動する
         /// </summary>
         public static void LaunchModelNameEditorForm()
         {
@@ -604,7 +617,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     師団名エディターフォームを起動する
+        ///     師団名エディタフォームを起動する
         /// </summary>
         public static void LaunchDivisionNameEditorForm()
         {
@@ -622,7 +635,7 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     ランダム指揮官エディターフォームを起動する
+        ///     ランダム指揮官エディタフォームを起動する
         /// </summary>
         public static void LaunchRandomLeaderEditorForm()
         {
@@ -636,6 +649,24 @@ namespace HoI2Editor
             else
             {
                 _randomLeaderEditorForm.Activate();
+            }
+        }
+
+        /// <summary>
+        ///     研究速度ビューアフォームを起動する
+        /// </summary>
+        public static void LaunchResearchViewerForm()
+        {
+            if (_researchViewerForm == null)
+            {
+                _researchViewerForm = new ResearchViewerForm();
+                _researchViewerForm.Show();
+
+                OnEditorStatusUpdete();
+            }
+            else
+            {
+                _researchViewerForm.Activate();
             }
         }
 
@@ -750,6 +781,16 @@ namespace HoI2Editor
         }
 
         /// <summary>
+        ///     研究速度ビューアフォームクローズ時の処理
+        /// </summary>
+        public static void OnResearchViewerFormClosed()
+        {
+            _researchViewerForm = null;
+
+            OnEditorStatusUpdete();
+        }
+
+        /// <summary>
         ///     エディターの状態更新時の処理
         /// </summary>
         private static void OnEditorStatusUpdete()
@@ -764,7 +805,8 @@ namespace HoI2Editor
                 _unitNameEditorForm == null &&
                 _modelNameEditorForm == null &&
                 _divisionNameEditorForm == null &&
-                _randomLeaderEditorForm == null)
+                _randomLeaderEditorForm == null &&
+                _researchViewerForm == null)
             {
                 _mainForm.EnableFolderChange();
             }

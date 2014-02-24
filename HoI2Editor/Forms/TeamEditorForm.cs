@@ -19,7 +19,7 @@ namespace HoI2Editor.Forms
         #region 内部フィールド
 
         /// <summary>
-        ///     絞り込み後の閣僚リスト
+        ///     絞り込み後の研究機関リスト
         /// </summary>
         private readonly List<Team> _list = new List<Team>();
 
@@ -173,6 +173,16 @@ namespace HoI2Editor.Forms
 
             // データ読み込み後の処理
             OnFileLoaded();
+        }
+
+        /// <summary>
+        ///     最適組み合わせボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMatchingButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.LaunchResearchViewerForm();
         }
 
         #endregion
@@ -351,7 +361,7 @@ namespace HoI2Editor.Forms
             // 選択中の国家リストを作成する
             List<Country> tags = (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToList();
 
-            // 選択中の国家に所属する指揮官を順に絞り込む
+            // 選択中の国家に所属する研究機関を順に絞り込む
             _list.AddRange(Teams.Items.Where(team => tags.Contains(team.Country)));
         }
 

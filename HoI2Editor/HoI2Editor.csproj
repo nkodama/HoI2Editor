@@ -97,6 +97,12 @@
     <Compile Include="Forms\RandomLeaderEditorForm.Designer.cs">
       <DependentUpon>RandomLeaderEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ResearchViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ResearchViewerForm.Designer.cs">
+      <DependentUpon>ResearchViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TeamEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,8 @@
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\Provinces.cs" />
     <Compile Include="Models\RandomLeaders.cs" />
+    <Compile Include="Models\Research.cs" />
+    <Compile Include="Models\Researches.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Models\Tech.cs" />
@@ -218,6 +226,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RandomLeaderEditorForm.resx">
       <DependentUpon>RandomLeaderEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ResearchViewerForm.ja.resx">
+      <DependentUpon>ResearchViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ResearchViewerForm.resx">
+      <DependentUpon>ResearchViewerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TeamEditorForm.ja.resx">
       <DependentUpon>TeamEditorForm.cs</DependentUpon>

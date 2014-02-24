@@ -18,6 +18,8 @@ namespace HoI2Editor.Models
     {
         #region 公開プロパティ
 
+        #region economyセクション
+
         /// <summary>
         ///     輸送艦最大付属装備数
         /// </summary>
@@ -128,6 +130,114 @@ namespace HoI2Editor.Models
             }
         }
 
+        #endregion
+
+        #region researchセクション
+
+        /// <summary>
+        ///     青写真ボーナス
+        /// </summary>
+        public static double BlueprintBonus
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.BlueprintBonus] != null)
+                    ? (double) _items[(int) MiscItemId.BlueprintBonus]
+                    : 1;
+            }
+        }
+
+        /// <summary>
+        ///     史実年度以前研究ペナルティ
+        /// </summary>
+        public static double PreHistoricalDateModifier
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.PreHistoricalDateModifier] != null)
+                    ? (double) _items[(int) MiscItemId.PreHistoricalDateModifier]
+                    : 1;
+            }
+        }
+
+        /// <summary>
+        ///     史実年度以降研究ボーナス
+        /// </summary>
+        public static double PostHistoricalDateModifier
+        {
+            get
+            {
+                switch (Game.Type)
+                {
+                    case GameType.ArsenalOfDemocracy:
+                        return (_items[(int) MiscItemId.PostHistoricalDateModifierAoD] != null)
+                            ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierAoD]
+                            : 1;
+
+                    case GameType.DarkestHour:
+                        return (_items[(int) MiscItemId.PostHistoricalDateModifierDh] != null)
+                            ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierDh]
+                            : 1;
+                }
+                return 1;
+            }
+        }
+
+        /// <summary>
+        ///     研究速度補正
+        /// </summary>
+        public static double TechSpeedModifier
+        {
+            get
+            {
+                if (Game.Type == GameType.ArsenalOfDemocracy)
+                {
+                    return (_items[(int) MiscItemId.TechSpeedModifier] != null)
+                        ? (double) _items[(int) MiscItemId.TechSpeedModifier]
+                        : 1;
+                }
+                return 1;
+            }
+        }
+
+        /// <summary>
+        ///     史実年度以前研究ペナルティ上限
+        /// </summary>
+        public static double PreHistoricalPenaltyLimit
+        {
+            get
+            {
+                if (Game.Type == GameType.ArsenalOfDemocracy)
+                {
+                    return (_items[(int) MiscItemId.PreHistoricalPenaltyLimit] != null)
+                        ? (double) _items[(int) MiscItemId.PreHistoricalPenaltyLimit]
+                        : 1;
+                }
+                return 1;
+            }
+        }
+
+        /// <summary>
+        ///     史実年度以降研究ボーナス上限
+        /// </summary>
+        public static double PostHistoricalBonusLimit
+        {
+            get
+            {
+                if (Game.Type == GameType.ArsenalOfDemocracy)
+                {
+                    return (_items[(int) MiscItemId.PostHistoricalBonusLimit] != null)
+                        ? (double) _items[(int) MiscItemId.PostHistoricalBonusLimit]
+                        : 1;
+                }
+                return 1;
+            }
+        }
+
+        #endregion
+
+        #region modセクション
+
         /// <summary>
         ///     新形式閣僚ファイルフォーマット
         /// </summary>
@@ -164,6 +274,10 @@ namespace HoI2Editor.Models
             }
         }
 
+        #endregion
+
+        #region mapセクション
+
         /// <summary>
         ///     マップ番号
         /// </summary>
@@ -171,6 +285,8 @@ namespace HoI2Editor.Models
         {
             get { return (_items[(int) MiscItemId.MapNumber] != null) ? (int) _items[(int) MiscItemId.MapNumber] : 0; }
         }
+
+        #endregion
 
         #endregion
 

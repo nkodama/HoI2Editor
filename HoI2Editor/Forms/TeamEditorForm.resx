@@ -117,260 +117,1022 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;specialityComboBox1.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="nameColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>300</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="countryComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
-  </data>
-  <data name="countryLabel.Text" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
+  <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>697, 527</value>
   </data>
-  <data name="&gt;&gt;countryListBox.Name" xml:space="preserve">
-    <value>countryListBox</value>
-  </data>
-  <data name="&gt;&gt;pictureNameReferButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="skillLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;endYearLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="topButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="pictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
-  <data name="&gt;&gt;specialityComboBox4.Name" xml:space="preserve">
-    <value>specialityComboBox4</value>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>Close</value>
   </data>
-  <data name="&gt;&gt;topButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;closeButton.Name" xml:space="preserve">
+    <value>closeButton</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
-  </data>
-  <data name="cloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 241</value>
-  </data>
-  <data name="countryColumnHeader.Text" xml:space="preserve">
-    <value>Tag</value>
-  </data>
-  <data name="teamListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="upButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;startYearLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;closeButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="countryColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="&gt;&gt;upButton.Name" xml:space="preserve">
-    <value>upButton</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.Name" xml:space="preserve">
-    <value>specialityComboBox5</value>
-  </data>
-  <data name="idNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 19</value>
-  </data>
-  <data name="&gt;&gt;removeButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryComboBox.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="endYearColumnHeader.Text" xml:space="preserve">
-    <value>End</value>
-  </data>
-  <data name="upButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;startYearColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="sortAbcButton.Text" xml:space="preserve">
-    <value>Sort ABC</value>
-  </data>
-  <data name="&gt;&gt;topButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="endYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 369</value>
-  </data>
-  <data name="&gt;&gt;startYearNumericUpDown.Name" xml:space="preserve">
-    <value>startYearNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;sortIdButton.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="countryListBox.ColumnWidth" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="teamListView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="specialityComboBox5.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;idNumericUpDown.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="skillColumnHeader.Text" xml:space="preserve">
-    <value>Skill</value>
-  </data>
-  <data name="countryComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;countryAllButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="specialityComboBox7.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;sortAbcButton.Name" xml:space="preserve">
-    <value>sortAbcButton</value>
-  </data>
-  <data name="endYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 271</value>
-  </data>
-  <data name="&gt;&gt;upButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;topButton.Name" xml:space="preserve">
-    <value>topButton</value>
-  </data>
-  <data name="pictureNameReferButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 419</value>
-  </data>
-  <data name="&gt;&gt;pictureNameReferButton.Name" xml:space="preserve">
-    <value>pictureNameReferButton</value>
-  </data>
-  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>535, 527</value>
-  </data>
-  <data name="specialityGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 261</value>
-  </data>
-  <data name="startYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 346</value>
-  </data>
-  <data name="sortAbcButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;pictureNameTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;countryComboBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;endYearLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;endYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
-    <value>nameTextBox</value>
-  </data>
-  <data name="&gt;&gt;pictureNameLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="startYearLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;countryAllButton.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="topButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 206</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="bottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;pictureNameReferButton.Type" xml:space="preserve">
+  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 527</value>
+  </data>
+  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
+    <value>saveButton</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 12</value>
-  </data>
-  <data name="specialityComboBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 24</value>
-  </data>
-  <data name="endYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 19</value>
-  </data>
-  <data name="idLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
-    <value>nameColumnHeader</value>
+  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>535, 527</value>
+  </data>
+  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
+    <value>reloadButton</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="teamPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;bottomButton.ZOrder" xml:space="preserve">
+  <data name="teamPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 421</value>
+  </data>
+  <data name="teamPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="teamPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="teamPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="&gt;&gt;teamPictureBox.Name" xml:space="preserve">
+    <value>teamPictureBox</value>
+  </data>
+  <data name="&gt;&gt;teamPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;teamPictureBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;teamPictureBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="pictureNameReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="pictureNameReferButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>465, 419</value>
+  </data>
+  <data name="pictureNameReferButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="pictureNameReferButton.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="pictureNameReferButton.Text" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="&gt;&gt;pictureNameReferButton.Name" xml:space="preserve">
+    <value>pictureNameReferButton</value>
+  </data>
+  <data name="&gt;&gt;pictureNameReferButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureNameReferButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureNameReferButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="pictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="pictureNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 394</value>
+  </data>
+  <data name="pictureNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 19</value>
+  </data>
+  <data name="pictureNameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="skillLabel.Text" xml:space="preserve">
-    <value>Skill</value>
+  <data name="&gt;&gt;pictureNameTextBox.Name" xml:space="preserve">
+    <value>pictureNameTextBox</value>
   </data>
-  <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>697, 527</value>
+  <data name="&gt;&gt;pictureNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="specialityGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+  <data name="&gt;&gt;pictureNameTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="sortAbcButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="&gt;&gt;pictureNameTextBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="pictureNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="specialityComboBox1.ItemHeight" type="System.Int32, mscorlib">
+  <data name="pictureNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="pictureNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 397</value>
+  </data>
+  <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 12</value>
+  </data>
+  <data name="pictureNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="pictureNameLabel.Text" xml:space="preserve">
+    <value>Picture Name</value>
+  </data>
+  <data name="&gt;&gt;pictureNameLabel.Name" xml:space="preserve">
+    <value>pictureNameLabel</value>
+  </data>
+  <data name="&gt;&gt;pictureNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureNameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureNameLabel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="endYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="endYearNumericUpDown.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="endYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 369</value>
+  </data>
+  <data name="endYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 19</value>
+  </data>
+  <data name="endYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="endYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.Name" xml:space="preserve">
+    <value>endYearNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="endYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="endYearLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="endYearLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 371</value>
+  </data>
+  <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 12</value>
+  </data>
+  <data name="endYearLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="endYearLabel.Text" xml:space="preserve">
+    <value>End Year</value>
+  </data>
+  <data name="&gt;&gt;endYearLabel.Name" xml:space="preserve">
+    <value>endYearLabel</value>
+  </data>
+  <data name="&gt;&gt;endYearLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endYearLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;endYearLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="startYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="startYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 344</value>
+  </data>
+  <data name="startYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 19</value>
+  </data>
+  <data name="startYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="startYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.Name" xml:space="preserve">
+    <value>startYearNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="startYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="startYearLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="startYearLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 346</value>
+  </data>
+  <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 12</value>
+  </data>
+  <data name="startYearLabel.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
+  </data>
+  <data name="startYearLabel.Text" xml:space="preserve">
+    <value>Start Year</value>
+  </data>
+  <data name="&gt;&gt;startYearLabel.Name" xml:space="preserve">
+    <value>startYearLabel</value>
+  </data>
+  <data name="&gt;&gt;startYearLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startYearLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;startYearLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 294</value>
+  </data>
+  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 19</value>
+  </data>
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
+    <value>nameTextBox</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="nameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="nameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 297</value>
+  </data>
+  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="nameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="nameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Name" xml:space="preserve">
+    <value>nameLabel</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="idNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="idNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 269</value>
+  </data>
+  <data name="idNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 19</value>
+  </data>
+  <data name="idNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="idNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Name" xml:space="preserve">
+    <value>idNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="countryListBox.ColumnWidth" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 241</value>
+  </data>
+  <data name="countryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 264</value>
+  </data>
+  <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;countryListBox.Name" xml:space="preserve">
+    <value>countryListBox</value>
+  </data>
+  <data name="&gt;&gt;countryListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryListBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;countryListBox.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="teamListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="countryColumnHeader.Text" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="countryColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="idColumnHeader.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="idColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nameColumnHeader.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="nameColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>300</value>
+  </data>
+  <data name="skillColumnHeader.Text" xml:space="preserve">
+    <value>Skill</value>
+  </data>
+  <data name="skillColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="skillColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="startYearColumnHeader.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="startYearColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="startYearColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="endYearColumnHeader.Text" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="endYearColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="endYearColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="specialityColumnHeader.Text" xml:space="preserve">
+    <value>Speciality</value>
+  </data>
+  <data name="specialityColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>185</value>
+  </data>
+  <data name="teamListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="teamListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>760, 188</value>
+  </data>
+  <data name="teamListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;teamListView.Name" xml:space="preserve">
+    <value>teamListView</value>
+  </data>
+  <data name="&gt;&gt;teamListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;teamListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;teamListView.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="idLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="idLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 271</value>
+  </data>
+  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="idLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="idLabel.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Name" xml:space="preserve">
+    <value>idLabel</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="countryComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="countryComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Courier New, 9pt</value>
+  </data>
+  <data name="countryComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 241</value>
+  </data>
+  <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="countryComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;countryComboBox.Name" xml:space="preserve">
+    <value>countryComboBox</value>
+  </data>
+  <data name="&gt;&gt;countryComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;countryComboBox.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="countryLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="countryLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="countryLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 244</value>
+  </data>
+  <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
+  </data>
+  <data name="countryLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="countryLabel.Text" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="&gt;&gt;countryLabel.Name" xml:space="preserve">
+    <value>countryLabel</value>
+  </data>
+  <data name="&gt;&gt;countryLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;countryLabel.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="countryAllButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="countryAllButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 527</value>
+  </data>
+  <data name="countryAllButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="countryAllButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="countryAllButton.Text" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="&gt;&gt;countryAllButton.Name" xml:space="preserve">
+    <value>countryAllButton</value>
+  </data>
+  <data name="&gt;&gt;countryAllButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryAllButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;countryAllButton.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="bottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="bottomButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>697, 206</value>
+  </data>
+  <data name="bottomButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="bottomButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="bottomButton.Text" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="&gt;&gt;bottomButton.Name" xml:space="preserve">
+    <value>bottomButton</value>
+  </data>
+  <data name="&gt;&gt;bottomButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bottomButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bottomButton.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="downButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="downButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 206</value>
+  </data>
+  <data name="downButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="downButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="downButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;downButton.Name" xml:space="preserve">
+    <value>downButton</value>
+  </data>
+  <data name="&gt;&gt;downButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;downButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;downButton.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="upButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="upButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>535, 206</value>
+  </data>
+  <data name="upButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="upButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="upButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;upButton.Name" xml:space="preserve">
+    <value>upButton</value>
+  </data>
+  <data name="&gt;&gt;upButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;upButton.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="topButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="topButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>454, 206</value>
+  </data>
+  <data name="topButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="topButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="topButton.Text" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="&gt;&gt;topButton.Name" xml:space="preserve">
+    <value>topButton</value>
+  </data>
+  <data name="&gt;&gt;topButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;topButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;topButton.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="removeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="removeButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 206</value>
+  </data>
+  <data name="removeButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="removeButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="removeButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;removeButton.Name" xml:space="preserve">
+    <value>removeButton</value>
+  </data>
+  <data name="&gt;&gt;removeButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;removeButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;removeButton.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="cloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="cloneButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 206</value>
+  </data>
+  <data name="cloneButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="cloneButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cloneButton.Text" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="&gt;&gt;cloneButton.Name" xml:space="preserve">
+    <value>cloneButton</value>
+  </data>
+  <data name="&gt;&gt;cloneButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cloneButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cloneButton.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="newButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="newButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 206</value>
+  </data>
+  <data name="newButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="newButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="newButton.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="&gt;&gt;newButton.Name" xml:space="preserve">
+    <value>newButton</value>
   </data>
   <data name="&gt;&gt;newButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="specialityComboBox6.ItemHeight" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="&gt;&gt;newButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="skillNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="skillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 319</value>
+  </data>
+  <data name="skillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 19</value>
+  </data>
+  <data name="skillNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="skillNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;skillNumericUpDown.Name" xml:space="preserve">
+    <value>skillNumericUpDown</value>
   </data>
   <data name="&gt;&gt;skillNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;skillNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;skillNumericUpDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="skillLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="skillLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="skillLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 321</value>
+  </data>
+  <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 12</value>
+  </data>
+  <data name="skillLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="skillLabel.Text" xml:space="preserve">
+    <value>Skill</value>
+  </data>
+  <data name="&gt;&gt;skillLabel.Name" xml:space="preserve">
+    <value>skillLabel</value>
+  </data>
+  <data name="&gt;&gt;skillLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;skillLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;skillLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="specialityGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="sortAbcButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="sortAbcButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="sortAbcButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 228</value>
+  </data>
+  <data name="sortAbcButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="sortAbcButton.TabIndex" type="System.Int32, mscorlib">
+    <value>73</value>
+  </data>
+  <data name="sortAbcButton.Text" xml:space="preserve">
+    <value>Sort ABC</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.Name" xml:space="preserve">
+    <value>sortAbcButton</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;sortAbcButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="sortIdButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="sortIdButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="sortIdButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 228</value>
+  </data>
+  <data name="sortIdButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="sortIdButton.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="sortIdButton.Text" xml:space="preserve">
+    <value>Sort ID</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.Name" xml:space="preserve">
+    <value>sortIdButton</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;sortIdButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="specialityComboBox7.ItemHeight" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="specialityComboBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 198</value>
+  </data>
+  <data name="specialityComboBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
+  </data>
+  <data name="specialityComboBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.Name" xml:space="preserve">
+    <value>specialityComboBox7</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="specialityComboBox6.ItemHeight" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="specialityComboBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 168</value>
+  </data>
+  <data name="specialityComboBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
+  </data>
+  <data name="specialityComboBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox6.Name" xml:space="preserve">
+    <value>specialityComboBox6</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox6.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox6.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="specialityComboBox5.ItemHeight" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="specialityComboBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 138</value>
+  </data>
+  <data name="specialityComboBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
+  </data>
+  <data name="specialityComboBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox5.Name" xml:space="preserve">
+    <value>specialityComboBox5</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox5.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox5.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="specialityComboBox4.ItemHeight" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="specialityComboBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 108</value>
+  </data>
+  <data name="specialityComboBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
+  </data>
+  <data name="specialityComboBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox4.Name" xml:space="preserve">
+    <value>specialityComboBox4</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox4.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox4.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="specialityComboBox3.ItemHeight" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="specialityComboBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 78</value>
   </data>
   <data name="specialityComboBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 24</value>
@@ -378,785 +1140,131 @@
   <data name="specialityComboBox3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="endYearLabel.Text" xml:space="preserve">
-    <value>End Year</value>
-  </data>
-  <data name="&gt;&gt;closeButton.Name" xml:space="preserve">
-    <value>closeButton</value>
-  </data>
-  <data name="&gt;&gt;teamPictureBox.Name" xml:space="preserve">
-    <value>teamPictureBox</value>
-  </data>
-  <data name="&gt;&gt;cloneButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;removeButton.Name" xml:space="preserve">
-    <value>removeButton</value>
-  </data>
-  <data name="countryLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;teamPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="skillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 19</value>
-  </data>
-  <data name="sortAbcButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.Name" xml:space="preserve">
-    <value>specialityComboBox6</value>
-  </data>
-  <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
   <data name="&gt;&gt;specialityComboBox3.Name" xml:space="preserve">
     <value>specialityComboBox3</value>
-  </data>
-  <data name="newButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 206</value>
-  </data>
-  <data name="&gt;&gt;downButton.Name" xml:space="preserve">
-    <value>downButton</value>
-  </data>
-  <data name="downButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="endYearColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="upButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox7.Name" xml:space="preserve">
-    <value>specialityComboBox7</value>
-  </data>
-  <data name="pictureNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="startYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="specialityComboBox5.ItemHeight" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="countryLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="pictureNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 394</value>
-  </data>
-  <data name="&gt;&gt;closeButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="nameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 297</value>
-  </data>
-  <data name="teamPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>71</value>
-  </data>
-  <data name="&gt;&gt;countryAllButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="specialityComboBox4.ItemHeight" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="startYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="endYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="sortIdButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="specialityComboBox7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 24</value>
-  </data>
-  <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.Name" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;reloadButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="endYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 371</value>
-  </data>
-  <data name="&gt;&gt;countryListBox.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="specialityComboBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 198</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Name" xml:space="preserve">
-    <value>idLabel</value>
-  </data>
-  <data name="&gt;&gt;pictureNameReferButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="countryAllButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="idLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="topButton.Text" xml:space="preserve">
-    <value>Top</value>
-  </data>
-  <data name="endYearNumericUpDown.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="teamPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="pictureNameReferButton.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="idNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="teamPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 421</value>
-  </data>
-  <data name="&gt;&gt;upButton.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="teamListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>760, 188</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 600</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="specialityComboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="specialityComboBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 24</value>
-  </data>
-  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;pictureNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
-    <value>29</value>
-  </data>
-  <data name="specialityComboBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 168</value>
-  </data>
-  <data name="skillLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="specialityComboBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="specialityGroupBox.Text" xml:space="preserve">
-    <value>Speciality</value>
-  </data>
-  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="specialityComboBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 138</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 294</value>
-  </data>
-  <data name="startYearColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;nameLabel.Name" xml:space="preserve">
-    <value>nameLabel</value>
-  </data>
-  <data name="specialityComboBox6.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="removeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="cloneButton.Text" xml:space="preserve">
-    <value>Clone</value>
-  </data>
-  <data name="specialityComboBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="startYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 344</value>
-  </data>
-  <data name="&gt;&gt;startYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;reloadButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bottomButton.Name" xml:space="preserve">
-    <value>bottomButton</value>
-  </data>
-  <data name="&gt;&gt;skillLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="removeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 206</value>
-  </data>
-  <data name="&gt;&gt;countryLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;newButton.Name" xml:space="preserve">
-    <value>newButton</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;downButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="specialityComboBox3.ItemHeight" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="removeButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="startYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 19</value>
-  </data>
-  <data name="&gt;&gt;downButton.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="reloadButton.Text" xml:space="preserve">
-    <value>Reload</value>
-  </data>
-  <data name="&gt;&gt;countryComboBox.Name" xml:space="preserve">
-    <value>countryComboBox</value>
-  </data>
-  <data name="countryLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 244</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="bottomButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="countryComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 241</value>
-  </data>
-  <data name="countryAllButton.Text" xml:space="preserve">
-    <value>Select All</value>
-  </data>
-  <data name="pictureNameReferButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="idColumnHeader.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;startYearNumericUpDown.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;removeButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
-    <value>saveButton</value>
-  </data>
-  <data name="&gt;&gt;countryLabel.Name" xml:space="preserve">
-    <value>countryLabel</value>
-  </data>
-  <data name="startYearColumnHeader.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="sortIdButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;cloneButton.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="&gt;&gt;specialityComboBox3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;skillLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;specialityComboBox3.Parent" xml:space="preserve">
     <value>specialityGroupBox</value>
-  </data>
-  <data name="skillColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="specialityComboBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 24</value>
-  </data>
-  <data name="&gt;&gt;startYearLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;teamPictureBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;teamListView.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityColumnHeader.Name" xml:space="preserve">
-    <value>specialityColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;teamListView.Name" xml:space="preserve">
-    <value>teamListView</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="nameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;bottomButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="specialityGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>567, 241</value>
-  </data>
-  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="specialityComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 18</value>
-  </data>
-  <data name="pictureNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;idNumericUpDown.Name" xml:space="preserve">
-    <value>idNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;startYearColumnHeader.Name" xml:space="preserve">
-    <value>startYearColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;closeButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="removeButton.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="specialityGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
-    <value>reloadButton</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.Name" xml:space="preserve">
-    <value>specialityComboBox2</value>
-  </data>
-  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 19</value>
   </data>
   <data name="&gt;&gt;specialityComboBox3.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="downButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 206</value>
-  </data>
-  <data name="&gt;&gt;sortIdButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="startYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="pictureNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="removeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="skillColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="specialityComboBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 24</value>
-  </data>
-  <data name="&gt;&gt;skillLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="idNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 269</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox7.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="downButton.Text" xml:space="preserve">
-    <value>Down</value>
-  </data>
-  <data name="&gt;&gt;skillColumnHeader.Name" xml:space="preserve">
-    <value>skillColumnHeader</value>
-  </data>
-  <data name="bottomButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="specialityColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>185</value>
-  </data>
-  <data name="endYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="idNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="countryComboBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
-  </data>
-  <data name="&gt;&gt;endYearNumericUpDown.Name" xml:space="preserve">
-    <value>endYearNumericUpDown</value>
-  </data>
-  <data name="topButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="newButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;endYearLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="bottomButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>697, 206</value>
-  </data>
-  <data name="sortIdButton.Text" xml:space="preserve">
-    <value>Sort ID</value>
-  </data>
-  <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 12</value>
-  </data>
-  <data name="&gt;&gt;sortAbcButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;pictureNameLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;endYearColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>616, 527</value>
-  </data>
-  <data name="endYearLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;skillLabel.Name" xml:space="preserve">
-    <value>skillLabel</value>
-  </data>
-  <data name="sortAbcButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 228</value>
-  </data>
-  <data name="pictureNameLabel.Text" xml:space="preserve">
-    <value>Picture Name</value>
-  </data>
-  <data name="cloneButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="specialityComboBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 108</value>
-  </data>
-  <data name="specialityComboBox7.ItemHeight" type="System.Int32, mscorlib">
+  <data name="specialityComboBox2.ItemHeight" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="cloneButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 206</value>
+  <data name="specialityComboBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 48</value>
   </data>
-  <data name="closeButton.Text" xml:space="preserve">
-    <value>Close</value>
+  <data name="specialityComboBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
   </data>
-  <data name="&gt;&gt;skillNumericUpDown.Name" xml:space="preserve">
-    <value>skillNumericUpDown</value>
+  <data name="specialityComboBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="cloneButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="&gt;&gt;specialityComboBox2.Name" xml:space="preserve">
+    <value>specialityComboBox2</value>
   </data>
-  <data name="endYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;specialityComboBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;specialityComboBox7.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;specialityComboBox2.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityComboBox2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="specialityComboBox1.ItemHeight" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="specialityComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 18</value>
   </data>
   <data name="specialityComboBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 24</value>
   </data>
-  <data name="downButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="specialityComboBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;countryLabel.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="pictureNameReferButton.Text" xml:space="preserve">
-    <value>Browse</value>
-  </data>
-  <data name="specialityComboBox2.ItemHeight" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="skillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 319</value>
-  </data>
-  <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 12</value>
-  </data>
-  <data name="&gt;&gt;skillColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;specialityComboBox1.Name" xml:space="preserve">
+    <value>specialityComboBox1</value>
   </data>
   <data name="&gt;&gt;specialityComboBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="nameLabel.Text" xml:space="preserve">
-    <value>Name</value>
+  <data name="&gt;&gt;specialityComboBox1.Parent" xml:space="preserve">
+    <value>specialityGroupBox</value>
   </data>
-  <data name="idNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="&gt;&gt;specialityComboBox1.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="specialityGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>567, 241</value>
+  </data>
+  <data name="specialityGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 261</value>
+  </data>
+  <data name="specialityGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="specialityGroupBox.Text" xml:space="preserve">
+    <value>Speciality</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.Name" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="matchingButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;countryListBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="matchingButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>TeamEditorForm</value>
+  <data name="matchingButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>280, 527</value>
   </data>
-  <data name="&gt;&gt;startYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="matchingButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
   </data>
-  <data name="countryAllButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 527</value>
+  <data name="matchingButton.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
   </data>
-  <data name="&gt;&gt;bottomButton.Type" xml:space="preserve">
+  <data name="matchingButton.Text" xml:space="preserve">
+    <value>Matching</value>
+  </data>
+  <data name="&gt;&gt;matchingButton.Name" xml:space="preserve">
+    <value>matchingButton</value>
+  </data>
+  <data name="&gt;&gt;matchingButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;specialityComboBox4.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;matchingButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="skillLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;matchingButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="countryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 264</value>
-  </data>
-  <data name="topButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="downButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox4.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="teamPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
-  </data>
-  <data name="&gt;&gt;cloneButton.Name" xml:space="preserve">
-    <value>cloneButton</value>
-  </data>
-  <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="specialityComboBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 78</value>
-  </data>
-  <data name="&gt;&gt;pictureNameTextBox.Name" xml:space="preserve">
-    <value>pictureNameTextBox</value>
-  </data>
-  <data name="countryAllButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="idLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="countryAllButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;endYearLabel.Name" xml:space="preserve">
-    <value>endYearLabel</value>
-  </data>
-  <data name="&gt;&gt;downButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="startYearColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;teamPictureBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;countryComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;removeButton.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;countryAllButton.Name" xml:space="preserve">
-    <value>countryAllButton</value>
-  </data>
-  <data name="&gt;&gt;pictureNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="skillNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;topButton.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;teamListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="upButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>535, 206</value>
-  </data>
-  <data name="skillLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 321</value>
-  </data>
-  <data name="&gt;&gt;startYearLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;pictureNameTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;idColumnHeader.Name" xml:space="preserve">
-    <value>idColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;newButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="newButton.Text" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="&gt;&gt;teamListView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="idLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="newButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;idColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;endYearColumnHeader.Name" xml:space="preserve">
-    <value>endYearColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;upButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;startYearLabel.Name" xml:space="preserve">
-    <value>startYearLabel</value>
-  </data>
-  <data name="&gt;&gt;pictureNameLabel.Name" xml:space="preserve">
-    <value>pictureNameLabel</value>
-  </data>
-  <data name="sortIdButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 228</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox3.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;countryLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>784, 562</value>
   </data>
-  <data name="sortIdButton.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="teamListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="skillNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="teamPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>800, 600</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Team Editor</value>
@@ -1164,127 +1272,49 @@
   <data name="&gt;&gt;countryColumnHeader.Name" xml:space="preserve">
     <value>countryColumnHeader</value>
   </data>
-  <data name="&gt;&gt;endYearNumericUpDown.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;countryColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="specialityColumnHeader.Text" xml:space="preserve">
-    <value>Speciality</value>
+  <data name="&gt;&gt;idColumnHeader.Name" xml:space="preserve">
+    <value>idColumnHeader</value>
   </data>
-  <data name="&gt;&gt;countryListBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;idColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="newButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="&gt;&gt;nameColumnHeader.Name" xml:space="preserve">
+    <value>nameColumnHeader</value>
   </data>
-  <data name="idColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;nameColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;skillColumnHeader.Name" xml:space="preserve">
+    <value>skillColumnHeader</value>
   </data>
-  <data name="specialityComboBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 48</value>
+  <data name="&gt;&gt;skillColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;startYearColumnHeader.Name" xml:space="preserve">
+    <value>startYearColumnHeader</value>
   </data>
-  <data name="&gt;&gt;idNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;startYearColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;specialityComboBox1.Name" xml:space="preserve">
-    <value>specialityComboBox1</value>
+  <data name="&gt;&gt;endYearColumnHeader.Name" xml:space="preserve">
+    <value>endYearColumnHeader</value>
   </data>
-  <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+  <data name="&gt;&gt;endYearColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;sortIdButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="nameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="endYearColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="pictureNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 19</value>
-  </data>
-  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="&gt;&gt;specialityColumnHeader.Name" xml:space="preserve">
+    <value>specialityColumnHeader</value>
   </data>
   <data name="&gt;&gt;specialityColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="sortAbcButton.TabIndex" type="System.Int32, mscorlib">
-    <value>73</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>TeamEditorForm</value>
   </data>
-  <data name="&gt;&gt;sortAbcButton.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="startYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="startYearLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="pictureNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="countryLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="nameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="sortIdButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="bottomButton.Text" xml:space="preserve">
-    <value>Bottom</value>
-  </data>
-  <data name="pictureNameReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="upButton.Text" xml:space="preserve">
-    <value>Up</value>
-  </data>
-  <data name="&gt;&gt;skillNumericUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;sortAbcButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pictureNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 397</value>
-  </data>
-  <data name="startYearLabel.Text" xml:space="preserve">
-    <value>Start Year</value>
-  </data>
-  <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 12</value>
-  </data>
-  <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 12</value>
-  </data>
-  <data name="endYearLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;skillNumericUpDown.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="nameColumnHeader.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="skillNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;cloneButton.ZOrder" xml:space="preserve">
-    <value>28</value>
-  </data>
-  <data name="&gt;&gt;sortIdButton.Name" xml:space="preserve">
-    <value>sortIdButton</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>
