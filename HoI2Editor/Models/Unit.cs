@@ -1494,9 +1494,49 @@ namespace HoI2Editor.Models
         #region データアクセス
 
         /// <summary>
-        ///     最大付属可能旅団数を取得する
+        ///     最大付属旅団数が編集可能かどうかを取得する
         /// </summary>
-        /// <returns>最大付属可能旅団数</returns>
+        /// <returns>編集可能ならばtrueを返す</returns>
+        public bool CanModifyMaxAllowedBrigades()
+        {
+            // 旅団の場合は編集不可
+            if (Organization == UnitOrganization.Brigade)
+            {
+                return false;
+            }
+
+            // DHならば編集可能
+            if (Game.Type == GameType.DarkestHour)
+            {
+                return true;
+            }
+
+            // AoD1.07以降ならば艦船ユニットのみ編集可能
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version >= 107))
+            {
+                switch (Type)
+                {
+                    case UnitType.Transport:
+                    case UnitType.Submarine:
+                    case UnitType.NuclearSubmarine:
+                    case UnitType.Destroyer:
+                    case UnitType.LightCruiser:
+                    case UnitType.HeavyCruiser:
+                    case UnitType.BattleCruiser:
+                    case UnitType.BattleShip:
+                    case UnitType.EscortCarrier:
+                    case UnitType.Carrier:
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///     最大付属旅団数を取得する
+        /// </summary>
+        /// <returns>最大付属旅団数</returns>
         public int GetMaxAllowedBrigades()
         {
             // 値が設定済みならば設定された値を返す
@@ -1507,13 +1547,13 @@ namespace HoI2Editor.Models
 
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                // DDAとAoDで付属可能旅団数が異なる箇所を再設定
+                // DDAとAoDで最大付属旅団数が異なる箇所を再設定
                 if (Type == UnitType.EscortCarrier || Type == UnitType.Cas)
                 {
                     return 1;
                 }
 
-                // AoD1.07以降の場合はmiscに艦船の最大付属可能旅団数が定義されている
+                // AoD1.07以降の場合はmiscに艦船の最大付属旅団数が定義されている
                 if (Game.Version >= 107)
                 {
                     switch (Type)
@@ -1553,6 +1593,89 @@ namespace HoI2Editor.Models
 
             // デフォルト設定値を返す
             return DefaultMaxBrigades[(int) Type];
+        }
+
+        /// <summary>
+        ///     最大付属旅団数を設定する
+        /// </summary>
+        /// <param name="brigades"></param>
+        public void SetMaxAllowedBrigades(int brigades)
+        {
+            // 旅団の場合は何もしない
+            if (Organization == UnitOrganization.Brigade)
+            {
+                return;
+            }
+
+            // HoI2またはAoD1.07より前の場合は何もしない
+            if ((Game.Type == GameType.HeartsOfIron2) ||
+                ((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version < 107)))
+            {
+                return;
+            }
+
+            // DHの場合はユニットの設定値を更新する
+            if (Game.Type == GameType.DarkestHour)
+            {
+                // 値を更新する
+                MaxAllowedBrigades = brigades;
+
+                // 編集済みフラグを設定する
+                SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                SetDirty();
+
+                return;
+            }
+
+            // AoD1.07以降の場合は艦船ユニットのみ値を更新する
+            switch (Type)
+            {
+                case UnitType.Transport:
+                    Misc.TpMaxAttach = brigades;
+                    break;
+
+                case UnitType.Submarine:
+                    Misc.SsMaxAttach = brigades;
+                    break;
+
+                case UnitType.NuclearSubmarine:
+                    Misc.SsnMaxAttach = brigades;
+                    break;
+
+                case UnitType.Destroyer:
+                    Misc.DdMaxAttach = brigades;
+                    break;
+
+                case UnitType.LightCruiser:
+                    Misc.ClMaxAttach = brigades;
+                    break;
+
+                case UnitType.HeavyCruiser:
+                    Misc.CaMaxAttach = brigades;
+                    break;
+
+                case UnitType.BattleCruiser:
+                    Misc.BcMaxAttach = brigades;
+                    break;
+
+                case UnitType.BattleShip:
+                    Misc.BbMaxAttach = brigades;
+                    break;
+
+                case UnitType.LightCarrier:
+                    Misc.CvlMaxAttach = brigades;
+                    break;
+
+                case UnitType.Carrier:
+                    Misc.CvMaxAttach = brigades;
+                    break;
+
+                default:
+                    return;
+            }
+
+            // 編集済みフラグを設定する
+            SetDirty(UnitClassItemId.MaxAllowedBrigades);
         }
 
         #endregion

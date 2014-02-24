@@ -937,6 +937,7 @@ namespace HoI2Editor
     public enum EditorItemId
     {
         UnitName, // ユニットクラス名
+        MaxAllowedBrigades, // 最大付属可能旅団数
         ModelList, // ユニットモデルリスト
         CommonModelName, // 共通のユニットモデル名
         CountryModelName, // 国別のユニットモデル名

@@ -241,8 +241,6 @@ namespace HoI2Editor.Forms
             // DH
             if (Game.Type == GameType.DarkestHour)
             {
-                maxAllowedBrigadesLabel.Enabled = true;
-                maxAllowedBrigadesNumericUpDown.Enabled = true;
                 reinforceCostLabel.Enabled = true;
                 reinforceCostTextBox.Enabled = true;
                 reinforceTimeLabel.Enabled = true;
@@ -255,8 +253,6 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                maxAllowedBrigadesLabel.Enabled = false;
-                maxAllowedBrigadesNumericUpDown.Enabled = false;
                 reinforceCostLabel.Enabled = false;
                 reinforceCostTextBox.Enabled = false;
                 reinforceTimeLabel.Enabled = false;
@@ -360,6 +356,19 @@ namespace HoI2Editor.Forms
                 resourceComboBox.SelectedIndex = -1;
                 resourceComboBox.ResetText();
                 quantityTextBox.ResetText();
+            }
+
+            // AoD1.07以降またはDH
+            if (((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version >= 107)) ||
+                (Game.Type == GameType.DarkestHour))
+            {
+                maxAllowedBrigadesLabel.Enabled = true;
+                maxAllowedBrigadesNumericUpDown.Enabled = true;
+            }
+            else
+            {
+                maxAllowedBrigadesLabel.Enabled = false;
+                maxAllowedBrigadesNumericUpDown.Enabled = false;
             }
 
             // AoDまたはDH1.03以降
@@ -506,6 +515,12 @@ namespace HoI2Editor.Forms
         {
             switch (id)
             {
+                case EditorItemId.MaxAllowedBrigades:
+                    Debug.WriteLine("[Unit] Changed max allowed brigades");
+                    // 最大付属旅団数の表示を更新する
+                    UpdateMaxAllowedBrigades();
+                    break;
+
                 case EditorItemId.CommonModelName:
                     Debug.WriteLine("[Unit] Changed common model name");
                     // ユニットモデルリストのモデル名を更新する
@@ -1121,7 +1136,7 @@ namespace HoI2Editor.Forms
             // 付属旅団
             if (unit.Organization == UnitOrganization.Division)
             {
-                if (Game.Type == GameType.DarkestHour)
+                if (unit.CanModifyMaxAllowedBrigades())
                 {
                     maxAllowedBrigadesLabel.Enabled = true;
                     maxAllowedBrigadesNumericUpDown.Enabled = true;
@@ -1399,6 +1414,32 @@ namespace HoI2Editor.Forms
             productableCheckBox.ForeColor = unit.IsDirty(UnitClassItemId.Productable)
                 ? Color.Red
                 : SystemColors.WindowText;
+            maxAllowedBrigadesNumericUpDown.ForeColor =
+                unit.IsDirty(UnitClassItemId.MaxAllowedBrigades) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     最大付属旅団数を更新する
+        /// </summary>
+        private void UpdateMaxAllowedBrigades()
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            var unit = classListBox.SelectedItem as Unit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットクラスが旅団ならば何もしない
+            if (unit.Organization == UnitOrganization.Brigade)
+            {
+                return;
+            }
+
+            maxAllowedBrigadesNumericUpDown.Value = unit.GetMaxAllowedBrigades();
+            maxAllowedBrigadesNumericUpDown.Text =
+                maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+
             maxAllowedBrigadesNumericUpDown.ForeColor =
                 unit.IsDirty(UnitClassItemId.MaxAllowedBrigades) ? Color.Red : SystemColors.WindowText;
         }
@@ -2352,8 +2393,9 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMaxAllowedBrigadesNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            // DH以外では変更不可
-            if (Game.Type != GameType.DarkestHour)
+            // HoI2またはAoD1.07より前の場合は何もしない
+            if ((Game.Type == GameType.HeartsOfIron2) ||
+                ((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version < 107)))
             {
                 return;
             }
@@ -2372,17 +2414,19 @@ namespace HoI2Editor.Forms
             }
 
             // 値を更新する
-            unit.MaxAllowedBrigades = (int) maxAllowedBrigadesNumericUpDown.Value;
-
-            // 編集済みフラグを設定する
-            unit.SetDirty(UnitClassItemId.MaxAllowedBrigades);
-            unit.SetDirty();
+            unit.SetMaxAllowedBrigades((int) maxAllowedBrigadesNumericUpDown.Value);
 
             // 文字色を変更する
             maxAllowedBrigadesNumericUpDown.ForeColor = Color.Red;
 
-            Debug.WriteLine(string.Format("[Unit] Max allowed brigades changed: {0} ({1})", unit.MaxAllowedBrigades,
+            Debug.WriteLine(string.Format("[Unit] Max allowed brigades changed: {0} ({1})", unit.GetMaxAllowedBrigades(),
                 unit));
+
+            // 最大付属旅団数の更新を通知する
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+            }
         }
 
         /// <summary>

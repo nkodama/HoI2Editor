@@ -29,6 +29,12 @@ namespace HoI2Editor.Models
             {
                 return (_items[(int) MiscItemId.TpMaxAttach] != null) ? (int) _items[(int) MiscItemId.TpMaxAttach] : 0;
             }
+            set
+            {
+                _items[(int) MiscItemId.TpMaxAttach] = value;
+                SetDirty(MiscItemId.TpMaxAttach);
+                SetDirty();
+            }
         }
 
         /// <summary>
@@ -39,6 +45,12 @@ namespace HoI2Editor.Models
             get
             {
                 return (_items[(int) MiscItemId.SsMaxAttach] != null) ? (int) _items[(int) MiscItemId.SsMaxAttach] : 0;
+            }
+            set
+            {
+                _items[(int) MiscItemId.SsMaxAttach] = value;
+                SetDirty(MiscItemId.SsMaxAttach);
+                SetDirty();
             }
         }
 
@@ -51,6 +63,12 @@ namespace HoI2Editor.Models
             {
                 return (_items[(int) MiscItemId.SsnMaxAttach] != null) ? (int) _items[(int) MiscItemId.SsnMaxAttach] : 0;
             }
+            set
+            {
+                _items[(int) MiscItemId.SsnMaxAttach] = value;
+                SetDirty(MiscItemId.SsnMaxAttach);
+                SetDirty();
+            }
         }
 
         /// <summary>
@@ -61,6 +79,12 @@ namespace HoI2Editor.Models
             get
             {
                 return (_items[(int) MiscItemId.DdMaxAttach] != null) ? (int) _items[(int) MiscItemId.DdMaxAttach] : 1;
+            }
+            set
+            {
+                _items[(int) MiscItemId.DdMaxAttach] = value;
+                SetDirty(MiscItemId.DdMaxAttach);
+                SetDirty();
             }
         }
 
@@ -73,6 +97,12 @@ namespace HoI2Editor.Models
             {
                 return (_items[(int) MiscItemId.ClMaxAttach] != null) ? (int) _items[(int) MiscItemId.ClMaxAttach] : 2;
             }
+            set
+            {
+                _items[(int) MiscItemId.ClMaxAttach] = value;
+                SetDirty(MiscItemId.ClMaxAttach);
+                SetDirty();
+            }
         }
 
         /// <summary>
@@ -83,6 +113,12 @@ namespace HoI2Editor.Models
             get
             {
                 return (_items[(int) MiscItemId.CaMaxAttach] != null) ? (int) _items[(int) MiscItemId.CaMaxAttach] : 3;
+            }
+            set
+            {
+                _items[(int) MiscItemId.CaMaxAttach] = value;
+                SetDirty(MiscItemId.CaMaxAttach);
+                SetDirty();
             }
         }
 
@@ -95,6 +131,12 @@ namespace HoI2Editor.Models
             {
                 return (_items[(int) MiscItemId.BcMaxAttach] != null) ? (int) _items[(int) MiscItemId.BcMaxAttach] : 4;
             }
+            set
+            {
+                _items[(int) MiscItemId.BcMaxAttach] = value;
+                SetDirty(MiscItemId.BcMaxAttach);
+                SetDirty();
+            }
         }
 
         /// <summary>
@@ -105,6 +147,12 @@ namespace HoI2Editor.Models
             get
             {
                 return (_items[(int) MiscItemId.BbMaxAttach] != null) ? (int) _items[(int) MiscItemId.BbMaxAttach] : 5;
+            }
+            set
+            {
+                _items[(int) MiscItemId.BbMaxAttach] = value;
+                SetDirty(MiscItemId.BbMaxAttach);
+                SetDirty();
             }
         }
 
@@ -117,6 +165,12 @@ namespace HoI2Editor.Models
             {
                 return (_items[(int) MiscItemId.CvlMaxAttach] != null) ? (int) _items[(int) MiscItemId.CvlMaxAttach] : 1;
             }
+            set
+            {
+                _items[(int) MiscItemId.CvlMaxAttach] = value;
+                SetDirty(MiscItemId.CvlMaxAttach);
+                SetDirty();
+            }
         }
 
         /// <summary>
@@ -127,6 +181,12 @@ namespace HoI2Editor.Models
             get
             {
                 return (_items[(int) MiscItemId.CvMaxAttach] != null) ? (int) _items[(int) MiscItemId.CvMaxAttach] : 1;
+            }
+            set
+            {
+                _items[(int) MiscItemId.CvMaxAttach] = value;
+                SetDirty(MiscItemId.CvMaxAttach);
+                SetDirty();
             }
         }
 
