@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -172,7 +173,96 @@ namespace HoI2Editor.Forms
         /// <param name="id">編集項目ID</param>
         public void OnItemChanged(EditorItemId id)
         {
-            // 何もしない
+            switch (id)
+            {
+                case EditorItemId.TeamList:
+                    Debug.WriteLine("[Research] Changed team list");
+                    // 研究機関リストを絞り込む
+                    NarrowTeamList();
+                    // 研究機関リストを更新する
+                    UpdateTeamList();
+                    break;
+
+                case EditorItemId.TeamCountry:
+                    Debug.WriteLine("[Research] Changed team country");
+                    // 研究機関リストを絞り込む
+                    NarrowTeamList();
+                    // 研究機関リストを更新する
+                    UpdateTeamList();
+                    break;
+
+                case EditorItemId.TeamName:
+                    Debug.WriteLine("[Research] Changed team name");
+                    // 研究機関リストを更新する
+                    UpdateTeamList();
+                    break;
+
+                case EditorItemId.TeamId:
+                    Debug.WriteLine("[Research] Changed team id");
+                    // 研究機関リストを更新する
+                    UpdateTeamList();
+                    break;
+
+                case EditorItemId.TeamSkill:
+                    Debug.WriteLine("[Research] Changed team skill");
+                    // 研究機関リストを更新する
+                    UpdateTeamList();
+                    break;
+
+                case EditorItemId.TeamSpeciality:
+                    Debug.WriteLine("[Research] Changed team speciality");
+                    // 研究機関リストを更新する
+                    UpdateTeamList();
+                    break;
+
+                case EditorItemId.TechItemList:
+                    Debug.WriteLine("[Research] Changed tech item list");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+
+                case EditorItemId.TechItemName:
+                    Debug.WriteLine("[Research] Changed tech item name");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+
+                case EditorItemId.TechItemId:
+                    Debug.WriteLine("[Research] Changed tech item id");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+
+                case EditorItemId.TechItemYear:
+                    Debug.WriteLine("[Research] Changed tech item year");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+
+                case EditorItemId.TechComponentList:
+                    Debug.WriteLine("[Research] Changed tech component list");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+
+                case EditorItemId.TechComponentSpeciality:
+                    Debug.WriteLine("[Research] Changed tech component speciality");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+
+                case EditorItemId.TechComponentDifficulty:
+                    Debug.WriteLine("[Research] Changed tech component difficulty");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+
+                case EditorItemId.TechComponentDoubleTime:
+                    Debug.WriteLine("[Research] Changed tech component double time");
+                    // 技術リストを更新する
+                    UpdateTechList();
+                    break;
+            }
         }
 
         #endregion

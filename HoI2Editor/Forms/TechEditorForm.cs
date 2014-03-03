@@ -736,6 +736,9 @@ namespace HoI2Editor.Forms
             // 技術イベントの技術IDコンボボックスの項目を更新する
             UpdateEventTechListItems();
 
+            // 技術項目リストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
+
             Debug.WriteLine(string.Format("[Tech] Added new tech: {0}", item.Id));
         }
 
@@ -891,6 +894,9 @@ namespace HoI2Editor.Forms
 
             if (item is TechItem)
             {
+                // 技術項目リストの更新を通知する
+                HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
+
                 var techItem = item as TechItem;
                 Debug.WriteLine(string.Format("[Tech] Added new tech: {0}", techItem.Id));
             }
@@ -958,6 +964,9 @@ namespace HoI2Editor.Forms
 
             if (selected is TechItem)
             {
+                // 技術項目リストの更新を通知する
+                HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
+
                 var techItem = selected as TechItem;
                 Debug.WriteLine(string.Format("[Tech] Removed tech: {0} [{1}]", techItem.Id, techItem));
             }
@@ -2041,6 +2050,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             techNameTextBox.ForeColor = Color.Red;
+
+            // 技術項目名の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechItemName, this);
         }
 
         /// <summary>
@@ -2128,6 +2140,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             techIdNumericUpDown.ForeColor = Color.Red;
+
+            // 技術項目IDの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechItemId, this);
         }
 
         /// <summary>
@@ -2163,6 +2178,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             techYearNumericUpDown.ForeColor = Color.Red;
+
+            // 技術項目の史実年度の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechItemYear, this);
         }
 
         /// <summary>
@@ -3654,6 +3672,9 @@ namespace HoI2Editor.Forms
                 AddComponentListItem(component);
             }
 
+            // 小研究リストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechComponentList, this);
+
             Debug.WriteLine(string.Format("[Tech] Added new tech component: {0} [{1}]", component.Id, item));
         }
 
@@ -3698,6 +3719,9 @@ namespace HoI2Editor.Forms
 
             // 小研究リストビューに項目を挿入する
             InsertComponentListItem(component, index + 1);
+
+            // 小研究リストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechComponentList, this);
         }
 
         /// <summary>
@@ -3733,6 +3757,9 @@ namespace HoI2Editor.Forms
 
             // 小研究リストビューから項目を削除する
             RemoveComponentListItem(index);
+
+            // 小研究リストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechComponentList, this);
         }
 
         /// <summary>
@@ -3972,6 +3999,9 @@ namespace HoI2Editor.Forms
 
             // 小研究特性コンボボックスの項目色を変更するため描画更新する
             componentSpecialityComboBox.Refresh();
+
+            // 小研究の特性の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechComponentSpeciality, this);
         }
 
         /// <summary>
@@ -4026,6 +4056,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             componentDifficultyNumericUpDown.ForeColor = Color.Red;
+
+            // 小研究の難易度の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechComponentDifficulty, this);
         }
 
         /// <summary>
@@ -4080,6 +4113,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             componentDoubleTimeCheckBox.ForeColor = Color.Red;
+
+            // 小研究の難易度の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TechComponentDoubleTime, this);
         }
 
         /// <summary>

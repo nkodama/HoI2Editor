@@ -798,6 +798,9 @@ namespace HoI2Editor.Forms
 
             // 国家ごとの編集済みフラグを設定する
             Teams.SetDirty(team.Country);
+
+            // 研究機関リストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamList, this);
         }
 
         /// <summary>
@@ -839,6 +842,9 @@ namespace HoI2Editor.Forms
 
             // 国家ごとの編集済みフラグを設定する
             Teams.SetDirty(team.Country);
+
+            // 研究機関リストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamList, this);
         }
 
         /// <summary>
@@ -867,6 +873,9 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             Teams.SetDirty(selected.Country);
+
+            // 研究機関リストの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamList, this);
         }
 
         /// <summary>
@@ -1603,6 +1612,9 @@ namespace HoI2Editor.Forms
 
             // 国家リストボックスの項目色を変更するため描画更新する
             countryListBox.Refresh();
+
+            // 研究機関の所属国家の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamCountry, this);
         }
 
         /// <summary>
@@ -1638,6 +1650,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             idNumericUpDown.ForeColor = Color.Red;
+
+            // 研究機関IDの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamId, this);
         }
 
         /// <summary>
@@ -1673,6 +1688,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             nameTextBox.ForeColor = Color.Red;
+
+            // 研究機関名の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamName, this);
         }
 
         /// <summary>
@@ -1709,6 +1727,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             skillNumericUpDown.ForeColor = Color.Red;
+
+            // 研究機関のスキルの更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamSkill, this);
         }
 
         /// <summary>
@@ -1822,6 +1843,9 @@ namespace HoI2Editor.Forms
 
             // 編集項目の色を更新する
             UpdateEditableItemsColor(team);
+
+            // 研究機関の特性の更新を通知する
+            HoI2Editor.OnItemChanged(EditorItemId.TeamSpeciality, this);
         }
 
         /// <summary>
