@@ -2073,7 +2073,7 @@ namespace HoI2Editor.Models
         #region ファイル読み込み
 
         /// <summary>
-        /// ファイルを読み込み済みかを取得する
+        ///     ファイルを読み込み済みかを取得する
         /// </summary>
         /// <returns>ファイルを読み込みならばtrueを返す</returns>
         public static bool IsLoaded()
@@ -2556,59 +2556,59 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// 最大付属旅団数の編集済みフラグを更新する
+        ///     最大付属旅団数の編集済みフラグを更新する
         /// </summary>
         private static void UpdateDirtyMaxAllowedBrigades()
         {
             // 輸送艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.TpMaxAttach))
             {
-                Items[(int)UnitType.Transport].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.Transport].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 潜水艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.SsMaxAttach))
             {
-                Items[(int)UnitType.Submarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.Submarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 原子力潜水艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.SsnMaxAttach))
             {
-                Items[(int)UnitType.NuclearSubmarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.NuclearSubmarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 駆逐艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.DdMaxAttach))
             {
-                Items[(int)UnitType.Destroyer].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.Destroyer].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 軽巡洋艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.ClMaxAttach))
             {
-                Items[(int)UnitType.LightCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.LightCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 重巡洋艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.CaMaxAttach))
             {
-                Items[(int)UnitType.HeavyCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.HeavyCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 巡洋戦艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.BcMaxAttach))
             {
-                Items[(int)UnitType.BattleCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.BattleCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 戦艦最大付属装備数
             if (Misc.IsDirty(MiscItemId.BbMaxAttach))
             {
-                Items[(int)UnitType.BattleShip].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.BattleShip].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 軽空母最大付属装備数
             if (Misc.IsDirty(MiscItemId.CvlMaxAttach))
             {
-                Items[(int)UnitType.EscortCarrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.EscortCarrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
             // 空母最大付属装備数
             if (Misc.IsDirty(MiscItemId.CvMaxAttach))
             {
-                Items[(int)UnitType.Carrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
+                Items[(int) UnitType.Carrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
             }
         }
 

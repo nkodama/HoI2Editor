@@ -244,6 +244,32 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     史実年度以降研究ボーナス (AoD)
+        /// </summary>
+        public static double PostHistoricalDateModifierAoD
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.PostHistoricalDateModifierAoD] != null)
+                    ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierAoD]
+                    : 1;
+            }
+        }
+
+        /// <summary>
+        ///     史実年度以降研究ボーナス (DH)
+        /// </summary>
+        public static double PostHistoricalDateModifierDh
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.PostHistoricalDateModifierDh] != null)
+                    ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierDh]
+                    : 1;
+            }
+        }
+
+        /// <summary>
         ///     研究速度補正
         /// </summary>
         public static double TechSpeedModifier
