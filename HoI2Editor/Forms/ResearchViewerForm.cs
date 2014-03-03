@@ -403,7 +403,8 @@ namespace HoI2Editor.Forms
             foreach (TechComponent component in tech.Components)
             {
                 // 研究特性アイコンを描画する
-                if (component.Speciality != TechSpeciality.None)
+                if ((component.Speciality != TechSpeciality.None) &&
+                    ((int) component.Speciality - 1 < Techs.SpecialityImages.Images.Count))
                 {
                     e.Graphics.DrawImage(
                         Techs.SpecialityImages.Images[Array.IndexOf(Techs.Specialities, component.Speciality) - 1], gr);
@@ -614,9 +615,12 @@ namespace HoI2Editor.Forms
                 }
 
                 // 研究特性アイコンを描画する
-                e.Graphics.DrawImage(
-                    Techs.SpecialityImages.Images[Array.IndexOf(Techs.Specialities, research.Team.Specialities[i]) - 1],
-                    rect);
+                if ((int) research.Team.Specialities[i] - 1 < Techs.SpecialityImages.Images.Count)
+                {
+                    e.Graphics.DrawImage(
+                        Techs.SpecialityImages.Images[
+                            Array.IndexOf(Techs.Specialities, research.Team.Specialities[i]) - 1], rect);
+                }
 
                 // 研究特性オーバーレイアイコンを描画する
                 if (research.Tech.Components.Any(component => component.Speciality == research.Team.Specialities[i]))

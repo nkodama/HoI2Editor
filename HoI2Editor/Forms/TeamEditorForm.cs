@@ -618,9 +618,11 @@ namespace HoI2Editor.Forms
                 }
 
                 // 研究特性アイコンを描画する
-                e.Graphics.DrawImage(
-                    Techs.SpecialityImages.Images[Array.IndexOf(Techs.Specialities, team.Specialities[i]) - 1],
-                    rect);
+                if ((int) team.Specialities[i] - 1 < Techs.SpecialityImages.Images.Count)
+                {
+                    e.Graphics.DrawImage(
+                        Techs.SpecialityImages.Images[Array.IndexOf(Techs.Specialities, team.Specialities[i]) - 1], rect);
+                }
                 rect.X += DeviceCaps.GetScaledWidth(16) + 3;
             }
         }
