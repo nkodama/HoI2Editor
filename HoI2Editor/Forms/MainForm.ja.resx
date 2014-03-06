@@ -133,6 +133,9 @@
   <data name="modLabel.Text" xml:space="preserve">
     <value>MOD名</value>
   </data>
+  <data name="researchButton.Text" xml:space="preserve">
+    <value>研究速度</value>
+  </data>
   <data name="modelNameButton.Text" xml:space="preserve">
     <value>モデル名</value>
   </data>

@@ -134,6 +134,7 @@
     <Compile Include="HoI2EditorApplication.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\GameDate.cs" />
     <Compile Include="Models\Leader.cs" />
     <Compile Include="Models\Leaders.cs" />
     <Compile Include="Models\Log.cs" />

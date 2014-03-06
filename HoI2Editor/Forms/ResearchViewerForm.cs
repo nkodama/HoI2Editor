@@ -102,14 +102,14 @@ namespace HoI2Editor.Forms
             // オプション項目を初期化する
             InitOptionItems();
 
-            // 国家リストボックスを初期化する
-            InitCountryListBox();
-
             // 技術定義ファイルを読み込む
             Techs.Load();
 
             // 研究機関ファイルを読み込む
             Teams.Load();
+
+            // 国家リストボックスを初期化する
+            InitCountryListBox();
 
             // データ読み込み後の処理
             OnFileLoaded();
@@ -556,6 +556,7 @@ namespace HoI2Editor.Forms
             };
             item.SubItems.Add(rank.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(research.Days.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(research.EndDate.ToString());
             item.SubItems.Add(research.Team.Name);
             item.SubItems.Add(research.Team.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(research.Team.Skill.ToString(CultureInfo.InvariantCulture));
@@ -573,7 +574,7 @@ namespace HoI2Editor.Forms
         {
             switch (e.ColumnIndex)
             {
-                case 6: // 研究特性
+                case 7: // 研究特性
                     e.Graphics.FillRectangle(
                         teamListView.SelectedIndices.Count > 0 && e.ItemIndex == teamListView.SelectedIndices[0]
                             ? (teamListView.Focused ? SystemBrushes.Highlight : SystemBrushes.Control)
@@ -651,17 +652,23 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitOptionItems()
         {
-            if (Researches.YearMode == ResearchYearMode.Historical)
+            if (Researches.DateMode == ResearchDateMode.Historical)
             {
                 historicalRadioButton.Checked = true;
                 yearNumericUpDown.Enabled = false;
+                monthNumericUpDown.Enabled = false;
+                dayNumericUpDown.Enabled = false;
             }
             else
             {
                 specifiedRadioButton.Checked = true;
                 yearNumericUpDown.Enabled = true;
+                monthNumericUpDown.Enabled = true;
+                dayNumericUpDown.Enabled = true;
             }
-            yearNumericUpDown.Value = Researches.SpecifiedYear;
+            yearNumericUpDown.Value = Researches.SpecifiedDate.Year;
+            monthNumericUpDown.Value = Researches.SpecifiedDate.Month;
+            dayNumericUpDown.Value = Researches.SpecifiedDate.Day;
             rocketNumericUpDown.Value = Researches.RocketTestingSites;
             nuclearNumericUpDown.Value = Researches.NuclearReactors;
             blueprintCheckBox.Checked = Researches.Blueprint;
@@ -676,12 +683,15 @@ namespace HoI2Editor.Forms
         private void OnHistoricalRadioButtonCheckedChanged(object sender, EventArgs e)
         {
             // 値を更新する
-            Researches.YearMode = historicalRadioButton.Checked
-                ? ResearchYearMode.Historical
-                : ResearchYearMode.Specified;
+            Researches.DateMode = historicalRadioButton.Checked
+                ? ResearchDateMode.Historical
+                : ResearchDateMode.Specified;
 
-            // 指定年度を使用の時だけ年度の編集を許可する
-            yearNumericUpDown.Enabled = (Researches.YearMode == ResearchYearMode.Specified);
+            // 指定日付を使用の時だけ日付の編集を許可する
+            bool flag = (Researches.DateMode == ResearchDateMode.Specified);
+            yearNumericUpDown.Enabled = flag;
+            monthNumericUpDown.Enabled = flag;
+            dayNumericUpDown.Enabled = flag;
 
             // 研究機関リストを更新する
             UpdateTeamList();
@@ -694,7 +704,33 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            Researches.SpecifiedYear = (int) yearNumericUpDown.Value;
+            Researches.SpecifiedDate.Year = (int) yearNumericUpDown.Value;
+
+            // 研究機関リストを更新する
+            UpdateTeamList();
+        }
+
+        /// <summary>
+        ///     指定月変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMonthNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            Researches.SpecifiedDate.Month = (int) monthNumericUpDown.Value;
+
+            // 研究機関リストを更新する
+            UpdateTeamList();
+        }
+
+        /// <summary>
+        ///     指定日変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDayNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            Researches.SpecifiedDate.Day = (int) dayNumericUpDown.Value;
 
             // 研究機関リストを更新する
             UpdateTeamList();

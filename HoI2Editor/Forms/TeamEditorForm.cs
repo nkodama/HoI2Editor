@@ -175,16 +175,6 @@ namespace HoI2Editor.Forms
             OnFileLoaded();
         }
 
-        /// <summary>
-        ///     最適組み合わせボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMatchingButtonClick(object sender, EventArgs e)
-        {
-            HoI2Editor.LaunchResearchViewerForm();
-        }
-
         #endregion
 
         #region 終了処理

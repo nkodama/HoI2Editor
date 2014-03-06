@@ -126,7 +126,7 @@
     <value>10, 18</value>
   </data>
   <data name="categoryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 148</value>
+    <value>100, 160</value>
   </data>
   <data name="categoryListBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -228,6 +228,60 @@
   <data name="optionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="dayNumericUpDown.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="dayNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 43</value>
+  </data>
+  <data name="dayNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="dayNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="dayNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;dayNumericUpDown.Name" xml:space="preserve">
+    <value>dayNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;dayNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dayNumericUpDown.Parent" xml:space="preserve">
+    <value>optionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;dayNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="monthNumericUpDown.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="monthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 43</value>
+  </data>
+  <data name="monthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="monthNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="monthNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;monthNumericUpDown.Name" xml:space="preserve">
+    <value>monthNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;monthNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;monthNumericUpDown.Parent" xml:space="preserve">
+    <value>optionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;monthNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="specifiedRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -235,13 +289,13 @@
     <value>13, 43</value>
   </data>
   <data name="specifiedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 16</value>
+    <value>170, 16</value>
   </data>
   <data name="specifiedRadioButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="specifiedRadioButton.Text" xml:space="preserve">
-    <value>Use Specified Year</value>
+    <value>Use Specified Date (Y/M/D)</value>
   </data>
   <data name="&gt;&gt;specifiedRadioButton.Name" xml:space="preserve">
     <value>specifiedRadioButton</value>
@@ -253,7 +307,7 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;specifiedRadioButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="historicalRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -280,13 +334,13 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;historicalRadioButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="blueprintCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="blueprintCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>399, 19</value>
+    <value>547, 19</value>
   </data>
   <data name="blueprintCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 16</value>
@@ -307,10 +361,10 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;blueprintCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="modifierTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>536, 42</value>
+    <value>632, 42</value>
   </data>
   <data name="modifierTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 19</value>
@@ -331,22 +385,22 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;modifierTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="modifierLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="modifierLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>397, 45</value>
+    <value>545, 45</value>
   </data>
   <data name="modifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 12</value>
+    <value>81, 12</value>
   </data>
   <data name="modifierLabel.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="modifierLabel.Text" xml:space="preserve">
-    <value>Research Speed Modifier</value>
+    <value>Speed Modifier</value>
   </data>
   <data name="&gt;&gt;modifierLabel.Name" xml:space="preserve">
     <value>modifierLabel</value>
@@ -358,10 +412,10 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;modifierLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="nuclearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 43</value>
+    <value>467, 43</value>
   </data>
   <data name="nuclearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 19</value>
@@ -382,13 +436,13 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;nuclearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="nuclearLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="nuclearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 45</value>
+    <value>367, 45</value>
   </data>
   <data name="nuclearLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 12</value>
@@ -409,10 +463,10 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;nuclearLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="rocketNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 18</value>
+    <value>467, 18</value>
   </data>
   <data name="rocketNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 19</value>
@@ -433,13 +487,13 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;rocketNumericUpDown.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="rocketLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="rocketLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 20</value>
+    <value>367, 20</value>
   </data>
   <data name="rocketLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 12</value>
@@ -460,16 +514,16 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;rocketLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="yearNumericUpDown.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="yearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 43</value>
+    <value>189, 43</value>
   </data>
   <data name="yearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
+    <value>50, 19</value>
   </data>
   <data name="yearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -487,7 +541,7 @@
     <value>optionGroupBox</value>
   </data>
   <data name="&gt;&gt;yearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="optionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 211</value>
@@ -529,7 +583,7 @@
     <value>Right</value>
   </data>
   <data name="teamRankColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>40</value>
   </data>
   <data name="teamDaysColumnHeader.Text" xml:space="preserve">
     <value>Days</value>
@@ -540,11 +594,20 @@
   <data name="teamDaysColumnHeader.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <data name="teamEndDateColumnHeader.Text" xml:space="preserve">
+    <value>EndDate</value>
+  </data>
+  <data name="teamEndDateColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="teamEndDateColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
   <data name="teamNameColumnHeader.Text" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="teamNameColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>215</value>
+    <value>200</value>
   </data>
   <data name="teamIdColumnHeader.Text" xml:space="preserve">
     <value>ID</value>
@@ -562,7 +625,7 @@
     <value>Right</value>
   </data>
   <data name="teamSkillColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>45</value>
   </data>
   <data name="teamSpecialityColumnHeader.Text" xml:space="preserve">
     <value>Specialities</value>
@@ -571,10 +634,10 @@
     <value>120</value>
   </data>
   <data name="teamListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 18</value>
+    <value>138, 18</value>
   </data>
   <data name="teamListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>560, 199</value>
+    <value>612, 199</value>
   </data>
   <data name="teamListView.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -595,7 +658,7 @@
     <value>Top, Bottom, Left</value>
   </data>
   <data name="countryListBox.ColumnWidth" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>30</value>
   </data>
   <data name="countryListBox.ItemHeight" type="System.Int32, mscorlib">
     <value>12</value>
@@ -604,7 +667,7 @@
     <value>10, 18</value>
   </data>
   <data name="countryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 196</value>
+    <value>122, 196</value>
   </data>
   <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -688,7 +751,7 @@
     <value>800, 600</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Research Matching Viewer</value>
+    <value>Research Speed Viewer</value>
   </data>
   <data name="&gt;&gt;techNameColumnHeader.Name" xml:space="preserve">
     <value>techNameColumnHeader</value>
@@ -730,6 +793,12 @@
     <value>teamDaysColumnHeader</value>
   </data>
   <data name="&gt;&gt;teamDaysColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;teamEndDateColumnHeader.Name" xml:space="preserve">
+    <value>teamEndDateColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;teamEndDateColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;teamNameColumnHeader.Name" xml:space="preserve">

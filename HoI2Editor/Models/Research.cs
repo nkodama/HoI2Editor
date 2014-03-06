@@ -25,6 +25,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public int Days { get; private set; }
 
+        /// <summary>
+        ///     研究が完了する日付
+        /// </summary>
+        public GameDate EndDate { get; private set; }
+
         #endregion
 
         #region 初期化
@@ -38,7 +43,11 @@ namespace HoI2Editor.Models
         {
             Tech = tech;
             Team = team;
-            Days = GetTechDays(tech, team);
+            GameDate date = (Researches.DateMode == ResearchDateMode.Specified)
+                ? Researches.SpecifiedDate
+                : new GameDate(tech.Year);
+            Days = GetTechDays(tech, team, date);
+            EndDate = date.Plus(Days);
         }
 
         #endregion
@@ -50,12 +59,11 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="tech">技術項目</param>
         /// <param name="team">研究機関</param>
+        /// <param name="date">開始日</param>
         /// <returns>研究に要する日数</returns>
-        private static int GetTechDays(TechItem tech, Team team)
+        private static int GetTechDays(TechItem tech, Team team, GameDate date)
         {
-            int offset = (Researches.YearMode == ResearchYearMode.Specified)
-                ? (Researches.SpecifiedYear - tech.Year)*360
-                : 0;
+            int offset = date.Difference(new GameDate(tech.Year));
             int days = 0;
 
             foreach (TechComponent component in tech.Components)

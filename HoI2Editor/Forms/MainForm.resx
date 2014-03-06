@@ -141,7 +141,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;ministerButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="gameFolderLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -249,6 +249,33 @@
   <data name="editGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="researchButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="researchButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>325, 47</value>
+  </data>
+  <data name="researchButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="researchButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="researchButton.Text" xml:space="preserve">
+    <value>Research</value>
+  </data>
+  <data name="&gt;&gt;researchButton.Name" xml:space="preserve">
+    <value>researchButton</value>
+  </data>
+  <data name="&gt;&gt;researchButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;researchButton.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;researchButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="modelNameButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -274,7 +301,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;modelNameButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="randomLeaderButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -301,7 +328,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;randomLeaderButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="divisionNameButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -328,7 +355,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;divisionNameButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="unitNameButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -355,7 +382,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;unitNameButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="miscButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -382,7 +409,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;miscButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="provinceButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -409,7 +436,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;provinceButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="unitButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -436,7 +463,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;unitButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="techButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 47</value>
@@ -460,7 +487,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;techButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="leaderButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 18</value>
@@ -484,7 +511,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;leaderButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="teamButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 18</value>
@@ -508,7 +535,7 @@
     <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;teamButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="editGroupBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>

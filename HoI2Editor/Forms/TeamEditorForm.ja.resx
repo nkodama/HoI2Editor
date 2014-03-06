@@ -220,9 +220,6 @@
   <data name="specialityGroupBox.Text" xml:space="preserve">
     <value>特性</value>
   </data>
-  <data name="matchingButton.Text" xml:space="preserve">
-    <value>最適組み合わせ</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>研究機関エディタ</value>
   </data>

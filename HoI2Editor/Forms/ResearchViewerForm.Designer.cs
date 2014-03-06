@@ -37,6 +37,8 @@
             this.techComponentsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.techGroupBox = new System.Windows.Forms.GroupBox();
             this.optionGroupBox = new System.Windows.Forms.GroupBox();
+            this.dayNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.monthNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.specifiedRadioButton = new System.Windows.Forms.RadioButton();
             this.historicalRadioButton = new System.Windows.Forms.RadioButton();
             this.blueprintCheckBox = new System.Windows.Forms.CheckBox();
@@ -52,6 +54,7 @@
             this.teamDummyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.teamRankColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.teamDaysColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.teamEndDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.teamNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.teamIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.teamSkillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -60,6 +63,8 @@
             this.closeButton = new System.Windows.Forms.Button();
             this.techGroupBox.SuspendLayout();
             this.optionGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dayNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuclearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rocketNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yearNumericUpDown)).BeginInit();
@@ -121,6 +126,8 @@
             // optionGroupBox
             // 
             resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
+            this.optionGroupBox.Controls.Add(this.dayNumericUpDown);
+            this.optionGroupBox.Controls.Add(this.monthNumericUpDown);
             this.optionGroupBox.Controls.Add(this.specifiedRadioButton);
             this.optionGroupBox.Controls.Add(this.historicalRadioButton);
             this.optionGroupBox.Controls.Add(this.blueprintCheckBox);
@@ -133,6 +140,48 @@
             this.optionGroupBox.Controls.Add(this.yearNumericUpDown);
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
+            // 
+            // dayNumericUpDown
+            // 
+            resources.ApplyResources(this.dayNumericUpDown, "dayNumericUpDown");
+            this.dayNumericUpDown.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.dayNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.dayNumericUpDown.Name = "dayNumericUpDown";
+            this.dayNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.dayNumericUpDown.ValueChanged += new System.EventHandler(this.OnDayNumericUpDownValueChanged);
+            // 
+            // monthNumericUpDown
+            // 
+            resources.ApplyResources(this.monthNumericUpDown, "monthNumericUpDown");
+            this.monthNumericUpDown.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.monthNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.monthNumericUpDown.Name = "monthNumericUpDown";
+            this.monthNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.monthNumericUpDown.ValueChanged += new System.EventHandler(this.OnMonthNumericUpDownValueChanged);
             // 
             // specifiedRadioButton
             // 
@@ -230,6 +279,7 @@
             this.teamDummyColumnHeader,
             this.teamRankColumnHeader,
             this.teamDaysColumnHeader,
+            this.teamEndDateColumnHeader,
             this.teamNameColumnHeader,
             this.teamIdColumnHeader,
             this.teamSkillColumnHeader,
@@ -255,6 +305,10 @@
             // teamDaysColumnHeader
             // 
             resources.ApplyResources(this.teamDaysColumnHeader, "teamDaysColumnHeader");
+            // 
+            // teamEndDateColumnHeader
+            // 
+            resources.ApplyResources(this.teamEndDateColumnHeader, "teamEndDateColumnHeader");
             // 
             // teamNameColumnHeader
             // 
@@ -302,6 +356,8 @@
             this.techGroupBox.ResumeLayout(false);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dayNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monthNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuclearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rocketNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yearNumericUpDown)).EndInit();
@@ -341,5 +397,8 @@
         private System.Windows.Forms.ColumnHeader teamRankColumnHeader;
         private System.Windows.Forms.ColumnHeader teamDaysColumnHeader;
         private System.Windows.Forms.ColumnHeader teamDummyColumnHeader;
+        private System.Windows.Forms.ColumnHeader teamEndDateColumnHeader;
+        private System.Windows.Forms.NumericUpDown dayNumericUpDown;
+        private System.Windows.Forms.NumericUpDown monthNumericUpDown;
     }
 }

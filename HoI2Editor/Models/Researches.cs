@@ -17,17 +17,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究速度計算時の基準年度
         /// </summary>
-        public static ResearchYearMode YearMode { get; set; }
+        public static ResearchDateMode DateMode { get; set; }
 
         /// <summary>
-        ///     現在年度
+        ///     指定日付
         /// </summary>
-        public static int CurrentYear { get; set; }
-
-        /// <summary>
-        ///     指定年度
-        /// </summary>
-        public static int SpecifiedYear { get; set; }
+        public static GameDate SpecifiedDate { get; private set; }
 
         /// <summary>
         ///     ロケット試験場の規模
@@ -58,7 +53,7 @@ namespace HoI2Editor.Models
         /// </summary>
         static Researches()
         {
-            SpecifiedYear = 1936;
+            SpecifiedDate = new GameDate();
             Modifier = 1;
         }
 
@@ -90,11 +85,11 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     研究速度計算時の基準年度
+    ///     研究速度計算時の基準日付モード
     /// </summary>
-    public enum ResearchYearMode
+    public enum ResearchDateMode
     {
         Historical, // 史実年度を使用する
-        Specified, // 指定年度を使用する
+        Specified, // 指定日付を使用する
     }
 }

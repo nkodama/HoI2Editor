@@ -35,6 +35,7 @@
             this.modLabel = new System.Windows.Forms.Label();
             this.modTextBox = new System.Windows.Forms.TextBox();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.researchButton = new System.Windows.Forms.Button();
             this.modelNameButton = new System.Windows.Forms.Button();
             this.randomLeaderButton = new System.Windows.Forms.Button();
             this.divisionNameButton = new System.Windows.Forms.Button();
@@ -94,6 +95,7 @@
             // editGroupBox
             // 
             resources.ApplyResources(this.editGroupBox, "editGroupBox");
+            this.editGroupBox.Controls.Add(this.researchButton);
             this.editGroupBox.Controls.Add(this.modelNameButton);
             this.editGroupBox.Controls.Add(this.randomLeaderButton);
             this.editGroupBox.Controls.Add(this.divisionNameButton);
@@ -107,6 +109,13 @@
             this.editGroupBox.Controls.Add(this.ministerButton);
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
+            // 
+            // researchButton
+            // 
+            resources.ApplyResources(this.researchButton, "researchButton");
+            this.researchButton.Name = "researchButton";
+            this.researchButton.UseVisualStyleBackColor = true;
+            this.researchButton.Click += new System.EventHandler(this.OnResearchButtonClick);
             // 
             // modelNameButton
             // 
@@ -280,5 +289,6 @@
         private System.Windows.Forms.Button divisionNameButton;
         private System.Windows.Forms.Button randomLeaderButton;
         private System.Windows.Forms.Button modelNameButton;
+        private System.Windows.Forms.Button researchButton;
     }
 }

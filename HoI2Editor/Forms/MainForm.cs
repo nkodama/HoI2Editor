@@ -206,6 +206,16 @@ namespace HoI2Editor.Forms
             HoI2Editor.LaunchRandomLeaderEditorForm();
         }
 
+        /// <summary>
+        ///     研究速度ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnResearchButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.LaunchResearchViewerForm();
+        }
+
         #endregion
 
         #region ゲームフォルダ/MOD名
