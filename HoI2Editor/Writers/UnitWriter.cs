@@ -683,7 +683,10 @@ namespace HoI2Editor.Writers
                 }
             }
             writer.WriteLine("\tlist_prio\t= {0}", unit.ListPrio);
-            writer.WriteLine("\tui_prio\t\t= {0}", unit.UiPrio);
+            if (unit.UiPrio != 0)
+            {
+                writer.WriteLine("\tui_prio\t\t= {0}", unit.UiPrio);
+            }
             writer.WriteLine("}");
         }
 
