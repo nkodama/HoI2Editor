@@ -1,5 +1,13 @@
 Alternative HoI2 Editor Changelog
 
+- 9 March 2014; Ver 0.33
+
+Added a research speed viewer.
+Added an export folder specification.
+Changed to save leader/minister/team list files on DH.
+Added editing max naval brigades on AoD 1.07 or higher.
+Fixed a bug that the real unit types of light cruiser and battlecruiser are swapped.
+
 - 22 February 2014; Ver 0.32
 
 Fixed a bug that tech effect parameters cannot be edited correctly in some countries.
