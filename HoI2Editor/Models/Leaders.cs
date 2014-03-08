@@ -263,6 +263,42 @@ namespace HoI2Editor.Models
             string folderName;
             bool error = false;
 
+            // 保存フォルダ内の指揮官ファイルを読み込む
+            if (Game.IsExportFolderActive)
+            {
+                folderName = Path.Combine(Game.ExportFolderName, Game.LeaderPathName);
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        try
+                        {
+                            // 指揮官ファイルを読み込む
+                            LoadFile(fileName);
+
+                            // 指揮官ファイル一覧に読み込んだファイル名を登録する
+                            string name = Path.GetFileName(fileName);
+                            if (!String.IsNullOrEmpty(name))
+                            {
+                                filelist.Add(name.ToLower());
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            error = true;
+                            Debug.WriteLine("[Leader] Load failed: {0}", fileName);
+                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                Resources.EditorLeader, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                == DialogResult.Cancel)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
             // MODフォルダ内の指揮官ファイルを読み込む
             if (Game.IsModActive)
             {

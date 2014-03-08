@@ -123,6 +123,38 @@ namespace HoI2Editor.Models
             get { return _modFolderName; }
         }
 
+        /// <summary>
+        ///     保存フォルダ名が有効かどうか
+        /// </summary>
+        public static bool IsExportFolderActive { get; private set; }
+
+        /// <summary>
+        ///     保存フォルダ名
+        /// </summary>
+        public static string ExportName
+        {
+            get { return _exportName; }
+            set
+            {
+                _exportName = value;
+                Debug.WriteLine(string.Format("Export Name: {0}", _exportName));
+
+                // 保存フォルダ名を更新する
+                UpdateExportFolderName();
+
+                // ファイルの再読み込みを要求する
+                HoI2Editor.RequestReload();
+            }
+        }
+
+        /// <summary>
+        ///     保存フォルダ名
+        /// </summary>
+        public static string ExportFolderName
+        {
+            get { return _exportFolderName; }
+        }
+
         #endregion
 
         #region 内部フィールド
@@ -151,6 +183,16 @@ namespace HoI2Editor.Models
         ///     MODフォルダ名
         /// </summary>
         private static string _modFolderName;
+
+        /// <summary>
+        ///     保存フォルダ名 (MOD名)
+        /// </summary>
+        private static string _exportName;
+
+        /// <summary>
+        ///     保存フォルダ名 (フルパス)
+        /// </summary>
+        private static string _exportFolderName;
 
         /// <summary>
         ///     実行ファイル名
@@ -381,12 +423,20 @@ namespace HoI2Editor.Models
         #region パス操作
 
         /// <summary>
-        ///     MODフォルダを考慮して読み込み用のファイル名を取得する
+        ///     MODフォルダ/保存フォルダを考慮して読み込み用のファイル名を取得する
         /// </summary>
         /// <param name="pathName">パス名</param>
         /// <returns>ファイル名</returns>
         public static string GetReadFileName(string pathName)
         {
+            if (IsExportFolderActive)
+            {
+                string fileName = Path.Combine(ExportFolderName, pathName);
+                if (File.Exists(fileName))
+                {
+                    return fileName;
+                }
+            }
             if (IsModActive)
             {
                 string fileName = Path.Combine(ModFolderName, pathName);
@@ -399,7 +449,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     MODフォルダを考慮して読み込み用のファイル名を取得する
+        ///     MODフォルダ/保存フォルダを考慮して読み込み用のファイル名を取得する
         /// </summary>
         /// <param name="folderName">フォルダ名</param>
         /// <param name="fileName">ファイル名</param>
@@ -411,17 +461,25 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     MODフォルダを考慮して書き込み用のファイル名を取得する
+        ///     MODフォルダ/保存フォルダを考慮して書き込み用のファイル名を取得する
         /// </summary>
         /// <param name="pathName">パス名</param>
         /// <returns>ファイル名</returns>
         public static string GetWriteFileName(string pathName)
         {
-            return Path.Combine(IsModActive ? ModFolderName : FolderName, pathName);
+            if (IsExportFolderActive)
+            {
+                return Path.Combine(ExportFolderName, pathName);
+            }
+            if (IsModActive)
+            {
+                return Path.Combine(ModFolderName, pathName);
+            }
+            return Path.Combine(FolderName, pathName);
         }
 
         /// <summary>
-        ///     MODフォルダを考慮して書き込み用のファイル名を取得する
+        ///     MODフォルダ/保存フォルダを考慮して書き込み用のファイル名を取得する
         /// </summary>
         /// <param name="folderName">フォルダ名</param>
         /// <param name="fileName">ファイル名</param>
@@ -545,6 +603,36 @@ namespace HoI2Editor.Models
 
                 default:
                     _modFolderName = Path.Combine(FolderName, ModName);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     保存フォルダ名を更新する
+        /// </summary>
+        private static void UpdateExportFolderName()
+        {
+            if (!IsGameFolderActive)
+            {
+                IsExportFolderActive = false;
+                _exportFolderName = "";
+                return;
+            }
+            if (string.IsNullOrEmpty(_exportName))
+            {
+                IsExportFolderActive = false;
+                _exportFolderName = FolderName;
+                return;
+            }
+            IsExportFolderActive = true;
+            switch (Type)
+            {
+                case GameType.DarkestHour:
+                    _exportFolderName = Path.Combine(Path.Combine(FolderName, ModPathNameDh), ExportName);
+                    break;
+
+                default:
+                    _exportFolderName = Path.Combine(FolderName, ExportName);
                     break;
             }
         }

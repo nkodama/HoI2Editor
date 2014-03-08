@@ -46,13 +46,16 @@
             this.techButton = new System.Windows.Forms.Button();
             this.leaderButton = new System.Windows.Forms.Button();
             this.teamButton = new System.Windows.Forms.Button();
-            this.gameFolderReferButton = new System.Windows.Forms.Button();
+            this.gameFolderBrowseButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.modFolderReferButton = new System.Windows.Forms.Button();
+            this.modFolderBrowseButton = new System.Windows.Forms.Button();
             this.languageLabel = new System.Windows.Forms.Label();
             this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.optionGroupBox = new System.Windows.Forms.GroupBox();
             this.logCheckBox = new System.Windows.Forms.CheckBox();
+            this.exportFolderBrowseButton = new System.Windows.Forms.Button();
+            this.exportFolderTextBox = new System.Windows.Forms.TextBox();
+            this.exportFolderLabel = new System.Windows.Forms.Label();
             this.editGroupBox.SuspendLayout();
             this.optionGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -187,12 +190,12 @@
             this.teamButton.UseVisualStyleBackColor = true;
             this.teamButton.Click += new System.EventHandler(this.OnTeamButtonClick);
             // 
-            // gameFolderReferButton
+            // gameFolderBrowseButton
             // 
-            resources.ApplyResources(this.gameFolderReferButton, "gameFolderReferButton");
-            this.gameFolderReferButton.Name = "gameFolderReferButton";
-            this.gameFolderReferButton.UseVisualStyleBackColor = true;
-            this.gameFolderReferButton.Click += new System.EventHandler(this.OnLoadButtonClick);
+            resources.ApplyResources(this.gameFolderBrowseButton, "gameFolderBrowseButton");
+            this.gameFolderBrowseButton.Name = "gameFolderBrowseButton";
+            this.gameFolderBrowseButton.UseVisualStyleBackColor = true;
+            this.gameFolderBrowseButton.Click += new System.EventHandler(this.OnGameFolderBrowseButtonClick);
             // 
             // exitButton
             // 
@@ -201,12 +204,12 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.OnExitButtonClick);
             // 
-            // modFolderReferButton
+            // modFolderBrowseButton
             // 
-            resources.ApplyResources(this.modFolderReferButton, "modFolderReferButton");
-            this.modFolderReferButton.Name = "modFolderReferButton";
-            this.modFolderReferButton.UseVisualStyleBackColor = true;
-            this.modFolderReferButton.Click += new System.EventHandler(this.OnModFolderReferButtonClick);
+            resources.ApplyResources(this.modFolderBrowseButton, "modFolderBrowseButton");
+            this.modFolderBrowseButton.Name = "modFolderBrowseButton";
+            this.modFolderBrowseButton.UseVisualStyleBackColor = true;
+            this.modFolderBrowseButton.Click += new System.EventHandler(this.OnModFolderBrowseButtonClick);
             // 
             // languageLabel
             // 
@@ -237,15 +240,39 @@
             this.logCheckBox.UseVisualStyleBackColor = true;
             this.logCheckBox.CheckedChanged += new System.EventHandler(this.OnLogCheckBoxChekcedChanged);
             // 
+            // exportFolderBrowseButton
+            // 
+            resources.ApplyResources(this.exportFolderBrowseButton, "exportFolderBrowseButton");
+            this.exportFolderBrowseButton.Name = "exportFolderBrowseButton";
+            this.exportFolderBrowseButton.UseVisualStyleBackColor = true;
+            this.exportFolderBrowseButton.Click += new System.EventHandler(this.OnExportFolderBrowseButtonClick);
+            // 
+            // exportFolderTextBox
+            // 
+            this.exportFolderTextBox.AllowDrop = true;
+            resources.ApplyResources(this.exportFolderTextBox, "exportFolderTextBox");
+            this.exportFolderTextBox.Name = "exportFolderTextBox";
+            this.exportFolderTextBox.TextChanged += new System.EventHandler(this.OnExportFolderTextBoxTextChanged);
+            this.exportFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnExportFolderTextBoxDragDrop);
+            this.exportFolderTextBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnExportFolderTextBoxDragEnter);
+            // 
+            // exportFolderLabel
+            // 
+            resources.ApplyResources(this.exportFolderLabel, "exportFolderLabel");
+            this.exportFolderLabel.Name = "exportFolderLabel";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.exportFolderBrowseButton);
+            this.Controls.Add(this.exportFolderTextBox);
+            this.Controls.Add(this.exportFolderLabel);
             this.Controls.Add(this.optionGroupBox);
-            this.Controls.Add(this.modFolderReferButton);
+            this.Controls.Add(this.modFolderBrowseButton);
             this.Controls.Add(this.exitButton);
-            this.Controls.Add(this.gameFolderReferButton);
+            this.Controls.Add(this.gameFolderBrowseButton);
             this.Controls.Add(this.editGroupBox);
             this.Controls.Add(this.modTextBox);
             this.Controls.Add(this.modLabel);
@@ -272,11 +299,11 @@
         private System.Windows.Forms.Label modLabel;
         private System.Windows.Forms.TextBox modTextBox;
         private System.Windows.Forms.GroupBox editGroupBox;
-        private System.Windows.Forms.Button gameFolderReferButton;
+        private System.Windows.Forms.Button gameFolderBrowseButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button teamButton;
         private System.Windows.Forms.Button leaderButton;
-        private System.Windows.Forms.Button modFolderReferButton;
+        private System.Windows.Forms.Button modFolderBrowseButton;
         private System.Windows.Forms.Label languageLabel;
         private System.Windows.Forms.ComboBox languageComboBox;
         private System.Windows.Forms.GroupBox optionGroupBox;
@@ -290,5 +317,8 @@
         private System.Windows.Forms.Button randomLeaderButton;
         private System.Windows.Forms.Button modelNameButton;
         private System.Windows.Forms.Button researchButton;
+        private System.Windows.Forms.Button exportFolderBrowseButton;
+        private System.Windows.Forms.TextBox exportFolderTextBox;
+        private System.Windows.Forms.Label exportFolderLabel;
     }
 }

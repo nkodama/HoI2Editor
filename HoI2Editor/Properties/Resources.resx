@@ -3702,4 +3702,7 @@
   <data name="EditorConfig" xml:space="preserve">
     <value>Strings</value>
   </data>
+  <data name="OpenExportFolderDialogDescription" xml:space="preserve">
+    <value>Select an export folder.</value>
+  </data>
 </root>

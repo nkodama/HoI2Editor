@@ -248,11 +248,10 @@ namespace HoI2Editor.Models
             bool error = false;
 
             // DHでデフォルト以外のマップを使用する場合、マップフォルダからprovince_names.csvを読み込む
-            if (Game.Type == GameType.DarkestHour && Misc.MapNumber != 0)
+            if ((Game.Type == GameType.DarkestHour) && (Misc.MapNumber != 0))
             {
-                folderName = Path.Combine(Path.Combine(Game.ModFolderName, Game.MapPathName),
-                    string.Format("Map_{0}", Misc.MapNumber));
-                string fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
+                folderName = Path.Combine(Game.MapPathName, string.Format("Map_{0}", Misc.MapNumber));
+                string fileName = Game.GetReadFileName(folderName, Game.ProvinceTextFileName);
                 if (File.Exists(fileName))
                 {
                     string name = Path.GetFileName(fileName);
@@ -277,30 +276,35 @@ namespace HoI2Editor.Models
                         }
                     }
                 }
+            }
 
-                folderName = Path.Combine(Path.Combine(Game.FolderName, Game.MapPathName),
-                    string.Format("Map_{0}", Misc.MapNumber));
-                fileName = Path.Combine(folderName, Game.ProvinceTextFileName);
-                if (File.Exists(fileName))
+            // 保存フォルダ内の文字列ファイル群を読み込む
+            if (Game.IsExportFolderActive)
+            {
+                folderName = Path.Combine(Game.ExportFolderName, Game.ConfigPathName);
+                if (Directory.Exists(folderName))
                 {
-                    string name = Path.GetFileName(fileName);
-                    if (!string.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                     {
-                        try
+                        string name = Path.GetFileName(fileName);
+                        if (!string.IsNullOrEmpty(name) && !fileList.Contains(name.ToLower()))
                         {
-                            LoadFile(fileName);
-                            fileList.Add(name.ToLower());
-                        }
-                        catch (Exception)
-                        {
-                            error = true;
-                            Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
-                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
-                                == DialogResult.Cancel)
+                            try
                             {
-                                return;
+                                LoadFile(fileName);
+                                fileList.Add(name.ToLower());
+                            }
+                            catch (Exception)
+                            {
+                                error = true;
+                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                    Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                    == DialogResult.Cancel)
+                                {
+                                    return;
+                                }
                             }
                         }
                     }
@@ -374,30 +378,65 @@ namespace HoI2Editor.Models
             {
                 fileList.Clear();
 
-                folderName = Path.Combine(Game.ModFolderName, Game.ConfigAdditionalPathName);
-                if (Directory.Exists(folderName))
+                if (Game.IsExportFolderActive)
                 {
-                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    folderName = Path.Combine(Game.ExportFolderName, Game.ConfigAdditionalPathName);
+                    if (Directory.Exists(folderName))
                     {
-                        try
+                        foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                         {
-                            LoadFile(fileName);
-                            string name = Path.GetFileName(fileName);
-                            if (!string.IsNullOrEmpty(name))
+                            try
                             {
-                                fileList.Add(Path.Combine("Additional", name.ToLower()));
+                                LoadFile(fileName);
+                                string name = Path.GetFileName(fileName);
+                                if (!string.IsNullOrEmpty(name))
+                                {
+                                    fileList.Add(Path.Combine("Additional", name.ToLower()));
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                error = true;
+                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                    Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                    == DialogResult.Cancel)
+                                {
+                                    return;
+                                }
                             }
                         }
-                        catch (Exception)
+                    }
+                }
+
+                if (Game.IsModActive)
+                {
+                    folderName = Path.Combine(Game.ModFolderName, Game.ConfigAdditionalPathName);
+                    if (Directory.Exists(folderName))
+                    {
+                        foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
                         {
-                            error = true;
-                            Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
-                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                                Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
-                                == DialogResult.Cancel)
+                            try
                             {
-                                return;
+                                LoadFile(fileName);
+                                string name = Path.GetFileName(fileName);
+                                if (!string.IsNullOrEmpty(name))
+                                {
+                                    fileList.Add(Path.Combine("Additional", name.ToLower()));
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                error = true;
+                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
+                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                    Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                    == DialogResult.Cancel)
+                                {
+                                    return;
+                                }
                             }
                         }
                     }

@@ -156,6 +156,42 @@ namespace HoI2Editor.Models
             string folderName;
             bool error = false;
 
+            // 保存フォルダ内の研究機関ファイルを読み込む
+            if (Game.IsExportFolderActive)
+            {
+                folderName = Path.Combine(Game.ExportFolderName, Game.TeamPathName);
+                if (Directory.Exists(folderName))
+                {
+                    foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
+                    {
+                        try
+                        {
+                            // 研究機関ファイルを読み込む
+                            LoadFile(fileName);
+
+                            // 研究機関ファイル一覧に読み込んだファイル名を登録する
+                            string name = Path.GetFileName(fileName);
+                            if (!String.IsNullOrEmpty(name))
+                            {
+                                list.Add(name.ToLower());
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            error = true;
+                            Debug.WriteLine("[Team] Load failed: {0}", fileName);
+                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                                == DialogResult.Cancel)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
             // MODフォルダ内の研究機関ファイルを読み込む
             if (Game.IsModActive)
             {

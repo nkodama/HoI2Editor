@@ -3660,4 +3660,7 @@
   <data name="EditorConfig" xml:space="preserve">
     <value>文字列</value>
   </data>
+  <data name="OpenExportFolderDialogDescription" xml:space="preserve">
+    <value>保存フォルダを選択して下さい。</value>
+  </data>
 </root>

@@ -218,14 +218,14 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region ゲームフォルダ/MOD名
+        #region フォルダ名
 
         /// <summary>
         ///     ゲームフォルダ参照ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLoadButtonClick(object sender, EventArgs e)
+        private void OnGameFolderBrowseButtonClick(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog
             {
@@ -280,7 +280,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnModFolderReferButtonClick(object sender, EventArgs e)
+        private void OnModFolderBrowseButtonClick(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog
             {
@@ -288,14 +288,26 @@ namespace HoI2Editor.Forms
                 ShowNewFolderButton = false,
                 Description = Resources.OpenModFolderDialogDescription
             };
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (dialog.ShowDialog() != DialogResult.OK)
             {
-                modTextBox.Text = Path.GetFileName(dialog.SelectedPath);
-                string folderName = Path.GetDirectoryName(dialog.SelectedPath);
-                gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
-                    ? Path.GetDirectoryName(folderName)
-                    : folderName;
+                return;
             }
+
+            string modName = Path.GetFileName(dialog.SelectedPath);
+            string folderName = Path.GetDirectoryName(dialog.SelectedPath);
+            if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
+            {
+                folderName = Path.GetDirectoryName(folderName);
+            }
+
+            // MODのゲームフォルダと保存フォルダのゲームフォルダが一致しない場合は保存フォルダをクリアする
+            if (Game.IsExportFolderActive && !string.Equals(folderName, Game.FolderName))
+            {
+                exportFolderTextBox.Text = "";
+            }
+
+            gameFolderTextBox.Text = folderName;
+            modTextBox.Text = modName;
         }
 
         /// <summary>
@@ -306,6 +318,51 @@ namespace HoI2Editor.Forms
         private void OnModTextBoxTextChanged(object sender, EventArgs e)
         {
             Game.ModName = modTextBox.Text;
+        }
+
+        /// <summary>
+        ///     保存フォルダ名参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnExportFolderBrowseButtonClick(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog
+            {
+                SelectedPath = Game.IsExportFolderActive ? Game.ExportFolderName : Game.FolderName,
+                ShowNewFolderButton = false,
+                Description = Resources.OpenExportFolderDialogDescription
+            };
+            if (dialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            string exportName = Path.GetFileName(dialog.SelectedPath);
+            string folderName = Path.GetDirectoryName(dialog.SelectedPath);
+            if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
+            {
+                folderName = Path.GetDirectoryName(folderName);
+            }
+
+            // 保存フォルダのゲームフォルダとMODのゲームフォルダが一致しない場合はMODフォルダをクリアする
+            if (Game.IsModActive && !string.Equals(folderName, Game.FolderName))
+            {
+                modTextBox.Text = "";
+            }
+
+            gameFolderTextBox.Text = folderName;
+            exportFolderTextBox.Text = exportName;
+        }
+
+        /// <summary>
+        ///     保存フォルダ名文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnExportFolderTextBoxTextChanged(object sender, EventArgs e)
+        {
+            Game.ExportName = exportFolderTextBox.Text;
         }
 
         /// <summary>
@@ -326,8 +383,9 @@ namespace HoI2Editor.Forms
         private void OnGameFolderTextBoxDragDrop(object sender, DragEventArgs e)
         {
             var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
-            modTextBox.Text = "";
             gameFolderTextBox.Text = fileNames[0];
+            modTextBox.Text = "";
+            exportFolderTextBox.Text = "";
         }
 
         /// <summary>
@@ -337,7 +395,27 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnModTextBoxDragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.Copy : DragDropEffects.None;
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.None;
+                return;
+            }
+
+            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string folderName = Path.GetDirectoryName(fileNames[0]);
+            if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
+            {
+                folderName = Path.GetDirectoryName(folderName);
+            }
+
+            // MODのゲームフォルダと保存フォルダのゲームフォルダが一致しない場合はドロップを許可しない
+            if (Game.IsExportFolderActive && !string.Equals(folderName, Game.FolderName))
+            {
+                e.Effect = DragDropEffects.None;
+                return;
+            }
+
+            e.Effect = DragDropEffects.Copy;
         }
 
         /// <summary>
@@ -348,11 +426,76 @@ namespace HoI2Editor.Forms
         private void OnModTextBoxDragDrop(object sender, DragEventArgs e)
         {
             var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
-            modTextBox.Text = Path.GetFileName(fileNames[0]);
+            string modName = Path.GetFileName(fileNames[0]);
             string folderName = Path.GetDirectoryName(fileNames[0]);
-            gameFolderTextBox.Text = string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh)
-                ? Path.GetDirectoryName(folderName)
-                : folderName;
+            if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
+            {
+                folderName = Path.GetDirectoryName(folderName);
+            }
+
+            // ゲームフォルダが有効でない時に保存フォルダ名が設定されていればクリアする
+            if (!Game.IsGameFolderActive && !string.IsNullOrEmpty(Game.ExportName))
+            {
+                exportFolderTextBox.Text = "";
+            }
+
+            gameFolderTextBox.Text = folderName;
+            modTextBox.Text = modName;
+        }
+
+        /// <summary>
+        ///     保存フォルダ名テキストボックスにドラッグした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnExportFolderTextBoxDragEnter(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.None;
+                return;
+            }
+
+            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string folderName = Path.GetDirectoryName(fileNames[0]);
+            if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
+            {
+                folderName = Path.GetDirectoryName(folderName);
+            }
+
+            // 保存フォルダのゲームフォルダとMODのゲームフォルダが一致しない場合はドロップを許可しない
+            if (Game.IsModActive && !string.Equals(folderName, Game.FolderName))
+            {
+                e.Effect = DragDropEffects.None;
+                return;
+            }
+
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        /// <summary>
+        ///     保存フォルダ名テキストボックスにドロップした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnExportFolderTextBoxDragDrop(object sender, DragEventArgs e)
+        {
+            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string exportName = Path.GetFileName(fileNames[0]);
+            string folderName = Path.GetDirectoryName(fileNames[0]);
+            if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
+            {
+                folderName = Path.GetDirectoryName(folderName);
+            }
+
+            // ゲームフォルダが有効でない時にMOD名が設定されていればクリアする
+            if (!Game.IsGameFolderActive && !string.IsNullOrEmpty(Game.ModName))
+            {
+                modTextBox.Text = "";
+            }
+
+            gameFolderTextBox.Text = folderName;
+            exportFolderTextBox.Text = exportName;
         }
 
         /// <summary>
@@ -377,7 +520,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ゲームフォルダ/MOD名を設定する
+        ///     ゲームフォルダ/MOD名/保存フォルダ名を設定する
         /// </summary>
         /// <param name="folderName">対象フォルダ名</param>
         private void SetFolderName(string folderName)
@@ -392,13 +535,15 @@ namespace HoI2Editor.Forms
                 }
                 if (IsGameFolder(subFolderName))
                 {
-                    modTextBox.Text = modName;
                     gameFolderTextBox.Text = subFolderName;
+                    modTextBox.Text = modName;
+                    exportFolderTextBox.Text = "";
                     return;
                 }
             }
-            modTextBox.Text = "";
             gameFolderTextBox.Text = folderName;
+            modTextBox.Text = "";
+            exportFolderTextBox.Text = "";
         }
 
         /// <summary>
@@ -436,25 +581,29 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     ゲームフォルダ名/MOD名の変更を許可する
+        ///     ゲームフォルダ名/MOD名/保存フォルダ名の変更を許可する
         /// </summary>
         public void EnableFolderChange()
         {
             gameFolderTextBox.Enabled = true;
-            gameFolderReferButton.Enabled = true;
+            gameFolderBrowseButton.Enabled = true;
             modTextBox.Enabled = true;
-            modFolderReferButton.Enabled = true;
+            modFolderBrowseButton.Enabled = true;
+            exportFolderTextBox.Enabled = true;
+            exportFolderBrowseButton.Enabled = true;
         }
 
         /// <summary>
-        ///     ゲームフォルダ名/MOD名の変更を禁止する
+        ///     ゲームフォルダ名/MOD名/保存フォルダ名の変更を禁止する
         /// </summary>
         public void DisableFolderChange()
         {
             gameFolderTextBox.Enabled = false;
-            gameFolderReferButton.Enabled = false;
+            gameFolderBrowseButton.Enabled = false;
             modTextBox.Enabled = false;
-            modFolderReferButton.Enabled = false;
+            modFolderBrowseButton.Enabled = false;
+            exportFolderTextBox.Enabled = false;
+            exportFolderBrowseButton.Enabled = false;
         }
 
         #endregion
