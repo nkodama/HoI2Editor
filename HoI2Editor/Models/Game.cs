@@ -509,7 +509,9 @@ namespace HoI2Editor.Models
         /// <returns>閣僚ファイル名</returns>
         public static string GetMinisterFileName(Country country)
         {
-            return string.Format("ministers_{0}.csv", Countries.Strings[(int) country].ToLower());
+            return Ministers.FileNameMap.ContainsKey(country)
+                ? Ministers.FileNameMap[country]
+                : string.Format("ministers_{0}.csv", Countries.Strings[(int) country].ToLower());
         }
 
         /// <summary>
@@ -519,7 +521,9 @@ namespace HoI2Editor.Models
         /// <returns>研究機関ファイル名</returns>
         public static string GetTeamFileName(Country country)
         {
-            return string.Format("teams_{0}.csv", Countries.Strings[(int) country].ToLower());
+            return Teams.FileNameMap.ContainsKey(country)
+                ? Teams.FileNameMap[country]
+                : string.Format("teams_{0}.csv", Countries.Strings[(int) country].ToLower());
         }
 
         /// <summary>

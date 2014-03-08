@@ -62,6 +62,11 @@ namespace HoI2Editor.Models
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
 
         /// <summary>
+        ///     指揮官リストファイルの編集済みフラグ
+        /// </summary>
+        private static bool _dirtyListFlag;
+
+        /// <summary>
         ///     現在解析中のファイル名
         /// </summary>
         private static string _currentFileName = "";
@@ -755,11 +760,26 @@ namespace HoI2Editor.Models
                 return true;
             }
 
-            // TODO: 指揮官ファイルリストの保存
+            // 指揮官リストファイルを保存する
+            if ((Game.Type == GameType.DarkestHour) && IsDirtyList())
+            {
+                try
+                {
+                    SaveList();
+                }
+                catch (Exception)
+                {
+                    string fileName = Game.GetWriteFileName(Game.DhLeaderListPathName);
+                    Debug.WriteLine(string.Format("[Leader] Save failed: {0}", fileName));
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorLeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
 
             bool error = false;
-            foreach (Country country in Enum.GetValues(typeof (Country))
-                .Cast<Country>()
+            foreach (Country country in Countries.Tags
                 .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
@@ -771,7 +791,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     string fileName = Game.GetWriteFileName(Game.LeaderPathName, Game.GetLeaderFileName(country));
-                    Debug.WriteLine("[Leader] Save failed: {0}", fileName);
+                    Debug.WriteLine(string.Format("[Leader] Save failed: {0}", fileName));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                         Resources.EditorLeader, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
@@ -792,6 +812,38 @@ namespace HoI2Editor.Models
             _dirtyFlag = false;
 
             return true;
+        }
+
+        /// <summary>
+        ///     指揮官リストファイルを保存する (DH)
+        /// </summary>
+        private static void SaveList()
+        {
+            // データベースフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Game.DatabasePathName);
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Game.GetWriteFileName(Game.DhLeaderListPathName);
+            Debug.WriteLine(string.Format("[Leader] Save: {0}", Path.GetFileName(fileName)));
+
+            // 登録された指揮官ファイル名を順に書き込む
+            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            {
+                _currentFileName = fileName;
+                _currentLineNo = 1;
+
+                foreach (string name in FileNameMap.Select(pair => pair.Value))
+                {
+                    writer.WriteLine(name);
+                    _currentLineNo++;
+                }
+            }
+
+            // 編集済みフラグを解除する
+            ResetDirtyList();
         }
 
         /// <summary>
@@ -1002,7 +1054,16 @@ namespace HoI2Editor.Models
         /// <returns>編集済みならばtrueを返す</returns>
         public static bool IsDirty()
         {
-            return _dirtyFlag;
+            return (_dirtyFlag || _dirtyListFlag);
+        }
+
+        /// <summary>
+        ///     指揮官リストファイルが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        private static bool IsDirtyList()
+        {
+            return _dirtyListFlag;
         }
 
         /// <summary>
@@ -1026,12 +1087,28 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     指揮官リストファイルの編集済みフラグを設定する
+        /// </summary>
+        public static void SetDirtyList()
+        {
+            _dirtyListFlag = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
         private static void ResetDirty(Country country)
         {
             DirtyFlags[(int) country] = false;
+        }
+
+        /// <summary>
+        ///     指揮官リストファイルの編集済みフラグを解除する
+        /// </summary>
+        private static void ResetDirtyList()
+        {
+            _dirtyListFlag = false;
         }
 
         #endregion

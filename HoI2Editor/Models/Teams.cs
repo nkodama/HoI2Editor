@@ -22,6 +22,11 @@ namespace HoI2Editor.Models
         public static List<Team> Items { get; private set; }
 
         /// <summary>
+        ///     国タグと研究機関ファイル名の対応付け
+        /// </summary>
+        public static Dictionary<Country, string> FileNameMap { get; private set; }
+
+        /// <summary>
         ///     使用済みIDリスト
         /// </summary>
         public static HashSet<int> IdSet { get; private set; }
@@ -44,6 +49,11 @@ namespace HoI2Editor.Models
         ///     編集済みフラグ
         /// </summary>
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+
+        /// <summary>
+        ///     研究機関リストファイルの編集済みフラグ
+        /// </summary>
+        private static bool _dirtyListFlag;
 
         /// <summary>
         ///     現在解析中のファイル名
@@ -75,6 +85,9 @@ namespace HoI2Editor.Models
         {
             // マスター研究機関リスト
             Items = new List<Team>();
+
+            // 国タグと研究機関ファイル名の対応付け
+            FileNameMap = new Dictionary<Country, string>();
 
             // 使用済みIDリスト
             IdSet = new HashSet<int>();
@@ -120,6 +133,8 @@ namespace HoI2Editor.Models
             }
 
             Items.Clear();
+            IdSet.Clear();
+            FileNameMap.Clear();
 
             switch (Game.Type)
             {
@@ -395,6 +410,8 @@ namespace HoI2Editor.Models
                 }
 
                 ResetDirty(country);
+
+                FileNameMap.Add(country, Path.GetFileName(fileName));
             }
         }
 
@@ -549,11 +566,26 @@ namespace HoI2Editor.Models
                 return true;
             }
 
-            // TODO: 研究機関ファイルリストの保存
+            // 研究機関リストファイルを保存する
+            if ((Game.Type == GameType.DarkestHour) && IsDirtyList())
+            {
+                try
+                {
+                    SaveList();
+                }
+                catch (Exception)
+                {
+                    string fileName = Game.GetWriteFileName(Game.DhTeamListPathName);
+                    Debug.WriteLine(string.Format("[Team] Save failed: {0}", fileName));
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        Resources.EditorTeam, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
 
             bool error = false;
-            foreach (Country country in Enum.GetValues(typeof (Country))
-                .Cast<Country>()
+            foreach (Country country in Countries.Tags
                 .Where(country => DirtyFlags[(int) country] && country != Country.None))
             {
                 try
@@ -565,7 +597,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     string fileName = Game.GetWriteFileName(Game.MinisterPathName, Game.GetMinisterFileName(country));
-                    Debug.WriteLine("[Minister] Save failed: {0}", fileName);
+                    Debug.WriteLine(string.Format("[Minister] Save failed: {0}", fileName));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                         Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
@@ -584,6 +616,38 @@ namespace HoI2Editor.Models
             _dirtyFlag = false;
 
             return true;
+        }
+
+        /// <summary>
+        ///     研究機関リストファイルを保存する (DH)
+        /// </summary>
+        private static void SaveList()
+        {
+            // データベースフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Game.DatabasePathName);
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Game.GetWriteFileName(Game.DhTeamListPathName);
+            Debug.WriteLine(string.Format("[Team] Save: {0}", Path.GetFileName(fileName)));
+
+            // 登録された研究機関ファイル名を順に書き込む
+            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            {
+                _currentFileName = fileName;
+                _currentLineNo = 1;
+
+                foreach (string name in FileNameMap.Select(pair => pair.Value))
+                {
+                    writer.WriteLine(name);
+                    _currentLineNo++;
+                }
+            }
+
+            // 編集済みフラグを解除する
+            ResetDirtyList();
         }
 
         /// <summary>
@@ -740,7 +804,16 @@ namespace HoI2Editor.Models
         /// <returns>編集済みならばtrueを返す</returns>
         public static bool IsDirty()
         {
-            return _dirtyFlag;
+            return (_dirtyFlag || _dirtyListFlag);
+        }
+
+        /// <summary>
+        ///     研究機関リストファイルが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        private static bool IsDirtyList()
+        {
+            return _dirtyListFlag;
         }
 
         /// <summary>
@@ -764,12 +837,28 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     研究機関リストファイルの編集済みフラグを設定する
+        /// </summary>
+        public static void SetDirtyList()
+        {
+            _dirtyListFlag = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを解除する
         /// </summary>
         /// <param name="country">国タグ</param>
         private static void ResetDirty(Country country)
         {
             DirtyFlags[(int) country] = false;
+        }
+
+        /// <summary>
+        ///     研究機関リストファイルの編集済みフラグを解除する
+        /// </summary>
+        private static void ResetDirtyList()
+        {
+            _dirtyListFlag = false;
         }
 
         #endregion

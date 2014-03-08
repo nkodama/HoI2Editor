@@ -793,6 +793,13 @@ namespace HoI2Editor.Forms
 
             // 研究機関リストの更新を通知する
             HoI2Editor.OnItemChanged(EditorItemId.TeamList, this);
+
+            // ファイル一覧に存在しなければ追加する
+            if (!Teams.FileNameMap.ContainsKey(team.Country))
+            {
+                Teams.FileNameMap.Add(team.Country, Game.GetTeamFileName(team.Country));
+                Teams.SetDirtyList();
+            }
         }
 
         /// <summary>
@@ -1598,6 +1605,13 @@ namespace HoI2Editor.Forms
 
             // 変更後の国タグの編集済みフラグを設定する
             Teams.SetDirty(team.Country);
+
+            // ファイル一覧に存在しなければ追加する
+            if (!Teams.FileNameMap.ContainsKey(team.Country))
+            {
+                Teams.FileNameMap.Add(team.Country, Game.GetTeamFileName(team.Country));
+                Teams.SetDirtyList();
+            }
 
             // 国家コンボボックスの項目色を変更するため描画更新する
             countryComboBox.Refresh();

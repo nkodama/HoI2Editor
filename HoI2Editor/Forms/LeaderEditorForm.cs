@@ -686,6 +686,13 @@ namespace HoI2Editor.Forms
 
             // 国家ごとの編集済みフラグを設定する
             Leaders.SetDirty(leader.Country);
+
+            // ファイル一覧に存在しなければ追加する
+            if (!Leaders.FileNameMap.ContainsKey(leader.Country))
+            {
+                Leaders.FileNameMap.Add(leader.Country, Game.GetLeaderFileName(leader.Country));
+                Leaders.SetDirtyList();
+            }
         }
 
         /// <summary>
@@ -2101,6 +2108,13 @@ namespace HoI2Editor.Forms
 
             // 変更後の国タグの編集済みフラグを設定する
             Leaders.SetDirty(leader.Country);
+
+            // ファイル一覧に存在しなければ追加する
+            if (!Leaders.FileNameMap.ContainsKey(leader.Country))
+            {
+                Leaders.FileNameMap.Add(leader.Country, Game.GetLeaderFileName(leader.Country));
+                Leaders.SetDirtyList();
+            }
 
             // 国家コンボボックスの項目色を変更するため描画更新する
             countryComboBox.Refresh();
