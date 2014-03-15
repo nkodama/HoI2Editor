@@ -3666,8 +3666,8 @@
   <data name="MiscSectionTrade" xml:space="preserve">
     <value>Trade</value>
   </data>
-  <data name="EditorDivisionName" xml:space="preserve">
-    <value>Division Name Editor</value>
+  <data name="EditorCorpsName" xml:space="preserve">
+    <value>Corps Name Editor</value>
   </data>
   <data name="EditorLeader" xml:space="preserve">
     <value>Leader Editor</value>

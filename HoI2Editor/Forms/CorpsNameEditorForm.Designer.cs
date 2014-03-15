@@ -1,6 +1,6 @@
 ﻿namespace HoI2Editor.Forms
 {
-    partial class DivisionNameEditorForm
+    partial class CorpsNameEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DivisionNameEditorForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorpsNameEditorForm));
             this.copyButton = new System.Windows.Forms.Button();
             this.pasteButton = new System.Windows.Forms.Button();
             this.cutButton = new System.Windows.Forms.Button();
@@ -299,7 +299,7 @@
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
-            // DivisionNameEditorForm
+            // CorpsNameEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -316,10 +316,10 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.countryListBox);
-            this.Name = "DivisionNameEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnDivisionNameEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnDivisionNameEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnDivisionNameEditorFormLoad);
+            this.Name = "CorpsNameEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
             this.Move += new System.EventHandler(this.OnFormMove);
             this.Resize += new System.EventHandler(this.OnFormResize);
             this.sequentialGroupBox.ResumeLayout(false);

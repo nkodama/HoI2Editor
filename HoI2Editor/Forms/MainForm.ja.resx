@@ -142,8 +142,8 @@
   <data name="randomLeaderButton.Text" xml:space="preserve">
     <value>ランダム指揮官</value>
   </data>
-  <data name="divisionNameButton.Text" xml:space="preserve">
-    <value>師団名</value>
+  <data name="corpsNameButton.Text" xml:space="preserve">
+    <value>軍団名</value>
   </data>
   <data name="unitNameButton.Text" xml:space="preserve">
     <value>ユニット名</value>

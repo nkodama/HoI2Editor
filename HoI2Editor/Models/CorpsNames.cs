@@ -11,14 +11,14 @@ using HoI2Editor.Properties;
 namespace HoI2Editor.Models
 {
     /// <summary>
-    ///     新規師団名を保持するクラス
+    ///     新規軍団名を保持するクラス
     /// </summary>
-    public static class DivisionNames
+    public static class CorpsNames
     {
         #region 内部フィールド
 
         /// <summary>
-        ///     師団名リスト
+        ///     軍団名リスト
         /// </summary>
         private static readonly List<string>[,] Items =
             new List<string>[Enum.GetValues(typeof (Branch)).Length, Enum.GetValues(typeof (Country)).Length];
@@ -68,7 +68,7 @@ namespace HoI2Editor.Models
         #region ファイル読み込み
 
         /// <summary>
-        ///     師団名定義ファイルの再読み込みを要求する
+        ///     軍団名定義ファイルの再読み込みを要求する
         /// </summary>
         public static void RequestReload()
         {
@@ -76,7 +76,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名定義ファイル群を再読み込みする
+        ///     軍団名定義ファイル群を再読み込みする
         /// </summary>
         public static void Reload()
         {
@@ -92,7 +92,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名定義ファイルを読み込む
+        ///     軍団名定義ファイルを読み込む
         /// </summary>
         public static void Load()
         {
@@ -102,7 +102,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            // 師団名リストをクリアする
+            // 軍団名リストをクリアする
             foreach (
                 Branch branch in Enum.GetValues(typeof (Branch)).Cast<Branch>().Where(branch => branch != Branch.None))
             {
@@ -114,7 +114,7 @@ namespace HoI2Editor.Models
 
             bool error = false;
 
-            // 陸軍師団名定義ファイルを読み込む
+            // 陸軍軍団名定義ファイルを読み込む
             string fileName = Game.GetReadFileName(Game.ArmyNamesPathName);
             if (File.Exists(fileName))
             {
@@ -125,10 +125,10 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[DivisionName] Read error: {0}", fileName));
+                    Debug.WriteLine(string.Format("[CorpsName] Read error: {0}", fileName));
                     Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                        Resources.EditorDivisionName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
                         return;
@@ -140,7 +140,7 @@ namespace HoI2Editor.Models
                 error = true;
             }
 
-            // 海軍師団名定義ファイルを読み込む
+            // 海軍軍団名定義ファイルを読み込む
             fileName = Game.GetReadFileName(Game.NavyNamesPathName);
             if (File.Exists(fileName))
             {
@@ -151,10 +151,10 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[DivisionName] Read error: {0}", fileName));
+                    Debug.WriteLine(string.Format("[CorpsName] Read error: {0}", fileName));
                     Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
                         return;
@@ -166,7 +166,7 @@ namespace HoI2Editor.Models
                 error = true;
             }
 
-            // 空軍師団名定義ファイルを読み込む
+            // 空軍軍団名定義ファイルを読み込む
             fileName = Game.GetReadFileName(Game.AirNamesPathName);
             if (File.Exists(fileName))
             {
@@ -177,10 +177,10 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[DivisionName] Read error: {0}", fileName));
+                    Debug.WriteLine(string.Format("[CorpsName] Read error: {0}", fileName));
                     Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
                         return;
@@ -206,13 +206,13 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名定義ファイルを読み込む
+        ///     軍団名定義ファイルを読み込む
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="fileName">ファイル名</param>
         private static void LoadFile(Branch branch, string fileName)
         {
-            Debug.WriteLine(string.Format("[DivisionName] Load: {0}", Path.GetFileName(fileName)));
+            Debug.WriteLine(string.Format("[CorpsName] Load: {0}", Path.GetFileName(fileName)));
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -228,7 +228,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名定義行を解釈する
+        ///     軍団名定義行を解釈する
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="line">対象文字列</param>
@@ -264,14 +264,14 @@ namespace HoI2Editor.Models
             }
             Country country = Countries.StringMap[countryName];
 
-            // 師団名
+            // 軍団名
             string name = tokens[1];
             if (string.IsNullOrEmpty(name))
             {
                 return;
             }
 
-            // 師団名を追加する
+            // 軍団名を追加する
             AddName(name, branch, country);
         }
 
@@ -280,14 +280,14 @@ namespace HoI2Editor.Models
         #region ファイル書き込み
 
         /// <summary>
-        ///     師団名定義ファイルを保存する
+        ///     軍団名定義ファイルを保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
         public static bool Save()
         {
             bool error = false;
 
-            // 陸軍師団名定義ファイルを保存する
+            // 陸軍軍団名定義ファイルを保存する
             if (IsDirty(Branch.Army))
             {
                 string fileName = Game.GetWriteFileName(Game.ArmyNamesPathName);
@@ -298,10 +298,10 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[DivisionName] Write error: {0}", fileName));
+                    Debug.WriteLine(string.Format("[CorpsName] Write error: {0}", fileName));
                     Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
-                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
                         return false;
@@ -310,7 +310,7 @@ namespace HoI2Editor.Models
             }
 
 
-            // 海軍師団名定義ファイルを保存する
+            // 海軍軍団名定義ファイルを保存する
             if (IsDirty(Branch.Navy))
             {
                 string fileName = Game.GetWriteFileName(Game.NavyNamesPathName);
@@ -321,10 +321,10 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[DivisionName] Write error: {0}", fileName));
+                    Debug.WriteLine(string.Format("[CorpsName] Write error: {0}", fileName));
                     Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
-                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
                         return false;
@@ -332,7 +332,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            // 空軍師団名定義ファイルを保存する
+            // 空軍軍団名定義ファイルを保存する
             if (IsDirty(Branch.Airforce))
             {
                 string fileName = Game.GetWriteFileName(Game.AirNamesPathName);
@@ -343,10 +343,10 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[DivisionName] Write error: {0}", fileName));
+                    Debug.WriteLine(string.Format("[CorpsName] Write error: {0}", fileName));
                     Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
-                        Resources.EditorDivisionName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
                         return false;
@@ -367,7 +367,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名定義ファイルを保存する
+        ///     軍団名定義ファイルを保存する
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="fileName">ファイル名</param>
@@ -380,7 +380,7 @@ namespace HoI2Editor.Models
                 Directory.CreateDirectory(folderName);
             }
 
-            Debug.WriteLine(string.Format("[DivisionName] Save: {0}", Path.GetFileName(fileName)));
+            Debug.WriteLine(string.Format("[CorpsName] Save: {0}", Path.GetFileName(fileName)));
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -400,23 +400,23 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 師団名操作
+        #region 軍団名操作
 
         /// <summary>
-        ///     師団名リストを取得する
+        ///     軍団名リストを取得する
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        /// <returns>師団名リスト</returns>
+        /// <returns>軍団名リスト</returns>
         public static IEnumerable<string> GetNames(Branch branch, Country country)
         {
             return Items[(int) branch, (int) country] ?? new List<string>();
         }
 
         /// <summary>
-        ///     師団名を追加する
+        ///     軍団名を追加する
         /// </summary>
-        /// <param name="name">師団名</param>
+        /// <param name="name">軍団名</param>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         private static void AddName(string name, Branch branch, Country country)
@@ -427,25 +427,25 @@ namespace HoI2Editor.Models
                 Items[(int) branch, (int) country] = new List<string>();
             }
 
-            // 師団名を追加する
+            // 軍団名を追加する
             Items[(int) branch, (int) country].Add(name);
         }
 
         /// <summary>
-        ///     師団名リストを設定する
+        ///     軍団名リストを設定する
         /// </summary>
-        /// <param name="names">師団名リスト</param>
+        /// <param name="names">軍団名リスト</param>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         public static void SetNames(List<string> names, Branch branch, Country country)
         {
-            // 師団名リストに変更がなければ戻る
+            // 軍団名リストに変更がなければ戻る
             if (Items[(int) branch, (int) country] != null && names.SequenceEqual(Items[(int) branch, (int) country]))
             {
                 return;
             }
 
-            // 師団名リストを設定する
+            // 軍団名リストを設定する
             Items[(int) branch, (int) country] = names;
 
             // 編集済みフラグを設定する
@@ -453,7 +453,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名を置換する
+        ///     軍団名を置換する
         /// </summary>
         /// <param name="s">置換元文字列</param>
         /// <param name="t">置換先文字列</param>
@@ -474,7 +474,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     全ての師団名を置換する
+        ///     全ての軍団名を置換する
         /// </summary>
         /// <param name="s">置換元文字列</param>
         /// <param name="t">置換先文字列</param>
@@ -491,7 +491,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     全ての兵科の師団名を置換する
+        ///     全ての兵科の軍団名を置換する
         /// </summary>
         /// <param name="s">置換元文字列</param>
         /// <param name="t">置換先文字列</param>
@@ -506,7 +506,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     全ての国の師団名を置換する
+        ///     全ての国の軍団名を置換する
         /// </summary>
         /// <param name="s">置換元文字列</param>
         /// <param name="t">置換先文字列</param>
@@ -521,7 +521,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名を連番追加する
+        ///     軍団名を連番追加する
         /// </summary>
         /// <param name="prefix">接頭辞</param>
         /// <param name="suffix">接尾辞</param>
@@ -550,7 +550,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     師団名を連番補間する
+        ///     軍団名を連番補間する
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
@@ -605,7 +605,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     全ての師団名を連番補間する
+        ///     全ての軍団名を連番補間する
         /// </summary>
         public static void InterpolateAll()
         {
@@ -619,7 +619,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     全ての兵科の師団名を連番補間する
+        ///     全ての兵科の軍団名を連番補間する
         /// </summary>
         /// <param name="country">国タグ</param>
         public static void InterpolateAllBranches(Country country)
@@ -631,7 +631,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     全ての国の師団名を連番補間する
+        ///     全ての国の軍団名を連番補間する
         /// </summary>
         /// <param name="branch">兵科</param>
         public static void InterpolateAllCountries(Branch branch)

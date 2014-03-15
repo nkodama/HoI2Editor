@@ -235,13 +235,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     師団名ボタン押下時の処理
+        ///     軍団名ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnDivisionNameButtonClick(object sender, EventArgs e)
+        private void OnCorpsNameButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchDivisionNameEditorForm();
+            HoI2Editor.LaunchCorpsNameEditorForm();
         }
 
         /// <summary>

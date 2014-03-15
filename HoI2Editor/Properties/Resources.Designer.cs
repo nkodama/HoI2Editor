@@ -322,11 +322,11 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
-        ///   Division Name Editor に類似しているローカライズされた文字列を検索します。
+        ///   Corps Name Editor に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string EditorDivisionName {
+        public static string EditorCorpsName {
             get {
-                return ResourceManager.GetString("EditorDivisionName", resourceCulture);
+                return ResourceManager.GetString("EditorCorpsName", resourceCulture);
             }
         }
         

@@ -38,7 +38,7 @@
             this.researchButton = new System.Windows.Forms.Button();
             this.modelNameButton = new System.Windows.Forms.Button();
             this.randomLeaderButton = new System.Windows.Forms.Button();
-            this.divisionNameButton = new System.Windows.Forms.Button();
+            this.corpsNameButton = new System.Windows.Forms.Button();
             this.unitNameButton = new System.Windows.Forms.Button();
             this.miscButton = new System.Windows.Forms.Button();
             this.provinceButton = new System.Windows.Forms.Button();
@@ -101,7 +101,7 @@
             this.editGroupBox.Controls.Add(this.researchButton);
             this.editGroupBox.Controls.Add(this.modelNameButton);
             this.editGroupBox.Controls.Add(this.randomLeaderButton);
-            this.editGroupBox.Controls.Add(this.divisionNameButton);
+            this.editGroupBox.Controls.Add(this.corpsNameButton);
             this.editGroupBox.Controls.Add(this.unitNameButton);
             this.editGroupBox.Controls.Add(this.miscButton);
             this.editGroupBox.Controls.Add(this.provinceButton);
@@ -134,12 +134,12 @@
             this.randomLeaderButton.UseVisualStyleBackColor = true;
             this.randomLeaderButton.Click += new System.EventHandler(this.OnRandomLeaderButtonClick);
             // 
-            // divisionNameButton
+            // corpsNameButton
             // 
-            resources.ApplyResources(this.divisionNameButton, "divisionNameButton");
-            this.divisionNameButton.Name = "divisionNameButton";
-            this.divisionNameButton.UseVisualStyleBackColor = true;
-            this.divisionNameButton.Click += new System.EventHandler(this.OnDivisionNameButtonClick);
+            resources.ApplyResources(this.corpsNameButton, "corpsNameButton");
+            this.corpsNameButton.Name = "corpsNameButton";
+            this.corpsNameButton.UseVisualStyleBackColor = true;
+            this.corpsNameButton.Click += new System.EventHandler(this.OnCorpsNameButtonClick);
             // 
             // unitNameButton
             // 
@@ -315,7 +315,7 @@
         private System.Windows.Forms.Button provinceButton;
         private System.Windows.Forms.Button miscButton;
         private System.Windows.Forms.Button unitNameButton;
-        private System.Windows.Forms.Button divisionNameButton;
+        private System.Windows.Forms.Button corpsNameButton;
         private System.Windows.Forms.Button randomLeaderButton;
         private System.Windows.Forms.Button modelNameButton;
         private System.Windows.Forms.Button researchButton;

@@ -3624,8 +3624,8 @@
   <data name="MiscSectionTrade" xml:space="preserve">
     <value>貿易</value>
   </data>
-  <data name="EditorDivisionName" xml:space="preserve">
-    <value>師団名エディタ</value>
+  <data name="EditorCorpsName" xml:space="preserve">
+    <value>軍団名エディタ</value>
   </data>
   <data name="EditorLeader" xml:space="preserve">
     <value>指揮官エディタ</value>

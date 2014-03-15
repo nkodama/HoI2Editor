@@ -3,6 +3,7 @@ Alternative HoI2 Editor Changelog
 - 16 March 2014; Ver 0.34
 
 Changed to save window position and some selections when the editor has been closed.
+Renamed division names to corps names.
 
 - 9 March 2014; Ver 0.33
 

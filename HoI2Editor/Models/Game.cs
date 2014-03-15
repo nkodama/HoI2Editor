@@ -399,17 +399,17 @@ namespace HoI2Editor.Models
         public const string UnitNamesPathName = "db\\unitnames.csv";
 
         /// <summary>
-        ///     陸軍師団名定義ファイル名
+        ///     陸軍軍団名定義ファイル名
         /// </summary>
         public const string ArmyNamesPathName = "db\\armynames.csv";
 
         /// <summary>
-        ///     海軍師団名定義ファイル名
+        ///     海軍軍団名定義ファイル名
         /// </summary>
         public const string NavyNamesPathName = "db\\navynames.csv";
 
         /// <summary>
-        ///     空軍師団名定義ファイル名
+        ///     空軍軍団名定義ファイル名
         /// </summary>
         public const string AirNamesPathName = "db\\airnames.csv";
 

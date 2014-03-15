@@ -16,9 +16,9 @@ namespace HoI2Editor
         #region 公開プロパティ
 
         /// <summary>
-        ///     師団名エディタの設定
+        ///     軍団名エディタの設定
         /// </summary>
-        public DivisionNameEditorSettings DivisionNameEditor = new DivisionNameEditorSettings();
+        public CorpsNameEditorSettings CorpsNameEditor = new CorpsNameEditorSettings();
 
         /// <summary>
         ///     指揮官エディタの設定
@@ -97,7 +97,7 @@ namespace HoI2Editor
             TechEditor.Round();
             UnitEditor.Round();
             MiscEditor.Round();
-            DivisionNameEditor.Round();
+            CorpsNameEditor.Round();
             UnitNameEditor.Round();
             ModelNameEditor.Round();
             RandomLeaderEditor.Round();
@@ -210,9 +210,9 @@ namespace HoI2Editor
         #endregion
 
         /// <summary>
-        ///     師団名エディタの設定
+        ///     軍団名エディタの設定
         /// </summary>
-        public class DivisionNameEditorSettings
+        public class CorpsNameEditorSettings
         {
             #region 公開プロパティ
 
@@ -350,7 +350,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            public DivisionNameEditorSettings()
+            public CorpsNameEditorSettings()
             {
                 Init();
             }

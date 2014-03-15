@@ -119,7 +119,7 @@ namespace HoI2Editor.Models
                 Debug.WriteLine(string.Format("[RandomLeader] Read error: {0}", fileName));
                 Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                    Resources.EditorDivisionName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -232,7 +232,7 @@ namespace HoI2Editor.Models
                 Debug.WriteLine(string.Format("[RandomLeader] Write error: {0}", fileName));
                 Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
-                    Resources.EditorDivisionName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

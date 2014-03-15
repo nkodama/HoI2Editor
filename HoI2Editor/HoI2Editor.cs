@@ -94,7 +94,7 @@ namespace HoI2Editor
                    Provinces.IsDirty() ||
                    Techs.IsDirty() ||
                    Units.IsDirty() ||
-                   DivisionNames.IsDirty() ||
+                   CorpsNames.IsDirty() ||
                    UnitNames.IsDirty() ||
                    RandomLeaders.IsDirty();
         }
@@ -112,7 +112,7 @@ namespace HoI2Editor
             Techs.RequestReload();
             Units.RequestReload();
             Provinces.RequestReload();
-            DivisionNames.RequestReload();
+            CorpsNames.RequestReload();
             UnitNames.RequestReload();
             RandomLeaders.RequestReload();
 
@@ -137,7 +137,7 @@ namespace HoI2Editor
             Provinces.Reload();
             Techs.Reload();
             Units.Reload();
-            DivisionNames.Reload();
+            CorpsNames.Reload();
             UnitNames.Reload();
             RandomLeaders.Reload();
 
@@ -203,7 +203,7 @@ namespace HoI2Editor
             {
                 return;
             }
-            if (!DivisionNames.Save())
+            if (!CorpsNames.Save())
             {
                 return;
             }
@@ -247,9 +247,9 @@ namespace HoI2Editor
             {
                 _miscEditorForm.OnFileLoaded();
             }
-            if (_divisionNameEditorForm != null)
+            if (_corpsNameEditorForm != null)
             {
-                _divisionNameEditorForm.OnFileLoaded();
+                _corpsNameEditorForm.OnFileLoaded();
             }
             if (_unitNameEditorForm != null)
             {
@@ -302,9 +302,9 @@ namespace HoI2Editor
             {
                 _miscEditorForm.OnFileSaved();
             }
-            if (_divisionNameEditorForm != null)
+            if (_corpsNameEditorForm != null)
             {
-                _divisionNameEditorForm.OnFileSaved();
+                _corpsNameEditorForm.OnFileSaved();
             }
             if (_unitNameEditorForm != null)
             {
@@ -355,9 +355,9 @@ namespace HoI2Editor
             {
                 _miscEditorForm.OnItemChanged(id);
             }
-            if ((_divisionNameEditorForm != null) && (form != _divisionNameEditorForm))
+            if ((_corpsNameEditorForm != null) && (form != _corpsNameEditorForm))
             {
-                _divisionNameEditorForm.OnItemChanged(id);
+                _corpsNameEditorForm.OnItemChanged(id);
             }
             if ((_unitNameEditorForm != null) && (form != _unitNameEditorForm))
             {
@@ -422,9 +422,9 @@ namespace HoI2Editor
         private static MiscEditorForm _miscEditorForm;
 
         /// <summary>
-        ///     師団名エディタのフォーム
+        ///     軍団名エディタのフォーム
         /// </summary>
-        private static DivisionNameEditorForm _divisionNameEditorForm;
+        private static CorpsNameEditorForm _corpsNameEditorForm;
 
         /// <summary>
         ///     ユニット名エディタのフォーム
@@ -582,20 +582,20 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     師団名エディタフォームを起動する
+        ///     軍団名エディタフォームを起動する
         /// </summary>
-        public static void LaunchDivisionNameEditorForm()
+        public static void LaunchCorpsNameEditorForm()
         {
-            if (_divisionNameEditorForm == null)
+            if (_corpsNameEditorForm == null)
             {
-                _divisionNameEditorForm = new DivisionNameEditorForm();
-                _divisionNameEditorForm.Show();
+                _corpsNameEditorForm = new CorpsNameEditorForm();
+                _corpsNameEditorForm.Show();
 
                 OnEditorStatusUpdete();
             }
             else
             {
-                _divisionNameEditorForm.Activate();
+                _corpsNameEditorForm.Activate();
             }
         }
 
@@ -742,11 +742,11 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     師団名エディターフォームクローズ時の処理
+        ///     軍団名エディターフォームクローズ時の処理
         /// </summary>
-        public static void OnDivisionNameEditorFormClosed()
+        public static void OnCorpsNameEditorFormClosed()
         {
-            _divisionNameEditorForm = null;
+            _corpsNameEditorForm = null;
 
             OnEditorStatusUpdete();
         }
@@ -803,7 +803,7 @@ namespace HoI2Editor
                 _techEditorForm == null &&
                 _unitEditorForm == null &&
                 _miscEditorForm == null &&
-                _divisionNameEditorForm == null &&
+                _corpsNameEditorForm == null &&
                 _unitNameEditorForm == null &&
                 _modelNameEditorForm == null &&
                 _randomLeaderEditorForm == null &&

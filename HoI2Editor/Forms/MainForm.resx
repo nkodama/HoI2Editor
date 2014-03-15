@@ -330,31 +330,31 @@
   <data name="&gt;&gt;randomLeaderButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="divisionNameButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="corpsNameButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="divisionNameButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="corpsNameButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 76</value>
   </data>
-  <data name="divisionNameButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="corpsNameButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
-  <data name="divisionNameButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="corpsNameButton.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="divisionNameButton.Text" xml:space="preserve">
-    <value>Division Name</value>
+  <data name="corpsNameButton.Text" xml:space="preserve">
+    <value>Corps Name</value>
   </data>
-  <data name="&gt;&gt;divisionNameButton.Name" xml:space="preserve">
-    <value>divisionNameButton</value>
+  <data name="&gt;&gt;corpsNameButton.Name" xml:space="preserve">
+    <value>corpsNameButton</value>
   </data>
-  <data name="&gt;&gt;divisionNameButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;corpsNameButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;divisionNameButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;corpsNameButton.Parent" xml:space="preserve">
     <value>editGroupBox</value>
   </data>
-  <data name="&gt;&gt;divisionNameButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;corpsNameButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="unitNameButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
