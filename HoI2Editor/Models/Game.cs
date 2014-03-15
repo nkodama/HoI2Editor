@@ -128,10 +128,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     MODフォルダ名
         /// </summary>
-        public static string ModFolderName
-        {
-            get { return _modFolderName; }
-        }
+        public static string ModFolderName { get; private set; }
 
         /// <summary>
         ///     保存フォルダ名が有効かどうか
@@ -193,11 +190,6 @@ namespace HoI2Editor.Models
         ///     MOD名
         /// </summary>
         private static string _modName;
-
-        /// <summary>
-        ///     MODフォルダ名
-        /// </summary>
-        private static string _modFolderName;
 
         /// <summary>
         ///     保存フォルダ名 (MOD名)
@@ -604,24 +596,24 @@ namespace HoI2Editor.Models
             if (!IsGameFolderActive)
             {
                 IsModActive = false;
-                _modFolderName = "";
+                ModFolderName = "";
                 return;
             }
             if (string.IsNullOrEmpty(_modName))
             {
                 IsModActive = false;
-                _modFolderName = FolderName;
+                ModFolderName = FolderName;
                 return;
             }
             IsModActive = true;
             switch (Type)
             {
                 case GameType.DarkestHour:
-                    _modFolderName = Path.Combine(Path.Combine(FolderName, ModPathNameDh), ModName);
+                    ModFolderName = Path.Combine(Path.Combine(FolderName, ModPathNameDh), ModName);
                     break;
 
                 default:
-                    _modFolderName = Path.Combine(FolderName, ModName);
+                    ModFolderName = Path.Combine(FolderName, ModName);
                     break;
             }
         }

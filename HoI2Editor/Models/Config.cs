@@ -639,9 +639,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    string folderName = Path.Combine(Game.IsModActive ? Game.ModFolderName : Game.FolderName,
-                        Game.ConfigPathName);
-                    string pathName = Path.Combine(folderName, fileName);
+                    string pathName = Game.GetWriteFileName(Game.ConfigPathName, fileName);
                     Debug.WriteLine(string.Format("[Config] Write error: {0}", pathName));
                     Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, pathName));
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, pathName),
