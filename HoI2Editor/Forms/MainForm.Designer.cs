@@ -283,6 +283,8 @@
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnMainFormDragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnMainFormDragEnter);
+            this.Move += new System.EventHandler(this.OnMainFormMove);
+            this.Resize += new System.EventHandler(this.OnMainFormResize);
             this.editGroupBox.ResumeLayout(false);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();

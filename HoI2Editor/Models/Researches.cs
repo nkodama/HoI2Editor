@@ -22,7 +22,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指定日付
         /// </summary>
-        public static GameDate SpecifiedDate { get; private set; }
+        public static GameDate SpecifiedDate { get; set; }
 
         /// <summary>
         ///     ロケット試験場の規模

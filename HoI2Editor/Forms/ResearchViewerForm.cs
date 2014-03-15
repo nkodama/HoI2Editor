@@ -34,6 +34,20 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     技術リストビューの列の数
+        /// </summary>
+        public const int TechListColumnCount = 4;
+
+        /// <summary>
+        ///     研究機関リストビューの列の数
+        /// </summary>
+        public const int TeamListColumnCount = 8;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -43,32 +57,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
-        }
-
-        /// <summary>
-        ///     自動スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // 技術リストビュー
-            techNameColumnHeader.Width = DeviceCaps.GetScaledWidth(techNameColumnHeader.Width);
-            techIdColumnHeader.Width = DeviceCaps.GetScaledWidth(techIdColumnHeader.Width);
-            techYearColumnHeader.Width = DeviceCaps.GetScaledWidth(techYearColumnHeader.Width);
-            techComponentsColumnHeader.Width = DeviceCaps.GetScaledWidth(techComponentsColumnHeader.Width);
-
-            // 国家リストボックス
-            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
-            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
-
-            // 研究機関リストビュー
-            teamNameColumnHeader.Width = DeviceCaps.GetScaledWidth(teamNameColumnHeader.Width);
-            teamIdColumnHeader.Width = DeviceCaps.GetScaledWidth(teamIdColumnHeader.Width);
-            teamSkillColumnHeader.Width = DeviceCaps.GetScaledWidth(teamSkillColumnHeader.Width);
-            teamSpecialityColumnHeader.Width = DeviceCaps.GetScaledWidth(teamSpecialityColumnHeader.Width);
-            teamRankColumnHeader.Width = DeviceCaps.GetScaledWidth(teamRankColumnHeader.Width);
-            teamDaysColumnHeader.Width = DeviceCaps.GetScaledWidth(teamDaysColumnHeader.Width);
+            // ウィンドウ位置の初期化
+            InitPosition();
         }
 
         /// <summary>
@@ -150,6 +140,65 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region ウィンドウ位置
+
+        /// <summary>
+        ///     ウィンドウ位置の初期化
+        /// </summary>
+        private void InitPosition()
+        {
+            // 技術リストビュー
+            techNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[0];
+            techIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[1];
+            techYearColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[2];
+            techComponentsColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[3];
+
+            // 国家リストボックス
+            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+
+            // 研究機関リストビュー
+            teamRankColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[1];
+            teamDaysColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[2];
+            teamEndDateColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[3];
+            teamNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[4];
+            teamIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[5];
+            teamSkillColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[6];
+            teamSpecialityColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[7];
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.ResearchViewer.Location;
+            Size = HoI2Editor.Settings.ResearchViewer.Size;
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnResearchViewerFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ResearchViewer.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnResearchViewerFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ResearchViewer.Size = Size;
+            }
+        }
+
+        #endregion
+
         #region データ処理
 
         /// <summary>
@@ -157,6 +206,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         public void OnFileLoaded()
         {
+            // 研究機関リストを絞り込む
+            NarrowTeamList();
+
             // カテゴリリストボックスを初期化する
             InitCategoryList();
 
@@ -279,7 +331,14 @@ namespace HoI2Editor.Forms
             {
                 categoryListBox.Items.Add(grp);
             }
-            categoryListBox.SelectedIndex = 0;
+
+            // 選択中のカテゴリを反映する
+            int index = HoI2Editor.Settings.ResearchViewer.Category;
+            if ((index < 0) || (index >= categoryListBox.Items.Count))
+            {
+                index = 0;
+            }
+            categoryListBox.SelectedIndex = index;
         }
 
         /// <summary>
@@ -291,6 +350,9 @@ namespace HoI2Editor.Forms
         {
             // 技術リストを更新する
             UpdateTechList();
+
+            // 選択中のカテゴリを保存する
+            HoI2Editor.Settings.ResearchViewer.Category = categoryListBox.SelectedIndex;
         }
 
         #endregion
@@ -450,6 +512,20 @@ namespace HoI2Editor.Forms
             UpdateTeamList();
         }
 
+        /// <summary>
+        ///     技術リストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < TechListColumnCount))
+            {
+                HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[e.ColumnIndex] =
+                    techListView.Columns[e.ColumnIndex].Width;
+            }
+        }
+
         #endregion
 
         #region 国家リストボックス
@@ -465,7 +541,21 @@ namespace HoI2Editor.Forms
             {
                 countryListBox.Items.Add(Countries.Strings[(int) country]);
             }
-            countryListBox.SelectedIndex = 0;
+
+            // 選択イベントを処理すると時間がかかるので、一時的に無効化する
+            countryListBox.SelectedIndexChanged -= OnCountryListBoxSelectedIndexChanged;
+            // 選択中の国家を反映する
+            foreach (Country country in HoI2Editor.Settings.ResearchViewer.Countries)
+            {
+                int index = Array.IndexOf(Countries.Tags, country);
+                if (index >= 0)
+                {
+                    countryListBox.SetSelected(Array.IndexOf(Countries.Tags, country), true);
+                }
+            }
+            // 選択イベントを元に戻す
+            countryListBox.SelectedIndexChanged += OnCountryListBoxSelectedIndexChanged;
+
             countryListBox.EndUpdate();
         }
 
@@ -476,6 +566,10 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            // 選択中の国家を保存する
+            HoI2Editor.Settings.ResearchViewer.Countries =
+                countryListBox.SelectedIndices.Cast<int>().Select(index => Countries.Tags[index]).ToList();
+
             // 研究機関リストを更新する
             NarrowTeamList();
             UpdateTeamList();
@@ -643,6 +737,20 @@ namespace HoI2Editor.Forms
             e.DrawDefault = true;
         }
 
+        /// <summary>
+        ///     研究機関リストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < TeamListColumnCount))
+            {
+                HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[e.ColumnIndex] =
+                    teamListView.Columns[e.ColumnIndex].Width;
+            }
+        }
+
         #endregion
 
         #region オプション項目
@@ -785,6 +893,13 @@ namespace HoI2Editor.Forms
             // 変更後の文字列を数値に変換できなければ値を戻す
             double modifier;
             if (!double.TryParse(modifierTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out modifier))
+            {
+                modifierTextBox.Text = Researches.Modifier.ToString(CultureInfo.InvariantCulture);
+                return;
+            }
+
+            // 0以下の値だとまともに計算できなくなるので保険
+            if (modifier <= 0.00005)
             {
                 modifierTextBox.Text = Researches.Modifier.ToString(CultureInfo.InvariantCulture);
                 return;

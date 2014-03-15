@@ -191,9 +191,9 @@
             // 
             // categoryListBox
             // 
-            resources.ApplyResources(this.categoryListBox, "categoryListBox");
             this.categoryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.categoryListBox.FormattingEnabled = true;
+            resources.ApplyResources(this.categoryListBox, "categoryListBox");
             this.categoryListBox.Items.AddRange(new object[] {
             resources.GetString("categoryListBox.Items"),
             resources.GetString("categoryListBox.Items1"),
@@ -231,12 +231,12 @@
             // 
             // categoryTabPage
             // 
-            resources.ApplyResources(this.categoryTabPage, "categoryTabPage");
             this.categoryTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.categoryTabPage.Controls.Add(this.categoryDescTextBox);
             this.categoryTabPage.Controls.Add(this.categoryDescLabel);
             this.categoryTabPage.Controls.Add(this.categoryNameTextBox);
             this.categoryTabPage.Controls.Add(this.categoryNameLabel);
+            resources.ApplyResources(this.categoryTabPage, "categoryTabPage");
             this.categoryTabPage.Name = "categoryTabPage";
             // 
             // categoryDescTextBox
@@ -263,7 +263,6 @@
             // 
             // techTabPage
             // 
-            resources.ApplyResources(this.techTabPage, "techTabPage");
             this.techTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.techTabPage.Controls.Add(this.techPositionRemoveButton);
             this.techTabPage.Controls.Add(this.techPositionAddButton);
@@ -284,6 +283,7 @@
             this.techTabPage.Controls.Add(this.techNameTextBox);
             this.techTabPage.Controls.Add(this.techNameLabel);
             this.techTabPage.Controls.Add(this.techPictureBox);
+            resources.ApplyResources(this.techTabPage, "techTabPage");
             this.techTabPage.Name = "techTabPage";
             // 
             // techPositionRemoveButton
@@ -313,6 +313,7 @@
             this.techPositionListView.Name = "techPositionListView";
             this.techPositionListView.UseCompatibleStateImageBehavior = false;
             this.techPositionListView.View = System.Windows.Forms.View.Details;
+            this.techPositionListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTechPositionListViewColumnWidthChanged);
             this.techPositionListView.SelectedIndexChanged += new System.EventHandler(this.OnTechPositionListViewSelectedIndexChanged);
             // 
             // techXColumnHeader
@@ -445,7 +446,6 @@
             // 
             // requiredTabPage
             // 
-            resources.ApplyResources(this.requiredTabPage, "requiredTabPage");
             this.requiredTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.requiredTabPage.Controls.Add(this.orTechComboBox);
             this.requiredTabPage.Controls.Add(this.orIdNumericUpDown);
@@ -461,6 +461,7 @@
             this.requiredTabPage.Controls.Add(this.andRequiredListView);
             this.requiredTabPage.Controls.Add(this.orRequiredLabel);
             this.requiredTabPage.Controls.Add(this.andRequiredLabel);
+            resources.ApplyResources(this.requiredTabPage, "requiredTabPage");
             this.requiredTabPage.Name = "requiredTabPage";
             // 
             // orTechComboBox
@@ -566,6 +567,7 @@
             this.orRequiredListView.Name = "orRequiredListView";
             this.orRequiredListView.UseCompatibleStateImageBehavior = false;
             this.orRequiredListView.View = System.Windows.Forms.View.Details;
+            this.orRequiredListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnOrRequiredListViewColumnWidthChanged);
             this.orRequiredListView.SelectedIndexChanged += new System.EventHandler(this.OnOrRequiredListViewSelectedIndexChanged);
             // 
             // orIdColumnHeader
@@ -589,6 +591,7 @@
             this.andRequiredListView.Name = "andRequiredListView";
             this.andRequiredListView.UseCompatibleStateImageBehavior = false;
             this.andRequiredListView.View = System.Windows.Forms.View.Details;
+            this.andRequiredListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnAndRequiredListViewColumnWidthChanged);
             this.andRequiredListView.SelectedIndexChanged += new System.EventHandler(this.OnAndRequiredListViewSelectedIndexChanged);
             // 
             // andIdColumnHeader
@@ -611,7 +614,6 @@
             // 
             // componentTabPage
             // 
-            resources.ApplyResources(this.componentTabPage, "componentTabPage");
             this.componentTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.componentTabPage.Controls.Add(this.componentDownButton);
             this.componentTabPage.Controls.Add(this.componentUpButton);
@@ -628,6 +630,7 @@
             this.componentTabPage.Controls.Add(this.componentIdNumericUpDown);
             this.componentTabPage.Controls.Add(this.componentIdLabel);
             this.componentTabPage.Controls.Add(this.componentListView);
+            resources.ApplyResources(this.componentTabPage, "componentTabPage");
             this.componentTabPage.Name = "componentTabPage";
             // 
             // componentDownButton
@@ -741,6 +744,7 @@
             this.componentListView.Name = "componentListView";
             this.componentListView.UseCompatibleStateImageBehavior = false;
             this.componentListView.View = System.Windows.Forms.View.Details;
+            this.componentListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnComponentListViewColumnWidthChanged);
             this.componentListView.SelectedIndexChanged += new System.EventHandler(this.OnComponentListViewSelectedIndexChanged);
             // 
             // componentIdColumnHeader
@@ -765,7 +769,6 @@
             // 
             // effectTabPage
             // 
-            resources.ApplyResources(this.effectTabPage, "effectTabPage");
             this.effectTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.effectTabPage.Controls.Add(this.commandValueComboBox);
             this.effectTabPage.Controls.Add(this.commandWhereComboBox);
@@ -783,6 +786,7 @@
             this.effectTabPage.Controls.Add(this.commandValueLabel);
             this.effectTabPage.Controls.Add(this.commandTypeLabel);
             this.effectTabPage.Controls.Add(this.effectListView);
+            resources.ApplyResources(this.effectTabPage, "effectTabPage");
             this.effectTabPage.Name = "effectTabPage";
             // 
             // commandValueComboBox
@@ -908,6 +912,7 @@
             this.effectListView.Name = "effectListView";
             this.effectListView.UseCompatibleStateImageBehavior = false;
             this.effectListView.View = System.Windows.Forms.View.Details;
+            this.effectListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEffectListViewColumnWidthChanged);
             this.effectListView.SelectedIndexChanged += new System.EventHandler(this.OnEffectListViewSelectedIndexChanged);
             // 
             // commandTypeColumnHeader
@@ -932,7 +937,6 @@
             // 
             // labelTabPage
             // 
-            resources.ApplyResources(this.labelTabPage, "labelTabPage");
             this.labelTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.labelTabPage.Controls.Add(this.labelPositionRemoveButton);
             this.labelTabPage.Controls.Add(this.labelPositionAddButton);
@@ -943,6 +947,7 @@
             this.labelTabPage.Controls.Add(this.labelXLabel);
             this.labelTabPage.Controls.Add(this.labelNameTextBox);
             this.labelTabPage.Controls.Add(this.labelNameLabel);
+            resources.ApplyResources(this.labelTabPage, "labelTabPage");
             this.labelTabPage.Name = "labelTabPage";
             // 
             // labelPositionRemoveButton
@@ -972,6 +977,7 @@
             this.labelPositionListView.Name = "labelPositionListView";
             this.labelPositionListView.UseCompatibleStateImageBehavior = false;
             this.labelPositionListView.View = System.Windows.Forms.View.Details;
+            this.labelPositionListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnLabelPositionListViewColumnWidthChanged);
             this.labelPositionListView.SelectedIndexChanged += new System.EventHandler(this.OnLabelPositionListViewSelectedIndexChanged);
             // 
             // labelXColumnHeader
@@ -1027,7 +1033,6 @@
             // 
             // eventTabPage
             // 
-            resources.ApplyResources(this.eventTabPage, "eventTabPage");
             this.eventTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.eventTabPage.Controls.Add(this.eventPositionRemoveButton);
             this.eventTabPage.Controls.Add(this.eventPositionAddButton);
@@ -1041,6 +1046,7 @@
             this.eventTabPage.Controls.Add(this.eventTechLabel);
             this.eventTabPage.Controls.Add(this.eventIdNumericUpDown);
             this.eventTabPage.Controls.Add(this.eventTechIdLabel);
+            resources.ApplyResources(this.eventTabPage, "eventTabPage");
             this.eventTabPage.Name = "eventTabPage";
             // 
             // eventPositionRemoveButton
@@ -1070,6 +1076,7 @@
             this.eventPositionListView.Name = "eventPositionListView";
             this.eventPositionListView.UseCompatibleStateImageBehavior = false;
             this.eventPositionListView.View = System.Windows.Forms.View.Details;
+            this.eventPositionListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEventPositionListViewColumnWidthChanged);
             this.eventPositionListView.SelectedIndexChanged += new System.EventHandler(this.OnEventPositionListViewSelectedIndexChanged);
             // 
             // eventXColumnHeader
@@ -1082,10 +1089,10 @@
             // 
             // eventTechComboBox
             // 
-            resources.ApplyResources(this.eventTechComboBox, "eventTechComboBox");
             this.eventTechComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.eventTechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.eventTechComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.eventTechComboBox, "eventTechComboBox");
             this.eventTechComboBox.Name = "eventTechComboBox";
             this.eventTechComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnEventTechComboBoxDrawItem);
             this.eventTechComboBox.SelectedIndexChanged += new System.EventHandler(this.OnEventTechComboBoxSelectedIndexChanged);
@@ -1124,12 +1131,12 @@
             // 
             // eventTechNumericUpDown
             // 
-            resources.ApplyResources(this.eventTechNumericUpDown, "eventTechNumericUpDown");
             this.eventTechNumericUpDown.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            resources.ApplyResources(this.eventTechNumericUpDown, "eventTechNumericUpDown");
             this.eventTechNumericUpDown.Maximum = new decimal(new int[] {
             2147483640,
             0,
@@ -1282,6 +1289,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnTechEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnTechEditorFormClosed);
             this.Load += new System.EventHandler(this.OnTechEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnTechEditorFormMove);
+            this.Resize += new System.EventHandler(this.OnTechEditorFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.treePictureBox)).EndInit();
             this.editTabControl.ResumeLayout(false);
             this.categoryTabPage.ResumeLayout(false);

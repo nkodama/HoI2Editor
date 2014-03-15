@@ -63,6 +63,11 @@ namespace HoI2Editor.Models
             get { return _folderName; }
             set
             {
+                if (value.Equals(FolderName))
+                {
+                    return;
+                }
+
                 _folderName = value;
                 Debug.WriteLine(string.Format("Game Folder: {0}", _folderName));
 
@@ -99,6 +104,11 @@ namespace HoI2Editor.Models
             get { return _modName; }
             set
             {
+                if (value.Equals(_modName))
+                {
+                    return;
+                }
+
                 _modName = value;
                 Debug.WriteLine(string.Format("MOD Name: {0}", _modName));
 
@@ -136,6 +146,11 @@ namespace HoI2Editor.Models
             get { return _exportName; }
             set
             {
+                if (value.Equals(_exportName))
+                {
+                    return;
+                }
+
                 _exportName = value;
                 Debug.WriteLine(string.Format("Export Name: {0}", _exportName));
 

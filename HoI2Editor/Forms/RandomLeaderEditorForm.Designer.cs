@@ -102,14 +102,14 @@
             // 
             // toComboBox
             // 
-            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.Name = "withComboBox";
             // 
             // undoButton
@@ -132,12 +132,14 @@
             resources.ApplyResources(this.regexCheckBox, "regexCheckBox");
             this.regexCheckBox.Name = "regexCheckBox";
             this.regexCheckBox.UseVisualStyleBackColor = true;
+            this.regexCheckBox.CheckedChanged += new System.EventHandler(this.OnRegexCheckBoxCheckedChanged);
             // 
             // allCountryCheckBox
             // 
             resources.ApplyResources(this.allCountryCheckBox, "allCountryCheckBox");
             this.allCountryCheckBox.Name = "allCountryCheckBox";
             this.allCountryCheckBox.UseVisualStyleBackColor = true;
+            this.allCountryCheckBox.CheckedChanged += new System.EventHandler(this.OnAllCountryCheckBoxCheckedChanged);
             // 
             // nameTextBox
             // 
@@ -195,6 +197,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnRandomLeaderEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnRandomLeaderEditorFormClosed);
             this.Load += new System.EventHandler(this.OnRandomLeaderEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             this.replaceGroupBox.ResumeLayout(false);
             this.replaceGroupBox.PerformLayout();
             this.optionGroupBox.ResumeLayout(false);

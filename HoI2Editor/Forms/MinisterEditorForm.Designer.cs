@@ -101,6 +101,7 @@
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
             this.ministerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
+            this.ministerListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnMinisterListViewColumnWidthChanged);
             this.ministerListView.SelectedIndexChanged += new System.EventHandler(this.OnMinisterListViewSelectedIndexChanged);
             // 
             // countryColumnHeader
@@ -457,6 +458,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMinisterEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnMinisterEditorFormClosed);
             this.Load += new System.EventHandler(this.OnMinisterEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnMinisterEditorFormMove);
+            this.Resize += new System.EventHandler(this.OnMinisterEditorFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).EndInit();

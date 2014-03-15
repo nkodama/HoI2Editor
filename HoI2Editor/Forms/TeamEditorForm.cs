@@ -64,6 +64,15 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     研究機関リストビューの列の数
+        /// </summary>
+        public const int TeamListColumnCount = 7;
+
+        #endregion
+
         #region 内部定数
 
         /// <summary>
@@ -108,36 +117,8 @@ namespace HoI2Editor.Forms
                 specialityComboBox7
             };
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
-        }
-
-        /// <summary>
-        ///     自動スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // 研究機関リストビュー
-            countryColumnHeader.Width = DeviceCaps.GetScaledWidth(countryColumnHeader.Width);
-            idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
-            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
-            skillColumnHeader.Width = DeviceCaps.GetScaledWidth(skillColumnHeader.Width);
-            startYearColumnHeader.Width = DeviceCaps.GetScaledWidth(startYearColumnHeader.Width);
-            endYearColumnHeader.Width = DeviceCaps.GetScaledWidth(endYearColumnHeader.Width);
-            specialityColumnHeader.Width = DeviceCaps.GetScaledWidth(specialityColumnHeader.Width);
-
-            // 国家リストボックス
-            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
-            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
-
-            // 特性コンボボックス
-            specialityComboBox1.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox1.ItemHeight);
-            specialityComboBox2.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox2.ItemHeight);
-            specialityComboBox3.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox3.ItemHeight);
-            specialityComboBox4.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox4.ItemHeight);
-            specialityComboBox5.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox5.ItemHeight);
-            specialityComboBox6.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox6.ItemHeight);
-            specialityComboBox7.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox7.ItemHeight);
+            // ウィンドウ位置の初期化
+            InitPosition();
         }
 
         /// <summary>
@@ -227,6 +208,68 @@ namespace HoI2Editor.Forms
         private void OnTeamEditorFormClosed(object sender, FormClosedEventArgs e)
         {
             HoI2Editor.OnTeamEditorFormClosed();
+        }
+
+        #endregion
+
+        #region ウィンドウ位置
+
+        /// <summary>
+        ///     ウィンドウ位置の初期化
+        /// </summary>
+        private void InitPosition()
+        {
+            // 研究機関リストビュー
+            countryColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[0];
+            idColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[1];
+            nameColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[2];
+            skillColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[3];
+            startYearColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[4];
+            endYearColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[5];
+            specialityColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[6];
+
+            // 国家リストボックス
+            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+
+            // 特性コンボボックス
+            specialityComboBox1.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox1.ItemHeight);
+            specialityComboBox2.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox2.ItemHeight);
+            specialityComboBox3.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox3.ItemHeight);
+            specialityComboBox4.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox4.ItemHeight);
+            specialityComboBox5.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox5.ItemHeight);
+            specialityComboBox6.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox6.ItemHeight);
+            specialityComboBox7.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox7.ItemHeight);
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.TeamEditor.Location;
+            Size = HoI2Editor.Settings.TeamEditor.Size;
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamEditorFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.TeamEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamEditorFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.TeamEditor.Size = Size;
+            }
         }
 
         #endregion
@@ -737,6 +780,20 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     研究機関リストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < TeamListColumnCount))
+            {
+                HoI2Editor.Settings.TeamEditor.ListColumnWidth[e.ColumnIndex] =
+                    teamListView.Columns[e.ColumnIndex].Width;
+            }
+        }
+
+        /// <summary>
         ///     新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1175,7 +1232,27 @@ namespace HoI2Editor.Forms
             {
                 countryListBox.Items.Add(Countries.Strings[(int) country]);
             }
-            countryListBox.SelectedIndex = 0;
+
+            // 選択イベントを処理すると時間がかかるので、一時的に無効化する
+            countryListBox.SelectedIndexChanged -= OnCountryListBoxSelectedIndexChanged;
+            // 選択中の国家を反映する
+            foreach (Country country in HoI2Editor.Settings.TeamEditor.Countries)
+            {
+                int index = Array.IndexOf(Countries.Tags, country);
+                if (index >= 0)
+                {
+                    countryListBox.SetSelected(Array.IndexOf(Countries.Tags, country), true);
+                }
+            }
+            // 選択イベントを元に戻す
+            countryListBox.SelectedIndexChanged += OnCountryListBoxSelectedIndexChanged;
+
+            int count = countryListBox.SelectedItems.Count;
+            // 選択数に合わせて全選択/全解除を切り替える
+            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
+            // 選択数がゼロの場合は新規追加ボタンを無効化する
+            newButton.Enabled = (count > 0);
+
             countryListBox.EndUpdate();
         }
 
@@ -1231,6 +1308,10 @@ namespace HoI2Editor.Forms
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
             newButton.Enabled = (count > 0);
+
+            // 選択中の国家を保存する
+            HoI2Editor.Settings.TeamEditor.Countries =
+                countryListBox.SelectedIndices.Cast<int>().Select(index => Countries.Tags[index]).ToList();
 
             // 研究機関リストを更新する
             NarrowTeamList();

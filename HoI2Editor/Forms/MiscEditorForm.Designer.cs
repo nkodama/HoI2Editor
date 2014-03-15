@@ -79,6 +79,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMiscEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnMiscEditorFormClosed);
             this.Load += new System.EventHandler(this.OnMiscEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnMiscEditorFormMove);
+            this.Resize += new System.EventHandler(this.OnMiscEditorFormResize);
             this.ResumeLayout(false);
 
         }

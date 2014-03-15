@@ -60,6 +60,15 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     閣僚リストビューの列の数
+        /// </summary>
+        public const int MinisterListColumnCount = 8;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -69,28 +78,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
-        }
-
-        /// <summary>
-        ///     自動スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // 閣僚リストビュー
-            countryColumnHeader.Width = DeviceCaps.GetScaledWidth(countryColumnHeader.Width);
-            idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
-            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
-            startYearColumnHeader.Width = DeviceCaps.GetScaledWidth(startYearColumnHeader.Width);
-            endYearColumnHeader.Width = DeviceCaps.GetScaledWidth(endYearColumnHeader.Width);
-            positionColumnHeader.Width = DeviceCaps.GetScaledWidth(positionColumnHeader.Width);
-            personalityColumnHeader.Width = DeviceCaps.GetScaledWidth(personalityColumnHeader.Width);
-            ideologyColumnHeader.Width = DeviceCaps.GetScaledWidth(ideologyColumnHeader.Width);
-
-            // 国家リストボックス
-            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
-            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+            // ウィンドウ位置の初期化
+            InitPosition();
         }
 
         /// <summary>
@@ -177,6 +166,60 @@ namespace HoI2Editor.Forms
         private void OnMinisterEditorFormClosed(object sender, FormClosedEventArgs e)
         {
             HoI2Editor.OnMinisterEditorFormClosed();
+        }
+
+        #endregion
+
+        #region ウィンドウ位置
+
+        /// <summary>
+        ///     ウィンドウ位置の初期化
+        /// </summary>
+        private void InitPosition()
+        {
+            // 閣僚リストビュー
+            countryColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[0];
+            idColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[1];
+            nameColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[2];
+            startYearColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[3];
+            endYearColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[4];
+            positionColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[5];
+            personalityColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[6];
+            ideologyColumnHeader.Width = HoI2Editor.Settings.MinisterEditor.ListColumnWidth[7];
+
+            // 国家リストボックス
+            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.MinisterEditor.Location;
+            Size = HoI2Editor.Settings.MinisterEditor.Size;
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterEditorFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.MinisterEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterEditorFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.MinisterEditor.Size = Size;
+            }
         }
 
         #endregion
@@ -523,6 +566,20 @@ namespace HoI2Editor.Forms
 
             // 閣僚リストを更新する
             UpdateMinisterList();
+        }
+
+        /// <summary>
+        ///     閣僚リストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < MinisterListColumnCount))
+            {
+                HoI2Editor.Settings.MinisterEditor.ListColumnWidth[e.ColumnIndex] =
+                    ministerListView.Columns[e.ColumnIndex].Width;
+            }
         }
 
         /// <summary>
@@ -967,7 +1024,27 @@ namespace HoI2Editor.Forms
             {
                 countryListBox.Items.Add(Countries.Strings[(int) country]);
             }
-            countryListBox.SelectedIndex = 0;
+
+            // 選択イベントを処理すると時間がかかるので、一時的に無効化する
+            countryListBox.SelectedIndexChanged -= OnCountryListBoxSelectedIndexChanged;
+            // 選択中の国家を反映する
+            foreach (Country country in HoI2Editor.Settings.MinisterEditor.Countries)
+            {
+                int index = Array.IndexOf(Countries.Tags, country);
+                if (index >= 0)
+                {
+                    countryListBox.SetSelected(Array.IndexOf(Countries.Tags, country), true);
+                }
+            }
+            // 選択イベントを元に戻す
+            countryListBox.SelectedIndexChanged += OnCountryListBoxSelectedIndexChanged;
+
+            int count = countryListBox.SelectedItems.Count;
+            // 選択数に合わせて全選択/全解除を切り替える
+            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
+            // 選択数がゼロの場合は新規追加ボタンを無効化する
+            newButton.Enabled = (count > 0);
+
             countryListBox.EndUpdate();
         }
 
@@ -1021,6 +1098,10 @@ namespace HoI2Editor.Forms
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
             newButton.Enabled = (count > 0);
+
+            // 選択中の国家を保存する
+            HoI2Editor.Settings.MinisterEditor.Countries =
+                countryListBox.SelectedIndices.Cast<int>().Select(index => Countries.Tags[index]).ToList();
 
             // 閣僚リストを更新する
             NarrowMinisterList();

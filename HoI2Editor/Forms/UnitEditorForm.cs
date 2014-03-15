@@ -16,6 +16,25 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class UnitEditorForm : Form
     {
+        #region 公開定数
+
+        /// <summary>
+        ///     ユニットモデルリストビューの列の数
+        /// </summary>
+        public const int ModelListColumnCount = 10;
+
+        /// <summary>
+        ///     改良リストビューの列の数
+        /// </summary>
+        public const int UpgradeListColumnCount = 3;
+
+        /// <summary>
+        ///     装備リストビューの列の数
+        /// </summary>
+        public const int EquipmentListColumnCount = 2;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -25,48 +44,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
-        }
-
-        /// <summary>
-        ///     自動スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // ユニットモデルリストビュー
-            noColumnHeader.Width = DeviceCaps.GetScaledWidth(noColumnHeader.Width);
-            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
-            buildCostColumnHeader.Width = DeviceCaps.GetScaledWidth(buildCostColumnHeader.Width);
-            buildTimeColumnHeader.Width = DeviceCaps.GetScaledWidth(buildTimeColumnHeader.Width);
-            manpowerColumnHeader.Width = DeviceCaps.GetScaledWidth(manpowerColumnHeader.Width);
-            supplyColumnHeader.Width = DeviceCaps.GetScaledWidth(supplyColumnHeader.Width);
-            fuelColumnHeader.Width = DeviceCaps.GetScaledWidth(fuelColumnHeader.Width);
-            organisationColumnHeader.Width = DeviceCaps.GetScaledWidth(organisationColumnHeader.Width);
-            moraleColumnHeader.Width = DeviceCaps.GetScaledWidth(moraleColumnHeader.Width);
-            maxSpeedColumnHeader.Width = DeviceCaps.GetScaledWidth(maxSpeedColumnHeader.Width);
-
-            // ユニットクラスリストボックス
-            classListBox.ItemHeight = DeviceCaps.GetScaledHeight(classListBox.ItemHeight);
-
-            // 国家リストボックス
-            countryDummyColumnHeader.Width = DeviceCaps.GetScaledWidth(countryDummyColumnHeader.Width);
-
-            // 改良リストビュー
-            upgradeTypeColumnHeader.Width = DeviceCaps.GetScaledWidth(upgradeTypeColumnHeader.Width);
-            upgradeCostColumnHeader.Width = DeviceCaps.GetScaledWidth(upgradeCostColumnHeader.Width);
-            upgradeTimeColumnHeader.Width = DeviceCaps.GetScaledWidth(upgradeTimeColumnHeader.Width);
-
-            // 装備リストビュー
-            resourceColumnHeader.Width = DeviceCaps.GetScaledWidth(resourceColumnHeader.Width);
-            quantityColumnHeader.Width = DeviceCaps.GetScaledWidth(quantityColumnHeader.Width);
-
-            // 画面解像度が十分に広い場合は指揮官リストビューが広く表示できるようにする
-            int longHeight = DeviceCaps.GetScaledHeight(720);
-            if (Screen.GetWorkingArea(this).Height >= longHeight)
-            {
-                Height = longHeight;
-            }
+            // ウィンドウ位置の初期化
+            InitPosition();
         }
 
         /// <summary>
@@ -440,6 +419,74 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region ウィンドウ位置
+
+        /// <summary>
+        ///     ウィンドウ位置の初期化
+        /// </summary>
+        private void InitPosition()
+        {
+            // ユニットモデルリストビュー
+            noColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[0];
+            nameColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[1];
+            buildCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[2];
+            buildTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[3];
+            manpowerColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[4];
+            supplyColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[5];
+            fuelColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[6];
+            organisationColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[7];
+            moraleColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[8];
+            maxSpeedColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[9];
+
+            // ユニットクラスリストボックス
+            classListBox.ItemHeight = DeviceCaps.GetScaledHeight(classListBox.ItemHeight);
+
+            // 国家リストビュー
+            countryDummyColumnHeader.Width = DeviceCaps.GetScaledWidth(countryDummyColumnHeader.Width);
+
+            // 改良リストビュー
+            upgradeTypeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[0];
+            upgradeCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[1];
+            upgradeTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[2];
+
+            // 装備リストビュー
+            resourceColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[0];
+            quantityColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[1];
+
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.UnitEditor.Location;
+            Size = HoI2Editor.Settings.UnitEditor.Size;
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitEditorFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.UnitEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitEditorFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.UnitEditor.Size = Size;
+            }
+        }
+
+        #endregion
+
         #region データ処理
 
         /// <summary>
@@ -725,6 +772,20 @@ namespace HoI2Editor.Forms
             upButton.Enabled = (index != 0);
             downButton.Enabled = (index != modelListView.Items.Count - 1);
             bottomButton.Enabled = (index != modelListView.Items.Count - 1);
+        }
+
+        /// <summary>
+        ///     ユニットモデルリストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < ModelListColumnCount))
+            {
+                HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[e.ColumnIndex] =
+                    modelListView.Columns[e.ColumnIndex].Width;
+            }
         }
 
         /// <summary>
@@ -2669,6 +2730,20 @@ namespace HoI2Editor.Forms
 
             // 編集項目を有効化する
             EnableUpgradeItems();
+        }
+
+        /// <summary>
+        ///     改良リストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < UpgradeListColumnCount))
+            {
+                HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[e.ColumnIndex] =
+                    upgradeListView.Columns[e.ColumnIndex].Width;
+            }
         }
 
         /// <summary>
@@ -6781,6 +6856,20 @@ namespace HoI2Editor.Forms
 
             // 編集項目を有効化する
             EnableEquipmentItems();
+        }
+
+        /// <summary>
+        ///     装備リストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEquipmentListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < EquipmentListColumnCount))
+            {
+                HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[e.ColumnIndex] =
+                    equipmentListView.Columns[e.ColumnIndex].Width;
+            }
         }
 
         /// <summary>

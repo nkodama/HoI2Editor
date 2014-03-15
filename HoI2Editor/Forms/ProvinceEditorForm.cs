@@ -69,6 +69,15 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     プロヴィンスリストビューの列の数
+        /// </summary>
+        public const int ProvinceListColumnCount = 12;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -78,35 +87,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
-        }
-
-        /// <summary>
-        ///     自動スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // 指揮官リストビュー
-            nameColumnHeader.Width = DeviceCaps.GetScaledWidth(nameColumnHeader.Width);
-            idColumnHeader.Width = DeviceCaps.GetScaledWidth(idColumnHeader.Width);
-            seaColumnHeader.Width = DeviceCaps.GetScaledWidth(seaColumnHeader.Width);
-            portColumnHeader.Width = DeviceCaps.GetScaledWidth(portColumnHeader.Width);
-            beachColumnHeader.Width = DeviceCaps.GetScaledWidth(beachColumnHeader.Width);
-            infraColumnHeader.Width = DeviceCaps.GetScaledWidth(infraColumnHeader.Width);
-            icColumnHeader.Width = DeviceCaps.GetScaledWidth(icColumnHeader.Width);
-            manpowerColumnHeader.Width = DeviceCaps.GetScaledWidth(manpowerColumnHeader.Width);
-            energyColumnHeader.Width = DeviceCaps.GetScaledWidth(energyColumnHeader.Width);
-            metalColumnHeader.Width = DeviceCaps.GetScaledWidth(metalColumnHeader.Width);
-            rareMaterialsColumnHeader.Width = DeviceCaps.GetScaledWidth(rareMaterialsColumnHeader.Width);
-            oilColumnHeader.Width = DeviceCaps.GetScaledWidth(oilColumnHeader.Width);
-
-            // 画面解像度が十分に広い場合は指揮官リストビューが広く表示できるようにする
-            int longHeight = DeviceCaps.GetScaledHeight(720);
-            if (Screen.GetWorkingArea(this).Height >= longHeight)
-            {
-                Height = longHeight;
-            }
+            // ウィンドウ位置の初期化
+            InitPosition();
         }
 
         /// <summary>
@@ -187,6 +169,60 @@ namespace HoI2Editor.Forms
         private void OnProvinceEditorFormClosed(object sender, FormClosedEventArgs e)
         {
             HoI2Editor.OnProvinceEditorFormClosed();
+        }
+
+        #endregion
+
+        #region ウィンドウ位置
+
+        /// <summary>
+        ///     ウィンドウ位置の初期化
+        /// </summary>
+        private void InitPosition()
+        {
+            // プロヴィンスリストビュー
+            nameColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[0];
+            idColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[1];
+            seaColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[2];
+            portColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[3];
+            beachColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[4];
+            infraColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[5];
+            icColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[6];
+            manpowerColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[7];
+            energyColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[8];
+            metalColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[9];
+            rareMaterialsColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[10];
+            oilColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[11];
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.ProvinceEditor.Location;
+            Size = HoI2Editor.Settings.ProvinceEditor.Size;
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceEditorFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ProvinceEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceEditorFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ProvinceEditor.Size = Size;
+            }
         }
 
         #endregion
@@ -811,6 +847,20 @@ namespace HoI2Editor.Forms
 
             // プロヴィンスリストを更新する
             UpdateProvinceList();
+        }
+
+        /// <summary>
+        ///     プロヴィンスリストビューの列の幅変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            if ((e.ColumnIndex >= 0) && (e.ColumnIndex < ProvinceListColumnCount))
+            {
+                HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[e.ColumnIndex] =
+                    provinceListView.Columns[e.ColumnIndex].Width;
+            }
         }
 
         /// <summary>

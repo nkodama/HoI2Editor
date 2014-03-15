@@ -29,17 +29,39 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModelNameEditorForm));
+            this.listSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.countryListBox = new System.Windows.Forms.ListBox();
             this.typeListBox = new System.Windows.Forms.ListBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
-            this.countryListBox = new System.Windows.Forms.ListBox();
             this.itemPanel = new System.Windows.Forms.Panel();
-            this.listSplitContainer = new System.Windows.Forms.SplitContainer();
             this.listSplitContainer.Panel1.SuspendLayout();
             this.listSplitContainer.Panel2.SuspendLayout();
             this.listSplitContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // listSplitContainer
+            // 
+            resources.ApplyResources(this.listSplitContainer, "listSplitContainer");
+            this.listSplitContainer.Name = "listSplitContainer";
+            // 
+            // listSplitContainer.Panel1
+            // 
+            this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
+            // 
+            // listSplitContainer.Panel2
+            // 
+            this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
+            // 
+            // countryListBox
+            // 
+            resources.ApplyResources(this.countryListBox, "countryListBox");
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.countryListBox.FormattingEnabled = true;
+            this.countryListBox.Name = "countryListBox";
+            this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
+            this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
             // typeListBox
             // 
@@ -71,35 +93,11 @@
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.OnReloadButtonClick);
             // 
-            // countryListBox
-            // 
-            resources.ApplyResources(this.countryListBox, "countryListBox");
-            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.countryListBox.FormattingEnabled = true;
-            this.countryListBox.Name = "countryListBox";
-            this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
-            this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
-            // 
             // itemPanel
             // 
             resources.ApplyResources(this.itemPanel, "itemPanel");
             this.itemPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.itemPanel.Name = "itemPanel";
-            // 
-            // listSplitContainer
-            // 
-            resources.ApplyResources(this.listSplitContainer, "listSplitContainer");
-            this.listSplitContainer.Name = "listSplitContainer";
-            // 
-            // listSplitContainer.Panel1
-            // 
-            resources.ApplyResources(this.listSplitContainer.Panel1, "listSplitContainer.Panel1");
-            this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
-            // 
-            // listSplitContainer.Panel2
-            // 
-            resources.ApplyResources(this.listSplitContainer.Panel2, "listSplitContainer.Panel2");
-            this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
             // 
             // ModelNameEditorForm
             // 
@@ -114,6 +112,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnModelNameEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnModelNameEditorFormClosed);
             this.Load += new System.EventHandler(this.OnModelNameEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             this.listSplitContainer.Panel1.ResumeLayout(false);
             this.listSplitContainer.Panel2.ResumeLayout(false);
             this.listSplitContainer.ResumeLayout(false);

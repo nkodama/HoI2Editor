@@ -6,6 +6,7 @@ using System.Resources;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -93,8 +94,8 @@ namespace HoI2Editor
                    Provinces.IsDirty() ||
                    Techs.IsDirty() ||
                    Units.IsDirty() ||
-                   UnitNames.IsDirty() ||
                    DivisionNames.IsDirty() ||
+                   UnitNames.IsDirty() ||
                    RandomLeaders.IsDirty();
         }
 
@@ -111,8 +112,8 @@ namespace HoI2Editor
             Techs.RequestReload();
             Units.RequestReload();
             Provinces.RequestReload();
-            UnitNames.RequestReload();
             DivisionNames.RequestReload();
+            UnitNames.RequestReload();
             RandomLeaders.RequestReload();
 
             SaveCanceled = false;
@@ -136,8 +137,8 @@ namespace HoI2Editor
             Provinces.Reload();
             Techs.Reload();
             Units.Reload();
-            UnitNames.Reload();
             DivisionNames.Reload();
+            UnitNames.Reload();
             RandomLeaders.Reload();
 
             // データ読み込み後の更新処理呼び出し
@@ -202,11 +203,11 @@ namespace HoI2Editor
             {
                 return;
             }
-            if (!UnitNames.Save())
+            if (!DivisionNames.Save())
             {
                 return;
             }
-            if (!DivisionNames.Save())
+            if (!UnitNames.Save())
             {
                 return;
             }
@@ -246,6 +247,10 @@ namespace HoI2Editor
             {
                 _miscEditorForm.OnFileLoaded();
             }
+            if (_divisionNameEditorForm != null)
+            {
+                _divisionNameEditorForm.OnFileLoaded();
+            }
             if (_unitNameEditorForm != null)
             {
                 _unitNameEditorForm.OnFileLoaded();
@@ -253,10 +258,6 @@ namespace HoI2Editor
             if (_modelNameEditorForm != null)
             {
                 _modelNameEditorForm.OnFileLoaded();
-            }
-            if (_divisionNameEditorForm != null)
-            {
-                _divisionNameEditorForm.OnFileLoaded();
             }
             if (_randomLeaderEditorForm != null)
             {
@@ -301,6 +302,10 @@ namespace HoI2Editor
             {
                 _miscEditorForm.OnFileSaved();
             }
+            if (_divisionNameEditorForm != null)
+            {
+                _divisionNameEditorForm.OnFileSaved();
+            }
             if (_unitNameEditorForm != null)
             {
                 _unitNameEditorForm.OnFileSaved();
@@ -308,10 +313,6 @@ namespace HoI2Editor
             if (_modelNameEditorForm != null)
             {
                 _modelNameEditorForm.OnFileSaved();
-            }
-            if (_divisionNameEditorForm != null)
-            {
-                _divisionNameEditorForm.OnFileSaved();
             }
             if (_randomLeaderEditorForm != null)
             {
@@ -354,6 +355,10 @@ namespace HoI2Editor
             {
                 _miscEditorForm.OnItemChanged(id);
             }
+            if ((_divisionNameEditorForm != null) && (form != _divisionNameEditorForm))
+            {
+                _divisionNameEditorForm.OnItemChanged(id);
+            }
             if ((_unitNameEditorForm != null) && (form != _unitNameEditorForm))
             {
                 _unitNameEditorForm.OnItemChanged(id);
@@ -361,10 +366,6 @@ namespace HoI2Editor
             if ((_modelNameEditorForm != null) && (form != _modelNameEditorForm))
             {
                 _modelNameEditorForm.OnItemChanged(id);
-            }
-            if ((_divisionNameEditorForm != null) && (form != _divisionNameEditorForm))
-            {
-                _divisionNameEditorForm.OnItemChanged(id);
             }
             if ((_randomLeaderEditorForm != null) && (form != _randomLeaderEditorForm))
             {
@@ -421,6 +422,11 @@ namespace HoI2Editor
         private static MiscEditorForm _miscEditorForm;
 
         /// <summary>
+        ///     師団名エディタのフォーム
+        /// </summary>
+        private static DivisionNameEditorForm _divisionNameEditorForm;
+
+        /// <summary>
         ///     ユニット名エディタのフォーム
         /// </summary>
         private static UnitNameEditorForm _unitNameEditorForm;
@@ -429,11 +435,6 @@ namespace HoI2Editor
         ///     モデル名エディタのフォーム
         /// </summary>
         private static ModelNameEditorForm _modelNameEditorForm;
-
-        /// <summary>
-        ///     師団名エディタのフォーム
-        /// </summary>
-        private static DivisionNameEditorForm _divisionNameEditorForm;
 
         /// <summary>
         ///     ランダム指揮官エディタのフォーム
@@ -581,6 +582,24 @@ namespace HoI2Editor
         }
 
         /// <summary>
+        ///     師団名エディタフォームを起動する
+        /// </summary>
+        public static void LaunchDivisionNameEditorForm()
+        {
+            if (_divisionNameEditorForm == null)
+            {
+                _divisionNameEditorForm = new DivisionNameEditorForm();
+                _divisionNameEditorForm.Show();
+
+                OnEditorStatusUpdete();
+            }
+            else
+            {
+                _divisionNameEditorForm.Activate();
+            }
+        }
+
+        /// <summary>
         ///     ユニット名エディタフォームを起動する
         /// </summary>
         public static void LaunchUnitNameEditorForm()
@@ -613,24 +632,6 @@ namespace HoI2Editor
             else
             {
                 _modelNameEditorForm.Activate();
-            }
-        }
-
-        /// <summary>
-        ///     師団名エディタフォームを起動する
-        /// </summary>
-        public static void LaunchDivisionNameEditorForm()
-        {
-            if (_divisionNameEditorForm == null)
-            {
-                _divisionNameEditorForm = new DivisionNameEditorForm();
-                _divisionNameEditorForm.Show();
-
-                OnEditorStatusUpdete();
-            }
-            else
-            {
-                _divisionNameEditorForm.Activate();
             }
         }
 
@@ -741,6 +742,16 @@ namespace HoI2Editor
         }
 
         /// <summary>
+        ///     師団名エディターフォームクローズ時の処理
+        /// </summary>
+        public static void OnDivisionNameEditorFormClosed()
+        {
+            _divisionNameEditorForm = null;
+
+            OnEditorStatusUpdete();
+        }
+
+        /// <summary>
         ///     ユニット名エディターフォームクローズ時の処理
         /// </summary>
         public static void OnUnitNameEditorFormClosed()
@@ -756,16 +767,6 @@ namespace HoI2Editor
         public static void OnModelNameEditorFormClosed()
         {
             _modelNameEditorForm = null;
-
-            OnEditorStatusUpdete();
-        }
-
-        /// <summary>
-        ///     師団名エディターフォームクローズ時の処理
-        /// </summary>
-        public static void OnDivisionNameEditorFormClosed()
-        {
-            _divisionNameEditorForm = null;
 
             OnEditorStatusUpdete();
         }
@@ -802,9 +803,9 @@ namespace HoI2Editor
                 _techEditorForm == null &&
                 _unitEditorForm == null &&
                 _miscEditorForm == null &&
+                _divisionNameEditorForm == null &&
                 _unitNameEditorForm == null &&
                 _modelNameEditorForm == null &&
-                _divisionNameEditorForm == null &&
                 _randomLeaderEditorForm == null &&
                 _researchViewerForm == null)
             {
@@ -863,6 +864,86 @@ namespace HoI2Editor
 
             _mutex.ReleaseMutex();
             _mutex = null;
+        }
+
+        #endregion
+
+        #region 設定値管理
+
+        /// <summary>
+        ///     設定ファイル名
+        /// </summary>
+        private const string SettingsFileName = "HoI2Editor.settings";
+
+        /// <summary>
+        ///     設定値
+        /// </summary>
+        private static HoI2EditorSettings _settings;
+
+        /// <summary>
+        ///     設定値
+        /// </summary>
+        public static HoI2EditorSettings Settings
+        {
+            get { return _settings; }
+        }
+
+        /// <summary>
+        ///     設定値を読み込む
+        /// </summary>
+        public static void LoadSettings()
+        {
+            if (!File.Exists(SettingsFileName))
+            {
+                Debug.WriteLine("[Settings] Init");
+                _settings = new HoI2EditorSettings();
+            }
+            else
+            {
+                Debug.WriteLine("[Settings] Load");
+                try
+                {
+                    var serializer = new XmlSerializer(typeof (HoI2EditorSettings));
+                    using (var fs = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read))
+                    {
+                        _settings = serializer.Deserialize(fs) as HoI2EditorSettings;
+                        if (_settings == null)
+                        {
+                            return;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("[Settings] Load failed");
+                    _settings = new HoI2EditorSettings();
+                }
+            }
+            _settings.Round();
+        }
+
+        /// <summary>
+        ///     設定値を保存する
+        /// </summary>
+        public static void SaveSettings()
+        {
+            if (_settings == null)
+            {
+                return;
+            }
+            Debug.WriteLine("[Settings] Save");
+            try
+            {
+                var serializer = new XmlSerializer(typeof (HoI2EditorSettings));
+                using (var fs = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write))
+                {
+                    serializer.Serialize(fs, _settings);
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("[Settings] Save failed");
+            }
         }
 
         #endregion

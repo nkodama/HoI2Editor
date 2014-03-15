@@ -311,6 +311,7 @@
             this.modelListView.Name = "modelListView";
             this.modelListView.UseCompatibleStateImageBehavior = false;
             this.modelListView.View = System.Windows.Forms.View.Details;
+            this.modelListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnModelListViewColumnWidthChanged);
             this.modelListView.SelectedIndexChanged += new System.EventHandler(this.OnModelListViewSelectedIndexChanged);
             // 
             // noColumnHeader
@@ -629,12 +630,14 @@
             this.upgradeCostColumnHeader,
             this.upgradeTimeColumnHeader});
             this.upgradeListView.FullRowSelect = true;
+            this.upgradeListView.GridLines = true;
             this.upgradeListView.HideSelection = false;
             resources.ApplyResources(this.upgradeListView, "upgradeListView");
             this.upgradeListView.MultiSelect = false;
             this.upgradeListView.Name = "upgradeListView";
             this.upgradeListView.UseCompatibleStateImageBehavior = false;
             this.upgradeListView.View = System.Windows.Forms.View.Details;
+            this.upgradeListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnUpgradeListViewColumnWidthChanged);
             this.upgradeListView.SelectedIndexChanged += new System.EventHandler(this.OnUpgradeListViewSelectedIndexChanged);
             // 
             // upgradeTypeColumnHeader
@@ -912,12 +915,14 @@
             this.resourceColumnHeader,
             this.quantityColumnHeader});
             this.equipmentListView.FullRowSelect = true;
+            this.equipmentListView.GridLines = true;
             this.equipmentListView.HideSelection = false;
             resources.ApplyResources(this.equipmentListView, "equipmentListView");
             this.equipmentListView.MultiSelect = false;
             this.equipmentListView.Name = "equipmentListView";
             this.equipmentListView.UseCompatibleStateImageBehavior = false;
             this.equipmentListView.View = System.Windows.Forms.View.Details;
+            this.equipmentListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEquipmentListViewColumnWidthChanged);
             this.equipmentListView.SelectedIndexChanged += new System.EventHandler(this.OnEquipmentListViewSelectedIndexChanged);
             // 
             // resourceColumnHeader
@@ -1624,6 +1629,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnUnitEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnUnitEditorFormClosed);
             this.Load += new System.EventHandler(this.OnUnitModelEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnUnitEditorFormMove);
+            this.Resize += new System.EventHandler(this.OnUnitEditorFormResize);
             this.editTabControl.ResumeLayout(false);
             this.classTabPage.ResumeLayout(false);
             this.classTabPage.PerformLayout();

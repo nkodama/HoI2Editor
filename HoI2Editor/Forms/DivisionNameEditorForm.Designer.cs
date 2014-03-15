@@ -93,8 +93,8 @@
             // 
             // suffixComboBox
             // 
-            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.Name = "suffixComboBox";
             // 
             // prefixLabel
@@ -125,8 +125,8 @@
             // 
             // prefixComboBox
             // 
-            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.Name = "prefixComboBox";
             // 
             // startNumericUpDown
@@ -206,14 +206,14 @@
             // 
             // toComboBox
             // 
-            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.Name = "withComboBox";
             // 
             // allBranchCheckBox
@@ -221,18 +221,21 @@
             resources.ApplyResources(this.allBranchCheckBox, "allBranchCheckBox");
             this.allBranchCheckBox.Name = "allBranchCheckBox";
             this.allBranchCheckBox.UseVisualStyleBackColor = true;
+            this.allBranchCheckBox.CheckedChanged += new System.EventHandler(this.OnAllBranchCheckBoxCheckedChanged);
             // 
             // regexCheckBox
             // 
             resources.ApplyResources(this.regexCheckBox, "regexCheckBox");
             this.regexCheckBox.Name = "regexCheckBox";
             this.regexCheckBox.UseVisualStyleBackColor = true;
+            this.regexCheckBox.CheckedChanged += new System.EventHandler(this.OnRegexCheckBoxCheckedChanged);
             // 
             // allCountryCheckBox
             // 
             resources.ApplyResources(this.allCountryCheckBox, "allCountryCheckBox");
             this.allCountryCheckBox.Name = "allCountryCheckBox";
             this.allCountryCheckBox.UseVisualStyleBackColor = true;
+            this.allCountryCheckBox.CheckedChanged += new System.EventHandler(this.OnAllCountryCheckBoxCheckedChanged);
             // 
             // undoButton
             // 
@@ -259,9 +262,9 @@
             // 
             // branchListBox
             // 
-            resources.ApplyResources(this.branchListBox, "branchListBox");
             this.branchListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.branchListBox.FormattingEnabled = true;
+            resources.ApplyResources(this.branchListBox, "branchListBox");
             this.branchListBox.Name = "branchListBox";
             this.branchListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnBranchListBoxDrawItem);
             this.branchListBox.SelectedIndexChanged += new System.EventHandler(this.OnBranchListBoxSelectedIndexChanged);
@@ -317,6 +320,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnDivisionNameEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnDivisionNameEditorFormClosed);
             this.Load += new System.EventHandler(this.OnDivisionNameEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             this.sequentialGroupBox.ResumeLayout(false);
             this.sequentialGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startNumericUpDown)).EndInit();

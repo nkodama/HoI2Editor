@@ -16,15 +16,6 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class MiscEditorForm : Form
     {
-        #region 内部フィールド
-
-        /// <summary>
-        ///     列ごとの項目数
-        /// </summary>
-        private int _itemsPerColumn = 22;
-
-        #endregion
-
         #region 初期化
 
         /// <summary>
@@ -34,22 +25,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
-        }
-
-        /// <summary>
-        ///     自動スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // 画面解像度が十分に広い場合はタブページが広く表示できるようにする
-            int longHeight = DeviceCaps.GetScaledHeight(720);
-            if (Screen.GetWorkingArea(this).Height >= longHeight)
-            {
-                Height = longHeight;
-                _itemsPerColumn = 24;
-            }
+            // ウィンドウ位置の初期化
+            InitPosition();
         }
 
         /// <summary>
@@ -68,10 +45,16 @@ namespace HoI2Editor.Forms
             // データ読み込み後の処理
             OnFileLoaded();
 
-            // 先頭ページを初期化する
+            // 選択中のタブページを初期化する
             if (miscTabControl.TabCount > 0)
             {
-                InitTabPage(miscTabControl.TabPages[0]);
+                int index = HoI2Editor.Settings.MiscEditor.SelectedTab;
+                if ((index < 0) || (index >= miscTabControl.TabCount))
+                {
+                    index = 0;
+                }
+                InitTabPage(miscTabControl.TabPages[index]);
+                miscTabControl.SelectTab(index);
             }
         }
 
@@ -127,6 +110,53 @@ namespace HoI2Editor.Forms
         private void OnMiscEditorFormClosed(object sender, FormClosedEventArgs e)
         {
             HoI2Editor.OnMiscEditorFormClosed();
+        }
+
+        #endregion
+
+        #region ウィンドウ位置
+
+        /// <summary>
+        ///     ウィンドウ位置の初期化
+        /// </summary>
+        private void InitPosition()
+        {
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.MiscEditor.Location;
+            //Size = HoI2Editor.Settings.MiscEditor.Size;
+
+            // 画面解像度が十分に広い場合はタブページが広く表示できるようにする
+            int longHeight = DeviceCaps.GetScaledHeight(720);
+            if (Screen.GetWorkingArea(this).Height >= longHeight)
+            {
+                Height = longHeight;
+            }
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMiscEditorFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.MiscEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMiscEditorFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.MiscEditor.Size = Size;
+            }
         }
 
         #endregion
@@ -266,6 +296,10 @@ namespace HoI2Editor.Forms
             miscTabControl.TabPages.Clear();
 
             MiscGameType type = Misc.GetGameType();
+            int itemHeight = DeviceCaps.GetScaledHeight(25);
+            int itemMargin = DeviceCaps.GetScaledWidth(20);
+            int itemsPerColumn = (miscTabControl.ClientSize.Height - miscTabControl.ItemSize.Height - itemMargin)/
+                                 itemHeight;
             const int columnsPerPage = 3;
 
             foreach (MiscSectionId section in Enum.GetValues(typeof (MiscSectionId))
@@ -285,7 +319,7 @@ namespace HoI2Editor.Forms
                 foreach (MiscItemId id in Misc.SectionItems[(int) section]
                     .Where(id => Misc.ItemTable[(int) id, (int) type]))
                 {
-                    if (row >= _itemsPerColumn)
+                    if (row >= itemsPerColumn)
                     {
                         table.Add(list);
 
@@ -484,7 +518,7 @@ namespace HoI2Editor.Forms
         ///     編集項目を更新する
         /// </summary>
         /// <param name="tabPage">対象のタブページ</param>
-        private void UpdateEditableItems(TabPage tabPage)
+        private static void UpdateEditableItems(TabPage tabPage)
         {
             foreach (Control control in tabPage.Controls)
             {
@@ -573,6 +607,9 @@ namespace HoI2Editor.Forms
             {
                 InitTabPage(tabPage);
             }
+
+            // 選択中のタブページを保存する
+            HoI2Editor.Settings.MiscEditor.SelectedTab = miscTabControl.SelectedIndex;
         }
 
         #endregion

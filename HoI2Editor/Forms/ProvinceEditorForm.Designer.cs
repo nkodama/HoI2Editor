@@ -167,6 +167,7 @@
             this.provinceListView.UseCompatibleStateImageBehavior = false;
             this.provinceListView.View = System.Windows.Forms.View.Details;
             this.provinceListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
+            this.provinceListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTeamListViewColumnWidthChanged);
             this.provinceListView.SelectedIndexChanged += new System.EventHandler(this.OnProvinceListViewSelectedIndexChanged);
             // 
             // nameColumnHeader
@@ -896,6 +897,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnProvinceEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnProvinceEditorFormClosed);
             this.Load += new System.EventHandler(this.OnProvinceEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnProvinceEditorFormMove);
+            this.Resize += new System.EventHandler(this.OnProvinceEditorFormResize);
             this.basicGroupBox.ResumeLayout(false);
             this.basicGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();

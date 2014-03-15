@@ -56,19 +56,63 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
+            // フォームの初期化
+            InitForm();
+        }
+
+        #endregion
+
+        #region データ処理
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        public void OnFileLoaded()
+        {
+            // 師団名リストの表示を更新する
+            UpdateNameList();
+
+            // 編集済みフラグがクリアされるため表示を更新する
+            branchListBox.Refresh();
+            countryListBox.Refresh();
         }
 
         /// <summary>
-        ///     自動スケーリングを考慮した初期化
+        ///     データ保存後の処理
         /// </summary>
-        private void InitScaling()
+        public void OnFileSaved()
+        {
+            // 編集済みフラグがクリアされるため表示を更新する
+            branchListBox.Refresh();
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
+        }
+
+        #endregion
+
+        #region フォーム
+
+        /// <summary>
+        ///     フォームの初期化
+        /// </summary>
+        private void InitForm()
         {
             // 兵科リストボックス
             branchListBox.ItemHeight = DeviceCaps.GetScaledHeight(branchListBox.ItemHeight);
             // 国家リストボックス
             countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.DivisionNameEditor.Location;
+            Size = HoI2Editor.Settings.DivisionNameEditor.Size;
         }
 
         /// <summary>
@@ -90,25 +134,17 @@ namespace HoI2Editor.Forms
             // 国家リストボックスを初期化する
             InitCountryListBox();
 
+            // 履歴を初期化する
+            InitHistory();
+
+            // オプション設定を初期化する
+            InitOption();
+
             // 師団名定義ファイルを読み込む
             DivisionNames.Load();
 
             // データ読み込み後の処理
             OnFileLoaded();
-        }
-
-        #endregion
-
-        #region 終了処理
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
         }
 
         /// <summary>
@@ -151,9 +187,41 @@ namespace HoI2Editor.Forms
             HoI2Editor.OnDivisionNameEditorFormClosed();
         }
 
-        #endregion
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.DivisionNameEditor.Location = Location;
+            }
+        }
 
-        #region データ処理
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.DivisionNameEditor.Size = Size;
+            }
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -190,38 +258,6 @@ namespace HoI2Editor.Forms
             HoI2Editor.Save();
         }
 
-        /// <summary>
-        ///     データ読み込み後の処理
-        /// </summary>
-        public void OnFileLoaded()
-        {
-            // 師団名リストの表示を更新する
-            UpdateNameList();
-
-            // 編集済みフラグがクリアされるため表示を更新する
-            branchListBox.Refresh();
-            countryListBox.Refresh();
-        }
-
-        /// <summary>
-        ///     データ保存後の処理
-        /// </summary>
-        public void OnFileSaved()
-        {
-            // 編集済みフラグがクリアされるため表示を更新する
-            branchListBox.Refresh();
-            countryListBox.Refresh();
-        }
-
-        /// <summary>
-        ///     編集項目変更後の処理
-        /// </summary>
-        /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
-        {
-            // 何もしない
-        }
-
         #endregion
 
         #region 兵科リストボックス
@@ -236,7 +272,15 @@ namespace HoI2Editor.Forms
             branchListBox.Items.Add(Config.GetText("EYR_ARMY"));
             branchListBox.Items.Add(Config.GetText("EYR_NAVY"));
             branchListBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
-            branchListBox.SelectedIndex = 0;
+
+            // 選択中の兵科を反映する
+            int index = HoI2Editor.Settings.DivisionNameEditor.Branch;
+            if ((index < 0) || (index >= branchListBox.Items.Count))
+            {
+                index = 0;
+            }
+            branchListBox.SelectedIndex = index;
+
             branchListBox.EndUpdate();
         }
 
@@ -290,6 +334,9 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが変化するので国家リストボックスの表示を更新する
             countryListBox.Refresh();
+
+            // 選択中の兵科を保存する
+            HoI2Editor.Settings.DivisionNameEditor.Branch = branchListBox.SelectedIndex;
         }
 
         #endregion
@@ -311,7 +358,15 @@ namespace HoI2Editor.Forms
             {
                 countryListBox.Items.Add(s);
             }
-            countryListBox.SelectedIndex = 0;
+
+            // 選択中の国家を反映する
+            int index = HoI2Editor.Settings.DivisionNameEditor.Country;
+            if ((index < 0) || (index >= countryListBox.Items.Count))
+            {
+                index = 0;
+            }
+            countryListBox.SelectedIndex = index;
+
             countryListBox.EndUpdate();
         }
 
@@ -363,6 +418,9 @@ namespace HoI2Editor.Forms
         {
             // 師団名リストの表示を更新する
             UpdateNameList();
+
+            // 選択中の国家を保存する
+            HoI2Editor.Settings.DivisionNameEditor.Country = countryListBox.SelectedIndex;
         }
 
         #endregion
@@ -541,17 +599,13 @@ namespace HoI2Editor.Forms
 
             // 履歴を更新する
             _toHistory.Add(to);
-            toComboBox.Items.Clear();
-            foreach (string s in _toHistory.Get())
-            {
-                toComboBox.Items.Add(s);
-            }
             _withHistory.Add(with);
-            withComboBox.Items.Clear();
-            foreach (string s in _withHistory.Get())
-            {
-                withComboBox.Items.Add(s);
-            }
+
+            HoI2Editor.Settings.DivisionNameEditor.ToHistory = _toHistory.Get().ToList();
+            HoI2Editor.Settings.DivisionNameEditor.WithHistory = _withHistory.Get().ToList();
+
+            // 履歴コンボボックスを更新する
+            UpdateReplaceHistory();
         }
 
         /// <summary>
@@ -591,17 +645,13 @@ namespace HoI2Editor.Forms
 
             // 履歴を更新する
             _prefixHistory.Add(prefix);
-            prefixComboBox.Items.Clear();
-            foreach (string s in _prefixHistory.Get())
-            {
-                prefixComboBox.Items.Add(s);
-            }
             _suffixHistory.Add(suffix);
-            suffixComboBox.Items.Clear();
-            foreach (string s in _suffixHistory.Get())
-            {
-                suffixComboBox.Items.Add(s);
-            }
+
+            HoI2Editor.Settings.DivisionNameEditor.PrefixHistory = _prefixHistory.Get().ToList();
+            HoI2Editor.Settings.DivisionNameEditor.SuffixHistory = _suffixHistory.Get().ToList();
+
+            // 履歴コンボボックスを更新する
+            UpdateAddHistory();
         }
 
         /// <summary>
@@ -665,6 +715,116 @@ namespace HoI2Editor.Forms
             // 編集済みフラグが更新されるため表示を更新する
             branchListBox.Refresh();
             countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     履歴の初期化
+        /// </summary>
+        private void InitHistory()
+        {
+            _toHistory.Set(HoI2Editor.Settings.DivisionNameEditor.ToHistory.ToArray());
+            _withHistory.Set(HoI2Editor.Settings.DivisionNameEditor.WithHistory.ToArray());
+            _prefixHistory.Set(HoI2Editor.Settings.DivisionNameEditor.PrefixHistory.ToArray());
+            _suffixHistory.Set(HoI2Editor.Settings.DivisionNameEditor.SuffixHistory.ToArray());
+
+            UpdateReplaceHistory();
+            UpdateAddHistory();
+
+            if (toComboBox.Items.Count > 0)
+            {
+                toComboBox.SelectedIndex = 0;
+            }
+
+            if (withComboBox.Items.Count > 0)
+            {
+                withComboBox.SelectedIndex = 0;
+            }
+
+            if (prefixComboBox.Items.Count > 0)
+            {
+                prefixComboBox.SelectedIndex = 0;
+            }
+
+            if (suffixComboBox.Items.Count > 0)
+            {
+                suffixComboBox.SelectedIndex = 0;
+            }
+        }
+
+        /// <summary>
+        ///     置換履歴コンボボックスを更新する
+        /// </summary>
+        private void UpdateReplaceHistory()
+        {
+            toComboBox.Items.Clear();
+            foreach (string s in _toHistory.Get())
+            {
+                toComboBox.Items.Add(s);
+            }
+
+            withComboBox.Items.Clear();
+            foreach (string s in _withHistory.Get())
+            {
+                withComboBox.Items.Add(s);
+            }
+        }
+
+        /// <summary>
+        ///     追加履歴コンボボックスを更新する
+        /// </summary>
+        private void UpdateAddHistory()
+        {
+            prefixComboBox.Items.Clear();
+            foreach (string s in _prefixHistory.Get())
+            {
+                prefixComboBox.Items.Add(s);
+            }
+
+            suffixComboBox.Items.Clear();
+            foreach (string s in _suffixHistory.Get())
+            {
+                suffixComboBox.Items.Add(s);
+            }
+        }
+
+        /// <summary>
+        ///     オプション設定を初期化する
+        /// </summary>
+        private void InitOption()
+        {
+            allBranchCheckBox.Checked = HoI2Editor.Settings.DivisionNameEditor.ApplyAllBranches;
+            allCountryCheckBox.Checked = HoI2Editor.Settings.DivisionNameEditor.ApplyAllCountires;
+            regexCheckBox.Checked = HoI2Editor.Settings.DivisionNameEditor.RegularExpression;
+        }
+
+        /// <summary>
+        ///     全ての兵科に適用チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllBranchCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            HoI2Editor.Settings.DivisionNameEditor.ApplyAllBranches = allBranchCheckBox.Checked;
+        }
+
+        /// <summary>
+        ///     全ての国家に適用チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllCountryCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            HoI2Editor.Settings.DivisionNameEditor.ApplyAllCountires = allCountryCheckBox.Checked;
+        }
+
+        /// <summary>
+        ///     正規表現チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRegexCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            HoI2Editor.Settings.DivisionNameEditor.RegularExpression = regexCheckBox.Checked;
         }
 
         #endregion

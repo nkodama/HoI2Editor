@@ -18,6 +18,7 @@ namespace HoI2Editor
             {
                 HoI2Editor.InitLogFile();
                 HoI2Editor.InitVersion();
+                HoI2Editor.LoadSettings();
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -26,6 +27,7 @@ namespace HoI2Editor
             }
             finally
             {
+                HoI2Editor.SaveSettings();
                 HoI2Editor.TermLogFile();
                 HoI2Editor.UnlockMutex();
             }

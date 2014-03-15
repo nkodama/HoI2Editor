@@ -95,6 +95,7 @@
             this.techListView.OwnerDraw = true;
             this.techListView.UseCompatibleStateImageBehavior = false;
             this.techListView.View = System.Windows.Forms.View.Details;
+            this.techListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTechListViewColumnWidthChanged);
             this.techListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.OnTechListViewDrawColumnHeader);
             this.techListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.OnTechListViewDrawSubItem);
             this.techListView.SelectedIndexChanged += new System.EventHandler(this.OnTechListViewSelectedIndexChanged);
@@ -291,6 +292,7 @@
             this.teamListView.OwnerDraw = true;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
+            this.teamListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTeamListViewColumnWidthChanged);
             this.teamListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.OnTeamListViewDrawColumnHeader);
             this.teamListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.OnTeamListViewDrawSubItem);
             // 
@@ -353,6 +355,8 @@
             this.Name = "ResearchViewerForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnResearchViewerFormClosed);
             this.Load += new System.EventHandler(this.OnResearchViewerFormLoad);
+            this.Move += new System.EventHandler(this.OnResearchViewerFormMove);
+            this.Resize += new System.EventHandler(this.OnResearchViewerFormResize);
             this.techGroupBox.ResumeLayout(false);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();

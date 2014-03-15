@@ -46,17 +46,59 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
+            // フォームの初期化
+            InitForm();
+        }
+
+        #endregion
+
+        #region データ処理
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        public void OnFileLoaded()
+        {
+            // ランダム指揮官名リストの表示を更新する
+            UpdateNameList();
+
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Refresh();
         }
 
         /// <summary>
-        ///     自動スケーリングを考慮した初期化
+        ///     データ保存後の処理
         /// </summary>
-        private void InitScaling()
+        public void OnFileSaved()
+        {
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
+        }
+
+        #endregion
+
+        #region フォーム
+
+        /// <summary>
+        ///     フォームの初期化
+        /// </summary>
+        private void InitForm()
         {
             // 国家リストボックス
             countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.RandomLeaderEditor.Location;
+            Size = HoI2Editor.Settings.RandomLeaderEditor.Size;
         }
 
         /// <summary>
@@ -75,35 +117,17 @@ namespace HoI2Editor.Forms
             // 国家リストボックスを初期化する
             InitCountryListBox();
 
+            // 履歴を初期化する
+            InitHistory();
+
+            // オプション設定を初期化する
+            InitOption();
+
             // ランダム指揮官名定義ファイルを読み込む
             RandomLeaders.Load();
 
             // データ読み込み後の処理
             OnFileLoaded();
-        }
-
-        /// <summary>
-        ///     フォームクローズ後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRandomLeaderEditorFormClosed(object sender, FormClosedEventArgs e)
-        {
-            HoI2Editor.OnRandomLeaderEditorFormClosed();
-        }
-
-        #endregion
-
-        #region 終了処理
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
         }
 
         /// <summary>
@@ -136,9 +160,41 @@ namespace HoI2Editor.Forms
             }
         }
 
-        #endregion
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRandomLeaderEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2Editor.OnRandomLeaderEditorFormClosed();
+        }
 
-        #region データ処理
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.RandomLeaderEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.RandomLeaderEditor.Size = Size;
+            }
+        }
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -176,33 +232,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     データ読み込み後の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
-        public void OnFileLoaded()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
         {
-            // ランダム指揮官名リストの表示を更新する
-            UpdateNameList();
-
-            // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Refresh();
-        }
-
-        /// <summary>
-        ///     データ保存後の処理
-        /// </summary>
-        public void OnFileSaved()
-        {
-            // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Refresh();
-        }
-
-        /// <summary>
-        ///     編集項目変更後の処理
-        /// </summary>
-        /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
-        {
-            // 何もしない
+            Close();
         }
 
         #endregion
@@ -224,7 +260,15 @@ namespace HoI2Editor.Forms
             {
                 countryListBox.Items.Add(s);
             }
-            countryListBox.SelectedIndex = 0;
+
+            // 選択中の国家を反映する
+            int index = HoI2Editor.Settings.RandomLeaderEditor.Country;
+            if ((index < 0) || (index >= countryListBox.Items.Count))
+            {
+                index = 0;
+            }
+            countryListBox.SelectedIndex = index;
+
             countryListBox.EndUpdate();
         }
 
@@ -275,6 +319,9 @@ namespace HoI2Editor.Forms
         {
             // ランダム指揮官名リストの表示を更新する
             UpdateNameList();
+
+            // 選択中の国家を保存する
+            HoI2Editor.Settings.RandomLeaderEditor.Country = countryListBox.SelectedIndex;
         }
 
         #endregion
@@ -406,17 +453,81 @@ namespace HoI2Editor.Forms
 
             // 履歴を更新する
             _toHistory.Add(to);
+            _withHistory.Add(with);
+
+            HoI2Editor.Settings.RandomLeaderEditor.ToHistory = _toHistory.Get().ToList();
+            HoI2Editor.Settings.RandomLeaderEditor.WithHistory = _withHistory.Get().ToList();
+
+            // 履歴コンボボックスを更新する
+            UpdateHistory();
+        }
+
+        /// <summary>
+        ///     履歴の初期化
+        /// </summary>
+        private void InitHistory()
+        {
+            _toHistory.Set(HoI2Editor.Settings.RandomLeaderEditor.ToHistory.ToArray());
+            _withHistory.Set(HoI2Editor.Settings.RandomLeaderEditor.WithHistory.ToArray());
+
+            UpdateHistory();
+
+            if (toComboBox.Items.Count > 0)
+            {
+                toComboBox.SelectedIndex = 0;
+            }
+
+            if (withComboBox.Items.Count > 0)
+            {
+                withComboBox.SelectedIndex = 0;
+            }
+        }
+
+        /// <summary>
+        ///     履歴コンボボックスを更新する
+        /// </summary>
+        private void UpdateHistory()
+        {
             toComboBox.Items.Clear();
             foreach (string s in _toHistory.Get())
             {
                 toComboBox.Items.Add(s);
             }
-            _withHistory.Add(with);
+
             withComboBox.Items.Clear();
             foreach (string s in _withHistory.Get())
             {
                 withComboBox.Items.Add(s);
             }
+        }
+
+        /// <summary>
+        ///     オプション設定を初期化する
+        /// </summary>
+        private void InitOption()
+        {
+            allCountryCheckBox.Checked = HoI2Editor.Settings.RandomLeaderEditor.ApplyAllCountires;
+            regexCheckBox.Checked = HoI2Editor.Settings.RandomLeaderEditor.RegularExpression;
+        }
+
+        /// <summary>
+        ///     全ての国家に適用チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllCountryCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            HoI2Editor.Settings.RandomLeaderEditor.ApplyAllCountires = allCountryCheckBox.Checked;
+        }
+
+        /// <summary>
+        ///     正規表現チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRegexCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            HoI2Editor.Settings.RandomLeaderEditor.RegularExpression = regexCheckBox.Checked;
         }
 
         #endregion

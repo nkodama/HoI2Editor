@@ -129,18 +129,21 @@
             resources.ApplyResources(this.allUnitTypeCheckBox, "allUnitTypeCheckBox");
             this.allUnitTypeCheckBox.Name = "allUnitTypeCheckBox";
             this.allUnitTypeCheckBox.UseVisualStyleBackColor = true;
+            this.allUnitTypeCheckBox.CheckedChanged += new System.EventHandler(this.OnAllUnitTypeCheckBoxCheckedChanged);
             // 
             // regexCheckBox
             // 
             resources.ApplyResources(this.regexCheckBox, "regexCheckBox");
             this.regexCheckBox.Name = "regexCheckBox";
             this.regexCheckBox.UseVisualStyleBackColor = true;
+            this.regexCheckBox.CheckedChanged += new System.EventHandler(this.OnRegexCheckBoxCheckedChanged);
             // 
             // allCountryCheckBox
             // 
             resources.ApplyResources(this.allCountryCheckBox, "allCountryCheckBox");
             this.allCountryCheckBox.Name = "allCountryCheckBox";
             this.allCountryCheckBox.UseVisualStyleBackColor = true;
+            this.allCountryCheckBox.CheckedChanged += new System.EventHandler(this.OnAllCountryCheckBoxCheckedChanged);
             // 
             // replaceButton
             // 
@@ -151,14 +154,14 @@
             // 
             // toComboBox
             // 
-            this.toComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.toComboBox, "toComboBox");
+            this.toComboBox.FormattingEnabled = true;
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            this.withComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.withComboBox, "withComboBox");
+            this.withComboBox.FormattingEnabled = true;
             this.withComboBox.Name = "withComboBox";
             // 
             // startNumericUpDown
@@ -210,8 +213,8 @@
             // 
             // prefixComboBox
             // 
-            this.prefixComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
+            this.prefixComboBox.FormattingEnabled = true;
             this.prefixComboBox.Name = "prefixComboBox";
             // 
             // addButton
@@ -263,8 +266,8 @@
             // 
             // suffixComboBox
             // 
-            this.suffixComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
+            this.suffixComboBox.FormattingEnabled = true;
             this.suffixComboBox.Name = "suffixComboBox";
             // 
             // prefixLabel
@@ -307,10 +310,12 @@
             // 
             // listSplitContainer.Panel1
             // 
+            resources.ApplyResources(this.listSplitContainer.Panel1, "listSplitContainer.Panel1");
             this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
             // 
             // listSplitContainer.Panel2
             // 
+            resources.ApplyResources(this.listSplitContainer.Panel2, "listSplitContainer.Panel2");
             this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
             // 
             // UnitNameEditorForm
@@ -330,9 +335,11 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Name = "UnitNameEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnUnitNameEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnUnitNameEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnUnitNameEditorFormLoad);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startNumericUpDown)).EndInit();

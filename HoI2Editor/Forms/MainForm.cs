@@ -21,6 +21,9 @@ namespace HoI2Editor.Forms
         public MainForm()
         {
             InitializeComponent();
+
+            // ウィンドウ位置の初期化
+            InitPosition();
         }
 
         /// <summary>
@@ -39,10 +42,35 @@ namespace HoI2Editor.Forms
                 : LanguageMode.English;
 
             // 初期状態のゲームフォルダ名を設定する
-            SetFolderName(Environment.CurrentDirectory);
+            if (!string.IsNullOrEmpty(Game.FolderName))
+            {
+                gameFolderTextBox.Text = HoI2Editor.Settings.Main.GameFolder;
+                if (!string.IsNullOrEmpty(HoI2Editor.Settings.Main.ModFolder))
+                {
+                    modTextBox.Text = HoI2Editor.Settings.Main.ModFolder;
+                }
+                if (!string.IsNullOrEmpty(HoI2Editor.Settings.Main.ExportFolder))
+                {
+                    exportFolderTextBox.Text = HoI2Editor.Settings.Main.ExportFolder;
+                }
 
-            // 言語リストを更新する
-            UpdateLanguage();
+                // 言語リストを更新する
+                UpdateLanguage();
+
+                // ゲームフォルダ名が有効でなければデータ編集を無効化する
+                if (!Game.IsGameFolderActive)
+                {
+                    editGroupBox.Enabled = false;
+                    return;
+                }
+
+                // 他のエディタプロセスで使われていなければ、データ編集を有効化する
+                editGroupBox.Enabled = HoI2Editor.LockMutex(Game.FolderName);
+            }
+            else
+            {
+                SetFolderName(Environment.CurrentDirectory);
+            }
         }
 
         #endregion
@@ -89,6 +117,46 @@ namespace HoI2Editor.Forms
                 case DialogResult.Yes:
                     HoI2Editor.Save();
                     break;
+            }
+        }
+
+        #endregion
+
+        #region ウィンドウ位置
+
+        /// <summary>
+        ///     ウィンドウ位置の初期化
+        /// </summary>
+        private void InitPosition()
+        {
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.Main.Location;
+            Size = HoI2Editor.Settings.Main.Size;
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMainFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.Main.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMainFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.Main.Size = Size;
             }
         }
 
@@ -167,6 +235,16 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     師団名ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionNameButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.LaunchDivisionNameEditorForm();
+        }
+
+        /// <summary>
         ///     ユニット名ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -184,16 +262,6 @@ namespace HoI2Editor.Forms
         private void OnModelNameButtonClick(object sender, EventArgs e)
         {
             HoI2Editor.LaunchModelNameEditorForm();
-        }
-
-        /// <summary>
-        ///     師団名ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDivisionNameButtonClick(object sender, EventArgs e)
-        {
-            HoI2Editor.LaunchDivisionNameEditorForm();
         }
 
         /// <summary>

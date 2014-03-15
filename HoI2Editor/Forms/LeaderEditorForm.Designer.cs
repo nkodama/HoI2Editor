@@ -418,6 +418,7 @@
             this.leaderListView.UseCompatibleStateImageBehavior = false;
             this.leaderListView.View = System.Windows.Forms.View.Details;
             this.leaderListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
+            this.leaderListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnLeaderListViewColumnWidthChanged);
             this.leaderListView.SelectedIndexChanged += new System.EventHandler(this.OnLeaderListViewSelectedIndexChanged);
             // 
             // branchColumnHeader
@@ -1249,6 +1250,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnLeaderEditorFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnLeaderEditorFormClosed);
             this.Load += new System.EventHandler(this.OnLeaderEditorFormLoad);
+            this.Move += new System.EventHandler(this.OnLeaderEditorFormMove);
+            this.Resize += new System.EventHandler(this.OnLeaderEditorFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.leaderPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();

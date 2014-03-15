@@ -23,142 +23,13 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // 自動スケーリングを考慮した初期化
-            InitScaling();
-        }
-
-        /// <summary>
-        ///     自動スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // 国家リストボックス
-            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
-            // ユニット種類リストボックス
-            typeListBox.ItemHeight = DeviceCaps.GetScaledHeight(typeListBox.ItemHeight);
-        }
-
-        /// <summary>
-        ///     フォーム読み込み時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnModelNameEditorFormLoad(object sender, EventArgs e)
-        {
-            // 国家データを初期化する
-            Countries.Init();
-
-            // ユニットデータを初期化する
-            Units.Init();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
-            // ユニットデータを読み込む
-            Units.Load();
-
-            // 国家リストボックスを初期化する
-            InitCountryListBox();
-
-            // ユニット種類リストボックスを初期化する
-            InitTypeListBox();
-
-            // データ読み込み後の処理
-            OnFileLoaded();
-        }
-
-        #endregion
-
-        #region 終了処理
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        /// <summary>
-        ///     フォームクローズ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnModelNameEditorFormClosing(object sender, FormClosingEventArgs e)
-        {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2Editor.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     フォームクローズ後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnModelNameEditorFormClosed(object sender, FormClosedEventArgs e)
-        {
-            HoI2Editor.OnModelNameEditorFormClosed();
+            // フォームの初期化
+            InitForm();
         }
 
         #endregion
 
         #region データ処理
-
-        /// <summary>
-        ///     再読み込みボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnReloadButtonClick(object sender, EventArgs e)
-        {
-            // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
-            {
-                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Cancel:
-                        return;
-                    case DialogResult.Yes:
-                        HoI2Editor.Save();
-                        break;
-                }
-            }
-
-            HoI2Editor.Reload();
-        }
-
-        /// <summary>
-        ///     保存ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSaveButtonClick(object sender, EventArgs e)
-        {
-            HoI2Editor.Save();
-        }
 
         /// <summary>
         ///     データ読み込み後の処理
@@ -220,6 +91,165 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region フォーム
+
+        /// <summary>
+        ///     フォームの初期化
+        /// </summary>
+        private void InitForm()
+        {
+            // 国家リストボックス
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+            // ユニット種類リストボックス
+            typeListBox.ItemHeight = DeviceCaps.GetScaledHeight(typeListBox.ItemHeight);
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.ModelNameEditor.Location;
+            Size = HoI2Editor.Settings.ModelNameEditor.Size;
+        }
+
+        /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelNameEditorFormLoad(object sender, EventArgs e)
+        {
+            // 国家データを初期化する
+            Countries.Init();
+
+            // ユニットデータを初期化する
+            Units.Init();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
+            // ユニットデータを読み込む
+            Units.Load();
+
+            // 国家リストボックスを初期化する
+            InitCountryListBox();
+
+            // ユニット種類リストボックスを初期化する
+            InitTypeListBox();
+
+            // データ読み込み後の処理
+            OnFileLoaded();
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelNameEditorFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!HoI2Editor.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    HoI2Editor.Save();
+                    break;
+                case DialogResult.No:
+                    HoI2Editor.SaveCanceled = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelNameEditorFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2Editor.OnModelNameEditorFormClosed();
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ModelNameEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ModelNameEditor.Size = Size;
+            }
+        }
+
+        /// <summary>
+        ///     再読み込みボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnReloadButtonClick(object sender, EventArgs e)
+        {
+            // 編集済みならば保存するかを問い合わせる
+            if (HoI2Editor.IsDirty())
+            {
+                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Cancel:
+                        return;
+                    case DialogResult.Yes:
+                        HoI2Editor.Save();
+                        break;
+                }
+            }
+
+            HoI2Editor.Reload();
+        }
+
+        /// <summary>
+        ///     保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.Save();
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
         #region 国家リストボックス
 
         /// <summary>
@@ -237,7 +267,15 @@ namespace HoI2Editor.Forms
             {
                 countryListBox.Items.Add(s);
             }
-            countryListBox.SelectedIndex = 0;
+
+            // 選択中の国家を反映する
+            int index = HoI2Editor.Settings.ModelNameEditor.Country;
+            if ((index < 0) || (index >= countryListBox.Items.Count))
+            {
+                index = 0;
+            }
+            countryListBox.SelectedIndex = index;
+
             countryListBox.EndUpdate();
         }
 
@@ -291,6 +329,9 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグが変化するのでユニット種類リストボックスの表示を更新する
             typeListBox.Refresh();
+
+            // 選択中の国家を保存する
+            HoI2Editor.Settings.ModelNameEditor.Country = countryListBox.SelectedIndex;
         }
 
         #endregion
@@ -310,13 +351,16 @@ namespace HoI2Editor.Forms
                 Unit unit = Units.Items[(int) type];
                 typeListBox.Items.Add(unit);
             }
-            typeListBox.EndUpdate();
 
-            // 先頭の項目を選択する
-            if (typeListBox.Items.Count > 0)
+            // 選択中のユニット種類を反映する
+            int index = HoI2Editor.Settings.ModelNameEditor.UnitType;
+            if ((index < 0) || (index >= typeListBox.Items.Count))
             {
-                typeListBox.SelectedIndex = 0;
+                index = 0;
             }
+            typeListBox.SelectedIndex = index;
+
+            typeListBox.EndUpdate();
         }
 
         /// <summary>
@@ -385,6 +429,9 @@ namespace HoI2Editor.Forms
         {
             // 編集項目の表示を更新する
             UpdateEditableItems();
+
+            // 選択中のユニット種類を保存する
+            HoI2Editor.Settings.ModelNameEditor.UnitType = typeListBox.SelectedIndex;
         }
 
         #endregion
