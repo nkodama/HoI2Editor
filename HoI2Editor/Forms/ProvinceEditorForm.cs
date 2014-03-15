@@ -87,8 +87,70 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // ウィンドウ位置の初期化
-            InitPosition();
+            // フォームの初期化
+            InitForm();
+        }
+
+        #endregion
+
+        #region データ処理
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        public void OnFileLoaded()
+        {
+            // 海域の編集項目を更新する
+            UpdateSeaZoneItems();
+
+            // ワールドツリービューの表示を更新する
+            UpdateWorldTree();
+        }
+
+        /// <summary>
+        ///     データ保存後の処理
+        /// </summary>
+        public void OnFileSaved()
+        {
+            // 編集済みフラグがクリアされるため表示を更新する
+            UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
+        }
+
+        #endregion
+
+        #region フォーム
+
+        /// <summary>
+        ///     フォームの初期化
+        /// </summary>
+        private void InitForm()
+        {
+            // プロヴィンスリストビュー
+            nameColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[0];
+            idColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[1];
+            seaColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[2];
+            portColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[3];
+            beachColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[4];
+            infraColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[5];
+            icColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[6];
+            manpowerColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[7];
+            energyColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[8];
+            metalColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[9];
+            rareMaterialsColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[10];
+            oilColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[11];
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.ProvinceEditor.Location;
+            Size = HoI2Editor.Settings.ProvinceEditor.Size;
         }
 
         /// <summary>
@@ -96,7 +158,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProvinceEditorFormLoad(object sender, EventArgs e)
+        private void OnFormLoad(object sender, EventArgs e)
         {
             // プロヴィンスデータを初期化する
             Provinces.Init();
@@ -117,26 +179,12 @@ namespace HoI2Editor.Forms
             OnFileLoaded();
         }
 
-        #endregion
-
-        #region 終了処理
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         /// <summary>
         ///     フォームクローズ時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProvinceEditorFormClosing(object sender, FormClosingEventArgs e)
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
             if (!HoI2Editor.IsDirty())
@@ -166,37 +214,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProvinceEditorFormClosed(object sender, FormClosedEventArgs e)
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
             HoI2Editor.OnProvinceEditorFormClosed();
-        }
-
-        #endregion
-
-        #region ウィンドウ位置
-
-        /// <summary>
-        ///     ウィンドウ位置の初期化
-        /// </summary>
-        private void InitPosition()
-        {
-            // プロヴィンスリストビュー
-            nameColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[0];
-            idColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[1];
-            seaColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[2];
-            portColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[3];
-            beachColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[4];
-            infraColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[5];
-            icColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[6];
-            manpowerColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[7];
-            energyColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[8];
-            metalColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[9];
-            rareMaterialsColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[10];
-            oilColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[11];
-
-            // ウィンドウの位置
-            Location = HoI2Editor.Settings.ProvinceEditor.Location;
-            Size = HoI2Editor.Settings.ProvinceEditor.Size;
         }
 
         /// <summary>
@@ -204,7 +224,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProvinceEditorFormMove(object sender, EventArgs e)
+        private void OnFormMove(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
             {
@@ -217,17 +237,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProvinceEditorFormResize(object sender, EventArgs e)
+        private void OnFormResize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
             {
                 HoI2Editor.Settings.ProvinceEditor.Size = Size;
             }
         }
-
-        #endregion
-
-        #region データ処理
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -265,33 +281,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     データ読み込み後の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
-        public void OnFileLoaded()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
         {
-            // 海域の編集項目を更新する
-            UpdateSeaZoneItems();
-
-            // ワールドツリービューの表示を更新する
-            UpdateWorldTree();
-        }
-
-        /// <summary>
-        ///     データ保存後の処理
-        /// </summary>
-        public void OnFileSaved()
-        {
-            // 編集済みフラグがクリアされるため表示を更新する
-            UpdateEditableItems();
-        }
-
-        /// <summary>
-        ///     編集項目変更後の処理
-        /// </summary>
-        /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
-        {
-            // 何もしない
+            Close();
         }
 
         #endregion

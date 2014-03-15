@@ -1286,11 +1286,11 @@
             this.Controls.Add(this.techListBox);
             this.Controls.Add(this.categoryListBox);
             this.Name = "TechEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnTechEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnTechEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnTechEditorFormLoad);
-            this.Move += new System.EventHandler(this.OnTechEditorFormMove);
-            this.Resize += new System.EventHandler(this.OnTechEditorFormResize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.treePictureBox)).EndInit();
             this.editTabControl.ResumeLayout(false);
             this.categoryTabPage.ResumeLayout(false);

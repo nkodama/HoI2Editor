@@ -25,178 +25,13 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // ウィンドウ位置の初期化
-            InitPosition();
-        }
-
-        /// <summary>
-        ///     フォーム読み込み時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMiscEditorFormLoad(object sender, EventArgs e)
-        {
-            // 基本データファイルを読み込む
-            Misc.Load();
-
-            // タブページ群を初期化する
-            InitTabPages();
-
-            // データ読み込み後の処理
-            OnFileLoaded();
-
-            // 選択中のタブページを初期化する
-            if (miscTabControl.TabCount > 0)
-            {
-                int index = HoI2Editor.Settings.MiscEditor.SelectedTab;
-                if ((index < 0) || (index >= miscTabControl.TabCount))
-                {
-                    index = 0;
-                }
-                InitTabPage(miscTabControl.TabPages[index]);
-                miscTabControl.SelectTab(index);
-            }
-        }
-
-        #endregion
-
-        #region 終了処理
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        /// <summary>
-        ///     フォームクローズ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMiscEditorFormClosing(object sender, FormClosingEventArgs e)
-        {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2Editor.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     フォームクローズ後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMiscEditorFormClosed(object sender, FormClosedEventArgs e)
-        {
-            HoI2Editor.OnMiscEditorFormClosed();
-        }
-
-        #endregion
-
-        #region ウィンドウ位置
-
-        /// <summary>
-        ///     ウィンドウ位置の初期化
-        /// </summary>
-        private void InitPosition()
-        {
-            // ウィンドウの位置
-            Location = HoI2Editor.Settings.MiscEditor.Location;
-            //Size = HoI2Editor.Settings.MiscEditor.Size;
-
-            // 画面解像度が十分に広い場合はタブページが広く表示できるようにする
-            int longHeight = DeviceCaps.GetScaledHeight(720);
-            if (Screen.GetWorkingArea(this).Height >= longHeight)
-            {
-                Height = longHeight;
-            }
-        }
-
-        /// <summary>
-        ///     フォーム移動時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMiscEditorFormMove(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                HoI2Editor.Settings.MiscEditor.Location = Location;
-            }
-        }
-
-        /// <summary>
-        ///     フォームリサイズ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMiscEditorFormResize(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                HoI2Editor.Settings.MiscEditor.Size = Size;
-            }
+            // フォームの初期化
+            InitForm();
         }
 
         #endregion
 
         #region データ処理
-
-        /// <summary>
-        ///     再読み込みボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnReloadButtonClick(object sender, EventArgs e)
-        {
-            // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
-            {
-                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Cancel:
-                        return;
-                    case DialogResult.Yes:
-                        HoI2Editor.Save();
-                        break;
-                }
-            }
-
-            HoI2Editor.Reload();
-        }
-
-        /// <summary>
-        ///     保存ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSaveButtonClick(object sender, EventArgs e)
-        {
-            HoI2Editor.Save();
-        }
 
         /// <summary>
         ///     データ読み込み後の処理
@@ -282,6 +117,167 @@ namespace HoI2Editor.Forms
                     }
                 }
             }
+        }
+
+        #endregion
+
+        #region フォーム
+
+        /// <summary>
+        ///     フォームの初期化
+        /// </summary>
+        private void InitForm()
+        {
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.MiscEditor.Location;
+            //Size = HoI2Editor.Settings.MiscEditor.Size;
+
+            // 画面解像度が十分に広い場合はタブページが広く表示できるようにする
+            int longHeight = DeviceCaps.GetScaledHeight(720);
+            if (Screen.GetWorkingArea(this).Height >= longHeight)
+            {
+                Height = longHeight;
+            }
+        }
+
+        /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            // 基本データファイルを読み込む
+            Misc.Load();
+
+            // タブページ群を初期化する
+            InitTabPages();
+
+            // データ読み込み後の処理
+            OnFileLoaded();
+
+            // 選択中のタブページを初期化する
+            if (miscTabControl.TabCount > 0)
+            {
+                int index = HoI2Editor.Settings.MiscEditor.SelectedTab;
+                if ((index < 0) || (index >= miscTabControl.TabCount))
+                {
+                    index = 0;
+                }
+                InitTabPage(miscTabControl.TabPages[index]);
+                miscTabControl.SelectTab(index);
+            }
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!HoI2Editor.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    HoI2Editor.Save();
+                    break;
+                case DialogResult.No:
+                    HoI2Editor.SaveCanceled = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2Editor.OnMiscEditorFormClosed();
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.MiscEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.MiscEditor.Size = Size;
+            }
+        }
+
+        /// <summary>
+        ///     再読み込みボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnReloadButtonClick(object sender, EventArgs e)
+        {
+            // 編集済みならば保存するかを問い合わせる
+            if (HoI2Editor.IsDirty())
+            {
+                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Cancel:
+                        return;
+                    case DialogResult.Yes:
+                        HoI2Editor.Save();
+                        break;
+                }
+            }
+
+            HoI2Editor.Reload();
+        }
+
+        /// <summary>
+        ///     保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.Save();
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         #endregion

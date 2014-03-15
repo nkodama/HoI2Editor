@@ -1626,11 +1626,11 @@
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.modelListView);
             this.Name = "UnitEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnUnitEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnUnitEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnUnitModelEditorFormLoad);
-            this.Move += new System.EventHandler(this.OnUnitEditorFormMove);
-            this.Resize += new System.EventHandler(this.OnUnitEditorFormResize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             this.editTabControl.ResumeLayout(false);
             this.classTabPage.ResumeLayout(false);
             this.classTabPage.PerformLayout();

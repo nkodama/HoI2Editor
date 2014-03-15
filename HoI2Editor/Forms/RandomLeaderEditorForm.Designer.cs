@@ -194,9 +194,9 @@
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.countryListBox);
             this.Name = "RandomLeaderEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnRandomLeaderEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnRandomLeaderEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnRandomLeaderEditorFormLoad);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
             this.Move += new System.EventHandler(this.OnFormMove);
             this.Resize += new System.EventHandler(this.OnFormResize);
             this.replaceGroupBox.ResumeLayout(false);

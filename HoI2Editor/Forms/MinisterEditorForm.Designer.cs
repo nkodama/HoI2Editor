@@ -455,11 +455,11 @@
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.ministerListView);
             this.Name = "MinisterEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMinisterEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnMinisterEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnMinisterEditorFormLoad);
-            this.Move += new System.EventHandler(this.OnMinisterEditorFormMove);
-            this.Resize += new System.EventHandler(this.OnMinisterEditorFormResize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).EndInit();

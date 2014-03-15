@@ -477,11 +477,11 @@
             this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.newButton);
             this.Name = "TeamEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnTeamEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnTeamEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnTeamEditorFormLoad);
-            this.Move += new System.EventHandler(this.OnTeamEditorFormMove);
-            this.Resize += new System.EventHandler(this.OnTeamEditorFormResize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.teamPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();

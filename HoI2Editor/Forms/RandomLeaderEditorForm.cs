@@ -106,7 +106,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnRandomLeaderEditorFormLoad(object sender, EventArgs e)
+        private void OnFormLoad(object sender, EventArgs e)
         {
             // 国家データを初期化する
             Countries.Init();
@@ -135,7 +135,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnRandomLeaderEditorFormClosing(object sender, FormClosingEventArgs e)
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
             if (!HoI2Editor.IsDirty())
@@ -165,7 +165,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnRandomLeaderEditorFormClosed(object sender, FormClosedEventArgs e)
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
             HoI2Editor.OnRandomLeaderEditorFormClosed();
         }

@@ -894,11 +894,11 @@
             this.Controls.Add(this.worldTreeView);
             this.Controls.Add(this.provinceListView);
             this.Name = "ProvinceEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnProvinceEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnProvinceEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnProvinceEditorFormLoad);
-            this.Move += new System.EventHandler(this.OnProvinceEditorFormMove);
-            this.Resize += new System.EventHandler(this.OnProvinceEditorFormResize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             this.basicGroupBox.ResumeLayout(false);
             this.basicGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();

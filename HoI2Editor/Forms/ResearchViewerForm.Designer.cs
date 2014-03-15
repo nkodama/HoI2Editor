@@ -353,10 +353,10 @@
             this.Controls.Add(this.optionGroupBox);
             this.Controls.Add(this.techGroupBox);
             this.Name = "ResearchViewerForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnResearchViewerFormClosed);
-            this.Load += new System.EventHandler(this.OnResearchViewerFormLoad);
-            this.Move += new System.EventHandler(this.OnResearchViewerFormMove);
-            this.Resize += new System.EventHandler(this.OnResearchViewerFormResize);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             this.techGroupBox.ResumeLayout(false);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();

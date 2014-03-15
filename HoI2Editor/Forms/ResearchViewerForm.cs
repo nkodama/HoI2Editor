@@ -57,144 +57,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // ウィンドウ位置の初期化
-            InitPosition();
-        }
-
-        /// <summary>
-        ///     フォーム読み込み時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnResearchViewerFormLoad(object sender, EventArgs e)
-        {
-            // 国家データを初期化する
-            Countries.Init();
-
-            // 研究特性を初期化する
-            Techs.InitSpecialities();
-
-            // ゲーム設定ファイルを読み込む
-            Misc.Load();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
-            // 技術リストビューの高さを設定するためにダミーのイメージリストを作成する
-            techListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
-
-            // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
-            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
-
-            // 研究特性オーバーレイアイコンを初期化する
-            InitOverlayIcon();
-
-            // オプション項目を初期化する
-            InitOptionItems();
-
-            // 技術定義ファイルを読み込む
-            Techs.Load();
-
-            // 研究機関ファイルを読み込む
-            Teams.Load();
-
-            // 国家リストボックスを初期化する
-            InitCountryListBox();
-
-            // データ読み込み後の処理
-            OnFileLoaded();
-        }
-
-        /// <summary>
-        ///     研究特性オーバーレイアイコンを初期化する
-        /// </summary>
-        private void InitOverlayIcon()
-        {
-            _techOverlayIcon = new Bitmap(Game.GetReadFileName(Game.TechIconOverlayPathName));
-            _techOverlayIcon.MakeTransparent(Color.Lime);
-        }
-
-        #endregion
-
-        #region 終了処理
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        /// <summary>
-        ///     フォームクローズ後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnResearchViewerFormClosed(object sender, FormClosedEventArgs e)
-        {
-            HoI2Editor.OnResearchViewerFormClosed();
-        }
-
-        #endregion
-
-        #region ウィンドウ位置
-
-        /// <summary>
-        ///     ウィンドウ位置の初期化
-        /// </summary>
-        private void InitPosition()
-        {
-            // 技術リストビュー
-            techNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[0];
-            techIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[1];
-            techYearColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[2];
-            techComponentsColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[3];
-
-            // 国家リストボックス
-            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
-            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
-
-            // 研究機関リストビュー
-            teamRankColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[1];
-            teamDaysColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[2];
-            teamEndDateColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[3];
-            teamNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[4];
-            teamIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[5];
-            teamSkillColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[6];
-            teamSpecialityColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[7];
-
-            // ウィンドウの位置
-            Location = HoI2Editor.Settings.ResearchViewer.Location;
-            Size = HoI2Editor.Settings.ResearchViewer.Size;
-        }
-
-        /// <summary>
-        ///     フォーム移動時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnResearchViewerFormMove(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                HoI2Editor.Settings.ResearchViewer.Location = Location;
-            }
-        }
-
-        /// <summary>
-        ///     フォームリサイズ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnResearchViewerFormResize(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                HoI2Editor.Settings.ResearchViewer.Size = Size;
-            }
+            // フォームの初期化
+            InitForm();
         }
 
         #endregion
@@ -315,6 +179,130 @@ namespace HoI2Editor.Forms
                     UpdateTechList();
                     break;
             }
+        }
+
+        #endregion
+
+        #region フォーム
+
+        /// <summary>
+        ///     フォームの初期化
+        /// </summary>
+        private void InitForm()
+        {
+            // 技術リストビュー
+            techNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[0];
+            techIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[1];
+            techYearColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[2];
+            techComponentsColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[3];
+
+            // 国家リストボックス
+            countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
+            countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
+
+            // 研究機関リストビュー
+            teamRankColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[1];
+            teamDaysColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[2];
+            teamEndDateColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[3];
+            teamNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[4];
+            teamIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[5];
+            teamSkillColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[6];
+            teamSpecialityColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[7];
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.ResearchViewer.Location;
+            Size = HoI2Editor.Settings.ResearchViewer.Size;
+        }
+
+        /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            // 国家データを初期化する
+            Countries.Init();
+
+            // 研究特性を初期化する
+            Techs.InitSpecialities();
+
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
+            // 技術リストビューの高さを設定するためにダミーのイメージリストを作成する
+            techListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
+
+            // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
+            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
+
+            // 研究特性オーバーレイアイコンを初期化する
+            _techOverlayIcon = new Bitmap(Game.GetReadFileName(Game.TechIconOverlayPathName));
+            _techOverlayIcon.MakeTransparent(Color.Lime);
+
+            // オプション項目を初期化する
+            InitOptionItems();
+
+            // 技術定義ファイルを読み込む
+            Techs.Load();
+
+            // 研究機関ファイルを読み込む
+            Teams.Load();
+
+            // 国家リストボックスを初期化する
+            InitCountryListBox();
+
+            // データ読み込み後の処理
+            OnFileLoaded();
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2Editor.OnResearchViewerFormClosed();
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ResearchViewer.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.ResearchViewer.Size = Size;
+            }
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         #endregion

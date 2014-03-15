@@ -117,107 +117,59 @@ namespace HoI2Editor.Forms
                 specialityComboBox7
             };
 
-            // ウィンドウ位置の初期化
-            InitPosition();
-        }
-
-        /// <summary>
-        ///     フォーム読み込み時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTeamEditorFormLoad(object sender, EventArgs e)
-        {
-            // 国家データを初期化する
-            Countries.Init();
-
-            // 研究特性を初期化する
-            Techs.InitSpecialities();
-
-            // ゲーム設定ファイルを読み込む
-            Misc.Load();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
-            // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
-            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
-
-            // 編集項目を初期化する
-            InitEditableItems();
-
-            // 国家リストボックスを初期化する
-            InitCountryListBox();
-
-            // 研究機関ファイルを読み込む
-            Teams.Load();
-
-            // データ読み込み後の処理
-            OnFileLoaded();
+            // フォームの初期化
+            InitForm();
         }
 
         #endregion
 
-        #region 終了処理
+        #region データ処理
 
         /// <summary>
-        ///     閉じるボタン押下時の処理
+        ///     データ読み込み後の処理
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
+        public void OnFileLoaded()
         {
-            Close();
+            // 研究機関リストを絞り込む
+            NarrowTeamList();
+
+            // 研究機関リストをソートする
+            SortTeamList();
+
+            // 研究機関リストの表示を更新する
+            UpdateTeamList();
+
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Refresh();
         }
 
         /// <summary>
-        ///     フォームクローズ時の処理
+        ///     データ保存後の処理
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTeamEditorFormClosing(object sender, FormClosingEventArgs e)
+        public void OnFileSaved()
         {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2Editor.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
-                    break;
-            }
+            // 編集済みフラグがクリアされるため表示を更新する
+            countryListBox.Refresh();
+            UpdateEditableItems();
         }
 
         /// <summary>
-        ///     フォームクローズ後の処理
+        ///     編集項目変更後の処理
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTeamEditorFormClosed(object sender, FormClosedEventArgs e)
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
         {
-            HoI2Editor.OnTeamEditorFormClosed();
+            // 何もしない
         }
 
         #endregion
 
-        #region ウィンドウ位置
+        #region フォーム
 
         /// <summary>
-        ///     ウィンドウ位置の初期化
+        ///     フォームの初期化
         /// </summary>
-        private void InitPosition()
+        private void InitForm()
         {
             // 研究機関リストビュー
             countryColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[0];
@@ -247,11 +199,86 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            // 国家データを初期化する
+            Countries.Init();
+
+            // 研究特性を初期化する
+            Techs.InitSpecialities();
+
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
+            // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
+            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
+
+            // 編集項目を初期化する
+            InitEditableItems();
+
+            // 国家リストボックスを初期化する
+            InitCountryListBox();
+
+            // 研究機関ファイルを読み込む
+            Teams.Load();
+
+            // データ読み込み後の処理
+            OnFileLoaded();
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!HoI2Editor.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    HoI2Editor.Save();
+                    break;
+                case DialogResult.No:
+                    HoI2Editor.SaveCanceled = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2Editor.OnTeamEditorFormClosed();
+        }
+
+        /// <summary>
         ///     フォーム移動時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTeamEditorFormMove(object sender, EventArgs e)
+        private void OnFormMove(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
             {
@@ -264,17 +291,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTeamEditorFormResize(object sender, EventArgs e)
+        private void OnFormResize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
             {
                 HoI2Editor.Settings.TeamEditor.Size = Size;
             }
         }
-
-        #endregion
-
-        #region データ処理
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -312,40 +335,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     データ読み込み後の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
-        public void OnFileLoaded()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
         {
-            // 研究機関リストを絞り込む
-            NarrowTeamList();
-
-            // 研究機関リストをソートする
-            SortTeamList();
-
-            // 研究機関リストの表示を更新する
-            UpdateTeamList();
-
-            // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Refresh();
-        }
-
-        /// <summary>
-        ///     データ保存後の処理
-        /// </summary>
-        public void OnFileSaved()
-        {
-            // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Refresh();
-            UpdateEditableItems();
-        }
-
-        /// <summary>
-        ///     編集項目変更後の処理
-        /// </summary>
-        /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
-        {
-            // 何もしない
+            Close();
         }
 
         #endregion

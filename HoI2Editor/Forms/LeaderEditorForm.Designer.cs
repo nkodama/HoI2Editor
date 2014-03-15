@@ -1247,11 +1247,11 @@
             this.Controls.Add(this.rankYearLabel3);
             this.Controls.Add(this.rankYearNumericUpDown3);
             this.Name = "LeaderEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnLeaderEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnLeaderEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnLeaderEditorFormLoad);
-            this.Move += new System.EventHandler(this.OnLeaderEditorFormMove);
-            this.Resize += new System.EventHandler(this.OnLeaderEditorFormResize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
+            this.Move += new System.EventHandler(this.OnFormMove);
+            this.Resize += new System.EventHandler(this.OnFormResize);
             ((System.ComponentModel.ISupportInitialize)(this.leaderPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).EndInit();

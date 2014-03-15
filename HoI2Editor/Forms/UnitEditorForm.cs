@@ -44,37 +44,8 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // ウィンドウ位置の初期化
-            InitPosition();
-        }
-
-        /// <summary>
-        ///     フォーム読み込み時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUnitModelEditorFormLoad(object sender, EventArgs e)
-        {
-            // ゲーム設定ファイルを読み込む
-            Misc.Load();
-
-            // 国家データを初期化する
-            Countries.Init();
-
-            // ユニットデータを初期化する
-            Units.Init();
-
-            // Miscファイルを読み込む
-            Misc.Load();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
-            // ユニットデータを読み込む
-            Units.Load();
-
-            // データ読み込み後の処理
-            OnFileLoaded();
+            // フォームの初期化
+            InitForm();
         }
 
         /// <summary>
@@ -365,164 +336,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 終了処理
-
-        /// <summary>
-        ///     閉じるボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        /// <summary>
-        ///     フォームクローズ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUnitEditorFormClosing(object sender, FormClosingEventArgs e)
-        {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2Editor.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     フォームクローズ後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUnitEditorFormClosed(object sender, FormClosedEventArgs e)
-        {
-            HoI2Editor.OnUnitEditorFormClosed();
-        }
-
-        #endregion
-
-        #region ウィンドウ位置
-
-        /// <summary>
-        ///     ウィンドウ位置の初期化
-        /// </summary>
-        private void InitPosition()
-        {
-            // ユニットモデルリストビュー
-            noColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[0];
-            nameColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[1];
-            buildCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[2];
-            buildTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[3];
-            manpowerColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[4];
-            supplyColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[5];
-            fuelColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[6];
-            organisationColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[7];
-            moraleColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[8];
-            maxSpeedColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[9];
-
-            // ユニットクラスリストボックス
-            classListBox.ItemHeight = DeviceCaps.GetScaledHeight(classListBox.ItemHeight);
-
-            // 国家リストビュー
-            countryDummyColumnHeader.Width = DeviceCaps.GetScaledWidth(countryDummyColumnHeader.Width);
-
-            // 改良リストビュー
-            upgradeTypeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[0];
-            upgradeCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[1];
-            upgradeTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[2];
-
-            // 装備リストビュー
-            resourceColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[0];
-            quantityColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[1];
-
-
-            // ウィンドウの位置
-            Location = HoI2Editor.Settings.UnitEditor.Location;
-            Size = HoI2Editor.Settings.UnitEditor.Size;
-        }
-
-        /// <summary>
-        ///     フォーム移動時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUnitEditorFormMove(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                HoI2Editor.Settings.UnitEditor.Location = Location;
-            }
-        }
-
-        /// <summary>
-        ///     フォームリサイズ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnUnitEditorFormResize(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                HoI2Editor.Settings.UnitEditor.Size = Size;
-            }
-        }
-
-        #endregion
-
         #region データ処理
-
-        /// <summary>
-        ///     再読み込みボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnReloadButtonClick(object sender, EventArgs e)
-        {
-            // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
-            {
-                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Cancel:
-                        return;
-                    case DialogResult.Yes:
-                        HoI2Editor.Save();
-                        break;
-                }
-            }
-
-            HoI2Editor.Reload();
-        }
-
-        /// <summary>
-        ///     保存ボタン押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSaveButtonClick(object sender, EventArgs e)
-        {
-            HoI2Editor.Save();
-        }
 
         /// <summary>
         ///     データ読み込み後の処理
@@ -584,6 +398,188 @@ namespace HoI2Editor.Forms
                     UpdateModelNameTextBox();
                     break;
             }
+        }
+
+        #endregion
+
+        #region フォーム
+
+        /// <summary>
+        ///     フォームの初期化
+        /// </summary>
+        private void InitForm()
+        {
+            // ユニットモデルリストビュー
+            noColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[0];
+            nameColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[1];
+            buildCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[2];
+            buildTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[3];
+            manpowerColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[4];
+            supplyColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[5];
+            fuelColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[6];
+            organisationColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[7];
+            moraleColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[8];
+            maxSpeedColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[9];
+
+            // ユニットクラスリストボックス
+            classListBox.ItemHeight = DeviceCaps.GetScaledHeight(classListBox.ItemHeight);
+
+            // 国家リストビュー
+            countryDummyColumnHeader.Width = DeviceCaps.GetScaledWidth(countryDummyColumnHeader.Width);
+
+            // 改良リストビュー
+            upgradeTypeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[0];
+            upgradeCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[1];
+            upgradeTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[2];
+
+            // 装備リストビュー
+            resourceColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[0];
+            quantityColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[1];
+
+
+            // ウィンドウの位置
+            Location = HoI2Editor.Settings.UnitEditor.Location;
+            Size = HoI2Editor.Settings.UnitEditor.Size;
+        }
+
+        /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 国家データを初期化する
+            Countries.Init();
+
+            // ユニットデータを初期化する
+            Units.Init();
+
+            // Miscファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
+            // ユニットデータを読み込む
+            Units.Load();
+
+            // データ読み込み後の処理
+            OnFileLoaded();
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!HoI2Editor.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    HoI2Editor.Save();
+                    break;
+                case DialogResult.No:
+                    HoI2Editor.SaveCanceled = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2Editor.OnUnitEditorFormClosed();
+        }
+
+        /// <summary>
+        ///     フォーム移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormMove(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.UnitEditor.Location = Location;
+            }
+        }
+
+        /// <summary>
+        ///     フォームリサイズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormResize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                HoI2Editor.Settings.UnitEditor.Size = Size;
+            }
+        }
+
+        /// <summary>
+        ///     再読み込みボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnReloadButtonClick(object sender, EventArgs e)
+        {
+            // 編集済みならば保存するかを問い合わせる
+            if (HoI2Editor.IsDirty())
+            {
+                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Cancel:
+                        return;
+                    case DialogResult.Yes:
+                        HoI2Editor.Save();
+                        break;
+                }
+            }
+
+            HoI2Editor.Reload();
+        }
+
+        /// <summary>
+        ///     保存ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSaveButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.Save();
+        }
+
+        /// <summary>
+        ///     閉じるボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         #endregion

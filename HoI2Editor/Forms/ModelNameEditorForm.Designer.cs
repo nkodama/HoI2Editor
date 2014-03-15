@@ -109,9 +109,9 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Name = "ModelNameEditorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnModelNameEditorFormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnModelNameEditorFormClosed);
-            this.Load += new System.EventHandler(this.OnModelNameEditorFormLoad);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
+            this.Load += new System.EventHandler(this.OnFormLoad);
             this.Move += new System.EventHandler(this.OnFormMove);
             this.Resize += new System.EventHandler(this.OnFormResize);
             this.listSplitContainer.Panel1.ResumeLayout(false);

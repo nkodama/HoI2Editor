@@ -154,67 +154,18 @@ namespace HoI2Editor.Forms
         {
             InitializeComponent();
 
-            // ウィンドウ位置の初期化
-            InitPosition();
-
-            // スケーリングを考慮した初期化
-            InitScaling();
-
-            // 技術ツリーピクチャーボックスへのドラッグアンドドロップを許可する
-            // プロパティに存在しないので初期化時に設定する
-            treePictureBox.AllowDrop = true;
+            // フォームの初期化
+            InitForm();
         }
 
-        /// <summary>
-        ///     スケーリングを考慮した初期化
-        /// </summary>
-        private void InitScaling()
-        {
-            // 技術ツリーのラベル
-            _techLabelWidth = DeviceCaps.GetScaledWidth(TechLabelWidthBase);
-            _techLabelHeight = DeviceCaps.GetScaledHeight(TechLabelHeightBase);
-            _eventLabelWidth = DeviceCaps.GetScaledWidth(EventLabelWidthBase);
-            _eventLabelHeight = DeviceCaps.GetScaledHeight(EventLabelHeightBase);
-            _techLabelRegion = new Region(new Rectangle(0, 0, _techLabelWidth, _techLabelHeight));
-            _eventLabelRegion = new Region(new Rectangle(0, 0, _eventLabelWidth, _eventLabelHeight));
-        }
+        #endregion
+
+        #region データ処理
 
         /// <summary>
-        ///     フォーム読み込み時の処理
+        ///     データ読み込み後の処理
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechEditorFormLoad(object sender, EventArgs e)
-        {
-            // 画面解像度が十分に広い場合はツリー画像全体が入るように高さを調整する
-            if (Screen.GetWorkingArea(this).Height >= 876)
-            {
-                Height = 876;
-            }
-
-            // 研究特性を初期化する
-            Techs.InitSpecialities();
-
-            // ゲーム設定ファイルを読み込む
-            Misc.Load();
-
-            // 文字列定義ファイルを読み込む
-            Config.Load();
-
-            // 技術定義ファイルを読み込む
-            Techs.Load();
-
-            // ラベル画像を読み込む
-            InitLabelBitmap();
-
-            // データ読み込み後の処理
-            OnFileLoaded();
-        }
-
-        /// <summary>
-        ///     編集項目を初期化する
-        /// </summary>
-        private void InitEditableItems()
+        public void OnFileLoaded()
         {
             // 技術タブの編集項目を初期化する
             InitTechItems();
@@ -224,70 +175,46 @@ namespace HoI2Editor.Forms
 
             // 技術効果タブの編集項目を初期化する
             InitEffectItems();
+
+            // 必要技術タブの技術リストを更新する
+            UpdateRequiredTechListItems();
+
+            // 技術イベントタブの技術リストを更新する
+            UpdateEventTechListItems();
+
+            // カテゴリリストボックスを初期化する
+            InitCategoryList();
+        }
+
+        /// <summary>
+        ///     データ保存後の処理
+        /// </summary>
+        public void OnFileSaved()
+        {
+            // 編集済みフラグがクリアされるため表示を更新する
+            categoryListBox.Refresh();
+            techListBox.Refresh();
+            UpdateCategoryItems();
+            UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目変更後の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        public void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
         }
 
         #endregion
 
-        #region 終了処理
+        #region フォーム
 
         /// <summary>
-        ///     閉じるボタン押下時の処理
+        ///     フォームの初期化
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCloseButtonClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        /// <summary>
-        ///     フォームクローズ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechEditorFormClosing(object sender, FormClosingEventArgs e)
-        {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2Editor.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     フォームクローズ後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechEditorFormClosed(object sender, FormClosedEventArgs e)
-        {
-            HoI2Editor.OnTechEditorFormClosed();
-        }
-
-        #endregion
-
-        #region ウィンドウ位置
-
-        /// <summary>
-        ///     ウィンドウ位置の初期化
-        /// </summary>
-        private void InitPosition()
+        private void InitForm()
         {
             // 技術カテゴリリストボックス
             categoryListBox.ItemHeight = DeviceCaps.GetScaledHeight(categoryListBox.ItemHeight);
@@ -331,9 +258,93 @@ namespace HoI2Editor.Forms
             eventXColumnHeader.Width = HoI2Editor.Settings.TechEditor.EventPositionListColumnWidth[0];
             eventYColumnHeader.Width = HoI2Editor.Settings.TechEditor.EventPositionListColumnWidth[1];
 
+            // 技術ツリーのラベル
+            _techLabelWidth = DeviceCaps.GetScaledWidth(TechLabelWidthBase);
+            _techLabelHeight = DeviceCaps.GetScaledHeight(TechLabelHeightBase);
+            _eventLabelWidth = DeviceCaps.GetScaledWidth(EventLabelWidthBase);
+            _eventLabelHeight = DeviceCaps.GetScaledHeight(EventLabelHeightBase);
+            _techLabelRegion = new Region(new Rectangle(0, 0, _techLabelWidth, _techLabelHeight));
+            _eventLabelRegion = new Region(new Rectangle(0, 0, _eventLabelWidth, _eventLabelHeight));
+
+            // 技術ツリーピクチャーボックスへのドラッグアンドドロップを許可する
+            // プロパティに存在しないので初期化時に設定する
+            treePictureBox.AllowDrop = true;
+
             // ウィンドウの位置
             Location = HoI2Editor.Settings.TechEditor.Location;
             Size = HoI2Editor.Settings.TechEditor.Size;
+        }
+
+        /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            // 画面解像度が十分に広い場合はツリー画像全体が入るように高さを調整する
+            if (Screen.GetWorkingArea(this).Height >= 876)
+            {
+                Height = 876;
+            }
+
+            // 研究特性を初期化する
+            Techs.InitSpecialities();
+
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
+            // 技術定義ファイルを読み込む
+            Techs.Load();
+
+            // ラベル画像を読み込む
+            InitLabelBitmap();
+
+            // データ読み込み後の処理
+            OnFileLoaded();
+        }
+
+        /// <summary>
+        ///     フォームクローズ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 編集済みでなければフォームを閉じる
+            if (!HoI2Editor.IsDirty())
+            {
+                return;
+            }
+
+            // 保存するかを問い合わせる
+            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+            switch (result)
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.Yes:
+                    HoI2Editor.Save();
+                    break;
+                case DialogResult.No:
+                    HoI2Editor.SaveCanceled = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     フォームクローズ後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            HoI2Editor.OnTechEditorFormClosed();
         }
 
         /// <summary>
@@ -341,7 +352,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechEditorFormMove(object sender, EventArgs e)
+        private void OnFormMove(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
             {
@@ -354,17 +365,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechEditorFormResize(object sender, EventArgs e)
+        private void OnFormResize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
             {
                 HoI2Editor.Settings.TechEditor.Size = Size;
             }
         }
-
-        #endregion
-
-        #region データ処理
 
         /// <summary>
         ///     再読み込みボタン押下時の処理
@@ -402,42 +409,13 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     データ読み込み後の処理
+        ///     閉じるボタン押下時の処理
         /// </summary>
-        public void OnFileLoaded()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCloseButtonClick(object sender, EventArgs e)
         {
-            // 編集項目を初期化する
-            InitEditableItems();
-
-            // 必要技術タブの技術リストを更新する
-            UpdateRequiredTechListItems();
-
-            // 技術イベントタブの技術リストを更新する
-            UpdateEventTechListItems();
-
-            // カテゴリリストボックスを初期化する
-            InitCategoryList();
-        }
-
-        /// <summary>
-        ///     データ保存後の処理
-        /// </summary>
-        public void OnFileSaved()
-        {
-            // 編集済みフラグがクリアされるため表示を更新する
-            categoryListBox.Refresh();
-            techListBox.Refresh();
-            UpdateCategoryItems();
-            UpdateEditableItems();
-        }
-
-        /// <summary>
-        ///     編集項目変更後の処理
-        /// </summary>
-        /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
-        {
-            // 何もしない
+            Close();
         }
 
         #endregion
