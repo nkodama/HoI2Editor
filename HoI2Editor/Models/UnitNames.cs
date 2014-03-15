@@ -559,6 +559,10 @@ namespace HoI2Editor.Models
             {
                 Items.Add(country, new Dictionary<UnitNameType, List<string>>());
             }
+            if (!ExistsType(country, type))
+            {
+                Items[country].Add(type, new List<string>());
+            }
 
             // ユニット名リストに変更がなければ戻る
             if (names.SequenceEqual(Items[country][type]))
