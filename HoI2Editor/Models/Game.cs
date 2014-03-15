@@ -83,6 +83,9 @@ namespace HoI2Editor.Models
                 // MODフォルダ名を更新する
                 UpdateModFolderName();
 
+                // 保存フォルダ名を更新する
+                UpdateExportFolderName();
+
                 // ファイルの再読み込みを要求する
                 HoI2Editor.RequestReload();
             }
