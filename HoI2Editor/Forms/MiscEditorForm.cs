@@ -914,7 +914,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             Misc.SetDirty(id);
-            Misc.SetDirty();
 
             // 文字色を変更する
             textBox.ForeColor = Color.Red;
@@ -1123,7 +1122,6 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             Misc.SetDirty(id);
-            Misc.SetDirty();
 
             // 項目色を変更するために描画更新する
             comboBox.Refresh();

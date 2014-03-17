@@ -204,7 +204,7 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\ttoughness\t\t\t\t= {0}", model.Toughness.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tsoftness\t\t\t\t= {0}", model.Softness.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tsuppression\t\t\t\t= {0}", model.Suppression.ToString(CultureInfo.InvariantCulture));
-            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefence.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tsoftattack\t\t\t\t= {0}", model.SoftAttack.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\thardattack\t\t\t\t= {0}", model.HardAttack.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
@@ -290,7 +290,7 @@ namespace HoI2Editor.Writers
                 model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tvisibility\t\t\t\t\t= {0}", model.Visibility.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tseadefence\t\t\t\t\t= {0}", model.SeaDefense.ToString(CultureInfo.InvariantCulture));
-            writer.WriteLine("\tairdefence\t\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t\t= {0}", model.AirDefence.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tseaattack\t\t\t\t\t= {0}", model.SeaAttack.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tairattack\t\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tsubattack\t\t\t\t\t= {0}", model.SubAttack.ToString(CultureInfo.InvariantCulture));
@@ -341,8 +341,8 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tairdetectioncapability\t\t= {0}",
                 model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tsurfacedefence\t\t\t\t= {0}",
-                model.SurfaceDefense.ToString(CultureInfo.InvariantCulture));
-            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+                model.SurfaceDefence.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefence.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tstrategicattack\t\t\t\t= {0}",
                 model.StrategicAttack.ToString(CultureInfo.InvariantCulture));
@@ -414,9 +414,9 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("\tsuppression\t\t\t= {0}", model.Suppression.ToString(CultureInfo.InvariantCulture));
             }
-            if (Math.Abs(model.AirDefense) > 0.00005)
+            if (Math.Abs(model.AirDefence) > 0.00005)
             {
-                writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefence.ToString(CultureInfo.InvariantCulture));
             }
             if (Math.Abs(model.SoftAttack) > 0.00005)
             {
@@ -524,7 +524,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("\tvisibility\t\t\t\t\t= {0}", model.Visibility.ToString(CultureInfo.InvariantCulture));
             }
-            writer.WriteLine("\tairdefence\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t= {0}", model.AirDefence.ToString(CultureInfo.InvariantCulture));
             if (Math.Abs(model.SeaDefense) > 0.00005)
             {
                 writer.WriteLine("\tseadefence\t\t\t= {0}", model.SeaDefense.ToString(CultureInfo.InvariantCulture));
@@ -579,8 +579,8 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tairdetectioncapability\t\t= {0}",
                 model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tsurfacedefence\t\t\t\t= {0}",
-                model.SurfaceDefense.ToString(CultureInfo.InvariantCulture));
-            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefense.ToString(CultureInfo.InvariantCulture));
+                model.SurfaceDefence.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine("\tairdefence\t\t\t\t= {0}", model.AirDefence.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tairattack\t\t\t\t= {0}", model.AirAttack.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("\tstrategicattack\t\t\t\t= {0}",
                 model.StrategicAttack.ToString(CultureInfo.InvariantCulture));

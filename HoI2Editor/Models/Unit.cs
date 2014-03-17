@@ -157,6 +157,11 @@ namespace HoI2Editor.Models
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (UnitClassItemId)).Length];
 
         /// <summary>
+        ///     ユニット定義ファイルの編集済みフラグ
+        /// </summary>
+        private bool _dirtyFileFlag;
+
+        /// <summary>
         ///     編集済みフラグ
         /// </summary>
         private bool _dirtyFlag;
@@ -1614,64 +1619,59 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            // DHの場合はユニットの設定値を更新する
             if (Game.Type == GameType.DarkestHour)
             {
-                // 値を更新する
+                // DHの場合はユニットの設定値を更新する
                 MaxAllowedBrigades = brigades;
-
-                // 編集済みフラグを設定する
-                SetDirty(UnitClassItemId.MaxAllowedBrigades);
-                SetDirty();
-
-                return;
             }
-
-            // AoD1.07以降の場合は艦船ユニットのみ値を更新する
-            switch (Type)
+            else
             {
-                case UnitType.Transport:
-                    Misc.TpMaxAttach = brigades;
-                    break;
+                // AoD1.07以降の場合は艦船ユニットのみ値を更新する
+                switch (Type)
+                {
+                    case UnitType.Transport:
+                        Misc.TpMaxAttach = brigades;
+                        break;
 
-                case UnitType.Submarine:
-                    Misc.SsMaxAttach = brigades;
-                    break;
+                    case UnitType.Submarine:
+                        Misc.SsMaxAttach = brigades;
+                        break;
 
-                case UnitType.NuclearSubmarine:
-                    Misc.SsnMaxAttach = brigades;
-                    break;
+                    case UnitType.NuclearSubmarine:
+                        Misc.SsnMaxAttach = brigades;
+                        break;
 
-                case UnitType.Destroyer:
-                    Misc.DdMaxAttach = brigades;
-                    break;
+                    case UnitType.Destroyer:
+                        Misc.DdMaxAttach = brigades;
+                        break;
 
-                case UnitType.LightCruiser:
-                    Misc.ClMaxAttach = brigades;
-                    break;
+                    case UnitType.LightCruiser:
+                        Misc.ClMaxAttach = brigades;
+                        break;
 
-                case UnitType.HeavyCruiser:
-                    Misc.CaMaxAttach = brigades;
-                    break;
+                    case UnitType.HeavyCruiser:
+                        Misc.CaMaxAttach = brigades;
+                        break;
 
-                case UnitType.BattleCruiser:
-                    Misc.BcMaxAttach = brigades;
-                    break;
+                    case UnitType.BattleCruiser:
+                        Misc.BcMaxAttach = brigades;
+                        break;
 
-                case UnitType.BattleShip:
-                    Misc.BbMaxAttach = brigades;
-                    break;
+                    case UnitType.BattleShip:
+                        Misc.BbMaxAttach = brigades;
+                        break;
 
-                case UnitType.LightCarrier:
-                    Misc.CvlMaxAttach = brigades;
-                    break;
+                    case UnitType.LightCarrier:
+                        Misc.CvlMaxAttach = brigades;
+                        break;
 
-                case UnitType.Carrier:
-                    Misc.CvMaxAttach = brigades;
-                    break;
+                    case UnitType.Carrier:
+                        Misc.CvMaxAttach = brigades;
+                        break;
 
-                default:
-                    return;
+                    default:
+                        return;
+                }
             }
 
             // 編集済みフラグを設定する
@@ -1709,7 +1709,7 @@ namespace HoI2Editor.Models
 
             // 編集済みフラグを設定する
             model.SetDirtyAll();
-            SetDirty();
+            SetDirtyFile();
         }
 
         /// <summary>
@@ -1734,7 +1734,7 @@ namespace HoI2Editor.Models
             Models.RemoveAt(index);
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyFile();
         }
 
         /// <summary>
@@ -1787,7 +1787,7 @@ namespace HoI2Editor.Models
             }
 
             // 編集済みフラグを設定する
-            SetDirty();
+            SetDirtyFile();
         }
 
         #endregion
@@ -2116,6 +2116,77 @@ namespace HoI2Editor.Models
         public void SetDirty(UnitClassItemId id)
         {
             _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+
+            switch (id)
+            {
+                case UnitClassItemId.MaxSpeedStep: // 最大生産速度
+                case UnitClassItemId.Detachable: // 旅団が着脱可能か
+                    _dirtyFileFlag = true;
+                    Units.SetDirty();
+                    break;
+
+                case UnitClassItemId.Name:
+                case UnitClassItemId.ShortName:
+                case UnitClassItemId.Desc:
+                case UnitClassItemId.ShortDesc:
+                    // 文字列のみの更新となるのでユニット定義ファイルの更新は必要ない
+                    break;
+
+                case UnitClassItemId.Eyr: // 統計グループ
+                case UnitClassItemId.Sprite: // スプライトの種類
+                case UnitClassItemId.Transmute: // 生産不可能な時に使用するクラス
+                case UnitClassItemId.GfxPrio: // 画像の優先度
+                case UnitClassItemId.Vaule: // 軍事力
+                case UnitClassItemId.ListPrio: // リストの優先度
+                case UnitClassItemId.UiPrio: // UI優先度
+                case UnitClassItemId.RealType: // 実ユニット種類
+                case UnitClassItemId.Productable: // 初期状態で生産可能かどうか
+                case UnitClassItemId.Cag: // 空母航空隊かどうか
+                case UnitClassItemId.Escort: // 護衛戦闘機かどうか
+                case UnitClassItemId.Engineer: // 工兵かどうか
+                case UnitClassItemId.DefaultType: // 標準の生産タイプかどうか
+                    if (Organization == UnitOrganization.Division)
+                    {
+                        Units.SetDirtyDivisionTypes();
+                    }
+                    else
+                    {
+                        Units.SetDirtyBrigadeTypes();
+                    }
+                    break;
+
+                case UnitClassItemId.Branch: // ユニットの兵科
+                    switch (Game.Type)
+                    {
+                        case GameType.ArsenalOfDemocracy:
+                            // AoDの場合ユニット定義ファイルで師団/旅団ともに編集可能
+                            _dirtyFileFlag = true;
+                            Units.SetDirty();
+                            break;
+
+                        case GameType.DarkestHour:
+                            // DHの場合旅団のみ旅団定義ファイルで編集可能
+                            Units.SetDirtyBrigadeTypes();
+                            break;
+                    }
+                    break;
+
+                case UnitClassItemId.MaxAllowedBrigades: // 最大旅団数
+                    switch (Game.Type)
+                    {
+                        case GameType.ArsenalOfDemocracy:
+                            // AoDの場合艦船ユニットのみMisc側で設定するためここでは何もしない
+                            break;
+
+                        case GameType.DarkestHour:
+                            // DHの場合はユニット定義ファイルで編集可能
+                            _dirtyFileFlag = true;
+                            Units.SetDirty();
+                            break;
+                    }
+                    break;
+            }
         }
 
         /// <summary>
@@ -2123,6 +2194,25 @@ namespace HoI2Editor.Models
         /// </summary>
         public void SetDirty()
         {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     ユニット定義ファイルが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyFile()
+        {
+            return _dirtyFileFlag;
+        }
+
+        /// <summary>
+        ///     ユニット定義ファイルの編集済みフラグを設定する
+        /// </summary>
+        /// <returns></returns>
+        public void SetDirtyFile()
+        {
+            _dirtyFileFlag = true;
             _dirtyFlag = true;
             Units.SetDirty();
         }
@@ -2147,6 +2237,9 @@ namespace HoI2Editor.Models
             {
                 _dirtyBrigades.Add(type);
             }
+            _dirtyFileFlag = true;
+            _dirtyFlag = true;
+            Units.SetDirty();
         }
 
         /// <summary>
@@ -2163,6 +2256,7 @@ namespace HoI2Editor.Models
             {
                 model.ResetDirtyAll();
             }
+            _dirtyFileFlag = false;
             _dirtyFlag = false;
         }
 
@@ -2244,12 +2338,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     対空防御力
         /// </summary>
-        public double AirDefense { get; set; }
+        public double AirDefence { get; set; }
 
         /// <summary>
         ///     対地/対艦防御力
         /// </summary>
-        public double SurfaceDefense { get; set; }
+        public double SurfaceDefence { get; set; }
 
         /// <summary>
         ///     耐久力
@@ -2489,8 +2583,8 @@ namespace HoI2Editor.Models
             SpeedCapAa = original.SpeedCapAa;
             Defensiveness = original.Defensiveness;
             SeaDefense = original.SeaDefense;
-            AirDefense = original.AirDefense;
-            SurfaceDefense = original.SurfaceDefense;
+            AirDefence = original.AirDefence;
+            SurfaceDefence = original.SurfaceDefence;
             Toughness = original.Toughness;
             Softness = original.Softness;
             SoftAttack = original.SoftAttack;
@@ -2587,6 +2681,7 @@ namespace HoI2Editor.Models
         public void SetDirty(UnitModelItemId id)
         {
             _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>
@@ -2697,6 +2792,7 @@ namespace HoI2Editor.Models
         public void SetDirty(UnitEquipmentItemId id)
         {
             _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>
@@ -2800,6 +2896,7 @@ namespace HoI2Editor.Models
         public void SetDirty(UnitUpgradeItemId id)
         {
             _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>

@@ -788,7 +788,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対空防御力
-                    model.AirDefense = (double) token.Value;
+                    model.AirDefence = (double) token.Value;
                     continue;
                 }
 
@@ -814,7 +814,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対地/対艦防御力
-                    model.SurfaceDefense = (double) token.Value;
+                    model.SurfaceDefence = (double) token.Value;
                     continue;
                 }
 

@@ -2200,6 +2200,15 @@ namespace HoI2Editor.Models
             // 編集済みフラグを解除する
             _dirtyFlag = false;
 
+            // 文字列定義のみ読み込みの場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
+            foreach (Unit unit in Items)
+            {
+                unit.ResetDirtyAll();
+            }
+
+            // モデル名の編集済みフラグをクリアする
+            ResetDirtyAllModelName();
+
             // 読み込み済みフラグを設定する
             _loaded = true;
         }
@@ -2316,65 +2325,59 @@ namespace HoI2Editor.Models
                 }
             }
 
-            if (IsDirty())
+            // ユニット定義ファイルへ順に保存する
+            bool error = false;
+            foreach (Unit unit in Items.Where(unit => unit.IsDirtyFile()))
             {
-                // ユニット定義ファイルへ順に保存する
-                bool error = false;
-                foreach (Unit unit in Items.Where(unit => unit.IsDirty()))
+                string folderName = Game.GetWriteFileName((unit.Organization == UnitOrganization.Division)
+                    ? Game.DivisionPathName
+                    : Game.BrigadePathName);
+                string fileName = Path.Combine(folderName, DefaultFileNames[(int) unit.Type]);
+
+                try
                 {
-                    string folderName = Game.GetWriteFileName((unit.Organization == UnitOrganization.Division)
-                        ? Game.DivisionPathName
-                        : Game.BrigadePathName);
-                    string fileName = Path.Combine(folderName, DefaultFileNames[(int) unit.Type]);
-
-                    try
+                    // 師団/旅団定義フォルダがなければ作成する
+                    if (!Directory.Exists(folderName))
                     {
-                        // 師団/旅団定義フォルダがなければ作成する
-                        if (!Directory.Exists(folderName))
-                        {
-                            Directory.CreateDirectory(folderName);
-                        }
-
-                        Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
-
-                        // ユニット定義ファイルを保存する
-                        UnitWriter.Write(unit, fileName);
+                        Directory.CreateDirectory(folderName);
                     }
-                    catch (Exception)
+
+                    Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
+
+                    // ユニット定義ファイルを保存する
+                    UnitWriter.Write(unit, fileName);
+                }
+                catch (Exception)
+                {
+                    error = true;
+                    Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
+                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                        == DialogResult.Cancel)
                     {
-                        error = true;
-                        Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
-                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
-                            Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
-                            == DialogResult.Cancel)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
-
-                // 保存に失敗していれば戻る
-                if (error)
-                {
-                    return false;
-                }
-
-                // 編集済みフラグを解除する
-                _dirtyFlag = false;
             }
 
-            if (_loaded)
+            // 保存に失敗していれば戻る
+            if (error)
             {
-                // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
-                foreach (Unit unit in Items)
-                {
-                    unit.ResetDirtyAll();
-                }
-
-                // モデル名の編集済みフラグをクリアする
-                ResetDirtyAllModelName();
+                return false;
             }
+
+            // 編集済みフラグを解除する
+            _dirtyFlag = false;
+
+            // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
+            foreach (Unit unit in Items)
+            {
+                unit.ResetDirtyAll();
+            }
+
+            // モデル名の編集済みフラグをクリアする
+            ResetDirtyAllModelName();
 
             return true;
         }

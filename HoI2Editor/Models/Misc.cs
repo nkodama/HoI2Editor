@@ -33,7 +33,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.TpMaxAttach] = value;
                 SetDirty(MiscItemId.TpMaxAttach);
-                SetDirty();
             }
         }
 
@@ -50,7 +49,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.SsMaxAttach] = value;
                 SetDirty(MiscItemId.SsMaxAttach);
-                SetDirty();
             }
         }
 
@@ -67,7 +65,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.SsnMaxAttach] = value;
                 SetDirty(MiscItemId.SsnMaxAttach);
-                SetDirty();
             }
         }
 
@@ -84,7 +81,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.DdMaxAttach] = value;
                 SetDirty(MiscItemId.DdMaxAttach);
-                SetDirty();
             }
         }
 
@@ -101,7 +97,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.ClMaxAttach] = value;
                 SetDirty(MiscItemId.ClMaxAttach);
-                SetDirty();
             }
         }
 
@@ -118,7 +113,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.CaMaxAttach] = value;
                 SetDirty(MiscItemId.CaMaxAttach);
-                SetDirty();
             }
         }
 
@@ -135,7 +129,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.BcMaxAttach] = value;
                 SetDirty(MiscItemId.BcMaxAttach);
-                SetDirty();
             }
         }
 
@@ -152,7 +145,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.BbMaxAttach] = value;
                 SetDirty(MiscItemId.BbMaxAttach);
-                SetDirty();
             }
         }
 
@@ -169,7 +161,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.CvlMaxAttach] = value;
                 SetDirty(MiscItemId.CvlMaxAttach);
-                SetDirty();
             }
         }
 
@@ -186,7 +177,6 @@ namespace HoI2Editor.Models
             {
                 _items[(int) MiscItemId.CvMaxAttach] = value;
                 SetDirty(MiscItemId.CvMaxAttach);
-                SetDirty();
             }
         }
 
@@ -4284,6 +4274,7 @@ namespace HoI2Editor.Models
         public static void SetDirty(MiscItemId id)
         {
             DirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
         }
 
         /// <summary>
