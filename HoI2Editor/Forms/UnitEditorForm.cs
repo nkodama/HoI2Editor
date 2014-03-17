@@ -1467,6 +1467,12 @@ namespace HoI2Editor.Forms
                 : SystemColors.WindowText;
             maxAllowedBrigadesNumericUpDown.ForeColor =
                 unit.IsDirty(UnitClassItemId.MaxAllowedBrigades) ? Color.Red : SystemColors.WindowText;
+
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
+            {
+                upgradeCostTextBox.ForeColor = SystemColors.WindowText;
+                upgradeTimeTextBox.ForeColor = SystemColors.WindowText;
+            }
         }
 
         /// <summary>

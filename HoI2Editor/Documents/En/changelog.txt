@@ -4,6 +4,7 @@ Alternative HoI2 Editor Changelog
 
 Fixed a bug that a unit editor crashes when editing undefined names.
 Changed to save window position and some selections when the editor has been closed.
+Revised modified status view of a unit model editor.
 Renamed division names to corps names.
 
 - 9 March 2014; Ver 0.33
