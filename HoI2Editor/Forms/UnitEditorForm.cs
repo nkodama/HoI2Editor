@@ -1180,7 +1180,8 @@ namespace HoI2Editor.Forms
             // 兵科
             branchComboBox.SelectedIndex = (int) unit.Branch - 1;
             if ((Game.Type == GameType.ArsenalOfDemocracy) ||
-                ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103)))
+                ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) &&
+                 (unit.Organization == UnitOrganization.Brigade)))
             {
                 branchComboBox.Enabled = true;
             }
