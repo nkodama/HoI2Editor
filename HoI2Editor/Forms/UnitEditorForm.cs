@@ -377,13 +377,13 @@ namespace HoI2Editor.Forms
             switch (id)
             {
                 case EditorItemId.MaxAllowedBrigades:
-                    Debug.WriteLine("[Unit] Changed max allowed brigades");
+                    Debug.WriteLine("[Unit] Notified max allowed brigades");
                     // 最大付属旅団数の表示を更新する
                     UpdateMaxAllowedBrigades();
                     break;
 
                 case EditorItemId.CommonModelName:
-                    Debug.WriteLine("[Unit] Changed common model name");
+                    Debug.WriteLine("[Unit] Notified common model name");
                     // ユニットモデルリストのモデル名を更新する
                     UpdateModelListName();
                     // ユニットモデル名の表示を更新する
@@ -391,7 +391,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case EditorItemId.CountryModelName:
-                    Debug.WriteLine("[Unit] Changed country model name");
+                    Debug.WriteLine("[Unit] Notified country model name");
                     // ユニットモデルリストのモデル名を更新する
                     UpdateModelListName();
                     // ユニットモデル名の表示を更新する
@@ -827,8 +827,6 @@ namespace HoI2Editor.Forms
             int index = (modelListView.SelectedIndices.Count > 0) ? (modelListView.SelectedIndices[0] + 1) : 0;
             InsertModel(unit, model, index, "");
 
-            Debug.WriteLine(string.Format("[Unit] Added new model: {0} ({1})", index, unit));
-
             // ユニットモデルリストの更新を通知する
             HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
@@ -858,8 +856,6 @@ namespace HoI2Editor.Forms
             var model = new UnitModel(unit.Models[index]);
             InsertModel(unit, model, index + 1, unit.GetModelName(index));
 
-            Debug.WriteLine(string.Format("[Unit] Added new model: {0} ({1})", index + 1, unit));
-
             // ユニットモデルリストの更新を通知する
             HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
         }
@@ -887,8 +883,6 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを削除する
             RemoveModel(unit, index);
-
-            Debug.WriteLine(string.Format("[Unit] Removed model: {0} ({1})", index, unit));
 
             // ユニットモデルリストの更新を通知する
             HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
@@ -1736,6 +1730,9 @@ namespace HoI2Editor.Forms
                 }
             }
 
+            Debug.WriteLine(string.Format("[Unit] unit name: {0} -> {1}", Config.GetText(unit.Name),
+                classNameTextBox.Text));
+
             // 値を更新する
             Config.SetText(unit.Name, classNameTextBox.Text, Game.UnitTextFileName);
 
@@ -1789,8 +1786,6 @@ namespace HoI2Editor.Forms
             // 文字色を変更する
             classNameTextBox.ForeColor = Color.Red;
 
-            Debug.WriteLine(string.Format("[Unit] Changed unit name: {0}", unit));
-
             // ユニットクラス名の更新を通知する
             HoI2Editor.OnItemChanged(EditorItemId.UnitName, this);
         }
@@ -1815,6 +1810,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] unit short name: {0} -> {1} ({2})", unit.GetShortName(),
+                classShortNameTextBox.Text, unit));
+
             // 値を更新する
             Config.SetText(unit.ShortName, classShortNameTextBox.Text, Game.UnitTextFileName);
 
@@ -1823,8 +1821,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             classShortNameTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed unit short name: {0} ({1})", unit.GetShortName(), unit));
         }
 
         /// <summary>
@@ -1847,6 +1843,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] unit desc: {0} -> {1} ({2})", unit.GetDesc(), classDescTextBox.Text,
+                unit));
+
             // 値を更新する
             Config.SetText(unit.Desc, classDescTextBox.Text, Game.UnitTextFileName);
 
@@ -1855,8 +1854,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             classDescTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed unit desc: {0} ({1})", unit.GetDesc(), unit));
         }
 
         /// <summary>
@@ -1879,6 +1876,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] unit short desc: {0} -> {1} ({2})", unit.GetShortDesc(),
+                classShortDescTextBox.Text, unit));
+
             // 値を更新する
             Config.SetText(unit.ShortDesc, classShortDescTextBox.Text, Game.UnitTextFileName);
 
@@ -1887,8 +1887,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             classShortDescTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed unit short desc: {0} ({1})", unit.GetShortDesc(), unit));
         }
 
         /// <summary>
@@ -1912,6 +1910,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] branch: {0} -> {1} ({2})", Leaders.BranchNames[(int) unit.Branch],
+                Leaders.BranchNames[(int) branch], unit));
+
             // 値を更新する
             unit.Branch = branch;
 
@@ -1927,9 +1928,6 @@ namespace HoI2Editor.Forms
 
             // 兵科コンボボックスの項目色を変更するために描画更新する
             branchComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed branch: {0} ({1})", Leaders.BranchNames[(int) unit.Branch],
-                unit));
         }
 
         /// <summary>
@@ -1953,6 +1951,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] eyr: {0} -> {1} ({2})", unit.Eyr, eyr, unit));
+
             // 値を更新する
             unit.Eyr = eyr;
 
@@ -1961,8 +1961,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             eyrNumericUpDown.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed eyr: {0} ({1})", unit.Eyr, unit));
         }
 
         /// <summary>
@@ -1986,6 +1984,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] gfx prio: {0} -> {1} ({2})", unit.GfxPrio, prio, unit));
+
             // 値を更新する
             unit.GfxPrio = prio;
 
@@ -1994,8 +1994,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             gfxPrioNumericUpDown.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed gfx prio: {0} ({1})", unit.GfxPrio, unit));
         }
 
         /// <summary>
@@ -2019,6 +2017,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] list prio: {0} -> {1} ({2})", unit.ListPrio, prio, unit));
+
             // 値を更新する
             unit.ListPrio = prio;
 
@@ -2027,8 +2027,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             listPrioNumericUpDown.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed list prio: {0} ({1})", unit.ListPrio, unit));
         }
 
         /// <summary>
@@ -2052,6 +2050,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] ui prio: {0} -> {1} ({2})", unit.UiPrio, prio, unit));
+
             // 値を更新する
             unit.UiPrio = prio;
 
@@ -2060,8 +2060,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             uiPrioNumericUpDown.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed ui prio: {0} ({1})", unit.UiPrio, unit));
         }
 
         /// <summary>
@@ -2091,6 +2089,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] real unit type: {0} -> {1} ({2})",
+                Config.GetText(Units.RealNames[(int) unit.RealType]), Config.GetText(Units.RealNames[(int) type]), unit));
+
             // 値を更新する
             unit.RealType = type;
 
@@ -2099,9 +2100,6 @@ namespace HoI2Editor.Forms
 
             // 実ユニット種類コンボボックスの項目色を変更するために描画更新する
             realUnitTypeComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed real unit type: {0} ({1})",
-                Config.GetText(Units.RealNames[(int) unit.RealType]), unit));
         }
 
         /// <summary>
@@ -2124,6 +2122,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] default production type: {0} -> {1} ({2})",
+                BoolHelper.ToYesNo(unit.DefaultType), BoolHelper.ToYesNo(defaultTypeCheckBox.Checked), unit));
+
             // 値を更新する
             unit.DefaultType = defaultTypeCheckBox.Checked;
 
@@ -2132,9 +2133,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             defaultTypeCheckBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed default production type: {0} ({1})",
-                unit.DefaultType ? "yes" : "no", unit));
         }
 
         /// <summary>
@@ -2164,6 +2162,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] sprite type: {0} -> {1} ({2})",
+                Config.GetText(Units.SpriteNames[(int) unit.Sprite]), Config.GetText(Units.SpriteNames[(int) type]),
+                unit));
+
             // 値を更新する
             unit.Sprite = type;
 
@@ -2172,9 +2174,6 @@ namespace HoI2Editor.Forms
 
             // スプライト種類コンボボックスの項目色を変更するために描画更新する
             spriteTypeComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed sprite type: {0} ({1})",
-                Config.GetText(Units.SpriteNames[(int) unit.Sprite]), unit));
         }
 
         /// <summary>
@@ -2204,6 +2203,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] transmute type: {0} -> {1} ({2})", Units.Items[(int) unit.Transmute],
+                Units.Items[(int) type], unit));
+
             // 値を更新する
             unit.Transmute = type;
 
@@ -2212,9 +2214,6 @@ namespace HoI2Editor.Forms
 
             // 代替ユニットコンボボックスの項目色を変更するために描画更新する
             transmuteComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed transmute type: {0} ({1})", Units.Items[(int) unit.Transmute],
-                unit));
         }
 
         /// <summary>
@@ -2245,6 +2244,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] military value: {0} -> {1} ({2})",
+                unit.Value.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture), unit));
+
             // 値を更新する
             unit.Value = val;
 
@@ -2253,9 +2255,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             militaryValueTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed military value: {0} ({1})",
-                unit.Value.ToString(CultureInfo.InvariantCulture), unit));
         }
 
         /// <summary>
@@ -2285,6 +2284,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] max speed step: {0} -> {1} ({2})", unit.MaxSpeedStep, val, unit));
+
             // 値を更新する
             unit.MaxSpeedStep = val;
 
@@ -2293,8 +2294,6 @@ namespace HoI2Editor.Forms
 
             // 最大生産速度コンボボックスの項目色を変更するために描画更新する
             maxSpeedStepComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed max speed step: {0} ({1})", unit.MaxSpeedStep, unit));
         }
 
         /// <summary>
@@ -2316,6 +2315,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] productable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Productable),
+                BoolHelper.ToYesNo(productableCheckBox.Checked), unit));
+
             // 値を更新する
             unit.Productable = productableCheckBox.Checked;
 
@@ -2324,8 +2326,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             productableCheckBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed productable: {0} ({1})", unit.Productable ? "yes" : "no", unit));
         }
 
         /// <summary>
@@ -2348,6 +2348,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] detachable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Detachable),
+                BoolHelper.ToYesNo(detachableCheckBox.Checked), unit));
+
             // 値を更新する
             unit.Detachable = detachableCheckBox.Checked;
 
@@ -2356,8 +2359,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             detachableCheckBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed detachable: {0} ({1})", unit.Detachable ? "yes" : "no", unit));
         }
 
         /// <summary>
@@ -2380,6 +2381,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] cag: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Cag),
+                BoolHelper.ToYesNo(cagCheckBox.Checked), unit));
+
             // 値を更新する
             unit.Cag = cagCheckBox.Checked;
 
@@ -2388,8 +2392,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             cagCheckBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed cag: {0} ({1})", unit.Cag ? "yes" : "no", unit));
         }
 
         /// <summary>
@@ -2412,6 +2414,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] escort: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Escort),
+                BoolHelper.ToYesNo(escortCheckBox.Checked), unit));
+
             // 値を更新する
             unit.Escort = escortCheckBox.Checked;
 
@@ -2420,8 +2425,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             escortCheckBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed escort: {0} ({1})", unit.Escort ? "yes" : "no", unit));
         }
 
         /// <summary>
@@ -2444,6 +2447,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] engineer: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Engineer),
+                BoolHelper.ToYesNo(engineerCheckBox.Checked), unit));
+
             // 値を更新する
             unit.Engineer = engineerCheckBox.Checked;
 
@@ -2452,8 +2458,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             engineerCheckBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed engineer: {0} ({1})", unit.Engineer ? "yes" : "no", unit));
         }
 
         /// <summary>
@@ -2483,14 +2487,14 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] Max allowed brigades: {0} -> {1} ({2})",
+                unit.GetMaxAllowedBrigades(), maxAllowedBrigadesNumericUpDown.Value, unit));
+
             // 値を更新する
             unit.SetMaxAllowedBrigades((int) maxAllowedBrigadesNumericUpDown.Value);
 
             // 文字色を変更する
             maxAllowedBrigadesNumericUpDown.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Max allowed brigades changed: {0} ({1})", unit.GetMaxAllowedBrigades(),
-                unit));
 
             // 最大付属旅団数の更新を通知する
             if (Game.Type == GameType.ArsenalOfDemocracy)
@@ -2526,6 +2530,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
+                Debug.WriteLine(string.Format("[Unit] Added allowed brigades: {0} ({1})", brigade, unit));
+
                 // 値を更新する
                 unit.AllowedBrigades.Add(brigade.Type);
             }
@@ -2537,6 +2543,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
+                Debug.WriteLine(string.Format("[Unit] Removed allowed brigades: {0} ({1})", brigade, unit));
+
                 // 値を更新する
                 unit.AllowedBrigades.Remove(brigade.Type);
             }
@@ -2546,9 +2554,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             e.Item.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] {0} allowed brigades: {1} ({2})", e.Item.Checked ? "Added" : "Removed",
-                brigade, unit));
         }
 
         #endregion
@@ -2790,8 +2795,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 値を更新する
             Unit old = Units.Items[(int) upgrade.Type];
+
+            Debug.WriteLine(string.Format("[Unit] upgrade type: {0} -> {1} ({2})", old, selected, unit));
+
+            // 値を更新する
             upgrade.Type = selected.Type;
 
             // 改良リストビューの項目を更新する
@@ -2811,8 +2819,6 @@ namespace HoI2Editor.Forms
                 // 改良ユニット種類コンボボックスの項目色を変更するために描画更新する
                 upgradeTypeComboBox.Refresh();
             }
-
-            Debug.WriteLine(string.Format("[Unit] Changed upgrade type: {0} ({1})", selected, unit));
         }
 
         /// <summary>
@@ -2851,6 +2857,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] upgrade cost: {0} -> {1} ({2})",
+                upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit));
+
             // 値を更新する
             upgrade.UpgradeCostFactor = val;
 
@@ -2863,9 +2873,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeCostTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed upgrade cost: {0} ({1})",
-                upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture), unit));
         }
 
         /// <summary>
@@ -2904,6 +2911,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] upgrade time: {0} -> {1} ({2})",
+                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit));
+
             // 値を更新する
             upgrade.UpgradeTimeFactor = val;
 
@@ -2916,9 +2927,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeTimeTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed upgrade time: {0} ({1})",
-                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit));
         }
 
         /// <summary>
@@ -2935,9 +2943,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 改良情報を追加する
-            var u = upgradeTypeComboBox.SelectedItem as Unit;
-            var upgrade = new UnitUpgrade {Type = (u != null) ? u.Type : unit.Type};
+            var selected = upgradeTypeComboBox.SelectedItem as Unit;
+            var upgrade = new UnitUpgrade {Type = (selected != null) ? selected.Type : unit.Type};
             double val;
             if (double.TryParse(upgradeCostTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
             {
@@ -2947,6 +2954,12 @@ namespace HoI2Editor.Forms
             {
                 upgrade.UpgradeTimeFactor = val;
             }
+
+            Debug.WriteLine(string.Format("[Unit] Added upgrade info: {0} {1} {2} ({3})",
+                Units.Items[(int) upgrade.Type], upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
+                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit));
+
+            // 改良情報を追加する
             unit.Upgrades.Add(upgrade);
 
             // 編集済みフラグを設定する
@@ -2955,10 +2968,6 @@ namespace HoI2Editor.Forms
 
             // 改良リストビューに項目を追加する
             AddUpgradeListItem(upgrade);
-
-            Debug.WriteLine(string.Format("[Unit] Added upgrade info: {0} {1} {2} ({3})", u,
-                upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
-                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit));
         }
 
         /// <summary>
@@ -2982,7 +2991,8 @@ namespace HoI2Editor.Forms
             }
             int index = upgradeListView.SelectedIndices[0];
 
-            Unit removed = Units.Items[(int) unit.Upgrades[index].Type];
+            Debug.WriteLine(string.Format("[Unit] Removed upgrade info: {0} ({1})",
+                Units.Items[(int) unit.Upgrades[index].Type], unit));
 
             // 改良情報を削除する
             unit.Upgrades.RemoveAt(index);
@@ -2992,8 +3002,6 @@ namespace HoI2Editor.Forms
 
             // 改良リストビューから項目を削除する
             RemoveUpgradeListItem(index);
-
-            Debug.WriteLine(string.Format("[Unit] Removed upgrade info: {0} ({1})", removed, unit));
         }
 
         /// <summary>
@@ -3877,24 +3885,6 @@ namespace HoI2Editor.Forms
             model.SetDirtyName(country);
             unit.SetDirty();
 
-            if (country == Country.None)
-            {
-                Debug.WriteLine(string.Format("[Unit] Changed model name: {0}", unit.GetModelName(index)));
-            }
-            else
-            {
-                if (unit.ExistsModelName(index, country))
-                {
-                    Debug.WriteLine(string.Format("[Unit] Changed country model name: {0} <{1}> ({2})",
-                        unit.GetModelName(index, country), Countries.Strings[(int) country], unit.GetModelName(index)));
-                }
-                else
-                {
-                    Debug.WriteLine(string.Format("[Unit] Removed country model name: <{0}> ({1})",
-                        Countries.Strings[(int) country], unit.GetModelName(index)));
-                }
-            }
-
             // ユニットモデル名の更新を通知する
             HoI2Editor.OnItemChanged(
                 (country == Country.None) ? EditorItemId.CommonModelName : EditorItemId.CountryModelName, this);
@@ -4025,6 +4015,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] default organization: {0} -> {1} ({2})",
+                model.DefaultOrganization.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.DefaultOrganization = val;
 
@@ -4037,9 +4031,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             defaultOrganisationTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed default organization: {0} ({1})",
-                model.DefaultOrganization.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4078,6 +4069,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] morale: {0} -> {1} ({2})",
+                model.Morale.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Morale = val;
 
@@ -4090,9 +4085,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             moraleTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed morale: {0} ({1})",
-                model.Morale.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4131,6 +4123,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] range: {0} -> {1} ({2})",
+                model.Range.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Range = val;
 
@@ -4140,9 +4136,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             rangeTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed range: {0} ({1})",
-                model.Range.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4181,6 +4174,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] transport weight: {0} -> {1} ({2})",
+                model.TransportWeight.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.TransportWeight = val;
 
@@ -4190,9 +4187,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             transportWeightTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed transport weight: {0} ({1})",
-                model.TransportWeight.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4232,6 +4226,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] transport capacity: {0} -> {1} ({2})",
+                model.TransportCapability.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.TransportCapability = val;
 
@@ -4241,9 +4239,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             transportCapabilityTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed transport capacity: {0} ({1})",
-                model.TransportCapability.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4282,6 +4277,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] suppression: {0} -> {1} ({2})",
+                model.Suppression.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Suppression = val;
 
@@ -4291,9 +4290,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             suppressionTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed suppression: {0} ({1})",
-                model.Suppression.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4333,6 +4329,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] supply consumption: {0} -> {1} ({2})",
+                model.SupplyConsumption.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.SupplyConsumption = val;
 
@@ -4345,9 +4345,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             supplyConsumptionTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed supply consumption: {0} ({1})",
-                model.SupplyConsumption.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4386,6 +4383,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] fuel consumption: {0} -> {1} ({2})",
+                model.FuelConsumption.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.FuelConsumption = val;
 
@@ -4398,9 +4399,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             fuelConsumptionTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed fuel consumption: {0} ({1})",
-                model.FuelConsumption.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4439,6 +4437,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] max supply stock: {0} -> {1} ({2})",
+                model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.MaxSupplyStock = val;
 
@@ -4448,9 +4450,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             maxSupplyStockTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed max supply stock: {0} ({1})",
-                model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4489,6 +4488,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] max oil stock: {0} -> {1} ({2})",
+                model.MaxOilStock.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.MaxOilStock = val;
 
@@ -4498,9 +4501,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             maxOilStockTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed max oil stock: {0} ({1})",
-                model.MaxOilStock.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         #endregion
@@ -4663,6 +4663,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] cost: {0} -> {1} ({2})",
+                model.Cost.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Cost = val;
 
@@ -4675,9 +4679,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             costTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed cost: {0} ({1})",
-                model.Cost.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4716,6 +4717,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] build time: {0} -> {1} ({2})",
+                model.BuildTime.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.BuildTime = val;
 
@@ -4728,9 +4733,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             buildTimeTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed build time: {0} ({1})",
-                model.BuildTime.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4769,6 +4771,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] manpower: {0} -> {1} ({2})",
+                model.ManPower.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.ManPower = val;
 
@@ -4781,9 +4787,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             manPowerTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed manpower: {0} ({1})",
-                model.ManPower.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4824,6 +4827,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] upgrade cost factor: {0} -> {1} ({2})",
+                model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.UpgradeCostFactor = val;
 
@@ -4833,9 +4840,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeCostFactorTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed upgrade cost factor: {0} ({1})",
-                model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4876,6 +4880,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] upgrade time factor: {0} -> {1} ({2})",
+                model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.UpgradeTimeFactor = val;
 
@@ -4885,9 +4893,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeTimeFactorTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed upgrade time factor: {0} ({1})",
-                model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4926,6 +4931,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] reinforce cost: {0} -> {1} ({2})",
+                model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.ReinforceCostFactor = val;
 
@@ -4935,9 +4944,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             reinforceCostTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed reinforce cost: {0} ({1})",
-                model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -4976,6 +4982,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] reinforce time: {0} -> {1} ({2})",
+                model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.ReinforceTimeFactor = val;
 
@@ -4985,9 +4995,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             reinforceTimeTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed reinforce time: {0} ({1})",
-                model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5024,6 +5031,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] upgrade time boost: {0} -> {1} ({2})",
+                BoolHelper.ToYesNo(model.UpgradeTimeBoost), BoolHelper.ToYesNo(upgradeTimeBoostCheckBox.Checked),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.UpgradeTimeBoost = upgradeTimeBoostCheckBox.Checked;
 
@@ -5033,9 +5044,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             upgradeTimeBoostCheckBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed upgrade time boost: {0} ({1})",
-                model.UpgradeTimeBoost ? "yes" : "no", unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5072,6 +5080,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] auto upgrade: {0} -> {1} ({2})",
+                BoolHelper.ToYesNo(model.AutoUpgrade), BoolHelper.ToYesNo(autoUpgradeCheckBox.Checked),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.AutoUpgrade = autoUpgradeCheckBox.Checked;
 
@@ -5085,9 +5097,6 @@ namespace HoI2Editor.Forms
             // 自動改良先リストを更新する
             UpdateAutoUpgradeClassList();
             UpdateAutoUpgradeModelList();
-
-            Debug.WriteLine(string.Format("[Unit] Changed auto upgrade: {0} ({1})",
-                model.AutoUpgrade ? "yes" : "no", unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5231,6 +5240,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] auto upgrade class: {0} -> {1} ({2})",
+                Units.Items[(int) model.UpgradeClass], Units.Items[(int) upgrade.Type], unit.GetModelName(index)));
+
             // 値を更新する
             Unit old = Units.Items[(int) model.UpgradeClass];
             model.UpgradeClass = upgrade.Type;
@@ -5252,9 +5264,6 @@ namespace HoI2Editor.Forms
 
             // 自動改良先モデルコンボボックスの表示を更新する
             UpdateAutoUpgradeModelList();
-
-            Debug.WriteLine(string.Format("[Unit] Changed auto upgrade class: {0} ({1})",
-                Units.Items[(int) model.UpgradeClass], unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5291,6 +5300,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] auto upgrade model: {0} -> {1} ({2})",
+                Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel),
+                Units.Items[(int) model.UpgradeClass].GetModelName(autoUpgradeModelComboBox.SelectedIndex),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.UpgradeModel = autoUpgradeModelComboBox.SelectedIndex;
 
@@ -5303,9 +5317,6 @@ namespace HoI2Editor.Forms
 
             // 自動改良先モデルコンボボックスの項目色を変更するために描画更新する
             autoUpgradeModelComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed auto upgrade model: {0} ({1})",
-                Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5365,6 +5376,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] auto upgrade model: {0} -> {1} ({2})",
+                Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel),
+                Units.Items[(int) model.UpgradeClass].GetModelName(val), unit.GetModelName(index)));
+
             // 値を更新する
             model.UpgradeModel = val;
 
@@ -5385,9 +5400,6 @@ namespace HoI2Editor.Forms
 
             // 自動改良先モデルコンボボックスの項目色を変更するために描画更新する
             autoUpgradeModelComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed auto upgrade model: {0} ({1})",
-                Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel), unit.GetModelName(index)));
         }
 
         #endregion
@@ -5430,6 +5442,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] max speed: {0} -> {1} ({2})",
+                model.MaxSpeed.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.MaxSpeed = val;
 
@@ -5442,9 +5458,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             maxSpeedTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed max speed: {0} ({1})",
-                model.MaxSpeed.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5483,6 +5496,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] speed cap: {0} -> {1} ({2})",
+                model.SpeedCap.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SpeedCap = val;
 
@@ -5492,9 +5509,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             speedCapAllTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed speed cap: {0} ({1})",
-                model.SpeedCap.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5533,6 +5547,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] speed cap art: {0} -> {1} ({2})",
+                model.SpeedCapArt.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SpeedCapArt = val;
 
@@ -5542,9 +5560,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             speedCapArtTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed speed cap art: {0} ({1})",
-                model.SpeedCapArt.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5583,6 +5598,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] speed cap eng: {0} -> {1} ({2})",
+                model.SpeedCapEng.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SpeedCapEng = val;
 
@@ -5592,9 +5611,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             speedCapEngTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed speed cap eng: {0} ({1})",
-                model.SpeedCapEng.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5633,6 +5649,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] speed cap at: {0} -> {1} ({2})",
+                model.SpeedCapAt.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SpeedCapAt = val;
 
@@ -5642,9 +5662,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             speedCapAtTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed speed cap at: {0} ({1})",
-                model.SpeedCapAt.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5683,6 +5700,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] speed cap aa: {0} -> {1} ({2})",
+                model.SpeedCapAa.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SpeedCapAa = val;
 
@@ -5692,9 +5713,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             speedCapAaTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed speed cap aa: {0} ({1})",
-                model.SpeedCapAa.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         #endregion
@@ -5737,6 +5755,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] defensiveness: {0} -> {1} ({2})",
+                model.Defensiveness.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Defensiveness = val;
 
@@ -5746,9 +5768,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             defensivenessTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed defensiveness: {0} ({1})",
-                model.Defensiveness.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5787,6 +5806,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] sea defence: {0} -> {1} ({2})",
+                model.SeaDefense.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SeaDefense = val;
 
@@ -5796,9 +5819,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             seaDefenceTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed sea defence: {0} ({1})",
-                model.SeaDefense.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5837,6 +5857,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] air defence: {0} -> {1} ({2})",
+                model.AirDefence.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.AirDefence = val;
 
@@ -5846,9 +5870,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             airDefenceTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed air defence: {0} ({1})",
-                model.AirDefence.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5887,6 +5908,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] surface defence: {0} -> {1} ({2})",
+                model.SurfaceDefence.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SurfaceDefence = val;
 
@@ -5896,9 +5921,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             surfaceDefenceTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed surface defence: {0} ({1})",
-                model.SurfaceDefence.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5937,6 +5959,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] toughness: {0} -> {1} ({2})",
+                model.Toughness.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Toughness = val;
 
@@ -5946,9 +5972,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             toughnessTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed toughness: {0} ({1})",
-                model.Toughness.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -5987,6 +6010,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] softness: {0} -> {1} ({2})",
+                model.Softness.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Softness = val;
 
@@ -5996,9 +6023,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             softnessTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed softness: {0} ({1})",
-                model.Softness.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6037,6 +6061,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] soft attack: {0} -> {1} ({2})",
+                model.SoftAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SoftAttack = val;
 
@@ -6046,9 +6074,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             softAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed soft attack: {0} ({1})",
-                model.SoftAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6087,6 +6112,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] hard attack: {0} -> {1} ({2})",
+                model.HardAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.HardAttack = val;
 
@@ -6096,9 +6125,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             hardAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed hard attack: {0} ({1})",
-                model.HardAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6137,6 +6163,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] sea attack: {0} -> {1} ({2})",
+                model.SeaAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SeaAttack = val;
 
@@ -6146,9 +6176,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             seaAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed sea attack: {0} ({1})",
-                model.SeaAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6187,6 +6214,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] sub attack: {0} -> {1} ({2})",
+                model.SubAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.SubAttack = val;
 
@@ -6196,9 +6227,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             subAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed sub attack: {0} ({1})",
-                model.SubAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6237,6 +6265,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] convoy attack: {0} -> {1} ({2})",
+                model.ConvoyAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.ConvoyAttack = val;
 
@@ -6246,9 +6278,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             convoyAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed convoy attack: {0} ({1})",
-                model.ConvoyAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6288,6 +6317,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] shore bombardment: {0} -> {1} ({2})",
+                model.ShoreBombardment.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.ShoreBombardment = val;
 
@@ -6297,9 +6330,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             shoreBombardmentTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed shore bombardment: {0} ({1})",
-                model.ShoreBombardment.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6338,6 +6368,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] air attack: {0} -> {1} ({2})",
+                model.AirAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.AirAttack = val;
 
@@ -6347,9 +6381,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             airAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed air attack: {0} ({1})",
-                model.AirAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6388,6 +6419,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] naval attack: {0} -> {1} ({2})",
+                model.NavalAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.NavalAttack = val;
 
@@ -6397,9 +6432,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             navalAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed naval attack: {0} ({1})",
-                model.NavalAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6438,6 +6470,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] strategic attack: {0} -> {1} ({2})",
+                model.StrategicAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.StrategicAttack = val;
 
@@ -6447,9 +6483,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             strategicAttackTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed strategic attack: {0} ({1})",
-                model.StrategicAttack.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6489,6 +6522,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] artillery bombardment: {0} -> {1} ({2})",
+                model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.ArtilleryBombardment = val;
 
@@ -6498,9 +6535,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             artilleryBombardmentTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed artillery bombardment: {0} ({1})",
-                model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6539,6 +6573,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] distance: {0} -> {1} ({2})",
+                model.Distance.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Distance = val;
 
@@ -6548,9 +6586,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             distanceTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed distance: {0} ({1})",
-                model.Distance.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6589,6 +6624,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] visibility: {0} -> {1} ({2})",
+                model.Visibility.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.Visibility = val;
 
@@ -6598,9 +6637,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             visibilityTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed visibility: {0} ({1})",
-                model.Visibility.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6641,6 +6677,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] surface detection capability: {0} -> {1} ({2})",
+                model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.SurfaceDetectionCapability = val;
 
@@ -6650,9 +6690,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             surfaceDetectionCapabilityTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed surface detection capability: {0} ({1})",
-                model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6692,6 +6729,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] sub detection capability: {0} -> {1} ({2})",
+                model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.SubDetectionCapability = val;
 
@@ -6701,9 +6742,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             subDetectionCapabilityTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed sub detection capability: {0} ({1})",
-                model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6743,6 +6781,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] air detection capablity: {0} -> {1} ({2})",
+                model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+
             // 値を更新する
             model.AirDetectionCapability = val;
 
@@ -6752,9 +6794,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             airDetectionCapabilityTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed air detection capablity: {0} ({1})",
-                model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -6793,6 +6832,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] no fuel combat mod: {0} -> {1} ({2})",
+                model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             model.NoFuelCombatMod = val;
 
@@ -6802,9 +6845,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             noFuelCombatModTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed no fuel combat mod: {0} ({1})",
-                model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         #endregion
@@ -7022,6 +7062,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] equipment resource: {0} -> {1} ({2})",
+                Config.GetText(Units.EquipmentNames[(int) equipment.Resource]),
+                Config.GetText(Units.EquipmentNames[(int) type]), unit.GetModelName(index)));
+
             // 値を更新する
             equipment.Resource = type;
 
@@ -7035,9 +7079,6 @@ namespace HoI2Editor.Forms
 
             // 資源コンボボックスの項目色を変更するために描画更新する
             resourceComboBox.Refresh();
-
-            Debug.WriteLine(string.Format("[Unit] Changed equipment resource: {0} ({1})",
-                Config.GetText(Units.EquipmentNames[(int) equipment.Resource]), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -7084,6 +7125,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Debug.WriteLine(string.Format("[Unit] equipment quantity: {0} -> {1} ({2})",
+                equipment.Quantity.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                unit.GetModelName(index)));
+
             // 値を更新する
             equipment.Quantity = val;
 
@@ -7097,9 +7142,6 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             quantityTextBox.ForeColor = Color.Red;
-
-            Debug.WriteLine(string.Format("[Unit] Changed equipment quantity: {0} ({1})",
-                equipment.Quantity.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
         }
 
         /// <summary>
@@ -7124,6 +7166,8 @@ namespace HoI2Editor.Forms
             int i = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[i];
 
+            Debug.WriteLine(string.Format("[Unit] Added new equipment: ({0})", unit.GetModelName(i)));
+
             // 装備リストに項目を追加する
             var equipment = new UnitEquipment();
             model.Equipments.Add(equipment);
@@ -7135,8 +7179,6 @@ namespace HoI2Editor.Forms
 
             // 装備リストビューに項目を追加する
             AddEquipmentListItem(equipment);
-
-            Debug.WriteLine(string.Format("[Unit] Added new equipment: ({0})", unit.GetModelName(i)));
         }
 
         /// <summary>
@@ -7168,7 +7210,8 @@ namespace HoI2Editor.Forms
             }
             int index = equipmentListView.SelectedIndices[0];
 
-            UnitEquipment removed = model.Equipments[index];
+            Debug.WriteLine(string.Format("[Unit] Removed equipment: {0} ({1})",
+                Config.GetText(Units.EquipmentNames[(int) model.Equipments[index].Resource]), unit.GetModelName(i)));
 
             // 装備リストから項目を削除する
             model.Equipments.RemoveAt(index);
@@ -7179,9 +7222,6 @@ namespace HoI2Editor.Forms
 
             // 装備リストビューから項目を削除する
             RemoveEquipmentListItem(index);
-
-            Debug.WriteLine(string.Format("[Unit] Removed equipment: {0} ({1})",
-                Config.GetText(Units.EquipmentNames[(int) removed.Resource]), unit.GetModelName(i)));
         }
 
         /// <summary>
