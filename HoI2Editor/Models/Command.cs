@@ -386,14 +386,14 @@ namespace HoI2Editor.Models
             var sb = new StringBuilder();
             if (Game.Type == GameType.DarkestHour && Triggers != null && Triggers.Count > 0)
             {
-                sb.Append(" trigger = {");
+                sb.Append("trigger = {");
                 foreach (Trigger trigger in Triggers)
                 {
                     sb.AppendFormat(" {0}", trigger);
                 }
-                sb.Append(" }");
+                sb.Append(" } ");
             }
-            sb.AppendFormat(" type = {0}", TypeStringTable[(int) Type]);
+            sb.AppendFormat("type = {0}", TypeStringTable[(int) Type]);
             if (Which != null)
             {
                 sb.AppendFormat(CultureInfo.InvariantCulture, " which = {0}", ObjectHelper.ToString(Which));
