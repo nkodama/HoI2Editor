@@ -2370,14 +2370,17 @@ namespace HoI2Editor.Models
             // 編集済みフラグを解除する
             _dirtyFlag = false;
 
-            // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
-            foreach (Unit unit in Items)
+            if (_loaded)
             {
-                unit.ResetDirtyAll();
-            }
+                // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
+                foreach (Unit unit in Items)
+                {
+                    unit.ResetDirtyAll();
+                }
 
-            // モデル名の編集済みフラグをクリアする
-            ResetDirtyAllModelName();
+                // モデル名の編集済みフラグをクリアする
+                ResetDirtyAllModelName();
+            }
 
             return true;
         }
