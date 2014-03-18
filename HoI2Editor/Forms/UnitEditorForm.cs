@@ -66,9 +66,10 @@ namespace HoI2Editor.Forms
             countryListView.EndUpdate();
 
             // 兵科コンボボックス
-            branchComboBox.Items.Add(Config.GetText("EYR_ARMY"));
-            branchComboBox.Items.Add(Config.GetText("EYR_NAVY"));
-            branchComboBox.Items.Add(Config.GetText("EYR_AIRFORCE"));
+            foreach (string s in Branches.GetNames())
+            {
+                branchComboBox.Items.Add(s);
+            }
 
             // 付属可能旅団リストビュー
             allowedBrigadesListView.BeginUpdate();
@@ -1916,8 +1917,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] branch: {0} -> {1} ({2})", Leaders.BranchNames[(int) unit.Branch],
-                Leaders.BranchNames[(int) branch], unit));
+            Debug.WriteLine(string.Format("[Unit] branch: {0} -> {1} ({2})", Branches.GetName(unit.Branch),
+                Branches.GetName(branch), unit));
 
             // 値を更新する
             unit.Branch = branch;

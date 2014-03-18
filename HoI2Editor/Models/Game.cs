@@ -997,15 +997,4 @@ namespace HoI2Editor.Models
         ArsenalOfDemocracy, // Arsenal of Democracy
         DarkestHour // Darkest Hour
     }
-
-    /// <summary>
-    ///     兵科
-    /// </summary>
-    public enum Branch
-    {
-        None,
-        Army, // 陸軍
-        Navy, //海軍
-        Airforce //空軍
-    }
 }

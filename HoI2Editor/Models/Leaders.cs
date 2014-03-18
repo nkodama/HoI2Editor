@@ -33,11 +33,6 @@ namespace HoI2Editor.Models
         public static HashSet<int> IdSet { get; private set; }
 
         /// <summary>
-        ///     兵科名
-        /// </summary>
-        public static string[] BranchNames { get; private set; }
-
-        /// <summary>
         ///     階級名
         /// </summary>
         public static string[] RankNames { get; private set; }
@@ -182,9 +177,6 @@ namespace HoI2Editor.Models
 
             // 使用済みIDリスト
             IdSet = new HashSet<int>();
-
-            // 兵科
-            BranchNames = new[] {"", Resources.BranchArmy, Resources.BranchNavy, Resources.BranchAirforce};
 
             // 階級
             RankNames = new[] {"", Resources.Rank3, Resources.Rank2, Resources.Rank1, Resources.Rank0};

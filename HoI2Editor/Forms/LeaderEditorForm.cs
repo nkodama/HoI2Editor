@@ -1074,7 +1074,7 @@ namespace HoI2Editor.Forms
             };
             item.SubItems.Add(leader.Id.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.Name);
-            item.SubItems.Add(Leaders.BranchNames[(int) leader.Branch]);
+            item.SubItems.Add(Branches.GetName(leader.Branch));
             item.SubItems.Add(leader.Skill.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.MaxSkill.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(leader.StartYear.ToString(CultureInfo.InvariantCulture));
@@ -1687,13 +1687,17 @@ namespace HoI2Editor.Forms
             branchComboBox.BeginUpdate();
             branchComboBox.Items.Clear();
             width = branchComboBox.Width;
-            foreach (string s in Leaders.BranchNames.Where(name => !string.IsNullOrEmpty(name)))
+            foreach (string s in Branches.GetNames())
             {
                 branchComboBox.Items.Add(s);
                 width = Math.Max(width, (int) g.MeasureString(s, branchComboBox.Font).Width + margin);
             }
             branchComboBox.DropDownWidth = width;
             branchComboBox.EndUpdate();
+
+            armyNarrowCheckBox.Text = Branches.GetName(Branch.Army);
+            navyNarrowCheckBox.Text = Branches.GetName(Branch.Navy);
+            airforceNarrowCheckBox.Text = Branches.GetName(Branch.Airforce);
 
             // 階級
             idealRankComboBox.BeginUpdate();
@@ -2288,7 +2292,7 @@ namespace HoI2Editor.Forms
             leader.Branch = branch;
 
             // 指揮官リストビューの項目を更新する
-            leaderListView.SelectedItems[0].SubItems[3].Text = Leaders.BranchNames[(int) leader.Branch];
+            leaderListView.SelectedItems[0].SubItems[3].Text = Branches.GetName(leader.Branch);
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.Branch);
