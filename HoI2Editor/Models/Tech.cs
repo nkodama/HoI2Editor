@@ -587,20 +587,27 @@ namespace HoI2Editor.Models
         public void AddKeyNumbers(List<int> list)
         {
             int no;
+            Match match;
             // 技術名
-            Match match = RegexTechName.Match(Name);
-            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+            if (!string.IsNullOrEmpty(Name))
             {
-                list.Add(no);
+                match = RegexTechName.Match(Name);
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+                {
+                    list.Add(no);
+                }
             }
             // 技術説明
-            match = RegexTechDesc.Match(Name);
-            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+            if (!string.IsNullOrEmpty(Desc))
             {
-                list.Add(no);
+                match = RegexTechDesc.Match(Name);
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
+                {
+                    list.Add(no);
+                }
             }
             // 小研究名
-            foreach (TechComponent component in Components)
+            foreach (TechComponent component in Components.Where(component => !string.IsNullOrEmpty(component.Name)))
             {
                 match = RegexComponentName.Match(component.Name);
                 if (match.Success && int.TryParse(match.Groups[2].Value, out no) && !list.Contains(no))
@@ -772,20 +779,27 @@ namespace HoI2Editor.Models
         private int GetKeyNumber(List<int> list, string categoryName)
         {
             int no;
+            Match match;
             // 技術名に使用されている番号を取得する
-            Match match = RegexTechName.Match(Name);
-            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
+            if (!string.IsNullOrEmpty(Name))
             {
-                return no;
+                match = RegexTechName.Match(Name);
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
+                {
+                    return no;
+                }
             }
             // 技術説明に使用されている番号を取得する
-            match = RegexTechDesc.Match(Desc);
-            if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
+            if (!string.IsNullOrEmpty(Desc))
             {
-                return no;
+                match = RegexTechDesc.Match(Desc);
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
+                {
+                    return no;
+                }
             }
             // 小研究名に使用されている番号を取得する
-            foreach (TechComponent component in Components)
+            foreach (TechComponent component in Components.Where(component => !string.IsNullOrEmpty(component.Name)))
             {
                 match = RegexComponentName.Match(component.Name);
                 if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
@@ -1105,6 +1119,11 @@ namespace HoI2Editor.Models
         /// <param name="list">登録先のリスト</param>
         public void AddKeyNumbers(List<int> list)
         {
+            if (string.IsNullOrEmpty(Name))
+            {
+                return;
+            }
+
             int no;
             // ラベル名
             Match match = RegexNewLabelName.Match(Name);
@@ -1125,7 +1144,7 @@ namespace HoI2Editor.Models
             bool dirty = false;
 
             // ラベル名
-            if (Config.IsTempKey(Name) || IsOldStyleKey(Name, RegexOldLabelName))
+            if (Config.IsTempKey(Name) || IsOldStyleKey(Name))
             {
                 int no = GetKeyNumber(list, categoryName);
                 string newKey = string.Format("TECH_CAT_{0}_{1}", categoryName, no);
@@ -1155,11 +1174,10 @@ namespace HoI2Editor.Models
         ///     文字列キーが旧形式かどうかを判定する
         /// </summary>
         /// <param name="key">文字列キー</param>
-        /// <param name="regex">判定に使用する正規表現</param>
         /// <returns>旧形式ならばtrueを返す</returns>
-        private static bool IsOldStyleKey(string key, Regex regex)
+        private static bool IsOldStyleKey(string key)
         {
-            return !string.IsNullOrEmpty(key) && regex.IsMatch(key);
+            return !string.IsNullOrEmpty(key) && RegexOldLabelName.IsMatch(key);
         }
 
         /// <summary>
