@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -1041,8 +1040,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             error = true;
-                            Debug.WriteLine("[Minister] Load failed: {0}", fileName);
-                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Error("[Minister] Read error: {0}", fileName);
                             if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                 Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
@@ -1077,8 +1075,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             error = true;
-                            Debug.WriteLine("[Minister] Load failed: {0}", fileName);
-                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Error("[Minister] Read error: {0}", fileName);
                             if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                 Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
@@ -1111,8 +1108,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         error = true;
-                        Debug.WriteLine("[Minister] Load failed: {0}", fileName);
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        Log.Error("[Minister] Read error: {0}", fileName);
                         if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                             Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
@@ -1147,8 +1143,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine("[Minister] Load failed: {0}", listFileName);
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
+                Log.Error("[Minister] Read error: {0}", listFileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName),
                     Resources.EditorMinister, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1165,8 +1160,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine("[Minister] Load failed: {0}", fileName);
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    Log.Error("[Minister] Read error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -1184,7 +1178,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static IEnumerable<string> LoadList(string fileName)
         {
-            Debug.WriteLine(string.Format("[Minister] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Minister] Load: {0}", Path.GetFileName(fileName));
 
             var list = new List<string>();
             using (var reader = new StreamReader(fileName))
@@ -1217,7 +1211,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[Minister] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Minister] Load: {0}", Path.GetFileName(fileName));
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -1281,8 +1275,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != (Misc.EnableRetirementYearMinisters ? 11 : (Misc.UseNewMinisterFilesFormat ? 10 : 9)))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[Minister] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
+                    _currentLineNo);
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (tokens.Length < (Misc.EnableRetirementYearMinisters ? 10 : (Misc.UseNewMinisterFilesFormat ? 9 : 8)))
                 {
@@ -1297,8 +1291,7 @@ namespace HoI2Editor.Models
             int id;
             if (!Int32.TryParse(tokens[index], out id))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidId, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1}\n", tokens[index], tokens[index + 2]));
+                Log.Warning("[Minister] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
                 return;
             }
             minister.Id = id;
@@ -1313,8 +1306,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.Position = MinisterPosition.None;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, tokens[index + 1], tokens[index]));
+                Log.Warning("[Minister] Invalid position: {0} [{1}] ({2} L{3})", tokens[index], minister.Id,
+                    _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -1331,8 +1324,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.StartYear = 1936;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
+                Log.Warning("[Minister] Invalid start year: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
+                    minister.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -1347,9 +1340,8 @@ namespace HoI2Editor.Models
                 else
                 {
                     minister.EndYear = 1970;
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
-                        _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
+                    Log.Warning("[Minister] Invalid end year: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
+                        minister.Name, _currentFileName, _currentLineNo);
                 }
                 index++;
             }
@@ -1369,9 +1361,8 @@ namespace HoI2Editor.Models
                 else
                 {
                     minister.RetirementYear = 1999;
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidRetirementYear, _currentFileName,
-                        _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
+                    Log.Warning("[Minister] Invalid retirement year: {0} [{1}: {2}] ({3} L{4})", tokens[index],
+                        minister.Id, minister.Name, _currentFileName, _currentLineNo);
                 }
                 index++;
             }
@@ -1389,8 +1380,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.Ideology = MinisterIdeology.None;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
+                Log.Warning("[Minister] Invalid ideology: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
+                    minister.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -1406,17 +1397,15 @@ namespace HoI2Editor.Models
                     PersonalityStringMap.ContainsKey(PersonalityStringTypoMap[personalityName]))
                 {
                     minister.Personality = PersonalityStringMap[PersonalityStringTypoMap[personalityName]];
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.ModifiedPersonality, _currentFileName,
-                        _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2} -> {3}\n", minister.Id, minister.Name, tokens[index],
-                        Personalities[minister.Personality].String));
+                    Log.Warning("[Minister] Modified personality: {0} -> {1} [{2}: {3}] ({4} L{5})", tokens[index],
+                        Personalities[minister.Personality].String, minister.Id, minister.Name, _currentFileName,
+                        _currentLineNo);
                 }
                 else
                 {
                     minister.Personality = 0;
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPersonality, _currentFileName,
-                        _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
+                    Log.Warning("[Minister] Invalid personality: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
+                        minister.Name, _currentFileName, _currentLineNo);
                 }
             }
             index++;
@@ -1430,8 +1419,8 @@ namespace HoI2Editor.Models
             else
             {
                 minister.Loyalty = MinisterLoyalty.None;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", minister.Id, minister.Name, tokens[index]));
+                Log.Warning("[Minister] Invalid loyalty: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
+                    minister.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -1467,8 +1456,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     string fileName = Game.GetWriteFileName(Game.DhMinisterListPathName);
-                    Debug.WriteLine(string.Format("[Minister] Save failed: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Minister] Write error: {0}", fileName);
                     MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorMinister, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -1488,8 +1476,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     string fileName = Game.GetWriteFileName(Game.MinisterPathName, Game.GetMinisterFileName(country));
-                    Debug.WriteLine(string.Format("[Minister] Save failed: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Minister] Write error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                         Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -1522,7 +1509,7 @@ namespace HoI2Editor.Models
             }
 
             string fileName = Game.GetWriteFileName(Game.DhMinisterListPathName);
-            Debug.WriteLine(string.Format("[Minister] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Minister] Save: {0}", Path.GetFileName(fileName));
 
             // 登録された閣僚ファイル名を順に書き込む
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
@@ -1555,7 +1542,7 @@ namespace HoI2Editor.Models
             }
 
             string fileName = Path.Combine(folderName, Game.GetMinisterFileName(country));
-            Debug.WriteLine(string.Format("[Minister] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Minister] Save: {0}", Path.GetFileName(fileName));
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -1590,21 +1577,18 @@ namespace HoI2Editor.Models
                     // 不正な値が設定されている場合は警告をログに出力する
                     if (minister.Position == MinisterPosition.None)
                     {
-                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPosition, _currentFileName,
-                            _currentLineNo));
-                        Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
+                        Log.Warning("[Minister] Invalid position: {0} {1} ({2} L{3})", minister.Id, minister.Name,
+                            _currentFileName, _currentLineNo);
                     }
                     if (minister.Ideology == MinisterIdeology.None)
                     {
-                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdeology, _currentFileName,
-                            _currentLineNo));
-                        Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
+                        Log.Warning("[Minister] Invalid ideology: {0} {1} ({2} L{3})", minister.Id, minister.Name,
+                            _currentFileName, _currentLineNo);
                     }
                     if (minister.Loyalty == MinisterLoyalty.None)
                     {
-                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName,
-                            _currentLineNo));
-                        Log.Write(String.Format("  {0}: {1}\n", minister.Id, minister.Name));
+                        Log.Warning("[Minister] Invalid loyalty: {0} {1} ({2} L{3})", minister.Id, minister.Name,
+                            _currentFileName, _currentLineNo);
                     }
 
                     // 閣僚定義行を書き込む

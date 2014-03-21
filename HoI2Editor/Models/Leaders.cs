@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -283,8 +282,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             error = true;
-                            Debug.WriteLine("[Leader] Load failed: {0}", fileName);
-                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Error("[Leader] Read error: {0}", fileName);
                             if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                 Resources.EditorLeader, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
@@ -319,8 +317,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             error = true;
-                            Debug.WriteLine("[Leader] Load failed: {0}", fileName);
-                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Error("[Leader] Read error: {0}", fileName);
                             if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                 Resources.EditorLeader, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
@@ -353,8 +350,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         error = true;
-                        Debug.WriteLine("[Leader] Load failed: {0}", fileName);
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        Log.Error("[Leader] Read error: {0}", fileName);
                         if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                             Resources.EditorLeader, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
@@ -389,8 +385,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine("[Leader] Load failed: {0}", listFileName);
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
+                Log.Error("[Leader] Read error: {0}", listFileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName),
                     Resources.EditorLeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -407,8 +402,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine("[Leader] Load failed: {0}", fileName);
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    Log.Error("[Leader] Read error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorLeader, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -426,7 +420,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static IEnumerable<string> LoadList(string fileName)
         {
-            Debug.WriteLine(string.Format("[Leader] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Leader] Load: {0}", Path.GetFileName(fileName));
 
             var list = new List<string>();
             using (var reader = new StreamReader(fileName))
@@ -459,7 +453,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[Leader] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Leader] Load: {0}", Path.GetFileName(fileName));
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -519,8 +513,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != (Misc.EnableRetirementYearLeaders ? 19 : 18))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[Leader] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
+                    _currentLineNo);
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (tokens.Length < (Misc.EnableRetirementYearLeaders ? 18 : 17))
                 {
@@ -545,8 +539,8 @@ namespace HoI2Editor.Models
             int id;
             if (!int.TryParse(tokens[index], out id))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidId, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1}\n", tokens[index], leader.Name));
+                Log.Warning("[Leader] Invalid id: {0} [{1}] ({1} L{2})", tokens[index], leader.Name, _currentFileName,
+                    _currentLineNo);
                 return null;
             }
             leader.Id = id;
@@ -555,8 +549,8 @@ namespace HoI2Editor.Models
             // 国家
             if (string.IsNullOrEmpty(tokens[index]) || !Countries.StringMap.ContainsKey(tokens[index].ToUpper()))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid country: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
+                    _currentFileName, _currentLineNo);
                 return null;
             }
             leader.Country = Countries.StringMap[tokens[index].ToUpper()];
@@ -573,9 +567,8 @@ namespace HoI2Editor.Models
                 else
                 {
                     leader.RankYear[i] = 1990;
-                    Log.Write(string.Format("{0}({1}): {2} L{3}\n", Resources.InvalidRankYear, RankNames[i],
-                        _currentFileName, _currentLineNo));
-                    Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                    Log.Warning("[Leader] Invalid rank{0} year: {1} [{2}: {3}] ({4} L{5})", i, tokens[index], leader.Id,
+                        leader.Name, _currentFileName, _currentLineNo);
                 }
                 index++;
             }
@@ -589,8 +582,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.IdealRank = LeaderRank.None;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid ideal rank: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
+                    leader.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -603,8 +596,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.MaxSkill = 0;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidMaxSkill, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid max skill: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
+                    leader.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -617,8 +610,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Traits = LeaderTraits.None;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTraits, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid trait: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
+                    leader.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -631,8 +624,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Skill = 0;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid skill: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
+                    _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -645,8 +638,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Experience = 0;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidExperience, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid experience: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
+                    leader.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -659,8 +652,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Loyalty = 0;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidLoyalty, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid loyalty: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
+                    _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -673,8 +666,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.Branch = Branch.None;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid branch: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
+                    _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -691,8 +684,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.StartYear = 1930;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid start year: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
+                    leader.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -705,8 +698,8 @@ namespace HoI2Editor.Models
             else
             {
                 leader.EndYear = 1970;
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                Log.Warning("[Leader] Invalid end year: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
+                    leader.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
@@ -721,9 +714,8 @@ namespace HoI2Editor.Models
                 else
                 {
                     leader.RetirementYear = 1999;
-                    Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName,
-                        _currentLineNo));
-                    Log.Write(string.Format("  {0}: {1} => {2}\n", leader.Id, leader.Name, tokens[index]));
+                    Log.Warning("[Leader] Invalid retirement year: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
+                        leader.Name, _currentFileName, _currentLineNo);
                 }
             }
             else
@@ -762,8 +754,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     string fileName = Game.GetWriteFileName(Game.DhLeaderListPathName);
-                    Debug.WriteLine(string.Format("[Leader] Save failed: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Leader] Write error: {0}", fileName);
                     MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorLeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -783,8 +774,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     string fileName = Game.GetWriteFileName(Game.LeaderPathName, Game.GetLeaderFileName(country));
-                    Debug.WriteLine(string.Format("[Leader] Save failed: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Leader] Write error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                         Resources.EditorLeader, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -819,7 +809,7 @@ namespace HoI2Editor.Models
             }
 
             string fileName = Game.GetWriteFileName(Game.DhLeaderListPathName);
-            Debug.WriteLine(string.Format("[Leader] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Leader] Save: {0}", Path.GetFileName(fileName));
 
             // 登録された指揮官ファイル名を順に書き込む
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
@@ -852,7 +842,7 @@ namespace HoI2Editor.Models
             }
 
             string fileName = Path.Combine(folderName, Game.GetLeaderFileName(country));
-            Debug.WriteLine(string.Format("[Leader] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Leader] Save: {0}", Path.GetFileName(fileName));
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -871,15 +861,13 @@ namespace HoI2Editor.Models
                     // 不正な値が設定されている場合は警告をログに出力する
                     if (leader.Branch == Branch.None)
                     {
-                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName,
-                            _currentLineNo));
-                        Log.Write(String.Format("  {0}: {1}\n", leader.Id, leader.Name));
+                        Log.Warning("[Leader] Invalid branch: {0} {1} ({2} L{3})", leader.Id, leader.Name,
+                            _currentFileName, _currentLineNo);
                     }
                     if (leader.IdealRank == LeaderRank.None)
                     {
-                        Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIdealRank, _currentFileName,
-                            _currentLineNo));
-                        Log.Write(String.Format("  {0}: {1}\n", leader.Id, leader.Name));
+                        Log.Warning("[Leader] Invalid ideal rank: {0} {1} ({2} L{3})", leader.Id, leader.Name,
+                            _currentFileName, _currentLineNo);
                     }
 
                     // 指揮官定義行を書き込む

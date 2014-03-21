@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -194,8 +193,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             error = true;
-                            Debug.WriteLine("[Team] Load failed: {0}", fileName);
-                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Error("[Team] Read error: {0}", fileName);
                             if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                 Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
@@ -230,8 +228,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             error = true;
-                            Debug.WriteLine("[Team] Load failed: {0}", fileName);
-                            Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Error("[Team] Read error: {0}", fileName);
                             if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                 Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
@@ -264,8 +261,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         error = true;
-                        Debug.WriteLine("[Team] Load failed: {0}", fileName);
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        Log.Error("[Team] Read error: {0}", fileName);
                         if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                             Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
@@ -300,8 +296,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine("[Team] Load failed: {0}", listFileName);
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, listFileName));
+                Log.Error("[Team] Read error: {0}", listFileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName),
                     Resources.EditorTeam, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -318,8 +313,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine("[Team] Load failed: {0}", fileName);
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    Log.Error("[Team] Read error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorTeam, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -337,7 +331,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static IEnumerable<string> LoadList(string fileName)
         {
-            Debug.WriteLine(string.Format("[Team] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Team] Load: {0}", Path.GetFileName(fileName));
 
             var list = new List<string>();
             using (var reader = new StreamReader(fileName))
@@ -370,7 +364,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[Team] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Team] Load: {0}", Path.GetFileName(fileName));
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -428,21 +422,21 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            string[] token = line.Split(CsvSeparator);
+            string[] tokens = line.Split(CsvSeparator);
 
             // ID指定のない行は読み飛ばす
-            if (String.IsNullOrEmpty(token[0]))
+            if (String.IsNullOrEmpty(tokens[0]))
             {
                 return;
             }
 
             // トークン数が足りない行は読み飛ばす
-            if (token.Length != 39)
+            if (tokens.Length != 39)
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", line));
+                Log.Warning("[Team] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
+                    _currentLineNo);
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
-                if (token.Length < 38)
+                if (tokens.Length < 38)
                 {
                     return;
                 }
@@ -453,69 +447,68 @@ namespace HoI2Editor.Models
 
             // ID
             int id;
-            if (!Int32.TryParse(token[index], out id))
+            if (!Int32.TryParse(tokens[index], out id))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidId, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Team] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
                 return;
             }
             team.Id = id;
             index++;
 
             // 名前
-            team.Name = token[index];
+            team.Name = tokens[index];
             index++;
 
             // 画像ファイル名
-            team.PictureName = token[index];
+            team.PictureName = tokens[index];
             index++;
 
             // スキル
             int skill;
-            if (Int32.TryParse(token[index], out skill))
+            if (Int32.TryParse(tokens[index], out skill))
             {
                 team.Skill = skill;
             }
             else
             {
                 team.Skill = 1;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSkill, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
+                Log.Warning("[Team] Invalid skill: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id, team.Name,
+                    _currentFileName, _currentLineNo);
             }
             index++;
 
             // 開始年
             int startYear;
-            if (Int32.TryParse(token[index], out startYear))
+            if (Int32.TryParse(tokens[index], out startYear))
             {
                 team.StartYear = startYear;
             }
             else
             {
                 team.StartYear = 1930;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidStartYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
+                Log.Warning("[Team] Invalid start year: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id, team.Name,
+                    _currentFileName, _currentLineNo);
             }
             index++;
 
             // 終了年
             int endYear;
-            if (Int32.TryParse(token[index], out endYear))
+            if (Int32.TryParse(tokens[index], out endYear))
             {
                 team.EndYear = endYear;
             }
             else
             {
                 team.EndYear = 1970;
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEndYear, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
+                Log.Warning("[Team] Invalid end year: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id, team.Name,
+                    _currentFileName, _currentLineNo);
             }
             index++;
 
             // 研究特性
             for (int i = 0; i < Team.SpecialityLength; i++, index++)
             {
-                string s = token[index].ToLower();
+                string s = tokens[index].ToLower();
 
                 // 空文字列
                 if (String.IsNullOrEmpty(s))
@@ -528,9 +521,8 @@ namespace HoI2Editor.Models
                 if (!Techs.SpecialityStringMap.ContainsKey(s))
                 {
                     team.Specialities[i] = TechSpeciality.None;
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
-                        _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
+                    Log.Warning("[Team] Invalid speciality: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id,
+                        team.Name, _currentFileName, _currentLineNo);
                     continue;
                 }
 
@@ -538,9 +530,8 @@ namespace HoI2Editor.Models
                 TechSpeciality speciality = Techs.SpecialityStringMap[s];
                 if (!Techs.Specialities.Contains(speciality))
                 {
-                    Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidSpeciality, _currentFileName,
-                        _currentLineNo));
-                    Log.Write(String.Format("  {0}: {1} => {2}\n", team.Id, team.Name, token[index]));
+                    Log.Warning("[Team] Invalid speciality: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id,
+                        team.Name, _currentFileName, _currentLineNo);
                     continue;
                 }
 
@@ -576,8 +567,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     string fileName = Game.GetWriteFileName(Game.DhTeamListPathName);
-                    Debug.WriteLine(string.Format("[Team] Save failed: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Team] Write error: {0}", fileName);
                     MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorTeam, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -597,8 +587,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     string fileName = Game.GetWriteFileName(Game.MinisterPathName, Game.GetMinisterFileName(country));
-                    Debug.WriteLine(string.Format("[Minister] Save failed: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Team] Write error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                         Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -631,7 +620,7 @@ namespace HoI2Editor.Models
             }
 
             string fileName = Game.GetWriteFileName(Game.DhTeamListPathName);
-            Debug.WriteLine(string.Format("[Team] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Team] Save: {0}", Path.GetFileName(fileName));
 
             // 登録された研究機関ファイル名を順に書き込む
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
@@ -664,7 +653,7 @@ namespace HoI2Editor.Models
             }
 
             string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
-            Debug.WriteLine(string.Format("[Team] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Team] Save: {0}", Path.GetFileName(fileName));
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {

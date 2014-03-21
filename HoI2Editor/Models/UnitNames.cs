@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -330,8 +329,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine(string.Format("[UnitName] Read error: {0}", fileName));
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                Log.Error("[UnitName] Read error: {0}", fileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                     Resources.EditorUnitName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -350,7 +348,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void LoadFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[UnitName] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[UnitName] Load: {0}", Path.GetFileName(fileName));
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -382,8 +380,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != 3)
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[UnitName] Invalid token count: {0} ({1} L{2})\n", tokens.Length, _currentFileName,
+                    _currentLineNo);
                 // 余分な項目がある場合は解析を続ける
                 if (tokens.Length < 3)
                 {
@@ -395,25 +393,25 @@ namespace HoI2Editor.Models
             string countryName = tokens[0].ToUpper();
             if (!Countries.StringMap.ContainsKey(countryName))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[UnitName] Invalid country: {0} ({1} L{2})\n", tokens[0], _currentFileName,
+                    _currentLineNo);
                 return;
             }
             Country country = Countries.StringMap[countryName];
 
-            // 兵科
+            // ユニット種類
             string typeName = tokens[1].ToUpper();
             if (!TypeStringMap.ContainsKey(typeName))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[UnitName] Invalid unit type: {0} ({1} L{2})\n", tokens[1], _currentFileName,
+                    _currentLineNo);
                 return;
             }
             UnitNameType type = TypeStringMap[typeName];
             if (!Types.Contains(type))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidBranch, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[UnitName] Invalid unit type: {0} ({1} L{2})\n", tokens[1], _currentFileName,
+                    _currentLineNo);
                 return;
             }
 
@@ -459,8 +457,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine(string.Format("[UnitName] Write error: {0}", fileName));
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                Log.Error("[UnitName] Write error: {0}", fileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                     Resources.EditorUnitName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -478,7 +475,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void SaveFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[UnitName] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[UnitName] Save: {0}", Path.GetFileName(fileName));
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {

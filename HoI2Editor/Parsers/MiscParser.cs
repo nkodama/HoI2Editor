@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
 using HoI2Editor.Models;
-using HoI2Editor.Properties;
 
 namespace HoI2Editor.Parsers
 {
@@ -42,7 +41,7 @@ namespace HoI2Editor.Parsers
                     // 無効なトークン
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                        Log.Warning("[Misc] Invalid token: {0}", token.Value);
                         continue;
                     }
 
@@ -57,8 +56,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Economy, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "economy",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: economy section");
                         }
                         continue;
                     }
@@ -68,8 +66,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Intelligence, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "intelligence",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: intelligence section");
                         }
                         continue;
                     }
@@ -79,8 +76,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Diplomacy, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "diplomacy",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: diplomacy section");
                         }
                         continue;
                     }
@@ -90,8 +86,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Combat, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "combat",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: combat section");
                         }
                         continue;
                     }
@@ -101,8 +96,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Mission, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mission",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: mission section");
                         }
                         continue;
                     }
@@ -112,8 +106,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Country, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "country",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: country section");
                         }
                         continue;
                     }
@@ -123,8 +116,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Research, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "research",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: research section");
                         }
                         continue;
                     }
@@ -134,8 +126,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Trade, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "trade",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: trade section");
                         }
                         continue;
                     }
@@ -145,8 +136,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Ai, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "ai",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: ai section");
                         }
                         continue;
                     }
@@ -156,8 +146,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Mod, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "mod",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: mod section");
                         }
                         continue;
                     }
@@ -167,14 +156,13 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Map, type, lexer))
                         {
-                            Log.Write(string.Format("{0}: {1} {2} / {3}\n", Resources.ParseFailed, "map",
-                                Resources.Section, "misc.txt"));
+                            Log.Warning("[Misc] Parse failed: map section");
                         }
                         continue;
                     }
 
                     // 無効なトークン
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    Log.Warning("[Misc] Invalid token: {0}", token.Value);
                 }
             }
         }
@@ -202,7 +190,7 @@ namespace HoI2Editor.Parsers
             // =
             if (token.Type != TokenType.Equal)
             {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                Log.Warning("[Misc] Invalid token: {0}", token.Value);
                 return false;
             }
 
@@ -219,7 +207,7 @@ namespace HoI2Editor.Parsers
             // {
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                Log.Warning("[Misc] Invalid token: {0}", token.Value);
                 return false;
             }
 
@@ -243,7 +231,7 @@ namespace HoI2Editor.Parsers
                 // 設定値
                 if (token.Type != TokenType.Number)
                 {
-                    Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                    Log.Warning("[Misc] Invalid token: {0}", token.Value);
                     return false;
                 }
                 //Debug.WriteLine(string.Format("{0}: {1}", id, token.Value));
@@ -311,7 +299,7 @@ namespace HoI2Editor.Parsers
             // } (セクション終端)
             if (token.Type != TokenType.CloseBrace)
             {
-                Log.Write(string.Format("{0}: {1}\n", Resources.InvalidToken, token.Value));
+                Log.Warning("[Misc] Invalid token: {0}", token.Value);
                 return false;
             }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -3483,8 +3482,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 error = true;
-                Debug.WriteLine("[Province] Load failed: {0}", fileName);
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                Log.Error("[Province] Read error: {0}", fileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                     Resources.EditorProvince, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -3511,7 +3509,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void LoadFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[Province] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Province] Load: {0}", Path.GetFileName(fileName));
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -3550,24 +3548,25 @@ namespace HoI2Editor.Models
         private static void ParseLine(string line)
         {
             // 空行を読み飛ばす
-            if (String.IsNullOrEmpty(line))
+            if (string.IsNullOrEmpty(line))
             {
                 return;
             }
 
-            string[] token = line.Split(CsvSeparator);
+            string[] tokens = line.Split(CsvSeparator);
 
             // ID指定のない行は読み飛ばす
-            if (String.IsNullOrEmpty(token[0]))
+            if (string.IsNullOrEmpty(tokens[0]))
             {
                 return;
             }
 
             // トークン数が足りない行は読み飛ばす
-            if (token.Length < 49)
+            if (tokens.Length < 49)
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", line));
+                Log.Warning("[Province] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
+                    _currentLineNo);
+                return;
             }
 
             var province = new Province();
@@ -3575,21 +3574,20 @@ namespace HoI2Editor.Models
 
             // プロヴィンスID
             int n;
-            if (!Int32.TryParse(token[index], out n))
+            if (!int.TryParse(tokens[index], out n))
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidId, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
                 return;
             }
             province.Id = n;
             index++;
 
             // プロヴィンス名
-            province.Name = token[index];
+            province.Name = tokens[index];
             index++;
 
             // 地域ID
-            string s = token[index].ToLower();
+            string s = tokens[index].ToLower();
             if (string.IsNullOrEmpty(s))
             {
                 province.Area = AreaId.None;
@@ -3600,14 +3598,14 @@ namespace HoI2Editor.Models
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidArea, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid area: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
                 province.Area = AreaId.None;
             }
             index++;
 
             // 地方ID
-            s = token[index].ToLower();
+            s = tokens[index].ToLower();
             if (string.IsNullOrEmpty(s))
             {
                 province.Region = RegionId.None;
@@ -3618,14 +3616,14 @@ namespace HoI2Editor.Models
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidRegion, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid region: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
                 province.Region = RegionId.None;
             }
             index++;
 
             // 大陸ID
-            s = token[index].ToLower();
+            s = tokens[index].ToLower();
             if (string.IsNullOrEmpty(s))
             {
                 province.Continent = ContinentId.None;
@@ -3636,14 +3634,14 @@ namespace HoI2Editor.Models
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidContinent, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid continent: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
                 province.Continent = ContinentId.None;
             }
             index++;
 
             // 気候ID
-            s = token[index].ToLower();
+            s = tokens[index].ToLower();
             if (string.IsNullOrEmpty(s))
             {
                 province.Climate = ClimateId.None;
@@ -3654,14 +3652,14 @@ namespace HoI2Editor.Models
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidClimate, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid climate: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
                 province.Climate = ClimateId.None;
             }
             index++;
 
             // 地形ID
-            s = token[index].ToLower();
+            s = tokens[index].ToLower();
             if (string.IsNullOrEmpty(s))
             {
                 province.Terrain = TerrainId.Unknown;
@@ -3672,470 +3670,453 @@ namespace HoI2Editor.Models
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidTerrain, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid terrain: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
                 province.Terrain = TerrainId.Unknown;
             }
             index += 3;
 
             // インフラ
             double d;
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.Infrastructure = 0;
             }
-            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.Infrastructure = d;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidInfrastructure, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid infrastructure: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index += 2;
 
             // 砂浜の有無
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.Beaches = false;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.Beaches = (n > 0);
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBeach, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid beach: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 港の有無
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.PortAllowed = false;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.PortAllowed = (n > 0);
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPort, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid port allowed: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 港の海域
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.PortSeaZone = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.PortSeaZone = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPortSeazone, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid port sea zone: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // IC
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.Ic = 0;
             }
-            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.Ic = d;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidIc, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid ic: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 労働力
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.Manpower = 0;
             }
-            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.Manpower = d;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidManpower, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid manpower: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 石油
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.Oil = 0;
             }
-            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.Oil = d;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidOil, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid oil: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 金属
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.Metal = 0;
             }
-            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.Metal = d;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidMetal, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid metal: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // エネルギー
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.Energy = 0;
             }
-            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.Energy = d;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidEnergy, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid energy: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 希少資源
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.RareMaterials = 0;
             }
-            else if (double.TryParse(token[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
                 province.RareMaterials = d;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidRareMaterials, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid rare materials: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 都市のX座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.CityXPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.CityXPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidCityPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid city posision x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 都市のY座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.CityYPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.CityYPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidCityPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid city position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 軍隊のX座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.ArmyXPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.ArmyXPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidArmyPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid army position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 軍隊のY座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.ArmyYPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.ArmyYPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidArmyPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid army position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 港のX座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.PortXPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.PortXPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPortPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid port position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 港のY座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.PortYPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.PortYPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidPortPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid port position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 砂浜のX座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.BeachXPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.BeachXPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBeachPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid beach position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 砂浜のY座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.BeachYPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.BeachYPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBeachPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid beach position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 砂浜のアイコン
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.BeachIcon = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.BeachIcon = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidBeachIcon, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid beach icon: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 要塞のX座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.FortXPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.FortXPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidFortPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid fort position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 要塞のY座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.FortYPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.FortYPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidFortPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid fort position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 対空砲のX座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.AaXPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.AaXPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidAaPosition, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid aa position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 対空砲のY座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.AaYPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.AaYPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidAaPosition, _currentFileName, _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid aa position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // カウンターのX座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.CounterXPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.CounterXPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidCounterPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid counter position x: {0} [{1}: {2}] ({3} L{4})", tokens[index],
+                    province.Id, province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // カウンターのY座標
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.CounterYPos = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.CounterYPos = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidCounterPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid counter position y: {0} [{1}: {2}] ({3} L{4})", tokens[index],
+                    province.Id, province.Name, _currentFileName, _currentLineNo);
             }
             index += 11;
 
             // 塗りつぶしX座標1
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.FillCoordX1 = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.FillCoordX1 = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidFillPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid fill position x1: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 塗りつぶしY座標1
-            if (string.IsNullOrEmpty(token[index]))
+            if (string.IsNullOrEmpty(tokens[index]))
             {
                 province.FillCoordY1 = 0;
             }
-            else if (Int32.TryParse(token[index], out n))
+            else if (int.TryParse(tokens[index], out n))
             {
                 province.FillCoordY1 = n;
             }
             else
             {
-                Log.Write(String.Format("{0}: {1} L{2}\n", Resources.InvalidFillPosition, _currentFileName,
-                    _currentLineNo));
-                Log.Write(String.Format("  {0}\n", token[index]));
+                Log.Warning("[Province] Invalid fill position y1: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
+                    province.Name, _currentFileName, _currentLineNo);
             }
             index++;
 
             // 塗りつぶしX座標2
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordX2 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordX2 = n;
                 }
@@ -4143,13 +4124,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしY座標2
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordY2 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordY2 = n;
                 }
@@ -4157,13 +4138,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしX座標3
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordX3 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordX3 = n;
                 }
@@ -4171,13 +4152,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしY座標3
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordY3 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordY3 = n;
                 }
@@ -4185,13 +4166,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしX座標4
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordX4 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordX4 = n;
                 }
@@ -4199,13 +4180,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしY座標4
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordY4 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordY4 = n;
                 }
@@ -4213,13 +4194,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしX座標5
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordX5 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordX5 = n;
                 }
@@ -4227,13 +4208,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしY座標5
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordY5 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordY5 = n;
                 }
@@ -4241,13 +4222,13 @@ namespace HoI2Editor.Models
             index++;
 
             // 塗りつぶしX座標6
-            if (index < token.Length)
+            if (index < tokens.Length)
             {
-                if (string.IsNullOrEmpty(token[index]))
+                if (string.IsNullOrEmpty(tokens[index]))
                 {
                     province.FillCoordX6 = 0;
                 }
-                else if (Int32.TryParse(token[index], out n))
+                else if (int.TryParse(tokens[index], out n))
                 {
                     province.FillCoordX6 = n;
                 }
@@ -4284,13 +4265,12 @@ namespace HoI2Editor.Models
                     }
 
                     // プロヴィンス定義ファイルを保存する
-                    Debug.WriteLine(string.Format("[Province] Save: {0}", Path.GetFileName(fileName)));
+                    Log.Info("[Province] Save: {0}", Path.GetFileName(fileName));
                     SaveFile(fileName);
                 }
                 catch (Exception)
                 {
-                    Debug.WriteLine("[Province] Save failed: {0}", fileName);
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Province] Write error: {0}", fileName);
                     MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                         Resources.EditorProvince, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;

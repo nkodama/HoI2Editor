@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -97,7 +96,7 @@ namespace HoI2Editor.Forms
             switch (id)
             {
                 case EditorItemId.UnitName:
-                    Debug.WriteLine("[UnitName] Changed unit name");
+                    Log.Verbose("[UnitName] Changed unit name");
                     // ユニット種類リストボックスの表示項目を更新する
                     UpdateTypeListBox();
                     break;

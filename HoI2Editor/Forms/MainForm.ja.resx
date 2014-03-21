@@ -184,11 +184,26 @@
   <data name="languageLabel.Text" xml:space="preserve">
     <value>言語</value>
   </data>
-  <data name="logCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
+  <data name="logLevelComboBox.Items" xml:space="preserve">
+    <value>なし</value>
   </data>
-  <data name="logCheckBox.Text" xml:space="preserve">
-    <value>エラーログ出力</value>
+  <data name="logLevelComboBox.Items1" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="logLevelComboBox.Items2" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="logLevelComboBox.Items3" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="logLevelComboBox.Items4" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="logLevelLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 12</value>
+  </data>
+  <data name="logLevelLabel.Text" xml:space="preserve">
+    <value>ログ出力レベル</value>
   </data>
   <data name="optionGroupBox.Text" xml:space="preserve">
     <value>オプション</value>

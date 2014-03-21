@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace HoI2Editor.Models
@@ -1690,7 +1689,7 @@ namespace HoI2Editor.Models
         /// <param name="name">ユニットモデル名</param>
         public void InsertModel(UnitModel model, int index, string name)
         {
-            Debug.WriteLine(string.Format("[Unit] Insert model: {0} ({1})", index, this));
+            Log.Info("[Unit] Insert model: {0} ({1})", index, this);
 
             // 挿入位置以降のユニットモデル名を変更する
             SlideModelNamesDown(index, Models.Count - 1);
@@ -1718,7 +1717,7 @@ namespace HoI2Editor.Models
         /// <param name="index">削除する位置</param>
         public void RemoveModel(int index)
         {
-            Debug.WriteLine(string.Format("[Unit] Remove model: {0} ({1})", index, this));
+            Log.Info("[Unit] Remove model: {0} ({1})", index, this);
 
             // 削除位置以降のユニットモデル名を変更する
             SlideModelNamesUp(index + 1, Models.Count - 1);
@@ -1744,7 +1743,7 @@ namespace HoI2Editor.Models
         /// <param name="dest">移動先の位置</param>
         public void MoveModel(int src, int dest)
         {
-            Debug.WriteLine(string.Format("[Unit] Move model: {0} -> {1} ({2})", src, dest, this));
+            Log.Info("[Unit] Move model: {0} -> {1} ({2})", src, dest, this);
 
             UnitModel model = Models[src];
 
@@ -1831,7 +1830,7 @@ namespace HoI2Editor.Models
         /// <param name="s">ユニットモデル名</param>
         private void SetModelName(int index, string s)
         {
-            Debug.WriteLine(string.Format("[Unit] Set model name: {0} - {1} ({2})", index, s, this));
+            Log.Info("[Unit] Set model name: {0} - {1} ({2})", index, s, this);
 
             Config.SetText(GetModelNameKey(index), s, Game.UnitTextFileName);
         }
@@ -1850,8 +1849,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Set country model name: {0} - {1} <{2}> ({3})", index, s,
-                Countries.Strings[(int) country], this));
+            Log.Info("[Unit] Set country model name: {0} - {1} <{2}> ({3})", index, s, Countries.Strings[(int) country],
+                this);
 
             Config.SetText(GetModelNameKey(index, country), s, Game.ModelTextFileName);
         }
@@ -1863,7 +1862,7 @@ namespace HoI2Editor.Models
         /// <param name="dest">コピー元ユニットモデルのインデックス</param>
         private void CopyModelName(int src, int dest)
         {
-            Debug.WriteLine(string.Format("[Unit] Copy model name: {0} -> {1} ({2})", src, dest, this));
+            Log.Info("[Unit] Copy model name: {0} -> {1} ({2})", src, dest, this);
 
             SetModelName(dest, GetModelName(src));
         }
@@ -1882,8 +1881,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Copy country model name: {0} -> {1} <{2}> ({3})", src, dest,
-                Countries.Strings[(int) country], this));
+            Log.Info("[Unit] Copy country model name: {0} -> {1} <{2}> ({3})", src, dest,
+                Countries.Strings[(int) country], this);
 
             SetModelName(dest, country, GetModelName(src, country));
         }
@@ -1901,7 +1900,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Remove model name: {0} ({1})", index, this));
+            Log.Info("[Unit] Remove model name: {0} ({1})", index, this);
 
             Config.RemoveText(key, Game.UnitTextFileName);
         }
@@ -1926,8 +1925,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Remove country model name: {0} <{1}> ({2})", index,
-                Countries.Strings[(int) country], this));
+            Log.Info("[Unit] Remove country model name: {0} <{1}> ({2})", index, Countries.Strings[(int) country], this);
 
             Config.RemoveText(key, Game.ModelTextFileName);
         }
@@ -1947,7 +1945,7 @@ namespace HoI2Editor.Models
                 end = tmp;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Slide model names up: {0} - {1} ({2})", start, end, this));
+            Log.Info("[Unit] Slide model names up: {0} - {1} ({2})", start, end, this);
 
             // 共通のモデル名を順に上へ移動する
             for (int i = start; i <= end; i++)
@@ -2000,7 +1998,7 @@ namespace HoI2Editor.Models
                 end = tmp;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Slide model names down: {0} - {1} ({2})", start, end, this));
+            Log.Info("[Unit] Slide model names down: {0} - {1} ({2})", start, end, this);
 
             // 共通のモデル名を順に下へ移動する
             for (int i = end; i >= start; i--)

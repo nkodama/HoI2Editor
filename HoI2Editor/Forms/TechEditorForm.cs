@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -787,7 +786,7 @@ namespace HoI2Editor.Forms
             // 技術項目リストの更新を通知する
             HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
 
-            Debug.WriteLine(string.Format("[Tech] Added new tech: {0}", item.Id));
+            Log.Info("[Tech] Added new tech: {0}", item.Id);
         }
 
         /// <summary>
@@ -838,7 +837,7 @@ namespace HoI2Editor.Forms
             // 技術ツリーにラベルを追加する
             AddTechTreeItems(item);
 
-            Debug.WriteLine(string.Format("[Tech] Added new label"));
+            Log.Info("[Tech] Added new label");
         }
 
         /// <summary>
@@ -892,7 +891,7 @@ namespace HoI2Editor.Forms
             // 技術ツリーにラベルを追加する
             AddTechTreeItems(item);
 
-            Debug.WriteLine(string.Format("[Tech] Added new event: {0}", item.Id));
+            Log.Info("[Tech] Added new event: {0}", item.Id);
         }
 
         /// <summary>
@@ -946,16 +945,16 @@ namespace HoI2Editor.Forms
                 HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
 
                 var techItem = item as TechItem;
-                Debug.WriteLine(string.Format("[Tech] Added new tech: {0}", techItem.Id));
+                Log.Info("[Tech] Added new tech: {0}", techItem.Id);
             }
             else if (item is TechLabel)
             {
-                Debug.WriteLine(string.Format("[Tech] Added new label"));
+                Log.Info("[Tech] Added new label");
             }
             else if (item is TechEvent)
             {
                 var eventItem = item as TechEvent;
-                Debug.WriteLine(string.Format("[Tech] Added new event: {0}", eventItem.Id));
+                Log.Info("[Tech] Added new event: {0}", eventItem.Id);
             }
         }
 
@@ -1016,17 +1015,17 @@ namespace HoI2Editor.Forms
                 HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
 
                 var techItem = selected as TechItem;
-                Debug.WriteLine(string.Format("[Tech] Removed tech: {0} [{1}]", techItem.Id, techItem));
+                Log.Info("[Tech] Removed tech: {0} [{1}]", techItem.Id, techItem);
             }
             else if (selected is TechLabel)
             {
                 var labelItem = selected as TechLabel;
-                Debug.WriteLine(string.Format("[Tech] Removed label: {0}", labelItem));
+                Log.Info("[Tech] Removed label: {0}", labelItem);
             }
             else if (selected is TechEvent)
             {
                 var eventItem = selected as TechEvent;
-                Debug.WriteLine(string.Format("[Tech] Removed event: {0}", eventItem.Id));
+                Log.Info("[Tech] Removed event: {0}", eventItem.Id);
             }
         }
 
@@ -1850,7 +1849,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed category name: {0} -> {1} <{2}>", grp, name, grp.Name));
+            Log.Info("[Tech] Changed category name: {0} -> {1} <{2}>", grp, name, grp.Name);
 
             // 値を更新する
             Config.SetText(grp.Name, name, Game.TechTextFileName);
@@ -1884,8 +1883,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed category description: {0} -> {1} <{2}>", grp.GetDesc(), desc,
-                grp.Desc));
+            Log.Info("[Tech] Changed category description: {0} -> {1} <{2}>", grp.GetDesc(), desc, grp.Desc);
 
             // 値を更新する
             Config.SetText(grp.Desc, desc, Game.TechTextFileName);
@@ -2064,7 +2062,7 @@ namespace HoI2Editor.Forms
                 Techs.IncrementDuplicatedListCount(item.Name);
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech name: {0} -> {1} <{2}>", item, name, item.Name));
+            Log.Info("[Tech] Changed tech name: {0} -> {1} <{2}>", item, name, item.Name);
 
             // 値を更新する
             Config.SetText(item.Name, name, Game.TechTextFileName);
@@ -2132,8 +2130,7 @@ namespace HoI2Editor.Forms
                 Techs.IncrementDuplicatedListCount(item.ShortName);
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech short name: {0} -> {1} <{2}>", item.GetShortName(),
-                shortName, item.ShortName));
+            Log.Info("[Tech] Changed tech short name: {0} -> {1} <{2}>", item.GetShortName(), shortName, item.ShortName);
 
             // 値を更新する
             Config.SetText(item.ShortName, shortName, Game.TechTextFileName);
@@ -2176,7 +2173,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech id: {0} -> {1} [{2}]", item.Id, id, item.Name));
+            Log.Info("[Tech] Changed tech id: {0} -> {1} [{2}]", item.Id, id, item.Name);
 
             // 値を更新する
             Techs.ModifyTechId(item, id);
@@ -2214,7 +2211,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech year: {0} -> {1} [{2}]", item.Year, year, item));
+            Log.Info("[Tech] Changed tech year: {0} -> {1} [{2}]", item.Year, year, item);
 
             // 値を更新する
             item.Year = year;
@@ -2308,8 +2305,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech position: ({0},{1}) -> ({2},{1}) [{3}]", position.X,
-                position.Y, x, item));
+            Log.Info("[Tech] Changed tech position: ({0},{1}) -> ({2},{1}) [{3}]", position.X, position.Y, x, item);
 
             // 値を更新する
             position.X = x;
@@ -2366,8 +2362,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech position: ({0},{1}) -> ({0},{2}) [{3}]", position.X,
-                position.Y, y, item));
+            Log.Info("[Tech] Changed tech position: ({0},{1}) -> ({0},{2}) [{3}]", position.X, position.Y, y, item);
 
             // 値を更新する
             position.Y = y;
@@ -2414,7 +2409,7 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
-            Debug.WriteLine(string.Format("[Tech] Added tech position: ({0}, {1}) [{2}]", position.X, position.Y, item));
+            Log.Info("[Tech] Added tech position: ({0}, {1}) [{2}]", position.X, position.Y, item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -2460,7 +2455,7 @@ namespace HoI2Editor.Forms
             int index = techPositionListView.SelectedIndices[0];
             TechPosition position = item.Positions[index];
 
-            Debug.WriteLine(string.Format("[Tech] Added tech position: ({0}, {1}) [{2}]", position.X, position.Y, item));
+            Log.Info("[Tech] Removed tech position: ({0}, {1}) [{2}]", position.X, position.Y, item);
 
             // 座標をリストから削除する
             item.Positions.RemoveAt(index);
@@ -2552,8 +2547,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech picture: {0} -> {1} [{2}]", item.PictureName, pictureName,
-                item));
+            Log.Info("[Tech] Changed tech picture: {0} -> {1} [{2}]", item.PictureName, pictureName, item);
 
             // 値を更新する
             item.PictureName = pictureName;
@@ -3024,7 +3018,7 @@ namespace HoI2Editor.Forms
             var tech = new RequiredTech();
             item.AndRequiredTechs.Add(tech);
 
-            Debug.WriteLine(string.Format("[Tech] Added and required tech: {0} [{1}]", tech.Id, item));
+            Log.Info("[Tech] Added and required tech: {0} [{1}]", tech.Id, item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -3054,7 +3048,7 @@ namespace HoI2Editor.Forms
             var tech = new RequiredTech();
             item.OrRequiredTechs.Add(tech);
 
-            Debug.WriteLine(string.Format("[Tech] Added or required tech: {0} [{1}]", tech.Id, item));
+            Log.Info("[Tech] Added or required tech: {0} [{1}]", tech.Id, item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -3086,8 +3080,7 @@ namespace HoI2Editor.Forms
             }
             int index = andRequiredListView.SelectedIndices[0];
 
-            Debug.WriteLine(string.Format("[Tech] Removed and required tech: {0} [{1}]", item.AndRequiredTechs[index].Id,
-                item));
+            Log.Info("[Tech] Removed and required tech: {0} [{1}]", item.AndRequiredTechs[index].Id, item);
 
             // AND条件必要技術リストから項目を削除する
             RemoveAndRequiredListItem(index);
@@ -3121,8 +3114,7 @@ namespace HoI2Editor.Forms
             }
             int index = orRequiredListView.SelectedIndices[0];
 
-            Debug.WriteLine(string.Format("[Tech] Removed or required tech: {0} [{1}]", item.OrRequiredTechs[index].Id,
-                item));
+            Log.Info("[Tech] Removed or required tech: {0} [{1}]", item.OrRequiredTechs[index].Id, item);
 
             // OR条件必要技術リストから項目を削除する
             RemoveOrRequiredListItem(index);
@@ -3164,7 +3156,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed and required tech: {0} -> {1} [{2}]", tech.Id, id, item));
+            Log.Info("[Tech] Changed and required tech: {0} -> {1} [{2}]", tech.Id, id, item);
 
             // 値を更新する
             tech.Id = id;
@@ -3224,7 +3216,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed or required tech: {0} -> {1} [{2}]", tech.Id, id, item));
+            Log.Info("[Tech] Changed or required tech: {0} -> {1} [{2}]", tech.Id, id, item);
 
             // 値を更新する
             tech.Id = id;
@@ -3779,7 +3771,7 @@ namespace HoI2Editor.Forms
             // 小研究リストの更新を通知する
             HoI2Editor.OnItemChanged(EditorItemId.TechComponentList, this);
 
-            Debug.WriteLine(string.Format("[Tech] Added new tech component: {0} [{1}]", component.Id, item));
+            Log.Info("[Tech] Added new tech component: {0} [{1}]", component.Id, item);
         }
 
         /// <summary>
@@ -3807,7 +3799,7 @@ namespace HoI2Editor.Forms
             TechComponent component = selected.Clone();
             component.Id = item.GetNewComponentId(selected.Id);
 
-            Debug.WriteLine(string.Format("[Tech] Added new tech component: {0} [{1}]", component.Id, item));
+            Log.Info("[Tech] Added new tech component: {0} [{1}]", component.Id, item);
 
             // 重複文字列リストに登録する
             Techs.IncrementDuplicatedListCount(component.Name);
@@ -3849,7 +3841,7 @@ namespace HoI2Editor.Forms
             }
             int index = componentListView.SelectedIndices[0];
 
-            Debug.WriteLine(string.Format("[Tech] Removed new tech component: {0} [{1}]", item.Components[index], item));
+            Log.Info("[Tech] Removed new tech component: {0} [{1}]", item.Components[index], item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -3974,8 +3966,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component id: {0} -> {1} [{2}]", component.Id, id,
-                component));
+            Log.Info("[Tech] Changed tech component id: {0} -> {1} [{2}]", component.Id, id, component);
 
             // 値を更新する
             component.Id = id;
@@ -4035,8 +4026,7 @@ namespace HoI2Editor.Forms
                 Techs.IncrementDuplicatedListCount(component.Name);
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component name: {0} -> {1} <{2}>", component, name,
-                component.Name));
+            Log.Info("[Tech] Changed tech component name: {0} -> {1} <{2}>", component, name, component.Name);
 
             // 値を更新する
             Config.SetText(component.Name, name, Game.TechTextFileName);
@@ -4086,8 +4076,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component speciality: {0} -> {1} [{2}]",
-                Techs.GetSpecialityName(component.Speciality), Techs.GetSpecialityName(speciality), component));
+            Log.Info("[Tech] Changed tech component speciality: {0} -> {1} [{2}]",
+                Techs.GetSpecialityName(component.Speciality), Techs.GetSpecialityName(speciality), component);
 
             // 値を更新する
             component.Speciality = speciality;
@@ -4142,9 +4132,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component difficulty: {0} -> {1} [{2}]",
-                component.Difficulty,
-                difficulty, component));
+            Log.Info("[Tech] Changed tech component difficulty: {0} -> {1} [{2}]", component.Difficulty, difficulty,
+                component);
 
             // 値を更新する
             component.Difficulty = difficulty;
@@ -4199,9 +4188,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech component double time: {0} -> {1} [{2}]",
-                component.DoubleTime,
-                doubleTime, component));
+            Log.Info("[Tech] Changed tech component double time: {0} -> {1} [{2}]", component.DoubleTime, doubleTime,
+                component);
 
             // 値を更新する
             component.DoubleTime = doubleTime;
@@ -4752,7 +4740,7 @@ namespace HoI2Editor.Forms
                 AddEffectListItem(command);
             }
 
-            Debug.WriteLine(string.Format("[Tech] Added new effect: [{0}]", item));
+            Log.Info("[Tech] Added new effect: [{0}]", item);
         }
 
         /// <summary>
@@ -4778,8 +4766,7 @@ namespace HoI2Editor.Forms
 
             Command command = item.Effects[index].Clone();
 
-            Debug.WriteLine(string.Format("[Tech] Added new effect: {0} [{1}]",
-                Command.TypeStringTable[(int) command.Type], item));
+            Log.Info("[Tech] Added new effect: {0} [{1}]", Command.TypeStringTable[(int) command.Type], item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4815,8 +4802,7 @@ namespace HoI2Editor.Forms
             }
             int index = effectListView.SelectedIndices[0];
 
-            Debug.WriteLine(string.Format("[Tech] Removed effect: {0} [{1}]",
-                Command.TypeStringTable[(int) item.Effects[index].Type], item));
+            Log.Info("[Tech] Removed effect: {0} [{1}]", Command.TypeStringTable[(int) item.Effects[index].Type], item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4944,8 +4930,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed tech effect type: {0} -> {1} [{2}]",
-                Command.TypeStringTable[(int) command.Type], Command.TypeStringTable[(int) type], item));
+            Log.Info("[Tech] Changed tech effect type: {0} -> {1} [{2}]", Command.TypeStringTable[(int) command.Type],
+                Command.TypeStringTable[(int) type], item);
 
             // 値を更新する
             command.Type = type;
@@ -4999,8 +4985,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect which: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.Which), ObjectHelper.ToString(val), item));
+                Log.Info("[Tech] Changed tech effect which: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Which),
+                    ObjectHelper.ToString(val), item);
 
                 // 値を更新する
                 command.Which = val;
@@ -5014,8 +5000,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect which: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.Which), text, item));
+                Log.Info("[Tech] Changed tech effect which: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Which),
+                    text, item);
 
                 // 値を更新する
                 command.Which = text;
@@ -5073,8 +5059,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect value: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.Value), ObjectHelper.ToString(val), item));
+                Log.Info("[Tech] Changed tech effect value: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Value),
+                    ObjectHelper.ToString(val), item);
 
                 // 値を更新する
                 command.Value = val;
@@ -5088,8 +5074,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect value: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.Value), text, item));
+                Log.Info("[Tech] Changed tech effect value: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Value),
+                    text, item);
 
                 // 値を更新する
                 command.Value = text;
@@ -5147,8 +5133,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect when: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.When), ObjectHelper.ToString(val), item));
+                Log.Info("[Tech] Changed tech effect when: {0} -> {1} [{2}]", ObjectHelper.ToString(command.When),
+                    ObjectHelper.ToString(val), item);
 
                 // 値を更新する
                 command.When = val;
@@ -5162,8 +5148,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect when: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.When), text, item));
+                Log.Info("[Tech] Changed tech effect when: {0} -> {1} [{2}]", ObjectHelper.ToString(command.When), text,
+                    item);
 
                 // 値を更新する
                 command.When = text;
@@ -5221,8 +5207,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect where: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.Where), ObjectHelper.ToString(val), item));
+                Log.Info("[Tech] Changed tech effect where: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Where),
+                    ObjectHelper.ToString(val), item);
 
                 // 値を更新する
                 command.Where = val;
@@ -5236,8 +5222,8 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Tech] Changed tech effect where: {0} -> {1} [{2}]",
-                    ObjectHelper.ToString(command.Where), text, item));
+                Log.Info("[Tech] Changed tech effect where: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Where),
+                    text, item);
 
                 // 値を更新する
                 command.Where = text;
@@ -5513,7 +5499,7 @@ namespace HoI2Editor.Forms
                 Techs.IncrementDuplicatedListCount(item.Name);
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed label name: {0} -> {1} <{2}>", item, text, item.Name));
+            Log.Info("[Tech] Changed label name: {0} -> {1} <{2}>", item, text, item.Name);
 
             // 値を更新する
             Config.SetText(item.Name, text, Game.TechTextFileName);
@@ -5619,8 +5605,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed label position: ({0},{1}) -> ({2},{1}) [{3}]", position.X,
-                position.Y, x, item));
+            Log.Info("[Tech] Changed label position: ({0},{1}) -> ({2},{1}) [{3}]", position.X, position.Y, x, item);
 
             // 値を更新する
             position.X = x;
@@ -5678,8 +5663,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed label position: ({0},{1}) -> ({0},{2}) [{3}]", position.X,
-                position.Y, y, item));
+            Log.Info("[Tech] Changed label position: ({0},{1}) -> ({0},{2}) [{3}]", position.X, position.Y, y, item);
 
             // 値を更新する
             position.Y = y;
@@ -5726,7 +5710,7 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
-            Debug.WriteLine(string.Format("[Tech] Added label position: ({0},{1}) [{2}]", position.X, position.Y, item));
+            Log.Info("[Tech] Added label position: ({0},{1}) [{2}]", position.X, position.Y, item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -5771,7 +5755,7 @@ namespace HoI2Editor.Forms
             int index = labelPositionListView.SelectedIndices[0];
             TechPosition position = item.Positions[index];
 
-            Debug.WriteLine(string.Format("[Tech] Removed label position: ({0},{1}) [{2}]", position.X, position.Y, item));
+            Log.Info("[Tech] Removed label position: ({0},{1}) [{2}]", position.X, position.Y, item);
 
             // ラベル座標リストから項目を削除する
             item.Positions.RemoveAt(index);
@@ -6020,7 +6004,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed event id: {0} -> {1}", item.Id, id));
+            Log.Info("[Tech] Changed event id: {0} -> {1}", item.Id, id);
 
             // 値を更新する
             item.Id = id;
@@ -6061,7 +6045,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed event tech id: {0} -> {1}", item.TechId, id));
+            Log.Info("[Tech] Changed event tech id: {0} -> {1}", item.TechId, id);
 
             // 値を更新する
             item.TechId = id;
@@ -6190,8 +6174,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed event position: ({0},{1}) -> ({2},{1}) [{3}]", position.X,
-                position.Y, x, item));
+            Log.Info("[Tech] Changed event position: ({0},{1}) -> ({2},{1}) [{3}]", position.X, position.Y, x, item);
 
             // 値を更新する
             position.X = x;
@@ -6249,8 +6232,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Tech] Changed event position: ({0},{1}) -> ({0},{2}) [{3}]", position.X,
-                position.Y, y, item));
+            Log.Info("[Tech] Changed event position: ({0},{1}) -> ({0},{2}) [{3}]", position.X, position.Y, y, item);
 
             // 値を更新する
             position.Y = y;
@@ -6297,7 +6279,7 @@ namespace HoI2Editor.Forms
             var position = new TechPosition {X = 0, Y = 0};
             item.Positions.Add(position);
 
-            Debug.WriteLine(string.Format("[Tech] Added event position: ({0},{1}) [{2}]", position.X, position.Y, item));
+            Log.Info("[Tech] Added event position: ({0},{1}) [{2}]", position.X, position.Y, item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -6342,7 +6324,7 @@ namespace HoI2Editor.Forms
             int index = eventPositionListView.SelectedIndices[0];
             TechPosition position = item.Positions[index];
 
-            Debug.WriteLine(string.Format("[Tech] Removed event position: ({0},{1}) [{2}]", position.X, position.Y, item));
+            Log.Info("[Tech] Removed event position: ({0},{1}) [{2}]", position.X, position.Y, item);
 
             // 発明イベント座標リストから項目を削除する
             item.Positions.RemoveAt(index);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -116,8 +115,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine(string.Format("[RandomLeader] Read error: {0}", fileName));
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                Log.Error("[RandomLeader] Read error: {0}", fileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                     Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -136,7 +134,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">ファイル名</param>
         private static void LoadFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[RandomLeader] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[RandomLeader] Load: {0}", Path.GetFileName(fileName));
 
             using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -168,8 +166,8 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != 2)
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[RandomLeader] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
+                    _currentLineNo);
                 // 余分な項目がある場合は解析を続ける
                 if (tokens.Length < 2)
                 {
@@ -181,8 +179,8 @@ namespace HoI2Editor.Models
             string countryName = tokens[0].ToUpper();
             if (!Countries.StringMap.ContainsKey(countryName))
             {
-                Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidCountryTag, _currentFileName, _currentLineNo));
-                Log.Write(string.Format("  {0}\n", line));
+                Log.Warning("[RandomLeader] Invalid country: {0} ({1} L{2})", countryName, _currentFileName,
+                    _currentLineNo);
                 return;
             }
             Country country = Countries.StringMap[countryName];
@@ -229,8 +227,7 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                Debug.WriteLine(string.Format("[RandomLeader] Write error: {0}", fileName));
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                Log.Error("[RandomLeader] Write error: {0}", fileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                     Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -248,7 +245,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void SaveFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[RandomLeader] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[RandomLeader] Save: {0}", Path.GetFileName(fileName));
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -259,14 +256,7 @@ namespace HoI2Editor.Models
                 {
                     foreach (string name in Items[(int) country])
                     {
-                        try
-                        {
-                            writer.WriteLine("{0};{1}", Countries.Strings[(int) country], name);
-                        }
-                        catch (Exception)
-                        {
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-                        }
+                        writer.WriteLine("{0};{1}", Countries.Strings[(int) country], name);
                         _currentLineNo++;
                     }
                 }

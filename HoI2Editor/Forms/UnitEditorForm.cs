@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -378,13 +377,13 @@ namespace HoI2Editor.Forms
             switch (id)
             {
                 case EditorItemId.MaxAllowedBrigades:
-                    Debug.WriteLine("[Unit] Notified max allowed brigades");
+                    Log.Verbose("[Unit] Notified max allowed brigades");
                     // 最大付属旅団数の表示を更新する
                     UpdateMaxAllowedBrigades();
                     break;
 
                 case EditorItemId.CommonModelName:
-                    Debug.WriteLine("[Unit] Notified common model name");
+                    Log.Verbose("[Unit] Notified common model name");
                     // ユニットモデルリストのモデル名を更新する
                     UpdateModelListName();
                     // ユニットモデル名の表示を更新する
@@ -392,7 +391,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case EditorItemId.CountryModelName:
-                    Debug.WriteLine("[Unit] Notified country model name");
+                    Log.Verbose("[Unit] Notified country model name");
                     // ユニットモデルリストのモデル名を更新する
                     UpdateModelListName();
                     // ユニットモデル名の表示を更新する
@@ -1737,8 +1736,7 @@ namespace HoI2Editor.Forms
                 }
             }
 
-            Debug.WriteLine(string.Format("[Unit] unit name: {0} -> {1}", Config.GetText(unit.Name),
-                classNameTextBox.Text));
+            Log.Info("[Unit] unit name: {0} -> {1}", Config.GetText(unit.Name), classNameTextBox.Text);
 
             // 値を更新する
             Config.SetText(unit.Name, classNameTextBox.Text, Game.UnitTextFileName);
@@ -1817,8 +1815,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] unit short name: {0} -> {1} ({2})", unit.GetShortName(),
-                classShortNameTextBox.Text, unit));
+            Log.Info("[Unit] unit short name: {0} -> {1} ({2})", unit.GetShortName(), classShortNameTextBox.Text, unit);
 
             // 値を更新する
             Config.SetText(unit.ShortName, classShortNameTextBox.Text, Game.UnitTextFileName);
@@ -1850,8 +1847,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] unit desc: {0} -> {1} ({2})", unit.GetDesc(), classDescTextBox.Text,
-                unit));
+            Log.Info("[Unit] unit desc: {0} -> {1} ({2})", unit.GetDesc(), classDescTextBox.Text, unit);
 
             // 値を更新する
             Config.SetText(unit.Desc, classDescTextBox.Text, Game.UnitTextFileName);
@@ -1883,8 +1879,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] unit short desc: {0} -> {1} ({2})", unit.GetShortDesc(),
-                classShortDescTextBox.Text, unit));
+            Log.Info("[Unit] unit short desc: {0} -> {1} ({2})", unit.GetShortDesc(), classShortDescTextBox.Text, unit);
 
             // 値を更新する
             Config.SetText(unit.ShortDesc, classShortDescTextBox.Text, Game.UnitTextFileName);
@@ -1917,8 +1912,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] branch: {0} -> {1} ({2})", Branches.GetName(unit.Branch),
-                Branches.GetName(branch), unit));
+            Log.Info("[Unit] branch: {0} -> {1} ({2})", Branches.GetName(unit.Branch), Branches.GetName(branch), unit);
 
             // 値を更新する
             unit.Branch = branch;
@@ -1958,7 +1952,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] eyr: {0} -> {1} ({2})", unit.Eyr, eyr, unit));
+            Log.Info("[Unit] eyr: {0} -> {1} ({2})", unit.Eyr, eyr, unit);
 
             // 値を更新する
             unit.Eyr = eyr;
@@ -1991,7 +1985,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] gfx prio: {0} -> {1} ({2})", unit.GfxPrio, prio, unit));
+            Log.Info("[Unit] gfx prio: {0} -> {1} ({2})", unit.GfxPrio, prio, unit);
 
             // 値を更新する
             unit.GfxPrio = prio;
@@ -2024,7 +2018,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] list prio: {0} -> {1} ({2})", unit.ListPrio, prio, unit));
+            Log.Info("[Unit] list prio: {0} -> {1} ({2})", unit.ListPrio, prio, unit);
 
             // 値を更新する
             unit.ListPrio = prio;
@@ -2057,7 +2051,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] ui prio: {0} -> {1} ({2})", unit.UiPrio, prio, unit));
+            Log.Info("[Unit] ui prio: {0} -> {1} ({2})", unit.UiPrio, prio, unit);
 
             // 値を更新する
             unit.UiPrio = prio;
@@ -2096,8 +2090,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] real unit type: {0} -> {1} ({2})",
-                Config.GetText(Units.RealNames[(int) unit.RealType]), Config.GetText(Units.RealNames[(int) type]), unit));
+            Log.Info("[Unit] real unit type: {0} -> {1} ({2})", Config.GetText(Units.RealNames[(int) unit.RealType]),
+                Config.GetText(Units.RealNames[(int) type]), unit);
 
             // 値を更新する
             unit.RealType = type;
@@ -2129,8 +2123,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] default production type: {0} -> {1} ({2})",
-                BoolHelper.ToYesNo(unit.DefaultType), BoolHelper.ToYesNo(defaultTypeCheckBox.Checked), unit));
+            Log.Info("[Unit] default production type: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.DefaultType),
+                BoolHelper.ToYesNo(defaultTypeCheckBox.Checked), unit);
 
             // 値を更新する
             unit.DefaultType = defaultTypeCheckBox.Checked;
@@ -2169,9 +2163,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] sprite type: {0} -> {1} ({2})",
-                Config.GetText(Units.SpriteNames[(int) unit.Sprite]), Config.GetText(Units.SpriteNames[(int) type]),
-                unit));
+            Log.Info("[Unit] sprite type: {0} -> {1} ({2})", Config.GetText(Units.SpriteNames[(int) unit.Sprite]),
+                Config.GetText(Units.SpriteNames[(int) type]), unit);
 
             // 値を更新する
             unit.Sprite = type;
@@ -2210,8 +2203,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] transmute type: {0} -> {1} ({2})", Units.Items[(int) unit.Transmute],
-                Units.Items[(int) type], unit));
+            Log.Info("[Unit] transmute type: {0} -> {1} ({2})", Units.Items[(int) unit.Transmute],
+                Units.Items[(int) type], unit);
 
             // 値を更新する
             unit.Transmute = type;
@@ -2251,8 +2244,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] military value: {0} -> {1} ({2})",
-                unit.Value.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture), unit));
+            Log.Info("[Unit] military value: {0} -> {1} ({2})", unit.Value.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit);
 
             // 値を更新する
             unit.Value = val;
@@ -2291,7 +2284,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] max speed step: {0} -> {1} ({2})", unit.MaxSpeedStep, val, unit));
+            Log.Info("[Unit] max speed step: {0} -> {1} ({2})", unit.MaxSpeedStep, val, unit);
 
             // 値を更新する
             unit.MaxSpeedStep = val;
@@ -2322,8 +2315,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] productable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Productable),
-                BoolHelper.ToYesNo(productableCheckBox.Checked), unit));
+            Log.Info("[Unit] productable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Productable),
+                BoolHelper.ToYesNo(productableCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Productable = productableCheckBox.Checked;
@@ -2355,8 +2348,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] detachable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Detachable),
-                BoolHelper.ToYesNo(detachableCheckBox.Checked), unit));
+            Log.Info("[Unit] detachable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Detachable),
+                BoolHelper.ToYesNo(detachableCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Detachable = detachableCheckBox.Checked;
@@ -2388,8 +2381,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] cag: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Cag),
-                BoolHelper.ToYesNo(cagCheckBox.Checked), unit));
+            Log.Info("[Unit] cag: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Cag),
+                BoolHelper.ToYesNo(cagCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Cag = cagCheckBox.Checked;
@@ -2421,8 +2414,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] escort: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Escort),
-                BoolHelper.ToYesNo(escortCheckBox.Checked), unit));
+            Log.Info("[Unit] escort: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Escort),
+                BoolHelper.ToYesNo(escortCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Escort = escortCheckBox.Checked;
@@ -2454,8 +2447,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] engineer: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Engineer),
-                BoolHelper.ToYesNo(engineerCheckBox.Checked), unit));
+            Log.Info("[Unit] engineer: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Engineer),
+                BoolHelper.ToYesNo(engineerCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Engineer = engineerCheckBox.Checked;
@@ -2494,8 +2487,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Max allowed brigades: {0} -> {1} ({2})",
-                unit.GetMaxAllowedBrigades(), maxAllowedBrigadesNumericUpDown.Value, unit));
+            Log.Info("[Unit] Max allowed brigades: {0} -> {1} ({2})", unit.GetMaxAllowedBrigades(),
+                maxAllowedBrigadesNumericUpDown.Value, unit);
 
             // 値を更新する
             unit.SetMaxAllowedBrigades((int) maxAllowedBrigadesNumericUpDown.Value);
@@ -2537,7 +2530,7 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Unit] Added allowed brigades: {0} ({1})", brigade, unit));
+                Log.Info("[Unit] Added allowed brigades: {0} ({1})", brigade, unit);
 
                 // 値を更新する
                 unit.AllowedBrigades.Add(brigade.Type);
@@ -2550,7 +2543,7 @@ namespace HoI2Editor.Forms
                     return;
                 }
 
-                Debug.WriteLine(string.Format("[Unit] Removed allowed brigades: {0} ({1})", brigade, unit));
+                Log.Info("[Unit] Removed allowed brigades: {0} ({1})", brigade, unit);
 
                 // 値を更新する
                 unit.AllowedBrigades.Remove(brigade.Type);
@@ -2804,7 +2797,7 @@ namespace HoI2Editor.Forms
 
             Unit old = Units.Items[(int) upgrade.Type];
 
-            Debug.WriteLine(string.Format("[Unit] upgrade type: {0} -> {1} ({2})", old, selected, unit));
+            Log.Info("[Unit] upgrade type: {0} -> {1} ({2})", old, selected, unit);
 
             // 値を更新する
             upgrade.Type = selected.Type;
@@ -2864,9 +2857,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] upgrade cost: {0} -> {1} ({2})",
+            Log.Info("[Unit] upgrade cost: {0} -> {1} ({2})",
                 upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit));
+                val.ToString(CultureInfo.InvariantCulture), unit);
 
             // 値を更新する
             upgrade.UpgradeCostFactor = val;
@@ -2918,9 +2911,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] upgrade time: {0} -> {1} ({2})",
+            Log.Info("[Unit] upgrade time: {0} -> {1} ({2})",
                 upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit));
+                val.ToString(CultureInfo.InvariantCulture), unit);
 
             // 値を更新する
             upgrade.UpgradeTimeFactor = val;
@@ -2962,9 +2955,9 @@ namespace HoI2Editor.Forms
                 upgrade.UpgradeTimeFactor = val;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Added upgrade info: {0} {1} {2} ({3})",
+            Log.Info("[Unit] Added upgrade info: {0} {1} {2} ({3})",
                 Units.Items[(int) upgrade.Type], upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
-                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit));
+                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit);
 
             // 改良情報を追加する
             unit.Upgrades.Add(upgrade);
@@ -2998,8 +2991,7 @@ namespace HoI2Editor.Forms
             }
             int index = upgradeListView.SelectedIndices[0];
 
-            Debug.WriteLine(string.Format("[Unit] Removed upgrade info: {0} ({1})",
-                Units.Items[(int) unit.Upgrades[index].Type], unit));
+            Log.Info("[Unit] Removed upgrade info: {0} ({1})", Units.Items[(int) unit.Upgrades[index].Type], unit);
 
             // 改良情報を削除する
             unit.Upgrades.RemoveAt(index);
@@ -4022,9 +4014,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] default organization: {0} -> {1} ({2})",
+            Log.Info("[Unit] default organization: {0} -> {1} ({2})",
                 model.DefaultOrganization.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.DefaultOrganization = val;
@@ -4076,9 +4068,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] morale: {0} -> {1} ({2})",
-                model.Morale.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] morale: {0} -> {1} ({2})", model.Morale.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Morale = val;
@@ -4130,9 +4121,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] range: {0} -> {1} ({2})",
-                model.Range.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] range: {0} -> {1} ({2})", model.Range.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Range = val;
@@ -4181,9 +4171,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] transport weight: {0} -> {1} ({2})",
+            Log.Info("[Unit] transport weight: {0} -> {1} ({2})",
                 model.TransportWeight.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.TransportWeight = val;
@@ -4233,9 +4223,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] transport capacity: {0} -> {1} ({2})",
+            Log.Info("[Unit] transport capacity: {0} -> {1} ({2})",
                 model.TransportCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.TransportCapability = val;
@@ -4284,9 +4274,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] suppression: {0} -> {1} ({2})",
-                model.Suppression.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] suppression: {0} -> {1} ({2})", model.Suppression.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Suppression = val;
@@ -4336,9 +4325,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] supply consumption: {0} -> {1} ({2})",
+            Log.Info("[Unit] supply consumption: {0} -> {1} ({2})",
                 model.SupplyConsumption.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SupplyConsumption = val;
@@ -4390,9 +4379,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] fuel consumption: {0} -> {1} ({2})",
+            Log.Info("[Unit] fuel consumption: {0} -> {1} ({2})",
                 model.FuelConsumption.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.FuelConsumption = val;
@@ -4444,9 +4433,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] max supply stock: {0} -> {1} ({2})",
+            Log.Info("[Unit] max supply stock: {0} -> {1} ({2})",
                 model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.MaxSupplyStock = val;
@@ -4495,9 +4484,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] max oil stock: {0} -> {1} ({2})",
-                model.MaxOilStock.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] max oil stock: {0} -> {1} ({2})", model.MaxOilStock.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.MaxOilStock = val;
@@ -4670,9 +4658,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] cost: {0} -> {1} ({2})",
-                model.Cost.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] cost: {0} -> {1} ({2})", model.Cost.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Cost = val;
@@ -4724,9 +4711,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] build time: {0} -> {1} ({2})",
-                model.BuildTime.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] build time: {0} -> {1} ({2})", model.BuildTime.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.BuildTime = val;
@@ -4778,9 +4764,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] manpower: {0} -> {1} ({2})",
-                model.ManPower.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] manpower: {0} -> {1} ({2})", model.ManPower.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.ManPower = val;
@@ -4834,9 +4819,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] upgrade cost factor: {0} -> {1} ({2})",
+            Log.Info("[Unit] upgrade cost factor: {0} -> {1} ({2})",
                 model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeCostFactor = val;
@@ -4887,9 +4872,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] upgrade time factor: {0} -> {1} ({2})",
+            Log.Info("[Unit] upgrade time factor: {0} -> {1} ({2})",
                 model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeTimeFactor = val;
@@ -4938,9 +4923,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] reinforce cost: {0} -> {1} ({2})",
+            Log.Info("[Unit] reinforce cost: {0} -> {1} ({2})",
                 model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.ReinforceCostFactor = val;
@@ -4989,9 +4974,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] reinforce time: {0} -> {1} ({2})",
+            Log.Info("[Unit] reinforce time: {0} -> {1} ({2})",
                 model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.ReinforceTimeFactor = val;
@@ -5038,9 +5023,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] upgrade time boost: {0} -> {1} ({2})",
-                BoolHelper.ToYesNo(model.UpgradeTimeBoost), BoolHelper.ToYesNo(upgradeTimeBoostCheckBox.Checked),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] upgrade time boost: {0} -> {1} ({2})", BoolHelper.ToYesNo(model.UpgradeTimeBoost),
+                BoolHelper.ToYesNo(upgradeTimeBoostCheckBox.Checked), unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeTimeBoost = upgradeTimeBoostCheckBox.Checked;
@@ -5087,9 +5071,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] auto upgrade: {0} -> {1} ({2})",
-                BoolHelper.ToYesNo(model.AutoUpgrade), BoolHelper.ToYesNo(autoUpgradeCheckBox.Checked),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] auto upgrade: {0} -> {1} ({2})", BoolHelper.ToYesNo(model.AutoUpgrade),
+                BoolHelper.ToYesNo(autoUpgradeCheckBox.Checked), unit.GetModelName(index));
 
             // 値を更新する
             model.AutoUpgrade = autoUpgradeCheckBox.Checked;
@@ -5247,8 +5230,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] auto upgrade class: {0} -> {1} ({2})",
-                Units.Items[(int) model.UpgradeClass], Units.Items[(int) upgrade.Type], unit.GetModelName(index)));
+            Log.Info("[Unit] auto upgrade class: {0} -> {1} ({2})", Units.Items[(int) model.UpgradeClass],
+                Units.Items[(int) upgrade.Type], unit.GetModelName(index));
 
             // 値を更新する
             Unit old = Units.Items[(int) model.UpgradeClass];
@@ -5307,10 +5290,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] auto upgrade model: {0} -> {1} ({2})",
+            Log.Info("[Unit] auto upgrade model: {0} -> {1} ({2})",
                 Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel),
                 Units.Items[(int) model.UpgradeClass].GetModelName(autoUpgradeModelComboBox.SelectedIndex),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeModel = autoUpgradeModelComboBox.SelectedIndex;
@@ -5383,9 +5366,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] auto upgrade model: {0} -> {1} ({2})",
+            Log.Info("[Unit] auto upgrade model: {0} -> {1} ({2})",
                 Units.Items[(int) model.UpgradeClass].GetModelName(model.UpgradeModel),
-                Units.Items[(int) model.UpgradeClass].GetModelName(val), unit.GetModelName(index)));
+                Units.Items[(int) model.UpgradeClass].GetModelName(val), unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeModel = val;
@@ -5449,9 +5432,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] max speed: {0} -> {1} ({2})",
-                model.MaxSpeed.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] max speed: {0} -> {1} ({2})", model.MaxSpeed.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.MaxSpeed = val;
@@ -5503,9 +5485,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] speed cap: {0} -> {1} ({2})",
-                model.SpeedCap.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] speed cap: {0} -> {1} ({2})", model.SpeedCap.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCap = val;
@@ -5554,9 +5535,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] speed cap art: {0} -> {1} ({2})",
-                model.SpeedCapArt.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] speed cap art: {0} -> {1} ({2})", model.SpeedCapArt.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapArt = val;
@@ -5605,9 +5585,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] speed cap eng: {0} -> {1} ({2})",
-                model.SpeedCapEng.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] speed cap eng: {0} -> {1} ({2})", model.SpeedCapEng.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapEng = val;
@@ -5656,9 +5635,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] speed cap at: {0} -> {1} ({2})",
-                model.SpeedCapAt.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] speed cap at: {0} -> {1} ({2})", model.SpeedCapAt.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapAt = val;
@@ -5707,9 +5685,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] speed cap aa: {0} -> {1} ({2})",
-                model.SpeedCapAa.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] speed cap aa: {0} -> {1} ({2})", model.SpeedCapAa.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapAa = val;
@@ -5762,9 +5739,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] defensiveness: {0} -> {1} ({2})",
+            Log.Info("[Unit] defensiveness: {0} -> {1} ({2})",
                 model.Defensiveness.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.Defensiveness = val;
@@ -5813,9 +5790,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] sea defence: {0} -> {1} ({2})",
-                model.SeaDefense.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] sea defence: {0} -> {1} ({2})", model.SeaDefense.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SeaDefense = val;
@@ -5864,9 +5840,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] air defence: {0} -> {1} ({2})",
-                model.AirDefence.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] air defence: {0} -> {1} ({2})", model.AirDefence.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.AirDefence = val;
@@ -5915,9 +5890,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] surface defence: {0} -> {1} ({2})",
+            Log.Info("[Unit] surface defence: {0} -> {1} ({2})",
                 model.SurfaceDefence.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.SurfaceDefence = val;
@@ -5966,9 +5941,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] toughness: {0} -> {1} ({2})",
-                model.Toughness.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] toughness: {0} -> {1} ({2})", model.Toughness.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Toughness = val;
@@ -6017,9 +5991,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] softness: {0} -> {1} ({2})",
-                model.Softness.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] softness: {0} -> {1} ({2})", model.Softness.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Softness = val;
@@ -6068,9 +6041,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] soft attack: {0} -> {1} ({2})",
-                model.SoftAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] soft attack: {0} -> {1} ({2})", model.SoftAttack.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SoftAttack = val;
@@ -6119,9 +6091,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] hard attack: {0} -> {1} ({2})",
-                model.HardAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] hard attack: {0} -> {1} ({2})", model.HardAttack.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.HardAttack = val;
@@ -6170,9 +6141,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] sea attack: {0} -> {1} ({2})",
-                model.SeaAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] sea attack: {0} -> {1} ({2})", model.SeaAttack.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SeaAttack = val;
@@ -6221,9 +6191,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] sub attack: {0} -> {1} ({2})",
-                model.SubAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] sub attack: {0} -> {1} ({2})", model.SubAttack.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SubAttack = val;
@@ -6272,9 +6241,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] convoy attack: {0} -> {1} ({2})",
-                model.ConvoyAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] convoy attack: {0} -> {1} ({2})", model.ConvoyAttack.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.ConvoyAttack = val;
@@ -6324,9 +6292,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] shore bombardment: {0} -> {1} ({2})",
+            Log.Info("[Unit] shore bombardment: {0} -> {1} ({2})",
                 model.ShoreBombardment.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.ShoreBombardment = val;
@@ -6375,9 +6343,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] air attack: {0} -> {1} ({2})",
-                model.AirAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] air attack: {0} -> {1} ({2})", model.AirAttack.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.AirAttack = val;
@@ -6426,9 +6393,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] naval attack: {0} -> {1} ({2})",
-                model.NavalAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] naval attack: {0} -> {1} ({2})", model.NavalAttack.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.NavalAttack = val;
@@ -6477,9 +6443,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] strategic attack: {0} -> {1} ({2})",
+            Log.Info("[Unit] strategic attack: {0} -> {1} ({2})",
                 model.StrategicAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.StrategicAttack = val;
@@ -6529,9 +6495,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] artillery bombardment: {0} -> {1} ({2})",
+            Log.Info("[Unit] artillery bombardment: {0} -> {1} ({2})",
                 model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.ArtilleryBombardment = val;
@@ -6580,9 +6546,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] distance: {0} -> {1} ({2})",
-                model.Distance.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] distance: {0} -> {1} ({2})", model.Distance.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Distance = val;
@@ -6631,9 +6596,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] visibility: {0} -> {1} ({2})",
-                model.Visibility.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+            Log.Info("[Unit] visibility: {0} -> {1} ({2})", model.Visibility.ToString(CultureInfo.InvariantCulture),
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.Visibility = val;
@@ -6684,9 +6648,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] surface detection capability: {0} -> {1} ({2})",
+            Log.Info("[Unit] surface detection capability: {0} -> {1} ({2})",
                 model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SurfaceDetectionCapability = val;
@@ -6736,9 +6700,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] sub detection capability: {0} -> {1} ({2})",
+            Log.Info("[Unit] sub detection capability: {0} -> {1} ({2})",
                 model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.SubDetectionCapability = val;
@@ -6788,9 +6752,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] air detection capablity: {0} -> {1} ({2})",
+            Log.Info("[Unit] air detection capablity: {0} -> {1} ({2})",
                 model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index)));
+                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
 
             // 値を更新する
             model.AirDetectionCapability = val;
@@ -6839,9 +6803,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] no fuel combat mod: {0} -> {1} ({2})",
+            Log.Info("[Unit] no fuel combat mod: {0} -> {1} ({2})",
                 model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             model.NoFuelCombatMod = val;
@@ -7069,9 +7033,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] equipment resource: {0} -> {1} ({2})",
+            Log.Info("[Unit] equipment resource: {0} -> {1} ({2})",
                 Config.GetText(Units.EquipmentNames[(int) equipment.Resource]),
-                Config.GetText(Units.EquipmentNames[(int) type]), unit.GetModelName(index)));
+                Config.GetText(Units.EquipmentNames[(int) type]), unit.GetModelName(index));
 
             // 値を更新する
             equipment.Resource = type;
@@ -7132,9 +7096,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] equipment quantity: {0} -> {1} ({2})",
+            Log.Info("[Unit] equipment quantity: {0} -> {1} ({2})",
                 equipment.Quantity.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index)));
+                unit.GetModelName(index));
 
             // 値を更新する
             equipment.Quantity = val;
@@ -7173,7 +7137,7 @@ namespace HoI2Editor.Forms
             int i = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[i];
 
-            Debug.WriteLine(string.Format("[Unit] Added new equipment: ({0})", unit.GetModelName(i)));
+            Log.Info("[Unit] Added new equipment: ({0})", unit.GetModelName(i));
 
             // 装備リストに項目を追加する
             var equipment = new UnitEquipment();
@@ -7217,8 +7181,8 @@ namespace HoI2Editor.Forms
             }
             int index = equipmentListView.SelectedIndices[0];
 
-            Debug.WriteLine(string.Format("[Unit] Removed equipment: {0} ({1})",
-                Config.GetText(Units.EquipmentNames[(int) model.Equipments[index].Resource]), unit.GetModelName(i)));
+            Log.Info("[Unit] Removed equipment: {0} ({1})",
+                Config.GetText(Units.EquipmentNames[(int) model.Equipments[index].Resource]), unit.GetModelName(i));
 
             // 装備リストから項目を削除する
             model.Equipments.RemoveAt(index);

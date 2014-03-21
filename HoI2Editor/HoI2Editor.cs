@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Resources;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -21,17 +20,14 @@ namespace HoI2Editor
         #region エディターのバージョン
 
         /// <summary>
-        ///     エディターのバージョン
+        ///     アプリケーション名
         /// </summary>
-        private static string _version;
+        public const string Name = "Alternative HoI2 Editor";
 
         /// <summary>
         ///     エディターのバージョン
         /// </summary>
-        public static string Version
-        {
-            get { return _version; }
-        }
+        public static string Version { get; private set; }
 
         /// <summary>
         ///     エディターのバージョンを初期化する
@@ -41,15 +37,14 @@ namespace HoI2Editor
             FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
             {
-                _version = string.Format("Alternative HoI2 Editor Ver {0}.{1}{2}{3}", info.FileMajorPart,
+                Version = string.Format("{0} Ver {1}.{2}{3}{4}", Name, info.FileMajorPart,
                     info.FileMinorPart, info.FileBuildPart, (char) ('`' + info.FilePrivatePart));
             }
             else
             {
-                _version = string.Format("Alternative HoI2 Editor Ver {0}.{1}{2}", info.FileMajorPart,
+                Version = string.Format("{0} Ver {1}.{2}{3}", Name, info.FileMajorPart,
                     info.FileMinorPart, info.FileBuildPart);
             }
-            Debug.WriteLine(_version);
         }
 
         #endregion
@@ -118,7 +113,7 @@ namespace HoI2Editor
 
             SaveCanceled = false;
 
-            Debug.WriteLine("Request to reload");
+            Log.Verbose("Request to reload");
         }
 
         /// <summary>
@@ -126,7 +121,7 @@ namespace HoI2Editor
         /// </summary>
         public static void Reload()
         {
-            Debug.WriteLine("Reload");
+            Log.Info("Reload");
 
             // データを再読み込みする
             Misc.Reload();
@@ -152,7 +147,7 @@ namespace HoI2Editor
         /// </summary>
         public static void Save()
         {
-            Debug.WriteLine("Save");
+            Log.Info("Save");
 
             // 文字列の一時キーを保存形式に変更する
             Techs.RenameKeys();
@@ -878,15 +873,7 @@ namespace HoI2Editor
         /// <summary>
         ///     設定値
         /// </summary>
-        private static HoI2EditorSettings _settings;
-
-        /// <summary>
-        ///     設定値
-        /// </summary>
-        public static HoI2EditorSettings Settings
-        {
-            get { return _settings; }
-        }
+        public static HoI2EditorSettings Settings { get; private set; }
 
         /// <summary>
         ///     設定値を読み込む
@@ -895,19 +882,19 @@ namespace HoI2Editor
         {
             if (!File.Exists(SettingsFileName))
             {
-                Debug.WriteLine("[Settings] Init");
-                _settings = new HoI2EditorSettings();
+                Settings = new HoI2EditorSettings();
+                // ログ出力レベルを[情報]に設定する
+                Log.Level = 3;
             }
             else
             {
-                Debug.WriteLine("[Settings] Load");
                 try
                 {
                     var serializer = new XmlSerializer(typeof (HoI2EditorSettings));
                     using (var fs = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read))
                     {
-                        _settings = serializer.Deserialize(fs) as HoI2EditorSettings;
-                        if (_settings == null)
+                        Settings = serializer.Deserialize(fs) as HoI2EditorSettings;
+                        if (Settings == null)
                         {
                             return;
                         }
@@ -915,11 +902,11 @@ namespace HoI2Editor
                 }
                 catch (Exception)
                 {
-                    Debug.WriteLine("[Settings] Load failed");
-                    _settings = new HoI2EditorSettings();
+                    Log.Error("[Settings] Read error");
+                    Settings = new HoI2EditorSettings();
                 }
             }
-            _settings.Round();
+            Settings.Round();
         }
 
         /// <summary>
@@ -927,85 +914,21 @@ namespace HoI2Editor
         /// </summary>
         public static void SaveSettings()
         {
-            if (_settings == null)
+            if (Settings == null)
             {
                 return;
             }
-            Debug.WriteLine("[Settings] Save");
             try
             {
                 var serializer = new XmlSerializer(typeof (HoI2EditorSettings));
                 using (var fs = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write))
                 {
-                    serializer.Serialize(fs, _settings);
+                    serializer.Serialize(fs, Settings);
                 }
             }
             catch (Exception)
             {
-                Debug.WriteLine("[Settings] Save failed");
-            }
-        }
-
-        #endregion
-
-        #region ログファイル
-
-        /// <summary>
-        ///     ログファイル名
-        /// </summary>
-        private const string LogFileName = "editorlog.txt";
-
-        /// <summary>
-        ///     ログファイル識別子
-        /// </summary>
-        private const string LogFileIdentifier = "LogFile";
-
-        /// <summary>
-        ///     ログファイル書き込み用
-        /// </summary>
-        private static StreamWriter _writer;
-
-        /// <summary>
-        ///     ログファイル書き込み用
-        /// </summary>
-        private static TextWriterTraceListener _listener;
-
-        /// <summary>
-        ///     ログファイルを初期化する
-        /// </summary>
-        [Conditional("DEBUG")]
-        public static void InitLogFile()
-        {
-            try
-            {
-                _writer = new StreamWriter(LogFileName, true, Encoding.UTF8) {AutoFlush = true};
-                _listener = new TextWriterTraceListener(_writer, LogFileIdentifier);
-                Debug.Listeners.Add(_listener);
-
-                Debug.WriteLine("");
-                Debug.WriteLine(String.Format("[{0}]", DateTime.Now));
-            }
-            catch (Exception)
-            {
-                const string appName = "Alternative HoI2 Editor";
-                MessageBox.Show(Resources.LogFileOpenError, appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TermLogFile();
-            }
-        }
-
-        /// <summary>
-        ///     ログファイルを終了する
-        /// </summary>
-        [Conditional("DEBUG")]
-        public static void TermLogFile()
-        {
-            if (_listener != null)
-            {
-                Debug.Listeners.Remove(_listener);
-            }
-            if (_writer != null)
-            {
-                _writer.Close();
+                Log.Error("[Settings] Write error");
             }
         }
 

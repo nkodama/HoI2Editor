@@ -52,7 +52,8 @@
             this.languageLabel = new System.Windows.Forms.Label();
             this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.optionGroupBox = new System.Windows.Forms.GroupBox();
-            this.logCheckBox = new System.Windows.Forms.CheckBox();
+            this.logLevelComboBox = new System.Windows.Forms.ComboBox();
+            this.logLevelLabel = new System.Windows.Forms.Label();
             this.exportFolderBrowseButton = new System.Windows.Forms.Button();
             this.exportFolderTextBox = new System.Windows.Forms.TextBox();
             this.exportFolderLabel = new System.Windows.Forms.Label();
@@ -74,8 +75,8 @@
             // 
             // gameFolderTextBox
             // 
-            this.gameFolderTextBox.AllowDrop = true;
             resources.ApplyResources(this.gameFolderTextBox, "gameFolderTextBox");
+            this.gameFolderTextBox.AllowDrop = true;
             this.gameFolderTextBox.Name = "gameFolderTextBox";
             this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
             this.gameFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnGameFolderTextBoxDragDrop);
@@ -88,8 +89,8 @@
             // 
             // modTextBox
             // 
-            this.modTextBox.AllowDrop = true;
             resources.ApplyResources(this.modTextBox, "modTextBox");
+            this.modTextBox.AllowDrop = true;
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.TextChanged += new System.EventHandler(this.OnModTextBoxTextChanged);
             this.modTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnModTextBoxDragDrop);
@@ -218,27 +219,40 @@
             // 
             // languageComboBox
             // 
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
             this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLanguageComboBoxSelectedIndexChanged);
             // 
             // optionGroupBox
             // 
             resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
-            this.optionGroupBox.Controls.Add(this.logCheckBox);
+            this.optionGroupBox.Controls.Add(this.logLevelComboBox);
+            this.optionGroupBox.Controls.Add(this.logLevelLabel);
             this.optionGroupBox.Controls.Add(this.languageComboBox);
             this.optionGroupBox.Controls.Add(this.languageLabel);
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
             // 
-            // logCheckBox
+            // logLevelComboBox
             // 
-            resources.ApplyResources(this.logCheckBox, "logCheckBox");
-            this.logCheckBox.Name = "logCheckBox";
-            this.logCheckBox.UseVisualStyleBackColor = true;
-            this.logCheckBox.CheckedChanged += new System.EventHandler(this.OnLogCheckBoxChekcedChanged);
+            resources.ApplyResources(this.logLevelComboBox, "logLevelComboBox");
+            this.logLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.logLevelComboBox.FormattingEnabled = true;
+            this.logLevelComboBox.Items.AddRange(new object[] {
+            resources.GetString("logLevelComboBox.Items"),
+            resources.GetString("logLevelComboBox.Items1"),
+            resources.GetString("logLevelComboBox.Items2"),
+            resources.GetString("logLevelComboBox.Items3"),
+            resources.GetString("logLevelComboBox.Items4")});
+            this.logLevelComboBox.Name = "logLevelComboBox";
+            this.logLevelComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLogLevelComboBoxSelectedIndexChanged);
+            // 
+            // logLevelLabel
+            // 
+            resources.ApplyResources(this.logLevelLabel, "logLevelLabel");
+            this.logLevelLabel.Name = "logLevelLabel";
             // 
             // exportFolderBrowseButton
             // 
@@ -249,8 +263,8 @@
             // 
             // exportFolderTextBox
             // 
-            this.exportFolderTextBox.AllowDrop = true;
             resources.ApplyResources(this.exportFolderTextBox, "exportFolderTextBox");
+            this.exportFolderTextBox.AllowDrop = true;
             this.exportFolderTextBox.Name = "exportFolderTextBox";
             this.exportFolderTextBox.TextChanged += new System.EventHandler(this.OnExportFolderTextBoxTextChanged);
             this.exportFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnExportFolderTextBoxDragDrop);
@@ -263,8 +277,8 @@
             // 
             // MainForm
             // 
-            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
+            this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.exportFolderBrowseButton);
             this.Controls.Add(this.exportFolderTextBox);
@@ -309,7 +323,6 @@
         private System.Windows.Forms.Label languageLabel;
         private System.Windows.Forms.ComboBox languageComboBox;
         private System.Windows.Forms.GroupBox optionGroupBox;
-        private System.Windows.Forms.CheckBox logCheckBox;
         private System.Windows.Forms.Button techButton;
         private System.Windows.Forms.Button unitButton;
         private System.Windows.Forms.Button provinceButton;
@@ -322,5 +335,7 @@
         private System.Windows.Forms.Button exportFolderBrowseButton;
         private System.Windows.Forms.TextBox exportFolderTextBox;
         private System.Windows.Forms.Label exportFolderLabel;
+        private System.Windows.Forms.ComboBox logLevelComboBox;
+        private System.Windows.Forms.Label logLevelLabel;
     }
 }

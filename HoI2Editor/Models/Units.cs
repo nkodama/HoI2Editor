@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -2155,8 +2154,7 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    Debug.WriteLine(string.Format("[Unit] Read error: {0}", fileName));
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    Log.Error("[Unit] Read error: {0}", fileName);
                     MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -2180,8 +2178,7 @@ namespace HoI2Editor.Models
                             unit.Organization == UnitOrganization.Division
                                 ? Game.DivisionPathName
                                 : Game.BrigadePathName, DefaultFileNames[(int) type]);
-                    Debug.WriteLine(string.Format("[Unit] Read error: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                    Log.Error("[Unit] Read error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                         Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -2230,7 +2227,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Unit] Load: {0}", Path.GetFileName(fileName));
 
             UnitParser.Parse(fileName, unit);
         }
@@ -2247,7 +2244,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Unit] Load: {0}", Path.GetFileName(fileName));
 
             // ファイルを解析する
             UnitParser.ParseDivisionTypes(fileName, Items);
@@ -2268,7 +2265,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("[Unit] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Unit] Load: {0}", Path.GetFileName(fileName));
 
             // ファイルを解析する
             UnitParser.ParseBrigadeTypes(fileName, Items);
@@ -2299,8 +2296,7 @@ namespace HoI2Editor.Models
                     }
                     catch (Exception)
                     {
-                        Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                        Log.Error("[Unit] Write error: {0}", fileName);
                         MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                             Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
@@ -2316,8 +2312,7 @@ namespace HoI2Editor.Models
                     }
                     catch (Exception)
                     {
-                        Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                        Log.Error("[Unit] Write error: {0}", fileName);
                         MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                             Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
@@ -2342,7 +2337,7 @@ namespace HoI2Editor.Models
                         Directory.CreateDirectory(folderName);
                     }
 
-                    Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
+                    Log.Info("[Unit] Save: {0}", Path.GetFileName(fileName));
 
                     // ユニット定義ファイルを保存する
                     UnitWriter.Write(unit, fileName);
@@ -2350,8 +2345,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[Unit] Write error: {0}", fileName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                    Log.Error("[Unit] Write error: {0}", fileName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                         Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -2404,7 +2398,7 @@ namespace HoI2Editor.Models
                 Directory.CreateDirectory(folderName);
             }
 
-            Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Unit] Save: {0}", Path.GetFileName(fileName));
 
             // 師団ユニットクラス定義ファイルを保存する
             UnitWriter.WriteDivisionTypes(Items, fileName);
@@ -2432,7 +2426,7 @@ namespace HoI2Editor.Models
                 Directory.CreateDirectory(folderName);
             }
 
-            Debug.WriteLine(string.Format("[Unit] Save: {0}", Path.GetFileName(fileName)));
+            Log.Info("[Unit] Save: {0}", Path.GetFileName(fileName));
 
             // 旅団ユニットクラス定義ファイルを保存する
             UnitWriter.WriteBrigadeTypes(Items, fileName);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -4106,15 +4105,14 @@ namespace HoI2Editor.Models
 
             // miscファイルを解釈する
             string fileName = Game.GetReadFileName(Game.MiscPathName);
-            Debug.WriteLine(string.Format("[Misc] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Misc] Load: {0}", Path.GetFileName(fileName));
             try
             {
                 MiscParser.Parse(fileName);
             }
             catch (Exception)
             {
-                Debug.WriteLine(string.Format("[Misc] Read error: {0}", fileName));
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                Log.Error("[Misc] Read error: {0}", fileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                     Resources.EditorMisc, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -4154,13 +4152,12 @@ namespace HoI2Editor.Models
                 }
 
                 // miscファイルを保存する
-                Debug.WriteLine(string.Format("[Misc] Save: {0}", Path.GetFileName(fileName)));
+                Log.Info("[Misc] Save: {0}", Path.GetFileName(fileName));
                 MiscWriter.Write(fileName);
             }
             catch (Exception)
             {
-                Debug.WriteLine(string.Format("[Misc] Write error: {0}", fileName));
-                Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
+                Log.Error("[Misc] Write error: {0}", fileName);
                 MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                     Resources.EditorMisc, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

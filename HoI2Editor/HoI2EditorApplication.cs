@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using HoI2Editor.Models;
 
 namespace HoI2Editor
 {
@@ -16,9 +17,12 @@ namespace HoI2Editor
         {
             try
             {
-                HoI2Editor.InitLogFile();
                 HoI2Editor.InitVersion();
                 HoI2Editor.LoadSettings();
+
+                Log.Error("");
+                Log.Error("[{0}]", DateTime.Now);
+                Log.Error(HoI2Editor.Version);
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -28,7 +32,6 @@ namespace HoI2Editor
             finally
             {
                 HoI2Editor.SaveSettings();
-                HoI2Editor.TermLogFile();
                 HoI2Editor.UnlockMutex();
             }
         }

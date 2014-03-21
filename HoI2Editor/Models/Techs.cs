@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -713,8 +712,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Debug.WriteLine(string.Format("[Tech] Read error: {0}", pathName));
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileReadError, pathName));
+                    Log.Error("[Tech] Read error: {0}", pathName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, pathName),
                         Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -752,9 +750,14 @@ namespace HoI2Editor.Models
         /// <param name="fileName">技術定義ファイル名</param>
         private static void LoadFile(string fileName)
         {
-            Debug.WriteLine(string.Format("[Tech] Load: {0}", Path.GetFileName(fileName)));
+            Log.Verbose("[Tech] Load: {0}", Path.GetFileName(fileName));
 
             TechGroup grp = TechParser.Parse(fileName);
+            if (grp == null)
+            {
+                Log.Error("[Tech] Read error: {0}", Path.GetFileName(fileName));
+                return;
+            }
             Groups.Add(grp);
         }
 
@@ -781,8 +784,7 @@ namespace HoI2Editor.Models
                 }
                 catch (Exception)
                 {
-                    Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, folderName));
-                    Debug.WriteLine(string.Format("[Tech] Write error: {0}", folderName));
+                    Log.Error("[Tech] Write error: {0}", folderName);
                     MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, folderName),
                         Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     return false;
@@ -795,14 +797,13 @@ namespace HoI2Editor.Models
                     try
                     {
                         // 技術定義ファイルを保存する
-                        Debug.WriteLine(string.Format("[Tech] Save: {0}", Path.GetFileName(fileName)));
+                        Log.Info("[Tech] Save: {0}", Path.GetFileName(fileName));
                         TechWriter.Write(grp, fileName);
                     }
                     catch (Exception)
                     {
                         error = true;
-                        Log.Write(String.Format("{0}: {1}\n\n", Resources.FileWriteError, fileName));
-                        Debug.WriteLine(string.Format("[Tech] Write error: {0}", fileName));
+                        Log.Error("[Tech] Write error: {0}", fileName);
                         if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
                             Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
@@ -1025,7 +1026,7 @@ namespace HoI2Editor.Models
             else
             {
                 DuplicatedList[name]++;
-                Debug.WriteLine(string.Format("[Tech] Incremented duplicated list: {0} {1}", name, DuplicatedList[name]));
+                Log.Info("[Tech] Incremented duplicated list: {0} {1}", name, DuplicatedList[name]);
             }
         }
 
@@ -1044,8 +1045,7 @@ namespace HoI2Editor.Models
                 }
                 else
                 {
-                    Debug.WriteLine(string.Format("[Tech] Decremented duplicated list: {0} {1}", name,
-                        DuplicatedList[name]));
+                    Log.Info("[Tech] Decremented duplicated list: {0} {1}", name, DuplicatedList[name]);
                 }
             }
         }

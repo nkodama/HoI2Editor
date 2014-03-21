@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -68,7 +67,7 @@ namespace HoI2Editor.Forms
             switch (id)
             {
                 case EditorItemId.MaxAllowedBrigades:
-                    Debug.WriteLine("[Misc] Changed max allowed brigades");
+                    Log.Verbose("[Misc] Changed max allowed brigades");
                     UpdateMaxAllowedBrigades();
                     break;
             }

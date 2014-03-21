@@ -298,6 +298,15 @@ namespace HoI2Editor
             }
 
             /// <summary>
+            ///     ログ出力レベル
+            /// </summary>
+            public int LogLevel
+            {
+                get { return Log.Level; }
+                set { Log.Level = value; }
+            }
+
+            /// <summary>
             ///     ウィンドウ位置
             /// </summary>
             public Point Location

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -25,7 +24,7 @@ namespace HoI2Editor.Models
             set
             {
                 _langMode = value;
-                Debug.WriteLine(string.Format("Language Mode: {0}", LanguageModeStrings[(int) _langMode]));
+                Log.Info("[Config] Language Mode: {0}", LanguageModeStrings[(int) _langMode]);
             }
         }
 
@@ -42,8 +41,7 @@ namespace HoI2Editor.Models
             set
             {
                 _langIndex = value;
-                Debug.WriteLine(string.Format("Language Index: {0} ({1})", _langIndex,
-                    LanguageStrings[(int) _langMode][_langIndex]));
+                Log.Info("[Config] Language Index: {0} ({1})", _langIndex, LanguageStrings[(int) _langMode][_langIndex]);
             }
         }
 
@@ -266,8 +264,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         error = true;
-                        Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                        Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                        Log.Error("[Config] Read error: {0}", fileName);
                         if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                             Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
@@ -297,8 +294,7 @@ namespace HoI2Editor.Models
                             catch (Exception)
                             {
                                 error = true;
-                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                Log.Error("[Config] Read error: {0}", fileName);
                                 if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
@@ -330,8 +326,7 @@ namespace HoI2Editor.Models
                             catch (Exception)
                             {
                                 error = true;
-                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                Log.Error("[Config] Read error: {0}", fileName);
                                 if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
@@ -360,8 +355,7 @@ namespace HoI2Editor.Models
                         catch (Exception)
                         {
                             error = true;
-                            Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                            Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                            Log.Error("[Config] Read error: {0}", fileName);
                             if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                 Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
@@ -397,8 +391,7 @@ namespace HoI2Editor.Models
                             catch (Exception)
                             {
                                 error = true;
-                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                Log.Error("[Config] Read error: {0}", fileName);
                                 if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
@@ -429,8 +422,7 @@ namespace HoI2Editor.Models
                             catch (Exception)
                             {
                                 error = true;
-                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                Log.Error("[Config] Read error: {0}", fileName);
                                 if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
@@ -458,8 +450,7 @@ namespace HoI2Editor.Models
                             catch (Exception)
                             {
                                 error = true;
-                                Debug.WriteLine(string.Format("[Config] Read error: {0}", fileName));
-                                Log.Write(string.Format("{0}: {1}\n\n", Resources.FileReadError, fileName));
+                                Log.Error("[Config] Read error: {0}", fileName);
                                 if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
@@ -517,7 +508,7 @@ namespace HoI2Editor.Models
                 name = Path.Combine("Addtional", name);
             }
 
-            Debug.WriteLine(string.Format("[Config] Load: {0}", name));
+            Log.Verbose("[Config] Load: {0}", name);
 
             // トークン数の設定
             int expectedCount;
@@ -568,10 +559,7 @@ namespace HoI2Editor.Models
                     // トークン数が足りない行は読み飛ばす
                     if (tokens.Length != expectedCount)
                     {
-                        Log.Write(string.Format("{0}: {1} L{2}\n", Resources.InvalidTokenCount,
-                            Path.Combine(Game.ConfigPathName, name), lineNo));
-                        Log.Write(string.Format("  {0}\n\n", line));
-                        Debug.WriteLine(string.Format("[Config] Invalid token count ({0} L{1})", name, lineNo));
+                        Log.Warning("[Config] Invalid token count: {0} ({1} L{2})", tokens.Length, name, lineNo);
 
                         // 末尾のxがない/余分な項目がある場合は解析を続ける
                         if (tokens.Length < effectiveCount)
@@ -591,9 +579,7 @@ namespace HoI2Editor.Models
                     if (RegexTempKey.IsMatch(key))
                     {
                         TempKeyList.Add(key);
-                        Log.Write(string.Format("{0}: {1} {2} L{3}\n", Resources.WarningUnexpectedTempKey, key,
-                            Path.Combine(Game.ConfigPathName, name), lineNo));
-                        Debug.WriteLine(string.Format("[Config] Unexpected temp key: {0} ({1} L{2})", key, name, lineNo));
+                        Log.Warning("[Config] Unexpected temp key: {0} ({1} L{2})", key, name, lineNo);
                     }
 
                     // 変換テーブルに登録する
@@ -640,8 +626,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     string pathName = Game.GetWriteFileName(Game.ConfigPathName, fileName);
-                    Debug.WriteLine(string.Format("[Config] Write error: {0}", pathName));
-                    Log.Write(string.Format("{0}: {1}\n\n", Resources.FileWriteError, pathName));
+                    Log.Error("[Config] Write error: {0}", pathName);
                     if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, pathName),
                         Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
@@ -686,7 +671,7 @@ namespace HoI2Editor.Models
                 name = Path.Combine("Addtional", name);
             }
 
-            Debug.WriteLine(string.Format("[Config] Save: {0}", name));
+            Log.Info("[Config] Save: {0}", name);
 
             // 保存フォルダ名を取得する
             string folderName = Game.GetWriteFileName(fileName.Equals(Game.ProvinceTextFileName)
@@ -742,15 +727,13 @@ namespace HoI2Editor.Models
                     if (TempKeyList.Contains(k))
                     {
                         TempKeyList.Remove(k);
-                        Log.Write(string.Format("{0}: {1}", Resources.WarningRemovedUnusedTempKey, key));
-                        Debug.WriteLine(string.Format("[Config] Removed unused temp key: {0}", key));
+                        Log.Warning("[Config] Removed unused temp key: {0}", key);
                         continue;
                     }
                     // 登録されていないキーは保存しない
                     if (!Text.ContainsKey(k))
                     {
-                        Log.Write(string.Format("{0}: {1} ({2})\n", Resources.WarningSkippedUnexisitingKey, key, name));
-                        Debug.WriteLine(string.Format("[Config] Skipped unexisting key: {0} ({1})", key, name));
+                        Log.Warning("[Config] Skipped unexisting key: {0} ({1})", key, name);
                         continue;
                     }
                     string[] t = Text[k];
@@ -789,8 +772,7 @@ namespace HoI2Editor.Models
                 // 一時キーは保存しない
                 if (TempKeyList.Contains(k))
                 {
-                    Log.Write(string.Format("{0}: {1} {2}", Resources.WarningSkippedUnusedTempKey, key, fileName));
-                    Debug.WriteLine(string.Format("[Config] Skipped temp key: {0} ({1})", key, fileName));
+                    Log.Warning("[Config] Skipped temp key: {0} ({1})", key, fileName);
                     TempKeyList.Remove(k);
                     continue;
                 }
@@ -846,7 +828,7 @@ namespace HoI2Editor.Models
             }
 
             // テーブルに登録されていなければ定義名を返す
-            Debug.WriteLine(string.Format("[Config] GetText failed: {0}", key));
+            Log.Warning("[Config] GetText failed: {0}", key);
             return key;
         }
 
@@ -886,7 +868,7 @@ namespace HoI2Editor.Models
                 // 文字列定義ファイルテーブルに登録する
                 TextFileTable[key] = fileName;
 
-                Debug.WriteLine(string.Format("[Config] Added {0} ({1})", key, fileName));
+                Log.Info("[Config] Added {0} ({1})", key, fileName);
             }
             else if (TextFileTable.ContainsKey(key))
             {
@@ -896,7 +878,7 @@ namespace HoI2Editor.Models
 
             // 文字列変換テーブルの文字列を変更する
             Text[key][LangIndex] = text;
-            Debug.WriteLine(string.Format("[Config] Set {0}: {1}", key, text));
+            Log.Info("[Config] Set {0}: {1}", key, text);
 
             // 編集済みフラグを設定する
             SetDirty(fileName);
@@ -923,16 +905,13 @@ namespace HoI2Editor.Models
                 if (!Text.ContainsKey(newKey))
                 {
                     Text.Add(newKey, Text[oldKey]);
-                    Debug.WriteLine(string.Format("[Config] Rename: {0} - {1}", oldKey, newKey));
+                    Log.Info("[Config] Rename: {0} - {1}", oldKey, newKey);
                 }
                 else
                 {
                     // 変換後のキーあり: 一時キーがリネームされずに保存された場合
                     Text[newKey] = Text[oldKey];
-                    Log.Write(string.Format("{0}: {1} - {2}\n", Resources.WarningRenameTargetAlreadyExists, oldKey,
-                        newKey));
-                    Debug.WriteLine(string.Format("[Config] Rename target already exists in text table: {0} - {1}",
-                        oldKey, newKey));
+                    Log.Warning("[Config] Rename target already exists in text table: {0} - {1}", oldKey, newKey);
                 }
                 Text.Remove(oldKey);
             }
@@ -945,9 +924,7 @@ namespace HoI2Editor.Models
                     Text[newKey][LangIndex] = "";
                 }
                 // 変換前のキーなし: 一時キーが重複していて既にリネームされた場合
-                Log.Write(string.Format("{0}: {1} - {2}\n", Resources.WarningRenameSourceDoesNotExist, oldKey, newKey));
-                Debug.WriteLine(string.Format("[Config] Rename source does not exist in text table: {0} - {1}", oldKey,
-                    newKey));
+                Log.Warning("[Config] Rename source does not exist in text table: {0} - {1}", oldKey, newKey);
             }
 
             // 予約リストに登録し直す
@@ -958,13 +935,12 @@ namespace HoI2Editor.Models
                     if (!ReservedListTable[fileName].Contains(newKey))
                     {
                         ReservedListTable[fileName].Add(newKey);
-                        Debug.WriteLine(string.Format("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey,
-                            fileName));
+                        Log.Info("[Config] Replaced reserved list: {0} - {1} ({2})", oldKey, newKey, fileName);
                     }
                     else
                     {
-                        Debug.WriteLine(string.Format("[Config] Already exists in reserved list: {0} - {1} ({2})",
-                            oldKey, newKey, fileName));
+                        Log.Warning("[Config] Already exists in reserved list: {0} - {1} ({2})", oldKey, newKey,
+                            fileName);
                     }
                     ReservedListTable[fileName].Remove(oldKey);
                 }
@@ -991,7 +967,7 @@ namespace HoI2Editor.Models
             if (TempKeyList.Contains(oldKey))
             {
                 TempKeyList.Remove(oldKey);
-                Debug.WriteLine(string.Format("[Config] Removed temp list: {0}", oldKey));
+                Log.Info("[Config] Removed temp list: {0}", oldKey);
             }
 
             // 編集済みフラグを設定する
@@ -1009,15 +985,14 @@ namespace HoI2Editor.Models
             if (Text.ContainsKey(key))
             {
                 Text.Remove(key);
-                Debug.WriteLine(string.Format("[Config] Removed text: {0} ({1})", key, Path.GetFileName(fileName)));
+                Log.Info("[Config] Removed text: {0} ({1})", key, Path.GetFileName(fileName));
             }
 
             // 予約リストから削除する
             if (ReservedListTable.ContainsKey(fileName) && ReservedListTable[fileName].Contains(key))
             {
                 ReservedListTable[fileName].Remove(key);
-                Debug.WriteLine(string.Format("[Config] Removed reserved list: {0} ({1})", key,
-                    Path.GetFileName(fileName)));
+                Log.Info("[Config] Removed reserved list: {0} ({1})", key, Path.GetFileName(fileName));
             }
 
             // 文字列定義順リストから削除する
@@ -1036,7 +1011,7 @@ namespace HoI2Editor.Models
             if (TempKeyList.Contains(key))
             {
                 TempKeyList.Remove(key);
-                Debug.WriteLine(string.Format("[Config] Removed temp list: {0}", key));
+                Log.Info("[Config] Removed temp list: {0}", key);
             }
 
             // 編集済みフラグを設定する
@@ -1084,7 +1059,7 @@ namespace HoI2Editor.Models
 
             // 一時キーリストに登録する
             TempKeyList.Add(key);
-            Debug.WriteLine(string.Format("[Config] New temp key: {0}", key));
+            Log.Info("[Config] New temp key: {0}", key);
 
             return key;
         }
@@ -1098,7 +1073,7 @@ namespace HoI2Editor.Models
             if (!TempKeyList.Contains(key))
             {
                 TempKeyList.Add(key);
-                Debug.WriteLine(string.Format("[Config] Added temp key: {0}", key));
+                Log.Info("[Config] Added temp key: {0}", key);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -41,17 +42,24 @@ namespace HoI2Editor.Forms
                 ? LanguageMode.Japanese
                 : LanguageMode.English;
 
+            // ログレベルを初期化する
+            logLevelComboBox.SelectedIndex = Log.Level;
+
             // 初期状態のゲームフォルダ名を設定する
             if (!string.IsNullOrEmpty(Game.FolderName))
             {
                 gameFolderTextBox.Text = HoI2Editor.Settings.Main.GameFolder;
+                Log.Error("Game Folder: {0}", HoI2Editor.Settings.Main.GameFolder);
+
                 if (!string.IsNullOrEmpty(HoI2Editor.Settings.Main.ModFolder))
                 {
                     modTextBox.Text = HoI2Editor.Settings.Main.ModFolder;
+                    Log.Error("MOD Name: {0}", HoI2Editor.Settings.Main.ModFolder);
                 }
                 if (!string.IsNullOrEmpty(HoI2Editor.Settings.Main.ExportFolder))
                 {
                     exportFolderTextBox.Text = HoI2Editor.Settings.Main.ExportFolder;
+                    Log.Error("Export Name: {0}", HoI2Editor.Settings.Main.ExportFolder);
                 }
 
                 // 言語リストを更新する
@@ -744,13 +752,14 @@ namespace HoI2Editor.Forms
         #region オプション設定
 
         /// <summary>
-        ///     エラーログ出力チェックボックスのチェック状態変化時の処理
+        ///     ログレベルコンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLogCheckBoxChekcedChanged(object sender, EventArgs e)
+        private void OnLogLevelComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.Enabled = logCheckBox.Checked;
+            Log.Level = logLevelComboBox.SelectedIndex;
+            Log.Error("[Log] Level: {0}", (TraceLevel) Log.Level);
         }
 
         #endregion

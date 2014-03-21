@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -66,23 +65,23 @@ namespace HoI2Editor.Forms
             switch (id)
             {
                 case EditorItemId.UnitName:
-                    Debug.WriteLine("[ModelName] Changed unit name");
+                    Log.Verbose("[ModelName] Changed unit name");
                     // ユニット種類リストボックスの表示項目を更新する
                     UpdateTypeListBox();
                     break;
 
                 case EditorItemId.ModelList:
-                    Debug.WriteLine("[ModelName] Changed model list");
+                    Log.Verbose("[ModelName] Changed model list");
                     // 編集項目の表示を更新する
                     UpdateEditableItems();
                     break;
 
                 case EditorItemId.CommonModelName:
-                    Debug.WriteLine("[ModelName] Changed common model name");
+                    Log.Verbose("[ModelName] Changed common model name");
                     break;
 
                 case EditorItemId.CountryModelName:
-                    Debug.WriteLine("[ModelName] Changed country model name");
+                    Log.Verbose("[ModelName] Changed country model name");
                     // 編集項目の表示を更新する
                     UpdateEditableItems();
                     break;

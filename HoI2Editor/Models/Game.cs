@@ -48,7 +48,7 @@ namespace HoI2Editor.Models
             set
             {
                 _codePage = value;
-                Debug.WriteLine(string.Format("CodePage: {0}", _codePage));
+                Log.Verbose("CodePage: {0}", _codePage);
 
                 // ファイルの再読み込みを要求する
                 HoI2Editor.RequestReload();
@@ -69,7 +69,7 @@ namespace HoI2Editor.Models
                 }
 
                 _folderName = value;
-                Debug.WriteLine(string.Format("Game Folder: {0}", _folderName));
+                Log.Error("Game Folder: {0}", _folderName);
 
                 // ゲームの種類を判別する
                 DistinguishGameType();
@@ -113,7 +113,7 @@ namespace HoI2Editor.Models
                 }
 
                 _modName = value;
-                Debug.WriteLine(string.Format("MOD Name: {0}", _modName));
+                Log.Error("MOD Name: {0}", _modName);
 
                 // MODフォルダ名を更新する
                 UpdateModFolderName();
@@ -152,7 +152,7 @@ namespace HoI2Editor.Models
                 }
 
                 _exportName = value;
-                Debug.WriteLine(string.Format("Export Name: {0}", _exportName));
+                Log.Error("Export Name: {0}", _exportName);
 
                 // 保存フォルダ名を更新する
                 UpdateExportFolderName();
@@ -885,7 +885,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Debug.WriteLine(string.Format("Game Type: {0}", GameTypeStrings[(int) _type]));
+            Log.Error("Game Type: {0}", GameTypeStrings[(int) _type]);
         }
 
         [Conditional("DEBUG")]
@@ -907,7 +907,7 @@ namespace HoI2Editor.Models
                     // 種類不明の場合は何も出力しない
                     return;
             }
-            Debug.WriteLine(string.Format("Game Version: {0}", s));
+            Log.Error("Game Version: {0}", s);
         }
 
         #endregion
