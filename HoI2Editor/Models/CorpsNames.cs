@@ -438,6 +438,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            Log.Info("[CorpsName] Set: [{0}] <{1}>", Branches.GetName(branch), Countries.Strings[(int) country]);
+
             // 軍団名リストを設定する
             Items[(int) branch, (int) country] = names;
 

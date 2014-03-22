@@ -1596,10 +1596,22 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             string name = nameTextBox.Text;
-            if (name.Equals(province.GetName()))
+            if (string.IsNullOrEmpty(name))
             {
-                return;
+                if (string.IsNullOrEmpty(province.Name))
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (name.Equals(province.GetName()))
+                {
+                    return;
+                }
+            }
+
+            Log.Info("[Province] name: {0} -> {1} ({2})", province.GetName(), name, province.Id);
 
             // 値を更新する
             Config.SetText(province.Name, name, Game.ProvinceTextFileName);
@@ -1639,6 +1651,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] continent: {0} -> {1} ({2}: {3})", Provinces.GetContinentName(province.Continent),
+                Provinces.GetContinentName(continent), province.Id, province.GetName());
+
             // 値を更新する
             Provinces.ModifyContinent(province, continent);
 
@@ -1674,6 +1689,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] region: {0} -> {1} ({2}: {3})", Provinces.GetRegionName(province.Region),
+                Provinces.GetRegionName(region), province.Id, province.GetName());
 
             // 値を更新する
             Provinces.ModifyRegion(province, region);
@@ -1711,6 +1729,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] area: {0} -> {1} ({2}: {3})", Provinces.GetAreaName(province.Area),
+                Provinces.GetAreaName(area), province.Id, province.GetName());
+
             // 値を更新する
             Provinces.ModifyArea(province, area);
 
@@ -1747,6 +1768,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] climate: {0} -> {1} ({2}: {3})", Provinces.GetClimateName(province.Climate),
+                Provinces.GetClimateName(climate), province.Id, province.GetName());
+
             // 値を更新する
             province.Climate = climate;
 
@@ -1782,6 +1806,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] terrain: {0} -> {1} ({2}: {3})", Provinces.GetTerrainName(province.Terrain),
+                Provinces.GetTerrainName(terrain), province.Id, province.GetName());
 
             // 値を更新する
             province.Terrain = terrain;
@@ -1821,6 +1848,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] infrastructure: {0} -> {1} ({2}: {3})", province.Infrastructure, val, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.Infrastructure = val;
@@ -1865,6 +1895,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] ic: {0} -> {1} ({2}: {3})", province.Ic, val, province.Id, province.GetName());
+
             // 値を更新する
             province.Ic = val;
 
@@ -1906,6 +1938,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] manpower: {0} -> {1} ({2}: {3})", province.Manpower, val, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.Manpower = val;
@@ -1949,6 +1984,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] energy: {0} -> {1} ({2}: {3})", province.Energy, val, province.Id, province.GetName());
+
             // 値を更新する
             province.Energy = val;
 
@@ -1991,6 +2028,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] metal: {0} -> {1} ({2}: {3})", province.Metal, val, province.Id, province.GetName());
+
             // 値を更新する
             province.Metal = val;
 
@@ -2032,6 +2071,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] rare materials: {0} -> {1} ({2}: {3})", province.RareMaterials, val, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.RareMaterials = val;
@@ -2076,6 +2118,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] oil: {0} -> {1} ({2}: {3})", province.Oil, val, province.Id, province.GetName());
+
             // 値を更新する
             province.Oil = val;
 
@@ -2110,6 +2154,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] beach: {0} -> {1} ({2}: {3})", BoolHelper.ToYesNo(province.Beaches),
+                BoolHelper.ToYesNo(flag), province.Id, province.GetName());
 
             // 値を更新する
             province.Beaches = flag;
@@ -2146,6 +2193,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] beach position x: {0} -> {1} ({2}: {3})", province.BeachXPos, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.BeachXPos = x;
 
@@ -2177,6 +2227,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] beach position y: {0} -> {1} ({2}: {3})", province.BeachYPos, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.BeachYPos = y;
@@ -2210,6 +2263,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] beach icon: {0} -> {1} ({2}: {3})", province.BeachIcon, icon, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.BeachIcon = icon;
 
@@ -2241,6 +2297,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] port allowed: {0} -> {1} ({2}: {3})", BoolHelper.ToYesNo(province.PortAllowed),
+                BoolHelper.ToYesNo(flag), province.Id, province.GetName());
 
             // 値を更新する
             province.PortAllowed = flag;
@@ -2277,6 +2336,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] port position x: {0} -> {1} ({2}: {3})", province.PortXPos, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.PortXPos = x;
 
@@ -2308,6 +2370,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] port position y: {0} -> {1} ({2}: {3})", province.PortYPos, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.PortYPos = y;
@@ -2341,6 +2406,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Province oldProv = Provinces.Items.Find(prov => prov.Id == province.PortSeaZone);
+            Province newProv = Provinces.Items.Find(prov => prov.Id == seaZone);
+
+            Log.Info("[Province] port sea zone: {0} [{1}] -> {2} [{3}] ({4}: {5})", province.PortSeaZone,
+                (oldProv != null) ? oldProv.GetName() : "", seaZone, (newProv != null) ? newProv.GetName() : "",
+                province.Id, province.GetName());
+
             // 値を更新する
             province.PortSeaZone = seaZone;
 
@@ -2354,8 +2426,11 @@ namespace HoI2Editor.Forms
                 portSeaZoneComboBox.SelectedIndex = -1;
                 if (seaZone > 0)
                 {
-                    Province seaProvince = Provinces.Items.First(prov => prov.Id == seaZone);
-                    portSeaZoneComboBox.Text = Config.GetText(seaProvince.Name);
+                    Province seaProvince = Provinces.Items.Find(prov => prov.Id == seaZone);
+                    if (seaProvince != null)
+                    {
+                        portSeaZoneComboBox.Text = seaProvince.GetName();
+                    }
                 }
             }
 
@@ -2420,6 +2495,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] city position x: {0} -> {1} ({2}: {3})", province.CityXPos, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.CityXPos = x;
 
@@ -2451,6 +2529,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] city position y: {0} -> {1} ({2}: {3})", province.CityYPos, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.CityYPos = y;
@@ -2484,6 +2565,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] fort position x: {0} -> {1} ({2}: {3})", province.FortXPos, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.FortXPos = x;
 
@@ -2515,6 +2599,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] fort position y: {0} -> {1} ({2}: {3})", province.FortYPos, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.FortYPos = y;
@@ -2548,6 +2635,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] aa position x: {0} -> {1} ({2}: {3})", province.AaXPos, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.AaXPos = x;
 
@@ -2579,6 +2669,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] aa position y: {0} -> {1} ({2}: {3})", province.AaYPos, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.AaYPos = y;
@@ -2612,6 +2705,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] army position x: {0} -> {1} ({2}: {3})", province.ArmyXPos, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.ArmyXPos = x;
 
@@ -2643,6 +2739,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] army position y: {0} -> {1} ({2}: {3})", province.ArmyYPos, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.ArmyYPos = y;
@@ -2676,6 +2775,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] counter position x: {0} -> {1} ({2}: {3})", province.CounterXPos, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.CounterXPos = x;
 
@@ -2707,6 +2809,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] counter position y: {0} -> {1} ({2}: {3})", province.CounterYPos, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.CounterYPos = y;
@@ -2740,6 +2845,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] fill coord position x1: {0} -> {1} ({2}: {3})", province.FillCoordX1, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.FillCoordX1 = x;
 
@@ -2771,6 +2879,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] fill coord position y1: {0} -> {1} ({2}: {3})", province.FillCoordY1, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.FillCoordY1 = y;
@@ -2804,6 +2915,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] fill coord position x2: {0} -> {1} ({2}: {3})", province.FillCoordX2, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.FillCoordX2 = x;
 
@@ -2835,6 +2949,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] fill coord position y2: {0} -> {1} ({2}: {3})", province.FillCoordY2, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.FillCoordY2 = y;
@@ -2868,6 +2985,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] fill coord position x3: {0} -> {1} ({2}: {3})", province.FillCoordX3, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.FillCoordX3 = x;
 
@@ -2899,6 +3019,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] fill coord position y3: {0} -> {1} ({2}: {3})", province.FillCoordY3, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.FillCoordY3 = y;
@@ -2932,6 +3055,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Province] fill coord position x4: {0} -> {1} ({2}: {3})", province.FillCoordX4, x, province.Id,
+                province.GetName());
+
             // 値を更新する
             province.FillCoordX4 = x;
 
@@ -2963,6 +3089,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Province] fill coord position y4: {0} -> {1} ({2}: {3})", province.FillCoordY4, y, province.Id,
+                province.GetName());
 
             // 値を更新する
             province.FillCoordY4 = y;

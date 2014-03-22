@@ -2171,6 +2171,9 @@ namespace HoI2Editor.Forms
             // 変更前の国タグの編集済みフラグを設定する
             Leaders.SetDirty(leader.Country);
 
+            Log.Info("[Leader] country: {0} -> {1} ({2}: {3})", Countries.Strings[(int) leader.Country],
+                Countries.Strings[(int) country], leader.Id, leader.Name);
+
             // 値を更新する
             leader.Country = country;
 
@@ -2218,6 +2221,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Leader] id: {0} -> {1} ({2})", leader.Id, id, leader.Name);
+
             // 値を更新する
             leader.Id = id;
 
@@ -2248,10 +2253,22 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             string name = nameTextBox.Text;
-            if (name.Equals(leader.Name))
+            if (string.IsNullOrEmpty(name))
             {
-                return;
+                if (string.IsNullOrEmpty(leader.Name))
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (name.Equals(leader.Name))
+                {
+                    return;
+                }
+            }
+
+            Log.Info("[Leader] name: {0} -> {1} ({2})", leader.Name, name, leader.Id);
 
             // 値を更新する
             leader.Name = name;
@@ -2288,6 +2305,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Leader] branch: {0} -> {1} ({2}: {3})", Branches.GetName(leader.Branch), Branches.GetName(branch),
+                leader.Id, leader.Name);
+
             // 値を更新する
             leader.Branch = branch;
 
@@ -2323,6 +2343,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Leader] ideak rank: {0} -> {1} ({2}: {3})", Leaders.RankNames[(int) leader.IdealRank],
+                Leaders.RankNames[(int) idealRank], leader.Id, leader.Name);
+
             // 値を更新する
             leader.IdealRank = idealRank;
 
@@ -2354,6 +2377,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Leader] skill: {0} -> {1} ({2}: {3})", leader.Skill, skill, leader.Id, leader.Name);
 
             // 値を更新する
             leader.Skill = skill;
@@ -2390,6 +2415,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Leader] max skill: {0} -> {1} ({2}: {3})", leader.MaxSkill, maxSkill, leader.Id, leader.Name);
+
             // 値を更新する
             leader.MaxSkill = maxSkill;
 
@@ -2425,6 +2452,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Leader] experience: {0} -> {1} ({2}: {3})", leader.Experience, experience, leader.Id, leader.Name);
+
             // 値を更新する
             leader.Experience = experience;
 
@@ -2455,6 +2484,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Leader] loyalty: {0} -> {1} ({2}: {3})", leader.Loyalty, loyalty, leader.Id, leader.Name);
 
             // 値を更新する
             leader.Loyalty = loyalty;
@@ -2487,6 +2518,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Leader] start year: {0} -> {1} ({2}: {3})", leader.StartYear, startYear, leader.Id, leader.Name);
 
             // 値を更新する
             leader.StartYear = startYear;
@@ -2523,6 +2556,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Leader] end year: {0} -> {1} ({2}: {3})", leader.EndYear, endYear, leader.Id, leader.Name);
+
             // 値を更新する
             leader.EndYear = endYear;
 
@@ -2558,6 +2593,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Leader] retirement year: {0} -> {1} ({2}: {3})", leader.RetirementYear, retirementYear, leader.Id,
+                leader.Name);
+
             // 値を更新する
             leader.RetirementYear = retirementYear;
 
@@ -2584,14 +2622,16 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var rankYear = (int) rankYearNumericUpDown1.Value;
-            if (rankYear == leader.RankYear[0])
+            var year = (int) rankYearNumericUpDown1.Value;
+            if (year == leader.RankYear[0])
             {
                 return;
             }
 
+            Log.Info("[Leader] rank3 year: {0} -> {1} ({2}: {3})", leader.RankYear[0], year, leader.Id, leader.Name);
+
             // 値を更新する
-            leader.RankYear[0] = rankYear;
+            leader.RankYear[0] = year;
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.Rank3Year);
@@ -2616,14 +2656,16 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var newRankYear = (int) rankYearNumericUpDown2.Value;
-            if (newRankYear == leader.RankYear[1])
+            var year = (int) rankYearNumericUpDown2.Value;
+            if (year == leader.RankYear[1])
             {
                 return;
             }
 
+            Log.Info("[Leader] rank2 year: {0} -> {1} ({2}: {3})", leader.RankYear[1], year, leader.Id, leader.Name);
+
             // 値を更新する
-            leader.RankYear[1] = newRankYear;
+            leader.RankYear[1] = year;
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.Rank2Year);
@@ -2648,14 +2690,16 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var newRankYear = (int) rankYearNumericUpDown3.Value;
-            if (newRankYear == leader.RankYear[2])
+            var year = (int) rankYearNumericUpDown3.Value;
+            if (year == leader.RankYear[2])
             {
                 return;
             }
 
+            Log.Info("[Leader] rank1 year: {0} -> {1} ({2}: {3})", leader.RankYear[2], year, leader.Id, leader.Name);
+
             // 値を更新する
-            leader.RankYear[2] = newRankYear;
+            leader.RankYear[2] = year;
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.Rank1Year);
@@ -2680,14 +2724,16 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var newRankYear = (int) rankYearNumericUpDown4.Value;
-            if (newRankYear == leader.RankYear[3])
+            var year = (int) rankYearNumericUpDown4.Value;
+            if (year == leader.RankYear[3])
             {
                 return;
             }
 
+            Log.Info("[Leader] rank0 year: {0} -> {1} ({2}: {3})", leader.RankYear[3], year, leader.Id, leader.Name);
+
             // 値を更新する
-            leader.RankYear[3] = newRankYear;
+            leader.RankYear[3] = year;
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.Rank0Year);
@@ -2713,10 +2759,23 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             string pictureName = pictureNameTextBox.Text;
-            if (pictureName.Equals(leader.PictureName))
+            if (string.IsNullOrEmpty(pictureName))
             {
-                return;
+                if (string.IsNullOrEmpty(leader.PictureName))
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (pictureName.Equals(leader.PictureName))
+                {
+                    return;
+                }
+            }
+
+            Log.Info("[Leader] picture name: {0} -> {1} ({2}: {3})", leader.PictureName, pictureName, leader.Id,
+                leader.Name);
 
             // 値を更新する
             leader.PictureName = pictureName;
@@ -2822,9 +2881,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.LogisticsWizard;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -2858,9 +2921,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.DefensiveDoctrine;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -2894,9 +2961,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.OffensiveDoctrine;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -2930,9 +3001,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.WinterSpecialist;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -2966,9 +3041,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Trickster;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3002,9 +3081,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Engineer;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3038,9 +3121,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.FortressBuster;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3074,9 +3161,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.PanzerLeader;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3110,9 +3201,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Commando;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3146,9 +3241,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.OldGuard;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3182,9 +3281,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.SeaWolf;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3218,9 +3321,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.BlockadeRunner;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3254,9 +3361,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.SuperiorTactician;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3290,9 +3401,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Spotter;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3326,9 +3441,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.TankBuster;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3362,9 +3481,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.CarpetBomber;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3398,9 +3521,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.NightFlyer;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3434,9 +3561,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.FleetDestroyer;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3470,9 +3601,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.DesertFox;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3506,9 +3641,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.JungleRat;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3542,9 +3681,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.UrbanWarfareSpecialist;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3578,9 +3721,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Ranger;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3614,9 +3761,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Mountaineer;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3650,9 +3801,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.HillsFighter;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3686,9 +3841,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.CounterAttacker;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3722,9 +3881,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Assaulter;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3758,9 +3921,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Encircler;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3794,9 +3961,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Ambusher;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3830,9 +4001,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Disciplined;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3866,9 +4041,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.ElasticDefenceSpecialist;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);
@@ -3902,9 +4081,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            uint old = leader.Traits;
+
             // 値を更新する
             leader.Traits &= ~LeaderTraits.Blitzer;
             leader.Traits |= trait;
+
+            Log.Info("[Leader] traits: {0} -> {1} ({2}: {3})", old, leader.Traits, leader.Id, leader.Name);
 
             // 指揮官リストビューの項目を更新する
             leaderListView.SelectedItems[0].SubItems[8].Text = GetLeaderTraitsText(leader.Traits);

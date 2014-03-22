@@ -380,7 +380,7 @@ namespace HoI2Editor.Models
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != 3)
             {
-                Log.Warning("[UnitName] Invalid token count: {0} ({1} L{2})\n", tokens.Length, _currentFileName,
+                Log.Warning("[UnitName] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
                     _currentLineNo);
                 // 余分な項目がある場合は解析を続ける
                 if (tokens.Length < 3)
@@ -393,7 +393,7 @@ namespace HoI2Editor.Models
             string countryName = tokens[0].ToUpper();
             if (!Countries.StringMap.ContainsKey(countryName))
             {
-                Log.Warning("[UnitName] Invalid country: {0} ({1} L{2})\n", tokens[0], _currentFileName,
+                Log.Warning("[UnitName] Invalid country: {0} ({1} L{2})", tokens[0], _currentFileName,
                     _currentLineNo);
                 return;
             }
@@ -403,14 +403,14 @@ namespace HoI2Editor.Models
             string typeName = tokens[1].ToUpper();
             if (!TypeStringMap.ContainsKey(typeName))
             {
-                Log.Warning("[UnitName] Invalid unit type: {0} ({1} L{2})\n", tokens[1], _currentFileName,
+                Log.Warning("[UnitName] Invalid unit type: {0} ({1} L{2})", tokens[1], _currentFileName,
                     _currentLineNo);
                 return;
             }
             UnitNameType type = TypeStringMap[typeName];
             if (!Types.Contains(type))
             {
-                Log.Warning("[UnitName] Invalid unit type: {0} ({1} L{2})\n", tokens[1], _currentFileName,
+                Log.Warning("[UnitName] Invalid unit type: {0} ({1} L{2})", tokens[1], _currentFileName,
                     _currentLineNo);
                 return;
             }
@@ -566,6 +566,9 @@ namespace HoI2Editor.Models
             {
                 return;
             }
+
+            Log.Info("[UnitName] Set: [{0}] <{1}>", Config.GetText(TypeNames[(int) type]),
+                Countries.Strings[(int) country]);
 
             // ユニット名リストを設定する
             Items[country][type] = names;

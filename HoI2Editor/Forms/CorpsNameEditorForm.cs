@@ -542,6 +542,8 @@ namespace HoI2Editor.Forms
             string to = toComboBox.Text;
             string with = withComboBox.Text;
 
+            Log.Info("[CorpsName] Replace: {0} -> {1}", to, with);
+
             if (allBranchCheckBox.Checked)
             {
                 if (allCountryCheckBox.Checked)
@@ -631,10 +633,14 @@ namespace HoI2Editor.Forms
 
             string prefix = prefixComboBox.Text;
             string suffix = suffixComboBox.Text;
+            var start = (int) startNumericUpDown.Value;
+            var end = (int) endNumericUpDown.Value;
+
+            Log.Info("[CorpsName] Add: {0}-{1} {2} {3} [{4}] <{5}>", start, end, prefix, suffix,
+                Branches.GetName(branch), Countries.Strings[(int) country]);
 
             // 軍団名を一括追加する
-            CorpsNames.AddSequential(prefix, suffix, (int) startNumericUpDown.Value, (int) endNumericUpDown.Value,
-                branch, country);
+            CorpsNames.AddSequential(prefix, suffix, start, end, branch, country);
 
             // 軍団名リストの表示を更新する
             UpdateNameList();
@@ -661,6 +667,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnInterpolateButtonClick(object sender, EventArgs e)
         {
+            Log.Info("[CorpsName] Interpolate");
+
             if (allBranchCheckBox.Checked)
             {
                 if (allCountryCheckBox.Checked)

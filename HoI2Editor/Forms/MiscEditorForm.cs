@@ -868,6 +868,8 @@ namespace HoI2Editor.Forms
                     break;
             }
 
+            string old = Misc.GetString(id);
+
             // 値を更新する
             switch (type)
             {
@@ -910,6 +912,8 @@ namespace HoI2Editor.Forms
                     Misc.SetItem(id, d);
                     break;
             }
+
+            Log.Info("[Misc] {0}: {1} -> {2}", Misc.GetItemName(id), old, Misc.GetString(id));
 
             // 編集済みフラグを設定する
             Misc.SetDirty(id);
@@ -1065,7 +1069,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集項目コンボボックスの選択インデックス変更時の処理
+        ///     編集項目コンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1111,10 +1115,14 @@ namespace HoI2Editor.Forms
             switch (type)
             {
                 case MiscItemType.Bool:
+                    Log.Info("[Misc] {0}: {1} -> {2}", Misc.GetItemName(id),
+                        Misc.GetItemChoice(id, (bool) Misc.GetItem(id) ? 1 : 0), Misc.GetItemChoice(id, b ? 1 : 0));
                     Misc.SetItem(id, b);
                     break;
 
                 case MiscItemType.Enum:
+                    Log.Info("[Misc] {0}: {1} -> {2}", Misc.GetItemName(id),
+                        Misc.GetItemChoice(id, (int) Misc.GetItem(id)), Misc.GetItemChoice(id, i));
                     Misc.SetItem(id, i);
                     break;
             }

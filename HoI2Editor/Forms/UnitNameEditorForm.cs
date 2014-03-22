@@ -567,6 +567,8 @@ namespace HoI2Editor.Forms
             string to = toComboBox.Text;
             string with = withComboBox.Text;
 
+            Log.Info("[UnitName] Replace: {0} -> {1}", to, with);
+
             if (allCountryCheckBox.Checked)
             {
                 if (allUnitTypeCheckBox.Checked)
@@ -653,10 +655,14 @@ namespace HoI2Editor.Forms
 
             string prefix = prefixComboBox.Text;
             string suffix = suffixComboBox.Text;
+            var start = (int) startNumericUpDown.Value;
+            var end = (int) endNumericUpDown.Value;
+
+            Log.Info("[UnitName] Add: {0}-{1} {2} {3} [{4}] <{5}>", start, end, prefix, suffix,
+                Config.GetText(UnitNames.TypeNames[(int) type]), Countries.Strings[(int) country]);
 
             // ユニット名を一括追加する
-            UnitNames.AddSequential(prefix, suffix, (int) startNumericUpDown.Value, (int) endNumericUpDown.Value,
-                country, type);
+            UnitNames.AddSequential(prefix, suffix, start, end, country, type);
 
             // ユニット名リストの表示を更新する
             UpdateNameList();
@@ -683,6 +689,8 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnInterpolateButtonClick(object sender, EventArgs e)
         {
+            Log.Info("[UnitName] Interpolate");
+
             if (allCountryCheckBox.Checked)
             {
                 if (allUnitTypeCheckBox.Checked)

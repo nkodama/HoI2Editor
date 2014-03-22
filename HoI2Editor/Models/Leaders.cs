@@ -945,6 +945,9 @@ namespace HoI2Editor.Models
         /// <param name="leader">挿入対象の項目</param>
         public static void AddItem(Leader leader)
         {
+            Log.Info("[Leader] Add leader: ({0}: {1}) <{2}>", leader.Id, leader.Name,
+                Countries.Strings[(int) leader.Country]);
+
             Items.Add(leader);
         }
 
@@ -956,6 +959,10 @@ namespace HoI2Editor.Models
         public static void InsertItem(Leader leader, Leader position)
         {
             int index = Items.IndexOf(position) + 1;
+
+            Log.Info("[Leader] Insert leader: {0} ({1}: {2}) <{3}>", index, leader.Id, leader.Name,
+                Countries.Strings[(int) leader.Country]);
+
             Items.Insert(index, leader);
         }
 
@@ -965,6 +972,9 @@ namespace HoI2Editor.Models
         /// <param name="leader">削除対象の項目</param>
         public static void RemoveItem(Leader leader)
         {
+            Log.Info("[Leader] Remove leader: ({0}: {1}) <{2}>", leader.Id, leader.Name,
+                Countries.Strings[(int) leader.Country]);
+
             Items.Remove(leader);
 
             // 使用済みIDリストから削除する
@@ -980,6 +990,9 @@ namespace HoI2Editor.Models
         {
             int srcIndex = Items.IndexOf(src);
             int destIndex = Items.IndexOf(dest);
+
+            Log.Info("[Leader] Move leader: {0} -> {1} ({2}: {3}) <{4}>", srcIndex, destIndex, src.Id, src.Name,
+                Countries.Strings[(int) src.Country]);
 
             if (srcIndex > destIndex)
             {

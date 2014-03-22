@@ -427,6 +427,8 @@ namespace HoI2Editor.Forms
             string to = toComboBox.Text;
             string with = withComboBox.Text;
 
+            Log.Info("[RandomLeader] Replace: {0} -> {1}", to, with);
+
             if (allCountryCheckBox.Checked)
             {
                 // 全ての国のランダム指揮官名を置換する

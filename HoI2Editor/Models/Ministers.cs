@@ -1655,6 +1655,9 @@ namespace HoI2Editor.Models
         /// <param name="minister">挿入対象の項目</param>
         public static void AddItem(Minister minister)
         {
+            Log.Info("[Minister] Add minister: ({0}: {1}) <{2}>", minister.Id, minister.Name,
+                Countries.Strings[(int) minister.Country]);
+
             Items.Add(minister);
         }
 
@@ -1665,7 +1668,12 @@ namespace HoI2Editor.Models
         /// <param name="position">挿入位置の直前の項目</param>
         public static void InsertItem(Minister minister, Minister position)
         {
-            Items.Insert(Items.IndexOf(position) + 1, minister);
+            int index = Items.IndexOf(position) + 1;
+
+            Log.Info("[Minister] Insert minister: {0} ({1}: {2}) <{3}>", index, minister.Id, minister.Name,
+                Countries.Strings[(int) minister.Country]);
+
+            Items.Insert(index, minister);
         }
 
         /// <summary>
@@ -1674,6 +1682,9 @@ namespace HoI2Editor.Models
         /// <param name="minister"></param>
         public static void RemoveItem(Minister minister)
         {
+            Log.Info("[Minister] Move minister: ({0}: {1}) <{2}>", minister.Id, minister.Name,
+                Countries.Strings[(int) minister.Country]);
+
             Items.Remove(minister);
 
             // 使用済みIDリストから削除する
@@ -1689,6 +1700,9 @@ namespace HoI2Editor.Models
         {
             int srcIndex = Items.IndexOf(src);
             int destIndex = Items.IndexOf(dest);
+
+            Log.Info("[Minister] Move minister: {0} -> {1} ({2}: {3}) <{4}>", srcIndex, destIndex, src.Id, src.Name,
+                Countries.Strings[(int) src.Country]);
 
             if (srcIndex > destIndex)
             {

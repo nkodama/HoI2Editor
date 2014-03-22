@@ -307,6 +307,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            Log.Info("[RandomLeader] Set: <{0}>", Countries.Strings[(int) country]);
+
             // ランダム指揮官名リストを設定する
             Items[(int) country] = names;
 

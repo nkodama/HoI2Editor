@@ -1671,6 +1671,9 @@ namespace HoI2Editor.Forms
             // 変更前の国タグの編集済みフラグを設定する
             Teams.SetDirty(team.Country);
 
+            Log.Info("[Team] country: {0} -> {1} ({2}: {3})", Countries.Strings[(int) team.Country],
+                Countries.Strings[(int) country], team.Id, team.Name);
+
             // 値を更新する
             team.Country = country;
 
@@ -1721,6 +1724,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Team] id: {0} -> {1} ({2})", team.Id, id, team.Name);
+
             // 値を更新する
             team.Id = id;
 
@@ -1754,10 +1759,22 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             string name = nameTextBox.Text;
-            if (name.Equals(team.Name))
+            if (string.IsNullOrEmpty(name))
             {
-                return;
+                if (string.IsNullOrEmpty(team.Name))
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (name.Equals(team.Name))
+                {
+                    return;
+                }
+            }
+
+            Log.Info("[Team] name: {0} -> {1} ({2})", team.Name, name, team.Id);
 
             // 値を更新する
             team.Name = name;
@@ -1796,6 +1813,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Team] skill: {0} -> {1} ({2}: {3})", team.Skill, skill, team.Id, team.Name);
 
             // 値を更新する
             team.Skill = skill;
@@ -1836,6 +1855,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Team] start year: {0} -> {1} ({2}: {3})", team.StartYear, startYear, team.Id, team.Name);
+
             // 値を更新する
             team.StartYear = startYear;
 
@@ -1871,6 +1892,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Team] end year: {0} -> {1} ({2}: {3})", team.EndYear, endYear, team.Id, team.Name);
 
             // 値を更新する
             team.EndYear = endYear;
@@ -1914,6 +1937,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Team] speciality{0}: {1} -> {2} ({3}: {4})", no, Techs.GetSpecialityName(team.Specialities[no]),
+                Techs.GetSpecialityName(speciality), team.Id, team.Name);
 
             // 研究特性を変更する
             ChangeTechSpeciality(team, no, speciality);
@@ -2012,10 +2038,22 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             string pictureName = pictureNameTextBox.Text;
-            if (pictureName.Equals(team.PictureName))
+            if (string.IsNullOrEmpty(pictureName))
             {
-                return;
+                if (string.IsNullOrEmpty(team.PictureName))
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (pictureName.Equals(team.PictureName))
+                {
+                    return;
+                }
+            }
+
+            Log.Info("[Team] picture name: {0} -> {1} ({2}: {3})", team.PictureName, pictureName, team.Id, team.Name);
 
             // 値を更新する
             team.PictureName = pictureName;

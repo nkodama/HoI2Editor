@@ -1661,6 +1661,9 @@ namespace HoI2Editor.Forms
             // 変更前の国タグの編集済みフラグを設定する
             Ministers.SetDirty(minister.Country);
 
+            Log.Info("[Minister] country: {0} -> {1} ({2}: {3})", Countries.Strings[(int) minister.Country],
+                Countries.Strings[(int) country], minister.Id, minister.Name);
+
             // 値を更新する
             minister.Country = country;
 
@@ -1708,6 +1711,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Minister] id: {0} -> {1} ({2})", minister.Id, id, minister.Name);
+
             // 値を更新する
             minister.Id = id;
 
@@ -1738,10 +1743,22 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             string name = nameTextBox.Text;
-            if (name.Equals(minister.Name))
+            if (string.IsNullOrEmpty(name))
             {
-                return;
+                if (string.IsNullOrEmpty(minister.Name))
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (name.Equals(minister.Name))
+                {
+                    return;
+                }
+            }
+
+            Log.Info("[Minister] name: {0} -> {1} ({2})", minister.Name, name, minister.Id);
 
             // 値を更新する
             minister.Name = name;
@@ -1777,6 +1794,9 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Minister] start year: {0} -> {1} ({2}: {3})", minister.StartYear, startYear, minister.Id,
+                minister.Name);
 
             // 値を更新する
             minister.StartYear = startYear;
@@ -1814,6 +1834,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Minister] end year: {0} -> {1} ({2}: {3})", minister.EndYear, endYear, minister.Id, minister.Name);
+
             // 値を更新する
             minister.EndYear = endYear;
 
@@ -1850,6 +1872,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Minister] retirement year: {0} -> {1} ({2}: {3})", minister.RetirementYear, retirementYear,
+                minister.Id, minister.Name);
+
             // 値を更新する
             minister.RetirementYear = retirementYear;
 
@@ -1881,6 +1906,10 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Minister] position: {0} -> {1} ({2}: {3})",
+                Config.GetText(Ministers.PositionNames[(int) minister.Position]),
+                Config.GetText(Ministers.PositionNames[(int) position]), minister.Id, minister.Name);
 
             // 値を更新する
             minister.Position = position;
@@ -1941,6 +1970,10 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Minister] personality: {0} -> {1} ({2}: {3})",
+                Config.GetText(Ministers.Personalities[minister.Personality].Name),
+                Config.GetText(Ministers.Personalities[personality].Name), minister.Id, minister.Name);
+
             // 値を更新する
             minister.Personality = personality;
 
@@ -1978,6 +2011,10 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+
+            Log.Info("[Minister] ideology: {0} -> {1} ({2}: {3})",
+                Config.GetText(Ministers.IdeologyNames[(int) minister.Ideology]),
+                Config.GetText(Ministers.IdeologyNames[(int) ideology]), minister.Id, minister.Name);
 
             // 値を更新する
             minister.Ideology = ideology;
@@ -2017,6 +2054,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            Log.Info("[Minister] loyalty: {0} -> {1} ({2}: {3})", Ministers.LoyaltyNames[(int) minister.Loyalty],
+                Ministers.LoyaltyNames[(int) loyalty], minister.Id, minister.Name);
+
             // 値を更新する
             minister.Loyalty = loyalty;
 
@@ -2044,10 +2084,23 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             string pictureName = pictureNameTextBox.Text;
-            if (pictureName.Equals(minister.PictureName))
+            if (string.IsNullOrEmpty(pictureName))
             {
-                return;
+                if (string.IsNullOrEmpty(minister.PictureName))
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (pictureName.Equals(minister.PictureName))
+                {
+                    return;
+                }
+            }
+
+            Log.Info("[Minister] picture name: {0} -> {1} ({2}: {3})", minister.PictureName, pictureName, minister.Id,
+                minister.Name);
 
             // 値を更新する
             minister.PictureName = pictureName;

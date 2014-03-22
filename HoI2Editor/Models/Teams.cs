@@ -705,6 +705,8 @@ namespace HoI2Editor.Models
         /// <param name="team">追加対象の項目</param>
         public static void AddItem(Team team)
         {
+            Log.Info("[Team] Add team: ({0}: {1}) <{2}>", team.Id, team.Name, Countries.Strings[(int) team.Country]);
+
             Items.Add(team);
         }
 
@@ -715,7 +717,12 @@ namespace HoI2Editor.Models
         /// <param name="position">挿入位置の直前の項目</param>
         public static void InsertItem(Team team, Team position)
         {
-            Items.Insert(Items.IndexOf(position) + 1, team);
+            int index = Items.IndexOf(position) + 1;
+
+            Log.Info("[Team] Insert team: {0} ({1}: {2}) <{3}>", index, team.Id, team.Name,
+                Countries.Strings[(int) team.Country]);
+
+            Items.Insert(index, team);
         }
 
         /// <summary>
@@ -724,6 +731,9 @@ namespace HoI2Editor.Models
         /// <param name="team">削除対象の項目</param>
         public static void RemoveItem(Team team)
         {
+            Log.Info("[Team] Remove team: ({0}: {1}) <{2}>", team.Id, team.Name,
+                Countries.Strings[(int) team.Country]);
+
             Items.Remove(team);
 
             // 使用済みIDリストから削除する
@@ -739,6 +749,9 @@ namespace HoI2Editor.Models
         {
             int srcIndex = Items.IndexOf(src);
             int destIndex = Items.IndexOf(dest);
+
+            Log.Info("[Team] Move team: {0} -> {1} ({2}: {3}) <{4}>", srcIndex, destIndex, src.Id, src.Name,
+                Countries.Strings[(int) src.Country]);
 
             if (srcIndex > destIndex)
             {
