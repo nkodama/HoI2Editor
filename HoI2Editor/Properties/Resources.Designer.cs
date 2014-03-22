@@ -277,6 +277,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Critical Error に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CriticalError {
+            get {
+                return ResourceManager.GetString("CriticalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Light Carrier に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DivisionLightCarrier {

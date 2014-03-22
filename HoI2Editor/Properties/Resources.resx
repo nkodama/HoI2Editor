@@ -3705,4 +3705,7 @@
   <data name="OpenExportFolderDialogDescription" xml:space="preserve">
     <value>Select an export folder.</value>
   </data>
+  <data name="CriticalError" xml:space="preserve">
+    <value>Critical Error</value>
+  </data>
 </root>

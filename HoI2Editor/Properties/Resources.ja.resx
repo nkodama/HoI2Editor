@@ -3663,4 +3663,7 @@
   <data name="OpenExportFolderDialogDescription" xml:space="preserve">
     <value>保存フォルダを選択して下さい。</value>
   </data>
+  <data name="CriticalError" xml:space="preserve">
+    <value>致命的エラー</value>
+  </data>
 </root>
