@@ -259,6 +259,63 @@ namespace HoI2Editor
             return new Rectangle(x, y, width, height);
         }
 
+        /// <summary>
+        ///     フォームの位置を丸める (低解像度/中解像度.高解像度でデフォルトの高さが異なる場合)
+        /// </summary>
+        /// <param name="location">現在の位置</param>
+        /// <param name="size">現在のサイズ</param>
+        /// <param name="defaultWidth">デフォルト幅</param>
+        /// <param name="defaultHeightShort">デフォルト高さ(低解像度)</param>
+        /// <param name="defaultHeightMiddle">デフォルト高さ(高解像度)</param>
+        /// <param name="defaultHeightLong">デフォルト高さ(高解像度)</param>
+        /// <returns>丸めた後の位置</returns>
+        private static Rectangle RoundFormPosition(Point location, Size size, int defaultWidth, int defaultHeightShort,
+            int defaultHeightMiddle, int defaultHeightLong)
+        {
+            // デスクトップのサイズを取得する
+            Rectangle screenRect = Screen.GetWorkingArea(new Point(200, 200));
+
+            // フォームのサイズを丸める
+            int width = size.Width;
+            int scaledWidth = DeviceCaps.GetScaledWidth(defaultWidth);
+            if ((width > screenRect.Width) || (width < scaledWidth))
+            {
+                width = scaledWidth;
+            }
+            int height = size.Height;
+            int scaledHeightShort = DeviceCaps.GetScaledHeight(defaultHeightShort);
+            if ((height > screenRect.Height) || (height < scaledHeightShort))
+            {
+                int scaledHeightMiddle = DeviceCaps.GetScaledHeight(defaultHeightMiddle);
+                int scaledHeightLong = DeviceCaps.GetScaledHeight(defaultHeightLong);
+                height = (screenRect.Height >= scaledHeightLong)
+                    ? scaledHeightLong
+                    : (screenRect.Height >= scaledHeightMiddle) ? scaledHeightMiddle : scaledHeightShort;
+            }
+
+            // フォームの位置を丸める
+            int x = location.X;
+            if (x < screenRect.Left)
+            {
+                x = screenRect.Left;
+            }
+            else if (x >= screenRect.Right)
+            {
+                x = screenRect.Right - 1;
+            }
+            int y = location.Y;
+            if (y < screenRect.Top)
+            {
+                y = screenRect.Top;
+            }
+            else if (y >= screenRect.Bottom)
+            {
+                y = screenRect.Bottom - 1;
+            }
+
+            return new Rectangle(x, y, width, height);
+        }
+
         #endregion
 
         #region メインフォーム
@@ -1122,9 +1179,14 @@ namespace HoI2Editor
             private const int DefaultHeightShort = 670;
 
             /// <summary>
+            ///     デフォルト高さ(中解像度)
+            /// </summary>
+            private const int DefaultHeightMiddle = 720;
+
+            /// <summary>
             ///     デフォルト高さ(高解像度)
             /// </summary>
-            private const int DefaultHeightLong = 720;
+            private const int DefaultHeightLong = 876;
 
             /// <summary>
             ///     必要技術リストビューの列のデフォルト幅
@@ -1169,8 +1231,11 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
+                int middleHeight = DeviceCaps.GetScaledHeight(DefaultHeightMiddle);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
-                int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
+                int height = (screenRect.Height >= longHeight)
+                    ? longHeight
+                    : (screenRect.Height >= middleHeight) ? middleHeight : shortHeight;
                 int x = screenRect.X + (screenRect.Width - width)/2;
                 int y = screenRect.Y + (screenRect.Height - height)/2;
                 Location = new Point(x, y);

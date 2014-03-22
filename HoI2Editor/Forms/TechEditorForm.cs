@@ -281,12 +281,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormLoad(object sender, EventArgs e)
         {
-            // 画面解像度が十分に広い場合はツリー画像全体が入るように高さを調整する
-            if (Screen.GetWorkingArea(this).Height >= 876)
-            {
-                Height = 876;
-            }
-
             // 研究特性を初期化する
             Techs.InitSpecialities();
 
