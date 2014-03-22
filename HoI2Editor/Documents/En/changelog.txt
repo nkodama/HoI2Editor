@@ -1,5 +1,9 @@
 Alternative HoI2 Editor Changelog
 
+- 23 March 2014; Ver 0.35
+
+Fixed a bug that new assigned strings are not stored on second saving.
+
 - 22 March 2014; Ver 0.34
 
 Fixed a bug that a unit editor crashes when editing undefined names.

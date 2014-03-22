@@ -237,6 +237,7 @@ namespace HoI2Editor.Models
             ReplacedText.Clear();
             ComplementedText.Clear();
             OrderListTable.Clear();
+            ReservedListTable.Clear();
             TextFileTable.Clear();
             TempKeyList.Clear();
             DirtyFiles.Clear();
@@ -787,9 +788,6 @@ namespace HoI2Editor.Models
                     writer.WriteLine("{0};;;;;;;;;;;X", key);
                 }
             }
-
-            // 予約リストを全て削除する
-            ReservedListTable[fileName].Clear();
         }
 
         #endregion
