@@ -1289,7 +1289,7 @@ namespace HoI2Editor.Models
 
             // ID
             int id;
-            if (!Int32.TryParse(tokens[index], out id))
+            if (!int.TryParse(tokens[index], out id))
             {
                 Log.Warning("[Minister] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
                 return;
@@ -1317,7 +1317,7 @@ namespace HoI2Editor.Models
 
             // 開始年
             int startYear;
-            if (Int32.TryParse(tokens[index], out startYear))
+            if (int.TryParse(tokens[index], out startYear))
             {
                 minister.StartYear = startYear + (Misc.UseNewMinisterFilesFormat ? 0 : 1900);
             }
@@ -1333,7 +1333,7 @@ namespace HoI2Editor.Models
             if (Misc.UseNewMinisterFilesFormat)
             {
                 int endYear;
-                if (Int32.TryParse(tokens[index], out endYear))
+                if (int.TryParse(tokens[index], out endYear))
                 {
                     minister.EndYear = endYear;
                 }
@@ -1354,7 +1354,7 @@ namespace HoI2Editor.Models
             if (Misc.EnableRetirementYearMinisters)
             {
                 int retirementYear;
-                if (Int32.TryParse(tokens[index], out retirementYear))
+                if (int.TryParse(tokens[index], out retirementYear))
                 {
                     minister.RetirementYear = retirementYear;
                 }

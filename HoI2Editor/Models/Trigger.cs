@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
@@ -315,7 +316,7 @@ namespace HoI2Editor.Models
             // 単発トリガーの場合
             if (ParamTypeTable[(int) Type] != TriggerParamType.Container)
             {
-                return string.Format("{0} = {1}", TypeStringTable[(int) Type], Value);
+                return string.Format("{0} = {1}", TypeStringTable[(int) Type], ObjectHelper.ToString(Value));
             }
 
             // コンテナトリガーの場合

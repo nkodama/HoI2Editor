@@ -447,7 +447,7 @@ namespace HoI2Editor.Models
 
             // ID
             int id;
-            if (!Int32.TryParse(tokens[index], out id))
+            if (!int.TryParse(tokens[index], out id))
             {
                 Log.Warning("[Team] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
                 return;
@@ -465,7 +465,7 @@ namespace HoI2Editor.Models
 
             // スキル
             int skill;
-            if (Int32.TryParse(tokens[index], out skill))
+            if (int.TryParse(tokens[index], out skill))
             {
                 team.Skill = skill;
             }
@@ -479,7 +479,7 @@ namespace HoI2Editor.Models
 
             // 開始年
             int startYear;
-            if (Int32.TryParse(tokens[index], out startYear))
+            if (int.TryParse(tokens[index], out startYear))
             {
                 team.StartYear = startYear;
             }
@@ -493,7 +493,7 @@ namespace HoI2Editor.Models
 
             // 終了年
             int endYear;
-            if (Int32.TryParse(tokens[index], out endYear))
+            if (int.TryParse(tokens[index], out endYear))
             {
                 team.EndYear = endYear;
             }

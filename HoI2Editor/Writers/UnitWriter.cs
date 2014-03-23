@@ -88,8 +88,8 @@ namespace HoI2Editor.Writers
                         writer.WriteLine(
                             "upgrade = {{ type = {0} upgrade_time_factor = {1} upgrade_cost_factor = {2} }}",
                             Units.Strings[(int) upgrade.Type],
-                            upgrade.UpgradeTimeFactor,
-                            upgrade.UpgradeCostFactor);
+                            upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture),
+                            upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
                     }
                     writer.WriteLine();
                 }
