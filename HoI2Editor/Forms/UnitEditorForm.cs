@@ -3099,7 +3099,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                modelIconPictureBox.Image = null;
+                modelImagePictureBox.Image = null;
             }
             if (oldImage != null)
             {
