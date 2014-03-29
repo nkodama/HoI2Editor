@@ -93,16 +93,17 @@ namespace HoI2Editor.Models
                 s += team.Skill + 6;
             }
 
-            // 研究施設がある場合は施設の規模*10をスキルに加える
+            // 研究施設がある場合は施設の規模を設定する
+            int t = 0;
             switch (component.Speciality)
             {
                 case TechSpeciality.Rocketry:
-                    s += Researches.RocketTestingSites*10;
+                    t = Researches.RocketTestingSites;
                     break;
 
                 case TechSpeciality.NuclearPhysics:
                 case TechSpeciality.NuclearEngineering:
-                    s += Researches.NuclearReactors*10;
+                    t = Researches.NuclearReactors;
                     break;
             }
 
@@ -111,20 +112,20 @@ namespace HoI2Editor.Models
             switch (Game.Type)
             {
                 case GameType.HeartsOfIron2:
-                    progress = (9.3 + 1.5*s)/d;
+                    progress = (9.3 + 1.5*s + 10*t)/d;
                     break;
 
                 case GameType.ArsenalOfDemocracy:
-                    progress = (3.0 + 0.5*s)/d;
+                    progress = (3.0 + 0.5*(s + 10*Math.Sqrt(t)))/d;
                     break;
 
                 case GameType.DarkestHour:
-                    progress = (9.0 + 1.5*s)/d;
+                    progress = (9.0 + 1.5*(s + 5.62*t))/d;
                     break;
 
                 default:
                     // ゲームの種類が不明な場合はHoI2として扱う
-                    progress = (9.3 + 1.5*s)/d;
+                    progress = (9.3 + 1.5*s + 10*t)/d;
                     break;
             }
 
