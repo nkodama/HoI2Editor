@@ -37,11 +37,6 @@ namespace HoI2Editor.Forms
             // バージョン文字列を更新する
             Text = HoI2Editor.Version;
 
-            // 言語を初期化する
-            Config.LangMode = Thread.CurrentThread.CurrentUICulture.Equals(CultureInfo.GetCultureInfo("ja-JP"))
-                ? LanguageMode.Japanese
-                : LanguageMode.English;
-
             // ログレベルを初期化する
             logLevelComboBox.SelectedIndex = Log.Level;
 
