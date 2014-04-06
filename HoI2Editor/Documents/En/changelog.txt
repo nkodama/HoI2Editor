@@ -1,9 +1,10 @@
 Alternative HoI2 Editor Changelog
 
-- 4 April 2014; Ver 0.37
+- 6 April 2014; Ver 0.37
 
 Fixed a crash on redrawing not defined unit model picture.
 Fixed a bug that world tree view nodes are duplicated when provinces are reloaded.
+Changed the priority of game type: DH > HoI2 > AoD
 
 - 24 March 2014; Ver 0.36
 

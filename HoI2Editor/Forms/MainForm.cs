@@ -45,6 +45,13 @@ namespace HoI2Editor.Forms
             // ログレベルを初期化する
             logLevelComboBox.SelectedIndex = Log.Level;
 
+            // ログ初期化前にゲームの種類が確定している時にはここでログ出力する
+            if (Game.Type != GameType.None)
+            {
+                Game.OutputGameType();
+                Game.OutputGameVersion();
+            }
+
             // 初期状態のゲームフォルダ名を設定する
             if (!string.IsNullOrEmpty(Game.FolderName))
             {

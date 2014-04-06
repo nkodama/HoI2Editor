@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using HoI2Editor.Models;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -34,7 +35,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier || !((string) token.Value).ToLower().Equals("technology"))
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     return null;
                 }
 
@@ -59,7 +60,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -67,7 +68,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -91,7 +92,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -110,7 +111,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -119,7 +120,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -136,7 +137,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -145,7 +146,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -158,7 +159,7 @@ namespace HoI2Editor.Parsers
                     }
                     if (!Techs.CategoryMap.ContainsKey(s))
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -175,7 +176,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -184,7 +185,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier && token.Type != TokenType.String)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -201,7 +202,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -210,7 +211,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier && token.Type != TokenType.String)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -266,7 +267,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 lexer.SkipLine();
             }
 
@@ -284,7 +285,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -292,7 +293,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -316,7 +317,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -335,7 +336,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -344,7 +345,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -361,7 +362,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -370,7 +371,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier && token.Type != TokenType.String)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -390,7 +391,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -399,7 +400,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier && token.Type != TokenType.String)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -431,7 +432,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -440,7 +441,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -457,7 +458,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -466,7 +467,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -545,7 +546,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 lexer.SkipLine();
             }
 
@@ -563,7 +564,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -571,7 +572,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -595,7 +596,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -614,7 +615,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -623,7 +624,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier && token.Type != TokenType.String)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -649,7 +650,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 lexer.SkipLine();
             }
 
@@ -667,7 +668,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -675,7 +676,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -699,7 +700,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -718,7 +719,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -727,7 +728,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -759,7 +760,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -768,7 +769,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -779,7 +780,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 lexer.SkipLine();
             }
 
@@ -797,7 +798,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -805,7 +806,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -829,7 +830,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -848,7 +849,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -857,7 +858,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -874,7 +875,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -883,7 +884,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -894,7 +895,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 lexer.SkipLine();
             }
 
@@ -912,7 +913,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -920,7 +921,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -944,7 +945,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -963,7 +964,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -972,7 +973,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -989,7 +990,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -998,7 +999,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier && token.Type != TokenType.String)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1015,7 +1016,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1024,7 +1025,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1038,7 +1039,7 @@ namespace HoI2Editor.Parsers
                     s = s.ToLower();
                     if (!Techs.SpecialityStringMap.ContainsKey(s))
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1055,7 +1056,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1064,7 +1065,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1081,7 +1082,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1090,7 +1091,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                        Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
                         continue;
                     }
@@ -1117,13 +1118,13 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
 
                 // 無効なトークン
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 lexer.SkipLine();
             }
 
@@ -1141,7 +1142,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -1149,7 +1150,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -1173,7 +1174,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Number)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     continue;
                 }
 
@@ -1194,7 +1195,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -1202,7 +1203,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -1226,7 +1227,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                    Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -1258,7 +1259,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Tech] Invalid token: {0}", token.Value);
+                Log.Warning("[Tech] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 lexer.SkipLine();
             }
 

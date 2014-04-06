@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -666,8 +665,17 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // DH
+            string fileName = Path.Combine(FolderName, "Darkest Hour.exe");
+            if (File.Exists(fileName))
+            {
+                Type = GameType.DarkestHour;
+                _exeFileName = fileName;
+                return;
+            }
+
             // HoI2
-            string fileName = Path.Combine(FolderName, "Hoi2.exe");
+            fileName = Path.Combine(FolderName, "Hoi2.exe");
             if (File.Exists(fileName))
             {
                 Type = GameType.HeartsOfIron2;
@@ -687,15 +695,6 @@ namespace HoI2Editor.Models
             if (File.Exists(fileName))
             {
                 Type = GameType.ArsenalOfDemocracy;
-                _exeFileName = fileName;
-                return;
-            }
-
-            // DH
-            fileName = Path.Combine(FolderName, "Darkest Hour.exe");
-            if (File.Exists(fileName))
-            {
-                Type = GameType.DarkestHour;
                 _exeFileName = fileName;
                 return;
             }
@@ -876,8 +875,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ゲームの種類を出力する
         /// </summary>
-        [Conditional("DEBUG")]
-        private static void OutputGameType()
+        public static void OutputGameType()
         {
             // 種類不明の場合は何も出力しない
             if (_type == GameType.None)
@@ -888,8 +886,10 @@ namespace HoI2Editor.Models
             Log.Error("Game Type: {0}", GameTypeStrings[(int) _type]);
         }
 
-        [Conditional("DEBUG")]
-        private static void OutputGameVersion()
+        /// <summary>
+        ///     ゲームのバージョンを出力する
+        /// </summary>
+        public static void OutputGameVersion()
         {
             string s;
             switch (_type)

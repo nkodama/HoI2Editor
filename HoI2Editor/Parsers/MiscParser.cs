@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using HoI2Editor.Models;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -41,7 +42,7 @@ namespace HoI2Editor.Parsers
                     // 無効なトークン
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Misc] Invalid token: {0}", token.Value);
+                        Log.Warning("[Misc] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                         continue;
                     }
 
@@ -162,7 +163,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Misc] Invalid token: {0}", token.Value);
+                    Log.Warning("[Misc] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 }
             }
         }
@@ -190,7 +191,7 @@ namespace HoI2Editor.Parsers
             // =
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Misc] Invalid token: {0}", token.Value);
+                Log.Warning("[Misc] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return false;
             }
 
@@ -207,7 +208,7 @@ namespace HoI2Editor.Parsers
             // {
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Misc] Invalid token: {0}", token.Value);
+                Log.Warning("[Misc] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return false;
             }
 
@@ -231,7 +232,7 @@ namespace HoI2Editor.Parsers
                 // 設定値
                 if (token.Type != TokenType.Number)
                 {
-                    Log.Warning("[Misc] Invalid token: {0}", token.Value);
+                    Log.Warning("[Misc] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     return false;
                 }
                 //Debug.WriteLine(string.Format("{0}: {1}", id, token.Value));
@@ -299,7 +300,7 @@ namespace HoI2Editor.Parsers
             // } (セクション終端)
             if (token.Type != TokenType.CloseBrace)
             {
-                Log.Warning("[Misc] Invalid token: {0}", token.Value);
+                Log.Warning("[Misc] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return false;
             }
 

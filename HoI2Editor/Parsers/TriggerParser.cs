@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HoI2Editor.Models;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -46,7 +47,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Trigger] Invalid token: {0}", token.Value);
+                Log.Warning("[Trigger] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -54,7 +55,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Trigger] Invalid token: {0}", token.Value);
+                Log.Warning("[Trigger] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                 return null;
             }
 
@@ -88,7 +89,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Trigger] Invalid token: {0}", token.Value);
+                    Log.Warning("[Trigger] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -102,7 +103,7 @@ namespace HoI2Editor.Parsers
                 // 無効なキーワード
                 if (!TypeMap.ContainsKey(keyword))
                 {
-                    Log.Warning("[Trigger] Invalid token: {0}", token.Value);
+                    Log.Warning("[Trigger] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     lexer.SkipLine();
                     continue;
                 }
@@ -113,7 +114,7 @@ namespace HoI2Editor.Parsers
                 token = lexer.GetToken();
                 if (token.Type != TokenType.Equal)
                 {
-                    Log.Warning("[Trigger] Invalid token: {0}", token.Value);
+                    Log.Warning("[Trigger] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     return null;
                 }
 
@@ -132,7 +133,7 @@ namespace HoI2Editor.Parsers
                     token.Type != TokenType.Identifier &&
                     token.Type != TokenType.String)
                 {
-                    Log.Warning("[Trigger] Invalid token: {0}", token.Value);
+                    Log.Warning("[Trigger] Invalid token: {0}", ObjectHelper.ToString(token.Value));
                     continue;
                 }
 
