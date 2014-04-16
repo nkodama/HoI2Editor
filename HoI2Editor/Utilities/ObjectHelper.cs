@@ -11,8 +11,8 @@ namespace HoI2Editor.Utilities
         /// <summary>
         ///     オブジェクト型を文字列に変換する
         /// </summary>
-        /// <param name="o"></param>
-        /// <returns></returns>
+        /// <param name="o">変換対象</param>
+        /// <returns>文字列</returns>
         public static string ToString(object o)
         {
             if (o == null)
@@ -43,6 +43,24 @@ namespace HoI2Editor.Utilities
                 return (Math.Abs((double) y - (double) x) <= 0.00005);
             }
             return x.Equals(y);
+        }
+
+        /// <summary>
+        ///     オブジェクトがnullか空文字列のどちらかかを返す
+        /// </summary>
+        /// <param name="o">判定対象</param>
+        /// <returns>nullまたは空文字列ならばtrueを返す</returns>
+        public static bool IsNullOrEmpty(object o)
+        {
+            if (o == null)
+            {
+                return true;
+            }
+            if ((o is string) && string.IsNullOrEmpty(o as string))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

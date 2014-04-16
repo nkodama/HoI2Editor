@@ -1,5 +1,9 @@
 Alternative HoI2 Editor Changelog
 
+- 17 April 2014; Ver 0.38
+
+Fixed a bug that a tech effect parameter cannot be deleted though its field is blanked.
+
 - 6 April 2014; Ver 0.37
 
 Fixed a crash on redrawing not defined unit model picture.
