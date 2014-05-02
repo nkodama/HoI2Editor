@@ -74,6 +74,7 @@
             this.closeButton = new System.Windows.Forms.Button();
             this.retirementYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.retirementYearLabel = new System.Windows.Forms.Label();
+            this.batchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
@@ -413,10 +414,18 @@
             resources.ApplyResources(this.retirementYearLabel, "retirementYearLabel");
             this.retirementYearLabel.Name = "retirementYearLabel";
             // 
+            // batchButton
+            // 
+            resources.ApplyResources(this.batchButton, "batchButton");
+            this.batchButton.Name = "batchButton";
+            this.batchButton.UseVisualStyleBackColor = true;
+            this.batchButton.Click += new System.EventHandler(this.OnBatchButtonClick);
+            // 
             // MinisterEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.batchButton);
             this.Controls.Add(this.retirementYearNumericUpDown);
             this.Controls.Add(this.retirementYearLabel);
             this.Controls.Add(this.closeButton);
@@ -517,5 +526,6 @@
         private System.Windows.Forms.ColumnHeader ideologyColumnHeader;
         private System.Windows.Forms.NumericUpDown retirementYearNumericUpDown;
         private System.Windows.Forms.Label retirementYearLabel;
+        private System.Windows.Forms.Button batchButton;
     }
 }

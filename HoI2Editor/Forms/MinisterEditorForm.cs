@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -247,6 +248,22 @@ namespace HoI2Editor.Forms
             {
                 HoI2Editor.Settings.MinisterEditor.Size = Size;
             }
+        }
+
+        /// <summary>
+        /// 一括編集ボタン投下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBatchButtonClick(object sender, EventArgs e)
+        {
+            var dialog = new MinisterBatchDialog();
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            List<Minister> ministers;
         }
 
         /// <summary>
@@ -2140,6 +2157,42 @@ namespace HoI2Editor.Forms
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
+            }
+        }
+
+        #endregion
+
+        #region 一括編集
+
+        /// <summary>
+        /// 一括編集処理
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="country"></param>
+        /// <param name="items"></param>
+        /// <param name="startYear"></param>
+        /// <param name="endYear"></param>
+        /// <param name="retirementYear"></param>
+        /// <param name="ideology"></param>
+        /// <param name="loyalty"></param>
+        private void BatchEdit(MinisterBatchMode mode, Country country, bool[] items, int startYear, int endYear,
+            int retirementYear, MinisterIdeology ideology, MinisterLoyalty loyalty)
+        {
+            switch (mode)
+            {
+                case MinisterBatchMode.All:
+                case MinisterBatchMode.Selected:
+                case MinisterBatchMode.Specified:
+                    break;
+            }
+        }
+
+        private void BatchEditAll(bool[] items, int startYear, int endYear, int retirementYear,
+            MinisterIdeology ideology, MinisterLoyalty loyalty)
+        {
+            foreach (Minister minister in Ministers.Items)
+            {
+                
             }
         }
 
