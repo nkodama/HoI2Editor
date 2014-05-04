@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Utilities;
@@ -12,67 +8,69 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Dialogs
 {
     /// <summary>
-    /// 閣僚一括編集ダイアログ
+    ///     閣僚一括編集ダイアログ
     /// </summary>
     public partial class MinisterBatchDialog : Form
     {
         /// <summary>
-        /// 一括編集対象モード
+        ///     コンストラクタ
+        /// </summary>
+        public MinisterBatchDialog(Country country)
+        {
+            InitializeComponent();
+
+            SelectedCountry = country;
+        }
+
+        /// <summary>
+        ///     一括編集対象モード
         /// </summary>
         public MinisterBatchMode Mode { get; private set; }
 
         /// <summary>
-        /// 一括編集項目
+        ///     一括編集項目
         /// </summary>
         public bool[] BatchItems { get; private set; }
 
         /// <summary>
-        /// 選択国
+        ///     選択国
         /// </summary>
         public Country SelectedCountry { get; private set; }
 
         /// <summary>
-        /// 開始年
+        ///     開始年
         /// </summary>
         public int StartYear { get; private set; }
 
         /// <summary>
-        /// 終了年
+        ///     終了年
         /// </summary>
         public int EndYear { get; private set; }
 
         /// <summary>
-        /// 引退年
+        ///     引退年
         /// </summary>
         public int RetirementYear { get; private set; }
 
         /// <summary>
-        /// イデオロギー
+        ///     イデオロギー
         /// </summary>
         public MinisterIdeology Ideology { get; private set; }
 
         /// <summary>
-        /// 忠誠度
+        ///     忠誠度
         /// </summary>
         public MinisterLoyalty Loyalty { get; private set; }
 
         /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public MinisterBatchDialog()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// フォーム読み込み時の処理
+        ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnFormLoad(object sender, EventArgs e)
         {
             // メンバ変数の初期化
-            BatchItems = new bool[Enum.GetValues(typeof(MinisterBatchItemId)).Length];
+            BatchItems = new bool[Enum.GetValues(typeof (MinisterBatchItemId)).Length];
             StartYear = 1936;
             EndYear = 1964;
             RetirementYear = 1999;
@@ -85,22 +83,23 @@ namespace HoI2Editor.Dialogs
             countryComboBox.Items.Clear();
             int width = countryComboBox.Width;
             foreach (string s in Countries.Tags
-                .Select(country => Countries.Strings[(int)country])
+                .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
                     ? string.Format("{0} {1}", name, Config.GetText(name))
                     : name))
             {
                 countryComboBox.Items.Add(s);
                 width = Math.Max(width,
-                    (int)g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
                     margin);
             }
             countryComboBox.DropDownWidth = width;
             countryComboBox.EndUpdate();
             if (countryComboBox.Items.Count > 0)
             {
-                countryComboBox.SelectedIndex = 0;
+                countryComboBox.SelectedIndex = Countries.Tags.ToList().IndexOf(SelectedCountry);
             }
+            countryComboBox.SelectedIndexChanged += OnCountryComboBoxSelectedIndexChanged;
 
             // イデオロギーコンボボックス
             ideologyComboBox.BeginUpdate();
@@ -110,10 +109,15 @@ namespace HoI2Editor.Dialogs
                 string s in Ministers.IdeologyNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
             {
                 ideologyComboBox.Items.Add(s);
-                width = Math.Max(width, (int)g.MeasureString(s, ideologyComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, ideologyComboBox.Font).Width + margin);
             }
             ideologyComboBox.DropDownWidth = width;
             ideologyComboBox.EndUpdate();
+            if (ideologyComboBox.Items.Count > 0)
+            {
+                ideologyComboBox.SelectedIndex = 0;
+            }
+            ideologyComboBox.SelectedIndexChanged += OnIdeologyComboBoxSelectedIndexChanged;
 
             // 忠誠度コンボボックス
             loyaltyComboBox.BeginUpdate();
@@ -122,14 +126,36 @@ namespace HoI2Editor.Dialogs
             foreach (string s in Ministers.LoyaltyNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 loyaltyComboBox.Items.Add(s);
-                width = Math.Max(width, (int)g.MeasureString(s, loyaltyComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, loyaltyComboBox.Font).Width + margin);
             }
             loyaltyComboBox.DropDownWidth = width;
             loyaltyComboBox.EndUpdate();
+            if (loyaltyComboBox.Items.Count > 0)
+            {
+                loyaltyComboBox.SelectedIndex = 0;
+            }
+            loyaltyComboBox.SelectedIndexChanged += OnLoyaltyComboBoxSelectedIndexChanged;
         }
 
         /// <summary>
-        /// 開始年数値アップダウンの値変更時の処理
+        ///     国家コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (countryComboBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            if (!specifiedRadioButton.Checked)
+            {
+                specifiedRadioButton.Checked = true;
+            }
+        }
+
+        /// <summary>
+        ///     開始年数値アップダウンの値変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -142,7 +168,7 @@ namespace HoI2Editor.Dialogs
         }
 
         /// <summary>
-        /// 終了年数値アップダウンの値変更時の処理
+        ///     終了年数値アップダウンの値変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -155,7 +181,7 @@ namespace HoI2Editor.Dialogs
         }
 
         /// <summary>
-        /// 引退年数値アップダウンの値変更時の処理
+        ///     引退年数値アップダウンの値変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -168,7 +194,7 @@ namespace HoI2Editor.Dialogs
         }
 
         /// <summary>
-        /// イデオロギーコンボボックスの選択項目変更時の処理
+        ///     イデオロギーコンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -185,7 +211,7 @@ namespace HoI2Editor.Dialogs
         }
 
         /// <summary>
-        /// 忠誠度コンボボックスの選択項目変更時の処理
+        ///     忠誠度コンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -202,7 +228,7 @@ namespace HoI2Editor.Dialogs
         }
 
         /// <summary>
-        /// OKキー押下時の処理
+        ///     OKキー押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -225,23 +251,22 @@ namespace HoI2Editor.Dialogs
                 SelectedCountry = Countries.Tags[countryComboBox.SelectedIndex];
             }
 
-            BatchItems[(int)MinisterBatchItemId.Id] = reorderIdCheckBox.Checked;
-            BatchItems[(int)MinisterBatchItemId.StartYear] = startYearCheckBox.Checked;
-            BatchItems[(int)MinisterBatchItemId.EndYear] = endYearCheckBox.Checked;
-            BatchItems[(int)MinisterBatchItemId.RetirementYear] = retirementYearCheckBox.Checked;
-            BatchItems[(int)MinisterBatchItemId.Ideology] = ideologyCheckBox.Checked;
-            BatchItems[(int)MinisterBatchItemId.Loyalty] = loyaltyCheckBox.Checked;
-            
-            StartYear = (int)startYearNumericUpDown.Value;
-            EndYear = (int)endYearNumericUpDown.Value;
-            RetirementYear = (int)retirementYearNumericUpDown.Value;
-            Ideology = (MinisterIdeology)ideologyComboBox.SelectedIndex;
-            Loyalty = (MinisterLoyalty)loyaltyComboBox.SelectedIndex;
+            BatchItems[(int) MinisterBatchItemId.StartYear] = startYearCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.EndYear] = endYearCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.RetirementYear] = retirementYearCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.Ideology] = ideologyCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.Loyalty] = loyaltyCheckBox.Checked;
+
+            StartYear = (int) startYearNumericUpDown.Value;
+            EndYear = (int) endYearNumericUpDown.Value;
+            RetirementYear = (int) retirementYearNumericUpDown.Value;
+            Ideology = (MinisterIdeology) (ideologyComboBox.SelectedIndex + 1);
+            Loyalty = (MinisterLoyalty) (loyaltyComboBox.SelectedIndex + 1);
         }
     }
 
     /// <summary>
-    /// 一括編集対象モード
+    ///     一括編集対象モード
     /// </summary>
     public enum MinisterBatchMode
     {
@@ -251,15 +276,14 @@ namespace HoI2Editor.Dialogs
     }
 
     /// <summary>
-    /// 一括編集項目ID
+    ///     一括編集項目ID
     /// </summary>
     public enum MinisterBatchItemId
     {
-        Id,
-        StartYear,
-        EndYear,
-        RetirementYear,
-        Ideology,
-        Loyalty
+        StartYear, // 開始年
+        EndYear, // 終了年
+        RetirementYear, // 引退年
+        Ideology, // イデオロギー
+        Loyalty, // 忠誠度
     }
 }

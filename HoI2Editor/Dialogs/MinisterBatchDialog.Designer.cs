@@ -47,7 +47,6 @@
             this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.targetGroupBox = new System.Windows.Forms.GroupBox();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
-            this.reorderIdCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).BeginInit();
@@ -57,16 +56,16 @@
             // 
             // okButton
             // 
-            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);
             // 
             // cancelButton
             // 
-            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -79,15 +78,15 @@
             // selectedRadioButton
             // 
             resources.ApplyResources(this.selectedRadioButton, "selectedRadioButton");
+            this.selectedRadioButton.Checked = true;
             this.selectedRadioButton.Name = "selectedRadioButton";
+            this.selectedRadioButton.TabStop = true;
             this.selectedRadioButton.UseVisualStyleBackColor = true;
             // 
             // allRadioButton
             // 
             resources.ApplyResources(this.allRadioButton, "allRadioButton");
-            this.allRadioButton.Checked = true;
             this.allRadioButton.Name = "allRadioButton";
-            this.allRadioButton.TabStop = true;
             this.allRadioButton.UseVisualStyleBackColor = true;
             // 
             // startYearCheckBox
@@ -164,10 +163,10 @@
             // 
             // ideologyComboBox
             // 
-            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
+            this.ideologyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ideologyComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.Name = "ideologyComboBox";
-            this.ideologyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnIdeologyComboBoxSelectedIndexChanged);
             // 
             // loyaltyCheckBox
             // 
@@ -177,31 +176,30 @@
             // 
             // loyaltyComboBox
             // 
-            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
+            this.loyaltyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.loyaltyComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.Name = "loyaltyComboBox";
-            this.loyaltyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLoyaltyComboBoxSelectedIndexChanged);
             // 
             // countryComboBox
             // 
-            resources.ApplyResources(this.countryComboBox, "countryComboBox");
+            this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.Name = "countryComboBox";
             // 
             // targetGroupBox
             // 
-            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Controls.Add(this.allRadioButton);
             this.targetGroupBox.Controls.Add(this.selectedRadioButton);
             this.targetGroupBox.Controls.Add(this.countryComboBox);
             this.targetGroupBox.Controls.Add(this.specifiedRadioButton);
+            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Name = "targetGroupBox";
             this.targetGroupBox.TabStop = false;
             // 
             // editGroupBox
             // 
-            resources.ApplyResources(this.editGroupBox, "editGroupBox");
-            this.editGroupBox.Controls.Add(this.reorderIdCheckBox);
             this.editGroupBox.Controls.Add(this.startYearCheckBox);
             this.editGroupBox.Controls.Add(this.loyaltyComboBox);
             this.editGroupBox.Controls.Add(this.startYearNumericUpDown);
@@ -212,14 +210,9 @@
             this.editGroupBox.Controls.Add(this.endYearNumericUpDown);
             this.editGroupBox.Controls.Add(this.retirementYearCheckBox);
             this.editGroupBox.Controls.Add(this.retirementYearNumericUpDown);
+            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
-            // 
-            // reorderIdCheckBox
-            // 
-            resources.ApplyResources(this.reorderIdCheckBox, "reorderIdCheckBox");
-            this.reorderIdCheckBox.Name = "reorderIdCheckBox";
-            this.reorderIdCheckBox.UseVisualStyleBackColor = true;
             // 
             // MinisterBatchDialog
             // 
@@ -262,6 +255,5 @@
         private System.Windows.Forms.ComboBox countryComboBox;
         private System.Windows.Forms.GroupBox targetGroupBox;
         private System.Windows.Forms.GroupBox editGroupBox;
-        private System.Windows.Forms.CheckBox reorderIdCheckBox;
     }
 }
