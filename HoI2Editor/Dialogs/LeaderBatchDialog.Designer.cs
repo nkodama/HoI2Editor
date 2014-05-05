@@ -78,6 +78,7 @@
             // 
             // editGroupBox
             // 
+            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Controls.Add(this.rankYearCheckBox4);
             this.editGroupBox.Controls.Add(this.rankYearNumericUpDown4);
             this.editGroupBox.Controls.Add(this.rankYearCheckBox1);
@@ -102,7 +103,6 @@
             this.editGroupBox.Controls.Add(this.endYearNumericUpDown);
             this.editGroupBox.Controls.Add(this.retirementYearCheckBox);
             this.editGroupBox.Controls.Add(this.retirementYearNumericUpDown);
-            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
             // 
@@ -126,6 +126,7 @@
             0,
             0,
             0});
+            this.rankYearNumericUpDown4.ValueChanged += new System.EventHandler(this.OnRankYearNumericUpDown4ValueChanged);
             // 
             // rankYearCheckBox1
             // 
@@ -147,6 +148,7 @@
             0,
             0,
             0});
+            this.rankYearNumericUpDown1.ValueChanged += new System.EventHandler(this.OnRankYearNumericUpDown1ValueChanged);
             // 
             // rankYearCheckBox2
             // 
@@ -168,6 +170,7 @@
             0,
             0,
             0});
+            this.rankYearNumericUpDown2.ValueChanged += new System.EventHandler(this.OnRankYearNumericUpDown2ValueChanged);
             // 
             // rankYearCheckBox3
             // 
@@ -189,6 +192,7 @@
             0,
             0,
             0});
+            this.rankYearNumericUpDown3.ValueChanged += new System.EventHandler(this.OnRankYearNumericUpDown3ValueChanged);
             // 
             // loyaltyCheckBox
             // 
@@ -200,6 +204,7 @@
             // 
             resources.ApplyResources(this.loyaltyNumericUpDown, "loyaltyNumericUpDown");
             this.loyaltyNumericUpDown.Name = "loyaltyNumericUpDown";
+            this.loyaltyNumericUpDown.ValueChanged += new System.EventHandler(this.OnLoyaltyNumericUpDownValueChanged);
             // 
             // experienceCheckBox
             // 
@@ -211,6 +216,7 @@
             // 
             resources.ApplyResources(this.experienceNumericUpDown, "experienceNumericUpDown");
             this.experienceNumericUpDown.Name = "experienceNumericUpDown";
+            this.experienceNumericUpDown.ValueChanged += new System.EventHandler(this.OnExperienceNumericUpDownValueChanged);
             // 
             // maxSkillCheckBox
             // 
@@ -222,12 +228,13 @@
             // 
             resources.ApplyResources(this.maxSkillNumericUpDown, "maxSkillNumericUpDown");
             this.maxSkillNumericUpDown.Name = "maxSkillNumericUpDown";
+            this.maxSkillNumericUpDown.ValueChanged += new System.EventHandler(this.OnMaxSkillNumericUpDownValueChanged);
             // 
             // idealRankComboBox
             // 
+            resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
             this.idealRankComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.idealRankComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
             this.idealRankComboBox.Name = "idealRankComboBox";
             // 
             // idealRankCheckBox
@@ -246,6 +253,7 @@
             // 
             resources.ApplyResources(this.skillNumericUpDown, "skillNumericUpDown");
             this.skillNumericUpDown.Name = "skillNumericUpDown";
+            this.skillNumericUpDown.ValueChanged += new System.EventHandler(this.OnSkillNumericUpDownValueChanged);
             // 
             // startYearCheckBox
             // 
@@ -267,6 +275,7 @@
             0,
             0,
             0});
+            this.startYearNumericUpDown.ValueChanged += new System.EventHandler(this.OnStartYearNumericUpDownValueChanged);
             // 
             // endYearCheckBox
             // 
@@ -288,6 +297,7 @@
             0,
             0,
             0});
+            this.endYearNumericUpDown.ValueChanged += new System.EventHandler(this.OnEndYearNumericUpDownValueChanged);
             // 
             // retirementYearCheckBox
             // 
@@ -309,21 +319,22 @@
             0,
             0,
             0});
+            this.retirementYearNumericUpDown.ValueChanged += new System.EventHandler(this.OnRetirementYearNumericUpDownValueChanged);
             // 
             // countryComboBox
             // 
+            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.Name = "countryComboBox";
             // 
             // targetGroupBox
             // 
+            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Controls.Add(this.allRadioButton);
             this.targetGroupBox.Controls.Add(this.selectedRadioButton);
             this.targetGroupBox.Controls.Add(this.countryComboBox);
             this.targetGroupBox.Controls.Add(this.specifiedRadioButton);
-            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Name = "targetGroupBox";
             this.targetGroupBox.TabStop = false;
             // 
@@ -349,17 +360,18 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.cancelButton, "cancelButton");
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.okButton, "okButton");
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);
             // 
             // LeaderBatchDialog
             // 

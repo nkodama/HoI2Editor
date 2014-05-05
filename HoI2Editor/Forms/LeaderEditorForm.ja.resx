@@ -313,6 +313,9 @@
   <data name="retirementYearLabel.Text" xml:space="preserve">
     <value>引退年</value>
   </data>
+  <data name="batchButton.Text" xml:space="preserve">
+    <value>一括編集</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>指揮官エディタ</value>
   </data>

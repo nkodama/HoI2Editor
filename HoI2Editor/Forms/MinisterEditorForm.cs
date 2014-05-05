@@ -251,7 +251,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     一括編集ボタン投下時の処理
+        ///     一括編集ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

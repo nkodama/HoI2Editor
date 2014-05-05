@@ -190,9 +190,6 @@
   <data name="retirementYearCheckBox.Text" xml:space="preserve">
     <value>引退年</value>
   </data>
-  <data name="targetGroupBox.Text" xml:space="preserve">
-    <value>対象</value>
-  </data>
   <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 16</value>
   </data>
@@ -210,6 +207,9 @@
   </data>
   <data name="specifiedRadioButton.Text" xml:space="preserve">
     <value>指定国</value>
+  </data>
+  <data name="targetGroupBox.Text" xml:space="preserve">
+    <value>対象</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>キャンセル</value>

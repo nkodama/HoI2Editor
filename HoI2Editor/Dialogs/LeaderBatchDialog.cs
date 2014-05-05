@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Utilities;
@@ -12,14 +8,25 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Dialogs
 {
     /// <summary>
-    /// 指揮官一括編集ダイアログ
+    ///     指揮官一括編集ダイアログ
     /// </summary>
     public partial class LeaderBatchDialog : Form
     {
         /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="country">指揮官エディタフォームでの選択国</param>
+        public LeaderBatchDialog(Country country)
+        {
+            InitializeComponent();
+
+            SelectedCountry = country;
+        }
+
+        /// <summary>
         ///     一括編集対象モード
         /// </summary>
-        public MinisterBatchMode Mode { get; private set; }
+        public LeaderBatchMode Mode { get; private set; }
 
         /// <summary>
         ///     一括編集項目
@@ -32,12 +39,27 @@ namespace HoI2Editor.Dialogs
         public Country SelectedCountry { get; private set; }
 
         /// <summary>
-        /// 経験値
+        ///     理想階級
+        /// </summary>
+        public LeaderRank IdealRank { get; private set; }
+
+        /// <summary>
+        ///     スキル
+        /// </summary>
+        public int Skill { get; private set; }
+
+        /// <summary>
+        ///     最大スキル
+        /// </summary>
+        public int MaxSkill { get; private set; }
+
+        /// <summary>
+        ///     経験値
         /// </summary>
         public int Experience { get; private set; }
 
         /// <summary>
-        /// 忠誠度
+        ///     忠誠度
         /// </summary>
         public int Loyalty { get; private set; }
 
@@ -57,30 +79,19 @@ namespace HoI2Editor.Dialogs
         public int RetirementYear { get; private set; }
 
         /// <summary>
-        /// 任官年
+        ///     任官年
         /// </summary>
         public int[] RankYear { get; private set; }
 
         /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="country">指揮官エディタフォームでの選択国</param>
-        public LeaderBatchDialog(Country country)
-        {
-            InitializeComponent();
-
-            SelectedCountry = country;
-        }
-
-        /// <summary>
-        /// フォーム読み込み時の処理
+        ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnFormLoad(object sender, EventArgs e)
         {
             // メンバ変数の初期化
-            BatchItems = new bool[Enum.GetValues(typeof(LeaderBatchItemId)).Length];
+            BatchItems = new bool[Enum.GetValues(typeof (LeaderBatchItemId)).Length];
             RankYear = new int[Enum.GetValues(typeof (LeaderRank)).Length - 1];
 
             Graphics g = Graphics.FromHwnd(Handle);
@@ -91,14 +102,14 @@ namespace HoI2Editor.Dialogs
             countryComboBox.Items.Clear();
             int width = countryComboBox.Width;
             foreach (string s in Countries.Tags
-                .Select(country => Countries.Strings[(int)country])
+                .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
                     ? string.Format("{0} {1}", name, Config.GetText(name))
                     : name))
             {
                 countryComboBox.Items.Add(s);
                 width = Math.Max(width,
-                    (int)g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
                     margin);
             }
             countryComboBox.DropDownWidth = width;
@@ -116,7 +127,7 @@ namespace HoI2Editor.Dialogs
             foreach (string s in Leaders.RankNames.Where(name => !string.IsNullOrEmpty(name)))
             {
                 idealRankComboBox.Items.Add(s);
-                width = Math.Max(width, (int)g.MeasureString(s, idealRankComboBox.Font).Width + margin);
+                width = Math.Max(width, (int) g.MeasureString(s, idealRankComboBox.Font).Width + margin);
             }
             idealRankComboBox.DropDownWidth = width;
             idealRankComboBox.EndUpdate();
@@ -148,11 +159,6 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnIdealRankComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (idealRankComboBox.SelectedIndex < 0)
-            {
-                return;
-            }
-            idealRankCheckBox.Checked = true;
         }
 
         /// <summary>
@@ -236,7 +242,7 @@ namespace HoI2Editor.Dialogs
         }
 
         /// <summary>
-        ///      中将任官年数値アップダウンの値変更時の処理
+        ///     中将任官年数値アップダウンの値変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -263,6 +269,57 @@ namespace HoI2Editor.Dialogs
         private void OnRankYearNumericUpDown4ValueChanged(object sender, EventArgs e)
         {
             rankYearCheckBox4.Checked = true;
+        }
+
+        /// <summary>
+        ///     OKキー押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOkButtonClick(object sender, EventArgs e)
+        {
+            if (allRadioButton.Checked)
+            {
+                Mode = LeaderBatchMode.All;
+            }
+            else if (selectedRadioButton.Checked)
+            {
+                Mode = LeaderBatchMode.Selected;
+            }
+            else
+            {
+                Mode = LeaderBatchMode.Specified;
+            }
+            if (countryComboBox.SelectedIndex >= 0)
+            {
+                SelectedCountry = Countries.Tags[countryComboBox.SelectedIndex];
+            }
+
+            BatchItems[(int) LeaderBatchItemId.IdealRank] = idealRankCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Skill] = skillCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.MaxSkill] = maxSkillCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Experience] = experienceCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Loyalty] = loyaltyCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.StartYear] = startYearCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.EndYear] = endYearCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.RetirementYear] = retirementYearCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank3Year] = rankYearCheckBox1.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank2Year] = rankYearCheckBox2.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank1Year] = rankYearCheckBox3.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank0Year] = rankYearCheckBox4.Checked;
+
+            IdealRank = (LeaderRank) (idealRankComboBox.SelectedIndex + 1);
+            Skill = (int) skillNumericUpDown.Value;
+            MaxSkill = (int) maxSkillNumericUpDown.Value;
+            Experience = (int) experienceNumericUpDown.Value;
+            Loyalty = (int) loyaltyNumericUpDown.Value;
+            StartYear = (int) startYearNumericUpDown.Value;
+            EndYear = (int) endYearNumericUpDown.Value;
+            RetirementYear = (int) retirementYearNumericUpDown.Value;
+            RankYear[0] = (int) rankYearNumericUpDown1.Value;
+            RankYear[1] = (int) rankYearNumericUpDown2.Value;
+            RankYear[2] = (int) rankYearNumericUpDown3.Value;
+            RankYear[3] = (int) rankYearNumericUpDown4.Value;
         }
     }
 

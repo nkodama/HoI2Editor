@@ -13,6 +13,17 @@ namespace HoI2Editor.Dialogs
     public partial class MinisterBatchDialog : Form
     {
         /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="country">閣僚エディタでの選択国</param>
+        public MinisterBatchDialog(Country country)
+        {
+            InitializeComponent();
+
+            SelectedCountry = country;
+        }
+
+        /// <summary>
         ///     一括編集対象モード
         /// </summary>
         public MinisterBatchMode Mode { get; private set; }
@@ -51,17 +62,6 @@ namespace HoI2Editor.Dialogs
         ///     忠誠度
         /// </summary>
         public MinisterLoyalty Loyalty { get; private set; }
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        /// <param name="country">閣僚エディタでの選択国</param>
-        public MinisterBatchDialog(Country country)
-        {
-            InitializeComponent();
-
-            SelectedCountry = country;
-        }
 
         /// <summary>
         ///     フォーム読み込み時の処理
