@@ -56,16 +56,16 @@
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.okButton, "okButton");
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);
             // 
             // cancelButton
             // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.cancelButton, "cancelButton");
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -163,9 +163,9 @@
             // 
             // ideologyComboBox
             // 
+            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ideologyComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.Name = "ideologyComboBox";
             // 
             // loyaltyCheckBox
@@ -176,30 +176,31 @@
             // 
             // loyaltyComboBox
             // 
+            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.loyaltyComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.Name = "loyaltyComboBox";
             // 
             // countryComboBox
             // 
+            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.Name = "countryComboBox";
             // 
             // targetGroupBox
             // 
+            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Controls.Add(this.allRadioButton);
             this.targetGroupBox.Controls.Add(this.selectedRadioButton);
             this.targetGroupBox.Controls.Add(this.countryComboBox);
             this.targetGroupBox.Controls.Add(this.specifiedRadioButton);
-            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Name = "targetGroupBox";
             this.targetGroupBox.TabStop = false;
             // 
             // editGroupBox
             // 
+            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Controls.Add(this.startYearCheckBox);
             this.editGroupBox.Controls.Add(this.loyaltyComboBox);
             this.editGroupBox.Controls.Add(this.startYearNumericUpDown);
@@ -210,7 +211,6 @@
             this.editGroupBox.Controls.Add(this.endYearNumericUpDown);
             this.editGroupBox.Controls.Add(this.retirementYearCheckBox);
             this.editGroupBox.Controls.Add(this.retirementYearNumericUpDown);
-            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
             // 

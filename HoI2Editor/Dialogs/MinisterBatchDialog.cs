@@ -13,16 +13,6 @@ namespace HoI2Editor.Dialogs
     public partial class MinisterBatchDialog : Form
     {
         /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public MinisterBatchDialog(Country country)
-        {
-            InitializeComponent();
-
-            SelectedCountry = country;
-        }
-
-        /// <summary>
         ///     一括編集対象モード
         /// </summary>
         public MinisterBatchMode Mode { get; private set; }
@@ -63,6 +53,17 @@ namespace HoI2Editor.Dialogs
         public MinisterLoyalty Loyalty { get; private set; }
 
         /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="country">閣僚エディタでの選択国</param>
+        public MinisterBatchDialog(Country country)
+        {
+            InitializeComponent();
+
+            SelectedCountry = country;
+        }
+
+        /// <summary>
         ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -71,9 +72,6 @@ namespace HoI2Editor.Dialogs
         {
             // メンバ変数の初期化
             BatchItems = new bool[Enum.GetValues(typeof (MinisterBatchItemId)).Length];
-            StartYear = 1936;
-            EndYear = 1964;
-            RetirementYear = 1999;
 
             Graphics g = Graphics.FromHwnd(Handle);
             int margin = DeviceCaps.GetScaledWidth(2) + 1;

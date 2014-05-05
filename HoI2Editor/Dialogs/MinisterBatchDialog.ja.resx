@@ -172,12 +172,6 @@
   <data name="targetGroupBox.Text" xml:space="preserve">
     <value>対象</value>
   </data>
-  <data name="reorderIdCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 16</value>
-  </data>
-  <data name="reorderIdCheckBox.Text" xml:space="preserve">
-    <value>ID再割り当て</value>
-  </data>
   <data name="editGroupBox.Text" xml:space="preserve">
     <value>編集</value>
   </data>

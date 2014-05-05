@@ -4101,5 +4101,10 @@ namespace HoI2Editor.Forms
         }
 
         #endregion
+
+        private void OnBatchButtonClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\LeaderBatchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\LeaderBatchDialog.Designer.cs">
+      <DependentUpon>LeaderBatchDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\MinisterBatchDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,12 @@
     <Compile Include="Writers\MiscWriter.cs" />
     <Compile Include="Writers\TechWriter.cs" />
     <Compile Include="Writers\UnitWriter.cs" />
+    <EmbeddedResource Include="Dialogs\LeaderBatchDialog.ja.resx">
+      <DependentUpon>LeaderBatchDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LeaderBatchDialog.resx">
+      <DependentUpon>LeaderBatchDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MinisterBatchDialog.ja.resx">
       <DependentUpon>MinisterBatchDialog.cs</DependentUpon>
     </EmbeddedResource>
