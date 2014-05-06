@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -297,6 +298,25 @@ namespace HoI2Editor.Forms
             {
                 HoI2Editor.Settings.TeamEditor.Size = Size;
             }
+        }
+
+        /// <summary>
+        ///     一括編集ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBatchButtonClick(object sender, EventArgs e)
+        {
+            var countryName = countryListBox.SelectedItem as string;
+            Country country = !string.IsNullOrEmpty(countryName) ? Countries.StringMap[countryName] : Country.None;
+            var dialog = new TeamBatchDialog(country);
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            BatchEdit(dialog.Mode, dialog.SelectedCountry, dialog.BatchItems, dialog.Skill, dialog.StartYear,
+                dialog.EndYear);
         }
 
         /// <summary>
@@ -2366,6 +2386,170 @@ namespace HoI2Editor.Forms
                     return -1;
                 }
                 return (int) x - (int) y;
+            }
+        }
+
+        #endregion
+
+        #region 一括編集
+
+        /// <summary>
+        ///     一括編集処理
+        /// </summary>
+        /// <param name="mode">一括編集モード</param>
+        /// <param name="country">指定国</param>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="skill">スキル</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        private void BatchEdit(TeamBatchMode mode, Country country, bool[] items, int skill, int startYear, int endYear)
+        {
+            switch (mode)
+            {
+                case TeamBatchMode.All:
+                    BatchEditAll(items, skill, startYear, endYear);
+                    break;
+
+                case TeamBatchMode.Selected:
+                    BatchEditSelected(items, skill, startYear, endYear);
+                    break;
+
+                case TeamBatchMode.Specified:
+                    BatchEditSpecified(country, items, skill, startYear, endYear);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     全ての研究機関を一括編集する
+        /// </summary>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="skill">スキル</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        private void BatchEditAll(bool[] items, int skill, int startYear, int endYear)
+        {
+            // 一括編集項目が設定されていなければ戻る
+            if (!Enum.GetValues(typeof (TeamBatchItemId)).Cast<TeamBatchItemId>().Any(id => items[(int) id]))
+            {
+                return;
+            }
+
+            // 一括編集処理を順に呼び出す
+            foreach (Team team in Teams.Items)
+            {
+                BatchEditTeam(team, items, skill, startYear, endYear);
+            }
+
+            // 研究機関リストを更新する
+            UpdateTeamList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     選択国の研究機関を一括編集する
+        /// </summary>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="skill">スキル</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        private void BatchEditSelected(bool[] items, int skill, int startYear, int endYear)
+        {
+            // 一括編集項目が設定されていなければ戻る
+            if (!Enum.GetValues(typeof (TeamBatchItemId)).Cast<TeamBatchItemId>().Any(id => items[(int) id]))
+            {
+                return;
+            }
+
+            // 選択中の国家リストを作成する
+            IEnumerable<Country> countries =
+                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]);
+
+            // 一括編集処理を順に呼び出す
+            foreach (Team team in Teams.Items.Where(team => countries.Contains(team.Country)))
+            {
+                BatchEditTeam(team, items, skill, startYear, endYear);
+            }
+
+            // 研究機関リストを更新する
+            UpdateTeamList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     指定国の研究機関を一括編集する
+        /// </summary>
+        /// <param name="country">選択国</param>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="skill">スキル</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        private void BatchEditSpecified(Country country, bool[] items, int skill, int startYear, int endYear)
+        {
+            // 一括編集項目が設定されていなければ戻る
+            if (!Enum.GetValues(typeof (TeamBatchItemId)).Cast<TeamBatchItemId>().Any(id => items[(int) id]))
+            {
+                return;
+            }
+
+            // 一括編集処理を順に呼び出す
+            foreach (Team team in Teams.Items.Where(team => team.Country == country))
+            {
+                BatchEditTeam(team, items, skill, startYear, endYear);
+            }
+
+            // 研究機関リストを更新する
+            UpdateTeamList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
+        }
+
+        /// <summary>
+        ///     一括編集処理
+        /// </summary>
+        /// <param name="team">一括編集対象の研究機関</param>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="skill">スキル</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        private void BatchEditTeam(Team team, bool[] items, int skill, int startYear, int endYear)
+        {
+            // スキル
+            if (items[(int) TeamBatchItemId.Skill])
+            {
+                if (skill != team.Skill)
+                {
+                    team.Skill = skill;
+                    team.SetDirty(TeamItemId.Skill);
+                    Teams.SetDirty(team.Country);
+                }
+            }
+
+            // 開始年
+            if (items[(int) TeamBatchItemId.StartYear])
+            {
+                if (startYear != team.StartYear)
+                {
+                    team.StartYear = startYear;
+                    team.SetDirty(TeamItemId.StartYear);
+                    Teams.SetDirty(team.Country);
+                }
+            }
+
+            // 終了年
+            if (items[(int) TeamBatchItemId.EndYear])
+            {
+                if (endYear != team.EndYear)
+                {
+                    team.EndYear = endYear;
+                    team.SetDirty(TeamItemId.EndYear);
+                    Teams.SetDirty(team.Country);
+                }
             }
         }
 

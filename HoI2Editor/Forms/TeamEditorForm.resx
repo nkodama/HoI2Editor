@@ -145,7 +145,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -172,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -199,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="teamPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -226,7 +226,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;teamPictureBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="pictureNameReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -253,7 +253,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameReferButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="pictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="pictureNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -307,7 +307,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureNameLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="endYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -337,7 +337,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="endYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -367,7 +367,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;endYearLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="startYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -394,7 +394,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;startYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="startYearLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -424,7 +424,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;startYearLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -448,7 +448,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="nameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -478,7 +478,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nameLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="idNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -505,7 +505,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -532,7 +532,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryListBox.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="teamListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -607,7 +607,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;teamListView.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="idLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -637,7 +637,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="countryComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -664,7 +664,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryComboBox.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="countryLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -694,7 +694,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryLabel.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="countryAllButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -721,7 +721,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countryAllButton.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="bottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -748,7 +748,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bottomButton.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="downButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -775,7 +775,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;downButton.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="upButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -802,7 +802,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;upButton.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="topButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -829,7 +829,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;topButton.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="removeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -856,7 +856,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;removeButton.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="cloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -883,7 +883,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cloneButton.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="newButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -910,7 +910,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>30</value>
   </data>
   <data name="skillNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -937,7 +937,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;skillNumericUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="skillLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -967,142 +967,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;skillLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="specialityGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;sortAbcButton.Name" xml:space="preserve">
-    <value>sortAbcButton</value>
-  </data>
-  <data name="&gt;&gt;sortAbcButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;sortAbcButton.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;sortAbcButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;sortIdButton.Name" xml:space="preserve">
-    <value>sortIdButton</value>
-  </data>
-  <data name="&gt;&gt;sortIdButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;sortIdButton.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;sortIdButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox7.Name" xml:space="preserve">
-    <value>specialityComboBox7</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox7.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox7.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.Name" xml:space="preserve">
-    <value>specialityComboBox6</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox6.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.Name" xml:space="preserve">
-    <value>specialityComboBox5</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox5.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox4.Name" xml:space="preserve">
-    <value>specialityComboBox4</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox4.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox4.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox3.Name" xml:space="preserve">
-    <value>specialityComboBox3</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox3.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.Name" xml:space="preserve">
-    <value>specialityComboBox2</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox1.Name" xml:space="preserve">
-    <value>specialityComboBox1</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox1.Parent" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityComboBox1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="specialityGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>567, 241</value>
-  </data>
-  <data name="specialityGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 261</value>
-  </data>
-  <data name="specialityGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="specialityGroupBox.Text" xml:space="preserve">
-    <value>Speciality</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.Name" xml:space="preserve">
-    <value>specialityGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;specialityGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="sortAbcButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1331,6 +1199,60 @@
   </data>
   <data name="&gt;&gt;specialityComboBox1.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="specialityGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>567, 241</value>
+  </data>
+  <data name="specialityGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 261</value>
+  </data>
+  <data name="specialityGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="specialityGroupBox.Text" xml:space="preserve">
+    <value>Speciality</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.Name" xml:space="preserve">
+    <value>specialityGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;specialityGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="batchButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="batchButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="batchButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>454, 527</value>
+  </data>
+  <data name="batchButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="batchButton.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="batchButton.Text" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="&gt;&gt;batchButton.Name" xml:space="preserve">
+    <value>batchButton</value>
+  </data>
+  <data name="&gt;&gt;batchButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;batchButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;batchButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

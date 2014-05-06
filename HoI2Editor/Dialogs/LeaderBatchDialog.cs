@@ -12,16 +12,7 @@ namespace HoI2Editor.Dialogs
     /// </summary>
     public partial class LeaderBatchDialog : Form
     {
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        /// <param name="country">指揮官エディタフォームでの選択国</param>
-        public LeaderBatchDialog(Country country)
-        {
-            InitializeComponent();
-
-            SelectedCountry = country;
-        }
+        #region 公開プロパティ
 
         /// <summary>
         ///     一括編集対象モード
@@ -83,6 +74,25 @@ namespace HoI2Editor.Dialogs
         /// </summary>
         public int[] RankYear { get; private set; }
 
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="country">指揮官エディタフォームでの選択国</param>
+        public LeaderBatchDialog(Country country)
+        {
+            InitializeComponent();
+
+            SelectedCountry = country;
+        }
+
+        #endregion
+
+        #region フォーム
+
         /// <summary>
         ///     フォーム読み込み時の処理
         /// </summary>
@@ -137,6 +147,61 @@ namespace HoI2Editor.Dialogs
             }
             idealRankComboBox.SelectedIndexChanged += OnIdealRankComboBoxSelectedIndexChanged;
         }
+
+        /// <summary>
+        ///     OKキー押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOkButtonClick(object sender, EventArgs e)
+        {
+            if (allRadioButton.Checked)
+            {
+                Mode = LeaderBatchMode.All;
+            }
+            else if (selectedRadioButton.Checked)
+            {
+                Mode = LeaderBatchMode.Selected;
+            }
+            else
+            {
+                Mode = LeaderBatchMode.Specified;
+            }
+            if (countryComboBox.SelectedIndex >= 0)
+            {
+                SelectedCountry = Countries.Tags[countryComboBox.SelectedIndex];
+            }
+
+            BatchItems[(int) LeaderBatchItemId.IdealRank] = idealRankCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Skill] = skillCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.MaxSkill] = maxSkillCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Experience] = experienceCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Loyalty] = loyaltyCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.StartYear] = startYearCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.EndYear] = endYearCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.RetirementYear] = retirementYearCheckBox.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank3Year] = rankYearCheckBox1.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank2Year] = rankYearCheckBox2.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank1Year] = rankYearCheckBox3.Checked;
+            BatchItems[(int) LeaderBatchItemId.Rank0Year] = rankYearCheckBox4.Checked;
+
+            IdealRank = (LeaderRank) (idealRankComboBox.SelectedIndex + 1);
+            Skill = (int) skillNumericUpDown.Value;
+            MaxSkill = (int) maxSkillNumericUpDown.Value;
+            Experience = (int) experienceNumericUpDown.Value;
+            Loyalty = (int) loyaltyNumericUpDown.Value;
+            StartYear = (int) startYearNumericUpDown.Value;
+            EndYear = (int) endYearNumericUpDown.Value;
+            RetirementYear = (int) retirementYearNumericUpDown.Value;
+            RankYear[0] = (int) rankYearNumericUpDown1.Value;
+            RankYear[1] = (int) rankYearNumericUpDown2.Value;
+            RankYear[2] = (int) rankYearNumericUpDown3.Value;
+            RankYear[3] = (int) rankYearNumericUpDown4.Value;
+        }
+
+        #endregion
+
+        #region 編集項目
 
         /// <summary>
         ///     国家コンボボックスの選択項目変更時の処理
@@ -271,56 +336,7 @@ namespace HoI2Editor.Dialogs
             rankYearCheckBox4.Checked = true;
         }
 
-        /// <summary>
-        ///     OKキー押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnOkButtonClick(object sender, EventArgs e)
-        {
-            if (allRadioButton.Checked)
-            {
-                Mode = LeaderBatchMode.All;
-            }
-            else if (selectedRadioButton.Checked)
-            {
-                Mode = LeaderBatchMode.Selected;
-            }
-            else
-            {
-                Mode = LeaderBatchMode.Specified;
-            }
-            if (countryComboBox.SelectedIndex >= 0)
-            {
-                SelectedCountry = Countries.Tags[countryComboBox.SelectedIndex];
-            }
-
-            BatchItems[(int) LeaderBatchItemId.IdealRank] = idealRankCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.Skill] = skillCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.MaxSkill] = maxSkillCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.Experience] = experienceCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.Loyalty] = loyaltyCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.StartYear] = startYearCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.EndYear] = endYearCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.RetirementYear] = retirementYearCheckBox.Checked;
-            BatchItems[(int) LeaderBatchItemId.Rank3Year] = rankYearCheckBox1.Checked;
-            BatchItems[(int) LeaderBatchItemId.Rank2Year] = rankYearCheckBox2.Checked;
-            BatchItems[(int) LeaderBatchItemId.Rank1Year] = rankYearCheckBox3.Checked;
-            BatchItems[(int) LeaderBatchItemId.Rank0Year] = rankYearCheckBox4.Checked;
-
-            IdealRank = (LeaderRank) (idealRankComboBox.SelectedIndex + 1);
-            Skill = (int) skillNumericUpDown.Value;
-            MaxSkill = (int) maxSkillNumericUpDown.Value;
-            Experience = (int) experienceNumericUpDown.Value;
-            Loyalty = (int) loyaltyNumericUpDown.Value;
-            StartYear = (int) startYearNumericUpDown.Value;
-            EndYear = (int) endYearNumericUpDown.Value;
-            RetirementYear = (int) retirementYearNumericUpDown.Value;
-            RankYear[0] = (int) rankYearNumericUpDown1.Value;
-            RankYear[1] = (int) rankYearNumericUpDown2.Value;
-            RankYear[2] = (int) rankYearNumericUpDown3.Value;
-            RankYear[3] = (int) rankYearNumericUpDown4.Value;
-        }
+        #endregion
     }
 
     /// <summary>

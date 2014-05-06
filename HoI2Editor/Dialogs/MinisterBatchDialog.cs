@@ -12,16 +12,7 @@ namespace HoI2Editor.Dialogs
     /// </summary>
     public partial class MinisterBatchDialog : Form
     {
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        /// <param name="country">閣僚エディタでの選択国</param>
-        public MinisterBatchDialog(Country country)
-        {
-            InitializeComponent();
-
-            SelectedCountry = country;
-        }
+        #region 公開プロパティ
 
         /// <summary>
         ///     一括編集対象モード
@@ -62,6 +53,25 @@ namespace HoI2Editor.Dialogs
         ///     忠誠度
         /// </summary>
         public MinisterLoyalty Loyalty { get; private set; }
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="country">閣僚エディタでの選択国</param>
+        public MinisterBatchDialog(Country country)
+        {
+            InitializeComponent();
+
+            SelectedCountry = country;
+        }
+
+        #endregion
+
+        #region フォーム
 
         /// <summary>
         ///     フォーム読み込み時の処理
@@ -134,6 +144,47 @@ namespace HoI2Editor.Dialogs
             }
             loyaltyComboBox.SelectedIndexChanged += OnLoyaltyComboBoxSelectedIndexChanged;
         }
+
+        /// <summary>
+        ///     OKキー押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOkButtonClick(object sender, EventArgs e)
+        {
+            if (allRadioButton.Checked)
+            {
+                Mode = MinisterBatchMode.All;
+            }
+            else if (selectedRadioButton.Checked)
+            {
+                Mode = MinisterBatchMode.Selected;
+            }
+            else
+            {
+                Mode = MinisterBatchMode.Specified;
+            }
+            if (countryComboBox.SelectedIndex >= 0)
+            {
+                SelectedCountry = Countries.Tags[countryComboBox.SelectedIndex];
+            }
+
+            BatchItems[(int) MinisterBatchItemId.StartYear] = startYearCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.EndYear] = endYearCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.RetirementYear] = retirementYearCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.Ideology] = ideologyCheckBox.Checked;
+            BatchItems[(int) MinisterBatchItemId.Loyalty] = loyaltyCheckBox.Checked;
+
+            StartYear = (int) startYearNumericUpDown.Value;
+            EndYear = (int) endYearNumericUpDown.Value;
+            RetirementYear = (int) retirementYearNumericUpDown.Value;
+            Ideology = (MinisterIdeology) (ideologyComboBox.SelectedIndex + 1);
+            Loyalty = (MinisterLoyalty) (loyaltyComboBox.SelectedIndex + 1);
+        }
+
+        #endregion
+
+        #region 編集項目
 
         /// <summary>
         ///     国家コンボボックスの選択項目変更時の処理
@@ -225,42 +276,7 @@ namespace HoI2Editor.Dialogs
             }
         }
 
-        /// <summary>
-        ///     OKキー押下時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnOkButtonClick(object sender, EventArgs e)
-        {
-            if (allRadioButton.Checked)
-            {
-                Mode = MinisterBatchMode.All;
-            }
-            else if (selectedRadioButton.Checked)
-            {
-                Mode = MinisterBatchMode.Selected;
-            }
-            else
-            {
-                Mode = MinisterBatchMode.Specified;
-            }
-            if (countryComboBox.SelectedIndex >= 0)
-            {
-                SelectedCountry = Countries.Tags[countryComboBox.SelectedIndex];
-            }
-
-            BatchItems[(int) MinisterBatchItemId.StartYear] = startYearCheckBox.Checked;
-            BatchItems[(int) MinisterBatchItemId.EndYear] = endYearCheckBox.Checked;
-            BatchItems[(int) MinisterBatchItemId.RetirementYear] = retirementYearCheckBox.Checked;
-            BatchItems[(int) MinisterBatchItemId.Ideology] = ideologyCheckBox.Checked;
-            BatchItems[(int) MinisterBatchItemId.Loyalty] = loyaltyCheckBox.Checked;
-
-            StartYear = (int) startYearNumericUpDown.Value;
-            EndYear = (int) endYearNumericUpDown.Value;
-            RetirementYear = (int) retirementYearNumericUpDown.Value;
-            Ideology = (MinisterIdeology) (ideologyComboBox.SelectedIndex + 1);
-            Loyalty = (MinisterLoyalty) (loyaltyComboBox.SelectedIndex + 1);
-        }
+        #endregion
     }
 
     /// <summary>

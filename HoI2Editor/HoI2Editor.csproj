@@ -55,6 +55,12 @@
     <Compile Include="Dialogs\MinisterBatchDialog.Designer.cs">
       <DependentUpon>MinisterBatchDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\TeamBatchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TeamBatchDialog.Designer.cs">
+      <DependentUpon>TeamBatchDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CorpsNameEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MinisterBatchDialog.resx">
       <DependentUpon>MinisterBatchDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TeamBatchDialog.ja.resx">
+      <DependentUpon>TeamBatchDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TeamBatchDialog.resx">
+      <DependentUpon>TeamBatchDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CorpsNameEditorForm.ja.resx">
       <DependentUpon>CorpsNameEditorForm.cs</DependentUpon>

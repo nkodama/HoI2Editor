@@ -117,113 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="closeButton.Text" xml:space="preserve">
-    <value>閉じる</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="reloadButton.Text" xml:space="preserve">
-    <value>再読み込み</value>
-  </data>
-  <data name="pictureNameReferButton.Text" xml:space="preserve">
-    <value>参照</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 12</value>
+  <data name="startYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
   </data>
-  <data name="pictureNameLabel.Text" xml:space="preserve">
-    <value>画像ファイル名</value>
-  </data>
-  <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="endYearLabel.Text" xml:space="preserve">
-    <value>終了年</value>
-  </data>
-  <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="startYearLabel.Text" xml:space="preserve">
+  <data name="startYearCheckBox.Text" xml:space="preserve">
     <value>開始年</value>
   </data>
-  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
+  <data name="endYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
   </data>
-  <data name="nameLabel.Text" xml:space="preserve">
-    <value>名前</value>
-  </data>
-  <data name="countryColumnHeader.Text" xml:space="preserve">
-    <value>国家</value>
-  </data>
-  <data name="nameColumnHeader.Text" xml:space="preserve">
-    <value>名前</value>
-  </data>
-  <data name="skillColumnHeader.Text" xml:space="preserve">
-    <value>スキル</value>
-  </data>
-  <data name="startYearColumnHeader.Text" xml:space="preserve">
-    <value>開始年</value>
-  </data>
-  <data name="endYearColumnHeader.Text" xml:space="preserve">
+  <data name="endYearCheckBox.Text" xml:space="preserve">
     <value>終了年</value>
   </data>
-  <data name="specialityColumnHeader.Text" xml:space="preserve">
-    <value>特性</value>
+  <data name="skillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 16</value>
   </data>
-  <data name="countryComboBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>ＭＳ ゴシック, 9pt</value>
-  </data>
-  <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 20</value>
-  </data>
-  <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
-  <data name="countryLabel.Text" xml:space="preserve">
-    <value>国家</value>
-  </data>
-  <data name="bottomButton.Text" xml:space="preserve">
-    <value>末尾へ</value>
-  </data>
-  <data name="downButton.Text" xml:space="preserve">
-    <value>下へ</value>
-  </data>
-  <data name="upButton.Text" xml:space="preserve">
-    <value>上へ</value>
-  </data>
-  <data name="topButton.Text" xml:space="preserve">
-    <value>先頭へ</value>
-  </data>
-  <data name="removeButton.Text" xml:space="preserve">
-    <value>削除</value>
-  </data>
-  <data name="cloneButton.Text" xml:space="preserve">
-    <value>複製</value>
-  </data>
-  <data name="newButton.Text" xml:space="preserve">
-    <value>新規</value>
-  </data>
-  <data name="skillLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="skillLabel.Text" xml:space="preserve">
+  <data name="skillCheckBox.Text" xml:space="preserve">
     <value>スキル</value>
   </data>
-  <data name="specialityGroupBox.Text" xml:space="preserve">
-    <value>特性</value>
+  <data name="editGroupBox.Text" xml:space="preserve">
+    <value>編集</value>
   </data>
-  <data name="sortAbcButton.Text" xml:space="preserve">
-    <value>ABC順</value>
+  <data name="targetGroupBox.Text" xml:space="preserve">
+    <value>対象</value>
   </data>
-  <data name="sortIdButton.Text" xml:space="preserve">
-    <value>ID順</value>
+  <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 16</value>
   </data>
-  <data name="batchButton.Text" xml:space="preserve">
-    <value>一括編集</value>
+  <data name="allRadioButton.Text" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="selectedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 16</value>
+  </data>
+  <data name="selectedRadioButton.Text" xml:space="preserve">
+    <value>選択中</value>
+  </data>
+  <data name="specifiedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 16</value>
+  </data>
+  <data name="specifiedRadioButton.Text" xml:space="preserve">
+    <value>指定国</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>キャンセル</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>研究機関エディタ</value>
+    <value>一括編集</value>
   </data>
 </root>

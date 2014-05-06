@@ -75,6 +75,7 @@
             this.specialityComboBox3 = new System.Windows.Forms.ComboBox();
             this.specialityComboBox2 = new System.Windows.Forms.ComboBox();
             this.specialityComboBox1 = new System.Windows.Forms.ComboBox();
+            this.batchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.teamPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
@@ -442,10 +443,18 @@
             this.specialityComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox1.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
+            // batchButton
+            // 
+            resources.ApplyResources(this.batchButton, "batchButton");
+            this.batchButton.Name = "batchButton";
+            this.batchButton.UseVisualStyleBackColor = true;
+            this.batchButton.Click += new System.EventHandler(this.OnBatchButtonClick);
+            // 
             // TeamEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.batchButton);
             this.Controls.Add(this.specialityGroupBox);
             this.Controls.Add(this.skillNumericUpDown);
             this.Controls.Add(this.skillLabel);
@@ -541,5 +550,6 @@
         private System.Windows.Forms.ComboBox specialityComboBox7;
         private System.Windows.Forms.Button sortAbcButton;
         private System.Windows.Forms.Button sortIdButton;
+        private System.Windows.Forms.Button batchButton;
     }
 }
