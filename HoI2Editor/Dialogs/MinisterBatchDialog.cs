@@ -109,6 +109,22 @@ namespace HoI2Editor.Dialogs
             }
             countryComboBox.SelectedIndexChanged += OnCountryComboBoxSelectedIndexChanged;
 
+            // 終了年
+            if (Game.Type != GameType.DarkestHour)
+            {
+                endYearCheckBox.Enabled = false;
+                endYearNumericUpDown.Enabled = false;
+                endYearNumericUpDown.ResetText();
+            }
+
+            // 引退年
+            if ((Game.Type != GameType.DarkestHour) || (Game.Version < 103))
+            {
+                retirementYearCheckBox.Enabled = false;
+                retirementYearNumericUpDown.Enabled = false;
+                retirementYearNumericUpDown.ResetText();
+            }
+
             // イデオロギーコンボボックス
             ideologyComboBox.BeginUpdate();
             ideologyComboBox.Items.Clear();

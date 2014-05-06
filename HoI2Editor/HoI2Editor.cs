@@ -940,6 +940,9 @@ namespace HoI2Editor
     /// </summary>
     public enum EditorItemId
     {
+        LeaderRetirementYear, // 指揮官の引退年設定
+        MinisterEndYear, // 閣僚の終了年設定
+        MinisterRetirementYear, // 閣僚の引退年設定
         TeamList, // 研究機関リスト
         TeamCountry, // 研究機関の所属国
         TeamName, // 研究機関名

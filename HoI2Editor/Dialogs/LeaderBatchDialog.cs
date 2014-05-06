@@ -146,6 +146,14 @@ namespace HoI2Editor.Dialogs
                 idealRankComboBox.SelectedIndex = 0;
             }
             idealRankComboBox.SelectedIndexChanged += OnIdealRankComboBoxSelectedIndexChanged;
+
+            // 引退年
+            if ((Game.Type != GameType.DarkestHour) || (Game.Version < 103))
+            {
+                retirementYearCheckBox.Enabled = false;
+                retirementYearNumericUpDown.Enabled = false;
+                retirementYearNumericUpDown.ResetText();
+            }
         }
 
         /// <summary>

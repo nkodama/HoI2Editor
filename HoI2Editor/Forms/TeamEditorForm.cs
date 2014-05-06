@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
@@ -2418,6 +2419,12 @@ namespace HoI2Editor.Forms
                     BatchEditSpecified(country, items, skill, startYear, endYear);
                     break;
             }
+
+            // 研究機関リストを更新する
+            UpdateTeamList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2435,17 +2442,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            LogBatchEdit("All", items, skill, startYear, endYear);
+
             // 一括編集処理を順に呼び出す
             foreach (Team team in Teams.Items)
             {
                 BatchEditTeam(team, items, skill, startYear, endYear);
             }
-
-            // 研究機関リストを更新する
-            UpdateTeamList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2464,20 +2467,29 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中の国家リストを作成する
-            IEnumerable<Country> countries =
-                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]);
+            Country[] countries =
+                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToArray();
+            if (countries.Length == 0)
+            {
+                return;
+            }
+
+            var sb = new StringBuilder();
+            foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
+            {
+                sb.AppendFormat("{0} ", s);
+            }
+            if (sb.Length > 0)
+            {
+                sb.Remove(sb.Length - 1, 1);
+            }
+            LogBatchEdit(sb.ToString(), items, skill, startYear, endYear);
 
             // 一括編集処理を順に呼び出す
             foreach (Team team in Teams.Items.Where(team => countries.Contains(team.Country)))
             {
                 BatchEditTeam(team, items, skill, startYear, endYear);
             }
-
-            // 研究機関リストを更新する
-            UpdateTeamList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2496,17 +2508,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            LogBatchEdit(Countries.Strings[(int) country], items, skill, startYear, endYear);
+
             // 一括編集処理を順に呼び出す
             foreach (Team team in Teams.Items.Where(team => team.Country == country))
             {
                 BatchEditTeam(team, items, skill, startYear, endYear);
             }
-
-            // 研究機関リストを更新する
-            UpdateTeamList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2551,6 +2559,34 @@ namespace HoI2Editor.Forms
                     Teams.SetDirty(team.Country);
                 }
             }
+        }
+
+        /// <summary>
+        ///     一括編集処理のログ出力
+        /// </summary>
+        /// <param name="countries">対象国の文字列</param>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="skill">スキル</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        private static void LogBatchEdit(string countries, bool[] items, int skill, int startYear, int endYear)
+        {
+            var sb = new StringBuilder();
+
+            if (items[(int) TeamBatchItemId.Skill])
+            {
+                sb.AppendFormat(" skill: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) TeamBatchItemId.StartYear])
+            {
+                sb.AppendFormat(" start year: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) TeamBatchItemId.EndYear])
+            {
+                sb.AppendFormat(" end year: {0}", endYear.ToString(CultureInfo.InvariantCulture));
+            }
+
+            Log.Verbose("[Team] Batch{0} ({1})", sb, countries);
         }
 
         #endregion

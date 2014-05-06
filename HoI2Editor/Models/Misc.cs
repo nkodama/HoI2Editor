@@ -323,6 +323,11 @@ namespace HoI2Editor.Models
                 return (_items[(int) MiscItemId.UseNewMinisterFilesFormat] != null) &&
                        (bool) _items[(int) MiscItemId.UseNewMinisterFilesFormat];
             }
+            set
+            {
+                _items[(int) MiscItemId.UseNewMinisterFilesFormat] = value;
+                SetDirty(MiscItemId.UseNewMinisterFilesFormat);
+            }
         }
 
         /// <summary>
@@ -335,6 +340,11 @@ namespace HoI2Editor.Models
                 return (_items[(int) MiscItemId.EnableRetirementYearMinisters] != null) &&
                        (bool) _items[(int) MiscItemId.EnableRetirementYearMinisters];
             }
+            set
+            {
+                _items[(int) MiscItemId.EnableRetirementYearMinisters] = value;
+                SetDirty(MiscItemId.EnableRetirementYearMinisters);
+            }
         }
 
         /// <summary>
@@ -346,6 +356,11 @@ namespace HoI2Editor.Models
             {
                 return (_items[(int) MiscItemId.EnableRetirementYearLeaders] != null) &&
                        (bool) _items[(int) MiscItemId.EnableRetirementYearLeaders];
+            }
+            set
+            {
+                _items[(int) MiscItemId.EnableRetirementYearLeaders] = value;
+                SetDirty(MiscItemId.EnableRetirementYearLeaders);
             }
         }
 

@@ -66,10 +66,130 @@ namespace HoI2Editor.Forms
         {
             switch (id)
             {
+                case EditorItemId.LeaderRetirementYear:
+                    Log.Verbose("[Misc] Changed leader retirement year");
+                    UpdateLeaderRetirementYear();
+                    break;
+
+                case EditorItemId.MinisterEndYear:
+                    Log.Verbose("[Misc] Changed minister end year");
+                    UpdateMinisterEndYear();
+                    break;
+
+                case EditorItemId.MinisterRetirementYear:
+                    Log.Verbose("[Misc] Changed minister retirement year");
+                    UpdateMinisterRetirementYear();
+                    break;
+
                 case EditorItemId.MaxAllowedBrigades:
                     Log.Verbose("[Misc] Changed max allowed brigades");
                     UpdateMaxAllowedBrigades();
                     break;
+            }
+        }
+
+        /// <summary>
+        ///     指揮官引退年の有無を更新する
+        /// </summary>
+        private void UpdateLeaderRetirementYear()
+        {
+            // DH1.03以降でなければ何もしない
+            if ((Game.Type != GameType.DarkestHour) || (Game.Version < 103))
+            {
+                return;
+            }
+            foreach (TabPage tabPage in miscTabControl.TabPages)
+            {
+                foreach (Control control in tabPage.Controls)
+                {
+                    // タグの設定されていないラベルをスキップする
+                    if (control.Tag == null)
+                    {
+                        continue;
+                    }
+
+                    var id = (MiscItemId) control.Tag;
+                    if ((MiscItemId) control.Tag == MiscItemId.EnableRetirementYearLeaders)
+                    {
+                        var comboBox = control as ComboBox;
+                        if (comboBox != null)
+                        {
+                            comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
+                            comboBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     閣僚終了年の有無を更新する
+        /// </summary>
+        private void UpdateMinisterEndYear()
+        {
+            // DHでなければ何もしない
+            if (Game.Type != GameType.DarkestHour)
+            {
+                return;
+            }
+            foreach (TabPage tabPage in miscTabControl.TabPages)
+            {
+                foreach (Control control in tabPage.Controls)
+                {
+                    // タグの設定されていないラベルをスキップする
+                    if (control.Tag == null)
+                    {
+                        continue;
+                    }
+
+                    var id = (MiscItemId) control.Tag;
+                    if ((MiscItemId) control.Tag == MiscItemId.UseNewMinisterFilesFormat)
+                    {
+                        var comboBox = control as ComboBox;
+                        if (comboBox != null)
+                        {
+                            comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
+                            comboBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     閣僚引退年の有無を更新する
+        /// </summary>
+        private void UpdateMinisterRetirementYear()
+        {
+            // DH1.03以降でなければ何もしない
+            if ((Game.Type != GameType.DarkestHour) || (Game.Version < 103))
+            {
+                return;
+            }
+            foreach (TabPage tabPage in miscTabControl.TabPages)
+            {
+                foreach (Control control in tabPage.Controls)
+                {
+                    // タグの設定されていないラベルをスキップする
+                    if (control.Tag == null)
+                    {
+                        continue;
+                    }
+
+                    var id = (MiscItemId) control.Tag;
+                    if ((MiscItemId) control.Tag == MiscItemId.EnableRetirementYearMinisters)
+                    {
+                        var comboBox = control as ComboBox;
+                        if (comboBox != null)
+                        {
+                            comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
+                            comboBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
+                        }
+                        break;
+                    }
+                }
             }
         }
 

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
@@ -1273,8 +1274,33 @@ namespace HoI2Editor.Forms
             idNumericUpDown.Value = minister.Id;
             nameTextBox.Text = minister.Name;
             startYearNumericUpDown.Value = minister.StartYear;
-            endYearNumericUpDown.Value = minister.EndYear;
-            retirementYearNumericUpDown.Value = minister.RetirementYear;
+            if (Misc.UseNewMinisterFilesFormat)
+            {
+                endYearLabel.Enabled = true;
+                endYearNumericUpDown.Enabled = true;
+                endYearNumericUpDown.Value = minister.EndYear;
+                endYearNumericUpDown.Text = endYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                endYearLabel.Enabled = false;
+                endYearNumericUpDown.Enabled = false;
+                endYearNumericUpDown.ResetText();
+            }
+            if (Misc.EnableRetirementYearMinisters)
+            {
+                retirementYearLabel.Enabled = true;
+                retirementYearNumericUpDown.Enabled = true;
+                retirementYearNumericUpDown.Value = minister.RetirementYear;
+                retirementYearNumericUpDown.Text =
+                    retirementYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                retirementYearLabel.Enabled = false;
+                retirementYearNumericUpDown.Enabled = false;
+                retirementYearNumericUpDown.ResetText();
+            }
             positionComboBox.SelectedIndex = minister.Position != MinisterPosition.None
                 ? (int) minister.Position - 1
                 : -1;
@@ -2195,6 +2221,24 @@ namespace HoI2Editor.Forms
                     BatchEditSpecified(country, items, startYear, endYear, retirementYear, ideology, loyalty);
                     break;
             }
+
+            // 閣僚リストを更新する
+            UpdateMinisterList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
+
+            // 終了年/引退年が未設定ならばMiscの値を変更する
+            if (items[(int) MinisterBatchItemId.EndYear] && !Misc.UseNewMinisterFilesFormat)
+            {
+                Misc.UseNewMinisterFilesFormat = true;
+                HoI2Editor.OnItemChanged(EditorItemId.MinisterEndYear, this);
+            }
+            if (items[(int) MinisterBatchItemId.RetirementYear] && !Misc.EnableRetirementYearMinisters)
+            {
+                Misc.EnableRetirementYearMinisters = true;
+                HoI2Editor.OnItemChanged(EditorItemId.MinisterRetirementYear, this);
+            }
         }
 
         /// <summary>
@@ -2215,17 +2259,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            LogBatchEdit("All", items, startYear, endYear, retirementYear, ideology, loyalty);
+
             // 一括編集処理を順に呼び出す
             foreach (Minister minister in Ministers.Items)
             {
                 BatchEditMinister(minister, items, startYear, endYear, retirementYear, ideology, loyalty);
             }
-
-            // 閣僚リストを更新する
-            UpdateMinisterList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2247,20 +2287,29 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中の国家リストを作成する
-            IEnumerable<Country> countries =
-                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]);
+            Country[] countries =
+                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToArray();
+            if (countries.Length == 0)
+            {
+                return;
+            }
+
+            var sb = new StringBuilder();
+            foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
+            {
+                sb.AppendFormat("{0} ", s);
+            }
+            if (sb.Length > 0)
+            {
+                sb.Remove(sb.Length - 1, 1);
+            }
+            LogBatchEdit(sb.ToString(), items, startYear, endYear, retirementYear, ideology, loyalty);
 
             // 一括編集処理を順に呼び出す
             foreach (Minister minister in Ministers.Items.Where(minister => countries.Contains(minister.Country)))
             {
                 BatchEditMinister(minister, items, startYear, endYear, retirementYear, ideology, loyalty);
             }
-
-            // 閣僚リストを更新する
-            UpdateMinisterList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2282,17 +2331,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            LogBatchEdit(Countries.Strings[(int) country], items, startYear, endYear, retirementYear, ideology, loyalty);
+
             // 一括編集処理を順に呼び出す
             foreach (Minister minister in Ministers.Items.Where(minister => minister.Country == country))
             {
                 BatchEditMinister(minister, items, startYear, endYear, retirementYear, ideology, loyalty);
             }
-
-            // 閣僚リストを更新する
-            UpdateMinisterList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2362,6 +2407,45 @@ namespace HoI2Editor.Forms
                     Ministers.SetDirty(minister.Country);
                 }
             }
+        }
+
+        /// <summary>
+        ///     一括編集処理のログ出力
+        /// </summary>
+        /// <param name="countries">対象国の文字列</param>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        /// <param name="retirementYear">引退年</param>
+        /// <param name="ideology">イデオロギー</param>
+        /// <param name="loyalty">忠誠度</param>
+        private static void LogBatchEdit(string countries, bool[] items, int startYear, int endYear, int retirementYear,
+            MinisterIdeology ideology, MinisterLoyalty loyalty)
+        {
+            var sb = new StringBuilder();
+
+            if (items[(int) MinisterBatchItemId.StartYear])
+            {
+                sb.AppendFormat(" start year: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) MinisterBatchItemId.EndYear])
+            {
+                sb.AppendFormat(" end year: {0}", endYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) MinisterBatchItemId.RetirementYear])
+            {
+                sb.AppendFormat(" retirement year: {0}", retirementYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) MinisterBatchItemId.Ideology])
+            {
+                sb.AppendFormat(" ideology: {0}", Config.GetText(Ministers.IdeologyNames[(int) ideology]));
+            }
+            if (items[(int) MinisterBatchItemId.Loyalty])
+            {
+                sb.AppendFormat(" loyalty: {0}", Ministers.LoyaltyNames[(int) loyalty]);
+            }
+
+            Log.Verbose("[Minister] Batch{0} ({1})", sb, countries);
         }
 
         #endregion

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
@@ -1778,7 +1779,20 @@ namespace HoI2Editor.Forms
             loyaltyNumericUpDown.Value = leader.Loyalty;
             startYearNumericUpDown.Value = leader.StartYear;
             endYearNumericUpDown.Value = leader.EndYear;
-            retirementYearNumericUpDown.Value = leader.RetirementYear;
+            if (Misc.EnableRetirementYearLeaders)
+            {
+                retirementYearLabel.Enabled = true;
+                retirementYearNumericUpDown.Enabled = true;
+                retirementYearNumericUpDown.Value = leader.RetirementYear;
+                retirementYearNumericUpDown.Text =
+                    retirementYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                retirementYearLabel.Enabled = false;
+                retirementYearNumericUpDown.Enabled = false;
+                retirementYearNumericUpDown.ResetText();
+            }
             rankYearNumericUpDown1.Value = leader.RankYear[0];
             rankYearNumericUpDown2.Value = leader.RankYear[1];
             rankYearNumericUpDown3.Value = leader.RankYear[2];
@@ -4160,6 +4174,19 @@ namespace HoI2Editor.Forms
                         endYear, retirementYear, rankYear);
                     break;
             }
+
+            // 指揮官リストを更新する
+            UpdateLeaderList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
+
+            // 引退年が未設定ならばMiscの値を変更する
+            if (items[(int) LeaderBatchItemId.RetirementYear] && !Misc.EnableRetirementYearLeaders)
+            {
+                Misc.EnableRetirementYearLeaders = true;
+                HoI2Editor.OnItemChanged(EditorItemId.LeaderRetirementYear, this);
+            }
         }
 
         /// <summary>
@@ -4184,18 +4211,15 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            LogBatchEdit("All", items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
+                retirementYear, rankYear);
+
             // 一括編集処理を順に呼び出す
             foreach (Leader leader in Leaders.Items)
             {
                 BatchEditLeader(leader, items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
                     retirementYear, rankYear);
             }
-
-            // 指揮官リストを更新する
-            UpdateLeaderList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -4221,8 +4245,24 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中の国家リストを作成する
-            IEnumerable<Country> countries =
-                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]);
+            Country[] countries =
+                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToArray();
+            if (countries.Length == 0)
+            {
+                return;
+            }
+
+            var sb = new StringBuilder();
+            foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
+            {
+                sb.AppendFormat("{0} ", s);
+            }
+            if (sb.Length > 0)
+            {
+                sb.Remove(sb.Length - 1, 1);
+            }
+            LogBatchEdit(sb.ToString(), items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
+                retirementYear, rankYear);
 
             // 一括編集処理を順に呼び出す
             foreach (Leader leader in Leaders.Items.Where(leader => countries.Contains(leader.Country)))
@@ -4230,12 +4270,6 @@ namespace HoI2Editor.Forms
                 BatchEditLeader(leader, items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
                     retirementYear, rankYear);
             }
-
-            // 指揮官リストを更新する
-            UpdateLeaderList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -4261,18 +4295,15 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            LogBatchEdit(Countries.Strings[(int) country], items, idealRank, skill, maxSkill, experience, loyalty,
+                startYear, endYear, retirementYear, rankYear);
+
             // 一括編集処理を順に呼び出す
             foreach (Leader leader in Leaders.Items.Where(leader => leader.Country == country))
             {
                 BatchEditLeader(leader, items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
                     retirementYear, rankYear);
             }
-
-            // 指揮官リストを更新する
-            UpdateLeaderList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -4423,6 +4454,77 @@ namespace HoI2Editor.Forms
                     Leaders.SetDirty(leader.Country);
                 }
             }
+        }
+
+        /// <summary>
+        ///     一括編集処理のログ出力
+        /// </summary>
+        /// <param name="countries">対象国の文字列</param>
+        /// <param name="items">一括編集項目</param>
+        /// <param name="idealRank">理想階級</param>
+        /// <param name="skill">スキル</param>
+        /// <param name="maxSkill">最大スキル</param>
+        /// <param name="experience">経験値</param>
+        /// <param name="loyalty">忠誠度</param>
+        /// <param name="startYear">開始年</param>
+        /// <param name="endYear">終了年</param>
+        /// <param name="retirementYear">引退年</param>
+        /// <param name="rankYear">任官年</param>
+        private static void LogBatchEdit(string countries, bool[] items, LeaderRank idealRank, int skill, int maxSkill,
+            int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
+        {
+            var sb = new StringBuilder();
+
+            if (items[(int) LeaderBatchItemId.IdealRank])
+            {
+                sb.AppendFormat(" ideal rank: {0}", Config.GetText(Leaders.RankNames[(int) idealRank]));
+            }
+            if (items[(int) LeaderBatchItemId.Skill])
+            {
+                sb.AppendFormat(" skill: {0}", skill.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.MaxSkill])
+            {
+                sb.AppendFormat(" max skill: {0}", maxSkill.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.Experience])
+            {
+                sb.AppendFormat(" experience: {0}", experience.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.Loyalty])
+            {
+                sb.AppendFormat(" loyalty: {0}", loyalty.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.StartYear])
+            {
+                sb.AppendFormat(" start year: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.EndYear])
+            {
+                sb.AppendFormat(" end year: {0}", endYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.RetirementYear])
+            {
+                sb.AppendFormat(" retirement year: {0}", retirementYear.ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.Rank3Year])
+            {
+                sb.AppendFormat(" rank3 year: {0}", rankYear[0].ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.Rank2Year])
+            {
+                sb.AppendFormat(" rank2 year: {0}", rankYear[1].ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.Rank1Year])
+            {
+                sb.AppendFormat(" rank1 year: {0}", rankYear[2].ToString(CultureInfo.InvariantCulture));
+            }
+            if (items[(int) LeaderBatchItemId.Rank0Year])
+            {
+                sb.AppendFormat(" rank0 year: {0}", rankYear[3].ToString(CultureInfo.InvariantCulture));
+            }
+
+            Log.Verbose("[Leader] Batch{0} ({1})", sb, countries);
         }
 
         #endregion
