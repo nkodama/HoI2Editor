@@ -3666,4 +3666,34 @@
   <data name="CriticalError" xml:space="preserve">
     <value>致命的エラー</value>
   </data>
+  <data name="UnitModelAirDefence" xml:space="preserve">
+    <value>対空防御力</value>
+  </data>
+  <data name="UnitModelAirVulnerability" xml:space="preserve">
+    <value>対空脆弱性</value>
+  </data>
+  <data name="UnitModelDefensiveness" xml:space="preserve">
+    <value>防御力</value>
+  </data>
+  <data name="UnitModelDefensiveVulnerablity" xml:space="preserve">
+    <value>防御側脆弱性</value>
+  </data>
+  <data name="UnitModelGroundVulnerability" xml:space="preserve">
+    <value>対地脆弱性</value>
+  </data>
+  <data name="UnitModelNavalVulnerability" xml:space="preserve">
+    <value>対艦脆弱性</value>
+  </data>
+  <data name="UnitModelOffensiveVulnerability" xml:space="preserve">
+    <value>攻撃側脆弱性</value>
+  </data>
+  <data name="UnitModelSeaDefence" xml:space="preserve">
+    <value>対艦防御力</value>
+  </data>
+  <data name="UnitModelSurfaceDefence" xml:space="preserve">
+    <value>対地防御力</value>
+  </data>
+  <data name="UnitModelToughness" xml:space="preserve">
+    <value>耐久力</value>
+  </data>
 </root>

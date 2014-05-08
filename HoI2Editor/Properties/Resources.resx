@@ -3708,4 +3708,34 @@
   <data name="CriticalError" xml:space="preserve">
     <value>Critical Error</value>
   </data>
+  <data name="UnitModelAirDefence" xml:space="preserve">
+    <value>Air Defence</value>
+  </data>
+  <data name="UnitModelAirVulnerability" xml:space="preserve">
+    <value>Air Vuln.</value>
+  </data>
+  <data name="UnitModelDefensiveness" xml:space="preserve">
+    <value>Defensiveness</value>
+  </data>
+  <data name="UnitModelDefensiveVulnerablity" xml:space="preserve">
+    <value>Defensive Vuln.</value>
+  </data>
+  <data name="UnitModelGroundVulnerability" xml:space="preserve">
+    <value>Ground Vuln.</value>
+  </data>
+  <data name="UnitModelNavalVulnerability" xml:space="preserve">
+    <value>Naval Vuln.</value>
+  </data>
+  <data name="UnitModelOffensiveVulnerability" xml:space="preserve">
+    <value>Offensive Vuln.</value>
+  </data>
+  <data name="UnitModelSeaDefence" xml:space="preserve">
+    <value>Sea Defence</value>
+  </data>
+  <data name="UnitModelSurfaceDefence" xml:space="preserve">
+    <value>Surf. Defence</value>
+  </data>
+  <data name="UnitModelToughness" xml:space="preserve">
+    <value>Toughness</value>
+  </data>
 </root>

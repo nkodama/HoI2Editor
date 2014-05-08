@@ -346,6 +346,9 @@ namespace HoI2Editor.Forms
             // 付属可能旅団の値が変化してしまうので一旦選択を解除する
             classListBox.SelectedIndex = -1;
 
+            // ユニットモデルの編集項目の文字列を初期化する
+            InitModelItemText();
+
             // 編集項目を初期化する
             InitEditableItems();
 
@@ -3779,6 +3782,29 @@ namespace HoI2Editor.Forms
             upButton.Enabled = false;
             downButton.Enabled = false;
             bottomButton.Enabled = false;
+        }
+
+        /// <summary>
+        ///     ユニットモデルの編集項目の文字列を初期化する
+        /// </summary>
+        private void InitModelItemText()
+        {
+            if (Misc.CombatMode)
+            {
+                defensivenessLabel.Text = Resources.UnitModelDefensiveVulnerablity;
+                toughnessLabel.Text = Resources.UnitModelOffensiveVulnerability;
+                seaDefenceLabel.Text = Resources.UnitModelNavalVulnerability;
+                airDefenceLabel.Text = Resources.UnitModelAirVulnerability;
+                surfaceDefenceLabel.Text = Resources.UnitModelGroundVulnerability;
+            }
+            else
+            {
+                defensivenessLabel.Text = Resources.UnitModelDefensiveness;
+                toughnessLabel.Text = Resources.UnitModelToughness;
+                seaDefenceLabel.Text = Resources.UnitModelSeaDefence;
+                airDefenceLabel.Text = Resources.UnitModelAirDefence;
+                surfaceDefenceLabel.Text = Resources.UnitModelSurfaceDefence;
+            }
         }
 
         /// <summary>

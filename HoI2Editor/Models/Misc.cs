@@ -181,6 +181,30 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region combatセクション
+
+        /// <summary>
+        ///     戦闘モード
+        /// </summary>
+        /// <remarks>
+        ///     false: 従来形式
+        ///     true : DH1.03以降新形式
+        /// </remarks>
+        public static bool CombatMode
+        {
+            get
+            {
+                return (_items[(int) MiscItemId.CombatMode] != null) && ((int) _items[(int) MiscItemId.CombatMode] != 0);
+            }
+            set
+            {
+                _items[(int) MiscItemId.CombatMode] = value;
+                SetDirty(MiscItemId.CombatMode);
+            }
+        }
+
+        #endregion
+
         #region researchセクション
 
         /// <summary>

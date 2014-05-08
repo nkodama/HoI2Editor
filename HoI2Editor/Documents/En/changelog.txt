@@ -1,8 +1,9 @@
 Alternative HoI2 Editor Changelog
 
-- 6 May 2014; Ver 0.38
+- 9 May 2014; Ver 0.38
 
 Added a function for batch editing of leaders, ministers, and teams.
+Corrected unit model item names changed from DH1.03.
 Fixed a bug that a tech effect parameter cannot be deleted though its field is blanked.
 
 - 6 April 2014; Ver 0.37

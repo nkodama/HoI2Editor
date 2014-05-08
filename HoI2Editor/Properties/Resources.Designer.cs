@@ -10762,6 +10762,96 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Air Defence に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelAirDefence {
+            get {
+                return ResourceManager.GetString("UnitModelAirDefence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Air Vuln. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelAirVulnerability {
+            get {
+                return ResourceManager.GetString("UnitModelAirVulnerability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Defensiveness に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelDefensiveness {
+            get {
+                return ResourceManager.GetString("UnitModelDefensiveness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Defensive Vuln. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelDefensiveVulnerablity {
+            get {
+                return ResourceManager.GetString("UnitModelDefensiveVulnerablity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ground Vuln. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelGroundVulnerability {
+            get {
+                return ResourceManager.GetString("UnitModelGroundVulnerability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval Vuln. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelNavalVulnerability {
+            get {
+                return ResourceManager.GetString("UnitModelNavalVulnerability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Offensive Vuln. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelOffensiveVulnerability {
+            get {
+                return ResourceManager.GetString("UnitModelOffensiveVulnerability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sea Defence に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelSeaDefence {
+            get {
+                return ResourceManager.GetString("UnitModelSeaDefence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Surf. Defence に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelSurfaceDefence {
+            get {
+                return ResourceManager.GetString("UnitModelSurfaceDefence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Toughness に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitModelToughness {
+            get {
+                return ResourceManager.GetString("UnitModelToughness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Removed unused temp key に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string WarningRemovedUnusedTempKey {
