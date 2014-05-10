@@ -447,6 +447,19 @@ namespace HoI2Editor.Models
             return item;
         }
 
+        /// <summary>
+        ///     新規小研究を作成する
+        /// </summary>
+        public void CreateNewComponents()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                TechComponent component = TechComponent.Create();
+                component.Id = GetNewComponentId(Id + 1);
+                Components.Add(component);
+            }
+        }
+
         #endregion
 
         #region 小研究リスト
@@ -1724,6 +1737,7 @@ namespace HoI2Editor.Models
             var component = new TechComponent
             {
                 Name = Config.GetTempKey(),
+                Speciality = TechSpeciality.Artillery,
                 Difficulty = 1,
             };
 

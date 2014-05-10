@@ -746,6 +746,9 @@ namespace HoI2Editor.Forms
                     item.Id = Techs.GetNewId(1010);
                 }
 
+                // 空の小研究を追加する
+                item.CreateNewComponents();
+
                 // 技術項目リストに項目を挿入する
                 grp.InsertItem(item, selected);
 
@@ -759,6 +762,9 @@ namespace HoI2Editor.Forms
 
                 // 未使用の技術IDを1010以降で検索する
                 item.Id = Techs.GetNewId(1010);
+
+                // 空の小研究を追加する
+                item.CreateNewComponents();
 
                 // 技術項目リストに項目を追加する
                 grp.AddItem(item);
