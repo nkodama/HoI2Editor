@@ -642,7 +642,7 @@ namespace HoI2Editor.Models
             int no = 0;
 
             // 技術名
-            if (Config.IsTempKey(Name) || IsOldStyleKey(Name, RegexTechName))
+            if (Config.IsTempKey(Name))
             {
                 no = GetKeyNumber(list, categoryName);
                 string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
@@ -665,7 +665,7 @@ namespace HoI2Editor.Models
                 dirty = true;
             }
             // 技術短縮名
-            if (Config.IsTempKey(ShortName) || IsOldStyleKey(ShortName, RegexTechName))
+            if (Config.IsTempKey(ShortName))
             {
                 if (no == 0)
                 {
@@ -691,7 +691,7 @@ namespace HoI2Editor.Models
                 dirty = true;
             }
             // 技術説明
-            if (Config.IsTempKey(Desc) || IsOldStyleKey(Desc, RegexTechDesc))
+            if (Config.IsTempKey(Desc))
             {
                 if (no == 0)
                 {
@@ -720,7 +720,7 @@ namespace HoI2Editor.Models
             int componentId = 1;
             foreach (TechComponent component in Components)
             {
-                if (Config.IsTempKey(component.Name) || IsOldStyleKey(component.Name, RegexComponentName))
+                if (Config.IsTempKey(component.Name))
                 {
                     if (no == 0)
                     {
@@ -758,32 +758,6 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     文字列キーが旧形式かどうかを判定する
-        /// </summary>
-        /// <param name="key">文字列キー</param>
-        /// <param name="regex">判定に使用する正規表現</param>
-        /// <returns>旧形式ならばtrueを返す</returns>
-        private static bool IsOldStyleKey(string key, Regex regex)
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                return false;
-            }
-            Match match = regex.Match(key);
-            if (!match.Success)
-            {
-                return false;
-            }
-            int n;
-            if (!int.TryParse(match.Groups[2].Value, out n))
-            {
-                return false;
-            }
-            // 数字の部分が1000以上かつ10の倍数ならば技術IDと関連付けられた旧形式だとみなす
-            return ((n >= 1000) && (n%10 == 0));
-        }
-
-        /// <summary>
         ///     文字列キーの番号を取得する
         /// </summary>
         /// <param name="list">番号リスト</param>
@@ -797,7 +771,7 @@ namespace HoI2Editor.Models
             if (!string.IsNullOrEmpty(Name))
             {
                 match = RegexTechName.Match(Name);
-                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no))
                 {
                     return no;
                 }
@@ -806,7 +780,7 @@ namespace HoI2Editor.Models
             if (!string.IsNullOrEmpty(Desc))
             {
                 match = RegexTechDesc.Match(Desc);
-                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no))
                 {
                     return no;
                 }
@@ -815,7 +789,7 @@ namespace HoI2Editor.Models
             foreach (TechComponent component in Components.Where(component => !string.IsNullOrEmpty(component.Name)))
             {
                 match = RegexComponentName.Match(component.Name);
-                if (match.Success && int.TryParse(match.Groups[2].Value, out no) && ((no < 1000) || (no%10 != 0)))
+                if (match.Success && int.TryParse(match.Groups[2].Value, out no))
                 {
                     return no;
                 }
