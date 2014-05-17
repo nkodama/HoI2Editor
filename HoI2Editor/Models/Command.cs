@@ -293,6 +293,7 @@ namespace HoI2Editor.Models
             "morale",
             "nuke_damage",
             "max_amphib_mod",
+            "sub_detection",
             "add_leader_skill",
             "add_leader_trait",
             "remove_leader_trait",
@@ -706,6 +707,7 @@ namespace HoI2Editor.Models
         Morale,
         NukeDamage,
         MaxAmphibMod,
+        SubDetection,
         // AoDで追加
         AddLeaderSkill,
         AddLeaderTrait,
