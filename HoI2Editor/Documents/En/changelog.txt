@@ -1,5 +1,11 @@
 Alternative HoI2 Editor Changelog
 
+- 17 May 2014; Ver 0.39
+
+Changed the tech editor window size to match the tech tree picture size.
+Abolished reassigning  sequential number of the tech name.
+Supported for command: sub_detection
+
 - 10 May 2014; Ver 0.38
 
 Added a function for batch editing of leaders, ministers, and teams.
