@@ -275,6 +275,19 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     技術ツリー画像サイズに合わせてフォームのサイズを変更する
+        /// </summary>
+        private void UpdateFormSize()
+        {
+            // デスクトップのサイズを取得する
+            Rectangle screenRect = Screen.GetWorkingArea(new Point(200, 200));
+
+            int height = Height + (treePictureBox.Image.Height - treePanel.Height);
+
+            Height = Math.Min(height, screenRect.Height);
+        }
+
+        /// <summary>
         ///     フォーム読み込み時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -298,6 +311,9 @@ namespace HoI2Editor.Forms
 
             // データ読み込み後の処理
             OnFileLoaded();
+
+            // 技術ツリー画像サイズに合わせてフォームのサイズを変更する
+            UpdateFormSize();
         }
 
         /// <summary>
