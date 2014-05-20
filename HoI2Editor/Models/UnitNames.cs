@@ -774,6 +774,11 @@ namespace HoI2Editor.Models
         /// <returns>項目が存在すればtrueを返す</returns>
         private static bool Exists(string name, Country country, UnitNameType type)
         {
+            if (!ExistsType(country, type))
+            {
+                return false;
+            }
+
             return Items[country][type].Contains(name);
         }
 

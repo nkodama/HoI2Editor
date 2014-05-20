@@ -1,5 +1,9 @@
 Alternative HoI2 Editor Changelog
 
+- 20 May 2014; Ver 0.40
+
+Fixed a crash when sequential names are added in empty countries.
+
 - 17 May 2014; Ver 0.39
 
 Changed the tech editor window size to match the tech tree picture size.
