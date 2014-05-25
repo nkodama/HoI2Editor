@@ -2170,8 +2170,15 @@ namespace HoI2Editor.Models
                             break;
 
                         case GameType.DarkestHour:
-                            // DHの場合旅団のみ旅団定義ファイルで編集可能
-                            Units.SetDirtyBrigadeTypes();
+                            // DHの場合師団/旅団定義ファイルで編集可能
+                            if (Organization == UnitOrganization.Division)
+                            {
+                                Units.SetDirtyDivisionTypes();
+                            }
+                            else
+                            {
+                                Units.SetDirtyBrigadeTypes();
+                            }
                             break;
                     }
                     break;

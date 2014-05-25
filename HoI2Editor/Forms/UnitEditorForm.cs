@@ -1176,16 +1176,6 @@ namespace HoI2Editor.Forms
 
             // 兵科
             branchComboBox.SelectedIndex = (int) unit.Branch - 1;
-            if ((Game.Type == GameType.ArsenalOfDemocracy) ||
-                ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) &&
-                 (unit.Organization == UnitOrganization.Brigade)))
-            {
-                branchComboBox.Enabled = true;
-            }
-            else
-            {
-                branchComboBox.Enabled = false;
-            }
 
             // 付属旅団
             if (unit.Organization == UnitOrganization.Division)
@@ -1919,6 +1909,43 @@ namespace HoI2Editor.Forms
 
             // 値を更新する
             unit.Branch = branch;
+
+            // DH1.03以降で師団の兵科を変更する場合、実ユニット種類も連動する
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) &&
+                (unit.Organization == UnitOrganization.Division))
+            {
+                RealUnitType type;
+                switch (branch)
+                {
+                    case Branch.Army:
+                        type = RealUnitType.Infantry;
+                        break;
+
+                    case Branch.Navy:
+                        type = RealUnitType.Destroyer;
+                        break;
+
+                    case Branch.Airforce:
+                        type = RealUnitType.Interceptor;
+                        break;
+
+                    default:
+                        type = RealUnitType.Infantry;
+                        break;
+                }
+
+                Log.Info("[Unit] Switched real unit type: {0} -> {1} ({2})",
+                    Config.GetText(Units.RealNames[(int) unit.RealType]),
+                    Config.GetText(Units.RealNames[(int) type]), unit);
+
+                unit.RealType = type;
+
+                // 編集済みフラグを設定する
+                unit.SetDirty(UnitClassItemId.RealType);
+
+                // 実ユニット種類コンボボックスの選択項目を更新する
+                realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
+            }
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Branch);
