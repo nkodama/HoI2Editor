@@ -198,6 +198,21 @@
   <data name="editTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
+  <data name="categoryDescTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="categoryDescTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 38</value>
+  </data>
+  <data name="categoryDescTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="categoryDescTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>341, 206</value>
+  </data>
+  <data name="categoryDescTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="&gt;&gt;categoryDescTextBox.Name" xml:space="preserve">
     <value>categoryDescTextBox</value>
   </data>
@@ -209,6 +224,24 @@
   </data>
   <data name="&gt;&gt;categoryDescTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="categoryDescLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="categoryDescLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="categoryDescLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 23</value>
+  </data>
+  <data name="categoryDescLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="categoryDescLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="categoryDescLabel.Text" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="&gt;&gt;categoryDescLabel.Name" xml:space="preserve">
     <value>categoryDescLabel</value>
@@ -222,6 +255,15 @@
   <data name="&gt;&gt;categoryDescLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="categoryNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 38</value>
+  </data>
+  <data name="categoryNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 19</value>
+  </data>
+  <data name="categoryNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;categoryNameTextBox.Name" xml:space="preserve">
     <value>categoryNameTextBox</value>
   </data>
@@ -233,6 +275,24 @@
   </data>
   <data name="&gt;&gt;categoryNameTextBox.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="categoryNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="categoryNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="categoryNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 23</value>
+  </data>
+  <data name="categoryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="categoryNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="categoryNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="&gt;&gt;categoryNameLabel.Name" xml:space="preserve">
     <value>categoryNameLabel</value>
@@ -273,6 +333,21 @@
   <data name="&gt;&gt;categoryTabPage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="techPositionRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="techPositionRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 229</value>
+  </data>
+  <data name="techPositionRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="techPositionRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="techPositionRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="&gt;&gt;techPositionRemoveButton.Name" xml:space="preserve">
     <value>techPositionRemoveButton</value>
   </data>
@@ -284,6 +359,21 @@
   </data>
   <data name="&gt;&gt;techPositionRemoveButton.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="techPositionAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="techPositionAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 229</value>
+  </data>
+  <data name="techPositionAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="techPositionAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="techPositionAddButton.Text" xml:space="preserve">
+    <value>Add</value>
   </data>
   <data name="&gt;&gt;techPositionAddButton.Name" xml:space="preserve">
     <value>techPositionAddButton</value>
@@ -297,6 +387,30 @@
   <data name="&gt;&gt;techPositionAddButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="techPositionListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="techXColumnHeader.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="techXColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="techYColumnHeader.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="techYColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="techPositionListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 171</value>
+  </data>
+  <data name="techPositionListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 81</value>
+  </data>
+  <data name="techPositionListView.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
   <data name="&gt;&gt;techPositionListView.Name" xml:space="preserve">
     <value>techPositionListView</value>
   </data>
@@ -308,6 +422,21 @@
   </data>
   <data name="&gt;&gt;techPositionListView.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="techPictureNameBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="techPictureNameBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 138</value>
+  </data>
+  <data name="techPictureNameBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="techPictureNameBrowseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="techPictureNameBrowseButton.Text" xml:space="preserve">
+    <value>Browse</value>
   </data>
   <data name="&gt;&gt;techPictureNameBrowseButton.Name" xml:space="preserve">
     <value>techPictureNameBrowseButton</value>
@@ -321,6 +450,18 @@
   <data name="&gt;&gt;techPictureNameBrowseButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="techPictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="techPictureNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 140</value>
+  </data>
+  <data name="techPictureNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 19</value>
+  </data>
+  <data name="techPictureNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
   <data name="&gt;&gt;techPictureNameTextBox.Name" xml:space="preserve">
     <value>techPictureNameTextBox</value>
   </data>
@@ -332,6 +473,24 @@
   </data>
   <data name="&gt;&gt;techPictureNameTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="techPictureNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="techPictureNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="techPictureNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 143</value>
+  </data>
+  <data name="techPictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 12</value>
+  </data>
+  <data name="techPictureNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="techPictureNameLabel.Text" xml:space="preserve">
+    <value>Picture Name</value>
   </data>
   <data name="&gt;&gt;techPictureNameLabel.Name" xml:space="preserve">
     <value>techPictureNameLabel</value>
@@ -345,6 +504,21 @@
   <data name="&gt;&gt;techPictureNameLabel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="techYNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="techYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 201</value>
+  </data>
+  <data name="techYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="techYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="techYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;techYNumericUpDown.Name" xml:space="preserve">
     <value>techYNumericUpDown</value>
   </data>
@@ -356,6 +530,21 @@
   </data>
   <data name="&gt;&gt;techYNumericUpDown.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="techXNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="techXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 171</value>
+  </data>
+  <data name="techXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="techXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="techXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;techXNumericUpDown.Name" xml:space="preserve">
     <value>techXNumericUpDown</value>
@@ -369,6 +558,24 @@
   <data name="&gt;&gt;techXNumericUpDown.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="techYLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="techYLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="techYLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 203</value>
+  </data>
+  <data name="techYLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="techYLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="techYLabel.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
   <data name="&gt;&gt;techYLabel.Name" xml:space="preserve">
     <value>techYLabel</value>
   </data>
@@ -380,6 +587,24 @@
   </data>
   <data name="&gt;&gt;techYLabel.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="techXLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="techXLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="techXLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 173</value>
+  </data>
+  <data name="techXLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="techXLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="techXLabel.Text" xml:space="preserve">
+    <value>X</value>
   </data>
   <data name="&gt;&gt;techXLabel.Name" xml:space="preserve">
     <value>techXLabel</value>
@@ -393,6 +618,21 @@
   <data name="&gt;&gt;techXLabel.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="techYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="techYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 111</value>
+  </data>
+  <data name="techYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="techYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="techYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;techYearNumericUpDown.Name" xml:space="preserve">
     <value>techYearNumericUpDown</value>
   </data>
@@ -404,6 +644,21 @@
   </data>
   <data name="&gt;&gt;techYearNumericUpDown.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="techYearLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="techYearLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 113</value>
+  </data>
+  <data name="techYearLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 12</value>
+  </data>
+  <data name="techYearLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="techYearLabel.Text" xml:space="preserve">
+    <value>Year</value>
   </data>
   <data name="&gt;&gt;techYearLabel.Name" xml:space="preserve">
     <value>techYearLabel</value>
@@ -417,6 +672,21 @@
   <data name="&gt;&gt;techYearLabel.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="techIdNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="techIdNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 81</value>
+  </data>
+  <data name="techIdNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="techIdNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="techIdNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;techIdNumericUpDown.Name" xml:space="preserve">
     <value>techIdNumericUpDown</value>
   </data>
@@ -428,6 +698,21 @@
   </data>
   <data name="&gt;&gt;techIdNumericUpDown.ZOrder" xml:space="preserve">
     <value>12</value>
+  </data>
+  <data name="techIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="techIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 83</value>
+  </data>
+  <data name="techIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="techIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="techIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
   </data>
   <data name="&gt;&gt;techIdLabel.Name" xml:space="preserve">
     <value>techIdLabel</value>
@@ -441,6 +726,18 @@
   <data name="&gt;&gt;techIdLabel.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="techShortNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="techShortNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 50</value>
+  </data>
+  <data name="techShortNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 19</value>
+  </data>
+  <data name="techShortNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="&gt;&gt;techShortNameTextBox.Name" xml:space="preserve">
     <value>techShortNameTextBox</value>
   </data>
@@ -452,6 +749,21 @@
   </data>
   <data name="&gt;&gt;techShortNameTextBox.ZOrder" xml:space="preserve">
     <value>14</value>
+  </data>
+  <data name="techShortNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="techShortNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 53</value>
+  </data>
+  <data name="techShortNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="techShortNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="techShortNameLabel.Text" xml:space="preserve">
+    <value>Short Name</value>
   </data>
   <data name="&gt;&gt;techShortNameLabel.Name" xml:space="preserve">
     <value>techShortNameLabel</value>
@@ -465,6 +777,18 @@
   <data name="&gt;&gt;techShortNameLabel.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="techNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="techNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 20</value>
+  </data>
+  <data name="techNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 19</value>
+  </data>
+  <data name="techNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;techNameTextBox.Name" xml:space="preserve">
     <value>techNameTextBox</value>
   </data>
@@ -477,6 +801,21 @@
   <data name="&gt;&gt;techNameTextBox.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
+  <data name="techNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="techNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 23</value>
+  </data>
+  <data name="techNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="techNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="techNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="&gt;&gt;techNameLabel.Name" xml:space="preserve">
     <value>techNameLabel</value>
   </data>
@@ -488,6 +827,21 @@
   </data>
   <data name="&gt;&gt;techNameLabel.ZOrder" xml:space="preserve">
     <value>17</value>
+  </data>
+  <data name="techPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="techPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>323, 1</value>
+  </data>
+  <data name="techPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 266</value>
+  </data>
+  <data name="techPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="techPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;techPictureBox.Name" xml:space="preserve">
     <value>techPictureBox</value>
@@ -528,6 +882,18 @@
   <data name="&gt;&gt;techTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="orTechComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="orTechComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>448, 203</value>
+  </data>
+  <data name="orTechComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 20</value>
+  </data>
+  <data name="orTechComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
   <data name="&gt;&gt;orTechComboBox.Name" xml:space="preserve">
     <value>orTechComboBox</value>
   </data>
@@ -539,6 +905,21 @@
   </data>
   <data name="&gt;&gt;orTechComboBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="orIdNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="orIdNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>531, 175</value>
+  </data>
+  <data name="orIdNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="orIdNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="orIdNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;orIdNumericUpDown.Name" xml:space="preserve">
     <value>orIdNumericUpDown</value>
@@ -552,6 +933,24 @@
   <data name="&gt;&gt;orIdNumericUpDown.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="orIdLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="orIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="orIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>446, 177</value>
+  </data>
+  <data name="orIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="orIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="orIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
   <data name="&gt;&gt;orIdLabel.Name" xml:space="preserve">
     <value>orIdLabel</value>
   </data>
@@ -563,6 +962,18 @@
   </data>
   <data name="&gt;&gt;orIdLabel.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="andTechComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="andTechComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>448, 78</value>
+  </data>
+  <data name="andTechComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 20</value>
+  </data>
+  <data name="andTechComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;andTechComboBox.Name" xml:space="preserve">
     <value>andTechComboBox</value>
@@ -576,6 +987,21 @@
   <data name="&gt;&gt;andTechComboBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="andIdNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="andIdNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>531, 50</value>
+  </data>
+  <data name="andIdNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="andIdNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="andIdNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;andIdNumericUpDown.Name" xml:space="preserve">
     <value>andIdNumericUpDown</value>
   </data>
@@ -587,6 +1013,24 @@
   </data>
   <data name="&gt;&gt;andIdNumericUpDown.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="andIdLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="andIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="andIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>446, 52</value>
+  </data>
+  <data name="andIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="andIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="andIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
   </data>
   <data name="&gt;&gt;andIdLabel.Name" xml:space="preserve">
     <value>andIdLabel</value>
@@ -600,6 +1044,24 @@
   <data name="&gt;&gt;andIdLabel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="andRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="andRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="andRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 76</value>
+  </data>
+  <data name="andRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="andRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="andRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="&gt;&gt;andRemoveButton.Name" xml:space="preserve">
     <value>andRemoveButton</value>
   </data>
@@ -611,6 +1073,24 @@
   </data>
   <data name="&gt;&gt;andRemoveButton.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="andAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="andAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="andAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 47</value>
+  </data>
+  <data name="andAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="andAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="andAddButton.Text" xml:space="preserve">
+    <value>Add</value>
   </data>
   <data name="&gt;&gt;andAddButton.Name" xml:space="preserve">
     <value>andAddButton</value>
@@ -624,6 +1104,24 @@
   <data name="&gt;&gt;andAddButton.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="orRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="orRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="orRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 201</value>
+  </data>
+  <data name="orRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="orRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="orRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="&gt;&gt;orRemoveButton.Name" xml:space="preserve">
     <value>orRemoveButton</value>
   </data>
@@ -636,6 +1134,24 @@
   <data name="&gt;&gt;orRemoveButton.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="orAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="orAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="orAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 172</value>
+  </data>
+  <data name="orAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="orAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="orAddButton.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="&gt;&gt;orAddButton.Name" xml:space="preserve">
     <value>orAddButton</value>
   </data>
@@ -646,6 +1162,27 @@
     <value>requiredTabPage</value>
   </data>
   <data name="&gt;&gt;orAddButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="orRequiredListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="orIdColumnHeader.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="orNameColumnHeader.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="orNameColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>235</value>
+  </data>
+  <data name="orRequiredListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 163</value>
+  </data>
+  <data name="orRequiredListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 90</value>
+  </data>
+  <data name="orRequiredListView.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="&gt;&gt;orRequiredListView.Name" xml:space="preserve">
@@ -660,6 +1197,27 @@
   <data name="&gt;&gt;orRequiredListView.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="andRequiredListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="andIdColumnHeader.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="andNameColumnHeader.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="andNameColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>235</value>
+  </data>
+  <data name="andRequiredListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 38</value>
+  </data>
+  <data name="andRequiredListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 90</value>
+  </data>
+  <data name="andRequiredListView.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;andRequiredListView.Name" xml:space="preserve">
     <value>andRequiredListView</value>
   </data>
@@ -672,6 +1230,21 @@
   <data name="&gt;&gt;andRequiredListView.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="orRequiredLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="orRequiredLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 148</value>
+  </data>
+  <data name="orRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 12</value>
+  </data>
+  <data name="orRequiredLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="orRequiredLabel.Text" xml:space="preserve">
+    <value>OR Required</value>
+  </data>
   <data name="&gt;&gt;orRequiredLabel.Name" xml:space="preserve">
     <value>orRequiredLabel</value>
   </data>
@@ -683,6 +1256,21 @@
   </data>
   <data name="&gt;&gt;orRequiredLabel.ZOrder" xml:space="preserve">
     <value>12</value>
+  </data>
+  <data name="andRequiredLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="andRequiredLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 23</value>
+  </data>
+  <data name="andRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 12</value>
+  </data>
+  <data name="andRequiredLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="andRequiredLabel.Text" xml:space="preserve">
+    <value>AND Required</value>
   </data>
   <data name="&gt;&gt;andRequiredLabel.Name" xml:space="preserve">
     <value>andRequiredLabel</value>
@@ -1668,1359 +2256,6 @@
   <data name="&gt;&gt;effectTabPage.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;labelPositionRemoveButton.Name" xml:space="preserve">
-    <value>labelPositionRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;labelPositionRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPositionRemoveButton.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelPositionRemoveButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelPositionAddButton.Name" xml:space="preserve">
-    <value>labelPositionAddButton</value>
-  </data>
-  <data name="&gt;&gt;labelPositionAddButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPositionAddButton.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelPositionAddButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;labelPositionListView.Name" xml:space="preserve">
-    <value>labelPositionListView</value>
-  </data>
-  <data name="&gt;&gt;labelPositionListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPositionListView.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelPositionListView.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;labelYNumericUpDown.Name" xml:space="preserve">
-    <value>labelYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;labelYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelYNumericUpDown.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;labelXNumericUpDown.Name" xml:space="preserve">
-    <value>labelXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;labelXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelXNumericUpDown.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;labelYLabel.Name" xml:space="preserve">
-    <value>labelYLabel</value>
-  </data>
-  <data name="&gt;&gt;labelYLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelYLabel.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelYLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;labelXLabel.Name" xml:space="preserve">
-    <value>labelXLabel</value>
-  </data>
-  <data name="&gt;&gt;labelXLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelXLabel.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelXLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;labelNameTextBox.Name" xml:space="preserve">
-    <value>labelNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;labelNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelNameTextBox.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelNameTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;labelNameLabel.Name" xml:space="preserve">
-    <value>labelNameLabel</value>
-  </data>
-  <data name="&gt;&gt;labelNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelNameLabel.Parent" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelNameLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="labelTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="labelTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>673, 269</value>
-  </data>
-  <data name="labelTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="labelTabPage.Text" xml:space="preserve">
-    <value>Label</value>
-  </data>
-  <data name="&gt;&gt;labelTabPage.Name" xml:space="preserve">
-    <value>labelTabPage</value>
-  </data>
-  <data name="&gt;&gt;labelTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelTabPage.Parent" xml:space="preserve">
-    <value>editTabControl</value>
-  </data>
-  <data name="&gt;&gt;labelTabPage.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;eventPositionRemoveButton.Name" xml:space="preserve">
-    <value>eventPositionRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;eventPositionRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventPositionRemoveButton.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventPositionRemoveButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;eventPositionAddButton.Name" xml:space="preserve">
-    <value>eventPositionAddButton</value>
-  </data>
-  <data name="&gt;&gt;eventPositionAddButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventPositionAddButton.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventPositionAddButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;eventPositionListView.Name" xml:space="preserve">
-    <value>eventPositionListView</value>
-  </data>
-  <data name="&gt;&gt;eventPositionListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventPositionListView.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventPositionListView.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;eventTechComboBox.Name" xml:space="preserve">
-    <value>eventTechComboBox</value>
-  </data>
-  <data name="&gt;&gt;eventTechComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventTechComboBox.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventTechComboBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;eventYNumericUpDown.Name" xml:space="preserve">
-    <value>eventYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;eventYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventYNumericUpDown.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;eventXNumericUpDown.Name" xml:space="preserve">
-    <value>eventXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;eventXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventXNumericUpDown.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;eventYLabel.Name" xml:space="preserve">
-    <value>eventYLabel</value>
-  </data>
-  <data name="&gt;&gt;eventYLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventYLabel.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventYLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;eventXLabel.Name" xml:space="preserve">
-    <value>eventXLabel</value>
-  </data>
-  <data name="&gt;&gt;eventXLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventXLabel.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventXLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;eventTechNumericUpDown.Name" xml:space="preserve">
-    <value>eventTechNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;eventTechNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventTechNumericUpDown.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventTechNumericUpDown.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;eventTechLabel.Name" xml:space="preserve">
-    <value>eventTechLabel</value>
-  </data>
-  <data name="&gt;&gt;eventTechLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventTechLabel.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventTechLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;eventIdNumericUpDown.Name" xml:space="preserve">
-    <value>eventIdNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;eventIdNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventIdNumericUpDown.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventIdNumericUpDown.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;eventTechIdLabel.Name" xml:space="preserve">
-    <value>eventTechIdLabel</value>
-  </data>
-  <data name="&gt;&gt;eventTechIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventTechIdLabel.Parent" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventTechIdLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="eventTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="eventTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>673, 269</value>
-  </data>
-  <data name="eventTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="eventTabPage.Text" xml:space="preserve">
-    <value>Event</value>
-  </data>
-  <data name="&gt;&gt;eventTabPage.Name" xml:space="preserve">
-    <value>eventTabPage</value>
-  </data>
-  <data name="&gt;&gt;eventTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;eventTabPage.Parent" xml:space="preserve">
-    <value>editTabControl</value>
-  </data>
-  <data name="&gt;&gt;eventTabPage.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="editTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 325</value>
-  </data>
-  <data name="editTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>681, 295</value>
-  </data>
-  <data name="editTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Name" xml:space="preserve">
-    <value>editTabControl</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;editTabControl.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="categoryDescTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="categoryDescTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 38</value>
-  </data>
-  <data name="categoryDescTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="categoryDescTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 206</value>
-  </data>
-  <data name="categoryDescTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;categoryDescTextBox.Name" xml:space="preserve">
-    <value>categoryDescTextBox</value>
-  </data>
-  <data name="&gt;&gt;categoryDescTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;categoryDescTextBox.Parent" xml:space="preserve">
-    <value>categoryTabPage</value>
-  </data>
-  <data name="&gt;&gt;categoryDescTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="categoryDescLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="categoryDescLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="categoryDescLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 23</value>
-  </data>
-  <data name="categoryDescLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 12</value>
-  </data>
-  <data name="categoryDescLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="categoryDescLabel.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="&gt;&gt;categoryDescLabel.Name" xml:space="preserve">
-    <value>categoryDescLabel</value>
-  </data>
-  <data name="&gt;&gt;categoryDescLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;categoryDescLabel.Parent" xml:space="preserve">
-    <value>categoryTabPage</value>
-  </data>
-  <data name="&gt;&gt;categoryDescLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="categoryNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 38</value>
-  </data>
-  <data name="categoryNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 19</value>
-  </data>
-  <data name="categoryNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;categoryNameTextBox.Name" xml:space="preserve">
-    <value>categoryNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;categoryNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;categoryNameTextBox.Parent" xml:space="preserve">
-    <value>categoryTabPage</value>
-  </data>
-  <data name="&gt;&gt;categoryNameTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="categoryNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="categoryNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="categoryNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 23</value>
-  </data>
-  <data name="categoryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="categoryNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="categoryNameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;categoryNameLabel.Name" xml:space="preserve">
-    <value>categoryNameLabel</value>
-  </data>
-  <data name="&gt;&gt;categoryNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;categoryNameLabel.Parent" xml:space="preserve">
-    <value>categoryTabPage</value>
-  </data>
-  <data name="&gt;&gt;categoryNameLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="techPositionRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="techPositionRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 229</value>
-  </data>
-  <data name="techPositionRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="techPositionRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="techPositionRemoveButton.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="&gt;&gt;techPositionRemoveButton.Name" xml:space="preserve">
-    <value>techPositionRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;techPositionRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techPositionRemoveButton.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techPositionRemoveButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="techPositionAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="techPositionAddButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 229</value>
-  </data>
-  <data name="techPositionAddButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="techPositionAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="techPositionAddButton.Text" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="&gt;&gt;techPositionAddButton.Name" xml:space="preserve">
-    <value>techPositionAddButton</value>
-  </data>
-  <data name="&gt;&gt;techPositionAddButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techPositionAddButton.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techPositionAddButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="techPositionListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="techPositionListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 171</value>
-  </data>
-  <data name="techPositionListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 81</value>
-  </data>
-  <data name="techPositionListView.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;techPositionListView.Name" xml:space="preserve">
-    <value>techPositionListView</value>
-  </data>
-  <data name="&gt;&gt;techPositionListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techPositionListView.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techPositionListView.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="techXColumnHeader.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="techXColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="techYColumnHeader.Text" xml:space="preserve">
-    <value>Y</value>
-  </data>
-  <data name="techYColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="techPictureNameBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="techPictureNameBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 138</value>
-  </data>
-  <data name="techPictureNameBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="techPictureNameBrowseButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="techPictureNameBrowseButton.Text" xml:space="preserve">
-    <value>Browse</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameBrowseButton.Name" xml:space="preserve">
-    <value>techPictureNameBrowseButton</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameBrowseButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameBrowseButton.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameBrowseButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="techPictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="techPictureNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 140</value>
-  </data>
-  <data name="techPictureNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 19</value>
-  </data>
-  <data name="techPictureNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameTextBox.Name" xml:space="preserve">
-    <value>techPictureNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameTextBox.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="techPictureNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="techPictureNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="techPictureNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 143</value>
-  </data>
-  <data name="techPictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 12</value>
-  </data>
-  <data name="techPictureNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="techPictureNameLabel.Text" xml:space="preserve">
-    <value>Picture Name</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameLabel.Name" xml:space="preserve">
-    <value>techPictureNameLabel</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameLabel.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techPictureNameLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="techYNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="techYNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 201</value>
-  </data>
-  <data name="techYNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="techYNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="techYNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;techYNumericUpDown.Name" xml:space="preserve">
-    <value>techYNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;techYNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techYNumericUpDown.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techYNumericUpDown.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="techXNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="techXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 171</value>
-  </data>
-  <data name="techXNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="techXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="techXNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;techXNumericUpDown.Name" xml:space="preserve">
-    <value>techXNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;techXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techXNumericUpDown.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techXNumericUpDown.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="techYLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="techYLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="techYLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 203</value>
-  </data>
-  <data name="techYLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="techYLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="techYLabel.Text" xml:space="preserve">
-    <value>Y</value>
-  </data>
-  <data name="&gt;&gt;techYLabel.Name" xml:space="preserve">
-    <value>techYLabel</value>
-  </data>
-  <data name="&gt;&gt;techYLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techYLabel.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techYLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="techXLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="techXLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="techXLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 173</value>
-  </data>
-  <data name="techXLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="techXLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="techXLabel.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="&gt;&gt;techXLabel.Name" xml:space="preserve">
-    <value>techXLabel</value>
-  </data>
-  <data name="&gt;&gt;techXLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techXLabel.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techXLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="techYearNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="techYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 111</value>
-  </data>
-  <data name="techYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="techYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="techYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;techYearNumericUpDown.Name" xml:space="preserve">
-    <value>techYearNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;techYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techYearNumericUpDown.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="techYearLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="techYearLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 113</value>
-  </data>
-  <data name="techYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 12</value>
-  </data>
-  <data name="techYearLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="techYearLabel.Text" xml:space="preserve">
-    <value>Year</value>
-  </data>
-  <data name="&gt;&gt;techYearLabel.Name" xml:space="preserve">
-    <value>techYearLabel</value>
-  </data>
-  <data name="&gt;&gt;techYearLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techYearLabel.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techYearLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="techIdNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="techIdNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 81</value>
-  </data>
-  <data name="techIdNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="techIdNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="techIdNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;techIdNumericUpDown.Name" xml:space="preserve">
-    <value>techIdNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;techIdNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techIdNumericUpDown.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techIdNumericUpDown.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="techIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="techIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 83</value>
-  </data>
-  <data name="techIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="techIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="techIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;techIdLabel.Name" xml:space="preserve">
-    <value>techIdLabel</value>
-  </data>
-  <data name="&gt;&gt;techIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techIdLabel.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techIdLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="techShortNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="techShortNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 50</value>
-  </data>
-  <data name="techShortNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 19</value>
-  </data>
-  <data name="techShortNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;techShortNameTextBox.Name" xml:space="preserve">
-    <value>techShortNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;techShortNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techShortNameTextBox.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techShortNameTextBox.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="techShortNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="techShortNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 53</value>
-  </data>
-  <data name="techShortNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="techShortNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="techShortNameLabel.Text" xml:space="preserve">
-    <value>Short Name</value>
-  </data>
-  <data name="&gt;&gt;techShortNameLabel.Name" xml:space="preserve">
-    <value>techShortNameLabel</value>
-  </data>
-  <data name="&gt;&gt;techShortNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techShortNameLabel.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techShortNameLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="techNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="techNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 20</value>
-  </data>
-  <data name="techNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 19</value>
-  </data>
-  <data name="techNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;techNameTextBox.Name" xml:space="preserve">
-    <value>techNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;techNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techNameTextBox.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techNameTextBox.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="techNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="techNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 23</value>
-  </data>
-  <data name="techNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="techNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="techNameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;techNameLabel.Name" xml:space="preserve">
-    <value>techNameLabel</value>
-  </data>
-  <data name="&gt;&gt;techNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techNameLabel.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techNameLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="techPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="techPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>323, 1</value>
-  </data>
-  <data name="techPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>344, 266</value>
-  </data>
-  <data name="techPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="techPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;techPictureBox.Name" xml:space="preserve">
-    <value>techPictureBox</value>
-  </data>
-  <data name="&gt;&gt;techPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;techPictureBox.Parent" xml:space="preserve">
-    <value>techTabPage</value>
-  </data>
-  <data name="&gt;&gt;techPictureBox.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="orTechComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="orTechComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 203</value>
-  </data>
-  <data name="orTechComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 20</value>
-  </data>
-  <data name="orTechComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;orTechComboBox.Name" xml:space="preserve">
-    <value>orTechComboBox</value>
-  </data>
-  <data name="&gt;&gt;orTechComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;orTechComboBox.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;orTechComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="orIdNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="orIdNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>531, 175</value>
-  </data>
-  <data name="orIdNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="orIdNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="orIdNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;orIdNumericUpDown.Name" xml:space="preserve">
-    <value>orIdNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;orIdNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;orIdNumericUpDown.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;orIdNumericUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="orIdLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="orIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="orIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>446, 177</value>
-  </data>
-  <data name="orIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="orIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="orIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;orIdLabel.Name" xml:space="preserve">
-    <value>orIdLabel</value>
-  </data>
-  <data name="&gt;&gt;orIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;orIdLabel.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;orIdLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="andTechComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="andTechComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 78</value>
-  </data>
-  <data name="andTechComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 20</value>
-  </data>
-  <data name="andTechComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;andTechComboBox.Name" xml:space="preserve">
-    <value>andTechComboBox</value>
-  </data>
-  <data name="&gt;&gt;andTechComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;andTechComboBox.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;andTechComboBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="andIdNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="andIdNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>531, 50</value>
-  </data>
-  <data name="andIdNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="andIdNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="andIdNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;andIdNumericUpDown.Name" xml:space="preserve">
-    <value>andIdNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;andIdNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;andIdNumericUpDown.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;andIdNumericUpDown.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="andIdLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="andIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="andIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>446, 52</value>
-  </data>
-  <data name="andIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="andIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="andIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;andIdLabel.Name" xml:space="preserve">
-    <value>andIdLabel</value>
-  </data>
-  <data name="&gt;&gt;andIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;andIdLabel.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;andIdLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="andRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="andRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="andRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 76</value>
-  </data>
-  <data name="andRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="andRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="andRemoveButton.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="&gt;&gt;andRemoveButton.Name" xml:space="preserve">
-    <value>andRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;andRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;andRemoveButton.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;andRemoveButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="andAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="andAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="andAddButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 47</value>
-  </data>
-  <data name="andAddButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="andAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="andAddButton.Text" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="&gt;&gt;andAddButton.Name" xml:space="preserve">
-    <value>andAddButton</value>
-  </data>
-  <data name="&gt;&gt;andAddButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;andAddButton.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;andAddButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="orRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="orRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="orRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 201</value>
-  </data>
-  <data name="orRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="orRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="orRemoveButton.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="&gt;&gt;orRemoveButton.Name" xml:space="preserve">
-    <value>orRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;orRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;orRemoveButton.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;orRemoveButton.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="orAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="orAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="orAddButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 172</value>
-  </data>
-  <data name="orAddButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="orAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="orAddButton.Text" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="&gt;&gt;orAddButton.Name" xml:space="preserve">
-    <value>orAddButton</value>
-  </data>
-  <data name="&gt;&gt;orAddButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;orAddButton.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;orAddButton.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="orRequiredListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="orRequiredListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 163</value>
-  </data>
-  <data name="orRequiredListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 90</value>
-  </data>
-  <data name="orRequiredListView.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;orRequiredListView.Name" xml:space="preserve">
-    <value>orRequiredListView</value>
-  </data>
-  <data name="&gt;&gt;orRequiredListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;orRequiredListView.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;orRequiredListView.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="orIdColumnHeader.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="orNameColumnHeader.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="orNameColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>235</value>
-  </data>
-  <data name="andRequiredListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="andRequiredListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 38</value>
-  </data>
-  <data name="andRequiredListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 90</value>
-  </data>
-  <data name="andRequiredListView.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;andRequiredListView.Name" xml:space="preserve">
-    <value>andRequiredListView</value>
-  </data>
-  <data name="&gt;&gt;andRequiredListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;andRequiredListView.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;andRequiredListView.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="andIdColumnHeader.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="andNameColumnHeader.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="andNameColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>235</value>
-  </data>
-  <data name="orRequiredLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="orRequiredLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 148</value>
-  </data>
-  <data name="orRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 12</value>
-  </data>
-  <data name="orRequiredLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="orRequiredLabel.Text" xml:space="preserve">
-    <value>OR Required</value>
-  </data>
-  <data name="&gt;&gt;orRequiredLabel.Name" xml:space="preserve">
-    <value>orRequiredLabel</value>
-  </data>
-  <data name="&gt;&gt;orRequiredLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;orRequiredLabel.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;orRequiredLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="andRequiredLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="andRequiredLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 23</value>
-  </data>
-  <data name="andRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 12</value>
-  </data>
-  <data name="andRequiredLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="andRequiredLabel.Text" xml:space="preserve">
-    <value>AND Required</value>
-  </data>
-  <data name="&gt;&gt;andRequiredLabel.Name" xml:space="preserve">
-    <value>andRequiredLabel</value>
-  </data>
-  <data name="&gt;&gt;andRequiredLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;andRequiredLabel.Parent" xml:space="preserve">
-    <value>requiredTabPage</value>
-  </data>
-  <data name="&gt;&gt;andRequiredLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <data name="labelPositionRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -3084,6 +2319,18 @@
   <data name="labelPositionListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="labelXColumnHeader.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="labelXColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="labelYColumnHeader.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="labelYColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
   <data name="labelPositionListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 171</value>
   </data>
@@ -3104,18 +2351,6 @@
   </data>
   <data name="&gt;&gt;labelPositionListView.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="labelXColumnHeader.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="labelXColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="labelYColumnHeader.Text" xml:space="preserve">
-    <value>Y</value>
-  </data>
-  <data name="labelYColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
   </data>
   <data name="labelYNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -3282,6 +2517,30 @@
   <data name="&gt;&gt;labelNameLabel.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="labelTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="labelTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>673, 269</value>
+  </data>
+  <data name="labelTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="labelTabPage.Text" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="&gt;&gt;labelTabPage.Name" xml:space="preserve">
+    <value>labelTabPage</value>
+  </data>
+  <data name="&gt;&gt;labelTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelTabPage.Parent" xml:space="preserve">
+    <value>editTabControl</value>
+  </data>
+  <data name="&gt;&gt;labelTabPage.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="eventPositionRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -3345,6 +2604,18 @@
   <data name="eventPositionListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="eventXColumnHeader.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="eventXColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="eventYColumnHeader.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="eventYColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
   <data name="eventPositionListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 171</value>
   </data>
@@ -3365,18 +2636,6 @@
   </data>
   <data name="&gt;&gt;eventPositionListView.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="eventXColumnHeader.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="eventXColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="eventYColumnHeader.Text" xml:space="preserve">
-    <value>Y</value>
-  </data>
-  <data name="eventYColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
   </data>
   <data name="eventTechComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>99, 80</value>
@@ -3614,6 +2873,51 @@
   </data>
   <data name="&gt;&gt;eventTechIdLabel.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="eventTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="eventTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>673, 269</value>
+  </data>
+  <data name="eventTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="eventTabPage.Text" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="&gt;&gt;eventTabPage.Name" xml:space="preserve">
+    <value>eventTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventTabPage.Parent" xml:space="preserve">
+    <value>editTabControl</value>
+  </data>
+  <data name="&gt;&gt;eventTabPage.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="editTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>210, 325</value>
+  </data>
+  <data name="editTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>681, 295</value>
+  </data>
+  <data name="editTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Name" xml:space="preserve">
+    <value>editTabControl</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;editTabControl.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="techListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>

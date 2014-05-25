@@ -1,5 +1,9 @@
 Alternative HoI2 Editor Changelog
 
+- 25 May 2014; Ver 0.41
+
+Fixed a crash when tech tree label's positions are over 999.
+
 - 20 May 2014; Ver 0.40
 
 Fixed a crash when sequential names are added in empty countries.

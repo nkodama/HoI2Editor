@@ -346,7 +346,7 @@
             // 
             resources.ApplyResources(this.techYNumericUpDown, "techYNumericUpDown");
             this.techYNumericUpDown.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
@@ -357,7 +357,7 @@
             // 
             resources.ApplyResources(this.techXNumericUpDown, "techXNumericUpDown");
             this.techXNumericUpDown.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
@@ -992,7 +992,7 @@
             // 
             resources.ApplyResources(this.labelYNumericUpDown, "labelYNumericUpDown");
             this.labelYNumericUpDown.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
@@ -1003,7 +1003,7 @@
             // 
             resources.ApplyResources(this.labelXNumericUpDown, "labelXNumericUpDown");
             this.labelXNumericUpDown.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
@@ -1101,7 +1101,7 @@
             // 
             resources.ApplyResources(this.eventYNumericUpDown, "eventYNumericUpDown");
             this.eventYNumericUpDown.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
@@ -1112,7 +1112,7 @@
             // 
             resources.ApplyResources(this.eventXNumericUpDown, "eventXNumericUpDown");
             this.eventXNumericUpDown.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
