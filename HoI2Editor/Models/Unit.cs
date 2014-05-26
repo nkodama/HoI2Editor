@@ -165,6 +165,15 @@ namespace HoI2Editor.Models
         /// </summary>
         private bool _dirtyFlag;
 
+        /// <summary>
+        ///     実体存在フラグ
+        /// </summary>
+        /// <remarks>
+        ///     d_rsv_33～d_rsv_40、b_rsv_36～b_rsv_40はこの値がfalseならばlist_prioのみ保存される
+        ///     d_01～d_99、b_01～b_99はこの値がfalseならば保存されない
+        /// </remarks>
+        private bool _entityFlag;
+
         #endregion
 
         #region 内部定数
@@ -2121,6 +2130,7 @@ namespace HoI2Editor.Models
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
+            SetEntity();
 
             switch (id)
             {
@@ -2206,6 +2216,7 @@ namespace HoI2Editor.Models
         public void SetDirty()
         {
             _dirtyFlag = true;
+            SetEntity();
         }
 
         /// <summary>
@@ -2225,6 +2236,7 @@ namespace HoI2Editor.Models
         {
             _dirtyFileFlag = true;
             _dirtyFlag = true;
+            SetEntity();
             Units.SetDirty();
         }
 
@@ -2250,6 +2262,7 @@ namespace HoI2Editor.Models
             }
             _dirtyFileFlag = true;
             _dirtyFlag = true;
+            SetEntity();
             Units.SetDirty();
         }
 
@@ -2269,6 +2282,63 @@ namespace HoI2Editor.Models
             }
             _dirtyFileFlag = false;
             _dirtyFlag = false;
+        }
+
+        /// <summary>
+        ///     項目の実体が存在するかどうかを取得する
+        /// </summary>
+        /// <returns></returns>
+        public bool ExistsEntity()
+        {
+            return _entityFlag;
+        }
+
+        /// <summary>
+        ///     実体存在フラグを設定する
+        /// </summary>
+        public void SetEntity()
+        {
+            // DH1.03以降以外ならば何もしない
+            if ((Game.Type != GameType.DarkestHour) || (Game.Version < 103))
+            {
+                return;
+            }
+
+            // 設定済みならば何もしない
+            if (_entityFlag)
+            {
+                return;
+            }
+
+            _entityFlag = true;
+
+            // 実体存在フラグをセットする場合は師団/旅団定義ファイルも更新する
+            if (Organization == UnitOrganization.Division)
+            {
+                Units.SetDirtyDivisionTypes();
+            }
+            else
+            {
+                Units.SetDirtyBrigadeTypes();
+            }
+
+            // 文字列定義が存在しない場合は割り当てる
+            if (!string.IsNullOrEmpty(Name) && !Config.ExistsKey(Name))
+            {
+                Config.SetText(Name, "", Game.UnitTextFileName);
+            }
+            if (!string.IsNullOrEmpty(ShortName) && !Config.ExistsKey(ShortName))
+            {
+                Config.SetText(ShortName, "", Game.UnitTextFileName);
+            }
+            if (!string.IsNullOrEmpty(Desc) && !Config.ExistsKey(Desc))
+            {
+                Config.SetText(Desc, "", Game.UnitTextFileName);
+            }
+            if (!string.IsNullOrEmpty(ShortDesc) && !Config.ExistsKey(ShortDesc))
+            {
+                Config.SetText(ShortDesc, "", Game.UnitTextFileName);
+            }
         }
 
         #endregion

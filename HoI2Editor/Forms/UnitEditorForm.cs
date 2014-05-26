@@ -330,7 +330,7 @@ namespace HoI2Editor.Forms
             else
             {
                 branchComboBox.Enabled = false;
-                detachableCheckBox.Enabled = true;
+                detachableCheckBox.Enabled = false;
             }
         }
 
@@ -1238,6 +1238,8 @@ namespace HoI2Editor.Forms
             {
                 listPrioLabel.Enabled = true;
                 listPrioNumericUpDown.Enabled = true;
+                listPrioNumericUpDown.Value = unit.ListPrio;
+                listPrioNumericUpDown.Text = unit.ListPrio.ToString(CultureInfo.InvariantCulture);
 
                 // 師団
                 if (unit.Organization == UnitOrganization.Division)

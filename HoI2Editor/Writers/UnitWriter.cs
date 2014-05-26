@@ -616,7 +616,7 @@ namespace HoI2Editor.Writers
                     Unit unit = units[(int) type];
 
                     // ユーザー定義師団に定義内容がなければ出力しない
-                    if ((unit.ListPrio == -1) && (unit.Type >= UnitType.Division01))
+                    if ((unit.Type >= UnitType.Division01) && !unit.ExistsEntity() && (unit.Models.Count == 0))
                     {
                         continue;
                     }
@@ -644,7 +644,7 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("{0} = {{\t# Reserved for use by Darkest Hour Full", Units.Strings[(int) unit.Type]);
             }
             writer.WriteLine("\t#ID\t\t\t{0}", Units.UnitNumbers[(int) unit.Type]);
-            if (unit.ListPrio != -1)
+            if (unit.ExistsEntity() || (unit.Models.Count > 0))
             {
                 writer.WriteLine("\ttype\t\t= {0}", Units.RealStrings[(int) unit.RealType]);
                 writer.WriteLine("\tname\t\t= {0}", unit.Name);
@@ -874,7 +874,7 @@ namespace HoI2Editor.Writers
                     Unit unit = units[(int) type];
 
                     // ユーザー定義旅団に定義内容がなければ出力しない
-                    if ((unit.ListPrio == -1) && (unit.Type >= UnitType.Brigade01))
+                    if ((unit.Type >= UnitType.Brigade01) && !unit.ExistsEntity() && (unit.Models.Count == 0))
                     {
                         continue;
                     }
@@ -906,7 +906,7 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("{0} = {{", Units.Strings[(int) unit.Type]);
             }
             writer.WriteLine("\t#ID\t\t\t{0}", Units.UnitNumbers[(int) unit.Type]);
-            if (unit.ListPrio != -1)
+            if (unit.ExistsEntity() || (unit.Models.Count > 0))
             {
                 switch (unit.Branch)
                 {

@@ -1,9 +1,10 @@
 Alternative HoI2 Editor Changelog
 
-- 25 May 2014; Ver 0.41
+- 27 May 2014; Ver 0.41
 
 Division's branch can be changed on DH 1.03.
 Fixed a crash when tech tree label's positions are over 999.
+Fixed a bug that d_rsv_33-d_rsv_40,d_01-d_99,b_rsv_36-b_rsv_40,b_01-b_99 are not saved.
 
 - 20 May 2014; Ver 0.40
 

@@ -2281,6 +2281,8 @@ namespace HoI2Editor.Parsers
                             unit.RealType = Units.RealStringMap[s];
                             // 実ユニット種類に対応する兵科を設定する
                             unit.Branch = Units.RealBranchTable[(int) unit.RealType];
+                            // 実体存在フラグを設定する
+                            unit.SetEntity();
                             continue;
                         }
                     }
@@ -2291,6 +2293,8 @@ namespace HoI2Editor.Parsers
                         {
                             // 陸軍旅団
                             unit.Branch = Branch.Army;
+                            // 実体存在フラグを設定する
+                            unit.SetEntity();
                             continue;
                         }
                         // naval
@@ -2298,6 +2302,8 @@ namespace HoI2Editor.Parsers
                         {
                             // 海軍旅団
                             unit.Branch = Branch.Navy;
+                            // 実体存在フラグを設定する
+                            unit.SetEntity();
                             continue;
                         }
                         // air
@@ -2305,6 +2311,8 @@ namespace HoI2Editor.Parsers
                         {
                             // 空軍旅団
                             unit.Branch = Branch.Airforce;
+                            // 実体存在フラグを設定する
+                            unit.SetEntity();
                             continue;
                         }
                     }
@@ -2338,6 +2346,8 @@ namespace HoI2Editor.Parsers
 
                     // ユニットクラス名
                     unit.Name = token.Value as string;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2364,6 +2374,8 @@ namespace HoI2Editor.Parsers
 
                     // ユニットクラス短縮名
                     unit.ShortName = token.Value as string;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2390,6 +2402,8 @@ namespace HoI2Editor.Parsers
 
                     // ユニットクラス説明
                     unit.Desc = token.Value as string;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2416,6 +2430,8 @@ namespace HoI2Editor.Parsers
 
                     // ユニットクラス短縮説明
                     unit.ShortDesc = token.Value as string;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2442,6 +2458,8 @@ namespace HoI2Editor.Parsers
 
                     // 統計グループ
                     unit.Eyr = (int) (double) token.Value;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2483,6 +2501,8 @@ namespace HoI2Editor.Parsers
 
                     // スプライト種類
                     unit.Sprite = Units.SpriteStringMap[s];
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2533,6 +2553,8 @@ namespace HoI2Editor.Parsers
 
                     // 代替ユニット種類
                     unit.Transmute = type;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2559,6 +2581,8 @@ namespace HoI2Editor.Parsers
 
                     // 画像の優先度
                     unit.GfxPrio = (int) (double) token.Value;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2585,6 +2609,8 @@ namespace HoI2Editor.Parsers
 
                     // 軍事力
                     unit.Value = (double) token.Value;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2611,6 +2637,11 @@ namespace HoI2Editor.Parsers
 
                     // リストの優先度
                     unit.ListPrio = (int) (double) token.Value;
+                    if (unit.ListPrio != -1)
+                    {
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
+                    }
                     continue;
                 }
 
@@ -2637,6 +2668,8 @@ namespace HoI2Editor.Parsers
 
                     // UI優先度
                     unit.UiPrio = (int) (double) token.Value;
+                    // 実体存在フラグを設定する
+                    unit.SetEntity();
                     continue;
                 }
 
@@ -2672,6 +2705,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 初期状態で生産可能
                         unit.Productable = true;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2679,6 +2714,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 初期状態で生産不可能
                         unit.Productable = false;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2720,6 +2757,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 空母航空隊である
                         unit.Cag = true;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2727,6 +2766,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 空母航空隊ではない
                         unit.Cag = false;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2768,6 +2809,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 護衛戦闘機である
                         unit.Escort = true;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2775,6 +2818,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 護衛戦闘機である
                         unit.Escort = false;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2816,6 +2861,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 工兵である
                         unit.Engineer = true;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2823,6 +2870,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 工兵ではない
                         unit.Engineer = false;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2864,6 +2913,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 実ユニット種類のデフォルトである
                         unit.DefaultType = true;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
@@ -2871,6 +2922,8 @@ namespace HoI2Editor.Parsers
                     {
                         // 実ユニット種類のデフォルトではない
                         unit.DefaultType = false;
+                        // 実体存在フラグを設定する
+                        unit.SetEntity();
                         continue;
                     }
 
