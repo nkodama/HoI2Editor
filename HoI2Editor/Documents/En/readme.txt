@@ -1,4 +1,4 @@
-Alternative HoI2 Editor Ver 0.40
+Alternative HoI2 Editor Ver 0.41
 
 - What is this?
 
