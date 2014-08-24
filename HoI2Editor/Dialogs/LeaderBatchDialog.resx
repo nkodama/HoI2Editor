@@ -117,413 +117,380 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="rankYearCheckBox4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="rankYearCheckBox4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="rankYearCheckBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 295</value>
+  <data name="rankYearNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 269</value>
   </data>
-  <data name="rankYearCheckBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
-  </data>
-  <data name="rankYearCheckBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="rankYearCheckBox4.Text" xml:space="preserve">
-    <value>Rank0 Year</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox4.Name" xml:space="preserve">
-    <value>rankYearCheckBox4</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox4.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rankYearNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 294</value>
-  </data>
-  <data name="rankYearNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="rankYearNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="rankYearNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown4.Name" xml:space="preserve">
-    <value>rankYearNumericUpDown4</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown4.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rankYearCheckBox1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rankYearCheckBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="endYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 16</value>
   </data>
   <data name="rankYearCheckBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 220</value>
   </data>
-  <data name="rankYearCheckBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
-  </data>
-  <data name="rankYearCheckBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="rankYearCheckBox1.Text" xml:space="preserve">
-    <value>Rank3 Year</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox1.Name" xml:space="preserve">
-    <value>rankYearCheckBox1</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox1.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="rankYearNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 219</value>
-  </data>
-  <data name="rankYearNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="retirementYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 19</value>
   </data>
-  <data name="rankYearNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="startYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 144</value>
   </data>
-  <data name="rankYearNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;retirementYearCheckBox.ZOrder" xml:space="preserve">
+    <value>22</value>
   </data>
-  <data name="&gt;&gt;rankYearNumericUpDown1.Name" xml:space="preserve">
-    <value>rankYearNumericUpDown1</value>
+  <data name="&gt;&gt;editGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;rankYearNumericUpDown1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown1.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="rankYearCheckBox2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rankYearCheckBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rankYearCheckBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 245</value>
-  </data>
-  <data name="rankYearCheckBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
-  </data>
-  <data name="rankYearCheckBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="rankYearCheckBox2.Text" xml:space="preserve">
-    <value>Rank2 Year</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox2.Name" xml:space="preserve">
-    <value>rankYearCheckBox2</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox2.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="rankYearNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 245</value>
-  </data>
-  <data name="rankYearNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="rankYearNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="rankYearNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown2.Name" xml:space="preserve">
-    <value>rankYearNumericUpDown2</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown2.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown2.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="rankYearCheckBox3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rankYearCheckBox3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rankYearCheckBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 270</value>
-  </data>
-  <data name="rankYearCheckBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
-  </data>
-  <data name="rankYearCheckBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="rankYearCheckBox3.Text" xml:space="preserve">
-    <value>Rank1 Year</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox3.Name" xml:space="preserve">
-    <value>rankYearCheckBox3</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox3.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearCheckBox3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="rankYearNumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 269</value>
-  </data>
-  <data name="rankYearNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="rankYearNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="rankYearNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown3.Name" xml:space="preserve">
-    <value>rankYearNumericUpDown3</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown3.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;rankYearNumericUpDown3.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="loyaltyCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="loyaltyCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="loyaltyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 120</value>
-  </data>
-  <data name="loyaltyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 16</value>
-  </data>
-  <data name="loyaltyCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="loyaltyCheckBox.Text" xml:space="preserve">
-    <value>Loyalty</value>
-  </data>
-  <data name="&gt;&gt;loyaltyCheckBox.Name" xml:space="preserve">
-    <value>loyaltyCheckBox</value>
-  </data>
-  <data name="&gt;&gt;loyaltyCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loyaltyCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;loyaltyCheckBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="loyaltyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 119</value>
-  </data>
-  <data name="loyaltyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="loyaltyNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="loyaltyNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;loyaltyNumericUpDown.Name" xml:space="preserve">
-    <value>loyaltyNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;loyaltyNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loyaltyNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;loyaltyNumericUpDown.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="experienceCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="experienceCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="experienceCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 95</value>
-  </data>
-  <data name="experienceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 16</value>
-  </data>
-  <data name="experienceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="experienceCheckBox.Text" xml:space="preserve">
-    <value>Experience</value>
-  </data>
-  <data name="&gt;&gt;experienceCheckBox.Name" xml:space="preserve">
-    <value>experienceCheckBox</value>
-  </data>
-  <data name="&gt;&gt;experienceCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;experienceCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;experienceCheckBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="experienceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 94</value>
+  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>296, 351</value>
   </data>
   <data name="experienceNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 19</value>
   </data>
-  <data name="experienceNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="experienceNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;experienceNumericUpDown.Name" xml:space="preserve">
-    <value>experienceNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;experienceNumericUpDown.Type" xml:space="preserve">
+  <data name="&gt;&gt;loyaltyNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;experienceNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+  <data name="&gt;&gt;loyaltyCheckBox.Name" xml:space="preserve">
+    <value>loyaltyCheckBox</value>
+  </data>
+  <data name="loyaltyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 119</value>
   </data>
   <data name="&gt;&gt;experienceNumericUpDown.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="maxSkillCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;targetGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="maxSkillCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;startYearCheckBox.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
-  <data name="maxSkillCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 70</value>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="maxSkillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 16</value>
+  <data name="rankYearCheckBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 270</value>
   </data>
-  <data name="maxSkillCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="maxSkillCheckBox.Text" xml:space="preserve">
-    <value>Max Skill</value>
-  </data>
-  <data name="&gt;&gt;maxSkillCheckBox.Name" xml:space="preserve">
-    <value>maxSkillCheckBox</value>
-  </data>
-  <data name="&gt;&gt;maxSkillCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxSkillCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxSkillCheckBox.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="maxSkillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 69</value>
-  </data>
-  <data name="maxSkillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rankYearNumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 19</value>
   </data>
-  <data name="maxSkillNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="rankYearCheckBox3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="maxSkillNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>LeaderBatchDialog</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="endYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;maxSkillNumericUpDown.Name" xml:space="preserve">
-    <value>maxSkillNumericUpDown</value>
+  <data name="rankYearNumericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="endYearCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>377, 351</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox4.Name" xml:space="preserve">
+    <value>rankYearCheckBox4</value>
+  </data>
+  <data name="experienceNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;skillCheckBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="editGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 328</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="specifiedRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="experienceCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;editGroupBox.Name" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox2.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;targetGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="startYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
   </data>
   <data name="&gt;&gt;maxSkillNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;maxSkillNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+  <data name="&gt;&gt;maxSkillCheckBox.Name" xml:space="preserve">
+    <value>maxSkillCheckBox</value>
   </data>
-  <data name="&gt;&gt;maxSkillNumericUpDown.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>464, 386</value>
   </data>
-  <data name="idealRankComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 18</value>
+  <data name="rankYearCheckBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 16</value>
   </data>
-  <data name="idealRankComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
+  <data name="loyaltyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 16</value>
+  </data>
+  <data name="specifiedRadioButton.Text" xml:space="preserve">
+    <value>Specified Country</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;okButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="endYearCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Batch Editing</value>
+  </data>
+  <data name="retirementYearCheckBox.Text" xml:space="preserve">
+    <value>Retirement Year</value>
+  </data>
+  <data name="&gt;&gt;selectedRadioButton.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="idealRankComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;idealRankComboBox.Name" xml:space="preserve">
-    <value>idealRankComboBox</value>
+  <data name="rankYearCheckBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 16</value>
   </data>
-  <data name="&gt;&gt;idealRankComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="skillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 44</value>
   </data>
-  <data name="&gt;&gt;idealRankComboBox.Parent" xml:space="preserve">
+  <data name="idealRankComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="skillNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown3.Name" xml:space="preserve">
+    <value>rankYearNumericUpDown3</value>
+  </data>
+  <data name="loyaltyNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;startYearCheckBox.Parent" xml:space="preserve">
     <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;experienceNumericUpDown.Name" xml:space="preserve">
+    <value>experienceNumericUpDown</value>
+  </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;retirementYearNumericUpDown.Name" xml:space="preserve">
+    <value>retirementYearNumericUpDown</value>
+  </data>
+  <data name="rankYearCheckBox3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="retirementYearCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rankYearNumericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="specifiedRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="experienceCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rankYearNumericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 294</value>
+  </data>
+  <data name="targetGroupBox.Text" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="startYearCheckBox.Text" xml:space="preserve">
+    <value>Start Year</value>
+  </data>
+  <data name="startYearCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 145</value>
+  </data>
+  <data name="&gt;&gt;countryComboBox.Name" xml:space="preserve">
+    <value>countryComboBox</value>
+  </data>
+  <data name="rankYearCheckBox2.Text" xml:space="preserve">
+    <value>Rank2 Year</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox1.Name" xml:space="preserve">
+    <value>rankYearCheckBox1</value>
+  </data>
+  <data name="skillCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 45</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="targetGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 119</value>
+  </data>
+  <data name="&gt;&gt;maxSkillNumericUpDown.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="targetGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="skillNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="skillCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="rankYearCheckBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;idealRankComboBox.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="idealRankCheckBox.AutoSize" type="System.Boolean, mscorlib">
+  <data name="experienceCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="specifiedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 16</value>
+  </data>
+  <data name="rankYearNumericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="idealRankComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 18</value>
+  </data>
+  <data name="experienceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 94</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rankYearCheckBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;maxSkillCheckBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="rankYearCheckBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rankYearCheckBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 16</value>
+  </data>
+  <data name="&gt;&gt;retirementYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectedRadioButton.Parent" xml:space="preserve">
+    <value>targetGroupBox</value>
+  </data>
+  <data name="startYearCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="idealRankCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="allRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="experienceCheckBox.Text" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="rankYearNumericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.Parent" xml:space="preserve">
+    <value>targetGroupBox</value>
+  </data>
+  <data name="retirementYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;loyaltyNumericUpDown.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox3.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;retirementYearCheckBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;skillNumericUpDown.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="selectedRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;targetGroupBox.Name" xml:space="preserve">
+    <value>targetGroupBox</value>
+  </data>
+  <data name="selectedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 16</value>
+  </data>
+  <data name="&gt;&gt;endYearCheckBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="maxSkillCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="idealRankCheckBox.Text" xml:space="preserve">
+    <value>Ideal Rank</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="rankYearCheckBox4.Text" xml:space="preserve">
+    <value>Rank0 Year</value>
+  </data>
+  <data name="retirementYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;startYearCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;retirementYearCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;endYearCheckBox.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="idealRankCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 20</value>
@@ -531,469 +498,502 @@
   <data name="idealRankCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 16</value>
   </data>
-  <data name="idealRankCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;loyaltyCheckBox.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="idealRankCheckBox.Text" xml:space="preserve">
-    <value>Ideal Rank</value>
-  </data>
-  <data name="&gt;&gt;idealRankCheckBox.Name" xml:space="preserve">
-    <value>idealRankCheckBox</value>
-  </data>
-  <data name="&gt;&gt;idealRankCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;idealRankCheckBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;rankYearNumericUpDown3.Parent" xml:space="preserve">
     <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;targetGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;idealRankCheckBox.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="skillCheckBox.AutoSize" type="System.Boolean, mscorlib">
+  <data name="loyaltyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="rankYearCheckBox4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="skillCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
+    <value>okButton</value>
+  </data>
+  <data name="cancelButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="skillCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 45</value>
-  </data>
-  <data name="skillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 16</value>
-  </data>
-  <data name="skillCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <data name="skillCheckBox.Text" xml:space="preserve">
     <value>Skill</value>
   </data>
-  <data name="&gt;&gt;skillCheckBox.Name" xml:space="preserve">
-    <value>skillCheckBox</value>
+  <data name="retirementYearCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 195</value>
   </data>
-  <data name="&gt;&gt;skillCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;skillCheckBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;rankYearNumericUpDown4.Parent" xml:space="preserve">
     <value>editGroupBox</value>
   </data>
-  <data name="&gt;&gt;skillCheckBox.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="skillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 44</value>
-  </data>
-  <data name="skillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="skillNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="skillNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;skillNumericUpDown.Name" xml:space="preserve">
-    <value>skillNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;skillNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;skillNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;skillNumericUpDown.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="startYearCheckBox.AutoSize" type="System.Boolean, mscorlib">
+  <data name="idealRankCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="startYearCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="startYearCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 145</value>
-  </data>
-  <data name="startYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 16</value>
-  </data>
-  <data name="startYearCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="startYearCheckBox.Text" xml:space="preserve">
-    <value>Start Year</value>
-  </data>
-  <data name="&gt;&gt;startYearCheckBox.Name" xml:space="preserve">
-    <value>startYearCheckBox</value>
-  </data>
-  <data name="&gt;&gt;startYearCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;startYearCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;startYearCheckBox.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="startYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 144</value>
-  </data>
-  <data name="startYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="startYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="startYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;startYearNumericUpDown.Name" xml:space="preserve">
-    <value>startYearNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;startYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;startYearNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;startYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="endYearCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="endYearCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="endYearCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 170</value>
-  </data>
-  <data name="endYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 16</value>
   </data>
   <data name="endYearCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="endYearCheckBox.Text" xml:space="preserve">
-    <value>End Year</value>
+  <data name="maxSkillCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 70</value>
   </data>
-  <data name="&gt;&gt;endYearCheckBox.Name" xml:space="preserve">
-    <value>endYearCheckBox</value>
-  </data>
-  <data name="&gt;&gt;endYearCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;endYearCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;endYearCheckBox.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="endYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 169</value>
-  </data>
-  <data name="endYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="endYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="endYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;endYearNumericUpDown.Name" xml:space="preserve">
-    <value>endYearNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;endYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;endYearNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
+  <data name="rankYearNumericUpDown3.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
-  </data>
-  <data name="retirementYearCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="retirementYearCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="retirementYearCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 195</value>
-  </data>
-  <data name="retirementYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 16</value>
-  </data>
-  <data name="retirementYearCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="retirementYearCheckBox.Text" xml:space="preserve">
-    <value>Retirement Year</value>
-  </data>
-  <data name="&gt;&gt;retirementYearCheckBox.Name" xml:space="preserve">
-    <value>retirementYearCheckBox</value>
-  </data>
-  <data name="&gt;&gt;retirementYearCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;retirementYearCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;retirementYearCheckBox.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="retirementYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 194</value>
-  </data>
-  <data name="retirementYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="retirementYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="retirementYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;retirementYearNumericUpDown.Name" xml:space="preserve">
-    <value>retirementYearNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;retirementYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;retirementYearNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
   </data>
   <data name="&gt;&gt;retirementYearNumericUpDown.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
-  <data name="editGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 12</value>
+  <data name="loyaltyCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="editGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 328</value>
+  <data name="rankYearCheckBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 245</value>
   </data>
-  <data name="editGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;endYearCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="editGroupBox.Text" xml:space="preserve">
-    <value>Edit</value>
+  <data name="endYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
   </data>
-  <data name="&gt;&gt;editGroupBox.Name" xml:space="preserve">
-    <value>editGroupBox</value>
+  <data name="&gt;&gt;idealRankCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="maxSkillNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="targetGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="maxSkillCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="startYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;idealRankComboBox.Name" xml:space="preserve">
+    <value>idealRankComboBox</value>
+  </data>
+  <data name="rankYearNumericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;editGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;editGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;rankYearCheckBox4.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
   </data>
-  <data name="countryComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 85</value>
+  <data name="maxSkillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 16</value>
   </data>
-  <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 20</value>
+  <data name="skillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 16</value>
   </data>
-  <data name="countryComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="experienceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 16</value>
   </data>
-  <data name="&gt;&gt;countryComboBox.Name" xml:space="preserve">
-    <value>countryComboBox</value>
+  <data name="&gt;&gt;skillNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="maxSkillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
   </data>
   <data name="&gt;&gt;countryComboBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;countryComboBox.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+  <data name="&gt;&gt;maxSkillCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;countryComboBox.ZOrder" xml:space="preserve">
+  <data name="endYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 169</value>
+  </data>
+  <data name="okButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="allRadioButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;rankYearNumericUpDown1.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
   </data>
-  <data name="allRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;maxSkillCheckBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
   </data>
-  <data name="allRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 19</value>
-  </data>
-  <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 16</value>
-  </data>
-  <data name="allRadioButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="allRadioButton.Text" xml:space="preserve">
-    <value>All Ministers</value>
-  </data>
-  <data name="&gt;&gt;allRadioButton.Name" xml:space="preserve">
-    <value>allRadioButton</value>
-  </data>
-  <data name="&gt;&gt;allRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;allRadioButton.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
-  </data>
-  <data name="&gt;&gt;allRadioButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
   </data>
   <data name="selectedRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="selectedRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="selectedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 41</value>
+  <data name="&gt;&gt;rankYearCheckBox2.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="selectedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 16</value>
+  <data name="&gt;&gt;loyaltyCheckBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
   </data>
-  <data name="selectedRadioButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="allRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 19</value>
   </data>
-  <data name="selectedRadioButton.Text" xml:space="preserve">
-    <value>Selected Countries</value>
+  <data name="&gt;&gt;idealRankCheckBox.Name" xml:space="preserve">
+    <value>idealRankCheckBox</value>
   </data>
-  <data name="&gt;&gt;selectedRadioButton.Name" xml:space="preserve">
-    <value>selectedRadioButton</value>
+  <data name="rankYearNumericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;selectedRadioButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;selectedRadioButton.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+  <data name="&gt;&gt;experienceCheckBox.Name" xml:space="preserve">
+    <value>experienceCheckBox</value>
   </data>
-  <data name="&gt;&gt;selectedRadioButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;rankYearCheckBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="specifiedRadioButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="rankYearNumericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 245</value>
+  </data>
+  <data name="loyaltyCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;idealRankComboBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="skillCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="loyaltyCheckBox.Text" xml:space="preserve">
+    <value>Loyalty</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown1.Name" xml:space="preserve">
+    <value>rankYearNumericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;loyaltyNumericUpDown.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox1.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="idealRankCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;loyaltyCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rankYearNumericUpDown2.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="skillNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="startYearNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="loyaltyCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="maxSkillCheckBox.Text" xml:space="preserve">
+    <value>Max Skill</value>
+  </data>
+  <data name="&gt;&gt;skillNumericUpDown.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="allRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;experienceCheckBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="rankYearCheckBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 16</value>
+  </data>
+  <data name="&gt;&gt;experienceNumericUpDown.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox2.Name" xml:space="preserve">
+    <value>rankYearCheckBox2</value>
+  </data>
+  <data name="rankYearNumericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
   <data name="specifiedRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rankYearCheckBox4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startYearCheckBox.Name" xml:space="preserve">
+    <value>startYearCheckBox</value>
+  </data>
+  <data name="countryComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="rankYearCheckBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="loyaltyNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="allRadioButton.Text" xml:space="preserve">
+    <value>All Ministers</value>
+  </data>
+  <data name="rankYearCheckBox2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="startYearCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;experienceCheckBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="rankYearCheckBox3.Text" xml:space="preserve">
+    <value>Rank1 Year</value>
+  </data>
+  <data name="rankYearCheckBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 295</value>
+  </data>
+  <data name="&gt;&gt;maxSkillNumericUpDown.Name" xml:space="preserve">
+    <value>maxSkillNumericUpDown</value>
+  </data>
+  <data name="retirementYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 194</value>
+  </data>
+  <data name="selectedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 41</value>
+  </data>
+  <data name="selectedRadioButton.Text" xml:space="preserve">
+    <value>Selected Countries</value>
+  </data>
+  <data name="editGroupBox.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown2.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="maxSkillNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 69</value>
+  </data>
+  <data name="maxSkillNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="idealRankCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rankYearNumericUpDown4.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;selectedRadioButton.Name" xml:space="preserve">
+    <value>selectedRadioButton</value>
+  </data>
+  <data name="&gt;&gt;skillCheckBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="experienceCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 95</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.Name" xml:space="preserve">
+    <value>specifiedRadioButton</value>
+  </data>
+  <data name="selectedRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="skillCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="allRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="startYearCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="endYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox3.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;experienceCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endYearCheckBox.Name" xml:space="preserve">
+    <value>endYearCheckBox</value>
+  </data>
+  <data name="rankYearNumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 219</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown4.Name" xml:space="preserve">
+    <value>rankYearNumericUpDown4</value>
+  </data>
+  <data name="retirementYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 16</value>
+  </data>
+  <data name="&gt;&gt;startYearNumericUpDown.Name" xml:space="preserve">
+    <value>startYearNumericUpDown</value>
+  </data>
+  <data name="rankYearCheckBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;idealRankCheckBox.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="&gt;&gt;skillCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="countryComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 85</value>
+  </data>
+  <data name="okButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 16</value>
+  </data>
+  <data name="editGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;loyaltyNumericUpDown.Name" xml:space="preserve">
+    <value>loyaltyNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;skillCheckBox.Name" xml:space="preserve">
+    <value>skillCheckBox</value>
+  </data>
+  <data name="maxSkillCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="specifiedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 63</value>
   </data>
-  <data name="specifiedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 16</value>
+  <data name="&gt;&gt;skillNumericUpDown.Name" xml:space="preserve">
+    <value>skillNumericUpDown</value>
   </data>
-  <data name="specifiedRadioButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="&gt;&gt;maxSkillNumericUpDown.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
   </data>
-  <data name="specifiedRadioButton.Text" xml:space="preserve">
-    <value>Specified Country</value>
+  <data name="editGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 12</value>
   </data>
-  <data name="&gt;&gt;specifiedRadioButton.Name" xml:space="preserve">
-    <value>specifiedRadioButton</value>
+  <data name="rankYearCheckBox1.Text" xml:space="preserve">
+    <value>Rank3 Year</value>
   </data>
-  <data name="&gt;&gt;specifiedRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;specifiedRadioButton.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
-  </data>
-  <data name="&gt;&gt;specifiedRadioButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="targetGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="targetGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 119</value>
-  </data>
-  <data name="targetGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="targetGroupBox.Text" xml:space="preserve">
-    <value>Target</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.Name" xml:space="preserve">
-    <value>targetGroupBox</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="cancelButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>377, 351</value>
-  </data>
-  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="&gt;&gt;idealRankComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
     <value>cancelButton</value>
   </data>
+  <data name="&gt;&gt;rankYearNumericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="endYearCheckBox.Text" xml:space="preserve">
+    <value>End Year</value>
+  </data>
+  <data name="rankYearNumericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;experienceNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.Name" xml:space="preserve">
+    <value>allRadioButton</value>
+  </data>
+  <data name="rankYearCheckBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rankYearCheckBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="experienceNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="endYearCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 170</value>
+  </data>
+  <data name="loyaltyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 120</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rankYearCheckBox3.Name" xml:space="preserve">
+    <value>rankYearCheckBox3</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.Parent" xml:space="preserve">
+    <value>targetGroupBox</value>
+  </data>
+  <data name="startYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
+  </data>
+  <data name="&gt;&gt;countryComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;countryComboBox.Parent" xml:space="preserve">
+    <value>targetGroupBox</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="retirementYearCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;rankYearNumericUpDown2.Name" xml:space="preserve">
+    <value>rankYearNumericUpDown2</value>
+  </data>
+  <data name="&gt;&gt;endYearNumericUpDown.Name" xml:space="preserve">
+    <value>endYearNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;retirementYearNumericUpDown.Parent" xml:space="preserve">
+    <value>editGroupBox</value>
+  </data>
+  <data name="retirementYearCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;retirementYearCheckBox.Name" xml:space="preserve">
+    <value>retirementYearCheckBox</value>
   </data>
-  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="okButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 351</value>
-  </data>
-  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
-  </data>
-  <data name="okButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="okButton.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
-    <value>okButton</value>
-  </data>
-  <data name="&gt;&gt;okButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>464, 386</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Batch Editing</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>LeaderBatchDialog</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>
