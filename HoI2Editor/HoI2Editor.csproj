@@ -166,6 +166,7 @@
     <Compile Include="Models\RandomLeaders.cs" />
     <Compile Include="Models\Research.cs" />
     <Compile Include="Models\Researches.cs" />
+    <Compile Include="Models\Scenario.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Models\Tech.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Parsers\MinisterModifierParser.cs" />
     <Compile Include="Parsers\MinisterPersonalityParser.cs" />
     <Compile Include="Parsers\MiscParser.cs" />
+    <Compile Include="Parsers\ScenarioParser.cs" />
     <Compile Include="Parsers\TechParser.cs" />
     <Compile Include="Parsers\TextLexer.cs" />
     <Compile Include="Parsers\Token.cs" />
