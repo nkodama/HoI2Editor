@@ -279,7 +279,7 @@ namespace HoI2Editor.Models
             // 保存フォルダ内の文字列ファイル群を読み込む
             if (Game.IsExportFolderActive)
             {
-                folderName = Path.Combine(Game.ExportFolderName, Game.ConfigPathName);
+                folderName = Game.GetExportFileName(Game.ConfigPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -311,7 +311,7 @@ namespace HoI2Editor.Models
             // MODフォルダ内の文字列ファイル群を読み込む
             if (Game.IsModActive)
             {
-                folderName = Path.Combine(Game.ModFolderName, Game.ConfigPathName);
+                folderName = Game.GetModFileName(Game.ConfigPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -375,7 +375,7 @@ namespace HoI2Editor.Models
 
                 if (Game.IsExportFolderActive)
                 {
-                    folderName = Path.Combine(Game.ExportFolderName, Game.ConfigAdditionalPathName);
+                    folderName = Game.GetExportFileName(Game.ConfigAdditionalPathName);
                     if (Directory.Exists(folderName))
                     {
                         foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -406,7 +406,7 @@ namespace HoI2Editor.Models
 
                 if (Game.IsModActive)
                 {
-                    folderName = Path.Combine(Game.ModFolderName, Game.ConfigAdditionalPathName);
+                    folderName = Game.GetModFileName(Game.ConfigAdditionalPathName);
                     if (Directory.Exists(folderName))
                     {
                         foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))

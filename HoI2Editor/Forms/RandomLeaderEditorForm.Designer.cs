@@ -102,14 +102,14 @@
             // 
             // toComboBox
             // 
-            this.toComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.toComboBox, "toComboBox");
+            this.toComboBox.FormattingEnabled = true;
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            this.withComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.withComboBox, "withComboBox");
+            this.withComboBox.FormattingEnabled = true;
             this.withComboBox.Name = "withComboBox";
             // 
             // undoButton

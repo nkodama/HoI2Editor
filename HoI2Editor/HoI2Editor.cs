@@ -17,7 +17,7 @@ namespace HoI2Editor
     /// </summary>
     public static class HoI2Editor
     {
-        #region エディターのバージョン
+        #region エディタのバージョン
 
         /// <summary>
         ///     アプリケーション名
@@ -25,12 +25,12 @@ namespace HoI2Editor
         public const string Name = "Alternative HoI2 Editor";
 
         /// <summary>
-        ///     エディターのバージョン
+        ///     エディタのバージョン
         /// </summary>
         public static string Version { get; private set; }
 
         /// <summary>
-        ///     エディターのバージョンを初期化する
+        ///     エディタのバージョンを初期化する
         /// </summary>
         public static void InitVersion()
         {
@@ -91,7 +91,8 @@ namespace HoI2Editor
                    Units.IsDirty() ||
                    CorpsNames.IsDirty() ||
                    UnitNames.IsDirty() ||
-                   RandomLeaders.IsDirty();
+                   RandomLeaders.IsDirty() ||
+                   Scenarios.IsDirty();
         }
 
         /// <summary>
@@ -110,6 +111,7 @@ namespace HoI2Editor
             CorpsNames.RequestReload();
             UnitNames.RequestReload();
             RandomLeaders.RequestReload();
+            Scenarios.RequestReload();
 
             SaveCanceled = false;
 
@@ -135,6 +137,7 @@ namespace HoI2Editor
             CorpsNames.Reload();
             UnitNames.Reload();
             RandomLeaders.Reload();
+            Scenarios.Reload();
 
             // データ読み込み後の更新処理呼び出し
             OnFileLoaded();
@@ -206,7 +209,11 @@ namespace HoI2Editor
             {
                 return;
             }
-            RandomLeaders.Save();
+            if (!RandomLeaders.Save())
+            {
+                return;
+            }
+            Scenarios.Save();
         }
 
         /// <summary>
@@ -262,6 +269,10 @@ namespace HoI2Editor
             {
                 _researchViewerForm.OnFileLoaded();
             }
+            if (_scenarioEditorForm != null)
+            {
+                _scenarioEditorForm.OnFileLoaded();
+            }
         }
 
         /// <summary>
@@ -312,6 +323,10 @@ namespace HoI2Editor
             if (_randomLeaderEditorForm != null)
             {
                 _randomLeaderEditorForm.OnFileSaved();
+            }
+            if (_scenarioEditorForm != null)
+            {
+                _scenarioEditorForm.OnFileSaved();
             }
         }
 
@@ -370,11 +385,15 @@ namespace HoI2Editor
             {
                 _researchViewerForm.OnItemChanged(id);
             }
+            if ((_scenarioEditorForm != null) && (form != _scenarioEditorForm))
+            {
+                _scenarioEditorForm.OnItemChanged(id);
+            }
         }
 
         #endregion
 
-        #region エディターフォーム管理
+        #region エディタフォーム管理
 
         /// <summary>
         ///     メインフォーム
@@ -442,6 +461,11 @@ namespace HoI2Editor
         private static ResearchViewerForm _researchViewerForm;
 
         /// <summary>
+        ///     シナリオエディタのフォーム
+        /// </summary>
+        private static ScenarioEditorForm _scenarioEditorForm;
+
+        /// <summary>
         ///     メインフォームを起動する
         /// </summary>
         public static void LaunchMainForm()
@@ -460,7 +484,7 @@ namespace HoI2Editor
                 _leaderEditorForm = new LeaderEditorForm();
                 _leaderEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -478,7 +502,7 @@ namespace HoI2Editor
                 _ministerEditorForm = new MinisterEditorForm();
                 _ministerEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -496,7 +520,7 @@ namespace HoI2Editor
                 _teamEditorForm = new TeamEditorForm();
                 _teamEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -514,7 +538,7 @@ namespace HoI2Editor
                 _provinceEditorForm = new ProvinceEditorForm();
                 _provinceEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -532,7 +556,7 @@ namespace HoI2Editor
                 _techEditorForm = new TechEditorForm();
                 _techEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -550,7 +574,7 @@ namespace HoI2Editor
                 _unitEditorForm = new UnitEditorForm();
                 _unitEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -568,7 +592,7 @@ namespace HoI2Editor
                 _miscEditorForm = new MiscEditorForm();
                 _miscEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -586,7 +610,7 @@ namespace HoI2Editor
                 _corpsNameEditorForm = new CorpsNameEditorForm();
                 _corpsNameEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -604,7 +628,7 @@ namespace HoI2Editor
                 _unitNameEditorForm = new UnitNameEditorForm();
                 _unitNameEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -622,7 +646,7 @@ namespace HoI2Editor
                 _modelNameEditorForm = new ModelNameEditorForm();
                 _modelNameEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -640,7 +664,7 @@ namespace HoI2Editor
                 _randomLeaderEditorForm = new RandomLeaderEditorForm();
                 _randomLeaderEditorForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -658,7 +682,7 @@ namespace HoI2Editor
                 _researchViewerForm = new ResearchViewerForm();
                 _researchViewerForm.Show();
 
-                OnEditorStatusUpdete();
+                OnEditorStatusUpdate();
             }
             else
             {
@@ -667,113 +691,131 @@ namespace HoI2Editor
         }
 
         /// <summary>
-        ///     指揮官エディターフォームクローズ時の処理
+        ///     シナリオエディタフォームを起動する
+        /// </summary>
+        public static void LaunchScenarioEditorForm()
+        {
+            if (_scenarioEditorForm == null)
+            {
+                _scenarioEditorForm = new ScenarioEditorForm();
+                _scenarioEditorForm.Show();
+
+                OnEditorStatusUpdate();
+            }
+            else
+            {
+                _scenarioEditorForm.Activate();
+            }
+        }
+
+        /// <summary>
+        ///     指揮官エディタフォームクローズ時の処理
         /// </summary>
         public static void OnLeaderEditorFormClosed()
         {
             _leaderEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     閣僚エディターフォームクローズ時の処理
+        ///     閣僚エディタフォームクローズ時の処理
         /// </summary>
         public static void OnMinisterEditorFormClosed()
         {
             _ministerEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     研究機関エディターフォームクローズ時の処理
+        ///     研究機関エディタフォームクローズ時の処理
         /// </summary>
         public static void OnTeamEditorFormClosed()
         {
             _teamEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     プロヴィンスエディターフォームクローズ時の処理
+        ///     プロヴィンスエディタフォームクローズ時の処理
         /// </summary>
         public static void OnProvinceEditorFormClosed()
         {
             _provinceEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     技術ツリーエディターフォームクローズ時の処理
+        ///     技術ツリーエディタフォームクローズ時の処理
         /// </summary>
         public static void OnTechEditorFormClosed()
         {
             _techEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     ユニットモデルエディターフォームクローズ時の処理
+        ///     ユニットモデルエディタフォームクローズ時の処理
         /// </summary>
         public static void OnUnitEditorFormClosed()
         {
             _unitEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     ゲーム設定エディターフォームクローズ時の処理
+        ///     ゲーム設定エディタフォームクローズ時の処理
         /// </summary>
         public static void OnMiscEditorFormClosed()
         {
             _miscEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     軍団名エディターフォームクローズ時の処理
+        ///     軍団名エディタフォームクローズ時の処理
         /// </summary>
         public static void OnCorpsNameEditorFormClosed()
         {
             _corpsNameEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     ユニット名エディターフォームクローズ時の処理
+        ///     ユニット名エディタフォームクローズ時の処理
         /// </summary>
         public static void OnUnitNameEditorFormClosed()
         {
             _unitNameEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     モデル名エディターフォームクローズ時の処理
+        ///     モデル名エディタフォームクローズ時の処理
         /// </summary>
         public static void OnModelNameEditorFormClosed()
         {
             _modelNameEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     ランダム指揮官エディターフォームクローズ時の処理
+        ///     ランダム指揮官エディタフォームクローズ時の処理
         /// </summary>
         public static void OnRandomLeaderEditorFormClosed()
         {
             _randomLeaderEditorForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
@@ -783,13 +825,23 @@ namespace HoI2Editor
         {
             _researchViewerForm = null;
 
-            OnEditorStatusUpdete();
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     エディターの状態更新時の処理
+        ///     シナリオエディタフォームクローズ時の処理
         /// </summary>
-        private static void OnEditorStatusUpdete()
+        public static void OnScenarioEditorFormClosed()
+        {
+            _scenarioEditorForm = null;
+
+            OnEditorStatusUpdate();
+        }
+
+        /// <summary>
+        ///     エディタの状態更新時の処理
+        /// </summary>
+        private static void OnEditorStatusUpdate()
         {
             if (_leaderEditorForm == null &&
                 _ministerEditorForm == null &&
@@ -802,7 +854,8 @@ namespace HoI2Editor
                 _unitNameEditorForm == null &&
                 _modelNameEditorForm == null &&
                 _randomLeaderEditorForm == null &&
-                _researchViewerForm == null)
+                _researchViewerForm == null &&
+                _scenarioEditorForm == null)
             {
                 _mainForm.EnableFolderChange();
             }

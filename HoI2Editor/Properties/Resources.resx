@@ -3738,4 +3738,7 @@
   <data name="UnitModelToughness" xml:space="preserve">
     <value>Toughness</value>
   </data>
+  <data name="EditorScenario" xml:space="preserve">
+    <value>Scenario Editor</value>
+  </data>
 </root>

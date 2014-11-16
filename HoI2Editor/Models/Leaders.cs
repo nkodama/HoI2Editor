@@ -262,7 +262,7 @@ namespace HoI2Editor.Models
             // 保存フォルダ内の指揮官ファイルを読み込む
             if (Game.IsExportFolderActive)
             {
-                folderName = Path.Combine(Game.ExportFolderName, Game.LeaderPathName);
+                folderName = Game.GetExportFileName(Game.LeaderPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -297,7 +297,7 @@ namespace HoI2Editor.Models
             // MODフォルダ内の指揮官ファイルを読み込む
             if (Game.IsModActive)
             {
-                folderName = Path.Combine(Game.ModFolderName, Game.LeaderPathName);
+                folderName = Game.GetModFileName(Game.LeaderPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))

@@ -413,7 +413,7 @@ namespace HoI2Editor.Forms
             MiscGameType type = Misc.GetGameType();
             int itemHeight = DeviceCaps.GetScaledHeight(25);
             int itemMargin = DeviceCaps.GetScaledWidth(20);
-            int itemsPerColumn = (miscTabControl.ClientSize.Height - miscTabControl.ItemSize.Height - itemMargin)/
+            int itemsPerColumn = (miscTabControl.ClientSize.Height - miscTabControl.ItemSize.Height - itemMargin) /
                                  itemHeight;
             const int columnsPerPage = 3;
 
@@ -555,7 +555,7 @@ namespace HoI2Editor.Forms
                                     + comboBoxWidthMargin);
                                 maxWidth = comboBoxWidthBase
                                            + ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))
-                                              /comboBoxWidthUnit)*comboBoxWidthUnit;
+                                              / comboBoxWidthUnit) * comboBoxWidthUnit;
                             }
                             x += maxWidth;
                             break;
@@ -601,7 +601,7 @@ namespace HoI2Editor.Forms
                                     + comboBoxWidthMargin);
                                 maxWidth = comboBoxWidthBase
                                            + ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))
-                                              /comboBoxWidthUnit)*comboBoxWidthUnit;
+                                              / comboBoxWidthUnit) * comboBoxWidthUnit;
                             }
                             comboBox.Size = new Size(maxWidth, comboBoxHeight);
                             comboBox.Location = new Point(editX - maxWidth, editY);

@@ -121,6 +121,12 @@
     <Compile Include="Forms\ResearchViewerForm.Designer.cs">
       <DependentUpon>ResearchViewerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScenarioEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScenarioEditorForm.Designer.cs">
+      <DependentUpon>ScenarioEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TeamEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,7 @@
     <Compile Include="Models\Research.cs" />
     <Compile Include="Models\Researches.cs" />
     <Compile Include="Models\Scenario.cs" />
+    <Compile Include="Models\Scenarios.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Models\Tech.cs" />
@@ -278,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ResearchViewerForm.resx">
       <DependentUpon>ResearchViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScenarioEditorForm.resx">
+      <DependentUpon>ScenarioEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TeamEditorForm.ja.resx">
       <DependentUpon>TeamEditorForm.cs</DependentUpon>

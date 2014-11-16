@@ -292,6 +292,16 @@ namespace HoI2Editor.Forms
             HoI2Editor.LaunchResearchViewerForm();
         }
 
+        /// <summary>
+        ///     シナリオボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnScenarioButtonClick(object sender, EventArgs e)
+        {
+            HoI2Editor.LaunchScenarioEditorForm();
+        }
+
         #endregion
 
         #region フォルダ名

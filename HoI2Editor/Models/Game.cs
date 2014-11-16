@@ -303,6 +303,11 @@ namespace HoI2Editor.Models
         public const string ModPathNameDh = "Mods";
 
         /// <summary>
+        ///     シナリオフォルダ
+        /// </summary>
+        public const string ScenarioPathName = "scenarios";
+
+        /// <summary>
         ///     miscファイル名
         /// </summary>
         public const string MiscPathName = "db\\misc.txt";
@@ -432,6 +437,72 @@ namespace HoI2Editor.Models
         #region パス操作
 
         /// <summary>
+        ///     バニラフォルダのファイル名を取得する
+        /// </summary>
+        /// <param name="pathName">パス名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetVanillaFileName(string pathName)
+        {
+            return Path.Combine(FolderName, pathName);
+        }
+
+        /// <summary>
+        ///     バニラフォルダのファイル名を取得する
+        /// </summary>
+        /// <param name="folderName">フォルダ名</param>
+        /// <param name="fileName">ファイル名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetVanillaFileName(string folderName, string fileName)
+        {
+            string pathName = Path.Combine(folderName, fileName);
+            return GetVanillaFileName(pathName);
+        }
+
+        /// <summary>
+        ///     MODフォルダのファイル名を取得する
+        /// </summary>
+        /// <param name="pathName">パス名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetModFileName(string pathName)
+        {
+            return Path.Combine(ModFolderName, pathName);
+        }
+
+        /// <summary>
+        ///     MODフォルダのファイル名を取得する
+        /// </summary>
+        /// <param name="folderName">フォルダ名</param>
+        /// <param name="fileName">ファイル名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetModFileName(string folderName, string fileName)
+        {
+            string pathName = Path.Combine(folderName, fileName);
+            return GetModFileName(pathName);
+        }
+
+        /// <summary>
+        ///     保存フォルダのファイル名を取得する
+        /// </summary>
+        /// <param name="pathName">パス名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetExportFileName(string pathName)
+        {
+            return Path.Combine(ExportFolderName, pathName);
+        }
+
+        /// <summary>
+        ///     保存フォルダのファイル名を取得する
+        /// </summary>
+        /// <param name="folderName">フォルダ名</param>
+        /// <param name="fileName">ファイル名</param>
+        /// <returns>ファイル名</returns>
+        public static string GetExportFileName(string folderName, string fileName)
+        {
+            string pathName = Path.Combine(folderName, fileName);
+            return GetExportFileName(pathName);
+        }
+
+        /// <summary>
         ///     MODフォルダ/保存フォルダを考慮して読み込み用のファイル名を取得する
         /// </summary>
         /// <param name="pathName">パス名</param>
@@ -440,7 +511,7 @@ namespace HoI2Editor.Models
         {
             if (IsExportFolderActive)
             {
-                string fileName = Path.Combine(ExportFolderName, pathName);
+                string fileName = GetExportFileName(pathName);
                 if (File.Exists(fileName))
                 {
                     return fileName;
@@ -448,13 +519,13 @@ namespace HoI2Editor.Models
             }
             if (IsModActive)
             {
-                string fileName = Path.Combine(ModFolderName, pathName);
+                string fileName = GetModFileName(pathName);
                 if (File.Exists(fileName))
                 {
                     return fileName;
                 }
             }
-            return Path.Combine(FolderName, pathName);
+            return GetVanillaFileName(pathName);
         }
 
         /// <summary>
@@ -478,13 +549,13 @@ namespace HoI2Editor.Models
         {
             if (IsExportFolderActive)
             {
-                return Path.Combine(ExportFolderName, pathName);
+                return GetExportFileName(pathName);
             }
             if (IsModActive)
             {
-                return Path.Combine(ModFolderName, pathName);
+                return GetModFileName(pathName);
             }
-            return Path.Combine(FolderName, pathName);
+            return GetVanillaFileName(pathName);
         }
 
         /// <summary>
@@ -754,13 +825,13 @@ namespace HoI2Editor.Models
                             return;
                         }
                         offset = l[0] + (uint) pattern.Length;
-                        Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10 +
+                        Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 +
                                   (data[offset + 3] - '0');
                     }
                     else
                     {
                         offset = l[0] + (uint) pattern.Length;
-                        Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10;
+                        Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10;
                     }
                     break;
 
@@ -791,7 +862,7 @@ namespace HoI2Editor.Models
                         }
                     }
                     offset = l[0] + (uint) pattern.Length;
-                    Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10 + (data[offset + 3] - '0');
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 + (data[offset + 3] - '0');
                     break;
 
                 case GameType.DarkestHour:
@@ -809,7 +880,7 @@ namespace HoI2Editor.Models
                         return;
                     }
                     offset = l[0] + (uint) pattern.Length;
-                    Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10 + (data[offset + 3] - '0');
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 + (data[offset + 3] - '0');
                     break;
 
                 default:
@@ -828,7 +899,7 @@ namespace HoI2Editor.Models
                         return;
                     }
                     offset = l[0] + (uint) pattern.Length;
-                    Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10;
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10;
                     break;
             }
         }
@@ -895,12 +966,12 @@ namespace HoI2Editor.Models
             switch (_type)
             {
                 case GameType.HeartsOfIron2:
-                    s = string.Format("{0}.{1}", _version/100, (_version%100)/10);
+                    s = string.Format("{0}.{1}", _version / 100, (_version % 100) / 10);
                     break;
 
                 case GameType.ArsenalOfDemocracy:
                 case GameType.DarkestHour:
-                    s = string.Format("{0}.{1}{2}", _version/100, (_version%100)/10, (_version%10));
+                    s = string.Format("{0}.{1}{2}", _version / 100, (_version % 100) / 10, (_version % 10));
                     break;
 
                 default:

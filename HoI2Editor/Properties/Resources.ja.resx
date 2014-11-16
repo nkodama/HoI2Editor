@@ -3696,4 +3696,7 @@
   <data name="UnitModelToughness" xml:space="preserve">
     <value>耐久力</value>
   </data>
+  <data name="EditorScenario" xml:space="preserve">
+    <value>シナリオエディタ</value>
+  </data>
 </root>

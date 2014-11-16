@@ -173,7 +173,7 @@ namespace HoI2Editor.Models
             // 保存フォルダ内の研究機関ファイルを読み込む
             if (Game.IsExportFolderActive)
             {
-                folderName = Path.Combine(Game.ExportFolderName, Game.TeamPathName);
+                folderName = Game.GetExportFileName(Game.TeamPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
@@ -208,7 +208,7 @@ namespace HoI2Editor.Models
             // MODフォルダ内の研究機関ファイルを読み込む
             if (Game.IsModActive)
             {
-                folderName = Path.Combine(Game.ModFolderName, Game.TeamPathName);
+                folderName = Game.GetModFileName(Game.TeamPathName);
                 if (Directory.Exists(folderName))
                 {
                     foreach (string fileName in Directory.GetFiles(folderName, "*.csv"))
