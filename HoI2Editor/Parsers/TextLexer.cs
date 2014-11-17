@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text;
 using HoI2Editor.Models;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -11,6 +13,20 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public class TextLexer : IDisposable
     {
+        #region 公開プロパティ
+
+        /// <summary>
+        /// 解析中のファイル名
+        /// </summary>
+        public string FileName { get; private set; }
+
+        /// <summary>
+        /// 解析中の行番号
+        /// </summary>
+        public int LineNo { get; private set; }
+
+        #endregion
+
         #region 内部フィールド
 
         /// <summary>
@@ -91,6 +107,9 @@ namespace HoI2Editor.Parsers
             }
 
             _reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
+
+            FileName = fileName;
+            LineNo = 1;
         }
 
         /// <summary>
@@ -212,6 +231,22 @@ namespace HoI2Editor.Parsers
                     // 空白文字を読み飛ばす
                     if (char.IsWhiteSpace((char) c))
                     {
+                        if (c == '\r')
+                        {
+                            LineNo++;
+                            _reader.Read();
+                            c = _reader.Peek();
+                            if (c == '\n')
+                            {
+                                _reader.Read();
+                                c = _reader.Peek();
+                            }
+                            continue;
+                        }
+                        if (c == '\n')
+                        {
+                            LineNo++;
+                        }
                         _reader.Read();
                         c = _reader.Peek();
                         continue;
@@ -222,6 +257,7 @@ namespace HoI2Editor.Parsers
                     {
                         _reader.ReadLine();
                         c = _reader.Peek();
+                        LineNo++;
                         continue;
                     }
 
@@ -376,7 +412,7 @@ namespace HoI2Editor.Parsers
                 break;
             }
 
-            return new Token {Type = TokenType.Identifier, Value = sb.ToString()};
+            return new Token { Type = TokenType.Identifier, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -415,7 +451,7 @@ namespace HoI2Editor.Parsers
                 sb.Append((char) c);
             }
 
-            return new Token {Type = TokenType.String, Value = sb.ToString()};
+            return new Token { Type = TokenType.String, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -426,10 +462,9 @@ namespace HoI2Editor.Parsers
         {
             var sb = new StringBuilder();
 
+            int c = _reader.Peek();
             while (true)
             {
-                int c = _reader.Peek();
-
                 // ファイルの末尾ならば読み込み終了
                 if (c == -1)
                 {
@@ -439,8 +474,27 @@ namespace HoI2Editor.Parsers
                 // 空白ならば読み進める
                 if (char.IsWhiteSpace((char) c))
                 {
+                    if (c == '\r')
+                    {
+                        LineNo++;
+                        sb.Append((char)c);
+                        _reader.Read();
+                        c = _reader.Peek();
+                        if (c == '\n')
+                        {
+                            sb.Append((char)c);
+                            _reader.Read();
+                            c = _reader.Peek();
+                        }
+                        continue;
+                    }
+                    if (c == '\n')
+                    {
+                        LineNo++;
+                    }
+                    sb.Append((char)c);
                     _reader.Read();
-                    sb.Append((char) c);
+                    c = _reader.Peek();
                     continue;
                 }
 
@@ -448,7 +502,7 @@ namespace HoI2Editor.Parsers
                 break;
             }
 
-            return new Token {Type = TokenType.WhiteSpace, Value = sb.ToString()};
+            return new Token { Type = TokenType.WhiteSpace, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -475,11 +529,11 @@ namespace HoI2Editor.Parsers
                     break;
                 }
 
+                sb.Append((char)c);
                 _reader.Read();
-                sb.Append((char) c);
             }
 
-            return new Token {Type = TokenType.Comment, Value = sb.ToString()};
+            return new Token { Type = TokenType.Comment, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -517,7 +571,7 @@ namespace HoI2Editor.Parsers
                 sb.Append((char) c);
             }
 
-            return new Token {Type = TokenType.Invalid, Value = sb.ToString()};
+            return new Token { Type = TokenType.Invalid, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -526,6 +580,7 @@ namespace HoI2Editor.Parsers
         public void SkipLine()
         {
             _reader.ReadLine();
+            LineNo++;
         }
 
         /// <summary>
