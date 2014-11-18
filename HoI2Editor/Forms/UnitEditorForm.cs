@@ -65,10 +65,13 @@ namespace HoI2Editor.Forms
             countryListView.EndUpdate();
 
             // 兵科コンボボックス
+            branchComboBox.BeginUpdate();
+            branchComboBox.Items.Clear();
             foreach (string s in Branches.GetNames())
             {
                 branchComboBox.Items.Add(s);
             }
+            branchComboBox.EndUpdate();
 
             // 付属可能旅団リストビュー
             allowedBrigadesListView.BeginUpdate();
