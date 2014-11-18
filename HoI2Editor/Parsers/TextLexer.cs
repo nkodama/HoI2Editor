@@ -18,7 +18,15 @@ namespace HoI2Editor.Parsers
         /// <summary>
         /// 解析中のファイル名
         /// </summary>
-        public string FileName { get; private set; }
+        public string PathName { get; private set; }
+
+        /// <summary>
+        /// 解析中のファイル名 (ディレクトリ除く)
+        /// </summary>
+        public string FileName
+        {
+            get { return Path.GetFileName(PathName); }
+        }
 
         /// <summary>
         /// 解析中の行番号
@@ -108,7 +116,7 @@ namespace HoI2Editor.Parsers
 
             _reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
 
-            FileName = fileName;
+            PathName = fileName;
             LineNo = 1;
         }
 
@@ -138,7 +146,7 @@ namespace HoI2Editor.Parsers
         ///     指定の種類のトークンを要求する
         /// </summary>
         /// <param name="type">要求するトークンの種類</param>
-        /// <returns>次のトークンが要求する種類ならばそのトークンを、異なればnullを返す</returns>
+        /// <returns>次のトークンが要求する種類ならばtrueを返す</returns>
         public bool WantToken(TokenType type)
         {
             Token token = Peek();
@@ -156,7 +164,7 @@ namespace HoI2Editor.Parsers
         ///     指定の種類の識別子トークンを要求する
         /// </summary>
         /// <param name="keyword">要求するキーワード名</param>
-        /// <returns>要求する識別子trueを返す</returns>
+        /// <returns>要求する識別子ならばtrueを返す</returns>
         public bool WantIdentifier(string keyword)
         {
             Token token = Peek();

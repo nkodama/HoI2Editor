@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
@@ -119,6 +121,28 @@ namespace HoI2Editor.Models
         #endregion
 
         #region ログ出力
+
+        /// <summary>
+        /// 無効トークンエラーをログ出力する
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="token">トークン</param>
+        /// <param name="lexer">字句解析器</param>
+        public static void InvalidToken(string categoryName, Token token, TextLexer lexer)
+        {
+            Warning("[{0}] Invalid token: {1} ({2} L{3})",
+                categoryName, ObjectHelper.ToString(token.Value), lexer.FileName, lexer.LineNo);
+        }
+
+        /// <summary>
+        /// セクション解析エラーをログ出力する
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="sectionName">セクション名</param>
+        public static void InvalidSection(string categoryName, string sectionName)
+        {
+            Warning("[{0}] Parse failed: {1} section", categoryName, sectionName);
+        }
 
         /// <summary>
         ///     エラーログを出力する
