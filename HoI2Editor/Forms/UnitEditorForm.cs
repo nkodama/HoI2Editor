@@ -1403,10 +1403,10 @@ namespace HoI2Editor.Forms
                 detachableCheckBox.Enabled = false;
             }
 
-            detachableCheckBox.Checked = unit.Detachable;
-            cagCheckBox.Checked = unit.Cag;
-            escortCheckBox.Checked = unit.Escort;
-            engineerCheckBox.Checked = unit.Engineer;
+            detachableCheckBox.Checked = detachableCheckBox.Enabled && unit.Detachable;
+            cagCheckBox.Checked = cagCheckBox.Enabled && unit.Cag;
+            escortCheckBox.Checked = escortCheckBox.Enabled && unit.Escort;
+            engineerCheckBox.Checked = engineerCheckBox.Enabled && unit.Engineer;
             defaultTypeCheckBox.Checked = unit.DefaultType;
             productableCheckBox.Checked = unit.Productable;
 
@@ -1947,23 +1947,14 @@ namespace HoI2Editor.Forms
 
                 // 編集済みフラグを設定する
                 unit.SetDirty(UnitClassItemId.RealType);
-
-                // 実ユニット種類コンボボックスの選択項目を更新する
-                realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
             }
 
             // 編集済みフラグを設定する
             unit.SetDirty(UnitClassItemId.Branch);
 
-            // 兵科更新時に自動改良先クラスコンボボックスの項目を更新する
-            if (Game.Type == GameType.DarkestHour)
-            {
-                UpdateAutoUpgradeClassList();
-                UpdateAutoUpgradeModelList();
-            }
-
-            // 兵科コンボボックスの項目色を変更するために描画更新する
-            branchComboBox.Refresh();
+            // ユニットクラスタブ/ユニットモデルタブの表示を更新する
+            UpdateClassEditableItems();
+            UpdateModelEditableItems();
         }
 
         /// <summary>
