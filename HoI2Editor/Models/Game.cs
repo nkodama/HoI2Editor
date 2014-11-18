@@ -754,13 +754,13 @@ namespace HoI2Editor.Models
                             return;
                         }
                         offset = l[0] + (uint) pattern.Length;
-                        Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10 +
+                        Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 +
                                   (data[offset + 3] - '0');
                     }
                     else
                     {
                         offset = l[0] + (uint) pattern.Length;
-                        Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10;
+                        Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10;
                     }
                     break;
 
@@ -791,7 +791,7 @@ namespace HoI2Editor.Models
                         }
                     }
                     offset = l[0] + (uint) pattern.Length;
-                    Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10 + (data[offset + 3] - '0');
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 + (data[offset + 3] - '0');
                     break;
 
                 case GameType.DarkestHour:
@@ -809,7 +809,7 @@ namespace HoI2Editor.Models
                         return;
                     }
                     offset = l[0] + (uint) pattern.Length;
-                    Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10 + (data[offset + 3] - '0');
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10 + (data[offset + 3] - '0');
                     break;
 
                 default:
@@ -828,7 +828,7 @@ namespace HoI2Editor.Models
                         return;
                     }
                     offset = l[0] + (uint) pattern.Length;
-                    Version = (data[offset] - '0')*100 + (data[offset + 2] - '0')*10;
+                    Version = (data[offset] - '0') * 100 + (data[offset + 2] - '0') * 10;
                     break;
             }
         }
@@ -895,12 +895,12 @@ namespace HoI2Editor.Models
             switch (_type)
             {
                 case GameType.HeartsOfIron2:
-                    s = string.Format("{0}.{1}", _version/100, (_version%100)/10);
+                    s = string.Format("{0}.{1}", _version / 100, (_version % 100) / 10);
                     break;
 
                 case GameType.ArsenalOfDemocracy:
                 case GameType.DarkestHour:
-                    s = string.Format("{0}.{1}{2}", _version/100, (_version%100)/10, (_version%10));
+                    s = string.Format("{0}.{1}{2}", _version / 100, (_version % 100) / 10, (_version % 10));
                     break;
 
                 default:

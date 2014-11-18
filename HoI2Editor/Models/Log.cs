@@ -123,7 +123,7 @@ namespace HoI2Editor.Models
         #region ログ出力
 
         /// <summary>
-        /// 無効トークンエラーをログ出力する
+        ///     無効トークンエラーをログ出力する
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="token">トークン</param>
@@ -135,7 +135,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// セクション解析エラーをログ出力する
+        ///     セクション解析エラーをログ出力する
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="sectionName">セクション名</param>

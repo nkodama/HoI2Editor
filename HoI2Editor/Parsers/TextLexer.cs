@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text;
 using HoI2Editor.Models;
-using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -16,12 +14,12 @@ namespace HoI2Editor.Parsers
         #region 公開プロパティ
 
         /// <summary>
-        /// 解析中のファイル名
+        ///     解析中のファイル名
         /// </summary>
         public string PathName { get; private set; }
 
         /// <summary>
-        /// 解析中のファイル名 (ディレクトリ除く)
+        ///     解析中のファイル名 (ディレクトリ除く)
         /// </summary>
         public string FileName
         {
@@ -29,7 +27,7 @@ namespace HoI2Editor.Parsers
         }
 
         /// <summary>
-        /// 解析中の行番号
+        ///     解析中の行番号
         /// </summary>
         public int LineNo { get; private set; }
 
@@ -420,7 +418,7 @@ namespace HoI2Editor.Parsers
                 break;
             }
 
-            return new Token { Type = TokenType.Identifier, Value = sb.ToString() };
+            return new Token {Type = TokenType.Identifier, Value = sb.ToString()};
         }
 
         /// <summary>
@@ -459,7 +457,7 @@ namespace HoI2Editor.Parsers
                 sb.Append((char) c);
             }
 
-            return new Token { Type = TokenType.String, Value = sb.ToString() };
+            return new Token {Type = TokenType.String, Value = sb.ToString()};
         }
 
         /// <summary>
@@ -485,12 +483,12 @@ namespace HoI2Editor.Parsers
                     if (c == '\r')
                     {
                         LineNo++;
-                        sb.Append((char)c);
+                        sb.Append((char) c);
                         _reader.Read();
                         c = _reader.Peek();
                         if (c == '\n')
                         {
-                            sb.Append((char)c);
+                            sb.Append((char) c);
                             _reader.Read();
                             c = _reader.Peek();
                         }
@@ -500,7 +498,7 @@ namespace HoI2Editor.Parsers
                     {
                         LineNo++;
                     }
-                    sb.Append((char)c);
+                    sb.Append((char) c);
                     _reader.Read();
                     c = _reader.Peek();
                     continue;
@@ -510,7 +508,7 @@ namespace HoI2Editor.Parsers
                 break;
             }
 
-            return new Token { Type = TokenType.WhiteSpace, Value = sb.ToString() };
+            return new Token {Type = TokenType.WhiteSpace, Value = sb.ToString()};
         }
 
         /// <summary>
@@ -537,11 +535,11 @@ namespace HoI2Editor.Parsers
                     break;
                 }
 
-                sb.Append((char)c);
+                sb.Append((char) c);
                 _reader.Read();
             }
 
-            return new Token { Type = TokenType.Comment, Value = sb.ToString() };
+            return new Token {Type = TokenType.Comment, Value = sb.ToString()};
         }
 
         /// <summary>
@@ -579,7 +577,7 @@ namespace HoI2Editor.Parsers
                 sb.Append((char) c);
             }
 
-            return new Token { Type = TokenType.Invalid, Value = sb.ToString() };
+            return new Token {Type = TokenType.Invalid, Value = sb.ToString()};
         }
 
         /// <summary>

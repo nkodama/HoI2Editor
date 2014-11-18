@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
 using HoI2Editor.Models;
-using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -13,7 +12,7 @@ namespace HoI2Editor.Parsers
         #region 内部定数
 
         /// <summary>
-        /// ログ出力時のカテゴリ名
+        ///     ログ出力時のカテゴリ名
         /// </summary>
         private const string LogCategory = "Misc";
 

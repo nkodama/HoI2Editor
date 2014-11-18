@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using HoI2Editor.Models;
-using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -13,7 +11,7 @@ namespace HoI2Editor.Parsers
         #region 内部定数
 
         /// <summary>
-        /// ログ出力時のカテゴリ名
+        ///     ログ出力時のカテゴリ名
         /// </summary>
         private const string LogCategory = "Tech";
 
@@ -1131,13 +1129,13 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                        Log.InvalidToken(LogCategory, token, lexer);
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
 
                 // 無効なトークン
-                        Log.InvalidToken(LogCategory, token, lexer);
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -1187,7 +1185,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Number)
                 {
-                        Log.InvalidToken(LogCategory, token, lexer);
+                    Log.InvalidToken(LogCategory, token, lexer);
                     continue;
                 }
 
@@ -1208,7 +1206,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                        Log.InvalidToken(LogCategory, token, lexer);
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -1216,7 +1214,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                        Log.InvalidToken(LogCategory, token, lexer);
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -1240,7 +1238,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                        Log.InvalidToken(LogCategory, token, lexer);
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1272,7 +1270,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                        Log.InvalidToken(LogCategory, token, lexer);
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 

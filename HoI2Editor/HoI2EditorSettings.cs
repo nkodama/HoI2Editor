@@ -424,8 +424,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
             }
@@ -564,8 +564,8 @@ namespace HoI2Editor
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
                 int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
 
@@ -709,8 +709,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
 
@@ -854,8 +854,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
 
@@ -992,8 +992,8 @@ namespace HoI2Editor
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
                 int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
 
@@ -1236,8 +1236,8 @@ namespace HoI2Editor
                 int height = (screenRect.Height >= longHeight)
                     ? longHeight
                     : (screenRect.Height >= middleHeight) ? middleHeight : shortHeight;
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
 
@@ -1427,8 +1427,8 @@ namespace HoI2Editor
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
                 int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
 
@@ -1557,8 +1557,8 @@ namespace HoI2Editor
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
                 int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
             }
@@ -1738,8 +1738,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
             }
@@ -1848,8 +1848,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
             }
@@ -2029,8 +2029,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
             }
@@ -2172,8 +2172,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
             }
@@ -2394,8 +2394,8 @@ namespace HoI2Editor
                 // ウィンドウ位置を設定する
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int height = DeviceCaps.GetScaledHeight(DefaultHeight);
-                int x = screenRect.X + (screenRect.Width - width)/2;
-                int y = screenRect.Y + (screenRect.Height - height)/2;
+                int x = screenRect.X + (screenRect.Width - width) / 2;
+                int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
                 Size = new Size(width, height);
 

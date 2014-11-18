@@ -468,7 +468,7 @@ namespace HoI2Editor.Forms
             int textBoxWidthBase = DeviceCaps.GetScaledWidth(100);
             int textBoxWidthMargin = DeviceCaps.GetScaledWidth(8);
             int textBoxHeight = DeviceCaps.GetScaledHeight(19);
-            int itemsPerColumn = (itemPanel.DisplayRectangle.Height - textBoxStartY*2)/itemHeight;
+            int itemsPerColumn = (itemPanel.DisplayRectangle.Height - textBoxStartY * 2) / itemHeight;
 
             int labelX = labelStartX;
             int index = 0;

@@ -73,12 +73,12 @@ namespace HoI2Editor.Models
         /// <returns>加算後の日付</returns>
         public GameDate Plus(int days)
         {
-            int offset = Year*360 + (Month - 1)*30 + (Day - 1) + days;
+            int offset = Year * 360 + (Month - 1) * 30 + (Day - 1) + days;
 
-            int year = offset/360;
-            offset -= year*360;
-            int month = offset/30 + 1;
-            int day = offset%30 + 1;
+            int year = offset / 360;
+            offset -= year * 360;
+            int month = offset / 30 + 1;
+            int day = offset % 30 + 1;
 
             return new GameDate(year, month, day);
         }
@@ -90,7 +90,7 @@ namespace HoI2Editor.Models
         /// <returns>差分日数</returns>
         public int Difference(GameDate date)
         {
-            return (Year - date.Year)*360 + (Month - date.Month)*30 + (Day - date.Day);
+            return (Year - date.Year) * 360 + (Month - date.Month) * 30 + (Day - date.Day);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace HoI2Editor.Models
         /// <returns>差分日数</returns>
         public int Difference(int year)
         {
-            return (Year - year)*360 + (Month - 1)*30 + (Day - 1);
+            return (Year - year) * 360 + (Month - 1) * 30 + (Day - 1);
         }
 
         #endregion

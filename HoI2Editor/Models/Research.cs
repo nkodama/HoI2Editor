@@ -112,20 +112,20 @@ namespace HoI2Editor.Models
             switch (Game.Type)
             {
                 case GameType.HeartsOfIron2:
-                    progress = (9.3 + 1.5*s + 10*t)/d;
+                    progress = (9.3 + 1.5 * s + 10 * t) / d;
                     break;
 
                 case GameType.ArsenalOfDemocracy:
-                    progress = (3.0 + 0.5*(s + 10*Math.Sqrt(t)))/d;
+                    progress = (3.0 + 0.5 * (s + 10 * Math.Sqrt(t))) / d;
                     break;
 
                 case GameType.DarkestHour:
-                    progress = (9.0 + 1.5*(s + 5.62*t))/d;
+                    progress = (9.0 + 1.5 * (s + 5.62 * t)) / d;
                     break;
 
                 default:
                     // ゲームの種類が不明な場合はHoI2として扱う
-                    progress = (9.3 + 1.5*s + 10*t)/d;
+                    progress = (9.3 + 1.5 * s + 10 * t) / d;
                     break;
             }
 
@@ -180,13 +180,13 @@ namespace HoI2Editor.Models
                     : 0.1;
 
                 // 史実年度前ペナルティが下限値になる日を求める
-                var preHistoricalLimitOffset = (int) Math.Floor((1 - preHistoricalLimit)/preHistoricalModifier);
+                var preHistoricalLimitOffset = (int) Math.Floor((1 - preHistoricalLimit) / preHistoricalModifier);
 
                 // 差分日数が下限値日数を超える場合
                 if (offset <= preHistoricalLimitOffset)
                 {
                     // 下限値で研究完了する日数を求める
-                    var preHistoricalLimitDays = (int) Math.Ceiling(100/(baseProgress*preHistoricalLimit));
+                    var preHistoricalLimitDays = (int) Math.Ceiling(100 / (baseProgress * preHistoricalLimit));
 
                     // 下限値で研究完了する場合は日数を返す
                     if (offset + preHistoricalLimitDays <= preHistoricalLimitOffset)
@@ -197,7 +197,7 @@ namespace HoI2Editor.Models
                     // 下限値で研究する日数と進捗を加算する
                     preHistoricalLimitDays = preHistoricalLimitOffset - offset;
                     totalDays = preHistoricalLimitDays;
-                    totalProgress = baseProgress*preHistoricalLimit*preHistoricalLimitDays;
+                    totalProgress = baseProgress * preHistoricalLimit * preHistoricalLimitDays;
                     offset += preHistoricalLimitDays;
                 }
             }
@@ -231,7 +231,7 @@ namespace HoI2Editor.Models
             // HoI2の場合史実年度後補正がない
             if (Game.Type == GameType.HeartsOfIron2)
             {
-                totalDays += (int) Math.Ceiling((100 - totalProgress)/baseProgress);
+                totalDays += (int) Math.Ceiling((100 - totalProgress) / baseProgress);
                 return totalDays;
             }
 
@@ -243,7 +243,7 @@ namespace HoI2Editor.Models
             // 史実年度後ボーナスがない場合
             if (postHistoricalModifier <= 0)
             {
-                totalDays += (int) Math.Ceiling((100 - totalProgress)/baseProgress);
+                totalDays += (int) Math.Ceiling((100 - totalProgress) / baseProgress);
                 return totalDays;
             }
 
@@ -256,7 +256,7 @@ namespace HoI2Editor.Models
                     case TechSpeciality.Rocketry:
                     case TechSpeciality.NuclearPhysics:
                     case TechSpeciality.NuclearEngineering:
-                        totalDays += (int) Math.Ceiling((100 - totalProgress)/baseProgress);
+                        totalDays += (int) Math.Ceiling((100 - totalProgress) / baseProgress);
                         return totalDays;
                 }
 
@@ -264,7 +264,7 @@ namespace HoI2Editor.Models
                 if (offset < 0)
                 {
                     // 史実年度後ボーナスなしで研究する日数を求める
-                    var historicalDays = (int) Math.Ceiling((100 - totalProgress)/baseProgress);
+                    var historicalDays = (int) Math.Ceiling((100 - totalProgress) / baseProgress);
 
                     // 史実年度後ボーナスなしの機関に研究が完了する場合
                     if (offset + historicalDays < 0)
@@ -276,7 +276,7 @@ namespace HoI2Editor.Models
                     // 史実年度後ボーナスなしで研究する日数と進捗を加算する
                     historicalDays = -offset;
                     totalDays += historicalDays;
-                    totalProgress += baseProgress*historicalDays;
+                    totalProgress += baseProgress * historicalDays;
                     offset = 0;
                 }
             }
@@ -290,7 +290,7 @@ namespace HoI2Editor.Models
 
             // 史実年度後ボーナスが上限値になる日を求める
             var postHistoricalLimitOffset =
-                (int) Math.Ceiling(Math.Abs((postHistoricalLimit - 1)/postHistoricalModifier));
+                (int) Math.Ceiling(Math.Abs((postHistoricalLimit - 1) / postHistoricalModifier));
 
             if (offset < postHistoricalLimitOffset)
             {
@@ -313,7 +313,7 @@ namespace HoI2Editor.Models
             }
 
             // STEP5: 史実年度後ボーナス上限値で研究する日数を求める
-            totalDays += (int) Math.Ceiling((100 - totalProgress)/(baseProgress*postHistoricalLimit));
+            totalDays += (int) Math.Ceiling((100 - totalProgress) / (baseProgress * postHistoricalLimit));
             return totalDays;
         }
 
@@ -328,8 +328,8 @@ namespace HoI2Editor.Models
         private static int GetPreHistoricalDays(double progress, double target, int offset, double modifier)
         {
             return (int) Math.Ceiling(GetPositiveSolutionQuadraticEquation(
-                -progress*modifier/2,
-                progress/2*(2 - (2*offset + 1)*modifier),
+                -progress * modifier / 2,
+                progress / 2 * (2 - (2 * offset + 1) * modifier),
                 -target));
         }
 
@@ -343,7 +343,7 @@ namespace HoI2Editor.Models
         /// <returns>進捗率</returns>
         private static double GetPreHistoricalProgress(double progress, int days, int offset, double modifier)
         {
-            return progress*days*(2 - (2*offset + days + 1)*modifier)/2;
+            return progress * days * (2 - (2 * offset + days + 1) * modifier) / 2;
         }
 
         /// <summary>
@@ -357,8 +357,8 @@ namespace HoI2Editor.Models
         private static int GetPostHistoricalDays(double progress, double target, int offset, double modifier)
         {
             return (int) Math.Ceiling(GetPositiveSolutionQuadraticEquation(
-                progress*modifier/2,
-                progress/2*(2 + (2*offset + 1)*modifier),
+                progress * modifier / 2,
+                progress / 2 * (2 + (2 * offset + 1) * modifier),
                 -target));
         }
 
@@ -372,7 +372,7 @@ namespace HoI2Editor.Models
         /// <returns>進捗率</returns>
         private static double GetPostHistoricalProgress(double progress, int days, int offset, double modifier)
         {
-            return progress*days*(2 + (2*offset + days + 1)*modifier)/2;
+            return progress * days * (2 + (2 * offset + days + 1) * modifier) / 2;
         }
 
         /// <summary>
@@ -390,9 +390,9 @@ namespace HoI2Editor.Models
         /// </remarks>
         private static double GetPositiveSolutionQuadraticEquation(double a, double b, double c)
         {
-            double bb = b/a/2;
-            double cc = c/a;
-            return -bb + Math.Sqrt(bb*bb - cc);
+            double bb = b / a / 2;
+            double cc = c / a;
+            return -bb + Math.Sqrt(bb * bb - cc);
         }
 
         #endregion
