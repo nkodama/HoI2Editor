@@ -96,7 +96,7 @@ namespace HoI2Editor.Forms
                 width = realUnitTypeComboBox.Width;
                 foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
                 {
-                    string s = Config.GetText(Units.RealNames[(int) type]);
+                    string s = Units.Items[(int) Units.RealTypeTable[(int) type]].ToString();
                     realUnitTypeComboBox.Items.Add(s);
                     width = Math.Max(width,
                         (int) g.MeasureString(s, realUnitTypeComboBox.Font).Width +
@@ -111,7 +111,7 @@ namespace HoI2Editor.Forms
                 width = spriteTypeComboBox.Width;
                 foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
                 {
-                    string s = Config.GetText(Units.SpriteNames[(int) type]);
+                    string s = Units.Items[(int) Units.SpriteTypeTable[(int) type]].ToString();
                     spriteTypeComboBox.Items.Add(s);
                     width = Math.Max(width,
                         (int) g.MeasureString(s, spriteTypeComboBox.Font).Width +
@@ -1750,7 +1750,7 @@ namespace HoI2Editor.Forms
                 if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
                 {
                     // 実ユニットコンボボックスの項目を更新する
-                    int index = Array.IndexOf(Units.RealNames, unit.Name);
+                    int index = Array.IndexOf(Units.RealTypeTable, unit.Type);
                     if (index >= 0)
                     {
                         realUnitTypeComboBox.Items[index] = classNameTextBox.Text;
@@ -1762,7 +1762,7 @@ namespace HoI2Editor.Forms
                     }
 
                     // スプライトコンボボックスの項目を更新する
-                    index = Array.IndexOf(Units.SpriteNames, unit.Name);
+                    index = Array.IndexOf(Units.SpriteTypeTable, unit.Type);
                     if (index >= 0)
                     {
                         spriteTypeComboBox.Items[index] = classNameTextBox.Text;
@@ -1940,8 +1940,8 @@ namespace HoI2Editor.Forms
                 }
 
                 Log.Info("[Unit] Switched real unit type: {0} -> {1} ({2})",
-                    Config.GetText(Units.RealNames[(int) unit.RealType]),
-                    Config.GetText(Units.RealNames[(int) type]), unit);
+                    Units.Items[(int) Units.RealTypeTable[(int) unit.RealType]],
+                    Units.Items[(int) Units.RealTypeTable[(int) type]], unit);
 
                 unit.RealType = type;
 
@@ -2116,8 +2116,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] real unit type: {0} -> {1} ({2})", Config.GetText(Units.RealNames[(int) unit.RealType]),
-                Config.GetText(Units.RealNames[(int) type]), unit);
+            Log.Info("[Unit] real unit type: {0} -> {1} ({2})",
+                Units.Items[(int) Units.RealTypeTable[(int) unit.RealType]],
+                Units.Items[(int) Units.RealTypeTable[(int) type]], unit);
 
             // 値を更新する
             unit.RealType = type;
@@ -2189,8 +2190,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] sprite type: {0} -> {1} ({2})", Config.GetText(Units.SpriteNames[(int) unit.Sprite]),
-                Config.GetText(Units.SpriteNames[(int) type]), unit);
+            Log.Info("[Unit] sprite type: {0} -> {1} ({2})",
+                Units.Items[(int) Units.SpriteTypeTable[(int) unit.Sprite]],
+                Units.Items[(int) Units.SpriteTypeTable[(int) type]], unit);
 
             // 値を更新する
             unit.Sprite = type;
