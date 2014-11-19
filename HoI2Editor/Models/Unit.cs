@@ -2321,24 +2321,6 @@ namespace HoI2Editor.Models
             {
                 Units.SetDirtyBrigadeTypes();
             }
-
-            // 文字列定義が存在しない場合は割り当てる
-            if (!string.IsNullOrEmpty(Name) && !Config.ExistsKey(Name))
-            {
-                Config.SetText(Name, "", Game.UnitTextFileName);
-            }
-            if (!string.IsNullOrEmpty(ShortName) && !Config.ExistsKey(ShortName))
-            {
-                Config.SetText(ShortName, "", Game.UnitTextFileName);
-            }
-            if (!string.IsNullOrEmpty(Desc) && !Config.ExistsKey(Desc))
-            {
-                Config.SetText(Desc, "", Game.UnitTextFileName);
-            }
-            if (!string.IsNullOrEmpty(ShortDesc) && !Config.ExistsKey(ShortDesc))
-            {
-                Config.SetText(ShortDesc, "", Game.UnitTextFileName);
-            }
         }
 
         #endregion
