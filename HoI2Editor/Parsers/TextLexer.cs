@@ -11,6 +11,28 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public class TextLexer : IDisposable
     {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     解析中のファイル名
+        /// </summary>
+        public string PathName { get; private set; }
+
+        /// <summary>
+        ///     解析中のファイル名 (ディレクトリ除く)
+        /// </summary>
+        public string FileName
+        {
+            get { return Path.GetFileName(PathName); }
+        }
+
+        /// <summary>
+        ///     解析中の行番号
+        /// </summary>
+        public int LineNo { get; private set; }
+
+        #endregion
+
         #region 内部フィールド
 
         /// <summary>
@@ -91,6 +113,9 @@ namespace HoI2Editor.Parsers
             }
 
             _reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage));
+
+            PathName = fileName;
+            LineNo = 1;
         }
 
         /// <summary>
@@ -119,7 +144,7 @@ namespace HoI2Editor.Parsers
         ///     指定の種類のトークンを要求する
         /// </summary>
         /// <param name="type">要求するトークンの種類</param>
-        /// <returns>次のトークンが要求する種類ならばそのトークンを、異なればnullを返す</returns>
+        /// <returns>次のトークンが要求する種類ならばtrueを返す</returns>
         public bool WantToken(TokenType type)
         {
             Token token = Peek();
@@ -137,7 +162,7 @@ namespace HoI2Editor.Parsers
         ///     指定の種類の識別子トークンを要求する
         /// </summary>
         /// <param name="keyword">要求するキーワード名</param>
-        /// <returns>要求する識別子trueを返す</returns>
+        /// <returns>要求する識別子ならばtrueを返す</returns>
         public bool WantIdentifier(string keyword)
         {
             Token token = Peek();
@@ -212,6 +237,22 @@ namespace HoI2Editor.Parsers
                     // 空白文字を読み飛ばす
                     if (char.IsWhiteSpace((char) c))
                     {
+                        if (c == '\r')
+                        {
+                            LineNo++;
+                            _reader.Read();
+                            c = _reader.Peek();
+                            if (c == '\n')
+                            {
+                                _reader.Read();
+                                c = _reader.Peek();
+                            }
+                            continue;
+                        }
+                        if (c == '\n')
+                        {
+                            LineNo++;
+                        }
                         _reader.Read();
                         c = _reader.Peek();
                         continue;
@@ -222,6 +263,7 @@ namespace HoI2Editor.Parsers
                     {
                         _reader.ReadLine();
                         c = _reader.Peek();
+                        LineNo++;
                         continue;
                     }
 
@@ -426,10 +468,9 @@ namespace HoI2Editor.Parsers
         {
             var sb = new StringBuilder();
 
+            int c = _reader.Peek();
             while (true)
             {
-                int c = _reader.Peek();
-
                 // ファイルの末尾ならば読み込み終了
                 if (c == -1)
                 {
@@ -439,8 +480,27 @@ namespace HoI2Editor.Parsers
                 // 空白ならば読み進める
                 if (char.IsWhiteSpace((char) c))
                 {
-                    _reader.Read();
+                    if (c == '\r')
+                    {
+                        LineNo++;
+                        sb.Append((char) c);
+                        _reader.Read();
+                        c = _reader.Peek();
+                        if (c == '\n')
+                        {
+                            sb.Append((char) c);
+                            _reader.Read();
+                            c = _reader.Peek();
+                        }
+                        continue;
+                    }
+                    if (c == '\n')
+                    {
+                        LineNo++;
+                    }
                     sb.Append((char) c);
+                    _reader.Read();
+                    c = _reader.Peek();
                     continue;
                 }
 
@@ -475,8 +535,8 @@ namespace HoI2Editor.Parsers
                     break;
                 }
 
-                _reader.Read();
                 sb.Append((char) c);
+                _reader.Read();
             }
 
             return new Token {Type = TokenType.Comment, Value = sb.ToString()};
@@ -526,6 +586,7 @@ namespace HoI2Editor.Parsers
         public void SkipLine()
         {
             _reader.ReadLine();
+            LineNo++;
         }
 
         /// <summary>

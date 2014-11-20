@@ -1783,6 +1783,8 @@ namespace HoI2Editor.Forms
                             info.Position.Y.ToString(CultureInfo.InvariantCulture);
                         techXNumericUpDown.Value = info.Position.X;
                         techYNumericUpDown.Value = info.Position.Y;
+                        techXNumericUpDown.ForeColor = Color.Red;
+                        techYNumericUpDown.ForeColor = Color.Red;
                     }
                     else if (info.Item is TechLabel)
                     {
@@ -1791,6 +1793,8 @@ namespace HoI2Editor.Forms
                             info.Position.Y.ToString(CultureInfo.InvariantCulture);
                         labelXNumericUpDown.Value = info.Position.X;
                         labelYNumericUpDown.Value = info.Position.Y;
+                        labelXNumericUpDown.ForeColor = Color.Red;
+                        labelYNumericUpDown.ForeColor = Color.Red;
                     }
                     else
                     {
@@ -1799,6 +1803,8 @@ namespace HoI2Editor.Forms
                             info.Position.Y.ToString(CultureInfo.InvariantCulture);
                         eventXNumericUpDown.Value = info.Position.X;
                         eventYNumericUpDown.Value = info.Position.Y;
+                        eventXNumericUpDown.ForeColor = Color.Red;
+                        eventYNumericUpDown.ForeColor = Color.Red;
                     }
                     break;
                 }
