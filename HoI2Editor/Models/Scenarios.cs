@@ -39,6 +39,47 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     月名文字列
+        /// </summary>
+        public static readonly string[] MonthStrings =
+        {
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june",
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december"
+        };
+
+        /// <summary>
+        ///     政体文字列
+        /// </summary>
+        public static readonly string[] GovernmentStrings =
+        {
+            "",
+            "nazi",
+            "fascist",
+            "paternal_autocrat",
+            "social_conservative",
+            "market_liberal",
+            "social_liberal",
+            "social_democrat",
+            "left_wing_radical",
+            "leninist",
+            "stalinist"
+        };
+
+        #endregion
+
         #region ファイル読み込み
 
         /// <summary>
@@ -102,18 +143,17 @@ namespace HoI2Editor.Models
             }
 
             // シナリオファイルを解釈する
-            string fileName = Game.GetReadFileName(Game.MiscPathName);
-            Log.Verbose("[Scenario] Load: {0}", Path.GetFileName(fileName));
+            Log.Verbose("[Scenario] Load: {0}", Path.GetFileName(_fileName));
             try
             {
                 Data = new Scenario();
-                ScenarioParser.Parse(fileName, Data);
+                ScenarioParser.Parse(_fileName, Data);
             }
             catch (Exception)
             {
-                Log.Error("[Scenario] Read error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
-                    Resources.EditorMisc, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error("[Scenario] Read error: {0}", _fileName);
+                MessageBox.Show(String.Format("{0}: {1}", Resources.FileReadError, _fileName),
+                    Resources.EditorScenario, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -140,7 +180,7 @@ namespace HoI2Editor.Models
             try
             {
                 // シナリオフォルダがなければ作成する
-                if (!string.IsNullOrEmpty(folderName) && !Directory.Exists(folderName))
+                if (!String.IsNullOrEmpty(folderName) && !Directory.Exists(folderName))
                 {
                     Directory.CreateDirectory(folderName);
                 }
@@ -149,7 +189,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Unit] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                MessageBox.Show(String.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

@@ -85,6 +85,9 @@ namespace HoI2Editor.Forms
             // 国家データを初期化する
             Countries.Init();
 
+            // ユニットデータを初期化する
+            Units.Init();
+
             // ゲーム設定ファイルを読み込む
             Misc.Load();
 

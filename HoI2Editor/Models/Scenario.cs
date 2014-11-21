@@ -506,6 +506,16 @@ namespace HoI2Editor.Models
         public Country Country { get; set; }
 
         /// <summary>
+        ///     兄弟国
+        /// </summary>
+        public Country RegularId { get; set; }
+
+        /// <summary>
+        ///     独立可能政体
+        /// </summary>
+        public GovernmentType IntrinsicGovType { get; set; }
+
+        /// <summary>
         ///     宗主国
         /// </summary>
         public Country Master { get; set; }
@@ -521,9 +531,29 @@ namespace HoI2Editor.Models
         public int Belligerence { get; set; }
 
         /// <summary>
+        ///     追加輸送能力
+        /// </summary>
+        public double ExtraTc { get; set; }
+
+        /// <summary>
+        ///     国民不満度
+        /// </summary>
+        public double Dissent { get; set; }
+
+        /// <summary>
         ///     首都のプロヴィンスID
         /// </summary>
         public int Capital { get; set; }
+
+        /// <summary>
+        ///     平時IC補正
+        /// </summary>
+        public double PeaceTimeIcMod { get; set; }
+
+        /// <summary>
+        ///     対地防御補正
+        /// </summary>
+        public double GroundDefEff { get; set; }
 
         /// <summary>
         ///     人的資源
@@ -569,6 +599,11 @@ namespace HoI2Editor.Models
         ///     護衛艦
         /// </summary>
         public int Escorts { get; set; }
+
+        /// <summary>
+        ///     マップ外資源
+        /// </summary>
+        public FreeResourceInfo Free { get; set; }
 
         /// <summary>
         ///     外交情報
@@ -661,6 +696,21 @@ namespace HoI2Editor.Models
         public TypeId ChiefOfAir { get; set; }
 
         /// <summary>
+        ///     休止指揮官
+        /// </summary>
+        public List<int> DormantLeaders { get; private set; }
+
+        /// <summary>
+        ///     休止閣僚
+        /// </summary>
+        public List<int> DormantMinisters { get; private set; }
+
+        /// <summary>
+        ///     休止研究機関
+        /// </summary>
+        public List<int> DormantTeams { get; private set; }
+
+        /// <summary>
         ///     陸軍ユニット
         /// </summary>
         public List<ScenarioUnit> LandUnits { get; private set; }
@@ -696,11 +746,74 @@ namespace HoI2Editor.Models
             ControlledProvinces = new List<int>();
             TechApps = new List<int>();
             BluePrints = new List<int>();
+            DormantLeaders = new List<int>();
+            DormantMinisters = new List<int>();
+            DormantTeams = new List<int>();
             LandUnits = new List<ScenarioUnit>();
             NavalUnits = new List<ScenarioUnit>();
             AirUnits = new List<ScenarioUnit>();
             DivisionDevelopments = new List<DivisionDevelopment>();
         }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     マップ外資源情報
+    /// </summary>
+    public class FreeResourceInfo
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     工業力
+        /// </summary>
+        public double Ic { get; set; }
+
+        /// <summary>
+        ///     人的資源
+        /// </summary>
+        public double Manpower { get; set; }
+
+        /// <summary>
+        ///     エネルギー
+        /// </summary>
+        public double Energy { get; set; }
+
+        /// <summary>
+        ///     金属
+        /// </summary>
+        public double Metal { get; set; }
+
+        /// <summary>
+        ///     希少資源
+        /// </summary>
+        public double RareMaterials { get; set; }
+
+        /// <summary>
+        ///     石油
+        /// </summary>
+        public double Oil { get; set; }
+
+        /// <summary>
+        ///     物資
+        /// </summary>
+        public double Supplies { get; set; }
+
+        /// <summary>
+        ///     資金
+        /// </summary>
+        public double Money { get; set; }
+
+        /// <summary>
+        ///     輸送船団
+        /// </summary>
+        public int Transport { get; set; }
+
+        /// <summary>
+        ///     護衛艦
+        /// </summary>
+        public int Escort { get; set; }
 
         #endregion
     }
@@ -726,6 +839,11 @@ namespace HoI2Editor.Models
         ///     通行許可の有無
         /// </summary>
         public bool Access { get; set; }
+
+        /// <summary>
+        ///     独立保障期限
+        /// </summary>
+        public GameDate Guaranteed { get; set; }
 
         #endregion
     }
@@ -828,9 +946,19 @@ namespace HoI2Editor.Models
         public int Base { get; set; }
 
         /// <summary>
+        ///     指揮官
+        /// </summary>
+        public int Leader { get; set; }
+
+        /// <summary>
         ///     師団
         /// </summary>
         public List<ScenarioDivision> Divisions { get; private set; }
+
+        /// <summary>
+        ///     塹壕レベル
+        /// </summary>
+        public double DigIn { get; set; }
 
         #endregion
 
@@ -870,14 +998,34 @@ namespace HoI2Editor.Models
         public UnitType Type { get; set; }
 
         /// <summary>
+        ///     最大充足率
+        /// </summary>
+        public int MaxStrength { get; set; }
+
+        /// <summary>
         ///     充足率
         /// </summary>
         public int Strength { get; set; }
 
         /// <summary>
+        ///     組織率
+        /// </summary>
+        public int Organisation { get; set; }
+
+        /// <summary>
         ///     経験値
         /// </summary>
         public int Experience { get; set; }
+
+        /// <summary>
+        ///     最高速度
+        /// </summary>
+        public double MaxSpeed { get; set; }
+
+        /// <summary>
+        ///     移動不可
+        /// </summary>
+        public bool Locked { get; set; }
 
         /// <summary>
         ///     モデル番号
@@ -1020,5 +1168,23 @@ namespace HoI2Editor.Models
         NonAggression, // 不可侵条約
         Peace, // 休戦協定
         Trade, // 貿易
+    }
+
+    /// <summary>
+    ///     政体
+    /// </summary>
+    public enum GovernmentType
+    {
+        None,
+        Nazi, // 国家社会主義
+        Fascist, // ファシズム
+        PaternalAutocrat, // 専制独裁
+        SocialConservative, // 社会保守派
+        MarketLiberal, // 自由経済派
+        SocialLiberal, // 社会自由派
+        SocialDemocrat, // 社会民主派
+        LeftWingRadical, // 急進的左翼
+        Leninist, // レーニン主義
+        Stalinist // スターリン主義
     }
 }

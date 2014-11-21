@@ -29,23 +29,9 @@ namespace HoI2Editor.Parsers
         #region 内部定数
 
         /// <summary>
-        ///     月名文字列
+        ///     ログ出力時のカテゴリ名
         /// </summary>
-        private static readonly string[] MonthNames =
-        {
-            "january",
-            "february",
-            "march",
-            "april",
-            "may",
-            "june",
-            "july",
-            "august",
-            "september",
-            "october",
-            "november",
-            "december"
-        };
+        private const string LogCategory = "Scenario";
 
         #endregion
 
@@ -75,7 +61,7 @@ namespace HoI2Editor.Parsers
                     // 無効なトークン
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -94,7 +80,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.Equal)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -103,7 +89,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.String)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -120,7 +106,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.Equal)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -129,7 +115,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.String)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -145,7 +131,7 @@ namespace HoI2Editor.Parsers
                         ScenarioHeader header = ParseHeader(lexer);
                         if (header == null)
                         {
-                            Log.Warning("[Scenario] Parse failed: header section");
+                            Log.InvalidSection(LogCategory, "header");
                             continue;
                         }
 
@@ -160,7 +146,7 @@ namespace HoI2Editor.Parsers
                         ScenarioGlobalData data = ParseGlobalData(lexer);
                         if (data == null)
                         {
-                            Log.Warning("[Scenario] Parse failed: globaldata section");
+                            Log.InvalidSection(LogCategory, "globaldata");
                             continue;
                         }
 
@@ -176,7 +162,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.Equal)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -185,7 +171,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.String)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -202,7 +188,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.Equal)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -211,7 +197,7 @@ namespace HoI2Editor.Parsers
                         token = lexer.GetToken();
                         if (token.Type != TokenType.String)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -224,7 +210,7 @@ namespace HoI2Editor.Parsers
                         string pathName = Game.GetReadFileName(name);
                         if (!File.Exists(pathName))
                         {
-                            Log.Warning("[Scenario] Not exist include file: {0}", pathName);
+                            Log.Warning("[Scenario] Not exist include file: {0}", name);
                             continue;
                         }
                         FileNameStack.Push(pathName);
@@ -239,7 +225,7 @@ namespace HoI2Editor.Parsers
                         ScenarioProvinceInfo info = ParseProvince(lexer);
                         if (info == null)
                         {
-                            Log.Warning("[Scenario] Parse failed: province section");
+                            Log.InvalidSection(LogCategory, "province");
                             continue;
                         }
 
@@ -271,7 +257,7 @@ namespace HoI2Editor.Parsers
                         ScenarioCountryInfo info = ParseCountry(lexer);
                         if (info == null)
                         {
-                            Log.Warning("[Scenario] Parse failed: country section");
+                            Log.InvalidSection(LogCategory, "country");
                             continue;
                         }
 
@@ -281,7 +267,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                 }
             }
@@ -300,7 +286,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -308,7 +294,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -332,7 +318,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -351,7 +337,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -360,7 +346,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -376,7 +362,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "startdate");
                         continue;
                     }
 
@@ -391,7 +377,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<Country> list = ParseCountryList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: selectable section");
+                        Log.InvalidSection(LogCategory, "selectable");
                         continue;
                     }
 
@@ -410,14 +396,18 @@ namespace HoI2Editor.Parsers
                         MajorCountryInfo info = ParseMajorCountry(lexer);
                         if (info == null)
                         {
-                            Log.Warning("[Scenario] Parse failed: {0} section", tagName);
+                            Log.InvalidSection(LogCategory, tagName);
                             continue;
                         }
+
+                        // 主要国情報
+                        header.Majors.Add(info);
+                        continue;
                     }
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -435,7 +425,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -443,7 +433,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -467,7 +457,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -485,7 +475,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "startdate");
                         continue;
                     }
 
@@ -500,7 +490,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: enddate section");
+                        Log.InvalidSection(LogCategory, "enddate");
                         continue;
                     }
 
@@ -515,7 +505,7 @@ namespace HoI2Editor.Parsers
                     AllianceInfo alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: axis section");
+                        Log.InvalidSection(LogCategory, "axis");
                         continue;
                     }
 
@@ -530,7 +520,7 @@ namespace HoI2Editor.Parsers
                     AllianceInfo alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: allies section");
+                        Log.InvalidSection(LogCategory, "allies");
                         continue;
                     }
 
@@ -545,7 +535,7 @@ namespace HoI2Editor.Parsers
                     AllianceInfo alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: comintern section");
+                        Log.InvalidSection(LogCategory, "comintern");
                         continue;
                     }
 
@@ -560,7 +550,7 @@ namespace HoI2Editor.Parsers
                     AllianceInfo alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: alliance section");
+                        Log.InvalidSection(LogCategory, "alliance");
                         continue;
                     }
 
@@ -575,7 +565,7 @@ namespace HoI2Editor.Parsers
                     WarInfo war = ParseWar(lexer);
                     if (war == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: war section");
+                        Log.InvalidSection(LogCategory, "war");
                         continue;
                     }
 
@@ -590,7 +580,7 @@ namespace HoI2Editor.Parsers
                     TreatyInfo treaty = ParseTreaty(lexer);
                     if (treaty == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: treaty section");
+                        Log.InvalidSection(LogCategory, "treaty");
                         continue;
                     }
 
@@ -605,7 +595,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: dormant_leaders section");
+                        Log.InvalidSection(LogCategory, "dormant_leaders");
                         continue;
                     }
 
@@ -620,7 +610,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: dormant_ministers section");
+                        Log.InvalidSection(LogCategory, "dormant_ministers");
                         continue;
                     }
 
@@ -635,7 +625,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: dormant_teams section");
+                        Log.InvalidSection(LogCategory, "dormant_teams");
                         continue;
                     }
 
@@ -645,7 +635,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -663,7 +653,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -671,7 +661,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -695,7 +685,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -714,7 +704,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -723,7 +713,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -734,7 +724,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -752,7 +742,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -760,7 +750,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -784,7 +774,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -802,7 +792,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: id section");
+                        Log.InvalidSection(LogCategory, "id");
                         continue;
                     }
 
@@ -817,7 +807,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<Country> list = ParseCountryList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: participant section");
+                        Log.InvalidSection(LogCategory, "participant");
                         continue;
                     }
 
@@ -827,7 +817,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -845,7 +835,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -853,7 +843,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -877,7 +867,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -895,7 +885,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: id section");
+                        Log.InvalidSection(LogCategory, "id");
                         continue;
                     }
 
@@ -910,7 +900,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: date section");
+                        Log.InvalidSection(LogCategory, "date");
                         continue;
                     }
 
@@ -925,7 +915,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: enddate section");
+                        Log.InvalidSection(LogCategory, "enddate");
                         continue;
                     }
 
@@ -940,7 +930,7 @@ namespace HoI2Editor.Parsers
                     AllianceInfo alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: attackers section");
+                        Log.InvalidSection(LogCategory, "attackers");
                         continue;
                     }
 
@@ -955,7 +945,7 @@ namespace HoI2Editor.Parsers
                     AllianceInfo alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: defenders section");
+                        Log.InvalidSection(LogCategory, "defenders");
                         continue;
                     }
 
@@ -965,7 +955,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -983,7 +973,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -991,7 +981,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -1015,7 +1005,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1033,7 +1023,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: id section");
+                        Log.InvalidSection(LogCategory, "id");
                         continue;
                     }
 
@@ -1049,7 +1039,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1058,7 +1048,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1092,7 +1082,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1104,16 +1094,16 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 無効なトークン
                     token = lexer.GetToken();
-                    if (token.Type != TokenType.Identifier)
+                    if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1144,7 +1134,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1155,7 +1145,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "startdate");
                         continue;
                     }
 
@@ -1170,7 +1160,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: expirydate section");
+                        Log.InvalidSection(LogCategory, "expirydate");
                         continue;
                     }
 
@@ -1186,7 +1176,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1195,7 +1185,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1212,7 +1202,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1221,7 +1211,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1238,7 +1228,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1247,7 +1237,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1264,7 +1254,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1273,7 +1263,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1290,7 +1280,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1299,7 +1289,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1316,7 +1306,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1325,7 +1315,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1342,7 +1332,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1351,7 +1341,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1378,13 +1368,13 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -1402,7 +1392,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -1410,7 +1400,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -1434,7 +1424,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1453,7 +1443,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1462,13 +1452,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // プロヴィンスID
-                    info.Id = (int) token.Value;
+                    info.Id = (int) (double) token.Value;
                     continue;
                 }
 
@@ -1478,7 +1468,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "ic");
                         continue;
                     }
 
@@ -1493,7 +1483,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "infra");
                         continue;
                     }
 
@@ -1508,7 +1498,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "landfort");
                         continue;
                     }
 
@@ -1523,7 +1513,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "coastalfort");
                         continue;
                     }
 
@@ -1538,7 +1528,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "anti_air");
                         continue;
                     }
 
@@ -1553,7 +1543,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "air_base");
                         continue;
                     }
 
@@ -1568,7 +1558,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "naval_base");
                         continue;
                     }
 
@@ -1583,7 +1573,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "radar_station");
                         continue;
                     }
 
@@ -1598,7 +1588,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "nuclear_reactor");
                         continue;
                     }
 
@@ -1613,7 +1603,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "rocket_test");
                         continue;
                     }
 
@@ -1628,7 +1618,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "synthetic_oil");
                         continue;
                     }
 
@@ -1643,7 +1633,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "synthetic_rares");
                         continue;
                     }
 
@@ -1658,7 +1648,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseBuildingSize(lexer);
                     if (size == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: startdate section");
+                        Log.InvalidSection(LogCategory, "nuclear_power");
                         continue;
                     }
 
@@ -1674,7 +1664,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1683,7 +1673,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1700,7 +1690,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1709,7 +1699,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1726,7 +1716,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1735,18 +1725,18 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 勝利ポイント
-                    info.Vp = (int) token.Value;
+                    info.Vp = (int) (double) token.Value;
                     continue;
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -1764,7 +1754,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -1772,7 +1762,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -1796,7 +1786,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1815,7 +1805,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1824,7 +1814,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1848,7 +1838,93 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // regular_id
+                if (keyword.Equals("regular_id"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var tagName = token.Value as string;
+                    if (string.IsNullOrEmpty(tagName))
+                    {
+                        continue;
+                    }
+                    tagName = tagName.ToUpper();
+
+                    if (Countries.StringMap.ContainsKey(tagName))
+                    {
+                        Country country = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(country))
+                        {
+                            // 兄弟国
+                            info.RegularId = country;
+                            continue;
+                        }
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // intrinsic_gov_type
+                if (keyword.Equals("intrinsic_gov_type"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    if (Scenarios.GovernmentStrings.Contains(s))
+                    {
+                        // 独立可能政体
+                        info.IntrinsicGovType = (GovernmentType) Array.IndexOf(Scenarios.GovernmentStrings, s);
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1860,7 +1936,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1869,7 +1945,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1893,7 +1969,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1905,7 +1981,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1914,7 +1990,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1938,7 +2014,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -1950,7 +2026,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1959,13 +2035,65 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 好戦性
-                    info.Belligerence = (int) token.Value;
+                    info.Belligerence = (int) (double) token.Value;
+                    continue;
+                }
+
+                // extra_tc
+                if (keyword.Equals("extra_tc"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 追加輸送能力
+                    info.ExtraTc = (double) token.Value;
+                    continue;
+                }
+
+                // dissent
+                if (keyword.Equals("dissent"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 国民不満度
+                    info.Dissent = (double) token.Value;
                     continue;
                 }
 
@@ -1976,7 +2104,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1985,13 +2113,65 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 首都のプロヴィンスID
-                    info.Capital = (int) token.Value;
+                    info.Capital = (int) (double) token.Value;
+                    continue;
+                }
+
+                // peacetime_ic_mod
+                if (keyword.Equals("peacetime_ic_mod"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 平時のIC補正
+                    info.PeaceTimeIcMod = (double) token.Value;
+                    continue;
+                }
+
+                // ground_def_eff
+                if (keyword.Equals("ground_def_eff"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対地防御補正
+                    info.GroundDefEff = (double) token.Value;
                     continue;
                 }
 
@@ -2002,7 +2182,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2011,7 +2191,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2028,7 +2208,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2037,7 +2217,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2054,7 +2234,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2063,7 +2243,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2080,7 +2260,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2089,7 +2269,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2106,7 +2286,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2115,7 +2295,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2132,7 +2312,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2141,7 +2321,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2158,7 +2338,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2167,7 +2347,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2184,7 +2364,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2193,13 +2373,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 輸送船団
-                    info.Transports = (int) token.Value;
+                    info.Transports = (int) (double) token.Value;
                     continue;
                 }
 
@@ -2210,7 +2390,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2219,13 +2399,28 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 護衛艦
-                    info.Escorts = (int) token.Value;
+                    info.Escorts = (int) (double) token.Value;
+                    continue;
+                }
+
+                // free
+                if (keyword.Equals("free"))
+                {
+                    FreeResourceInfo free = ParseFree(lexer);
+                    if (free == null)
+                    {
+                        Log.InvalidSection(LogCategory, "free");
+                        continue;
+                    }
+
+                    // マップ外資源
+                    info.Free = free;
                     continue;
                 }
 
@@ -2235,7 +2430,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<RelationInfo> list = ParseDiplomacy(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: diplomacy section");
+                        Log.InvalidSection(LogCategory, "diplomacy");
                         continue;
                     }
 
@@ -2250,7 +2445,7 @@ namespace HoI2Editor.Parsers
                     SpyInfo spyInfo = ParseSpyInfo(lexer);
                     if (spyInfo == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: spyinfo section");
+                        Log.InvalidSection(LogCategory, "spyinfo");
                         continue;
                     }
 
@@ -2265,7 +2460,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: nationalprovinces section");
+                        Log.InvalidSection(LogCategory, "nationalprovinces");
                         continue;
                     }
 
@@ -2280,7 +2475,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: ownedprovinces section");
+                        Log.InvalidSection(LogCategory, "ownedprovinces");
                         continue;
                     }
 
@@ -2295,7 +2490,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: controlledprovinces section");
+                        Log.InvalidSection(LogCategory, "controlledprovinces");
                         continue;
                     }
 
@@ -2310,7 +2505,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: techapps section");
+                        Log.InvalidSection(LogCategory, "techapps");
                         continue;
                     }
 
@@ -2325,7 +2520,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: techapps section");
+                        Log.InvalidSection(LogCategory, "blueprints");
                         continue;
                     }
 
@@ -2340,7 +2535,7 @@ namespace HoI2Editor.Parsers
                     CountryPolicy policy = ParsePolicy(lexer);
                     if (policy == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: policy section");
+                        Log.InvalidSection(LogCategory, "policy");
                         continue;
                     }
 
@@ -2355,7 +2550,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: headofstate section");
+                        Log.InvalidSection(LogCategory, "headofstate");
                         continue;
                     }
 
@@ -2370,7 +2565,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: headofgovernment section");
+                        Log.InvalidSection(LogCategory, "headofgovernment");
                         continue;
                     }
 
@@ -2385,7 +2580,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: foreignminister section");
+                        Log.InvalidSection(LogCategory, "foreignminister");
                         continue;
                     }
 
@@ -2400,7 +2595,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: armamentminister section");
+                        Log.InvalidSection(LogCategory, "armamentminister");
                         continue;
                     }
 
@@ -2415,7 +2610,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: ministerofsecurity section");
+                        Log.InvalidSection(LogCategory, "ministerofsecurity");
                         continue;
                     }
 
@@ -2430,7 +2625,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: ministerofintelligence section");
+                        Log.InvalidSection(LogCategory, "ministerofintelligence");
                         continue;
                     }
 
@@ -2445,7 +2640,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: chiefofstaff section");
+                        Log.InvalidSection(LogCategory, "chiefofstaff");
                         continue;
                     }
 
@@ -2460,7 +2655,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: chiefofarmy section");
+                        Log.InvalidSection(LogCategory, "chiefofarmy");
                         continue;
                     }
 
@@ -2475,7 +2670,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: chiefofnavy section");
+                        Log.InvalidSection(LogCategory, "chiefofnavy");
                         continue;
                     }
 
@@ -2490,12 +2685,57 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: chiefofair section");
+                        Log.InvalidSection(LogCategory, "chiefofair");
                         continue;
                     }
 
                     // 空軍総司令官
                     info.ChiefOfAir = id;
+                    continue;
+                }
+
+                // dormant_leaders
+                if (keyword.Equals("dormant_leaders"))
+                {
+                    IEnumerable<int> list = ParseIdList(lexer);
+                    if (list == null)
+                    {
+                        Log.InvalidSection(LogCategory, "dormant_leaders");
+                        continue;
+                    }
+
+                    // 休止指揮官
+                    info.DormantLeaders.AddRange(list);
+                    continue;
+                }
+
+                // dormant_ministers
+                if (keyword.Equals("dormant_ministers"))
+                {
+                    IEnumerable<int> list = ParseIdList(lexer);
+                    if (list == null)
+                    {
+                        Log.InvalidSection(LogCategory, "dormant_ministers");
+                        continue;
+                    }
+
+                    // 休止閣僚
+                    info.DormantMinisters.AddRange(list);
+                    continue;
+                }
+
+                // dormant_teams
+                if (keyword.Equals("dormant_teams"))
+                {
+                    IEnumerable<int> list = ParseIdList(lexer);
+                    if (list == null)
+                    {
+                        Log.InvalidSection(LogCategory, "dormant_teams");
+                        continue;
+                    }
+
+                    // 休止研究機関
+                    info.DormantTeams.AddRange(list);
                     continue;
                 }
 
@@ -2505,7 +2745,7 @@ namespace HoI2Editor.Parsers
                     ScenarioUnit unit = ParseUnit(lexer);
                     if (unit == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: landunit section");
+                        Log.InvalidSection(LogCategory, "landunit");
                         continue;
                     }
 
@@ -2520,7 +2760,7 @@ namespace HoI2Editor.Parsers
                     ScenarioUnit unit = ParseUnit(lexer);
                     if (unit == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: navalunit section");
+                        Log.InvalidSection(LogCategory, "navalunit");
                         continue;
                     }
 
@@ -2535,7 +2775,7 @@ namespace HoI2Editor.Parsers
                     ScenarioUnit unit = ParseUnit(lexer);
                     if (unit == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: airunit section");
+                        Log.InvalidSection(LogCategory, "airunit");
                         continue;
                     }
 
@@ -2550,7 +2790,7 @@ namespace HoI2Editor.Parsers
                     DivisionDevelopment division = ParseDivisionDevelopment(lexer);
                     if (division == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: division_development section");
+                        Log.InvalidSection(LogCategory, "division_development");
                         continue;
                     }
 
@@ -2560,11 +2800,334 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
             return info;
+        }
+
+        /// <summary>
+        ///     マップ外資源を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>マップ外資源</returns>
+        private static FreeResourceInfo ParseFree(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var free = new FreeResourceInfo();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // ic
+                if (keyword.Equals("ic"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 工業力
+                    free.Ic = (double) token.Value;
+                    continue;
+                }
+
+                // manpower
+                if (keyword.Equals("manpower"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 人的資源
+                    free.Manpower = (double) token.Value;
+                    continue;
+                }
+
+                // energy
+                if (keyword.Equals("energy"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // エネルギー
+                    free.Energy = (double) token.Value;
+                    continue;
+                }
+
+                // metal
+                if (keyword.Equals("metal"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 金属
+                    free.Metal = (double) token.Value;
+                    continue;
+                }
+
+                // rare_materials
+                if (keyword.Equals("rare_materials"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 希少資源
+                    free.RareMaterials = (double) token.Value;
+                    continue;
+                }
+
+                // oil
+                if (keyword.Equals("oil"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 石油
+                    free.Oil = (double) token.Value;
+                    continue;
+                }
+
+                // supplies
+                if (keyword.Equals("supplies"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 物資
+                    free.Supplies = (double) token.Value;
+                    continue;
+                }
+
+                // money
+                if (keyword.Equals("money"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 資金
+                    free.Money = (double) token.Value;
+                    continue;
+                }
+
+                // transport
+                if (keyword.Equals("transport"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 輸送船団
+                    free.Transport = (int) (double) token.Value;
+                    continue;
+                }
+
+                // escort
+                if (keyword.Equals("escort"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 護衛艦
+                    free.Escort = (int) (double) token.Value;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return free;
         }
 
         /// <summary>
@@ -2578,14 +3141,15 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -2609,7 +3173,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -2627,7 +3191,7 @@ namespace HoI2Editor.Parsers
                     RelationInfo relation = ParseRelation(lexer);
                     if (relation == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: relation section");
+                        Log.InvalidSection(LogCategory, "relation");
                         continue;
                     }
 
@@ -2637,7 +3201,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -2655,14 +3219,15 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -2686,7 +3251,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -2705,7 +3270,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2714,7 +3279,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2738,7 +3303,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -2750,7 +3315,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2759,7 +3324,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2776,7 +3341,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2785,7 +3350,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2812,13 +3377,28 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
 
+                // guaranteed
+                if (keyword.Equals("guaranteed"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "guaranteed");
+                        continue;
+                    }
+
+                    // 独立保障期限
+                    info.Guaranteed = date;
+                    continue;
+                }
+
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -2836,14 +3416,15 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -2867,7 +3448,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -2886,7 +3467,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2895,7 +3476,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2919,7 +3500,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -2931,7 +3512,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -2940,18 +3521,18 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // スパイの数
-                    info.Spies = (int) token.Value;
+                    info.Spies = (int) (double) token.Value;
                     continue;
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -2969,14 +3550,15 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -3000,7 +3582,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -3018,7 +3600,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: date section");
+                        Log.InvalidSection(LogCategory, "date");
                         continue;
                     }
 
@@ -3034,7 +3616,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3043,13 +3625,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    var value = (int) token.Value;
-                    if (value < 0 || value >= 10)
+                    var value = (int) (double) token.Value;
+                    if (value < 1 || value > 10)
                     {
                         Log.Warning("[Scenario] Out of range: democratic-{0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
@@ -3068,7 +3650,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3077,13 +3659,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    var value = (int) token.Value;
-                    if (value < 0 || value >= 10)
+                    var value = (int) (double) token.Value;
+                    if (value < 1 || value > 10)
                     {
                         Log.Warning("[Scenario] Out of range: political_left-{0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
@@ -3102,7 +3684,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3111,13 +3693,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    var value = (int) token.Value;
-                    if (value < 0 || value >= 10)
+                    var value = (int) (double) token.Value;
+                    if (value < 1 || value > 10)
                     {
                         Log.Warning("[Scenario] Out of range: freedom-{0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
@@ -3136,7 +3718,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3145,13 +3727,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    var value = (int) token.Value;
-                    if (value < 0 || value >= 10)
+                    var value = (int) (double) token.Value;
+                    if (value < 1 || value > 10)
                     {
                         Log.Warning("[Scenario] Out of range: free_market-{0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
@@ -3170,7 +3752,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3179,13 +3761,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    var value = (int) token.Value;
-                    if (value < 0 || value >= 10)
+                    var value = (int) (double) token.Value;
+                    if (value < 1 || value > 10)
                     {
                         Log.Warning("[Scenario] Out of range: professional_army-{0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
@@ -3204,7 +3786,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3213,13 +3795,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    var value = (int) token.Value;
-                    if (value < 0 || value >= 10)
+                    var value = (int) (double) token.Value;
+                    if (value < 1 || value > 10)
                     {
                         Log.Warning("[Scenario] Out of range: defense_lobby-{0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
@@ -3238,7 +3820,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3247,13 +3829,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    var value = (int) token.Value;
-                    if (value < 0 || value >= 10)
+                    var value = (int) (double) token.Value;
+                    if (value < 1 || value > 10)
                     {
                         Log.Warning("[Scenario] Out of range: interventionism-{0}", ObjectHelper.ToString(token.Value));
                         lexer.SkipLine();
@@ -3266,7 +3848,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -3284,14 +3866,15 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -3315,7 +3898,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -3333,7 +3916,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: id section");
+                        Log.InvalidSection(LogCategory, "id");
                         continue;
                     }
 
@@ -3349,7 +3932,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3358,7 +3941,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3375,7 +3958,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3384,13 +3967,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 位置
-                    unit.Location = (int) token.Value;
+                    unit.Location = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3401,7 +3984,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3410,13 +3993,39 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 所属基地 (海軍/空軍)
-                    unit.Base = (int) token.Value;
+                    unit.Base = (int) (double) token.Value;
+                    continue;
+                }
+
+                // leader
+                if (keyword.Equals("leader"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 指揮官
+                    unit.Leader = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3426,7 +4035,7 @@ namespace HoI2Editor.Parsers
                     ScenarioDivision division = ParseDivision(lexer);
                     if (division == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: division section");
+                        Log.InvalidSection(LogCategory, "division");
                         continue;
                     }
 
@@ -3435,8 +4044,34 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // dig_in
+                if (keyword.Equals("dig_in"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 塹壕レベル
+                    unit.DigIn = (double) token.Value;
+                    continue;
+                }
+
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -3454,14 +4089,15 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -3485,7 +4121,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -3503,7 +4139,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: id section");
+                        Log.InvalidSection(LogCategory, "id");
                         continue;
                     }
 
@@ -3519,7 +4155,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3528,7 +4164,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3545,7 +4181,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3554,7 +4190,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3569,7 +4205,7 @@ namespace HoI2Editor.Parsers
                     // ユニットクラス名以外
                     if (!Units.StringMap.ContainsKey(s))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3578,13 +4214,39 @@ namespace HoI2Editor.Parsers
                     UnitType type = Units.StringMap[s];
                     if (!Units.DivisionTypes.Contains(type))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // ユニット種類
                     division.Type = type;
+                    continue;
+                }
+
+                // max_strength
+                if (keyword.Equals("max_strength"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大充足率
+                    division.MaxStrength = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3595,7 +4257,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3604,13 +4266,39 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 充足率
-                    division.Strength = (int) token.Value;
+                    division.Strength = (int) (double) token.Value;
+                    continue;
+                }
+
+                // organisation
+                if (keyword.Equals("organisation"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 組織率e
+                    division.Organisation = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3621,7 +4309,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3630,13 +4318,87 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 経験値
-                    division.Experience = (int) token.Value;
+                    division.Experience = (int) (double) token.Value;
+                    continue;
+                }
+
+                // maxspeed
+                if (keyword.Equals("maxspeed"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大速度
+                    division.MaxSpeed = (double) token.Value;
+                    continue;
+                }
+
+                // locked
+                if (keyword.Equals("locked"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        division.Locked = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        division.Locked = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
                     continue;
                 }
 
@@ -3647,7 +4409,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3656,13 +4418,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // モデル番号
-                    division.Model = (int) token.Value;
+                    division.Model = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3673,7 +4435,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3682,7 +4444,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3697,7 +4459,7 @@ namespace HoI2Editor.Parsers
                     // ユニットクラス名以外
                     if (!Units.StringMap.ContainsKey(s))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3706,7 +4468,7 @@ namespace HoI2Editor.Parsers
                     UnitType type = Units.StringMap[s];
                     if (!Units.BrigadeTypes.Contains(type))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3723,7 +4485,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3732,18 +4494,18 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 付属旅団のモデル番号
-                    division.BrigadeModel = (int) token.Value;
+                    division.BrigadeModel = (int) (double) token.Value;
                     continue;
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -3761,14 +4523,15 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -3792,7 +4555,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -3810,7 +4573,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: id section");
+                        Log.InvalidSection(LogCategory, "id");
                         continue;
                     }
 
@@ -3826,7 +4589,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3835,7 +4598,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.String)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3852,7 +4615,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3861,7 +4624,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3877,7 +4640,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.Warning("[Scenario] Parse failed: date section");
+                        Log.InvalidSection(LogCategory, "date");
                         continue;
                     }
 
@@ -3893,7 +4656,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3902,7 +4665,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3917,7 +4680,7 @@ namespace HoI2Editor.Parsers
                     // ユニットクラス名以外
                     if (!Units.StringMap.ContainsKey(s))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3926,7 +4689,7 @@ namespace HoI2Editor.Parsers
                     UnitType type = Units.StringMap[s];
                     if (!Units.DivisionTypes.Contains(type))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3943,7 +4706,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3952,13 +4715,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // モデル番号
-                    division.Model = (int) token.Value;
+                    division.Model = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3969,7 +4732,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3978,7 +4741,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Identifier)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -3993,7 +4756,7 @@ namespace HoI2Editor.Parsers
                     // ユニットクラス名以外
                     if (!Units.StringMap.ContainsKey(s))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4002,7 +4765,7 @@ namespace HoI2Editor.Parsers
                     UnitType type = Units.StringMap[s];
                     if (!Units.BrigadeTypes.Contains(type))
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4019,7 +4782,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4028,18 +4791,18 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 付属旅団のモデル番号
-                    division.BrigadeModel = (int) token.Value;
+                    division.BrigadeModel = (int) (double) token.Value;
                     continue;
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -4057,7 +4820,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4077,7 +4840,7 @@ namespace HoI2Editor.Parsers
             // {
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4101,7 +4864,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -4120,7 +4883,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4129,7 +4892,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4153,7 +4916,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4162,7 +4925,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4180,7 +4943,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -4198,7 +4961,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4206,7 +4969,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4230,13 +4993,13 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Number)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
 
                 // ID
-                list.Add((int) token.Value);
+                list.Add((int) (double) token.Value);
             }
 
             return list;
@@ -4253,7 +5016,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4261,7 +5024,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4285,7 +5048,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -4309,7 +5072,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -4327,7 +5090,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4335,7 +5098,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4359,7 +5122,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -4378,7 +5141,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4387,13 +5150,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // 年
-                    date.Year = (int) token.Value;
+                    date.Year = (int) (double) token.Value;
                     continue;
                 }
 
@@ -4404,7 +5167,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4413,10 +5176,10 @@ namespace HoI2Editor.Parsers
                     if (token.Type == TokenType.Number)
                     {
                         // 無効なトークン
-                        var month = (int) token.Value;
+                        var month = (int) (double) token.Value;
                         if (month < 0 || month > 11)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -4432,15 +5195,15 @@ namespace HoI2Editor.Parsers
                         var name = token.Value as string;
                         if (string.IsNullOrEmpty(name))
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
                         name = name.ToLower();
-                        int month = Array.IndexOf(MonthNames, name);
+                        int month = Array.IndexOf(Scenarios.MonthStrings, name);
                         if (month < 0 || month >= 12)
                         {
-                            Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                            Log.InvalidToken(LogCategory, token, lexer);
                             lexer.SkipLine();
                             continue;
                         }
@@ -4451,7 +5214,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なトークン
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -4463,7 +5226,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4472,14 +5235,14 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
-                    var day = (int) token.Value;
-                    if (day < 0 || day >= 30)
+                    var day = (int) (double) token.Value;
+                    if (day < 0 || day > 30)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4490,7 +5253,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
@@ -4508,7 +5271,7 @@ namespace HoI2Editor.Parsers
             Token token = lexer.GetToken();
             if (token.Type != TokenType.Equal)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4516,7 +5279,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
@@ -4540,7 +5303,7 @@ namespace HoI2Editor.Parsers
                 // 無効なトークン
                 if (token.Type != TokenType.Identifier)
                 {
-                    Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                    Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
@@ -4559,7 +5322,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4568,13 +5331,13 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // type
-                    id.Type = (int) token.Value;
+                    id.Type = (int) (double) token.Value;
                     continue;
                 }
 
@@ -4585,7 +5348,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -4594,18 +5357,18 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Number)
                     {
-                        Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                        Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
                     // id
-                    id.Id = (int) token.Value;
+                    id.Id = (int) (double) token.Value;
                     continue;
                 }
 
                 // 無効なトークン
-                Log.Warning("[Scenario] Invalid token: {0}", ObjectHelper.ToString(token.Value));
+                Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
