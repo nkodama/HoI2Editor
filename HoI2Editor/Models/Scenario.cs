@@ -30,6 +30,16 @@ namespace HoI2Editor.Models
         public ScenarioGlobalData GlobalData { get; set; }
 
         /// <summary>
+        ///     発生済みイベント
+        /// </summary>
+        public List<int> History { get; private set; }
+
+        /// <summary>
+        ///     休止イベント
+        /// </summary>
+        public List<int> SleepEvents { get; private set; }
+
+        /// <summary>
         ///     イベントファイル
         /// </summary>
         public List<string> Events { get; private set; }
@@ -42,27 +52,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンス情報 (国別incに記載)
         /// </summary>
-        public List<ScenarioProvinceInfo> CountryProvinces { get; private set; }
+        public List<ScenarioProvince> CountryProvinces { get; private set; }
 
         /// <summary>
         ///     プロヴィンス情報 (bases.incに記載)
         /// </summary>
-        public List<ScenarioProvinceInfo> BasesProvinces { get; private set; }
+        public List<ScenarioProvince> BasesProvinces { get; private set; }
 
         /// <summary>
         ///     プロヴィンス情報 (bases_DOD.incに記載)
         /// </summary>
-        public List<ScenarioProvinceInfo> BasesDodProvinces { get; private set; }
+        public List<ScenarioProvince> BasesDodProvinces { get; private set; }
 
         /// <summary>
         ///     プロヴィンス情報 (vp.incに記載)
         /// </summary>
-        public List<ScenarioProvinceInfo> VpProvinces { get; private set; }
+        public List<ScenarioProvince> VpProvinces { get; private set; }
 
         /// <summary>
         ///     国家情報
         /// </summary>
-        public List<ScenarioCountryInfo> Countries { get; private set; }
+        public List<ScenarioCountry> Countries { get; private set; }
 
         #endregion
 
@@ -73,13 +83,15 @@ namespace HoI2Editor.Models
         /// </summary>
         public Scenario()
         {
+            History = new List<int>();
+            SleepEvents = new List<int>();
             Events = new List<string>();
             Includes = new List<string>();
-            CountryProvinces = new List<ScenarioProvinceInfo>();
-            BasesProvinces = new List<ScenarioProvinceInfo>();
-            BasesDodProvinces = new List<ScenarioProvinceInfo>();
-            VpProvinces = new List<ScenarioProvinceInfo>();
-            Countries = new List<ScenarioCountryInfo>();
+            CountryProvinces = new List<ScenarioProvince>();
+            BasesProvinces = new List<ScenarioProvince>();
+            BasesDodProvinces = new List<ScenarioProvince>();
+            VpProvinces = new List<ScenarioProvince>();
+            Countries = new List<ScenarioCountry>();
         }
 
         #endregion
@@ -110,7 +122,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     主要国情報
         /// </summary>
-        public List<MajorCountryInfo> Majors { get; private set; }
+        public List<MajorCountry> Majors { get; private set; }
 
         #endregion
 
@@ -123,7 +135,7 @@ namespace HoI2Editor.Models
         {
             StartDate = new GameDate();
             Selectable = new List<Country>();
-            Majors = new List<MajorCountryInfo>();
+            Majors = new List<MajorCountry>();
         }
 
         #endregion
@@ -149,32 +161,32 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     枢軸国
         /// </summary>
-        public AllianceInfo Axis { get; set; }
+        public Alliance Axis { get; set; }
 
         /// <summary>
         ///     連合国
         /// </summary>
-        public AllianceInfo Allies { get; set; }
+        public Alliance Allies { get; set; }
 
         /// <summary>
         ///     共産国
         /// </summary>
-        public AllianceInfo Comintern { get; set; }
+        public Alliance Comintern { get; set; }
 
         /// <summary>
         ///     同盟国情報
         /// </summary>
-        public List<AllianceInfo> Alliances { get; private set; }
+        public List<Alliance> Alliances { get; private set; }
 
         /// <summary>
         ///     戦争情報
         /// </summary>
-        public List<WarInfo> Wars { get; private set; }
+        public List<War> Wars { get; private set; }
 
         /// <summary>
         ///     外交協定情報
         /// </summary>
-        public List<TreatyInfo> Treaties { get; private set; }
+        public List<Treaty> Treaties { get; private set; }
 
         /// <summary>
         ///     休止指揮官
@@ -200,9 +212,9 @@ namespace HoI2Editor.Models
         /// </summary>
         public ScenarioGlobalData()
         {
-            Alliances = new List<AllianceInfo>();
-            Wars = new List<WarInfo>();
-            Treaties = new List<TreatyInfo>();
+            Alliances = new List<Alliance>();
+            Wars = new List<War>();
+            Treaties = new List<Treaty>();
             DormantLeaders = new List<int>();
             DormantMinisters = new List<int>();
             DormantTeams = new List<int>();
@@ -214,7 +226,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     主要国情報
     /// </summary>
-    public class MajorCountryInfo
+    public class MajorCountry
     {
         #region 公開プロパティ
 
@@ -234,7 +246,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     同盟情報
     /// </summary>
-    public class AllianceInfo
+    public class Alliance
     {
         #region 公開プロパティ
 
@@ -255,7 +267,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public AllianceInfo()
+        public Alliance()
         {
             Participant = new List<Country>();
         }
@@ -266,7 +278,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     戦争情報
     /// </summary>
-    public class WarInfo
+    public class War
     {
         #region 公開プロパティ
 
@@ -288,12 +300,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     攻撃側参加国
         /// </summary>
-        public AllianceInfo Attackers { get; set; }
+        public Alliance Attackers { get; set; }
 
         /// <summary>
         ///     防御側参加国
         /// </summary>
-        public AllianceInfo Defenders { get; set; }
+        public Alliance Defenders { get; set; }
 
         #endregion
     }
@@ -301,7 +313,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     外交協定情報
     /// </summary>
-    public class TreatyInfo
+    public class Treaty
     {
         #region 公開プロパティ
 
@@ -374,9 +386,9 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     シナリオプロヴィンス情報
+    ///     プロヴィンス情報
     /// </summary>
-    public class ScenarioProvinceInfo
+    public class ScenarioProvince
     {
         #region 公開プロパティ
 
@@ -461,9 +473,79 @@ namespace HoI2Editor.Models
         public double OilPool { get; set; }
 
         /// <summary>
+        ///     エネルギーの備蓄量
+        /// </summary>
+        public double EnergyPool { get; set; }
+
+        /// <summary>
+        ///     金属の備蓄量
+        /// </summary>
+        public double MetalPool { get; set; }
+
+        /// <summary>
+        ///     希少資源の備蓄量
+        /// </summary>
+        public double RareMaterialsPool { get; set; }
+
+        /// <summary>
+        ///     エネルギー産出量
+        /// </summary>
+        public double Energy { get; set; }
+
+        /// <summary>
+        ///     最大エネルギー産出量
+        /// </summary>
+        public double MaxEnergy { get; set; }
+
+        /// <summary>
+        ///     金属産出量
+        /// </summary>
+        public double Metal { get; set; }
+
+        /// <summary>
+        ///     最大金属産出量
+        /// </summary>
+        public double MaxMetal { get; set; }
+
+        /// <summary>
+        ///     希少資源産出量
+        /// </summary>
+        public double RareMaterials { get; set; }
+
+        /// <summary>
+        ///     最大希少資源産出量
+        /// </summary>
+        public double MaxRareMaterials { get; set; }
+
+        /// <summary>
+        ///     石油産出量
+        /// </summary>
+        public double Oil { get; set; }
+
+        /// <summary>
+        ///     最大石油産出量
+        /// </summary>
+        public double MaxOil { get; set; }
+
+        /// <summary>
+        ///     人的資源
+        /// </summary>
+        public double Manpower { get; set; }
+
+        /// <summary>
+        ///     最大人的資源
+        /// </summary>
+        public double MaxManpower { get; set; }
+
+        /// <summary>
         ///     勝利ポイント
         /// </summary>
         public int Vp { get; set; }
+
+        /// <summary>
+        ///     反乱率
+        /// </summary>
+        public double RevoltRisk { get; set; }
 
         #endregion
     }
@@ -494,9 +576,9 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     シナリオ国家情報
+    ///     国家情報
     /// </summary>
-    public class ScenarioCountryInfo
+    public class ScenarioCountry
     {
         #region 公開プロパティ
 
@@ -556,6 +638,11 @@ namespace HoI2Editor.Models
         public double GroundDefEff { get; set; }
 
         /// <summary>
+        ///     AIファイル名
+        /// </summary>
+        public string Ai { get; set; }
+
+        /// <summary>
         ///     人的資源
         /// </summary>
         public double Manpower { get; set; }
@@ -603,12 +690,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップ外資源
         /// </summary>
-        public FreeResourceInfo Free { get; set; }
+        public FreeResources Free { get; set; }
 
         /// <summary>
         ///     外交情報
         /// </summary>
-        public List<RelationInfo> Diplomacy { get; private set; }
+        public List<CountryRelation> Diplomacy { get; private set; }
 
         /// <summary>
         ///     諜報情報
@@ -639,6 +726,11 @@ namespace HoI2Editor.Models
         ///     青写真
         /// </summary>
         public List<int> BluePrints { get; private set; }
+
+        /// <summary>
+        ///     発明イベント
+        /// </summary>
+        public List<int> Inventions { get; private set; }
 
         /// <summary>
         ///     政策スライダー
@@ -711,24 +803,39 @@ namespace HoI2Editor.Models
         public List<int> DormantTeams { get; private set; }
 
         /// <summary>
+        ///     輸送船団
+        /// </summary>
+        public List<Convoy> Convoys { get; private set; }
+
+        /// <summary>
         ///     陸軍ユニット
         /// </summary>
-        public List<ScenarioUnit> LandUnits { get; private set; }
+        public List<LandUnit> LandUnits { get; private set; }
 
         /// <summary>
         ///     海軍ユニット
         /// </summary>
-        public List<ScenarioUnit> NavalUnits { get; private set; }
+        public List<NavalUnit> NavalUnits { get; private set; }
 
         /// <summary>
         ///     空軍ユニット
         /// </summary>
-        public List<ScenarioUnit> AirUnits { get; private set; }
+        public List<AirUnit> AirUnits { get; private set; }
 
         /// <summary>
-        ///     生産中の師団
+        ///     生産中師団
         /// </summary>
         public List<DivisionDevelopment> DivisionDevelopments { get; private set; }
+
+        /// <summary>
+        ///     生産中輸送船団
+        /// </summary>
+        public List<ConvoyDevelopment> ConvoyDevelopments { get; private set; }
+
+        /// <summary>
+        ///     生産中建物
+        /// </summary>
+        public List<BuildingDevelopment> BuildingDevelopments { get; private set; }
 
         #endregion
 
@@ -737,22 +844,26 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public ScenarioCountryInfo()
+        public ScenarioCountry()
         {
-            Diplomacy = new List<RelationInfo>();
+            Diplomacy = new List<CountryRelation>();
             Intelligence = new List<SpyInfo>();
             NationalProvinces = new List<int>();
             OwnedProvinces = new List<int>();
             ControlledProvinces = new List<int>();
             TechApps = new List<int>();
             BluePrints = new List<int>();
+            Inventions = new List<int>();
             DormantLeaders = new List<int>();
             DormantMinisters = new List<int>();
             DormantTeams = new List<int>();
-            LandUnits = new List<ScenarioUnit>();
-            NavalUnits = new List<ScenarioUnit>();
-            AirUnits = new List<ScenarioUnit>();
+            Convoys = new List<Convoy>();
+            LandUnits = new List<LandUnit>();
+            NavalUnits = new List<NavalUnit>();
+            AirUnits = new List<AirUnit>();
             DivisionDevelopments = new List<DivisionDevelopment>();
+            ConvoyDevelopments = new List<ConvoyDevelopment>();
+            BuildingDevelopments = new List<BuildingDevelopment>();
         }
 
         #endregion
@@ -761,7 +872,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップ外資源情報
     /// </summary>
-    public class FreeResourceInfo
+    public class FreeResources
     {
         #region 公開プロパティ
 
@@ -808,12 +919,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     輸送船団
         /// </summary>
-        public int Transport { get; set; }
+        public int Transports { get; set; }
 
         /// <summary>
         ///     護衛艦
         /// </summary>
-        public int Escort { get; set; }
+        public int Escorts { get; set; }
 
         #endregion
     }
@@ -821,7 +932,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     国家関係情報
     /// </summary>
-    public class RelationInfo
+    public class CountryRelation
     {
         #region 公開プロパティ
 
@@ -919,9 +1030,86 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     ユニット情報
+    ///     輸送船団
     /// </summary>
-    public class ScenarioUnit
+    public class Convoy
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     typeとidの組
+        /// </summary>
+        public TypeId Id { get; set; }
+
+        /// <summary>
+        ///     貿易ID
+        /// </summary>
+        public TypeId TradeId { get; set; }
+
+        /// <summary>
+        ///     貿易用の輸送船団かどうか
+        /// </summary>
+        public bool IsTrade { get; set; }
+
+        /// <summary>
+        ///     輸送船の数
+        /// </summary>
+        public int Transports { get; set; }
+
+        /// <summary>
+        ///     護衛艦の数
+        /// </summary>
+        public int Escorts { get; set; }
+
+        /// <summary>
+        ///     エネルギーの輸送有無
+        /// </summary>
+        public bool Energy { get; set; }
+
+        /// <summary>
+        ///     金属の輸送有無
+        /// </summary>
+        public bool Metal { get; set; }
+
+        /// <summary>
+        ///     希少資源の輸送有無
+        /// </summary>
+        public bool RareMaterials { get; set; }
+
+        /// <summary>
+        ///     石油の輸送有無
+        /// </summary>
+        public bool Oil { get; set; }
+
+        /// <summary>
+        ///     物資の輸送有無
+        /// </summary>
+        public bool Supplies { get; set; }
+
+        /// <summary>
+        ///     航路
+        /// </summary>
+        public List<int> Path { get; set; }
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public Convoy()
+        {
+            Path = new List<int>();
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     陸軍ユニット
+    /// </summary>
+    public class LandUnit
     {
         #region 公開プロパティ
 
@@ -936,14 +1124,9 @@ namespace HoI2Editor.Models
         public string Name { get; set; }
 
         /// <summary>
-        ///     位置
+        ///     統帥国
         /// </summary>
-        public int Location { get; set; }
-
-        /// <summary>
-        ///     所属基地 (海軍/空軍)
-        /// </summary>
-        public int Base { get; set; }
+        public Country Control { get; set; }
 
         /// <summary>
         ///     指揮官
@@ -951,14 +1134,24 @@ namespace HoI2Editor.Models
         public int Leader { get; set; }
 
         /// <summary>
-        ///     師団
+        ///     位置
         /// </summary>
-        public List<ScenarioDivision> Divisions { get; private set; }
+        public int Location { get; set; }
 
         /// <summary>
         ///     塹壕レベル
         /// </summary>
         public double DigIn { get; set; }
+
+        /// <summary>
+        ///     任務
+        /// </summary>
+        public LandMission Mission { get; set; }
+
+        /// <summary>
+        ///     師団
+        /// </summary>
+        public List<LandDivision> Divisions { get; private set; }
 
         #endregion
 
@@ -967,18 +1160,142 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public ScenarioUnit()
+        public LandUnit()
         {
-            Divisions = new List<ScenarioDivision>();
+            Divisions = new List<LandDivision>();
         }
 
         #endregion
     }
 
     /// <summary>
-    ///     師団情報
+    ///     海軍ユニット
     /// </summary>
-    public class ScenarioDivision
+    public class NavalUnit
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     typeとidの組
+        /// </summary>
+        public TypeId Id { get; set; }
+
+        /// <summary>
+        ///     ユニット名
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     統帥国
+        /// </summary>
+        public Country Control { get; set; }
+
+        /// <summary>
+        ///     指揮官
+        /// </summary>
+        public int Leader { get; set; }
+
+        /// <summary>
+        ///     位置
+        /// </summary>
+        public int Location { get; set; }
+
+        /// <summary>
+        ///     所属基地
+        /// </summary>
+        public int Base { get; set; }
+
+        /// <summary>
+        ///     任務
+        /// </summary>
+        public NavalMission Mission { get; set; }
+
+        /// <summary>
+        ///     師団
+        /// </summary>
+        public List<NavalDivision> Divisions { get; private set; }
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public NavalUnit()
+        {
+            Divisions = new List<NavalDivision>();
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     空軍ユニット
+    /// </summary>
+    public class AirUnit
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     typeとidの組
+        /// </summary>
+        public TypeId Id { get; set; }
+
+        /// <summary>
+        ///     ユニット名
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     統帥国
+        /// </summary>
+        public Country Control { get; set; }
+
+        /// <summary>
+        ///     指揮官
+        /// </summary>
+        public int Leader { get; set; }
+
+        /// <summary>
+        ///     位置
+        /// </summary>
+        public int Location { get; set; }
+
+        /// <summary>
+        ///     所属基地
+        /// </summary>
+        public int Base { get; set; }
+
+        /// <summary>
+        ///     任務
+        /// </summary>
+        public AirMission Mission { get; set; }
+
+        /// <summary>
+        ///     師団
+        /// </summary>
+        public List<AirDivision> Divisions { get; private set; }
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public AirUnit()
+        {
+            Divisions = new List<AirDivision>();
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     陸軍師団
+    /// </summary>
+    public class LandDivision
     {
         #region 公開プロパティ
 
@@ -998,36 +1315,6 @@ namespace HoI2Editor.Models
         public UnitType Type { get; set; }
 
         /// <summary>
-        ///     最大充足率
-        /// </summary>
-        public int MaxStrength { get; set; }
-
-        /// <summary>
-        ///     充足率
-        /// </summary>
-        public int Strength { get; set; }
-
-        /// <summary>
-        ///     組織率
-        /// </summary>
-        public int Organisation { get; set; }
-
-        /// <summary>
-        ///     経験値
-        /// </summary>
-        public int Experience { get; set; }
-
-        /// <summary>
-        ///     最高速度
-        /// </summary>
-        public double MaxSpeed { get; set; }
-
-        /// <summary>
-        ///     移動不可
-        /// </summary>
-        public bool Locked { get; set; }
-
-        /// <summary>
         ///     モデル番号
         /// </summary>
         public int Model { get; set; }
@@ -1041,6 +1328,36 @@ namespace HoI2Editor.Models
         ///     付属旅団のモデル番号
         /// </summary>
         public int BrigadeModel { get; set; }
+
+        /// <summary>
+        ///     最大戦力
+        /// </summary>
+        public int MaxStrength { get; set; }
+
+        /// <summary>
+        ///     戦力
+        /// </summary>
+        public int Strength { get; set; }
+
+        /// <summary>
+        ///     指揮統制率
+        /// </summary>
+        public int Organisation { get; set; }
+
+        /// <summary>
+        ///     経験値
+        /// </summary>
+        public int Experience { get; set; }
+
+        /// <summary>
+        ///     攻勢開始日時
+        /// </summary>
+        public GameDate Offensive { get; set; }
+
+        /// <summary>
+        ///     移動不可
+        /// </summary>
+        public bool Locked { get; set; }
 
         #endregion
 
@@ -1058,11 +1375,455 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public ScenarioDivision()
+        public LandDivision()
         {
             Model = UndefinedModelNo;
             BrigadeModel = UndefinedModelNo;
         }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     海軍師団
+    /// </summary>
+    public class NavalDivision
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     typeとidの組
+        /// </summary>
+        public TypeId Id { get; set; }
+
+        /// <summary>
+        ///     師団名
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     ユニット種類
+        /// </summary>
+        public UnitType Type { get; set; }
+
+        /// <summary>
+        ///     モデル番号
+        /// </summary>
+        public int Model { get; set; }
+
+        /// <summary>
+        ///     付属旅団のユニット種類
+        /// </summary>
+        public UnitType Extra { get; set; }
+
+        /// <summary>
+        ///     付属旅団のユニット種類
+        /// </summary>
+        public UnitType Extra1 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のユニット種類
+        /// </summary>
+        public UnitType Extra2 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のユニット種類
+        /// </summary>
+        public UnitType Extra3 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のユニット種類
+        /// </summary>
+        public UnitType Extra4 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のユニット種類
+        /// </summary>
+        public UnitType Extra5 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のモデル番号
+        /// </summary>
+        public int BrigadeModel { get; set; }
+
+        /// <summary>
+        ///     付属旅団のモデル番号
+        /// </summary>
+        public int BrigadeModel1 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のモデル番号
+        /// </summary>
+        public int BrigadeModel2 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のモデル番号
+        /// </summary>
+        public int BrigadeModel3 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のモデル番号
+        /// </summary>
+        public int BrigadeModel4 { get; set; }
+
+        /// <summary>
+        ///     付属旅団のモデル番号
+        /// </summary>
+        public int BrigadeModel5 { get; set; }
+
+        /// <summary>
+        ///     最大戦力
+        /// </summary>
+        public int MaxStrength { get; set; }
+
+        /// <summary>
+        ///     戦力
+        /// </summary>
+        public int Strength { get; set; }
+
+        /// <summary>
+        ///     指揮統制率
+        /// </summary>
+        public int Organisation { get; set; }
+
+        /// <summary>
+        ///     経験値
+        /// </summary>
+        public int Experience { get; set; }
+
+        /// <summary>
+        ///     移動速度
+        /// </summary>
+        public double MaxSpeed { get; set; }
+
+        /// <summary>
+        ///     対艦/対潜防御力
+        /// </summary>
+        public double SeaDefense { get; set; }
+
+        /// <summary>
+        ///     対空防御力
+        /// </summary>
+        public double AirDefence { get; set; }
+
+        /// <summary>
+        ///     対艦攻撃力(海軍)
+        /// </summary>
+        public double SeaAttack { get; set; }
+
+        /// <summary>
+        ///     対潜攻撃力
+        /// </summary>
+        public double SubAttack { get; set; }
+
+        /// <summary>
+        ///     通商破壊力
+        /// </summary>
+        public double ConvoyAttack { get; set; }
+
+        /// <summary>
+        ///     湾岸攻撃力
+        /// </summary>
+        public double ShoreBombardment { get; set; }
+
+        /// <summary>
+        ///     対空攻撃力
+        /// </summary>
+        public double AirAttack { get; set; }
+
+        /// <summary>
+        ///     射程距離
+        /// </summary>
+        public double Distance { get; set; }
+
+        /// <summary>
+        ///     可視性
+        /// </summary>
+        public double Visibility { get; set; }
+
+        /// <summary>
+        ///     対艦索敵能力
+        /// </summary>
+        public double SurfaceDetectionCapability { get; set; }
+
+        /// <summary>
+        ///     対潜索敵能力
+        /// </summary>
+        public double SubDetectionCapability { get; set; }
+
+        /// <summary>
+        ///     対空索敵能力
+        /// </summary>
+        public double AirDetectionCapability { get; set; }
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     未定義のモデル番号
+        /// </summary>
+        public const int UndefinedModelNo = -1;
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public NavalDivision()
+        {
+            Model = UndefinedModelNo;
+            BrigadeModel = UndefinedModelNo;
+            BrigadeModel1 = UndefinedModelNo;
+            BrigadeModel2 = UndefinedModelNo;
+            BrigadeModel3 = UndefinedModelNo;
+            BrigadeModel4 = UndefinedModelNo;
+            BrigadeModel5 = UndefinedModelNo;
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     空軍師団
+    /// </summary>
+    public class AirDivision
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     typeとidの組
+        /// </summary>
+        public TypeId Id { get; set; }
+
+        /// <summary>
+        ///     師団名
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     ユニット種類
+        /// </summary>
+        public UnitType Type { get; set; }
+
+        /// <summary>
+        ///     モデル番号
+        /// </summary>
+        public int Model { get; set; }
+
+        /// <summary>
+        ///     付属旅団のユニット種類
+        /// </summary>
+        public UnitType Extra { get; set; }
+
+        /// <summary>
+        ///     付属旅団のモデル番号
+        /// </summary>
+        public int BrigadeModel { get; set; }
+
+        /// <summary>
+        ///     最大戦力
+        /// </summary>
+        public int MaxStrength { get; set; }
+
+        /// <summary>
+        ///     戦力
+        /// </summary>
+        public int Strength { get; set; }
+
+        /// <summary>
+        ///     指揮統制率
+        /// </summary>
+        public int Organisation { get; set; }
+
+        /// <summary>
+        ///     経験値
+        /// </summary>
+        public int Experience { get; set; }
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     未定義のモデル番号
+        /// </summary>
+        public const int UndefinedModelNo = -1;
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public AirDivision()
+        {
+            Model = UndefinedModelNo;
+            BrigadeModel = UndefinedModelNo;
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     陸軍任務
+    /// </summary>
+    public class LandMission
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     任務の種類
+        /// </summary>
+        public LandMissionType Type { get; set; }
+
+        /// <summary>
+        ///     対象プロヴィンス
+        /// </summary>
+        public int Target { get; set; }
+
+        /// <summary>
+        ///     戦力/指揮統制率下限
+        /// </summary>
+        public double Percentage { get; set; }
+
+        /// <summary>
+        ///     夜間遂行
+        /// </summary>
+        public bool Night { get; set; }
+
+        /// <summary>
+        ///     昼間遂行
+        /// </summary>
+        public bool Day { get; set; }
+
+        /// <summary>
+        ///     開始日時
+        /// </summary>
+        public GameDate StartDate { get; set; }
+
+        /// <summary>
+        ///     任務
+        /// </summary>
+        public int Task { get; set; }
+
+        /// <summary>
+        ///     位置
+        /// </summary>
+        public int Location { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     海軍任務
+    /// </summary>
+    public class NavalMission
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     任務の種類
+        /// </summary>
+        public NavalMissionType Type { get; set; }
+
+        /// <summary>
+        ///     対象プロヴィンス
+        /// </summary>
+        public int Target { get; set; }
+
+        /// <summary>
+        ///     戦力/指揮統制率下限
+        /// </summary>
+        public double Percentage { get; set; }
+
+        /// <summary>
+        ///     夜間遂行
+        /// </summary>
+        public bool Night { get; set; }
+
+        /// <summary>
+        ///     昼間遂行
+        /// </summary>
+        public bool Day { get; set; }
+
+        /// <summary>
+        ///     開始日時
+        /// </summary>
+        public GameDate StartDate { get; set; }
+
+        /// <summary>
+        ///     終了日時
+        /// </summary>
+        public GameDate EndDate { get; set; }
+
+        /// <summary>
+        ///     任務
+        /// </summary>
+        public int Task { get; set; }
+
+        /// <summary>
+        ///     位置
+        /// </summary>
+        public int Location { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     空軍任務
+    /// </summary>
+    public class AirMission
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     任務の種類
+        /// </summary>
+        public AirMissionType Type { get; set; }
+
+        /// <summary>
+        ///     対象プロヴィンス
+        /// </summary>
+        public int Target { get; set; }
+
+        /// <summary>
+        ///     戦力/指揮統制率下限
+        /// </summary>
+        public double Percentage { get; set; }
+
+        /// <summary>
+        ///     夜間遂行
+        /// </summary>
+        public bool Night { get; set; }
+
+        /// <summary>
+        ///     昼間遂行
+        /// </summary>
+        public bool Day { get; set; }
+
+        /// <summary>
+        ///     開始日時
+        /// </summary>
+        public GameDate StartDate { get; set; }
+
+        /// <summary>
+        ///     終了日時
+        /// </summary>
+        public GameDate EndDate { get; set; }
+
+        /// <summary>
+        ///     任務
+        /// </summary>
+        public int Task { get; set; }
+
+        /// <summary>
+        ///     位置
+        /// </summary>
+        public int Location { get; set; }
 
         #endregion
     }
@@ -1090,9 +1851,49 @@ namespace HoI2Editor.Models
         public double Cost { get; set; }
 
         /// <summary>
+        ///     必要人的資源
+        /// </summary>
+        public double Manpower { get; set; }
+
+        /// <summary>
         ///     完了予定日
         /// </summary>
         public GameDate Date { get; set; }
+
+        /// <summary>
+        ///     進捗率増分
+        /// </summary>
+        public double Progress { get; set; }
+
+        /// <summary>
+        ///     総進捗率
+        /// </summary>
+        public double TotalProgress { get; set; }
+
+        /// <summary>
+        ///     連続生産ボーナス
+        /// </summary>
+        public double GearingBonus { get; set; }
+
+        /// <summary>
+        ///     総生産数
+        /// </summary>
+        public int Size { get; set; }
+
+        /// <summary>
+        ///     生産完了数
+        /// </summary>
+        public int Done { get; set; }
+
+        /// <summary>
+        ///     完了日数
+        /// </summary>
+        public int Days { get; set; }
+
+        /// <summary>
+        ///     1単位の完了日数
+        /// </summary>
+        public int DaysForFirst { get; set; }
 
         /// <summary>
         ///     ユニット種類
@@ -1135,6 +1936,161 @@ namespace HoI2Editor.Models
             Model = UndefinedModelNo;
             BrigadeModel = UndefinedModelNo;
         }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     生産中輸送船団情報
+    /// </summary>
+    public class ConvoyDevelopment
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     typeとidの組
+        /// </summary>
+        public TypeId Id { get; set; }
+
+        /// <summary>
+        ///     師団名
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     位置
+        /// </summary>
+        public int Location { get; set; }
+
+        /// <summary>
+        ///     必要IC
+        /// </summary>
+        public double Cost { get; set; }
+
+        /// <summary>
+        ///     必要人的資源
+        /// </summary>
+        public double Manpower { get; set; }
+
+        /// <summary>
+        ///     完了予定日
+        /// </summary>
+        public GameDate Date { get; set; }
+
+        /// <summary>
+        ///     進捗率増分
+        /// </summary>
+        public double Progress { get; set; }
+
+        /// <summary>
+        ///     総進捗率
+        /// </summary>
+        public double TotalProgress { get; set; }
+
+        /// <summary>
+        ///     連続生産ボーナス
+        /// </summary>
+        public double GearingBonus { get; set; }
+
+        /// <summary>
+        ///     連続生産数
+        /// </summary>
+        public int Size { get; set; }
+
+        /// <summary>
+        ///     生産完了数
+        /// </summary>
+        public int Done { get; set; }
+
+        /// <summary>
+        ///     完了日数
+        /// </summary>
+        public int Days { get; set; }
+
+        /// <summary>
+        ///     最初の1単位の完了日数
+        /// </summary>
+        public int DaysForFirst { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     生産中建物情報
+    /// </summary>
+    public class BuildingDevelopment
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     typeとidの組
+        /// </summary>
+        public TypeId Id { get; set; }
+
+        /// <summary>
+        ///     師団名
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     建物の種類
+        /// </summary>
+        public BuildingType Type { get; set; }
+
+        /// <summary>
+        ///     位置
+        /// </summary>
+        public int Location { get; set; }
+
+        /// <summary>
+        ///     必要IC
+        /// </summary>
+        public double Cost { get; set; }
+
+        /// <summary>
+        ///     必要人的資源
+        /// </summary>
+        public double Manpower { get; set; }
+
+        /// <summary>
+        ///     完了予定日
+        /// </summary>
+        public GameDate Date { get; set; }
+
+        /// <summary>
+        ///     進捗率増分
+        /// </summary>
+        public double Progress { get; set; }
+
+        /// <summary>
+        ///     総進捗率
+        /// </summary>
+        public double TotalProgress { get; set; }
+
+        /// <summary>
+        ///     連続生産ボーナス
+        /// </summary>
+        public double GearingBonus { get; set; }
+
+        /// <summary>
+        ///     連続生産数
+        /// </summary>
+        public int Size { get; set; }
+
+        /// <summary>
+        ///     生産完了数
+        /// </summary>
+        public int Done { get; set; }
+
+        /// <summary>
+        ///     完了日数
+        /// </summary>
+        public int Days { get; set; }
+
+        /// <summary>
+        ///     最初の1単位の完了日数
+        /// </summary>
+        public int DaysForFirst { get; set; }
 
         #endregion
     }
@@ -1186,5 +2142,78 @@ namespace HoI2Editor.Models
         LeftWingRadical, // 急進的左翼
         Leninist, // レーニン主義
         Stalinist // スターリン主義
+    }
+
+    /// <summary>
+    ///     建物の種類
+    /// </summary>
+    public enum BuildingType
+    {
+        None,
+        Ic, // 工場
+        Infrastructure, // インフラ
+        CoastalFort, // 沿岸要塞
+        LandFort, // 陸上要塞
+        AntiAir, // 対空砲
+        AirBase, // 航空基地
+        NavalBase, // 海軍基地
+        RadarStation, // レーダー基地
+        NuclearReactor, // 原子炉
+        RocketTest, // ロケット試験場
+        SyntheticOil, // 合成石油工場
+        SyntheticRares, // 合成素材工場
+        NuclearPower // 原子力発電所
+    }
+
+    /// <summary>
+    ///     陸軍任務の種類
+    /// </summary>
+    public enum LandMissionType
+    {
+        None,
+        Attack, // 攻撃
+        StratRedeploy, // 戦略的再配備
+        SupportAttack, // 支援攻撃
+        SupportDefense, // 防戦支援
+        Reserves, // 待機
+        AntiPartisanDuty // パルチザン掃討
+    }
+
+    /// <summary>
+    ///     海軍任務の種類
+    /// </summary>
+    public enum NavalMissionType
+    {
+        None,
+        ConvoyRaiding, // 船団襲撃
+        Asw, // 対潜作戦
+        NavalInterdiction, // 海上阻止
+        ShoreBombardment, // 沿岸砲撃
+        AmphibiousAssault, // 強襲上陸
+        SeaTransport, // 海上輸送
+        NavalCombatPatrol, // 海上戦闘哨戒
+        NavalPortStrike, // 空母による港湾攻撃
+        NavalAirbaseStrike // 空母による航空基地攻撃
+    }
+
+    /// <summary>
+    ///     空軍任務の種類
+    /// </summary>
+    public enum AirMissionType
+    {
+        None,
+        AirSuperiority, // 制空権
+        GroundAttack, // 地上攻撃
+        RunwayCratering, // 空港空爆
+        InstallationStrike, // 軍事施設攻撃
+        Interdiction, // 地上支援
+        NavalStrike, // 艦船攻撃
+        PortStrike, // 港湾攻撃
+        LogisticalStrike, // 兵站攻撃
+        StrategicBombardment, // 戦略爆撃
+        AirSupply, // 空輸補給
+        AirborneAssault, // 空挺強襲
+        ConvoyAirRaiding, // 船団爆撃
+        Nuke // 核攻撃
     }
 }

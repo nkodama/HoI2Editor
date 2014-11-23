@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using HoI2Editor.Models;
@@ -24,15 +25,6 @@ namespace HoI2Editor.Forms
             InitForm();
         }
 
-        /// <summary>
-        ///     編集項目を初期化する
-        /// </summary>
-        private void InitEditableItems()
-        {
-            // シナリオリストボックスを初期化する
-            InitScenarioListBox();
-        }
-
         #endregion
 
         #region データ処理
@@ -42,6 +34,27 @@ namespace HoI2Editor.Forms
         /// </summary>
         public void OnFileLoaded()
         {
+            // 編集項目を初期化する
+            InitEditableItems();
+
+            // 編集項目の表示を更新する
+            UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     編集項目を初期化する
+        /// </summary>
+        private void InitEditableItems()
+        {
+        }
+
+        /// <summary>
+        ///     編集項目の表示を更新する
+        /// </summary>
+        private void UpdateEditableItems()
+        {
+            // メインタブの項目の表示を更新する
+            UpdateMainItems();
         }
 
         /// <summary>
@@ -94,8 +107,8 @@ namespace HoI2Editor.Forms
             // 文字列定義ファイルを読み込む
             Config.Load();
 
-            // 編集項目を初期化する
-            InitEditableItems();
+            // シナリオリストボックスを初期化する
+            InitScenarioListBox();
         }
 
         /// <summary>
@@ -278,6 +291,62 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     メインタブの項目の表示を更新する
+        /// </summary>
+        private void UpdateMainItems()
+        {
+            Scenario scenario = Scenarios.Data;
+
+            scenarioNameTextBox.Text = Config.GetText(scenario.Name);
+            panelImageTextBox.Text = scenario.PanelName;
+            string panelFileName = Game.GetReadFileName(Game.ScenarioPathName, scenario.PanelName);
+            if (File.Exists(panelFileName))
+            {
+                panelPictureBox.ImageLocation = panelFileName;
+            }
+            else
+            {
+                panelPictureBox.Image = null;
+            }
+
+            startYearTextBox.Text = scenario.GlobalData.StartDate.Year.ToString(CultureInfo.InvariantCulture);
+            startMonthTextBox.Text = scenario.GlobalData.StartDate.Month.ToString(CultureInfo.InvariantCulture);
+            startDayTextBox.Text = scenario.GlobalData.StartDate.Day.ToString(CultureInfo.InvariantCulture);
+            endYearTextBox.Text = scenario.GlobalData.EndDate.Year.ToString(CultureInfo.InvariantCulture);
+            endMonthTextBox.Text = scenario.GlobalData.EndDate.Month.ToString(CultureInfo.InvariantCulture);
+            endDayTextBox.Text = scenario.GlobalData.EndDate.Day.ToString(CultureInfo.InvariantCulture);
+
+            majorListBox.Items.Clear();
+            foreach (MajorCountry major in scenario.Header.Majors)
+            {
+                majorListBox.Items.Add(Config.GetText(Countries.Strings[(int) major.Country]));
+            }
+
+            selectableCheckedListBox.Items.Clear();
+            foreach (Country country in Countries.Tags)
+            {
+                string tagName = Countries.Strings[(int) country];
+                string countryName = Config.ExistsKey(tagName)
+                    ? string.Format("{0} {1}", tagName, Config.GetText(tagName))
+                    : tagName;
+                bool check = scenario.Header.Selectable.Contains(country);
+                selectableCheckedListBox.Items.Add(countryName, check);
+            }
+
+            includeListBox.Items.Clear();
+            foreach (string fileName in scenario.Includes)
+            {
+                includeListBox.Items.Add(fileName);
+            }
+
+            eventListBox.Items.Clear();
+            foreach (string fileName in scenario.Events)
+            {
+                eventListBox.Items.Add(fileName);
+            }
+        }
+
+        /// <summary>
         ///     読み込みボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -310,6 +379,9 @@ namespace HoI2Editor.Forms
             {
                 Scenarios.Load(pathName);
             }
+
+            // データ読み込み後の処理
+            OnFileLoaded();
         }
 
         /// <summary>

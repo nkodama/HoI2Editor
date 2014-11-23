@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using HoI2Editor.Models;
-using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -155,6 +154,36 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
+                    // history
+                    if (keyword.Equals("history"))
+                    {
+                        IEnumerable<int> list = ParseIdList(lexer);
+                        if (list == null)
+                        {
+                            Log.InvalidSection(LogCategory, "history");
+                            continue;
+                        }
+
+                        // 発生済みイベント
+                        scenario.History.AddRange(list);
+                        continue;
+                    }
+
+                    // sleepevent
+                    if (keyword.Equals("sleepevent"))
+                    {
+                        IEnumerable<int> list = ParseIdList(lexer);
+                        if (list == null)
+                        {
+                            Log.InvalidSection(LogCategory, "sleepevent");
+                            continue;
+                        }
+
+                        // 休止イベント
+                        scenario.History.AddRange(list);
+                        continue;
+                    }
+
                     // event
                     if (keyword.Equals("event"))
                     {
@@ -177,7 +206,8 @@ namespace HoI2Editor.Parsers
                         }
 
                         // イベントファイル
-                        scenario.Events.Add(token.Value as string);
+                        var name = token.Value as string;
+                        scenario.Events.Add(name);
                         continue;
                     }
 
@@ -222,8 +252,8 @@ namespace HoI2Editor.Parsers
                     // province
                     if (keyword.Equals("province"))
                     {
-                        ScenarioProvinceInfo info = ParseProvince(lexer);
-                        if (info == null)
+                        ScenarioProvince province = ParseProvince(lexer);
+                        if (province == null)
                         {
                             Log.InvalidSection(LogCategory, "province");
                             continue;
@@ -233,19 +263,19 @@ namespace HoI2Editor.Parsers
                         switch (GetScenarioFileKind())
                         {
                             case ScenarioFileKind.BasesInc:
-                                scenario.BasesProvinces.Add(info);
+                                scenario.BasesProvinces.Add(province);
                                 break;
 
                             case ScenarioFileKind.BasesDodInc:
-                                scenario.BasesDodProvinces.Add(info);
+                                scenario.BasesDodProvinces.Add(province);
                                 break;
 
                             case ScenarioFileKind.VpInc:
-                                scenario.VpProvinces.Add(info);
+                                scenario.VpProvinces.Add(province);
                                 break;
 
                             default:
-                                scenario.CountryProvinces.Add(info);
+                                scenario.CountryProvinces.Add(province);
                                 break;
                         }
                         continue;
@@ -254,15 +284,15 @@ namespace HoI2Editor.Parsers
                     // country
                     if (keyword.Equals("country"))
                     {
-                        ScenarioCountryInfo info = ParseCountry(lexer);
-                        if (info == null)
+                        ScenarioCountry country = ParseCountry(lexer);
+                        if (country == null)
                         {
                             Log.InvalidSection(LogCategory, "country");
                             continue;
                         }
 
                         // 国家情報
-                        scenario.Countries.Add(info);
+                        scenario.Countries.Add(country);
                         continue;
                     }
 
@@ -390,10 +420,10 @@ namespace HoI2Editor.Parsers
                 string tagName = keyword.ToUpper();
                 if (Countries.StringMap.ContainsKey(tagName))
                 {
-                    Country country = Countries.StringMap[tagName];
-                    if (Countries.Tags.Contains(country))
+                    Country tag = Countries.StringMap[tagName];
+                    if (Countries.Tags.Contains(tag))
                     {
-                        MajorCountryInfo info = ParseMajorCountry(lexer);
+                        MajorCountry info = ParseMajorCountry(lexer);
                         if (info == null)
                         {
                             Log.InvalidSection(LogCategory, tagName);
@@ -401,6 +431,7 @@ namespace HoI2Editor.Parsers
                         }
 
                         // 主要国情報
+                        info.Country = tag;
                         header.Majors.Add(info);
                         continue;
                     }
@@ -502,7 +533,7 @@ namespace HoI2Editor.Parsers
                 // axis
                 if (keyword.Equals("axis"))
                 {
-                    AllianceInfo alliance = ParseAlliance(lexer);
+                    Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
                         Log.InvalidSection(LogCategory, "axis");
@@ -517,7 +548,7 @@ namespace HoI2Editor.Parsers
                 // allies
                 if (keyword.Equals("allies"))
                 {
-                    AllianceInfo alliance = ParseAlliance(lexer);
+                    Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
                         Log.InvalidSection(LogCategory, "allies");
@@ -532,7 +563,7 @@ namespace HoI2Editor.Parsers
                 // comintern
                 if (keyword.Equals("comintern"))
                 {
-                    AllianceInfo alliance = ParseAlliance(lexer);
+                    Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
                         Log.InvalidSection(LogCategory, "comintern");
@@ -547,7 +578,7 @@ namespace HoI2Editor.Parsers
                 // alliance
                 if (keyword.Equals("alliance"))
                 {
-                    AllianceInfo alliance = ParseAlliance(lexer);
+                    Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
                         Log.InvalidSection(LogCategory, "alliance");
@@ -562,7 +593,7 @@ namespace HoI2Editor.Parsers
                 // war
                 if (keyword.Equals("war"))
                 {
-                    WarInfo war = ParseWar(lexer);
+                    War war = ParseWar(lexer);
                     if (war == null)
                     {
                         Log.InvalidSection(LogCategory, "war");
@@ -577,7 +608,7 @@ namespace HoI2Editor.Parsers
                 // treaty
                 if (keyword.Equals("treaty"))
                 {
-                    TreatyInfo treaty = ParseTreaty(lexer);
+                    Treaty treaty = ParseTreaty(lexer);
                     if (treaty == null)
                     {
                         Log.InvalidSection(LogCategory, "treaty");
@@ -647,7 +678,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>主要国情報</returns>
-        private static MajorCountryInfo ParseMajorCountry(TextLexer lexer)
+        private static MajorCountry ParseMajorCountry(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -665,7 +696,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new MajorCountryInfo();
+            var major = new MajorCountry();
             while (true)
             {
                 token = lexer.GetToken();
@@ -719,7 +750,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // プロパガンダ画像名
-                    info.PictureName = token.Value as string;
+                    major.PictureName = token.Value as string;
                     continue;
                 }
 
@@ -728,7 +759,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return info;
+            return major;
         }
 
         /// <summary>
@@ -736,7 +767,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>同盟国情報</returns>
-        private static AllianceInfo ParseAlliance(TextLexer lexer)
+        private static Alliance ParseAlliance(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -754,7 +785,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new AllianceInfo();
+            var info = new Alliance();
             while (true)
             {
                 token = lexer.GetToken();
@@ -829,7 +860,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>戦争情報</returns>
-        private static WarInfo ParseWar(TextLexer lexer)
+        private static War ParseWar(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -847,7 +878,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new WarInfo();
+            var info = new War();
             while (true)
             {
                 token = lexer.GetToken();
@@ -927,7 +958,7 @@ namespace HoI2Editor.Parsers
                 // attackers
                 if (keyword.Equals("attackers"))
                 {
-                    AllianceInfo alliance = ParseAlliance(lexer);
+                    Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
                         Log.InvalidSection(LogCategory, "attackers");
@@ -942,7 +973,7 @@ namespace HoI2Editor.Parsers
                 // defenders
                 if (keyword.Equals("defenders"))
                 {
-                    AllianceInfo alliance = ParseAlliance(lexer);
+                    Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
                         Log.InvalidSection(LogCategory, "defenders");
@@ -967,7 +998,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>外交協定情報</returns>
-        private static TreatyInfo ParseTreaty(TextLexer lexer)
+        private static Treaty ParseTreaty(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -985,7 +1016,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new TreatyInfo();
+            var treaty = new Treaty();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1028,7 +1059,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // typeとidの組
-                    info.Id = id;
+                    treaty.Id = id;
                     continue;
                 }
 
@@ -1063,21 +1094,21 @@ namespace HoI2Editor.Parsers
                     // non_aggression
                     if (typeName.Equals("non_aggression"))
                     {
-                        info.Type = TreatyType.NonAggression;
+                        treaty.Type = TreatyType.NonAggression;
                         continue;
                     }
 
                     // peace
                     if (typeName.Equals("peace"))
                     {
-                        info.Type = TreatyType.Peace;
+                        treaty.Type = TreatyType.Peace;
                         continue;
                     }
 
                     // trade
                     if (typeName.Equals("trade"))
                     {
-                        info.Type = TreatyType.Trade;
+                        treaty.Type = TreatyType.Trade;
                         continue;
                     }
 
@@ -1117,17 +1148,17 @@ namespace HoI2Editor.Parsers
 
                     if (Countries.StringMap.ContainsKey(tagName))
                     {
-                        Country country = Countries.StringMap[tagName];
-                        if (Countries.Tags.Contains(country))
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
                         {
                             // 対象国
-                            if (info.Country1 == Country.None)
+                            if (treaty.Country1 == Country.None)
                             {
-                                info.Country1 = country;
+                                treaty.Country1 = tag;
                             }
-                            else if (info.Country2 == Country.None)
+                            else if (treaty.Country2 == Country.None)
                             {
-                                info.Country2 = country;
+                                treaty.Country2 = tag;
                             }
                             continue;
                         }
@@ -1150,7 +1181,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 開始日時
-                    info.StartDate = date;
+                    treaty.StartDate = date;
                     continue;
                 }
 
@@ -1165,7 +1196,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 失効日時
-                    info.ExpiryDate = date;
+                    treaty.ExpiryDate = date;
                     continue;
                 }
 
@@ -1191,7 +1222,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 資金
-                    info.Money = (double) token.Value;
+                    treaty.Money = (double) token.Value;
                     continue;
                 }
 
@@ -1217,7 +1248,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 物資
-                    info.Supplies = (double) token.Value;
+                    treaty.Supplies = (double) token.Value;
                     continue;
                 }
 
@@ -1243,7 +1274,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // エネルギー
-                    info.Energy = (double) token.Value;
+                    treaty.Energy = (double) token.Value;
                     continue;
                 }
 
@@ -1269,7 +1300,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 金属
-                    info.Metal = (double) token.Value;
+                    treaty.Metal = (double) token.Value;
                     continue;
                 }
 
@@ -1295,7 +1326,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 希少資源
-                    info.RareMaterials = (double) token.Value;
+                    treaty.RareMaterials = (double) token.Value;
                     continue;
                 }
 
@@ -1321,7 +1352,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 石油
-                    info.Oil = (double) token.Value;
+                    treaty.Oil = (double) token.Value;
                     continue;
                 }
 
@@ -1356,14 +1387,14 @@ namespace HoI2Editor.Parsers
                     // yes
                     if (s.Equals("yes"))
                     {
-                        info.Cancel = true;
+                        treaty.Cancel = true;
                         continue;
                     }
 
                     // no
                     if (s.Equals("no"))
                     {
-                        info.Cancel = false;
+                        treaty.Cancel = false;
                         continue;
                     }
 
@@ -1378,7 +1409,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return info;
+            return treaty;
         }
 
         /// <summary>
@@ -1386,7 +1417,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>プロヴィンス情報</returns>
-        private static ScenarioProvinceInfo ParseProvince(TextLexer lexer)
+        private static ScenarioProvince ParseProvince(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -1404,7 +1435,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new ScenarioProvinceInfo();
+            var province = new ScenarioProvince();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1458,14 +1489,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // プロヴィンスID
-                    info.Id = (int) (double) token.Value;
+                    province.Id = (int) (double) token.Value;
                     continue;
                 }
 
                 // ic
                 if (keyword.Equals("ic"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "ic");
@@ -1473,14 +1504,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // IC
-                    info.Ic = size;
+                    province.Ic = size;
                     continue;
                 }
 
                 // infra
                 if (keyword.Equals("infra"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "infra");
@@ -1488,14 +1519,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // インフラ
-                    info.Infrastructure = size;
+                    province.Infrastructure = size;
                     continue;
                 }
 
                 // landfort
                 if (keyword.Equals("landfort"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "landfort");
@@ -1503,14 +1534,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 陸上要塞
-                    info.LandFort = size;
+                    province.LandFort = size;
                     continue;
                 }
 
                 // coastalfort
                 if (keyword.Equals("coastalfort"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "coastalfort");
@@ -1518,14 +1549,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 沿岸要塞
-                    info.CoastalFort = size;
+                    province.CoastalFort = size;
                     continue;
                 }
 
                 // anti_air
                 if (keyword.Equals("anti_air"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "anti_air");
@@ -1533,14 +1564,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対空砲
-                    info.AntiAir = size;
+                    province.AntiAir = size;
                     continue;
                 }
 
                 // air_base
                 if (keyword.Equals("air_base"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "air_base");
@@ -1548,14 +1579,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空軍基地
-                    info.AirBase = size;
+                    province.AirBase = size;
                     continue;
                 }
 
                 // naval_base
                 if (keyword.Equals("naval_base"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "naval_base");
@@ -1563,14 +1594,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 海軍基地
-                    info.NavalBase = size;
+                    province.NavalBase = size;
                     continue;
                 }
 
                 // radar_station
                 if (keyword.Equals("radar_station"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "radar_station");
@@ -1578,14 +1609,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // レーダー基地
-                    info.RadarStation = size;
+                    province.RadarStation = size;
                     continue;
                 }
 
                 // nuclear_reactor
                 if (keyword.Equals("nuclear_reactor"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "nuclear_reactor");
@@ -1593,14 +1624,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 原子炉
-                    info.NuclearReactor = size;
+                    province.NuclearReactor = size;
                     continue;
                 }
 
                 // rocket_test
                 if (keyword.Equals("rocket_test"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "rocket_test");
@@ -1608,14 +1639,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // ロケット試験場
-                    info.RocketTest = size;
+                    province.RocketTest = size;
                     continue;
                 }
 
                 // synthetic_oil
                 if (keyword.Equals("synthetic_oil"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "synthetic_oil");
@@ -1623,14 +1654,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 合成石油工場
-                    info.SyntheticOil = size;
+                    province.SyntheticOil = size;
                     continue;
                 }
 
                 // synthetic_rares
                 if (keyword.Equals("synthetic_rares"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "synthetic_rares");
@@ -1638,14 +1669,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 合成素材工場
-                    info.SyntheticRares = size;
+                    province.SyntheticRares = size;
                     continue;
                 }
 
                 // nuclear_power
                 if (keyword.Equals("nuclear_power"))
                 {
-                    BuildingSize size = ParseBuildingSize(lexer);
+                    BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
                         Log.InvalidSection(LogCategory, "nuclear_power");
@@ -1653,7 +1684,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 原子力発電所
-                    info.NuclearPower = size;
+                    province.NuclearPower = size;
                     continue;
                 }
 
@@ -1679,7 +1710,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 物資の備蓄量
-                    info.SupplyPool = (double) token.Value;
+                    province.SupplyPool = (double) token.Value;
                     continue;
                 }
 
@@ -1705,7 +1736,345 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 石油の備蓄量
-                    info.OilPool = (double) token.Value;
+                    province.OilPool = (double) token.Value;
+                    continue;
+                }
+
+                // energypool
+                if (keyword.Equals("energypool"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // エネルギーの備蓄量
+                    province.EnergyPool = (double) token.Value;
+                    continue;
+                }
+
+                // metalpool
+                if (keyword.Equals("metalpool"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 金属の備蓄量
+                    province.MetalPool = (double) token.Value;
+                    continue;
+                }
+
+                // rarematerialspool
+                if (keyword.Equals("rarematerialspool"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 希少資源の備蓄量
+                    province.RareMaterialsPool = (double) token.Value;
+                    continue;
+                }
+
+                // energy
+                if (keyword.Equals("energy"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // エネルギー産出量
+                    province.Energy = (double) token.Value;
+                    continue;
+                }
+
+                // max_energy
+                if (keyword.Equals("max_energy"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大エネルギー産出量
+                    province.MaxEnergy = (double) token.Value;
+                    continue;
+                }
+
+                // metal
+                if (keyword.Equals("metal"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 金属産出量
+                    province.Metal = (double) token.Value;
+                    continue;
+                }
+
+                // max_metal
+                if (keyword.Equals("max_metal"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大金属産出量
+                    province.MaxMetal = (double) token.Value;
+                    continue;
+                }
+
+                // rare_materials
+                if (keyword.Equals("rare_materials"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 希少資源産出量
+                    province.RareMaterials = (double) token.Value;
+                    continue;
+                }
+
+                // max_rare_materials
+                if (keyword.Equals("max_rare_materials"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大希少資源産出量
+                    province.MaxRareMaterials = (double) token.Value;
+                    continue;
+                }
+
+                // oil
+                if (keyword.Equals("oil"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 石油産出量
+                    province.Oil = (double) token.Value;
+                    continue;
+                }
+
+                // max_oil
+                if (keyword.Equals("max_oil"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大石油産出量
+                    province.MaxOil = (double) token.Value;
+                    continue;
+                }
+
+                // manpower
+                if (keyword.Equals("manpower"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 人的資源
+                    province.Manpower = (double) token.Value;
+                    continue;
+                }
+
+                // max_manpower
+                if (keyword.Equals("max_manpower"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大人的資源
+                    province.MaxManpower = (double) token.Value;
                     continue;
                 }
 
@@ -1731,7 +2100,33 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 勝利ポイント
-                    info.Vp = (int) (double) token.Value;
+                    province.Vp = (int) (double) token.Value;
+                    continue;
+                }
+
+                // province_revoltrisk
+                if (keyword.Equals("province_revoltrisk"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 反乱率
+                    province.RevoltRisk = (double) token.Value;
                     continue;
                 }
 
@@ -1740,7 +2135,142 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return info;
+            return province;
+        }
+
+        /// <summary>
+        ///     建物のサイズを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>建物のサイズ</returns>
+        private static BuildingSize ParseSize(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // 相対サイズ指定
+            token = lexer.GetToken();
+            if (token.Type == TokenType.Number)
+            {
+                return new BuildingSize {Size = (double) token.Value};
+            }
+
+            // {
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var size = new BuildingSize();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // size
+                if (keyword.Equals("size"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = (double) token.Value;
+                    if (s < 0)
+                    {
+                        Log.OutOfRange(LogCategory, "size", token, lexer);
+                        continue;
+                    }
+
+                    // 最大サイズ
+                    size.MaxSize = (double) token.Value;
+                    continue;
+                }
+
+                // current_size
+                if (keyword.Equals("current_size"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = (double) token.Value;
+                    if (s < 0)
+                    {
+                        Log.OutOfRange(LogCategory, "current_size", token, lexer);
+                        continue;
+                    }
+
+                    // 現在サイズ
+                    size.CurrentSize = s;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return size;
         }
 
         /// <summary>
@@ -1748,7 +2278,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>国家情報</returns>
-        private static ScenarioCountryInfo ParseCountry(TextLexer lexer)
+        private static ScenarioCountry ParseCountry(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -1766,7 +2296,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new ScenarioCountryInfo();
+            var country = new ScenarioCountry();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1828,11 +2358,11 @@ namespace HoI2Editor.Parsers
 
                     if (Countries.StringMap.ContainsKey(tagName))
                     {
-                        Country country = Countries.StringMap[tagName];
-                        if (Countries.Tags.Contains(country))
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
                         {
                             // 国タグ
-                            info.Country = country;
+                            country.Country = tag;
                             continue;
                         }
                     }
@@ -1873,11 +2403,11 @@ namespace HoI2Editor.Parsers
 
                     if (Countries.StringMap.ContainsKey(tagName))
                     {
-                        Country country = Countries.StringMap[tagName];
-                        if (Countries.Tags.Contains(country))
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
                         {
                             // 兄弟国
-                            info.RegularId = country;
+                            country.RegularId = tag;
                             continue;
                         }
                     }
@@ -1919,7 +2449,7 @@ namespace HoI2Editor.Parsers
                     if (Scenarios.GovernmentStrings.Contains(s))
                     {
                         // 独立可能政体
-                        info.IntrinsicGovType = (GovernmentType) Array.IndexOf(Scenarios.GovernmentStrings, s);
+                        country.IntrinsicGovType = (GovernmentType) Array.IndexOf(Scenarios.GovernmentStrings, s);
                         continue;
                     }
 
@@ -1959,11 +2489,11 @@ namespace HoI2Editor.Parsers
 
                     if (Countries.StringMap.ContainsKey(tagName))
                     {
-                        Country country = Countries.StringMap[tagName];
-                        if (Countries.Tags.Contains(country))
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
                         {
                             // 宗主国
-                            info.Master = country;
+                            country.Master = tag;
                             continue;
                         }
                     }
@@ -2004,11 +2534,11 @@ namespace HoI2Editor.Parsers
 
                     if (Countries.StringMap.ContainsKey(tagName))
                     {
-                        Country country = Countries.StringMap[tagName];
-                        if (Countries.Tags.Contains(country))
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
                         {
                             // 統帥権取得国
-                            info.Control = country;
+                            country.Control = tag;
                             continue;
                         }
                     }
@@ -2041,7 +2571,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 好戦性
-                    info.Belligerence = (int) (double) token.Value;
+                    country.Belligerence = (int) (double) token.Value;
                     continue;
                 }
 
@@ -2067,7 +2597,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 追加輸送能力
-                    info.ExtraTc = (double) token.Value;
+                    country.ExtraTc = (double) token.Value;
                     continue;
                 }
 
@@ -2093,7 +2623,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国民不満度
-                    info.Dissent = (double) token.Value;
+                    country.Dissent = (double) token.Value;
                     continue;
                 }
 
@@ -2119,7 +2649,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 首都のプロヴィンスID
-                    info.Capital = (int) (double) token.Value;
+                    country.Capital = (int) (double) token.Value;
                     continue;
                 }
 
@@ -2145,7 +2675,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 平時のIC補正
-                    info.PeaceTimeIcMod = (double) token.Value;
+                    country.PeaceTimeIcMod = (double) token.Value;
                     continue;
                 }
 
@@ -2171,7 +2701,33 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対地防御補正
-                    info.GroundDefEff = (double) token.Value;
+                    country.GroundDefEff = (double) token.Value;
+                    continue;
+                }
+
+                // ai
+                if (keyword.Equals("ai"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.String)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // AIファイル名
+                    country.Ai = token.Value as string;
                     continue;
                 }
 
@@ -2197,7 +2753,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 人的資源
-                    info.Manpower = (double) token.Value;
+                    country.Manpower = (double) token.Value;
                     continue;
                 }
 
@@ -2223,7 +2779,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // エネルギー
-                    info.Energy = (double) token.Value;
+                    country.Energy = (double) token.Value;
                     continue;
                 }
 
@@ -2249,7 +2805,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 金属
-                    info.Metal = (double) token.Value;
+                    country.Metal = (double) token.Value;
                     continue;
                 }
 
@@ -2275,7 +2831,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 希少資源
-                    info.RareMaterials = (double) token.Value;
+                    country.RareMaterials = (double) token.Value;
                     continue;
                 }
 
@@ -2301,7 +2857,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 石油
-                    info.Oil = (double) token.Value;
+                    country.Oil = (double) token.Value;
                     continue;
                 }
 
@@ -2327,7 +2883,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 物資
-                    info.Supplies = (double) token.Value;
+                    country.Supplies = (double) token.Value;
                     continue;
                 }
 
@@ -2353,7 +2909,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 資金
-                    info.Money = (double) token.Value;
+                    country.Money = (double) token.Value;
                     continue;
                 }
 
@@ -2379,7 +2935,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 輸送船団
-                    info.Transports = (int) (double) token.Value;
+                    country.Transports = (int) (double) token.Value;
                     continue;
                 }
 
@@ -2405,14 +2961,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 護衛艦
-                    info.Escorts = (int) (double) token.Value;
+                    country.Escorts = (int) (double) token.Value;
                     continue;
                 }
 
                 // free
                 if (keyword.Equals("free"))
                 {
-                    FreeResourceInfo free = ParseFree(lexer);
+                    FreeResources free = ParseFree(lexer);
                     if (free == null)
                     {
                         Log.InvalidSection(LogCategory, "free");
@@ -2420,14 +2976,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // マップ外資源
-                    info.Free = free;
+                    country.Free = free;
                     continue;
                 }
 
                 // diplomacy
                 if (keyword.Equals("diplomacy"))
                 {
-                    IEnumerable<RelationInfo> list = ParseDiplomacy(lexer);
+                    IEnumerable<CountryRelation> list = ParseDiplomacy(lexer);
                     if (list == null)
                     {
                         Log.InvalidSection(LogCategory, "diplomacy");
@@ -2435,7 +2991,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外交情報
-                    info.Diplomacy.AddRange(list);
+                    country.Diplomacy.AddRange(list);
                     continue;
                 }
 
@@ -2450,7 +3006,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 諜報情報
-                    info.Intelligence.Add(spyInfo);
+                    country.Intelligence.Add(spyInfo);
                     continue;
                 }
 
@@ -2465,7 +3021,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 中核プロヴィンス
-                    info.NationalProvinces.AddRange(list);
+                    country.NationalProvinces.AddRange(list);
                     continue;
                 }
 
@@ -2480,7 +3036,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 保有プロヴィンス
-                    info.OwnedProvinces.AddRange(list);
+                    country.OwnedProvinces.AddRange(list);
                     continue;
                 }
 
@@ -2495,7 +3051,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 支配プロヴィンス
-                    info.ControlledProvinces.AddRange(list);
+                    country.ControlledProvinces.AddRange(list);
                     continue;
                 }
 
@@ -2510,7 +3066,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 保有技術
-                    info.TechApps.AddRange(list);
+                    country.TechApps.AddRange(list);
                     continue;
                 }
 
@@ -2525,7 +3081,22 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 青写真
-                    info.BluePrints.AddRange(list);
+                    country.BluePrints.AddRange(list);
+                    continue;
+                }
+
+                // inventions
+                if (keyword.Equals("inventions"))
+                {
+                    IEnumerable<int> list = ParseIdList(lexer);
+                    if (list == null)
+                    {
+                        Log.InvalidSection(LogCategory, "inventions");
+                        continue;
+                    }
+
+                    // 発明イベント
+                    country.Inventions.AddRange(list);
                     continue;
                 }
 
@@ -2540,7 +3111,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 政策スライダー
-                    info.Policy = policy;
+                    country.Policy = policy;
                     continue;
                 }
 
@@ -2555,7 +3126,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国家元首
-                    info.HeadOfState = id;
+                    country.HeadOfState = id;
                     continue;
                 }
 
@@ -2570,7 +3141,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 政府首班
-                    info.HeadOfGovernment = id;
+                    country.HeadOfGovernment = id;
                     continue;
                 }
 
@@ -2585,7 +3156,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外務大臣
-                    info.ForeignMinister = id;
+                    country.ForeignMinister = id;
                     continue;
                 }
 
@@ -2600,7 +3171,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 軍需大臣
-                    info.ArmamentMinister = id;
+                    country.ArmamentMinister = id;
                     continue;
                 }
 
@@ -2615,7 +3186,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 内務大臣
-                    info.MinisterOfSecurity = id;
+                    country.MinisterOfSecurity = id;
                     continue;
                 }
 
@@ -2630,7 +3201,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 情報大臣
-                    info.MinisterOfIntelligence = id;
+                    country.MinisterOfIntelligence = id;
                     continue;
                 }
 
@@ -2645,7 +3216,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 統合参謀総長
-                    info.ChiefOfStaff = id;
+                    country.ChiefOfStaff = id;
                     continue;
                 }
 
@@ -2660,7 +3231,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 陸軍総司令官
-                    info.ChiefOfArmy = id;
+                    country.ChiefOfArmy = id;
                     continue;
                 }
 
@@ -2675,7 +3246,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 海軍総司令官
-                    info.ChiefOfNavy = id;
+                    country.ChiefOfNavy = id;
                     continue;
                 }
 
@@ -2690,7 +3261,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空軍総司令官
-                    info.ChiefOfAir = id;
+                    country.ChiefOfAir = id;
                     continue;
                 }
 
@@ -2705,7 +3276,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 休止指揮官
-                    info.DormantLeaders.AddRange(list);
+                    country.DormantLeaders.AddRange(list);
                     continue;
                 }
 
@@ -2720,7 +3291,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 休止閣僚
-                    info.DormantMinisters.AddRange(list);
+                    country.DormantMinisters.AddRange(list);
                     continue;
                 }
 
@@ -2735,14 +3306,29 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 休止研究機関
-                    info.DormantTeams.AddRange(list);
+                    country.DormantTeams.AddRange(list);
+                    continue;
+                }
+
+                // convoy
+                if (keyword.Equals("convoy"))
+                {
+                    Convoy convoy = ParseConvoy(lexer);
+                    if (convoy == null)
+                    {
+                        Log.InvalidSection(LogCategory, "convoy");
+                        continue;
+                    }
+
+                    // 輸送船団
+                    country.Convoys.Add(convoy);
                     continue;
                 }
 
                 // landunit
                 if (keyword.Equals("landunit"))
                 {
-                    ScenarioUnit unit = ParseUnit(lexer);
+                    LandUnit unit = ParseLandUnit(lexer);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "landunit");
@@ -2750,14 +3336,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 陸軍ユニット
-                    info.LandUnits.Add(unit);
+                    country.LandUnits.Add(unit);
                     continue;
                 }
 
                 // navalunit
                 if (keyword.Equals("navalunit"))
                 {
-                    ScenarioUnit unit = ParseUnit(lexer);
+                    NavalUnit unit = ParseNavalUnit(lexer);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "navalunit");
@@ -2765,14 +3351,14 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 海軍ユニット
-                    info.NavalUnits.Add(unit);
+                    country.NavalUnits.Add(unit);
                     continue;
                 }
 
                 // airunit
                 if (keyword.Equals("airunit"))
                 {
-                    ScenarioUnit unit = ParseUnit(lexer);
+                    AirUnit unit = ParseAirUnit(lexer);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "airunit");
@@ -2780,7 +3366,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空軍ユニット
-                    info.AirUnits.Add(unit);
+                    country.AirUnits.Add(unit);
                     continue;
                 }
 
@@ -2794,8 +3380,38 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 生産中の師団
-                    info.DivisionDevelopments.Add(division);
+                    // 生産中師団
+                    country.DivisionDevelopments.Add(division);
+                    continue;
+                }
+
+                // convoy_development
+                if (keyword.Equals("convoy_development"))
+                {
+                    ConvoyDevelopment convoy = ParseConvoyDevelopment(lexer);
+                    if (convoy == null)
+                    {
+                        Log.InvalidSection(LogCategory, "convoy_development");
+                        continue;
+                    }
+
+                    // 生産中輸送船団
+                    country.ConvoyDevelopments.Add(convoy);
+                    continue;
+                }
+
+                // province_development
+                if (keyword.Equals("province_development"))
+                {
+                    BuildingDevelopment building = ParseBuildingDevelopment(lexer);
+                    if (building == null)
+                    {
+                        Log.InvalidSection(LogCategory, "province_development");
+                        continue;
+                    }
+
+                    // 生産中建物
+                    country.BuildingDevelopments.Add(building);
                     continue;
                 }
 
@@ -2804,7 +3420,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return info;
+            return country;
         }
 
         /// <summary>
@@ -2812,7 +3428,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>マップ外資源</returns>
-        private static FreeResourceInfo ParseFree(TextLexer lexer)
+        private static FreeResources ParseFree(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -2830,7 +3446,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var free = new FreeResourceInfo();
+            var free = new FreeResources();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3092,7 +3708,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 輸送船団
-                    free.Transport = (int) (double) token.Value;
+                    free.Transports = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3118,7 +3734,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 護衛艦
-                    free.Escort = (int) (double) token.Value;
+                    free.Escorts = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3135,7 +3751,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>外交情報</returns>
-        private static IEnumerable<RelationInfo> ParseDiplomacy(TextLexer lexer)
+        private static IEnumerable<CountryRelation> ParseDiplomacy(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -3153,7 +3769,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var relations = new List<RelationInfo>();
+            var list = new List<CountryRelation>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3188,7 +3804,7 @@ namespace HoI2Editor.Parsers
                 // relation
                 if (keyword.Equals("relation"))
                 {
-                    RelationInfo relation = ParseRelation(lexer);
+                    CountryRelation relation = ParseRelation(lexer);
                     if (relation == null)
                     {
                         Log.InvalidSection(LogCategory, "relation");
@@ -3196,7 +3812,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外交関係情報
-                    relations.Add(relation);
+                    list.Add(relation);
                     continue;
                 }
 
@@ -3205,7 +3821,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return relations;
+            return list;
         }
 
         /// <summary>
@@ -3213,7 +3829,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>外交関係情報</returns>
-        private static RelationInfo ParseRelation(TextLexer lexer)
+        private static CountryRelation ParseRelation(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -3231,7 +3847,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new RelationInfo();
+            var relation = new CountryRelation();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3293,11 +3909,11 @@ namespace HoI2Editor.Parsers
 
                     if (Countries.StringMap.ContainsKey(tagName))
                     {
-                        Country country = Countries.StringMap[tagName];
-                        if (Countries.Tags.Contains(country))
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
                         {
                             // 国タグ
-                            info.Country = country;
+                            relation.Country = tag;
                             continue;
                         }
                     }
@@ -3330,7 +3946,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 関係値
-                    info.Value = (double) token.Value;
+                    relation.Value = (double) token.Value;
                     continue;
                 }
 
@@ -3365,14 +3981,14 @@ namespace HoI2Editor.Parsers
                     // yes
                     if (s.Equals("yes"))
                     {
-                        info.Access = true;
+                        relation.Access = true;
                         continue;
                     }
 
                     // no
                     if (s.Equals("no"))
                     {
-                        info.Access = false;
+                        relation.Access = false;
                         continue;
                     }
 
@@ -3393,7 +4009,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 独立保障期限
-                    info.Guaranteed = date;
+                    relation.Guaranteed = date;
                     continue;
                 }
 
@@ -3402,7 +4018,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return info;
+            return relation;
         }
 
         /// <summary>
@@ -3428,7 +4044,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new SpyInfo();
+            var spyInfo = new SpyInfo();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3490,11 +4106,11 @@ namespace HoI2Editor.Parsers
 
                     if (Countries.StringMap.ContainsKey(tagName))
                     {
-                        Country country = Countries.StringMap[tagName];
-                        if (Countries.Tags.Contains(country))
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
                         {
                             // 国タグ
-                            info.Country = country;
+                            spyInfo.Country = tag;
                             continue;
                         }
                     }
@@ -3527,7 +4143,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // スパイの数
-                    info.Spies = (int) (double) token.Value;
+                    spyInfo.Spies = (int) (double) token.Value;
                     continue;
                 }
 
@@ -3536,7 +4152,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return info;
+            return spyInfo;
         }
 
         /// <summary>
@@ -3633,8 +4249,7 @@ namespace HoI2Editor.Parsers
                     var value = (int) (double) token.Value;
                     if (value < 1 || value > 10)
                     {
-                        Log.Warning("[Scenario] Out of range: democratic-{0}", ObjectHelper.ToString(token.Value));
-                        lexer.SkipLine();
+                        Log.OutOfRange(LogCategory, "democratic", token, lexer);
                         continue;
                     }
 
@@ -3667,8 +4282,7 @@ namespace HoI2Editor.Parsers
                     var value = (int) (double) token.Value;
                     if (value < 1 || value > 10)
                     {
-                        Log.Warning("[Scenario] Out of range: political_left-{0}", ObjectHelper.ToString(token.Value));
-                        lexer.SkipLine();
+                        Log.OutOfRange(LogCategory, "political_left", token, lexer);
                         continue;
                     }
 
@@ -3701,8 +4315,7 @@ namespace HoI2Editor.Parsers
                     var value = (int) (double) token.Value;
                     if (value < 1 || value > 10)
                     {
-                        Log.Warning("[Scenario] Out of range: freedom-{0}", ObjectHelper.ToString(token.Value));
-                        lexer.SkipLine();
+                        Log.OutOfRange(LogCategory, "freedom", token, lexer);
                         continue;
                     }
 
@@ -3735,8 +4348,7 @@ namespace HoI2Editor.Parsers
                     var value = (int) (double) token.Value;
                     if (value < 1 || value > 10)
                     {
-                        Log.Warning("[Scenario] Out of range: free_market-{0}", ObjectHelper.ToString(token.Value));
-                        lexer.SkipLine();
+                        Log.OutOfRange(LogCategory, "free_market", token, lexer);
                         continue;
                     }
 
@@ -3769,8 +4381,7 @@ namespace HoI2Editor.Parsers
                     var value = (int) (double) token.Value;
                     if (value < 1 || value > 10)
                     {
-                        Log.Warning("[Scenario] Out of range: professional_army-{0}", ObjectHelper.ToString(token.Value));
-                        lexer.SkipLine();
+                        Log.OutOfRange(LogCategory, "professional_army", token, lexer);
                         continue;
                     }
 
@@ -3803,8 +4414,7 @@ namespace HoI2Editor.Parsers
                     var value = (int) (double) token.Value;
                     if (value < 1 || value > 10)
                     {
-                        Log.Warning("[Scenario] Out of range: defense_lobby-{0}", ObjectHelper.ToString(token.Value));
-                        lexer.SkipLine();
+                        Log.OutOfRange(LogCategory, "defense_lobby", token, lexer);
                         continue;
                     }
 
@@ -3837,8 +4447,7 @@ namespace HoI2Editor.Parsers
                     var value = (int) (double) token.Value;
                     if (value < 1 || value > 10)
                     {
-                        Log.Warning("[Scenario] Out of range: interventionism-{0}", ObjectHelper.ToString(token.Value));
-                        lexer.SkipLine();
+                        Log.OutOfRange(LogCategory, "interventionism", token, lexer);
                         continue;
                     }
 
@@ -3856,11 +4465,11 @@ namespace HoI2Editor.Parsers
         }
 
         /// <summary>
-        ///     ユニット情報を構文解析する
+        ///     輸送船団を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>ユニット情報</returns>
-        private static ScenarioUnit ParseUnit(TextLexer lexer)
+        /// <returns>輸送船団</returns>
+        private static Convoy ParseConvoy(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -3878,7 +4487,455 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var unit = new ScenarioUnit();
+            var convoy = new Convoy();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // id
+                if (keyword.Equals("id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "id");
+                        continue;
+                    }
+
+                    // typeとidの組
+                    convoy.Id = id;
+                    continue;
+                }
+
+                // trade_id
+                if (keyword.Equals("trade_id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "trade_id");
+                        continue;
+                    }
+
+                    // 貿易ID
+                    convoy.TradeId = id;
+                    continue;
+                }
+
+                // istradeconvoy
+                if (keyword.Equals("istradeconvoy"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        convoy.IsTrade = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        convoy.IsTrade = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // transports
+                if (keyword.Equals("transports"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 輸送船の数
+                    convoy.Transports = (int) (double) token.Value;
+                    continue;
+                }
+
+                // escorts
+                if (keyword.Equals("escorts"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 護衛艦の数
+                    convoy.Escorts = (int) (double) token.Value;
+                    continue;
+                }
+
+                // energy
+                if (keyword.Equals("energy"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        convoy.Energy = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        convoy.Energy = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // metal
+                if (keyword.Equals("metal"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        convoy.Metal = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        convoy.Metal = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // rare_materials
+                if (keyword.Equals("rare_materials"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        convoy.RareMaterials = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        convoy.RareMaterials = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // oil
+                if (keyword.Equals("oil"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        convoy.Oil = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        convoy.Oil = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // supplies
+                if (keyword.Equals("supplies"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        convoy.Supplies = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        convoy.Supplies = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // path
+                if (keyword.Equals("path"))
+                {
+                    IEnumerable<int> list = ParseIdList(lexer);
+                    if (list == null)
+                    {
+                        Log.InvalidSection(LogCategory, "list");
+                        continue;
+                    }
+
+                    // 航路
+                    convoy.Path.AddRange(list);
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return convoy;
+        }
+
+        /// <summary>
+        ///     陸軍ユニットを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>陸軍ユニット</returns>
+        private static LandUnit ParseLandUnit(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var unit = new LandUnit();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3951,6 +5008,324 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // control
+                if (keyword.Equals("control"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var tagName = token.Value as string;
+                    if (string.IsNullOrEmpty(tagName))
+                    {
+                        continue;
+                    }
+                    tagName = tagName.ToUpper();
+
+                    if (Countries.StringMap.ContainsKey(tagName))
+                    {
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
+                        {
+                            // 統帥国
+                            unit.Control = tag;
+                            continue;
+                        }
+                    }
+                }
+
+                // leader
+                if (keyword.Equals("leader"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 指揮官
+                    unit.Leader = (int) (double) token.Value;
+                    continue;
+                }
+
+                // location
+                if (keyword.Equals("location"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 位置
+                    unit.Location = (int) (double) token.Value;
+                    continue;
+                }
+
+                // dig_in
+                if (keyword.Equals("dig_in"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 塹壕レベル
+                    unit.DigIn = (double) token.Value;
+                    continue;
+                }
+
+                // mission
+                if (keyword.Equals("mission"))
+                {
+                    LandMission mission = ParseLandMission(lexer);
+                    if (mission == null)
+                    {
+                        Log.InvalidSection(LogCategory, "mission");
+                        continue;
+                    }
+
+                    // 任務
+                    unit.Mission = mission;
+                    continue;
+                }
+
+                // division
+                if (keyword.Equals("division"))
+                {
+                    LandDivision division = ParseLandDivision(lexer);
+                    if (division == null)
+                    {
+                        Log.InvalidSection(LogCategory, "division");
+                        continue;
+                    }
+
+                    // 師団
+                    unit.Divisions.Add(division);
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return unit;
+        }
+
+        /// <summary>
+        ///     海軍ユニットを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>海軍ユニット</returns>
+        private static NavalUnit ParseNavalUnit(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var unit = new NavalUnit();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // id
+                if (keyword.Equals("id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "id");
+                        continue;
+                    }
+
+                    // typeとidの組
+                    unit.Id = id;
+                    continue;
+                }
+
+                // name
+                if (keyword.Equals("name"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.String)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // ユニット名
+                    unit.Name = token.Value as string;
+                    continue;
+                }
+
+                // control
+                if (keyword.Equals("control"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var tagName = token.Value as string;
+                    if (string.IsNullOrEmpty(tagName))
+                    {
+                        continue;
+                    }
+                    tagName = tagName.ToUpper();
+
+                    if (Countries.StringMap.ContainsKey(tagName))
+                    {
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
+                        {
+                            // 統帥国
+                            unit.Control = tag;
+                            continue;
+                        }
+                    }
+                }
+
+                // leader
+                if (keyword.Equals("leader"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 指揮官
+                    unit.Leader = (int) (double) token.Value;
+                    continue;
+                }
+
                 // location
                 if (keyword.Equals("location"))
                 {
@@ -4003,6 +5378,140 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // mission
+                if (keyword.Equals("mission"))
+                {
+                    NavalMission mission = ParseNavalMission(lexer);
+                    if (mission == null)
+                    {
+                        Log.InvalidSection(LogCategory, "mission");
+                        continue;
+                    }
+
+                    // 任務
+                    unit.Mission = mission;
+                    continue;
+                }
+
+                // division
+                if (keyword.Equals("division"))
+                {
+                    NavalDivision division = ParseNavalDivision(lexer);
+                    if (division == null)
+                    {
+                        Log.InvalidSection(LogCategory, "division");
+                        continue;
+                    }
+
+                    // 師団
+                    unit.Divisions.Add(division);
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return unit;
+        }
+
+        /// <summary>
+        ///     空軍ユニットを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>空軍ユニット</returns>
+        private static AirUnit ParseAirUnit(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var unit = new AirUnit();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // id
+                if (keyword.Equals("id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "id");
+                        continue;
+                    }
+
+                    // typeとidの組
+                    unit.Id = id;
+                    continue;
+                }
+
+                // name
+                if (keyword.Equals("name"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.String)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // ユニット名
+                    unit.Name = token.Value as string;
+                    continue;
+                }
+
                 // leader
                 if (keyword.Equals("leader"))
                 {
@@ -4029,23 +5538,48 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                // division
-                if (keyword.Equals("division"))
+                // control
+                if (keyword.Equals("control"))
                 {
-                    ScenarioDivision division = ParseDivision(lexer);
-                    if (division == null)
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
                     {
-                        Log.InvalidSection(LogCategory, "division");
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
                         continue;
                     }
 
-                    // 師団
-                    unit.Divisions.Add(division);
-                    continue;
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var tagName = token.Value as string;
+                    if (string.IsNullOrEmpty(tagName))
+                    {
+                        continue;
+                    }
+                    tagName = tagName.ToUpper();
+
+                    if (Countries.StringMap.ContainsKey(tagName))
+                    {
+                        Country tag = Countries.StringMap[tagName];
+                        if (Countries.Tags.Contains(tag))
+                        {
+                            // 統帥国
+                            unit.Control = tag;
+                            continue;
+                        }
+                    }
                 }
 
-                // dig_in
-                if (keyword.Equals("dig_in"))
+                // location
+                if (keyword.Equals("location"))
                 {
                     // =
                     token = lexer.GetToken();
@@ -4065,8 +5599,64 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 塹壕レベル
-                    unit.DigIn = (double) token.Value;
+                    // 位置
+                    unit.Location = (int) (double) token.Value;
+                    continue;
+                }
+
+                // base
+                if (keyword.Equals("base"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 所属基地 (海軍/空軍)
+                    unit.Base = (int) (double) token.Value;
+                    continue;
+                }
+
+                // mission
+                if (keyword.Equals("mission"))
+                {
+                    AirMission mission = ParseAirMission(lexer);
+                    if (mission == null)
+                    {
+                        Log.InvalidSection(LogCategory, "mission");
+                        continue;
+                    }
+
+                    // 任務
+                    unit.Mission = mission;
+                    continue;
+                }
+
+                // division
+                if (keyword.Equals("division"))
+                {
+                    AirDivision division = ParseAirDivision(lexer);
+                    if (division == null)
+                    {
+                        Log.InvalidSection(LogCategory, "division");
+                        continue;
+                    }
+
+                    // 師団
+                    unit.Divisions.Add(division);
                     continue;
                 }
 
@@ -4079,11 +5669,11 @@ namespace HoI2Editor.Parsers
         }
 
         /// <summary>
-        ///     師団情報を構文解析する
+        ///     陸軍師団を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>師団情報</returns>
-        private static ScenarioDivision ParseDivision(TextLexer lexer)
+        /// <returns>陸軍師団</returns>
+        private static LandDivision ParseLandDivision(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -4101,7 +5691,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var division = new ScenarioDivision();
+            var division = new LandDivision();
             while (true)
             {
                 token = lexer.GetToken();
@@ -4224,6 +5814,108 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // model
+                if (keyword.Equals("model"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // モデル番号
+                    division.Model = (int) (double) token.Value;
+                    continue;
+                }
+
+                // extra
+                if (keyword.Equals("extra"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.BrigadeTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のユニット種類
+                    division.Extra = type;
+                    continue;
+                }
+
+                // brigade_model
+                if (keyword.Equals("brigade_model"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のモデル番号
+                    division.BrigadeModel = (int) (double) token.Value;
+                    continue;
+                }
+
                 // max_strength
                 if (keyword.Equals("max_strength"))
                 {
@@ -4245,7 +5937,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 最大充足率
+                    // 最大戦力
                     division.MaxStrength = (int) (double) token.Value;
                     continue;
                 }
@@ -4271,7 +5963,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 充足率
+                    // 戦力
                     division.Strength = (int) (double) token.Value;
                     continue;
                 }
@@ -4297,7 +5989,810 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 組織率e
+                    // 指揮統制率
+                    division.Organisation = (int) (double) token.Value;
+                    continue;
+                }
+
+                // experience
+                if (keyword.Equals("experience"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 経験値
+                    division.Experience = (int) (double) token.Value;
+                    continue;
+                }
+
+                // offensive
+                if (keyword.Equals("offensive"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "offensive");
+                        continue;
+                    }
+
+                    // 攻勢開始日時
+                    division.Offensive = date;
+                    continue;
+                }
+
+                // locked
+                if (keyword.Equals("locked"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        division.Locked = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        division.Locked = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return division;
+        }
+
+        /// <summary>
+        ///     海軍師団を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>海軍師団</returns>
+        private static NavalDivision ParseNavalDivision(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var division = new NavalDivision();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // id
+                if (keyword.Equals("id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "id");
+                        continue;
+                    }
+
+                    // typeとidの組
+                    division.Id = id;
+                    continue;
+                }
+
+                // name
+                if (keyword.Equals("name"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.String)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 師団名
+                    division.Name = token.Value as string;
+                    continue;
+                }
+
+                // type
+                if (keyword.Equals("type"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.DivisionTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // ユニット種類
+                    division.Type = type;
+                    continue;
+                }
+
+                // model
+                if (keyword.Equals("model"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // モデル番号
+                    division.Model = (int) (double) token.Value;
+                    continue;
+                }
+
+                // extra
+                if (keyword.Equals("extra"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.BrigadeTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のユニット種類
+                    division.Extra = type;
+                    continue;
+                }
+
+                // extra1
+                if (keyword.Equals("extra1"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.BrigadeTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のユニット種類
+                    division.Extra1 = type;
+                    continue;
+                }
+
+                // extra2
+                if (keyword.Equals("extra2"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.BrigadeTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のユニット種類
+                    division.Extra2 = type;
+                    continue;
+                }
+
+                // extra3
+                if (keyword.Equals("extra3"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.BrigadeTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のユニット種類
+                    division.Extra3 = type;
+                    continue;
+                }
+
+                // extra4
+                if (keyword.Equals("extra4"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.BrigadeTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のユニット種類
+                    division.Extra4 = type;
+                    continue;
+                }
+
+                // extra5
+                if (keyword.Equals("extra5"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.BrigadeTypes.Contains(type))
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のユニット種類
+                    division.Extra5 = type;
+                    continue;
+                }
+
+                // brigade_model
+                if (keyword.Equals("brigade_model"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のモデル番号
+                    division.BrigadeModel = (int) (double) token.Value;
+                    continue;
+                }
+
+                // brigade_model1
+                if (keyword.Equals("brigade_model1"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のモデル番号
+                    division.BrigadeModel1 = (int) (double) token.Value;
+                    continue;
+                }
+
+                // brigade_model2
+                if (keyword.Equals("brigade_model2"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のモデル番号
+                    division.BrigadeModel2 = (int) (double) token.Value;
+                    continue;
+                }
+
+                // brigade_model3
+                if (keyword.Equals("brigade_model3"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のモデル番号
+                    division.BrigadeModel3 = (int) (double) token.Value;
+                    continue;
+                }
+
+                // brigade_model4
+                if (keyword.Equals("brigade_model4"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のモデル番号
+                    division.BrigadeModel4 = (int) (double) token.Value;
+                    continue;
+                }
+
+                // brigade_model5
+                if (keyword.Equals("brigade_model5"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 付属旅団のモデル番号
+                    division.BrigadeModel5 = (int) (double) token.Value;
+                    continue;
+                }
+
+                // max_strength
+                if (keyword.Equals("max_strength"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大戦力
+                    division.MaxStrength = (int) (double) token.Value;
+                    continue;
+                }
+
+                // strength
+                if (keyword.Equals("strength"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 戦力
+                    division.Strength = (int) (double) token.Value;
+                    continue;
+                }
+
+                // organisation
+                if (keyword.Equals("organisation"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 指揮統制率
                     division.Organisation = (int) (double) token.Value;
                     continue;
                 }
@@ -4349,13 +6844,429 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 最大速度
+                    // 移動速度
                     division.MaxSpeed = (double) token.Value;
                     continue;
                 }
 
-                // locked
-                if (keyword.Equals("locked"))
+                // seadefence
+                if (keyword.Equals("seadefence"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対艦/対潜防御力
+                    division.SeaDefense = (double) token.Value;
+                    continue;
+                }
+
+                // airdefence
+                if (keyword.Equals("airdefence"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対空防御力
+                    division.AirDefence = (double) token.Value;
+                    continue;
+                }
+
+                // seaattack
+                if (keyword.Equals("seaattack"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対艦攻撃力(海軍)
+                    division.SeaAttack = (double) token.Value;
+                    continue;
+                }
+
+                // subattack
+                if (keyword.Equals("subattack"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対潜攻撃力
+                    division.SubAttack = (double) token.Value;
+                    continue;
+                }
+
+                // convoyattack
+                if (keyword.Equals("convoyattack"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 通商破壊力
+                    division.ConvoyAttack = (double) token.Value;
+                    continue;
+                }
+
+                // shorebombardment
+                if (keyword.Equals("shorebombardment"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 湾岸攻撃力
+                    division.ShoreBombardment = (double) token.Value;
+                    continue;
+                }
+
+                // airattack
+                if (keyword.Equals("airattack"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対空攻撃力
+                    division.AirAttack = (double) token.Value;
+                    continue;
+                }
+
+                // distance
+                if (keyword.Equals("distance"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 射程距離
+                    division.Distance = (double) token.Value;
+                    continue;
+                }
+
+                // visibility
+                if (keyword.Equals("visibility"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 可視性
+                    division.Visibility = (double) token.Value;
+                    continue;
+                }
+
+                // surfacedetectioncapability
+                if (keyword.Equals("surfacedetectioncapability"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対艦索敵能力
+                    division.SurfaceDetectionCapability = (double) token.Value;
+                    continue;
+                }
+
+                // subdetectioncapability
+                if (keyword.Equals("subdetectioncapability"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対潜索敵能力
+                    division.SubDetectionCapability = (double) token.Value;
+                    continue;
+                }
+
+                // airdetectioncapability
+                if (keyword.Equals("airdetectioncapability"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対空索敵能力
+                    division.AirDetectionCapability = (double) token.Value;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return division;
+        }
+
+        /// <summary>
+        ///     空軍師団を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>空軍師団</returns>
+        private static AirDivision ParseAirDivision(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var division = new AirDivision();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // id
+                if (keyword.Equals("id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "id");
+                        continue;
+                    }
+
+                    // typeとidの組
+                    division.Id = id;
+                    continue;
+                }
+
+                // name
+                if (keyword.Equals("name"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.String)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 師団名
+                    division.Name = token.Value as string;
+                    continue;
+                }
+
+                // type
+                if (keyword.Equals("type"))
                 {
                     // =
                     token = lexer.GetToken();
@@ -4378,27 +7289,29 @@ namespace HoI2Editor.Parsers
                     var s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
-                        continue;
+                        return null;
                     }
                     s = s.ToLower();
 
-                    // yes
-                    if (s.Equals("yes"))
+                    // ユニットクラス名以外
+                    if (!Units.StringMap.ContainsKey(s))
                     {
-                        division.Locked = true;
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
                         continue;
                     }
 
-                    // no
-                    if (s.Equals("no"))
+                    // サポート外のユニット種類
+                    UnitType type = Units.StringMap[s];
+                    if (!Units.DivisionTypes.Contains(type))
                     {
-                        division.Locked = false;
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
                         continue;
                     }
 
-                    // 無効なトークン
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
+                    // ユニット種類
+                    division.Type = type;
                     continue;
                 }
 
@@ -4504,12 +7417,1103 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // max_strength
+                if (keyword.Equals("max_strength"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 最大戦力
+                    division.MaxStrength = (int) (double) token.Value;
+                    continue;
+                }
+
+                // strength
+                if (keyword.Equals("strength"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 戦力
+                    division.Strength = (int) (double) token.Value;
+                    continue;
+                }
+
+                // organisation
+                if (keyword.Equals("organisation"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 指揮統制率
+                    division.Organisation = (int) (double) token.Value;
+                    continue;
+                }
+
+                // experience
+                if (keyword.Equals("experience"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 経験値
+                    division.Experience = (int) (double) token.Value;
+                    continue;
+                }
+
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
             }
 
             return division;
+        }
+
+        /// <summary>
+        ///     陸軍任務を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>陸軍任務</returns>
+        private static LandMission ParseLandMission(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var mission = new LandMission();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // type
+                if (keyword.Equals("type"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    if (Scenarios.LandMissionStrings.Contains(s))
+                    {
+                        // 任務の種類
+                        mission.Type = (LandMissionType) Array.IndexOf(Scenarios.LandMissionStrings, s);
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // target
+                if (keyword.Equals("target"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対象プロヴィンス
+                    mission.Target = (int) (double) token.Value;
+                    continue;
+                }
+
+                // percentage
+                if (keyword.Equals("percentage"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 戦力/指揮統制率下限
+                    mission.Percentage = (double) token.Value;
+                    continue;
+                }
+
+                // night
+                if (keyword.Equals("night"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        mission.Night = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        mission.Night = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // day
+                if (keyword.Equals("day"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        mission.Day = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        mission.Day = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // startdate
+                if (keyword.Equals("startdate"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "startdate");
+                        continue;
+                    }
+
+                    // 開始日時
+                    mission.StartDate = date;
+                    continue;
+                }
+
+                // task
+                if (keyword.Equals("task"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 任務
+                    mission.Task = (int) (double) token.Value;
+                    continue;
+                }
+
+                // location
+                if (keyword.Equals("location"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 位置
+                    mission.Location = (int) (double) token.Value;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return mission;
+        }
+
+        /// <summary>
+        ///     海軍任務を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>海軍任務</returns>
+        private static NavalMission ParseNavalMission(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var mission = new NavalMission();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // type
+                if (keyword.Equals("type"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    if (Scenarios.LandMissionStrings.Contains(s))
+                    {
+                        // 任務の種類
+                        mission.Type = (NavalMissionType) Array.IndexOf(Scenarios.NavalMissionStrings, s);
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // target
+                if (keyword.Equals("target"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対象プロヴィンス
+                    mission.Target = (int) (double) token.Value;
+                    continue;
+                }
+
+                // percentage
+                if (keyword.Equals("percentage"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 戦力/指揮統制率下限
+                    mission.Percentage = (double) token.Value;
+                    continue;
+                }
+
+                // night
+                if (keyword.Equals("night"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        mission.Night = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        mission.Night = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // day
+                if (keyword.Equals("day"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        mission.Day = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        mission.Day = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // startdate
+                if (keyword.Equals("startdate"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "startdate");
+                        continue;
+                    }
+
+                    // 開始日時
+                    mission.StartDate = date;
+                    continue;
+                }
+
+                // enddate
+                if (keyword.Equals("enddate"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "enddate");
+                        continue;
+                    }
+
+                    // 終了日時
+                    mission.EndDate = date;
+                    continue;
+                }
+
+                // task
+                if (keyword.Equals("task"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 任務
+                    mission.Task = (int) (double) token.Value;
+                    continue;
+                }
+
+                // location
+                if (keyword.Equals("location"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 位置
+                    mission.Location = (int) (double) token.Value;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return mission;
+        }
+
+        /// <summary>
+        ///     空軍任務を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>空軍任務</returns>
+        private static AirMission ParseAirMission(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var mission = new AirMission();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // type
+                if (keyword.Equals("type"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    if (Scenarios.LandMissionStrings.Contains(s))
+                    {
+                        // 任務の種類
+                        mission.Type = (AirMissionType) Array.IndexOf(Scenarios.AirMissionStrings, s);
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // target
+                if (keyword.Equals("target"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 対象プロヴィンス
+                    mission.Target = (int) (double) token.Value;
+                    continue;
+                }
+
+                // percentage
+                if (keyword.Equals("percentage"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 戦力/指揮統制率下限
+                    mission.Percentage = (double) token.Value;
+                    continue;
+                }
+
+                // night
+                if (keyword.Equals("night"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        mission.Night = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        mission.Night = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // day
+                if (keyword.Equals("day"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    // yes
+                    if (s.Equals("yes"))
+                    {
+                        mission.Day = true;
+                        continue;
+                    }
+
+                    // no
+                    if (s.Equals("no"))
+                    {
+                        mission.Day = false;
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // startdate
+                if (keyword.Equals("startdate"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "startdate");
+                        continue;
+                    }
+
+                    // 開始日時
+                    mission.StartDate = date;
+                    continue;
+                }
+
+                // enddate
+                if (keyword.Equals("enddate"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "enddate");
+                        continue;
+                    }
+
+                    // 終了日時
+                    mission.EndDate = date;
+                    continue;
+                }
+
+                // task
+                if (keyword.Equals("task"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 任務
+                    mission.Task = (int) (double) token.Value;
+                    continue;
+                }
+
+                // location
+                if (keyword.Equals("location"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 位置
+                    mission.Location = (int) (double) token.Value;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return mission;
         }
 
         /// <summary>
@@ -4634,6 +8638,32 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // manpower
+                if (keyword.Equals("manpower"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 必要人的資源
+                    division.Manpower = (double) token.Value;
+                    continue;
+                }
+
                 // date
                 if (keyword.Equals("date"))
                 {
@@ -4646,6 +8676,188 @@ namespace HoI2Editor.Parsers
 
                     // 完了予定日
                     division.Date = date;
+                    continue;
+                }
+
+                // progress
+                if (keyword.Equals("progress"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 進捗率増分
+                    division.Progress = (double) token.Value;
+                    continue;
+                }
+
+                // total_progress
+                if (keyword.Equals("total_progress"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 総進捗率
+                    division.TotalProgress = (double) token.Value;
+                    continue;
+                }
+
+                // gearing_bonus
+                if (keyword.Equals("gearing_bonus"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 連続生産ボーナス
+                    division.GearingBonus = (double) token.Value;
+                    continue;
+                }
+
+                // size
+                if (keyword.Equals("size"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 総生産数
+                    division.Size = (int) (double) token.Value;
+                    continue;
+                }
+
+                // done
+                if (keyword.Equals("done"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 生産完了数
+                    division.Done = (int) (double) token.Value;
+                    continue;
+                }
+
+                // days
+                if (keyword.Equals("days"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 完了日数
+                    division.Days = (int) (double) token.Value;
+                    continue;
+                }
+
+                // days_for_first
+                if (keyword.Equals("days_for_first"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 1単位の完了日数
+                    division.DaysForFirst = (int) (double) token.Value;
                     continue;
                 }
 
@@ -4810,11 +9022,11 @@ namespace HoI2Editor.Parsers
         }
 
         /// <summary>
-        ///     建物のサイズを構文解析する
+        ///     生産中輸送船団情報を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>建物のサイズ</returns>
-        private static BuildingSize ParseBuildingSize(TextLexer lexer)
+        /// <returns>生産中輸送船団情報</returns>
+        private static ConvoyDevelopment ParseConvoyDevelopment(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -4824,27 +9036,15 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            // 相対サイズ指定
-            token = lexer.GetToken();
-            if (token.Type == TokenType.Number)
-            {
-                var s = (double) token.Value;
-                if (s < 0 || s > 10)
-                {
-                    Log.Warning("[Scenario] Out of range: size-{0}", ObjectHelper.ToString(token.Value));
-                    return null;
-                }
-                return new BuildingSize {Size = s};
-            }
-
             // {
+            token = lexer.GetToken();
             if (token.Type != TokenType.OpenBrace)
             {
                 Log.InvalidToken(LogCategory, token, lexer);
                 return null;
             }
 
-            var size = new BuildingSize();
+            var convoy = new ConvoyDevelopment();
             while (true)
             {
                 token = lexer.GetToken();
@@ -4876,6 +9076,218 @@ namespace HoI2Editor.Parsers
                 }
                 keyword = keyword.ToLower();
 
+                // id
+                if (keyword.Equals("id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "id");
+                        continue;
+                    }
+
+                    // typeとidの組
+                    convoy.Id = id;
+                    continue;
+                }
+
+                // name
+                if (keyword.Equals("name"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.String)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 師団名
+                    convoy.Name = token.Value as string;
+                    continue;
+                }
+
+                // location
+                if (keyword.Equals("location"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 位置
+                    convoy.Location = (int) (double) token.Value;
+                    continue;
+                }
+
+                // cost
+                if (keyword.Equals("cost"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 必要IC
+                    convoy.Cost = (double) token.Value;
+                    continue;
+                }
+
+                // manpower
+                if (keyword.Equals("manpower"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 必要人的資源
+                    convoy.Manpower = (double) token.Value;
+                    continue;
+                }
+
+                // date
+                if (keyword.Equals("date"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "date");
+                        continue;
+                    }
+
+                    // 完了予定日
+                    convoy.Date = date;
+                    continue;
+                }
+
+                // progress
+                if (keyword.Equals("progress"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 進捗率増分
+                    convoy.Progress = (double) token.Value;
+                    continue;
+                }
+
+                // total_progress
+                if (keyword.Equals("total_progress"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 総進捗率
+                    convoy.TotalProgress = (double) token.Value;
+                    continue;
+                }
+
+                // gearing_bonus
+                if (keyword.Equals("gearing_bonus"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 連続生産ボーナス
+                    convoy.GearingBonus = (double) token.Value;
+                    continue;
+                }
+
                 // size
                 if (keyword.Equals("size"))
                 {
@@ -4897,20 +9309,13 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = (double) token.Value;
-                    if (s < 0 || s > 10)
-                    {
-                        Log.Warning("[Scenario] Out of range: size-{0}", ObjectHelper.ToString(token.Value));
-                        return null;
-                    }
-
-                    // 最大サイズ
-                    size.MaxSize = s;
+                    // 総生産数
+                    convoy.Size = (int) (double) token.Value;
                     continue;
                 }
 
-                // current_size
-                if (keyword.Equals("current_size"))
+                // done
+                if (keyword.Equals("done"))
                 {
                     // =
                     token = lexer.GetToken();
@@ -4930,15 +9335,60 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = (double) token.Value;
-                    if (s < 0 || s > 10)
+                    // 生産完了数
+                    convoy.Done = (int) (double) token.Value;
+                    continue;
+                }
+
+                // days
+                if (keyword.Equals("days"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
                     {
-                        Log.Warning("[Scenario] Out of range: current_size-{0}", ObjectHelper.ToString(token.Value));
-                        return null;
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
                     }
 
-                    // 現在サイズ
-                    size.CurrentSize = s;
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 完了日数
+                    convoy.Days = (int) (double) token.Value;
+                    continue;
+                }
+
+                // days_for_first
+                if (keyword.Equals("days_for_first"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 1単位の完了日数
+                    convoy.DaysForFirst = (int) (double) token.Value;
                     continue;
                 }
 
@@ -4947,7 +9397,427 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return size;
+            return convoy;
+        }
+
+        /// <summary>
+        ///     生産中建物情報を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>生産中建物情報</returns>
+        private static BuildingDevelopment ParseBuildingDevelopment(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            var building = new BuildingDevelopment();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                var keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // id
+                if (keyword.Equals("id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "id");
+                        continue;
+                    }
+
+                    // typeとidの組
+                    building.Id = id;
+                    continue;
+                }
+
+                // name
+                if (keyword.Equals("name"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.String)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 師団名
+                    building.Name = token.Value as string;
+                    continue;
+                }
+
+                // type
+                if (keyword.Equals("type"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Identifier)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        return null;
+                    }
+                    s = s.ToLower();
+
+                    if (Scenarios.BuildingStrings.Contains(s))
+                    {
+                        // 建物の種類
+                        building.Type = (BuildingType) Array.IndexOf(Scenarios.BuildingStrings, s);
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // location
+                if (keyword.Equals("location"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 位置
+                    building.Location = (int) (double) token.Value;
+                    continue;
+                }
+
+                // cost
+                if (keyword.Equals("cost"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 必要IC
+                    building.Cost = (double) token.Value;
+                    continue;
+                }
+
+                // manpower
+                if (keyword.Equals("manpower"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 必要人的資源
+                    building.Manpower = (double) token.Value;
+                    continue;
+                }
+
+                // date
+                if (keyword.Equals("date"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "date");
+                        continue;
+                    }
+
+                    // 完了予定日
+                    building.Date = date;
+                    continue;
+                }
+
+                // progress
+                if (keyword.Equals("progress"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 進捗率増分
+                    building.Progress = (double) token.Value;
+                    continue;
+                }
+
+                // total_progress
+                if (keyword.Equals("total_progress"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 総進捗率
+                    building.TotalProgress = (double) token.Value;
+                    continue;
+                }
+
+                // gearing_bonus
+                if (keyword.Equals("gearing_bonus"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 連続生産ボーナス
+                    building.GearingBonus = (double) token.Value;
+                    continue;
+                }
+
+                // size
+                if (keyword.Equals("size"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 総生産数
+                    building.Size = (int) (double) token.Value;
+                    continue;
+                }
+
+                // done
+                if (keyword.Equals("done"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 生産完了数
+                    building.Done = (int) (double) token.Value;
+                    continue;
+                }
+
+                // days
+                if (keyword.Equals("days"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 完了日数
+                    building.Days = (int) (double) token.Value;
+                    continue;
+                }
+
+                // days_for_first
+                if (keyword.Equals("days_for_first"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    // 1単位の完了日数
+                    building.DaysForFirst = (int) (double) token.Value;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return building;
         }
 
         /// <summary>
@@ -5062,11 +9932,11 @@ namespace HoI2Editor.Parsers
 
                 if (Countries.StringMap.ContainsKey(tagName))
                 {
-                    Country country = Countries.StringMap[tagName];
-                    if (Countries.Tags.Contains(country))
+                    Country tag = Countries.StringMap[tagName];
+                    if (Countries.Tags.Contains(tag))
                     {
                         // 国タグ
-                        list.Add(country);
+                        list.Add(tag);
                         continue;
                     }
                 }
@@ -5177,15 +10047,13 @@ namespace HoI2Editor.Parsers
                     {
                         // 無効なトークン
                         var month = (int) (double) token.Value;
-                        if (month < 0 || month > 11)
+                        if (month < 0 || month >= 12)
                         {
-                            Log.InvalidToken(LogCategory, token, lexer);
-                            lexer.SkipLine();
-                            continue;
+                            Log.OutOfRange(LogCategory, "month", token, lexer);
                         }
 
                         // 月
-                        date.Month = month;
+                        date.Month = month + 1;
                         continue;
                     }
 
@@ -5195,21 +10063,19 @@ namespace HoI2Editor.Parsers
                         var name = token.Value as string;
                         if (string.IsNullOrEmpty(name))
                         {
-                            Log.InvalidToken(LogCategory, token, lexer);
-                            lexer.SkipLine();
                             continue;
                         }
                         name = name.ToLower();
+
                         int month = Array.IndexOf(Scenarios.MonthStrings, name);
-                        if (month < 0 || month >= 12)
+                        if (month < 0)
                         {
                             Log.InvalidToken(LogCategory, token, lexer);
-                            lexer.SkipLine();
                             continue;
                         }
 
                         // 月
-                        date.Month = month;
+                        date.Month = month + 1;
                         continue;
                     }
 
@@ -5239,16 +10105,47 @@ namespace HoI2Editor.Parsers
                         lexer.SkipLine();
                         continue;
                     }
+
                     var day = (int) (double) token.Value;
-                    if (day < 0 || day > 30)
+                    if (day < 0 || day >= 30)
+                    {
+                        Log.OutOfRange(LogCategory, "day", token, lexer);
+                    }
+
+                    // 日
+                    date.Day = day + 1;
+                    continue;
+                }
+
+                // hour
+                if (keyword.Equals("hour"))
+                {
+                    // =
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Equal)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
                         continue;
                     }
 
-                    // 日
-                    date.Day = day;
+                    // 無効なトークン
+                    token = lexer.GetToken();
+                    if (token.Type != TokenType.Number)
+                    {
+                        Log.InvalidToken(LogCategory, token, lexer);
+                        lexer.SkipLine();
+                        continue;
+                    }
+
+                    var hour = (int) (double) token.Value;
+                    if (hour < 0 || hour >= 24)
+                    {
+                        Log.OutOfRange(LogCategory, "hour", token, lexer);
+                    }
+
+                    // 時
+                    date.Hour = hour;
                     continue;
                 }
 

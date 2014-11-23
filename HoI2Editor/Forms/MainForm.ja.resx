@@ -133,6 +133,9 @@
   <data name="modLabel.Text" xml:space="preserve">
     <value>MOD名</value>
   </data>
+  <data name="scenarioButton.Text" xml:space="preserve">
+    <value>シナリオ</value>
+  </data>
   <data name="researchButton.Text" xml:space="preserve">
     <value>研究速度</value>
   </data>

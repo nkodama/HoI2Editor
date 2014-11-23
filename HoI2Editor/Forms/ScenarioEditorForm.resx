@@ -117,7 +117,3082 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="miscToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="scenarioTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="selectableCheckedListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>622, 27</value>
+  </data>
+  <data name="selectableCheckedListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 200</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="selectableCheckedListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;selectableCheckedListBox.Name" xml:space="preserve">
+    <value>selectableCheckedListBox</value>
+  </data>
+  <data name="&gt;&gt;selectableCheckedListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectableCheckedListBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;selectableCheckedListBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 93</value>
+  </data>
+  <data name="panelPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 50</value>
+  </data>
+  <data name="panelPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;panelPictureBox.Name" xml:space="preserve">
+    <value>panelPictureBox</value>
+  </data>
+  <data name="&gt;&gt;panelPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelPictureBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;panelPictureBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="loadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 358</value>
+  </data>
+  <data name="loadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="loadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="loadButton.Text" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="&gt;&gt;loadButton.Name" xml:space="preserve">
+    <value>loadButton</value>
+  </data>
+  <data name="&gt;&gt;loadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;loadButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;loadButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="exportRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="exportRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 62</value>
+  </data>
+  <data name="exportRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 16</value>
+  </data>
+  <data name="exportRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="exportRadioButton.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="&gt;&gt;exportRadioButton.Name" xml:space="preserve">
+    <value>exportRadioButton</value>
+  </data>
+  <data name="&gt;&gt;exportRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;exportRadioButton.Parent" xml:space="preserve">
+    <value>folderTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;exportRadioButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="modRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="modRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="modRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="modRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="modRadioButton.Text" xml:space="preserve">
+    <value>MOD</value>
+  </data>
+  <data name="&gt;&gt;modRadioButton.Name" xml:space="preserve">
+    <value>modRadioButton</value>
+  </data>
+  <data name="&gt;&gt;modRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modRadioButton.Parent" xml:space="preserve">
+    <value>folderTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;modRadioButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="vanillaRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="vanillaRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="vanillaRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 16</value>
+  </data>
+  <data name="vanillaRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="vanillaRadioButton.Text" xml:space="preserve">
+    <value>Vanilla</value>
+  </data>
+  <data name="&gt;&gt;vanillaRadioButton.Name" xml:space="preserve">
+    <value>vanillaRadioButton</value>
+  </data>
+  <data name="&gt;&gt;vanillaRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;vanillaRadioButton.Parent" xml:space="preserve">
+    <value>folderTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;vanillaRadioButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="folderTypeGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 458</value>
+  </data>
+  <data name="folderTypeGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 85</value>
+  </data>
+  <data name="folderTypeGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="&gt;&gt;folderTypeGroupBox.Name" xml:space="preserve">
+    <value>folderTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;folderTypeGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;folderTypeGroupBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;folderTypeGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="eventDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>597, 441</value>
+  </data>
+  <data name="eventDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="eventDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="eventDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;eventDownButton.Name" xml:space="preserve">
+    <value>eventDownButton</value>
+  </data>
+  <data name="&gt;&gt;eventDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventDownButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventDownButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="eventUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>597, 412</value>
+  </data>
+  <data name="eventUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="eventUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="eventUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;eventUpButton.Name" xml:space="preserve">
+    <value>eventUpButton</value>
+  </data>
+  <data name="&gt;&gt;eventUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventUpButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventUpButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="eventRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>597, 381</value>
+  </data>
+  <data name="eventRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="eventRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="eventRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;eventRemoveButton.Name" xml:space="preserve">
+    <value>eventRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;eventRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventRemoveButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventRemoveButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="eventAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>597, 352</value>
+  </data>
+  <data name="eventAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="eventAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="eventAddButton.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="&gt;&gt;eventAddButton.Name" xml:space="preserve">
+    <value>eventAddButton</value>
+  </data>
+  <data name="&gt;&gt;eventAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventAddButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventAddButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="eventTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>597, 327</value>
+  </data>
+  <data name="eventTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="eventTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;eventTextBox.Name" xml:space="preserve">
+    <value>eventTextBox</value>
+  </data>
+  <data name="&gt;&gt;eventTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="eventListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="eventListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>455, 327</value>
+  </data>
+  <data name="eventListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 208</value>
+  </data>
+  <data name="eventListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;eventListBox.Name" xml:space="preserve">
+    <value>eventListBox</value>
+  </data>
+  <data name="&gt;&gt;eventListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventListBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventListBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="eventLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="eventLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 312</value>
+  </data>
+  <data name="eventLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="eventLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="eventLabel.Text" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="&gt;&gt;eventLabel.Name" xml:space="preserve">
+    <value>eventLabel</value>
+  </data>
+  <data name="&gt;&gt;eventLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;eventLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;eventLabel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="includeDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 441</value>
+  </data>
+  <data name="includeDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="includeDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="includeDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;includeDownButton.Name" xml:space="preserve">
+    <value>includeDownButton</value>
+  </data>
+  <data name="&gt;&gt;includeDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;includeDownButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;includeDownButton.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="includeUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 412</value>
+  </data>
+  <data name="includeUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="includeUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="includeUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;includeUpButton.Name" xml:space="preserve">
+    <value>includeUpButton</value>
+  </data>
+  <data name="&gt;&gt;includeUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;includeUpButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;includeUpButton.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="includeRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 381</value>
+  </data>
+  <data name="includeRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="includeRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="includeRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;includeRemoveButton.Name" xml:space="preserve">
+    <value>includeRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;includeRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;includeRemoveButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;includeRemoveButton.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="includeAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 352</value>
+  </data>
+  <data name="includeAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="includeAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="includeAddButton.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="&gt;&gt;includeAddButton.Name" xml:space="preserve">
+    <value>includeAddButton</value>
+  </data>
+  <data name="&gt;&gt;includeAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;includeAddButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;includeAddButton.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="includeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 327</value>
+  </data>
+  <data name="includeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="includeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;includeTextBox.Name" xml:space="preserve">
+    <value>includeTextBox</value>
+  </data>
+  <data name="&gt;&gt;includeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;includeTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;includeTextBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="includeListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="includeListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 327</value>
+  </data>
+  <data name="includeListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 208</value>
+  </data>
+  <data name="includeListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;includeListBox.Name" xml:space="preserve">
+    <value>includeListBox</value>
+  </data>
+  <data name="&gt;&gt;includeListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;includeListBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;includeListBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="includeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="includeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 312</value>
+  </data>
+  <data name="includeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="includeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="includeLabel.Text" xml:space="preserve">
+    <value>Include</value>
+  </data>
+  <data name="&gt;&gt;includeLabel.Name" xml:space="preserve">
+    <value>includeLabel</value>
+  </data>
+  <data name="&gt;&gt;includeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;includeLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;includeLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="selectableLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="selectableLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>620, 12</value>
+  </data>
+  <data name="selectableLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 12</value>
+  </data>
+  <data name="selectableLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="selectableLabel.Text" xml:space="preserve">
+    <value>Selectable Countries</value>
+  </data>
+  <data name="&gt;&gt;selectableLabel.Name" xml:space="preserve">
+    <value>selectableLabel</value>
+  </data>
+  <data name="&gt;&gt;selectableLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectableLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;selectableLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="majorRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>571, 125</value>
+  </data>
+  <data name="majorRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="majorRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="majorRemoveButton.Text" xml:space="preserve">
+    <value>-&gt;</value>
+  </data>
+  <data name="&gt;&gt;majorRemoveButton.Name" xml:space="preserve">
+    <value>majorRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;majorRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;majorRemoveButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;majorRemoveButton.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="majorAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>571, 79</value>
+  </data>
+  <data name="majorAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="majorAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="majorAddButton.Text" xml:space="preserve">
+    <value>&lt;-</value>
+  </data>
+  <data name="&gt;&gt;majorAddButton.Name" xml:space="preserve">
+    <value>majorAddButton</value>
+  </data>
+  <data name="&gt;&gt;majorAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;majorAddButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;majorAddButton.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="majorDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>445, 258</value>
+  </data>
+  <data name="majorDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="majorDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="majorDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;majorDownButton.Name" xml:space="preserve">
+    <value>majorDownButton</value>
+  </data>
+  <data name="&gt;&gt;majorDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;majorDownButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;majorDownButton.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="majorUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>445, 229</value>
+  </data>
+  <data name="majorUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="majorUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="majorUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;majorUpButton.Name" xml:space="preserve">
+    <value>majorUpButton</value>
+  </data>
+  <data name="&gt;&gt;majorUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;majorUpButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;majorUpButton.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="majorListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="majorListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>445, 27</value>
+  </data>
+  <data name="majorListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 196</value>
+  </data>
+  <data name="majorListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;majorListBox.Name" xml:space="preserve">
+    <value>majorListBox</value>
+  </data>
+  <data name="&gt;&gt;majorListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;majorListBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;majorListBox.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="majorLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="majorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 12</value>
+  </data>
+  <data name="majorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 12</value>
+  </data>
+  <data name="majorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="majorLabel.Text" xml:space="preserve">
+    <value>Major Countries</value>
+  </data>
+  <data name="&gt;&gt;majorLabel.Name" xml:space="preserve">
+    <value>majorLabel</value>
+  </data>
+  <data name="&gt;&gt;majorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;majorLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;majorLabel.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="endDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 269</value>
+  </data>
+  <data name="endDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 19</value>
+  </data>
+  <data name="endDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;endDayTextBox.Name" xml:space="preserve">
+    <value>endDayTextBox</value>
+  </data>
+  <data name="&gt;&gt;endDayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endDayTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;endDayTextBox.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="endMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>235, 269</value>
+  </data>
+  <data name="endMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 19</value>
+  </data>
+  <data name="endMonthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;endMonthTextBox.Name" xml:space="preserve">
+    <value>endMonthTextBox</value>
+  </data>
+  <data name="&gt;&gt;endMonthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endMonthTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;endMonthTextBox.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="endYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 269</value>
+  </data>
+  <data name="endYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 19</value>
+  </data>
+  <data name="endYearTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;endYearTextBox.Name" xml:space="preserve">
+    <value>endYearTextBox</value>
+  </data>
+  <data name="&gt;&gt;endYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endYearTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;endYearTextBox.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="endDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="endDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 254</value>
+  </data>
+  <data name="endDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 12</value>
+  </data>
+  <data name="endDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="endDateLabel.Text" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="&gt;&gt;endDateLabel.Name" xml:space="preserve">
+    <value>endDateLabel</value>
+  </data>
+  <data name="&gt;&gt;endDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endDateLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;endDateLabel.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="startDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 223</value>
+  </data>
+  <data name="startDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 19</value>
+  </data>
+  <data name="startDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;startDayTextBox.Name" xml:space="preserve">
+    <value>startDayTextBox</value>
+  </data>
+  <data name="&gt;&gt;startDayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startDayTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;startDayTextBox.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="startMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>235, 223</value>
+  </data>
+  <data name="startMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 19</value>
+  </data>
+  <data name="startMonthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;startMonthTextBox.Name" xml:space="preserve">
+    <value>startMonthTextBox</value>
+  </data>
+  <data name="&gt;&gt;startMonthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startMonthTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;startMonthTextBox.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="startYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 223</value>
+  </data>
+  <data name="startYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 19</value>
+  </data>
+  <data name="startYearTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;startYearTextBox.Name" xml:space="preserve">
+    <value>startYearTextBox</value>
+  </data>
+  <data name="&gt;&gt;startYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startYearTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;startYearTextBox.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="startDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="startDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 208</value>
+  </data>
+  <data name="startDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 12</value>
+  </data>
+  <data name="startDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="startDateLabel.Text" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="&gt;&gt;startDateLabel.Name" xml:space="preserve">
+    <value>startDateLabel</value>
+  </data>
+  <data name="&gt;&gt;startDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startDateLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;startDateLabel.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="panelImageBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>336, 66</value>
+  </data>
+  <data name="panelImageBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="panelImageBrowseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="panelImageBrowseButton.Text" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="&gt;&gt;panelImageBrowseButton.Name" xml:space="preserve">
+    <value>panelImageBrowseButton</value>
+  </data>
+  <data name="&gt;&gt;panelImageBrowseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelImageBrowseButton.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;panelImageBrowseButton.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="panelImageTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 68</value>
+  </data>
+  <data name="panelImageTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 19</value>
+  </data>
+  <data name="panelImageTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;panelImageTextBox.Name" xml:space="preserve">
+    <value>panelImageTextBox</value>
+  </data>
+  <data name="&gt;&gt;panelImageTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelImageTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;panelImageTextBox.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="panelImageLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="panelImageLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 53</value>
+  </data>
+  <data name="panelImageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 12</value>
+  </data>
+  <data name="panelImageLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="panelImageLabel.Text" xml:space="preserve">
+    <value>Panel Image</value>
+  </data>
+  <data name="&gt;&gt;panelImageLabel.Name" xml:space="preserve">
+    <value>panelImageLabel</value>
+  </data>
+  <data name="&gt;&gt;panelImageLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelImageLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;panelImageLabel.ZOrder" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="scenarioNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 27</value>
+  </data>
+  <data name="scenarioNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 19</value>
+  </data>
+  <data name="scenarioNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameTextBox.Name" xml:space="preserve">
+    <value>scenarioNameTextBox</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameTextBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameTextBox.ZOrder" xml:space="preserve">
+    <value>36</value>
+  </data>
+  <data name="scenarioNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="scenarioNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 12</value>
+  </data>
+  <data name="scenarioNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="scenarioNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="scenarioNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameLabel.Name" xml:space="preserve">
+    <value>scenarioNameLabel</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameLabel.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;scenarioNameLabel.ZOrder" xml:space="preserve">
+    <value>37</value>
+  </data>
+  <data name="saveGamesRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="saveGamesRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="saveGamesRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 16</value>
+  </data>
+  <data name="saveGamesRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="saveGamesRadioButton.Text" xml:space="preserve">
+    <value>Save Games</value>
+  </data>
+  <data name="&gt;&gt;saveGamesRadioButton.Name" xml:space="preserve">
+    <value>saveGamesRadioButton</value>
+  </data>
+  <data name="&gt;&gt;saveGamesRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveGamesRadioButton.Parent" xml:space="preserve">
+    <value>fileTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;saveGamesRadioButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="scenarioRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="scenarioRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="scenarioRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 16</value>
+  </data>
+  <data name="scenarioRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="scenarioRadioButton.Text" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
+  <data name="&gt;&gt;scenarioRadioButton.Name" xml:space="preserve">
+    <value>scenarioRadioButton</value>
+  </data>
+  <data name="&gt;&gt;scenarioRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scenarioRadioButton.Parent" xml:space="preserve">
+    <value>fileTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;scenarioRadioButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="fileTypeGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 387</value>
+  </data>
+  <data name="fileTypeGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 65</value>
+  </data>
+  <data name="fileTypeGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;fileTypeGroupBox.Name" xml:space="preserve">
+    <value>fileTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;fileTypeGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fileTypeGroupBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;fileTypeGroupBox.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
+  <data name="scenarioListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="scenarioListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="scenarioListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 340</value>
+  </data>
+  <data name="scenarioListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;scenarioListBox.Name" xml:space="preserve">
+    <value>scenarioListBox</value>
+  </data>
+  <data name="&gt;&gt;scenarioListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scenarioListBox.Parent" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;scenarioListBox.ZOrder" xml:space="preserve">
+    <value>39</value>
+  </data>
+  <data name="fileTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="fileTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="fileTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="fileTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="fileTabPage.Text" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="&gt;&gt;fileTabPage.Name" xml:space="preserve">
+    <value>fileTabPage</value>
+  </data>
+  <data name="&gt;&gt;fileTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fileTabPage.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;fileTabPage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="diplomacyTabPage1.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="warDefenderListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="warDefenderListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 195</value>
+  </data>
+  <data name="warDefenderListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 136</value>
+  </data>
+  <data name="warDefenderListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="&gt;&gt;warDefenderListBox.Name" xml:space="preserve">
+    <value>warDefenderListBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderListBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderListBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="warDefenderRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warDefenderRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 250</value>
+  </data>
+  <data name="warDefenderRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="warDefenderRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="warDefenderRemoveButton.Text" xml:space="preserve">
+    <value>&lt;-</value>
+  </data>
+  <data name="&gt;&gt;warDefenderRemoveButton.Name" xml:space="preserve">
+    <value>warDefenderRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;warDefenderRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderRemoveButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderRemoveButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="warDefenderAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warDefenderAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 221</value>
+  </data>
+  <data name="warDefenderAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="warDefenderAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="warDefenderAddButton.Text" xml:space="preserve">
+    <value>-&gt;</value>
+  </data>
+  <data name="&gt;&gt;warDefenderAddButton.Name" xml:space="preserve">
+    <value>warDefenderAddButton</value>
+  </data>
+  <data name="&gt;&gt;warDefenderAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderAddButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderAddButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="warAttackerListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="warAttackerListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 195</value>
+  </data>
+  <data name="warAttackerListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 136</value>
+  </data>
+  <data name="warAttackerListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.Name" xml:space="preserve">
+    <value>warAttackerListBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="warAttackerRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warAttackerRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 250</value>
+  </data>
+  <data name="warAttackerRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="warAttackerRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="warAttackerRemoveButton.Text" xml:space="preserve">
+    <value>-&gt;</value>
+  </data>
+  <data name="&gt;&gt;warAttackerRemoveButton.Name" xml:space="preserve">
+    <value>warAttackerRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;warAttackerRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerRemoveButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerRemoveButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="warAttackerAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warAttackerAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 221</value>
+  </data>
+  <data name="warAttackerAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="warAttackerAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="warAttackerAddButton.Text" xml:space="preserve">
+    <value>&lt;-</value>
+  </data>
+  <data name="&gt;&gt;warAttackerAddButton.Name" xml:space="preserve">
+    <value>warAttackerAddButton</value>
+  </data>
+  <data name="&gt;&gt;warAttackerAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerAddButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerAddButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="warCountryListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="warCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>183, 195</value>
+  </data>
+  <data name="warCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 160</value>
+  </data>
+  <data name="warCountryListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;warCountryListBox.Name" xml:space="preserve">
+    <value>warCountryListBox</value>
+  </data>
+  <data name="&gt;&gt;warCountryListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warCountryListBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warCountryListBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="warUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 166</value>
+  </data>
+  <data name="warUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="warUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="warUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;warUpButton.Name" xml:space="preserve">
+    <value>warUpButton</value>
+  </data>
+  <data name="&gt;&gt;warUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warUpButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warUpButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="warRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 166</value>
+  </data>
+  <data name="warRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="warRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="warRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;warRemoveButton.Name" xml:space="preserve">
+    <value>warRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;warRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warRemoveButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warRemoveButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="warDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 166</value>
+  </data>
+  <data name="warDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="warDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="warDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;warDownButton.Name" xml:space="preserve">
+    <value>warDownButton</value>
+  </data>
+  <data name="&gt;&gt;warDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDownButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warDownButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="warNewButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warNewButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 166</value>
+  </data>
+  <data name="warNewButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="warNewButton.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="warNewButton.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="&gt;&gt;warNewButton.Name" xml:space="preserve">
+    <value>warNewButton</value>
+  </data>
+  <data name="&gt;&gt;warNewButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warNewButton.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warNewButton.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="warStartDateColumnHeader.Text" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="warStartDateColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="warEndDateColumnHeader.Text" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="warEndDateColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="warAttackerColumnHeader.Text" xml:space="preserve">
+    <value>Attacker</value>
+  </data>
+  <data name="warAttackerColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="warDefenderColumnHeader.Text" xml:space="preserve">
+    <value>Defender</value>
+  </data>
+  <data name="warDefenderColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="warListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="warListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>532, 142</value>
+  </data>
+  <data name="warListView.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;warListView.Name" xml:space="preserve">
+    <value>warListView</value>
+  </data>
+  <data name="&gt;&gt;warListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warListView.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warListView.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="warGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 6</value>
+  </data>
+  <data name="warGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>619, 378</value>
+  </data>
+  <data name="warGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="warGroupBox.Text" xml:space="preserve">
+    <value>War</value>
+  </data>
+  <data name="&gt;&gt;warGroupBox.Name" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warGroupBox.Parent" xml:space="preserve">
+    <value>diplomacyTabPage1</value>
+  </data>
+  <data name="&gt;&gt;warGroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="allianceTypeColumnHeader.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="allianceParticipantColumnHeader.Text" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="allianceParticipantColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="allianceListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="allianceListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 142</value>
+  </data>
+  <data name="allianceListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;allianceListView.Name" xml:space="preserve">
+    <value>allianceListView</value>
+  </data>
+  <data name="&gt;&gt;allianceListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceListView.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceListView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="participantRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="participantRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 250</value>
+  </data>
+  <data name="participantRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="participantRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="participantRemoveButton.Text" xml:space="preserve">
+    <value>&lt;-</value>
+  </data>
+  <data name="&gt;&gt;participantRemoveButton.Name" xml:space="preserve">
+    <value>participantRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;participantRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;participantRemoveButton.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;participantRemoveButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="participantAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="participantAddButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 221</value>
+  </data>
+  <data name="participantAddButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="participantAddButton.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="participantAddButton.Text" xml:space="preserve">
+    <value>-&gt;</value>
+  </data>
+  <data name="&gt;&gt;participantAddButton.Name" xml:space="preserve">
+    <value>participantAddButton</value>
+  </data>
+  <data name="&gt;&gt;participantAddButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;participantAddButton.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;participantAddButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="participantListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="participantListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>183, 195</value>
+  </data>
+  <data name="participantListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 136</value>
+  </data>
+  <data name="participantListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;participantListBox.Name" xml:space="preserve">
+    <value>participantListBox</value>
+  </data>
+  <data name="&gt;&gt;participantListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;participantListBox.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;participantListBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="allianceLeaderButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>183, 337</value>
+  </data>
+  <data name="allianceLeaderButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="allianceLeaderButton.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="allianceLeaderButton.Text" xml:space="preserve">
+    <value>Set Leader</value>
+  </data>
+  <data name="&gt;&gt;allianceLeaderButton.Name" xml:space="preserve">
+    <value>allianceLeaderButton</value>
+  </data>
+  <data name="&gt;&gt;allianceLeaderButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceLeaderButton.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceLeaderButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="allianceUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 166</value>
+  </data>
+  <data name="allianceUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="allianceUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="allianceUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;allianceUpButton.Name" xml:space="preserve">
+    <value>allianceUpButton</value>
+  </data>
+  <data name="&gt;&gt;allianceUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceUpButton.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceUpButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="allianceRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 166</value>
+  </data>
+  <data name="allianceRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="allianceRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="allianceRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;allianceRemoveButton.Name" xml:space="preserve">
+    <value>allianceRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;allianceRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceRemoveButton.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceRemoveButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="allianceCountryListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="allianceCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 195</value>
+  </data>
+  <data name="allianceCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 160</value>
+  </data>
+  <data name="allianceCountryListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.Name" xml:space="preserve">
+    <value>allianceCountryListBox</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="allianceDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="allianceDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 166</value>
+  </data>
+  <data name="allianceDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="allianceDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="allianceDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;allianceDownButton.Name" xml:space="preserve">
+    <value>allianceDownButton</value>
+  </data>
+  <data name="&gt;&gt;allianceDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceDownButton.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceDownButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="allianceNewButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 166</value>
+  </data>
+  <data name="allianceNewButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="allianceNewButton.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="allianceNewButton.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="&gt;&gt;allianceNewButton.Name" xml:space="preserve">
+    <value>allianceNewButton</value>
+  </data>
+  <data name="&gt;&gt;allianceNewButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceNewButton.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceNewButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="allianceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 6</value>
+  </data>
+  <data name="allianceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 378</value>
+  </data>
+  <data name="allianceGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="allianceGroupBox.Text" xml:space="preserve">
+    <value>Alliance</value>
+  </data>
+  <data name="&gt;&gt;allianceGroupBox.Name" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceGroupBox.Parent" xml:space="preserve">
+    <value>diplomacyTabPage1</value>
+  </data>
+  <data name="&gt;&gt;allianceGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="diplomacyTabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="diplomacyTabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="diplomacyTabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="diplomacyTabPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="diplomacyTabPage1.Text" xml:space="preserve">
+    <value>Diplomacy1</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage1.Name" xml:space="preserve">
+    <value>diplomacyTabPage1</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage1.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="treatySwapButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="treatySwapButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 292</value>
+  </data>
+  <data name="treatySwapButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="treatySwapButton.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="treatySwapButton.Text" xml:space="preserve">
+    <value>&lt;-&gt;</value>
+  </data>
+  <data name="&gt;&gt;treatySwapButton.Name" xml:space="preserve">
+    <value>treatySwapButton</value>
+  </data>
+  <data name="&gt;&gt;treatySwapButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatySwapButton.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatySwapButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBox9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 454</value>
+  </data>
+  <data name="textBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="textBox9.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="&gt;&gt;textBox9.Name" xml:space="preserve">
+    <value>textBox9</value>
+  </data>
+  <data name="&gt;&gt;textBox9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox9.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;textBox9.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tradeMoneyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 454</value>
+  </data>
+  <data name="tradeMoneyTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeMoneyTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox.Name" xml:space="preserve">
+    <value>tradeMoneyTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tradeMoneyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeMoneyLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeMoneyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 457</value>
+  </data>
+  <data name="tradeMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 12</value>
+  </data>
+  <data name="tradeMoneyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="tradeMoneyLabel.Text" xml:space="preserve">
+    <value>Money</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.Name" xml:space="preserve">
+    <value>tradeMoneyLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tradeSuppliesTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 429</value>
+  </data>
+  <data name="tradeSuppliesTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeSuppliesTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.Name" xml:space="preserve">
+    <value>tradeSuppliesTextBox2</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tradeSuppliesTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 429</value>
+  </data>
+  <data name="tradeSuppliesTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeSuppliesTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.Name" xml:space="preserve">
+    <value>tradeSuppliesTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tradeSuppliesLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeSuppliesLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeSuppliesLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 432</value>
+  </data>
+  <data name="tradeSuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 12</value>
+  </data>
+  <data name="tradeSuppliesLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="tradeSuppliesLabel.Text" xml:space="preserve">
+    <value>Supplies</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesLabel.Name" xml:space="preserve">
+    <value>tradeSuppliesLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tradeOilTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 404</value>
+  </data>
+  <data name="tradeOilTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeOilTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox2.Name" xml:space="preserve">
+    <value>tradeOilTextBox2</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox2.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tradeOilTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 404</value>
+  </data>
+  <data name="tradeOilTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeOilTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox1.Name" xml:space="preserve">
+    <value>tradeOilTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox1.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox1.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="tradeOilLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeOilLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeOilLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 407</value>
+  </data>
+  <data name="tradeOilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 12</value>
+  </data>
+  <data name="tradeOilLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="tradeOilLabel.Text" xml:space="preserve">
+    <value>Oil</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.Name" xml:space="preserve">
+    <value>tradeOilLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 379</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Name" xml:space="preserve">
+    <value>tradeRareMaterialsTextBox2</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 379</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Name" xml:space="preserve">
+    <value>tradeRareMaterialsTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 382</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 12</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Rare Materials</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="tradeMetalTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 354</value>
+  </data>
+  <data name="tradeMetalTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeMetalTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.Name" xml:space="preserve">
+    <value>tradeMetalTextBox2</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="tradeMetalTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 354</value>
+  </data>
+  <data name="tradeMetalTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeMetalTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.Name" xml:space="preserve">
+    <value>tradeMetalTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="tredeMetalLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tredeMetalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tredeMetalLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 357</value>
+  </data>
+  <data name="tredeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 12</value>
+  </data>
+  <data name="tredeMetalLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="tredeMetalLabel.Text" xml:space="preserve">
+    <value>Metal</value>
+  </data>
+  <data name="&gt;&gt;tredeMetalLabel.Name" xml:space="preserve">
+    <value>tredeMetalLabel</value>
+  </data>
+  <data name="&gt;&gt;tredeMetalLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tredeMetalLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tredeMetalLabel.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="tredeEnergyTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 329</value>
+  </data>
+  <data name="tredeEnergyTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tredeEnergyTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;tredeEnergyTextBox2.Name" xml:space="preserve">
+    <value>tredeEnergyTextBox2</value>
+  </data>
+  <data name="&gt;&gt;tredeEnergyTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tredeEnergyTextBox2.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tredeEnergyTextBox2.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="tradeEnergyTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 329</value>
+  </data>
+  <data name="tradeEnergyTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeEnergyTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox1.Name" xml:space="preserve">
+    <value>tradeEnergyTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox1.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox1.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="tradeEnergyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeEnergyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 332</value>
+  </data>
+  <data name="tradeEnergyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
+  </data>
+  <data name="tradeEnergyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="tradeEnergyLabel.Text" xml:space="preserve">
+    <value>Energy</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.Name" xml:space="preserve">
+    <value>tradeEnergyLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="treatyCountryComboBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 292</value>
+  </data>
+  <data name="treatyCountryComboBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
+  </data>
+  <data name="treatyCountryComboBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox2.Name" xml:space="preserve">
+    <value>treatyCountryComboBox2</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox2.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox2.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="treatyCountryComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 292</value>
+  </data>
+  <data name="treatyCountryComboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
+  </data>
+  <data name="treatyCountryComboBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox1.Name" xml:space="preserve">
+    <value>treatyCountryComboBox1</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox1.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryComboBox1.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="treatyEndDayNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>341, 254</value>
+  </data>
+  <data name="treatyEndDayNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="treatyEndDayNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDayNumericUpDown.Name" xml:space="preserve">
+    <value>treatyEndDayNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDayNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDayNumericUpDown.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDayNumericUpDown.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="treatyEndMonthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 254</value>
+  </data>
+  <data name="treatyEndMonthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="treatyEndMonthNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="&gt;&gt;treatyEndMonthNumericUpDown.Name" xml:space="preserve">
+    <value>treatyEndMonthNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;treatyEndMonthNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyEndMonthNumericUpDown.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyEndMonthNumericUpDown.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="treatyEndYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>80, 254</value>
+  </data>
+  <data name="treatyEndYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="treatyEndYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;treatyEndYearNumericUpDown.Name" xml:space="preserve">
+    <value>treatyEndYearNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;treatyEndYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyEndYearNumericUpDown.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyEndYearNumericUpDown.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="treatyEndDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="treatyEndDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="treatyEndDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 256</value>
+  </data>
+  <data name="treatyEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 12</value>
+  </data>
+  <data name="treatyEndDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="treatyEndDateLabel.Text" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDateLabel.Name" xml:space="preserve">
+    <value>treatyEndDateLabel</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDateLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDateLabel.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="treatyStartDayNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>341, 229</value>
+  </data>
+  <data name="treatyStartDayNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="treatyStartDayNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDayNumericUpDown.Name" xml:space="preserve">
+    <value>treatyStartDayNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDayNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDayNumericUpDown.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDayNumericUpDown.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="treatyStartMonthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 229</value>
+  </data>
+  <data name="treatyStartMonthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="treatyStartMonthNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;treatyStartMonthNumericUpDown.Name" xml:space="preserve">
+    <value>treatyStartMonthNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;treatyStartMonthNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyStartMonthNumericUpDown.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyStartMonthNumericUpDown.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="treatyStartYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>80, 229</value>
+  </data>
+  <data name="treatyStartYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="treatyStartYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;treatyStartYearNumericUpDown.Name" xml:space="preserve">
+    <value>treatyStartYearNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;treatyStartYearNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyStartYearNumericUpDown.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyStartYearNumericUpDown.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="treatyStartDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="treatyStartDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 231</value>
+  </data>
+  <data name="treatyStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 12</value>
+  </data>
+  <data name="treatyStartDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="treatyStartDateLabel.Text" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDateLabel.Name" xml:space="preserve">
+    <value>treatyStartDateLabel</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDateLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDateLabel.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="treatyTypeComboBox.Items" xml:space="preserve">
+    <value>Non Aggression</value>
+  </data>
+  <data name="treatyTypeComboBox.Items1" xml:space="preserve">
+    <value>Peace</value>
+  </data>
+  <data name="treatyTypeComboBox.Items2" xml:space="preserve">
+    <value>Trade</value>
+  </data>
+  <data name="treatyTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 199</value>
+  </data>
+  <data name="treatyTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
+  </data>
+  <data name="treatyTypeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeComboBox.Name" xml:space="preserve">
+    <value>treatyTypeComboBox</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeComboBox.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeComboBox.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="treatyTypeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="treatyTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 202</value>
+  </data>
+  <data name="treatyTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 12</value>
+  </data>
+  <data name="treatyTypeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="treatyTypeLabel.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeLabel.Name" xml:space="preserve">
+    <value>treatyTypeLabel</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeLabel.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeLabel.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="treatyTypeColumnHeader.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="treatyStartDateColumnHeader.Text" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="treatyStartDateColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="treatyEndDateColumnHeader.Text" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="treatyEndDateColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="treatyCountryColumnHeader1.Text" xml:space="preserve">
+    <value>Country1</value>
+  </data>
+  <data name="treatyCountryColumnHeader2.Text" xml:space="preserve">
+    <value>Country2</value>
+  </data>
+  <data name="treatyTradeColumnHeader.Text" xml:space="preserve">
+    <value>Trade</value>
+  </data>
+  <data name="treatyTradeColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="treatyListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="treatyListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>562, 142</value>
+  </data>
+  <data name="treatyListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;treatyListView.Name" xml:space="preserve">
+    <value>treatyListView</value>
+  </data>
+  <data name="&gt;&gt;treatyListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyListView.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyListView.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="treatyUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="treatyUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 166</value>
+  </data>
+  <data name="treatyUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="treatyUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="treatyUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;treatyUpButton.Name" xml:space="preserve">
+    <value>treatyUpButton</value>
+  </data>
+  <data name="&gt;&gt;treatyUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyUpButton.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyUpButton.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="treatyRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="treatyRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 166</value>
+  </data>
+  <data name="treatyRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="treatyRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="treatyRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;treatyRemoveButton.Name" xml:space="preserve">
+    <value>treatyRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;treatyRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyRemoveButton.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyRemoveButton.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="treatyDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="treatyDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 166</value>
+  </data>
+  <data name="treatyDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="treatyDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="treatyDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;treatyDownButton.Name" xml:space="preserve">
+    <value>treatyDownButton</value>
+  </data>
+  <data name="&gt;&gt;treatyDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyDownButton.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyDownButton.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="treatyNewButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="treatyNewButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 166</value>
+  </data>
+  <data name="treatyNewButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="treatyNewButton.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="treatyNewButton.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="&gt;&gt;treatyNewButton.Name" xml:space="preserve">
+    <value>treatyNewButton</value>
+  </data>
+  <data name="&gt;&gt;treatyNewButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyNewButton.Parent" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyNewButton.ZOrder" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="treatyGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 6</value>
+  </data>
+  <data name="treatyGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>671, 547</value>
+  </data>
+  <data name="treatyGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="treatyGroupBox.Text" xml:space="preserve">
+    <value>Treaty</value>
+  </data>
+  <data name="&gt;&gt;treatyGroupBox.Name" xml:space="preserve">
+    <value>treatyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;treatyGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyGroupBox.Parent" xml:space="preserve">
+    <value>diplomacyTabPage2</value>
+  </data>
+  <data name="&gt;&gt;treatyGroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="diplomacyTabPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="diplomacyTabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="diplomacyTabPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="diplomacyTabPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="diplomacyTabPage2.Text" xml:space="preserve">
+    <value>Diplomacy2</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage2.Name" xml:space="preserve">
+    <value>diplomacyTabPage2</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage2.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="diplomacyTabPage3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="diplomacyTabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="diplomacyTabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="diplomacyTabPage3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="diplomacyTabPage3.Text" xml:space="preserve">
+    <value>Diplomacy3</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage3.Name" xml:space="preserve">
+    <value>diplomacyTabPage3</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage3.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;diplomacyTabPage3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="countryTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="countryTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="countryTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="countryTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="countryTabPage.Text" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="&gt;&gt;countryTabPage.Name" xml:space="preserve">
+    <value>countryTabPage</value>
+  </data>
+  <data name="&gt;&gt;countryTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryTabPage.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;countryTabPage.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="personTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="personTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="personTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="personTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="personTabPage.Text" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="&gt;&gt;personTabPage.Name" xml:space="preserve">
+    <value>personTabPage</value>
+  </data>
+  <data name="&gt;&gt;personTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;personTabPage.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;personTabPage.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="techTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="techTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="techTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="techTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="techTabPage.Text" xml:space="preserve">
+    <value>Tech</value>
+  </data>
+  <data name="&gt;&gt;techTabPage.Name" xml:space="preserve">
+    <value>techTabPage</value>
+  </data>
+  <data name="&gt;&gt;techTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;techTabPage.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;techTabPage.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>512, 512</value>
+  </data>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>provinceTabPage</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="provinceTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="provinceTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="provinceTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="provinceTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="provinceTabPage.Text" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="&gt;&gt;provinceTabPage.Name" xml:space="preserve">
+    <value>provinceTabPage</value>
+  </data>
+  <data name="&gt;&gt;provinceTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceTabPage.Parent" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;provinceTabPage.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="scenarioTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 5</value>
+  </data>
+  <data name="scenarioTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>984, 585</value>
+  </data>
+  <data name="scenarioTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;scenarioTabControl.Name" xml:space="preserve">
+    <value>scenarioTabControl</value>
+  </data>
+  <data name="&gt;&gt;scenarioTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scenarioTabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;scenarioTabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="closeButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="closeButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>897, 596</value>
+  </data>
+  <data name="closeButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Name" xml:space="preserve">
+    <value>closeButton</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;closeButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;closeButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="saveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="saveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>816, 596</value>
+  </data>
+  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
+    <value>saveButton</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="reloadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>735, 596</value>
+  </data>
+  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
+    <value>reloadButton</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>984, 631</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Scenario Editor</value>
+  </data>
+  <data name="&gt;&gt;allianceTypeColumnHeader.Name" xml:space="preserve">
+    <value>allianceTypeColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;allianceTypeColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceParticipantColumnHeader.Name" xml:space="preserve">
+    <value>allianceParticipantColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;allianceParticipantColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warStartDateColumnHeader.Name" xml:space="preserve">
+    <value>warStartDateColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;warStartDateColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warEndDateColumnHeader.Name" xml:space="preserve">
+    <value>warEndDateColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;warEndDateColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerColumnHeader.Name" xml:space="preserve">
+    <value>warAttackerColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;warAttackerColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeColumnHeader.Name" xml:space="preserve">
+    <value>treatyTypeColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;treatyTypeColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDateColumnHeader.Name" xml:space="preserve">
+    <value>treatyStartDateColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;treatyStartDateColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderColumnHeader.Name" xml:space="preserve">
+    <value>warDefenderColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;warDefenderColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDateColumnHeader.Name" xml:space="preserve">
+    <value>treatyEndDateColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;treatyEndDateColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryColumnHeader1.Name" xml:space="preserve">
+    <value>treatyCountryColumnHeader1</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryColumnHeader1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryColumnHeader2.Name" xml:space="preserve">
+    <value>treatyCountryColumnHeader2</value>
+  </data>
+  <data name="&gt;&gt;treatyCountryColumnHeader2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treatyTradeColumnHeader.Name" xml:space="preserve">
+    <value>treatyTradeColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;treatyTradeColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ScenarioEditorForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -145,6 +145,19 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     範囲外エラーをログ出力
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="itemName">項目名</param>
+        /// <param name="token">トークン</param>
+        /// <param name="lexer">字句解析器</param>
+        public static void OutOfRange(string categoryName, string itemName, Token token, TextLexer lexer)
+        {
+            Warning("[{0} Out of range: {1} at {2} ({3} L{4})",
+                categoryName, ObjectHelper.ToString(token.Value), itemName, lexer.FileName, lexer.LineNo);
+        }
+
+        /// <summary>
         ///     エラーログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>

@@ -35,6 +35,7 @@
             this.modLabel = new System.Windows.Forms.Label();
             this.modTextBox = new System.Windows.Forms.TextBox();
             this.editGroupBox = new System.Windows.Forms.GroupBox();
+            this.scenarioButton = new System.Windows.Forms.Button();
             this.researchButton = new System.Windows.Forms.Button();
             this.modelNameButton = new System.Windows.Forms.Button();
             this.randomLeaderButton = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.exportFolderBrowseButton = new System.Windows.Forms.Button();
             this.exportFolderTextBox = new System.Windows.Forms.TextBox();
             this.exportFolderLabel = new System.Windows.Forms.Label();
-            this.scenarioButton = new System.Windows.Forms.Button();
             this.editGroupBox.SuspendLayout();
             this.optionGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -76,8 +76,8 @@
             // 
             // gameFolderTextBox
             // 
-            this.gameFolderTextBox.AllowDrop = true;
             resources.ApplyResources(this.gameFolderTextBox, "gameFolderTextBox");
+            this.gameFolderTextBox.AllowDrop = true;
             this.gameFolderTextBox.Name = "gameFolderTextBox";
             this.gameFolderTextBox.TextChanged += new System.EventHandler(this.OnGameFolderTextBoxTextChanged);
             this.gameFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnGameFolderTextBoxDragDrop);
@@ -90,8 +90,8 @@
             // 
             // modTextBox
             // 
-            this.modTextBox.AllowDrop = true;
             resources.ApplyResources(this.modTextBox, "modTextBox");
+            this.modTextBox.AllowDrop = true;
             this.modTextBox.Name = "modTextBox";
             this.modTextBox.TextChanged += new System.EventHandler(this.OnModTextBoxTextChanged);
             this.modTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnModTextBoxDragDrop);
@@ -115,6 +115,13 @@
             this.editGroupBox.Controls.Add(this.ministerButton);
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
+            // 
+            // scenarioButton
+            // 
+            resources.ApplyResources(this.scenarioButton, "scenarioButton");
+            this.scenarioButton.Name = "scenarioButton";
+            this.scenarioButton.UseVisualStyleBackColor = true;
+            this.scenarioButton.Click += new System.EventHandler(this.OnScenarioButtonClick);
             // 
             // researchButton
             // 
@@ -221,9 +228,9 @@
             // 
             // languageComboBox
             // 
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
             this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLanguageComboBoxSelectedIndexChanged);
             // 
@@ -239,6 +246,7 @@
             // 
             // logLevelComboBox
             // 
+            resources.ApplyResources(this.logLevelComboBox, "logLevelComboBox");
             this.logLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.logLevelComboBox.FormattingEnabled = true;
             this.logLevelComboBox.Items.AddRange(new object[] {
@@ -247,7 +255,6 @@
             resources.GetString("logLevelComboBox.Items2"),
             resources.GetString("logLevelComboBox.Items3"),
             resources.GetString("logLevelComboBox.Items4")});
-            resources.ApplyResources(this.logLevelComboBox, "logLevelComboBox");
             this.logLevelComboBox.Name = "logLevelComboBox";
             this.logLevelComboBox.SelectedIndexChanged += new System.EventHandler(this.OnLogLevelComboBoxSelectedIndexChanged);
             // 
@@ -265,8 +272,8 @@
             // 
             // exportFolderTextBox
             // 
-            this.exportFolderTextBox.AllowDrop = true;
             resources.ApplyResources(this.exportFolderTextBox, "exportFolderTextBox");
+            this.exportFolderTextBox.AllowDrop = true;
             this.exportFolderTextBox.Name = "exportFolderTextBox";
             this.exportFolderTextBox.TextChanged += new System.EventHandler(this.OnExportFolderTextBoxTextChanged);
             this.exportFolderTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnExportFolderTextBoxDragDrop);
@@ -277,17 +284,10 @@
             resources.ApplyResources(this.exportFolderLabel, "exportFolderLabel");
             this.exportFolderLabel.Name = "exportFolderLabel";
             // 
-            // scenarioButton
-            // 
-            resources.ApplyResources(this.scenarioButton, "scenarioButton");
-            this.scenarioButton.Name = "scenarioButton";
-            this.scenarioButton.UseVisualStyleBackColor = true;
-            this.scenarioButton.Click += new System.EventHandler(this.OnScenarioButtonClick);
-            // 
             // MainForm
             // 
-            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
+            this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.exportFolderBrowseButton);
             this.Controls.Add(this.exportFolderTextBox);

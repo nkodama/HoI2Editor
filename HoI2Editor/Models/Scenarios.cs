@@ -78,6 +78,80 @@ namespace HoI2Editor.Models
             "stalinist"
         };
 
+        /// <summary>
+        ///     建物文字列
+        /// </summary>
+        public static readonly string[] BuildingStrings =
+        {
+            "",
+            "ic",
+            "infrastructure",
+            "coastal_fort",
+            "land_fort",
+            "flak",
+            "air_base",
+            "naval_base",
+            "radar_station",
+            "nuclear_reactor",
+            "rocket_test",
+            "synthetic_oil",
+            "synthetic_rares",
+            "nuclear_power"
+        };
+
+        /// <summary>
+        ///     陸軍任務文字列
+        /// </summary>
+        public static readonly string[] LandMissionStrings =
+        {
+            "",
+            "attack",
+            "strat_redeploy",
+            "support_attack",
+            "support_defense",
+            "reserves",
+            "anti_partisan_duty"
+        };
+
+        /// <summary>
+        ///     海軍任務文字列
+        /// </summary>
+        public static readonly string[] NavalMissionStrings =
+        {
+            "",
+            "rebase",
+            "convoy_raiding",
+            "asw",
+            "naval_interdiction",
+            "shore_bombardment",
+            "amphibious_assault",
+            "sea_transport",
+            "naval_combat_patrol",
+            "naval_port_strike",
+            "naval_airbase_strike"
+        };
+
+        /// <summary>
+        ///     空軍任務文字列
+        /// </summary>
+        public static readonly string[] AirMissionStrings =
+        {
+            "",
+            "air_superiority",
+            "ground_attack",
+            "runway_cratering",
+            "installation_strike",
+            "interdiction",
+            "naval_strike",
+            "port_strike",
+            "logistical_strike",
+            "strategic_bombardment",
+            "air_supply",
+            "airborne_assault",
+            "convoy_air_raiding",
+            "nuke"
+        };
+
         #endregion
 
         #region ファイル読み込み

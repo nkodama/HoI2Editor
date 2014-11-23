@@ -24,6 +24,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public int Day { get; set; }
 
+        /// <summary>
+        ///     時
+        /// </summary>
+        public int Hour { get; set; }
+
         #endregion
 
         #region 初期化
