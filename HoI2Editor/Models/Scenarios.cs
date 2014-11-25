@@ -61,6 +61,21 @@ namespace HoI2Editor.Models
         };
 
         /// <summary>
+        ///     天候文字列
+        /// </summary>
+        public static readonly string[] WeatherStrings =
+        {
+            "",
+            "clear",
+            "frozen",
+            "raining",
+            "snowing",
+            "storm",
+            "blizzard",
+            "muddy"
+        };
+
+        /// <summary>
         ///     政体文字列
         /// </summary>
         public static readonly string[] GovernmentStrings =

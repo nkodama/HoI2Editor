@@ -234,8 +234,8 @@ namespace HoI2Editor.Parsers
                         return null;
                     }
 
-                    // 空白文字を読み飛ばす
-                    if (char.IsWhiteSpace((char) c))
+                    // 空白文字/制御文字を読み飛ばす
+                    if (char.IsWhiteSpace((char) c) || char.IsControl((char) c))
                     {
                         if (c == '\r')
                         {
@@ -314,8 +314,8 @@ namespace HoI2Editor.Parsers
 
             if (!_skipWhiteSpace)
             {
-                // 空白文字
-                if (char.IsWhiteSpace((char) c))
+                // 空白文字/制御文字
+                if (char.IsWhiteSpace((char) c) || char.IsControl((char) c))
                 {
                     return ParseWhiteSpace();
                 }
@@ -478,7 +478,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 空白ならば読み進める
-                if (char.IsWhiteSpace((char) c))
+                if (char.IsWhiteSpace((char) c) || char.IsControl((char) c))
                 {
                     if (c == '\r')
                     {
@@ -564,6 +564,7 @@ namespace HoI2Editor.Parsers
                 if (char.IsWhiteSpace((char) c) ||
                     char.IsLetter((char) c) ||
                     char.IsDigit((char) c) ||
+                    char.IsControl((char) c) ||
                     c == '"' ||
                     c == '=' ||
                     c == '{' ||

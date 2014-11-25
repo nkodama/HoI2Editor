@@ -89,6 +89,23 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     日数を減算する
+        /// </summary>
+        /// <param name="days">減算する日数</param>
+        /// <returns>加算後の日付</returns>
+        public GameDate Minus(int days)
+        {
+            int offset = Year * 360 + (Month - 1) * 30 + (Day - 1) - days;
+
+            int year = offset / 360;
+            offset -= year * 360;
+            int month = offset / 30 + 1;
+            int day = offset % 30 + 1;
+
+            return new GameDate(year, month, day);
+        }
+
+        /// <summary>
         ///     差分日数を取得する
         /// </summary>
         /// <param name="date">比較対象の日付</param>

@@ -135,6 +135,16 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     クローズ解析エラーをログ出力する
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="clauseName">クローズ名</param>
+        public static void InvalidClause(string categoryName, string clauseName)
+        {
+            Warning("[{0}] Parse failed: {1} clause", categoryName, clauseName);
+        }
+
+        /// <summary>
         ///     セクション解析エラーをログ出力する
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
@@ -149,12 +159,12 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="itemName">項目名</param>
-        /// <param name="token">トークン</param>
+        /// <param name="o">対象の値</param>
         /// <param name="lexer">字句解析器</param>
-        public static void OutOfRange(string categoryName, string itemName, Token token, TextLexer lexer)
+        public static void OutOfRange(string categoryName, string itemName, Object o, TextLexer lexer)
         {
-            Warning("[{0} Out of range: {1} at {2} ({3} L{4})",
-                categoryName, ObjectHelper.ToString(token.Value), itemName, lexer.FileName, lexer.LineNo);
+            Warning("[{0}] Out of range: {1} at {2} ({3} L{4})",
+                categoryName, ObjectHelper.ToString(o), itemName, lexer.FileName, lexer.LineNo);
         }
 
         /// <summary>
