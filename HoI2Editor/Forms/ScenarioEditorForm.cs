@@ -317,7 +317,7 @@ namespace HoI2Editor.Forms
             endDayTextBox.Text = scenario.GlobalData.EndDate.Day.ToString(CultureInfo.InvariantCulture);
 
             majorListBox.Items.Clear();
-            foreach (MajorCountry major in scenario.Header.Majors)
+            foreach (MajorCountrySettings major in scenario.Header.Majors)
             {
                 majorListBox.Items.Add(Config.GetText(Countries.Strings[(int) major.Country]));
             }

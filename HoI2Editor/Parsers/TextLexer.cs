@@ -440,8 +440,8 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 引用符閉じ忘れのフールプループ
-                // 改行を含む制御文字が現れれば抜ける
-                if (char.IsControl((char) c))
+                // 改行文字が現れれば抜ける
+                if (c == '\r' || c == '\n')
                 {
                     break;
                 }
