@@ -13,6 +13,11 @@ namespace HoI2Editor.Models
         #region 公開プロパティ
 
         /// <summary>
+        ///     保存ゲームかどうか
+        /// </summary>
+        public bool IsSaveGame { get; set; }
+
+        /// <summary>
         ///     シナリオ名
         /// </summary>
         public string Name { get; set; }
@@ -35,7 +40,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     発生済みイベント
         /// </summary>
-        public List<int> History { get; private set; }
+        public List<int> HistoryEvents { get; private set; }
 
         /// <summary>
         ///     休止イベント
@@ -43,7 +48,7 @@ namespace HoI2Editor.Models
         public List<int> SleepEvents { get; private set; }
 
         /// <summary>
-        ///     保存日時
+        ///     イベント発生日時
         /// </summary>
         public Dictionary<int, GameDate> SaveDates { get; set; }
 
@@ -55,12 +60,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     イベントファイル
         /// </summary>
-        public List<string> Events { get; private set; }
+        public List<string> EventFiles { get; private set; }
 
         /// <summary>
         ///     インクルードファイル
         /// </summary>
-        public List<string> Includes { get; private set; }
+        public List<string> IncludeFiles { get; private set; }
+
+        /// <summary>
+        ///     インクルードフォルダ
+        /// </summary>
+        public string IncludeFolder { get; set; }
 
         /// <summary>
         ///     プロヴィンス設定 (国別incに記載)
@@ -101,10 +111,10 @@ namespace HoI2Editor.Models
         /// </summary>
         public Scenario()
         {
-            History = new List<int>();
+            HistoryEvents = new List<int>();
             SleepEvents = new List<int>();
-            Events = new List<string>();
-            Includes = new List<string>();
+            EventFiles = new List<string>();
+            IncludeFiles = new List<string>();
             CountryProvinces = new List<ProvinceSettings>();
             BasesProvinces = new List<ProvinceSettings>();
             BasesDodProvinces = new List<ProvinceSettings>();
@@ -150,22 +160,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家の自由選択
         /// </summary>
-        public bool Free { get; set; }
+        public bool IsFreeSelection { get; set; }
 
         /// <summary>
         ///     ショートシナリオ
         /// </summary>
-        public bool Combat { get; set; }
+        public bool IsCombatScenario { get; set; }
 
         /// <summary>
         ///     選択可能国家
         /// </summary>
-        public List<Country> Selectable { get; private set; }
+        public List<Country> SelectableCountries { get; private set; }
 
         /// <summary>
         ///     主要国設定
         /// </summary>
-        public List<MajorCountrySettings> Majors { get; private set; }
+        public List<MajorCountrySettings> MajorCountries { get; private set; }
 
         /// <summary>
         ///     AIの攻撃性
@@ -184,6 +194,40 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     AIの攻撃性の初期値
+        /// </summary>
+        public const int AiAggressiveDefault = 2;
+
+        /// <summary>
+        ///     難易度の初期値
+        /// </summary>
+        public const int DifficultyDefault = 2;
+
+        /// <summary>
+        ///     ゲームスピードの初期値
+        /// </summary>
+        public const int GameSpeedDefault = 3;
+
+        /// <summary>
+        ///     AIの攻撃性の選択肢数
+        /// </summary>
+        public const int AiAggressiveCount = 5;
+
+        /// <summary>
+        ///     難易度の選択肢数
+        /// </summary>
+        public const int DifficultyCount = 5;
+
+        /// <summary>
+        ///     ゲームスピードの選択肢数
+        /// </summary>
+        public const int GameSpeedCount = 8;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -191,8 +235,14 @@ namespace HoI2Editor.Models
         /// </summary>
         public ScenarioHeader()
         {
-            Selectable = new List<Country>();
-            Majors = new List<MajorCountrySettings>();
+            SelectableCountries = new List<Country>();
+            MajorCountries = new List<MajorCountrySettings>();
+
+            IsFreeSelection = true;
+
+            AiAggressive = AiAggressiveDefault;
+            Difficulty = DifficultyDefault;
+            GameSpeed = GameSpeedDefault;
         }
 
         #endregion
@@ -318,6 +368,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public ScenarioGlobalData()
         {
+            Rules = new ScenarioRules();
             Alliances = new List<Alliance>();
             Wars = new List<War>();
             Treaties = new List<Treaty>();
@@ -337,19 +388,19 @@ namespace HoI2Editor.Models
         #region 公開プロパティ
 
         /// <summary>
-        ///     外交
+        ///     外交を許可
         /// </summary>
-        public bool Diplomacy { get; set; }
+        public bool AllowDiplomacy { get; set; }
 
         /// <summary>
-        ///     生産
+        ///     生産を許可
         /// </summary>
-        public bool Production { get; set; }
+        public bool AllowProduction { get; set; }
 
         /// <summary>
-        ///     技術
+        ///     技術開発を許可
         /// </summary>
-        public bool Technology { get; set; }
+        public bool AllowTechnology { get; set; }
 
         #endregion
 
@@ -360,9 +411,9 @@ namespace HoI2Editor.Models
         /// </summary>
         public ScenarioRules()
         {
-            Diplomacy = true;
-            Production = true;
-            Technology = true;
+            AllowDiplomacy = true;
+            AllowProduction = true;
+            AllowTechnology = true;
         }
 
         #endregion

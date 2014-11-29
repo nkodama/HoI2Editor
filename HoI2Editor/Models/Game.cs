@@ -308,6 +308,11 @@ namespace HoI2Editor.Models
         public const string ScenarioPathName = "scenarios";
 
         /// <summary>
+        ///     シナリオデータフォルダ
+        /// </summary>
+        public const string ScenarioDataPathName = "scenarios\\data";
+
+        /// <summary>
         ///     miscファイル名
         /// </summary>
         public const string MiscPathName = "db\\misc.txt";

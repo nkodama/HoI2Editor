@@ -117,10 +117,136 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="gameSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 12</value>
+  </data>
+  <data name="gameSpeedLabel.Text" xml:space="preserve">
+    <value>ゲームスピード</value>
+  </data>
+  <data name="difficultyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="difficultyLabel.Text" xml:space="preserve">
+    <value>難易度</value>
+  </data>
+  <data name="aiAggressiveLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 12</value>
+  </data>
+  <data name="aiAggressiveLabel.Text" xml:space="preserve">
+    <value>AIの攻撃性</value>
+  </data>
+  <data name="allowTechnologyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 16</value>
+  </data>
+  <data name="allowTechnologyCheckBox.Text" xml:space="preserve">
+    <value>技術を許可</value>
+  </data>
+  <data name="allowProductionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 16</value>
+  </data>
+  <data name="allowProductionCheckBox.Text" xml:space="preserve">
+    <value>生産を許可</value>
+  </data>
+  <data name="allowDiplomacyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 16</value>
+  </data>
+  <data name="allowDiplomacyCheckBox.Text" xml:space="preserve">
+    <value>外交を許可</value>
+  </data>
+  <data name="freeCountryCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 16</value>
+  </data>
+  <data name="freeCountryCheckBox.Text" xml:space="preserve">
+    <value>国家の自由選択</value>
+  </data>
+  <data name="battleScenarioCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 16</value>
+  </data>
+  <data name="battleScenarioCheckBox.Text" xml:space="preserve">
+    <value>ショートシナリオ</value>
+  </data>
+  <data name="optionGroupBox.Text" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="propagandaBrowseButton.Text" xml:space="preserve">
+    <value>参照</value>
+  </data>
+  <data name="propagandaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 12</value>
+  </data>
+  <data name="propagandaLabel.Text" xml:space="preserve">
+    <value>プロパガンダ画像</value>
+  </data>
+  <data name="countryDescLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="countryDescLabel.Text" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="majorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="majorLabel.Text" xml:space="preserve">
+    <value>主要国</value>
+  </data>
+  <data name="selectableLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="selectableLabel.Text" xml:space="preserve">
+    <value>選択可能国</value>
+  </data>
+  <data name="majorUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="majorDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="countryGroupBox.Text" xml:space="preserve">
+    <value>国家</value>
+  </data>
+  <data name="includeFolderBrowseButton.Text" xml:space="preserve">
+    <value>参照</value>
+  </data>
+  <data name="includeFolderLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 12</value>
+  </data>
+  <data name="includeFolderLabel.Text" xml:space="preserve">
+    <value>インクルードフォルダ</value>
+  </data>
+  <data name="scenarioNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="scenarioNameLabel.Text" xml:space="preserve">
+    <value>シナリオ名</value>
+  </data>
+  <data name="panelImageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="panelImageLabel.Text" xml:space="preserve">
+    <value>パネル画像</value>
+  </data>
+  <data name="panelImageBrowseButton.Text" xml:space="preserve">
+    <value>参照</value>
+  </data>
+  <data name="startDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="startDateLabel.Text" xml:space="preserve">
+    <value>開始日時</value>
+  </data>
+  <data name="endDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="endDateLabel.Text" xml:space="preserve">
+    <value>終了日時</value>
+  </data>
+  <data name="basicGroupBox.Text" xml:space="preserve">
+    <value>シナリオ</value>
+  </data>
   <data name="loadButton.Text" xml:space="preserve">
     <value>読み込み</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="exportRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 16</value>
   </data>
@@ -139,87 +265,6 @@
   <data name="vanillaRadioButton.Text" xml:space="preserve">
     <value>バニラフォルダ</value>
   </data>
-  <data name="eventDownButton.Text" xml:space="preserve">
-    <value>下へ</value>
-  </data>
-  <data name="eventUpButton.Text" xml:space="preserve">
-    <value>上へ</value>
-  </data>
-  <data name="eventRemoveButton.Text" xml:space="preserve">
-    <value>削除</value>
-  </data>
-  <data name="eventAddButton.Text" xml:space="preserve">
-    <value>追加</value>
-  </data>
-  <data name="eventLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 12</value>
-  </data>
-  <data name="eventLabel.Text" xml:space="preserve">
-    <value>イベントファイル</value>
-  </data>
-  <data name="includeDownButton.Text" xml:space="preserve">
-    <value>下へ</value>
-  </data>
-  <data name="includeUpButton.Text" xml:space="preserve">
-    <value>上へ</value>
-  </data>
-  <data name="includeRemoveButton.Text" xml:space="preserve">
-    <value>削除</value>
-  </data>
-  <data name="includeAddButton.Text" xml:space="preserve">
-    <value>追加</value>
-  </data>
-  <data name="includeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 12</value>
-  </data>
-  <data name="includeLabel.Text" xml:space="preserve">
-    <value>読み込みファイル</value>
-  </data>
-  <data name="selectableLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="selectableLabel.Text" xml:space="preserve">
-    <value>選択可能国</value>
-  </data>
-  <data name="majorDownButton.Text" xml:space="preserve">
-    <value>下へ</value>
-  </data>
-  <data name="majorUpButton.Text" xml:space="preserve">
-    <value>上へ</value>
-  </data>
-  <data name="majorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="majorLabel.Text" xml:space="preserve">
-    <value>主要国</value>
-  </data>
-  <data name="endDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="endDateLabel.Text" xml:space="preserve">
-    <value>終了日時</value>
-  </data>
-  <data name="startDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="startDateLabel.Text" xml:space="preserve">
-    <value>開始日時</value>
-  </data>
-  <data name="panelImageBrowseButton.Text" xml:space="preserve">
-    <value>参照</value>
-  </data>
-  <data name="panelImageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
-  </data>
-  <data name="panelImageLabel.Text" xml:space="preserve">
-    <value>パネル画像</value>
-  </data>
-  <data name="scenarioNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="scenarioNameLabel.Text" xml:space="preserve">
-    <value>シナリオ名</value>
-  </data>
   <data name="saveGamesRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 16</value>
   </data>
@@ -232,8 +277,29 @@
   <data name="scenarioRadioButton.Text" xml:space="preserve">
     <value>シナリオ</value>
   </data>
-  <data name="fileTabPage.Text" xml:space="preserve">
+  <data name="mainTabPage.Text" xml:space="preserve">
     <value>メイン</value>
+  </data>
+  <data name="allianceLeaderButton.Text" xml:space="preserve">
+    <value>リーダーに設定</value>
+  </data>
+  <data name="allianceUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="allianceRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="allianceDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="allianceNewButton.Text" xml:space="preserve">
+    <value>新規</value>
+  </data>
+  <data name="allianceGroupBox.Text" xml:space="preserve">
+    <value>同盟</value>
+  </data>
+  <data name="allianceTabPage.Text" xml:space="preserve">
+    <value>同盟</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>閉じる</value>
@@ -245,6 +311,6 @@
     <value>再読み込み</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>シナリオエディタ</value>
+    <value>シナリオビューア</value>
   </data>
 </root>

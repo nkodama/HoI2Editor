@@ -146,7 +146,7 @@ namespace HoI2Editor.Parsers
                         }
 
                         // 発生済みイベント
-                        scenario.History.AddRange(list);
+                        scenario.HistoryEvents.AddRange(list);
                         continue;
                     }
 
@@ -219,7 +219,7 @@ namespace HoI2Editor.Parsers
                         // イベントファイル
                         if (GetScenarioFileKind() == ScenarioFileKind.Top)
                         {
-                            scenario.Events.Add(s);
+                            scenario.EventFiles.Add(s);
                         }
                         continue;
                     }
@@ -237,7 +237,10 @@ namespace HoI2Editor.Parsers
                         // インクルードファイル
                         if (GetScenarioFileKind() == ScenarioFileKind.Top)
                         {
-                            scenario.Includes.Add(s);
+                            scenario.IncludeFiles.Add(s);
+
+                            // インクルードフォルダを設定する
+                            scenario.IncludeFolder = Path.GetDirectoryName(s);
                         }
 
                         string pathName = Game.GetReadFileName(s);
@@ -248,7 +251,7 @@ namespace HoI2Editor.Parsers
                         }
 
                         // インクルードファイルを解釈する
-                        FileNameStack.Push(pathName);
+                        FileNameStack.Push(_fileName);
                         Log.Verbose("[Scenario] Include: {0}", s);
                         Parse(pathName, scenario);
                         _fileName = FileNameStack.Pop();
@@ -511,7 +514,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国家の自由選択
-                    header.Free = (bool) b;
+                    header.IsFreeSelection = (bool) b;
                     continue;
                 }
 
@@ -526,7 +529,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // ショートシナリオ
-                    header.Combat = (bool) b;
+                    header.IsCombatScenario = (bool) b;
                     continue;
                 }
 
@@ -541,7 +544,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 選択可能国
-                    header.Selectable.AddRange(list);
+                    header.SelectableCountries.AddRange(list);
                     continue;
                 }
 
@@ -606,7 +609,7 @@ namespace HoI2Editor.Parsers
 
                         // 主要国設定
                         country.Country = tag;
-                        header.Majors.Add(country);
+                        header.MajorCountries.Add(country);
                         continue;
                     }
                 }
@@ -1121,7 +1124,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外交
-                    rules.Diplomacy = (bool) b;
+                    rules.AllowDiplomacy = (bool) b;
                     continue;
                 }
 
@@ -1136,7 +1139,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 生産
-                    rules.Production = (bool) b;
+                    rules.AllowProduction = (bool) b;
                     continue;
                 }
 
@@ -1151,7 +1154,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 技術
-                    rules.Technology = (bool) b;
+                    rules.AllowTechnology = (bool) b;
                     continue;
                 }
 
