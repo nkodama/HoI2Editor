@@ -184,6 +184,7 @@
     <Compile Include="Models\UnitNames.cs" />
     <Compile Include="Models\Units.cs" />
     <Compile Include="Parsers\CommandParser.cs" />
+    <Compile Include="Parsers\CsvLexer.cs" />
     <Compile Include="Parsers\MinisterModifierParser.cs" />
     <Compile Include="Parsers\MinisterPersonalityParser.cs" />
     <Compile Include="Parsers\MiscParser.cs" />

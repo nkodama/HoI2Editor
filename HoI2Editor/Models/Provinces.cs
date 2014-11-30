@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -100,16 +101,6 @@ namespace HoI2Editor.Models
         ///     地形文字列とIDの対応付け
         /// </summary>
         private static readonly Dictionary<string, TerrainId> TerrainStringMap = new Dictionary<string, TerrainId>();
-
-        /// <summary>
-        ///     現在解析中のファイル名
-        /// </summary>
-        private static string _currentFileName = "";
-
-        /// <summary>
-        ///     現在解析中の行番号
-        /// </summary>
-        private static int _currentLineNo;
 
         /// <summary>
         ///     編集済みフラグ
@@ -3352,11 +3343,6 @@ namespace HoI2Editor.Models
             TerrainId.River
         };
 
-        /// <summary>
-        ///     CSVファイルの区切り文字
-        /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
-
         #endregion
 
         #region 初期化
@@ -3511,30 +3497,38 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[Province] Load: {0}", Path.GetFileName(fileName));
 
-            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            using (var lexer = new CsvLexer(fileName))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 1;
-
                 // 空ファイルを読み飛ばす
-                if (reader.EndOfStream)
+                if (lexer.EndOfStream)
                 {
                     return;
                 }
 
                 // ヘッダ行読み込み
-                string line = reader.ReadLine();
+                string line = lexer.ReadLine();
                 if (String.IsNullOrEmpty(line))
                 {
                     return;
                 }
 
-                _currentLineNo++;
-
-                while (!reader.EndOfStream)
+                // ヘッダ行のみのファイルを読み飛ばす
+                if (lexer.EndOfStream)
                 {
-                    ParseLine(reader.ReadLine());
-                    _currentLineNo++;
+                    return;
+                }
+
+                while (!lexer.EndOfStream)
+                {
+                    Province province = ParseLine(lexer);
+
+                    // 空行を読み飛ばす
+                    if (province == null)
+                    {
+                        continue;
+                    }
+
+                    Items.Add(province);
                 }
 
                 ResetDirty();
@@ -3544,29 +3538,30 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンス定義行を解釈する
         /// </summary>
-        /// <param name="line">対象文字列</param>
-        private static void ParseLine(string line)
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>プロヴィンスデータ</returns>
+        private static Province ParseLine(CsvLexer lexer)
         {
-            // 空行を読み飛ばす
-            if (string.IsNullOrEmpty(line))
-            {
-                return;
-            }
+            string[] tokens = lexer.GetTokens();
 
-            string[] tokens = line.Split(CsvSeparator);
+            // 空行を読み飛ばす
+            if (tokens == null)
+            {
+                return null;
+            }
 
             // ID指定のない行は読み飛ばす
             if (string.IsNullOrEmpty(tokens[0]))
             {
-                return;
+                return null;
             }
 
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length < 49)
             {
-                Log.Warning("[Province] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
-                    _currentLineNo);
-                return;
+                Log.Warning("[Province] Invalid token count: {0} ({1} L{2})", tokens.Length, lexer.FileName,
+                    lexer.LineNo);
+                return null;
             }
 
             var province = new Province();
@@ -3576,8 +3571,8 @@ namespace HoI2Editor.Models
             int n;
             if (!int.TryParse(tokens[index], out n))
             {
-                Log.Warning("[Province] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
-                return;
+                Log.Warning("[Province] Invalid id: {0} ({1} L{2})", tokens[index], lexer.FileName, lexer.LineNo);
+                return null;
             }
             province.Id = n;
             index++;
@@ -3599,7 +3594,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid area: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
                 province.Area = AreaId.None;
             }
             index++;
@@ -3617,7 +3612,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid region: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
                 province.Region = RegionId.None;
             }
             index++;
@@ -3635,7 +3630,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid continent: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
                 province.Continent = ContinentId.None;
             }
             index++;
@@ -3653,7 +3648,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid climate: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
                 province.Climate = ClimateId.None;
             }
             index++;
@@ -3671,7 +3666,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid terrain: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
                 province.Terrain = TerrainId.Unknown;
             }
             index += 3;
@@ -3689,7 +3684,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid infrastructure: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index += 2;
 
@@ -3705,7 +3700,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid beach: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3721,7 +3716,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid port allowed: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3737,7 +3732,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid port sea zone: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3753,7 +3748,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid ic: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3769,7 +3764,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid manpower: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3785,7 +3780,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid oil: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3801,7 +3796,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid metal: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3817,7 +3812,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid energy: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3833,7 +3828,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid rare materials: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3849,7 +3844,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid city posision x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3865,7 +3860,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid city position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3881,7 +3876,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid army position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3897,7 +3892,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid army position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3913,7 +3908,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid port position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3929,7 +3924,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid port position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3945,7 +3940,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid beach position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3961,7 +3956,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid beach position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3977,7 +3972,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid beach icon: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -3993,7 +3988,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid fort position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -4009,7 +4004,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid fort position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -4025,7 +4020,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid aa position x: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -4041,7 +4036,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid aa position y: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -4057,7 +4052,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid counter position x: {0} [{1}: {2}] ({3} L{4})", tokens[index],
-                    province.Id, province.Name, _currentFileName, _currentLineNo);
+                    province.Id, province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -4073,7 +4068,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid counter position y: {0} [{1}: {2}] ({3} L{4})", tokens[index],
-                    province.Id, province.Name, _currentFileName, _currentLineNo);
+                    province.Id, province.Name, lexer.FileName, lexer.LineNo);
             }
             index += 11;
 
@@ -4089,7 +4084,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid fill position x1: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -4105,7 +4100,7 @@ namespace HoI2Editor.Models
             else
             {
                 Log.Warning("[Province] Invalid fill position y1: {0} [{1}: {2}] ({3} L{4})", tokens[index], province.Id,
-                    province.Name, _currentFileName, _currentLineNo);
+                    province.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -4234,7 +4229,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            Items.Add(province);
+            return province;
         }
 
         #endregion
@@ -4300,9 +4295,6 @@ namespace HoI2Editor.Models
         {
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 2;
-
                 // ヘッダ行を書き込む
                 writer.WriteLine(
                     "Id;Name;Area;Region;Continent;Climate;Terrain;SizeModifier;AirCapacity;Infrastructure;City;Beaches;Port Allowed;Port Seazone;IC;Manpower;Oil;Metal;Energy;Rare Materials;City XPos;City YPos;Army XPos;Army YPos;Port XPos;Port YPos;Beach XPos;Beach YPos;Beach Icon;Fort XPos;Fort YPos;AA XPos;AA YPos;Counter x;Counter Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Terrain x;Terrain Y;Terrain variant;Fill coord X;Fill coord Y;;;;;;;;;"
@@ -4450,8 +4442,6 @@ namespace HoI2Editor.Models
                         }
                         writer.WriteLine();
                     }
-
-                    _currentLineNo++;
                 }
             }
         }

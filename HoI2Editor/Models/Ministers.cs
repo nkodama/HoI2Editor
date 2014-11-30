@@ -94,16 +94,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static bool _dirtyListFlag;
 
-        /// <summary>
-        ///     現在解析中のファイル名
-        /// </summary>
-        private static string _currentFileName = "";
-
-        /// <summary>
-        ///     現在解析中の行番号
-        /// </summary>
-        private static int _currentLineNo;
-
         #endregion
 
         #region 公開定数
@@ -1213,74 +1203,83 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[Minister] Load: {0}", Path.GetFileName(fileName));
 
-            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            using (var lexer = new CsvLexer(fileName))
             {
-                _currentFileName = Path.GetFileName(fileName);
-                _currentLineNo = 1;
-
                 // 空ファイルを読み飛ばす
-                if (reader.EndOfStream)
+                if (lexer.EndOfStream)
                 {
                     return;
                 }
 
                 // 国タグ読み込み
-                string line = reader.ReadLine();
-                if (String.IsNullOrEmpty(line))
+                string[] tokens = lexer.GetTokens();
+                if (tokens == null || tokens.Length == 0 || string.IsNullOrEmpty(tokens[0]))
                 {
                     return;
                 }
-                string[] token = line.Split(CsvSeparator);
-                if (token.Length == 0 || String.IsNullOrEmpty(token[0]))
+                // サポート外の国タグの場合は何もしない
+                if (!Countries.StringMap.ContainsKey(tokens[0].ToUpper()))
                 {
                     return;
                 }
-                Country country = Countries.StringMap[token[0].ToUpper()];
+                Country country = Countries.StringMap[tokens[0].ToUpper()];
 
-                _currentLineNo++;
-
-                while (!reader.EndOfStream)
+                // ヘッダ行のみのファイルを読み飛ばす
+                if (lexer.EndOfStream)
                 {
-                    ParseLine(reader.ReadLine(), country);
-                    _currentLineNo++;
+                    return;
+                }
+
+                while (!lexer.EndOfStream)
+                {
+                    Minister minister = ParseLine(lexer, country);
+
+                    // 空行を読み飛ばす
+                    if (minister == null)
+                    {
+                        continue;
+                    }
+
+                    Items.Add(minister);
                 }
 
                 ResetDirty(country);
 
-                FileNameMap.Add(country, Path.GetFileName(fileName));
+                FileNameMap.Add(country, lexer.FileName);
             }
         }
 
         /// <summary>
         ///     閣僚定義行を解釈する
         /// </summary>
-        /// <param name="line">対象文字列</param>
+        /// <param name="lexer">字句解析器</param>
         /// <param name="country">国家タグ</param>
-        private static void ParseLine(string line, Country country)
+        /// <returns>閣僚データ</returns>
+        private static Minister ParseLine(CsvLexer lexer, Country country)
         {
+            string[] tokens = lexer.GetTokens();
+
             // 空行を読み飛ばす
-            if (String.IsNullOrEmpty(line))
+            if (tokens == null)
             {
-                return;
+                return null;
             }
 
-            string[] tokens = line.Split(CsvSeparator);
-
             // ID指定のない行は読み飛ばす
-            if (String.IsNullOrEmpty(tokens[0]))
+            if (string.IsNullOrEmpty(tokens[0]))
             {
-                return;
+                return null;
             }
 
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != (Misc.EnableRetirementYearMinisters ? 11 : (Misc.UseNewMinisterFilesFormat ? 10 : 9)))
             {
-                Log.Warning("[Minister] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
-                    _currentLineNo);
+                Log.Warning("[Minister] Invalid token count: {0} ({1} L{2})", tokens.Length, lexer.FileName,
+                    lexer.LineNo);
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (tokens.Length < (Misc.EnableRetirementYearMinisters ? 10 : (Misc.UseNewMinisterFilesFormat ? 9 : 8)))
                 {
-                    return;
+                    return null;
                 }
             }
 
@@ -1291,8 +1290,8 @@ namespace HoI2Editor.Models
             int id;
             if (!int.TryParse(tokens[index], out id))
             {
-                Log.Warning("[Minister] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
-                return;
+                Log.Warning("[Minister] Invalid id: {0} ({1} L{2})", tokens[index], lexer.FileName, lexer.LineNo);
+                return null;
             }
             minister.Id = id;
             index++;
@@ -1307,7 +1306,7 @@ namespace HoI2Editor.Models
             {
                 minister.Position = MinisterPosition.None;
                 Log.Warning("[Minister] Invalid position: {0} [{1}] ({2} L{3})", tokens[index], minister.Id,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -1325,7 +1324,7 @@ namespace HoI2Editor.Models
             {
                 minister.StartYear = 1936;
                 Log.Warning("[Minister] Invalid start year: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
-                    minister.Name, _currentFileName, _currentLineNo);
+                    minister.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -1341,7 +1340,7 @@ namespace HoI2Editor.Models
                 {
                     minister.EndYear = 1970;
                     Log.Warning("[Minister] Invalid end year: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
-                        minister.Name, _currentFileName, _currentLineNo);
+                        minister.Name, lexer.FileName, lexer.LineNo);
                 }
                 index++;
             }
@@ -1362,7 +1361,7 @@ namespace HoI2Editor.Models
                 {
                     minister.RetirementYear = 1999;
                     Log.Warning("[Minister] Invalid retirement year: {0} [{1}: {2}] ({3} L{4})", tokens[index],
-                        minister.Id, minister.Name, _currentFileName, _currentLineNo);
+                        minister.Id, minister.Name, lexer.FileName, lexer.LineNo);
                 }
                 index++;
             }
@@ -1381,7 +1380,7 @@ namespace HoI2Editor.Models
             {
                 minister.Ideology = MinisterIdeology.None;
                 Log.Warning("[Minister] Invalid ideology: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
-                    minister.Name, _currentFileName, _currentLineNo);
+                    minister.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -1398,14 +1397,14 @@ namespace HoI2Editor.Models
                 {
                     minister.Personality = PersonalityStringMap[PersonalityStringTypoMap[personalityName]];
                     Log.Warning("[Minister] Modified personality: {0} -> {1} [{2}: {3}] ({4} L{5})", tokens[index],
-                        Personalities[minister.Personality].String, minister.Id, minister.Name, _currentFileName,
-                        _currentLineNo);
+                        Personalities[minister.Personality].String, minister.Id, minister.Name, lexer.FileName,
+                        lexer.LineNo);
                 }
                 else
                 {
                     minister.Personality = 0;
                     Log.Warning("[Minister] Invalid personality: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
-                        minister.Name, _currentFileName, _currentLineNo);
+                        minister.Name, lexer.FileName, lexer.LineNo);
                 }
             }
             index++;
@@ -1420,14 +1419,14 @@ namespace HoI2Editor.Models
             {
                 minister.Loyalty = MinisterLoyalty.None;
                 Log.Warning("[Minister] Invalid loyalty: {0} [{1}: {2}] ({3} L{4})", tokens[index], minister.Id,
-                    minister.Name, _currentFileName, _currentLineNo);
+                    minister.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
             // 画像ファイル名
             minister.PictureName = tokens[index];
 
-            Items.Add(minister);
+            return minister;
         }
 
         #endregion
@@ -1514,13 +1513,9 @@ namespace HoI2Editor.Models
             // 登録された閣僚ファイル名を順に書き込む
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 1;
-
                 foreach (string name in FileNameMap.Select(pair => pair.Value))
                 {
                     writer.WriteLine(name);
-                    _currentLineNo++;
                 }
             }
 
@@ -1541,13 +1536,13 @@ namespace HoI2Editor.Models
                 Directory.CreateDirectory(folderName);
             }
 
-            string fileName = Path.Combine(folderName, Game.GetMinisterFileName(country));
-            Log.Info("[Minister] Save: {0}", Path.GetFileName(fileName));
+            string name = Game.GetMinisterFileName(country);
+            string fileName = Path.Combine(folderName, name);
+            Log.Info("[Minister] Save: {0}", name);
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 3;
+                int lineNo = 3;
 
                 // ヘッダ行を書き込む
                 if (Misc.EnableRetirementYearMinisters)
@@ -1577,18 +1572,18 @@ namespace HoI2Editor.Models
                     // 不正な値が設定されている場合は警告をログに出力する
                     if (minister.Position == MinisterPosition.None)
                     {
-                        Log.Warning("[Minister] Invalid position: {0} {1} ({2} L{3})", minister.Id, minister.Name,
-                            _currentFileName, _currentLineNo);
+                        Log.Warning("[Minister] Invalid position: {0} {1} ({2} L{3})", minister.Id, minister.Name, name,
+                            lineNo);
                     }
                     if (minister.Ideology == MinisterIdeology.None)
                     {
-                        Log.Warning("[Minister] Invalid ideology: {0} {1} ({2} L{3})", minister.Id, minister.Name,
-                            _currentFileName, _currentLineNo);
+                        Log.Warning("[Minister] Invalid ideology: {0} {1} ({2} L{3})", minister.Id, minister.Name, name,
+                            lineNo);
                     }
                     if (minister.Loyalty == MinisterLoyalty.None)
                     {
-                        Log.Warning("[Minister] Invalid loyalty: {0} {1} ({2} L{3})", minister.Id, minister.Name,
-                            _currentFileName, _currentLineNo);
+                        Log.Warning("[Minister] Invalid loyalty: {0} {1} ({2} L{3})", minister.Id, minister.Name, name,
+                            lineNo);
                     }
 
                     // 閣僚定義行を書き込む
@@ -1638,7 +1633,7 @@ namespace HoI2Editor.Models
                     // 編集済みフラグを解除する
                     minister.ResetDirtyAll();
 
-                    _currentLineNo++;
+                    lineNo++;
                 }
             }
 

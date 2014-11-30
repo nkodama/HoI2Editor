@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -53,16 +54,6 @@ namespace HoI2Editor.Models
         ///     研究機関リストファイルの編集済みフラグ
         /// </summary>
         private static bool _dirtyListFlag;
-
-        /// <summary>
-        ///     現在解析中のファイル名
-        /// </summary>
-        private static string _currentFileName = "";
-
-        /// <summary>
-        ///     現在解析中の行番号
-        /// </summary>
-        private static int _currentLineNo;
 
         #endregion
 
@@ -366,25 +357,17 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[Team] Load: {0}", Path.GetFileName(fileName));
 
-            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            using (var lexer = new CsvLexer(fileName))
             {
-                _currentFileName = Path.GetFileName(fileName);
-                _currentLineNo = 1;
-
                 // 空ファイルを読み飛ばす
-                if (reader.EndOfStream)
+                if (lexer.EndOfStream)
                 {
                     return;
                 }
 
                 // 国タグ読み込み
-                string line = reader.ReadLine();
-                if (String.IsNullOrEmpty(line))
-                {
-                    return;
-                }
-                string[] tokens = line.Split(CsvSeparator);
-                if (tokens.Length == 0 || String.IsNullOrEmpty(tokens[0]))
+                string[] tokens = lexer.GetTokens();
+                if (tokens == null || tokens.Length == 0 || string.IsNullOrEmpty(tokens[0]))
                 {
                     return;
                 }
@@ -395,50 +378,61 @@ namespace HoI2Editor.Models
                 }
                 Country country = Countries.StringMap[tokens[0].ToUpper()];
 
-                _currentLineNo++;
-
-                while (!reader.EndOfStream)
+                // ヘッダ行のみのファイルを読み飛ばす
+                if (lexer.EndOfStream)
                 {
-                    ParseLine(reader.ReadLine(), country);
-                    _currentLineNo++;
+                    return;
+                }
+
+                while (!lexer.EndOfStream)
+                {
+                    Team team = ParseLine(lexer, country);
+
+                    // 空行を読み飛ばす
+                    if (team == null)
+                    {
+                        continue;
+                    }
+
+                    Items.Add(team);
                 }
 
                 ResetDirty(country);
 
-                FileNameMap.Add(country, Path.GetFileName(fileName));
+                FileNameMap.Add(country, lexer.FileName);
             }
         }
 
         /// <summary>
         ///     研究機関定義行を解釈する
         /// </summary>
-        /// <param name="line">対象文字列</param>
+        /// <param name="lexer">字句解析器</param>
         /// <param name="country">国家タグ</param>
-        private static void ParseLine(string line, Country country)
+        /// <returns>研究機関データ</returns>
+        private static Team ParseLine(CsvLexer lexer, Country country)
         {
-            // 空行を読み飛ばす
-            if (String.IsNullOrEmpty(line))
-            {
-                return;
-            }
+            string[] tokens = lexer.GetTokens();
 
-            string[] tokens = line.Split(CsvSeparator);
+            // 空行を読み飛ばす
+            if (tokens == null)
+            {
+                return null;
+            }
 
             // ID指定のない行は読み飛ばす
             if (String.IsNullOrEmpty(tokens[0]))
             {
-                return;
+                return null;
             }
 
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != 39)
             {
-                Log.Warning("[Team] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
-                    _currentLineNo);
+                Log.Warning("[Team] Invalid token count: {0} ({1} L{2})", tokens.Length, lexer.FileName, lexer.LineNo);
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (tokens.Length < 38)
                 {
-                    return;
+                    return null;
                 }
             }
 
@@ -449,8 +443,8 @@ namespace HoI2Editor.Models
             int id;
             if (!int.TryParse(tokens[index], out id))
             {
-                Log.Warning("[Team] Invalid id: {0} ({1} L{2})", tokens[index], _currentFileName, _currentLineNo);
-                return;
+                Log.Warning("[Team] Invalid id: {0} ({1} L{2})", tokens[index], lexer.FileName, lexer.LineNo);
+                return null;
             }
             team.Id = id;
             index++;
@@ -473,7 +467,7 @@ namespace HoI2Editor.Models
             {
                 team.Skill = 1;
                 Log.Warning("[Team] Invalid skill: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id, team.Name,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -487,7 +481,7 @@ namespace HoI2Editor.Models
             {
                 team.StartYear = 1930;
                 Log.Warning("[Team] Invalid start year: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id, team.Name,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -501,7 +495,7 @@ namespace HoI2Editor.Models
             {
                 team.EndYear = 1970;
                 Log.Warning("[Team] Invalid end year: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id, team.Name,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -522,7 +516,7 @@ namespace HoI2Editor.Models
                 {
                     team.Specialities[i] = TechSpeciality.None;
                     Log.Warning("[Team] Invalid speciality: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id,
-                        team.Name, _currentFileName, _currentLineNo);
+                        team.Name, lexer.FileName, lexer.LineNo);
                     continue;
                 }
 
@@ -531,14 +525,14 @@ namespace HoI2Editor.Models
                 if (!Techs.Specialities.Contains(speciality))
                 {
                     Log.Warning("[Team] Invalid speciality: {0} [{1}: {2}] ({3} L{4})", tokens[index], team.Id,
-                        team.Name, _currentFileName, _currentLineNo);
+                        team.Name, lexer.FileName, lexer.LineNo);
                     continue;
                 }
 
                 team.Specialities[i] = speciality;
             }
 
-            Items.Add(team);
+            return team;
         }
 
         #endregion
@@ -625,13 +619,9 @@ namespace HoI2Editor.Models
             // 登録された研究機関ファイル名を順に書き込む
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 1;
-
                 foreach (string name in FileNameMap.Select(pair => pair.Value))
                 {
                     writer.WriteLine(name);
-                    _currentLineNo++;
                 }
             }
 
@@ -652,14 +642,12 @@ namespace HoI2Editor.Models
                 Directory.CreateDirectory(folderName);
             }
 
-            string fileName = Path.Combine(folderName, Game.GetTeamFileName(country));
-            Log.Info("[Team] Save: {0}", Path.GetFileName(fileName));
+            string name = Game.GetTeamFileName(country);
+            string fileName = Path.Combine(folderName, name);
+            Log.Info("[Team] Save: {0}", name);
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 2;
-
                 // ヘッダ行を書き込む
                 writer.WriteLine(
                     "{0};Name;Pic Name;Skill;Start Year;End Year;Speciality1;Speciality2;Speciality3;Speciality4;Speciality5;Speciality6;Speciality7;Speciality8;Speciality9;Speciality10;Speciality11;Speciality12;Speciality13;Speciality14;Speciality15;Speciality16;Speciality17;Speciality18;Speciality19;Speciality20;Speciality21;Speciality22;Speciality23;Speciality24;Speciality25;Speciality26;Speciality27;Speciality28;Speciality29;Speciality30;Speciality31;Speciality32;x",
@@ -687,8 +675,6 @@ namespace HoI2Editor.Models
 
                     // 編集済みフラグを解除する
                     team.ResetDirtyAll();
-
-                    _currentLineNo++;
                 }
             }
 

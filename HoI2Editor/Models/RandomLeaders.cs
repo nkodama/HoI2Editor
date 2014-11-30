@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -35,25 +36,6 @@ namespace HoI2Editor.Models
         ///     国家ごとの編集済みフラグ
         /// </summary>
         private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
-
-        /// <summary>
-        ///     現在解析中のファイル名
-        /// </summary>
-        private static string _currentFileName = "";
-
-        /// <summary>
-        ///     現在解析中の行番号
-        /// </summary>
-        private static int _currentLineNo;
-
-        #endregion
-
-        #region 内部定数
-
-        /// <summary>
-        ///     CSVファイルの区切り文字
-        /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
 
         #endregion
 
@@ -136,15 +118,11 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[RandomLeader] Load: {0}", Path.GetFileName(fileName));
 
-            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            using (var lexer = new CsvLexer(fileName))
             {
-                _currentFileName = Path.GetFileName(fileName);
-                _currentLineNo = 1;
-
-                while (!reader.EndOfStream)
+                while (!lexer.EndOfStream)
                 {
-                    ParseLine(reader.ReadLine());
-                    _currentLineNo++;
+                    ParseLine(lexer);
                 }
             }
         }
@@ -152,22 +130,23 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ランダム指揮官名定義行を解釈する
         /// </summary>
-        /// <param name="line">対象文字列</param>
-        private static void ParseLine(string line)
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>閣僚データ</returns>
+        private static void ParseLine(CsvLexer lexer)
         {
+            string[] tokens = lexer.GetTokens();
+
             // 空行を読み飛ばす
-            if (string.IsNullOrEmpty(line))
+            if (tokens == null)
             {
                 return;
             }
 
-            string[] tokens = line.Split(CsvSeparator);
-
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != 2)
             {
-                Log.Warning("[RandomLeader] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
-                    _currentLineNo);
+                Log.Warning("[RandomLeader] Invalid token count: {0} ({1} L{2})", tokens.Length, lexer.FileName,
+                    lexer.LineNo);
                 // 余分な項目がある場合は解析を続ける
                 if (tokens.Length < 2)
                 {
@@ -179,8 +158,7 @@ namespace HoI2Editor.Models
             string countryName = tokens[0].ToUpper();
             if (!Countries.StringMap.ContainsKey(countryName))
             {
-                Log.Warning("[RandomLeader] Invalid country: {0} ({1} L{2})", countryName, _currentFileName,
-                    _currentLineNo);
+                Log.Warning("[RandomLeader] Invalid country: {0} ({1} L{2})", countryName, lexer.FileName, lexer.LineNo);
                 return;
             }
             Country country = Countries.StringMap[countryName];
@@ -249,15 +227,11 @@ namespace HoI2Editor.Models
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 1;
-
                 foreach (Country country in Countries.Tags.Where(country => Items[(int) country] != null))
                 {
                     foreach (string name in Items[(int) country])
                     {
                         writer.WriteLine("{0};{1}", Countries.Strings[(int) country], name);
-                        _currentLineNo++;
                     }
                 }
             }

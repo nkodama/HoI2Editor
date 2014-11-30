@@ -263,29 +263,6 @@ namespace HoI2Editor.Models
         /// <returns>保存に失敗すればfalseを返す</returns>
         public static bool Save()
         {
-            string fileName = Game.GetWriteFileName(_fileName);
-            string folderName = Path.GetDirectoryName(fileName);
-
-            try
-            {
-                // シナリオフォルダがなければ作成する
-                if (!String.IsNullOrEmpty(folderName) && !Directory.Exists(folderName))
-                {
-                    Directory.CreateDirectory(folderName);
-                }
-                Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
-            }
-            catch (Exception)
-            {
-                Log.Error("[Unit] Write error: {0}", fileName);
-                MessageBox.Show(String.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            // 編集済みフラグを解除する
-            ResetDirtyAll();
-
             return true;
         }
 

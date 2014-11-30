@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -59,16 +60,6 @@ namespace HoI2Editor.Models
         ///     指揮官リストファイルの編集済みフラグ
         /// </summary>
         private static bool _dirtyListFlag;
-
-        /// <summary>
-        ///     現在解析中のファイル名
-        /// </summary>
-        private static string _currentFileName = "";
-
-        /// <summary>
-        ///     現在解析中の行番号
-        /// </summary>
-        private static int _currentLineNo;
 
         #endregion
 
@@ -149,15 +140,6 @@ namespace HoI2Editor.Models
             "TRAIT_TATICAL",
             "TRAIT_BREAK"
         };
-
-        #endregion
-
-        #region 内部定数
-
-        /// <summary>
-        ///     CSVファイルの区切り文字
-        /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
 
         #endregion
 
@@ -455,40 +437,49 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[Leader] Load: {0}", Path.GetFileName(fileName));
 
-            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            using (var lexer = new CsvLexer(fileName))
             {
-                _currentFileName = Path.GetFileName(fileName);
-                _currentLineNo = 1;
-
                 // 空ファイルを読み飛ばす
-                if (reader.EndOfStream)
+                if (lexer.EndOfStream)
                 {
                     return;
                 }
 
                 // ヘッダ行読み込み
-                string line = reader.ReadLine();
+                string line = lexer.ReadLine();
                 if (String.IsNullOrEmpty(line))
                 {
                     return;
                 }
 
-                _currentLineNo++;
-                var country = Country.None;
-
-                while (!reader.EndOfStream)
+                // ヘッダ行のみのファイルを読み飛ばす
+                if (lexer.EndOfStream)
                 {
-                    Leader leader = ParseLine(reader.ReadLine());
+                    return;
+                }
 
-                    if (country == Country.None && leader != null)
+                // 1行ずつ順に読み込む
+                var country = Country.None;
+                while (!lexer.EndOfStream)
+                {
+                    Leader leader = ParseLine(lexer);
+
+                    // 空行を読み飛ばす
+                    if (leader == null)
+                    {
+                        continue;
+                    }
+
+                    Items.Add(leader);
+
+                    if (country == Country.None)
                     {
                         country = leader.Country;
                         if (country != Country.None && !FileNameMap.ContainsKey(country))
                         {
-                            FileNameMap.Add(country, Path.GetFileName(fileName));
+                            FileNameMap.Add(country, lexer.FileName);
                         }
                     }
-                    _currentLineNo++;
                 }
 
                 ResetDirty(country);
@@ -498,23 +489,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官定義行を解釈する
         /// </summary>
-        /// <param name="line">対象文字列</param>
+        /// <param name="lexer">字句解析器</param>
         /// <returns>指揮官データ</returns>
-        private static Leader ParseLine(string line)
+        private static Leader ParseLine(CsvLexer lexer)
         {
+            string[] tokens = lexer.GetTokens();
+
             // 空行を読み飛ばす
-            if (string.IsNullOrEmpty(line))
+            if (tokens == null)
             {
                 return null;
             }
 
-            string[] tokens = line.Split(CsvSeparator);
-
             // トークン数が足りない行は読み飛ばす
             if (tokens.Length != (Misc.EnableRetirementYearLeaders ? 19 : 18))
             {
-                Log.Warning("[Leader] Invalid token count: {0} ({1} L{2})", tokens.Length, _currentFileName,
-                    _currentLineNo);
+                Log.Warning("[Leader] Invalid token count: {0} ({1} L{2})", tokens.Length, lexer.FileName, lexer.LineNo);
                 // 末尾のxがない/余分な項目がある場合は解析を続ける
                 if (tokens.Length < (Misc.EnableRetirementYearLeaders ? 18 : 17))
                 {
@@ -539,8 +529,8 @@ namespace HoI2Editor.Models
             int id;
             if (!int.TryParse(tokens[index], out id))
             {
-                Log.Warning("[Leader] Invalid id: {0} [{1}] ({1} L{2})", tokens[index], leader.Name, _currentFileName,
-                    _currentLineNo);
+                Log.Warning("[Leader] Invalid id: {0} [{1}] ({1} L{2})", tokens[index], leader.Name, lexer.FileName,
+                    lexer.LineNo);
                 return null;
             }
             leader.Id = id;
@@ -550,7 +540,7 @@ namespace HoI2Editor.Models
             if (string.IsNullOrEmpty(tokens[index]) || !Countries.StringMap.ContainsKey(tokens[index].ToUpper()))
             {
                 Log.Warning("[Leader] Invalid country: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
                 return null;
             }
             leader.Country = Countries.StringMap[tokens[index].ToUpper()];
@@ -568,7 +558,7 @@ namespace HoI2Editor.Models
                 {
                     leader.RankYear[i] = 1990;
                     Log.Warning("[Leader] Invalid rank{0} year: {1} [{2}: {3}] ({4} L{5})", i, tokens[index], leader.Id,
-                        leader.Name, _currentFileName, _currentLineNo);
+                        leader.Name, lexer.FileName, lexer.LineNo);
                 }
                 index++;
             }
@@ -583,7 +573,7 @@ namespace HoI2Editor.Models
             {
                 leader.IdealRank = LeaderRank.None;
                 Log.Warning("[Leader] Invalid ideal rank: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
-                    leader.Name, _currentFileName, _currentLineNo);
+                    leader.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -597,7 +587,7 @@ namespace HoI2Editor.Models
             {
                 leader.MaxSkill = 0;
                 Log.Warning("[Leader] Invalid max skill: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
-                    leader.Name, _currentFileName, _currentLineNo);
+                    leader.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -611,7 +601,7 @@ namespace HoI2Editor.Models
             {
                 leader.Traits = LeaderTraits.None;
                 Log.Warning("[Leader] Invalid trait: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
-                    leader.Name, _currentFileName, _currentLineNo);
+                    leader.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -625,7 +615,7 @@ namespace HoI2Editor.Models
             {
                 leader.Skill = 0;
                 Log.Warning("[Leader] Invalid skill: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -639,7 +629,7 @@ namespace HoI2Editor.Models
             {
                 leader.Experience = 0;
                 Log.Warning("[Leader] Invalid experience: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
-                    leader.Name, _currentFileName, _currentLineNo);
+                    leader.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -653,7 +643,7 @@ namespace HoI2Editor.Models
             {
                 leader.Loyalty = 0;
                 Log.Warning("[Leader] Invalid loyalty: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -667,7 +657,7 @@ namespace HoI2Editor.Models
             {
                 leader.Branch = Branch.None;
                 Log.Warning("[Leader] Invalid branch: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id, leader.Name,
-                    _currentFileName, _currentLineNo);
+                    lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -685,7 +675,7 @@ namespace HoI2Editor.Models
             {
                 leader.StartYear = 1930;
                 Log.Warning("[Leader] Invalid start year: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
-                    leader.Name, _currentFileName, _currentLineNo);
+                    leader.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -699,7 +689,7 @@ namespace HoI2Editor.Models
             {
                 leader.EndYear = 1970;
                 Log.Warning("[Leader] Invalid end year: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
-                    leader.Name, _currentFileName, _currentLineNo);
+                    leader.Name, lexer.FileName, lexer.LineNo);
             }
             index++;
 
@@ -715,15 +705,13 @@ namespace HoI2Editor.Models
                 {
                     leader.RetirementYear = 1999;
                     Log.Warning("[Leader] Invalid retirement year: {0} [{1}: {2}] ({3} L{4})", tokens[index], leader.Id,
-                        leader.Name, _currentFileName, _currentLineNo);
+                        leader.Name, lexer.FileName, lexer.LineNo);
                 }
             }
             else
             {
                 leader.RetirementYear = 1999;
             }
-
-            Items.Add(leader);
 
             return leader;
         }
@@ -814,13 +802,9 @@ namespace HoI2Editor.Models
             // 登録された指揮官ファイル名を順に書き込む
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 1;
-
                 foreach (string name in FileNameMap.Select(pair => pair.Value))
                 {
                     writer.WriteLine(name);
-                    _currentLineNo++;
                 }
             }
 
@@ -841,13 +825,13 @@ namespace HoI2Editor.Models
                 Directory.CreateDirectory(folderName);
             }
 
-            string fileName = Path.Combine(folderName, Game.GetLeaderFileName(country));
-            Log.Info("[Leader] Save: {0}", Path.GetFileName(fileName));
+            string name = Game.GetLeaderFileName(country);
+            string fileName = Path.Combine(folderName, name);
+            Log.Info("[Leader] Save: {0}", name);
 
             using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                _currentFileName = fileName;
-                _currentLineNo = 2;
+                int lineNo = 2;
 
                 // ヘッダ行を書き込む
                 writer.WriteLine(
@@ -861,13 +845,12 @@ namespace HoI2Editor.Models
                     // 不正な値が設定されている場合は警告をログに出力する
                     if (leader.Branch == Branch.None)
                     {
-                        Log.Warning("[Leader] Invalid branch: {0} {1} ({2} L{3})", leader.Id, leader.Name,
-                            _currentFileName, _currentLineNo);
+                        Log.Warning("[Leader] Invalid branch: {0} {1} ({2} L{3})", leader.Id, leader.Name, name, lineNo);
                     }
                     if (leader.IdealRank == LeaderRank.None)
                     {
-                        Log.Warning("[Leader] Invalid ideal rank: {0} {1} ({2} L{3})", leader.Id, leader.Name,
-                            _currentFileName, _currentLineNo);
+                        Log.Warning("[Leader] Invalid ideal rank: {0} {1} ({2} L{3})", leader.Id, leader.Name, name,
+                            lineNo);
                     }
 
                     // 指揮官定義行を書き込む
@@ -928,7 +911,7 @@ namespace HoI2Editor.Models
                     // 編集済みフラグを解除する
                     leader.ResetDirtyAll();
 
-                    _currentLineNo++;
+                    lineNo++;
                 }
             }
 

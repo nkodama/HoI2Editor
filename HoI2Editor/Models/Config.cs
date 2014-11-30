@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
 
 namespace HoI2Editor.Models
@@ -185,11 +185,6 @@ namespace HoI2Editor.Models
             "Patched Traditional Chinese",
             "Patched Simplified Chinese"
         };
-
-        /// <summary>
-        ///     CSVファイルの区切り文字
-        /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
 
         #endregion
 
@@ -535,24 +530,20 @@ namespace HoI2Editor.Models
                 effectiveCount = 11;
             }
 
-            int lineNo = 0;
             var orderList = new List<string>();
 
-            using (var reader = new StreamReader(fileName, Encoding.GetEncoding(Game.CodePage)))
+            using (var lexer = new CsvLexer(fileName))
             {
-                while (!reader.EndOfStream)
+                while (!lexer.EndOfStream)
                 {
-                    string line = reader.ReadLine();
-                    lineNo++;
+                    string[] tokens = lexer.GetTokens();
 
                     // 空行を読み飛ばす
-                    if (string.IsNullOrEmpty(line))
+                    if (tokens == null)
                     {
                         orderList.Add("");
                         continue;
                     }
-
-                    string[] tokens = line.Split(CsvSeparator);
 
                     // 先頭トークンを定義順リストに登録する
                     orderList.Add(tokens[0]);
@@ -560,7 +551,7 @@ namespace HoI2Editor.Models
                     // トークン数が足りない行は読み飛ばす
                     if (tokens.Length != expectedCount)
                     {
-                        Log.Warning("[Config] Invalid token count: {0} ({1} L{2})", tokens.Length, name, lineNo);
+                        Log.Warning("[Config] Invalid token count: {0} ({1} L{2})", tokens.Length, name, lexer.LineNo);
 
                         // 末尾のxがない/余分な項目がある場合は解析を続ける
                         if (tokens.Length < effectiveCount)
@@ -580,7 +571,7 @@ namespace HoI2Editor.Models
                     if (RegexTempKey.IsMatch(key))
                     {
                         TempKeyList.Add(key);
-                        Log.Warning("[Config] Unexpected temp key: {0} ({1} L{2})", key, name, lineNo);
+                        Log.Warning("[Config] Unexpected temp key: {0} ({1} L{2})", key, name, lexer.LineNo);
                     }
 
                     // 変換テーブルに登録する
@@ -686,7 +677,7 @@ namespace HoI2Editor.Models
             }
             string pathName = Path.Combine(folderName, fileName);
 
-            using (var writer = new StreamWriter(pathName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (var writer = new StreamWriter(fileName))
             {
                 // 最初のEOF定義で追加文字列を書き込むためのフラグ
                 bool firsteof = true;
