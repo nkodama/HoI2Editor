@@ -398,6 +398,16 @@ namespace HoI2Editor.Models
         public const string ProvinceTextFileName = "province_names.csv";
 
         /// <summary>
+        ///     マップデータのファイル名
+        /// </summary>
+        public const string LightMapFileName = "lightmap1.tbl";
+
+        /// <summary>
+        ///     プロヴィンス境界定義ファイル名
+        /// </summary>
+        public const string BoundBoxFileName = "boundbox.tbl";
+
+        /// <summary>
         ///     ユニット名定義ファイル名
         /// </summary>
         public const string UnitNamesPathName = "db\\unitnames.csv";
@@ -664,6 +674,24 @@ namespace HoI2Editor.Models
             }
 
             return Path.Combine(folderName, string.Format("ill_prov_{0}.bmp", id));
+        }
+
+        /// <summary>
+        ///     マップフォルダ名を取得する
+        /// </summary>
+        /// <returns>マップフォルダ名</returns>
+        public static string GetMapFolderName()
+        {
+            string folderName;
+            if (Type != GameType.DarkestHour || Misc.MapNumber == 0)
+            {
+                folderName = MapPathName;
+            }
+            else
+            {
+                folderName = Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
+            }
+            return folderName;
         }
 
         /// <summary>

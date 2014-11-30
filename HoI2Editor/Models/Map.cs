@@ -40,14 +40,14 @@ namespace HoI2Editor.Models
         /// </summary>
         public static MapBlocks Blocks { get; private set; }
 
+        /// <summary>
+        ///     プロヴィンス境界の配列
+        /// </summary>
+        public static Rectangle[] BoundBoxes { get; private set; }
+
         #endregion
 
         #region 内部フィールド
-
-        /// <summary>
-        ///     マップファイル名
-        /// </summary>
-        private static string _fileName;
 
         /// <summary>
         ///     ファイル読み込みデータ
@@ -89,9 +89,24 @@ namespace HoI2Editor.Models
         #region 内部定数
 
         /// <summary>
-        ///     プロヴィンスIDの最大数
+        ///     マップブロック単位の幅
         /// </summary>
-        private const int MaxProvinceId = 256;
+        private const int BlockWidth = 936;
+
+        /// <summary>
+        ///     マップブロック単位の高さ
+        /// </summary>
+        private const int BlockHeight = 360;
+
+        /// <summary>
+        ///     最大プロヴィンス数
+        /// </summary>
+        private const int MaxProvinces = 10000;
+
+        /// <summary>
+        ///     マップブロック内のプロヴィンスの最大数
+        /// </summary>
+        private const int MaxBlockProvinces = 256;
 
         #endregion
 
@@ -100,33 +115,44 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップファイルを読み込む
         /// </summary>
-        /// <param name="fileName">ファイル名</param>
-        /// <param name="width">マップブロック単位の幅</param>
-        /// <param name="height">マップブロック単位の高さ</param>
-        public static void Load(string fileName, int width, int height)
+        public static void Load()
         {
-            _fileName = fileName;
-
-            Width = width;
-            Height = height;
+            Width = BlockWidth;
+            Height = BlockHeight;
 
             var sw = new Stopwatch();
             sw.Start();
 
+            // マップデータを読み込む
+            LoadLightMap();
+
+            // プロヴィンス境界定義ファイルを読み込む
+            LoadBoundBox();
+
+            sw.Stop();
+            Log.Info("[Map] Load: {0}ms", sw.ElapsedMilliseconds);
+        }
+
+        /// <summary>
+        ///     マップデータを読み込む
+        /// </summary>
+        private static void LoadLightMap()
+        {
             // マップデータをメモリへ展開する
-            LoadFile(fileName);
+            LoadFile();
 
             // マップブロックのオフセット位置を読み込む
-            int count = width * height;
+            int count = Width * Height;
             LoadOffsets(count);
 
-            int dataoffset = (count + 1) * 4;
-            Blocks = new MapBlocks(width, height);
+            int offset = (count + 1) * 4;
+            Blocks = new MapBlocks(Width, Height);
             _stack = new MapTreeNode[MapBlock.Width * MapBlock.Height * 2];
 
+            // マップブロックを順に読み込む
             for (int i = 0; i < count; i++)
             {
-                _index = dataoffset + (int) _offsets[i];
+                _index = offset + (int) _offsets[i];
                 Blocks[i] = LoadBlock();
             }
 
@@ -134,17 +160,15 @@ namespace HoI2Editor.Models
             _data = null;
             _offsets = null;
             _stack = null;
-
-            sw.Stop();
-            Log.Info("[Map] Load: {0}ms", sw.ElapsedMilliseconds);
+            _buffer = null;
         }
 
         /// <summary>
         ///     マップデータをメモリへ展開する
         /// </summary>
-        /// <param name="fileName">ファイル名</param>
-        private static void LoadFile(string fileName)
+        private static void LoadFile()
         {
+            string fileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.LightMapFileName);
             var reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             _data = new byte[reader.Length];
             reader.Read(_data, 0, (int) reader.Length);
@@ -190,7 +214,7 @@ namespace HoI2Editor.Models
         /// <param name="block">対象マップブロック</param>
         private static void LoadProvinceIds(MapBlock block)
         {
-            var ids = new ushort[MaxProvinceId];
+            var ids = new ushort[MaxBlockProvinces];
             int no = 0;
 
             const ushort terminator = 0x8000;
@@ -305,10 +329,7 @@ namespace HoI2Editor.Models
             switch (block.ProvinceIdCount)
             {
                 case 1:
-                    //for (int i = 0; i < count; i++)
-                    //{
-                    //    ids[i] = 0;
-                    //}
+                    // プロヴィンス数が1の場合は省略
                     break;
 
                 case 2:
@@ -403,6 +424,43 @@ namespace HoI2Editor.Models
             }
 
             block.NodeColors = colors;
+        }
+
+        /// <summary>
+        ///     プロヴィンス境界定義ファイルを読み込む
+        /// </summary>
+        private static void LoadBoundBox()
+        {
+            // プロヴィンス境界データをメモリへ展開する
+            string fileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.LightMapFileName);
+            int count;
+            using (var reader = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                var len = (int) reader.Length;
+                _data = new byte[len];
+                count = len / 16;
+                reader.Read(_data, 0, len);
+                reader.Close();
+            }
+            _index = 0;
+
+            if (count > MaxProvinces)
+            {
+                count = MaxProvinces;
+            }
+            BoundBoxes = new Rectangle[count];
+
+            // プロヴィンス境界を順に読み込む
+            for (int i = 0; i < count; i++)
+            {
+                int left = _data[_index] | (_data[_index + 1] << 8);
+                BoundBoxes[i].X = left;
+                BoundBoxes[i].Width = (_data[_index + 8] | (_data[_index + 9] << 8)) - left + 1;
+                int top = _data[_index + 4] | (_data[_index + 5] << 8);
+                BoundBoxes[i].Y = top;
+                BoundBoxes[i].Height = (_data[_index + 12] | (_data[_index + 13] << 8)) - top + 1;
+                _index += 16;
+            }
         }
 
         #endregion
