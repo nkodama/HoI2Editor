@@ -408,6 +408,11 @@ namespace HoI2Editor.Models
         public const string BoundBoxFileName = "boundbox.tbl";
 
         /// <summary>
+        ///     カラースケールテーブルのファイル名
+        /// </summary>
+        public const string ColorScalesFileName = "colorscales.csv";
+
+        /// <summary>
         ///     ユニット名定義ファイル名
         /// </summary>
         public const string UnitNamesPathName = "db\\unitnames.csv";

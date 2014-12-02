@@ -159,19 +159,18 @@ namespace HoI2Editor.Parsers
         }
 
         /// <summary>
-        ///     1行の文字列を返す
+        ///     1行読み飛ばす
         /// </summary>
-        /// <returns>1行の文字列</returns>
-        public string ReadLine()
+        public void SkipLine()
         {
-            // ファイルの末尾に到達したらnullを返す
+            // ファイルの末尾に到達したら何もしない
             if (_reader.EndOfStream)
             {
-                return null;
+                return;
             }
 
             LineNo++;
-            return _reader.ReadLine();
+            _reader.ReadLine();
         }
 
         #endregion

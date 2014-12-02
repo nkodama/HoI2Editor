@@ -3506,11 +3506,7 @@ namespace HoI2Editor.Models
                 }
 
                 // ヘッダ行読み込み
-                string line = lexer.ReadLine();
-                if (String.IsNullOrEmpty(line))
-                {
-                    return;
-                }
+                lexer.SkipLine();
 
                 // ヘッダ行のみのファイルを読み飛ばす
                 if (lexer.EndOfStream)
